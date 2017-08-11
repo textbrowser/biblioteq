@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ar_JO">
+<TS version="2.0" language="ar_JO">
 <context>
     <name>QObject</name>
     <message>
@@ -615,7 +615,7 @@
     <message>
         <location filename="../UI/biblioteq_allinfo.ui" line="25"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Location, Monetary Units, Price, Publication Date, and Publisher will be ignored for Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;المستخلص، الفئات الموضوعية، النُسخ، الكلمات المفتاحية، اللغة، الموقع، الوحدات النقدية، السعر، تاريخ النشر، والناشر سيتم تجاهلها في مجموعات الصور الفوتوغرافية.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_allinfo.ui" line="71"/>
@@ -634,12 +634,12 @@
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="vanished">yyyy-MM-dd</translation>
+        <translation>yyyy-MM-dd</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_allinfo.ui" line="106"/>
         <source>yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_allinfo.ui" line="138"/>
@@ -6890,7 +6890,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2222"/>
         <source>&amp;Delete Photograph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; حذف الصورة</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2229"/>
@@ -6925,7 +6925,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2743"/>
         <source>A total of %1 image(s) were imported from the directory %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>تم استيراد ما مجموعه %1 من الصور من الدليل %2.</translation>
     </message>
     <message>
         <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
@@ -9510,11 +9510,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../UI/biblioteq_mainwindow.ui" line="985"/>
         <location filename="../UI/biblioteq_mainwindow.ui" line="988"/>
         <source>View Member&apos;s Reservation History (Patrons Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>عرض أرشيف الإعارة للأعضاء (المستفيدون فقط)</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">عرض أرشيف إعارات المشتركين</translation>
+        <translation>عرض أرشيف إعارات المشتركين</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="997"/>
