@@ -25,33 +25,35 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * \file logrpn.h
- * \brief Header for Z39.50 Query Printing
- */
+/** \file proxunit.h
+    \brief Header for JSON functions
+*/
 
-#ifndef YAZ_LOGRPN_H
-#define YAZ_LOGRPN_H
+#ifndef YAZ_PROXUNIT_H
+#define YAZ_PROXUNIT_H
 
 #include <yaz/yconfig.h>
-#include <yaz/proto.h>
 
 YAZ_BEGIN_CDECL
 
-YAZ_EXPORT const char *yaz_prox_unit_name(Z_ProximityOperator *op);
-YAZ_EXPORT void log_rpn_query(Z_RPNQuery *rpn);
-YAZ_EXPORT void log_rpn_query_level(int loglevel, Z_RPNQuery *rpn);
+/** \brief converts prox unit integer to string
+    \param u unit
+    \returns result name or NULL if not-found
+*/
+YAZ_EXPORT
+const char *z_ProxUnit_to_str(int u);
 
-YAZ_EXPORT void log_scan_term(Z_AttributesPlusTerm *zapt, const Odr_oid *ast);
-YAZ_EXPORT void log_scan_term_level(int loglevel,
-                                    Z_AttributesPlusTerm *zapt,
-                                    const Odr_oid *ast);
-YAZ_EXPORT void yaz_log_zquery(Z_Query *q);
-YAZ_EXPORT void yaz_log_zquery_level(int loglevel, Z_Query *q);
+/** \brief converts unit name string to unit integer
+    \param str unit name
+    \returns unit code (positive integer) or 0 if unknown name
+*/
+YAZ_EXPORT
+int z_str_to_ProxUnit(const char *str);
 
 YAZ_END_CDECL
 
 #endif
+
 /*
  * Local variables:
  * c-basic-offset: 4

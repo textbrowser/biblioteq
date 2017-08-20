@@ -72,6 +72,13 @@ YAZ_EXPORT void yaz_url_set_max_redirects(yaz_url_t p, int num);
 */
 YAZ_EXPORT void yaz_url_set_verbose(yaz_url_t p, int num);
 
+/** \brief sets I/O timeout
+    \param p handle
+    \param sec major part of timeout in seconds
+    \param ns minor part of timeout in nanoseconds
+*/
+YAZ_EXPORT void yaz_url_set_timeout(yaz_url_t p, int sec, int ns);
+
 /** \brief executes the actual HTTP request (including redirects, etc)
     \param p handle
     \param uri URL

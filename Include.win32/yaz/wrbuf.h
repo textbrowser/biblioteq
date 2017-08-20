@@ -112,6 +112,15 @@ YAZ_EXPORT void wrbuf_xmlputs(WRBUF b, const char *cp);
 YAZ_EXPORT void wrbuf_puts_replace_char(WRBUF b, const char *buf,
                                         const char from, const char to);
 
+/** \brief puts buf to WRBUF and replaces a string with another
+    \param b WRBUF
+    \param buf buffer to append (C-string)
+    \param from pattern string
+    \param to replacement string
+*/
+YAZ_EXPORT void wrbuf_puts_replace_str(WRBUF b, const char *buf,
+                                        const char *from, const char *to);
+
 /** \brief writes C-string to WRBUF and escape non-ASCII characters
     \param b WRBUF
     \param str C-string
