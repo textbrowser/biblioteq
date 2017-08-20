@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ar_JO">
+<TS version="2.1" language="ar_JO">
 <context>
     <name>QObject</name>
     <message>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation>yyyy-MM-dd</translation>
+        <translation type="vanished">yyyy-MM-dd</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_allinfo.ui" line="106"/>
@@ -9514,7 +9514,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation>عرض أرشيف إعارات المشتركين</translation>
+        <translation type="vanished">عرض أرشيف إعارات المشتركين</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="997"/>
