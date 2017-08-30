@@ -1142,75 +1142,6 @@
     <string>&amp;Video Game...</string>
    </property>
   </action>
-  <action name="actionCzech">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Czech</string>
-   </property>
-  </action>
-  <action name="action_English">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;English</string>
-   </property>
-  </action>
-  <action name="action_German">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;German</string>
-   </property>
-  </action>
-  <action name="actionG_reek">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>G&amp;reek</string>
-   </property>
-  </action>
-  <action name="action_French">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;French</string>
-   </property>
-  </action>
-  <action name="action_Hungarian">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Hungarian</string>
-   </property>
-  </action>
-  <action name="action_Dutch">
-   <property name="text">
-    <string>&amp;Dutch</string>
-   </property>
-  </action>
-  <action name="actionDutch_Belgium">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Dutch (&amp;Belgium)</string>
-   </property>
-  </action>
-  <action name="actionDutch_Netherlands">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Dutch (&amp;Netherlands)</string>
-   </property>
-  </action>
   <action name="action_Photograph_Collection">
    <property name="text">
     <string>&amp;Photograph Collection...</string>
@@ -1224,11 +1155,6 @@
   <action name="action_Upgrade_SQLite_Schema">
    <property name="text">
     <string>&amp;Upgrade SQLite Schema</string>
-   </property>
-  </action>
-  <action name="action1">
-   <property name="text">
-    <string>1</string>
    </property>
   </action>
   <action name="actionAutomatically_Resize_Column_Widths">
