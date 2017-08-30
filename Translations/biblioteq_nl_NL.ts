@@ -7824,35 +7824,35 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Czech</source>
-        <translation>&amp;Tsjechisch</translation>
+        <translation type="vanished">&amp;Tsjechisch</translation>
     </message>
     <message>
         <source>&amp;English</source>
-        <translation>&amp;Engels</translation>
+        <translation type="vanished">&amp;Engels</translation>
     </message>
     <message>
         <source>&amp;German</source>
-        <translation>&amp;Duits</translation>
+        <translation type="vanished">&amp;Duits</translation>
     </message>
     <message>
         <source>G&amp;reek</source>
-        <translation>G&amp;rieks</translation>
+        <translation type="vanished">G&amp;rieks</translation>
     </message>
     <message>
         <source>&amp;French</source>
-        <translation>&amp;Frans</translation>
+        <translation type="vanished">&amp;Frans</translation>
     </message>
     <message>
         <source>&amp;Dutch</source>
-        <translation>&amp;Nederlands</translation>
+        <translation type="vanished">&amp;Nederlands</translation>
     </message>
     <message>
         <source>Dutch (&amp;Belgium)</source>
-        <translation>Nederlands (&amp;Belgisch)</translation>
+        <translation type="vanished">Nederlands (&amp;Belgisch)</translation>
     </message>
     <message>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation>Nederlands (&amp;Holland)</translation>
+        <translation type="vanished">Nederlands (&amp;Holland)</translation>
     </message>
     <message>
         <source>Preferred &amp;SRU Site</source>
@@ -7865,10 +7865,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>None</source>
         <translation type="obsolete">Geen</translation>
-    </message>
-    <message>
-        <source>&amp;Hungarian</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Search</source>

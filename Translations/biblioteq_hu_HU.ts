@@ -9738,12 +9738,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+20"/>
-        <location line="+917"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-904"/>
+        <location line="+13"/>
         <source>Next Page</source>
         <translation>Következő Oldal</translation>
     </message>
@@ -9944,12 +9943,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+5"/>
         <source>&amp;Photograph Collection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+23"/>
         <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9968,7 +9967,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">A Programról</translation>
     </message>
     <message>
-        <location line="-590"/>
+        <location line="-516"/>
         <source>&amp;Display Table Grid</source>
         <translation>Táblázat Rács Megjelenítése</translation>
     </message>
@@ -10278,56 +10277,47 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Videójáték</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>&amp;Czech</source>
-        <translation>Cseh</translation>
+        <translation type="vanished">Cseh</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>&amp;English</source>
-        <translation>English</translation>
+        <translation type="vanished">English</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>&amp;German</source>
-        <translation>Deutsch</translation>
+        <translation type="vanished">Deutsch</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>G&amp;reek</source>
-        <translation>Görög</translation>
+        <translation type="vanished">Görög</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>&amp;French</source>
-        <translation>Francia</translation>
+        <translation type="vanished">Francia</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>&amp;Hungarian</source>
-        <translation>Magyar</translation>
+        <translation type="vanished">Magyar</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;Dutch</source>
-        <translation>Holland</translation>
+        <translation type="vanished">Holland</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Dutch (&amp;Belgium)</source>
-        <translation>Holland (Belgium)</translation>
+        <translation type="vanished">Holland (Belgium)</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation>Holland (Hollandia)</translation>
+        <translation type="vanished">Holland (Hollandia)</translation>
     </message>
     <message>
         <source>&amp;Photograph Collection</source>
         <translation type="obsolete">Fénykép Gyüjtemény</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+40"/>
         <source>&amp;Category</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10337,7 +10327,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+8"/>
         <source>Automatically &amp;Resize Column Widths</source>
         <translation type="unfinished"></translation>
     </message>

@@ -7719,43 +7719,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Czech</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;German</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>G&amp;reek</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;French</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Dutch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch (&amp;Belgium)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch (&amp;Netherlands)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Preferred &amp;SRU Site</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

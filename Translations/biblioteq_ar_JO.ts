@@ -9184,7 +9184,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="314"/>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1231"/>
         <source>1</source>
         <translation>1</translation>
     </message>
@@ -9628,82 +9627,73 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>ألعاب الفيديو</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1150"/>
         <source>&amp;Czech</source>
-        <translation>التشيكية</translation>
+        <translation type="vanished">التشيكية</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1158"/>
         <source>&amp;English</source>
-        <translation>الإنجليزية</translation>
+        <translation type="vanished">الإنجليزية</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1166"/>
         <source>&amp;German</source>
-        <translation>الألمانية</translation>
+        <translation type="vanished">الألمانية</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1174"/>
         <source>G&amp;reek</source>
-        <translation>اليونانية</translation>
+        <translation type="vanished">اليونانية</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1182"/>
         <source>&amp;French</source>
-        <translation>الفرنسية</translation>
+        <translation type="vanished">الفرنسية</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1190"/>
         <source>&amp;Hungarian</source>
-        <translation>الهنغارية</translation>
+        <translation type="vanished">الهنغارية</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1195"/>
         <source>&amp;Dutch</source>
-        <translation>الهولندية </translation>
+        <translation type="vanished">الهولندية </translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1203"/>
         <source>Dutch (&amp;Belgium)</source>
-        <translation>الهولندية (بلجيكا)</translation>
+        <translation type="vanished">الهولندية (بلجيكا)</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1211"/>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation>الهولندية (هولندا)</translation>
+        <translation type="vanished">الهولندية (هولندا)</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1216"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1147"/>
         <source>&amp;Photograph Collection...</source>
         <translation>مجموعة الصور...</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1221"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1152"/>
         <source>&amp;Category</source>
         <translation>الفئة</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1226"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1157"/>
         <source>&amp;Upgrade SQLite Schema</source>
         <translation>ترقية مخطط إسكيو إل لايت</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1239"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1165"/>
         <source>Automatically &amp;Resize Column Widths</source>
         <translation>إعادة قياس أبعاد الأعمدة بشكل أتوماتيكي </translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1244"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1170"/>
         <source>Reload &amp;biblioteq.conf</source>
         <translation>إعادة تحميل الملف biblioteq.conf</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1249"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1175"/>
         <source>Other &amp;Options...</source>
         <translation>خيارات أخرى</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1254"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1180"/>
         <source>&amp;Open PDF File...</source>
         <translation>فتح ملف PDF...</translation>
     </message>
