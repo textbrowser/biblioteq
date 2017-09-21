@@ -28,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>473</width>
-        <height>1037</height>
+        <width>475</width>
+        <height>1042</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -43,6 +43,9 @@
          </property>
          <property name="toolTip">
           <string>Thumbnail</string>
+         </property>
+         <property name="renderHints">
+          <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
          </property>
         </widget>
        </item>

@@ -388,4 +388,4 @@
      lastInsertId() instead of using an additional query. (Done)
 208. Retranslate the Language menu. (TBD)
 209. Tab navigation. (TBD)
-210. Anti-aliasing in scene widgets. (TBD)
+210. Anti-aliasing in scene widgets. (Done)

@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1112</width>
-         <height>873</height>
+         <width>1098</width>
+         <height>956</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -72,6 +72,9 @@
               </property>
               <property name="toolTip">
                <string>Thumbnail</string>
+              </property>
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
              </widget>
             </item>
@@ -274,6 +277,9 @@
             </item>
             <item>
              <widget class="QGraphicsView" name="graphicsView">
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+              </property>
               <property name="viewportUpdateMode">
                <enum>QGraphicsView::FullViewportUpdate</enum>
               </property>
@@ -296,6 +302,9 @@
               </property>
               <property name="toolTip">
                <string>Thumbnail</string>
+              </property>
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
              </widget>
             </item>

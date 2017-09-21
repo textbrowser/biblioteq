@@ -90,7 +90,11 @@
         </layout>
        </item>
        <item>
-        <widget class="QGraphicsView" name="view"/>
+        <widget class="QGraphicsView" name="view">
+         <property name="renderHints">
+          <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

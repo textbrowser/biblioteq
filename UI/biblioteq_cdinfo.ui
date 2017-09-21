@@ -33,14 +33,23 @@
          <x>0</x>
          <y>0</y>
          <width>1022</width>
-         <height>1140</height>
+         <height>1149</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -63,6 +72,9 @@
               </property>
               <property name="toolTip">
                <string>Front Cover Image</string>
+              </property>
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
              </widget>
             </item>
@@ -123,6 +135,9 @@
               </property>
               <property name="toolTip">
                <string>Back Cover Image</string>
+              </property>
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
              </widget>
             </item>
