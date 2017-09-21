@@ -399,6 +399,9 @@
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
+              <property name="undoRedoEnabled">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -413,6 +416,9 @@
             <item row="3" column="1">
              <widget class="biblioteq_hyperlinked_text_edit" name="directors">
               <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
+              <property name="undoRedoEnabled">
                <bool>true</bool>
               </property>
               <property name="readOnly">
@@ -442,6 +448,9 @@
                <enum>Qt::ScrollBarAlwaysOff</enum>
               </property>
               <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
+              <property name="undoRedoEnabled">
                <bool>true</bool>
               </property>
               <property name="readOnly">
@@ -728,6 +737,9 @@
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
+              <property name="undoRedoEnabled">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -749,6 +761,9 @@
             <item row="10" column="1">
              <widget class="biblioteq_hyperlinked_text_edit" name="keyword">
               <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
+              <property name="undoRedoEnabled">
                <bool>true</bool>
               </property>
               <property name="readOnly">

@@ -42,6 +42,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="bookBindingsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -124,6 +127,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="cdFormatsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -206,6 +212,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="dvdAspectRatiosList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -288,6 +297,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="dvdRatingsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -375,6 +387,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="dvdRegionsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -457,6 +472,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="languagesList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -634,6 +652,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="monetaryUnitsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -915,6 +936,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="videoGamePlatformsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -997,6 +1021,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="videoGameRatingsList">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>

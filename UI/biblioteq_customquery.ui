@@ -50,6 +50,9 @@
        <layout class="QVBoxLayout">
         <item>
          <widget class="QTreeWidget" name="tables_t">
+          <property name="tabKeyNavigation">
+           <bool>true</bool>
+          </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
