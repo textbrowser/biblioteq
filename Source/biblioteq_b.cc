@@ -20,6 +20,7 @@
 #include "biblioteq.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
+#include "ui_biblioteq_generalmessagediag.h"
 
 /*
 ** -- populateTable() --
@@ -3849,6 +3850,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
+#ifndef Q_OS_MAC
+  repaint();
+  QApplication::processEvents();
+#endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QStringList list;
@@ -4104,8 +4109,14 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   QApplication::restoreOverrideCursor();
 
   if(!errors.isEmpty())
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			  errors);
+    {
+      QDialog dialog(this);
+      Ui_generalmessagediag ui;
+
+      ui.setupUi(&dialog);
+      ui.text->setPlainText(errors);
+      dialog.exec();
+    }
   else
     QMessageBox::information
       (this,
