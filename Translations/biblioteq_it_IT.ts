@@ -648,72 +648,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="168"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="165"/>
         <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="197"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="194"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="228"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="225"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="248"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="245"/>
         <source>Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="268"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="265"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="305"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="302"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="336"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="333"/>
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="356"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="353"/>
         <source>Available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="388"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="385"/>
         <source>Case-Insensitive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="407"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="404"/>
         <source>&amp;Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="424"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="421"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="440"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="437"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="451"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="448"/>
         <source>Clear the main table and reset the search widgets.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_allinfo.ui" line="454"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="451"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -839,8 +839,8 @@
         <location filename="../Source/biblioteq_a.cc" line="8923"/>
         <location filename="../Source/biblioteq_a.cc" line="8951"/>
         <location filename="../Source/biblioteq_a.cc" line="8975"/>
-        <location filename="../Source/biblioteq_b.cc" line="3302"/>
-        <location filename="../Source/biblioteq_b.cc" line="3308"/>
+        <location filename="../Source/biblioteq_b.cc" line="3303"/>
+        <location filename="../Source/biblioteq_b.cc" line="3309"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
@@ -851,7 +851,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="774"/>
-        <location filename="../Source/biblioteq_b.cc" line="4143"/>
+        <location filename="../Source/biblioteq_b.cc" line="4154"/>
         <source>&amp;%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -961,9 +961,9 @@
         <location filename="../Source/biblioteq_a.cc" line="4556"/>
         <location filename="../Source/biblioteq_a.cc" line="5507"/>
         <location filename="../Source/biblioteq_a.cc" line="9700"/>
-        <location filename="../Source/biblioteq_b.cc" line="33"/>
-        <location filename="../Source/biblioteq_b.cc" line="3716"/>
-        <location filename="../Source/biblioteq_b.cc" line="3753"/>
+        <location filename="../Source/biblioteq_b.cc" line="34"/>
+        <location filename="../Source/biblioteq_b.cc" line="3717"/>
+        <location filename="../Source/biblioteq_b.cc" line="3754"/>
         <source>0 Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1054,9 +1054,9 @@
         <location filename="../Source/biblioteq_a.cc" line="8829"/>
         <location filename="../Source/biblioteq_a.cc" line="9244"/>
         <location filename="../Source/biblioteq_a.cc" line="9251"/>
-        <location filename="../Source/biblioteq_b.cc" line="3270"/>
-        <location filename="../Source/biblioteq_b.cc" line="3812"/>
-        <location filename="../Source/biblioteq_b.cc" line="3825"/>
+        <location filename="../Source/biblioteq_b.cc" line="3271"/>
+        <location filename="../Source/biblioteq_b.cc" line="3813"/>
+        <location filename="../Source/biblioteq_b.cc" line="3826"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1157,7 +1157,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8754"/>
         <location filename="../Source/biblioteq_a.cc" line="9289"/>
         <location filename="../Source/biblioteq_a.cc" line="9502"/>
-        <location filename="../Source/biblioteq_b.cc" line="3841"/>
+        <location filename="../Source/biblioteq_b.cc" line="3842"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1269,8 +1269,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8858"/>
         <location filename="../Source/biblioteq_a.cc" line="8864"/>
         <location filename="../Source/biblioteq_a.cc" line="9332"/>
-        <location filename="../Source/biblioteq_b.cc" line="3274"/>
-        <location filename="../Source/biblioteq_b.cc" line="4107"/>
+        <location filename="../Source/biblioteq_b.cc" line="3275"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1303,7 +1302,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8288"/>
         <location filename="../Source/biblioteq_a.cc" line="8504"/>
         <location filename="../Source/biblioteq_a.cc" line="8767"/>
-        <location filename="../Source/biblioteq_b.cc" line="3410"/>
+        <location filename="../Source/biblioteq_b.cc" line="3411"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1437,7 +1436,7 @@
         <location filename="../Source/biblioteq_a.cc" line="2806"/>
         <location filename="../Source/biblioteq_a.cc" line="8674"/>
         <location filename="../Source/biblioteq_a.cc" line="9704"/>
-        <location filename="../Source/biblioteq_b.cc" line="4112"/>
+        <location filename="../Source/biblioteq_b.cc" line="4123"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1710,7 +1709,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="8322"/>
         <location filename="../Source/biblioteq_a.cc" line="8343"/>
         <location filename="../Source/biblioteq_a.cc" line="8350"/>
-        <location filename="../Source/biblioteq_b.cc" line="3581"/>
+        <location filename="../Source/biblioteq_b.cc" line="3582"/>
         <source>Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1720,7 +1719,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="8143"/>
         <location filename="../Source/biblioteq_a.cc" line="8323"/>
         <location filename="../Source/biblioteq_a.cc" line="8351"/>
-        <location filename="../Source/biblioteq_b.cc" line="3582"/>
+        <location filename="../Source/biblioteq_b.cc" line="3583"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2386,78 +2385,78 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3246"/>
-        <location filename="../Source/biblioteq_b.cc" line="3564"/>
-        <location filename="../Source/biblioteq_b.cc" line="3663"/>
+        <location filename="../Source/biblioteq_b.cc" line="3247"/>
+        <location filename="../Source/biblioteq_b.cc" line="3565"/>
+        <location filename="../Source/biblioteq_b.cc" line="3664"/>
         <source>%1 Result(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3271"/>
-        <location filename="../Source/biblioteq_b.cc" line="3275"/>
+        <location filename="../Source/biblioteq_b.cc" line="3272"/>
+        <location filename="../Source/biblioteq_b.cc" line="3276"/>
         <source>Unable to retrieve the data required for populating the main views.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3342"/>
-        <location filename="../Source/biblioteq_b.cc" line="3365"/>
+        <location filename="../Source/biblioteq_b.cc" line="3343"/>
+        <location filename="../Source/biblioteq_b.cc" line="3366"/>
         <source> %1 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3344"/>
-        <location filename="../Source/biblioteq_b.cc" line="3367"/>
-        <location filename="../Source/biblioteq_b.cc" line="3372"/>
+        <location filename="../Source/biblioteq_b.cc" line="3345"/>
+        <location filename="../Source/biblioteq_b.cc" line="3368"/>
+        <location filename="../Source/biblioteq_b.cc" line="3373"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3355"/>
+        <location filename="../Source/biblioteq_b.cc" line="3356"/>
         <source> 1 ... </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3357"/>
+        <location filename="../Source/biblioteq_b.cc" line="3358"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3357"/>
+        <location filename="../Source/biblioteq_b.cc" line="3358"/>
         <source> ... </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3370"/>
+        <location filename="../Source/biblioteq_b.cc" line="3371"/>
         <source> ... %1 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3401"/>
+        <location filename="../Source/biblioteq_b.cc" line="3402"/>
         <source>Populating the views...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3813"/>
+        <location filename="../Source/biblioteq_b.cc" line="3814"/>
         <source>Unable to insert into member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3826"/>
+        <location filename="../Source/biblioteq_b.cc" line="3827"/>
         <source>Unable to update member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3842"/>
+        <location filename="../Source/biblioteq_b.cc" line="3843"/>
         <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4113"/>
+        <location filename="../Source/biblioteq_b.cc" line="4124"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4141"/>
+        <location filename="../Source/biblioteq_b.cc" line="4152"/>
         <source>&amp;Unlimited</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7554,213 +7553,213 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="53"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="62"/>
         <source>Cover Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="65"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="74"/>
         <source>Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="93"/>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="153"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="105"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="168"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="125"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="137"/>
         <source>Back Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="180"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="195"/>
         <source>Specific Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="186"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="201"/>
         <source>Catalog Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="200"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="215"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="234"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="249"/>
         <source>Artist(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="263"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="281"/>
         <source>Number of Discs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="297"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="315"/>
         <source>Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="306"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="324"/>
         <source>hh:mm:ss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="313"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="331"/>
         <source>&amp;Compute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="339"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="357"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="352"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="370"/>
         <source>Mono</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="357"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="375"/>
         <source>Stereo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="380"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="398"/>
         <source>Recording Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="393"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="411"/>
         <source>Live</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="398"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="416"/>
         <source>Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="421"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="439"/>
         <source>Tracks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="443"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="461"/>
         <source>&amp;Show Tracks...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="469"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="487"/>
         <source>Composer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="480"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="502"/>
         <source>General Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="510"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="532"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="520"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="542"/>
         <source>Release Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="541"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="563"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="573"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="595"/>
         <source>Recording Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="602"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="627"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="609"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="634"/>
         <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="638"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="663"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="645"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="670"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="665"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="690"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="689"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="714"/>
         <source>&amp;Copies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="700"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="725"/>
         <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="728"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="753"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="769"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="794"/>
         <source>Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="792"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="820"/>
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="815"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="846"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="860"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="891"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="877"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="908"/>
         <source>&amp;Z39.50 Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="894"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="925"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="913"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="944"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_cdinfo.ui" line="930"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="961"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7909,17 +7908,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_customquery.ui" line="77"/>
+        <location filename="../UI/biblioteq_customquery.ui" line="80"/>
         <source>Query Statement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_customquery.ui" line="115"/>
+        <location filename="../UI/biblioteq_customquery.ui" line="118"/>
         <source>&amp;Execute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_customquery.ui" line="132"/>
+        <location filename="../UI/biblioteq_customquery.ui" line="135"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7937,249 +7936,249 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="68"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="150"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="71"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="156"/>
         <source>Add CD Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="85"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="167"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="88"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="173"/>
         <source>Remove CD Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="121"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="124"/>
         <source>CD Formats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="203"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="209"/>
         <source>DVD Aspect Ratios</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="232"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="241"/>
         <source>Add DVD Aspect Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="249"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="258"/>
         <source>Remove DVD Aspect Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="285"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="294"/>
         <source>DVD Ratings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="314"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="326"/>
         <source>Add DVD Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="331"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="343"/>
         <source>Remove DVD Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="372"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="384"/>
         <source>DVD Regions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="401"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="416"/>
         <source>Add DVD Region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="418"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="433"/>
         <source>Remove DVD Region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="454"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="469"/>
         <source>Languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="483"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="501"/>
         <source>Add Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="500"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="518"/>
         <source>Remove Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="536"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="554"/>
         <source>Locations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="550"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="762"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="568"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="783"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="555"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="573"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="578"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="596"/>
         <source>Add Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="595"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="613"/>
         <source>Remove Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="631"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="649"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="660"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="681"/>
         <source>Add Monetary Unit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="677"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="698"/>
         <source>Remove Monetary Unit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="718"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="739"/>
         <source>Reservations Minimum Days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="732"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="753"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="737"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="758"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="742"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="763"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="747"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="768"/>
         <source>4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="752"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="773"/>
         <source>5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="757"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="778"/>
         <source>6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="767"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="788"/>
         <source>Days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="772"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="793"/>
         <source>Books</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="780"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="812"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="828"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="801"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="833"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="849"/>
         <source>21</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="788"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="809"/>
         <source>DVDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="796"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="844"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="860"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="817"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="865"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="881"/>
         <source>14</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="804"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="825"/>
         <source>Journals</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="820"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="841"/>
         <source>Magazines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="836"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="857"/>
         <source>Music CDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="852"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="873"/>
         <source>Video Games</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="912"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="933"/>
         <source>Video Game Platforms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="941"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="965"/>
         <source>Add Video Game Platform</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="958"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="982"/>
         <source>Remove Video Game Platform</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="994"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1018"/>
         <source>Video Game Ratings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1023"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1050"/>
         <source>Add Video Game Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1040"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1067"/>
         <source>Remove Video Game Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1082"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1109"/>
         <source>Save Changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1109"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1136"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1142"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1169"/>
         <source>Close Browser</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8192,183 +8191,183 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="53"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="62"/>
         <source>Cover Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="65"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="74"/>
         <source>Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="93"/>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="153"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="105"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="168"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="125"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="137"/>
         <source>Back Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="180"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="195"/>
         <source>Specific Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="186"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="201"/>
         <source>UPC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="200"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="215"/>
         <source>Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="234"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="249"/>
         <source>Actor(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="241"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="256"/>
         <source>Director(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="248"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="263"/>
         <source>Number of Discs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="282"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="297"/>
         <source>Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="289"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="304"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="299"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="314"/>
         <source>Region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="330"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="345"/>
         <source>Aspect Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="363"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="378"/>
         <source>hh:mm:ss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="418"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="439"/>
         <source>General Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="446"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="470"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="456"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="480"/>
         <source>Release Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="477"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="501"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="509"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="533"/>
         <source>Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="516"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="540"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="523"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="547"/>
         <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="552"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="576"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="583"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="607"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="603"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="627"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="627"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="651"/>
         <source>&amp;Copies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="638"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="662"/>
         <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="666"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="690"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="707"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="731"/>
         <source>Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="730"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="757"/>
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="753"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="783"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="798"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="828"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="815"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="845"/>
         <source>&amp;Z39.50 Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="832"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="862"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="851"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="881"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dvdinfo.ui" line="868"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="898"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8422,6 +8421,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../UI/biblioteq_errordiag.ui" line="156"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>generalmessagediag</name>
+    <message>
+        <location filename="../UI/biblioteq_generalmessagediag.ui" line="14"/>
+        <source>BiblioteQ: General Message Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_generalmessagediag.ui" line="64"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8532,339 +8544,339 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="53"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="62"/>
         <source>Cover Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="65"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="74"/>
         <source>Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="93"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="105"/>
         <source>Download the book&apos;s front cover image from Amazon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="96"/>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="176"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="108"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="191"/>
         <source>&amp;Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="113"/>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="193"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="125"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="208"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="145"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="157"/>
         <source>Back Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="173"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="188"/>
         <source>Download the book&apos;s back cover image from Amazon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="220"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="235"/>
         <source>Specific Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="226"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="241"/>
         <source>ISBNs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="235"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="250"/>
         <source>ISBN-10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="251"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="266"/>
         <source>From &amp;ISBN-13</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="264"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="279"/>
         <source>ISBN-13</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="280"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="295"/>
         <source>From &amp;ISBN-10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="298"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="313"/>
         <source>Edition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="332"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="347"/>
         <source>Author(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="352"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="373"/>
         <source>Book Binding Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="389"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="410"/>
         <source>LC Control Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="403"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="424"/>
         <source>Call Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="417"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="438"/>
         <source>Dewey Class Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="434"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="455"/>
         <source>General Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="460"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="481"/>
         <source>Black &amp; White Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="465"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="486"/>
         <source>Color Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="470"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="491"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="515"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="536"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="549"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="570"/>
         <source>Publication Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="570"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="591"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="602"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="623"/>
         <source>Publisher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="631"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="655"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="638"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="662"/>
         <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="645"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="669"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="682"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="706"/>
         <source>&amp;Copies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="693"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="717"/>
         <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="731"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="755"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="762"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="786"/>
         <source>Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="447"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="468"/>
         <source>Place of Publication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="440"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="461"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="808"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="838"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="815"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="845"/>
         <source>MARC Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="838"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="871"/>
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="845"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="878"/>
         <source>Originality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="852"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="885"/>
         <source>Condition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="865"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="898"/>
         <source>As New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="870"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="903"/>
         <source>Binding Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="875"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="908"/>
         <source>Book Club</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="880"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="913"/>
         <source>Ex-Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="885"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="918"/>
         <source>Fair</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="890"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="923"/>
         <source>Fine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="895"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="928"/>
         <source>Good</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="900"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="933"/>
         <source>Poor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="905"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="938"/>
         <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="928"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="961"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="965"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="998"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="970"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1003"/>
         <source>Digest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="975"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1008"/>
         <source>Compressed Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="980"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1013"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="985"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1018"/>
         <source>myoid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1008"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1041"/>
         <source>&amp;Attach...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1015"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1048"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1022"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1055"/>
         <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1029"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1062"/>
         <source>&amp;View PDF...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1053"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1086"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1098"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1131"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1115"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1148"/>
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1131"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1164"/>
         <source>&amp;Z39.50 Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1147"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1180"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1163"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1196"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_bookinfo.ui" line="1186"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="1219"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8877,233 +8889,233 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="53"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="62"/>
         <source>Cover Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="65"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="74"/>
         <source>Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="93"/>
-        <location filename="../UI/biblioteq_maginfo.ui" line="153"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="105"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="168"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="125"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="137"/>
         <source>Back Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="180"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="195"/>
         <source>Specific Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="186"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="201"/>
         <source>ISSN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="195"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="210"/>
         <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="214"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="229"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="248"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="263"/>
         <source>Dewey Class Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="255"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="270"/>
         <source>Call Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="326"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="341"/>
         <source>LC Control Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="333"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="348"/>
         <source>Issue Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="343"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="358"/>
         <source>General Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="376"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="391"/>
         <source>Publication Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="407"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="422"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="439"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="454"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="446"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="461"/>
         <source>Publisher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="475"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="493"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="482"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="500"/>
         <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="511"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="529"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="542"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="560"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="562"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="580"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="586"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="604"/>
         <source>&amp;Copies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="597"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="615"/>
         <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="625"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="643"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="642"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="660"/>
         <source>Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="678"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="702"/>
         <source>Place of Publication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="685"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="709"/>
         <source>MARC Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="692"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="716"/>
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="715"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="742"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="752"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="779"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="757"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="784"/>
         <source>Digest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="762"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="789"/>
         <source>Compressed Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="767"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="794"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="772"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="799"/>
         <source>myoid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="795"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="822"/>
         <source>&amp;Attach...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="802"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="829"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="809"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="836"/>
         <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="816"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="843"/>
         <source>&amp;View PDF...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="840"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="867"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="885"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="912"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="902"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="929"/>
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="918"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="945"/>
         <source>&amp;Z39.50 Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="934"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="961"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="953"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="980"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="970"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="997"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9879,151 +9891,151 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="74"/>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="298"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="304"/>
         <source>Thumbnail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="102"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="105"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="130"/>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="439"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="133"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="448"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="140"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="143"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="157"/>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="354"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="160"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="363"/>
         <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="177"/>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="547"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="180"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="556"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="184"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="187"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="215"/>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="580"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="218"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="589"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="228"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="231"/>
         <source>Collection Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="249"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="252"/>
         <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="286"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="292"/>
         <source>Item Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="314"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="323"/>
         <source>Creator(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="329"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="338"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="374"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="383"/>
         <source>Call Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="404"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="413"/>
         <source>Other Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="411"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="420"/>
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="418"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="427"/>
         <source>Medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="432"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="441"/>
         <source>Reproduction Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="466"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="475"/>
         <source>Subjects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="473"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="482"/>
         <source>Publication Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="480"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="489"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="497"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="506"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="631"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="640"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="654"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="663"/>
         <source>&amp;Add Item...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="671"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="680"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="687"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="696"/>
         <source>&amp;Export Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="709"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="718"/>
         <source>&amp;Import Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="722"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="731"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographinfo.ui" line="739"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="748"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10042,7 +10054,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../UI/biblioteq_pdfreader.ui" line="47"/>
-        <location filename="../UI/biblioteq_pdfreader.ui" line="186"/>
+        <location filename="../UI/biblioteq_pdfreader.ui" line="189"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10057,27 +10069,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_pdfreader.ui" line="176"/>
+        <location filename="../UI/biblioteq_pdfreader.ui" line="179"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_pdfreader.ui" line="195"/>
+        <location filename="../UI/biblioteq_pdfreader.ui" line="198"/>
         <source>&amp;Save As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_pdfreader.ui" line="200"/>
+        <location filename="../UI/biblioteq_pdfreader.ui" line="203"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_pdfreader.ui" line="205"/>
+        <location filename="../UI/biblioteq_pdfreader.ui" line="208"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_pdfreader.ui" line="213"/>
+        <location filename="../UI/biblioteq_pdfreader.ui" line="216"/>
         <source>&amp;Contents</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10095,92 +10107,92 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="73"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="76"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="101"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="104"/>
         <source>Creator(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="122"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="125"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="147"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="150"/>
         <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="164"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="167"/>
         <source>Call Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="188"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="191"/>
         <source>Other Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="195"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="198"/>
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="202"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="205"/>
         <source>Medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="209"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="212"/>
         <source>Reproduction Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="226"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="229"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="239"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="242"/>
         <source>Subjects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="246"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="249"/>
         <source>Publication Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="253"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="256"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="270"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="273"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="317"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="320"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="350"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="353"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="390"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="393"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photograph.ui" line="407"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="410"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10218,22 +10230,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographview.ui" line="106"/>
+        <location filename="../UI/biblioteq_photographview.ui" line="110"/>
         <source>Previous Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographview.ui" line="148"/>
+        <location filename="../UI/biblioteq_photographview.ui" line="152"/>
         <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographview.ui" line="165"/>
+        <location filename="../UI/biblioteq_photographview.ui" line="169"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_photographview.ui" line="189"/>
+        <location filename="../UI/biblioteq_photographview.ui" line="193"/>
         <source>Next Photograph</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10251,22 +10263,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_sruResults.ui" line="48"/>
+        <location filename="../UI/biblioteq_sruResults.ui" line="51"/>
         <source>Record &amp;Contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_sruResults.ui" line="56"/>
+        <location filename="../UI/biblioteq_sruResults.ui" line="59"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_sruResults.ui" line="113"/>
+        <location filename="../UI/biblioteq_sruResults.ui" line="116"/>
         <source>&amp;Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_sruResults.ui" line="130"/>
+        <location filename="../UI/biblioteq_sruResults.ui" line="133"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10351,173 +10363,173 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="53"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="62"/>
         <source>Cover Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="65"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="74"/>
         <source>Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="93"/>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="153"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="105"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="168"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="125"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="137"/>
         <source>Back Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="180"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="195"/>
         <source>Specific Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="186"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="201"/>
         <source>UPC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="200"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="215"/>
         <source>Game Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="231"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="246"/>
         <source>Developer(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="238"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="253"/>
         <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="269"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="284"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="282"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="297"/>
         <source>Multiplayer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="287"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="302"/>
         <source>Single Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="327"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="345"/>
         <source>General Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="346"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="367"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="356"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="377"/>
         <source>Release Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="377"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="398"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="409"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="430"/>
         <source>Publisher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="438"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="462"/>
         <source>Genres</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="445"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="469"/>
         <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="474"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="498"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="505"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="529"/>
         <source>Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="525"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="549"/>
         <source>Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="549"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="573"/>
         <source>&amp;Copies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="560"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="584"/>
         <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="588"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="612"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="629"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="653"/>
         <source>Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="652"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="679"/>
         <source>Place of Publication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="659"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="686"/>
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="682"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="712"/>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="727"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="757"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="744"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="774"/>
         <source>&amp;Z39.50 Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="761"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="791"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="777"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="807"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_videogameinfo.ui" line="794"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="824"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10535,22 +10547,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_z3950results.ui" line="48"/>
+        <location filename="../UI/biblioteq_z3950results.ui" line="51"/>
         <source>Record &amp;Contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_z3950results.ui" line="56"/>
+        <location filename="../UI/biblioteq_z3950results.ui" line="59"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_z3950results.ui" line="113"/>
+        <location filename="../UI/biblioteq_z3950results.ui" line="116"/>
         <source>&amp;Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_z3950results.ui" line="130"/>
+        <location filename="../UI/biblioteq_z3950results.ui" line="133"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>

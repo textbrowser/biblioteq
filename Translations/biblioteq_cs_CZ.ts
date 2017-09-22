@@ -6602,6 +6602,17 @@ webová adresa</translation>
     </message>
 </context>
 <context>
+    <name>generalmessagediag</name>
+    <message>
+        <source>BiblioteQ: General Message Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
+    </message>
+</context>
+<context>
     <name>generic_thread</name>
     <message>
         <source>Unable to read </source>
