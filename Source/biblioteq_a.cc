@@ -108,6 +108,14 @@ int main(int argc, char *argv[])
 #endif
 
   QApplication qapplication(argc, argv);
+  QFont font(qapplication.font());
+
+#if QT_VERSION >= 0x050700
+  qapplication.setAttribute(Qt::AA_DontUseNativeDialogs);
+#endif
+  font.setStyleStrategy
+    (QFont::StyleStrategy(QFont::PreferAntialias | QFont::PreferQuality));
+  qapplication.setFont(font);
 
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000
