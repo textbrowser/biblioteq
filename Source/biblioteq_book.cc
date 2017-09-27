@@ -2245,17 +2245,6 @@ void biblioteq_book::slotShowUsers(void)
 
 void biblioteq_book::slotSRUQuery(void)
 {
-  if(!(id.id->text().trimmed().length() == 10 ||
-       id.isbn13->text().trimmed().length() == 13))
-    {
-      QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, either the ISBN-10 "
-	    "or ISBN-13 must be provided."));
-      id.id->setFocus();
-      return;
-    }
-
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -2267,6 +2256,17 @@ void biblioteq_book::slotSRUQuery(void)
     {
       if(m_sruManager->findChild<QNetworkReply *> ())
 	return;
+    }
+
+  if(!(id.id->text().trimmed().length() == 10 ||
+       id.isbn13->text().trimmed().length() == 13))
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query an SRU site, either the ISBN-10 "
+	    "or ISBN-13 must be provided."));
+      id.id->setFocus();
+      return;
     }
 
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
@@ -2498,6 +2498,7 @@ void biblioteq_book::slotZ3950Query(void)
 			      "site. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
+      working.resize(working.sizeHint());
       working.show();
       working.update();
 #ifndef Q_OS_MAC
@@ -2906,16 +2907,6 @@ void biblioteq_book::slotDownloadImage(void)
   if(m_httpProgress->isVisible())
     return;
 
-  if(id.id->text().trimmed().length() != 10)
-    {
-      QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to download a cover image from Amazon, the ISBN-10 "
-	    "must be provided."));
-      id.id->setFocus();
-      return;
-    }
-
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -2927,6 +2918,16 @@ void biblioteq_book::slotDownloadImage(void)
     {
       if(m_imageManager->findChild<QNetworkReply *> ())
 	return;
+    }
+
+  if(id.id->text().trimmed().length() != 10)
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to download a cover image from Amazon, the ISBN-10 "
+	    "must be provided."));
+      id.id->setFocus();
+      return;
     }
 
   QPushButton *pb = qobject_cast<QPushButton *> (sender());
@@ -3107,6 +3108,7 @@ void biblioteq_book::slotDownloadImage(void)
   m_httpProgress->reset(); // Qt 5.5.x adjustment.
   m_httpProgress->setMaximum(0);
   m_httpProgress->setMinimum(0);
+  m_httpProgress->resize(m_httpProgress->sizeHint());
   m_httpProgress->show();
 #ifndef Q_OS_MAC
   m_httpProgress->repaint();

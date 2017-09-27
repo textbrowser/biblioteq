@@ -90,7 +90,11 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 				"site. Please be patient..."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
-  m_sruWorking->setCancelButton(0);
+  m_sruWorking->resize(m_sruWorking->sizeHint());
+  connect(m_sruWorking,
+	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
   m_oid = oidArg;
   m_row = rowArg;
   m_subType = "Magazine";
@@ -2096,6 +2100,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 			      "site. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
+      working.resize(working.sizeHint());
       working.show();
       working.update();
 #ifndef Q_OS_MAC
@@ -3203,16 +3208,6 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 void biblioteq_magazine::slotSRUQuery(void)
 {
-  if(ma.id->text().trimmed().length() != 9)
-    {
-      QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, the "
-	    "ISSN must be provided."));
-      ma.id->setFocus();
-      return;
-    }
-
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -3226,9 +3221,20 @@ void biblioteq_magazine::slotSRUQuery(void)
 	return;
     }
 
+  if(ma.id->text().trimmed().length() != 9)
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query an SRU site, the "
+	    "ISSN must be provided."));
+      ma.id->setFocus();
+      return;
+    }
+
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
+  m_sruWorking->resize(m_sruWorking->sizeHint());
   m_sruWorking->show();
   m_sruWorking->update();
 #ifndef Q_OS_MAC
@@ -3427,9 +3433,14 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
 
 void biblioteq_magazine::sruDownloadFinished(void)
 {
+  bool canceled = m_sruWorking->wasCanceled();
+
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->close();
   update();
+
+  if(canceled)
+    return;
 
   QList<QByteArray> list;
 
@@ -3999,4 +4010,27 @@ void biblioteq_magazine::slotPublicationDateEnabled(bool state)
 
   if(!state)
     ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+}
+
+/*
+** -- slotSRUCanceled() --
+*/
+
+void biblioteq_magazine::slotSRUCanceled(void)
+{
+  if(useHttp())
+    {
+#if QT_VERSION < 0x050000
+      m_sruHttp->abort();
+#endif
+    }
+  else
+    {
+      QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
+
+      if(reply)
+	reply->abort();
+    }
+
+  m_sruResults.clear();
 }

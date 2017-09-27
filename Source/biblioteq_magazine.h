@@ -98,6 +98,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
     (const QNetworkProxy &proxy, QAuthenticator *authenticator);
   void slotPublicationDateEnabled(bool state);
   void slotReset(void);
+  void slotSRUCanceled(void);
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
   void slotSRUQuery(void);
