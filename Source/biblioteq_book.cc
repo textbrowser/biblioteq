@@ -98,7 +98,11 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 				"site. Please be patient..."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
-  m_sruWorking->setCancelButton(0);
+  m_sruWorking->resize(m_sruWorking->sizeHint());
+  connect(m_sruWorking,
+	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
   ui_p.setupUi(m_proxyDialog);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -2268,6 +2272,7 @@ void biblioteq_book::slotSRUQuery(void)
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
+  m_sruWorking->resize(m_sruWorking->sizeHint());
   m_sruWorking->show();
   m_sruWorking->update();
 #ifndef Q_OS_MAC
@@ -3354,9 +3359,14 @@ void biblioteq_book::slotSRUDownloadFinished(void)
 
 void biblioteq_book::sruDownloadFinished(void)
 {
+  bool canceled = m_sruWorking->wasCanceled();
+
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->close();
   update();
+
+  if(canceled)
+    return;
 
   /*
   ** Verify that the SRU data contains at least one record.
@@ -4123,4 +4133,27 @@ void biblioteq_book::slotPublicationDateEnabled(bool state)
 
   if(!state)
     id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+}
+
+/*
+** -- slotSRUCanceled() --
+*/
+
+void biblioteq_book::slotSRUCanceled(void)
+{
+  if(useHttp())
+    {
+#if QT_VERSION < 0x050000
+      m_sruHttp->abort();
+#endif
+    }
+  else
+    {
+      QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
+
+      if(reply)
+	reply->abort();
+    }
+
+  m_sruResults.clear();
 }

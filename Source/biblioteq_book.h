@@ -112,6 +112,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 #endif
   void slotReadyRead(void);
   void slotReset(void);
+  void slotSRUCanceled(void);
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
   void slotSRUError(QNetworkReply::NetworkError error);
