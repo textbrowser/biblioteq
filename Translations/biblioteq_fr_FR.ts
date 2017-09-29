@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR" sourcelanguage="fr">
+<TS version="2.0" language="fr_FR" sourcelanguage="fr">
 <context>
     <name>QObject</name>
     <message>
@@ -7652,7 +7652,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">Afficher l&apos;historique de réservation du membre</translation>
+        <translation type="obsolete">Afficher l&apos;historique de réservation du membre</translation>
     </message>
     <message>
         <source>Previous Page</source>

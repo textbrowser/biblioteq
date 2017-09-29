@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nl_NL">
+<TS version="2.0" language="nl_NL">
 <context>
     <name>QObject</name>
     <message>
@@ -7707,7 +7707,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">Bekijk Uitleengeschiedenis van Klant</translation>
+        <translation type="obsolete">Bekijk Uitleengeschiedenis van Klant</translation>
     </message>
     <message>
         <source>Previous Page</source>
@@ -7835,35 +7835,35 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Czech</source>
-        <translation type="vanished">&amp;Tsjechisch</translation>
+        <translation type="obsolete">&amp;Tsjechisch</translation>
     </message>
     <message>
         <source>&amp;English</source>
-        <translation type="vanished">&amp;Engels</translation>
+        <translation type="obsolete">&amp;Engels</translation>
     </message>
     <message>
         <source>&amp;German</source>
-        <translation type="vanished">&amp;Duits</translation>
+        <translation type="obsolete">&amp;Duits</translation>
     </message>
     <message>
         <source>G&amp;reek</source>
-        <translation type="vanished">G&amp;rieks</translation>
+        <translation type="obsolete">G&amp;rieks</translation>
     </message>
     <message>
         <source>&amp;French</source>
-        <translation type="vanished">&amp;Frans</translation>
+        <translation type="obsolete">&amp;Frans</translation>
     </message>
     <message>
         <source>&amp;Dutch</source>
-        <translation type="vanished">&amp;Nederlands</translation>
+        <translation type="obsolete">&amp;Nederlands</translation>
     </message>
     <message>
         <source>Dutch (&amp;Belgium)</source>
-        <translation type="vanished">Nederlands (&amp;Belgisch)</translation>
+        <translation type="obsolete">Nederlands (&amp;Belgisch)</translation>
     </message>
     <message>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation type="vanished">Nederlands (&amp;Holland)</translation>
+        <translation type="obsolete">Nederlands (&amp;Holland)</translation>
     </message>
     <message>
         <source>Preferred &amp;SRU Site</source>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ar_JO">
+<TS version="2.0" language="ar_JO">
 <context>
     <name>QObject</name>
     <message>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="vanished">yyyy-MM-dd</translation>
+        <translation type="obsolete">yyyy-MM-dd</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_allinfo.ui" line="106"/>
@@ -9525,7 +9525,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">عرض أرشيف إعارات المشتركين</translation>
+        <translation type="obsolete">عرض أرشيف إعارات المشتركين</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="997"/>
@@ -9640,39 +9640,39 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Czech</source>
-        <translation type="vanished">التشيكية</translation>
+        <translation type="obsolete">التشيكية</translation>
     </message>
     <message>
         <source>&amp;English</source>
-        <translation type="vanished">الإنجليزية</translation>
+        <translation type="obsolete">الإنجليزية</translation>
     </message>
     <message>
         <source>&amp;German</source>
-        <translation type="vanished">الألمانية</translation>
+        <translation type="obsolete">الألمانية</translation>
     </message>
     <message>
         <source>G&amp;reek</source>
-        <translation type="vanished">اليونانية</translation>
+        <translation type="obsolete">اليونانية</translation>
     </message>
     <message>
         <source>&amp;French</source>
-        <translation type="vanished">الفرنسية</translation>
+        <translation type="obsolete">الفرنسية</translation>
     </message>
     <message>
         <source>&amp;Hungarian</source>
-        <translation type="vanished">الهنغارية</translation>
+        <translation type="obsolete">الهنغارية</translation>
     </message>
     <message>
         <source>&amp;Dutch</source>
-        <translation type="vanished">الهولندية </translation>
+        <translation type="obsolete">الهولندية </translation>
     </message>
     <message>
         <source>Dutch (&amp;Belgium)</source>
-        <translation type="vanished">الهولندية (بلجيكا)</translation>
+        <translation type="obsolete">الهولندية (بلجيكا)</translation>
     </message>
     <message>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation type="vanished">الهولندية (هولندا)</translation>
+        <translation type="obsolete">الهولندية (هولندا)</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1147"/>

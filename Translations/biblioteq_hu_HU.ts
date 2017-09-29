@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>QObject</name>
     <message>
@@ -636,7 +636,7 @@
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="vanished">dd-MM-yyyy</translation>
+        <translation type="obsolete">dd-MM-yyyy</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -10186,7 +10186,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">Tag Kölcsönzési Előzményeinek Megtekintése</translation>
+        <translation type="obsolete">Tag Kölcsönzési Előzményeinek Megtekintése</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -10290,39 +10290,39 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Czech</source>
-        <translation type="vanished">Cseh</translation>
+        <translation type="obsolete">Cseh</translation>
     </message>
     <message>
         <source>&amp;English</source>
-        <translation type="vanished">English</translation>
+        <translation type="obsolete">English</translation>
     </message>
     <message>
         <source>&amp;German</source>
-        <translation type="vanished">Deutsch</translation>
+        <translation type="obsolete">Deutsch</translation>
     </message>
     <message>
         <source>G&amp;reek</source>
-        <translation type="vanished">Görög</translation>
+        <translation type="obsolete">Görög</translation>
     </message>
     <message>
         <source>&amp;French</source>
-        <translation type="vanished">Francia</translation>
+        <translation type="obsolete">Francia</translation>
     </message>
     <message>
         <source>&amp;Hungarian</source>
-        <translation type="vanished">Magyar</translation>
+        <translation type="obsolete">Magyar</translation>
     </message>
     <message>
         <source>&amp;Dutch</source>
-        <translation type="vanished">Holland</translation>
+        <translation type="obsolete">Holland</translation>
     </message>
     <message>
         <source>Dutch (&amp;Belgium)</source>
-        <translation type="vanished">Holland (Belgium)</translation>
+        <translation type="obsolete">Holland (Belgium)</translation>
     </message>
     <message>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation type="vanished">Holland (Hollandia)</translation>
+        <translation type="obsolete">Holland (Hollandia)</translation>
     </message>
     <message>
         <source>&amp;Photograph Collection</source>

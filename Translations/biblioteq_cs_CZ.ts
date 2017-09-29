@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="cs_CZ">
+<TS version="2.0" language="cs_CZ">
 <context>
     <name>QObject</name>
     <message>
@@ -7690,7 +7690,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">Historie zápůjček</translation>
+        <translation type="obsolete">Historie zápůjček</translation>
     </message>
     <message>
         <source>Change Password</source>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="el_GR">
+<TS version="2.0" language="el_GR">
 <context>
     <name>QObject</name>
     <message>
@@ -7925,7 +7925,7 @@ URL</source>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="vanished">Προβολή ιστορικού για το δανεισμό των μελών</translation>
+        <translation type="obsolete">Προβολή ιστορικού για το δανεισμό των μελών</translation>
     </message>
     <message>
         <source>Change Password</source>
