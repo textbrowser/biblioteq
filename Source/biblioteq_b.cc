@@ -2601,17 +2601,52 @@ int biblioteq::populateTable(const int search_type_arg,
 				 al.publication_date->date().
 				 toString("yyyy") + "' AND ");
 
-		    if(caseinsensitive)
-		      str.append("LOWER(category) LIKE " + E + "'%" +
-				 biblioteq_myqstring::escape
-				 (al.category->toPlainText().trimmed(),
-				  true) +
-				 "%' AND ");
+		    if(al.categories_checkbox->isChecked())
+		      {
+			QStringList words
+			  (al.category->toPlainText().trimmed().
+			   split(QRegExp("\\s+"), QString::SkipEmptyParts));
+
+			if(!words.isEmpty())
+			  {
+			    str.append("(");
+
+			    while(!words.isEmpty())
+			      {
+				QString word(words.takeFirst());
+
+				if(caseinsensitive)
+				  str.append
+				    ("LOWER(category) LIKE " + E + "'%" +
+				     biblioteq_myqstring::escape
+				     (word.trimmed(),
+				      true) +
+				     "%'" + (words.isEmpty() ? "" : " OR "));
+				else
+				  str.append
+				    ("category LIKE " + E + "'%" +
+				     biblioteq_myqstring::escape
+				     (word.trimmed()) +
+				     "%'" + (words.isEmpty() ? "" : " OR "));
+			      }
+
+			    str.append(") AND ");
+			  }
+		      }
 		    else
-		      str.append("category LIKE " + E + "'%" +
-				 biblioteq_myqstring::escape
-				 (al.category->toPlainText().trimmed()) +
-				 "%' AND ");
+		      {
+			if(caseinsensitive)
+			  str.append("LOWER(category) LIKE " + E + "'%" +
+				     biblioteq_myqstring::escape
+				     (al.category->toPlainText().trimmed(),
+				      true) +
+				     "%' AND ");
+			else
+			  str.append("category LIKE " + E + "'%" +
+				     biblioteq_myqstring::escape
+				     (al.category->toPlainText().trimmed()) +
+				     "%' AND ");
+		      }
 
 		    if(caseinsensitive)
 		      str.append
@@ -2668,33 +2703,105 @@ int biblioteq::populateTable(const int search_type_arg,
 			     "' AND ");
 		      }
 
-		    if(caseinsensitive)
-		      str.append
-			("LOWER(description) LIKE " + E + "'%" +
-			 biblioteq_myqstring::
-			 escape(al.description->
-				toPlainText().trimmed(),
-				true) + "%' ");
-		    else
-		      str.append
-			("description LIKE " + E + "'%" +
-			 biblioteq_myqstring::
-			 escape(al.description->
-				toPlainText().trimmed()) + "%' ");
+		    if(al.abstract_checkbox->isChecked())
+		      {
+			QStringList words
+			  (al.description->toPlainText().trimmed().
+			   split(QRegExp("\\s+"), QString::SkipEmptyParts));
 
-		    if(caseinsensitive)
-		      str.append("AND COALESCE(LOWER(keyword), '') LIKE " +
-				 E + "'%" +
-				 biblioteq_myqstring::escape
-				 (al.keyword->toPlainText().trimmed(),
-				  true) +
-				 "%' ");
+			if(!words.isEmpty())
+			  {
+			    str.append("(");
+
+			    while(!words.isEmpty())
+			      {
+				QString word(words.takeFirst());
+
+				if(caseinsensitive)
+				  str.append
+				    ("LOWER(description) LIKE " + E + "'%" +
+				     biblioteq_myqstring::escape
+				     (word.trimmed(),
+				      true) +
+				     "%'" + (words.isEmpty() ? "" : " OR "));
+				else
+				  str.append
+				    ("description LIKE " + E + "'%" +
+				     biblioteq_myqstring::escape
+				     (word.trimmed()) +
+				     "%'" + (words.isEmpty() ? "" : " OR "));
+			      }
+
+			    str.append(") ");
+			  }
+		      }
 		    else
-		      str.append("AND COALESCE(keyword, '') LIKE " +
-				 E + "'%" +
-				 biblioteq_myqstring::escape
-				 (al.keyword->toPlainText().trimmed()) +
-				 "%' ");
+		      {
+			if(caseinsensitive)
+			  str.append
+			    ("LOWER(description) LIKE " + E + "'%" +
+			     biblioteq_myqstring::
+			     escape(al.description->
+				    toPlainText().trimmed(),
+				    true) + "%' ");
+			else
+			  str.append
+			    ("description LIKE " + E + "'%" +
+			     biblioteq_myqstring::
+			     escape(al.description->
+				    toPlainText().trimmed()) + "%' ");
+		      }
+
+		    if(al.keywords_checkbox->isChecked())
+		      {
+			QStringList words
+			  (al.keyword->toPlainText().trimmed().
+			   split(QRegExp("\\s+"), QString::SkipEmptyParts));
+
+			if(!words.isEmpty())
+			  {
+			    str.append(" AND (");
+
+			    while(!words.isEmpty())
+			      {
+				QString word(words.takeFirst());
+
+				if(caseinsensitive)
+				  str.append
+				    ("COALESCE(LOWER(keyword), '') LIKE " +
+				     E + "'%" +
+				     biblioteq_myqstring::escape
+				     (word.trimmed(),
+				      true) +
+				     "%'" + (words.isEmpty() ? "" : " OR "));
+				else
+				  str.append
+				    ("COALESCE(keyword, '') LIKE " +
+				     E + "'%" +
+				     biblioteq_myqstring::escape
+				     (word.trimmed()) +
+				     "%'" + (words.isEmpty() ? "" : " OR "));
+			      }
+
+			    str.append(") ");
+			  }
+		      }
+		    else
+		      {
+			if(caseinsensitive)
+			  str.append("AND COALESCE(LOWER(keyword), '') LIKE " +
+				     E + "'%" +
+				     biblioteq_myqstring::escape
+				     (al.keyword->toPlainText().trimmed(),
+				      true) +
+				     "%' ");
+			else
+			  str.append("AND COALESCE(keyword, '') LIKE " +
+				     E + "'%" +
+				     biblioteq_myqstring::escape
+				     (al.keyword->toPlainText().trimmed()) +
+				     "%' ");
+		      }
 
 		    if(al.quantity->value() != 0)
 		      str.append("AND quantity = " +

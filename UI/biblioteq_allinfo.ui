@@ -20,7 +20,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
     <item>
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="photograph_reminder_label">
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Location, Monetary Units, Price, Publication Date, and Publisher will be ignored for Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -142,13 +142,6 @@
            <item row="3" column="1">
             <widget class="QLineEdit" name="publisher"/>
            </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_17">
-             <property name="text">
-              <string>Categories</string>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="1">
             <widget class="QTextEdit" name="category">
              <property name="tabChangesFocus">
@@ -239,13 +232,6 @@
              </property>
             </widget>
            </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>Abstract</string>
-             </property>
-            </widget>
-           </item>
            <item row="8" column="1">
             <widget class="QTextEdit" name="description">
              <property name="verticalScrollBarPolicy">
@@ -327,13 +313,6 @@
              </item>
             </layout>
            </item>
-           <item row="11" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Keywords</string>
-             </property>
-            </widget>
-           </item>
            <item row="11" column="1">
             <widget class="QTextEdit" name="keyword">
              <property name="verticalScrollBarPolicy">
@@ -356,6 +335,36 @@
            </item>
            <item row="12" column="1">
             <widget class="QCheckBox" name="available"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="categories_checkbox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, perform an OR query using the provided words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Categories</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QCheckBox" name="abstract_checkbox">
+             <property name="toolTip">
+              <string>If checked, perform an OR query using the provided words.</string>
+             </property>
+             <property name="text">
+              <string>Abstract</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QCheckBox" name="keywords_checkbox">
+             <property name="toolTip">
+              <string>If checked, perform an OR query using the provided words.</string>
+             </property>
+             <property name="text">
+              <string>Keywords</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -477,13 +486,16 @@
   <tabstop>publication_date</tabstop>
   <tabstop>publication_date_enabled</tabstop>
   <tabstop>publisher</tabstop>
+  <tabstop>categories_checkbox</tabstop>
   <tabstop>category</tabstop>
   <tabstop>price</tabstop>
   <tabstop>language</tabstop>
   <tabstop>monetary_units</tabstop>
+  <tabstop>abstract_checkbox</tabstop>
   <tabstop>description</tabstop>
   <tabstop>quantity</tabstop>
   <tabstop>location</tabstop>
+  <tabstop>keywords_checkbox</tabstop>
   <tabstop>keyword</tabstop>
   <tabstop>available</tabstop>
   <tabstop>caseinsensitive</tabstop>

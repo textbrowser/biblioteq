@@ -1403,6 +1403,7 @@ void biblioteq::slotSearch(void)
   al.idnumber->clear();
   al.title->clear();
   al.publisher->clear();
+  al.categories_checkbox->setChecked(false);
   al.category->clear();
   al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
   al.publication_date_enabled->setChecked(false);
@@ -1410,13 +1411,19 @@ void biblioteq::slotSearch(void)
   al.price->setValue(-0.01);
   al.quantity->setMinimum(0);
   al.quantity->setValue(0);
+  al.abstract_checkbox->setChecked(false);
   al.description->clear();
   al.language->clear();
   al.monetary_units->clear();
   al.location->clear();
   al.keyword->clear();
+  al.keywords_checkbox->setChecked(false);
   al.available->setChecked(false);
   al.caseinsensitive->setChecked(false);
+  al.photograph_reminder_label->setVisible(true); /*
+						  ** Hidden by
+						  ** hideAdminFields().
+						  */
 
   /*
   ** Populate combination boxes.
@@ -5554,6 +5561,7 @@ void biblioteq::slotReset(void)
 	    }
 	  else if(action == actions[4])
 	    {
+	      al.categories_checkbox->setChecked(false);
 	      al.category->clear();
 	      al.category->setFocus();
 	    }
@@ -5574,6 +5582,7 @@ void biblioteq::slotReset(void)
 	    }
 	  else if(action == actions[8])
 	    {
+	      al.abstract_checkbox->setChecked(false);
 	      al.description->clear();
 	      al.description->setFocus();
 	    }
@@ -5591,6 +5600,7 @@ void biblioteq::slotReset(void)
 	    {
 	      al.keyword->clear();
 	      al.keyword->setFocus();
+	      al.keywords_checkbox->setChecked(false);
 	    }
 	  else if(action == actions[12])
 	    {
