@@ -339,7 +339,7 @@
            <item row="4" column="0">
             <widget class="QCheckBox" name="categories_checkbox">
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, perform an OR query using the provided words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Categories</string>
@@ -349,7 +349,7 @@
            <item row="8" column="0">
             <widget class="QCheckBox" name="abstract_checkbox">
              <property name="toolTip">
-              <string>If checked, perform an OR query using the provided words.</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Abstract</string>
@@ -359,7 +359,7 @@
            <item row="11" column="0">
             <widget class="QCheckBox" name="keywords_checkbox">
              <property name="toolTip">
-              <string>If checked, perform an OR query using the provided words.</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Keywords</string>
