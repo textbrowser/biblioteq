@@ -284,7 +284,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.setupUi(this);
 
   if(menuBar())
-    menuBar()->setNativeMenuBar(false);
+    menuBar()->setNativeMenuBar(true);
 
   m_connected_bar_label = 0;
   m_error_bar_label = 0;
@@ -361,6 +361,8 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(menu1->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset &Availability")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset &Case-Insensitive")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -5525,7 +5527,7 @@ void biblioteq::slotReset(void)
 	{
 	  QList<QAction *> actions = al.resetButton->menu()->actions();
 
-	  if(actions.size() < 13)
+	  if(actions.size() < 14)
 	    {
 	      // Error.
 	    }
@@ -5594,6 +5596,11 @@ void biblioteq::slotReset(void)
 	    {
 	      al.available->setChecked(false);
 	      al.available->setFocus();
+	    }
+	  else if(action == actions[13])
+	    {
+	      al.caseinsensitive->setChecked(false);
+	      al.caseinsensitive->setFocus();
 	    }
 
 	  actions.clear();
