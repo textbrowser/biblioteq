@@ -455,7 +455,12 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="action_Category"/>
+    <widget class="QMenu" name="menu_Category">
+     <property name="title">
+      <string>&amp;Category</string>
+     </property>
+    </widget>
+    <addaction name="menu_Category"/>
     <addaction name="separator"/>
     <addaction name="actionMembersBrowser"/>
     <addaction name="actionViewDetails"/>
@@ -1145,11 +1150,6 @@
   <action name="action_Photograph_Collection">
    <property name="text">
     <string>&amp;Photograph Collection...</string>
-   </property>
-  </action>
-  <action name="action_Category">
-   <property name="text">
-    <string>&amp;Category</string>
    </property>
   </action>
   <action name="action_Upgrade_SQLite_Schema">

@@ -279,8 +279,7 @@ biblioteq::biblioteq(void):QMainWindow()
       reply->deleteLater();
     }
 
-  QMenu *menu3 = 0;
-  QMenu *menu4 = 0;
+  QMenu *menu1 = 0;
 
   ui.setupUi(this);
 
@@ -331,41 +330,37 @@ biblioteq::biblioteq(void):QMainWindow()
   if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu3 = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((menu4 = new(std::nothrow) QMenu(this)) == 0)
+  if((menu1 = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_configToolMenu->setTearOffEnabled(true);
   m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
   m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
-  ui.action_Category->setMenu(menu3);
-  connect(menu4->addAction(tr("Reset &ID Number")),
+  connect(menu1->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Title")),
+  connect(menu1->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Publication Date")),
+  connect(menu1->addAction(tr("Reset &Publication Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Publisher")),
+  connect(menu1->addAction(tr("Reset &Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Categories")),
+  connect(menu1->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Price")),
+  connect(menu1->addAction(tr("Reset &Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Language")),
+  connect(menu1->addAction(tr("Reset &Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Monetary Units")),
+  connect(menu1->addAction(tr("Reset &Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Abstract")),
+  connect(menu1->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Copies")),
+  connect(menu1->addAction(tr("Reset &Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Location")),
+  connect(menu1->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Keywords")),
+  connect(menu1->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Availability")),
+  connect(menu1->addAction(tr("Reset &Availability")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -516,7 +511,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotRefresh(void)));
   connect(ui.actionReload_biblioteq_conf, SIGNAL(triggered(void)), this,
 	  SLOT(slotReloadBiblioteqConf(void)));
-  connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   connect(ui.modifyTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotModify(void)));
@@ -691,7 +686,7 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
   al.publication_date->setEnabled(false);
   al.publication_date_enabled->setChecked(false);
-  al.resetButton->setMenu(menu4);
+  al.resetButton->setMenu(menu1);
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
   ui.actionRequests->setEnabled(false);
@@ -742,22 +737,22 @@ biblioteq::biblioteq(void):QMainWindow()
 
   bool found = false;
 
-  for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+  for(int i = 0; i < ui.menu_Category->actions().size(); i++)
     if(m_lastCategory ==
-       ui.action_Category->menu()->actions().at(i)->data().toString())
+       ui.menu_Category->actions().at(i)->data().toString())
       {
 	found = true;
-	ui.action_Category->menu()->setDefaultAction
-	  (ui.action_Category->menu()->actions().at(i));
+	ui.menu_Category->setDefaultAction
+	  (ui.menu_Category->actions().at(i));
 	ui.categoryLabel->setText
-	  (ui.action_Category->menu()->actions().at(i)->text());
+	  (ui.menu_Category->actions().at(i)->text());
 	break;
       }
 
   if(!found)
     {
-      ui.action_Category->menu()->setDefaultAction
-	(ui.action_Category->menu()->actions().value(0));
+      ui.menu_Category->setDefaultAction
+	(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
     }
 
@@ -952,8 +947,8 @@ void biblioteq::addConfigOptions(const QString &typefilter)
 
 void biblioteq::slotSetColumns(void)
 {
-  QString typefilter = ui.action_Category->menu()->defaultAction() ?
-    ui.action_Category->menu()->defaultAction()->data().toString() : "All";
+  QString typefilter = ui.menu_Category->defaultAction() ?
+    ui.menu_Category->defaultAction()->data().toString() : "All";
 
   for(int i = 0; i < m_configToolMenu->actions().size(); i++)
     {
@@ -2160,8 +2155,8 @@ void biblioteq::slotRefresh(void)
   if(m_db.isOpen())
     {
       QString str = "";
-      QVariant data(ui.action_Category->menu()->defaultAction() ?
-		    ui.action_Category->menu()->defaultAction()->data().
+      QVariant data(ui.menu_Category->defaultAction() ?
+		    ui.menu_Category->defaultAction()->data().
 		    toString() : "All");
 
       if(data.toString() == "All Overdue" && m_roles.isEmpty())
@@ -4395,22 +4390,22 @@ void biblioteq::slotConnectDB(void)
 
   found = false;
 
-  for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+  for(int i = 0; i < ui.menu_Category->actions().size(); i++)
     if(m_lastCategory ==
-       ui.action_Category->menu()->actions().at(i)->data().toString())
+       ui.menu_Category->actions().at(i)->data().toString())
       {
 	found = true;
-	ui.action_Category->menu()->setDefaultAction
-	  (ui.action_Category->menu()->actions().at(i));
+	ui.menu_Category->setDefaultAction
+	  (ui.menu_Category->actions().at(i));
 	ui.categoryLabel->setText
-	  (ui.action_Category->menu()->actions().at(i)->text());
+	  (ui.menu_Category->actions().at(i)->text());
 	break;
       }
 
   if(!found)
     {
-      ui.action_Category->menu()->setDefaultAction
-	(ui.action_Category->menu()->actions().value(0));
+      ui.menu_Category->setDefaultAction
+	(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
     }
 
@@ -4564,14 +4559,14 @@ void biblioteq::slotDisconnect(void)
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
-  for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+  for(int i = 0; i < ui.menu_Category->actions().size(); i++)
     if(m_previousTypeFilter ==
-       ui.action_Category->menu()->actions().at(i)->data().toString())
+       ui.menu_Category->actions().at(i)->data().toString())
       {
-	ui.action_Category->menu()->setDefaultAction
-	  (ui.action_Category->menu()->actions().at(i));
+	ui.menu_Category->setDefaultAction
+	  (ui.menu_Category->actions().at(i));
 	ui.categoryLabel->setText
-	  (ui.action_Category->menu()->actions().at(i)->text());
+	  (ui.menu_Category->actions().at(i)->text());
 	break;
       }
 
@@ -5485,10 +5480,10 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
   if(!action)
     return;
 
-  disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
-  ui.action_Category->menu()->setDefaultAction(action);
-  connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+  ui.menu_Category->setDefaultAction(action);
+  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   ui.categoryLabel->setText(action->text());
   prepareRequestToolButton(action->data().toString());
@@ -8732,8 +8727,8 @@ void biblioteq::slotRequest(void)
 
   if(!m_roles.isEmpty())
     isRequesting = false;
-  else if(ui.action_Category->menu()->defaultAction() &&
-	  ui.action_Category->menu()->defaultAction()->data().
+  else if(ui.menu_Category->defaultAction() &&
+	  ui.menu_Category->defaultAction()->data().
 	  toString() == "All Requested")
     isRequesting = false;
 
@@ -8995,19 +8990,19 @@ void biblioteq::prepareFilter(void)
 	}
     }
 
-  disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
-  ui.action_Category->menu()->clear();
+  ui.menu_Category->clear();
 
   for(int i = 0; i < tmplist1.size(); i++)
     {
-      QAction *action = ui.action_Category->menu()->addAction(tmplist2[i]);
+      QAction *action = ui.menu_Category->addAction(tmplist2[i]);
 
       if(action)
 	action->setData(tmplist1[i]);
     }
 
-  connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   tmplist1.clear();
   tmplist2.clear();
@@ -9193,8 +9188,8 @@ QString biblioteq::getPreferredZ3950Site(void) const
 
 QString biblioteq::getTypeFilterString(void) const
 {
-  if(ui.action_Category->menu()->defaultAction())
-    return ui.action_Category->menu()->defaultAction()->data().toString();
+  if(ui.menu_Category->defaultAction())
+    return ui.menu_Category->defaultAction()->data().toString();
   else
     return "All";
 }
@@ -9701,8 +9696,8 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
 	    (m_db.userName(),
-	     ui.action_Category->menu()->defaultAction() ?
-	     ui.action_Category->menu()->defaultAction()->data().toString() :
+	     ui.menu_Category->defaultAction() ?
+	     ui.menu_Category->defaultAction()->data().toString() :
 	     "All",
 	     m_roles);
 	  ui.itemsCountLabel->setText(tr("0 Results"));

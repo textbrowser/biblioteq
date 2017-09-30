@@ -3256,15 +3256,15 @@ int biblioteq::populateTable(const int search_type_arg,
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
-	for(int ii = 0; ii < ui.action_Category->menu()->actions().size();
+	for(int ii = 0; ii < ui.menu_Category->actions().size();
 	    ii++)
 	  if(m_previousTypeFilter ==
-	     ui.action_Category->menu()->actions().at(ii)->data().toString())
+	     ui.menu_Category->actions().at(ii)->data().toString())
 	    {
-	      ui.action_Category->menu()->setDefaultAction
-		(ui.action_Category->menu()->actions().at(ii));
+	      ui.menu_Category->setDefaultAction
+		(ui.menu_Category->actions().at(ii));
 	      ui.categoryLabel->setText
-		(ui.action_Category->menu()->actions().at(ii)->text());
+		(ui.menu_Category->actions().at(ii)->text());
 	      break;
 	    }
 
@@ -3283,29 +3283,25 @@ int biblioteq::populateTable(const int search_type_arg,
 
   bool found = false;
 
-  for(int ii = 0; ii < ui.action_Category->menu()->actions().size(); ii++)
+  for(int ii = 0; ii < ui.menu_Category->actions().size(); ii++)
     if(typefilter ==
-       ui.action_Category->menu()->actions().at(ii)->data().toString())
+       ui.menu_Category->actions().at(ii)->data().toString())
       {
 	found = true;
 	m_previousTypeFilter = typefilter;
-	ui.action_Category->menu()->setDefaultAction
-	  (ui.action_Category->menu()->actions().at(ii));
-	ui.categoryLabel->setText
-	  (ui.action_Category->menu()->actions().at(ii)->text());
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(ii));
+	ui.categoryLabel->setText(ui.menu_Category->actions().at(ii)->text());
 	break;
       }
 
   if(typefilter.isEmpty())
     {
-      ui.action_Category->menu()->setDefaultAction
-	(ui.action_Category->menu()->actions().value(0));
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
     }
   else if(!found)
     {
-      ui.action_Category->menu()->setDefaultAction
-	(ui.action_Category->menu()->actions().value(0));
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
     }
 
