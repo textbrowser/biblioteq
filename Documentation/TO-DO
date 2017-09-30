@@ -390,5 +390,5 @@
 209. Tab-key navigation. (Done)
 210. Anti-aliasing in scene widgets. (Done)
 211. Redo /undo in large text editors. (Done)
-212. Do not clear the text contents of the General Search panel after
-     a post-search reset is performed. (TBD)
+212. Do not clear the fields of the General Search panel after
+     a post-search reset is performed. (Done)

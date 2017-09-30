@@ -2270,13 +2270,16 @@ void biblioteq::slotAllGo(void)
   al.publication_date->setEnabled(false);
   al.publisher->setEnabled(false);
   al.category->setEnabled(false);
+  al.categories_checkbox->setEnabled(false);
   al.price->setEnabled(false);
   al.language->setEnabled(false);
   al.monetary_units->setEnabled(false);
   al.description->setEnabled(false);
+  al.abstract_checkbox->setEnabled(false);
   al.quantity->setEnabled(false);
   al.location->setEnabled(false);
   al.keyword->setEnabled(false);
+  al.keywords_checkbox->setEnabled(false);
   al.available->setEnabled(false);
   al.caseinsensitive->setEnabled(false);
   al.okButton->setEnabled(false);

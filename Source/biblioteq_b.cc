@@ -3850,6 +3850,10 @@ void biblioteq::resetAllSearchWidgets(void)
 
 void biblioteq::slotResetGeneralSearch(void)
 {
+  /*
+  ** Do not clear field values.
+  */
+
   ui.graphicsView->scene()->clear();
   ui.graphicsView->resetTransform();
   ui.graphicsView->verticalScrollBar()->setValue(0);
@@ -3870,7 +3874,7 @@ void biblioteq::slotResetGeneralSearch(void)
 
   al.publication_date_enabled->setChecked(false);
   al.reset->setVisible(false);
-  slotSearch();
+  al.idnumber->setFocus();
 }
 
 /*
