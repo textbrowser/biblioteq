@@ -94,8 +94,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setModal(true);
   m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  m_sruWorking->setLabelText(tr("Downloading information from the SRU "
-				"site. Please be patient..."));
+  m_sruWorking->setLabelText(tr("Downloading information from the SRU site."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
   m_sruWorking->resize(m_sruWorking->sizeHint());
@@ -2494,8 +2493,7 @@ void biblioteq_book::slotZ3950Query(void)
       working.setCancelButton(0);
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading information from the Z39.50 "
-			      "site. Please be patient..."));
+      working.setLabelText(tr("Downloading information from the Z39.50 site."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.resize(working.sizeHint());
@@ -3119,15 +3117,13 @@ void biblioteq_book::slotDownloadImage(void)
     {
       m_httpProgress->setWindowTitle
 	(tr("BiblioteQ: Front Cover Image Download"));
-      m_httpProgress->setLabelText(tr("Downloading the front cover image. "
-				      "Please be patient..."));
+      m_httpProgress->setLabelText(tr("Downloading the front cover image."));
     }
   else
     {
       m_httpProgress->setWindowTitle
 	(tr("BiblioteQ: Back Cover Image Download"));
-      m_httpProgress->setLabelText(tr("Downloading the back cover image. "
-				      "Please be patient..."));
+      m_httpProgress->setLabelText(tr("Downloading the back cover image."));
     }
 }
 
@@ -3163,8 +3159,8 @@ void biblioteq_book::downloadFinished(void)
 {
   if(m_httpProgress->isVisible())
     {
-      m_httpProgress->reset(); // Qt 5.5.x adjustment.
       m_httpProgress->close();
+      m_httpProgress->reset(); // Qt 5.5.x adjustment.
     }
 
   if(m_imageBuffer.property("which") == "front")
@@ -3363,8 +3359,8 @@ void biblioteq_book::sruDownloadFinished(void)
 {
   bool canceled = m_sruWorking->wasCanceled();
 
-  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->close();
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   update();
 
   if(canceled)
@@ -3607,12 +3603,18 @@ void biblioteq_book::slotSRUReadyRead(void)
 
 void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
 {
+  m_sruWorking->cancel();
+
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
-    QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
-       tr("A network error (%1) occurred.").arg(reply->errorString()));
+    {
+      QString error(reply->errorString());
+
+      QMessageBox::critical
+	(this, tr("BiblioteQ: SRU Query Error"),
+	 tr("A network error (%1) occurred.").arg(error));
+    }
   else
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
@@ -3626,6 +3628,7 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
 void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
 {
   Q_UNUSED(list);
+  m_sruWorking->cancel();
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
