@@ -3392,11 +3392,15 @@ void biblioteq_magazine::slotSRUQuery(void)
 		  this, SLOT(slotSRUReadyRead(void)));
 	  connect(reply, SIGNAL(finished(void)),
 		  this, SLOT(slotSRUDownloadFinished(void)));
+	  connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+		  this, SLOT(slotSRUError(QNetworkReply::NetworkError)));
+	  connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
+		  this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
 	}
       else
 	{
-	  m_sruWorking->reset(); // Qt 5.5.x adjustment.
 	  m_sruWorking->close();
+	  m_sruWorking->reset(); // Qt 5.5.x adjustment.
 	}
     }
 }
@@ -3433,8 +3437,8 @@ void biblioteq_magazine::sruDownloadFinished(void)
 {
   bool canceled = m_sruWorking->wasCanceled();
 
-  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->close();
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   update();
 
   if(canceled)
@@ -4031,4 +4035,41 @@ void biblioteq_magazine::slotSRUCanceled(void)
     }
 
   m_sruResults.clear();
+}
+
+/*
+** -- slotSRUError() --
+*/
+
+void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
+{
+  m_sruWorking->cancel();
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    {
+      QString error(reply->errorString());
+
+      QMessageBox::critical
+	(this, tr("BiblioteQ: SRU Query Error"),
+	 tr("A network error (%1) occurred.").arg(error));
+    }
+  else
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("A network error (%1) occurred.").arg(error));
+}
+
+/*
+** -- slotSRUSslErrors() --
+*/
+
+void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
+{
+  Q_UNUSED(list);
+  m_sruWorking->cancel();
+  QMessageBox::critical
+    (this, tr("BiblioteQ: SRU Query Error"),
+     tr("One or more SSL errors occurred. Please verify your settings."));
 }

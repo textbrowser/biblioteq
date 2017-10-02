@@ -13,6 +13,7 @@
 #include <QMenu>
 #include <QNetworkAccessManager>
 #include <QPointer>
+#include <QNetworkReply>
 #include <QStringList>
 
 /*
@@ -101,11 +102,13 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void slotSRUCanceled(void);
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
+  void slotSRUError(QNetworkReply::NetworkError error);
   void slotSRUQuery(void);
 #if QT_VERSION < 0x050000
   void slotSRUReadyRead(const QHttpResponseHeader &resp);
 #endif
   void slotSRUReadyRead(void);
+  void slotSRUSslErrors(const QList<QSslError> &list);
   void slotSelectImage(void);
   void slotShowPDF(void);
   void slotShowUsers(void);
