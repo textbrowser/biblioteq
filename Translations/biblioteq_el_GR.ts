@@ -1797,10 +1797,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Επαναφορά εικόνας Εξ&amp;ώφυλλου</translation>
     </message>
@@ -2073,10 +2069,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Ανάκτηση δεδομένων μέσω του Z39.50</translation>
     </message>
     <message>
-        <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2214,7 +2206,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading the front cover image. Please be patient...</source>
-        <translation type="unfinished">Κατέβασμα εξώφυλλου. Παρακαλώ περιμένετε...</translation>
+        <translation type="obsolete">Κατέβασμα εξώφυλλου. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Download</source>
@@ -2222,7 +2214,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading the back cover image. Please be patient...</source>
-        <translation type="unfinished">Κατέβασμα οπισθόφυλλου. Παρακαλώ περιμένετε...</translation>
+        <translation type="obsolete">Κατέβασμα οπισθόφυλλου. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>BiblioteQ: HTTP Warning</source>
@@ -2314,6 +2306,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ was not assembled with Poppler support.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3796,10 +3792,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Επαναφορά εικόνας Εξ&amp;ώφυλλου</translation>
     </message>
@@ -4084,10 +4076,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Ανάκτηση δεδομένων μέσω του Z39.50</translation>
     </message>
     <message>
-        <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4289,6 +4277,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ was not assembled with Poppler support.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A network error (%1) occurred.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or more SSL errors occurred. Please verify your settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
