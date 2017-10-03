@@ -3105,6 +3105,11 @@ void biblioteq_book::slotDownloadImage(void)
 void biblioteq_book::slotDownloadFinished(bool error)
 {
   Q_UNUSED(error);
+
+  if(m_httpProgress)
+    m_httpProgress->deleteLater();
+
+  m_httpProgress = 0;
   downloadFinished();
 }
 
@@ -3119,6 +3124,10 @@ void biblioteq_book::slotDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
+  if(m_httpProgress)
+    m_httpProgress->deleteLater();
+
+  m_httpProgress = 0;
   downloadFinished();
 }
 
@@ -3128,11 +3137,6 @@ void biblioteq_book::slotDownloadFinished(void)
 
 void biblioteq_book::downloadFinished(void)
 {
-  if(m_httpProgress)
-    m_httpProgress->deleteLater();
-
-  m_httpProgress = 0;
-
   if(m_imageBuffer.property("which") == "front")
     {
       if(m_imageBuffer.data().size() > 1000)
