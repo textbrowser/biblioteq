@@ -4158,7 +4158,7 @@ void biblioteq_book::slotSRUCanceled(void)
       QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
 
       if(reply)
-	reply->abort();
+	reply->deleteLater();
     }
 
   m_sruResults.clear();

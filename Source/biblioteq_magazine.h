@@ -79,12 +79,12 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   bool m_duplicate;
   bool useHttp(void) const;
   void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,
 		  const QByteArray &bytes,
 		  const QString &fileName) const;
-  void closeEvent(QCloseEvent *event);
+  void createSRUDialog(void);
   void populateFiles(void);
-  void sruDownloadFinished(void);
 
  protected slots:
   void slotAttachFiles(void);
@@ -113,6 +113,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void slotShowPDF(void);
   void slotShowUsers(void);
   void slotZ3950Query(void);
+  void sruDownloadFinished(void);
 };
 
 class biblioteq_journal: public biblioteq_magazine
