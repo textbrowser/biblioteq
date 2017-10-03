@@ -8,6 +8,7 @@
 #include <QNetworkProxy>
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QTimer>
 #include <QXmlStreamReader>
 
 /*
@@ -3110,7 +3111,7 @@ void biblioteq_book::slotDownloadFinished(bool error)
     m_httpProgress->deleteLater();
 
   m_httpProgress = 0;
-  downloadFinished();
+  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
 
 /*
@@ -3128,7 +3129,7 @@ void biblioteq_book::slotDownloadFinished(void)
     m_httpProgress->deleteLater();
 
   m_httpProgress = 0;
-  downloadFinished();
+  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
 
 /*
@@ -3325,7 +3326,7 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
   m_sruWorking = 0;
 
   if(!canceled)
-    sruDownloadFinished();
+    QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 
 /*
@@ -3350,7 +3351,7 @@ void biblioteq_book::slotSRUDownloadFinished(void)
   m_sruWorking = 0;
 
   if(!canceled)
-    sruDownloadFinished();
+    QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 
 /*

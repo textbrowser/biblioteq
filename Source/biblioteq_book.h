@@ -84,11 +84,10 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 		  const QString &fileName) const;
   void createImageDownloadDialog(void);
   void createSRUDialog(void);
-  void downloadFinished(void);
   void populateFiles(void);
-  void sruDownloadFinished(void);
 
  private slots:
+  void downloadFinished(void);
   void slotAttachFiles(void);
   void slotCancel(void);
   void slotCancelImageDownload(void);
@@ -128,6 +127,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotShowPDF(void);
   void slotShowUsers(void);
   void slotZ3950Query(void);
+  void sruDownloadFinished(void);
 };
 
 #endif
