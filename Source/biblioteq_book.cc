@@ -3212,7 +3212,7 @@ void biblioteq_book::slotCancelImageDownload(void)
       QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
 
       if(reply)
-	reply->abort();
+	reply->deleteLater();
     }
 
   m_imageBuffer.close();
