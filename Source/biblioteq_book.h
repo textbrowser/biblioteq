@@ -82,6 +82,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void createFile(const QByteArray &digest,
 		  const QByteArray &bytes,
 		  const QString &fileName) const;
+  void createSRUDialog(void);
   void downloadFinished(void);
   void populateFiles(void);
   void sruDownloadFinished(void);
@@ -122,8 +123,8 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 #endif
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
-  void slotShowPDF(void);
   void slotSelectImage(void);
+  void slotShowPDF(void);
   void slotShowUsers(void);
   void slotZ3950Query(void);
 };

@@ -86,7 +86,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setModal(true);
   m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  m_sruWorking->setLabelText(tr("Downloading information from the SRU site."));
+  m_sruWorking->setLabelText(tr("Downloading."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
   m_sruWorking->resize(m_sruWorking->sizeHint());
@@ -2095,7 +2095,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       working.setCancelButton(0);
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading information from the Z39.50 site."));
+      working.setLabelText(tr("Downloading."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.resize(working.sizeHint());
@@ -3412,7 +3412,15 @@ void biblioteq_magazine::slotSRUQuery(void)
 void biblioteq_magazine::slotSRUDownloadFinished(bool error)
 {
   Q_UNUSED(error);
-  sruDownloadFinished();
+
+  bool canceled = m_sruWorking->wasCanceled();
+
+  m_sruWorking->close();
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
+  update();
+
+  if(!canceled)
+    sruDownloadFinished();
 }
 
 /*
@@ -3426,7 +3434,14 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
-  sruDownloadFinished();
+  bool canceled = m_sruWorking->wasCanceled();
+
+  m_sruWorking->close();
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
+  update();
+
+  if(!canceled)
+    sruDownloadFinished();
 }
 
 /*
@@ -3435,15 +3450,6 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
 
 void biblioteq_magazine::sruDownloadFinished(void)
 {
-  bool canceled = m_sruWorking->wasCanceled();
-
-  m_sruWorking->close();
-  m_sruWorking->reset(); // Qt 5.5.x adjustment.
-  update();
-
-  if(canceled)
-    return;
-
   QList<QByteArray> list;
 
   while(m_sruResults.indexOf("<record") >= 0 &&

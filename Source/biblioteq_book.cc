@@ -36,6 +36,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
+  m_sruWorking = 0;
 
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
@@ -87,21 +88,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
     }
 
-  if((m_sruWorking = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  m_sruWorking->reset(); // Qt 5.5.x adjustment.
-  m_sruWorking->setModal(true);
-  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  m_sruWorking->setLabelText(tr("Downloading information from the SRU site."));
-  m_sruWorking->setMaximum(0);
-  m_sruWorking->setMinimum(0);
-  m_sruWorking->resize(m_sruWorking->sizeHint());
-  connect(m_sruWorking,
-	  SIGNAL(canceled(void)),
-	  this,
-	  SLOT(slotSRUCanceled(void)));
   ui_p.setupUi(m_proxyDialog);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -2268,10 +2254,7 @@ void biblioteq_book::slotSRUQuery(void)
       return;
     }
 
-  m_sruWorking->reset(); // Qt 5.5.x adjustment.
-  m_sruWorking->setMaximum(0);
-  m_sruWorking->setMinimum(0);
-  m_sruWorking->resize(m_sruWorking->sizeHint());
+  createSRUDialog();
   m_sruWorking->show();
   m_sruWorking->update();
 #ifndef Q_OS_MAC
@@ -2451,8 +2434,10 @@ void biblioteq_book::slotSRUQuery(void)
 	}
       else
 	{
-	  m_sruWorking->reset(); // Qt 5.5.x adjustment.
-	  m_sruWorking->close();
+	  if(m_sruWorking)
+	    m_sruWorking->deleteLater();
+
+	  m_sruWorking = 0;
 	}
     }
 }
@@ -2493,7 +2478,7 @@ void biblioteq_book::slotZ3950Query(void)
       working.setCancelButton(0);
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading information from the Z39.50 site."));
+      working.setLabelText(tr("Downloading."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.resize(working.sizeHint());
@@ -3117,13 +3102,13 @@ void biblioteq_book::slotDownloadImage(void)
     {
       m_httpProgress->setWindowTitle
 	(tr("BiblioteQ: Front Cover Image Download"));
-      m_httpProgress->setLabelText(tr("Downloading the front cover image."));
+      m_httpProgress->setLabelText(tr("Downloading."));
     }
   else
     {
       m_httpProgress->setWindowTitle
 	(tr("BiblioteQ: Back Cover Image Download"));
-      m_httpProgress->setLabelText(tr("Downloading the back cover image."));
+      m_httpProgress->setLabelText(tr("Downloading."));
     }
 }
 
@@ -3334,7 +3319,20 @@ void biblioteq_book::changeEvent(QEvent *event)
 void biblioteq_book::slotSRUDownloadFinished(bool error)
 {
   Q_UNUSED(error);
-  sruDownloadFinished();
+
+  bool canceled = false;
+
+  if(m_sruWorking)
+    {
+      canceled = m_sruWorking->wasCanceled();
+      m_sruWorking->deleteLater();
+    }
+
+  m_sruWorking = 0;
+  update();
+
+  if(!canceled)
+    sruDownloadFinished();
 }
 
 /*
@@ -3348,7 +3346,19 @@ void biblioteq_book::slotSRUDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
-  sruDownloadFinished();
+  bool canceled = false;
+
+  if(m_sruWorking)
+    {
+      canceled = m_sruWorking->wasCanceled();
+      m_sruWorking->deleteLater();
+    }
+
+  m_sruWorking = 0;
+  update();
+
+  if(!canceled)
+    sruDownloadFinished();
 }
 
 /*
@@ -3357,15 +3367,6 @@ void biblioteq_book::slotSRUDownloadFinished(void)
 
 void biblioteq_book::sruDownloadFinished(void)
 {
-  bool canceled = m_sruWorking->wasCanceled();
-
-  m_sruWorking->close();
-  m_sruWorking->reset(); // Qt 5.5.x adjustment.
-  update();
-
-  if(canceled)
-    return;
-
   /*
   ** Verify that the SRU data contains at least one record.
   */
@@ -3603,7 +3604,10 @@ void biblioteq_book::slotSRUReadyRead(void)
 
 void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
 {
-  m_sruWorking->cancel();
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  m_sruWorking = 0;
 
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
@@ -3628,7 +3632,11 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
 void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
 {
   Q_UNUSED(list);
-  m_sruWorking->cancel();
+
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  m_sruWorking = 0;
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
@@ -4161,4 +4169,29 @@ void biblioteq_book::slotSRUCanceled(void)
     }
 
   m_sruResults.clear();
+}
+
+/*
+** -- createSRUDialog() --
+*/
+
+void biblioteq_book::createSRUDialog(void)
+{
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  if((m_sruWorking = new(std::nothrow)
+      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  m_sruWorking->resize(m_sruWorking->sizeHint());
+  m_sruWorking->setLabelText(tr("Downloading."));
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->setModal(true);
+  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+  connect(m_sruWorking,
+	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
 }
