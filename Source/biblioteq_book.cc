@@ -36,6 +36,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
+  m_httpProgress = 0;
   m_sruWorking = 0;
 
   QGraphicsScene *scene1 = 0;
@@ -50,13 +51,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_httpProgress = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  m_httpProgress->reset(); // Qt 5.5.x adjustment.
-  m_httpProgress->setWindowTitle(tr("BiblioteQ: Image Download"));
 
   if(useHttp())
     {
@@ -231,10 +225,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SLOT(slotDownloadImage(void)));
   connect(id.dwnldBack, SIGNAL(clicked(void)), this,
 	  SLOT(slotDownloadImage(void)));
-  connect(m_httpProgress, SIGNAL(canceled(void)), this,
-	  SLOT(slotCancelImageDownload(void)));
-  connect(m_httpProgress, SIGNAL(rejected(void)), this,
-	  SLOT(slotCancelImageDownload(void)));
   id.resetButton->setMenu(menu);
 
   if(menu->actions().size() >= 4)
@@ -302,7 +292,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 
   id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
-  m_httpProgress->setModal(true);
 
   if(id.binding->findText(tr("UNKNOWN")) == -1)
     id.binding->addItem(tr("UNKNOWN"));
@@ -2887,7 +2876,7 @@ void biblioteq_book::slotSelectImage(void)
 
 void biblioteq_book::slotDownloadImage(void)
 {
-  if(m_httpProgress->isVisible())
+  if(m_httpProgress)
     return;
 
   if(useHttp())
@@ -3088,10 +3077,7 @@ void biblioteq_book::slotDownloadImage(void)
 	      this, SLOT(slotDownloadFinished(void)));
     }
 
-  m_httpProgress->reset(); // Qt 5.5.x adjustment.
-  m_httpProgress->setMaximum(0);
-  m_httpProgress->setMinimum(0);
-  m_httpProgress->resize(m_httpProgress->sizeHint());
+  createImageDownloadDialog();
   m_httpProgress->show();
 #ifndef Q_OS_MAC
   m_httpProgress->repaint();
@@ -3142,11 +3128,10 @@ void biblioteq_book::slotDownloadFinished(void)
 
 void biblioteq_book::downloadFinished(void)
 {
-  if(m_httpProgress->isVisible())
-    {
-      m_httpProgress->close();
-      m_httpProgress->reset(); // Qt 5.5.x adjustment.
-    }
+  if(m_httpProgress)
+    m_httpProgress->deleteLater();
+
+  m_httpProgress = 0;
 
   if(m_imageBuffer.property("which") == "front")
     {
@@ -3193,7 +3178,7 @@ void biblioteq_book::downloadFinished(void)
 void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 					      qint64 totalbytes)
 {
-  if(m_httpProgress->isVisible())
+  if(m_httpProgress)
     {
       m_httpProgress->setMaximum(static_cast<int> (totalbytes));
       m_httpProgress->setValue(static_cast<int> (bytesread));
@@ -3206,6 +3191,11 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 
 void biblioteq_book::slotCancelImageDownload(void)
 {
+  if(m_httpProgress)
+    m_httpProgress->deleteLater();
+
+  m_httpProgress = 0;
+
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -4194,4 +4184,28 @@ void biblioteq_book::createSRUDialog(void)
 	  SIGNAL(canceled(void)),
 	  this,
 	  SLOT(slotSRUCanceled(void)));
+}
+
+/*
+** -- createImageDownloadDialog() --
+*/
+
+void biblioteq_book::createImageDownloadDialog(void)
+{
+  if(m_httpProgress)
+    m_httpProgress->deleteLater();
+
+  if((m_httpProgress = new(std::nothrow)
+      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  m_httpProgress->resize(m_httpProgress->sizeHint());
+  m_httpProgress->setMaximum(0);
+  m_httpProgress->setMinimum(0);
+  m_httpProgress->setModal(true);
+  m_httpProgress->setWindowTitle(tr("BiblioteQ: Image Download"));
+  connect(m_httpProgress, SIGNAL(canceled(void)), this,
+	  SLOT(slotCancelImageDownload(void)));
+  connect(m_httpProgress, SIGNAL(rejected(void)), this,
+	  SLOT(slotCancelImageDownload(void)));
 }

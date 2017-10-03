@@ -82,6 +82,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void createFile(const QByteArray &digest,
 		  const QByteArray &bytes,
 		  const QString &fileName) const;
+  void createImageDownloadDialog(void);
   void createSRUDialog(void);
   void downloadFinished(void);
   void populateFiles(void);
