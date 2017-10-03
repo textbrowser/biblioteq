@@ -3323,7 +3323,6 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
     }
 
   m_sruWorking = 0;
-  update();
 
   if(!canceled)
     sruDownloadFinished();
@@ -3349,7 +3348,6 @@ void biblioteq_book::slotSRUDownloadFinished(void)
     }
 
   m_sruWorking = 0;
-  update();
 
   if(!canceled)
     sruDownloadFinished();
