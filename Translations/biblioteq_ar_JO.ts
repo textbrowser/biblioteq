@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ar_JO">
+<TS version="2.0" language="ar_JO">
 <context>
     <name>QObject</name>
     <message>
@@ -2503,7 +2503,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation type="vanished">تحميل المعلومات من موقع ـ إس آر يو ـ.ينبغي أن تكون صبوراً </translation>
+        <translation type="obsolete">تحميل المعلومات من موقع ـ إس آر يو ـ.ينبغي أن تكون صبوراً </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="106"/>
@@ -2944,7 +2944,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation type="vanished">يتم تحميل المعلومات باستخدام بروتوكول زد39.50. ينبغي التحلي بالصبر </translation>
+        <translation type="obsolete">يتم تحميل المعلومات باستخدام بروتوكول زد39.50. ينبغي التحلي بالصبر </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="2553"/>
@@ -3124,7 +3124,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading the front cover image. Please be patient...</source>
-        <translation type="vanished">يتم تحميل صورة الغلاف الأمامي.لطفاً ينبغي أن تكون صبوراً...</translation>
+        <translation type="obsolete">يتم تحميل صورة الغلاف الأمامي.لطفاً ينبغي أن تكون صبوراً...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3097"/>
@@ -3133,7 +3133,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading the back cover image. Please be patient...</source>
-        <translation type="vanished">يتم تحميل صورة الغلاف الخلفي.لطفاً ينبغي أن تكون صبوراً...</translation>
+        <translation type="obsolete">يتم تحميل صورة الغلاف الخلفي.لطفاً ينبغي أن تكون صبوراً...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3153"/>
@@ -5316,7 +5316,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation type="vanished">تحميل المعلومات من موقع ـ إس آر يو ـ.ينبغي أن تكون صبوراً </translation>
+        <translation type="obsolete">تحميل المعلومات من موقع ـ إس آر يو ـ.ينبغي أن تكون صبوراً </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_magazine.cc" line="99"/>
@@ -5774,7 +5774,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation type="vanished">يتم تحميل المعلومات باستخدام بروتوكول زد39.50. ينبغي التحلي بالصبر </translation>
+        <translation type="obsolete">يتم تحميل المعلومات باستخدام بروتوكول زد39.50. ينبغي التحلي بالصبر </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_magazine.cc" line="2148"/>
