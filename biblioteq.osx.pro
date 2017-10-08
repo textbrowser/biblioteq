@@ -17,7 +17,13 @@ QT		-= webkit
 QT		+= network sql
 
 greaterThan(QT_MAJOR_VERSION, 4) {
+exists(/usr/local/include/poppler/qt5)
+{
+DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
+INCLUDEPATH     += /usr/local/include/poppler/qt5
+LIBS    +=      -lpoppler-qt5
 QT              += printsupport widgets
+}
 }
 
 TEMPLATE	= app
