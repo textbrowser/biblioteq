@@ -163,7 +163,8 @@ TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
 		  Translations/biblioteq_hu_HU.ts \
 		  Translations/biblioteq_it_IT.ts \
                   Translations/biblioteq_nl_BE.ts \
-                  Translations/biblioteq_nl_NL.ts
+                  Translations/biblioteq_nl_NL.ts \
+		  Translations/biblioteq_zh_CN.ts
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
