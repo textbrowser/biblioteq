@@ -45,7 +45,7 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
   {
     Q_UNUSED(widget);
 
-    if(!painter)
+    if(!option || !painter)
       return;
 
     painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
@@ -59,9 +59,8 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
     painter->drawPixmap
       (exposed_rect, pixmap(), exposed_rect.translated(-offset()));
 
-    if(option)
-      if(option->state & (QStyle::State_Selected | QStyle::State_HasFocus))
-	qt_graphicsItem_highlightSelected(this, painter, option);
+    if(option->state & (QStyle::State_Selected | QStyle::State_HasFocus))
+      qt_graphicsItem_highlightSelected(this, painter, option);
   }
 };
 
