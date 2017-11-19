@@ -20,7 +20,7 @@ static void qt_graphicsItem_highlightSelected
 
   const QColor bgcolor(70, 130, 180);
   const qreal pad = 0.0;
-  const qreal penWidth = 2.0;
+  const qreal penWidth = 2.5;
 
   painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
   painter->setBrush(Qt::NoBrush);
@@ -29,7 +29,7 @@ static void qt_graphicsItem_highlightSelected
 
 class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
 {
-public:
+ public:
   biblioteq_graphicsitempixmap(const QPixmap &pixmap,
 			       QGraphicsItem *parent):
     QGraphicsPixmapItem(pixmap, parent)
@@ -43,7 +43,21 @@ public:
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 	     QWidget *widget = 0)
   {
-    QGraphicsPixmapItem::paint(painter, option, widget);
+    Q_UNUSED(widget);
+
+    if(!painter)
+      return;
+
+    painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
+
+    QRectF exposed_rect(option->exposedRect.adjusted(-1, -1, 1, 1));
+
+    exposed_rect &= QRectF(offset().x(),
+			   offset().y(),
+			   pixmap().width(),
+			   pixmap().height());
+    painter->drawPixmap
+      (exposed_rect, pixmap(), exposed_rect.translated(-offset()));
 
     if(option)
       if(option->state & (QStyle::State_Selected | QStyle::State_HasFocus))
