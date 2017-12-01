@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>482</width>
-         <height>897</height>
+         <y>-31</y>
+         <width>468</width>
+         <height>928</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -86,6 +86,9 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="id"/>
+        </item>
         <item row="10" column="0">
          <widget class="QLabel" name="label_11">
           <property name="text">
@@ -99,9 +102,6 @@
            <string>ID</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="id"/>
         </item>
         <item row="6" column="0">
          <widget class="QLabel" name="label_10">
@@ -167,6 +167,9 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="job_number"/>
+        </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_7">
           <property name="text">
@@ -180,9 +183,6 @@
            <string>Location</string>
           </property>
          </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QLineEdit" name="job_number"/>
         </item>
         <item row="7" column="0">
          <widget class="QLabel" name="label_13">
@@ -214,6 +214,9 @@
            </spacer>
           </item>
          </layout>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="title"/>
         </item>
         <item row="8" column="1">
          <widget class="biblioteq_hyperlinked_text_edit" name="notes">
@@ -279,9 +282,6 @@
            </spacer>
           </item>
          </layout>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="title"/>
         </item>
         <item row="12" column="1">
          <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -400,6 +400,71 @@
            <string>Files</string>
           </property>
          </widget>
+        </item>
+        <item row="13" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Images</string>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QGraphicsView" name="images"/>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <spacer name="horizontalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="attach_images">
+              <property name="text">
+               <string>&amp;Attach...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="delete_images">
+              <property name="text">
+               <string>&amp;Delete</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="export_images">
+              <property name="text">
+               <string>&amp;Export...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_10">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -536,6 +601,10 @@
   <tabstop>attach_files</tabstop>
   <tabstop>delete_files</tabstop>
   <tabstop>export_files</tabstop>
+  <tabstop>images</tabstop>
+  <tabstop>attach_images</tabstop>
+  <tabstop>delete_images</tabstop>
+  <tabstop>export_images</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>printButton</tabstop>
