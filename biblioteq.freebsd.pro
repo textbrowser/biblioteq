@@ -48,6 +48,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
 		  UI/biblioteq_dvdinfo.ui \
 		  UI/biblioteq_errordiag.ui \
                   UI/biblioteq_generalmessagediag.ui \
+		  UI/biblioteq_greyliteratureinfo.ui \
 		  UI/biblioteq_history.ui \
 		  UI/biblioteq_maginfo.ui \
 		  UI/biblioteq_mainwindow.ui \

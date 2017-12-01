@@ -13,6 +13,8 @@ DROP TABLE IF EXISTS dvd_ratings;
 DROP TABLE IF EXISTS dvd_regions;
 DROP TABLE IF EXISTS dvd;
 DROP TABLE IF EXISTS grey_literature;
+DROP TABLE IF EXISTS grey_literature_files;
+DROP TABLE IF EXISTS grey_literature_images;
 DROP VIEW IF EXISTS item_borrower_vw;
 DROP TABLE IF EXISTS item_borrower;
 DROP TABLE IF EXISTS item_request;

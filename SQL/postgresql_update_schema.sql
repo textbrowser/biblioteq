@@ -1192,3 +1192,70 @@ ALTER TABLE magazine ADD accession_number TEXT;
 ALTER TABLE photograph ADD accession_number TEXT;
 ALTER TABLE photograph_collection ADD accession_number TEXT;
 ALTER TABLE videogame ADD accession_number TEXT;
+
+/* Release 2018.01.01 */
+
+CREATE TABLE grey_literature
+(
+	author		TEXT NOT NULL,
+	client		TEXT,
+	document_code_a	TEXT NOT NULL,
+	document_code_b TEXT NOT NULL,
+	document_date	TEXT NOT NULL,
+	document_id	TEXT NOT NULL PRIMARY KEY,
+	document_status TEXT,
+	document_title	TEXT NOT NULL,
+	document_type	TEXT NOT NULL,
+	job_number	TEXT NOT NULL,
+	location	TEXT,
+	myoid		BIGSERIAL UNIQUE,
+	notes		TEXT,
+	type		VARCHAR(16) NOT NULL DEFAULT 'Grey Literature'
+);
+
+CREATE TABLE grey_literature_files
+(
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	file_name	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
+);
+
+CREATE TABLE grey_literature_images
+(
+	description	TEXT,
+	image		BYTEA NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid           BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, myoid)
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_images TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_images_myoid_seq TO biblioteq_administrator;
+GRANT SELECT ON grey_literature TO biblioteq_circulation;
+GRANT SELECT ON grey_literature_files_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON grey_literature_images_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON grey_literature TO biblioteq_guest;
+GRANT SELECT ON grey_literature_files TO biblioteq_guest;
+GRANT SELECT ON grey_literature_images TO biblioteq_guest;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_images TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_images_myoid_seq TO biblioteq_librarian;
+GRANT SELECT ON grey_literature TO biblioteq_membership;
+GRANT SELECT ON grey_literature_files TO biblioteq_membership;
+GRANT SELECT ON grey_literature_images TO biblioteq_membership;
+GRANT SELECT ON grey_literature TO biblioteq_patron;
+GRANT SELECT ON grey_literature_files TO biblioteq_patron;
+GRANT SELECT ON grey_literature_images TO biblioteq_patron;
