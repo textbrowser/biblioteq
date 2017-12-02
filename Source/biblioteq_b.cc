@@ -4197,6 +4197,28 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE photograph ADD accession_number TEXT");
   list.append("ALTER TABLE photograph_collection ADD accession_number TEXT");
   list.append("ALTER TABLE videogame ADD accession_number TEXT");
+  list.append("CREATE TABLE IF NOT EXISTS grey_literature_files "
+	      "("
+	      "description TEXT,"
+	      "file BYTEA NOT NULL,"
+	      "file_digest TEXT NOT NULL,"
+	      "file_name TEXT NOT NULL,"
+	      "item_oid BIGINT NOT NULL,"
+	      "myoid BIGINT NOT NULL,"
+	      "FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON "
+	      "DELETE CASCADE,"
+	      "PRIMARY KEY(file_digest, item_oid)"
+	      ")");
+  list.append("CREATE TABLE IF NOT EXISTS grey_literature_images "
+	      "("
+	      "description TEXT,"
+	      "image BYTEA NOT NULL,"
+	      "item_oid BIGINT NOT NULL,"
+	      "myoid BIGINT UNIQUE,"
+	      "FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON "
+	      "DELETE CASCADE,"
+	      "PRIMARY KEY(item_oid, myoid)"
+	      ")");
 
   QString errors("");
   int ct = 0;
