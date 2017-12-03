@@ -437,6 +437,7 @@
      </property>
      <addaction name="action_Book"/>
      <addaction name="action_DVD"/>
+     <addaction name="actionGrey_Literature"/>
      <addaction name="action_Journal"/>
      <addaction name="action_Magazine"/>
      <addaction name="actionMusic_CD"/>
@@ -1178,6 +1179,11 @@
   <action name="action_Open_PDF_File">
    <property name="text">
     <string>&amp;Open PDF File...</string>
+   </property>
+  </action>
+  <action name="actionGrey_Literature">
+   <property name="text">
+    <string>Grey Literature...</string>
    </property>
   </action>
  </widget>

@@ -446,6 +446,7 @@ void biblioteq_dbenumerations::slotAdd(void)
 
 	  list << tr("Book")
 	       << tr("DVD")
+	       << tr("Grey Literature")
 	       << tr("Journal")
 	       << tr("Magazine")
 	       << tr("Music CD")

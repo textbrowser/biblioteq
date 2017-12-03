@@ -2489,6 +2489,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    types.append("Book");
 	    types.append("CD");
 	    types.append("DVD");
+	    types.append("Grey Literature");
 	    types.append("Journal");
 	    types.append("Magazine");
 	    types.append("Photograph Collection");
@@ -3123,6 +3124,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	types.append("Book");
 	types.append("CD");
 	types.append("DVD");
+	types.append("Grey Literature");
 	types.append("Journal");
 	types.append("Magazine");
 	types.append("Photograph Collection");

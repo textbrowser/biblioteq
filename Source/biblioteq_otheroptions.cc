@@ -132,6 +132,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 
   list1 << tr("Books")
 	<< tr("DVDs")
+	<< tr("Grey Literature")
 	<< tr("Journals")
 	<< tr("Magazines")
 	<< tr("Music CDs")
@@ -140,6 +141,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   list2 << settings.value("otheroptions/book_publication_date_format").
            toString()
 	<< settings.value("otheroptions/dvd_publication_date_format").toString()
+	<< settings.value("otheroptions/grey_literature_date_format").toString()
 	<< settings.value("otheroptions/journal_publication_date_format").
            toString()
 	<< settings.value("otheroptions/magazine_publication_date_format").
@@ -151,6 +153,7 @@ void biblioteq_otheroptions::prepareSettings(void)
            toString();
   list3 << "books"
 	<< "dvds"
+	<< "greyliterature"
 	<< "journals"
 	<< "magazines"
 	<< "musiccds"

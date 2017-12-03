@@ -376,6 +376,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertBook(void)));
+  connect(ui.actionGrey_Literature,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertGreyLiterature(void)));
   connect(ui.action_Open_PDF_File,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -1336,8 +1340,8 @@ void biblioteq::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Purple Smoke<br>"
-	     "Copyright (c) 2005 - present, guess who?<br>"
+	     "Frost<br>"
+	     "Copyright (c) 2005 - present, Mushroom.<br>"
 	     "Compiled on %2, %3.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
@@ -5458,6 +5462,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 				      typefilter == "All Available" ||
 				      typefilter == "Books" ||
 				      typefilter == "DVDs" ||
+				      typefilter == "Grey Literature" ||
 				      typefilter == "Journals" ||
 				      typefilter == "Magazines" ||
 				      typefilter == "Music CDs" ||
@@ -6937,6 +6942,10 @@ void biblioteq::slotShowMenu(void)
       // menu.addAction(tr("Add &Cassette Tape..."));
       connect(menu.addAction(tr("Add &DVD...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
+      connect(menu.addAction(tr("Add &Grey Literature...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertGreyLiterature(void)));
       connect(menu.addAction(tr("Add &Journal...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
       connect(menu.addAction(tr("Add &Magazine...")),
@@ -6963,6 +6972,10 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
       connect(menu.addAction(tr("&DVD Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
+      connect(menu.addAction(tr("&Grey Literature Search...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotGreyLiteratureSearch(void)));
       connect(menu.addAction(tr("&Journal Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
       connect(menu.addAction(tr("&Magazine Search...")),
@@ -8911,6 +8924,7 @@ void biblioteq::prepareFilter(void)
 	       << "All Reserved"
 	       << "Books"
 	       << "DVDs"
+	       << "Grey Literature"
 	       << "Journals"
 	       << "Magazines"
 	       << "Music CDs"
@@ -8922,6 +8936,7 @@ void biblioteq::prepareFilter(void)
 	       << tr("All Reserved")
 	       << tr("Books")
 	       << tr("DVDs")
+	       << tr("Grey Literature")
 	       << tr("Journals")
 	       << tr("Magazines")
 	       << tr("Music CDs")
@@ -8938,6 +8953,7 @@ void biblioteq::prepareFilter(void)
 	       << "All Reserved"
 	       << "Books"
 	       << "DVDs"
+	       << "Grey Literature"
 	       << "Journals"
 	       << "Magazines"
 	       << "Music CDs"
@@ -8950,6 +8966,7 @@ void biblioteq::prepareFilter(void)
 	       << tr("All Reserved")
 	       << tr("Books")
 	       << tr("DVDs")
+	       << tr("Grey Literature")
 	       << tr("Journals")
 	       << tr("Magazines")
 	       << tr("Music CDs")
@@ -8966,6 +8983,7 @@ void biblioteq::prepareFilter(void)
 		   << "All Available"
 		   << "Books"
 		   << "DVDs"
+		   << "Grey Literature"
 		   << "Journals"
 		   << "Magazines"
 		   << "Music CDs"
@@ -8975,6 +8993,7 @@ void biblioteq::prepareFilter(void)
 		   << tr("All Available")
 		   << tr("Books")
 		   << tr("DVDs")
+		   << tr("Grey Literature")
 		   << tr("Journals")
 		   << tr("Magazines")
 		   << tr("Music CDs")
@@ -8990,6 +9009,7 @@ void biblioteq::prepareFilter(void)
 		   << "All Reserved"
 		   << "Books"
 		   << "DVDs"
+		   << "Grey Literature"
 		   << "Journals"
 		   << "Magazines"
 		   << "Music CDs"
@@ -9002,6 +9022,7 @@ void biblioteq::prepareFilter(void)
 		   << tr("All Reserved")
 		   << tr("Books")
 		   << tr("DVDs")
+		   << tr("Grey Literature")
 		   << tr("Journals")
 		   << tr("Magazines")
 		   << tr("Music CDs")

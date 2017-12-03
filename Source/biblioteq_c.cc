@@ -149,3 +149,19 @@ void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
   if(!state)
     al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
+
+/*
+** -- slotInsertGreyLiterature() --
+*/
+
+void biblioteq::slotInsertGreyLiterature(void)
+{
+}
+
+/*
+** -- slotGreyLiteratureSearch() --
+*/
+
+void biblioteq::slotGreyLiteratureSearch(void)
+{
+}

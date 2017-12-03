@@ -367,9 +367,11 @@ class biblioteq: public QMainWindow
   void slotExportAsCSV(void);
   void slotGeneralSearchPublicationDateEnabled(bool state);
   void slotGrantPrivileges(void);
+  void slotGreyLiteratureSearch(void);
   void slotInsertBook(void);
   void slotInsertCD(void);
   void slotInsertDVD(void);
+  void slotInsertGreyLiterature(void);
   void slotInsertJourn(void);
   void slotInsertMag(void);
   void slotInsertPhotograph(void);
