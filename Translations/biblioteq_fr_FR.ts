@@ -1769,6 +1769,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Reset &amp;Case-Insensitive</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add &amp;Grey Literature...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Grey Literature Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -3371,6 +3383,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Your changes have not been saved. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_dvd</name>
@@ -3756,6 +3772,121 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>Z39.50 Empty Results Set</source>
         <translation type="unfinished">Ensemble de résultats vides de Z39.50</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_greyliteratureinfo</name>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>Author(s)</source>
+        <translation type="unfinished">Auteur(s)</translation>
+    </message>
+    <message>
+        <source>Code-A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Code-B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Type</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Emplacement</translation>
+    </message>
+    <message>
+        <source>Job Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished">Fichier</translation>
+    </message>
+    <message>
+        <source>Digest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compressed Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>myoid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Attach...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Supprimer</translation>
+    </message>
+    <message>
+        <source>&amp;Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">&amp;Réinitialiser</translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4539,6 +4670,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7936,6 +8071,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History (Patrons Only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literature...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
