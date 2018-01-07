@@ -92,10 +92,6 @@ QTranslator *biblioteq::s_appTranslator = 0;
 QTranslator *biblioteq::s_qtTranslator = 0;
 biblioteq *qmain = 0;
 
-/*
-** -- main() --
-*/
-
 int main(int argc, char *argv[])
 {
 #ifdef Q_OS_MAC
@@ -196,10 +192,6 @@ int main(int argc, char *argv[])
   return qapplication.exec();
 }
 
-/*
-** -- quit() --
-*/
-
 void biblioteq::quit(void)
 {
   if(qmain != 0)
@@ -213,19 +205,11 @@ void biblioteq::quit(void)
   QApplication::quit();
 }
 
-/*
-** -- cleanup () --
-*/
-
 void biblioteq::cleanup(void)
 {
   if(m_db.isOpen())
     m_db.close();
 }
-
-/*
-** -- quit() --
-*/
 
 void biblioteq::quit(const char *msg, const char *file, const int line)
 {
@@ -244,10 +228,6 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
   exit(EXIT_FAILURE);
 }
-
-/*
-** -- biblioteq() --
-*/
 
 biblioteq::biblioteq(void):QMainWindow()
 {
@@ -903,10 +883,6 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.splitter->setStretchFactor(1, 1);
 }
 
-/*
-** -- addConfigOptions() --
-*/
-
 void biblioteq::addConfigOptions(const QString &typefilter)
 {
   int i = 0;
@@ -947,10 +923,6 @@ void biblioteq::addConfigOptions(const QString &typefilter)
     }
 }
 
-/*
-** -- setColumns() --
-*/
-
 void biblioteq::slotSetColumns(void)
 {
   QString typefilter = ui.menu_Category->defaultAction() ?
@@ -967,10 +939,6 @@ void biblioteq::slotSetColumns(void)
     }
 }
 
-/*
-** -- getRoles() --
-*/
-
 QString biblioteq::getRoles(void) const
 {
   /*
@@ -979,10 +947,6 @@ QString biblioteq::getRoles(void) const
 
   return m_roles;
 }
-
-/*
-** -- adminSetup() --
-*/
 
 void biblioteq::adminSetup(void)
 {
@@ -1132,10 +1096,6 @@ void biblioteq::adminSetup(void)
 
   resetAdminBrowser();
 }
-
-/*
-** -- showMain() --
-*/
 
 void biblioteq::showMain(void)
 {
@@ -1293,18 +1253,10 @@ void biblioteq::showMain(void)
     }
 }
 
-/*
-** -- ~biblioteq() --
-*/
-
 biblioteq::~biblioteq()
 {
   qmain = 0;
 }
-
-/*
-** -- slotExit() --
-*/
 
 void biblioteq::slotExit(void)
 {
@@ -1313,10 +1265,6 @@ void biblioteq::slotExit(void)
   settings.setValue("mainwindowState", saveState());
   biblioteq::quit();
 }
-
-/*
-** -- slotAbout() --
-*/
 
 void biblioteq::slotAbout(void)
 {
@@ -1378,10 +1326,6 @@ void biblioteq::slotAbout(void)
 				  Qt::SmoothTransformation));
   mb.exec();
 }
-
-/*
-** -- slotSearch() --
-*/
 
 void biblioteq::slotSearch(void)
 {
@@ -1499,18 +1443,10 @@ void biblioteq::slotSearch(void)
   m_all_diag->raise();
 }
 
-/*
-** -- slotShowGrid() --
-*/
-
 void biblioteq::slotShowGrid(void)
 {
   ui.table->setShowGrid(ui.actionShowGrid->isChecked());
 }
-
-/*
-** -- slotModify() --
-*/
 
 void biblioteq::slotModify(void)
 {
@@ -1727,10 +1663,6 @@ void biblioteq::slotModify(void)
 			     "type."));
 }
 
-/*
-** -- slotViewDetails() --
-*/
-
 void biblioteq::slotViewDetails(void)
 {
   QModelIndex index;
@@ -1942,10 +1874,6 @@ void biblioteq::slotViewDetails(void)
 			     "type."));
 }
 
-/*
-** -- slotDelete() --
-*/
-
 void biblioteq::slotDelete(void)
 {
   if(!m_db.isOpen())
@@ -2149,19 +2077,11 @@ void biblioteq::slotDelete(void)
   list.clear();
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq::closeEvent(QCloseEvent *e)
 {
   slotExit();
   Q_UNUSED(e);
 }
-
-/*
-** -- slotRefresh() --
-*/
 
 void biblioteq::slotRefresh(void)
 {
@@ -2185,10 +2105,6 @@ void biblioteq::slotRefresh(void)
     }
 }
 
-/*
-** -- slotResizeColumnsAfterSort() --
-*/
-
 void biblioteq::slotResizeColumnsAfterSort(void)
 {
   QObject *object = qobject_cast<QObject *> (sender());
@@ -2208,10 +2124,6 @@ void biblioteq::slotResizeColumnsAfterSort(void)
       QApplication::restoreOverrideCursor();
     }
 }
-
-/*
-** -- slotUpdateIndicesAfterSort() --
-*/
 
 void biblioteq::slotUpdateIndicesAfterSort(int column)
 {
@@ -2244,10 +2156,6 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotResizeColumns() --
-*/
-
 void biblioteq::slotResizeColumns(void)
 {
   if(!sender())
@@ -2262,10 +2170,6 @@ void biblioteq::slotResizeColumns(void)
   ui.table->horizontalHeader()->setStretchLastSection(true);
   QApplication::restoreOverrideCursor();
 }
-
-/*
-** -- slotAllGo() --
-*/
 
 void biblioteq::slotAllGo(void)
 {
@@ -2292,17 +2196,9 @@ void biblioteq::slotAllGo(void)
   (void) populateTable(POPULATE_SEARCH, "All", QString(""));
 }
 
-/*
-** -- slotQuery() --
-*/
-
 void biblioteq::slotQuery(void)
 {
 }
-
-/*
-** -- slotAddBorrower() --
-*/
 
 void biblioteq::slotAddBorrower(void)
 {
@@ -2365,10 +2261,6 @@ void biblioteq::slotAddBorrower(void)
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
-
-/*
-** -- slotSaveUser() --
-*/
 
 void biblioteq::slotSaveUser(void)
 {
@@ -2832,10 +2724,6 @@ void biblioteq::slotSaveUser(void)
     }
 }
 
-/*
-** -- readGlobalSetup() --
-*/
-
 void biblioteq::readGlobalSetup(void)
 {
 #ifdef Q_OS_WIN32
@@ -3008,10 +2896,6 @@ void biblioteq::readGlobalSetup(void)
     }
 }
 
-/*
-** -- readConfig() --
-*/
-
 void biblioteq::readConfig(void)
 {
   QFont font;
@@ -3133,10 +3017,6 @@ void biblioteq::readConfig(void)
   slotResizeColumns();
   createSqliteMenuActions();
 }
-
-/*
-** -- slotRemoveMember() --
-*/
 
 void biblioteq::slotRemoveMember(void)
 {
@@ -3284,10 +3164,6 @@ void biblioteq::slotRemoveMember(void)
     }
 }
 
-/*
-** -- slotSaveConfig() --
-*/
-
 void biblioteq::slotSaveConfig(void)
 {
   QSettings settings;
@@ -3380,10 +3256,6 @@ void biblioteq::slotSaveConfig(void)
        ui.table->friendlyStates()[ui.table->friendlyStates().keys().at(i)]);
 }
 
-/*
-** -- slotShowColumns() --
-*/
-
 void biblioteq::slotShowColumns(void)
 {
   int i = 0;
@@ -3396,10 +3268,6 @@ void biblioteq::slotShowColumns(void)
 
   QApplication::restoreOverrideCursor();
 }
-
-/*
-** -- slotSceneSelectionChanged()
-*/
 
 void biblioteq::slotSceneSelectionChanged(void)
 {
@@ -3439,10 +3307,6 @@ void biblioteq::slotSceneSelectionChanged(void)
       types.clear();
     }
 }
-
-/*
-** -- slotDisplaySummary() --
-*/
 
 void biblioteq::slotDisplaySummary(void)
 {
@@ -3856,10 +3720,6 @@ void biblioteq::slotDisplaySummary(void)
     }
 }
 
-/*
-** -- slotShowNext() --
-*/
-
 void biblioteq::slotShowNext(void)
 {
   int row = -1;
@@ -3896,10 +3756,6 @@ void biblioteq::slotShowNext(void)
       slotModifyBorrower();
     }
 }
-
-/*
-** -- slotShowPrev() --
-*/
 
 void biblioteq::slotShowPrev(void)
 {
@@ -3941,10 +3797,6 @@ void biblioteq::slotShowPrev(void)
     }
 }
 
-/*
-** -- slotShowConnectionDB() --
-*/
-
 void biblioteq::slotShowConnectionDB(void)
 {
   if(m_db.isOpen())
@@ -3952,10 +3804,6 @@ void biblioteq::slotShowConnectionDB(void)
 
   slotBranchChanged();
 }
-
-/*
-** -- slotConnectDB() --
-*/
 
 void biblioteq::slotConnectDB(void)
 {
@@ -4429,10 +4277,6 @@ void biblioteq::slotConnectDB(void)
     slotRefresh();
 }
 
-/*
-** -- slotDisconnect() --
-*/
-
 void biblioteq::slotDisconnect(void)
 {
   if(db_enumerations->isVisible() && !db_enumerations->close())
@@ -4603,10 +4447,6 @@ void biblioteq::slotDisconnect(void)
   setWindowTitle(tr("BiblioteQ"));
 }
 
-/*
-** -- initialUpdate() --
-*/
-
 void biblioteq::initialUpdate(void)
 {
   /*
@@ -4621,10 +4461,6 @@ void biblioteq::initialUpdate(void)
 
   slotShowGrid();
 }
-
-/*
-** -- resetAdminBrowser() --
-*/
 
 void biblioteq::resetAdminBrowser(void)
 {
@@ -4651,10 +4487,6 @@ void biblioteq::resetAdminBrowser(void)
   m_abColumnHeaderIndexes.append("Membership");
   list.clear();
 }
-
-/*
-** -- resetMembersBrowser() --
-*/
 
 void biblioteq::resetMembersBrowser(void)
 {
@@ -4697,18 +4529,10 @@ void biblioteq::resetMembersBrowser(void)
     bb.table->resizeColumnToContents(i);
 }
 
-/*
-** -- getBBColumnIndexes() --
-*/
-
 QVector<QString> biblioteq::getBBColumnIndexes(void) const
 {
   return m_bbColumnHeaderIndexes;
 }
-
-/*
-** -- slotShowMembersBrowser() --
-*/
 
 void biblioteq::slotShowMembersBrowser(void)
 {
@@ -4738,10 +4562,6 @@ void biblioteq::slotShowMembersBrowser(void)
   if(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
     slotPopulateMembersBrowser();
 }
-
-/*
-** -- slotPopulateMembersBrowser() --
-*/
 
 void biblioteq::slotPopulateMembersBrowser(void)
 {
@@ -4922,10 +4742,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
 #endif
 }
 
-/*
-** -- slotGrantPrivileges() --
-*/
-
 void biblioteq::slotGrantPrivileges(void)
 {
   bool error = false;
@@ -4989,10 +4805,6 @@ void biblioteq::slotGrantPrivileges(void)
 			     "the members."));
 }
 
-/*
-** -- updateMembersBrowser() --
-*/
-
 void biblioteq::updateMembersBrowser(void)
 {
   int row = 0;
@@ -5046,10 +4858,6 @@ void biblioteq::updateMembersBrowser(void)
 	slotShowHistory();
     }
 }
-
-/*
-** -- updateMembersBrowser() --
-*/
 
 void biblioteq::updateMembersBrowser(const QString &memberid)
 {
@@ -5113,10 +4921,6 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
       QApplication::restoreOverrideCursor();
     }
 }
-
-/*
-** -- slotModifyBorrower() --
-*/
 
 void biblioteq::slotModifyBorrower(void)
 {
@@ -5257,19 +5061,11 @@ void biblioteq::slotModifyBorrower(void)
   userinfo_diag->show();
 }
 
-/*
-** -- slotCancelAddUser() --
-*/
-
 void biblioteq::slotCancelAddUser(void)
 {
   if(userinfo_diag->isVisible())
     userinfo_diag->close();
 }
-
-/*
-** -- slotCheckout() --
-*/
 
 void biblioteq::slotCheckout(void)
 {
@@ -5435,10 +5231,6 @@ void biblioteq::slotCheckout(void)
     }
 }
 
-/*
-** -- prepareRequestToolButton() --
-*/
-
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
 {
   if(m_db.driverName() != "QSQLITE")
@@ -5488,10 +5280,6 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
       }
 }
 
-/*
-** -- slotAutoPopOnFilter() --
-*/
-
 void biblioteq::slotAutoPopOnFilter(QAction *action)
 {
   if(!action)
@@ -5527,10 +5315,6 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
       ui.itemsCountLabel->setText(tr("0 Results"));
     }
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq::slotReset(void)
 {
@@ -5626,10 +5410,6 @@ void biblioteq::slotReset(void)
     }
 }
 
-/*
-** -- slotShowErrorDialog() --
-*/
-
 void biblioteq::slotShowErrorDialog(void)
 {
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -5649,10 +5429,6 @@ void biblioteq::slotShowErrorDialog(void)
   m_error_diag->activateWindow();
   m_error_diag->raise();
 }
-
-/*
-** -- addError() --
-*/
 
 void biblioteq::addError(const QString &type, const QString &summary,
 			 const QString &error, const char *file,
@@ -5711,10 +5487,6 @@ void biblioteq::addError(const QString &type, const QString &summary,
   er.table->setSortingEnabled(true);
 }
 
-/*
-** -- resetErrorLog() --
-*/
-
 void biblioteq::slotResetErrorLog(void)
 {
   QStringList list;
@@ -5746,36 +5518,20 @@ void biblioteq::slotResetErrorLog(void)
     }
 }
 
-/*
-** -- getBB() --
-*/
-
 Ui_membersBrowser biblioteq::getBB(void) const
 {
   return bb;
 }
-
-/*
-** -- getUI() --
-*/
 
 Ui_mainWindow biblioteq::getUI(void) const
 {
   return ui;
 }
 
-/*
-** -- getDB() --
-*/
-
 QSqlDatabase biblioteq::getDB(void) const
 {
   return m_db;
 }
-
-/*
-** -- removeCD() --
-*/
 
 void biblioteq::removeCD(biblioteq_cd *cd)
 {
@@ -5783,19 +5539,11 @@ void biblioteq::removeCD(biblioteq_cd *cd)
     cd->deleteLater();
 }
 
-/*
-** -- replaceCD() --
-*/
-
 void biblioteq::replaceCD(const QString &id, biblioteq_cd *cd)
 {
   Q_UNUSED(id);
   Q_UNUSED(cd);
 }
-
-/*
-** -- removeDVD() --
-*/
 
 void biblioteq::removeDVD(biblioteq_dvd *dvd)
 {
@@ -5803,19 +5551,11 @@ void biblioteq::removeDVD(biblioteq_dvd *dvd)
     dvd->deleteLater();
 }
 
-/*
-** -- replaceDVD() --
-*/
-
 void biblioteq::replaceDVD(const QString &id, biblioteq_dvd *dvd)
 {
   Q_UNUSED(id);
   Q_UNUSED(dvd);
 }
-
-/*
-** -- removeBook() --
-*/
 
 void biblioteq::removeBook(biblioteq_book *book)
 {
@@ -5823,19 +5563,11 @@ void biblioteq::removeBook(biblioteq_book *book)
     book->deleteLater();
 }
 
-/*
-** -- replaceBook() --
-*/
-
 void biblioteq::replaceBook(const QString &id, biblioteq_book *book)
 {
   Q_UNUSED(id);
   Q_UNUSED(book);
 }
-
-/*
-** -- removeJournal() --
-*/
 
 void biblioteq::removeJournal(biblioteq_journal *journal)
 {
@@ -5843,19 +5575,11 @@ void biblioteq::removeJournal(biblioteq_journal *journal)
     journal->deleteLater();
 }
 
-/*
-** -- removeMagazine() --
-*/
-
 void biblioteq::removeMagazine(biblioteq_magazine *magazine)
 {
   if(magazine)
     magazine->deleteLater();
 }
-
-/*
-** -- replaceJournal() --
-*/
 
 void biblioteq::replaceJournal(const QString &id, biblioteq_journal *journal)
 {
@@ -5863,19 +5587,11 @@ void biblioteq::replaceJournal(const QString &id, biblioteq_journal *journal)
   Q_UNUSED(journal);
 }
 
-/*
-** -- replaceMagazine() --
-*/
-
 void biblioteq::replaceMagazine(const QString &id, biblioteq_magazine *magazine)
 {
   Q_UNUSED(id);
   Q_UNUSED(magazine);
 }
-
-/*
-** -- removePhotographCollection() --
-*/
 
 void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
 {
@@ -5883,19 +5599,11 @@ void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
     pc->deleteLater();
 }
 
-/*
-** -- removeVideoGame() --
-*/
-
 void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
 {
   if(videogame)
     videogame->deleteLater();
 }
-
-/*
-** -- replaceVideoGame() --
-*/
 
 void biblioteq::replaceVideoGame(const QString &id,
 				 biblioteq_videogame *videogame)
@@ -5904,10 +5612,6 @@ void biblioteq::replaceVideoGame(const QString &id,
   Q_UNUSED(videogame);
 }
 
-/*
-** -- replacePhotographCollection() --
-*/
-
 void biblioteq::replacePhotographCollection
 (const QString &id,
  biblioteq_photographcollection *photograph)
@@ -5915,10 +5619,6 @@ void biblioteq::replacePhotographCollection
   Q_UNUSED(id);
   Q_UNUSED(photograph);
 }
-
-/*
-** -- updateItemWindows() --
-*/
 
 void biblioteq::updateItemWindows(void)
 {
@@ -5960,10 +5660,6 @@ void biblioteq::updateItemWindows(void)
 
   QApplication::restoreOverrideCursor();
 }
-
-/*
-** -- emptyContainers() --
-*/
 
 bool biblioteq::emptyContainers(void)
 {
@@ -6039,10 +5735,6 @@ bool biblioteq::emptyContainers(void)
   return true;
 }
 
-/*
-** -- getAdminID() --
-*/
-
 QString biblioteq::getAdminID(void) const
 {
   if(m_db.driverName() != "QSQLITE")
@@ -6050,10 +5742,6 @@ QString biblioteq::getAdminID(void) const
   else
     return "N/A";
 }
-
-/*
-** -- slotInsertCD() --
-*/
 
 void biblioteq::slotInsertCD(void)
 {
@@ -6068,10 +5756,6 @@ void biblioteq::slotInsertCD(void)
     cd->insert();
 }
 
-/*
-** -- slotInsertDVD() --
-*/
-
 void biblioteq::slotInsertDVD(void)
 {
   QString id("");
@@ -6084,10 +5768,6 @@ void biblioteq::slotInsertDVD(void)
   if(dvd)
     dvd->insert();
 }
-
-/*
-** -- slotInsertBook() --
-*/
 
 void biblioteq::slotInsertBook(void)
 {
@@ -6102,10 +5782,6 @@ void biblioteq::slotInsertBook(void)
     book->insert();
 }
 
-/*
-** -- slotInsertJourn() --
-*/
-
 void biblioteq::slotInsertJourn(void)
 {
   QString id("");
@@ -6118,10 +5794,6 @@ void biblioteq::slotInsertJourn(void)
   if(journal)
     journal->insert();
 }
-
-/*
-** -- slotInsertMag() --
-*/
 
 void biblioteq::slotInsertMag(void)
 {
@@ -6136,10 +5808,6 @@ void biblioteq::slotInsertMag(void)
     magazine->insert();
 }
 
-/*
-** -- slotInsertPhotograph() --
-*/
-
 void biblioteq::slotInsertPhotograph(void)
 {
   QString id("");
@@ -6153,10 +5821,6 @@ void biblioteq::slotInsertPhotograph(void)
     photograph->insert();
 }
 
-/*
-** -- slotInsertVideoGame() --
-*/
-
 void biblioteq::slotInsertVideoGame(void)
 {
   QString id("");
@@ -6169,10 +5833,6 @@ void biblioteq::slotInsertVideoGame(void)
   if(videogame)
     videogame->insert();
 }
-
-/*
-** -- deleteItem() --
-*/
 
 void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
@@ -6276,10 +5936,6 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
 }
 
-/*
-** -- bookSearch() --
-*/
-
 void biblioteq::bookSearch(const QString &field, const QString &value)
 {
   biblioteq_book *book = new(std::nothrow) biblioteq_book(this, "", -1);
@@ -6290,10 +5946,6 @@ void biblioteq::bookSearch(const QString &field, const QString &value)
       book->deleteLater();
     }
 }
-
-/*
-** -- slotBookSearch() --
-*/
 
 void biblioteq::slotBookSearch(void)
 {
@@ -6326,10 +5978,6 @@ void biblioteq::slotBookSearch(void)
     }
 }
 
-/*
-** -- cdSearch() --
-*/
-
 void biblioteq::cdSearch(const QString &field, const QString &value)
 {
   biblioteq_cd *cd = new(std::nothrow) biblioteq_cd(this, "", -1);
@@ -6340,10 +5988,6 @@ void biblioteq::cdSearch(const QString &field, const QString &value)
       cd->deleteLater();
     }
 }
-
-/*
-** -- slotCDSearch() --
-*/
 
 void biblioteq::slotCDSearch(void)
 {
@@ -6376,10 +6020,6 @@ void biblioteq::slotCDSearch(void)
     }
 }
 
-/*
-** -- dvdSearch() --
-*/
-
 void biblioteq::dvdSearch(const QString &field, const QString &value)
 {
   biblioteq_dvd *dvd = new(std::nothrow) biblioteq_dvd(this, "", -1);
@@ -6390,10 +6030,6 @@ void biblioteq::dvdSearch(const QString &field, const QString &value)
       dvd->deleteLater();
     }
 }
-
-/*
-** -- slotDVDSearch() --
-*/
 
 void biblioteq::slotDVDSearch(void)
 {
@@ -6426,10 +6062,6 @@ void biblioteq::slotDVDSearch(void)
     }
 }
 
-/*
-** -- journSearch() --
-*/
-
 void biblioteq::journSearch(const QString &field, const QString &value)
 {
   biblioteq_journal *journal = new(std::nothrow) biblioteq_journal
@@ -6441,10 +6073,6 @@ void biblioteq::journSearch(const QString &field, const QString &value)
       journal->deleteLater();
     }
 }
-
-/*
-** -- slotJournSearch() --
-*/
 
 void biblioteq::slotJournSearch(void)
 {
@@ -6477,10 +6105,6 @@ void biblioteq::slotJournSearch(void)
     }
 }
 
-/*
-** -- magSearch() --
-*/
-
 void biblioteq::magSearch(const QString &field, const QString &value)
 {
   biblioteq_magazine *magazine = new(std::nothrow) biblioteq_magazine
@@ -6492,10 +6116,6 @@ void biblioteq::magSearch(const QString &field, const QString &value)
       magazine->deleteLater();
     }
 }
-
-/*
-** -- slotMagSearch() --
-*/
 
 void biblioteq::slotMagSearch(void)
 {
@@ -6534,10 +6154,6 @@ void biblioteq::slotMagSearch(void)
     }
 }
 
-/*
-** -- pcSearch() --
-*/
-
 void biblioteq::pcSearch(const QString &field, const QString &value)
 {
   biblioteq_photographcollection *photograph =
@@ -6549,10 +6165,6 @@ void biblioteq::pcSearch(const QString &field, const QString &value)
       photograph->deleteLater();
     }
 }
-
-/*
-** -- slotPhotographSearch() --
-*/
 
 void biblioteq::slotPhotographSearch(void)
 {
@@ -6587,10 +6199,6 @@ void biblioteq::slotPhotographSearch(void)
     }
 }
 
-/*
-** -- vgSearch() --
-*/
-
 void biblioteq::vgSearch(const QString &field, const QString &value)
 {
   biblioteq_videogame *videogame = new(std::nothrow) biblioteq_videogame
@@ -6602,10 +6210,6 @@ void biblioteq::vgSearch(const QString &field, const QString &value)
       videogame->deleteLater();
     }
 }
-
-/*
-** -- slotVideoGameSearch() --
-*/
 
 void biblioteq::slotVideoGameSearch(void)
 {
@@ -6638,10 +6242,6 @@ void biblioteq::slotVideoGameSearch(void)
       videogame->raise();
     }
 }
-
-/*
-** -- updateRows() --
-*/
 
 void biblioteq::updateRows(const QString &oid, const int row,
 			   const QString &itemType)
@@ -6747,10 +6347,6 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
 }
 
-/*
-** -- slotCloseMembersBrowser() --
-*/
-
 void biblioteq::slotCloseMembersBrowser(void)
 {
   /*
@@ -6764,10 +6360,6 @@ void biblioteq::slotCloseMembersBrowser(void)
   m_history_diag->close();
   m_members_diag->close();
 }
-
-/*
-** -- slotListReservedItems() --
-*/
 
 void biblioteq::slotListReservedItems(void)
 {
@@ -6790,10 +6382,6 @@ void biblioteq::slotListReservedItems(void)
   m_members_diag->raise();
 }
 
-/*
-** -- slotListOverdueItems() --
-*/
-
 void biblioteq::slotListOverdueItems(void)
 {
   int row = bb.table->currentRow();
@@ -6811,10 +6399,6 @@ void biblioteq::slotListOverdueItems(void)
   m_members_diag->activateWindow();
   m_members_diag->raise();
 }
-
-/*
-** -- slotReserveCopy() --
-*/
 
 void biblioteq::slotReserveCopy(void)
 {
@@ -6907,27 +6491,15 @@ void biblioteq::slotReserveCopy(void)
     bb.table->selectRow(0);
 }
 
-/*
-** -- getZ3950Maps() --
-*/
-
 QMap<QString, QHash<QString, QString> > biblioteq::getZ3950Maps(void) const
 {
   return m_z3950Maps;
 }
 
-/*
-** -- getAmazonHash() --
-*/
-
 QHash<QString, QString> biblioteq::getAmazonHash(void) const
 {
   return m_amazonImages;
 }
-
-/*
-** -- slotShowMenu() --
-*/
 
 void biblioteq::slotShowMenu(void)
 {
@@ -6992,10 +6564,6 @@ void biblioteq::slotShowMenu(void)
     }
 }
 
-/*
-** -- slotSetFonts() --
-*/
-
 void biblioteq::slotSetFonts(void)
 {
   QFontDialog dialog(this);
@@ -7012,10 +6580,6 @@ void biblioteq::slotSetFonts(void)
   if(dialog.exec() == QDialog::Accepted)
     setGlobalFonts(dialog.selectedFont());
 }
-
-/*
-** -- setGlobalFonts() --
-*/
 
 void biblioteq::setGlobalFonts(const QFont &font)
 {
@@ -7048,10 +6612,6 @@ void biblioteq::setGlobalFonts(const QFont &font)
 
   QApplication::restoreOverrideCursor();
 }
-
-/*
-** -- slotShowCustomQuery() --
-*/
 
 void biblioteq::slotShowCustomQuery(void)
 {
@@ -7202,18 +6762,10 @@ void biblioteq::slotShowCustomQuery(void)
   m_customquery_diag->raise();
 }
 
-/*
-** -- slotCloseCustomQueryDialog() --
-*/
-
 void biblioteq::slotCloseCustomQueryDialog(void)
 {
   m_customquery_diag->close();
 }
-
-/*
-** -- slotExecuteCustomQuery() --
-*/
 
 void biblioteq::slotExecuteCustomQuery(void)
 {
@@ -7256,10 +6808,6 @@ void biblioteq::slotExecuteCustomQuery(void)
       m_customquery_diag->raise();
     }
 }
-
-/*
-** -- slotPrintView() --
-*/
 
 void biblioteq::slotPrintView(void)
 {
@@ -7308,10 +6856,6 @@ void biblioteq::slotPrintView(void)
       document.print(&printer);
     }
 }
-
-/*
-** -- slotPrintReserved() --
-*/
 
 void biblioteq::slotPrintReserved(void)
 {
@@ -7416,10 +6960,6 @@ void biblioteq::slotPrintReserved(void)
   memberinfo.clear();
 }
 
-/*
-** -- slotCopyError() --
-*/
-
 void biblioteq::slotCopyError(void)
 {
   int i = 0;
@@ -7458,10 +6998,6 @@ void biblioteq::slotCopyError(void)
   list.clear();
   QApplication::restoreOverrideCursor();
 }
-
-/*
-** -- slotShowHistory() --
-*/
 
 void biblioteq::slotShowHistory(void)
 {
@@ -7857,18 +7393,10 @@ void biblioteq::slotShowHistory(void)
   m_history_diag->raise();
 }
 
-/*
-** -- getMembersBrowser() --
-*/
-
 QMainWindow *biblioteq::getMembersBrowser(void) const
 {
   return m_members_diag;
 }
-
-/*
-** -- slotPrintReservationHistory() --
-*/
 
 void biblioteq::slotPrintReservationHistory(void)
 {
@@ -7933,10 +7461,6 @@ void biblioteq::slotPrintReservationHistory(void)
     }
 }
 
-/*
-** -- slotBranchChanged() --
-*/
-
 void biblioteq::slotBranchChanged(void)
 {
   QHash<QString, QString> tmphash;
@@ -7960,10 +7484,6 @@ void biblioteq::slotBranchChanged(void)
 			m_branch_diag->minimumSize().height());
   m_branch_diag->show();
 }
-
-/*
-** -- updateReservationHistoryBrowser() --
-*/
 
 void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 						const QString &ioid,
@@ -8020,10 +7540,6 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
       }
 }
 
-/*
-** -- slotShowChangePassword() --
-*/
-
 void biblioteq::slotShowChangePassword(void)
 {
   pass.userid->setText(m_db.userName());
@@ -8032,10 +7548,6 @@ void biblioteq::slotShowChangePassword(void)
   pass.password->setFocus();
   m_pass_diag->show();
 }
-
-/*
-** -- slotSavePassword() --
-*/
 
 void biblioteq::slotSavePassword(void)
 {
@@ -8086,10 +7598,6 @@ void biblioteq::slotSavePassword(void)
     m_pass_diag->close();
 }
 
-/*
-** -- slotResetLoginDialog() --
-*/
-
 void biblioteq::slotResetLoginDialog(void)
 {
   br.filename->clear();
@@ -8111,10 +7619,6 @@ void biblioteq::slotResetLoginDialog(void)
   slotBranchChanged();
 }
 
-/*
-** -- slotSelectDatabaseFile() --
-*/
-
 void biblioteq::slotSelectDatabaseFile(void)
 {
   QFileDialog dialog(m_branch_diag);
@@ -8134,10 +7638,6 @@ void biblioteq::slotSelectDatabaseFile(void)
     br.filename->setText(dialog.selectedFiles().value(0));
 }
 
-/*
-** -- slotShowAdminDialog() --
-*/
-
 void biblioteq::slotShowAdminDialog(void)
 {
   static bool resized = false;
@@ -8155,10 +7655,6 @@ void biblioteq::slotShowAdminDialog(void)
   if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
     slotRefreshAdminList();
 }
-
-/*
-** -- slotAddAdmin() --
-*/
 
 void biblioteq::slotAddAdmin(void)
 {
@@ -8200,10 +7696,6 @@ void biblioteq::slotAddAdmin(void)
       }
 }
 
-/*
-** -- slotDeleteAdmin() --
-*/
-
 void biblioteq::slotDeleteAdmin(void)
 {
   int row = ab.table->currentRow();
@@ -8240,10 +7732,6 @@ void biblioteq::slotDeleteAdmin(void)
     }
 }
 
-/*
-** -- slotAdminCheckBoxClicked() --
-*/
-
 void biblioteq::slotAdminCheckBoxClicked(int state)
 {
   int i = 0;
@@ -8278,10 +7766,6 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 	    setChecked(false);
     }
 }
-
-/*
-** -- slotRefreshAdminList() --
-*/
 
 void biblioteq::slotRefreshAdminList(void)
 {
@@ -8409,10 +7893,6 @@ void biblioteq::slotRefreshAdminList(void)
 
   m_deletedAdmins.clear();
 }
-
-/*
-** -- slotSaveAdministrators() --
-*/
 
 void biblioteq::slotSaveAdministrators(void)
 {
@@ -8731,10 +8211,6 @@ void biblioteq::slotSaveAdministrators(void)
 			   "the administrator information."));
 }
 
-/*
-** -- slotRequest --
-*/
-
 void biblioteq::slotRequest(void)
 {
   /*
@@ -8909,10 +8385,6 @@ void biblioteq::slotRequest(void)
   list.clear();
 }
 
-/*
-** -- prepareFilter() --
-*/
-
 void biblioteq::prepareFilter(void)
 {
   QStringList tmplist1;
@@ -9051,10 +8523,6 @@ void biblioteq::prepareFilter(void)
   tmplist2.clear();
 }
 
-/*
-** -- slotSqliteFileSelected() --
-*/
-
 void biblioteq::slotSqliteFileSelected(bool state)
 {
   Q_UNUSED(state);
@@ -9081,10 +8549,6 @@ void biblioteq::slotSqliteFileSelected(bool state)
   slotConnectDB();
 }
 
-/*
-** -- slotClearSqliteMenu() --
-*/
-
 void biblioteq::slotClearSqliteMenu(bool state)
 {
   Q_UNUSED(state);
@@ -9101,10 +8565,6 @@ void biblioteq::slotClearSqliteMenu(bool state)
   allKeys.clear();
   createSqliteMenuActions();
 }
-
-/*
-** -- createSqliteMenuActions() --
-*/
 
 void biblioteq::createSqliteMenuActions(void)
 {
@@ -9166,20 +8626,12 @@ void biblioteq::createSqliteMenuActions(void)
     }
 }
 
-/*
-** -- slotPreviousPage() --
-*/
-
 void biblioteq::slotPreviousPage(void)
 {
   if(m_db.isOpen())
     (void) populateTable(m_lastSearchType, m_previousTypeFilter,
 			 m_lastSearchStr, PREVIOUS_PAGE);
 }
-
-/*
-** -- slotNextPage() --
-*/
 
 void biblioteq::slotNextPage(void)
 {
@@ -9188,20 +8640,12 @@ void biblioteq::slotNextPage(void)
 			 m_lastSearchStr, NEXT_PAGE);
 }
 
-/*
-** -- slotPageClicked() --
-*/
-
 void biblioteq::slotPageClicked(const QString &link)
 {
   if(m_db.isOpen())
     (void) populateTable(m_lastSearchType, m_previousTypeFilter,
 			 m_lastSearchStr, -link.toInt());
 }
-
-/*
-** -- getPreferredSRUSite() --
-*/
 
 QString biblioteq::getPreferredSRUSite(void) const
 {
@@ -9212,10 +8656,6 @@ QString biblioteq::getPreferredSRUSite(void) const
   return "";
 }
 
-/*
-** -- getPreferredZ3950Site() --
-*/
-
 QString biblioteq::getPreferredZ3950Site(void) const
 {
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
@@ -9225,10 +8665,6 @@ QString biblioteq::getPreferredZ3950Site(void) const
   return "";
 }
 
-/*
-** -- getTypeFilterString() --
-*/
-
 QString biblioteq::getTypeFilterString(void) const
 {
   if(ui.menu_Category->defaultAction())
@@ -9236,10 +8672,6 @@ QString biblioteq::getTypeFilterString(void) const
   else
     return "All";
 }
-
-/*
-** -- slotDisplayNewSqliteDialog() --
-*/
 
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
@@ -9381,10 +8813,6 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
     }
 }
 
-/*
-** -- slotShowDbEnumerations() --
-*/
-
 void biblioteq::slotShowDbEnumerations(void)
 {
   db_enumerations->show
@@ -9392,10 +8820,6 @@ void biblioteq::slotShowDbEnumerations(void)
      ui.actionPopulate_Database_Enumerations_Browser_on_Display->
      isChecked());
 }
-
-/*
-** -- slotChangeView() --
-*/
 
 void biblioteq::slotChangeView(bool checked)
 {
@@ -9417,10 +8841,6 @@ void biblioteq::slotChangeView(bool checked)
       settings.setValue("view_mode_index", action->data().toInt());
     }
 }
-
-/*
-** -- slotExportAsCSV(void) --
-*/
 
 void biblioteq::slotExportAsCSV(void)
 {
@@ -9501,10 +8921,6 @@ void biblioteq::slotExportAsCSV(void)
     }
 }
 
-/*
-** -- slotSectionResized() --
-*/
-
 void biblioteq::slotSectionResized(int logicalIndex, int oldSize,
 				   int newSize)
 {
@@ -9512,10 +8928,6 @@ void biblioteq::slotSectionResized(int logicalIndex, int oldSize,
   Q_UNUSED(oldSize);
   Q_UNUSED(newSize);
 }
-
-/*
-** -- slotDuplicate() --
-*/
 
 void biblioteq::slotDuplicate(void)
 {
@@ -9641,10 +9053,6 @@ void biblioteq::slotDuplicate(void)
 			     "type."));
 }
 
-/*
-** -- updateSceneItem() --
-*/
-
 void biblioteq::updateSceneItem(const QString &oid, const QString &type,
 				const QImage &image)
 {
@@ -9690,10 +9098,6 @@ void biblioteq::updateSceneItem(const QString &oid, const QString &type,
     }
 }
 
-/*
-** -- slotLanguageChanged() --
-*/
-
 void biblioteq::slotLanguageChanged(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
@@ -9709,10 +9113,6 @@ void biblioteq::slotLanguageChanged(void)
       QApplication::installTranslator(s_appTranslator);
     }
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq::changeEvent(QEvent *event)
 {
@@ -9759,18 +9159,10 @@ void biblioteq::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-/*
-** -- getSRUMaps() --
-*/
-
 QMap<QString, QHash<QString, QString> > biblioteq::getSRUMaps(void) const
 {
   return m_sruMaps;
 }
-
-/*
-** -- slotClosePasswordDialog() --
-*/
 
 void biblioteq::slotClosePasswordDialog(void)
 {

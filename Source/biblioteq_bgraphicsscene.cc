@@ -11,26 +11,14 @@
 
 #include "biblioteq_bgraphicsscene.h"
 
-/*
-** -- biblioteq_bgraphicsscene() --
-*/
-
 biblioteq_bgraphicsscene::biblioteq_bgraphicsscene(QObject *parent):
   QGraphicsScene(parent)
 {
 }
 
-/*
-** -- ~biblioteq_bgraphicsscene() --
-*/
-
 biblioteq_bgraphicsscene::~biblioteq_bgraphicsscene()
 {
 }
-
-/*
-** -- keyPressEvent() --
-*/
 
 void biblioteq_bgraphicsscene::keyPressEvent(QKeyEvent *event)
 {
@@ -40,10 +28,6 @@ void biblioteq_bgraphicsscene::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
       emit deleteKeyPressed();
 }
-
-/*
-** -- mouseDoubleClickEvent() --
-*/
 
 void biblioteq_bgraphicsscene::mouseDoubleClickEvent
 (QGraphicsSceneMouseEvent *event)

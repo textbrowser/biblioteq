@@ -27,10 +27,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_book() --
-*/
-
 biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 			       const QString &oidArg,
 			       const int rowArg):
@@ -427,17 +423,9 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
-/*
-** -- ~biblioteq_book() --
-*/
-
 biblioteq_book::~biblioteq_book()
 {
 }
-
-/*
-** -- slotGo() --
-*/
 
 void biblioteq_book::slotGo(void)
 {
@@ -1256,10 +1244,6 @@ void biblioteq_book::slotGo(void)
     }
 }
 
-/*
-** -- search() --
-*/
-
 void biblioteq_book::search(const QString &field, const QString &value)
 {
   id.attach_files->setVisible(false);
@@ -1346,10 +1330,6 @@ void biblioteq_book::search(const QString &field, const QString &value)
     }
 }
 
-/*
-** -- updateWindow() --
-*/
-
 void biblioteq_book::updateWindow(const int state)
 {
   QString str = "";
@@ -1427,10 +1407,6 @@ void biblioteq_book::updateWindow(const int state)
   id.coverImages->setVisible(true);
   setWindowTitle(str);
 }
-
-/*
-** -- modify() --
-*/
 
 void biblioteq_book::modify(const int state)
 {
@@ -1741,10 +1717,6 @@ void biblioteq_book::modify(const int state)
   raise();
 }
 
-/*
-** -- insert() --
-*/
-
 void biblioteq_book::insert(void)
 {
   slotReset();
@@ -1807,10 +1779,6 @@ void biblioteq_book::insert(void)
   activateWindow();
   raise();
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq_book::slotReset(void)
 {
@@ -2088,10 +2056,6 @@ void biblioteq_book::slotReset(void)
     }
 }
 
-/*
-** -- slotConvertISBN10to13() --
-*/
-
 void biblioteq_book::slotConvertISBN10to13(void)
 {
   QString numberstr = "";
@@ -2118,10 +2082,6 @@ void biblioteq_book::slotConvertISBN10to13(void)
   id.isbn13->setText(str + numberstr);
 }
 
-/*
-** -- slotConvertISBN13to10() --
-*/
-
 void biblioteq_book::slotConvertISBN13to10(void)
 {
   QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
@@ -2141,10 +2101,6 @@ void biblioteq_book::slotConvertISBN13to10(void)
 
   id.id->setText(isbnnum + z);
 }
-
-/*
-** -- closeEvent() --
-*/
 
 void biblioteq_book::closeEvent(QCloseEvent *e)
 {
@@ -2166,18 +2122,10 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
   qmain->removeBook(this);
 }
 
-/*
-** -- slotCancel() --
-*/
-
 void biblioteq_book::slotCancel(void)
 {
   close();
 }
-
-/*
-** -- slotPopulateCopiesEditor() --
-*/
 
 void biblioteq_book::slotPopulateCopiesEditor(void)
 {
@@ -2192,10 +2140,6 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
        id.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
-
-/*
-** -- slotShowUsers() --
-*/
 
 void biblioteq_book::slotShowUsers(void)
 {
@@ -2213,10 +2157,6 @@ void biblioteq_book::slotShowUsers(void)
        state)) != 0)
     borrowerseditor->showUsers();
 }
-
-/*
-** -- slotSRUQuery() --
-*/
 
 void biblioteq_book::slotSRUQuery(void)
 {
@@ -2431,10 +2371,6 @@ void biblioteq_book::slotSRUQuery(void)
 	}
     }
 }
-
-/*
-** -- slotZ3950Query() --
-*/
 
 void biblioteq_book::slotZ3950Query(void)
 {
@@ -2740,10 +2676,6 @@ void biblioteq_book::slotZ3950Query(void)
     }
 }
 
-/*
-** -- slotPrint() --
-*/
-
 void biblioteq_book::slotPrint(void)
 {
   m_html = "<html>";
@@ -2801,10 +2733,6 @@ void biblioteq_book::slotPrint(void)
   m_html += "</html>";
   print(this);
 }
-
-/*
-** -- slotSelectImage() --
-*/
 
 void biblioteq_book::slotSelectImage(void)
 {
@@ -2870,10 +2798,6 @@ void biblioteq_book::slotSelectImage(void)
 	}
     }
 }
-
-/*
-** -- slotDownloadImage() --
-*/
 
 void biblioteq_book::slotDownloadImage(void)
 {
@@ -3099,10 +3023,6 @@ void biblioteq_book::slotDownloadImage(void)
     }
 }
 
-/*
-** -- slotDownloadFinished() --
-*/
-
 void biblioteq_book::slotDownloadFinished(bool error)
 {
   Q_UNUSED(error);
@@ -3113,10 +3033,6 @@ void biblioteq_book::slotDownloadFinished(bool error)
   m_httpProgress = 0;
   QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
-
-/*
-** -- slotDownloadFinished() --
-*/
 
 void biblioteq_book::slotDownloadFinished(void)
 {
@@ -3131,10 +3047,6 @@ void biblioteq_book::slotDownloadFinished(void)
   m_httpProgress = 0;
   QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
-
-/*
-** -- downloadFinished() --
-*/
 
 void biblioteq_book::downloadFinished(void)
 {
@@ -3176,10 +3088,6 @@ void biblioteq_book::downloadFinished(void)
   m_imageBuffer.close();
 }
 
-/*
-** -- slotDataTransferProgress() --
-*/
-
 void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 					      qint64 totalbytes)
 {
@@ -3189,10 +3097,6 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
       m_httpProgress->setValue(static_cast<int> (bytesread));
     }
 }
-
-/*
-** -- slotCancelImageDownload() --
-*/
 
 void biblioteq_book::slotCancelImageDownload(void)
 {
@@ -3218,10 +3122,6 @@ void biblioteq_book::slotCancelImageDownload(void)
   m_imageBuffer.close();
 }
 
-/*
-** -- slotReadyRead() --
-*/
-
 #if QT_VERSION < 0x050000
 void biblioteq_book::slotReadyRead(const QHttpResponseHeader &resp)
 {
@@ -3230,10 +3130,6 @@ void biblioteq_book::slotReadyRead(const QHttpResponseHeader &resp)
 }
 #endif
 
-/*
-** -- slotReadyRead() --
-*/
-
 void biblioteq_book::slotReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
@@ -3241,10 +3137,6 @@ void biblioteq_book::slotReadyRead(void)
   if(reply)
     m_imageBuffer.write(reply->readAll());
 }
-
-/*
-** -- duplicate() --
-*/
 
 void biblioteq_book::duplicate(const QString &p_oid, const int state)
 {
@@ -3261,10 +3153,6 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
   m_duplicate = false;
   m_engWindowTitle = "Create";
 }
-
-/*
-** -- slotProxyAuthenticationRequired() --
-*/
 
 void biblioteq_book::slotProxyAuthenticationRequired
 (const QNetworkProxy &proxy, QAuthenticator *authenticator)
@@ -3285,10 +3173,6 @@ void biblioteq_book::slotProxyAuthenticationRequired
     }
 }
 
-/*
-** -- changeEvent() --
-*/
-
 void biblioteq_book::changeEvent(QEvent *event)
 {
   if(event)
@@ -3307,10 +3191,6 @@ void biblioteq_book::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-/*
-** -- slotSRUDownloadFinished() --
-*/
-
 void biblioteq_book::slotSRUDownloadFinished(bool error)
 {
   Q_UNUSED(error);
@@ -3328,10 +3208,6 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
-
-/*
-** -- slotSRUDownloadFinished() --
-*/
 
 void biblioteq_book::slotSRUDownloadFinished(void)
 {
@@ -3353,10 +3229,6 @@ void biblioteq_book::slotSRUDownloadFinished(void)
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
-
-/*
-** -- sruDownloadFinished() --
-*/
 
 void biblioteq_book::sruDownloadFinished(void)
 {
@@ -3567,10 +3439,6 @@ void biblioteq_book::sruDownloadFinished(void)
        tr("An SRU entry may not yet exist for the provided ISBN(s)."));
 }
 
-/*
-** -- slotSRUReadyRead() --
-*/
-
 #if QT_VERSION < 0x050000
 void biblioteq_book::slotSRUReadyRead(const QHttpResponseHeader &resp)
 {
@@ -3579,10 +3447,6 @@ void biblioteq_book::slotSRUReadyRead(const QHttpResponseHeader &resp)
 }
 #endif
 
-/*
-** -- slotSRUReadyRead() --
-*/
-
 void biblioteq_book::slotSRUReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
@@ -3590,10 +3454,6 @@ void biblioteq_book::slotSRUReadyRead(void)
   if(reply)
     m_sruResults.append(reply->readAll());
 }
-
-/*
-** -- slotSRUError() --
-*/
 
 void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
 {
@@ -3618,10 +3478,6 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
        tr("A network error (%1) occurred.").arg(error));
 }
 
-/*
-** -- slotSRUSslErrors() --
-*/
-
 void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
 {
   Q_UNUSED(list);
@@ -3634,10 +3490,6 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
 }
-
-/*
-** -- useHttp() --
-*/
 
 bool biblioteq_book::useHttp(void) const
 {
@@ -3654,10 +3506,6 @@ bool biblioteq_book::useHttp(void) const
   return false;
 #endif
 }
-
-/*
-** -- slotAttachFiles() --
-*/
 
 void biblioteq_book::slotAttachFiles(void)
 {
@@ -3739,10 +3587,6 @@ void biblioteq_book::slotAttachFiles(void)
     }
 }
 
-/*
-** -- createFile() --
-*/
-
 void biblioteq_book::createFile(const QByteArray &digest,
 				const QByteArray &bytes,
 				const QString &fileName) const
@@ -3784,10 +3628,6 @@ void biblioteq_book::createFile(const QByteArray &digest,
        QString(tr("Unable to create a database transaction.")),
        query.lastError().text(), __FILE__, __LINE__);
 }
-
-/*
-** -- populateFiles() --
-*/
 
 void biblioteq_book::populateFiles(void)
 {
@@ -3849,10 +3689,6 @@ void biblioteq_book::populateFiles(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotDeleteFiles() --
-*/
-
 void biblioteq_book::slotDeleteFiles(void)
 {
   QModelIndexList list(id.files->selectionModel()->
@@ -3892,10 +3728,6 @@ void biblioteq_book::slotDeleteFiles(void)
   QApplication::restoreOverrideCursor();
   populateFiles();
 }
-
-/*
-** -- slotExportFiles() --
-*/
 
 void biblioteq_book::slotExportFiles(void)
 {
@@ -3978,10 +3810,6 @@ void biblioteq_book::slotExportFiles(void)
     }
 }
 
-/*
-** -- slotEditFileDescription() --
-*/
-
 void biblioteq_book::slotEditFileDescription(QTableWidgetItem *item)
 {
   if(!item)
@@ -4022,10 +3850,6 @@ void biblioteq_book::slotEditFileDescription(QTableWidgetItem *item)
     item1->setText(text);
 }
 
-/*
-** -- slotPrintAuthorTitleDewey() --
-*/
-
 void biblioteq_book::slotPrintAuthorTitleDewey(void)
 {
   QString html("");
@@ -4054,10 +3878,6 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
       document.print(&printer);
     }
 }
-
-/*
-** -- slotPrintCallDewey() --
-*/
 
 void biblioteq_book::slotPrintCallDewey(void)
 {
@@ -4093,10 +3913,6 @@ void biblioteq_book::slotPrintCallDewey(void)
     }
 }
 
-/*
-** -- slotShowPDF() --
-*/
-
 void biblioteq_book::slotShowPDF(void)
 {
   QModelIndexList list(id.files->selectionModel()->
@@ -4129,10 +3945,6 @@ void biblioteq_book::slotShowPDF(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotPublicationDateEnabled() --
-*/
-
 void biblioteq_book::slotPublicationDateEnabled(bool state)
 {
   id.publication_date->setEnabled(state);
@@ -4140,10 +3952,6 @@ void biblioteq_book::slotPublicationDateEnabled(bool state)
   if(!state)
     id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
-
-/*
-** -- slotSRUCanceled() --
-*/
 
 void biblioteq_book::slotSRUCanceled(void)
 {
@@ -4163,10 +3971,6 @@ void biblioteq_book::slotSRUCanceled(void)
 
   m_sruResults.clear();
 }
-
-/*
-** -- createSRUDialog() --
-*/
 
 void biblioteq_book::createSRUDialog(void)
 {
@@ -4188,10 +3992,6 @@ void biblioteq_book::createSRUDialog(void)
 	  this,
 	  SLOT(slotSRUCanceled(void)));
 }
-
-/*
-** -- createImageDownloadDialog() --
-*/
 
 void biblioteq_book::createImageDownloadDialog(void)
 {

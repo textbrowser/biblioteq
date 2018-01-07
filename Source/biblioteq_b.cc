@@ -22,10 +22,6 @@
 #include "biblioteq_otheroptions.h"
 #include "ui_biblioteq_generalmessagediag.h"
 
-/*
-** -- populateTable() --
-*/
-
 int biblioteq::populateTable(const int search_type_arg,
 			     const QString &typefilter,
 			     const QString &searchstrArg,
@@ -3793,10 +3789,6 @@ int biblioteq::populateTable(const int search_type_arg,
   return 0;
 }
 
-/*
-** -- slotSearchBasic() --
-*/
-
 void biblioteq::slotSearchBasic(void)
 {
   if(!m_db.isOpen())
@@ -3808,10 +3800,6 @@ void biblioteq::slotSearchBasic(void)
   (void) populateTable
     (POPULATE_SEARCH_BASIC, "All", ui.search->text().trimmed());
 }
-
-/*
-** -- slotResetAllSearch() --
-*/
 
 void biblioteq::slotResetAllSearch(void)
 {
@@ -3832,10 +3820,6 @@ void biblioteq::slotResetAllSearch(void)
   slotDisplaySummary();
 }
 
-/*
-** -- resetAllSearchWidgets() --
-*/
-
 void biblioteq::resetAllSearchWidgets(void)
 {
   ui.case_insensitive->setChecked(false);
@@ -3845,10 +3829,6 @@ void biblioteq::resetAllSearchWidgets(void)
   ui.searchType->setCurrentIndex(0);
   ui.searchType->setEnabled(true);
 }
-
-/*
-** -- slotResetGeneralSearch() --
-*/
 
 void biblioteq::slotResetGeneralSearch(void)
 {
@@ -3879,10 +3859,6 @@ void biblioteq::slotResetGeneralSearch(void)
   al.idnumber->setFocus();
 }
 
-/*
-** -- slotRoleChanged() --
-*/
-
 void biblioteq::slotRoleChanged(int index)
 {
   if(index == 1)
@@ -3902,10 +3878,6 @@ void biblioteq::slotRoleChanged(int index)
 
   br.userid->setFocus();
 }
-
-/*
-** -- slotSaveDnt() --
-*/
 
 void biblioteq::slotSaveDnt(bool state)
 {
@@ -3938,10 +3910,6 @@ void biblioteq::slotSaveDnt(bool state)
 	     query.lastError().text(), __FILE__, __LINE__);
 
 }
-
-/*
-** -- slotUpgradeSqliteScheme() --
-*/
 
 void biblioteq::slotUpgradeSqliteScheme(void)
 {
@@ -4256,10 +4224,6 @@ void biblioteq::slotUpgradeSqliteScheme(void)
        arg(m_db.databaseName()));
 }
 
-/*
-** -- preparePhotographsPerPageMenu() --
-*/
-
 void biblioteq::preparePhotographsPerPageMenu(void)
 {
   QActionGroup *group = 0;
@@ -4306,10 +4270,6 @@ void biblioteq::preparePhotographsPerPageMenu(void)
     }
 }
 
-/*
-** -- slotPhotographsPerPageChanged() --
-*/
-
 void biblioteq::slotPhotographsPerPageChanged(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
@@ -4321,10 +4281,6 @@ void biblioteq::slotPhotographsPerPageChanged(void)
 
   settings.setValue("photographs_per_page", action->data().toInt());
 }
-
-/*
-** -- setting() --
-*/
 
 QVariant biblioteq::setting(const QString &name) const
 {
@@ -4342,10 +4298,6 @@ QVariant biblioteq::setting(const QString &name) const
     return QVariant();
 }
 
-/*
-** -- homePath() --
-*/
-
 QString biblioteq::homePath(void)
 {
 #ifdef Q_OS_WIN32
@@ -4354,10 +4306,6 @@ QString biblioteq::homePath(void)
   return QDir::homePath() + QDir::separator() + ".biblioteq";
 #endif
 }
-
-/*
-** -- isGuest() --
-*/
 
 bool biblioteq::isGuest(void) const
 {
@@ -4368,10 +4316,6 @@ bool biblioteq::isGuest(void) const
   else
     return false;
 }
-
-/*
-** -- slotReloadBiblioteqConf() --
-*/
 
 void biblioteq::slotReloadBiblioteqConf(void)
 {
