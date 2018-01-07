@@ -2185,12 +2185,16 @@ void biblioteq_book::slotSRUQuery(void)
     }
 
   createSRUDialog();
-  m_sruWorking->show();
-  m_sruWorking->update();
+
+  if(m_sruWorking)
+    {
+      m_sruWorking->show();
+      m_sruWorking->update();
 #ifndef Q_OS_MAC
-  m_sruWorking->repaint();
-  QApplication::processEvents();
+      m_sruWorking->repaint();
+      QApplication::processEvents();
 #endif
+    }
 
   QString name("");
   bool found = false;

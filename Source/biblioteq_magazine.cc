@@ -33,10 +33,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_magazine() --
-*/
-
 biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 				       const QString &oidArg,
 				       const int rowArg,
@@ -363,17 +359,9 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
-/*
-** -- ~biblioteq_magazine() --
-*/
-
 biblioteq_magazine::~biblioteq_magazine()
 {
 }
-
-/*
-** -- slotGo() --
-*/
 
 void biblioteq_magazine::slotGo(void)
 {
@@ -1151,10 +1139,6 @@ void biblioteq_magazine::slotGo(void)
     }
 }
 
-/*
-** -- search() --
-*/
-
 void biblioteq_magazine::search(const QString &field, const QString &value)
 {
   ma.attach_files->setVisible(false);
@@ -1238,10 +1222,6 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
       slotGo();
     }
 }
-
-/*
-** -- updateWindow() --
-*/
 
 void biblioteq_magazine::updateWindow(const int state)
 {
@@ -1335,10 +1315,6 @@ void biblioteq_magazine::updateWindow(const int state)
   ma.coverImages->setVisible(true);
   setWindowTitle(str);
 }
-
-/*
-** -- modify() --
-*/
 
 void biblioteq_magazine::modify(const int state)
 {
@@ -1679,10 +1655,6 @@ void biblioteq_magazine::modify(const int state)
   raise();
 }
 
-/*
-** -- insert() --
-*/
-
 void biblioteq_magazine::insert(void)
 {
   slotReset();
@@ -1745,10 +1717,6 @@ void biblioteq_magazine::insert(void)
   activateWindow();
   raise();
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq_magazine::slotReset(void)
 {
@@ -1978,10 +1946,6 @@ void biblioteq_magazine::slotReset(void)
     }
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_magazine::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -2002,18 +1966,10 @@ void biblioteq_magazine::closeEvent(QCloseEvent *e)
   qmain->removeMagazine(this);
 }
 
-/*
-** -- slotCancel() --
-*/
-
 void biblioteq_magazine::slotCancel(void)
 {
   close();
 }
-
-/*
-** -- slotPopulateCopiesEditor() --
-*/
 
 void biblioteq_magazine::slotPopulateCopiesEditor(void)
 {
@@ -2027,10 +1983,6 @@ void biblioteq_magazine::slotPopulateCopiesEditor(void)
        ma.quantity, font(), m_subType, ma.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
-
-/*
-** -- slotShowUsers() --
-*/
 
 void biblioteq_magazine::slotShowUsers(void)
 {
@@ -2048,10 +2000,6 @@ void biblioteq_magazine::slotShowUsers(void)
        state)) != 0)
     borrowerseditor->showUsers();
 }
-
-/*
-** -- slotZ3950Query() --
-*/
 
 void biblioteq_magazine::slotZ3950Query(void)
 {
@@ -2208,10 +2156,6 @@ void biblioteq_magazine::slotZ3950Query(void)
     }
 }
 
-/*
-** -- slotPrint() --
-*/
-
 void biblioteq_magazine::slotPrint(void)
 {
   m_html = "<html>";
@@ -2259,10 +2203,6 @@ void biblioteq_magazine::slotPrint(void)
   m_html += "</html>";
   print(this);
 }
-
-/*
-** -- populateDisplayAfterZ3950() --
-*/
 
 void biblioteq_magazine::populateDisplayAfterZ3950
 (const QStringList &list, const QString &recordSyntax)
@@ -2735,10 +2675,6 @@ void biblioteq_magazine::populateDisplayAfterZ3950
     textfield->setCursorPosition(0);
 }
 
-/*
-** -- slotSelectImage() --
-*/
-
 void biblioteq_magazine::slotSelectImage(void)
 {
   QFileDialog dialog(this);
@@ -2804,18 +2740,10 @@ void biblioteq_magazine::slotSelectImage(void)
     }
 }
 
-/*
-** -- dialog() --
-*/
-
 Ui_magDialog biblioteq_magazine::dialog(void) const
 {
   return ma;
 }
-
-/*
-** -- duplicate() --
-*/
 
 void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
 {
@@ -2838,10 +2766,6 @@ void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
   m_engWindowTitle = "Create";
 }
 
-/*
-** -- changeEvent() --
-*/
-
 void biblioteq_magazine::changeEvent(QEvent *event)
 {
   if(event)
@@ -2858,10 +2782,6 @@ void biblioteq_magazine::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
-
-/*
-** -- populateDisplayAfterSRU() --
-*/
 
 void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 {
@@ -3187,10 +3107,6 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
     textfield->setCursorPosition(0);
 }
 
-/*
-** -- slotSRUQuery() --
-*/
-
 void biblioteq_magazine::slotSRUQuery(void)
 {
   if(useHttp())
@@ -3217,12 +3133,16 @@ void biblioteq_magazine::slotSRUQuery(void)
     }
 
   createSRUDialog();
-  m_sruWorking->show();
-  m_sruWorking->update();
+
+  if(m_sruWorking)
+    {
+      m_sruWorking->show();
+      m_sruWorking->update();
 #ifndef Q_OS_MAC
-  m_sruWorking->repaint();
-  QApplication::processEvents();
+      m_sruWorking->repaint();
+      QApplication::processEvents();
 #endif
+    }
 
   bool found = false;
   QString name("");
@@ -3391,10 +3311,6 @@ void biblioteq_magazine::slotSRUQuery(void)
     }
 }
 
-/*
-** -- slotSRUDownloadFinished() --
-*/
-
 void biblioteq_magazine::slotSRUDownloadFinished(bool error)
 {
   Q_UNUSED(error);
@@ -3412,10 +3328,6 @@ void biblioteq_magazine::slotSRUDownloadFinished(bool error)
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
-
-/*
-** -- slotSRUDownloadFinished() --
-*/
 
 void biblioteq_magazine::slotSRUDownloadFinished(void)
 {
@@ -3437,10 +3349,6 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
-
-/*
-** -- sruDownloadFinished() --
-*/
 
 void biblioteq_magazine::sruDownloadFinished(void)
 {
@@ -3496,10 +3404,6 @@ void biblioteq_magazine::sruDownloadFinished(void)
        ma.id->text() + tr(" or a network error occurred."));
 }
 
-/*
-** -- slotSRUReadyRead() --
-*/
-
 #if QT_VERSION < 0x050000
 void biblioteq_magazine::slotSRUReadyRead(const QHttpResponseHeader &resp)
 {
@@ -3508,10 +3412,6 @@ void biblioteq_magazine::slotSRUReadyRead(const QHttpResponseHeader &resp)
 }
 #endif
 
-/*
-** -- slotSRUReadyRead() --
-*/
-
 void biblioteq_magazine::slotSRUReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
@@ -3519,10 +3419,6 @@ void biblioteq_magazine::slotSRUReadyRead(void)
   if(reply)
     m_sruResults.append(reply->readAll());
 }
-
-/*
-** -- slotProxyAuthenticationRequired() --
-*/
 
 void biblioteq_magazine::slotProxyAuthenticationRequired
 (const QNetworkProxy &proxy, QAuthenticator *authenticator)
@@ -3543,10 +3439,6 @@ void biblioteq_magazine::slotProxyAuthenticationRequired
     }
 }
 
-/*
-** -- useHttp() --
-*/
-
 bool biblioteq_magazine::useHttp(void) const
 {
 #if QT_VERSION < 0x050000
@@ -3562,10 +3454,6 @@ bool biblioteq_magazine::useHttp(void) const
   return false;
 #endif
 }
-
-/*
-** -- slotAttachFiles() --
-*/
 
 void biblioteq_magazine::slotAttachFiles(void)
 {
@@ -3648,10 +3536,6 @@ void biblioteq_magazine::slotAttachFiles(void)
     }
 }
 
-/*
-** -- createFile() --
-*/
-
 void biblioteq_magazine::createFile(const QByteArray &digest,
 				    const QByteArray &bytes,
 				    const QString &fileName) const
@@ -3693,10 +3577,6 @@ void biblioteq_magazine::createFile(const QByteArray &digest,
        QString(tr("Unable to create a database transaction.")),
        query.lastError().text(), __FILE__, __LINE__);
 }
-
-/*
-** -- populateFiles() --
-*/
 
 void biblioteq_magazine::populateFiles(void)
 {
@@ -3764,10 +3644,6 @@ void biblioteq_magazine::populateFiles(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotDeleteFiles() --
-*/
-
 void biblioteq_magazine::slotDeleteFiles(void)
 {
   QModelIndexList list(ma.files->selectionModel()->
@@ -3812,10 +3688,6 @@ void biblioteq_magazine::slotDeleteFiles(void)
   QApplication::restoreOverrideCursor();
   populateFiles();
 }
-
-/*
-** -- slotExportFiles() --
-*/
 
 void biblioteq_magazine::slotExportFiles(void)
 {
@@ -3909,10 +3781,6 @@ void biblioteq_magazine::slotExportFiles(void)
     }
 }
 
-/*
-** -- slotEditFileDescription() --
-*/
-
 void biblioteq_magazine::slotEditFileDescription(QTableWidgetItem *item)
 {
   if(!item)
@@ -3958,10 +3826,6 @@ void biblioteq_magazine::slotEditFileDescription(QTableWidgetItem *item)
     item1->setText(text);
 }
 
-/*
-** -- slotShowPDF() --
-*/
-
 void biblioteq_magazine::slotShowPDF(void)
 {
   QModelIndexList list(ma.files->selectionModel()->
@@ -4002,10 +3866,6 @@ void biblioteq_magazine::slotShowPDF(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotPublicationDateEnabled() --
-*/
-
 void biblioteq_magazine::slotPublicationDateEnabled(bool state)
 {
   ma.publication_date->setEnabled(state);
@@ -4013,10 +3873,6 @@ void biblioteq_magazine::slotPublicationDateEnabled(bool state)
   if(!state)
     ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
-
-/*
-** -- slotSRUCanceled() --
-*/
 
 void biblioteq_magazine::slotSRUCanceled(void)
 {
@@ -4036,10 +3892,6 @@ void biblioteq_magazine::slotSRUCanceled(void)
 
   m_sruResults.clear();
 }
-
-/*
-** -- slotSRUError() --
-*/
 
 void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
 {
@@ -4064,10 +3916,6 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
        tr("A network error (%1) occurred.").arg(error));
 }
 
-/*
-** -- slotSRUSslErrors() --
-*/
-
 void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
 {
   Q_UNUSED(list);
@@ -4080,10 +3928,6 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
 }
-
-/*
-** -- createSRUDialog() --
-*/
 
 void biblioteq_magazine::createSRUDialog(void)
 {
