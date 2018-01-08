@@ -13,10 +13,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_main_table() --
-*/
-
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
@@ -37,10 +33,6 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
 }
-
-/*
-** -- setColumns() --
-*/
 
 void biblioteq_main_table::setColumns(const QString &username,
 				      const QString &type,
@@ -419,10 +411,6 @@ void biblioteq_main_table::setColumns(const QString &username,
     setColumnHidden(m_hiddenColumns[indexstr][i], true);
 }
 
-/*
-** -- resetTable() --
-*/
-
 void biblioteq_main_table::resetTable(const QString &username,
 				      const QString &type,
 				      const QString &roles)
@@ -462,10 +450,6 @@ void biblioteq_main_table::resetTable(const QString &username,
   setCurrentItem(0);
 }
 
-/*
-** -- recordColumnHidden() --
-*/
-
 void biblioteq_main_table::recordColumnHidden(const QString &username,
 					      const QString &type,
 					      const int index,
@@ -486,10 +470,6 @@ void biblioteq_main_table::recordColumnHidden(const QString &username,
   else if(m_hiddenColumns.contains(indexstr))
     m_hiddenColumns[indexstr].removeAll(index);
 }
-
-/*
-** -- friendlyStates() --
-*/
 
 QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
 {
@@ -513,10 +493,6 @@ QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
   return states;
 }
 
-/*
-** -- parseStates() --
-*/
-
 void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 {
   m_hiddenColumns.clear();
@@ -536,10 +512,6 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
     }
 }
 
-/*
-** -- columnNumber() --
-*/
-
 int biblioteq_main_table::columnNumber(const QString &name) const
 {
   int index = m_columnHeaderIndexes.indexOf(name);
@@ -557,18 +529,10 @@ int biblioteq_main_table::columnNumber(const QString &name) const
   return index;
 }
 
-/*
-** -- columnNames() --
-*/
-
 QStringList biblioteq_main_table::columnNames(void) const
 {
   return m_columnHeaderIndexes.toList();
 }
-
-/*
-** -- setColumnNames() --
-*/
 
 void biblioteq_main_table::setColumnNames(const QStringList &list)
 {
