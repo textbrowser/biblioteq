@@ -16,10 +16,6 @@
 #include "biblioteq_hyperlinked_text_edit.h"
 #include "biblioteq_item.h"
 
-/*
-** -- biblioteq_item() --
-*/
-
 biblioteq_item::biblioteq_item(void)
 {
   m_isQueryEnabled = false;
@@ -27,10 +23,6 @@ biblioteq_item::biblioteq_item(void)
   m_parentWid = 0;
   m_row = -1;
 }
-
-/*
-** -- biblioteq_item() --
-*/
 
 biblioteq_item::biblioteq_item(const int rowArg)
 {
@@ -40,55 +32,31 @@ biblioteq_item::biblioteq_item(const int rowArg)
   m_row = rowArg;
 }
 
-/*
-** -- ~biblioteq_item() --
-*/
-
 biblioteq_item::~biblioteq_item()
 {
   m_imageValues.clear();
   m_widgetValues.clear();
 }
 
-/*
-** -- getRow() --
-*/
-
 int biblioteq_item::getRow(void) const
 {
   return m_row;
 }
-
-/*
-** -- getOldQ() --
-*/
 
 int biblioteq_item::getOldQ(void) const
 {
   return m_oldq;
 }
 
-/*
-** -- updateRow() --
-*/
-
 void biblioteq_item::updateRow(const int rowArg)
 {
   m_row = rowArg;
 }
 
-/*
-** -- getID() --
-*/
-
 QString biblioteq_item::getID(void) const
 {
   return m_oid;
 }
-
-/*
-** -- print() --
-*/
 
 void biblioteq_item::print(QWidget *parent)
 {
@@ -111,10 +79,6 @@ void biblioteq_item::print(QWidget *parent)
     }
 }
 
-/*
-** -- updateFont() --
-*/
-
 void biblioteq_item::updateFont(const QFont &font, QWidget *window)
 {
   if(!window)
@@ -131,18 +95,10 @@ void biblioteq_item::updateFont(const QFont &font, QWidget *window)
   window->update();
 }
 
-/*
-** -- setOldQ() --
-*/
-
 void biblioteq_item::setOldQ(const int q)
 {
   m_oldq = q;
 }
-
-/*
-** -- storeData() --
-*/
 
 void biblioteq_item::storeData(QMainWindow *window)
 {
@@ -191,10 +147,6 @@ void biblioteq_item::storeData(QMainWindow *window)
 	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 }
-
-/*
-** -- hasDataChanged() --
-*/
 
 bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 {

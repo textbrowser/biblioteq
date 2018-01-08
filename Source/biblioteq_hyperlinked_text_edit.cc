@@ -8,20 +8,12 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_hyperlinked_text_edit() --
-*/
-
 biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 (QWidget *parent):QTextBrowser(parent)
 {
   connect(this, SIGNAL(anchorClicked(const QUrl &)),
 	  this, SLOT(slotAnchorClicked(const QUrl &)));
 }
-
-/*
-** -- slotAnchorClicked() --
-*/
 
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 {
@@ -55,10 +47,6 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 
   tmplist.clear();
 }
-
-/*
-** -- setMultipleLinks() --
-*/
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
 (const QString &searchType,
