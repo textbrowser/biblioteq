@@ -19,10 +19,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_videogame() --
-*/
-
 biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
 					 const QString &oidArg,
 					 const int rowArg):
@@ -219,17 +215,9 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
-/*
-** -- ~biblioteq_videogame() --
-*/
-
 biblioteq_videogame::~biblioteq_videogame()
 {
 }
-
-/*
-** -- slotGo() --
-*/
 
 void biblioteq_videogame::slotGo(void)
 {
@@ -897,10 +885,6 @@ void biblioteq_videogame::slotGo(void)
     }
 }
 
-/*
-** -- search() --
-*/
-
 void biblioteq_videogame::search(const QString &field, const QString &value)
 {
   vg.coverImages->setVisible(false);
@@ -973,10 +957,6 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
     }
 }
 
-/*
-** -- updateWindow() --
-*/
-
 void biblioteq_videogame::updateWindow(const int state)
 {
   QString str = "";
@@ -1016,10 +996,6 @@ void biblioteq_videogame::updateWindow(const int state)
   vg.coverImages->setVisible(true);
   setWindowTitle(str);
 }
-
-/*
-** -- modify() --
-*/
 
 void biblioteq_videogame::modify(const int state)
 {
@@ -1268,10 +1244,6 @@ void biblioteq_videogame::modify(const int state)
   raise();
 }
 
-/*
-** -- insert() --
-*/
-
 void biblioteq_videogame::insert(void)
 {
   slotReset();
@@ -1319,10 +1291,6 @@ void biblioteq_videogame::insert(void)
   activateWindow();
   raise();
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq_videogame::slotReset(void)
 {
@@ -1522,10 +1490,6 @@ void biblioteq_videogame::slotReset(void)
     }
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_videogame::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -1546,18 +1510,10 @@ void biblioteq_videogame::closeEvent(QCloseEvent *e)
   qmain->removeVideoGame(this);
 }
 
-/*
-** -- slotCancel() --
-*/
-
 void biblioteq_videogame::slotCancel(void)
 {
   close();
 }
-
-/*
-** -- slotPopulateCopiesEditor() --
-*/
 
 void biblioteq_videogame::slotPopulateCopiesEditor(void)
 {
@@ -1571,10 +1527,6 @@ void biblioteq_videogame::slotPopulateCopiesEditor(void)
        vg.quantity, font(), "Video Game", vg.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
-
-/*
-** -- slotShowUsers() --
-*/
 
 void biblioteq_videogame::slotShowUsers(void)
 {
@@ -1593,17 +1545,9 @@ void biblioteq_videogame::slotShowUsers(void)
     borrowerseditor->showUsers();
 }
 
-/*
-** -- slotQuery() --
-*/
-
 void biblioteq_videogame::slotQuery(void)
 {
 }
-
-/*
-** -- slotPrint() --
-*/
 
 void biblioteq_videogame::slotPrint(void)
 {
@@ -1649,10 +1593,6 @@ void biblioteq_videogame::slotPrint(void)
   m_html += "</html>";
   print(this);
 }
-
-/*
-** -- slotSelectImage() --
-*/
 
 void biblioteq_videogame::slotSelectImage(void)
 {
@@ -1719,10 +1659,6 @@ void biblioteq_videogame::slotSelectImage(void)
     }
 }
 
-/*
-** -- duplicate() --
-*/
-
 void biblioteq_videogame::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
@@ -1732,10 +1668,6 @@ void biblioteq_videogame::duplicate(const QString &p_oid, const int state)
   setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
   m_engWindowTitle = "Create";
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_videogame::changeEvent(QEvent *event)
 {
@@ -1753,10 +1685,6 @@ void biblioteq_videogame::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
-
-/*
-** -- slotPublicationDateEnabled() --
-*/
 
 void biblioteq_videogame::slotPublicationDateEnabled(bool state)
 {
