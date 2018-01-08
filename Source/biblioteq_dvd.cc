@@ -19,10 +19,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_dvd() --
-*/
-
 biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
 			     const QString &oidArg,
 			     const int rowArg):
@@ -241,17 +237,9 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
-/*
-** -- ~biblioteq_dvd() --
-*/
-
 biblioteq_dvd::~biblioteq_dvd()
 {
 }
-
-/*
-** -- slotGo() --
-*/
 
 void biblioteq_dvd::slotGo(void)
 {
@@ -1003,10 +991,6 @@ void biblioteq_dvd::slotGo(void)
     }
 }
 
-/*
-** -- search() --
-*/
-
 void biblioteq_dvd::search(const QString &field, const QString &value)
 {
   dvd.coverImages->setVisible(false);
@@ -1085,10 +1069,6 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
     }
 }
 
-/*
-** -- updateWindow() --
-*/
-
 void biblioteq_dvd::updateWindow(const int state)
 {
   QString str = "";
@@ -1127,10 +1107,6 @@ void biblioteq_dvd::updateWindow(const int state)
   dvd.coverImages->setVisible(true);
   setWindowTitle(str);
 }
-
-/*
-** -- modify() --
-*/
 
 void biblioteq_dvd::modify(const int state)
 {
@@ -1403,10 +1379,6 @@ void biblioteq_dvd::modify(const int state)
   raise();
 }
 
-/*
-** -- insert() --
-*/
-
 void biblioteq_dvd::insert(void)
 {
   slotReset();
@@ -1464,10 +1436,6 @@ void biblioteq_dvd::insert(void)
   activateWindow();
   raise();
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq_dvd::slotReset(void)
 {
@@ -1700,10 +1668,6 @@ void biblioteq_dvd::slotReset(void)
     }
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_dvd::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -1724,18 +1688,10 @@ void biblioteq_dvd::closeEvent(QCloseEvent *e)
   qmain->removeDVD(this);
 }
 
-/*
-** -- slotCancel() --
-*/
-
 void biblioteq_dvd::slotCancel(void)
 {
   close();
 }
-
-/*
-** -- slotPopulateCopiesEditor() --
-*/
 
 void biblioteq_dvd::slotPopulateCopiesEditor(void)
 {
@@ -1749,10 +1705,6 @@ void biblioteq_dvd::slotPopulateCopiesEditor(void)
        dvd.quantity, font(), "DVD", dvd.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
-
-/*
-** -- slotShowUsers() --
-*/
 
 void biblioteq_dvd::slotShowUsers(void)
 {
@@ -1771,17 +1723,9 @@ void biblioteq_dvd::slotShowUsers(void)
     borrowerseditor->showUsers();
 }
 
-/*
-** -- slotQuery() --
-*/
-
 void biblioteq_dvd::slotQuery(void)
 {
 }
-
-/*
-** -- slotPrint() --
-*/
 
 void biblioteq_dvd::slotPrint(void)
 {
@@ -1832,10 +1776,6 @@ void biblioteq_dvd::slotPrint(void)
   m_html += "</html>";
   print(this);
 }
-
-/*
-** -- slotSelectImage() --
-*/
 
 void biblioteq_dvd::slotSelectImage(void)
 {
@@ -1902,10 +1842,6 @@ void biblioteq_dvd::slotSelectImage(void)
     }
 }
 
-/*
-** -- duplicate() --
-*/
-
 void biblioteq_dvd::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
@@ -1915,10 +1851,6 @@ void biblioteq_dvd::duplicate(const QString &p_oid, const int state)
   setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
   m_engWindowTitle = "Create";
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_dvd::changeEvent(QEvent *event)
 {
@@ -1936,10 +1868,6 @@ void biblioteq_dvd::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
-
-/*
-** -- slotPublicationDateEnabled() --
-*/
 
 void biblioteq_dvd::slotPublicationDateEnabled(bool state)
 {

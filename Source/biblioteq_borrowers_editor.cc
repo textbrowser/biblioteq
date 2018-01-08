@@ -2,10 +2,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_borrowers_editor() --
-*/
-
 biblioteq_borrowers_editor::biblioteq_borrowers_editor
 (QWidget *parent,
  biblioteq_item *bitemArg,
@@ -69,17 +65,9 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
     setWindowTitle(tr("BiblioteQ: Item Reservation Status"));
 }
 
-/*
-** -- ~biblioteq_borrowers_editor() --
-*/
-
 biblioteq_borrowers_editor::~biblioteq_borrowers_editor()
 {
 }
-
-/*
-** -- showUsers() --
-*/
 
 void biblioteq_borrowers_editor::showUsers(void)
 {
@@ -357,10 +345,6 @@ void biblioteq_borrowers_editor::showUsers(void)
     m_bd.table->resizeColumnToContents(i);
 }
 
-/*
-** -- slotEraseBorrower() --
-*/
-
 void biblioteq_borrowers_editor::slotEraseBorrower(void)
 {
   QSqlQuery query(qmain->getDB());
@@ -490,18 +474,10 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
     }
 }
 
-/*
-** -- slotCloseCurrentBorrowers() --
-*/
-
 void biblioteq_borrowers_editor::slotCloseCurrentBorrowers(void)
 {
   deleteLater();
 }
-
-/*
-** -- slotSave() --
-*/
 
 void biblioteq_borrowers_editor::slotSave(void)
 {
@@ -590,10 +566,6 @@ void biblioteq_borrowers_editor::slotSave(void)
 			     "because of database errors."));
 }
 
-/*
-** -- keyPressEvent() --
-*/
-
 void biblioteq_borrowers_editor::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
@@ -602,19 +574,11 @@ void biblioteq_borrowers_editor::keyPressEvent(QKeyEvent *event)
   QDialog::keyPressEvent(event);
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_borrowers_editor::closeEvent(QCloseEvent *event)
 {
   Q_UNUSED(event);
   slotCloseCurrentBorrowers();
 }
-
-/*
-** -- setGlobalFonts() --
-*/
 
 void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
 {
@@ -628,10 +592,6 @@ void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
 
   update();
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_borrowers_editor::changeEvent(QEvent *event)
 {

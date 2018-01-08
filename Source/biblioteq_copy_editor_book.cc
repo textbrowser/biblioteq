@@ -7,10 +7,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_copy_editor_book() --
-*/
-
 biblioteq_copy_editor_book::biblioteq_copy_editor_book
 (QWidget *parent, biblioteq_item *bitemArg,
  const bool showForLendingArg,
@@ -51,18 +47,10 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
   setGlobalFonts(font);
 }
 
-/*
-** -- ~biblioteq_copy_editor_book() --
-*/
-
 biblioteq_copy_editor_book::~biblioteq_copy_editor_book()
 {
   clearCopiesList();
 }
-
-/*
-** -- slotDeleteCopy() --
-*/
 
 void biblioteq_copy_editor_book::slotDeleteCopy(void)
 {
@@ -125,10 +113,6 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
   m_cb.table->removeRow(m_cb.table->currentRow());
 }
-
-/*
-** -- populateM_CopiesEditor() --
-*/
 
 void biblioteq_copy_editor_book::populateCopiesEditor(void)
 {
@@ -458,10 +442,6 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     m_cb.table->resizeColumnToContents(i);
 }
 
-/*
-** -- slotSaveCopies() --
-*/
-
 void biblioteq_copy_editor_book::slotSaveCopies(void)
 {
   QComboBox *combobox1 = 0;
@@ -630,10 +610,6 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
     delete m_copies.takeFirst();
 }
 
-/*
-** -- keyPressEvent() --
-*/
-
 void biblioteq_copy_editor_book::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
@@ -642,19 +618,11 @@ void biblioteq_copy_editor_book::keyPressEvent(QKeyEvent *event)
   QDialog::keyPressEvent(event);
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_copy_editor_book::closeEvent(QCloseEvent *event)
 {
   Q_UNUSED(event);
   slotCloseCopyEditor();
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_copy_editor_book::changeEvent(QEvent *event)
 {
@@ -672,10 +640,6 @@ void biblioteq_copy_editor_book::changeEvent(QEvent *event)
 
   QDialog::changeEvent(event);
 }
-
-/*
-** -- saveCopies() --
-*/
 
 QString biblioteq_copy_editor_book::saveCopies(void)
 {

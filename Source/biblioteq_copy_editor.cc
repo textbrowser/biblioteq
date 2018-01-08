@@ -7,10 +7,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_copy_editor() --
-*/
-
 biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
 {
   m_bitem = 0;
@@ -19,10 +15,6 @@ biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
   m_showForLending = false;
   m_spinbox = 0;
 }
-
-/*
-** -- biblioteq_copy_editor() --
-*/
 
 biblioteq_copy_editor::biblioteq_copy_editor
 (QWidget *parent, biblioteq_item *bitemArg,
@@ -67,18 +59,10 @@ biblioteq_copy_editor::biblioteq_copy_editor
   setGlobalFonts(font);
 }
 
-/*
-** -- ~biblioteq_copy_editor() --
-*/
-
 biblioteq_copy_editor::~biblioteq_copy_editor()
 {
   clearCopiesList();
 }
-
-/*
-** -- slotDeleteCopy() --
-*/
 
 void biblioteq_copy_editor::slotDeleteCopy(void)
 {
@@ -141,10 +125,6 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
   m_cb.table->removeRow(m_cb.table->currentRow());
 }
-
-/*
-** -- populateCopiesEditor() --
-*/
 
 void biblioteq_copy_editor::populateCopiesEditor(void)
 {
@@ -416,10 +396,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     m_cb.table->resizeColumnToContents(i);
 }
 
-/*
-** -- slotCheckoutCopy() --
-*/
-
 void biblioteq_copy_editor::slotCheckoutCopy(void)
 {
   QDate now = QDate::currentDate();
@@ -633,10 +609,6 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     qmain->slotDisplaySummary();
 }
 
-/*
-** -- slotSaveCopies() --
-*/
-
 void biblioteq_copy_editor::slotSaveCopies(void)
 {
   int i = 0;
@@ -798,10 +770,6 @@ void biblioteq_copy_editor::slotSaveCopies(void)
     delete m_copies.takeFirst();
 }
 
-/*
-** -- saveCopies() --
-*/
-
 QString biblioteq_copy_editor::saveCopies(void)
 {
   QProgressDialog progress(this);
@@ -913,10 +881,6 @@ QString biblioteq_copy_editor::saveCopies(void)
   return lastError;
 }
 
-/*
-** -- keyPressEvent() --
-*/
-
 void biblioteq_copy_editor::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
@@ -925,19 +889,11 @@ void biblioteq_copy_editor::keyPressEvent(QKeyEvent *event)
   QDialog::keyPressEvent(event);
 }
 
-/*
-** -- slotCloseCopyEditor() --
-*/
-
 void biblioteq_copy_editor::slotCloseCopyEditor(void)
 {
   clearCopiesList();
   deleteLater();
 }
-
-/*
-** -- clearCopiesList() --
-*/
 
 void biblioteq_copy_editor::clearCopiesList(void)
 {
@@ -945,19 +901,11 @@ void biblioteq_copy_editor::clearCopiesList(void)
     delete m_copies.takeFirst();
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_copy_editor::closeEvent(QCloseEvent *event)
 {
   Q_UNUSED(event);
   slotCloseCopyEditor();
 }
-
-/*
-** -- setGlobalFonts() --
-*/
 
 void biblioteq_copy_editor::setGlobalFonts(const QFont &font)
 {
@@ -971,10 +919,6 @@ void biblioteq_copy_editor::setGlobalFonts(const QFont &font)
 
   update();
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_copy_editor::changeEvent(QEvent *event)
 {

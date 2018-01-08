@@ -13,10 +13,6 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 
-/*
-** -- slotShowOtherOptions() --
-*/
-
 void biblioteq::slotShowOtherOptions(void)
 {
   biblioteq_misc_functions::center(m_otheroptions, this);
@@ -25,18 +21,10 @@ void biblioteq::slotShowOtherOptions(void)
   m_otheroptions->raise();
 }
 
-/*
-** -- slotPreviewCanvasBackgroundColor() --
-*/
-
 void biblioteq::slotPreviewCanvasBackgroundColor(const QColor &color)
 {
   ui.graphicsView->scene()->setBackgroundBrush(color);
 }
-
-/*
-** -- slotMainWindowCanvasBackgroundColorChanged() --
-*/
 
 void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 {
@@ -59,18 +47,10 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
     }
 }
 
-/*
-** -- publicationDateFormat() --
-*/
-
 QString biblioteq::publicationDateFormat(const QString &itemType) const
 {
   return m_otheroptions->publicationDateFormat(itemType);
 }
-
-/*
-** -- slotOtherOptionsSaved() --
-*/
 
 void biblioteq::slotOtherOptionsSaved(void)
 {
@@ -103,10 +83,6 @@ void biblioteq::slotOtherOptionsSaved(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotOpenPDFFile() --
-*/
-
 void biblioteq::slotOpenPDFFile(void)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
@@ -138,10 +114,6 @@ void biblioteq::slotOpenPDFFile(void)
 #endif
 }
 
-/*
-** -- slotGeneralSearchPublicationDateEnabled() --
-*/
-
 void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
 {
   al.publication_date->setEnabled(state);
@@ -150,17 +122,9 @@ void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
     al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
 
-/*
-** -- slotInsertGreyLiterature() --
-*/
-
 void biblioteq::slotInsertGreyLiterature(void)
 {
 }
-
-/*
-** -- slotGreyLiteratureSearch() --
-*/
 
 void biblioteq::slotGreyLiteratureSearch(void)
 {
