@@ -22,10 +22,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_photographcollection() --
-*/
-
 biblioteq_photographcollection::biblioteq_photographcollection
 (QMainWindow *parentArg,
  const QString &oidArg,
@@ -193,17 +189,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
     (photo.copyright_item->viewport(), QColor(255, 248, 220));
 }
 
-/*
-** -- ~biblioteq_photographcollection() --
-*/
-
 biblioteq_photographcollection::~biblioteq_photographcollection()
 {
 }
-
-/*
-** -- slotGo() --
-*/
 
 void biblioteq_photographcollection::slotGo(void)
 {
@@ -550,10 +538,6 @@ void biblioteq_photographcollection::slotGo(void)
     }
 }
 
-/*
-** -- search() --
-*/
-
 void biblioteq_photographcollection::search
 (const QString &field, const QString &value)
 {
@@ -588,10 +572,6 @@ void biblioteq_photographcollection::search
   activateWindow();
   raise();
 }
-
-/*
-** -- updateWindow() --
-*/
 
 void biblioteq_photographcollection::updateWindow(const int state)
 {
@@ -628,10 +608,6 @@ void biblioteq_photographcollection::updateWindow(const int state)
 
   setWindowTitle(str);
 }
-
-/*
-** -- modify() --
-*/
 
 void biblioteq_photographcollection::modify(const int state,
 					    const QString &behavior)
@@ -838,10 +814,6 @@ void biblioteq_photographcollection::modify(const int state,
   pc.id_collection->setFocus();
 }
 
-/*
-** -- insert() --
-*/
-
 void biblioteq_photographcollection::insert(void)
 {
   pc.okButton->setText(tr("&Save"));
@@ -866,10 +838,6 @@ void biblioteq_photographcollection::insert(void)
   activateWindow();
   raise();
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq_photographcollection::slotReset(void)
 {
@@ -935,10 +903,6 @@ void biblioteq_photographcollection::slotReset(void)
     }
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_photographcollection::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -959,26 +923,14 @@ void biblioteq_photographcollection::closeEvent(QCloseEvent *e)
   qmain->removePhotographCollection(this);
 }
 
-/*
-** -- slotCancel() --
-*/
-
 void biblioteq_photographcollection::slotCancel(void)
 {
   close();
 }
 
-/*
-** -- slotQuery() --
-*/
-
 void biblioteq_photographcollection::slotQuery(void)
 {
 }
-
-/*
-** -- slotPrint() --
-*/
 
 void biblioteq_photographcollection::slotPrint(void)
 {
@@ -1024,10 +976,6 @@ void biblioteq_photographcollection::slotPrint(void)
   m_html += "</html>";
   print(this);
 }
-
-/*
-** -- slotSelectImage() --
-*/
 
 void biblioteq_photographcollection::slotSelectImage(void)
 {
@@ -1100,10 +1048,6 @@ void biblioteq_photographcollection::slotSelectImage(void)
     }
 }
 
-/*
-** -- duplicate() --
-*/
-
 void biblioteq_photographcollection::duplicate
 (const QString &p_oid, const int state)
 {
@@ -1113,10 +1057,6 @@ void biblioteq_photographcollection::duplicate
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Photograph Collection Entry"));
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_photographcollection::changeEvent(QEvent *event)
 {
@@ -1135,10 +1075,6 @@ void biblioteq_photographcollection::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
-
-/*
-** -- showPhotographs() --
-*/
 
 void biblioteq_photographcollection::showPhotographs(const int page)
 {
@@ -1292,10 +1228,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
   progress.close();
 }
 
-/*
-** -- slotAddItem() --
-*/
-
 void biblioteq_photographcollection::slotAddItem(void)
 {
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
@@ -1332,18 +1264,10 @@ void biblioteq_photographcollection::slotAddItem(void)
   m_photo_diag->show();
 }
 
-/*
-** -- slotClosePhoto() --
-*/
-
 void biblioteq_photographcollection::slotClosePhoto(void)
 {
   m_photo_diag->close();
 }
-
-/*
-** -- verifyItemFields()
-*/
 
 bool biblioteq_photographcollection::verifyItemFields(void)
 {
@@ -1425,10 +1349,6 @@ bool biblioteq_photographcollection::verifyItemFields(void)
   photo.accession_number_item->setText(str);
   return true;
 }
-
-/*
-** -- slotInsertItem() --
-*/
 
 void biblioteq_photographcollection::slotInsertItem(void)
 {
@@ -1622,10 +1542,6 @@ void biblioteq_photographcollection::slotInsertItem(void)
 			   "the item does not already exist."));
 }
 
-/*
-** -- slotSceneSelectionChanged() --
-*/
-
 void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 {
   QList<QGraphicsItem *> items(pc.graphicsView->scene()->selectedItems());
@@ -1805,10 +1721,6 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- slotModifyItem() --
-*/
-
 void biblioteq_photographcollection::slotModifyItem(void)
 {
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
@@ -1821,10 +1733,6 @@ void biblioteq_photographcollection::slotModifyItem(void)
   photo.scrollArea->ensureVisible(0, 0);
   m_photo_diag->show();
 }
-
-/*
-** -- storeData() --
-*/
 
 void biblioteq_photographcollection::storeData(void)
 {
@@ -1860,10 +1768,6 @@ void biblioteq_photographcollection::storeData(void)
 	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 }
-
-/*
-** -- slotUpdateItem() --
-*/
 
 void biblioteq_photographcollection::slotUpdateItem(void)
 {
@@ -2017,10 +1921,6 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 			   "the item does not already exist."));
 }
 
-/*
-** -- slotDeleteItem() --
-*/
-
 void biblioteq_photographcollection::slotDeleteItem(void)
 {
   QList<QGraphicsItem *> items(pc.graphicsView->scene()->selectedItems());
@@ -2125,20 +2025,12 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   showPhotographs(pc.page->currentText().toInt());
 }
 
-/*
-** -- slotPageChanged() --
-*/
-
 void biblioteq_photographcollection::slotPageChanged(const QString &text)
 {
   pc.page->repaint();
   QApplication::processEvents();
   showPhotographs(text.toInt());
 }
-
-/*
-** -- slotExportPhotographs() --
-*/
 
 void biblioteq_photographcollection::slotExportPhotographs(void)
 {
@@ -2204,10 +2096,6 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
     }
 }
 
-/*
-** -- slotViewContextMenu() --
-*/
-
 void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 {
   QGraphicsPixmapItem *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
@@ -2246,10 +2134,6 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
     }
 }
 
-/*
-** -- slotViewPhotograph() --
-*/
-
 void biblioteq_photographcollection::slotViewPhotograph(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
@@ -2265,10 +2149,6 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
     (qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (pc.graphicsView->
 							 itemAt(pos)));
 }
-
-/*
-** -- loadPhotographFromItem() --
-*/
 
 void biblioteq_photographcollection::loadPhotographFromItem
 (QGraphicsScene *scene, QGraphicsPixmapItem *item, const int percent)
@@ -2345,10 +2225,6 @@ void biblioteq_photographcollection::loadPhotographFromItem
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- loadPhotographFromItemInNewWindow() --
-*/
-
 void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 (QGraphicsPixmapItem *item)
 {
@@ -2398,10 +2274,6 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 	}
     }
 }
-
-/*
-** -- slotViewNextPhotograph()
-*/
 
 void biblioteq_photographcollection::slotViewNextPhotograph(void)
 {
@@ -2462,10 +2334,6 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
     }
 }
 
-/*
-** -- slotViewPreviousPhotograph()
-*/
-
 void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 {
   QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
@@ -2524,10 +2392,6 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 	}
     }
 }
-
-/*
-** -- slotImportItems()
-*/
 
 void biblioteq_photographcollection::slotImportItems(void)
 {
@@ -2746,10 +2610,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 			   arg(dialog.directory().absolutePath()));
 }
 
-/*
-** -- slotImageViewSizeChanged() --
-*/
-
 void biblioteq_photographcollection::slotImageViewSizeChanged
 (const QString &text)
 {
@@ -2805,10 +2665,6 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
     }
 }
 
-/*
-** -- updateTablePhotographCount() --
-*/
-
 void biblioteq_photographcollection::updateTablePhotographCount
 (const int count)
 {
@@ -2840,10 +2696,6 @@ void biblioteq_photographcollection::updateTablePhotographCount
 	  }
     }
 }
-
-/*
-** -- slotExportItem() --
-*/
 
 void biblioteq_photographcollection::slotExportItem(void)
 {
@@ -2911,10 +2763,6 @@ void biblioteq_photographcollection::slotExportItem(void)
 	}
     }
 }
-
-/*
-** -- photographsPerPage() --
-*/
 
 int biblioteq_photographcollection::photographsPerPage(void)
 {

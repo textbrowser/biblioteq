@@ -14,10 +14,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_otheroptions() --
-*/
-
 biblioteq_otheroptions::biblioteq_otheroptions(void):QMainWindow()
 {
   m_ui.setupUi(this);
@@ -41,17 +37,9 @@ biblioteq_otheroptions::biblioteq_otheroptions(void):QMainWindow()
   prepareSettings();
 }
 
-/*
-** -- ~biblioteq_otheroptions() --
-*/
-
 biblioteq_otheroptions::~biblioteq_otheroptions()
 {
 }
-
-/*
-** -- publicationDateFormat() --
-*/
 
 QString biblioteq_otheroptions::publicationDateFormat
 (const QString &itemType) const
@@ -74,10 +62,6 @@ QString biblioteq_otheroptions::publicationDateFormat
   return "MM/dd/yyyy";
 }
 
-/*
-** -- changeEvent() --
-*/
-
 void biblioteq_otheroptions::changeEvent(QEvent *event)
 {
   if(event)
@@ -95,18 +79,10 @@ void biblioteq_otheroptions::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_otheroptions::closeEvent(QCloseEvent *event)
 {
   QMainWindow::closeEvent(event);
 }
-
-/*
-** -- keyPressEvent() --
-*/
 
 void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 {
@@ -115,10 +91,6 @@ void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 
   QMainWindow::keyPressEvent(event);
 }
-
-/*
-** -- prepareSettings() --
-*/
 
 void biblioteq_otheroptions::prepareSettings(void)
 {
@@ -223,10 +195,6 @@ void biblioteq_otheroptions::prepareSettings(void)
   QApplication::restoreOverrideCursor();
 }
 
-/*
-** -- setGlobalFonts() --
-*/
-
 void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 {
   setFont(font);
@@ -240,28 +208,16 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
   update();
 }
 
-/*
-** -- showNormal() --
-*/
-
 void biblioteq_otheroptions::showNormal(void)
 {
   prepareSettings();
   QMainWindow::showNormal();
 }
 
-/*
-** -- slotClose() --
-*/
-
 void biblioteq_otheroptions::slotClose(void)
 {
   close();
 }
-
-/*
-** -- slotPreviewCanvasBackgroundColor() --
-*/
 
 void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
 (const QColor &color)
@@ -270,10 +226,6 @@ void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
     (QString("background-color: %1").arg(color.name()));
   m_ui.main_window_canvas_background_color->setText(color.name());
 }
-
-/*
-** -- slotSave() --
-*/
 
 void biblioteq_otheroptions::slotSave(void)
 {
@@ -313,10 +265,6 @@ void biblioteq_otheroptions::slotSave(void)
   emit saved();
   QApplication::restoreOverrideCursor();
 }
-
-/*
-** -- slotSelectMainwindowCanvasBackgroundColor() --
-*/
 
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 {

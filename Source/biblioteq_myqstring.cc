@@ -1,25 +1,13 @@
 #include "biblioteq.h"
 #include "biblioteq_myqstring.h"
 
-/*
-** -- biblioteq_myqstring() --
-*/
-
 biblioteq_myqstring::biblioteq_myqstring(const QString &str):QString(str)
 {
 }
 
-/*
-** -- biblioteq_myqstring() --
-*/
-
 biblioteq_myqstring::biblioteq_myqstring(const char *str):QString(str)
 {
 }
-
-/*
-** -- prepConfigString() --
-*/
 
 QString biblioteq_myqstring::prepConfigString
 (const QString &str,
@@ -34,10 +22,6 @@ QString biblioteq_myqstring::prepConfigString
 
   return mystr.trimmed();
 }
-
-/*
-** -- escapeString() --
-*/
 
 QString biblioteq_myqstring::escape(const QString &str,
 				    const bool caseinsensitive)
