@@ -1,0 +1,11 @@
+Architecture: amd64
+Depends: libpoppler-qt5-1 (>= 0.41), libpq5 (>= 5.8), libsqlite3-0 (>= 3.11), libyaz4 (>= 4.0)
+Installed-Size: 121304
+Maintainer: textbrowser@gmail.com
+Package: BiblioteQ
+Priority: optional
+Section: Education
+Version: 2018.01.30
+Description: BiblioteQ
+ Welcome to BiblioteQ!
+ A biblioteq.desktop file will also be installed in /usr/share/applications/.
