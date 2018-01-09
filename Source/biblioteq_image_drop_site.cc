@@ -12,10 +12,6 @@
 #include "biblioteq_book.h"
 #include "biblioteq_image_drop_site.h"
 
-/*
-** -- biblioteq_image_drop_site() --
-*/
-
 biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   QGraphicsView(parent)
 {
@@ -25,10 +21,6 @@ biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   m_imageFormat = "";
   setAcceptDrops(true);
 }
-
-/*
-** -- dragEnterEvent() --
-*/
 
 void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
@@ -62,10 +54,6 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 	event->acceptProposedAction();
     }
 }
-
-/*
-** -- dragMoveEvent() --
-*/
 
 void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
@@ -101,10 +89,6 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 	event->acceptProposedAction();
     }
 }
-
-/*
-** -- dropEvent() --
-*/
 
 void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 {
@@ -178,10 +162,6 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
     }
 }
 
-/*
-** -- keyPressEvent() --
-*/
-
 void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 {
   if(acceptDrops())
@@ -190,10 +170,6 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 	if(!scene()->selectedItems().isEmpty())
 	  clear();
 }
-
-/*
-** -- clear() --
-*/
 
 void biblioteq_image_drop_site::clear(void)
 {
@@ -204,19 +180,11 @@ void biblioteq_image_drop_site::clear(void)
   scene()->clearSelection();
 }
 
-/*
-** -- determineFormat() --
-*/
-
 QString biblioteq_image_drop_site::determineFormat
 (const QByteArray &bytes) const
 {
   return biblioteq_misc_functions::imageFormatGuess(bytes);
 }
-
-/*
-** -- determineFormat() --
-*/
 
 QString biblioteq_image_drop_site::determineFormat
 (const QString &filename) const
@@ -247,10 +215,6 @@ QString biblioteq_image_drop_site::determineFormat
   file.close();
   return imgf;
 }
-
-/*
-** -- loadFromData() --
-*/
 
 void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 {
@@ -287,10 +251,6 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 
   scene()->setSceneRect(scene()->itemsBoundingRect());
 }
-
-/*
-** -- mouseDoubleClickEvent() --
-*/
 
 void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 {
@@ -335,18 +295,10 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
   scene()->setSceneRect(scene()->itemsBoundingRect());
 }
 
-/*
-** -- setReadOnly() --
-*/
-
 void biblioteq_image_drop_site::setReadOnly(const bool readOnly)
 {
   setAcceptDrops(!readOnly);
 }
-
-/*
-** -- setImage() --
-*/
 
 void biblioteq_image_drop_site::setImage(const QImage &image)
 {
@@ -381,18 +333,10 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
-/*
-** -- dragLeaveEvent() --
-*/
-
 void biblioteq_image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
 {
   QGraphicsView::dragLeaveEvent(event);
 }
-
-/*
-** -- enableDoubleClickResize() --
-*/
 
 void biblioteq_image_drop_site::enableDoubleClickResize(const bool state)
 {

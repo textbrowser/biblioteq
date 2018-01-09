@@ -11,10 +11,6 @@
 #include "biblioteq_magazine.h"
 #include "biblioteq_sruResults.h"
 
-/*
-** -- biblioteq_sruresults() --
-*/
-
 biblioteq_sruresults::biblioteq_sruresults
 (QWidget *parent,
  const QList<QByteArray> &list,
@@ -102,18 +98,10 @@ biblioteq_sruresults::biblioteq_sruresults
   exec();
 }
 
-/*
-** -- ~biblioteq_sruresults() --
-*/
-
 biblioteq_sruresults::~biblioteq_sruresults()
 {
   m_records.clear();
 }
-
-/*
-** -- slotSelectRecord() --
-*/
 
 void biblioteq_sruresults::slotSelectRecord(void)
 {
@@ -123,10 +111,6 @@ void biblioteq_sruresults::slotSelectRecord(void)
 
   close();
 }
-
-/*
-** -- slotUpdateQueryText() --
-*/
 
 void biblioteq_sruresults::slotUpdateQueryText(void)
 {
@@ -177,28 +161,16 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
   m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_sruresults::closeEvent(QCloseEvent *e)
 {
   Q_UNUSED(e);
   slotClose();
 }
 
-/*
-** -- slotClose() --
-*/
-
 void biblioteq_sruresults::slotClose(void)
 {
   deleteLater();
 }
-
-/*
-** -- setGlobalFonts() --
-*/
 
 void biblioteq_sruresults::setGlobalFonts(const QFont &font)
 {
@@ -213,10 +185,6 @@ void biblioteq_sruresults::setGlobalFonts(const QFont &font)
   update();
 }
 
-/*
-** -- keyPressEvent() --
-*/
-
 void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
@@ -224,10 +192,6 @@ void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
 
   QDialog::keyPressEvent(event);
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_sruresults::changeEvent(QEvent *event)
 {

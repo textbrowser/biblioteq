@@ -18,10 +18,6 @@
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_pdfreader.h"
 
-/*
-** -- biblioteq_pdfreader() --
-*/
-
 biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 {
   m_ui.setupUi(this);
@@ -80,20 +76,12 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.contents->setVisible(false);
 }
 
-/*
-** -- ~biblioteq_pdfreader() --
-*/
-
 biblioteq_pdfreader::~biblioteq_pdfreader()
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   delete m_document;
 #endif
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_pdfreader::changeEvent(QEvent *event)
 {
@@ -112,19 +100,11 @@ void biblioteq_pdfreader::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_pdfreader::closeEvent(QCloseEvent *event)
 {
   QMainWindow::closeEvent(event);
   deleteLater();
 }
-
-/*
-** -- keyPressEvent() --
-*/
 
 void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
 {
@@ -133,10 +113,6 @@ void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
 
   QMainWindow::keyPressEvent(event);
 }
-
-/*
-** -- load() --
-*/
 
 void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 {
@@ -173,10 +149,6 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 #endif
 }
 
-/*
-** -- load() --
-*/
-
 void biblioteq_pdfreader::load(const QString &fileName)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
@@ -211,10 +183,6 @@ void biblioteq_pdfreader::load(const QString &fileName)
 #endif
 }
 
-/*
-** -- prepareContents() --
-*/
-
 void biblioteq_pdfreader::prepareContents(void)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
@@ -233,10 +201,6 @@ void biblioteq_pdfreader::prepareContents(void)
 #endif
 }
 
-/*
-** -- resizeEvent() --
-*/
-
 void biblioteq_pdfreader::resizeEvent(QResizeEvent *event)
 {
   if(m_ui.view_size->currentIndex() != 0)
@@ -244,10 +208,6 @@ void biblioteq_pdfreader::resizeEvent(QResizeEvent *event)
 
   QMainWindow::resizeEvent(event);
 }
-
-/*
-** -- setGlobalFonts() --
-*/
 
 void biblioteq_pdfreader::setGlobalFonts(const QFont &font)
 {
@@ -262,18 +222,10 @@ void biblioteq_pdfreader::setGlobalFonts(const QFont &font)
   update();
 }
 
-/*
-** -- showNormal() --
-*/
-
 void biblioteq_pdfreader::showNormal(void)
 {
   QMainWindow::showNormal();
 }
-
-/*
-** -- slotChangePageViewSize() --
-*/
 
 void biblioteq_pdfreader::slotChangePageViewSize(int value)
 {
@@ -281,28 +233,16 @@ void biblioteq_pdfreader::slotChangePageViewSize(int value)
   slotShowPage(m_ui.page->value());
 }
 
-/*
-** -- slotClose() --
-*/
-
 void biblioteq_pdfreader::slotClose(void)
 {
   close();
 }
-
-/*
-** -- slotContentsDoubleClicked() --
-*/
 
 void biblioteq_pdfreader::slotContentsDoubleClicked(QListWidgetItem *item)
 {
   if(item)
     m_ui.page->setValue(item->data(Qt::UserRole).toInt());
 }
-
-/*
-** -- slotPrint() --
-*/
 
 void biblioteq_pdfreader::slotPrint(void)
 {
@@ -395,10 +335,6 @@ void biblioteq_pdfreader::slotPrint(void)
 #endif
 }
 
-/*
-** -- slotSaveAs() --
-*/
-
 void biblioteq_pdfreader::slotSaveAs(void)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
@@ -443,18 +379,10 @@ void biblioteq_pdfreader::slotSaveAs(void)
 #endif
 }
 
-/*
-** -- slotShowContents() --
-*/
-
 void biblioteq_pdfreader::slotShowContents(bool state)
 {
   m_ui.contents->setVisible(state);
 }
-
-/*
-** -- slotShowPage() --
-*/
 
 void biblioteq_pdfreader::slotShowPage(int value)
 {
@@ -519,10 +447,6 @@ void biblioteq_pdfreader::slotShowPage(int value)
   Q_UNUSED(value);
 #endif
 }
-
-/*
-** -- slotSliderValueChanged() --
-*/
 
 void biblioteq_pdfreader::slotSliderValueChanged(int value)
 {

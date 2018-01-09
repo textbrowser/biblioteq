@@ -17,10 +17,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_generic_thread() --
-*/
-
 biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent):
   QThread(parent)
 {
@@ -31,10 +27,6 @@ biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent):
   setTerminationEnabled(true);
 }
 
-/*
-** -- ~biblioteq_generic_thread() --
-*/
-
 biblioteq_generic_thread::~biblioteq_generic_thread()
 {
   m_list.clear();
@@ -42,10 +34,6 @@ biblioteq_generic_thread::~biblioteq_generic_thread()
   m_outputListBool.clear();
   wait();
 }
-
-/*
-** -- run() --
-*/
 
 void biblioteq_generic_thread::run(void)
 {
@@ -179,36 +167,20 @@ void biblioteq_generic_thread::run(void)
     }
 }
 
-/*
-** -- getList() --
-*/
-
 QStringList biblioteq_generic_thread::getList(void) const
 {
   return m_list;
 }
-
-/*
-** -- getErrorStr() --
-*/
 
 QString biblioteq_generic_thread::getErrorStr(void) const
 {
   return m_errorStr;
 }
 
-/*
-** -- setType() --
-*/
-
 void biblioteq_generic_thread::setType(const int type)
 {
   m_type = type;
 }
-
-/*
-** -- setOutput() --
-*/
 
 void biblioteq_generic_thread::setOutputList(const QList<bool> &list)
 {
@@ -218,54 +190,31 @@ void biblioteq_generic_thread::setOutputList(const QList<bool> &list)
     m_outputListBool.append(list.at(i));
 }
 
-/*
-** -- setFilename() --
-*/
-
 void biblioteq_generic_thread::setFilename(const QString &filename)
 {
   m_filename = filename;
 }
 
-/*
-** -- setZ3950SearchString() --
-*/
-
-void biblioteq_generic_thread::setZ3950SearchString(const QString &z3950SearchStr)
+void biblioteq_generic_thread::setZ3950SearchString
+(const QString &z3950SearchStr)
 {
   m_z3950SearchStr = z3950SearchStr;
 }
-
-/*
-** -- getZ3950Results() --
-*/
 
 QStringList biblioteq_generic_thread::getZ3950Results(void) const
 {
   return m_z3950Results;
 }
 
-/*
-** -- getEType() --
-*/
-
 QString biblioteq_generic_thread::getEType(void) const
 {
   return m_eType;
 }
 
-/*
-** -- msleep() --
-*/
-
 void biblioteq_generic_thread::msleep(const int msecs)
 {
   QThread::msleep(msecs);
 }
-
-/*
-** -- setZ3950Name() --
-*/
 
 void biblioteq_generic_thread::setZ3950Name(const QString &name)
 {

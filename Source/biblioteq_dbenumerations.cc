@@ -8,10 +8,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_dbenumerations() --
-*/
-
 biblioteq_dbenumerations::biblioteq_dbenumerations(QWidget *parent):
   QMainWindow(parent)
 {
@@ -124,10 +120,6 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(QWidget *parent):
 #endif
 }
 
-/*
-** -- show() --
-*/
-
 void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 {
   bool wasVisible = isVisible();
@@ -160,10 +152,6 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
     }
 }
 
-/*
-** -- clear() --
-*/
-
 void biblioteq_dbenumerations::clear(void)
 {
   m_listData.clear();
@@ -178,18 +166,10 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.minimumDaysTable->clearSelection();
 }
 
-/*
-** -- slotClose() --
-*/
-
 void biblioteq_dbenumerations::slotClose(void)
 {
   close();
 }
-
-/*
-** -- populateWidgets()
-*/
 
 void biblioteq_dbenumerations::populateWidgets(void)
 {
@@ -372,10 +352,6 @@ void biblioteq_dbenumerations::populateWidgets(void)
   m_ui.bookBindingsList->setFocus();
 }
 
-/*
-** -- slotReload() --
-*/
-
 void biblioteq_dbenumerations::slotReload(void)
 {
   QHash<QWidget *, QStringList> listData;
@@ -394,10 +370,6 @@ void biblioteq_dbenumerations::slotReload(void)
 
   populateWidgets();
 }
-
-/*
-** -- slotAdd() --
-*/
 
 void biblioteq_dbenumerations::slotAdd(void)
 {
@@ -505,10 +477,6 @@ void biblioteq_dbenumerations::slotAdd(void)
     delete listItem;
 }
 
-/*
-** -- slotRemove() --
-*/
-
 void biblioteq_dbenumerations::slotRemove(void)
 {
   QListWidget *list = 0;
@@ -540,10 +508,6 @@ void biblioteq_dbenumerations::slotRemove(void)
     if(list->item(list->currentRow()))
       delete list->takeItem(list->currentRow());
 }
-
-/*
-** -- slotSave() --
-*/
 
 void biblioteq_dbenumerations::slotSave(void)
 {
@@ -821,10 +785,6 @@ void biblioteq_dbenumerations::slotSave(void)
     populateWidgets();
 }
 
-/*
-** -- changeEvent() --
-*/
-
 void biblioteq_dbenumerations::changeEvent(QEvent *event)
 {
   if(event)
@@ -841,10 +801,6 @@ void biblioteq_dbenumerations::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
-
-/*
-** -- closeEvent() --
-*/
 
 void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 {
@@ -869,10 +825,6 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 
   QMainWindow::closeEvent(event);
 }
-
-/*
-** -- saveData() --
-*/
 
 void biblioteq_dbenumerations::saveData
 (QHash<QWidget *, QStringList> &listData,

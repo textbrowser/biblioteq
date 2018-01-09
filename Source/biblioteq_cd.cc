@@ -19,10 +19,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_cd() --
-*/
-
 biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 			   const QString &oidArg,
 			   const int rowArg):
@@ -238,17 +234,9 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
-/*
-** -- ~biblioteq_cd() --
-*/
-
 biblioteq_cd::~biblioteq_cd()
 {
 }
-
-/*
-** -- slotGo() --
-*/
 
 void biblioteq_cd::slotGo(void)
 {
@@ -968,10 +956,6 @@ void biblioteq_cd::slotGo(void)
     }
 }
 
-/*
-** -- search() --
-*/
-
 void biblioteq_cd::search(const QString &field, const QString &value)
 {
   m_composer_action->setVisible(true);
@@ -1052,10 +1036,6 @@ void biblioteq_cd::search(const QString &field, const QString &value)
     }
 }
 
-/*
-** -- updateWindow() --
-*/
-
 void biblioteq_cd::updateWindow(const int state)
 {
   QString str = "";
@@ -1102,10 +1082,6 @@ void biblioteq_cd::updateWindow(const int state)
   setWindowTitle(str);
   cd.tracksButton->setEnabled(true);
 }
-
-/*
-** -- modify() --
-*/
 
 void biblioteq_cd::modify(const int state)
 {
@@ -1373,10 +1349,6 @@ void biblioteq_cd::modify(const int state)
   raise();
 }
 
-/*
-** -- insert() --
-*/
-
 void biblioteq_cd::insert(void)
 {
   slotReset();
@@ -1430,10 +1402,6 @@ void biblioteq_cd::insert(void)
   activateWindow();
   raise();
 }
-
-/*
-** -- slotPopulateTracksBrowser() --
-*/
 
 void biblioteq_cd::slotPopulateTracksBrowser(void)
 {
@@ -1624,10 +1592,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     trd.table->resizeColumnToContents(i);
 }
 
-/*
-** -- slotCloseTracksBrowser() --
-*/
-
 void biblioteq_cd::slotCloseTracksBrowser(void)
 {
   trd.table->setCurrentItem(0);
@@ -1635,10 +1599,6 @@ void biblioteq_cd::slotCloseTracksBrowser(void)
   trd.table->setRowCount(0);
   m_tracks_diag->close();
 }
-
-/*
-** -- slotInsertTrack() --
-*/
 
 void biblioteq_cd::slotInsertTrack(void)
 {
@@ -1738,18 +1698,10 @@ void biblioteq_cd::slotInsertTrack(void)
     trd.table->resizeColumnToContents(i);
 }
 
-/*
-** -- slotDeleteTrack() --
-*/
-
 void biblioteq_cd::slotDeleteTrack(void)
 {
   trd.table->removeRow(trd.table->currentRow());
 }
-
-/*
-** -- slotSaveTracks() --
-*/
 
 void biblioteq_cd::slotSaveTracks(void)
 {
@@ -1910,10 +1862,6 @@ void biblioteq_cd::slotSaveTracks(void)
 	slotComputeRuntime();
     }
 }
-
-/*
-** -- slotReset() --
-*/
 
 void biblioteq_cd::slotReset(void)
 {
@@ -2124,10 +2072,6 @@ void biblioteq_cd::slotReset(void)
     }
 }
 
-/*
-** -- closeEvent() --
-*/
-
 void biblioteq_cd::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -2148,18 +2092,10 @@ void biblioteq_cd::closeEvent(QCloseEvent *e)
   qmain->removeCD(this);
 }
 
-/*
-** -- slotCancel() --
-*/
-
 void biblioteq_cd::slotCancel(void)
 {
   close();
 }
-
-/*
-** -- slotPopulateCopiesEditor() --
-*/
 
 void biblioteq_cd::slotPopulateCopiesEditor(void)
 {
@@ -2173,10 +2109,6 @@ void biblioteq_cd::slotPopulateCopiesEditor(void)
        cd.quantity, font(), "CD", cd.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
-
-/*
-** -- slotShowUsers() --
-*/
 
 void biblioteq_cd::slotShowUsers(void)
 {
@@ -2195,17 +2127,9 @@ void biblioteq_cd::slotShowUsers(void)
     borrowerseditor->showUsers();
 }
 
-/*
-** -- slotQuery() --
-*/
-
 void biblioteq_cd::slotQuery(void)
 {
 }
-
-/*
-** -- slotComputeRuntime() --
-*/
 
 void biblioteq_cd::slotComputeRuntime(void)
 {
@@ -2237,10 +2161,6 @@ void biblioteq_cd::slotComputeRuntime(void)
     cd.runtime->setTime(QTime::fromString(sum.toString("hh:mm:ss"),
 					  "hh:mm:ss"));
 }
-
-/*
-** -- slotPrint() --
-*/
 
 void biblioteq_cd::slotPrint(void)
 {
@@ -2286,10 +2206,6 @@ void biblioteq_cd::slotPrint(void)
   m_html += "</html>";
   print(this);
 }
-
-/*
-** -- slotSelectImage() --
-*/
 
 void biblioteq_cd::slotSelectImage(void)
 {
@@ -2356,10 +2272,6 @@ void biblioteq_cd::slotSelectImage(void)
     }
 }
 
-/*
-** -- duplicate() --
-*/
-
 void biblioteq_cd::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
@@ -2370,10 +2282,6 @@ void biblioteq_cd::duplicate(const QString &p_oid, const int state)
   setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
   m_engWindowTitle = "Create";
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_cd::changeEvent(QEvent *event)
 {
@@ -2392,10 +2300,6 @@ void biblioteq_cd::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
-
-/*
-** -- slotPublicationDateEnabled() --
-*/
 
 void biblioteq_cd::slotPublicationDateEnabled(bool state)
 {

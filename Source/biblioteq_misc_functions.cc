@@ -21,10 +21,6 @@ extern biblioteq *qmain;
 ** As of SQLite 3.5.9, users are not supported.
 */
 
-/*
-** -- userExists() --
-*/
-
 bool biblioteq_misc_functions::userExists(const QString &userid,
 					  const QSqlDatabase &db,
 					  QString &errorstr)
@@ -56,10 +52,6 @@ bool biblioteq_misc_functions::userExists(const QString &userid,
 
   return exists;
 }
-
-/*
-** -- getAbstractInfo() --
-*/
 
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
@@ -96,10 +88,6 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 
   return str;
 }
-
-/*
-** -- getImage() --
-*/
 
 QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QString &which,
@@ -145,10 +133,6 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
 
   return image;
 }
-
-/*
-** -- grantPrivs() --
-*/
 
 void biblioteq_misc_functions::grantPrivs(const QString &userid,
 					  const QString &roles,
@@ -211,10 +195,6 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
     errorstr = query.lastError().text();
 }
 
-/*
-** -- revokeAll() --
-*/
-
 void biblioteq_misc_functions::revokeAll(const QString &userid,
 					 const QSqlDatabase &db,
 					 QString &errorstr)
@@ -264,10 +244,6 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
 	}
     }
 }
-
-/*
-** -- DBAccount() --
-*/
 
 void biblioteq_misc_functions::DBAccount(const QString &userid,
 					 const QSqlDatabase &db,
@@ -426,10 +402,6 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
     }
 }
 
-/*
-** -- savePassword() --
-*/
-
 void biblioteq_misc_functions::savePassword(const QString &userid,
 					    const QSqlDatabase &db,
 					    const QString &password,
@@ -450,10 +422,6 @@ void biblioteq_misc_functions::savePassword(const QString &userid,
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
 }
-
-/*
-** -- getReservedItems() --
-*/
 
 QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
 						       const QSqlDatabase &db,
@@ -584,10 +552,6 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
   return list;
 }
 
-/*
-** -- getMemberMatch() --
-*/
-
 bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
 					      const QString &memberid,
 					      const QSqlDatabase &db,
@@ -621,10 +585,6 @@ bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
 
   return exists;
 }
-
-/*
-** -- getAvailability() --
-*/
 
 QString biblioteq_misc_functions::getAvailability(const QString &oid,
 						  const QSqlDatabase &db,
@@ -678,10 +638,6 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
   return str;
 }
 
-/*
-** -- getColumnString() --
-*/
-
 QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 						  const int row,
 						  const int column)
@@ -696,10 +652,6 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
   else
     return QString("");
 }
-
-/*
-** -- getColumnString() --
-*/
 
 QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 						  const int row,
@@ -730,10 +682,6 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
   return str;
 }
 
-/*
-** -- getColumnNumber() --
-*/
-
 int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
 					      const QString &columnName)
 {
@@ -761,10 +709,6 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
   return num;
 }
 
-/*
-** -- updateColumn() --
-*/
-
 void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 					    const int row, int column,
 					    const QString &value)
@@ -785,10 +729,6 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
   if(sortingEnabled)
     table->setSortingEnabled(true);
 }
-
-/*
-** -- isCheckedOut() --
-*/
 
 bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 					    const QString &oid,
@@ -819,10 +759,6 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 
   return isCheckedOut;
 }
-
-/*
-** -- isCopyCheckedOut() --
-*/
 
 bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 						const QString &copyid,
@@ -857,10 +793,6 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
   return isCheckedOut;
 }
 
-/*
-** -- saveQuantity() --
-*/
-
 void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
 					    const QString &oid,
 					    const int quantity,
@@ -891,10 +823,6 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 }
 
-/*
-** -- getMaxCopyNumber() --
-*/
-
 int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 					       const QString &oid,
 					       const QString &itemTypeArg,
@@ -924,10 +852,6 @@ int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 
   return copy_number;
 }
-
-/*
-** -- isCopyAvailable() --
-*/
 
 bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
 					       const QString &oid,
@@ -974,10 +898,6 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
 
   return isAvailable;
 }
-
-/*
-** -- getItemsReservedCounts() --
-*/
 
 QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
 (const QSqlDatabase &db,
@@ -1054,10 +974,6 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
   return counts;
 }
 
-/*
-** -- getRoles() --
-*/
-
 QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
 					   const QString &username,
 					   QString &errorstr)
@@ -1087,10 +1003,6 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
 
   return roles;
 }
-
-/*
-** -- getOID() --
-*/
 
 QString biblioteq_misc_functions::getOID(const QString &idArg,
 					 const QString &itemTypeArg,
@@ -1147,10 +1059,6 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   return oid;
 }
-
-/*
-** -- createInitialCopies() --
-*/
 
 void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 						   const int numCopies,
@@ -1247,10 +1155,6 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
       }
 }
 
-/*
-** -- getMemberName() --
-*/
-
 QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
 						const QString &memberid,
 						QString &errorstr)
@@ -1278,10 +1182,6 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
   return str;
 }
 
-/*
-** -- highlightWidget() --
-*/
-
 void biblioteq_misc_functions::highlightWidget(QWidget *widget,
 					       const QColor &color)
 {
@@ -1294,10 +1194,6 @@ void biblioteq_misc_functions::highlightWidget(QWidget *widget,
   pal.setColor(widget->backgroundRole(), color);
   widget->setPalette(pal);
 }
-
-/*
-** -- sqliteQuerySize() --
-*/
 
 int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
 					      const QSqlDatabase &db,
@@ -1328,10 +1224,6 @@ int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
 
   return count;
 }
-
-/*
-** -- sqliteQuerySize() --
-*/
 
 int biblioteq_misc_functions::sqliteQuerySize
 (const QString &querystr,
@@ -1369,10 +1261,6 @@ int biblioteq_misc_functions::sqliteQuerySize
   return count;
 }
 
-/*
-** -- center() --
-*/
-
 void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
 {
   if(!child || !parent)
@@ -1396,10 +1284,6 @@ void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
 
   child->move(X, Y);
 }
-
-/*
-** -- hideAdminFields() --
-*/
 
 void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 					       const QString &roles)
@@ -1445,10 +1329,6 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	}
 }
 
-/*
-** -- isRequested() --
-*/
-
 bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
 					   const QString &oid,
 					   const QString &itemTypeArg,
@@ -1484,10 +1364,6 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
   return isRequested;
 }
 
-/*
-** -- getLocations() --
-*/
-
 QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
 						   const QString &type,
 						   QString &errorstr)
@@ -1520,10 +1396,6 @@ QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
   return locations;
 }
 
-/*
-** -- getLocations() --
-*/
-
 QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
 (const QSqlDatabase &db,
  QString &errorstr)
@@ -1550,10 +1422,6 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
   return locations;
 }
 
-/*
-** -- getMonetaryUnits() --
-*/
-
 QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
 						       QString &errorstr)
 {
@@ -1576,10 +1444,6 @@ QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
 
   return monetary_units;
 }
-
-/*
-** -- getLanguages() --
-*/
 
 QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
 						   QString &errorstr)
@@ -1604,10 +1468,6 @@ QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
   return languages;
 }
 
-/*
-** -- getCDFormats() --
-*/
-
 QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
 						   QString &errorstr)
 {
@@ -1630,10 +1490,6 @@ QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
 
   return formats;
 }
-
-/*
-** -- get DVDRatings() --
-*/
 
 QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
 						    QString &errorstr)
@@ -1658,10 +1514,6 @@ QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
   return ratings;
 }
 
-/*
-** -- getDVDAspectRatios() --
-*/
-
 QStringList biblioteq_misc_functions::getDVDAspectRatios
 (const QSqlDatabase &db, QString &errorstr)
 {
@@ -1684,10 +1536,6 @@ QStringList biblioteq_misc_functions::getDVDAspectRatios
 
   return aspectratios;
 }
-
-/*
-** -- getDVDRegions() --
-*/
 
 QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
 						    QString &errorstr)
@@ -1712,10 +1560,6 @@ QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
   return regions;
 }
 
-/*
-** -- getMinimumDays() --
-*/
-
 int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 					     const QString &type,
 					     QString &errorstr)
@@ -1737,10 +1581,6 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 
   return minimumdays;
 }
-
-/*
-** -- getMinimumDays() --
-*/
 
 QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 						     QString &errorstr)
@@ -1790,10 +1630,6 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   return minimumdays;
 }
 
-/*
-** -- getVideoGameRatings() --
-*/
-
 QStringList biblioteq_misc_functions::getVideoGameRatings
 (const QSqlDatabase &db, QString &errorstr)
 {
@@ -1817,10 +1653,6 @@ QStringList biblioteq_misc_functions::getVideoGameRatings
   return ratings;
 }
 
-/*
-** -- getVideoGamePlatforms() --
-*/
-
 QStringList biblioteq_misc_functions::getVideoGamePlatforms
 (const QSqlDatabase &db, QString &errorstr)
 {
@@ -1843,10 +1675,6 @@ QStringList biblioteq_misc_functions::getVideoGamePlatforms
 
   return platforms;
 }
-
-/*
-** -- getSqliteUniqueId() --
-*/
 
 qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 						   QString &errorstr)
@@ -1880,10 +1708,6 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 
   return value;
 }
-
-/*
-** -- hasMemberExpired() --
-*/
 
 bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
 						const QString &memberid,
@@ -1932,19 +1756,11 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
   return expired;
 }
 
-/*
-** -- updateSQLiteDatabase() --
-*/
-
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 {
   if(db.driverName() != "QSQLITE")
     return;
 }
-
-/*
-** -- setRole() --
-*/
 
 void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
 				       QString &errorstr,
@@ -1993,10 +1809,6 @@ void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 }
 
-/*
-** -- isGnome() --
-*/
-
 bool biblioteq_misc_functions::isGnome(void)
 {
   QByteArray session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
@@ -2006,10 +1818,6 @@ bool biblioteq_misc_functions::isGnome(void)
   else
     return false;
 }
-
-/*
-** -- exportPhotographs() --
-*/
 
 void biblioteq_misc_functions::exportPhotographs
 (const QSqlDatabase &db,
@@ -2085,10 +1893,6 @@ void biblioteq_misc_functions::exportPhotographs
 	}
     }
 }
-
-/*
-** -- exportPhotographs() --
-*/
 
 void biblioteq_misc_functions::exportPhotographs
 (const QSqlDatabase &db,
@@ -2191,10 +1995,6 @@ void biblioteq_misc_functions::exportPhotographs
     }
 }
 
-/*
-** -- getBookBindingTypes() --
-*/
-
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {
@@ -2217,10 +2017,6 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
 
   return types;
 }
-
-/*
-** -- dnt() --
-*/
 
 bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 				   const QString &memberid,
@@ -2249,10 +2045,6 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 
   return dnt;
 }
-
-/*
-** -- imageFormatGuess() --
-*/
 
 QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 {

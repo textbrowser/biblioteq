@@ -15,10 +15,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** -- biblioteq_journal() --
-*/
-
 biblioteq_journal::biblioteq_journal(QMainWindow *parent,
 				     const QString &oidArg,
 				     const int rowArg):
@@ -37,26 +33,14 @@ biblioteq_journal::biblioteq_journal(QMainWindow *parent,
 	  SLOT(slotCancel(void)));
 }
 
-/*
-** -- ~biblioteq_journal() --
-*/
-
 biblioteq_journal::~biblioteq_journal()
 {
 }
-
-/*
-** -- slotCancel() --
-*/
 
 void biblioteq_journal::slotCancel(void)
 {
   close();
 }
-
-/*
-** -- closeEvent() --
-*/
 
 void biblioteq_journal::closeEvent(QCloseEvent *e)
 {
@@ -77,10 +61,6 @@ void biblioteq_journal::closeEvent(QCloseEvent *e)
 
   qmain->removeJournal(this);
 }
-
-/*
-** -- changeEvent() --
-*/
 
 void biblioteq_journal::changeEvent(QEvent *event)
 {
