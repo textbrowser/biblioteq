@@ -38,4 +38,4 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/DEBIAN biblioteq-debian/.
 cp -r /usr/local/biblioteq biblioteq-debian/usr/local/.
-dpkg-deb --build biblioteq-debian BiblioteQ-2018.01.30.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2018.01.30.deb
