@@ -1193,7 +1193,7 @@ ALTER TABLE photograph ADD accession_number TEXT;
 ALTER TABLE photograph_collection ADD accession_number TEXT;
 ALTER TABLE videogame ADD accession_number TEXT;
 
-/* Release 2018.01.01 */
+/* Release 2018.02.01 */
 
 CREATE TABLE grey_literature
 (
