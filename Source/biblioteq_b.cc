@@ -3890,7 +3890,7 @@ void biblioteq::slotSaveDnt(bool state)
   query.bindValue(1, m_db.userName());
   query.exec();
 
-  if(query.lastError().isValid())
+  if(!query.lastError().text().toLower().contains("duplicate"))
     addError(QString(tr("Database Error")),
 	     QString(tr("Unable to insert into member_history_dnt for "
 			"member %1.").arg(m_db.userName())),
