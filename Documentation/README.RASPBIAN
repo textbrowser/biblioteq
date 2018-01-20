@@ -7,7 +7,6 @@ cd ~/biblioteq.d
 qmake -o Makefile biblioteq.arm.pro && make -j 4
 sudo cp -p ./BiblioteQ /usr/local/biblioteq/.
 sudo cp -p ./Icons/book.png /usr/local/biblioteq/.
-sudo cp -p ./Qt/qt.conf /usr/local/biblioteq/.
 sudo cp -p ./SQL/* /usr/local/biblioteq/SQL/.
 sudo cp -p ./Translations/*.qm /usr/local/biblioteq/Translations/.
 sudo cp -p ./biblioteq.conf /usr/local/biblioteq/.
