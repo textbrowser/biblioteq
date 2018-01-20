@@ -1,6 +1,6 @@
 Architecture: armhf
 Depends: libpoppler-qt4-4 (>= 0.48), libpq5 (>= 5.8), libqt4-network (>= 4.8.7), libqt4-sql (>= 4.8.7), libqtcore4 (>= 4.8.7), libqtgui4 (>= 4.8.7), libsqlite3-0 (>= 3.11), libyaz4 (>= 4.0)
-Installed-Size: 18088
+Installed-Size: 18084
 Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
