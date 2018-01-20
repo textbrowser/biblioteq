@@ -35,7 +35,7 @@ Preparing BiblioteQ-x.deb:
 cd
 mkdir -p biblioteq-debian/usr/local
 mkdir -p biblioteq-debian/usr/share/applications
-cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
+cp -p ./biblioteq.d/biblioteq.qt5.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/DEBIAN biblioteq-debian/.
 cp -r /usr/local/biblioteq biblioteq-debian/usr/local/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2018.01.30.deb
