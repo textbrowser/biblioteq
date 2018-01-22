@@ -23,17 +23,11 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 						     const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
-  QMenu *menu = 0;
-  QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-	      "[0-9]");
-  QValidator *validator1 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
+  QMenu *menu = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
@@ -42,13 +36,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  m_oid = oidArg;
-  m_row = rowArg;
   m_isQueryEnabled = false;
+  m_oid = oidArg;
   m_parentWid = parentArg;
-  m_oldq = biblioteq_misc_functions::getColumnString
-    (qmain->getUI().table, m_row,
-     qmain->getUI().table->columnNumber("Quantity")).toInt();
+  m_row = rowArg;
   grey_literature.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -173,9 +164,9 @@ void biblioteq_grey_literature::slotSelectImage(void)
 void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
+  m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Grey Literature Entry"));
-  m_engWindowTitle = "Create";
 }
 
 void biblioteq_grey_literature::changeEvent(QEvent *event)
