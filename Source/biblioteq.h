@@ -31,6 +31,7 @@
 #include "biblioteq_dbenumerations.h"
 #include "biblioteq_dvd.h"
 #include "biblioteq_generic_thread.h"
+#include "biblioteq_grey_literature.h"
 #include "biblioteq_magazine.h"
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_myqstring.h"
@@ -242,6 +243,7 @@ class biblioteq: public QMainWindow
   void removeBook(biblioteq_book *book);
   void removeCD(biblioteq_cd *cd);
   void removeDVD(biblioteq_dvd *dvd);
+  void removeGreyLiterature(biblioteq_grey_literature *gl);
   void removeJournal(biblioteq_journal *journal);
   void removeMagazine(biblioteq_magazine *magazine);
   void removePhotographCollection(biblioteq_photographcollection *pc);
@@ -249,6 +251,7 @@ class biblioteq: public QMainWindow
   void replaceBook(const QString &id, biblioteq_book *book);
   void replaceCD(const QString &id, biblioteq_cd *cd);
   void replaceDVD(const QString &id, biblioteq_dvd *dvd);
+  void replaceGreyLiterature(const QString &id, biblioteq_grey_literature *gl);
   void replaceJournal(const QString &id, biblioteq_journal *journal);
   void replaceMagazine(const QString &id, biblioteq_magazine *magazine);
   void replacePhotographCollection(const QString &id,

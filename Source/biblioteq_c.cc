@@ -124,6 +124,15 @@ void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
 
 void biblioteq::slotInsertGreyLiterature(void)
 {
+  QString id("");
+  biblioteq_grey_literature *gl = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  gl = new(std::nothrow) biblioteq_grey_literature(this, id, -1);
+
+  if(gl)
+    gl->insert();
 }
 
 void biblioteq::slotGreyLiteratureSearch(void)

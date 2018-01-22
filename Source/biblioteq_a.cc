@@ -1453,20 +1453,21 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  int i = 0;
-  bool error = false;
+  QModelIndex index;
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
+  biblioteq_book *book = 0;
   biblioteq_cd *cd = 0;
   biblioteq_dvd *dvd = 0;
-  QModelIndex index;
-  biblioteq_main_table *table = ui.table;
-  biblioteq_book *book = 0;
+  biblioteq_grey_literature *gl = 0;
   biblioteq_journal *journal = 0;
   biblioteq_magazine *magazine = 0;
-  biblioteq_videogame *videogame = 0;
+  biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = 0;
-  QModelIndexList list = table->selectionModel()->selectedRows();
+  biblioteq_videogame *videogame = 0;
+  bool error = false;
+  int i = 0;
 
   if(list.isEmpty())
     {
@@ -1489,6 +1490,7 @@ void biblioteq::slotModify(void)
 	return;
       }
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
   foreach(index, list)
@@ -1498,15 +1500,35 @@ void biblioteq::slotModify(void)
 	(table, i, table->columnNumber("MYOID"));
       type = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("Type"));
+      book = 0;
       cd = 0;
       dvd = 0;
-      book = 0;
+      gl = 0;
       journal = 0;
       magazine = 0;
-      videogame = 0;
       photograph = 0;
+      videogame = 0;
 
-      if(type.toLower() == "cd")
+      if(type.toLower() == "book")
+	{
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	    {
+	      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
+
+	      if(b && b->getID() == oid)
+		{
+		  book = b;
+		  break;
+		}
+	    }
+
+	  if(!book)
+	    book = new(std::nothrow) biblioteq_book(this, oid, i);
+
+	  if(book)
+	    book->modify(EDITABLE);
+	}
+      else if(type.toLower() == "cd")
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
@@ -1544,24 +1566,25 @@ void biblioteq::slotModify(void)
 	  if(dvd)
 	    dvd->modify(EDITABLE);
 	}
-      else if(type.toLower() == "book")
+      else if(type.toLower() == "grey literature")
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
+	      biblioteq_grey_literature *g =
+		qobject_cast<biblioteq_grey_literature *> (w);
 
-	      if(b && b->getID() == oid)
+	      if(g && g->getID() == oid)
 		{
-		  book = b;
+		  gl = g;
 		  break;
 		}
 	    }
 
-	  if(!book)
-	    book = new(std::nothrow) biblioteq_book(this, oid, i);
+	  if(!gl)
+	    gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
 
-	  if(book)
-	    book->modify(EDITABLE);
+	  if(gl)
+	    gl->modify(EDITABLE);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -1656,6 +1679,7 @@ void biblioteq::slotModify(void)
     }
 
   list.clear();
+  QApplication::restoreOverrideCursor();
 
   if(error)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
@@ -1672,6 +1696,7 @@ void biblioteq::slotViewDetails(void)
   biblioteq_book *book = 0;
   biblioteq_cd *cd = 0;
   biblioteq_dvd *dvd = 0;
+  biblioteq_grey_literature *gl = 0;
   biblioteq_journal *journal = 0;
   biblioteq_magazine *magazine = 0;
   biblioteq_main_table *table = ui.table;
@@ -1700,6 +1725,7 @@ void biblioteq::slotViewDetails(void)
 	return;
       }
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
   foreach(index, list)
@@ -1712,12 +1738,32 @@ void biblioteq::slotViewDetails(void)
       book = 0;
       cd = 0;
       dvd = 0;
+      gl = 0;
       journal = 0;
       magazine = 0;
       photograph = 0;
       videogame = 0;
 
-      if(type.toLower() == "cd")
+      if(type.toLower() == "book")
+	{
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	    {
+	      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
+
+	      if(b && b->getID() == oid)
+		{
+		  book = b;
+		  break;
+		}
+	    }
+
+	  if(!book)
+	    book = new(std::nothrow) biblioteq_book(this, oid, i);
+
+	  if(book)
+	    book->modify(VIEW_ONLY);
+	}
+      else if(type.toLower() == "cd")
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
@@ -1755,24 +1801,25 @@ void biblioteq::slotViewDetails(void)
 	  if(dvd)
 	    dvd->modify(VIEW_ONLY);
 	}
-      else if(type.toLower() == "book")
+      else if(type.toLower() == "grey literature")
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
+	      biblioteq_grey_literature *g =
+		qobject_cast<biblioteq_grey_literature *> (w);
 
-	      if(b && b->getID() == oid)
+	      if(g && g->getID() == oid)
 		{
-		  book = b;
+		  gl = g;
 		  break;
 		}
 	    }
 
-	  if(!book)
-	    book = new(std::nothrow) biblioteq_book(this, oid, i);
+	  if(!gl)
+	    gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
 
-	  if(book)
-	    book->modify(VIEW_ONLY);
+	  if(gl)
+	    gl->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -1867,6 +1914,7 @@ void biblioteq::slotViewDetails(void)
     }
 
   list.clear();
+  QApplication::restoreOverrideCursor();
 
   if(error)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
@@ -4282,8 +4330,15 @@ void biblioteq::slotDisconnect(void)
   if(db_enumerations->isVisible() && !db_enumerations->close())
     return;
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   if(!emptyContainers())
-    return;
+    {
+      QApplication::restoreOverrideCursor();
+      return;
+    }
+  else
+    QApplication::restoreOverrideCursor();
 
   m_roles = "";
   m_pages = 0;
@@ -5569,6 +5624,19 @@ void biblioteq::replaceBook(const QString &id, biblioteq_book *book)
   Q_UNUSED(book);
 }
 
+void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
+{
+  if(gl)
+    gl->deleteLater();
+}
+
+void biblioteq::replaceGreyLiterature
+(const QString &id, biblioteq_grey_literature *gl)
+{
+  Q_UNUSED(gl);
+  Q_UNUSED(id);
+}
+
 void biblioteq::removeJournal(biblioteq_journal *journal)
 {
   if(journal)
@@ -5626,14 +5694,19 @@ void biblioteq::updateItemWindows(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
+      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
       biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
       biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
-      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+      biblioteq_grey_literature *gl = qobject_cast
+	<biblioteq_grey_literature *> (w);
       biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
       biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
-      biblioteq_photographcollection *photograph = qobject_cast
-	<biblioteq_photographcollection *> (w);
+      biblioteq_photographcollection *photograph =
+	qobject_cast<biblioteq_photographcollection *> (w);
       biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
+
+      if(book)
+	book->updateWindow(EDITABLE);
 
       if(cd)
 	cd->updateWindow(EDITABLE);
@@ -5641,8 +5714,8 @@ void biblioteq::updateItemWindows(void)
       if(dvd)
 	dvd->updateWindow(EDITABLE);
 
-      if(book)
-	book->updateWindow(EDITABLE);
+      if(gl)
+	gl->updateWindow(EDITABLE);
 
       if(journal)
 	journal->updateWindow(EDITABLE);
@@ -5665,14 +5738,24 @@ bool biblioteq::emptyContainers(void)
 {
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
+      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
       biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
       biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
-      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+      biblioteq_grey_literature *gl =
+	qobject_cast<biblioteq_grey_literature *> (w);
       biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
       biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
-      biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
       biblioteq_photographcollection *photograph =
 	qobject_cast<biblioteq_photographcollection *> (w);
+      biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
+
+      if(book)
+	{
+	  if(book->isVisible() && !book->close())
+	    return false;
+	  else
+	    book->deleteLater();
+	}
 
       if(cd)
 	{
@@ -5690,12 +5773,12 @@ bool biblioteq::emptyContainers(void)
 	    dvd->deleteLater();
 	}
 
-      if(book)
+      if(gl)
 	{
-	  if(book->isVisible() && !book->close())
+	  if(gl->isVisible() && !gl->close())
 	    return false;
 	  else
-	    book->deleteLater();
+	    gl->deleteLater();
 	}
 
       if(journal)
@@ -8934,20 +9017,21 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  int i = 0;
-  bool error = false;
+  QModelIndex index;
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
+  biblioteq_book *book = 0;
   biblioteq_cd *cd = 0;
   biblioteq_dvd *dvd = 0;
-  QModelIndex index;
-  biblioteq_main_table *table = ui.table;
-  biblioteq_book *book = 0;
+  biblioteq_grey_literature *gl = 0;
   biblioteq_journal *journal = 0;
   biblioteq_magazine *magazine = 0;
-  biblioteq_videogame *video_game = 0;
+  biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = 0;
-  QModelIndexList list = table->selectionModel()->selectedRows();
+  biblioteq_videogame *video_game = 0;
+  bool error = false;
+  int i = 0;
 
   if(list.isEmpty())
     {
@@ -8973,6 +9057,7 @@ void biblioteq::slotDuplicate(void)
 
   QString id("");
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
   foreach(index, list)
@@ -8985,7 +9070,14 @@ void biblioteq::slotDuplicate(void)
       m_idCt += 1;
       id = QString("duplicate_%1").arg(m_idCt);
 
-      if(type.toLower() == "cd")
+      if(type.toLower() == "book")
+	{
+	  book = new(std::nothrow) biblioteq_book(this, oid, i);
+
+	  if(book)
+	    book->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "cd")
 	{
 	  cd = new(std::nothrow) biblioteq_cd(this, oid, i);
 
@@ -8999,12 +9091,12 @@ void biblioteq::slotDuplicate(void)
 	  if(dvd)
 	    dvd->duplicate(id, EDITABLE);
 	}
-      else if(type.toLower() == "book")
+      else if(type.toLower() == "grey literature")
 	{
-	  book = new(std::nothrow) biblioteq_book(this, oid, i);
+	  gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
 
-	  if(book)
-	    book->duplicate(id, EDITABLE);
+	  if(gl)
+	    gl->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -9046,6 +9138,7 @@ void biblioteq::slotDuplicate(void)
     }
 
   list.clear();
+  QApplication::restoreOverrideCursor();
 
   if(error)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
