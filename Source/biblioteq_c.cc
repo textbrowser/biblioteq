@@ -10,6 +10,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_book.h"
+#include "biblioteq_grey_literature.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 
@@ -137,4 +138,32 @@ void biblioteq::slotInsertGreyLiterature(void)
 
 void biblioteq::slotGreyLiteratureSearch(void)
 {
+  biblioteq_grey_literature *gl = 0;
+
+  foreach(QWidget *w, QApplication::topLevelWidgets())
+    {
+      biblioteq_grey_literature *g = qobject_cast
+	<biblioteq_grey_literature *> (w);
+
+      if(g && g->getID() == "search")
+	{
+	  gl = g;
+	  break;
+	}
+    }
+
+  if(!gl)
+    {
+      gl = new(std::nothrow) biblioteq_grey_literature(this, "search", -1);
+
+      if(gl)
+	gl->search();
+    }
+
+  if(gl)
+    {
+      gl->showNormal();
+      gl->activateWindow();
+      gl->raise();
+    }
 }

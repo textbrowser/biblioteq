@@ -2087,6 +2087,7 @@ void biblioteq::slotDelete(void)
 	itemType = itemType.replace(" ", "_");
 
       if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
+	 itemType == "grey_literature" ||
 	 itemType == "journal" || itemType == "magazine" ||
 	 itemType == "photograph_collection" || itemType == "videogame")
 	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").
