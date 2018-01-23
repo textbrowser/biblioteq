@@ -3553,6 +3553,39 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	}
+      else if(type == "Grey Literature")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ID"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("File Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 Files(s)")).arg(tmpstr);
+
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Image Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 Images(s)")).arg(tmpstr);
+
+	  summary += "<br>";
+	}
       else if(type == "Journal" || type == "Magazine")
 	{
 	  summary += "<b>" +
