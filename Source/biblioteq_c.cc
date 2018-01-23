@@ -167,3 +167,16 @@ void biblioteq::slotGreyLiteratureSearch(void)
       gl->raise();
     }
 }
+
+void biblioteq::greyLiteratureSearch
+(const QString &field, const QString &value)
+{
+  biblioteq_grey_literature *gl =
+    new(std::nothrow) biblioteq_grey_literature(this, "", -1);
+
+  if(gl)
+    {
+      gl->search(field, value);
+      gl->deleteLater();
+    }
+}

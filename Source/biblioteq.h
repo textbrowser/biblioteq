@@ -237,6 +237,7 @@ class biblioteq: public QMainWindow
   void bookSearch(const QString &field, const QString &value);
   void cdSearch(const QString &field, const QString &value);
   void dvdSearch(const QString &field, const QString &value);
+  void greyLiteratureSearch(const QString &field, const QString &value);
   void journSearch(const QString &field, const QString &value);
   void magSearch(const QString &field, const QString &value);
   void pcSearch(const QString &field, const QString &value);

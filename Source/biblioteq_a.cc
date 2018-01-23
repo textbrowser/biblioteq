@@ -5343,7 +5343,6 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 				      typefilter == "All Available" ||
 				      typefilter == "Books" ||
 				      typefilter == "DVDs" ||
-				      typefilter == "Grey Literature" ||
 				      typefilter == "Journals" ||
 				      typefilter == "Magazines" ||
 				      typefilter == "Music CDs" ||
@@ -5953,7 +5952,20 @@ void biblioteq::slotInsertVideoGame(void)
 
 void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
-  if(itemType == "cd")
+  if(itemType == "book")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+
+	  if(book && book->getID() == oid)
+	    {
+	      removeBook(book);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "cd")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
@@ -5979,15 +5991,16 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	    }
 	}
     }
-  else if(itemType == "book")
+  else if(itemType == "greyliterature")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+	  biblioteq_grey_literature *gl =
+	    qobject_cast<biblioteq_grey_literature *> (w);
 
-	  if(book && book->getID() == oid)
+	  if(gl && gl->getID() == oid)
 	    {
-	      removeBook(book);
+	      removeGreyLiterature(gl);
 	      break;
 	    }
 	}
@@ -6363,7 +6376,20 @@ void biblioteq::slotVideoGameSearch(void)
 void biblioteq::updateRows(const QString &oid, const int row,
 			   const QString &itemType)
 {
-  if(itemType == "cd")
+  if(itemType == "book")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+
+	  if(book && book->getID() == oid)
+	    {
+	      book->updateRow(row);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "cd")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
@@ -6389,15 +6415,16 @@ void biblioteq::updateRows(const QString &oid, const int row,
 	    }
 	}
     }
-  else if(itemType == "book")
+  else if(itemType == "greyliterature")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+	  biblioteq_grey_literature *gl =
+	    qobject_cast<biblioteq_grey_literature *> (w);
 
-	  if(book && book->getID() == oid)
+	  if(gl && gl->getID() == oid)
 	    {
-	      book->updateRow(row);
+	      gl->updateRow(row);
 	      break;
 	    }
 	}
