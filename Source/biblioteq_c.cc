@@ -67,6 +67,10 @@ void biblioteq::slotOtherOptionsSaved(void)
     else if(qobject_cast<biblioteq_dvd *> (widget))
       qobject_cast<biblioteq_dvd *> (widget)->setPublicationDateFormat
 	(m_otheroptions->publicationDateFormat("dvds"));
+    else if(qobject_cast<biblioteq_grey_literature *> (widget))
+      qobject_cast<biblioteq_grey_literature *> (widget)->
+	setPublicationDateFormat(m_otheroptions->
+				 publicationDateFormat("greyliterature"));
     else if(qobject_cast<biblioteq_journal *> (widget))
       qobject_cast<biblioteq_journal *> (widget)->setPublicationDateFormat
 	(m_otheroptions->publicationDateFormat("journals"));
