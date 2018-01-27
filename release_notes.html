@@ -25,11 +25,28 @@
 	</div>
 	<div class="margin-news">
 	  <h2>Recent News</h2>
-	  <p><Strong>[08/19/2017]</strong> Released version 2017.08.19. <a href="release_notes.html"><strong>More…</strong></a></p>
+	  <p><Strong>[03/01/2018]</strong> Released version 2018.03.01. <a href="release_notes.html"><strong>More…</strong></a></p>
 	</div>
       </div>
       <div id="colTwo">
 	<h2>Release Notes</h2>
+	<p>March 1, 2018.</p>
+	<ul>
+	  <li>Allow cancellation of SRU queries.</li>
+	  <li>Avoid logging duplicate and unique errors on INSERT to member_history_dnt.</li>
+	  <li>Debian AMD64 package.</li>
+	  <li>Inspect potential zero pointers.</li>
+	  <li>Maintain field values after a general search has completed.</li>
+	  <li>Multiple-word generic searches.</li>
+	  <li>Native menu bar widgets.</li>
+	  <li>New SQLite upgrade message dialog.</li>
+	  <li>New user document.</li>
+	  <li>Raspbian armhf package.</li>
+	  <li>Replaced static SRU and Z39.50 query dialogs with dynamic instances.</li>
+	  <li>Report SRU network errors.</li>
+	  <li>Reset Case-Insensitive state on Reset activation.</li>
+	  <li>Support for grey literature. PostgreSQL administrators, please update your database schema(s) via postgresql_update_schema.sql.</li>
+	</ul>	
 	<p>August 19, 2017.</p>
 	<ul>
 	   <li>Corrected visibility of password dialogs on SQLite databases. Such dialogs should be not be accessible. Thank you Fares Othman.</li>
@@ -75,7 +92,7 @@
 	  <li>Allow sorting of Custom Database Query items.</li>
 	  <li>Corrected a selection issue with photograph collections. The problem would prevent modifications of selected items in photograph collections.</li>
 	  <li>Corrected the Music CD search query.</li>
-	  <li>New accession_number database field. PostgreSQL administrators, please update via postgresql_update_schema.sql. SQLite users, please see the Upgrade SQLite Schema option off the Tools menu.</li>
+	  <li>New accession_number database field. PostgreSQL administrators, please update your database schema(s) via postgresql_update_schema.sql. SQLite users, please see the Upgrade SQLite Schema option off the Tools menu.</li>
 	  <li>Upgraded Qt to version 5.7.1 on Windows.</li>
 	</ul>
 	<p>December 6, 2016.</p>
@@ -192,7 +209,7 @@
 	<p>July 4, 2015.</p>
 	<ul>
 	  <li>Version 2015.07.04 is now available.</li>
-	  <li>A patron's gender is now optional. PostgreSQL administrators, please update via postgresql_update_schema.sql.</li>
+	  <li>A patron's gender is now optional. PostgreSQL administrators, please update the database schema(s) via postgresql_update_schema.sql.</li>
 	</ul>
 	<p>June 27, 2015.</p>
 	<ul>
@@ -321,7 +338,7 @@
 	  <li>Resolved two SRU issues. Thanks to SigmaX for reporting the errors.</li>
 	  <li>Review QDataStream read and write results.</li>
 	  <li>Review indexOf() results.</li>
-	  <li>The type field in the locations table should not be null. PostgreSQL users, please update your schemas via the postgresql_update_schema.sql file.</li>
+	  <li>The type field in the locations table should not be null. PostgreSQL users, please update your schema(s) via the postgresql_update_schema.sql file.</li>
 	  <li>Upgraded Qt products to version 5.2.1 on Windows.</li>
 	  <li>Upgraded SQLite products to version 3.8.3.1 on Windows.</li>
 	  <li>Upgraded YAZ products to version 5.0.18 on OS X and Windows.</li>
