@@ -10,6 +10,7 @@ sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Gui.so.5 /usr/local/biblioteq/Lib/.
 sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Network.so.5 /usr/local/biblioteq/Lib/.
 sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5PrintSupport.so.5 /usr/local/biblioteq/Lib/.
 sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Sql.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Svg.so.5 /usr/local/biblioteq/Lib/.
 sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Widgets.so.5 /usr/local/biblioteq/Lib/.
 sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5XcbQpa.so.5 /usr/local/biblioteq/Lib/.
 sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libicudata.so.56 /usr/local/biblioteq/Lib/.
