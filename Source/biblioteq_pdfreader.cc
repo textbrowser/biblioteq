@@ -414,7 +414,7 @@ void biblioteq_pdfreader::slotShowPage(int value)
   int resolution = qMin
     ((m_ui.scrollArea->width() / 2.0) / (page->pageSizeF().width() / pX),
      (m_ui.scrollArea->height() - (height() - m_ui.scrollArea->height())) /
-     (static_cast<double> (page->pageSizeF().height() / pY)));
+     (static_cast<qreal> (page->pageSizeF().height() / pY)));
 
   resolution = qMin(qMin(pX, pY), resolution);
 
