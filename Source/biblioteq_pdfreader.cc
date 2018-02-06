@@ -108,8 +108,15 @@ void biblioteq_pdfreader::closeEvent(QCloseEvent *event)
 
 void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
 {
-  if(event && event->key() == Qt::Key_Escape)
-    close();
+  if(event)
+    {
+      if(event->key() == Qt::Key_End)
+	m_ui.page->setValue(m_ui.page->maximum());
+      else if(event->key() == Qt::Key_Escape)
+	close();
+      else if(event->key() == Qt::Key_Home)
+	m_ui.page->setValue(m_ui.page->minimum());
+    }
 
   QMainWindow::keyPressEvent(event);
 }
