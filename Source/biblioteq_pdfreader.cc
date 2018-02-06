@@ -65,9 +65,9 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  this,
 	  SLOT(slotShowPage(int)));
   connect(m_ui.scrollArea->verticalScrollBar(),
-	  SIGNAL(valueChanged(int)),
+	  SIGNAL(actionTriggered(int)),
 	  this,
-	  SLOT(slotSliderValueChanged(int)));
+	  SLOT(slotSliderTriggerAction(int)));
   connect(m_ui.view_size,
 	  SIGNAL(currentIndexChanged(int)),
 	  this,
@@ -455,16 +455,59 @@ void biblioteq_pdfreader::slotShowPage(int value)
 #endif
 }
 
-void biblioteq_pdfreader::slotSliderValueChanged(int value)
+void biblioteq_pdfreader::slotSliderTriggerAction(int action)
 {
-  if(value == m_ui.scrollArea->verticalScrollBar()->minimum())
+  if(action == QAbstractSlider::SliderSingleStepSub &&
+     m_ui.scrollArea->verticalScrollBar()->minimum() ==
+     m_ui.scrollArea->verticalScrollBar()->value())
     {
       m_ui.page->setValue(m_ui.page->value() - 2);
-      m_ui.scrollArea->verticalScrollBar()->setValue(value + 1);
+      m_ui.scrollArea->verticalScrollBar()->setValue
+	(m_ui.scrollArea->verticalScrollBar()->minimum());
     }
-  else if(value == m_ui.scrollArea->verticalScrollBar()->maximum())
+  else if(action == QAbstractSlider::SliderSingleStepAdd &&
+	  m_ui.scrollArea->verticalScrollBar()->maximum() ==
+	  m_ui.scrollArea->verticalScrollBar()->value())
     {
       m_ui.page->setValue(m_ui.page->value() + 2);
-      m_ui.scrollArea->verticalScrollBar()->setValue(value - 1);
+      m_ui.scrollArea->verticalScrollBar()->setValue
+	(m_ui.scrollArea->verticalScrollBar()->maximum());
     }
+}
+
+bool biblioteq_pdfreader::event(QEvent *event)
+{
+  if(event && event->type() == QEvent::KeyRelease)
+    {
+      QKeyEvent *keyEvent = static_cast<QKeyEvent *> (event);
+
+      if(keyEvent)
+	switch(keyEvent->key())
+	  {
+	  case Qt::Key_Down:
+	  case Qt::Key_PageDown:
+	    {
+	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
+		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
+		  m_ui.scrollArea->verticalScrollBar()->maximum() ==
+		  m_ui.scrollArea->verticalScrollBar()->value()))
+		m_ui.page->setValue(m_ui.page->value() + 2);
+
+	      break;
+	    }
+	  case Qt::Key_PageUp:
+	  case Qt::Key_Up:
+	    {
+	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
+		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
+		  m_ui.scrollArea->verticalScrollBar()->minimum() ==
+		  m_ui.scrollArea->verticalScrollBar()->value()))
+		m_ui.page->setValue(m_ui.page->value() - 2);
+
+	      break;
+	    }
+	  }
+    }
+
+  return QMainWindow::event(event);
 }

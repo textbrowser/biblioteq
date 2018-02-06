@@ -41,6 +41,7 @@ class biblioteq_pdfreader: public QMainWindow
 #endif
   QString m_fileName;
   Ui_pdfreader m_ui;
+  bool event(QEvent *event);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
@@ -56,7 +57,7 @@ class biblioteq_pdfreader: public QMainWindow
   void slotSaveAs(void);
   void slotShowContents(bool state);
   void slotShowPage(int value);
-  void slotSliderValueChanged(int value);
+  void slotSliderTriggerAction(int action);
 
  public slots:
   void showNormal(void);
