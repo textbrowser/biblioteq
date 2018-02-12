@@ -4779,35 +4779,39 @@ void biblioteq::slotPopulateMembersBrowser(void)
   while(i++, !progress.wasCanceled() && query.next())
     {
       if(query.isValid())
-	for(j = 0; j < query.record().count(); j++)
-	  {
-	    if(query.record().fieldName(j).contains("date") ||
-	       query.record().fieldName(j).contains("membersince"))
-	      {
-		QDate date(QDate::fromString(query.value(j).toString(),
-					     "MM/dd/yyyy"));
+	{
+	  QSqlRecord record(query.record());
 
-		str = date.toString(Qt::ISODate);
-	      }
-	    else
-	      str = query.value(j).toString();
+	  for(j = 0; j < record.count(); j++)
+	    {
+	      if(record.fieldName(j).contains("date") ||
+		 record.fieldName(j).contains("membersince"))
+		{
+		  QDate date(QDate::fromString(query.value(j).toString(),
+					       "MM/dd/yyyy"));
 
-	    if(str == "0")
-	      str = "";
+		  str = date.toString(Qt::ISODate);
+		}
+	      else
+		str = query.value(j).toString();
 
-	    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	      {
-		item->setText(str);
-		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		bb.table->setItem(i, j, item);
-	      }
-	    else
-	      addError(QString(tr("Memory Error")),
-		       QString(tr("Unable to allocate memory for the "
-				  "\"item\" object. "
-				  "This is a serious problem!")),
-		       QString(""), __FILE__, __LINE__);
-	  }
+	      if(str == "0")
+		str = "";
+
+	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		{
+		  item->setText(str);
+		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		  bb.table->setItem(i, j, item);
+		}
+	      else
+		addError(QString(tr("Memory Error")),
+			 QString(tr("Unable to allocate memory for the "
+				    "\"item\" object. "
+				    "This is a serious problem!")),
+			 QString(""), __FILE__, __LINE__);
+	    }
+	}
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
@@ -5058,11 +5062,13 @@ void biblioteq::slotModifyBorrower(void)
     {
       QApplication::restoreOverrideCursor();
 
-      for(i = 0; i < query.record().count(); i++)
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
 	{
 	  str = query.value(i).toString();
-	  var = query.record().field(i).value();
-	  fieldname = query.record().fieldName(i);
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "memberid")
 	    userinfo_diag->m_userinfo.memberid->setText(var.toString());
@@ -7456,30 +7462,34 @@ void biblioteq::slotShowHistory(void)
   while(i++, !progress.wasCanceled() && query.next())
     {
       if(query.isValid())
-	for(j = 0; j < query.record().count(); j++)
-	  {
-	    if(query.record().fieldName(j).contains("date"))
-	      {
-		QDate date(QDate::fromString(query.value(j).toString(),
-					     "MM/dd/yyyy"));
+	{
+	  QSqlRecord record(query.record());
 
-		str = date.toString(Qt::ISODate);
-	      }
-	    else
-	      str = query.value(j).toString();
+	  for(j = 0; j < record.count(); j++)
+	    {
+	      if(record.fieldName(j).contains("date"))
+		{
+		  QDate date(QDate::fromString(query.value(j).toString(),
+					       "MM/dd/yyyy"));
 
-	    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	      {
-		item->setText(str);
-		history.table->setItem(i, j, item);
-	      }
-	    else
-	      addError(QString(tr("Memory Error")),
-		       QString(tr("Unable to allocate memory for the "
-				  "\"item\" object. "
-				  "This is a serious problem!")),
-		       QString(""), __FILE__, __LINE__);
-	  }
+		  str = date.toString(Qt::ISODate);
+		}
+	      else
+		str = query.value(j).toString();
+
+	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		{
+		  item->setText(str);
+		  history.table->setItem(i, j, item);
+		}
+	      else
+		addError(QString(tr("Memory Error")),
+			 QString(tr("Unable to allocate memory for the "
+				    "\"item\" object. "
+				    "This is a serious problem!")),
+			 QString(""), __FILE__, __LINE__);
+	    }
+	}
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);

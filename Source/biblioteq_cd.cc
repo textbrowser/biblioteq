@@ -1209,10 +1209,12 @@ void biblioteq_cd::modify(const int state)
       activateWindow();
       raise();
 
-      for(i = 0; i < query.record().count(); i++)
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
 	{
-	  var = query.record().field(i).value();
-	  fieldname = query.record().fieldName(i);
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
 	    cd.title->setText(var.toString());
@@ -1315,7 +1317,7 @@ void biblioteq_cd::modify(const int state)
 	    }
 	  else if(fieldname == "front_cover")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  cd.front_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
@@ -1326,7 +1328,7 @@ void biblioteq_cd::modify(const int state)
 	    }
 	  else if(fieldname == "back_cover")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  cd.back_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
@@ -1504,75 +1506,79 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   while(i++, !progress.wasCanceled() && query.next())
     {
       if(query.isValid())
-	for(j = 0; j < query.record().count(); j++)
-	  {
-	    str = query.value(j).toString();
+	{
+	  QSqlRecord record(query.record());
 
-	    if(qmain->getDB().driverName() == "QSQLITE")
-	      trd.table->setRowCount(i + 1);
+	  for(j = 0; j < record.count(); j++)
+	    {
+	      str = query.value(j).toString();
 
-	    if(j == 0)
-	      {
-		if((comboBox = new(std::nothrow) QComboBox()) != 0)
-		  {
-		    trd.table->setCellWidget(i, j, comboBox);
-		    comboBox->addItems(comboBoxList);
-		    comboBox->setCurrentIndex(comboBox->findText(str));
-		  }
-		else
-		  qmain->addError
-		    (QString(tr("Memory Error")),
-		     QString(tr("Unable to allocate memory for the "
-				"\"comboBox\" object. "
-				"This is a serious problem!")),
-		     QString(""), __FILE__, __LINE__);
-	      }
-	    else if(j == 1)
-	      {
-		if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
-		  {
-		    trd.table->setCellWidget(i, j, trackEdit);
-		    trackEdit->setMinimum(1);
-		    trackEdit->setValue(str.toInt());
-		  }
-		else
-		  qmain->addError
-		    (QString(tr("Memory Error")),
-		     QString(tr("Unable to allocate memory for the "
-				"\"trackEdit\" object. "
-				"This is a serious problem!")),
-		     QString(""), __FILE__, __LINE__);
-	      }
-	    else if(j == 3)
-	      {
-		if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
-		  {
-		    trd.table->setCellWidget(i, j, timeEdit);
-		    timeEdit->setDisplayFormat("hh:mm:ss");
-		    timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
-		  }
-		else
-		  qmain->addError
-		    (QString(tr("Memory Error")),
-		     QString(tr("Unable to allocate memory for the "
-				"\"timeEdit\" object. "
-				"This is a serious problem!")),
-		     QString(""), __FILE__, __LINE__);
-	      }
-	    else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	      {
-		item->setText(str);
-		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-			       Qt::ItemIsEditable);
-		trd.table->setItem(i, j, item);
-	      }
-	    else
-	      qmain->addError(QString(tr("Memory Error")),
-			      QString(tr("Unable to allocate memory for the "
-					 "\"item\" object. "
-					 "This is a serious problem!")),
-			      QString(""), __FILE__, __LINE__);
-	  }
+	      if(qmain->getDB().driverName() == "QSQLITE")
+		trd.table->setRowCount(i + 1);
+
+	      if(j == 0)
+		{
+		  if((comboBox = new(std::nothrow) QComboBox()) != 0)
+		    {
+		      trd.table->setCellWidget(i, j, comboBox);
+		      comboBox->addItems(comboBoxList);
+		      comboBox->setCurrentIndex(comboBox->findText(str));
+		    }
+		  else
+		    qmain->addError
+		      (QString(tr("Memory Error")),
+		       QString(tr("Unable to allocate memory for the "
+				  "\"comboBox\" object. "
+				  "This is a serious problem!")),
+		       QString(""), __FILE__, __LINE__);
+		}
+	      else if(j == 1)
+		{
+		  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
+		    {
+		      trd.table->setCellWidget(i, j, trackEdit);
+		      trackEdit->setMinimum(1);
+		      trackEdit->setValue(str.toInt());
+		    }
+		  else
+		    qmain->addError
+		      (QString(tr("Memory Error")),
+		       QString(tr("Unable to allocate memory for the "
+				  "\"trackEdit\" object. "
+				  "This is a serious problem!")),
+		       QString(""), __FILE__, __LINE__);
+		}
+	      else if(j == 3)
+		{
+		  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
+		    {
+		      trd.table->setCellWidget(i, j, timeEdit);
+		      timeEdit->setDisplayFormat("hh:mm:ss");
+		      timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
+		    }
+		  else
+		    qmain->addError
+		      (QString(tr("Memory Error")),
+		       QString(tr("Unable to allocate memory for the "
+				  "\"timeEdit\" object. "
+				  "This is a serious problem!")),
+		       QString(""), __FILE__, __LINE__);
+		}
+	      else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		{
+		  item->setText(str);
+		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+				 Qt::ItemIsEditable);
+		  trd.table->setItem(i, j, item);
+		}
+	      else
+		qmain->addError(QString(tr("Memory Error")),
+				QString(tr("Unable to allocate memory for the "
+					   "\"item\" object. "
+					   "This is a serious problem!")),
+				QString(""), __FILE__, __LINE__);
+	    }
+	}
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);

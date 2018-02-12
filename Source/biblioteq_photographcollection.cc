@@ -702,10 +702,12 @@ void biblioteq_photographcollection::modify(const int state,
     {
       QApplication::restoreOverrideCursor();
 
-      for(int i = 0; i < query.record().count(); i++)
+      QSqlRecord record(query.record());
+
+      for(int i = 0; i < record.count(); i++)
 	{
-	  var = query.record().field(i).value();
-	  fieldname = query.record().fieldName(i);
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "id")
 	    {
@@ -749,7 +751,7 @@ void biblioteq_photographcollection::modify(const int state,
 	    pc.notes_collection->setPlainText(var.toString());
 	  else if(fieldname == "image")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  pc.thumbnail_collection->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
@@ -1614,108 +1616,112 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
       if(query.exec())
 	if(query.next())
-	  for(int i = 0; i < query.record().count(); i++)
-	    {
-	      QString fieldname(query.record().fieldName(i));
-	      QVariant var(query.record().field(i).value());
+	  {
+	    QSqlRecord record(query.record());
 
-	      if(fieldname == "id")
-		{
-		  pc.id_item->setText(var.toString());
-		  photo.id_item->setText(var.toString());
-		}
-	      else if(fieldname == "title")
-		{
-		  pc.title_item->setText(var.toString());
-		  photo.title_item->setText(var.toString());
-		}
-	      else if(fieldname == "creators")
-		{
-		  pc.creators_item->setPlainText(var.toString());
-		  photo.creators_item->setPlainText(var.toString());
-		}
-	      else if(fieldname == "pdate")
-		{
-		  pc.publication_date->setDate
-		    (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-		  photo.publication_date->setDate
-		    (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-		}
-	      else if(fieldname == "quantity")
-		{
-		  pc.quantity->setValue(var.toInt());
-		  photo.quantity->setValue(var.toInt());
-		}
-	      else if(fieldname == "medium")
-		{
-		  pc.medium_item->setText(var.toString());
-		  photo.medium_item->setText(var.toString());
-		}
-	      else if(fieldname == "reproduction_number")
-		{
-		  pc.reproduction_number_item->setPlainText(var.toString());
-		  photo.reproduction_number_item->setPlainText(var.toString());
-		}
-	      else if(fieldname == "copyright")
-		{
-		  pc.copyright_item->setPlainText(var.toString());
-		  photo.copyright_item->setPlainText(var.toString());
-		}
-	      else if(fieldname == "callnumber")
-		{
-		  pc.call_number_item->setText(var.toString());
-		  photo.call_number_item->setText(var.toString());
-		}
-	      else if(fieldname == "other_number")
-		{
-		  pc.other_number_item->setText(var.toString());
-		  photo.other_number_item->setText(var.toString());
-		}
-	      else if(fieldname == "notes")
-		{
-		  pc.notes_item->setPlainText(var.toString());
-		  photo.notes_item->setPlainText(var.toString());
-		}
-	      else if(fieldname == "subjects")
-		{
-		  pc.subjects_item->setPlainText(var.toString());
-		  photo.subjects_item->setPlainText(var.toString());
-		}
-	      else if(fieldname == "format")
-		{
-		  pc.format_item->setPlainText(var.toString());
-		  photo.format_item->setPlainText(var.toString());
-		}
-	      else if(fieldname == "image")
-		{
-		  if(!query.record().field(i).isNull())
-		    {
-		      pc.thumbnail_item->loadFromData
-			(QByteArray::fromBase64(var.toByteArray()));
+	    for(int i = 0; i < record.count(); i++)
+	      {
+		QString fieldname(record.fieldName(i));
+		QVariant var(record.field(i).value());
 
-		      if(pc.thumbnail_item->m_image.isNull())
+		if(fieldname == "id")
+		  {
+		    pc.id_item->setText(var.toString());
+		    photo.id_item->setText(var.toString());
+		  }
+		else if(fieldname == "title")
+		  {
+		    pc.title_item->setText(var.toString());
+		    photo.title_item->setText(var.toString());
+		  }
+		else if(fieldname == "creators")
+		  {
+		    pc.creators_item->setPlainText(var.toString());
+		    photo.creators_item->setPlainText(var.toString());
+		  }
+		else if(fieldname == "pdate")
+		  {
+		    pc.publication_date->setDate
+		      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+		    photo.publication_date->setDate
+		      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+		  }
+		else if(fieldname == "quantity")
+		  {
+		    pc.quantity->setValue(var.toInt());
+		    photo.quantity->setValue(var.toInt());
+		  }
+		else if(fieldname == "medium")
+		  {
+		    pc.medium_item->setText(var.toString());
+		    photo.medium_item->setText(var.toString());
+		  }
+		else if(fieldname == "reproduction_number")
+		  {
+		    pc.reproduction_number_item->setPlainText(var.toString());
+		    photo.reproduction_number_item->setPlainText(var.toString());
+		  }
+		else if(fieldname == "copyright")
+		  {
+		    pc.copyright_item->setPlainText(var.toString());
+		    photo.copyright_item->setPlainText(var.toString());
+		  }
+		else if(fieldname == "callnumber")
+		  {
+		    pc.call_number_item->setText(var.toString());
+		    photo.call_number_item->setText(var.toString());
+		  }
+		else if(fieldname == "other_number")
+		  {
+		    pc.other_number_item->setText(var.toString());
+		    photo.other_number_item->setText(var.toString());
+		  }
+		else if(fieldname == "notes")
+		  {
+		    pc.notes_item->setPlainText(var.toString());
+		    photo.notes_item->setPlainText(var.toString());
+		  }
+		else if(fieldname == "subjects")
+		  {
+		    pc.subjects_item->setPlainText(var.toString());
+		    photo.subjects_item->setPlainText(var.toString());
+		  }
+		else if(fieldname == "format")
+		  {
+		    pc.format_item->setPlainText(var.toString());
+		    photo.format_item->setPlainText(var.toString());
+		  }
+		else if(fieldname == "image")
+		  {
+		    if(!record.field(i).isNull())
+		      {
 			pc.thumbnail_item->loadFromData
-			  (var.toByteArray());
+			  (QByteArray::fromBase64(var.toByteArray()));
 
-		      photo.thumbnail_item->loadFromData
-			(QByteArray::fromBase64(var.toByteArray()));
+			if(pc.thumbnail_item->m_image.isNull())
+			  pc.thumbnail_item->loadFromData
+			    (var.toByteArray());
 
-		      if(photo.thumbnail_item->m_image.isNull())
 			photo.thumbnail_item->loadFromData
-			  (var.toByteArray());
-		    }
-		  else
-		    {
-		      pc.thumbnail_item->clear();
-		      photo.thumbnail_item->clear();
-		    }
-		}
-	      else if(fieldname == "accession_number")
-		{
-		  pc.accession_number_item->setText(var.toString());
-		  photo.accession_number_item->setText(var.toString());
-		}
-	    }
+			  (QByteArray::fromBase64(var.toByteArray()));
+
+			if(photo.thumbnail_item->m_image.isNull())
+			  photo.thumbnail_item->loadFromData
+			    (var.toByteArray());
+		      }
+		    else
+		      {
+			pc.thumbnail_item->clear();
+			photo.thumbnail_item->clear();
+		      }
+		  }
+		else if(fieldname == "accession_number")
+		  {
+		    pc.accession_number_item->setText(var.toString());
+		    photo.accession_number_item->setText(var.toString());
+		  }
+	      }
+	  }
     }
 
   QApplication::restoreOverrideCursor();

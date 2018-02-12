@@ -1231,10 +1231,12 @@ void biblioteq_dvd::modify(const int state)
       activateWindow();
       raise();
 
-      for(i = 0; i < query.record().count(); i++)
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
 	{
-	  var = query.record().field(i).value();
-	  fieldname = query.record().fieldName(i);
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
 	    dvd.title->setText(var.toString());
@@ -1345,7 +1347,7 @@ void biblioteq_dvd::modify(const int state)
 	    }
 	  else if(fieldname == "front_cover")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  dvd.front_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
@@ -1356,7 +1358,7 @@ void biblioteq_dvd::modify(const int state)
 	    }
 	  else if(fieldname == "back_cover")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  dvd.back_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));

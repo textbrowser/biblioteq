@@ -1547,10 +1547,12 @@ void biblioteq_book::modify(const int state)
       activateWindow();
       raise();
 
-      for(i = 0; i < query.record().count(); i++)
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
 	{
-	  var = query.record().field(i).value();
-	  fieldname = query.record().fieldName(i);
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
 	    id.title->setText(var.toString());
@@ -1680,7 +1682,7 @@ void biblioteq_book::modify(const int state)
 	    }
 	  else if(fieldname == "front_cover")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  id.front_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
@@ -1691,7 +1693,7 @@ void biblioteq_book::modify(const int state)
 	    }
 	  else if(fieldname == "back_cover")
 	    {
-	      if(!query.record().field(i).isNull())
+	      if(!record.field(i).isNull())
 		{
 		  id.back_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
@@ -3666,11 +3668,13 @@ void biblioteq_book::populateFiles(void)
       {
 	totalRows += 1;
 
-	for(int i = 0; i < query.record().count(); i++)
+	QSqlRecord record(query.record());
+
+	for(int i = 0; i < record.count(); i++)
 	  {
 	    QTableWidgetItem *item = 0;
 
-	    if(query.record().fieldName(i) == "f_s")
+	    if(record.fieldName(i) == "f_s")
 	      item = new(std::nothrow) QTableWidgetItem
 		(locale.toString(query.value(i).toLongLong()));
 	    else
