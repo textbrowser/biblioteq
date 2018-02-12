@@ -4,20 +4,20 @@ sudo mkdir -p /usr/local/biblioteq/Documentation
 sudo mkdir -p /usr/local/biblioteq/Lib
 sudo mkdir -p /usr/local/biblioteq/SQL
 sudo mkdir -p /usr/local/biblioteq/Translations
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Core.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5DBus.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Gui.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Network.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5PrintSupport.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Sql.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Svg.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5Widgets.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libQt5XcbQpa.so.5 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libicudata.so.56 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libicui18n.so.56 /usr/local/biblioteq/Lib/.
-sudo cp -p ~/Qt/5.9.3/gcc_64/lib/libicuuc.so.56 /usr/local/biblioteq/Lib/.
-sudo cp -pr ~/Qt/5.9.3/gcc_64/plugins /usr/local/biblioteq/.
-sudo cp -pr ~/Qt/5.9.3/gcc_64/translations /usr/local/biblioteq/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5Core.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5DBus.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5Gui.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5Network.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5PrintSupport.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5Sql.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5Svg.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5Widgets.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libQt5XcbQpa.so.5 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libicudata.so.56 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libicui18n.so.56 /usr/local/biblioteq/Lib/.
+sudo cp -p ~/Qt/5.10.0/gcc_64/lib/libicuuc.so.56 /usr/local/biblioteq/Lib/.
+sudo cp -pr ~/Qt/5.10.0/gcc_64/plugins /usr/local/biblioteq/.
+sudo cp -pr ~/Qt/5.10.0/gcc_64/translations /usr/local/biblioteq/.
 sudo chmod -x,g+w /usr/local/biblioteq/Lib/*
 cd ~/biblioteq.d
 qmake -o Makefile biblioteq.pro && make -j 4
