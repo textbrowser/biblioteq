@@ -3552,152 +3552,161 @@ int biblioteq::populateTable(const int search_type_arg,
       pixmapItem = 0;
 
       if(query.isValid())
-	for(int j = 0; j < query.record().count(); j++)
-	  {
-	    item = 0;
+	{
+	  QSqlRecord record(query.record());
 
-	    if(!query.record().fieldName(j).endsWith("front_cover") &&
-	       !query.record().fieldName(j).endsWith("image_scaled"))
-	      {
-		if(query.record().fieldName(j).contains("date") ||
-		   query.record().fieldName(j).contains("membersince"))
-		  {
-		    QDate date(QDate::fromString(query.value(j).toString(),
-						 "MM/dd/yyyy"));
+	  for(int j = 0; j < record.count(); j++)
+	    {
+	      item = 0;
 
-		    str = date.toString(Qt::ISODate);
-		  }
-		else
-		  str = query.value(j).toString();
-	      }
-
-	    if(search_type == CUSTOM_QUERY)
-	      if(!tmplist.contains(query.record().fieldName(j)))
+	      if(!record.fieldName(j).endsWith("front_cover") &&
+		 !record.fieldName(j).endsWith("image_scaled"))
 		{
-		  tmplist.append(query.record().fieldName(j));
-		  ui.table->setColumnCount(tmplist.size());
+		  if(record.fieldName(j).contains("date") ||
+		     record.fieldName(j).contains("membersince"))
+		    {
+		      QDate date(QDate::fromString(query.value(j).toString(),
+						   "MM/dd/yyyy"));
+
+		      str = date.toString(Qt::ISODate);
+		    }
+		  else
+		    str = query.value(j).toString();
 		}
 
-	    if(query.record().fieldName(j).endsWith("issue") ||
-	       query.record().fieldName(j).endsWith("price") ||
-	       query.record().fieldName(j).endsWith("volume") ||
-	       query.record().fieldName(j).endsWith("quantity") ||
-	       query.record().fieldName(j).endsWith("issueno") ||
-	       query.record().fieldName(j).endsWith("issuevolume") ||
-	       query.record().fieldName(j).endsWith("cddiskcount") ||
-	       query.record().fieldName(j).endsWith("dvddiskcount") ||
-	       query.record().fieldName(j).endsWith("availability") ||
-	       query.record().fieldName(j).endsWith("total_reserved") ||
-	       query.record().fieldName(j).endsWith("photograph_count"))
-	      {
-		if(query.record().fieldName(j).endsWith("price"))
+	      if(search_type == CUSTOM_QUERY)
+		if(!tmplist.contains(record.fieldName(j)))
 		  {
+		    tmplist.append(record.fieldName(j));
+		    ui.table->setColumnCount(tmplist.size());
+		  }
+
+	      if(record.fieldName(j).endsWith("issue") ||
+		 record.fieldName(j).endsWith("price") ||
+		 record.fieldName(j).endsWith("volume") ||
+		 record.fieldName(j).endsWith("quantity") ||
+		 record.fieldName(j).endsWith("issueno") ||
+		 record.fieldName(j).endsWith("issuevolume") ||
+		 record.fieldName(j).endsWith("cddiskcount") ||
+		 record.fieldName(j).endsWith("dvddiskcount") ||
+		 record.fieldName(j).endsWith("availability") ||
+		 record.fieldName(j).endsWith("total_reserved") ||
+		 record.fieldName(j).endsWith("photograph_count"))
+		{
+		  if(record.fieldName(j).endsWith("price"))
+		    {
+		      item = new(std::nothrow) biblioteq_numeric_table_item
+			(query.value(j).toDouble());
+		      str = QString::number(query.value(j).toDouble(), 'f', 2);
+		    }
+		  else
 		    item = new(std::nothrow) biblioteq_numeric_table_item
-		      (query.value(j).toDouble());
-		    str = QString::number(query.value(j).toDouble(), 'f', 2);
-		  }
-		else
-		  item = new(std::nothrow) biblioteq_numeric_table_item
-		    (query.value(j).toInt());
-	      }
-	    else if(query.record().fieldName(j).endsWith("callnumber"))
-	      {
-		str = query.value(j).toString();
-		item = new(std::nothrow) biblioteq_callnum_table_item(str);
-	      }
-	    else if(query.record().fieldName(j).endsWith("front_cover") ||
-		    query.record().fieldName(j).endsWith("image_scaled"))
-	      {
-		QImage image;
+		      (query.value(j).toInt());
+		}
+	      else if(record.fieldName(j).endsWith("callnumber"))
+		{
+		  str = query.value(j).toString();
+		  item = new(std::nothrow) biblioteq_callnum_table_item(str);
+		}
+	      else if(record.fieldName(j).endsWith("front_cover") ||
+		      record.fieldName(j).endsWith("image_scaled"))
+		{
+		  QImage image;
 
-		image.loadFromData
-		  (QByteArray::fromBase64(query.value(j).
-					  toByteArray()));
+		  image.loadFromData
+		    (QByteArray::fromBase64(query.value(j).
+					    toByteArray()));
 
-		if(image.isNull())
-		  image.loadFromData(query.value(j).toByteArray());
+		  if(image.isNull())
+		    image.loadFromData(query.value(j).toByteArray());
 
-		if(image.isNull())
-		  image = QImage(":/no_image.png");
+		  if(image.isNull())
+		    image = QImage(":/no_image.png");
 
-		/*
-		** The size of no_image.png is 126x187.
-		*/
+		  /*
+		  ** The size of no_image.png is 126x187.
+		  */
 
-		if(!image.isNull())
-		  image = image.scaled
-		    (126, 187, Qt::KeepAspectRatio,
-		     Qt::SmoothTransformation);
+		  if(!image.isNull())
+		    image = image.scaled
+		      (126, 187, Qt::KeepAspectRatio,
+		       Qt::SmoothTransformation);
 
-		pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
-		  (QPixmap::fromImage(image), 0);
+		  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+		    (QPixmap::fromImage(image), 0);
 
-		if(pixmapItem)
-		  {
-		    if(iconTableRowIdx == 0)
-		      pixmapItem->setPos(140 * iconTableColumnIdx, 15);
-		    else
-		      pixmapItem->setPos(140 * iconTableColumnIdx,
-					 200 * iconTableRowIdx + 15);
+		  if(pixmapItem)
+		    {
+		      if(iconTableRowIdx == 0)
+			pixmapItem->setPos(140 * iconTableColumnIdx, 15);
+		      else
+			pixmapItem->setPos(140 * iconTableColumnIdx,
+					   200 * iconTableRowIdx + 15);
 
-		    pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
-		    ui.graphicsView->scene()->addItem(pixmapItem);
-		  }
+		      pixmapItem->setFlag
+			(QGraphicsItem::ItemIsSelectable, true);
+		      ui.graphicsView->scene()->addItem(pixmapItem);
+		    }
 
-		iconTableColumnIdx += 1;
+		  iconTableColumnIdx += 1;
 
-		if(iconTableColumnIdx >= 5)
-		  {
-		    iconTableRowIdx += 1;
-		    iconTableColumnIdx = 0;
-		  }
-	      }
-	    else
-	      item = new(std::nothrow) QTableWidgetItem();
+		  if(iconTableColumnIdx >= 5)
+		    {
+		      iconTableRowIdx += 1;
+		      iconTableColumnIdx = 0;
+		    }
+		}
+	      else
+		item = new(std::nothrow) QTableWidgetItem();
 
-	    if(item != 0)
-	      {
-		item->setText(str);
-		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	      if(item != 0)
+		{
+		  item->setText(str);
+		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
-		if(j == 0)
-		  {
-		    ui.table->setRowCount(ui.table->rowCount() + 1);
-		    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-						arg(ui.table->rowCount()));
-		  }
+		  if(j == 0)
+		    {
+		      ui.table->setRowCount(ui.table->rowCount() + 1);
+		      ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
+						  arg(ui.table->rowCount()));
+		    }
 
-		ui.table->setItem(i, j, item);
+		  ui.table->setItem(i, j, item);
 
-		if(query.record().fieldName(j).endsWith("type"))
-		  {
-		    itemType = str;
-		    itemType = itemType.toLower().remove(" ");
-		  }
+		  if(record.fieldName(j).endsWith("type"))
+		    {
+		      itemType = str;
+		      itemType = itemType.toLower().remove(" ");
+		    }
 
-		if(query.record().fieldName(j).endsWith("myoid"))
-		  updateRows(str, i, itemType);
-	      }
-	    else if(!query.record().fieldName(j).endsWith("front_cover") &&
-		    !query.record().fieldName(j).endsWith("image_scaled"))
-	      addError(QString(tr("Memory Error")),
-		       QString(tr("Unable to allocate "
-				  "memory for the \"item\" "
-				  "object. "
-				  "This is a serious "
-				  "problem!")), QString(""),
-		       __FILE__, __LINE__);
-	  }
+		  if(record.fieldName(j).endsWith("myoid"))
+		    updateRows(str, i, itemType);
+		}
+	      else if(!record.fieldName(j).endsWith("front_cover") &&
+		      !record.fieldName(j).endsWith("image_scaled"))
+		addError(QString(tr("Memory Error")),
+			 QString(tr("Unable to allocate "
+				    "memory for the \"item\" "
+				    "object. "
+				    "This is a serious "
+				    "problem!")), QString(""),
+			 __FILE__, __LINE__);
+	    }
+	}
 
       if(query.isValid())
 	if(pixmapItem)
-	  for(int ii = 0; ii < query.record().count(); ii++)
-	    {
-	      if(query.record().fieldName(ii).endsWith("myoid"))
-		pixmapItem->setData(0, query.value(ii));
-	      else if(query.record().fieldName(ii).endsWith("type"))
-		pixmapItem->setData(1, query.value(ii));
-	    }
+	  {
+	    QSqlRecord record(query.record());
+
+	    for(int ii = 0; ii < record.count(); ii++)
+	      {
+		if(record.fieldName(ii).endsWith("myoid"))
+		  pixmapItem->setData(0, query.value(ii));
+		else if(record.fieldName(ii).endsWith("type"))
+		  pixmapItem->setData(1, query.value(ii));
+	      }
+	  }
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
@@ -3721,12 +3730,16 @@ int biblioteq::populateTable(const int search_type_arg,
   if(search_type == CUSTOM_QUERY)
     {
       if(tmplist.isEmpty())
-	for(int ii = 0; ii < query.record().count(); ii++)
-	  if(!tmplist.contains(query.record().fieldName(ii)))
-	    {
-	      tmplist.append(query.record().fieldName(ii));
-	      ui.table->setColumnCount(tmplist.size());
-	    }
+	{
+	  QSqlRecord record(query.record());
+
+	  for(int ii = 0; ii < record.count(); ii++)
+	    if(!tmplist.contains(record.fieldName(ii)))
+	      {
+		tmplist.append(record.fieldName(ii));
+		ui.table->setColumnCount(tmplist.size());
+	      }
+	}
 
       ui.table->setColumnCount(tmplist.size());
       ui.table->setHorizontalHeaderLabels(tmplist);
