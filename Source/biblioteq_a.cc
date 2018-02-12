@@ -6942,15 +6942,7 @@ void biblioteq::slotExecuteCustomQuery(void)
       return;
     }
 
-  if(populateTable(CUSTOM_QUERY, "Custom", querystr) == 0)
-    m_customquery_diag->close();
-  else
-    {
-      biblioteq_misc_functions::center(m_customquery_diag, this);
-      m_customquery_diag->showNormal();
-      m_customquery_diag->activateWindow();
-      m_customquery_diag->raise();
-    }
+  populateTable(CUSTOM_QUERY, "Custom", querystr);
 }
 
 void biblioteq::slotPrintView(void)
