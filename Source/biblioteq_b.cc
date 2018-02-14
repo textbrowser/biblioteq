@@ -4030,8 +4030,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE videogame ADD keyword TEXT");
   list.append("ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) "
 	      "NOT NULL DEFAULT 0.00");
-  list.append("ALTER TABLE member ADD comments TEXT, "
-	      "ADD general_registration_number TEXT, ADD memberclass TEXT");
+  list.append("ALTER TABLE member ADD comments TEXT");
+  list.append("ALTER TABLE member ADD general_registration_number TEXT");
+  list.append("ALTER TABLE member ADD memberclass TEXT");
   list.append("CREATE TABLE IF NOT EXISTS photograph_collection "
 	      "("
 	      "id  TEXT PRIMARY KEY NOT NULL,"
@@ -4113,7 +4114,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "language VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
 	      "monetary_units VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
 	      "quantity INTEGER NOT NULL DEFAULT 1,"
-	     "location TEXT NOT NULL,"
+	      "location TEXT NOT NULL,"
 	      "issuevolume INTEGER NOT NULL DEFAULT 0,"
 	      "issueno INTEGER NOT NULL DEFAULT 0,"
 	      "lccontrolnumber VARCHAR(64),"
@@ -4213,8 +4214,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
       if(!query.exec(list.at(i)))
 	{
-	  errors.append(QString("Error %1: %2.\n").
-			arg(ct).arg(query.lastError().text()));
+	  errors.append(QString("Error %1: %2. Statement: %3.\n").
+			arg(ct).arg(query.lastError().text().toLower()).
+			arg(list.at(i)));
 	  ct += 1;
 	}
     }
