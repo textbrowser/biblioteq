@@ -2081,10 +2081,10 @@ void biblioteq::slotDelete(void)
 	(ui.table, i, ui.table->columnNumber("Type")).
 	toLower();
 
-      if(itemType != "photograph collection")
-	itemType = itemType.remove(" ");
-      else
+      if(itemType == "grey literature" || itemType == "photograph collection")
 	itemType = itemType.replace(" ", "_");
+      else
+	itemType = itemType.remove(" ");
 
       if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
 	 itemType == "grey_literature" ||
@@ -3702,7 +3702,7 @@ void biblioteq::slotDisplaySummary(void)
       summary += biblioteq_misc_functions::getAbstractInfo(oid, type, m_db);
       summary += "<br>";
 
-      if(type != "Photograph Collection")
+      if(type != "Grey Literature" && type != "Photograph Collection")
 	{
 	  tmpstr = biblioteq_misc_functions::getColumnString
 	    (ui.table, i,
@@ -3729,7 +3729,8 @@ void biblioteq::slotDisplaySummary(void)
       ui.summary->setVisible(true);
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      if(type != "Photograph Collection")
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
 	frontImage = biblioteq_misc_functions::getImage
 	  (oid, "front_cover", type,
 	   m_db);
@@ -3738,7 +3739,8 @@ void biblioteq::slotDisplaySummary(void)
 	  (oid, "image_scaled", type,
 	   m_db);
 
-      if(type != "Photograph Collection")
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
 	backImage = biblioteq_misc_functions::getImage
 	  (oid, "back_cover", type,
 	   m_db);
@@ -3756,7 +3758,8 @@ void biblioteq::slotDisplaySummary(void)
 	frontImage = frontImage.scaled
 	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-      if(type != "Photograph Collection")
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
 	{
 	  if(backImage.isNull())
 	    backImage = QImage(":/no_image.png");
@@ -3774,7 +3777,8 @@ void biblioteq::slotDisplaySummary(void)
       else
 	ui.frontImage->clear();
 
-      if(type != "Photograph Collection")
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
 	{
 	  if(!backImage.isNull())
 	    {
@@ -5178,7 +5182,13 @@ void biblioteq::slotCheckout(void)
   type = biblioteq_misc_functions::getColumnString
     (ui.table, row2, ui.table->columnNumber("Type"));
 
-  if(type == "Photograph Collection")
+  if(type == "Grey Literature")
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("Grey literature may not be reserved."));
+      return;
+    }
+  else if(type == "Photograph Collection")
     {
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Photographs may not be reserved."));
@@ -6575,7 +6585,18 @@ void biblioteq::slotReserveCopy(void)
   type = biblioteq_misc_functions::getColumnString
     (ui.table, row, ui.table->columnNumber("Type"));
 
-  if(type == "Photograph Collection")
+  if(type == "Grey Literature")
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			      tr("Grey literature may not be reserved."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("Grey literature may not be reserved."));
+
+      return;
+    }
+  else if(type == "Photograph Collection")
     {
       if(m_members_diag->isVisible())
 	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
@@ -8460,7 +8481,8 @@ void biblioteq::slotRequest(void)
 	(ui.table, i,
 	 ui.table->columnNumber("Type"));
 
-      if(itemType != "Photograph Collection")
+      if(itemType != "Grey Literature" &&
+	 itemType != "Photograph Collection")
 	{
 	  if(isRequesting)
 	    {
