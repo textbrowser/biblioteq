@@ -62,17 +62,23 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
   QString str = "";
   QString type(typeArg.toLower());
 
-  if(type == "photograph collection")
-    {
-      type = type.replace(" ", "_");
-      querystr = QString("SELECT about FROM %1 WHERE myoid = ?").arg
-	(type);
-    }
-  else if(type == "book" || type == "cd" || type == "dvd" ||
-	  type == "journal" || type == "magazine" || type == "video game")
+  if(type == "book" || type == "cd" || type == "dvd" ||
+     type == "journal" || type == "magazine" || type == "video game")
     {
       type = type.remove(" ");
       querystr = QString("SELECT description FROM %1 WHERE myoid = ?").arg
+	(type);
+    }
+  else if(type == "grey literature")
+    {
+      type = type.replace(" ", "_");
+      querystr = QString("SELECT notes FROM %1 WHERE myoid = ?").arg
+	(type);
+    }
+  else if(type == "photograph collection")
+    {
+      type = type.replace(" ", "_");
+      querystr = QString("SELECT about FROM %1 WHERE myoid = ?").arg
 	(type);
     }
   else
