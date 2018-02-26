@@ -228,6 +228,31 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "dvd.front_cover "
 	       " %1 "
 	       "UNION "
+	       "SELECT DISTINCT grey_literature.document_title, "
+	       "grey_literature.document_id, "
+	       "grey_literature.author, grey_literature.document_date, "
+	       "'', "
+	       "'', "
+	       "0.00, '', "
+	       "1, "
+	       "grey_literature.location, "
+	       "0 AS availability, "
+	       "0 AS total_reserved, "
+	       "grey_literature.job_number, "
+	       "grey_literature.type, "
+	       "grey_literature.myoid, "
+	       "NULL AS front_cover "
+	       "FROM grey_literature "
+	       "GROUP BY "
+	       "grey_literature.document_title, "
+	       "grey_literature.document_id, "
+	       "grey_literature.author, "
+	       "grey_literature.document_date, "
+	       "grey_literature.location, "
+	       "grey_literature.job_number, "
+	       "grey_literature.type, "
+	       "grey_literature.myoid "
+	       "UNION "
 	       "SELECT DISTINCT journal.title, "
 	       "journal.id, "
 	       "journal.publisher, journal.pdate, "
@@ -2589,7 +2614,8 @@ int biblioteq::populateTable(const int search_type_arg,
 			     escape(al.title->text().trimmed()) +
 			     "%'");
 
-		if(type != "Photograph Collection")
+		if(type != "Grey Literature" &&
+		   type != "Photograph Collection")
 		  {
 		    str.append(" AND ");
 
@@ -3569,6 +3595,9 @@ int biblioteq::populateTable(const int search_type_arg,
 						   "MM/dd/yyyy"));
 
 		      str = date.toString(Qt::ISODate);
+
+		      if(str.isEmpty())
+			str = query.value(j).toString().trimmed();
 		    }
 		  else
 		    str = query.value(j).toString();
@@ -3613,12 +3642,15 @@ int biblioteq::populateTable(const int search_type_arg,
 		{
 		  QImage image;
 
-		  image.loadFromData
-		    (QByteArray::fromBase64(query.value(j).
-					    toByteArray()));
+		  if(!query.isNull(j))
+		    {
+		      image.loadFromData
+			(QByteArray::fromBase64(query.value(j).
+						toByteArray()));
 
-		  if(image.isNull())
-		    image.loadFromData(query.value(j).toByteArray());
+		      if(image.isNull())
+			image.loadFromData(query.value(j).toByteArray());
+		    }
 
 		  if(image.isNull())
 		    image = QImage(":/no_image.png");
