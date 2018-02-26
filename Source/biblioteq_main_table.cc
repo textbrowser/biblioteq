@@ -219,6 +219,33 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
+  else if(type == "Grey Literature")
+    {
+      list.append(tr("Author"));
+      list.append(tr("Client"));
+      list.append(tr("Document Code A"));
+      list.append(tr("Document Code B"));
+      list.append(tr("Document Date"));
+      list.append(tr("Document ID"));
+      list.append(tr("Document Status"));
+      list.append(tr("Document Title"));
+      list.append(tr("Document Type"));
+      list.append(tr("Job Number"));
+      list.append(tr("Location"));
+      list.append("MYOID");
+      m_columnHeaderIndexes.append("Author");
+      m_columnHeaderIndexes.append("Client");
+      m_columnHeaderIndexes.append("Document Code A");
+      m_columnHeaderIndexes.append("Document Code B");
+      m_columnHeaderIndexes.append("Document Date");
+      m_columnHeaderIndexes.append("Document ID");
+      m_columnHeaderIndexes.append("Document Status");
+      m_columnHeaderIndexes.append("Document Title");
+      m_columnHeaderIndexes.append("Document Type");
+      m_columnHeaderIndexes.append("Job Number");
+      m_columnHeaderIndexes.append("Location");
+      m_columnHeaderIndexes.append("MYOID");
+    }
   else if(type == "Journals" || type == "Magazines")
     {
       list.append(tr("Title"));
