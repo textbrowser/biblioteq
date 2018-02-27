@@ -2372,6 +2372,12 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "grey_literature.document_type, "
 	      "grey_literature.job_number, "
 	      "grey_literature.location, "
+	      "(SELECT COUNT(myoid) FROM grey_literature_files "
+	      "WHERE grey_literature_files.item_oid = grey_literature.myoid) "
+	      "AS file_count, "
+	      "(SELECT COUNT(myoid) FROM grey_literature_images "
+	      "WHERE grey_literature_images.item_oid = grey_literature.myoid) "
+	      "AS image_count, "
 	      "grey_literature.type, "
 	      "grey_literature.myoid, "
 	      "NULL AS front_cover "
@@ -3644,7 +3650,9 @@ int biblioteq::populateTable(const int search_type_arg,
 		    ui.table->setColumnCount(tmplist.size());
 		  }
 
-	      if(record.fieldName(j).endsWith("issue") ||
+	      if(record.fieldName(j).endsWith("file_count") ||
+		 record.fieldName(j).endsWith("image_count") ||
+		 record.fieldName(j).endsWith("issue") ||
 		 record.fieldName(j).endsWith("price") ||
 		 record.fieldName(j).endsWith("volume") ||
 		 record.fieldName(j).endsWith("quantity") ||
