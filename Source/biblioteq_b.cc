@@ -119,8 +119,7 @@ int biblioteq::populateTable(const int search_type_arg,
       }
     case POPULATE_ALL:
       {
-	if(typefilter == "All" ||
-	   typefilter == "All Available")
+	if(typefilter == "All" || typefilter == "All Available")
 	  {
 	    QString checkAvailability("");
 
@@ -2358,6 +2357,41 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "dvd.front_cover "
 	      "ORDER BY "
 	      "dvd.title" +
+	      limitStr + offsetStr;
+	  }
+	else if(typefilter == "Grey Literature")
+	  {
+	    searchstr = "SELECT DISTINCT grey_literature.author, "
+	      "grey_literature.client, "
+	      "grey_literature.document_code_a, "
+	      "grey_literature.document_code_b, "
+	      "grey_literature.document_date, "
+	      "grey_literature.document_id, "
+	      "grey_literature.document_status, "
+	      "grey_literature.document_title, "
+	      "grey_literature.document_type, "
+	      "grey_literature.job_number, "
+	      "grey_literature.location, "
+	      "grey_literature.type, "
+	      "grey_literature.myoid, "
+	      "NULL AS front_cover "
+	      "FROM grey_literature "
+	      "GROUP BY "
+	      "grey_literature.author, "
+	      "grey_literature.client, "
+	      "grey_literature.document_code_a, "
+	      "grey_literature.document_code_b, "
+	      "grey_literature.document_date, "
+	      "grey_literature.document_id, "
+	      "grey_literature.document_status, "
+	      "grey_literature.document_title, "
+	      "grey_literature.document_type, "
+	      "grey_literature.job_number, "
+	      "grey_literature.location, "
+	      "grey_literature.type, "
+	      "grey_literature.myoid "
+	      "ORDER BY "
+	      "grey_literature.author" +
 	      limitStr + offsetStr;
 	  }
 	else if(typefilter == "Music CDs")
