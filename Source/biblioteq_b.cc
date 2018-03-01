@@ -3094,20 +3094,19 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
-		searchstr.append("GROUP BY photograph_collection.title, "
-				 "photograph_collection.id, "
-				 "photograph_collection.location, "
-				 "photograph_collection.about, "
-				 "photograph_collection.accession_number, "
-				 "photograph_collection.type, "
-				 "photograph_collection.myoid, "
-				 "photograph_collection.image_scaled "
-				 "ORDER BY photograph_collection.title");
+		searchstr.append("GROUP BY grey_literature.document_title, "
+				 "grey_literature.document_id, "
+				 "grey_literature.location, "
+				 "grey_literature.notes, "
+				 "grey_literature.job_number, "
+				 "grey_literature.type, "
+				 "grey_literature.myoid "
+				 "ORDER BY grey_literature.document_title");
 	      }
 
 	    if(searchstr.lastIndexOf("LIMIT") != -1)
-	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
-			       searchstr.length());
+	      searchstr.remove
+		(searchstr.lastIndexOf("LIMIT"), searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
 	  }
@@ -3288,7 +3287,24 @@ int biblioteq::populateTable(const int search_type_arg,
 	  {
 	    type = types.takeFirst();
 
-	    if(type == "Photograph Collection")
+	    if(type == "Grey Literature")
+	      str = "SELECT DISTINCT grey_literature.document_title, "
+		"grey_literature.document_id, "
+		"'', '', "
+		"'', "
+		"'', "
+		"0.00, '', "
+		"1, "
+		"grey_literature.location, "
+		"0 AS availability, "
+		"0 AS total_reserved, "
+		"grey_literature.job_number, "
+		"grey_literature.type, "
+		"grey_literature.myoid, "
+		"NULL "
+		"FROM grey_literature "
+		"WHERE ";
+	    else if(type == "Photograph Collection")
 	      str = "SELECT DISTINCT photograph_collection.title, "
 		"photograph_collection.id, "
 		"'', '', "
@@ -3465,6 +3481,14 @@ int biblioteq::populateTable(const int search_type_arg,
 			     "%1.myoid, "
 			     "%1.front_cover "
 			     ).arg(type.toLower().remove(" "));
+	    else if(type == "Grey Literature")
+	      str += "GROUP BY "
+		"grey_literature.document_title, "
+		"grey_literature.document_id, "
+		"grey_literature.location, "
+		"grey_literature.job_number, "
+		"grey_literature.type, "
+		"grey_literature.myoid ";
 	    else
 	      str += "GROUP BY "
 		"photograph_collection.title, "
@@ -3741,19 +3765,19 @@ int biblioteq::populateTable(const int search_type_arg,
 		    ui.table->setColumnCount(tmplist.size());
 		  }
 
-	      if(record.fieldName(j).endsWith("file_count") ||
-		 record.fieldName(j).endsWith("image_count") ||
-		 record.fieldName(j).endsWith("issue") ||
-		 record.fieldName(j).endsWith("price") ||
-		 record.fieldName(j).endsWith("volume") ||
-		 record.fieldName(j).endsWith("quantity") ||
-		 record.fieldName(j).endsWith("issueno") ||
-		 record.fieldName(j).endsWith("issuevolume") ||
+	      if(record.fieldName(j).endsWith("availability") ||
 		 record.fieldName(j).endsWith("cddiskcount") ||
 		 record.fieldName(j).endsWith("dvddiskcount") ||
-		 record.fieldName(j).endsWith("availability") ||
+		 record.fieldName(j).endsWith("file_count") ||
+		 record.fieldName(j).endsWith("image_count") ||
+		 record.fieldName(j).endsWith("issue") ||
+		 record.fieldName(j).endsWith("issueno") ||
+		 record.fieldName(j).endsWith("issuevolume") ||
+		 record.fieldName(j).endsWith("photograph_count") ||
+		 record.fieldName(j).endsWith("price") ||
+		 record.fieldName(j).endsWith("quantity") ||
 		 record.fieldName(j).endsWith("total_reserved") ||
-		 record.fieldName(j).endsWith("photograph_count"))
+		 record.fieldName(j).endsWith("volume"))
 		{
 		  if(record.fieldName(j).endsWith("price"))
 		    {
