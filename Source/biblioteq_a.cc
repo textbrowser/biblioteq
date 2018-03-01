@@ -1288,7 +1288,7 @@ void biblioteq::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Frost<br>"
+	     "Ginger Grey<br>"
 	     "Copyright (c) 2005 - present, Mushroom.<br>"
 	     "Compiled on %2, %3.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
