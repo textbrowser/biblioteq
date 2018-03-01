@@ -2561,7 +2561,24 @@ int biblioteq::populateTable(const int search_type_arg,
 	      {
 		type = types.takeFirst();
 
-		if(type == "Photograph Collection")
+		if(type == "Grey Literature")
+		  str = "SELECT DISTINCT grey_literature.document_title, "
+		    "grey_literature.document_id, "
+		    "'', '', "
+		    "'', "
+		    "'', "
+		    "0.00, '', "
+		    "1, "
+		    "grey_literature.location, "
+		    "0 AS availability, "
+		    "0 AS total_reserved, "
+		    "grey_literature.job_number, "
+		    "grey_literature.type, "
+		    "grey_literature.myoid, "
+		    "NULL "
+		    "FROM grey_literature "
+		    "WHERE ";
+		else if(type == "Photograph Collection")
 		  str = "SELECT DISTINCT photograph_collection.title, "
 		    "photograph_collection.id, "
 		    "'', '', "
@@ -2611,18 +2628,23 @@ int biblioteq::populateTable(const int search_type_arg,
 		if(m_db.driverName() != "QSQLITE")
 		  E = "E";
 
+		QString idField("id");
+
+		if(type == "Grey Literature")
+		  idField = "document_id";
+
 		if(caseinsensitive)
 		  str.append
-		    ("(id IS NULL OR LOWER(id) LIKE " + E + "'%" +
-		     biblioteq_myqstring::
-		     escape(al.idnumber->text().trimmed(), true) +
-		     "%' ");
+		    (QString("(%1 IS NULL OR LOWER(%1) LIKE " + E + "'%" +
+			     biblioteq_myqstring::
+			     escape(al.idnumber->text().trimmed(), true) +
+			     "%' ").arg(idField));
 		else
 		  str.append
-		    ("(id IS NULL OR id LIKE " + E + "'%" +
-		     biblioteq_myqstring::
-		     escape(al.idnumber->text().trimmed()) +
-		     "%' ");
+		    (QString("(%1 IS NULL OR %1 LIKE " + E + "'%" +
+			     biblioteq_myqstring::
+			     escape(al.idnumber->text().trimmed()) +
+			     "%' ").arg(idField));
 
 		if(type == "Book")
 		  {
@@ -2642,17 +2664,22 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		str.append(" AND ");
 
+		QString titleField("title");
+
+		if(type == "Grey Literature")
+		  titleField = "document_title";
+
 		if(caseinsensitive)
 		  str.append
-		    ("LOWER(title) LIKE " + E + "'%" +
-		     biblioteq_myqstring::
-		     escape(al.title->text().trimmed(), true) +
-		     "%'");
-		else
-		  str.append("title LIKE " + E + "'%" +
+		    (QString("LOWER(%1) LIKE " + E + "'%" +
 			     biblioteq_myqstring::
-			     escape(al.title->text().trimmed()) +
-			     "%'");
+			     escape(al.title->text().trimmed(), true) +
+			     "%'").arg(titleField));
+		else
+		  str.append(QString("%1 LIKE " + E + "'%" +
+				     biblioteq_myqstring::
+				     escape(al.title->text().trimmed()) +
+				     "%'").arg(titleField));
 
 		if(type != "Grey Literature" &&
 		   type != "Photograph Collection")
@@ -2903,15 +2930,56 @@ int biblioteq::populateTable(const int search_type_arg,
 				   ).arg
 		      (type.toLower().remove(" "));
 		  }
-		else
-		  str += "GROUP BY "
-		    "photograph_collection.title, "
-		    "photograph_collection.id, "
-		    "photograph_collection.location, "
-		    "photograph_collection.accession_number, "
-		    "photograph_collection.type, "
-		    "photograph_collection.myoid, "
-		    "photograph_collection.image_scaled ";
+		else if(type == "Grey Literature")
+		  {
+		    if(al.location->currentIndex() != 0)
+		      {
+			if(caseinsensitive)
+			  str.append
+			    ("AND LOWER(document_location) = " + E + "'" +
+			     biblioteq_myqstring::escape
+			     (al.location->currentText().trimmed(),
+			      true) + "' ");
+			else
+			  str.append
+			    ("AND document_location = " + E + "'" +
+			     biblioteq_myqstring::escape
+			     (al.location->currentText().trimmed()) + "' ");
+		      }
+
+		    str += "GROUP BY grey_literature.document_title, "
+		      "grey_literature.document_id, "
+		      "grey_literature.location, "
+		      "grey_literature.job_number, "
+		      "grey_literature.type, "
+		      "grey_literature.myoid ";
+		  }
+		else if(type == "Photograph Collection")
+		  {
+		    if(al.location->currentIndex() != 0)
+		      {
+			if(caseinsensitive)
+			  str.append
+			    ("AND LOWER(location) = " + E + "'" +
+			     biblioteq_myqstring::escape
+			     (al.location->currentText().trimmed(),
+			      true) + "' ");
+			else
+			  str.append
+			    ("AND location = " + E + "'" +
+			     biblioteq_myqstring::escape
+			     (al.location->currentText().trimmed()) + "' ");
+		      }
+
+		    str += "GROUP BY "
+		      "photograph_collection.title, "
+		      "photograph_collection.id, "
+		      "photograph_collection.location, "
+		      "photograph_collection.accession_number, "
+		      "photograph_collection.type, "
+		      "photograph_collection.myoid, "
+		      "photograph_collection.image_scaled ";
+		  }
 
 		if(type == "CD")
 		  {
@@ -2929,7 +2997,8 @@ int biblioteq::populateTable(const int search_type_arg,
 		    str = str.replace("category", "genre");
 		  }
 
-		if(type != "Photograph Collection")
+		if(type != "Grey Literature" &&
+		   type != "Photograph Collection")
 		  {
 		    if(al.available->isChecked())
 		      str.append
@@ -2984,76 +3053,6 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	    searchstr += limitStr + offsetStr;
 	  }
-	else if(typefilter == "Video Games")
-	  {
-	    if(!searchstr.contains("ORDER BY"))
-	      {
-		searchstr.append(searchstrArg);
-		searchstr.append("GROUP BY "
-				 "videogame.title, "
-				 "videogame.vgrating, "
-				 "videogame.vgplatform, "
-				 "videogame.vgmode, "
-				 "videogame.publisher, "
-				 "videogame.rdate, "
-				 "videogame.place, "
-				 "videogame.genre, "
-				 "videogame.language, "
-				 "videogame.id, "
-				 "videogame.price, "
-				 "videogame.monetary_units, "
-				 "videogame.quantity, "
-				 "videogame.location, "
-				 "videogame.accession_number, "
-				 "videogame.type, "
-				 "videogame.myoid, "
-				 "videogame.front_cover "
-				 "ORDER BY "
-				 "videogame.title");
-	      }
-
-	    if(searchstr.lastIndexOf("LIMIT") != -1)
-	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
-			       searchstr.length());
-
-	    searchstr += limitStr + offsetStr;
-	  }
-	else if(typefilter == "Music CDs")
-	  {
-	    if(!searchstr.contains("ORDER BY"))
-	      {
-		searchstr.append(searchstrArg);
-		searchstr.append("GROUP BY "
-				 "cd.title, "
-				 "cd.artist, "
-				 "cd.cdformat, "
-				 "cd.recording_label, "
-				 "cd.rdate, "
-				 "cd.cddiskcount, "
-				 "cd.cdruntime, "
-				 "cd.category, "
-				 "cd.language, "
-				 "cd.id, "
-				 "cd.price, "
-				 "cd.monetary_units, "
-				 "cd.quantity, "
-				 "cd.location, "
-				 "cd.cdaudio, "
-				 "cd.cdrecording, "
-				 "cd.accession_number, "
-				 "cd.type, "
-				 "cd.myoid, "
-				 "cd.front_cover "
-				 "ORDER BY "
-				 "cd.title");
-	      }
-
-	    if(searchstr.lastIndexOf("LIMIT") != -1)
-	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
-			       searchstr.length());
-
-	    searchstr += limitStr + offsetStr;
-	  }
 	else if(typefilter == "DVDs")
 	  {
 	    if(!searchstr.contains("ORDER BY"))
@@ -3082,6 +3081,28 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.front_cover "
 				 "ORDER BY "
 				 "dvd.title");
+	      }
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
+			       searchstr.length());
+
+	    searchstr += limitStr + offsetStr;
+	  }
+	else if(typefilter == "Grey Literature")
+	  {
+	    if(!searchstr.contains("ORDER BY"))
+	      {
+		searchstr.append(searchstrArg);
+		searchstr.append("GROUP BY photograph_collection.title, "
+				 "photograph_collection.id, "
+				 "photograph_collection.location, "
+				 "photograph_collection.about, "
+				 "photograph_collection.accession_number, "
+				 "photograph_collection.type, "
+				 "photograph_collection.myoid, "
+				 "photograph_collection.image_scaled "
+				 "ORDER BY photograph_collection.title");
 	      }
 
 	    if(searchstr.lastIndexOf("LIMIT") != -1)
@@ -3156,6 +3177,42 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	    searchstr += limitStr + offsetStr;
 	  }
+	else if(typefilter == "Music CDs")
+	  {
+	    if(!searchstr.contains("ORDER BY"))
+	      {
+		searchstr.append(searchstrArg);
+		searchstr.append("GROUP BY "
+				 "cd.title, "
+				 "cd.artist, "
+				 "cd.cdformat, "
+				 "cd.recording_label, "
+				 "cd.rdate, "
+				 "cd.cddiskcount, "
+				 "cd.cdruntime, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.id, "
+				 "cd.price, "
+				 "cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.cdaudio, "
+				 "cd.cdrecording, "
+				 "cd.accession_number, "
+				 "cd.type, "
+				 "cd.myoid, "
+				 "cd.front_cover "
+				 "ORDER BY "
+				 "cd.title");
+	      }
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
+			       searchstr.length());
+
+	    searchstr += limitStr + offsetStr;
+	  }
 	else if(typefilter == "Photograph Collections")
 	  {
 	    if(!searchstr.contains("ORDER BY"))
@@ -3170,6 +3227,40 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "photograph_collection.myoid, "
 				 "photograph_collection.image_scaled "
 				 "ORDER BY photograph_collection.title");
+	      }
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
+			       searchstr.length());
+
+	    searchstr += limitStr + offsetStr;
+	  }
+	else if(typefilter == "Video Games")
+	  {
+	    if(!searchstr.contains("ORDER BY"))
+	      {
+		searchstr.append(searchstrArg);
+		searchstr.append("GROUP BY "
+				 "videogame.title, "
+				 "videogame.vgrating, "
+				 "videogame.vgplatform, "
+				 "videogame.vgmode, "
+				 "videogame.publisher, "
+				 "videogame.rdate, "
+				 "videogame.place, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.id, "
+				 "videogame.price, "
+				 "videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.accession_number, "
+				 "videogame.type, "
+				 "videogame.myoid, "
+				 "videogame.front_cover "
+				 "ORDER BY "
+				 "videogame.title");
 	      }
 
 	    if(searchstr.lastIndexOf("LIMIT") != -1)
