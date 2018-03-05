@@ -41,6 +41,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   Ui_biblioteq_greyliteratureinfo grey_literature;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void highlightRequiredWidgets(void);
 
  private slots:
   void slotCancel(void);
