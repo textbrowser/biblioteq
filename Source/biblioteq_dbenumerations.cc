@@ -294,6 +294,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 		  list << tr("Book")
 		       << tr("DVD")
+		       << tr("Grey Literature")
 		       << tr("Journal")
 		       << tr("Magazine")
 		       << tr("Music CD")
@@ -304,17 +305,19 @@ void biblioteq_dbenumerations::populateWidgets(void)
 		  if(pairList.at(j).first == "Book")
 		    item1->setCurrentIndex(0);
 		  else if(pairList.at(j).first == "CD")
-		    item1->setCurrentIndex(4);
+		    item1->setCurrentIndex(5);
 		  else if(pairList.at(j).first == "DVD")
 		    item1->setCurrentIndex(1);
-		  else if(pairList.at(j).first == "Journal")
+		  else if(pairList.at(j).first == "Grey Literature")
 		    item1->setCurrentIndex(2);
-		  else if(pairList.at(j).first == "Magazine")
+		  else if(pairList.at(j).first == "Journal")
 		    item1->setCurrentIndex(3);
+		  else if(pairList.at(j).first == "Magazine")
+		    item1->setCurrentIndex(4);
 		  else if(pairList.at(j).first == "Photograph Collection")
-		    item1->setCurrentIndex(5);
-		  else if(pairList.at(j).first == "Video Game")
 		    item1->setCurrentIndex(6);
+		  else if(pairList.at(j).first == "Video Game")
+		    item1->setCurrentIndex(7);
 
 		  list.clear();
 		  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
@@ -633,15 +636,15 @@ void biblioteq_dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
-				  "(?, 'Journal')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+				  "(?, 'Grey Literature')");
+		    query.bindValue
+		      (0, tablewidget->item(j, 1)->text().trimmed());
 		  }
 		else if(index == 3)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
-				  "(?, 'Magazine')");
+				  "(?, 'Journal')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());
 		  }
@@ -649,7 +652,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
-				  "(?, 'CD')");
+				  "(?, 'Magazine')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());
 		  }
@@ -657,11 +660,19 @@ void biblioteq_dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
-				  "(?, 'Photograph Collection')");
+				  "(?, 'CD')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());
 		  }
 		else if(index == 6)
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'Photograph Collection')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
+		else if(index == 7)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
