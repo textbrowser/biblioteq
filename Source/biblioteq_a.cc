@@ -3908,8 +3908,13 @@ void biblioteq::slotConnectDB(void)
 
       if(!fileInfo.exists() || !fileInfo.isReadable() || !fileInfo.isWritable())
 	{
+	  QWidget *parent = this;
+
+	  if(m_branch_diag->isVisible())
+	    parent = m_branch_diag;
+
 	  QMessageBox::critical
-	    (m_branch_diag, tr("BiblioteQ: User Error"),
+	    (parent, tr("BiblioteQ: User Error"),
 	     tr("The selected SQLite file is not accessible. Please "
 		"verify that the file exists, is readable, and is writable."));
 	  return;
