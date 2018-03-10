@@ -1079,6 +1079,7 @@ CREATE TABLE grey_literature
 	document_status TEXT,
 	document_title	TEXT NOT NULL,
 	document_type	TEXT NOT NULL,
+	front_cover     BYTEA,
 	job_number	TEXT NOT NULL,
 	location	TEXT,
 	myoid		BIGSERIAL UNIQUE,

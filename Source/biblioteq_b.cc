@@ -240,7 +240,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "grey_literature.job_number, "
 	       "grey_literature.type, "
 	       "grey_literature.myoid, "
-	       "NULL AS front_cover "
+	       "grey_literature.front_cover "
 	       "FROM grey_literature "
 	       "GROUP BY "
 	       "grey_literature.document_title, "
@@ -250,7 +250,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "grey_literature.location, "
 	       "grey_literature.job_number, "
 	       "grey_literature.type, "
-	       "grey_literature.myoid "
+	       "grey_literature.myoid, "
+	       "grey_literature.front_cover "
 	       "UNION "
 	       "SELECT DISTINCT journal.title, "
 	       "journal.id, "
@@ -2380,7 +2381,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "AS image_count, "
 	      "grey_literature.type, "
 	      "grey_literature.myoid, "
-	      "NULL AS front_cover "
+	      "grey_literature.front_cover "
 	      "FROM grey_literature "
 	      "GROUP BY "
 	      "grey_literature.author, "
@@ -2395,7 +2396,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "grey_literature.job_number, "
 	      "grey_literature.location, "
 	      "grey_literature.type, "
-	      "grey_literature.myoid "
+	      "grey_literature.myoid, "
+	      "grey_literature.front_cover "
 	      "ORDER BY "
 	      "grey_literature.author" +
 	      limitStr + offsetStr;
@@ -2575,7 +2577,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		    "grey_literature.job_number, "
 		    "grey_literature.type, "
 		    "grey_literature.myoid, "
-		    "NULL "
+		    "grey_literature.front_cover "
 		    "FROM grey_literature "
 		    "WHERE ";
 		else if(type == "Photograph Collection")
@@ -2824,6 +2826,22 @@ int biblioteq::populateTable(const int search_type_arg,
 
 			    str.append(") ");
 			  }
+			else
+			  {
+			    if(caseinsensitive)
+			      str.append
+				("LOWER(description) LIKE " + E + "'%" +
+				 biblioteq_myqstring::
+				 escape(al.description->
+					toPlainText().trimmed(),
+					true) + "%' ");
+			    else
+			      str.append
+				("description LIKE " + E + "'%" +
+				 biblioteq_myqstring::
+				 escape(al.description->
+					toPlainText().trimmed()) + "%' ");
+			  }
 		      }
 		    else
 		      {
@@ -2936,13 +2954,13 @@ int biblioteq::populateTable(const int search_type_arg,
 		      {
 			if(caseinsensitive)
 			  str.append
-			    ("AND LOWER(document_location) = " + E + "'" +
+			    ("AND LOWER(location) = " + E + "'" +
 			     biblioteq_myqstring::escape
 			     (al.location->currentText().trimmed(),
 			      true) + "' ");
 			else
 			  str.append
-			    ("AND document_location = " + E + "'" +
+			    ("AND location = " + E + "'" +
 			     biblioteq_myqstring::escape
 			     (al.location->currentText().trimmed()) + "' ");
 		      }
@@ -2952,7 +2970,8 @@ int biblioteq::populateTable(const int search_type_arg,
 		      "grey_literature.location, "
 		      "grey_literature.job_number, "
 		      "grey_literature.type, "
-		      "grey_literature.myoid ";
+		      "grey_literature.myoid, "
+		      "grey_literature.front_cover ";
 		  }
 		else if(type == "Photograph Collection")
 		  {
@@ -3100,7 +3119,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.notes, "
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
-				 "grey_literature.myoid "
+				 "grey_literature.myoid, "
+				 "grey_literature.front_cover "
 				 "ORDER BY grey_literature.document_title");
 	      }
 
@@ -3301,7 +3321,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		"grey_literature.job_number, "
 		"grey_literature.type, "
 		"grey_literature.myoid, "
-		"NULL "
+		"grey_literature.front_cover "
 		"FROM grey_literature "
 		"WHERE ";
 	    else if(type == "Photograph Collection")
@@ -3356,7 +3376,8 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	    if(ui.searchType->currentIndex() == 0) // Category
 	      {
-		if(type != "Photograph Collection")
+		if(type != "Grey Literature" &&
+		   type != "Photograph Collection")
 		  {
 		    if(ui.case_insensitive->isChecked())
 		      str.append("LOWER(category) LIKE " +
@@ -3371,7 +3392,22 @@ int biblioteq::populateTable(const int search_type_arg,
 				 (searchstrArg.trimmed()) +
 				 "%' ");
 		  }
-		else
+		else if(type == "Grey Literature")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("COALESCE(LOWER(notes), '') LIKE " +
+				 E + "'%" +
+				 biblioteq_myqstring::escape
+				 (searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("COALESCE(notes, '') LIKE " +
+				 E + "'%" +
+				 biblioteq_myqstring::escape
+				 (searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+		else if(type == "Photograph Collection")
 		  {
 		    if(ui.case_insensitive->isChecked())
 		      str.append("COALESCE(LOWER(about), '') LIKE " +
@@ -3389,7 +3425,21 @@ int biblioteq::populateTable(const int search_type_arg,
 	      }
 	    else if(ui.searchType->currentIndex() == 1) // ID
 	      {
-		if(ui.case_insensitive->isChecked())
+		if(type == "Grey Literature")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append
+			("(LOWER(document_id) LIKE " + E + "'%" +
+			 biblioteq_myqstring::
+			 escape(searchstrArg.toLower().trimmed()) +
+			 "%' ");
+		    else
+		      str.append
+			("(document_id LIKE " + E + "'%" +
+			 biblioteq_myqstring::escape(searchstrArg.trimmed()) +
+			 "%' ");
+		  }
+		else if(ui.case_insensitive->isChecked())
 		  str.append
 		    ("(LOWER(id) LIKE " + E + "'%" +
 		     biblioteq_myqstring::
@@ -3419,7 +3469,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      }
 	    else if(ui.searchType->currentIndex() == 2) // Keyword
 	      {
-		if(type != "Photograph Collection")
+		if(type != "Grey Literature" &&
+		   type != "Photograph Collection")
 		  {
 		    if(ui.case_insensitive->isChecked())
 		      str.append("COALESCE(LOWER(keyword), '') LIKE " +
@@ -3434,7 +3485,22 @@ int biblioteq::populateTable(const int search_type_arg,
 				 (searchstrArg.trimmed()) +
 				 "%' ");
 		  }
-		else
+		else if(type == "Grey Literature")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("COALESCE(LOWER(notes), '') LIKE " +
+				 E + "'%" +
+				 biblioteq_myqstring::escape
+				 (searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("COALESCE(notes, '') LIKE " +
+				 E + "'%" +
+				 biblioteq_myqstring::escape
+				 (searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+		else if(type == "Photograph Collection")
 		  {
 		    if(ui.case_insensitive->isChecked())
 		      str.append("COALESCE(LOWER(about), '') LIKE " +
@@ -3452,7 +3518,20 @@ int biblioteq::populateTable(const int search_type_arg,
 	      }
 	    else // Title
 	      {
-		if(ui.case_insensitive->isChecked())
+		if(type == "Grey Literature")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("LOWER(document_title) LIKE " + E + "'%" +
+				 biblioteq_myqstring::
+				 escape(searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("document_title LIKE " + E + "'%" +
+				 biblioteq_myqstring::
+				 escape(searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+		else if(ui.case_insensitive->isChecked())
 		  str.append("LOWER(title) LIKE " + E + "'%" +
 			     biblioteq_myqstring::
 			     escape(searchstrArg.toLower().trimmed()) +
@@ -3464,7 +3543,8 @@ int biblioteq::populateTable(const int search_type_arg,
 			     "%' ");
 	      }
 
-	    if(type != "Photograph Collection")
+	    if(type != "Grey Literature" &&
+	       type != "Photograph Collection")
 	      str += QString("GROUP BY "
 			     "%1.title, "
 			     "%1.id, "
@@ -3488,7 +3568,8 @@ int biblioteq::populateTable(const int search_type_arg,
 		"grey_literature.location, "
 		"grey_literature.job_number, "
 		"grey_literature.type, "
-		"grey_literature.myoid ";
+		"grey_literature.myoid, "
+		"grey_literature.front_cover ";
 	    else
 	      str += "GROUP BY "
 		"photograph_collection.title, "
@@ -3539,6 +3620,10 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(!query.exec(searchstr))
     {
+      progress.close();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
@@ -4358,6 +4443,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "document_status TEXT,"
 	      "document_title TEXT NOT NULL,"
 	      "document_type TEXT NOT NULL,"
+	      "front_cover BYTEA, "
 	      "job_number TEXT NOT NULL,"
 	      "location TEXT,"
 	      "myoid BIGINT UNIQUE,"
