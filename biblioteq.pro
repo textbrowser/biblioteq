@@ -44,11 +44,22 @@ QT              += printsupport widgets
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
+
+openbsd-* {
+}
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=generic -pie
+                          -fwrapv -pie
+else {
+QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
+			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
+			  -Wstrict-overflow=5 \
+			  -Wstack-protector -fPIE -fstack-protector-all \
+                          -fwrapv -mtune=generic -pie
+}
+
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
