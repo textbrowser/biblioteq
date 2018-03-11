@@ -46,13 +46,12 @@ TEMPLATE	= app
 QMAKE_CLEAN	+= BiblioteQ
 
 openbsd-* {
-}
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
                           -fwrapv -pie
-else {
+} else {
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
