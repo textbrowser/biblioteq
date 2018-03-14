@@ -31,6 +31,8 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.action_Contents->setEnabled(false);
   m_ui.action_Print->setEnabled(false);
   m_ui.action_Save_As->setEnabled(false);
+  m_ui.case_sensitive->setEnabled(false);
+  m_ui.find->setEnabled(false);
   m_ui.page->setEnabled(false);
   m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
   m_ui.page_2->setText(m_ui.page_1->text());
@@ -81,6 +83,43 @@ biblioteq_pdfreader::~biblioteq_pdfreader()
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   delete m_document;
 #endif
+}
+
+bool biblioteq_pdfreader::event(QEvent *event)
+{
+  if(event && event->type() == QEvent::KeyRelease)
+    {
+      QKeyEvent *keyEvent = static_cast<QKeyEvent *> (event);
+
+      if(keyEvent)
+	switch(keyEvent->key())
+	  {
+	  case Qt::Key_Down:
+	  case Qt::Key_PageDown:
+	    {
+	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
+		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
+		  m_ui.scrollArea->verticalScrollBar()->maximum() ==
+		  m_ui.scrollArea->verticalScrollBar()->value()))
+		m_ui.page->setValue(m_ui.page->value() + 2);
+
+	      break;
+	    }
+	  case Qt::Key_PageUp:
+	  case Qt::Key_Up:
+	    {
+	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
+		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
+		  m_ui.scrollArea->verticalScrollBar()->minimum() ==
+		  m_ui.scrollArea->verticalScrollBar()->value()))
+		m_ui.page->setValue(m_ui.page->value() - 2);
+
+	      break;
+	    }
+	  }
+    }
+
+  return QMainWindow::event(event);
 }
 
 void biblioteq_pdfreader::changeEvent(QEvent *event)
@@ -386,6 +425,10 @@ void biblioteq_pdfreader::slotSaveAs(void)
 #endif
 }
 
+void biblioteq_pdfreader::slotSearchNext(void)
+{
+}
+
 void biblioteq_pdfreader::slotShowContents(bool state)
 {
   m_ui.contents->setVisible(state);
@@ -473,41 +516,4 @@ void biblioteq_pdfreader::slotSliderTriggerAction(int action)
       m_ui.scrollArea->verticalScrollBar()->setValue
 	(m_ui.scrollArea->verticalScrollBar()->maximum());
     }
-}
-
-bool biblioteq_pdfreader::event(QEvent *event)
-{
-  if(event && event->type() == QEvent::KeyRelease)
-    {
-      QKeyEvent *keyEvent = static_cast<QKeyEvent *> (event);
-
-      if(keyEvent)
-	switch(keyEvent->key())
-	  {
-	  case Qt::Key_Down:
-	  case Qt::Key_PageDown:
-	    {
-	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
-		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
-		  m_ui.scrollArea->verticalScrollBar()->maximum() ==
-		  m_ui.scrollArea->verticalScrollBar()->value()))
-		m_ui.page->setValue(m_ui.page->value() + 2);
-
-	      break;
-	    }
-	  case Qt::Key_PageUp:
-	  case Qt::Key_Up:
-	    {
-	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
-		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
-		  m_ui.scrollArea->verticalScrollBar()->minimum() ==
-		  m_ui.scrollArea->verticalScrollBar()->value()))
-		m_ui.page->setValue(m_ui.page->value() - 2);
-
-	      break;
-	    }
-	  }
-    }
-
-  return QMainWindow::event(event);
 }
