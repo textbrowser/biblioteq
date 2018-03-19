@@ -57,6 +57,7 @@ class biblioteq_pdfreader: public QMainWindow
   void slotPrint(void);
   void slotSaveAs(void);
   void slotSearchNext(void);
+  void slotSearchPrevious(void);
   void slotShowContents(bool state);
   void slotShowPage(int value, const QRectF &location = QRectF());
   void slotSliderTriggerAction(int action);

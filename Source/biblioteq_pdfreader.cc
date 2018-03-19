@@ -33,6 +33,8 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.action_Save_As->setEnabled(false);
   m_ui.case_sensitive->setEnabled(false);
   m_ui.find->setEnabled(false);
+  m_ui.find_next->setEnabled(false);
+  m_ui.find_previous->setEnabled(false);
   m_ui.page->setEnabled(false);
   m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
   m_ui.page_2->setText(m_ui.page_1->text());
@@ -78,6 +80,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSearchNext(void)));
+  connect(m_ui.find_previous,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSearchPrevious(void)));
   connect(m_ui.page,
 	  SIGNAL(valueChanged(int)),
 	  this,
@@ -453,7 +459,8 @@ void biblioteq_pdfreader::slotSearchNext(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  int page = m_ui.page->value();
+  int currentPage = m_ui.page->value();
+  int page = currentPage;
 
   while(page < m_document->numPages())
     {
@@ -478,8 +485,23 @@ void biblioteq_pdfreader::slotSearchNext(void)
       page += 1;
     }
 
-  m_ui.page->setValue(1);
+  m_ui.page->setValue(currentPage);
   m_ui.find->setFocus();
+  QApplication::restoreOverrideCursor();
+#endif
+}
+
+void biblioteq_pdfreader::slotSearchPrevious(void)
+{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  if(!m_document || m_ui.find->text().isEmpty())
+    {
+      m_searchLocation = QRectF();
+      slotShowPage(m_ui.page->value(), m_searchLocation);
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   QApplication::restoreOverrideCursor();
 #endif
 }
