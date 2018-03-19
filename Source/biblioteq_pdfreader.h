@@ -39,6 +39,7 @@ class biblioteq_pdfreader: public QMainWindow
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   Poppler::Document *m_document;
 #endif
+  QRectF m_searchLocation;
   QString m_fileName;
   Ui_pdfreader m_ui;
   bool event(QEvent *event);
@@ -57,7 +58,7 @@ class biblioteq_pdfreader: public QMainWindow
   void slotSaveAs(void);
   void slotSearchNext(void);
   void slotShowContents(bool state);
-  void slotShowPage(int value);
+  void slotShowPage(int value, const QRectF &location = QRectF());
   void slotSliderTriggerAction(int action);
 
  public slots:

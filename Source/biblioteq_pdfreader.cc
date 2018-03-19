@@ -50,6 +50,14 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(triggered(bool)),
 	  this,
 	  SLOT(slotShowContents(bool)));
+  connect(m_ui.action_Find,
+	  SIGNAL(triggered(void)),
+	  m_ui.find,
+	  SLOT(selectAll(void)));
+  connect(m_ui.action_Find,
+	  SIGNAL(triggered(void)),
+	  m_ui.find,
+	  SLOT(setFocus(void)));
   connect(m_ui.action_Print,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -62,6 +70,14 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(itemDoubleClicked(QListWidgetItem *)),
 	  this,
 	  SLOT(slotContentsDoubleClicked(QListWidgetItem *)));
+  connect(m_ui.find,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotSearchNext(void)));
+  connect(m_ui.find_next,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSearchNext(void)));
   connect(m_ui.page,
 	  SIGNAL(valueChanged(int)),
 	  this,
@@ -427,6 +443,45 @@ void biblioteq_pdfreader::slotSaveAs(void)
 
 void biblioteq_pdfreader::slotSearchNext(void)
 {
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  if(!m_document || m_ui.find->text().isEmpty())
+    {
+      m_searchLocation = QRectF();
+      slotShowPage(m_ui.page->value(), m_searchLocation);
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  int page = m_ui.page->value();
+
+  while(page < m_document->numPages())
+    {
+      if(m_document->page(page)->
+	 search(m_ui.find->text(),
+		m_searchLocation,
+		Poppler::Page::NextResult,
+		m_ui.case_sensitive->isChecked() ?
+		Poppler::Page::CaseSensitive : Poppler::Page::CaseInsensitive))
+	if(!m_searchLocation.isNull())
+	  {
+	    QApplication::restoreOverrideCursor();
+	    slotShowPage(page + 1, m_searchLocation);
+	    m_ui.find->setFocus();
+	    m_ui.page->blockSignals(true);
+	    m_ui.page->setValue(page + 1);
+	    m_ui.page->blockSignals(false);
+	    return;
+	  }
+
+      m_searchLocation = QRectF();
+      page += 1;
+    }
+
+  m_ui.page->setValue(1);
+  m_ui.find->setFocus();
+  QApplication::restoreOverrideCursor();
+#endif
 }
 
 void biblioteq_pdfreader::slotShowContents(bool state)
@@ -434,13 +489,19 @@ void biblioteq_pdfreader::slotShowContents(bool state)
   m_ui.contents->setVisible(state);
 }
 
-void biblioteq_pdfreader::slotShowPage(int value)
+void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   if(!m_document)
-    return;
+    {
+      m_searchLocation = QRectF();
+      return;
+    }
   else if(value <= 0 || value > m_document->numPages())
-    return;
+    {
+      m_searchLocation = QRectF();
+      return;
+    }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -448,6 +509,7 @@ void biblioteq_pdfreader::slotShowPage(int value)
 
   if(!page)
     {
+      m_searchLocation = QRectF();
       m_ui.page_1->setText(tr("The PDF data could not be processed."));
       m_ui.page_2->setText(m_ui.page_1->text());
       QApplication::restoreOverrideCursor();
@@ -473,6 +535,34 @@ void biblioteq_pdfreader::slotShowPage(int value)
   else
     image = page->renderToImage(resolution, resolution);
 
+  if(!location.isNull())
+    {
+      /*
+      ** Highlight the discovered text.
+      */
+
+      QMatrix matrix(m_ui.view_size->currentIndex() == 1 ?
+		     resolution : physicalDpiX() / 72.0,
+		     0,
+		     0,
+		     m_ui.view_size->currentIndex() == 1 ?
+		     resolution : physicalDpiY() / 72.0,
+		     0,
+		     0);
+      QRect highlightRect(matrix.mapRect(location).toRect());
+
+      highlightRect.adjust(-2, -2, 2, 2);
+
+      QImage imageHighlight(image.copy(highlightRect));
+      QPainter painter;
+
+      painter.begin(&image);
+      painter.fillRect(image.rect(), QColor(0, 0, 0, 32));
+      painter.drawImage(highlightRect, imageHighlight);
+      painter.end();
+    }
+
+  m_searchLocation = QRectF();
   m_ui.page_1->setPixmap(QPixmap::fromImage(image));
   m_ui.page_1->setFocus();
   delete page;
@@ -494,6 +584,7 @@ void biblioteq_pdfreader::slotShowPage(int value)
   delete page;
   QApplication::restoreOverrideCursor();
 #else
+  Q_UNUSED(location);
   Q_UNUSED(value);
 #endif
 }
