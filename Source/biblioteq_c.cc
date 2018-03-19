@@ -105,6 +105,10 @@ void biblioteq::slotOpenPDFFile(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
       biblioteq_pdfreader *reader = new (std::nothrow) biblioteq_pdfreader(0);
 
       if(reader)
