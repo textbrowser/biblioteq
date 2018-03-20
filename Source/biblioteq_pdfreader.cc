@@ -269,7 +269,9 @@ void biblioteq_pdfreader::prepareContents(void)
 
 void biblioteq_pdfreader::resizeEvent(QResizeEvent *event)
 {
-  if(m_ui.view_size->currentIndex() != 0)
+  m_searchLocation = QRectF();
+
+  if(m_ui.view_size->currentIndex() != 4)
     slotShowPage(m_ui.page->value());
 
   QMainWindow::resizeEvent(event);
@@ -568,19 +570,16 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 			arg(m_ui.page->maximum()));
 
   QImage image;
+  double scaleFactor =
+    m_ui.view_size->currentText().remove("%").toInt() / 100.0;
   int pX = qMax(72, m_ui.page_1->physicalDpiX());
   int pY = qMax(72, m_ui.page_1->physicalDpiY());
-  int resolution = qMin
-    ((m_ui.scrollArea->width() / 2.0) / (page->pageSizeF().width() / pX),
-     (m_ui.scrollArea->height() - (height() - m_ui.scrollArea->height())) /
-     (static_cast<qreal> (page->pageSizeF().height() / pY)));
 
-  resolution = qMin(qMin(pX, pY), resolution);
-
-  if(m_ui.view_size->currentIndex() == 0)
+  if(m_ui.view_size->currentIndex() == 4)
     image = page->renderToImage(pX, pY);
   else
-    image = page->renderToImage(resolution, resolution);
+    image = page->renderToImage
+      (scaleFactor * physicalDpiX(), scaleFactor * physicalDpiY());
 
   if(!location.isNull())
     {
@@ -588,12 +587,14 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       ** Highlight the discovered text.
       */
 
-      QMatrix matrix(m_ui.view_size->currentIndex() == 1 ?
-		     resolution : physicalDpiX() / 72.0,
+      QMatrix matrix(m_ui.view_size->currentIndex() != 4 ?
+		     scaleFactor * physicalDpiX() / 72.0 :
+		     physicalDpiX() / 72.0,
 		     0,
 		     0,
-		     m_ui.view_size->currentIndex() == 1 ?
-		     resolution : physicalDpiY() / 72.0,
+		     m_ui.view_size->currentIndex() != 4 ?
+		     scaleFactor * physicalDpiY() / 72.0 :
+		     physicalDpiY() / 72.0,
 		     0,
 		     0);
       QRect highlightRect(matrix.mapRect(location).toRect());
@@ -619,10 +620,11 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
     m_ui.page_2->setText(tr("The PDF data could not be processed."));
   else
     {
-      if(m_ui.view_size->currentIndex() == 0)
+      if(m_ui.view_size->currentIndex() == 4)
 	image = page->renderToImage(pX, pY);
       else
-	image = page->renderToImage(resolution, resolution);
+	image = page->renderToImage
+	  (scaleFactor * physicalDpiX(), scaleFactor * physicalDpiY());
 
       m_ui.page_2->setPixmap(QPixmap::fromImage(image));
     }
