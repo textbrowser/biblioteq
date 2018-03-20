@@ -173,8 +173,6 @@ void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
     {
       if(event->key() == Qt::Key_End)
 	m_ui.page->setValue(m_ui.page->maximum());
-      else if(event->key() == Qt::Key_Escape)
-	close();
       else if(event->key() == Qt::Key_Home)
 	m_ui.page->setValue(m_ui.page->minimum());
     }
@@ -459,8 +457,7 @@ void biblioteq_pdfreader::slotSearchNext(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  int currentPage = m_ui.page->value();
-  int page = currentPage;
+  int page = m_ui.page->value() - 1;
 
   while(page < m_document->numPages())
     {
@@ -496,6 +493,11 @@ void biblioteq_pdfreader::slotSearchNext(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      slotShowPage(page + 1, m_searchLocation);
+#if QT_VERSION >= 0x050000
+	      m_searchLocation.setX(right);
+#else
+	      m_searchLocation.setX(m_searchLocation.right());
+#endif
 	      m_ui.find->setFocus();
 	      m_ui.page->blockSignals(true);
 	      m_ui.page->setValue(page + 1);
@@ -607,7 +609,6 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       painter.end();
     }
 
-  m_searchLocation = QRectF();
   m_ui.page_1->setPixmap(QPixmap::fromImage(image));
   m_ui.page_1->setFocus();
   delete page;
