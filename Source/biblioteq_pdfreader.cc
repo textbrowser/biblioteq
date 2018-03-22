@@ -457,6 +457,9 @@ void biblioteq_pdfreader::slotSearchNext(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  if(!m_searchLocation.isNull())
+    m_searchLocation.setX(m_searchLocation.right());
+
   int page = m_ui.page->value() - 1;
 
   while(page < m_document->numPages())
@@ -528,6 +531,9 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  if(!m_searchLocation.isNull())
+    m_searchLocation.setX(m_searchLocation.right() - m_searchLocation.left());
+
   int page = m_ui.page->value() - 1;
 
   while(page >= 0)
@@ -563,12 +569,8 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      slotShowPage(page + 1, m_searchLocation);
-#if QT_VERSION >= 0x050000
-	      m_searchLocation.setX(m_searchLocation.left() - 1);
-#else
 	      m_searchLocation.setX(m_searchLocation.right() -
 				    m_searchLocation.left());
-#endif
 	      m_ui.find->setFocus();
 	      m_ui.page->blockSignals(true);
 	      m_ui.page->setValue(page + 1);
