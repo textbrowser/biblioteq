@@ -269,8 +269,6 @@ void biblioteq_pdfreader::prepareContents(void)
 
 void biblioteq_pdfreader::resizeEvent(QResizeEvent *event)
 {
-  m_searchLocation = QRectF();
-
   if(m_ui.view_size->currentIndex() != 4)
     slotShowPage(m_ui.page->value());
 
@@ -529,6 +527,66 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  int page = m_ui.page->value() - 1;
+
+  while(page >= 0)
+    {
+#if QT_VERSION >= 0x050000
+      double bottom = m_searchLocation.bottom();
+      double left = m_searchLocation.left();
+      double right = m_searchLocation.right();
+      double top = m_searchLocation.top();
+
+      if(m_document->page(page)->
+	 search(m_ui.find->text(),
+		left,
+		top,
+		right,
+		bottom,
+		Poppler::Page::PreviousResult,
+		m_ui.case_sensitive->isChecked() ?
+		Poppler::Page::SearchFlag(0) : Poppler::Page::IgnoreCase))
+#else
+      if(m_document->page(page)->
+	 search(m_ui.find->text(),
+		m_searchLocation,
+		Poppler::Page::PreviousResult,
+		m_ui.case_sensitive->isChecked() ?
+		Poppler::Page::CaseSensitive : Poppler::Page::CaseInsensitive))
+#endif
+	{
+#if QT_VERSION >= 0x050000
+	  m_searchLocation = QRectF(left, top, right - left, bottom - top);
+#endif
+	  if(!m_searchLocation.isNull())
+	    {
+	      QApplication::restoreOverrideCursor();
+	      slotShowPage(page + 1, m_searchLocation);
+#if QT_VERSION >= 0x050000
+	      m_searchLocation.setX(m_searchLocation.left() - 1);
+#else
+	      m_searchLocation.setX(m_searchLocation.right() -
+				    m_searchLocation.left());
+#endif
+	      m_ui.find->setFocus();
+	      m_ui.page->blockSignals(true);
+	      m_ui.page->setValue(page + 1);
+	      m_ui.page->blockSignals(false);
+	      return;
+	    }
+	}
+
+      m_searchLocation = QRectF
+	(m_document->page(page)->pageSizeF().width(),
+	 m_document->page(page)->pageSizeF().height(),
+	 1,
+	 1);
+      page -= 1;
+    }
+
+  m_ui.page->setValue(1);
+  m_ui.find->setFocus();
   QApplication::restoreOverrideCursor();
 #endif
 }
