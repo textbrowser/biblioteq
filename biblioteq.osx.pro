@@ -72,7 +72,7 @@ OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
-TEMPLATE        = all
+TEMPLATE        = app
 
 biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
 biblioteq.files		= BiblioteQ.app/*
