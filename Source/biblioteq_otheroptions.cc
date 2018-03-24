@@ -141,7 +141,9 @@ void biblioteq_otheroptions::prepareSettings(void)
 	   str == "MM/dd" ||
 	   str == "MM/yyyy" ||
 	   str == "MM" ||
-	   str == "yyyy"))
+	   str == "dd/MM/yyyy" ||
+	   str == "yyyy" ||
+	   str == "yyyy/MM/dd"))
 	str = "MM/dd/yyyy";
 
       QComboBox *comboBox = new(std::nothrow) QComboBox();
@@ -168,7 +170,9 @@ void biblioteq_otheroptions::prepareSettings(void)
 			               << "MM/dd"
 			               << "MM/yyyy"
 			               << "MM"
-			               << "yyyy");
+			               << "dd/MM/yyyy"
+			               << "yyyy"
+			               << "yyyy/MM/dd");
 
       if(comboBox->findText(str) >= 0)
 	comboBox->setCurrentIndex(comboBox->findText(str));
