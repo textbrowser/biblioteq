@@ -26,6 +26,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
+  QString errorstr("");
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -40,12 +41,22 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   m_oid = oidArg;
   m_parentWid = parentArg;
   m_row = rowArg;
-  grey_literature.setupUi(this);
+  m_ui.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.location->addItems
+    (biblioteq_misc_functions::getLocations(qmain->getDB(),
+					    "Grey Literature",
+					    errorstr));
+
+  if(m_ui.location->findText(tr("UNKNOWN")) == -1)
+    m_ui.location->addItem(tr("UNKNOWN"));
+
+  QApplication::restoreOverrideCursor();
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
@@ -62,7 +73,7 @@ void biblioteq_grey_literature::changeEvent(QEvent *event)
       {
       case QEvent::LanguageChange:
 	{
-	  grey_literature.retranslateUi(this);
+	  m_ui.retranslateUi(this);
 	  break;
 	}
       default:
@@ -103,15 +114,11 @@ void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
 void biblioteq_grey_literature::highlightRequiredWidgets(void)
 {
   biblioteq_misc_functions::highlightWidget
-    (grey_literature.author->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (grey_literature.code_a, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (grey_literature.code_b, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (grey_literature.id, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (grey_literature.title, QColor(255, 248, 220));
+    (m_ui.author->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget(m_ui.code_a, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget(m_ui.code_b, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget(m_ui.id, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget(m_ui.title, QColor(255, 248, 220));
 }
 
 void biblioteq_grey_literature::insert(void)
@@ -195,13 +202,13 @@ void biblioteq_grey_literature::updateWindow(const int state)
   if(state == biblioteq::EDITABLE)
     {
       str = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
-	grey_literature.id->text() + tr(")");
+	m_ui.id->text() + tr(")");
       m_engWindowTitle = "Modify";
     }
   else
     {
       str = QString(tr("BiblioteQ: View Grey Literature Details (")) +
-	grey_literature.id->text() + tr(")");
+	m_ui.id->text() + tr(")");
       m_engWindowTitle = "View";
     }
 

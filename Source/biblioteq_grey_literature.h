@@ -38,7 +38,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 
  private:
   QString m_engWindowTitle;
-  Ui_biblioteq_greyliteratureinfo grey_literature;
+  Ui_biblioteq_greyliteratureinfo m_ui;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void highlightRequiredWidgets(void);
