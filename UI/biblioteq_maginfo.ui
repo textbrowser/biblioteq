@@ -796,7 +796,7 @@
                 </column>
                 <column>
                  <property name="text">
-                  <string>myoid</string>
+                  <string>MYOID</string>
                  </property>
                 </column>
                </widget>

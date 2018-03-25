@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-31</y>
+         <y>0</y>
          <width>468</width>
          <height>928</height>
         </rect>
@@ -336,7 +336,7 @@
             </column>
             <column>
              <property name="text">
-              <string>myoid</string>
+              <string>MYOID</string>
              </property>
             </column>
            </widget>
