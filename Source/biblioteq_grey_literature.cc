@@ -52,6 +52,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "Grey Literature",
 					    errorstr));
+  qmain->addError
+    (QString(tr("Database Error")),
+     QString(tr("Unable to retrieve the book locations.")),
+     errorstr, __FILE__, __LINE__);
 
   if(m_ui.location->findText(tr("UNKNOWN")) == -1)
     m_ui.location->addItem(tr("UNKNOWN"));

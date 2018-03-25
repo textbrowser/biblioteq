@@ -487,6 +487,11 @@ CREATE TABLE book_binding_types						\
     binding_type     TEXT NOT NULL PRIMARY KEY				\
 );									\
 									\
+CREATE TABLE grey_literature_types					\
+(									\
+    document_type     TEXT NOT NULL PRIMARY KEY				\
+);									\
+									\
 CREATE TABLE locations				                        \
 (									\
     location	 TEXT NOT NULL,						\

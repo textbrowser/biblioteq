@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS dvd;
 DROP TABLE IF EXISTS grey_literature;
 DROP TABLE IF EXISTS grey_literature_files;
 DROP TABLE IF EXISTS grey_literature_images;
+DROP TABLE IF EXISTS grey_literature_types;
 DROP VIEW IF EXISTS item_borrower_vw;
 DROP TABLE IF EXISTS item_borrower;
 DROP TABLE IF EXISTS item_request;

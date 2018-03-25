@@ -5543,10 +5543,13 @@ void biblioteq::addError(const QString &type, const QString &summary,
 			 const QString &error, const char *file,
 			 const int line)
 {
-  int i = 0;
-  QString str = "";
+  if(error.trimmed().isEmpty())
+    return;
+
   QDateTime now = QDateTime::currentDateTime();
+  QString str = "";
   QTableWidgetItem *item = 0;
+  int i = 0;
 
   if(m_error_bar_label != 0)
     {
@@ -5563,9 +5566,9 @@ void biblioteq::addError(const QString &type, const QString &summary,
 	if(i == 0)
 	  item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
 	else if(i == 1)
-	  item->setText(type);
+	  item->setText(type.trimmed());
 	else if(i == 2)
-	  item->setText(summary);
+	  item->setText(summary.trimmed());
 	else if(i == 3)
 	  {
 	    if(error.simplified().isEmpty())

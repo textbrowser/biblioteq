@@ -4479,6 +4479,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "DELETE CASCADE,"
 	      "PRIMARY KEY(item_oid, myoid)"
 	      ")");
+  list.append("CREATE TABLE IF NOT EXISTS grey_literature_types	"
+	      "("
+	      "document_type     TEXT NOT NULL PRIMARY KEY"
+	      ")");
 
   QString errors("");
   int ct = 0;
