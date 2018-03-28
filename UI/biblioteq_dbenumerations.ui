@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1120</width>
-    <height>810</height>
+    <width>1000</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
    <layout class="QHBoxLayout">
     <item>
      <widget class="QFrame" name="frame">
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
        <item>
         <widget class="QSplitter" name="splitter_4">
          <property name="orientation">
@@ -68,7 +68,7 @@
               <item>
                <widget class="QToolButton" name="addBookBinding">
                 <property name="toolTip">
-                 <string>Add CD Format</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -85,7 +85,7 @@
               <item>
                <widget class="QToolButton" name="removeBookBinding">
                 <property name="toolTip">
-                 <string>Remove CD Format</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -153,7 +153,7 @@
               <item>
                <widget class="QToolButton" name="addCdFormat">
                 <property name="toolTip">
-                 <string>Add CD Format</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -170,7 +170,7 @@
               <item>
                <widget class="QToolButton" name="removeCdFormat">
                 <property name="toolTip">
-                 <string>Remove CD Format</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -238,7 +238,7 @@
               <item>
                <widget class="QToolButton" name="addDvdAspectRatio">
                 <property name="toolTip">
-                 <string>Add DVD Aspect Ratio</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -255,7 +255,7 @@
               <item>
                <widget class="QToolButton" name="removeDvdAspectRatio">
                 <property name="toolTip">
-                 <string>Remove DVD Aspect Ratio</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -323,7 +323,7 @@
               <item>
                <widget class="QToolButton" name="addDvdRating">
                 <property name="toolTip">
-                 <string>Add DVD Rating</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -340,7 +340,7 @@
               <item>
                <widget class="QToolButton" name="removeDvdRating">
                 <property name="toolTip">
-                 <string>Remove DVD Rating</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -413,7 +413,7 @@
               <item>
                <widget class="QToolButton" name="addDvdRegion">
                 <property name="toolTip">
-                 <string>Add DVD Region</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -430,7 +430,7 @@
               <item>
                <widget class="QToolButton" name="removeDvdRegion">
                 <property name="toolTip">
-                 <string>Remove DVD Region</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -446,6 +446,91 @@
               </item>
               <item>
                <spacer name="horizontalSpacer_26">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_12">
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Grey Literature Document Types</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="greyLiteratureTypes">
+              <property name="tabKeyNavigation">
+               <bool>true</bool>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <spacer name="horizontalSpacer_15">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addGreyLiteratureType">
+                <property name="toolTip">
+                 <string>Add</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Icons/icons.qrc">
+                  <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeGreyLiteratureType">
+                <property name="toolTip">
+                 <string>Remove</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Icons/icons.qrc">
+                  <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_16">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -498,7 +583,7 @@
               <item>
                <widget class="QToolButton" name="addLanguage">
                 <property name="toolTip">
-                 <string>Add Language</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -515,7 +600,7 @@
               <item>
                <widget class="QToolButton" name="removeLanguage">
                 <property name="toolTip">
-                 <string>Remove Language</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -593,7 +678,7 @@
               <item>
                <widget class="QToolButton" name="addLocation">
                 <property name="toolTip">
-                 <string>Add Location</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -610,7 +695,7 @@
               <item>
                <widget class="QToolButton" name="removeLocation">
                 <property name="toolTip">
-                 <string>Remove Location</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -641,6 +726,11 @@
             </item>
            </layout>
           </widget>
+         </widget>
+         <widget class="QSplitter" name="splitter_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
           <widget class="QWidget" name="layoutWidget_7">
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
@@ -678,7 +768,7 @@
               <item>
                <widget class="QToolButton" name="addMonetaryUnit">
                 <property name="toolTip">
-                 <string>Add Monetary Unit</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -695,7 +785,7 @@
               <item>
                <widget class="QToolButton" name="removeMonetaryUnit">
                 <property name="toolTip">
-                 <string>Remove Monetary Unit</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -726,11 +816,6 @@
             </item>
            </layout>
           </widget>
-         </widget>
-         <widget class="QSplitter" name="splitter_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
           <widget class="QWidget" name="layoutWidget_8">
            <layout class="QVBoxLayout" name="verticalLayout_14">
             <item>
@@ -962,7 +1047,7 @@
               <item>
                <widget class="QToolButton" name="addVideoGamePlatform">
                 <property name="toolTip">
-                 <string>Add Video Game Platform</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -979,7 +1064,7 @@
               <item>
                <widget class="QToolButton" name="removeVideoGamePlatform">
                 <property name="toolTip">
-                 <string>Remove Video Game Platform</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -1047,7 +1132,7 @@
               <item>
                <widget class="QToolButton" name="addVideoGameRating">
                 <property name="toolTip">
-                 <string>Add Video Game Rating</string>
+                 <string>Add</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -1064,7 +1149,7 @@
               <item>
                <widget class="QToolButton" name="removeVideoGameRating">
                 <property name="toolTip">
-                 <string>Remove Video Game Rating</string>
+                 <string>Remove</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -1204,6 +1289,9 @@
   <tabstop>dvdRegionsList</tabstop>
   <tabstop>addDvdRegion</tabstop>
   <tabstop>removeDvdRegion</tabstop>
+  <tabstop>greyLiteratureTypes</tabstop>
+  <tabstop>addGreyLiteratureType</tabstop>
+  <tabstop>removeGreyLiteratureType</tabstop>
   <tabstop>languagesList</tabstop>
   <tabstop>addLanguage</tabstop>
   <tabstop>removeLanguage</tabstop>
