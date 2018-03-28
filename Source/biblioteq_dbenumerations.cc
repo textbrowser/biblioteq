@@ -560,6 +560,7 @@ void biblioteq_dbenumerations::slotSave(void)
 	 << "dvd_aspect_ratios"
 	 << "dvd_ratings"
 	 << "dvd_regions"
+	 << "grey_literature_types"
 	 << "languages"
 	 << "locations"
 	 << "minimum_days"
@@ -605,16 +606,18 @@ void biblioteq_dbenumerations::slotSave(void)
       else if(i == 4)
 	listwidget = m_ui.dvdRegionsList;
       else if(i == 5)
-	listwidget = m_ui.languagesList;
+	listwidget = m_ui.greyLiteratureTypes;
       else if(i == 6)
-	tablewidget = m_ui.locationsTable;
+	listwidget = m_ui.languagesList;
       else if(i == 7)
-	tablewidget = m_ui.minimumDaysTable;
+	tablewidget = m_ui.locationsTable;
       else if(i == 8)
-	listwidget = m_ui.monetaryUnitsList;
+	tablewidget = m_ui.minimumDaysTable;
       else if(i == 9)
-	listwidget = m_ui.videoGamePlatformsList;
+	listwidget = m_ui.monetaryUnitsList;
       else if(i == 10)
+	listwidget = m_ui.videoGamePlatformsList;
+      else if(i == 11)
 	listwidget = m_ui.videoGameRatingsList;
 
       if(listwidget)
