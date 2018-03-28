@@ -109,6 +109,14 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(QWidget *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(m_ui.addGreyLiteratureType,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.removeGreyLiteratureType,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
 #if QT_VERSION >= 0x050000
   m_ui.locationsTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
@@ -185,6 +193,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	 << "dvd_aspect_ratios"
 	 << "dvd_ratings"
 	 << "dvd_regions"
+	 << "grey_literature_types"
 	 << "languages"
 	 << "locations"
 	 << "minimum_days"
@@ -195,66 +204,83 @@ void biblioteq_dbenumerations::populateWidgets(void)
   for(int i = 0; i < tables.size(); i++)
     {
       QListWidget *listwidget = 0;
+      QString str(tables.at(i));
       QTableWidget *tablewidget = 0;
-
-      if(i == 0)
-	listwidget = m_ui.bookBindingsList;
-      else if(i == 1)
-	listwidget = m_ui.cdFormatsList;
-      else if(i == 2)
-	listwidget = m_ui.dvdAspectRatiosList;
-      else if(i == 3)
-	listwidget = m_ui.dvdRatingsList;
-      else if(i == 4)
-	listwidget = m_ui.dvdRegionsList;
-      else if(i == 5)
-	listwidget = m_ui.languagesList;
-      else if(i == 6)
-	tablewidget = m_ui.locationsTable;
-      else if(i == 7)
-	tablewidget = m_ui.minimumDaysTable;
-      else if(i == 8)
-	listwidget = m_ui.monetaryUnitsList;
-      else if(i == 9)
-	listwidget = m_ui.videoGamePlatformsList;
-      else if(i == 10)
-	listwidget = m_ui.videoGameRatingsList;
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      if(i == 0)
-	list = biblioteq_misc_functions::getBookBindingTypes(qmain->getDB(),
-							     errorstr);
-      else if(i == 1)
-	list = biblioteq_misc_functions::getCDFormats(qmain->getDB(),
-						      errorstr);
-      else if(i == 2)
-	list = biblioteq_misc_functions::getDVDAspectRatios(qmain->getDB(),
-							    errorstr);
-      else if(i == 3)
-	list = biblioteq_misc_functions::getDVDRatings(qmain->getDB(),
-						       errorstr);
-      else if(i == 4)
-	list = biblioteq_misc_functions::getDVDRegions(qmain->getDB(),
-						       errorstr);
-      else if(i == 5)
-	list = biblioteq_misc_functions::getLanguages(qmain->getDB(),
-						      errorstr);
-      else if(i == 6)
-	pairList = biblioteq_misc_functions::getLocations(qmain->getDB(),
-							  errorstr);
-      else if(i == 7)
-	list = biblioteq_misc_functions::getMinimumDays(qmain->getDB(),
-							errorstr);
-      else if(i == 8)
-	list = biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
-							  errorstr);
-      else if(i == 9)
-	list = biblioteq_misc_functions::getVideoGamePlatforms(qmain->getDB(),
+      if(str == "book_binding_types")
+	{
+	  list = biblioteq_misc_functions::getBookBindingTypes(qmain->getDB(),
 							       errorstr);
-      else if(i == 10)
-	list = biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(),
-							     errorstr);
+	  listwidget = m_ui.bookBindingsList;
+	}
+      else if(str == "cd_formats")
+	{
+	  list = biblioteq_misc_functions::getCDFormats(qmain->getDB(),
+							errorstr);
+	  listwidget = m_ui.cdFormatsList;
+	}
+      else if(str == "dvd_aspect_ratios")
+	{
+	  list = biblioteq_misc_functions::getDVDAspectRatios(qmain->getDB(),
+							      errorstr);
+	  listwidget = m_ui.dvdAspectRatiosList;
+	}
+      else if(str == "dvd_ratings")
+	{
+	  list = biblioteq_misc_functions::getDVDRatings(qmain->getDB(),
+							 errorstr);
+	  listwidget = m_ui.dvdRatingsList;
+	}
+      else if(str == "dvd_regions")
+	{
+	  list = biblioteq_misc_functions::getDVDRegions(qmain->getDB(),
+							 errorstr);
+	  listwidget = m_ui.dvdRegionsList;
+	}
+      else if(str == "grey_literature_types")
+	{
+	  list = biblioteq_misc_functions::getGreyLiteratureTypes
+	    (qmain->getDB(), errorstr);
+	  listwidget = m_ui.greyLiteratureTypes;
+	}
+      else if(str == "languages")
+	{
+	  list = biblioteq_misc_functions::getLanguages(qmain->getDB(),
+							errorstr);
+	  listwidget = m_ui.languagesList;
+	}
+      else if(str == "locations")
+	{
+	  pairList = biblioteq_misc_functions::getLocations(qmain->getDB(),
+							    errorstr);
+	  tablewidget = m_ui.locationsTable;
+	}
+      else if(str == "minimum_days")
+	{
+	  list = biblioteq_misc_functions::getMinimumDays(qmain->getDB(),
+							  errorstr);
+	  tablewidget = m_ui.minimumDaysTable;
+	}
+      else if(str == "monetary_units")
+	{
+	  list = biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
+							    errorstr);
+	  listwidget = m_ui.monetaryUnitsList;
+	}
+      else if(str == "videogame_platforms")
+	{
+	  list = biblioteq_misc_functions::getVideoGamePlatforms(qmain->getDB(),
+								 errorstr);
+	  listwidget = m_ui.videoGamePlatformsList;
+	}
+      else if(str == "videogame_ratings")
+	{
+	  list = biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(),
+							       errorstr);
+	  listwidget = m_ui.videoGameRatingsList;
+	}
 
       QApplication::restoreOverrideCursor();
 
@@ -405,6 +431,11 @@ void biblioteq_dbenumerations::slotAdd(void)
       list = m_ui.dvdRegionsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("DVD Region"));
     }
+  else if(toolButton == m_ui.addGreyLiteratureType)
+    {
+      list = m_ui.greyLiteratureTypes;
+      listItem = new(std::nothrow) QListWidgetItem(tr("Document Type"));
+    }
   else if(toolButton == m_ui.addLanguage)
     {
       list = m_ui.languagesList;
@@ -496,6 +527,8 @@ void biblioteq_dbenumerations::slotRemove(void)
     list = m_ui.dvdRatingsList;
   else if(toolButton == m_ui.removeDvdRegion)
     list = m_ui.dvdRegionsList;
+  else if(toolButton == m_ui.removeGreyLiteratureType)
+    list = m_ui.greyLiteratureTypes;
   else if(toolButton == m_ui.removeLanguage)
     list = m_ui.languagesList;
   else if(toolButton == m_ui.removeLocation)
