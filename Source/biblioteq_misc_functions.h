@@ -53,6 +53,8 @@ class biblioteq_misc_functions
   static QStringList getDVDAspectRatios(const QSqlDatabase &, QString &);
   static QStringList getDVDRatings(const QSqlDatabase &, QString &);
   static QStringList getDVDRegions(const QSqlDatabase &, QString &);
+  static QStringList getGreyLiteratureTypes(const QSqlDatabase &db,
+					    QString &errorstr);
   static QStringList getLanguages(const QSqlDatabase &, QString &);
   static QStringList getLocations(const QSqlDatabase &, const QString &,
 				  QString &);

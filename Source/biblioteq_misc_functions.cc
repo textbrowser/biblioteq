@@ -2074,3 +2074,26 @@ QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 
   return format;
 }
+
+QStringList biblioteq_misc_functions::getGreyLiteratureTypes
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+
+  errorstr = "";
+  querystr = "SELECT document_type FROM grey_literature_types "
+    "WHERE LENGTH(TRIM(document_type)) > 0 "
+    "ORDER BY document_type";
+  query.setForwardOnly(true);
+
+  if(query.exec(querystr))
+    while(query.next())
+      types.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return types;
+}
