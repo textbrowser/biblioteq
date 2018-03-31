@@ -42,12 +42,17 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   m_parentWid = parentArg;
   m_row = rowArg;
   m_ui.setupUi(this);
+  connect(m_ui.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.date->setDisplayFormat(qmain->publicationDateFormat("greyliterature"));
   m_ui.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "Grey Literature",
@@ -132,6 +137,8 @@ void biblioteq_grey_literature::highlightRequiredWidgets(void)
   biblioteq_misc_functions::highlightWidget(m_ui.code_a, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget(m_ui.code_b, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget(m_ui.id, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (m_ui.job_number, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget(m_ui.title, QColor(255, 248, 220));
 }
 
@@ -203,6 +210,40 @@ void biblioteq_grey_literature::slotQuery(void)
 
 void biblioteq_grey_literature::slotReset(void)
 {
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(action != 0)
+    {
+    }
+  else
+    {
+      /*
+      ** Reset all.
+      */
+
+      if(!m_engWindowTitle.contains("Search"))
+	m_ui.author->setPlainText("N/A");
+      else
+	m_ui.author->clear();
+
+      m_ui.client->clear();
+      m_ui.code_a->clear();
+      m_ui.code_b->clear();
+
+      if(m_engWindowTitle.contains("Search"))
+	m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+      else
+	m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+
+      m_ui.id->clear();
+      m_ui.job_number->clear();
+      m_ui.location->setCurrentIndex(0);
+      m_ui.notes->clear();
+      m_ui.status->clear();
+      m_ui.title->clear();
+      m_ui.title->setFocus();
+      m_ui.type->setCurrentIndex(0);
+    }
 }
 
 void biblioteq_grey_literature::slotSelectImage(void)
