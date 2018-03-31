@@ -54,11 +54,21 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 					    errorstr));
   qmain->addError
     (QString(tr("Database Error")),
-     QString(tr("Unable to retrieve the book locations.")),
+     QString(tr("Unable to retrieve the grey literature locations.")),
+     errorstr, __FILE__, __LINE__);
+  m_ui.type->addItems
+    (biblioteq_misc_functions::getGreyLiteratureTypes(qmain->getDB(),
+						      errorstr));
+  qmain->addError
+    (QString(tr("Database Error")),
+     QString(tr("Unable to retrieve the grey literature document types.")),
      errorstr, __FILE__, __LINE__);
 
   if(m_ui.location->findText(tr("UNKNOWN")) == -1)
     m_ui.location->addItem(tr("UNKNOWN"));
+
+  if(m_ui.type->findText(tr("UNKNOWN")) == -1)
+    m_ui.type->addItem(tr("UNKNOWN"));
 
   QApplication::restoreOverrideCursor();
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
