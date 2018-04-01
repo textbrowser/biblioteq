@@ -23,18 +23,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 						     const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
   QString errorstr("");
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_isQueryEnabled = false;
@@ -43,6 +35,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   m_row = rowArg;
   m_ui.setupUi(this);
   m_ui.resetButton->setMenu(menu);
+  connect(m_ui.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCancel(void)));
   connect(m_ui.resetButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -197,6 +193,7 @@ void biblioteq_grey_literature::insert(void)
 {
   m_engWindowTitle = "Create";
   m_te_orig_pal = m_ui.id->palette();
+  m_ui.okButton->setText(tr("&Save"));
   slotReset();
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
@@ -218,13 +215,16 @@ void biblioteq_grey_literature::modify(const int state)
       setWindowTitle(tr("BiblioteQ: Modify Grey Literature Entry"));
       m_engWindowTitle = "Modify";
       m_te_orig_pal = m_ui.id->palette();
+      m_ui.okButton->setVisible(true);
     }
   else
     {
       setWindowTitle(tr("BiblioteQ: View Grey Literature Details"));
       m_engWindowTitle = "View";
+      m_ui.okButton->setVisible(false);
     }
 
+  m_ui.okButton->setText("&Save");
   str = m_oid;
   raise();
 }
@@ -233,6 +233,7 @@ void biblioteq_grey_literature::search(const QString &field,
 				       const QString &value)
 {
   m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+  m_ui.okButton->setText(tr("&Search"));
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -432,12 +433,14 @@ void biblioteq_grey_literature::updateWindow(const int state)
       str = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
 	m_ui.id->text() + tr(")");
       m_engWindowTitle = "Modify";
+      m_ui.okButton->setVisible(true);
     }
   else
     {
       str = QString(tr("BiblioteQ: View Grey Literature Details (")) +
 	m_ui.id->text() + tr(")");
       m_engWindowTitle = "View";
+      m_ui.okButton->setVisible(false);
     }
 
   setWindowTitle(str);
