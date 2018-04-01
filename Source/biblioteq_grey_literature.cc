@@ -42,8 +42,57 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   m_parentWid = parentArg;
   m_row = rowArg;
   m_ui.setupUi(this);
+  m_ui.resetButton->setMenu(menu);
   connect(m_ui.resetButton,
 	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Title")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &ID")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Date")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Author(s)")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Client(s)")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Code-A")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Code-B")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Job Number")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Notes")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Location")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Status")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Type")),
+	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
 #ifdef Q_OS_MAC
@@ -157,8 +206,8 @@ void biblioteq_grey_literature::insert(void)
 void biblioteq_grey_literature::modify(const int state)
 {
   QSqlQuery query(qmain->getDB());
-  QString fieldname = "";
-  QString str = "";
+  QString fieldname("");
+  QString str("");
   QVariant var;
 
   if(state == biblioteq::EDITABLE)
@@ -252,7 +301,7 @@ void biblioteq_grey_literature::slotSelectImage(void)
 
 void biblioteq_grey_literature::updateWindow(const int state)
 {
-  QString str = "";
+  QString str("");
 
   if(state == biblioteq::EDITABLE)
     {
