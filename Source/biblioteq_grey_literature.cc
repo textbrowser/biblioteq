@@ -125,6 +125,8 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
     m_ui.type->addItem(tr("UNKNOWN"));
 
   QApplication::restoreOverrideCursor();
+  m_dt_orig_ss = m_ui.date->styleSheet();
+  m_te_orig_pal = m_ui.author->viewport()->palette();
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
@@ -193,9 +195,10 @@ void biblioteq_grey_literature::highlightRequiredWidgets(void)
 
 void biblioteq_grey_literature::insert(void)
 {
+  m_engWindowTitle = "Create";
+  m_te_orig_pal = m_ui.id->palette();
   slotReset();
   highlightRequiredWidgets();
-  m_engWindowTitle = "Create";
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
   storeData(this);
   showNormal();
@@ -214,6 +217,7 @@ void biblioteq_grey_literature::modify(const int state)
     {
       setWindowTitle(tr("BiblioteQ: Modify Grey Literature Entry"));
       m_engWindowTitle = "Modify";
+      m_te_orig_pal = m_ui.id->palette();
     }
   else
     {
@@ -228,8 +232,22 @@ void biblioteq_grey_literature::modify(const int state)
 void biblioteq_grey_literature::search(const QString &field,
 				       const QString &value)
 {
-  Q_UNUSED(field);
-  Q_UNUSED(value);
+  m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+
+  if(field.isEmpty() && value.isEmpty())
+    {
+      m_engWindowTitle = "Search";
+      m_ui.title->setFocus();
+      setWindowTitle(tr("BiblioteQ: Database Grey Literature Search"));
+      biblioteq_misc_functions::center(this, m_parentWid);
+      showNormal();
+      activateWindow();
+      raise();
+    }
+  else
+    {
+      slotGo();
+    }
 }
 
 void biblioteq_grey_literature::slotCancel(void)
@@ -263,6 +281,99 @@ void biblioteq_grey_literature::slotReset(void)
 
   if(action != 0)
     {
+      QList<QAction *> actions = m_ui.resetButton->menu()->actions();
+
+      if(actions.size() < 12)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
+	{
+	  m_ui.title->clear();
+	  m_ui.title->setPalette(m_te_orig_pal);
+	  m_ui.title->setFocus();
+	}
+      else if(action == actions[1])
+	{
+	  m_ui.id->clear();
+	  m_ui.id->setPalette(m_te_orig_pal);
+	  m_ui.id->setFocus();
+	}
+      else if(action == actions[2])
+	{
+	  if(m_engWindowTitle.contains("Search"))
+	    m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+	  else
+	    m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+
+	  m_ui.date->setFocus();
+	  m_ui.date->setStyleSheet(m_dt_orig_ss);
+	}
+      else if(action == actions[3])
+	{
+	  if(!m_engWindowTitle.contains("Search"))
+	    m_ui.author->setPlainText("N/A");
+	  else
+	    m_ui.author->clear();
+
+	  m_ui.author->setFocus();
+	  m_ui.author->viewport()->setPalette(m_te_orig_pal);
+	}
+      else if(action == actions[4])
+	{
+	  m_ui.client->clear();
+	  m_ui.client->setFocus();
+	}
+      else if(action == actions[5])
+	{
+	  if(!m_engWindowTitle.contains("Search"))
+	    m_ui.code_a->setText("N/A");
+	  else
+	    m_ui.code_a->clear();
+
+	  m_ui.code_a->setFocus();
+	  m_ui.code_a->setPalette(m_te_orig_pal);
+	}
+      else if(action == actions[6])
+	{
+	  if(!m_engWindowTitle.contains("Search"))
+	    m_ui.code_b->setText("N/A");
+	  else
+	    m_ui.code_b->clear();
+
+	  m_ui.code_b->setFocus();
+	  m_ui.code_b->setPalette(m_te_orig_pal);
+	}
+      else if(action == actions[7])
+	{
+	  if(!m_engWindowTitle.contains("Search"))
+	    m_ui.job_number->setText("N/A");
+	  else
+	    m_ui.job_number->clear();
+
+	  m_ui.job_number->setFocus();
+	  m_ui.job_number->setPalette(m_te_orig_pal);
+	}
+      else if(action == actions[8])
+	{
+	  m_ui.notes->clear();
+	  m_ui.notes->setFocus();
+	}
+      else if(action == actions[9])
+	{
+	  m_ui.location->setCurrentIndex(0);
+	  m_ui.location->setFocus();
+	}
+      else if(action == actions[10])
+	{
+	  m_ui.status->clear();
+	  m_ui.status->setFocus();
+	}
+      else if(action == actions[11])
+	{
+	  m_ui.type->setCurrentIndex(0);
+	  m_ui.type->setFocus();
+	}
     }
   else
     {
@@ -276,8 +387,16 @@ void biblioteq_grey_literature::slotReset(void)
 	m_ui.author->clear();
 
       m_ui.client->clear();
-      m_ui.code_a->clear();
-      m_ui.code_b->clear();
+
+      if(!m_engWindowTitle.contains("Search"))
+	m_ui.code_a->setText("N/A");
+      else
+	m_ui.code_a->clear();
+
+      if(!m_engWindowTitle.contains("Search"))
+	m_ui.code_b->setText("N/A");
+      else
+	m_ui.code_b->clear();
 
       if(m_engWindowTitle.contains("Search"))
 	m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
@@ -285,7 +404,12 @@ void biblioteq_grey_literature::slotReset(void)
 	m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
       m_ui.id->clear();
-      m_ui.job_number->clear();
+
+      if(!m_engWindowTitle.contains("Search"))
+	m_ui.job_number->setText("N/A");
+      else
+	m_ui.job_number->clear();
+
       m_ui.location->setCurrentIndex(0);
       m_ui.notes->clear();
       m_ui.status->clear();

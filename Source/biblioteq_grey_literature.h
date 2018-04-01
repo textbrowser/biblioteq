@@ -37,6 +37,8 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void updateWindow(const int state);
 
  private:
+  QPalette m_te_orig_pal;
+  QString m_dt_orig_ss;
   QString m_engWindowTitle;
   Ui_biblioteq_greyliteratureinfo m_ui;
   void changeEvent(QEvent *event);
