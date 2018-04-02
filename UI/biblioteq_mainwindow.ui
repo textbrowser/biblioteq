@@ -258,6 +258,12 @@
               <property name="columnCount">
                <number>0</number>
               </property>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>150</number>
+              </attribute>
+              <attribute name="horizontalHeaderMinimumSectionSize">
+               <number>150</number>
+              </attribute>
               <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                <bool>true</bool>
               </attribute>
