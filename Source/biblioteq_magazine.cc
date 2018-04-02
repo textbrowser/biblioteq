@@ -1146,6 +1146,8 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.coverImages->setVisible(false);
   ma.delete_files->setVisible(false);
   ma.export_files->setVisible(false);
+  ma.files->setVisible(false);
+  ma.files_label->setVisible(false);
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();

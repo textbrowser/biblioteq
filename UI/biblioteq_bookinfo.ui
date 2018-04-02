@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1121</width>
-         <height>1518</height>
+         <width>1112</width>
+         <height>1554</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -663,6 +663,16 @@
               </property>
              </widget>
             </item>
+            <item row="12" column="1">
+             <widget class="QTextEdit" name="description">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
+              <property name="acceptRichText">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label_4">
               <property name="text">
@@ -739,16 +749,6 @@
               </item>
              </layout>
             </item>
-            <item row="12" column="1">
-             <widget class="QTextEdit" name="description">
-              <property name="tabChangesFocus">
-               <bool>true</bool>
-              </property>
-              <property name="acceptRichText">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
             <item row="9" column="0">
              <widget class="QLabel" name="label_10">
               <property name="text">
@@ -787,6 +787,16 @@
               </property>
              </widget>
             </item>
+            <item row="13" column="1">
+             <widget class="QTextEdit" name="marc_tags">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
+              <property name="acceptRichText">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
             <item row="3" column="1">
              <widget class="biblioteq_hyperlinked_text_edit" name="place">
               <property name="tabChangesFocus">
@@ -818,16 +828,6 @@
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
               <property name="openLinks">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="1">
-             <widget class="QTextEdit" name="marc_tags">
-              <property name="tabChangesFocus">
-               <bool>true</bool>
-              </property>
-              <property name="acceptRichText">
                <bool>false</bool>
               </property>
              </widget>
@@ -955,14 +955,14 @@
               </item>
              </layout>
             </item>
-            <item row="15" column="0">
-             <widget class="QLabel" name="label_24">
+            <item row="16" column="0">
+             <widget class="QLabel" name="files_label">
               <property name="text">
                <string>Files</string>
               </property>
              </widget>
             </item>
-            <item row="15" column="1">
+            <item row="16" column="1">
              <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
                <widget class="QTableWidget" name="files">
@@ -1083,15 +1083,15 @@
               </item>
              </layout>
             </item>
-            <item row="16" column="0">
+            <item row="15" column="1">
+             <widget class="QLineEdit" name="accession_number"/>
+            </item>
+            <item row="15" column="0">
              <widget class="QLabel" name="label_25">
               <property name="text">
                <string>Accession Number</string>
               </property>
              </widget>
-            </item>
-            <item row="16" column="1">
-             <widget class="QLineEdit" name="accession_number"/>
             </item>
            </layout>
           </widget>
@@ -1294,12 +1294,12 @@
   <tabstop>description</tabstop>
   <tabstop>marc_tags</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>accession_number</tabstop>
   <tabstop>files</tabstop>
   <tabstop>attach_files</tabstop>
   <tabstop>delete_files</tabstop>
   <tabstop>export_files</tabstop>
   <tabstop>view_pdf</tabstop>
-  <tabstop>accession_number</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>sruQueryButton</tabstop>
   <tabstop>z3950QueryButton</tabstop>

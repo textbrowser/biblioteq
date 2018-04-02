@@ -239,6 +239,10 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.delete_images->setVisible(false);
   m_ui.export_files->setVisible(false);
   m_ui.export_images->setVisible(false);
+  m_ui.files->setVisible(false);
+  m_ui.files_label->setVisible(false);
+  m_ui.images->setVisible(false);
+  m_ui.images_label->setVisible(false);
   m_ui.okButton->setText(tr("&Search"));
 
   if(field.isEmpty() && value.isEmpty())

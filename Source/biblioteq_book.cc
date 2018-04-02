@@ -1250,6 +1250,8 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.coverImages->setVisible(false);
   id.delete_files->setVisible(false);
   id.export_files->setVisible(false);
+  id.files->setVisible(false);
+  id.files_label->setVisible(false);
   id.view_pdf->setVisible(false);
   id.id->clear();
   id.category->clear();

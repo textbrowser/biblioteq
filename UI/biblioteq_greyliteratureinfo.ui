@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>461</width>
-         <height>982</height>
+         <y>-31</y>
+         <width>468</width>
+         <height>928</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -398,14 +398,14 @@
          </layout>
         </item>
         <item row="12" column="0">
-         <widget class="QLabel" name="label_16">
+         <widget class="QLabel" name="files_label">
           <property name="text">
            <string>Files</string>
           </property>
          </widget>
         </item>
         <item row="13" column="0">
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="images_label">
           <property name="text">
            <string>Images</string>
           </property>
