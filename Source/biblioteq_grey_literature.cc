@@ -257,6 +257,13 @@ void biblioteq_grey_literature::search(const QString &field,
     }
   else
     {
+      if(field == "author")
+	m_ui.author->setPlainText(value);
+      else if(field == "client")
+	m_ui.client->setPlainText(value);
+      else if(field == "notes")
+	m_ui.notes->setPlainText(value);
+
       slotGo();
     }
 }

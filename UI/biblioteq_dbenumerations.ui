@@ -839,6 +839,9 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
               <attribute name="horizontalHeaderDefaultSectionSize">
                <number>150</number>
               </attribute>
