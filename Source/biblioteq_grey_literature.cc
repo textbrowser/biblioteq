@@ -232,7 +232,13 @@ void biblioteq_grey_literature::modify(const int state)
 void biblioteq_grey_literature::search(const QString &field,
 				       const QString &value)
 {
+  m_ui.attach_files->setVisible(false);
+  m_ui.attach_images->setVisible(false);
   m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+  m_ui.delete_files->setVisible(false);
+  m_ui.delete_images->setVisible(false);
+  m_ui.export_files->setVisible(false);
+  m_ui.export_images->setVisible(false);
   m_ui.okButton->setText(tr("&Search"));
 
   if(field.isEmpty() && value.isEmpty())

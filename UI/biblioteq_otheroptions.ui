@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>482</width>
-         <height>347</height>
+         <height>340</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -89,6 +89,9 @@
            <enum>QAbstractItemView::ScrollPerPixel</enum>
           </property>
           <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>200</number>
+          </attribute>
+          <attribute name="horizontalHeaderMinimumSectionSize">
            <number>200</number>
           </attribute>
           <attribute name="horizontalHeaderStretchLastSection">

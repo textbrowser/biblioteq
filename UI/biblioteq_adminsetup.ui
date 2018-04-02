@@ -55,8 +55,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>976</width>
-             <height>127</height>
+             <width>1089</width>
+             <height>122</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
@@ -413,6 +413,9 @@
           <property name="cornerButtonEnabled">
            <bool>false</bool>
           </property>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>150</number>
+          </attribute>
           <attribute name="horizontalHeaderStretchLastSection">
            <bool>true</bool>
           </attribute>

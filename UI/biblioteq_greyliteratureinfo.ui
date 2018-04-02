@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>468</width>
-         <height>928</height>
+         <width>464</width>
+         <height>996</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -306,6 +306,9 @@
              <bool>true</bool>
             </property>
             <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>200</number>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
              <number>200</number>
             </attribute>
             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">

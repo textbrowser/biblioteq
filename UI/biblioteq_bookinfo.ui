@@ -33,23 +33,14 @@
          <x>0</x>
          <y>0</y>
          <width>1112</width>
-         <height>1554</height>
+         <height>1545</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -985,6 +976,9 @@
                  <bool>true</bool>
                 </property>
                 <attribute name="horizontalHeaderDefaultSectionSize">
+                 <number>200</number>
+                </attribute>
+                <attribute name="horizontalHeaderMinimumSectionSize">
                  <number>200</number>
                 </attribute>
                 <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
