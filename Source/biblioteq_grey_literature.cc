@@ -193,7 +193,25 @@ void biblioteq_grey_literature::insert(void)
 {
   m_engWindowTitle = "Create";
   m_te_orig_pal = m_ui.id->palette();
+  m_ui.attach_files->setEnabled(false);
+  m_ui.attach_images->setEnabled(false);
+  m_ui.author->setPlainText("N/A");
+  m_ui.client->setPlainText("N/A");
+  m_ui.code_a->clear();
+  m_ui.code_b->clear();
+  m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+  m_ui.delete_files->setEnabled(false);
+  m_ui.delete_images->setEnabled(false);
+  m_ui.export_files->setEnabled(false);
+  m_ui.export_images->setEnabled(false);
+  m_ui.id->clear();
+  m_ui.job_number->clear();
+  m_ui.location->setCurrentIndex(0);
+  m_ui.notes->clear();
   m_ui.okButton->setText(tr("&Save"));
+  m_ui.status->clear();
+  m_ui.title->clear();
+  m_ui.type->setCurrentIndex(0);
   slotReset();
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));

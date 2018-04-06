@@ -20,20 +20,20 @@
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6J__"
 #elif defined(__ARM_ARCH_6K__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6K__"
+#elif defined(__ARM_ARCH_6T2__)
+#define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6T2__"
 #elif defined(__ARM_ARCH_6ZK__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6ZK__"
 #elif defined(__ARM_ARCH_6Z__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6Z__"
-#elif defined(__ARM_ARCH_6T2__)
-#define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6T2__"
 #elif defined(__ARM_ARCH_6__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_6__"
 #elif defined(__ARM_ARCH_7A__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7A__"
-#elif defined(__ARM_ARCH_7R__)
-#define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7R__"
 #elif defined(__ARM_ARCH_7M__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7M__"
+#elif defined(__ARM_ARCH_7R__)
+#define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7R__"
 #elif defined(__ARM_ARCH_7S__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7S__"
 #elif defined(__ARM_ARCH_7__)
