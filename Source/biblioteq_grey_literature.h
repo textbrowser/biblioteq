@@ -45,8 +45,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void highlightRequiredWidgets(void);
-  void insertPostgresql(void);
-  void insertSqlite(void);
+  void insertDatabase(void);
   void updatePostgresql(void);
   void updateSqlite(void);
 

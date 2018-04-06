@@ -318,16 +318,27 @@ void biblioteq_grey_literature::insert(void)
   raise();
 }
 
-void biblioteq_grey_literature::insertPostgresql(void)
+void biblioteq_grey_literature::insertDatabase(void)
 {
   QSqlQuery query(qmain->getDB());
 
-  query.prepare("INSERT INTO grey_literature "
-		"(author, client, document_code_a, document_code_b, "
-		"document_date, document_id, document_status, document_title, "
-		"document_type, job_number, location, notes) "
-		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
-		"RETURNING myoid");
+  if(qmain->getDB().driverName() != "QSQLITE")
+    query.prepare
+      ("INSERT INTO grey_literature "
+       "(author, client, document_code_a, document_code_b, "
+       "document_date, document_id, document_status, document_title, "
+       "document_type, job_number, location, notes) "
+       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+       "RETURNING myoid");
+  else
+    query.prepare
+      ("INSERT INTO grey_literature "
+       "(author, client, document_code_a, document_code_b, "
+       "document_date, document_id, document_status, document_title, "
+       "document_type, job_number, location, notes, "
+       "myoid) "
+       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
   query.addBindValue(m_ui.author->toPlainText());
 
   if(m_ui.client->toPlainText().isEmpty())
@@ -349,6 +360,23 @@ void biblioteq_grey_literature::insertPostgresql(void)
     query.addBindValue(QVariant::String);
   else
     query.addBindValue(m_ui.notes->toPlainText());
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      QString errorstr("");
+      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	(qmain->getDB(), errorstr);
+
+      if(errorstr.isEmpty())
+	{
+	  m_oid = QString::number(value);
+	  query.addBindValue(value);
+	}
+      else
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to generate a unique integer.")),
+			errorstr);
+    }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -414,10 +442,6 @@ void biblioteq_grey_literature::insertPostgresql(void)
 			tr("BiblioteQ: Database Error"),
 			tr("Unable to create the entry. Please verify that "
 			   "the entry does not already exist."));
-}
-
-void biblioteq_grey_literature::insertSqlite(void)
-{
 }
 
 void biblioteq_grey_literature::modify(const int state)
@@ -489,12 +513,7 @@ void biblioteq_grey_literature::slotGo(void)
   if(m_engWindowTitle.contains("Create"))
     {
       if(validateWidgets())
-	{
-	  if(qmain->getDB().driverName() != "QSQLITE")
-	    insertPostgresql();
-	  else
-	    insertSqlite();
-	}
+	insertDatabase();
     }
   else if(m_engWindowTitle.contains("Modify"))
     {
