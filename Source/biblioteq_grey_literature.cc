@@ -197,6 +197,25 @@ bool biblioteq_grey_literature::validateWidgets(void)
   m_ui.client->setPlainText(m_ui.client->toPlainText().trimmed());
   m_ui.notes->setPlainText(m_ui.notes->toPlainText().trimmed());
   m_ui.status->setText(m_ui.status->text().trimmed());
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!qmain->getDB().transaction())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create a database transaction.")),
+	 qmain->getDB().lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to create a database transaction."));
+      return false;
+    }
+
+  QApplication::restoreOverrideCursor();
 
  done_label:
 
@@ -232,7 +251,8 @@ void biblioteq_grey_literature::closeEvent(QCloseEvent *e)
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
+	 question(this,
+		  tr("BiblioteQ: Question"),
 		  tr("Your changes have not been saved. Continue closing?"),
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::No)
@@ -300,6 +320,100 @@ void biblioteq_grey_literature::insert(void)
 
 void biblioteq_grey_literature::insertPostgresql(void)
 {
+  QSqlQuery query(qmain->getDB());
+
+  query.prepare("INSERT INTO grey_literature "
+		"(author, client, document_code_a, document_code_b, "
+		"document_date, document_id, document_status, document_title, "
+		"document_type, job_number, location, notes) "
+		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+		"RETURNING myoid");
+  query.addBindValue(m_ui.author->toPlainText());
+
+  if(m_ui.client->toPlainText().isEmpty())
+    query.addBindValue(QVariant::String);
+  else
+    query.addBindValue(m_ui.client->toPlainText());
+
+  query.addBindValue(m_ui.code_a->text());
+  query.addBindValue(m_ui.code_b->text());
+  query.addBindValue(m_ui.date->date().toString("MM/dd/yyyy"));
+  query.addBindValue(m_ui.id->text());
+  query.addBindValue(m_ui.status->text());
+  query.addBindValue(m_ui.title->text());
+  query.addBindValue(m_ui.type->currentText());
+  query.addBindValue(m_ui.job_number->text());
+  query.addBindValue(m_ui.location->currentText());
+
+  if(m_ui.notes->toPlainText().isEmpty())
+    query.addBindValue(QVariant::String);
+  else
+    query.addBindValue(m_ui.notes->toPlainText());
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create or update the entry.")),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      goto db_rollback;
+    }
+
+  query.next();
+  m_oid = query.value(0).toString();
+
+  if(!qmain->getDB().commit())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to commit the current database transaction.")),
+	 qmain->getDB().lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      goto db_rollback;
+    }
+
+  m_ui.author->setMultipleLinks
+    ("greyliterature_search", "author", m_ui.author->toPlainText());
+  m_ui.client->setMultipleLinks
+    ("greyliterature_search", "client", m_ui.client->toPlainText());
+  m_ui.notes->setMultipleLinks
+    ("greyliterature_search", "notes", m_ui.notes->toPlainText());
+  QApplication::restoreOverrideCursor();
+  qmain->replaceGreyLiterature(m_oid, this);
+  updateWindow(biblioteq::EDITABLE);
+
+  if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
+    qmain->populateTable
+      (biblioteq::POPULATE_ALL, "Grey Literature", QString(""));
+
+  raise();
+  storeData(this);
+  return;
+
+ db_rollback:
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_oid.clear();
+
+  if(!qmain->getDB().rollback())
+    qmain->addError(QString(tr("Database Error")),
+		    QString(tr("Rollback failure.")),
+		    qmain->getDB().lastError().text(),
+		    __FILE__,
+		    __LINE__);
+
+  QApplication::restoreOverrideCursor();
+  QMessageBox::critical(this,
+			tr("BiblioteQ: Database Error"),
+			tr("Unable to create the entry. Please verify that "
+			   "the entry does not already exist."));
 }
 
 void biblioteq_grey_literature::insertSqlite(void)
@@ -308,11 +422,6 @@ void biblioteq_grey_literature::insertSqlite(void)
 
 void biblioteq_grey_literature::modify(const int state)
 {
-  QSqlQuery query(qmain->getDB());
-  QString fieldname("");
-  QString str("");
-  QVariant var;
-
   if(state == biblioteq::EDITABLE)
     {
       setWindowTitle(tr("BiblioteQ: Modify Grey Literature Entry"));
@@ -328,7 +437,6 @@ void biblioteq_grey_literature::modify(const int state)
     }
 
   m_ui.okButton->setText("&Save");
-  str = m_oid;
   raise();
 }
 
@@ -382,12 +490,20 @@ void biblioteq_grey_literature::slotGo(void)
     {
       if(validateWidgets())
 	{
+	  if(qmain->getDB().driverName() != "QSQLITE")
+	    insertPostgresql();
+	  else
+	    insertSqlite();
 	}
     }
   else if(m_engWindowTitle.contains("Modify"))
     {
       if(validateWidgets())
 	{
+	  if(qmain->getDB().driverName() != "QSQLITE")
+	    updatePostgresql();
+	  else
+	    updateSqlite();
 	}
     }
   else if(m_engWindowTitle.contains("Search"))
@@ -556,6 +672,14 @@ void biblioteq_grey_literature::slotReset(void)
 }
 
 void biblioteq_grey_literature::slotSelectImage(void)
+{
+}
+
+void biblioteq_grey_literature::updatePostgresql(void)
+{
+}
+
+void biblioteq_grey_literature::updateSqlite(void)
 {
 }
 

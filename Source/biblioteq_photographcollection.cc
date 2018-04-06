@@ -466,6 +466,9 @@ void biblioteq_photographcollection::slotGo(void)
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
+      if(m_engWindowTitle.contains("Create"))
+	m_oid.clear();
+
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),

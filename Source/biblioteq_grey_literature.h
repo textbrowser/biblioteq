@@ -47,6 +47,8 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void highlightRequiredWidgets(void);
   void insertPostgresql(void);
   void insertSqlite(void);
+  void updatePostgresql(void);
+  void updateSqlite(void);
 
  private slots:
   void slotCancel(void);
