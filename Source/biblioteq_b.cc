@@ -3611,8 +3611,12 @@ int biblioteq::populateTable(const int search_type_arg,
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-			      arg(ui.table->rowCount()));
+
+  if(ui.table->rowCount() == 0)
+    ui.itemsCountLabel->setText(tr("0 Results"));
+  else
+    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
+				arg(ui.table->rowCount()));
 
   QSqlQuery query(m_db);
 
@@ -4049,8 +4053,12 @@ int biblioteq::populateTable(const int search_type_arg,
     slotResizeColumns();
 
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
-  ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-			      arg(ui.table->rowCount()));
+
+  if(ui.table->rowCount() == 0)
+    ui.itemsCountLabel->setText(tr("0 Results"));
+  else
+    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
+				arg(ui.table->rowCount()));
 
   if(limit == -1)
     ui.nextPageButton->setEnabled(false);
