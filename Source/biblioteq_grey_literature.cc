@@ -39,6 +39,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotCancel(void)));
+  connect(m_ui.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
   connect(m_ui.resetButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -132,6 +136,79 @@ biblioteq_grey_literature::~biblioteq_grey_literature()
 {
 }
 
+bool biblioteq_grey_literature::validateWidgets(void)
+{
+  QString error("");
+
+  m_ui.title->setText(m_ui.title->text().trimmed());
+
+  if(m_ui.title->text().isEmpty())
+    {
+      error = tr("Please complete the Title field.");
+      m_ui.title->setFocus();
+      goto done_label;
+    }
+
+  m_ui.id->setText(m_ui.id->text().trimmed());
+
+  if(m_ui.id->text().isEmpty())
+    {
+      error = tr("Please complete the ID field.");
+      m_ui.id->setFocus();
+      goto done_label;
+    }
+
+  m_ui.author->setPlainText(m_ui.author->toPlainText().trimmed());
+
+  if(m_ui.author->toPlainText().isEmpty())
+    {
+      error = tr("Please complete the Author(s) field.");
+      m_ui.author->setFocus();
+      goto done_label;
+    }
+
+  m_ui.code_a->setText(m_ui.code_a->text().trimmed());
+
+  if(m_ui.code_a->text().isEmpty())
+    {
+      error = tr("Please complete the Code-A field.");
+      m_ui.code_a->setFocus();
+      goto done_label;
+    }
+
+  m_ui.code_b->setText(m_ui.code_b->text().trimmed());
+
+  if(m_ui.code_b->text().isEmpty())
+    {
+      error = tr("Please complete the Code-B field.");
+      m_ui.code_b->setFocus();
+      goto done_label;
+    }
+
+  m_ui.job_number->setText(m_ui.job_number->text().trimmed());
+
+  if(m_ui.job_number->text().isEmpty())
+    {
+      error = tr("Please complete the Job Number field.");
+      m_ui.job_number->setFocus();
+      goto done_label;
+    }
+
+  m_ui.client->setPlainText(m_ui.client->toPlainText().trimmed());
+  m_ui.notes->setPlainText(m_ui.notes->toPlainText().trimmed());
+  m_ui.status->setText(m_ui.status->text().trimmed());
+
+ done_label:
+
+  if(!error.isEmpty())
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"), error);
+      return false;
+    }
+
+  return true;
+}
+
 void biblioteq_grey_literature::changeEvent(QEvent *event)
 {
   if(event)
@@ -221,6 +298,14 @@ void biblioteq_grey_literature::insert(void)
   raise();
 }
 
+void biblioteq_grey_literature::insertPostgresql(void)
+{
+}
+
+void biblioteq_grey_literature::insertSqlite(void)
+{
+}
+
 void biblioteq_grey_literature::modify(const int state)
 {
   QSqlQuery query(qmain->getDB());
@@ -293,6 +378,21 @@ void biblioteq_grey_literature::slotCancel(void)
 
 void biblioteq_grey_literature::slotGo(void)
 {
+  if(m_engWindowTitle.contains("Create"))
+    {
+      if(validateWidgets())
+	{
+	}
+    }
+  else if(m_engWindowTitle.contains("Modify"))
+    {
+      if(validateWidgets())
+	{
+	}
+    }
+  else if(m_engWindowTitle.contains("Search"))
+    {
+    }
 }
 
 void biblioteq_grey_literature::slotPrint(void)
