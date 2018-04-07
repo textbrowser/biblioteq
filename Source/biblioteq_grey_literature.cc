@@ -392,8 +392,11 @@ void biblioteq_grey_literature::insertDatabase(void)
       goto db_rollback;
     }
 
-  query.next();
-  m_oid = query.value(0).toString();
+  if(qmain->getDB().driverName() != "QSQLITE")
+    {
+      query.next();
+      m_oid = query.value(0).toString();
+    }
 
   if(!qmain->getDB().commit())
     {
