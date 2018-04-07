@@ -698,7 +698,7 @@ void biblioteq_photographcollection::modify(const int state,
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected photograph "
 			       "collection's data."));
-      pc.id_collection->setFocus();
+      close();
       return;
     }
   else

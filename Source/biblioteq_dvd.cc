@@ -1224,7 +1224,7 @@ void biblioteq_dvd::modify(const int state)
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected DVD's "
 			       "data."));
-      dvd.id->setFocus();
+      close();
       return;
     }
   else

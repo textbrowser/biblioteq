@@ -1461,7 +1461,7 @@ void biblioteq_magazine::modify(const int state)
 			"data.")));
 	}
 
-      ma.id->setFocus();
+      close();
       return;
     }
   else

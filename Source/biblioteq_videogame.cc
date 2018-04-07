@@ -1097,7 +1097,7 @@ void biblioteq_videogame::modify(const int state)
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected video "
 			       "game's data."));
-      vg.id->setFocus();
+      close();
       return;
     }
   else
