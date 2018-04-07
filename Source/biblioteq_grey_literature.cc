@@ -43,6 +43,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotGo(void)));
+  connect(m_ui.printButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPrint(void)));
   connect(m_ui.resetButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -536,6 +540,43 @@ void biblioteq_grey_literature::slotGo(void)
 void biblioteq_grey_literature::slotPrint(void)
 {
   m_html = "<html>";
+
+  QStringList titles;
+  QStringList values;
+
+  titles << tr("Title:")
+	 << tr("ID:")
+	 << tr("Date:")
+	 << tr("Author(s):")
+	 << tr("Client(s):")
+	 << tr("Code-A:")
+	 << tr("Code-B:")
+	 << tr("Job Number:")
+	 << tr("Notes:")
+	 << tr("Location:")
+	 << tr("Status:")
+	 << tr("Type:");
+  values << m_ui.title->text().trimmed()
+	 << m_ui.id->text().trimmed()
+	 << m_ui.date->date().toString(Qt::ISODate)
+	 << m_ui.author->toPlainText().trimmed()
+	 << m_ui.client->toPlainText().trimmed()
+	 << m_ui.code_a->text().trimmed()
+	 << m_ui.code_b->text().trimmed()
+	 << m_ui.job_number->text().trimmed()
+	 << m_ui.notes->toPlainText().trimmed()
+	 << m_ui.location->currentText().trimmed()
+	 << m_ui.status->text().trimmed()
+	 << m_ui.type->currentText().trimmed();
+
+  for(int i = 0; i < titles.size(); i++)
+    {
+      m_html += "<b>" + titles.at(i) + "</b>" + values.at(i);
+
+      if(i != titles.size() - 1)
+	m_html += "<br>";
+    }
+
   m_html += "</html>";
   print(this);
 }
