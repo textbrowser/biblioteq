@@ -845,7 +845,6 @@ void biblioteq_grey_literature::updateDatabase(void)
  db_rollback:
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_oid.clear();
 
   if(!qmain->getDB().rollback())
     qmain->addError(QString(tr("Database Error")),
@@ -857,8 +856,7 @@ void biblioteq_grey_literature::updateDatabase(void)
   QApplication::restoreOverrideCursor();
   QMessageBox::critical(this,
 			tr("BiblioteQ: Database Error"),
-			tr("Unable to create the entry. Please verify that "
-			   "the entry does not already exist."));
+			tr("Unable to update the entry."));
 }
 
 void biblioteq_grey_literature::updateWindow(const int state)
