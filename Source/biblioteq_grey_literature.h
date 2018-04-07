@@ -41,6 +41,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   QString m_dt_orig_ss;
   QString m_engWindowTitle;
   Ui_biblioteq_greyliteratureinfo m_ui;
+  bool m_duplicate;
   bool validateWidgets(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);

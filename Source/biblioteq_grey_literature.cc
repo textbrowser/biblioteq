@@ -24,11 +24,11 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   QMenu *menu = 0;
-  QString errorstr("");
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  m_duplicate = false;
   m_isQueryEnabled = false;
   m_oid = oidArg;
   m_parentWid = parentArg;
@@ -105,6 +105,9 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 #endif
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QString errorstr("");
+
   m_ui.date->setDisplayFormat(qmain->publicationDateFormat("greyliterature"));
   m_ui.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
@@ -272,7 +275,9 @@ void biblioteq_grey_literature::closeEvent(QCloseEvent *e)
 
 void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
 {
+  m_duplicate = true;
   modify(state); // Initial population.
+  m_duplicate = false;
   m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Grey Literature Entry"));
@@ -491,8 +496,130 @@ void biblioteq_grey_literature::modify(const int state)
 		 SLOT(slotEditFileDescription(QTableWidgetItem *)));
     }
 
+  QSqlQuery query(qmain->getDB());
+
+  query.setForwardOnly(true);
+  query.prepare("SELECT author, "
+		"client, "
+		"document_code_a, "
+		"document_code_b, "
+		"document_date, "
+		"document_id, "
+		"document_status, "
+		"document_title, "
+		"document_type, "
+		"job_number, "
+		"location, "
+		"notes "
+		"FROM grey_literature WHERE myoid = ?");
+  query.addBindValue(m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec() || !query.next())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve the selected grey literature's data.")),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to retrieve the selected grey literature's data."));
+      m_ui.title->setFocus();
+      return;
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+      showNormal();
+      activateWindow();
+      raise();
+
+      QSqlRecord record(query.record());
+
+      for(int i = 0; i < record.count(); i++)
+	{
+	  QString fieldName(record.fieldName(i));
+	  QVariant variant(record.field(i).value());
+
+	  if(fieldName == "author")
+	    m_ui.author->setMultipleLinks
+	      ("greyliterature_search", "author", variant.toString());
+	  else if(fieldName == "client")
+	    m_ui.client->setMultipleLinks
+	      ("greyliterature_search", "client", variant.toString());
+	  else if(fieldName == "document_code_a")
+	    m_ui.code_a->setText(variant.toString());
+	  else if(fieldName == "document_code_b")
+	    m_ui.code_b->setText(variant.toString());
+	  else if(fieldName == "document_date")
+	    m_ui.date->setDate
+	      (QDate::fromString(variant.toString(), "MM/dd/yyyy"));
+	  else if(fieldName == "document_id")
+	    {
+	      QString string("");
+
+	      if(state == biblioteq::EDITABLE)
+		{
+		  if(!variant.toString().trimmed().isEmpty())
+		    string = tr("BiblioteQ: Modify Grey Literature Entry (") +
+		      variant.toString() + tr(")");
+		  else
+		    string = tr("BiblioteQ: Modify Grey Literature Entry");
+		}
+	      else
+		{
+		  if(!variant.toString().trimmed().isEmpty())
+		    string = tr("BiblioteQ: View Grey Literature Details (") +
+		      variant.toString() + tr(")");
+		  else
+		    string = tr("BiblioteQ: View Grey Literature Details");
+		}
+
+	      m_ui.id->setText(variant.toString());
+	      setWindowTitle(string);
+	    }
+	  else if(fieldName == "document_status")
+	    m_ui.status->setText(variant.toString());
+	  else if(fieldName == "document_title")
+	    m_ui.title->setText(variant.toString());
+	  else if(fieldName == "document_type")
+	    {
+	      if(m_ui.type->findText(variant.toString()) > -1)
+		m_ui.type->setCurrentIndex
+		  (m_ui.type->findText(variant.toString()));
+	      else
+		m_ui.type->setCurrentIndex(0);
+	    }
+	  else if(fieldName == "job_number")
+	    m_ui.job_number->setText(variant.toString());
+	  else if(fieldName == "location")
+	    {
+	      if(m_ui.location->findText(variant.toString()) > -1)
+		m_ui.location->setCurrentIndex
+		  (m_ui.location->findText(variant.toString()));
+	      else
+		m_ui.location->setCurrentIndex(0);
+	    }
+	  else if(fieldName == "notes")
+	    m_ui.notes->setMultipleLinks
+	      ("greyliterature_search", "notes", variant.toString());
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      storeData(this);
+
+      if(!m_duplicate)
+	{
+	}
+    }
+
   m_ui.title->setFocus();
-  raise();
 }
 
 void biblioteq_grey_literature::search(const QString &field,
@@ -861,11 +988,11 @@ void biblioteq_grey_literature::updateDatabase(void)
 
 void biblioteq_grey_literature::updateWindow(const int state)
 {
-  QString str("");
+  QString string("");
 
   if(state == biblioteq::EDITABLE)
     {
-      str = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
+      string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
 	m_ui.id->text() + tr(")");
       m_engWindowTitle = "Modify";
       m_ui.attach_files->setEnabled(true);
@@ -883,7 +1010,7 @@ void biblioteq_grey_literature::updateWindow(const int state)
     }
   else
     {
-      str = QString(tr("BiblioteQ: View Grey Literature Details (")) +
+      string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
 	m_ui.id->text() + tr(")");
       m_engWindowTitle = "View";
       m_ui.attach_files->setEnabled(false);
@@ -899,5 +1026,5 @@ void biblioteq_grey_literature::updateWindow(const int state)
 		 SLOT(slotEditFileDescription(QTableWidgetItem *)));
     }
 
-  setWindowTitle(str);
+  setWindowTitle(string);
 }
