@@ -711,6 +711,12 @@ void biblioteq_grey_literature::updateWindow(const int state)
       str = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
 	m_ui.id->text() + tr(")");
       m_engWindowTitle = "Modify";
+      m_ui.attach_files->setEnabled(true);
+      m_ui.attach_images->setEnabled(true);
+      m_ui.delete_files->setEnabled(true);
+      m_ui.delete_images->setEnabled(true);
+      m_ui.export_files->setEnabled(true);
+      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(true);
     }
   else
@@ -718,6 +724,12 @@ void biblioteq_grey_literature::updateWindow(const int state)
       str = QString(tr("BiblioteQ: View Grey Literature Details (")) +
 	m_ui.id->text() + tr(")");
       m_engWindowTitle = "View";
+      m_ui.attach_files->setEnabled(false);
+      m_ui.attach_images->setEnabled(false);
+      m_ui.delete_files->setEnabled(false);
+      m_ui.delete_images->setEnabled(false);
+      m_ui.export_files->setEnabled(false);
+      m_ui.export_images->setEnabled(false);
       m_ui.okButton->setVisible(false);
     }
 
