@@ -389,7 +389,7 @@ void biblioteq_grey_literature::insertDatabase(void)
       QApplication::restoreOverrideCursor();
       qmain->addError
 	(QString(tr("Database Error")),
-	 QString(tr("Unable to create or update the entry.")),
+	 QString(tr("Unable to create the entry.")),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -455,19 +455,43 @@ void biblioteq_grey_literature::modify(const int state)
 {
   if(state == biblioteq::EDITABLE)
     {
+      highlightRequiredWidgets();
       setWindowTitle(tr("BiblioteQ: Modify Grey Literature Entry"));
       m_engWindowTitle = "Modify";
       m_te_orig_pal = m_ui.id->palette();
+      m_ui.attach_files->setEnabled(true);
+      m_ui.attach_images->setEnabled(true);
+      m_ui.delete_files->setEnabled(true);
+      m_ui.delete_images->setEnabled(true);
+      m_ui.export_files->setEnabled(true);
+      m_ui.export_images->setEnabled(true);
+      m_ui.okButton->setText("&Save");
       m_ui.okButton->setVisible(true);
+      connect(m_ui.files,
+	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this,
+	      SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
     }
   else
     {
       setWindowTitle(tr("BiblioteQ: View Grey Literature Details"));
       m_engWindowTitle = "View";
+      m_ui.attach_files->setEnabled(false);
+      m_ui.attach_images->setEnabled(false);
+      m_ui.delete_files->setEnabled(false);
+      m_ui.delete_images->setEnabled(false);
+      m_ui.export_files->setEnabled(false);
+      m_ui.export_images->setEnabled(false);
       m_ui.okButton->setVisible(false);
+      m_ui.okButton->setVisible(false);
+      disconnect(m_ui.files,
+		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this,
+		 SLOT(slotEditFileDescription(QTableWidgetItem *)));
     }
 
-  m_ui.okButton->setText("&Save");
+  m_ui.title->setFocus();
   raise();
 }
 
@@ -515,6 +539,12 @@ void biblioteq_grey_literature::slotCancel(void)
   close();
 }
 
+void biblioteq_grey_literature::slotEditFileDescription(QTableWidgetItem *item)
+{
+  if(!item)
+    return;
+}
+
 void biblioteq_grey_literature::slotGo(void)
 {
   if(m_engWindowTitle.contains("Create"))
@@ -525,12 +555,7 @@ void biblioteq_grey_literature::slotGo(void)
   else if(m_engWindowTitle.contains("Modify"))
     {
       if(validateWidgets())
-	{
-	  if(qmain->getDB().driverName() != "QSQLITE")
-	    updatePostgresql();
-	  else
-	    updateSqlite();
-	}
+	updateDatabase();
     }
   else if(m_engWindowTitle.contains("Search"))
     {
@@ -738,12 +763,102 @@ void biblioteq_grey_literature::slotSelectImage(void)
 {
 }
 
-void biblioteq_grey_literature::updatePostgresql(void)
+void biblioteq_grey_literature::updateDatabase(void)
 {
-}
+  QSqlQuery query(qmain->getDB());
 
-void biblioteq_grey_literature::updateSqlite(void)
-{
+  query.prepare("UPDATE grey_literature SET "
+		"author = ?, "
+		"client = ?, "
+		"document_code_a = ?, "
+		"document_code_b = ?, "
+		"document_date = ?, "
+		"document_id = ?, "
+		"document_status = ?, "
+		"document_title = ?, "
+		"document_type = ?, "
+		"job_number = ?, "
+		"location = ?, "
+		"notes = ? "
+		"WHERE myoid = ?");
+
+  query.addBindValue(m_ui.author->toPlainText());
+
+  if(m_ui.client->toPlainText().isEmpty())
+    query.addBindValue(QVariant::String);
+  else
+    query.addBindValue(m_ui.client->toPlainText());
+
+  query.addBindValue(m_ui.code_a->text());
+  query.addBindValue(m_ui.code_b->text());
+  query.addBindValue(m_ui.date->date().toString("MM/dd/yyyy"));
+  query.addBindValue(m_ui.id->text());
+  query.addBindValue(m_ui.status->text());
+  query.addBindValue(m_ui.title->text());
+  query.addBindValue(m_ui.type->currentText());
+  query.addBindValue(m_ui.job_number->text());
+  query.addBindValue(m_ui.location->currentText());
+
+  if(m_ui.notes->toPlainText().isEmpty())
+    query.addBindValue(QVariant::String);
+  else
+    query.addBindValue(m_ui.notes->toPlainText());
+
+  query.addBindValue(m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to update the entry.")),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      goto db_rollback;
+    }
+
+  if(!qmain->getDB().commit())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to commit the current database transaction.")),
+	 qmain->getDB().lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      goto db_rollback;
+    }
+
+  m_ui.author->setMultipleLinks
+    ("greyliterature_search", "author", m_ui.author->toPlainText());
+  m_ui.client->setMultipleLinks
+    ("greyliterature_search", "client", m_ui.client->toPlainText());
+  m_ui.notes->setMultipleLinks
+    ("greyliterature_search", "notes", m_ui.notes->toPlainText());
+  QApplication::restoreOverrideCursor();
+  qmain->slotDisplaySummary();
+  storeData(this);
+  return;
+
+ db_rollback:
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_oid.clear();
+
+  if(!qmain->getDB().rollback())
+    qmain->addError(QString(tr("Database Error")),
+		    QString(tr("Rollback failure.")),
+		    qmain->getDB().lastError().text(),
+		    __FILE__,
+		    __LINE__);
+
+  QApplication::restoreOverrideCursor();
+  QMessageBox::critical(this,
+			tr("BiblioteQ: Database Error"),
+			tr("Unable to create the entry. Please verify that "
+			   "the entry does not already exist."));
 }
 
 void biblioteq_grey_literature::updateWindow(const int state)
@@ -762,6 +877,11 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(true);
+      connect(m_ui.files,
+	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this,
+	      SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
     }
   else
     {
@@ -775,6 +895,10 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.export_files->setEnabled(false);
       m_ui.export_images->setEnabled(false);
       m_ui.okButton->setVisible(false);
+      disconnect(m_ui.files,
+		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this,
+		 SLOT(slotEditFileDescription(QTableWidgetItem *)));
     }
 
   setWindowTitle(str);

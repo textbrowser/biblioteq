@@ -46,11 +46,11 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void closeEvent(QCloseEvent *event);
   void highlightRequiredWidgets(void);
   void insertDatabase(void);
-  void updatePostgresql(void);
-  void updateSqlite(void);
+  void updateDatabase(void);
 
  private slots:
   void slotCancel(void);
+  void slotEditFileDescription(QTableWidgetItem *item);
   void slotGo(void);
   void slotPrint(void);
   void slotPublicationDateEnabled(bool state);
