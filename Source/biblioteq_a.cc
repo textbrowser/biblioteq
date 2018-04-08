@@ -6015,7 +6015,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	    }
 	}
     }
-  else if(itemType == "greyliterature")
+  else if(itemType == "grey_literature")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
@@ -6060,7 +6060,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	      }
 	}
     }
-  else if(itemType == "photographcollection")
+  else if(itemType == "photograph_collection")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{

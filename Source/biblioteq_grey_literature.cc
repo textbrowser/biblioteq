@@ -333,6 +333,12 @@ void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
   m_duplicate = false;
   m_engWindowTitle = "Create";
   m_oid = p_oid;
+  m_ui.attach_files->setEnabled(false);
+  m_ui.attach_images->setEnabled(false);
+  m_ui.delete_files->setEnabled(false);
+  m_ui.delete_images->setEnabled(false);
+  m_ui.export_files->setEnabled(false);
+  m_ui.export_images->setEnabled(false);
   setWindowTitle(tr("BiblioteQ: Duplicate Grey Literature Entry"));
 }
 
