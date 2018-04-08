@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QInputDialog>
 #include <QSqlField>
 #include <QSqlRecord>
 
@@ -35,6 +36,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   m_row = rowArg;
   m_ui.setupUi(this);
   m_ui.resetButton->setMenu(menu);
+  connect(m_ui.attach_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAttachFiles(void)));
   connect(m_ui.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -105,6 +110,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 #endif
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.files->setColumnHidden(m_ui.files->columnCount() - 1, true); // myoid
 
   QString errorstr("");
 
@@ -271,6 +277,49 @@ void biblioteq_grey_literature::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeGreyLiterature(this);
+}
+
+void biblioteq_grey_literature::createFile(const QByteArray &bytes,
+					   const QByteArray &digest,
+					   const QString &fileName) const
+{
+  QSqlQuery query(qmain->getDB());
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    query.prepare("INSERT INTO grey_literature_files "
+		  "(file, file_digest, file_name, item_oid) "
+		  "VALUES (?, ?, ?, ?)");
+  else
+    query.prepare("INSERT INTO grey_literature_files "
+		  "(file, file_digest, file_name, item_oid, myoid) "
+		  "VALUES (?, ?, ?, ?, ?)");
+
+  query.addBindValue(bytes);
+  query.addBindValue(digest.toHex().constData());
+  query.addBindValue(fileName);
+  query.addBindValue(m_oid);
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      QString errorstr("");
+      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	(qmain->getDB(), errorstr);
+
+      if(errorstr.isEmpty())
+	query.addBindValue(value);
+      else
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to generate a unique integer.")),
+			errorstr);
+    }
+
+  if(!query.exec())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to create a database transaction.")),
+       query.lastError().text(),
+       __FILE__,
+       __LINE__);
 }
 
 void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
@@ -486,8 +535,8 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.attach_images->setEnabled(false);
       m_ui.delete_files->setEnabled(false);
       m_ui.delete_images->setEnabled(false);
-      m_ui.export_files->setEnabled(false);
-      m_ui.export_images->setEnabled(false);
+      m_ui.export_files->setEnabled(true);
+      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(false);
       m_ui.okButton->setVisible(false);
       disconnect(m_ui.files,
@@ -616,10 +665,79 @@ void biblioteq_grey_literature::modify(const int state)
 
       if(!m_duplicate)
 	{
+	  populateFiles();
+	  populateImages();
 	}
     }
 
   m_ui.title->setFocus();
+}
+
+void biblioteq_grey_literature::populateFiles(void)
+{
+  m_ui.files->setRowCount(0);
+  m_ui.files->setSortingEnabled(false);
+
+  QSqlQuery query(qmain->getDB());
+
+  query.setForwardOnly(true);
+  query.prepare
+    ("SELECT COUNT(*) FROM grey_literature_files WHERE item_oid = ?");
+  query.addBindValue(m_oid);
+
+  if(query.exec())
+    if(query.next())
+      m_ui.files->setRowCount(query.value(0).toInt());
+
+  query.prepare("SELECT file_name, "
+		"file_digest, "
+		"LENGTH(file) AS f_s, "
+		"description, "
+		"myoid FROM grey_literature_files "
+                "WHERE item_oid = ? ORDER BY file_name");
+  query.addBindValue(m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QLocale locale;
+  int row = 0;
+  int totalRows = 0;
+
+  if(query.exec())
+    while(query.next() && totalRows < m_ui.files->rowCount())
+      {
+	totalRows += 1;
+
+	QSqlRecord record(query.record());
+
+	for(int i = 0; i < record.count(); i++)
+	  {
+	    QTableWidgetItem *item = 0;
+
+	    if(record.fieldName(i) == "f_s")
+	      item = new(std::nothrow) QTableWidgetItem
+		(locale.toString(query.value(i).toLongLong()));
+	    else
+	      item = new(std::nothrow)
+		QTableWidgetItem(query.value(i).toString());
+
+	    if(!item)
+	      continue;
+
+	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	    m_ui.files->setItem(row, i, item);
+	  }
+
+	row += 1;
+      }
+
+  m_ui.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  m_ui.files->setRowCount(totalRows);
+  m_ui.files->setSortingEnabled(true);
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_grey_literature::populateImages(void)
+{
 }
 
 void biblioteq_grey_literature::search(const QString &field,
@@ -661,6 +779,87 @@ void biblioteq_grey_literature::search(const QString &field,
     }
 }
 
+void biblioteq_grey_literature::slotAttachFiles(void)
+{
+  QFileDialog fileDialog
+    (this, tr("BiblioteQ: Grey Literature File Attachment(s)"));
+
+  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+  fileDialog.setDirectory(QDir::homePath());
+  fileDialog.setFileMode(QFileDialog::ExistingFiles);
+
+  if(fileDialog.exec() == QDialog::Accepted)
+    {
+      fileDialog.close();
+#ifndef Q_OS_MAC
+      repaint();
+      QApplication::processEvents();
+#endif
+
+      QProgressDialog progress(this);
+      QStringList files(fileDialog.selectedFiles());
+      int i = -1;
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+      progress.setLabelText(tr("Uploading files..."));
+      progress.setMaximum(files.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+
+      while(i++, !files.isEmpty() && !progress.wasCanceled())
+	{
+	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QFile file;
+	  QString fileName(files.takeFirst());
+
+	  file.setFileName(fileName);
+
+	  if(file.open(QIODevice::ReadOnly))
+	    {
+	      QByteArray bytes(4096, 0);
+	      QByteArray total;
+	      qint64 rc = 0;
+
+	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
+		{
+		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
+		  total.append(bytes.mid(0, static_cast<int> (rc)));
+		}
+
+	      if(!total.isEmpty())
+		{
+		  total = qCompress(total, 9);
+		  createFile
+		    (total, digest.result(), QFileInfo(fileName).fileName());
+		}
+	    }
+
+	  file.close();
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+	}
+
+      QApplication::restoreOverrideCursor();
+      populateFiles();
+    }
+}
+
 void biblioteq_grey_literature::slotCancel(void)
 {
   close();
@@ -670,6 +869,43 @@ void biblioteq_grey_literature::slotEditFileDescription(QTableWidgetItem *item)
 {
   if(!item)
     return;
+
+  QTableWidgetItem *item1 = m_ui.files->item(item->row(), 3); // Description
+
+  if(!item1)
+    return;
+
+  QString description(item1->text());
+  QTableWidgetItem *item2 =
+    m_ui.files->item(item->row(), m_ui.files->columnCount() - 1); // myoid
+
+  if(!item2)
+    return;
+
+  QString text("");
+  bool ok = true;
+
+  text = QInputDialog::getText(this,
+			       tr("BiblioteQ: File Description"),
+			       tr("Description"),
+			       QLineEdit::Normal,
+			       description,
+			       &ok).trimmed();
+
+  if(!ok)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
+
+  query.prepare("UPDATE grey_literature_files SET description = ? "
+		"WHERE item_oid = ? AND myoid = ?");
+  query.addBindValue(text);
+  query.addBindValue(m_oid);
+  query.addBindValue(myoid);
+
+  if(query.exec())
+    item1->setText(text);
 }
 
 void biblioteq_grey_literature::slotGo(void)
@@ -1066,8 +1302,6 @@ void biblioteq_grey_literature::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
-      string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
-	m_ui.id->text() + tr(")");
       m_engWindowTitle = "Modify";
       m_ui.attach_files->setEnabled(true);
       m_ui.attach_images->setEnabled(true);
@@ -1076,6 +1310,8 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(true);
+      string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
+	m_ui.id->text() + tr(")");
       connect(m_ui.files,
 	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	      this,
@@ -1084,16 +1320,16 @@ void biblioteq_grey_literature::updateWindow(const int state)
     }
   else
     {
-      string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
-	m_ui.id->text() + tr(")");
       m_engWindowTitle = "View";
       m_ui.attach_files->setEnabled(false);
       m_ui.attach_images->setEnabled(false);
       m_ui.delete_files->setEnabled(false);
       m_ui.delete_images->setEnabled(false);
-      m_ui.export_files->setEnabled(false);
-      m_ui.export_images->setEnabled(false);
+      m_ui.export_files->setEnabled(true);
+      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(false);
+      string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
+	m_ui.id->text() + tr(")");
       disconnect(m_ui.files,
 		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 		 this,

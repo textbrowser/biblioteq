@@ -45,11 +45,17 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   bool validateWidgets(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void createFile(const QByteArray &bytes,
+		  const QByteArray &digest,
+		  const QString &fileName) const;
   void highlightRequiredWidgets(void);
   void insertDatabase(void);
+  void populateFiles(void);
+  void populateImages(void);
   void updateDatabase(void);
 
  private slots:
+  void slotAttachFiles(void);
   void slotCancel(void);
   void slotEditFileDescription(QTableWidgetItem *item);
   void slotGo(void);
