@@ -57,6 +57,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
  private slots:
   void slotAttachFiles(void);
   void slotCancel(void);
+  void slotDeleteFiles(void);
   void slotEditFileDescription(QTableWidgetItem *item);
   void slotGo(void);
   void slotPrint(void);

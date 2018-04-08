@@ -44,6 +44,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotCancel(void)));
+  connect(m_ui.delete_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteFiles(void)));
   connect(m_ui.okButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -863,6 +867,47 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 void biblioteq_grey_literature::slotCancel(void)
 {
   close();
+}
+
+void biblioteq_grey_literature::slotDeleteFiles(void)
+{
+  QModelIndexList list
+    (m_ui.files->selectionModel()->
+     selectedRows(m_ui.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("Please select at least one file to delete."));
+      return;
+    }
+
+  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			   tr("Are you sure that you wish to delete the "
+			      "selected file(s)?"),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    {
+      list.clear();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  while(!list.isEmpty())
+    {
+      QSqlQuery query(qmain->getDB());
+
+      query.prepare("DELETE FROM grey_literature_files WHERE "
+		    "item_oid = ? AND myoid = ?");
+      query.addBindValue(m_oid);
+      query.addBindValue(list.takeFirst().data());
+      query.exec();
+    }
+
+  QApplication::restoreOverrideCursor();
+  populateFiles();
 }
 
 void biblioteq_grey_literature::slotEditFileDescription(QTableWidgetItem *item)
