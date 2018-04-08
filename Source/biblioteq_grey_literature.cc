@@ -893,6 +893,7 @@ void biblioteq_grey_literature::slotSelectImage(void)
 void biblioteq_grey_literature::updateDatabase(void)
 {
   QSqlQuery query(qmain->getDB());
+  QString string("");
 
   query.prepare("UPDATE grey_literature SET "
 		"author = ?, "
@@ -965,6 +966,79 @@ void biblioteq_grey_literature::updateDatabase(void)
   m_ui.notes->setMultipleLinks
     ("greyliterature_search", "notes", m_ui.notes->toPlainText());
   QApplication::restoreOverrideCursor();
+
+  if(!m_ui.id->text().isEmpty())
+    string = tr("BiblioteQ: Modify Grey Literature Entry (") +
+      m_ui.id->text() + tr(")");
+  else
+    string = tr("BiblioteQ: Modify Grey Literature Entry");
+
+  setWindowTitle(string);
+
+  if((qmain->getTypeFilterString() == "All" ||
+      qmain->getTypeFilterString() == "All Available" ||
+      qmain->getTypeFilterString() == "All Overdue" ||
+      qmain->getTypeFilterString() == "All Requested" ||
+      qmain->getTypeFilterString() == "All Reserved" ||
+      qmain->getTypeFilterString() == "Grey Literature") &&
+     m_oid == biblioteq_misc_functions::
+     getColumnString(qmain->getUI().table,
+		     m_row,
+		     qmain->getUI().table->columnNumber("MYOID")) &&
+     biblioteq_misc_functions::getColumnString
+     (qmain->getUI().table,
+      m_row,
+      qmain->getUI().table->columnNumber("Type")) == "Grey Literature")
+    {
+      qmain->getUI().table->setSortingEnabled(false);
+
+      QStringList names(qmain->getUI().table->columnNames());
+
+      for(int i = 0; i < names.size(); i++)
+	{
+	  QString string("");
+
+	  if(names.at(i) == "Accession Number" || names.at(i) == "Job Number")
+	    string = m_ui.job_number->text();
+	  else if(names.at(i) == "Author" ||
+		  names.at(i) == "Author(s)" ||
+		  names.at(i) == "Publisher")
+	    string = m_ui.author->toPlainText();
+	  else if(names.at(i) == "Client(s)")
+	    string = m_ui.client->toPlainText();
+	  else if(names.at(i) == "Date" ||
+		  names.at(i) == "Document Date" ||
+		  names.at(i) == "Publication Date")
+	    string = m_ui.date->date().toString(Qt::ISODate);
+	  else if(names.at(i) == "Document Code A")
+	    string = m_ui.code_a->text();
+	  else if(names.at(i) == "Document Code B")
+	    string = m_ui.code_b->text();
+	  else if(names.at(i) == "Document ID" ||
+		  names.at(i) == "ID" ||
+		  names.at(i) == "ID Number")
+	    string = m_ui.id->text();
+	  else if(names.at(i) == "Document Status")
+	    string = m_ui.status->text();
+	  else if(names.at(i) == "Document Type")
+	    string = m_ui.type->currentText();
+	  else if(names.at(i) == "Location")
+	    string = m_ui.location->currentText();
+	  else if(names.at(i) == "Title")
+	    string = m_ui.title->text();
+
+	  if(!string.isEmpty())
+	    qmain->getUI().table->item(m_row, i)->setText(string);
+	}
+
+      qmain->getUI().table->setSortingEnabled(true);
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      qmain->slotResizeColumns();
+    }
+
   qmain->slotDisplaySummary();
   storeData(this);
   return;
