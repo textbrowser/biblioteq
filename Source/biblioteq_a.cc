@@ -3576,13 +3576,13 @@ void biblioteq::slotDisplaySummary(void)
 	    (ui.table, i, ui.table->columnNumber("File Count"));
 
 	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 Files(s)")).arg(tmpstr);
+	    summary += "<br>" + QString(tr("%1 File(s)")).arg(tmpstr);
 
 	  tmpstr = biblioteq_misc_functions::getColumnString
 	    (ui.table, i, ui.table->columnNumber("Image Count"));
 
 	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 Images(s)")).arg(tmpstr);
+	    summary += "<br>" + QString(tr("%1 Image(s)")).arg(tmpstr);
 
 	  summary += "<br>";
 	}
