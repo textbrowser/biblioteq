@@ -127,9 +127,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 
       m_imageFormat = imgf;
       m_doubleclicked = false;
-
-      if(scene()->items().size() > 0)
-	scene()->removeItem(scene()->items().at(0));
+      scene()->clear();
 
       QPixmap pixmap;
 
@@ -146,8 +144,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
       else
 	pixmap = QPixmap::fromImage(m_image);
 
-      while(!scene()->items().isEmpty())
-	scene()->removeItem(scene()->items().first());
+      scene()->clear();
 
       if(pixmap.isNull())
 	pixmap = QPixmap(":/no_image.png");
@@ -237,8 +234,7 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
   else
     pixmap = QPixmap::fromImage(m_image);
 
-  while(!scene()->items().isEmpty())
-    scene()->removeItem(scene()->items().first());
+  scene()->clear();
 
   if(pixmap.isNull())
     pixmap = QPixmap(":/no_image.png");
@@ -259,8 +255,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
   if(!m_doubleClickResizeEnabled)
     return;
 
-  while(!scene()->items().isEmpty())
-    scene()->removeItem(scene()->items().first());
+  scene()->clear();
 
   if(!m_doubleclicked)
     {
@@ -320,8 +315,7 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
   else
     pixmap = QPixmap::fromImage(this->m_image);
 
-  while(!scene()->items().isEmpty())
-    scene()->removeItem(scene()->items().first());
+  scene()->clear();
 
   if(pixmap.isNull())
     pixmap = QPixmap(":/no_image.png");

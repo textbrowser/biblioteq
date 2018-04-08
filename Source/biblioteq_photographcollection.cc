@@ -1992,7 +1992,12 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 			"collection_oid = ? AND myoid = ?");
 	  query.bindValue(0, m_oid);
 	  query.bindValue(1, itemOid);
-	  query.exec();
+
+	  if(query.exec())
+	    {
+	      pc.graphicsView->scene()->removeItem(item);
+	      delete item;
+	    }
 	}
     }
 
