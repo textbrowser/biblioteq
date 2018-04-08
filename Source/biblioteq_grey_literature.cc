@@ -683,6 +683,7 @@ void biblioteq_grey_literature::populateFiles(void)
   m_ui.files->setSortingEnabled(false);
 
   QSqlQuery query(qmain->getDB());
+  int count = 0;
 
   query.setForwardOnly(true);
   query.prepare
@@ -691,7 +692,10 @@ void biblioteq_grey_literature::populateFiles(void)
 
   if(query.exec())
     if(query.next())
-      m_ui.files->setRowCount(query.value(0).toInt());
+      {
+	count = query.value(0).toInt();
+	m_ui.files->setRowCount(count);
+      }
 
   query.prepare("SELECT file_name, "
 		"file_digest, "
@@ -737,6 +741,35 @@ void biblioteq_grey_literature::populateFiles(void)
   m_ui.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   m_ui.files->setRowCount(totalRows);
   m_ui.files->setSortingEnabled(true);
+
+  if((qmain->getTypeFilterString() == "All" ||
+      qmain->getTypeFilterString() == "All Available" ||
+      qmain->getTypeFilterString() == "All Overdue" ||
+      qmain->getTypeFilterString() == "All Requested" ||
+      qmain->getTypeFilterString() == "All Reserved" ||
+      qmain->getTypeFilterString() == "Grey Literature") &&
+     m_oid == biblioteq_misc_functions::getColumnString
+     (qmain->getUI().table,
+      m_row,
+      qmain->getUI().table->columnNumber("MYOID")) &&
+     biblioteq_misc_functions::getColumnString
+     (qmain->getUI().table,
+      m_row,
+      qmain->getUI().table->columnNumber("Type")) == "Grey Literature")
+    {
+      qmain->getUI().table->setSortingEnabled(false);
+
+      QStringList names(qmain->getUI().table->columnNames());
+
+      for(int i = 0; i < names.size(); i++)
+	if(names.at(i) == "File Count")
+	  {
+	    qmain->getUI().table->item(m_row, i)->
+	      setText(QString::number(count));
+	    break;
+	  }
+    }
+
   QApplication::restoreOverrideCursor();
 }
 
