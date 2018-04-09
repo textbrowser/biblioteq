@@ -65,7 +65,7 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
     {
       html += QString
 	("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
-	(searchType).arg(searchField).arg(tmplist[i]);
+	(searchType).arg(searchField).arg(tmplist[i].trimmed());
 
       if(i != tmplist.size() - 1)
 	html += "<br>";

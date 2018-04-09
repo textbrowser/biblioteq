@@ -445,10 +445,6 @@ biblioteq::biblioteq(void):QMainWindow()
   m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   m_branch_diag->setModal(true);
-  connect(al.publication_date_enabled,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotGeneralSearchPublicationDateEnabled(bool)));
   connect(al.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -670,7 +666,6 @@ biblioteq::biblioteq(void):QMainWindow()
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
-  al.publication_date->setEnabled(false);
   al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu1);
   ui.previousPageButton->setEnabled(false);
@@ -5452,8 +5447,8 @@ void biblioteq::slotReset(void)
 	  else if(action == actions[2])
 	    {
 	      al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+	      al.publication_date->setFocus();
 	      al.publication_date_enabled->setChecked(false);
-	      al.idnumber->setFocus();
 	    }
 	  else if(action == actions[3])
 	    {

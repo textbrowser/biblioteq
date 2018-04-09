@@ -2524,7 +2524,7 @@ void biblioteq_photographcollection::slotImportItems(void)
       query.bindValue(1, m_oid);
       query.bindValue(2, "N/A");
       query.bindValue(3, "N/A");
-      query.bindValue(4, "01/01/2001");
+      query.bindValue(4, "01/01/2000");
       query.bindValue(5, 1);
       query.bindValue(6, "N/A");
       query.bindValue(7, "N/A");
