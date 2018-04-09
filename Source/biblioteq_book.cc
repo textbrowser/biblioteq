@@ -3777,11 +3777,11 @@ void biblioteq_book::slotExportFiles(void)
       progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
-      progress.setLabelText(QObject::tr("Exporting file(s)..."));
+      progress.setLabelText(tr("Exporting file(s)..."));
       progress.setMaximum(list.size());
       progress.setMinimum(0);
       progress.setModal(true);
-      progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
 #ifndef Q_OS_MAC
       progress.repaint();

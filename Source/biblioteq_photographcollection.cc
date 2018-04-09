@@ -1985,8 +1985,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
 							    takeFirst())))
 	{
-	  QString itemOid(item->data(0).toString());
 	  QSqlQuery query(qmain->getDB());
+	  QString itemOid(item->data(0).toString());
 
 	  query.prepare("DELETE FROM photograph WHERE "
 			"collection_oid = ? AND myoid = ?");

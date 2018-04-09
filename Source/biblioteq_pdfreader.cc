@@ -343,7 +343,7 @@ void biblioteq_pdfreader::slotPrint(void)
       progress.setMaximum(0);
       progress.setMinimum(0);
       progress.setModal(true);
-      progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
 #ifndef Q_OS_MAC
       progress.repaint();

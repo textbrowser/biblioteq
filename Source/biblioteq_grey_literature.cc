@@ -49,6 +49,14 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteFiles(void)));
+  connect(m_ui.export_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotExportFiles(void)));
+  connect(m_ui.export_images,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotExportImages(void)));
   connect(m_ui.okButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -991,6 +999,92 @@ void biblioteq_grey_literature::slotEditFileDescription(QTableWidgetItem *item)
 
   if(query.exec())
     item1->setText(text);
+}
+
+void biblioteq_grey_literature::slotExportFiles(void)
+{
+  QModelIndexList list(m_ui.files->selectionModel()->
+		       selectedRows(m_ui.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setWindowTitle(tr("BiblioteQ: Grey Literature File Export"));
+  dialog.exec();
+
+  if(dialog.result() != QDialog::Accepted)
+    return;
+
+  dialog.close();
+#ifndef Q_OS_MAC
+  repaint();
+  QApplication::processEvents();
+#endif
+
+  QProgressDialog progress(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  progress.setLabelText(tr("Exporting file(s)..."));
+  progress.setMaximum(list.size());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
+
+  int i = -1;
+
+  while(i++, !list.isEmpty() && !progress.wasCanceled())
+    {
+      QSqlQuery query(qmain->getDB());
+
+      query.setForwardOnly(true);
+      query.prepare("SELECT file, file_name FROM grey_literature_files "
+		    "WHERE item_oid = ? AND myoid = ?");
+      query.addBindValue(m_oid);
+      query.addBindValue(list.takeFirst().data());
+
+      if(query.exec() && query.next())
+	{
+	  QFile file(dialog.selectedFiles().value(0) +
+		     QDir::separator() +
+		     query.value(1).toString());
+
+	  if(file.open(QIODevice::WriteOnly))
+	    file.write(qUncompress(query.value(0).toByteArray()));
+
+	  file.flush();
+	  file.close();
+	}
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+    }
+}
+
+void biblioteq_grey_literature::slotExportImages(void)
+{
 }
 
 void biblioteq_grey_literature::slotGo(void)
