@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QCryptographicHash>
 #include <QInputDialog>
 #include <QSqlField>
 #include <QSqlRecord>
