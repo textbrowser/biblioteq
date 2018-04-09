@@ -33,23 +33,14 @@
          <x>0</x>
          <y>0</y>
          <width>1112</width>
-         <height>1554</height>
+         <height>1545</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -574,6 +565,16 @@
             <item row="1" column="1">
              <layout class="QHBoxLayout">
               <item>
+               <widget class="QCheckBox" name="publication_date_enabled">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QDateEdit" name="publication_date">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -592,13 +593,6 @@
                 </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="publication_date_enabled">
-                <property name="text">
-                 <string/>
                 </property>
                </widget>
               </item>
@@ -1277,8 +1271,8 @@
   <tabstop>callnum</tabstop>
   <tabstop>deweynum</tabstop>
   <tabstop>title</tabstop>
-  <tabstop>publication_date</tabstop>
   <tabstop>publication_date_enabled</tabstop>
+  <tabstop>publication_date</tabstop>
   <tabstop>publisher</tabstop>
   <tabstop>place</tabstop>
   <tabstop>category</tabstop>

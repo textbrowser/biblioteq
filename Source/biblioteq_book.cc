@@ -142,10 +142,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   connect(id.isbn13to10, SIGNAL(clicked(void)), this,
 	  SLOT(slotConvertISBN13to10(void)));
   connect(id.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(id.publication_date_enabled,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotPublicationDateEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  id.dwnldFront,
@@ -1276,7 +1272,6 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.okButton->setText(tr("&Search"));
   id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
   id.publication_date->setDisplayFormat("yyyy");
-  id.publication_date->setEnabled(false);
   id.publication_date_enabled->setVisible(true);
   id.price->setMinimum(-0.01);
   id.price->setValue(-0.01);
@@ -1865,17 +1860,14 @@ void biblioteq_book::slotReset(void)
 	{
 	  if(m_engWindowTitle.contains("Search"))
 	    {
-	      id.id->setFocus();
 	      id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 	      id.publication_date_enabled->setChecked(false);
 	    }
 	  else
-	    {
-	      id.publication_date->setDate
-		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-	      id.publication_date->setFocus();
-	    }
+	    id.publication_date->setDate
+	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
+	  id.publication_date->setFocus();
 	  id.publication_date->setStyleSheet(m_dt_orig_ss);
 	}
       else if(action == actions[12])
