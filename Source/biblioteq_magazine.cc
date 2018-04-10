@@ -131,10 +131,6 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   connect(ma.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(ma.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(ma.publication_date_enabled,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotPublicationDateEnabled(bool)));
   connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Back Cover Image")),
@@ -1786,17 +1782,14 @@ void biblioteq_magazine::slotReset(void)
 	{
 	  if(m_engWindowTitle.contains("Search"))
 	    {
-	      ma.id->setFocus();
 	      ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 	      ma.publication_date_enabled->setChecked(false);
 	    }
 	  else
-	    {
-	      ma.publication_date->setDate
-		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-	      ma.publication_date->setFocus();
-	    }
+	    ma.publication_date->setDate
+	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
+	  ma.publication_date->setFocus();
 	  ma.publication_date->setStyleSheet(m_dt_orig_ss);
 	}
       else if(action == actions[10])

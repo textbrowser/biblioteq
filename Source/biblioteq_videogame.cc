@@ -68,10 +68,6 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
 	  SLOT(slotCancel(void)));
   connect(vg.copiesButton, SIGNAL(clicked()), this,
 	  SLOT(slotPopulateCopiesEditor(void)));
-  connect(vg.publication_date_enabled,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotPublicationDateEnabled(bool)));
   connect(vg.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(vg.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
@@ -1351,16 +1347,14 @@ void biblioteq_videogame::slotReset(void)
 	{
 	  if(m_engWindowTitle.contains("Search"))
 	    {
-	      vg.id->setFocus();
 	      vg.publication_date_enabled->setChecked(false);
 	      vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	    }
 	  else
-	    {
-	      vg.release_date->setDate
-		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-	      vg.release_date->setFocus();
-	    }
+	    vg.release_date->setDate
+	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+
+	  vg.release_date->setFocus();
 	}
       else if(action == actions[9])
 	{
