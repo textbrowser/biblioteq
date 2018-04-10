@@ -523,6 +523,16 @@
             <item row="1" column="1">
              <layout class="QHBoxLayout">
               <item>
+               <widget class="QCheckBox" name="publication_date_enabled">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QDateEdit" name="publication_date">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -541,13 +551,6 @@
                 </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="publication_date_enabled">
-                <property name="text">
-                 <string/>
                 </property>
                </widget>
               </item>
@@ -1046,8 +1049,8 @@
   <tabstop>callnum</tabstop>
   <tabstop>deweynum</tabstop>
   <tabstop>title</tabstop>
-  <tabstop>publication_date</tabstop>
   <tabstop>publication_date_enabled</tabstop>
+  <tabstop>publication_date</tabstop>
   <tabstop>publisher</tabstop>
   <tabstop>place</tabstop>
   <tabstop>category</tabstop>

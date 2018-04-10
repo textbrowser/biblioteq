@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-31</y>
+         <y>0</y>
          <width>468</width>
          <height>928</height>
         </rect>
@@ -246,6 +246,13 @@
         </item>
         <item row="2" column="1">
          <layout class="QHBoxLayout" name="_2">
+          <item>
+           <widget class="QCheckBox" name="date_enabled">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QDateEdit" name="date">
             <property name="sizePolicy">
@@ -590,6 +597,7 @@
   <tabstop>scrollArea</tabstop>
   <tabstop>title</tabstop>
   <tabstop>id</tabstop>
+  <tabstop>date_enabled</tabstop>
   <tabstop>date</tabstop>
   <tabstop>author</tabstop>
   <tabstop>client</tabstop>
