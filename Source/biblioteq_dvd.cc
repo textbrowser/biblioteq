@@ -62,10 +62,6 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrint(void)));
-  connect(dvd.publication_date_enabled,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotPublicationDateEnabled(bool)));
   connect(dvd.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
   connect(dvd.queryButton, SIGNAL(clicked(void)), this,
@@ -1528,16 +1524,14 @@ void biblioteq_dvd::slotReset(void)
 	{
 	  if(m_engWindowTitle.contains("Search"))
 	    {
-	      dvd.id->setFocus();
 	      dvd.publication_date_enabled->setChecked(false);
 	      dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	    }
 	  else
-	    {
-	      dvd.release_date->setDate
-		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-	      dvd.release_date->setFocus();
-	    }
+	    dvd.release_date->setDate
+	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+
+	  dvd.release_date->setFocus();
 	}
       else if(action == actions[13])
 	{

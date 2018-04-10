@@ -128,6 +128,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   QString errorstr("");
 
   m_ui.date->setDisplayFormat(qmain->publicationDateFormat("greyliterature"));
+  m_ui.date_enabled->setVisible(false);
   m_ui.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "Grey Literature",
@@ -798,6 +799,7 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.attach_files->setVisible(false);
   m_ui.attach_images->setVisible(false);
   m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+  m_ui.date_enabled->setChecked(false);
   m_ui.delete_files->setVisible(false);
   m_ui.delete_images->setVisible(false);
   m_ui.export_files->setVisible(false);
@@ -1190,6 +1192,7 @@ void biblioteq_grey_literature::slotReset(void)
 
 	  m_ui.date->setFocus();
 	  m_ui.date->setStyleSheet(m_dt_orig_ss);
+	  m_ui.date_enabled->setChecked(false);
 	}
       else if(action == actions[3])
 	{
@@ -1285,6 +1288,7 @@ void biblioteq_grey_literature::slotReset(void)
       else
 	m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
+      m_ui.date_enabled->setChecked(false);
       m_ui.id->clear();
 
       if(!m_engWindowTitle.contains("Search"))

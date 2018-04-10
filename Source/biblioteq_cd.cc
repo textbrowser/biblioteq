@@ -97,10 +97,6 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 	  SLOT(slotSaveTracks(void)));
   connect(cd.computeButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotComputeRuntime(void)));
-  connect(cd.publication_date_enabled,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotPublicationDateEnabled(bool)));
   connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Back Cover Image")),
@@ -981,7 +977,6 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.publication_date_enabled->setVisible(true);
   cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
   cd.release_date->setDisplayFormat("yyyy");
-  cd.release_date->setEnabled(false);
   cd.runtime->setTime(QTime(0, 0, 0));
   cd.runtime->setMinimumTime(QTime(0, 0, 0));
   cd.price->setMinimum(-0.01);
@@ -1945,16 +1940,14 @@ void biblioteq_cd::slotReset(void)
 	{
 	  if(m_engWindowTitle.contains("Search"))
 	    {
-	      cd.id->setFocus();
 	      cd.publication_date_enabled->setChecked(false);
 	      cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	    }
 	  else
-	    {
-	      cd.release_date->setDate
-		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-	      cd.release_date->setFocus();
-	    }
+	    cd.release_date->setDate
+	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+
+	  cd.release_date->setFocus();
 	}
       else if(action == actions[12])
 	{
