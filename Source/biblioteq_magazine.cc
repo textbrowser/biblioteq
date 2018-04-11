@@ -118,6 +118,8 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 #endif
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
+  connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1231,9 +1233,6 @@ void biblioteq_magazine::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
-      connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
       ma.attach_files->setEnabled(true);
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       ma.view_pdf->setEnabled(true);
@@ -1271,8 +1270,6 @@ void biblioteq_magazine::updateWindow(const int state)
     }
   else
     {
-      disconnect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       ma.attach_files->setVisible(false);
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       ma.view_pdf->setEnabled(true);
@@ -1361,15 +1358,9 @@ void biblioteq_magazine::modify(const int state)
       biblioteq_misc_functions::highlightWidget
 	(ma.place->viewport(), QColor(255, 248, 220));
       m_te_orig_pal = ma.description->viewport()->palette();
-      connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
     }
   else
     {
-      disconnect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
-
       if(m_subType == "Journal")
 	setWindowTitle(QString(tr("BiblioteQ: View Journal Details")));
       else
@@ -3634,6 +3625,8 @@ void biblioteq_magazine::populateFiles(void)
 	    if(!item)
 	      continue;
 
+	    item->setData
+	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
 	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	    if(m_engWindowTitle == "Modify")
@@ -3789,9 +3782,62 @@ void biblioteq_magazine::slotExportFiles(void)
     }
 }
 
-void biblioteq_magazine::slotEditFileDescription(QTableWidgetItem *item)
+void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 {
   if(!item)
+    return;
+
+  if(item->column() != 3 || m_engWindowTitle != "Modify")
+    {
+      QTableWidgetItem *item1 = ma.files->item(item->row(), 0); // File
+
+      if(!item1)
+	return;
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      if(item1->text().toLower().trimmed().endsWith(".pdf"))
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	  QByteArray data;
+	  QSqlQuery query(qmain->getDB());
+
+	  query.setForwardOnly(true);
+
+	  if(m_subType == "Journal")
+	    query.prepare("SELECT file, file_name FROM journal_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+	  else
+	    query.prepare("SELECT file, file_name FROM magazine_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+
+	  query.addBindValue(m_oid);
+	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
+
+	  if(query.exec() && query.next())
+	    data = qUncompress(query.value(0).toByteArray());
+
+	  if(!data.isEmpty())
+	    {
+	      biblioteq_pdfreader *reader =
+		new(std::nothrow) biblioteq_pdfreader(this);
+
+	      if(reader)
+		{
+		  reader->load(data, item1->text());
+		  biblioteq_misc_functions::center(reader, this);
+		  reader->show();
+		}
+	    }
+
+	  QApplication::restoreOverrideCursor();
+	}
+#endif
+
+      return;
+    }
+
+  if(m_engWindowTitle != "Modify")
     return;
 
   QTableWidgetItem *item1 = ma.files->item(item->row(), 3); // Description

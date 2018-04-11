@@ -90,8 +90,8 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void slotAttachFiles(void);
   void slotCancel(void);
   void slotDeleteFiles(void);
-  void slotEditFileDescription(QTableWidgetItem *item);
   void slotExportFiles(void);
+  void slotFilesDoubleClicked(QTableWidgetItem *item);
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
