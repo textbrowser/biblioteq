@@ -125,6 +125,8 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
+  connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1363,14 +1365,9 @@ void biblioteq_book::updateWindow(const int state)
 	str = tr("BiblioteQ: Modify Book Entry");
 
       m_engWindowTitle = "Modify";
-      connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
     }
   else
     {
-      disconnect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       id.attach_files->setVisible(false);
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       id.view_pdf->setEnabled(true);
@@ -1419,9 +1416,6 @@ void biblioteq_book::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
-      connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       m_engWindowTitle = "Modify";
       id.attach_files->setEnabled(true);
@@ -1462,8 +1456,6 @@ void biblioteq_book::modify(const int state)
     }
   else
     {
-      disconnect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       id.isbnAvailableCheckBox->setCheckable(false);
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       m_engWindowTitle = "View";
@@ -3682,6 +3674,8 @@ void biblioteq_book::populateFiles(void)
 	    if(!item)
 	      continue;
 
+	    item->setData
+	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
 	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	    if(m_engWindowTitle == "Modify")
@@ -3821,9 +3815,56 @@ void biblioteq_book::slotExportFiles(void)
     }
 }
 
-void biblioteq_book::slotEditFileDescription(QTableWidgetItem *item)
+void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 {
   if(!item)
+    return;
+
+  if(item->column() != 3 || m_engWindowTitle != "Modify")
+    {
+      QTableWidgetItem *item1 = id.files->item(item->row(), 0); // File
+
+      if(!item1)
+	return;
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      if(item1->text().toLower().trimmed().endsWith(".pdf"))
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	  QByteArray data;
+	  QSqlQuery query(qmain->getDB());
+
+	  query.setForwardOnly(true);
+	  query.prepare("SELECT file, file_name FROM book_files "
+			"WHERE item_oid = ? AND myoid = ?");
+	  query.addBindValue(m_oid);
+	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
+
+	  if(query.exec() && query.next())
+	    data = qUncompress(query.value(0).toByteArray());
+
+	  if(!data.isEmpty())
+	    {
+	      biblioteq_pdfreader *reader =
+		new(std::nothrow) biblioteq_pdfreader(this);
+
+	      if(reader)
+		{
+		  reader->load(data, item1->text());
+		  biblioteq_misc_functions::center(reader, this);
+		  reader->show();
+		}
+	    }
+
+	  QApplication::restoreOverrideCursor();
+	}
+#endif
+
+      return;
+    }
+
+  if(m_engWindowTitle != "Modify")
     return;
 
   QTableWidgetItem *item1 = id.files->item(item->row(), 3); // Description
