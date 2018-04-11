@@ -109,7 +109,7 @@ void biblioteq::slotOpenPDFFile(void)
       QApplication::processEvents();
 #endif
 
-      biblioteq_pdfreader *reader = new (std::nothrow) biblioteq_pdfreader(0);
+      biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(0);
 
       if(reader)
 	{

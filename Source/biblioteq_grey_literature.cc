@@ -18,6 +18,7 @@
 #include "biblioteq.h"
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_grey_literature.h"
+#include "biblioteq_pdfreader.h"
 
 extern biblioteq *qmain;
 
@@ -50,6 +51,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteFiles(void)));
+  connect(m_ui.files,
+	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(m_ui.export_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -529,11 +534,6 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setText("&Save");
       m_ui.okButton->setVisible(true);
-      connect(m_ui.files,
-	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this,
-	      SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
     }
   else
     {
@@ -544,10 +544,6 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setVisible(false);
       m_ui.okButton->setVisible(false);
-      disconnect(m_ui.files,
-		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		 this,
-		 SLOT(slotEditFileDescription(QTableWidgetItem *)));
     }
 
   QSqlQuery query(qmain->getDB());
@@ -729,7 +725,14 @@ void biblioteq_grey_literature::populateFiles(void)
 	    if(!item)
 	      continue;
 
+	    item->setData
+	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
 	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+	    if(m_engWindowTitle == "Modify")
+	      if(record.fieldName(i) == "description")
+		item->setToolTip(tr("Double-click to edit."));
+
 	    m_ui.files->setItem(row, i, item);
 	  }
 
@@ -933,49 +936,6 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
   populateFiles();
 }
 
-void biblioteq_grey_literature::slotEditFileDescription(QTableWidgetItem *item)
-{
-  if(!item)
-    return;
-
-  QTableWidgetItem *item1 = m_ui.files->item(item->row(), 3); // Description
-
-  if(!item1)
-    return;
-
-  QString description(item1->text());
-  QTableWidgetItem *item2 =
-    m_ui.files->item(item->row(), m_ui.files->columnCount() - 1); // myoid
-
-  if(!item2)
-    return;
-
-  QString text("");
-  bool ok = true;
-
-  text = QInputDialog::getText(this,
-			       tr("BiblioteQ: File Description"),
-			       tr("Description"),
-			       QLineEdit::Normal,
-			       description,
-			       &ok).trimmed();
-
-  if(!ok)
-    return;
-
-  QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
-
-  query.prepare("UPDATE grey_literature_files SET description = ? "
-		"WHERE item_oid = ? AND myoid = ?");
-  query.addBindValue(text);
-  query.addBindValue(m_oid);
-  query.addBindValue(myoid);
-
-  if(query.exec())
-    item1->setText(text);
-}
-
 void biblioteq_grey_literature::slotExportFiles(void)
 {
   QModelIndexList list(m_ui.files->selectionModel()->
@@ -1056,6 +1016,97 @@ void biblioteq_grey_literature::slotExportFiles(void)
       QApplication::processEvents();
 #endif
     }
+}
+
+
+void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
+{
+  if(!item)
+    return;
+
+  if(item->column() != 3 || m_engWindowTitle != "Modify")
+    {
+      QTableWidgetItem *item1 = m_ui.files->item(item->row(), 0); // File
+
+      if(!item1)
+	return;
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      if(item1->text().toLower().trimmed().endsWith(".pdf"))
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	  QByteArray data;
+	  QSqlQuery query(qmain->getDB());
+
+	  query.setForwardOnly(true);
+	  query.prepare("SELECT file, file_name FROM grey_literature_files "
+			"WHERE item_oid = ? AND myoid = ?");
+	  query.addBindValue(m_oid);
+	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
+
+	  if(query.exec() && query.next())
+	    data = qUncompress(query.value(0).toByteArray());
+
+	  if(!data.isEmpty())
+	    {
+	      biblioteq_pdfreader *reader =
+		new(std::nothrow) biblioteq_pdfreader(this);
+
+	      if(reader)
+		{
+		  reader->load(data, item1->text());
+		  biblioteq_misc_functions::center(reader, this);
+		  reader->show();
+		}
+	    }
+
+	  QApplication::restoreOverrideCursor();
+	}
+#endif
+
+      return;
+    }
+
+  if(m_engWindowTitle != "Modify")
+    return;
+
+  QTableWidgetItem *item1 = m_ui.files->item(item->row(), 3); // Description
+
+  if(!item1)
+    return;
+
+  QString description(item1->text());
+  QTableWidgetItem *item2 =
+    m_ui.files->item(item->row(), m_ui.files->columnCount() - 1); // myoid
+
+  if(!item2)
+    return;
+
+  QString text("");
+  bool ok = true;
+
+  text = QInputDialog::getText(this,
+			       tr("BiblioteQ: File Description"),
+			       tr("Description"),
+			       QLineEdit::Normal,
+			       description,
+			       &ok).trimmed();
+
+  if(!ok)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
+
+  query.prepare("UPDATE grey_literature_files SET description = ? "
+		"WHERE item_oid = ? AND myoid = ?");
+  query.addBindValue(text);
+  query.addBindValue(m_oid);
+  query.addBindValue(myoid);
+
+  if(query.exec())
+    item1->setText(text);
 }
 
 void biblioteq_grey_literature::slotGo(void)
@@ -1461,11 +1512,6 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.okButton->setVisible(true);
       string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
 	m_ui.id->text() + tr(")");
-      connect(m_ui.files,
-	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this,
-	      SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
     }
   else
     {
@@ -1476,10 +1522,6 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.okButton->setVisible(false);
       string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
 	m_ui.id->text() + tr(")");
-      disconnect(m_ui.files,
-		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		 this,
-		 SLOT(slotEditFileDescription(QTableWidgetItem *)));
     }
 
   setWindowTitle(string);

@@ -3635,6 +3635,11 @@ void biblioteq_magazine::populateFiles(void)
 	      continue;
 
 	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+	    if(m_engWindowTitle == "Modify")
+	      if(record.fieldName(i) == "description")
+		item->setToolTip(tr("Double-click to edit."));
+
 	    ma.files->setItem(row, i, item);
 	  }
 
@@ -3837,7 +3842,7 @@ void biblioteq_magazine::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new (std::nothrow) biblioteq_pdfreader(this);
+  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
 
   if(!reader)
     return;
