@@ -22,6 +22,7 @@
 #include "biblioteq.h"
 #include "biblioteq_book.h"
 #include "biblioteq_borrowers_editor.h"
+#include "biblioteq_filesize_table_item.h"
 #include "biblioteq_marc.h"
 #include "biblioteq_pdfreader.h"
 
@@ -3672,7 +3673,7 @@ void biblioteq_book::populateFiles(void)
 	    QTableWidgetItem *item = 0;
 
 	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) QTableWidgetItem
+	      item = new(std::nothrow) biblioteq_filesize_table_item
 		(locale.toString(query.value(i).toLongLong()));
 	    else
 	      item = new(std::nothrow)
