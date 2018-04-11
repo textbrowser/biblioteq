@@ -3573,12 +3573,6 @@ void biblioteq::slotDisplaySummary(void)
 	  if(!tmpstr.isEmpty())
 	    summary += "<br>" + QString(tr("%1 File(s)")).arg(tmpstr);
 
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Image Count"));
-
-	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 Image(s)")).arg(tmpstr);
-
 	  summary += "<br>";
 	}
       else if(type == "Journal" || type == "Magazine")

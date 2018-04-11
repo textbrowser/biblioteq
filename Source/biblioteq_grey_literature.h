@@ -51,7 +51,6 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void highlightRequiredWidgets(void);
   void insertDatabase(void);
   void populateFiles(void);
-  void populateImages(void);
   void updateDatabase(void);
 
  private slots:
@@ -60,7 +59,6 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void slotDeleteFiles(void);
   void slotEditFileDescription(QTableWidgetItem *item);
   void slotExportFiles(void);
-  void slotExportImages(void);
   void slotGo(void);
   void slotPrint(void);
   void slotPublicationDateEnabled(bool state);

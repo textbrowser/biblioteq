@@ -1226,16 +1226,6 @@ CREATE TABLE grey_literature_files
 	PRIMARY KEY(file_digest, item_oid)
 );
 
-CREATE TABLE grey_literature_images
-(
-	description	TEXT,
-	image		BYTEA NOT NULL,
-	item_oid	BIGINT NOT NULL,
-	myoid           BIGSERIAL NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, myoid)
-);
-
 CREATE TABLE grey_literature_types
 (
 	document_type	 TEXT NOT NULL PRIMARY KEY
@@ -1243,31 +1233,23 @@ CREATE TABLE grey_literature_types
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_images TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_images_myoid_seq TO biblioteq_administrator;
 GRANT SELECT ON grey_literature TO biblioteq_circulation;
 GRANT SELECT ON grey_literature_files_myoid_seq TO biblioteq_circulation;
-GRANT SELECT ON grey_literature_images_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON grey_literature_types TO biblioteq_circulation;
 GRANT SELECT ON grey_literature TO biblioteq_guest;
 GRANT SELECT ON grey_literature_files TO biblioteq_guest;
-GRANT SELECT ON grey_literature_images TO biblioteq_guest;
 GRANT SELECT ON grey_literature_types TO biblioteq_guest;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_images TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_images_myoid_seq TO biblioteq_librarian;
 GRANT SELECT ON grey_literature TO biblioteq_membership;
 GRANT SELECT ON grey_literature_files TO biblioteq_membership;
-GRANT SELECT ON grey_literature_images TO biblioteq_membership;
 GRANT SELECT ON grey_literature_types TO biblioteq_membership;
 GRANT SELECT ON grey_literature TO biblioteq_patron;
 GRANT SELECT ON grey_literature_files TO biblioteq_patron;
-GRANT SELECT ON grey_literature_images TO biblioteq_patron;
 GRANT SELECT ON grey_literature_types TO biblioteq_patron;

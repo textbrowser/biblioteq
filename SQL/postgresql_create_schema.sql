@@ -182,16 +182,6 @@ CREATE TABLE grey_literature_files
 	PRIMARY KEY(file_digest, item_oid)
 );
 
-CREATE TABLE grey_literature_images
-(
-	description	TEXT,
-	image		BYTEA NOT NULL,
-	item_oid	BIGINT NOT NULL,
-	myoid           BIGSERIAL NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, myoid)
-);
-
 CREATE TABLE journal
 (
 	accession_number TEXT,
@@ -622,7 +612,6 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_images TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_administrator;
@@ -655,7 +644,6 @@ GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_administrato
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_images_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_administrator;
@@ -697,7 +685,6 @@ GRANT SELECT ON dvd_ratings TO biblioteq_circulation;
 GRANT SELECT ON dvd_regions TO biblioteq_circulation;
 GRANT SELECT ON grey_literature TO biblioteq_circulation;
 GRANT SELECT ON grey_literature_files_myoid_seq TO biblioteq_circulation;
-GRANT SELECT ON grey_literature_images_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON grey_literature_types TO biblioteq_circulation;
 GRANT SELECT ON item_borrower_vw TO biblioteq_circulation;
 GRANT SELECT ON journal TO biblioteq_circulation;
@@ -752,7 +739,6 @@ GRANT SELECT ON dvd_ratings TO biblioteq_guest;
 GRANT SELECT ON dvd_regions TO biblioteq_guest;
 GRANT SELECT ON grey_literature TO biblioteq_guest;
 GRANT SELECT ON grey_literature_files TO biblioteq_guest;
-GRANT SELECT ON grey_literature_images TO biblioteq_guest;
 GRANT SELECT ON grey_literature_types TO biblioteq_guest;
 GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
 GRANT SELECT ON journal TO biblioteq_guest;
@@ -797,7 +783,6 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_images TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_librarian;
@@ -828,7 +813,6 @@ GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_images_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_librarian;
@@ -865,7 +849,6 @@ GRANT SELECT ON dvd_ratings TO biblioteq_membership;
 GRANT SELECT ON dvd_regions TO biblioteq_membership;
 GRANT SELECT ON grey_literature TO biblioteq_membership;
 GRANT SELECT ON grey_literature_files TO biblioteq_membership;
-GRANT SELECT ON grey_literature_images TO biblioteq_membership;
 GRANT SELECT ON grey_literature_types TO biblioteq_membership;
 GRANT SELECT ON item_borrower_vw TO biblioteq_membership;
 GRANT SELECT ON journal TO biblioteq_membership;
@@ -921,7 +904,6 @@ GRANT SELECT ON dvd_ratings TO biblioteq_patron;
 GRANT SELECT ON dvd_regions TO biblioteq_patron;
 GRANT SELECT ON grey_literature TO biblioteq_patron;
 GRANT SELECT ON grey_literature_files TO biblioteq_patron;
-GRANT SELECT ON grey_literature_images TO biblioteq_patron;
 GRANT SELECT ON grey_literature_types TO biblioteq_patron;
 GRANT SELECT ON item_borrower_vw TO biblioteq_patron;
 GRANT SELECT ON journal TO biblioteq_patron;

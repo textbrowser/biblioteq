@@ -201,17 +201,6 @@ CREATE TABLE grey_literature_files					\
     PRIMARY KEY(file_digest, item_oid)					\
 );									\
 									\
-CREATE TABLE grey_literature_images					\
-(									\
-	description TEXT,						\
-	image       BYTEA NOT NULL,					\
-	item_oid    BIGINT NOT NULL,					\
-	myoid       BIGINT UNIQUE,					\
-	FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON	\
-                              DELETE CASCADE,				\
-	PRIMARY KEY(item_oid, myoid)					\
-);									\
-									\
 CREATE TABLE journal							\
 (									\
     accession_number TEXT,						\

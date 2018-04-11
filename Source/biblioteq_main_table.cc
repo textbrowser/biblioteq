@@ -231,7 +231,6 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Job Number"));
       list.append(tr("Location"));
       list.append(tr("File Count"));
-      list.append(tr("Image Count"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Author(s)");
@@ -246,7 +245,6 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Job Number");
       m_columnHeaderIndexes.append("Location");
       m_columnHeaderIndexes.append("File Count");
-      m_columnHeaderIndexes.append("Image Count");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }

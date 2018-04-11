@@ -2376,9 +2376,6 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "(SELECT COUNT(myoid) FROM grey_literature_files "
 	      "WHERE grey_literature_files.item_oid = grey_literature.myoid) "
 	      "AS file_count, "
-	      "(SELECT COUNT(myoid) FROM grey_literature_images "
-	      "WHERE grey_literature_images.item_oid = grey_literature.myoid) "
-	      "AS image_count, "
 	      "grey_literature.type, "
 	      "grey_literature.myoid, "
 	      "grey_literature.front_cover "
@@ -3858,7 +3855,6 @@ int biblioteq::populateTable(const int search_type_arg,
 		 record.fieldName(j).endsWith("cddiskcount") ||
 		 record.fieldName(j).endsWith("dvddiskcount") ||
 		 record.fieldName(j).endsWith("file_count") ||
-		 record.fieldName(j).endsWith("image_count") ||
 		 record.fieldName(j).endsWith("issue") ||
 		 record.fieldName(j).endsWith("issueno") ||
 		 record.fieldName(j).endsWith("issuevolume") ||
@@ -4476,16 +4472,6 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON "
 	      "DELETE CASCADE,"
 	      "PRIMARY KEY(file_digest, item_oid)"
-	      ")");
-  list.append("CREATE TABLE IF NOT EXISTS grey_literature_images "
-	      "("
-	      "description TEXT,"
-	      "image BYTEA NOT NULL,"
-	      "item_oid BIGINT NOT NULL,"
-	      "myoid BIGINT UNIQUE,"
-	      "FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON "
-	      "DELETE CASCADE,"
-	      "PRIMARY KEY(item_oid, myoid)"
 	      ")");
   list.append("CREATE TABLE IF NOT EXISTS grey_literature_types	"
 	      "("

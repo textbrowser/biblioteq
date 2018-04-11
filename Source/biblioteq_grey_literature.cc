@@ -16,6 +16,7 @@
 */
 
 #include "biblioteq.h"
+#include "biblioteq_filesize_table_item.h"
 #include "biblioteq_grey_literature.h"
 
 extern biblioteq *qmain;
@@ -53,10 +54,6 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
-  connect(m_ui.export_images,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotExportImages(void)));
   connect(m_ui.okButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -344,11 +341,8 @@ void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
   m_engWindowTitle = "Create";
   m_oid = p_oid;
   m_ui.attach_files->setEnabled(false);
-  m_ui.attach_images->setEnabled(false);
   m_ui.delete_files->setEnabled(false);
-  m_ui.delete_images->setEnabled(false);
   m_ui.export_files->setEnabled(false);
-  m_ui.export_images->setEnabled(false);
   setWindowTitle(tr("BiblioteQ: Duplicate Grey Literature Entry"));
 }
 
@@ -369,16 +363,13 @@ void biblioteq_grey_literature::insert(void)
   m_engWindowTitle = "Create";
   m_te_orig_pal = m_ui.id->palette();
   m_ui.attach_files->setEnabled(false);
-  m_ui.attach_images->setEnabled(false);
   m_ui.author->setPlainText("N/A");
   m_ui.client->setPlainText("N/A");
   m_ui.code_a->clear();
   m_ui.code_b->clear();
   m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
   m_ui.delete_files->setEnabled(false);
-  m_ui.delete_images->setEnabled(false);
   m_ui.export_files->setEnabled(false);
-  m_ui.export_images->setEnabled(false);
   m_ui.id->clear();
   m_ui.job_number->clear();
   m_ui.location->setCurrentIndex(0);
@@ -534,11 +525,8 @@ void biblioteq_grey_literature::modify(const int state)
       m_engWindowTitle = "Modify";
       m_te_orig_pal = m_ui.id->palette();
       m_ui.attach_files->setEnabled(true);
-      m_ui.attach_images->setEnabled(true);
       m_ui.delete_files->setEnabled(true);
-      m_ui.delete_images->setEnabled(true);
       m_ui.export_files->setEnabled(true);
-      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setText("&Save");
       m_ui.okButton->setVisible(true);
       connect(m_ui.files,
@@ -552,11 +540,8 @@ void biblioteq_grey_literature::modify(const int state)
       setWindowTitle(tr("BiblioteQ: View Grey Literature Details"));
       m_engWindowTitle = "View";
       m_ui.attach_files->setEnabled(false);
-      m_ui.attach_images->setEnabled(false);
       m_ui.delete_files->setEnabled(false);
-      m_ui.delete_images->setEnabled(false);
       m_ui.export_files->setEnabled(true);
-      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(false);
       m_ui.okButton->setVisible(false);
       disconnect(m_ui.files,
@@ -684,10 +669,7 @@ void biblioteq_grey_literature::modify(const int state)
       storeData(this);
 
       if(!m_duplicate)
-	{
-	  populateFiles();
-	  populateImages();
-	}
+	populateFiles();
     }
 
   m_ui.title->setFocus();
@@ -738,7 +720,7 @@ void biblioteq_grey_literature::populateFiles(void)
 	    QTableWidgetItem *item = 0;
 
 	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) QTableWidgetItem
+	      item = new(std::nothrow) biblioteq_filesize_table_item
 		(locale.toString(query.value(i).toLongLong()));
 	    else
 	      item = new(std::nothrow)
@@ -789,25 +771,16 @@ void biblioteq_grey_literature::populateFiles(void)
   QApplication::restoreOverrideCursor();
 }
 
-void biblioteq_grey_literature::populateImages(void)
-{
-}
-
 void biblioteq_grey_literature::search(const QString &field,
 				       const QString &value)
 {
   m_ui.attach_files->setVisible(false);
-  m_ui.attach_images->setVisible(false);
   m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
-  m_ui.date_enabled->setChecked(false);
+  m_ui.date_enabled->setVisible(true);
   m_ui.delete_files->setVisible(false);
-  m_ui.delete_images->setVisible(false);
   m_ui.export_files->setVisible(false);
-  m_ui.export_images->setVisible(false);
   m_ui.files->setVisible(false);
   m_ui.files_label->setVisible(false);
-  m_ui.images->setVisible(false);
-  m_ui.images_label->setVisible(false);
   m_ui.okButton->setText(tr("&Search"));
 
   if(field.isEmpty() && value.isEmpty())
@@ -1083,10 +1056,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
       QApplication::processEvents();
 #endif
     }
-}
-
-void biblioteq_grey_literature::slotExportImages(void)
-{
 }
 
 void biblioteq_grey_literature::slotGo(void)
@@ -1487,11 +1456,8 @@ void biblioteq_grey_literature::updateWindow(const int state)
     {
       m_engWindowTitle = "Modify";
       m_ui.attach_files->setEnabled(true);
-      m_ui.attach_images->setEnabled(true);
       m_ui.delete_files->setEnabled(true);
-      m_ui.delete_images->setEnabled(true);
       m_ui.export_files->setEnabled(true);
-      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(true);
       string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
 	m_ui.id->text() + tr(")");
@@ -1505,11 +1471,8 @@ void biblioteq_grey_literature::updateWindow(const int state)
     {
       m_engWindowTitle = "View";
       m_ui.attach_files->setEnabled(false);
-      m_ui.attach_images->setEnabled(false);
       m_ui.delete_files->setEnabled(false);
-      m_ui.delete_images->setEnabled(false);
       m_ui.export_files->setEnabled(true);
-      m_ui.export_images->setEnabled(true);
       m_ui.okButton->setVisible(false);
       string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
 	m_ui.id->text() + tr(")");
