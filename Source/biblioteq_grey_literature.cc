@@ -1325,10 +1325,6 @@ void biblioteq_grey_literature::slotReset(void)
     }
 }
 
-void biblioteq_grey_literature::slotSelectImage(void)
-{
-}
-
 void biblioteq_grey_literature::updateDatabase(void)
 {
   QSqlQuery query(qmain->getDB());
