@@ -31,7 +31,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 
   void setPublicationDateFormat(const QString &dateFormat)
   {
-    Q_UNUSED(dateFormat);
+    m_ui.date->setDisplayFormat(dateFormat);
   }
 
   void updateWindow(const int state);
