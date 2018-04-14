@@ -1123,6 +1123,33 @@ void biblioteq_grey_literature::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QString searchstr("");
+
+      searchstr = "SELECT DISTINCT grey_literature.author, "
+	"grey_literature.client, "
+	"grey_literature.document_code_a, "
+	"grey_literature.document_code_b, "
+	"grey_literature.document_date, "
+	"grey_literature.document_id, "
+	"grey_literature.document_status, "
+	"grey_literature.document_title, "
+	"grey_literature.document_type, "
+	"grey_literature.job_number, "
+	"grey_literature.location, "
+	"(SELECT COUNT(myoid) FROM grey_literature_files "
+	"WHERE grey_literature_files.item_oid = grey_literature.myoid) "
+	"AS file_count, "
+	"grey_literature.type, "
+	"grey_literature.myoid, "
+	"grey_literature.front_cover "
+	"FROM grey_literature ";
+
+      /*
+      ** Search the database.
+      */
+
+      (void) qmain->populateTable
+	(biblioteq::POPULATE_SEARCH, "Grey Literature", searchstr);
     }
 }
 
