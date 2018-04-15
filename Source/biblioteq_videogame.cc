@@ -901,7 +901,6 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
   vg.publication_date_enabled->setVisible(true);
   vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
   vg.release_date->setDisplayFormat("yyyy");
-  vg.release_date->setEnabled(false);
   vg.price->setMinimum(-0.01);
   vg.price->setValue(-0.01);
   vg.quantity->setMinimum(0);

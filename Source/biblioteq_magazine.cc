@@ -1168,7 +1168,6 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.okButton->setText(tr("&Search"));
   ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
   ma.publication_date->setDisplayFormat("yyyy");
-  ma.publication_date->setEnabled(false);
   ma.publication_date_enabled->setVisible(true);
   ma.id->setCursorPosition(0);
   ma.price->setMinimum(-0.01);

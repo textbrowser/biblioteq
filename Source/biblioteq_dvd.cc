@@ -1009,7 +1009,6 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.publication_date_enabled->setVisible(true);
   dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
   dvd.release_date->setDisplayFormat("yyyy");
-  dvd.release_date->setEnabled(false);
   dvd.runtime->setTime(QTime(0, 0, 0));
   dvd.runtime->setMinimumTime(QTime(0, 0, 0));
   dvd.price->setMinimum(-0.01);
