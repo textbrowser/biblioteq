@@ -2563,7 +2563,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		if(type == "Grey Literature")
 		  str = "SELECT DISTINCT grey_literature.document_title, "
 		    "grey_literature.document_id, "
-		    "'', '', "
+		    "'', grey_literature.document_date, "
 		    "'', "
 		    "'', "
 		    "0.00, '', "
@@ -2964,6 +2964,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		    str += "GROUP BY grey_literature.document_title, "
 		      "grey_literature.document_id, "
+		      "grey_literature.document_date, "
 		      "grey_literature.location, "
 		      "grey_literature.job_number, "
 		      "grey_literature.type, "

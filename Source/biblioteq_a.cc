@@ -2220,6 +2220,7 @@ void biblioteq::slotAllGo(void)
   al.idnumber->setEnabled(false);
   al.title->setEnabled(false);
   al.publication_date->setEnabled(false);
+  al.publication_date_enabled->setEnabled(false);
   al.publisher->setEnabled(false);
   al.category->setEnabled(false);
   al.categories_checkbox->setEnabled(false);
