@@ -616,7 +616,8 @@ void biblioteq_grey_literature::modify(const int state)
 		{
 		  if(!variant.toString().trimmed().isEmpty())
 		    string = tr("BiblioteQ: Modify Grey Literature Entry (") +
-		      variant.toString() + tr(")");
+		      variant.toString() +
+		      tr(")");
 		  else
 		    string = tr("BiblioteQ: Modify Grey Literature Entry");
 		}
@@ -624,7 +625,8 @@ void biblioteq_grey_literature::modify(const int state)
 		{
 		  if(!variant.toString().trimmed().isEmpty())
 		    string = tr("BiblioteQ: View Grey Literature Details (") +
-		      variant.toString() + tr(")");
+		      variant.toString() +
+		      tr(")");
 		  else
 		    string = tr("BiblioteQ: View Grey Literature Details");
 		}
@@ -785,7 +787,11 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.export_files->setVisible(false);
   m_ui.files->setVisible(false);
   m_ui.files_label->setVisible(false);
+  m_ui.location->insertItem(0, tr("Any"));
+  m_ui.location->setCurrentIndex(0);
   m_ui.okButton->setText(tr("&Search"));
+  m_ui.type->insertItem(0, tr("Any"));
+  m_ui.type->setCurrentIndex(0);
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1150,21 +1156,76 @@ void biblioteq_grey_literature::slotGo(void)
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("document_title LIKE " + E + "'%" +
+      searchstr.append("document_title LIKE " +
+		       E +
+		       "'%" +
 		       biblioteq_myqstring::
-		       escape(m_ui.title->text().trimmed()) + "%' AND ");
-      searchstr.append("document_id LIKE " + E + "'%" +
+		       escape(m_ui.title->text().trimmed()) +
+		       "%' AND ");
+      searchstr.append("document_id LIKE " +
+		       E +
+		       "'%" +
 		       biblioteq_myqstring::
-		       escape(m_ui.id->text().trimmed()) + "%' AND ");
+		       escape(m_ui.id->text().trimmed()) +
+		       "%' AND ");
 
       if(m_ui.date_enabled->isChecked())
 	searchstr.append("SUBSTR(document_date, 7) = '" +
-			 m_ui.date->date().toString("yyyy") + "' AND ");
+			 m_ui.date->date().toString("yyyy") +
+			 "' AND ");
 
       searchstr.append
-	("author LIKE " + E + "'%" +
-	 biblioteq_myqstring::
-	 escape(m_ui.author->toPlainText().trimmed()) + "%' ");
+	("author LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.author->toPlainText().trimmed()) +
+	 "%' AND ");
+      searchstr.append
+	("COALESCE(client, '') LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.client->toPlainText().trimmed()) +
+	 "%' AND ");
+      searchstr.append
+	("document_code_a LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()) +
+	 "%' AND ");
+      searchstr.append
+	("document_code_b LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()) +
+	 "%' AND ");
+      searchstr.append
+	("job_number LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()) +
+	 "%' AND ");
+      searchstr.append
+	("notes LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()) +
+	 "%' AND ");
+
+      if(m_ui.location->currentIndex() != 0)
+	searchstr.append("location = '" +
+			 m_ui.location->currentText().trimmed() +
+			 "' AND ");
+
+      searchstr.append
+	("COALESCE(document_status, '') LIKE " +
+	 E +
+	 "'%" +
+	 biblioteq_myqstring::escape(m_ui.status->text().trimmed()) +
+	 "%' ");
+
+      if(m_ui.type->currentIndex() != 0)
+	searchstr.append
+	  ("AND document_type = '" + m_ui.type->currentText().trimmed() + "'");
 
       /*
       ** Search the database.
@@ -1481,37 +1542,71 @@ void biblioteq_grey_literature::updateDatabase(void)
       for(int i = 0; i < names.size(); i++)
 	{
 	  QString string("");
+	  bool set = false;
 
 	  if(names.at(i) == "Accession Number" || names.at(i) == "Job Number")
-	    string = m_ui.job_number->text();
+	    {
+	      set = true;
+	      string = m_ui.job_number->text();
+	    }
 	  else if(names.at(i) == "Author" ||
 		  names.at(i) == "Author(s)" ||
 		  names.at(i) == "Publisher")
-	    string = m_ui.author->toPlainText();
+	    {
+	      set = true;
+	      string = m_ui.author->toPlainText();
+	    }
 	  else if(names.at(i) == "Client(s)")
-	    string = m_ui.client->toPlainText();
+	    {
+	      set = true;
+	      string = m_ui.client->toPlainText();
+	    }
 	  else if(names.at(i) == "Date" ||
 		  names.at(i) == "Document Date" ||
 		  names.at(i) == "Publication Date")
-	    string = m_ui.date->date().toString(Qt::ISODate);
+	    {
+	      set = true;
+	      string = m_ui.date->date().toString(Qt::ISODate);
+	    }
 	  else if(names.at(i) == "Document Code A")
-	    string = m_ui.code_a->text();
+	    {
+	      set = true;
+	      string = m_ui.code_a->text();
+	    }
 	  else if(names.at(i) == "Document Code B")
-	    string = m_ui.code_b->text();
+	    {
+	      set = true;
+	      string = m_ui.code_b->text();
+	    }
 	  else if(names.at(i) == "Document ID" ||
 		  names.at(i) == "ID" ||
 		  names.at(i) == "ID Number")
-	    string = m_ui.id->text();
+	    {
+	      set = true;
+	      string = m_ui.id->text();
+	    }
 	  else if(names.at(i) == "Document Status")
-	    string = m_ui.status->text();
+	    {
+	      set = true;
+	      string = m_ui.status->text();
+	    }
 	  else if(names.at(i) == "Document Type")
-	    string = m_ui.type->currentText();
+	    {
+	      set = true;
+	      string = m_ui.type->currentText();
+	    }
 	  else if(names.at(i) == "Location")
-	    string = m_ui.location->currentText();
+	    {
+	      set = true;
+	      string = m_ui.location->currentText();
+	    }
 	  else if(names.at(i) == "Title")
-	    string = m_ui.title->text();
+	    {
+	      set = true;
+	      string = m_ui.title->text();
+	    }
 
-	  if(!string.isEmpty())
+	  if(set)
 	    qmain->getUI().table->item(m_row, i)->setText(string);
 	}
 
