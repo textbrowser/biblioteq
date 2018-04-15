@@ -1205,7 +1205,7 @@ void biblioteq_grey_literature::slotGo(void)
 	 biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()) +
 	 "%' AND ");
       searchstr.append
-	("notes LIKE " +
+	("COALESCE(notes, '') LIKE " +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()) +
@@ -1225,7 +1225,9 @@ void biblioteq_grey_literature::slotGo(void)
 
       if(m_ui.type->currentIndex() != 0)
 	searchstr.append
-	  ("AND document_type = '" + m_ui.type->currentText().trimmed() + "'");
+	  ("AND document_type = '" +
+	   m_ui.type->currentText().trimmed() +
+	   "' ");
 
       /*
       ** Search the database.
