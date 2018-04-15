@@ -779,6 +779,7 @@ void biblioteq_grey_literature::search(const QString &field,
 {
   m_ui.attach_files->setVisible(false);
   m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
+  m_ui.date->setDisplayFormat("yyyy");
   m_ui.date_enabled->setVisible(true);
   m_ui.delete_files->setVisible(false);
   m_ui.export_files->setVisible(false);
@@ -1121,7 +1122,7 @@ void biblioteq_grey_literature::slotGo(void)
       if(validateWidgets())
 	updateDatabase();
     }
-  else if(m_engWindowTitle.contains("Search"))
+  else
     {
       QString searchstr("");
 
@@ -1142,7 +1143,28 @@ void biblioteq_grey_literature::slotGo(void)
 	"grey_literature.type, "
 	"grey_literature.myoid, "
 	"grey_literature.front_cover "
-	"FROM grey_literature ";
+	"FROM grey_literature WHERE ";
+
+      QString E("");
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
+      searchstr.append("document_title LIKE " + E + "'%" +
+		       biblioteq_myqstring::
+		       escape(m_ui.title->text().trimmed()) + "%' AND ");
+      searchstr.append("document_id LIKE " + E + "'%" +
+		       biblioteq_myqstring::
+		       escape(m_ui.id->text().trimmed()) + "%' AND ");
+
+      if(m_ui.date_enabled->isChecked())
+	searchstr.append("SUBSTR(document_date, 7) = '" +
+			 m_ui.date->date().toString("yyyy") + "' AND ");
+
+      searchstr.append
+	("author LIKE " + E + "'%" +
+	 biblioteq_myqstring::
+	 escape(m_ui.author->toPlainText().trimmed()) + "%' ");
 
       /*
       ** Search the database.
