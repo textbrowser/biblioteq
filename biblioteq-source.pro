@@ -88,13 +88,13 @@ SOURCES		= Source\\biblioteq_a.cc \
                   Source\\biblioteq_videogame.cc \
                   Source\\biblioteq_z3950results.cc
 
-TRANSLATIONS    = Translations\\biblioteq_ar_JO.ts \
-		  Translations\\biblioteq_cs_CZ.ts \
-		  Translations\\biblioteq_de_DE.ts \
-		  Translations\\biblioteq_el_GR.ts \
-		  Translations\\biblioteq_fr_FR.ts \
-		  Translations\\biblioteq_hu_HU.ts \
-		  Translations\\biblioteq_it_IT.ts \
-                  Translations\\biblioteq_nl_BE.ts \
-                  Translations\\biblioteq_nl_NL.ts \
-                  Translations\\biblioteq_zh_CN.ts
+TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
+		  Translations/biblioteq_cs_CZ.ts \
+		  Translations/biblioteq_de_DE.ts \
+		  Translations/biblioteq_el_GR.ts \
+		  Translations/biblioteq_fr_FR.ts \
+		  Translations/biblioteq_hu_HU.ts \
+		  Translations/biblioteq_it_IT.ts \
+                  Translations/biblioteq_nl_BE.ts \
+                  Translations/biblioteq_nl_NL.ts \
+                  Translations/biblioteq_zh_CN.ts
