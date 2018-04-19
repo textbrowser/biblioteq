@@ -1,3 +1,6 @@
 Please verify that translations are consistent. BiblioteQ uses table
 column headers in order to locate columns. If a translation
 is not consistent, correct columns may not be located.
+
+The Translations directory must reside in the directory where the BiblioteQ
+executable resides.
