@@ -73,28 +73,3 @@ LIBS		+= -lsqlite3 -lyaz
 RESOURCES	= Icons/icons.qrc
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
-
-biblioteq.path		= /usr/local/biblioteq
-biblioteq.files		= BiblioteQ
-conf.path		= /usr/local/biblioteq
-conf.files		= biblioteq.conf
-lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.pro
-lrelease.path           = .
-lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.pro
-lupdate.path            = .
-sh.path			= /usr/local/biblioteq
-sh.files                = biblioteq.sh
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-sh.files		= biblioteq.qt5.sh
-}
-
-translations.path	= /usr/local/biblioteq/Translations
-translations.files	= Translations/*.qm
-
-INSTALLS	= biblioteq \
-                  conf \
-                  lupdate \
-                  lrelease \
-                  sh \
-                  translations
