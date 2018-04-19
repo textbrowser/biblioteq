@@ -345,8 +345,8 @@ void biblioteq_pdfreader::slotPrint(void)
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -362,9 +362,9 @@ void biblioteq_pdfreader::slotPrint(void)
 
       for(int i = start; i <= end; i++)
 	{
+	  progress.repaint();
 #ifndef Q_OS_MAC
 	  progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
-	  progress.repaint();
 	  QApplication::processEvents();
 #endif
 
@@ -422,8 +422,8 @@ void biblioteq_pdfreader::slotSaveAs(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
       QApplication::setOverrideCursor(Qt::WaitCursor);

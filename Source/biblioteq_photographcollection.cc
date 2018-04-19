@@ -808,8 +808,8 @@ void biblioteq_photographcollection::modify(const int state,
       showNormal();
       activateWindow();
       raise();
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -1098,8 +1098,8 @@ void biblioteq_photographcollection::showPhotographs(const int page)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -1178,8 +1178,9 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 
 	  if(progress.wasCanceled())
@@ -1963,8 +1964,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   progress.setMaximum(items.size());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -1977,8 +1978,9 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       QGraphicsPixmapItem *item = 0;
@@ -2033,8 +2035,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
   pc.page->blockSignals(false);
   progress.close();
-#ifndef Q_OS_MAC
   repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   showPhotographs(pc.page->currentText().toInt());
@@ -2065,8 +2067,8 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
   if(dialog.result() == QDialog::Accepted &&
      dialog.selectedFiles().size() > 0)
     {
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -2428,8 +2430,8 @@ void biblioteq_photographcollection::slotImportItems(void)
   if(dialog.result() != QDialog::Accepted)
     return;
 
-#ifndef Q_OS_MAC
   repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -2451,8 +2453,8 @@ void biblioteq_photographcollection::slotImportItems(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -2464,8 +2466,9 @@ void biblioteq_photographcollection::slotImportItems(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       if(progress.wasCanceled())
@@ -2577,8 +2580,8 @@ void biblioteq_photographcollection::slotImportItems(void)
     }
 
   progress.close();
-#ifndef Q_OS_MAC
   repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);

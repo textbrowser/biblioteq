@@ -2182,8 +2182,8 @@ void biblioteq_book::slotSRUQuery(void)
     {
       m_sruWorking->show();
       m_sruWorking->update();
-#ifndef Q_OS_MAC
       m_sruWorking->repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
     }
@@ -2406,8 +2406,8 @@ void biblioteq_book::slotZ3950Query(void)
       working.resize(working.sizeHint());
       working.show();
       working.update();
-#ifndef Q_OS_MAC
       working.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -3000,8 +3000,8 @@ void biblioteq_book::slotDownloadImage(void)
 
   createImageDownloadDialog();
   m_httpProgress->show();
-#ifndef Q_OS_MAC
   m_httpProgress->repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -3513,8 +3513,8 @@ void biblioteq_book::slotAttachFiles(void)
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -3533,8 +3533,8 @@ void biblioteq_book::slotAttachFiles(void)
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -3571,8 +3571,9 @@ void biblioteq_book::slotAttachFiles(void)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 	}
 
@@ -3754,8 +3755,8 @@ void biblioteq_book::slotExportFiles(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -3772,8 +3773,8 @@ void biblioteq_book::slotExportFiles(void)
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -3804,8 +3805,9 @@ void biblioteq_book::slotExportFiles(void)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 	}
     }

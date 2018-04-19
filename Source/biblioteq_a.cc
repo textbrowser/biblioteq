@@ -2051,8 +2051,8 @@ void biblioteq::slotDelete(void)
   progress.setMaximum(list.size());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -2063,8 +2063,9 @@ void biblioteq::slotDelete(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       if(ui.table->item(i, col) == 0)
@@ -4768,8 +4769,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
     progress.setMaximum(query.size());
 
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
@@ -4814,8 +4815,9 @@ void biblioteq::slotPopulateMembersBrowser(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -4851,8 +4853,8 @@ void biblioteq::slotGrantPrivileges(void)
   progress.setMaximum(bb.table->rowCount());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -4881,8 +4883,9 @@ void biblioteq::slotGrantPrivileges(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -7469,8 +7472,8 @@ void biblioteq::slotShowHistory(void)
   progress.setMinimum(0);
   progress.setMaximum(history.table->rowCount());
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
@@ -7510,8 +7513,9 @@ void biblioteq::slotShowHistory(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -7973,8 +7977,8 @@ void biblioteq::slotRefreshAdminList(void)
   progress.setMaximum(query.size());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
@@ -8040,8 +8044,9 @@ void biblioteq::slotRefreshAdminList(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -8184,8 +8189,8 @@ void biblioteq::slotSaveAdministrators(void)
   progress.setMaximum(ab.table->rowCount());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -8201,8 +8206,9 @@ void biblioteq::slotSaveAdministrators(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       if(adminStr.isEmpty())
@@ -8447,8 +8453,8 @@ void biblioteq::slotRequest(void)
   progress.setMaximum(list.size());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -8516,9 +8522,11 @@ void biblioteq::slotRequest(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(ct);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
+
     }
 
   progress.close();
@@ -8852,8 +8860,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 

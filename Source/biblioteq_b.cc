@@ -3781,8 +3781,8 @@ int biblioteq::populateTable(const int search_type_arg,
   raise();
   progress.show();
   progress.update();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -3986,8 +3986,9 @@ int biblioteq::populateTable(const int search_type_arg,
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -4219,8 +4220,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
-#ifndef Q_OS_MAC
   repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);

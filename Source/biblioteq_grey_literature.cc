@@ -828,8 +828,8 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
-#ifndef Q_OS_MAC
       repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -848,8 +848,8 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -886,8 +886,9 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 	}
 
@@ -965,8 +966,8 @@ void biblioteq_grey_literature::slotExportFiles(void)
   if(dialog.result() != QDialog::Accepted)
     return;
 
-#ifndef Q_OS_MAC
   repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -983,8 +984,8 @@ void biblioteq_grey_literature::slotExportFiles(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -1016,8 +1017,9 @@ void biblioteq_grey_literature::slotExportFiles(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 }

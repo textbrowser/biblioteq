@@ -223,8 +223,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
   progress1.show();
-#ifndef Q_OS_MAC
   progress1.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -267,8 +267,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
       if(i + 1 <= progress1.maximum())
 	progress1.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress1.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -331,8 +332,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     progress2.setMaximum(query.size());
 
   progress2.show();
-#ifndef Q_OS_MAC
   progress2.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
@@ -380,8 +381,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
       if(i + 1 <= progress2.maximum())
 	progress2.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress2.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       if(terminate)
@@ -805,8 +807,8 @@ QString biblioteq_copy_editor::saveCopies(void)
       progress.setMaximum(m_copies.size());
       progress.setMinimum(0);
       progress.show();
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -867,8 +869,9 @@ QString biblioteq_copy_editor::saveCopies(void)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 	}
 

@@ -1845,8 +1845,8 @@ void biblioteq_misc_functions::exportPhotographs
   progress.setModal(true);
   progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -1868,8 +1868,9 @@ void biblioteq_misc_functions::exportPhotographs
 	progress.setValue(i + 1);
 
       query.bindValue(1, item->data(0).toString());
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       if(progress.wasCanceled())
@@ -1918,8 +1919,8 @@ void biblioteq_misc_functions::exportPhotographs
   progress.setModal(true);
   progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -1973,11 +1974,9 @@ void biblioteq_misc_functions::exportPhotographs
 		progress.setValue(j + 1);
 	    }
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
-
-	  if(db.driverName() != "QPSQL")
-	    QApplication::processEvents();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 
 	  if(progress.wasCanceled())

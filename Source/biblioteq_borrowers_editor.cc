@@ -197,8 +197,9 @@ void biblioteq_borrowers_editor::showUsers(void)
       if(i + 1 <= progress1.maximum())
 	progress1.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress1.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -329,8 +330,9 @@ void biblioteq_borrowers_editor::showUsers(void)
       if(i + 1 <= progress2.maximum())
 	progress2.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress2.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
 
       if(terminate)
@@ -499,8 +501,8 @@ void biblioteq_borrowers_editor::slotSave(void)
   progress.setMaximum(m_bd.table->rowCount());
   progress.setMinimum(0);
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
 
@@ -545,8 +547,9 @@ void biblioteq_borrowers_editor::slotSave(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 

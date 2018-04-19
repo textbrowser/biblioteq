@@ -1495,8 +1495,8 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     progress.setMaximum(query.size());
 
   progress.show();
-#ifndef Q_OS_MAC
   progress.repaint();
+#ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
@@ -1581,8 +1581,9 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
 #endif
     }
 
@@ -1776,8 +1777,8 @@ void biblioteq_cd::slotSaveTracks(void)
       progress.setMinimum(0);
       progress.show();
       progress.update();
-#ifndef Q_OS_MAC
       progress.repaint();
+#ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
 
@@ -1830,8 +1831,9 @@ void biblioteq_cd::slotSaveTracks(void)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-#ifndef Q_OS_MAC
 	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
 #endif
 	}
 
