@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QUuid>
 
 /*
 ** Includes grey-literature-specific methods.
@@ -375,15 +376,15 @@ void biblioteq_grey_literature::insert(void)
   m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
   m_ui.delete_files->setEnabled(false);
   m_ui.export_files->setEnabled(false);
-  m_ui.id->clear();
+  m_ui.id->setText(QUuid::createUuid().toString().remove("{").remove("}"));
   m_ui.job_number->clear();
   m_ui.location->setCurrentIndex(0);
   m_ui.notes->clear();
   m_ui.okButton->setText(tr("&Save"));
   m_ui.status->clear();
   m_ui.title->clear();
+  m_ui.title->setFocus();
   m_ui.type->setCurrentIndex(0);
-  slotReset();
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
   storeData(this);
@@ -827,7 +828,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
-      fileDialog.close();
 #ifndef Q_OS_MAC
       repaint();
       QApplication::processEvents();
@@ -888,7 +888,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 	}
 
@@ -966,7 +965,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
   if(dialog.result() != QDialog::Accepted)
     return;
 
-  dialog.close();
 #ifndef Q_OS_MAC
   repaint();
   QApplication::processEvents();
@@ -1020,7 +1018,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
     }
 }

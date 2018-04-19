@@ -4,6 +4,7 @@
 
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QUuid>
 #include <QtCore/qmath.h>
 
 /*
@@ -834,6 +835,8 @@ void biblioteq_photographcollection::insert(void)
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
   m_engWindowTitle = "Create";
   pc.id_collection->setFocus();
+  pc.id_collection->setText
+    (QUuid::createUuid().toString().remove("{").remove("}"));
   pc.page->blockSignals(true);
   pc.page->clear();
   pc.page->addItem("1");
@@ -1177,7 +1180,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 
 	  if(progress.wasCanceled())
@@ -1977,7 +1979,6 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
 
       QGraphicsPixmapItem *item = 0;
@@ -2064,7 +2065,6 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
   if(dialog.result() == QDialog::Accepted &&
      dialog.selectedFiles().size() > 0)
     {
-      dialog.close();
 #ifndef Q_OS_MAC
       repaint();
       QApplication::processEvents();
@@ -2428,7 +2428,6 @@ void biblioteq_photographcollection::slotImportItems(void)
   if(dialog.result() != QDialog::Accepted)
     return;
 
-  dialog.close();
 #ifndef Q_OS_MAC
   repaint();
   QApplication::processEvents();
@@ -2467,7 +2466,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
 
       if(progress.wasCanceled())

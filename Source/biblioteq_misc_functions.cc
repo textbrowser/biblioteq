@@ -1870,7 +1870,6 @@ void biblioteq_misc_functions::exportPhotographs
       query.bindValue(1, item->data(0).toString());
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
 
       if(progress.wasCanceled())
@@ -1976,7 +1975,9 @@ void biblioteq_misc_functions::exportPhotographs
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
+
+	  if(db.driverName() != "QPSQL")
+	    QApplication::processEvents();
 #endif
 
 	  if(progress.wasCanceled())

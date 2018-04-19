@@ -3988,7 +3988,6 @@ int biblioteq::populateTable(const int search_type_arg,
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
     }
 

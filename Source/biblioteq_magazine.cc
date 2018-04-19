@@ -3457,7 +3457,6 @@ void biblioteq_magazine::slotAttachFiles(void)
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
-      fileDialog.close();
 #ifndef Q_OS_MAC
       repaint();
       QApplication::processEvents();
@@ -3518,7 +3517,6 @@ void biblioteq_magazine::slotAttachFiles(void)
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 	}
 
@@ -3716,7 +3714,6 @@ void biblioteq_magazine::slotExportFiles(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
-      dialog.close();
 #ifndef Q_OS_MAC
       repaint();
       QApplication::processEvents();
@@ -3775,7 +3772,6 @@ void biblioteq_magazine::slotExportFiles(void)
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 	}
     }

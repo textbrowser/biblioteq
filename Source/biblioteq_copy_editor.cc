@@ -269,7 +269,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
 #ifndef Q_OS_MAC
       progress1.repaint();
-      QApplication::processEvents();
 #endif
     }
 
@@ -383,7 +382,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
 #ifndef Q_OS_MAC
       progress2.repaint();
-      QApplication::processEvents();
 #endif
 
       if(terminate)
@@ -871,7 +869,6 @@ QString biblioteq_copy_editor::saveCopies(void)
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 	}
 

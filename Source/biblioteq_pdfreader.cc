@@ -422,7 +422,6 @@ void biblioteq_pdfreader::slotSaveAs(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      dialog.close();
 #ifndef Q_OS_MAC
       repaint();
       QApplication::processEvents();
