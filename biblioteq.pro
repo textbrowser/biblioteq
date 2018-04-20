@@ -17,7 +17,11 @@ QT              += network sql
 lessThan(QT_MAJOR_VERSION, 5) {
 exists(/usr/include/poppler/qt4) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt4
+freebsd-* {
+INCLUDEPATH     += /usr/local/include/poppler/qt4
+} else {
+INCLUDEPATH     += /usr/local/include/poppler/qt4
+}
 LIBS    +=      -lpoppler-qt4
 QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
 }
@@ -25,7 +29,11 @@ QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
 else {
 exists(/usr/include/poppler/qt5) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
+freebsd-* {
+INCLUDEPATH     += /usr/local/include/poppler/qt5
+} else {
 INCLUDEPATH     += /usr/include/poppler/qt5
+}
 LIBS    +=      -lpoppler-qt5
 }
 }
