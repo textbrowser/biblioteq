@@ -25,8 +25,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
 else {
 exists(/usr/local/include/poppler) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/local/include/poppler
-LIBS    +=      -lpoppler
+INCLUDEPATH     += /usr/local/include/poppler/qt5
+LIBS    +=      -lpoppler-qt5
 }
 }
 
