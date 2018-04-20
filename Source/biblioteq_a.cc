@@ -1283,7 +1283,7 @@ void biblioteq::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Ginger Grey<br>"
+	     "Grey Matter<br>"
 	     "Copyright (c) 2005 - present, Mushroom.<br>"
 	     "Compiled on %2, %3.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
@@ -2131,6 +2131,10 @@ void biblioteq::slotRefresh(void)
 {
   if(m_db.isOpen())
     {
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
       QString str = "";
       QVariant data(ui.menu_Category->defaultAction() ?
 		    ui.menu_Category->defaultAction()->data().
@@ -5391,6 +5395,11 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   ui.categoryLabel->setText(action->text());
   prepareRequestToolButton(action->data().toString());
+
+  QSettings settings;
+
+  m_lastCategory = getTypeFilterString();
+  settings.setValue("last_category", m_lastCategory);
 
   /*
   ** Populate the main table only if we're connected to a database.
