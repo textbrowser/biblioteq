@@ -20,11 +20,11 @@ make
 
 FreeBSD
 
-qmake -o Makefile biblioteq.freebsd.pro
+qmake -o Makefile biblioteq.pro
 or
-qmake-qt4 -o Makefile biblioteq.freebsd.pro
+qmake-qt4 -o Makefile biblioteq.pro
 or
-qmake-qt5 -o Makefile biblioteq.freebsd.pro
+qmake-qt5 -o Makefile biblioteq.pro
 gmake
 
 Linux
@@ -43,6 +43,15 @@ make
 sudo make install
 sudo cp -r ./BiblioteQ.app /Applications/BiblioteQ.d/.
 sudo make distclean
+
+OpenBSD
+
+qmake -o Makefile biblioteq.pro
+or
+qmake-qt4 -o Makefile biblioteq.pro
+or
+qmake-qt5 -o Makefile biblioteq.pro
+gmake
 
 PowerPC
 
