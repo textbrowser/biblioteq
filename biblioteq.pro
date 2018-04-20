@@ -19,6 +19,7 @@ exists(/usr/include/poppler/qt4) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
 INCLUDEPATH     += /usr/include/poppler/qt4
 LIBS    +=      -lpoppler-qt4
+QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
 }
 }
 else {
