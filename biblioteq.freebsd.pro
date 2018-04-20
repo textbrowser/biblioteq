@@ -15,27 +15,27 @@ QT		-= webkit
 QT              += network sql
 
 lessThan(QT_MAJOR_VERSION, 5) {
-exists(/usr/include/poppler/qt4) {
+exists(/usr/local/include/poppler/qt4) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt4
+INCLUDEPATH     += /usr/local/include/poppler/qt4
 LIBS    +=      -lpoppler-qt4
 QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
 }
 }
 else {
-exists(/usr/include/poppler/qt5) {
+exists(/usr/local/include/poppler/qt5) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt5
+INCLUDEPATH     += /usr/local/include/poppler/qt5
 LIBS    +=      -lpoppler-qt5
 }
 }
 
-exists(/usr/include/poppler/cpp) {
+exists(/usr/local/include/poppler/cpp) {
 DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
 }
 else {
-message("The directory /usr/include/poppler/cpp does not exist. Poppler version information will not be available.")
+message("The directory /usr/local/include/poppler/cpp does not exist. Poppler version information will not be available.")
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -45,20 +45,11 @@ QT              += printsupport widgets
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
-
-openbsd-* {
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-qual -Werror -Wextra \
-			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
-			  -Wstrict-overflow=5 \
-			  -Wstack-protector -fPIE -fstack-protector-all \
-                          -fwrapv -pie
-} else {
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-                          -fwrapv -mtune=generic -pie
-}
+                          -fwrapv -mtune=generic
 
 QMAKE_DISTCLEAN += -r temp
 
