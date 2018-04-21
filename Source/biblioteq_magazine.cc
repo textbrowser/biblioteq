@@ -1653,6 +1653,8 @@ void biblioteq_magazine::insert(void)
 {
   slotReset();
   ma.attach_files->setEnabled(false);
+  ma.delete_files->setEnabled(false);
+  ma.export_files->setEnabled(false);
   ma.view_pdf->setEnabled(false);
   ma.id->clear();
   ma.lcnum->clear();
