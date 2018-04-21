@@ -74,6 +74,7 @@ class biblioteq_item
   int m_row;
   bool hasDataChanged(QMainWindow *window) const;
   void print(QWidget *parent);
+  void setReadOnlyFields(QMainWindow *window, const bool state);
   void storeData(QMainWindow *window);
 };
 

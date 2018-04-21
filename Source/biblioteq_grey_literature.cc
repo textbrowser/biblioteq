@@ -370,7 +370,7 @@ void biblioteq_grey_literature::insert(void)
   m_te_orig_pal = m_ui.id->palette();
   m_ui.attach_files->setEnabled(false);
   m_ui.author->setPlainText("N/A");
-  m_ui.client->setPlainText("N/A");
+  m_ui.client->clear();
   m_ui.code_a->clear();
   m_ui.code_b->clear();
   m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -527,6 +527,7 @@ void biblioteq_grey_literature::modify(const int state)
   if(state == biblioteq::EDITABLE)
     {
       highlightRequiredWidgets();
+      setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Grey Literature Entry"));
       m_engWindowTitle = "Modify";
       m_te_orig_pal = m_ui.id->palette();
@@ -535,16 +536,19 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setText("&Save");
       m_ui.okButton->setVisible(true);
+      m_ui.resetButton->setVisible(true);
     }
   else
     {
+      setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Grey Literature Details"));
       m_engWindowTitle = "View";
-      m_ui.attach_files->setEnabled(false);
-      m_ui.delete_files->setEnabled(false);
+      m_ui.attach_files->setVisible(false);
+      m_ui.delete_files->setVisible(false);
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setVisible(false);
       m_ui.okButton->setVisible(false);
+      m_ui.resetButton->setVisible(false);
     }
 
   QSqlQuery query(qmain->getDB());
@@ -1651,19 +1655,22 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.delete_files->setEnabled(true);
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setVisible(true);
+      m_ui.resetButton->setVisible(true);
       string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
 	m_ui.id->text() + tr(")");
     }
   else
     {
       m_engWindowTitle = "View";
-      m_ui.attach_files->setEnabled(false);
-      m_ui.delete_files->setEnabled(false);
+      m_ui.attach_files->setVisible(false);
+      m_ui.delete_files->setVisible(false);
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setVisible(false);
+      m_ui.resetButton->setVisible(false);
       string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
 	m_ui.id->text() + tr(")");
     }
 
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(string);
 }

@@ -38,114 +38,9 @@ biblioteq_item::~biblioteq_item()
   m_widgetValues.clear();
 }
 
-int biblioteq_item::getRow(void) const
-{
-  return m_row;
-}
-
-int biblioteq_item::getOldQ(void) const
-{
-  return m_oldq;
-}
-
-void biblioteq_item::updateRow(const int rowArg)
-{
-  m_row = rowArg;
-}
-
 QString biblioteq_item::getID(void) const
 {
   return m_oid;
-}
-
-void biblioteq_item::print(QWidget *parent)
-{
-  QPrinter printer;
-  QPrintDialog dialog(&printer, parent);
-  QTextDocument document;
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
-  printer.setPageSize(QPrinter::Letter);
-  printer.setColorMode(QPrinter::GrayScale);
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      document.setHtml(m_html);
-      document.print(&printer);
-    }
-}
-
-void biblioteq_item::updateFont(const QFont &font, QWidget *window)
-{
-  if(!window)
-    return;
-
-  window->setFont(font);
-
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
-
-  window->update();
-}
-
-void biblioteq_item::setOldQ(const int q)
-{
-  m_oldq = q;
-}
-
-void biblioteq_item::storeData(QMainWindow *window)
-{
-  if(!window)
-    return;
-
-  QString classname = "";
-  QString objectname = "";
-
-  m_imageValues.clear();
-  m_widgetValues.clear();
-
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
-    {
-      classname = widget->metaObject()->className();
-      objectname = widget->objectName();
-
-      if(classname == "QSpinBox")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
-      else if(classname == "QLineEdit")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
-      else if(classname == "QComboBox")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
-      else if(classname == "QDateEdit")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
-      else if(classname == "QTextEdit")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
-      else if(classname == "QDoubleSpinBox")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();
-      else if(classname == "QTimeEdit")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QTimeEdit *> (widget))->text().trimmed();
-      else if(classname == "biblioteq_hyperlinked_text_edit")
-	m_widgetValues[objectname] =
-	  (qobject_cast<biblioteq_hyperlinked_text_edit *> (widget))->
-	  toPlainText().
-	  trimmed();
-      else if(classname == "biblioteq_image_drop_site")
-	m_imageValues[objectname] =
-	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
-    }
 }
 
 bool biblioteq_item::hasDataChanged(QMainWindow *window) const
@@ -217,4 +112,141 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
   newimg.clear();
   newdata.clear();
   return hasChanged;
+}
+
+int biblioteq_item::getOldQ(void) const
+{
+  return m_oldq;
+}
+
+int biblioteq_item::getRow(void) const
+{
+  return m_row;
+}
+
+void biblioteq_item::print(QWidget *parent)
+{
+  QPrinter printer;
+  QPrintDialog dialog(&printer, parent);
+  QTextDocument document;
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  printer.setPageSize(QPrinter::Letter);
+  printer.setColorMode(QPrinter::GrayScale);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(m_html);
+      document.print(&printer);
+    }
+}
+
+void biblioteq_item::setOldQ(const int q)
+{
+  m_oldq = q;
+}
+
+void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)
+{
+  if(!window)
+    return;
+
+  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+    {
+      QString classname(widget->metaObject()->className());
+      QString objectname(widget->objectName());
+
+      if(classname == "QComboBox")
+	qobject_cast<QComboBox *> (widget)->setEnabled(!state);
+      else if(classname == "QDateEdit")
+	qobject_cast<QDateEdit *> (widget)->setReadOnly(state);
+      else if(classname == "QDoubleSpinBox")
+	qobject_cast<QDoubleSpinBox *> (widget)->setReadOnly(state);
+      else if(classname == "QLineEdit")
+	qobject_cast<QLineEdit *> (widget)->setReadOnly(state);
+      else if(classname == "QSpinBox")
+	qobject_cast<QSpinBox *> (widget)->setReadOnly(state);
+      else if(classname == "QTextEdit")
+	qobject_cast<QTextEdit *> (widget)->setReadOnly(state);
+      else if(classname == "QTimeEdit")
+	qobject_cast<QTimeEdit *> (widget)->setReadOnly(state);
+      else if(classname == "biblioteq_hyperlinked_text_edit")
+	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
+	  setReadOnly(state);
+      else if(classname == "biblioteq_image_drop_site")
+	qobject_cast<biblioteq_image_drop_site *> (widget)->setReadOnly(state);
+    }
+}
+
+void biblioteq_item::storeData(QMainWindow *window)
+{
+  if(!window)
+    return;
+
+  QString classname = "";
+  QString objectname = "";
+
+  m_imageValues.clear();
+  m_widgetValues.clear();
+
+  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+    {
+      classname = widget->metaObject()->className();
+      objectname = widget->objectName();
+
+      if(classname == "QComboBox")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
+      else if(classname == "QDateEdit")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
+      else if(classname == "QDoubleSpinBox")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();
+      else if(classname == "QLineEdit")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
+      else if(classname == "QSpinBox")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
+      else if(classname == "QTextEdit")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
+      else if(classname == "QTimeEdit")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QTimeEdit *> (widget))->text().trimmed();
+      else if(classname == "biblioteq_hyperlinked_text_edit")
+	m_widgetValues[objectname] =
+	  (qobject_cast<biblioteq_hyperlinked_text_edit *> (widget))->
+	  toPlainText().
+	  trimmed();
+      else if(classname == "biblioteq_image_drop_site")
+	m_imageValues[objectname] =
+	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
+    }
+}
+
+void biblioteq_item::updateFont(const QFont &font, QWidget *window)
+{
+  if(!window)
+    return;
+
+  window->setFont(font);
+
+  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  window->update();
+}
+
+void biblioteq_item::updateRow(const int rowArg)
+{
+  m_row = rowArg;
 }
