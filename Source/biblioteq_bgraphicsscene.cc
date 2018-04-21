@@ -25,7 +25,7 @@ void biblioteq_bgraphicsscene::keyPressEvent(QKeyEvent *event)
   QGraphicsScene::keyPressEvent(event);
 
   if(event)
-    if(event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
+    if(event->key() == Qt::Key_Backspace || event->key() == Qt::Key_Delete)
       emit deleteKeyPressed();
 }
 

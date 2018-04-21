@@ -20,9 +20,9 @@ extern biblioteq *qmain;
 biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent):
   QThread(parent)
 {
-  m_type = -1;
   m_eType = "";
   m_errorStr = "";
+  m_type = -1;
   m_z3950Name = "";
   setTerminationEnabled(true);
 }
@@ -30,9 +30,34 @@ biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent):
 biblioteq_generic_thread::~biblioteq_generic_thread()
 {
   m_list.clear();
-  m_z3950Results.clear();
   m_outputListBool.clear();
+  m_z3950Results.clear();
   wait();
+}
+
+QString biblioteq_generic_thread::getEType(void) const
+{
+  return m_eType;
+}
+
+QString biblioteq_generic_thread::getErrorStr(void) const
+{
+  return m_errorStr;
+}
+
+QStringList biblioteq_generic_thread::getList(void) const
+{
+  return m_list;
+}
+
+QStringList biblioteq_generic_thread::getZ3950Results(void) const
+{
+  return m_z3950Results;
+}
+
+void biblioteq_generic_thread::msleep(const int msecs)
+{
+  QThread::msleep(msecs);
 }
 
 void biblioteq_generic_thread::run(void)
@@ -167,19 +192,9 @@ void biblioteq_generic_thread::run(void)
     }
 }
 
-QStringList biblioteq_generic_thread::getList(void) const
+void biblioteq_generic_thread::setFilename(const QString &filename)
 {
-  return m_list;
-}
-
-QString biblioteq_generic_thread::getErrorStr(void) const
-{
-  return m_errorStr;
-}
-
-void biblioteq_generic_thread::setType(const int type)
-{
-  m_type = type;
+  m_filename = filename;
 }
 
 void biblioteq_generic_thread::setOutputList(const QList<bool> &list)
@@ -190,33 +205,18 @@ void biblioteq_generic_thread::setOutputList(const QList<bool> &list)
     m_outputListBool.append(list.at(i));
 }
 
-void biblioteq_generic_thread::setFilename(const QString &filename)
+void biblioteq_generic_thread::setType(const int type)
 {
-  m_filename = filename;
+  m_type = type;
+}
+
+void biblioteq_generic_thread::setZ3950Name(const QString &name)
+{
+  m_z3950Name = name;
 }
 
 void biblioteq_generic_thread::setZ3950SearchString
 (const QString &z3950SearchStr)
 {
   m_z3950SearchStr = z3950SearchStr;
-}
-
-QStringList biblioteq_generic_thread::getZ3950Results(void) const
-{
-  return m_z3950Results;
-}
-
-QString biblioteq_generic_thread::getEType(void) const
-{
-  return m_eType;
-}
-
-void biblioteq_generic_thread::msleep(const int msecs)
-{
-  QThread::msleep(msecs);
-}
-
-void biblioteq_generic_thread::setZ3950Name(const QString &name)
-{
-  m_z3950Name = name;
 }

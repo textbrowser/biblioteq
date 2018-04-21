@@ -19,11 +19,6 @@
 
 #undef BIBLIOTEQ_CALLNUM_DEBUG
 
-biblioteq_callnum_table_item::biblioteq_callnum_table_item
-(const QString &str):QTableWidgetItem(str)
-{
-}
-
 static int callnum_lt(QString m, QString n)
 {
   // In all of its glory.
@@ -86,6 +81,11 @@ static int callnum_lt(QString m, QString n)
   qDebug() << "Call number regex match failed." << endl;
 #endif
   return m < n;
+}
+
+biblioteq_callnum_table_item::biblioteq_callnum_table_item
+(const QString &str):QTableWidgetItem(str)
+{
 }
 
 bool biblioteq_callnum_table_item::

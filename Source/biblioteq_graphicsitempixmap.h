@@ -22,16 +22,15 @@ static void qt_graphicsItem_highlightSelected
   const qreal pad = 0.0;
   const qreal penWidth = 2.5;
 
-  painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
   painter->setBrush(Qt::NoBrush);
+  painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
   painter->drawRect(item->boundingRect().adjusted(pad, pad, -pad, -pad));
 }
 
 class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
 {
  public:
-  biblioteq_graphicsitempixmap(const QPixmap &pixmap,
-			       QGraphicsItem *parent):
+  biblioteq_graphicsitempixmap(const QPixmap &pixmap, QGraphicsItem *parent):
     QGraphicsPixmapItem(pixmap, parent)
   {
   }
@@ -40,7 +39,8 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
   {
   }
 
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+  void paint(QPainter *painter,
+	     const QStyleOptionGraphicsItem *option,
 	     QWidget *widget = 0)
   {
     Q_UNUSED(widget);
