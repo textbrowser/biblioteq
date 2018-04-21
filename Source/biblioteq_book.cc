@@ -1403,6 +1403,7 @@ void biblioteq_book::updateWindow(const int state)
     }
 
   id.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
 }
 
@@ -1416,6 +1417,7 @@ void biblioteq_book::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       m_engWindowTitle = "Modify";
       id.attach_files->setEnabled(true);
@@ -1456,6 +1458,7 @@ void biblioteq_book::modify(const int state)
     }
   else
     {
+      setReadOnlyFields(this, true);
       id.isbnAvailableCheckBox->setCheckable(false);
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       m_engWindowTitle = "View";

@@ -1103,6 +1103,7 @@ void biblioteq_dvd::updateWindow(const int state)
     }
 
   dvd.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
 }
 
@@ -1116,6 +1117,7 @@ void biblioteq_dvd::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify DVD Entry"));
       m_engWindowTitle = "Modify";
       dvd.showUserButton->setEnabled(true);
@@ -1144,6 +1146,7 @@ void biblioteq_dvd::modify(const int state)
     }
   else
     {
+      setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View DVD Details"));
       m_engWindowTitle = "View";
 

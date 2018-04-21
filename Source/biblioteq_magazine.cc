@@ -1311,6 +1311,7 @@ void biblioteq_magazine::updateWindow(const int state)
     }
 
   ma.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
 }
 
@@ -1357,6 +1358,7 @@ void biblioteq_magazine::modify(const int state)
       biblioteq_misc_functions::highlightWidget
 	(ma.place->viewport(), QColor(255, 248, 220));
       m_te_orig_pal = ma.description->viewport()->palette();
+      setReadOnlyFields(this, false);
     }
   else
     {
@@ -1394,6 +1396,7 @@ void biblioteq_magazine::modify(const int state)
 	}
 
       actions.clear();
+      setReadOnlyFields(this, true);
     }
 
   ma.quantity->setMinimum(1);

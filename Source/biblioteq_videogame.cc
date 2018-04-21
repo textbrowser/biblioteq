@@ -992,6 +992,7 @@ void biblioteq_videogame::updateWindow(const int state)
     }
 
   vg.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
 }
 
@@ -1005,6 +1006,7 @@ void biblioteq_videogame::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Video Game Entry"));
       m_engWindowTitle = "Modify";
       vg.copiesButton->setEnabled(true);
@@ -1031,6 +1033,7 @@ void biblioteq_videogame::modify(const int state)
     }
   else
     {
+      setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Video Game Details"));
       m_engWindowTitle = "View";
       vg.copiesButton->setVisible(false);

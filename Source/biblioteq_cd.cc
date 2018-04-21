@@ -1077,6 +1077,7 @@ void biblioteq_cd::updateWindow(const int state)
       m_engWindowTitle = "View";
     }
 
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
   cd.tracksButton->setEnabled(true);
 }
@@ -1091,6 +1092,7 @@ void biblioteq_cd::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Music CD Entry"));
       m_engWindowTitle = "Modify";
       cd.showUserButton->setEnabled(true);
@@ -1119,6 +1121,7 @@ void biblioteq_cd::modify(const int state)
     }
   else
     {
+      setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Music CD Details"));
       m_engWindowTitle = "View";
 
