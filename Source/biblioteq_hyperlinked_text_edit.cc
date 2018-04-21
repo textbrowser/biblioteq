@@ -18,9 +18,9 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 {
   QString path = url.toString();
-  QString searchKey = "";
-  QString searchType = "";
-  QString searchValue = "";
+  QString searchKey("");
+  QString searchType("");
+  QString searchValue("");
   QStringList tmplist;
 
   tmplist = path.split("?");
@@ -55,9 +55,9 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
  const QString &searchField,
  const QString &str)
 {
-  int i = 0;
-  QString html = "";
+  QString html("");
   QStringList tmplist;
+  int i = 0;
 
   tmplist = str.split("\n");
 
