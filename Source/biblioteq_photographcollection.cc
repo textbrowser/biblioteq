@@ -134,13 +134,14 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(pc.page, SIGNAL(currentIndexChanged(const QString &)),
 	  this, SLOT(slotPageChanged(const QString &)));
-  connect(pc.exportPhotographsToolButton,
-	  SIGNAL(clicked(void)),
-	  this, SLOT(slotExportPhotographs(void)));
   connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
 	  this, SLOT(slotViewPhotograph(void)));
   pc.resetButton->setMenu(menu1);
   pc.exportPhotographsToolButton->setMenu(menu2);
+  connect(pc.exportPhotographsToolButton,
+	  SIGNAL(clicked(void)),
+	  pc.exportPhotographsToolButton,
+	  SLOT(showMenu(void)));
 
   if(menu2->actions().size() >= 3)
     menu2->actions()[2]->setEnabled(false);
@@ -2054,6 +2055,15 @@ void biblioteq_photographcollection::slotPageChanged(const QString &text)
 
 void biblioteq_photographcollection::slotExportPhotographs(void)
 {
+  if(pc.graphicsView->scene()->items().isEmpty())
+    return;
+  else
+    {
+      if(!qobject_cast<QAction *> (sender()))
+	if(pc.graphicsView->scene()->selectedItems().isEmpty())
+	  return;
+    }
+
   QFileDialog dialog(this);
 
 #ifdef Q_OS_MAC
