@@ -3822,6 +3822,7 @@ int biblioteq::populateTable(const int search_type_arg,
       if(query.isValid())
 	{
 	  QSqlRecord record(query.record());
+	  QTableWidgetItem *first = 0;
 
 	  for(int j = 0; j < record.count(); j++)
 	    {
@@ -3941,6 +3942,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		  if(j == 0)
 		    {
+		      first = item;
 		      ui.table->setRowCount(ui.table->rowCount() + 1);
 		      ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
 						  arg(ui.table->rowCount()));
@@ -3966,6 +3968,16 @@ int biblioteq::populateTable(const int search_type_arg,
 				    "This is a serious "
 				    "problem!")), QString(""),
 			 __FILE__, __LINE__);
+	    }
+
+	  if(first)
+	    {
+	      if(pixmapItem)
+		first->setIcon(pixmapItem->pixmap());
+	      else
+		first->setIcon(QIcon(":/no_image.png"));
+
+	      ui.table->setRowHeight(i, ui.table->iconSize().height());
 	    }
 	}
 

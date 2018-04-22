@@ -711,6 +711,7 @@ biblioteq::biblioteq(void):QMainWindow()
   typefilter.replace(" ", "_");
   ui.graphicsView->scene()->clear();
   ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
+  ui.table->setIconSize(QSize(32, 47));
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   m_previousTypeFilter = m_lastCategory;
