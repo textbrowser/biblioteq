@@ -613,6 +613,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
 
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
+  pc.page->setEnabled(true);
 }
 
 void biblioteq_photographcollection::modify(const int state,
@@ -665,6 +666,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       setReadOnlyFields(this, true);
       pc.okButton->setVisible(false);
+      pc.page->setEnabled(true);
       pc.addItemButton->setVisible(false);
       pc.importItems->setVisible(false);
       pc.resetButton->setVisible(false);
