@@ -7172,7 +7172,7 @@ void biblioteq::slotCopyError(void)
 
 void biblioteq::slotShowHistory(void)
 {
-  QProgressDialog progress(m_history_diag);
+  QScopedPointer<QProgressDialog> progress;
   QSqlQuery query(m_db);
   QString errorstr("");
   QString memberid("");
@@ -7184,9 +7184,16 @@ void biblioteq::slotShowHistory(void)
   int j = 0;
   int row = bb.table->currentRow();
 
+  if(m_history_diag->isVisible())
+    progress.reset(new QProgressDialog(m_history_diag));
+  else if(m_members_diag->isVisible())
+    progress.reset(new QProgressDialog(m_members_diag));
+  else
+    progress.reset(new QProgressDialog(this));
+
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  progress->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -7476,19 +7483,19 @@ void biblioteq::slotShowHistory(void)
 
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Populating the table..."));
-  progress.setMinimum(0);
-  progress.setMaximum(history.table->rowCount());
-  progress.show();
-  progress.repaint();
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMinimum(0);
+  progress->setMaximum(history.table->rowCount());
+  progress->show();
+  progress->repaint();
 #ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
 
-  while(i++, !progress.wasCanceled() && query.next())
+  while(i++, !progress->wasCanceled() && query.next())
     {
       if(query.isValid())
 	{
@@ -7520,16 +7527,16 @@ void biblioteq::slotShowHistory(void)
 	    }
 	}
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
+      if(i + 1 <= progress->maximum())
+	progress->setValue(i + 1);
 
-      progress.repaint();
+      progress->repaint();
 #ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
     }
 
-  progress.close();
+  progress->close();
   history.table->setRowCount(i); // Support cancellation.
   history.table->setSortingEnabled(true);
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
