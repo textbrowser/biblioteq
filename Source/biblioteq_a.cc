@@ -4658,16 +4658,21 @@ void biblioteq::slotShowMembersBrowser(void)
 
 void biblioteq::slotPopulateMembersBrowser(void)
 {
+  QScopedPointer<QProgressDialog> progress;
+  QSqlQuery query(m_db);
+  QString str = "";
+  QTableWidgetItem *item = 0;
   int i = -1;
   int j = 0;
-  QString str = "";
-  QSqlQuery query(m_db);
-  QProgressDialog progress(m_members_diag);
-  QTableWidgetItem *item = 0;
+
+  if(m_members_diag->isVisible())
+    progress.reset(new QProgressDialog(m_members_diag));
+  else
+    progress.reset(new QProgressDialog(this));
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  progress->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   str = "SELECT member.memberid, "
@@ -4760,27 +4765,27 @@ void biblioteq::slotPopulateMembersBrowser(void)
 						 query.boundValues(),
 						 m_db, __FILE__, __LINE__));
 
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Populating the table..."));
-  progress.setMinimum(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMinimum(0);
 
   if(m_db.driverName() == "QSQLITE")
-    progress.setMaximum
+    progress->setMaximum
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
 						 m_db, __FILE__, __LINE__));
   else
-    progress.setMaximum(query.size());
+    progress->setMaximum(query.size());
 
-  progress.show();
-  progress.repaint();
+  progress->show();
+  progress->repaint();
 #ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
 
-  while(i++, !progress.wasCanceled() && query.next())
+  while(i++, !progress->wasCanceled() && query.next())
     {
       if(query.isValid())
 	{
@@ -4817,16 +4822,16 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	    }
 	}
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
+      if(i + 1 <= progress->maximum())
+	progress->setValue(i + 1);
 
-      progress.repaint();
+      progress->repaint();
 #ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
     }
 
-  progress.close();
+  progress->close();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i); // Support cancellation.
 
@@ -7951,19 +7956,24 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 
 void biblioteq::slotRefreshAdminList(void)
 {
+  QCheckBox *checkBox = 0;
+  QScopedPointer<QProgressDialog> progress;
+  QSqlQuery query(m_db);
+  QString columnname = "";
+  QString str = "";
+  QStringList list;
+  QTableWidgetItem *item = 0;
   int i = -1;
   int j = 0;
-  QString str = "";
-  QString columnname = "";
-  QCheckBox *checkBox = 0;
-  QSqlQuery query(m_db);
-  QStringList list;
-  QProgressDialog progress(m_admin_diag);
-  QTableWidgetItem *item = 0;
+
+  if(m_admin_diag->isVisible())
+    progress.reset(new QProgressDialog(m_admin_diag));
+  else
+    progress.reset(new QProgressDialog(this));
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  progress->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   query.setForwardOnly(true);
@@ -7988,19 +7998,19 @@ void biblioteq::slotRefreshAdminList(void)
   QApplication::restoreOverrideCursor();
   resetAdminBrowser();
   ab.table->setRowCount(query.size());
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Populating the table..."));
-  progress.setMaximum(query.size());
-  progress.setMinimum(0);
-  progress.show();
-  progress.repaint();
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMaximum(query.size());
+  progress->setMinimum(0);
+  progress->show();
+  progress->repaint();
 #ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
   i = -1;
 
-  while(i++, !progress.wasCanceled() && query.next())
+  while(i++, !progress->wasCanceled() && query.next())
     {
       if(query.isValid())
 	{
@@ -8058,16 +8068,16 @@ void biblioteq::slotRefreshAdminList(void)
 		     QString(""), __FILE__, __LINE__);
 	}
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
+      if(i + 1 <= progress->maximum())
+	progress->setValue(i + 1);
 
-      progress.repaint();
+      progress->repaint();
 #ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
     }
 
-  progress.close();
+  progress->close();
   ab.table->setRowCount(i); // Support cancellation.
 
   for(int i = 0; i < ab.table->columnCount() - 1; i++)
