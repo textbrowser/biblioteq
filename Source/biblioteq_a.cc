@@ -1284,12 +1284,9 @@ void biblioteq::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Grey Matter<br>"
-	     "Copyright (c) 2005 - present, Mushroom.<br>"
-	     "Compiled on %2, %3.<br>"
-	     "Icons copyright (c) Matthieu James.<br>"
-	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Architecture %4.<br>"
+	     "Compiled on %2, %3.<br>"
+	     "Copyright (c) 2005 - present, Mushroom.<br>"
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 	     "Poppler version %5.<br>"
 #else
