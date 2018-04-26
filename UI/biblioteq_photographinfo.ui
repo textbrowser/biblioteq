@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-82</y>
          <width>1098</width>
          <height>956</height>
         </rect>
@@ -693,7 +693,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Export Items...</string>
+         <string>&amp;Export Items</string>
         </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>

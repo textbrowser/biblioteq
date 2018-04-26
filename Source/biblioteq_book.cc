@@ -337,7 +337,20 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   else if(!found)
     id.sruQueryButton->actions()[0]->setChecked(true);
 
-  QAction *action = new(std::nothrow) QAction
+  QAction *action = 0;
+
+  action = new(std::nothrow) QAction(tr("All..."), this);
+
+  if(action)
+    {
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPrint(void)));
+      id.printButton->addAction(action);
+    }
+
+  action = new(std::nothrow) QAction
     (tr("Author, Title, Dewey Class Number..."), this);
 
   if(action)
