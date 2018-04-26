@@ -144,7 +144,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SLOT(slotConvertISBN10to13(void)));
   connect(id.isbn13to10, SIGNAL(clicked(void)), this,
 	  SLOT(slotConvertISBN13to10(void)));
-  connect(id.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  id.dwnldFront,
@@ -363,8 +362,12 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     }
 
   if(id.printButton->actions().isEmpty())
-    id.printButton->setPopupMode(QToolButton::DelayedPopup);
+    id.printButton->setPopupMode(QToolButton::MenuButtonPopup);
 
+  connect(id.printButton,
+	  SIGNAL(clicked(void)),
+	  id.printButton,
+	  SLOT(showMenu(void)));
   hashes.clear();
   found = false;
   hashes = qmain->getZ3950Maps();
