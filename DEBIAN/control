@@ -1,6 +1,6 @@
 Architecture: amd64
 Depends: libpoppler-qt5-1 (>= 0.41), libpq5 (>= 5.8), libsqlite3-0 (>= 3.11), libyaz4 (>= 4.0)
-Installed-Size: 135848
+Installed-Size: 135940
 Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
