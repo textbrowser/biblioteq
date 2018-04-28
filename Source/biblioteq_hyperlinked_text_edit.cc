@@ -17,7 +17,7 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 {
-  QString path = url.toString();
+  QString path(url.toString());
   QString searchKey("");
   QString searchType("");
   QString searchValue("");
