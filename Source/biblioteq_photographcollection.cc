@@ -963,7 +963,7 @@ void biblioteq_photographcollection::slotPrint(void)
     pc.id_item->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Item Title:") + "</b> " +
     pc.title_item->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Item Creator(s):") + "</b> " +
+  m_html += "<b>" + tr("Item Creators:") + "</b> " +
     pc.creators_item->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Item Publication Date:") + "</b> " +
     pc.publication_date->date().toString(Qt::ISODate) + "<br>";
@@ -1318,7 +1318,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
     {
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
-			       "Creator(s) field."));
+			       "Creators field."));
       photo.creators_item->setFocus();
       return false;
     }

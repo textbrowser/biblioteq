@@ -79,7 +79,7 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Game Rating")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Developer(s)")),
+  connect(menu->addAction(tr("Reset &Developers")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Platform")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -290,7 +290,7 @@ void biblioteq_videogame::slotGo(void)
       if(vg.developer->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Developer(s) field."));
+				tr("Please complete the Developers field."));
 	  vg.developer->setFocus();
 	  return;
 	}
@@ -1556,7 +1556,7 @@ void biblioteq_videogame::slotPrint(void)
   m_html += "<b>" + tr("UPC:") + "</b> " + vg.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Game Rating:") + "</b> " +
     vg.rating->currentText() + "<br>";
-  m_html += "<b>" + tr("Developer(s):") + "</b> " +
+  m_html += "<b>" + tr("Developers:") + "</b> " +
     vg.developer->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Platform:") + "</b> " +
     vg.platform->currentText() + "<br>";

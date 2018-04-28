@@ -497,7 +497,7 @@ void biblioteq_borrowers_editor::slotSave(void)
   progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Updating the due date(s)..."));
+  progress.setLabelText(tr("Updating the due dates..."));
   progress.setMaximum(m_bd.table->rowCount());
   progress.setMinimum(0);
   progress.show();

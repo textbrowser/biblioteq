@@ -122,7 +122,7 @@ void biblioteq_main_table::setColumns(const QString &username,
   else if(type == "Books")
     {
       list.append(tr("Title"));
-      list.append(tr("Author(s)"));
+      list.append(tr("Authors"));
       list.append(tr("Publisher"));
       list.append(tr("Publication Date"));
       list.append(tr("Place of Publication"));
@@ -147,7 +147,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
-      m_columnHeaderIndexes.append("Author(s)");
+      m_columnHeaderIndexes.append("Authors");
       m_columnHeaderIndexes.append("Publisher");
       m_columnHeaderIndexes.append("Publication Date");
       m_columnHeaderIndexes.append("Place of Publication");
@@ -219,8 +219,8 @@ void biblioteq_main_table::setColumns(const QString &username,
     }
   else if(type == "Grey Literature")
     {
-      list.append(tr("Author(s)"));
-      list.append(tr("Client(s)"));
+      list.append(tr("Authors"));
+      list.append(tr("Clients"));
       list.append(tr("Document Code A"));
       list.append(tr("Document Code B"));
       list.append(tr("Document Date"));
@@ -233,8 +233,8 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("File Count"));
       list.append(tr("Type"));
       list.append("MYOID");
-      m_columnHeaderIndexes.append("Author(s)");
-      m_columnHeaderIndexes.append("Client(s)");
+      m_columnHeaderIndexes.append("Authors");
+      m_columnHeaderIndexes.append("Clients");
       m_columnHeaderIndexes.append("Document Code A");
       m_columnHeaderIndexes.append("Document Code B");
       m_columnHeaderIndexes.append("Document Date");

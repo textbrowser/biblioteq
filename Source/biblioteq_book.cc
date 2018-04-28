@@ -170,7 +170,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Edition")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Author(s)")),
+  connect(menu->addAction(tr("Reset &Authors")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Book Binding Type")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -544,7 +544,7 @@ void biblioteq_book::slotGo(void)
       if(id.author->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Author(s) field."));
+				tr("Please complete the Authors field."));
 	  id.author->setFocus();
 	  return;
 	}
@@ -984,7 +984,7 @@ void biblioteq_book::slotGo(void)
 		      else if(names.at(i) == "Edition")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.edition->currentText().trimmed());
-		      else if(names.at(i) == "Author(s)")
+		      else if(names.at(i) == "Authors")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.author->toPlainText());
 		      else if(names.at(i) == "Publication Date")
@@ -2700,7 +2700,7 @@ void biblioteq_book::slotPrint(void)
     id.isbn13->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Edition:") + "</b> " +
     id.edition->currentText() + "<br>";
-  m_html += "<b>" + tr("Author(s):") + "</b> " +
+  m_html += "<b>" + tr("Authors:") + "</b> " +
     id.author->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Book Binding Type:") + "</b> " +
     id.binding->currentText() + "<br>";

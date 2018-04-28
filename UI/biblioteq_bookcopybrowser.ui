@@ -200,7 +200,7 @@
         </size>
        </property>
        <property name="toolTip">
-        <string>Save new due date(s).</string>
+        <string>Save new due dates.</string>
        </property>
        <property name="text">
         <string>&amp;Save</string>

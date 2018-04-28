@@ -80,9 +80,9 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Rating")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Actor(s)")),
+  connect(menu->addAction(tr("Reset &Actors")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Director(s)")),
+  connect(menu->addAction(tr("Reset &Directors")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Number of Discs")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -311,7 +311,7 @@ void biblioteq_dvd::slotGo(void)
       if(dvd.actors->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Actor(s) field."));
+				tr("Please complete the Actors field."));
 	  dvd.actors->setFocus();
 	  return;
 	}
@@ -322,7 +322,7 @@ void biblioteq_dvd::slotGo(void)
       if(dvd.directors->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Director(s) field."));
+				tr("Please complete the Directors field."));
 	  dvd.directors->setFocus();
 	  return;
 	}
@@ -1734,9 +1734,9 @@ void biblioteq_dvd::slotPrint(void)
   m_html += "<b>" + tr("UPC:") + "</b> " + dvd.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Rating:") + "</b> " + dvd.rating->currentText() +
     "<br>";
-  m_html += "<b>" + tr("Actor(s):") + "</b> " +
+  m_html += "<b>" + tr("Actors:") + "</b> " +
     dvd.actors->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Director(s):") + "</b> " +
+  m_html += "<b>" + tr("Directors:") + "</b> " +
     dvd.directors->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Number of Discs:") + "</b> " +
     dvd.no_of_discs->text() + "<br>";

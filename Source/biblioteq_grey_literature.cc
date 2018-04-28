@@ -84,11 +84,11 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Author(s)")),
+  connect(menu->addAction(tr("Reset &Authors")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Client(s)")),
+  connect(menu->addAction(tr("Reset &Clients")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
@@ -192,7 +192,7 @@ bool biblioteq_grey_literature::validateWidgets(void)
 
   if(m_ui.author->toPlainText().isEmpty())
     {
-      error = tr("Please complete the Author(s) field.");
+      error = tr("Please complete the Authors field.");
       m_ui.author->setFocus();
       goto done_label;
     }
@@ -371,13 +371,13 @@ void biblioteq_grey_literature::insert(void)
   m_ui.attach_files->setEnabled(false);
   m_ui.author->setPlainText("N/A");
   m_ui.client->clear();
-  m_ui.code_a->clear();
-  m_ui.code_b->clear();
+  m_ui.code_a->setText("N/A");
+  m_ui.code_b->setText("N/A");
   m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
   m_ui.delete_files->setEnabled(false);
   m_ui.export_files->setEnabled(false);
   m_ui.id->setText(QUuid::createUuid().toString().remove("{").remove("}"));
-  m_ui.job_number->clear();
+  m_ui.job_number->setText("N/A");
   m_ui.location->setCurrentIndex(0);
   m_ui.notes->clear();
   m_ui.okButton->setText(tr("&Save"));
@@ -1251,8 +1251,8 @@ void biblioteq_grey_literature::slotPrint(void)
   titles << tr("Title:")
 	 << tr("ID:")
 	 << tr("Date:")
-	 << tr("Author(s):")
-	 << tr("Client(s):")
+	 << tr("Authors:")
+	 << tr("Clients:")
 	 << tr("Code-A:")
 	 << tr("Code-B:")
 	 << tr("Job Number:")
@@ -1555,13 +1555,13 @@ void biblioteq_grey_literature::updateDatabase(void)
 	      string = m_ui.job_number->text();
 	    }
 	  else if(names.at(i) == "Author" ||
-		  names.at(i) == "Author(s)" ||
+		  names.at(i) == "Authors" ||
 		  names.at(i) == "Publisher")
 	    {
 	      set = true;
 	      string = m_ui.author->toPlainText();
 	    }
-	  else if(names.at(i) == "Client(s)")
+	  else if(names.at(i) == "Clients")
 	    {
 	      set = true;
 	      string = m_ui.client->toPlainText();

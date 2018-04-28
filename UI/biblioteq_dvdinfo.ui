@@ -246,14 +246,14 @@
             <item row="2" column="0">
              <widget class="QLabel" name="label_9">
               <property name="text">
-               <string>Actor(s)</string>
+               <string>Actors</string>
               </property>
              </widget>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_11">
               <property name="text">
-               <string>Director(s)</string>
+               <string>Directors</string>
               </property>
              </widget>
             </item>
