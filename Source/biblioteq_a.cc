@@ -1079,6 +1079,8 @@ void biblioteq::adminSetup(void)
     }
   else
     {
+      disconnect(bb.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+		 SLOT(slotModifyBorrower(void)));
       connect(bb.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotModifyBorrower(void)));
       bb.addButton->setEnabled(true);
@@ -1123,6 +1125,10 @@ void biblioteq::showMain(void)
 
   if((m_error_bar_label = new(std::nothrow) QToolButton()) != 0)
     {
+      disconnect(m_error_bar_label,
+		 SIGNAL(clicked(void)),
+		 this,
+		 SLOT(slotShowErrorDialog(void)));
       connect(m_error_bar_label,
 	      SIGNAL(clicked(void)),
 	      this,
@@ -4232,6 +4238,12 @@ void biblioteq::slotConnectDB(void)
 	ui.menuEntriesPerPage->actions()[4]->setEnabled(false);
 
       ui.actionChangePassword->setEnabled(true);
+      disconnect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+		 SLOT(slotViewDetails(void)));
+      disconnect(ui.graphicsView->scene(),
+		 SIGNAL(itemDoubleClicked(void)),
+		 this,
+		 SLOT(slotViewDetails(void)));
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
       connect(ui.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)), this,
