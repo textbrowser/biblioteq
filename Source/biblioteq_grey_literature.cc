@@ -776,6 +776,8 @@ void biblioteq_grey_literature::populateFiles(void)
 	      setText(QString::number(count));
 	    break;
 	  }
+
+      qmain->getUI().table->setSortingEnabled(true);
     }
 
   QApplication::restoreOverrideCursor();

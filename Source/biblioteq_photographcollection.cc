@@ -2724,6 +2724,8 @@ void biblioteq_photographcollection::updateTablePhotographCount
 	    qmain->slotDisplaySummary();
 	    break;
 	  }
+
+      qmain->getUI().table->setSortingEnabled(true);
     }
 }
 
