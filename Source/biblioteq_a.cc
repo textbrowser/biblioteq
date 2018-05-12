@@ -123,6 +123,8 @@ int main(int argc, char *argv[])
 #endif
 #endif
 
+  qapplication.setWindowIcon(QIcon(":/book.png"));
+
   /*
   ** Prepare configuration settings.
   */
