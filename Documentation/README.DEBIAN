@@ -22,4 +22,4 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.d/biblioteq.qt5.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/DEBIAN biblioteq-debian/.
 cp -r /usr/local/biblioteq biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2018.05.05_amd64.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2018.07.04_amd64.deb
