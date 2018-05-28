@@ -29,8 +29,6 @@ FORMS           = UI\\biblioteq_adminsetup.ui \
                   UI\\biblioteq_videogameinfo.ui \
                   UI\\biblioteq_z3950results.ui
 
-UI_DIR          = temp
-
 HEADERS		= Source\\biblioteq.h \
                   Source\\biblioteq_bgraphicsscene.h \
 		  Source\\biblioteq_book.h \
@@ -98,3 +96,5 @@ TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
                   Translations/biblioteq_nl_BE.ts \
                   Translations/biblioteq_nl_NL.ts \
                   Translations/biblioteq_zh_CN.ts
+
+UI_DIR          = temp
