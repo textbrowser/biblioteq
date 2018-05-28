@@ -42,6 +42,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 
 lessThan(QT_MAJOR_VERSION, 5) {
 QMAKE_CXXFLAGS_RELEASE += -pie
+} else {
+QMAKE_CXXFLAGS_RELEASE += -std=c++11
 }
 
 QMAKE_EXTRA_TARGETS = purge
@@ -49,7 +51,7 @@ QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.9
 }
 else {
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
