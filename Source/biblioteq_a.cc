@@ -6732,7 +6732,7 @@ void biblioteq::slotShowMenu(void)
     {
       QMenu menu(this);
 
-      connect(menu.addAction(tr("&General Search...")),
+      connect(menu.addAction(tr("General &Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
       menu.addSeparator();
       connect(menu.addAction(tr("&Book Search...")),
@@ -6747,7 +6747,7 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
       connect(menu.addAction(tr("&Magazine Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
-      connect(menu.addAction(tr("&Music CD Search...")),
+      connect(menu.addAction(tr("Music &CD Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
       connect
 	(menu.addAction(tr("&Photograph Collection Search...")),
