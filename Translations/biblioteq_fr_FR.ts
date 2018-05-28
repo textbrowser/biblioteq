@@ -17,15 +17,15 @@
     </message>
     <message>
         <source>Due Date: </source>
-        <translation type="vanished">Date limite&#xa0;: </translation>
+        <translation type="vanished">Date limite : </translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation type="vanished">Type&#xa0;: </translation>
+        <translation type="vanished">Type : </translation>
     </message>
     <message>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation type="obsolete">Erreur de l&apos;application&#xa0;: objectlist.size() != privlist.size().</translation>
+        <translation type="obsolete">Erreur de l&apos;application : objectlist.size() != privlist.size().</translation>
     </message>
     <message>
         <source> Location: </source>
@@ -33,11 +33,11 @@
     </message>
     <message>
         <source>Barcode: </source>
-        <translation type="vanished">Code barre&#xa0;: </translation>
+        <translation type="vanished">Code barre : </translation>
     </message>
     <message>
         <source>Title: </source>
-        <translation type="vanished">Titre&#xa0;: </translation>
+        <translation type="vanished">Titre : </translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -252,7 +252,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation type="vanished">N&#xa0;/&#xa0;A</translation>
+        <translation type="vanished">N / A</translation>
     </message>
     <message>
         <source>Sex</source>
@@ -320,7 +320,7 @@
     </message>
     <message>
         <source>BiblioteQ: Borrower Information</source>
-        <translation type="vanished">BiblioteQ&#xa0;: informations sur l&apos;emprunteur</translation>
+        <translation type="vanished">BiblioteQ : informations sur l&apos;emprunteur</translation>
     </message>
     <message>
         <source>Previous Member</source>
@@ -462,7 +462,7 @@
     </message>
     <message>
         <source>BiblioteQ: General Database Search</source>
-        <translation type="vanished">BiblioteQ&#xa0;: recherche dans la base de données générale</translation>
+        <translation type="vanished">BiblioteQ : recherche dans la base de données générale</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -1675,7 +1675,7 @@
     <name>biblioteq_borrowers_editor</name>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: état de réservation des articles (</translation>
+        <translation type="obsolete">BiblioteQ : état de réservation des articles (</translation>
     </message>
     <message>
         <source>)</source>
@@ -1683,7 +1683,7 @@
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: état de réservation de l&apos;article</translation>
+        <translation type="obsolete">BiblioteQ : état de réservation de l&apos;article</translation>
     </message>
     <message>
         <source>Copy Number</source>
@@ -1727,7 +1727,7 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;modifDate&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifDate ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
@@ -2101,7 +2101,7 @@
     <name>biblioteq_copy_editor</name>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -2252,7 +2252,7 @@
     <name>biblioteq_copy_editor_book</name>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -2407,7 +2407,7 @@
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation type="obsolete">Rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
+        <translation type="obsolete">Rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>DVD Rating</source>
@@ -3612,7 +3612,7 @@
     <name>bookcopybrowser</name>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
     </message>
     <message>
         <source>Due Date</source>
@@ -3683,7 +3683,7 @@
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: boîte de dialogue de progression</translation>
+        <translation type="obsolete">BiblioteQ : boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>Constructing objects...</source>
@@ -3719,7 +3719,7 @@
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: question</translation>
+        <translation type="obsolete">BiblioteQ : question</translation>
     </message>
     <message>
         <source>Unable to update the due date.</source>
@@ -3743,7 +3743,7 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;modifDate&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifDate ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
@@ -3751,11 +3751,11 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;article&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: erreur de la base de données</translation>
+        <translation type="obsolete">BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Memory Error</source>
@@ -3763,7 +3763,7 @@
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: état de réservation des articles (</translation>
+        <translation type="obsolete">BiblioteQ : état de réservation des articles (</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -3771,7 +3771,7 @@
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: état de réservation de l&apos;article</translation>
+        <translation type="obsolete">BiblioteQ : état de réservation de l&apos;article</translation>
     </message>
 </context>
 <context>
@@ -3806,7 +3806,7 @@
     </message>
     <message>
         <source>BiblioteQ: Branch Selection</source>
-        <translation type="vanished">BiblioteQ&#xa0;: sélection d&apos;une branche</translation>
+        <translation type="vanished">BiblioteQ : sélection d&apos;une branche</translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -4055,7 +4055,7 @@
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies (</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies (</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -4075,7 +4075,7 @@
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: boîte de dialogue de progression</translation>
+        <translation type="obsolete">BiblioteQ : boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
@@ -4163,7 +4163,7 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;article&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
@@ -4171,7 +4171,7 @@
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: erreur de la base de données</translation>
+        <translation type="obsolete">BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
@@ -4207,14 +4207,14 @@
     </message>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
     </message>
 </context>
 <context>
     <name>copy_editor_book</name>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -4373,7 +4373,7 @@
     </message>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="vanished">BiblioteQ&#xa0;: explorateur de copies</translation>
+        <translation type="vanished">BiblioteQ : explorateur de copies</translation>
     </message>
 </context>
 <context>
@@ -4392,7 +4392,7 @@
     </message>
     <message>
         <source>BiblioteQ: Custom Query</source>
-        <translation type="vanished">BiblioteQ&#xa0;: requête personnalisée</translation>
+        <translation type="vanished">BiblioteQ : requête personnalisée</translation>
     </message>
     <message>
         <source>Execute</source>
@@ -4451,7 +4451,7 @@
     </message>
     <message>
         <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation type="vanished">BiblioteQ&#xa0;: explorateur d&apos;énumérations de la base de données</translation>
+        <translation type="vanished">BiblioteQ : explorateur d&apos;énumérations de la base de données</translation>
     </message>
     <message>
         <source>Video Game Platforms</source>
@@ -4511,7 +4511,7 @@
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
-        <translation type="vanished">Ajouter un rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
+        <translation type="vanished">Ajouter un rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -4559,7 +4559,7 @@
     </message>
     <message>
         <source>DVD Aspect Ratios</source>
-        <translation type="vanished">Rapports hauteur&#xa0;/&#xa0;largeur de DVD</translation>
+        <translation type="vanished">Rapports hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>CD Formats</source>
@@ -4579,7 +4579,7 @@
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
-        <translation type="vanished">Supprimer un rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
+        <translation type="vanished">Supprimer un rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>Remove Video Game Platform</source>
@@ -4650,7 +4650,7 @@
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation type="obsolete">Rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
+        <translation type="obsolete">Rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>video game platform</source>
@@ -4683,7 +4683,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur&#xa0;/&#xa0;largeur de DVD.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur / largeur de DVD.</translation>
     </message>
     <message>
         <source>DVD Rating</source>
@@ -4763,7 +4763,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="obsolete">BiblioteQ&#xa0;: erreur de la base de données</translation>
+        <translation type="obsolete">BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Monetary Unit</source>
@@ -4834,7 +4834,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation type="vanished">Rapport hauteur&#xa0;/&#xa0;largeur</translation>
+        <translation type="vanished">Rapport hauteur / largeur</translation>
     </message>
     <message>
         <source>Copies</source>
@@ -4973,7 +4973,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Error Log</source>
-        <translation type="vanished">BiblioteQ&#xa0;: journal des erreurs</translation>
+        <translation type="vanished">BiblioteQ : journal des erreurs</translation>
     </message>
 </context>
 <context>
@@ -5063,7 +5063,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
-        <translation type="vanished">BiblioteQ&#xa0;: historique de réservation du membre</translation>
+        <translation type="vanished">BiblioteQ : historique de réservation du membre</translation>
     </message>
 </context>
 <context>
@@ -5855,7 +5855,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation type="obsolete">Rapport hauteur&#xa0;/&#xa0;largeur</translation>
+        <translation type="obsolete">Rapport hauteur / largeur</translation>
     </message>
     <message>
         <source>Availability</source>
