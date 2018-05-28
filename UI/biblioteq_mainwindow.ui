@@ -1192,7 +1192,7 @@
   </action>
   <action name="actionGrey_Literature">
    <property name="text">
-    <string>Grey Literature...</string>
+    <string>&amp;Grey Literature...</string>
    </property>
   </action>
  </widget>

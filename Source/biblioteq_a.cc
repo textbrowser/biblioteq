@@ -318,33 +318,33 @@ biblioteq::biblioteq(void):QMainWindow()
   m_configToolMenu->setTearOffEnabled(true);
   m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
   m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
-  connect(menu1->addAction(tr("Reset &ID Number")),
+  connect(menu1->addAction(tr("Reset ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Title")),
+  connect(menu1->addAction(tr("Reset Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Publication Date")),
+  connect(menu1->addAction(tr("Reset Publication Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Publisher")),
+  connect(menu1->addAction(tr("Reset Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Categories")),
+  connect(menu1->addAction(tr("Reset Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Price")),
+  connect(menu1->addAction(tr("Reset Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Language")),
+  connect(menu1->addAction(tr("Reset Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Monetary Units")),
+  connect(menu1->addAction(tr("Reset Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Abstract")),
+  connect(menu1->addAction(tr("Reset Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Copies")),
+  connect(menu1->addAction(tr("Reset Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Location")),
+  connect(menu1->addAction(tr("Reset Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Keywords")),
+  connect(menu1->addAction(tr("Reset Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Availability")),
+  connect(menu1->addAction(tr("Reset Availability")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Case-Insensitive")),
+  connect(menu1->addAction(tr("Reset Case-Insensitive")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
