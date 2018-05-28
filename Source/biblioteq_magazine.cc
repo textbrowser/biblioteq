@@ -2683,6 +2683,7 @@ void biblioteq_magazine::slotSelectImage(void)
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
 
   if(button == ma.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
@@ -3459,6 +3460,7 @@ void biblioteq_magazine::slotAttachFiles(void)
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setDirectory(QDir::homePath());
   fileDialog.setFileMode(QFileDialog::ExistingFiles);
+  fileDialog.setOption(QFileDialog::DontUseNativeDialog);
 
   if(fileDialog.exec() == QDialog::Accepted)
     {

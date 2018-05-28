@@ -7829,6 +7829,7 @@ void biblioteq::slotSelectDatabaseFile(void)
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("SQLite Database (*.sqlite)");
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
 
@@ -8893,6 +8894,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   dialog.setNameFilter("SQLite Database (*.sqlite)");
   dialog.setDefaultSuffix("sqlite");
   dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
   dialog.exec();
 
@@ -9060,6 +9062,7 @@ void biblioteq::slotExportAsCSV(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter(tr("CSV (*.csv)"));
   dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Export Table View as CSV"));
   dialog.setDefaultSuffix("csv");
   dialog.exec();

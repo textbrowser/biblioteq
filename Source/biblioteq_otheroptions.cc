@@ -275,6 +275,8 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
   QColor color(m_ui.main_window_canvas_background_color->text());
   QColorDialog dialog(this);
 
+  dialog.setOption(QColorDialog::DontUseNativeDialog);
+
   connect(&dialog,
 	  SIGNAL(currentColorChanged(const QColor &)),
 	  this,
