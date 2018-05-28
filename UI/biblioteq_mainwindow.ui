@@ -114,7 +114,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>285</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -384,7 +384,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -500,7 +500,7 @@
     </widget>
     <widget class="QMenu" name="menuPreferredSRUSite">
      <property name="title">
-      <string>Preferred &amp;SRU Site</string>
+      <string>Preferred SRU S&amp;ite</string>
      </property>
     </widget>
     <widget class="QMenu" name="menuPhotographs_per_Page">
@@ -685,7 +685,7 @@
      <normaloff>:/16x16/resizecol.png</normaloff>:/16x16/resizecol.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Resize Columns to Contents</string>
+    <string>Re&amp;size Columns to Contents</string>
    </property>
   </action>
   <action name="actionSaveSettings">
