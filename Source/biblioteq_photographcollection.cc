@@ -112,19 +112,19 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SLOT(slotAddItem(void)));
   connect(photo.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClosePhoto(void)));
-  connect(menu1->addAction(tr("Reset Collection &Image")),
+  connect(menu1->addAction(tr("Reset Collection Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection &ID")),
+  connect(menu1->addAction(tr("Reset Collection ID")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection &Title")),
+  connect(menu1->addAction(tr("Reset Collection Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection &Location")),
+  connect(menu1->addAction(tr("Reset Collection Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection &About")),
+  connect(menu1->addAction(tr("Reset Collection About")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection &Notes")),
+  connect(menu1->addAction(tr("Reset Collection Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset &Accession Number")),
+  connect(menu1->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu2->addAction(tr("&All...")),
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));

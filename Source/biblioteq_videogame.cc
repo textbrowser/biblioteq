@@ -71,45 +71,45 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
   connect(vg.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(vg.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(menu->addAction(tr("Reset &Front Cover Image")),
+  connect(menu->addAction(tr("Reset Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Back Cover Image")),
+  connect(menu->addAction(tr("Reset Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &UPC")),
+  connect(menu->addAction(tr("Reset UPC")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Game Rating")),
+  connect(menu->addAction(tr("Reset Game Rating")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Developers")),
+  connect(menu->addAction(tr("Reset Developers")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Platform")),
+  connect(menu->addAction(tr("Reset Platform")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Mode")),
+  connect(menu->addAction(tr("Reset Mode")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Title")),
+  connect(menu->addAction(tr("Reset Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Release Date")),
+  connect(menu->addAction(tr("Reset Release Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Publisher")),
+  connect(menu->addAction(tr("Reset Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Place of Publication")),
+  connect(menu->addAction(tr("Reset Place of Publication")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Genres")),
+  connect(menu->addAction(tr("Reset Genres")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Price")),
+  connect(menu->addAction(tr("Reset Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Language")),
+  connect(menu->addAction(tr("Reset Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Monetary Units")),
+  connect(menu->addAction(tr("Reset Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Copies")),
+  connect(menu->addAction(tr("Reset Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Location")),
+  connect(menu->addAction(tr("Reset Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Abstract")),
+  connect(menu->addAction(tr("Reset Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Keywords")),
+  connect(menu->addAction(tr("Reset Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Accession Number")),
+  connect(menu->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(vg.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));

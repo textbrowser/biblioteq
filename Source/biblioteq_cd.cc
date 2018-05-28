@@ -97,51 +97,51 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 	  SLOT(slotSaveTracks(void)));
   connect(cd.computeButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotComputeRuntime(void)));
-  connect(menu->addAction(tr("Reset &Front Cover Image")),
+  connect(menu->addAction(tr("Reset Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Back Cover Image")),
+  connect(menu->addAction(tr("Reset Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Catalog Number")),
+  connect(menu->addAction(tr("Reset Catalog Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Format")),
+  connect(menu->addAction(tr("Reset Format")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Artist")),
+  connect(menu->addAction(tr("Reset Artist")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  m_composer_action = menu->addAction(tr("Reset &Composer"));
+  m_composer_action = menu->addAction(tr("Reset Composer"));
   connect(m_composer_action, SIGNAL(triggered(void)),
 	  this, SLOT(slotReset(void)));
   m_composer_action->setVisible(false);
-  connect(menu->addAction(tr("Reset &Number of Discs")),
+  connect(menu->addAction(tr("Reset Number of Discs")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Runtime")),
+  connect(menu->addAction(tr("Reset Runtime")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Audio")),
+  connect(menu->addAction(tr("Reset Audio")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Recording Type")),
+  connect(menu->addAction(tr("Reset Recording Type")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Title")),
+  connect(menu->addAction(tr("Reset Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Release Date")),
+  connect(menu->addAction(tr("Reset Release Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Recording Label")),
+  connect(menu->addAction(tr("Reset Recording Label")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Categories")),
+  connect(menu->addAction(tr("Reset Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Price")),
+  connect(menu->addAction(tr("Reset Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Language")),
+  connect(menu->addAction(tr("Reset Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Monetary Units")),
+  connect(menu->addAction(tr("Reset Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Copies")),
+  connect(menu->addAction(tr("Reset Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Location")),
+  connect(menu->addAction(tr("Reset Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Abstract")),
+  connect(menu->addAction(tr("Reset Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Keywords")),
+  connect(menu->addAction(tr("Reset Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Accession Number")),
+  connect(menu->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(cd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));

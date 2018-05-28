@@ -72,51 +72,51 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
 	  SLOT(slotPopulateCopiesEditor(void)));
   connect(dvd.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Front Cover Image")),
+  connect(menu->addAction(tr("Reset Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Back Cover Image")),
+  connect(menu->addAction(tr("Reset Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &UPC")),
+  connect(menu->addAction(tr("Reset UPC")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Rating")),
+  connect(menu->addAction(tr("Reset Rating")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Actors")),
+  connect(menu->addAction(tr("Reset Actors")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Directors")),
+  connect(menu->addAction(tr("Reset Directors")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Number of Discs")),
+  connect(menu->addAction(tr("Reset Number of Discs")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Runtime")),
+  connect(menu->addAction(tr("Reset Runtime")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Format")),
+  connect(menu->addAction(tr("Reset Format")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Region")),
+  connect(menu->addAction(tr("Reset Region")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Aspect Ratio")),
+  connect(menu->addAction(tr("Reset Aspect Ratio")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Title")),
+  connect(menu->addAction(tr("Reset Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Release Date")),
+  connect(menu->addAction(tr("Reset Release Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Studio")),
+  connect(menu->addAction(tr("Reset Studio")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Categories")),
+  connect(menu->addAction(tr("Reset Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Price")),
+  connect(menu->addAction(tr("Reset Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Language")),
+  connect(menu->addAction(tr("Reset Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Monetary Units")),
+  connect(menu->addAction(tr("Reset Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Copies")),
+  connect(menu->addAction(tr("Reset Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Location")),
+  connect(menu->addAction(tr("Reset Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Abstract")),
+  connect(menu->addAction(tr("Reset Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Keywords")),
+  connect(menu->addAction(tr("Reset Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Accession Number")),
+  connect(menu->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(dvd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));

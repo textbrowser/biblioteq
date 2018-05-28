@@ -134,49 +134,49 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   connect(ma.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(ma.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(menu->addAction(tr("Reset &Front Cover Image")),
+  connect(menu->addAction(tr("Reset Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Back Cover Image")),
+  connect(menu->addAction(tr("Reset Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &ISSN")),
+  connect(menu->addAction(tr("Reset ISSN")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Volume")),
+  connect(menu->addAction(tr("Reset Volume")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Issue")),
+  connect(menu->addAction(tr("Reset Issue")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &LC Control Number")),
+  connect(menu->addAction(tr("Reset LC Control Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Call Number")),
+  connect(menu->addAction(tr("Reset Call Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Dewey Number")),
+  connect(menu->addAction(tr("Reset Dewey Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Title")),
+  connect(menu->addAction(tr("Reset Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Publication Date")),
+  connect(menu->addAction(tr("Reset Publication Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Publisher")),
+  connect(menu->addAction(tr("Reset Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Place of Publication")),
+  connect(menu->addAction(tr("Reset Place of Publication")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Categories")),
+  connect(menu->addAction(tr("Reset Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Price")),
+  connect(menu->addAction(tr("Reset Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Language")),
+  connect(menu->addAction(tr("Reset Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Monetary Units")),
+  connect(menu->addAction(tr("Reset Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Copies")),
+  connect(menu->addAction(tr("Reset Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Location")),
+  connect(menu->addAction(tr("Reset Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Abstract")),
+  connect(menu->addAction(tr("Reset Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &MARC Tags")),
+  connect(menu->addAction(tr("Reset MARC Tags")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Keywords")),
+  connect(menu->addAction(tr("Reset Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Accession Number")),
+  connect(menu->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(ma.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));

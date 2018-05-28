@@ -72,51 +72,51 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Title")),
+  connect(menu->addAction(tr("Reset Title")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &ID")),
+  connect(menu->addAction(tr("Reset ID")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Date")),
+  connect(menu->addAction(tr("Reset Date")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Authors")),
+  connect(menu->addAction(tr("Reset Authors")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Clients")),
+  connect(menu->addAction(tr("Reset Clients")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Code-A")),
+  connect(menu->addAction(tr("Reset Code-A")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Code-B")),
+  connect(menu->addAction(tr("Reset Code-B")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Job Number")),
+  connect(menu->addAction(tr("Reset Job Number")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Notes")),
+  connect(menu->addAction(tr("Reset Notes")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Location")),
+  connect(menu->addAction(tr("Reset Location")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Status")),
+  connect(menu->addAction(tr("Reset Status")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Type")),
+  connect(menu->addAction(tr("Reset Type")),
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
