@@ -5,7 +5,7 @@ Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
 Section: Education
-Version: 2018.06.16
+Version: 2018.07.04
 Description: BiblioteQ
  Welcome to BiblioteQ!
  A biblioteq.qt5.desktop file will also be installed in /usr/share/applications/.
