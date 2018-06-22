@@ -4,9 +4,9 @@ Introduction
 
 	This document details the installation, configuration, and removal of BiblioteQ.
 
-1. Database Configuration
+1. PostgreSQL Database Configuration
 
-	1.1 PostgreSQL Database Configuration
+	1.1 Database Configuration
 
 	BiblioteQ supports PostgreSQL 8.x, 9.x, and newer. Please follow the PostgreSQL-provided documentation for installing PostgreSQL. After installing the required PostgreSQL packages, please perform the following operations:
 a) Create the xbook_db database via createdb xbook_db -E UTF8 or via the PostgreSQL-recommended procedure. Please note that xbook_db is only a suggestion.
@@ -55,18 +55,31 @@ e) After the required dependencies have been fulfilled and your environment is p
 
 	Remove the BiblioteQ folder.
 
-5. PostgreSQL Database Removal
+5. PostgreSQL Database Preparation
+
+	The pg_hba.conf and postgresql.conf files must be modified. The location of these files varies. Please restart the database service after modifying the files.
+
+	Example pg_hba.conf:
+
+	host	 xbook_db	 all		 192.168.178.0/24	 md5
+	hostssl	 xbook_db	 all		 192.168.178.0/24	 md5
+
+	Example postgresql.conf:
+
+	listen_addresses = '192.168.178.1, localhost'
+
+6. PostgreSQL Database Removal
 
 	The script postgresql_destroy_schema.sql may be used to remove the original database xbook_db and other objects created by the postgresql_create_schema.sql script.
 
-	5.1 OS X and Unix
+	6.1 OS X and Unix
 
 	The dropdb command may be used to remove a PostgreSQL database. The dropuser command may be used to remove PostgreSQL users. If available, pgAdmin may also be used.
 
-	5.2 Windows
+	6.2 Windows
 
 	Please use pgAdmin.
 
-6. SQLite Database Removal
+7. SQLite Database Removal
 
 	Delete the desired SQLite database file(s).
