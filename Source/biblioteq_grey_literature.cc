@@ -553,7 +553,6 @@ void biblioteq_grey_literature::modify(const int state)
 
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
   query.prepare("SELECT author, "
 		"client, "
 		"document_code_a, "
@@ -686,7 +685,6 @@ void biblioteq_grey_literature::populateFiles(void)
   QSqlQuery query(qmain->getDB());
   int count = 0;
 
-  query.setForwardOnly(true);
   query.prepare
     ("SELECT COUNT(*) FROM grey_literature_files WHERE item_oid = ?");
   query.addBindValue(m_oid);
@@ -1003,7 +1001,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
     {
       QSqlQuery query(qmain->getDB());
 
-      query.setForwardOnly(true);
       query.prepare("SELECT file, file_name FROM grey_literature_files "
 		    "WHERE item_oid = ? AND myoid = ?");
       query.addBindValue(m_oid);
@@ -1053,7 +1050,6 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 	  QByteArray data;
 	  QSqlQuery query(qmain->getDB());
 
-	  query.setForwardOnly(true);
 	  query.prepare("SELECT file, file_name FROM grey_literature_files "
 			"WHERE item_oid = ? AND myoid = ?");
 	  query.addBindValue(m_oid);

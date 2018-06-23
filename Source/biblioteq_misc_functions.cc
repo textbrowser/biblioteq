@@ -29,7 +29,6 @@ bool biblioteq_misc_functions::userExists(const QString &userid,
   bool exists = false;
 
   errorstr = "";
-  query.setForwardOnly(true);
 
   if(db.driverName() == "QSQLITE")
     query.prepare("SELECT EXISTS(SELECT 1 FROM member WHERE "
@@ -84,7 +83,6 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
   else
     return str;
 
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, oid);
 
@@ -116,7 +114,6 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
       if(which == "back_cover" || which == "front_cover" ||
 	 which == "image_scaled")
 	{
-	  query.setForwardOnly(true);
 	  query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
 			arg(which).arg(type));
 	  query.bindValue(0, oid);
@@ -523,7 +520,6 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
     "item_borrower.item_oid = videogame.myoid AND "
     "item_borrower.type = 'Video Game' AND "
     "item_borrower.memberid = ? ";
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, memberid);
   query.bindValue(1, memberid);
@@ -574,7 +570,6 @@ bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
     "middle_init || "
     "last_name || street || city || state_abbr || zip = ? "
     "AND memberid != ?)";
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, checksum);
   query.bindValue(1, memberid);
@@ -622,7 +617,6 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
   else
     return str;
 
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, oid);
 
@@ -747,7 +741,6 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  query.setForwardOnly(true);
   query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw "
 		"WHERE item_oid = ? AND type = ?)");
   query.bindValue(0, oid);
@@ -778,7 +771,6 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  query.setForwardOnly(true);
   query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw WHERE "
 		"copyid = ? AND item_oid = ? AND "
 		"type = ?)");
@@ -840,7 +832,6 @@ int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  query.setForwardOnly(true);
   query.prepare("SELECT MAX(copy_number) FROM item_borrower_vw "
 		"WHERE item_oid = ? AND type = ?");
   query.bindValue(0, oid);
@@ -886,7 +877,6 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
   else
     return isAvailable;
 
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, copyid);
   query.bindValue(1, oid);
@@ -934,7 +924,6 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
     "UNION ALL "
     "SELECT COUNT(myoid) AS numvideogames FROM item_borrower_vw WHERE "
     "memberid = ? AND type = 'Video Game'";
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, memberid);
   query.bindValue(1, memberid);
@@ -991,7 +980,6 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
   errorstr = "";
   querystr = "SELECT LOWER(roles) FROM admin WHERE "
     "LOWER(username) = LOWER(?)";
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, username);
 
@@ -1043,7 +1031,6 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
   else
     return oid;
 
-  query.setForwardOnly(true);
   query.prepare(querystr);
 
   if(itemType == "journal" || itemType == "magazine")
@@ -1171,7 +1158,6 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT last_name, first_name FROM member WHERE memberid = ?";
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, memberid);
 
@@ -1215,8 +1201,6 @@ int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
 
   QSqlQuery query(db);
 
-  query.setForwardOnly(true);
-
   if(query.exec(querystr))
     while(query.next())
       count += 1;
@@ -1247,7 +1231,6 @@ int biblioteq_misc_functions::sqliteQuerySize
   QList<QVariant> list = boundValues.values();
   QSqlQuery query(db);
 
-  query.setForwardOnly(true);
   query.prepare(querystr);
 
   for(int i = 0; i < list.size(); i++)
@@ -1351,7 +1334,6 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
   QString itemType = "";
 
   itemType = itemTypeArg;
-  query.setForwardOnly(true);
   query.prepare("SELECT EXISTS(SELECT 1 FROM item_request "
 		"WHERE item_oid = ? AND type = ?)");
   query.bindValue(0, oid);
@@ -1378,7 +1360,6 @@ QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
   QStringList locations;
 
   errorstr = "";
-  query.setForwardOnly(true);
 
   if(type.isEmpty())
     query.prepare("SELECT DISTINCT(location) FROM locations "
@@ -1415,7 +1396,6 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
     "WHERE LENGTH(TRIM(type)) > 0 AND "
     "LENGTH(TRIM(location)) > 0 "
     "ORDER BY type, location";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1439,7 +1419,6 @@ QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
   querystr = "SELECT monetary_unit FROM monetary_units "
     "WHERE LENGTH(TRIM(monetary_unit)) > 0 "
     "ORDER BY monetary_unit";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1462,7 +1441,6 @@ QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
   querystr = "SELECT language FROM languages "
     "WHERE LENGTH(TRIM(language)) > 0 "
     "ORDER BY language";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1485,7 +1463,6 @@ QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
   querystr = "SELECT cd_format FROM cd_formats "
     "WHERE LENGTH(TRIM(cd_format)) > 0 "
     "ORDER BY cd_format";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1508,7 +1485,6 @@ QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
   querystr = "SELECT dvd_rating FROM dvd_ratings "
     "WHERE LENGTH(TRIM(dvd_rating)) > 0 "
     "ORDER BY dvd_rating";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1531,7 +1507,6 @@ QStringList biblioteq_misc_functions::getDVDAspectRatios
   querystr = "SELECT dvd_aspect_ratio FROM dvd_aspect_ratios "
     "WHERE LENGTH(TRIM(dvd_aspect_ratio)) > 0 "
     "ORDER BY dvd_aspect_ratio";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1554,7 +1529,6 @@ QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
   querystr = "SELECT dvd_region FROM dvd_regions "
     "WHERE LENGTH(TRIM(dvd_region)) > 0 "
     "ORDER BY dvd_region";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1574,7 +1548,6 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   int minimumdays = 1;
 
   errorstr = "";
-  query.setForwardOnly(true);
   query.prepare("SELECT days FROM minimum_days WHERE type = ?");
   query.bindValue(0, type);
 
@@ -1600,7 +1573,6 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   querystr = "SELECT type, days FROM minimum_days "
     "WHERE LENGTH(TRIM(type)) > 0 "
     "ORDER BY type";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1647,7 +1619,6 @@ QStringList biblioteq_misc_functions::getVideoGameRatings
   querystr = "SELECT videogame_rating FROM videogame_ratings "
     "WHERE LENGTH(TRIM(videogame_rating)) > 0 "
     "ORDER BY videogame_rating";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1670,7 +1641,6 @@ QStringList biblioteq_misc_functions::getVideoGamePlatforms
   querystr = "SELECT videogame_platform FROM videogame_platforms "
     "WHERE LENGTH(TRIM(videogame_platform)) > 0 "
     "ORDER BY videogame_platform";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1723,7 +1693,6 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
   bool expired = true;
 
   errorstr = "";
-  query.setForwardOnly(true);
 
   if(db.driverName() == "QSQLITE")
     query.prepare("SELECT expiration_date "
@@ -1852,7 +1821,6 @@ void biblioteq_misc_functions::exportPhotographs
 
   QSqlQuery query(db);
 
-  query.setForwardOnly(true);
   query.prepare("SELECT image FROM photograph WHERE "
 		"collection_oid = ? AND image IS NOT NULL AND myoid = ?");
   query.bindValue(0, collectionOid);
@@ -1925,8 +1893,6 @@ void biblioteq_misc_functions::exportPhotographs
 #endif
 
   QSqlQuery query(db);
-
-  query.setForwardOnly(true);
 
   if(pageOffset <= 0)
     {
@@ -2012,7 +1978,6 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
   querystr = "SELECT binding_type FROM book_binding_types "
     "WHERE LENGTH(TRIM(binding_type)) > 0 "
     "ORDER BY binding_type";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())
@@ -2038,7 +2003,6 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
-  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, memberid);
 
@@ -2086,7 +2050,6 @@ QStringList biblioteq_misc_functions::getGreyLiteratureTypes
   querystr = "SELECT document_type FROM grey_literature_types "
     "WHERE LENGTH(TRIM(document_type)) > 0 "
     "ORDER BY document_type";
-  query.setForwardOnly(true);
 
   if(query.exec(querystr))
     while(query.next())

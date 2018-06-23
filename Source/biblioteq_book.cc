@@ -1515,7 +1515,6 @@ void biblioteq_book::modify(const int state)
   id.price->setMinimum(0.00);
   id.okButton->setText(tr("&Save"));
   str = m_oid;
-  query.setForwardOnly(true);
   query.prepare("SELECT title, "
 		"author, "
 		"publisher, pdate, place, edition, "
@@ -3652,7 +3651,6 @@ void biblioteq_book::populateFiles(void)
 
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
   query.prepare("SELECT COUNT(*) FROM book_files WHERE item_oid = ?");
   query.bindValue(0, m_oid);
 
@@ -3806,7 +3804,6 @@ void biblioteq_book::slotExportFiles(void)
 	{
 	  QSqlQuery query(qmain->getDB());
 
-	  query.setForwardOnly(true);
 	  query.prepare("SELECT file, file_name FROM book_files "
 			"WHERE item_oid = ? AND myoid = ?");
 	  query.bindValue(0, m_oid);
@@ -3855,7 +3852,6 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 	  QByteArray data;
 	  QSqlQuery query(qmain->getDB());
 
-	  query.setForwardOnly(true);
 	  query.prepare("SELECT file, file_name FROM book_files "
 			"WHERE item_oid = ? AND myoid = ?");
 	  query.addBindValue(m_oid);
@@ -4003,7 +3999,6 @@ void biblioteq_book::slotShowPDF(void)
   QByteArray data;
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
   query.prepare("SELECT file, file_name FROM book_files "
 		"WHERE item_oid = ? AND myoid = ?");
   query.bindValue(0, m_oid);

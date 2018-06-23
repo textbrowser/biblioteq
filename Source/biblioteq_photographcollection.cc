@@ -680,7 +680,6 @@ void biblioteq_photographcollection::modify(const int state,
       actions.clear();
     }
 
-  query.setForwardOnly(true);
   query.prepare("SELECT id, "
 		"title, "
 		"location, "
@@ -1112,8 +1111,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
-
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       if(photographsPerPage() == -1) // Unlimited.
@@ -1389,8 +1386,6 @@ void biblioteq_photographcollection::slotInsertItem(void)
   QString errorstr("");
   int pages = 1;
 
-  query.setForwardOnly(true);
-
   if(qmain->getDB().driverName() != "QSQLITE")
     query.prepare("INSERT INTO photograph "
 		  "(id, collection_oid, title, creators, pdate, "
@@ -1605,7 +1600,6 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
       QSqlQuery query(qmain->getDB());
 
-      query.setForwardOnly(true);
       query.prepare("SELECT id, "
 		    "title, "
 		    "creators, "
@@ -2014,7 +2008,6 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   QSqlQuery query(qmain->getDB());
   int pages = 1;
 
-  query.setForwardOnly(true);
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
@@ -2192,7 +2185,6 @@ void biblioteq_photographcollection::loadPhotographFromItem
   QSqlQuery query(qmain->getDB());
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  query.setForwardOnly(true);
   query.prepare("SELECT image FROM "
 		"photograph WHERE "
 		"collection_oid = ? AND "
@@ -2606,7 +2598,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");

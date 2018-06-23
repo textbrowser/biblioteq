@@ -205,7 +205,6 @@ void biblioteq_borrowers_editor::showUsers(void)
 
   progress1.close();
   m_bd.table->setRowCount(i); // Support cancellation.
-  query.setForwardOnly(true);
 
   if(m_state == biblioteq::EDITABLE)
     {

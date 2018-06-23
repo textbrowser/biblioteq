@@ -1162,7 +1162,6 @@ void biblioteq_cd::modify(const int state)
   cd.no_of_discs->setMinimum(1);
   cd.no_of_discs->setValue(1);
   str = m_oid;
-  query.setForwardOnly(true);
   query.prepare("SELECT id, "
 		"title, "
 		"cdformat, "
@@ -1425,7 +1424,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
-  query.setForwardOnly(true);
   query.prepare("SELECT albumnum, songnum, songtitle, runtime, "
 		"artist, composer "
 		"FROM cd_songs WHERE item_oid = ? "
@@ -2143,7 +2141,6 @@ void biblioteq_cd::slotComputeRuntime(void)
   QTime time(0, 0, 0);
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
   query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, m_oid);
   QApplication::setOverrideCursor(Qt::WaitCursor);

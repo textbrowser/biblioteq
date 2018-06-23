@@ -1405,7 +1405,6 @@ void biblioteq_magazine::modify(const int state)
   ma.volume->setMinimum(0);
   ma.issue->setMinimum(0);
   str = m_oid;
-  query.setForwardOnly(true);
   query.prepare(QString("SELECT title, "
 			"publisher, pdate, place, issuevolume, "
 			"category, language, id, "
@@ -3582,8 +3581,6 @@ void biblioteq_magazine::populateFiles(void)
 
   QSqlQuery query(qmain->getDB());
 
-  query.setForwardOnly(true);
-
   if(m_subType == "Journal")
     query.prepare("SELECT COUNT(*) FROM journal_files WHERE item_oid = ?");
   else
@@ -3751,8 +3748,6 @@ void biblioteq_magazine::slotExportFiles(void)
 	{
 	  QSqlQuery query(qmain->getDB());
 
-	  query.setForwardOnly(true);
-
 	  if(m_subType == "Journal")
 	    query.prepare("SELECT file, file_name FROM journal_files "
 			  "WHERE item_oid = ? AND myoid = ?");
@@ -3805,8 +3800,6 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  QByteArray data;
 	  QSqlQuery query(qmain->getDB());
-
-	  query.setForwardOnly(true);
 
 	  if(m_subType == "Journal")
 	    query.prepare("SELECT file, file_name FROM journal_files "
@@ -3901,8 +3894,6 @@ void biblioteq_magazine::slotShowPDF(void)
 
   QByteArray data;
   QSqlQuery query(qmain->getDB());
-
-  query.setForwardOnly(true);
 
   if(m_subType == "Journal")
     query.prepare

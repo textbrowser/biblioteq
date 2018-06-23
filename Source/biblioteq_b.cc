@@ -3618,8 +3618,6 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QSqlQuery query(m_db);
 
-  query.setForwardOnly(true);
-
   if(!query.exec(searchstr))
     {
       progress.close();
