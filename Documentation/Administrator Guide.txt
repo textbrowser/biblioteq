@@ -13,6 +13,7 @@ a) Create the xbook_db database via createdb xbook_db -E UTF8 or via the Postgre
 b) Execute createlang plpgsql -d xbook_db or the PostgreSQL-recommended procedure for adding a new programming language to the xbook_db database.
 c) If desired, replace all instances of the default administrator xbook_admin in postgresql_create_schema.sql file.
 d) Log into your PostgreSQL xbook_db database and load the postgresql_create_schema.sql file via \i postgresql_create_schema.sql.
+e) Please remember to set a new password for the xbook_admin account.
 
 	1.2 Database Updates
 
