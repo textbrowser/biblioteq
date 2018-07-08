@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ar_JO">
+<TS version="2.0" language="ar_JO">
 <context>
     <name>QObject</name>
     <message>
         <source>Exporting file(s)...</source>
-        <translation type="vanished">تصدير ملفات</translation>
+        <translation>تصدير ملفات</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
@@ -192,7 +192,7 @@
     </message>
     <message>
         <source>AR</source>
-        <translation type="unfinished"></translation>
+        <translation>AR</translation>
     </message>
     <message>
         <source>AZ</source>
@@ -478,7 +478,7 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Location, Monetary Units, Price, Publication Date, and Publisher will be ignored for Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;المستخلص، الفئات الموضوعية، النُسخ، الكلمات المفتاحية، اللغة، الموقع، الوحدات النقدية، السعر، تاريخ النشر، والناشر سيتم تجاهلها في مجموعات الصور الفوتوغرافية.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;المستخلص، الفئات الموضوعية، النُسخ، الكلمات المفتاحية، اللغة، الموقع، الوحدات النقدية، السعر، تاريخ النشر، والناشر سيتم تجاهلها في مجموعات الصور الفوتوغرافية.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -570,7 +570,7 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين تاريخ النشر في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -602,55 +602,55 @@
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
-        <translation type="vanished">إعادة تعيين ردمك وردمد ..</translation>
+        <translation>إعادة تعيين ردمك وردمد ..</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation type="vanished">إعادة تعيين العنوان</translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation type="vanished">إعادة تعيين تاريخ النشر</translation>
+        <translation>إعادة تعيين تاريخ النشر</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation type="vanished">إعادة تعيين الناشر</translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation type="vanished">إعادة تعيين المُعالجة الموضوعية</translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation type="vanished">إعادة تعيين السعر</translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation type="vanished">إعادة تعيين اللغة</translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="vanished">إعادة تعيين العملة</translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation type="vanished">إعادة تعيين المستخلص</translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation type="vanished">إعادة تعيين النُسخ</translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation type="vanished">إعادة تعيين الموقع</translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="vanished">إعادة تعيين الكلمات المفتاحية</translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset &amp;Availability</source>
-        <translation type="vanished">إعادة تعيين قابلية الإتاحة</translation>
+        <translation>إعادة تعيين قابلية الإتاحة</translation>
     </message>
     <message>
         <source>All</source>
@@ -1301,7 +1301,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;General Search...</source>
-        <translation type="vanished">البحث العام</translation>
+        <translation>البحث العام</translation>
     </message>
     <message>
         <source>&amp;Book Search...</source>
@@ -1321,7 +1321,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Music CD Search...</source>
-        <translation type="vanished">بحث في أقراص السيدي الموسيقية...</translation>
+        <translation>بحث في أقراص السيدي الموسيقية...</translation>
     </message>
     <message>
         <source>&amp;Photograph Collection Search...</source>
@@ -1713,95 +1713,95 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم المُعرف </translation>
     </message>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تاريخ النشر</translation>
     </message>
     <message>
         <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset Price</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset Language</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين قابلية الإتاحة</translation>
     </message>
     <message>
         <source>Reset Case-Insensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين حساسية حالة الأحرف</translation>
     </message>
     <message>
         <source>%1 File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ملف</translation>
     </message>
     <message>
         <source>Grey literature may not be reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>ربما لا يمكن إعارة الأدب الرمادي</translation>
     </message>
     <message>
         <source>Add &amp;Grey Literature...</source>
-        <translation type="unfinished"></translation>
+        <translation>إضافة الأدب الرمادي</translation>
     </message>
     <message>
         <source>General &amp;Search...</source>
-        <translation type="unfinished"></translation>
+        <translation>البحث العام</translation>
     </message>
     <message>
         <source>&amp;Grey Literature Search...</source>
-        <translation type="unfinished"></translation>
+        <translation>بحث في الأدب الرمادي</translation>
     </message>
     <message>
         <source>Music &amp;CD Search...</source>
-        <translation type="unfinished"></translation>
+        <translation>بحث في أقراص السيدي الموسيقية...</translation>
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
+        <translation>الأدب الرمادي</translation>
     </message>
     <message>
         <source>%1 Result(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 نتيجة</translation>
     </message>
     <message>
         <source>Populating the views...</source>
-        <translation type="unfinished"></translation>
+        <translation>مِلء العرض...</translation>
     </message>
 </context>
 <context>
@@ -1824,107 +1824,107 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="vanished">إعادة تعيين صفحة الغلاف الأمامية</translation>
+        <translation>إعادة تعيين صفحة الغلاف الأمامية</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="vanished">إعادة تعيين صفحة الغلاف الخلفية</translation>
+        <translation>إعادة تعيين صفحة الغلاف الخلفية</translation>
     </message>
     <message>
         <source>Reset &amp;ISBN-10</source>
-        <translation type="vanished">إعادة تعيين ردمك-10</translation>
+        <translation>إعادة تعيين ردمك-10</translation>
     </message>
     <message>
         <source>Reset &amp;ISBN-13</source>
-        <translation type="vanished">إعادة تعيين ردمك-13</translation>
+        <translation>إعادة تعيين ردمك-13</translation>
     </message>
     <message>
         <source>Reset &amp;Edition</source>
-        <translation type="vanished">إعادة تعيين الطبعة</translation>
+        <translation>إعادة تعيين الطبعة</translation>
     </message>
     <message>
         <source>Reset &amp;Author(s)</source>
-        <translation type="vanished">إعادة تعيين المؤلفين</translation>
+        <translation>إعادة تعيين المؤلفين</translation>
     </message>
     <message>
         <source>Reset &amp;Book Binding Type</source>
-        <translation type="vanished">إعادة تعيين نوع التجليد</translation>
+        <translation>إعادة تعيين نوع التجليد</translation>
     </message>
     <message>
         <source>Reset &amp;LC Control Number</source>
-        <translation type="vanished">إعادة تعيين رقم الضبط في مكتبة الكونغرس</translation>
+        <translation>إعادة تعيين رقم الضبط في مكتبة الكونغرس</translation>
     </message>
     <message>
         <source>Reset &amp;Call Number</source>
-        <translation type="vanished">إعادة تعيين رمز الاستدعاء</translation>
+        <translation>إعادة تعيين رمز الاستدعاء</translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Class Number</source>
-        <translation type="vanished">إعادة تعيين رقم تصنيف ديوي</translation>
+        <translation>إعادة تعيين رقم تصنيف ديوي</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation type="vanished">إعادة تعيين العنوان</translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation type="vanished">إعادة تعيين تاريخ النشر</translation>
+        <translation>إعادة تعيين تاريخ النشر</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation type="vanished">إعادة تعيين الناشر</translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation type="vanished">إعادة تعيين مكان النشر</translation>
+        <translation>إعادة تعيين مكان النشر</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation type="vanished">إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation type="vanished">إعادة تعيين السعر</translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation type="vanished">إعادة تعيين اللغة</translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="vanished">إعادة تعيين العملة</translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation type="vanished">إعادة تعيين النُسخ</translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation type="vanished">إعادة تعيين الموقع</translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset &amp;Originality</source>
-        <translation type="vanished">إعادة تعيين الأصالة</translation>
+        <translation>إعادة تعيين الأصالة</translation>
     </message>
     <message>
         <source>Reset &amp;Condition</source>
-        <translation type="vanished">إعادة تعيين الحالة</translation>
+        <translation>إعادة تعيين الحالة</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation type="vanished">إعادة تعيين المُستخلص</translation>
+        <translation>إعادة تعيين المُستخلص</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation type="vanished">إعادة تعيين تيجان مارك</translation>
+        <translation>إعادة تعيين تيجان مارك</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="vanished">إعادة تعيين الكلمات المفتاحية</translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset &amp;Accession Number</source>
-        <translation type="vanished">إعادة تعيين رقم الانضمام</translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -1988,7 +1988,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please complete the Author(s) field.</source>
-        <translation type="vanished">لطفاً ينبغي إكمال حقل المؤلف.</translation>
+        <translation>لطفاً ينبغي إكمال حقل المؤلف.</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -2152,7 +2152,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Author(s):</source>
-        <translation type="vanished">المؤلفون:</translation>
+        <translation>المؤلفون:</translation>
     </message>
     <message>
         <source>Book Binding Type:</source>
@@ -2336,131 +2336,131 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامي</translation>
     </message>
     <message>
         <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين ردمك-10</translation>
     </message>
     <message>
         <source>Reset ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين ردمك-13</translation>
     </message>
     <message>
         <source>Reset Edition</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الطبعة</translation>
     </message>
     <message>
         <source>Reset Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المؤلفين</translation>
     </message>
     <message>
         <source>Reset Book Binding Type</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين نوع التجليد</translation>
     </message>
     <message>
         <source>Reset LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم ضبط مكتبة الكونغرس</translation>
     </message>
     <message>
         <source>Reset Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رمز الاستدعاء</translation>
     </message>
     <message>
         <source>Reset Dewey Class Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم تصنيف ديوي</translation>
     </message>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تاريخ النشر</translation>
     </message>
     <message>
         <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين مكان النشر</translation>
     </message>
     <message>
         <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset Price</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset Language</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Originality</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الأصالة</translation>
     </message>
     <message>
         <source>Reset Condition</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الحالة</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تيجان مارك</translation>
     </message>
     <message>
         <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>All...</source>
-        <translation type="unfinished"></translation>
+        <translation>الكل</translation>
     </message>
     <message>
         <source>Please complete the Authors field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل المؤلف.</translation>
     </message>
     <message>
         <source>Downloading.</source>
-        <translation type="unfinished"></translation>
+        <translation>تحميل</translation>
     </message>
     <message>
         <source>Authors:</source>
-        <translation type="unfinished"></translation>
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>Double-click to edit.</source>
-        <translation type="unfinished"></translation>
+        <translation>انقر نقراً مزدوجاً من أجل التعديل</translation>
     </message>
     <message>
         <source>Exporting file(s)...</source>
-        <translation type="unfinished">تصدير ملفات</translation>
+        <translation>تصدير ملفات</translation>
     </message>
 </context>
 <context>
@@ -2575,7 +2575,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Updating the due date(s)...</source>
-        <translation type="vanished">يتم تحديث تاريخ الاستحقاق </translation>
+        <translation>يتم تحديث تاريخ الاستحقاق </translation>
     </message>
     <message>
         <source>Unable to update the due date.</source>
@@ -2598,91 +2598,91 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_cd</name>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="vanished">إعادة تعيين صورة الغلاف الأمامية</translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامية</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="vanished">إعادة تعيين صورة الغلاف الخلفية</translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفية</translation>
     </message>
     <message>
         <source>Reset &amp;Catalog Number</source>
-        <translation type="vanished">إعادة تعيين رقم الفهرسة</translation>
+        <translation>إعادة تعيين رقم الفهرسة</translation>
     </message>
     <message>
         <source>Reset &amp;Format</source>
-        <translation type="vanished">إعادة تعيين التنسيق أو الصيغة</translation>
+        <translation>إعادة تعيين التنسيق أو الصيغة</translation>
     </message>
     <message>
         <source>Reset &amp;Artist</source>
-        <translation type="vanished">إعادة تعيين الفنانين</translation>
+        <translation>إعادة تعيين الفنانين</translation>
     </message>
     <message>
         <source>Reset &amp;Composer</source>
-        <translation type="vanished">إعادة تعيين المُلحن </translation>
+        <translation>إعادة تعيين المُلحن </translation>
     </message>
     <message>
         <source>Reset &amp;Number of Discs</source>
-        <translation type="vanished">إعادة تعيين عدد الأقراص </translation>
+        <translation>إعادة تعيين عدد الأقراص </translation>
     </message>
     <message>
         <source>Reset &amp;Runtime</source>
-        <translation type="vanished">إعادة تعيين وقت التشغيل</translation>
+        <translation>إعادة تعيين وقت التشغيل</translation>
     </message>
     <message>
         <source>Reset &amp;Audio</source>
-        <translation type="vanished">إعادة تعيين الأوديو </translation>
+        <translation>إعادة تعيين الأوديو </translation>
     </message>
     <message>
         <source>Reset &amp;Recording Type</source>
-        <translation type="vanished">إعادة تعيين نوع التسجيل</translation>
+        <translation>إعادة تعيين نوع التسجيل</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation type="vanished">إعادة تعيين العنوان</translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation type="vanished">إعادة تعيين تاريخ الاصدار</translation>
+        <translation>إعادة تعيين تاريخ الاصدار</translation>
     </message>
     <message>
         <source>Reset &amp;Recording Label</source>
-        <translation type="vanished">إعادة تعيين تسمية التسجيل</translation>
+        <translation>إعادة تعيين تسمية التسجيل</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation type="vanished">إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation type="vanished">إعادة تعيين السعر</translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation type="vanished">إعادة تعيين اللغة</translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="vanished">إعادة تعيين العملة </translation>
+        <translation>إعادة تعيين العملة </translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation type="vanished">إعادة تعيين النسخ</translation>
+        <translation>إعادة تعيين النسخ</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation type="vanished">إعادة تعيين الموقع</translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation type="vanished">إعادة تعيين المستخلص</translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="vanished">إعادة تعيين الكلمات المفتاحية</translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset &amp;Accession Number</source>
-        <translation type="vanished">إعادة تعيين رقم الانضمام</translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -3034,91 +3034,91 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامي</translation>
     </message>
     <message>
         <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الفهرسة</translation>
     </message>
     <message>
         <source>Reset Format</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين التنسيق أو الصيغة</translation>
     </message>
     <message>
         <source>Reset Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الفنانين</translation>
     </message>
     <message>
         <source>Reset Composer</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُلحن </translation>
     </message>
     <message>
         <source>Reset Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين عدد الأقراص </translation>
     </message>
     <message>
         <source>Reset Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين وقت التشغيل</translation>
     </message>
     <message>
         <source>Reset Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الأوديو </translation>
     </message>
     <message>
         <source>Reset Recording Type</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين نوع التسجيل</translation>
     </message>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تاريخ الاصدار</translation>
     </message>
     <message>
         <source>Reset Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تسمية التسجيل</translation>
     </message>
     <message>
         <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset Price</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset Language</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
 </context>
 <context>
@@ -3632,106 +3632,106 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
+        <translation>الأدب الرمادي</translation>
     </message>
     <message>
         <source>Document Type</source>
-        <translation type="unfinished"></translation>
+        <translation>نوع الوثيقة</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_dvd</name>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="vanished">إعادة تعيين صفحة الغلاف الأمامية</translation>
+        <translation>إعادة تعيين صفحة الغلاف الأمامية</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="vanished">إعادة تعيين صفحة الغلاف الخلفية</translation>
+        <translation>إعادة تعيين صفحة الغلاف الخلفية</translation>
     </message>
     <message>
         <source>Reset &amp;UPC</source>
-        <translation type="vanished">إعادة تعيين كود الإنتاج العالمي</translation>
+        <translation>إعادة تعيين كود الإنتاج العالمي</translation>
     </message>
     <message>
         <source>Reset &amp;Rating</source>
-        <translation type="vanished">إعادة تعيين التقييم</translation>
+        <translation>إعادة تعيين التقييم</translation>
     </message>
     <message>
         <source>Reset &amp;Actor(s)</source>
-        <translation type="vanished">إعادة تعيين الممثلين</translation>
+        <translation>إعادة تعيين الممثلين</translation>
     </message>
     <message>
         <source>Reset &amp;Director(s)</source>
-        <translation type="vanished">إعادة تعيين المُخرجون</translation>
+        <translation>إعادة تعيين المُخرجون</translation>
     </message>
     <message>
         <source>Reset &amp;Number of Discs</source>
-        <translation type="vanished">إعادة تعيين عدد الأقراص</translation>
+        <translation>إعادة تعيين عدد الأقراص</translation>
     </message>
     <message>
         <source>Reset &amp;Runtime</source>
-        <translation type="vanished">إعادة تعيين وقت التشغيل</translation>
+        <translation>إعادة تعيين وقت التشغيل</translation>
     </message>
     <message>
         <source>Reset &amp;Format</source>
-        <translation type="vanished">إعادة تعيين التنسيق أو الصيغة</translation>
+        <translation>إعادة تعيين التنسيق أو الصيغة</translation>
     </message>
     <message>
         <source>Reset &amp;Region</source>
-        <translation type="vanished">إعادة تعيين المنطقة</translation>
+        <translation>إعادة تعيين المنطقة</translation>
     </message>
     <message>
         <source>Reset &amp;Aspect Ratio</source>
-        <translation type="vanished">إعادة تعيين نسبة المظهر</translation>
+        <translation>إعادة تعيين نسبة المظهر</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation type="vanished">إعادة تعيين العنوان</translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation type="vanished">إعادة تعيين تاريخ الاصدار</translation>
+        <translation>إعادة تعيين تاريخ الاصدار</translation>
     </message>
     <message>
         <source>Reset &amp;Studio</source>
-        <translation type="vanished">إعادة تعيين الاستديو</translation>
+        <translation>إعادة تعيين الاستديو</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation type="vanished">إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation type="vanished">إعادة تعيين السعر</translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation type="vanished">إعادة تعيين اللغة</translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="vanished">إعادة تعيين العملة</translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation type="vanished">إعادة تعيين النُسخ</translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation type="vanished">إعادة تعيين الموقع</translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation type="vanished">إعادة تعيين المستخلص</translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="vanished">إعادة تعيين الكلمات المفتاحية</translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset &amp;Accession Number</source>
-        <translation type="vanished">إعادة تعيين رقم الانضمام</translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -3795,11 +3795,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please complete the Actor(s) field.</source>
-        <translation type="vanished">لطفاً ينبغي إكمال حقل الممثلين.</translation>
+        <translation>لطفاً ينبغي إكمال حقل الممثلين.</translation>
     </message>
     <message>
         <source>Please complete the Director(s) field.</source>
-        <translation type="vanished">لطفاً ينبغي إكمال حقل المُخرجون.</translation>
+        <translation>لطفاً ينبغي إكمال حقل المُخرجون.</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
@@ -3923,11 +3923,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Actor(s):</source>
-        <translation type="vanished">الممثلون:</translation>
+        <translation>الممثلون:</translation>
     </message>
     <message>
         <source>Director(s):</source>
-        <translation type="vanished">المُخرجون: </translation>
+        <translation>المُخرجون: </translation>
     </message>
     <message>
         <source>Number of Discs:</source>
@@ -4011,111 +4011,111 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامي</translation>
     </message>
     <message>
         <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين كود الإنتاج العالمي</translation>
     </message>
     <message>
         <source>Reset Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين التقييم</translation>
     </message>
     <message>
         <source>Reset Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الممثلين</translation>
     </message>
     <message>
         <source>Reset Directors</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُخرجون</translation>
     </message>
     <message>
         <source>Reset Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين عدد الأقراص </translation>
     </message>
     <message>
         <source>Reset Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين وقت التشغيل</translation>
     </message>
     <message>
         <source>Reset Format</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين التنسيق أو الصيغة</translation>
     </message>
     <message>
         <source>Reset Region</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المنطقة</translation>
     </message>
     <message>
         <source>Reset Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين نسبة المظهر</translation>
     </message>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تاريخ الاصدار</translation>
     </message>
     <message>
         <source>Reset Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الاستديو</translation>
     </message>
     <message>
         <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset Price</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset Language</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Please complete the Actors field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل الممثلين.</translation>
     </message>
     <message>
         <source>Please complete the Directors field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل المُخرجون.</translation>
     </message>
     <message>
         <source>Actors:</source>
-        <translation type="unfinished"></translation>
+        <translation>الممثلون</translation>
     </message>
     <message>
         <source>Directors:</source>
-        <translation type="unfinished"></translation>
+        <translation>المُخرجون</translation>
     </message>
 </context>
 <context>
@@ -4137,306 +4137,306 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_grey_literature</name>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset ID</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين  المعرف</translation>
     </message>
     <message>
         <source>Reset Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين التاريخ</translation>
     </message>
     <message>
         <source>Reset Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المؤلفين</translation>
     </message>
     <message>
         <source>Reset Clients</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملاء</translation>
     </message>
     <message>
         <source>Reset Code-A</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكود أ</translation>
     </message>
     <message>
         <source>Reset Code-B</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكود ب</translation>
     </message>
     <message>
         <source>Reset Job Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الوظيفة</translation>
     </message>
     <message>
         <source>Reset Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الملاحظات</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Status</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الحالة</translation>
     </message>
     <message>
         <source>Reset Type</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النوع</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ قاعدة بيانات</translation>
     </message>
     <message>
         <source>Unable to retrieve the grey literature locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على استرداد مواقع الأدب الرمادي.</translation>
     </message>
     <message>
         <source>Unable to retrieve the grey literature document types.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على استرداد أنواع وثائق الأدب الرمادي.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">غير معروف</translation>
+        <translation>غير معروف</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation type="unfinished">لطفاً ينبغي إكمال حقل العنوان.</translation>
+        <translation>لطفاً ينبغي إكمال حقل العنوان.</translation>
     </message>
     <message>
         <source>Please complete the ID field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل المُعرف</translation>
     </message>
     <message>
         <source>Please complete the Authors field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل المؤلف.</translation>
     </message>
     <message>
         <source>Please complete the Code-A field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل الكود أ.</translation>
     </message>
     <message>
         <source>Please complete the Code-B field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل الكود ب</translation>
     </message>
     <message>
         <source>Please complete the Job Number field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل رقم الوظيفة </translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على إنشاء عملية قاعدة بيانات.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: خطأ قاعدة البيانات</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: خطأ المستخدم</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished">ببليوتيك: السؤال</translation>
+        <translation>ببليوتيك: السؤال</translation>
     </message>
     <message>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>لم يتم حفظ التغييرات الخاصة بك. هل ترغب في مواصلة الإغلاق؟</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>النظام غير قادر على توليد عدد صحيح مُميز.</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: إدخال مكرر في الأدب الرمادي</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">حفظ</translation>
+        <translation>حفظ</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: إنشاء مدخل أدب رمادي</translation>
     </message>
     <message>
         <source>Unable to create the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على إنشاء المدخل.</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على تنفيذ المعاملة الحالية لـِ قاعدة البيانات.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل العودة إلى الحالة السابقة.</translation>
     </message>
     <message>
         <source>Unable to create the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على إنشاء المدخل. ينبغي التحقق من أن المدخل غير موجود بالفعل مُسبقاً.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: تعديل مدخل الادب الرمادي </translation>
     </message>
     <message>
         <source>BiblioteQ: View Grey Literature Details</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: عرض تفاصيل الادب الرمادي </translation>
     </message>
     <message>
         <source>Unable to retrieve the selected grey literature&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على استرداد بيانات الأدب الرمادي المحدد.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Grey Literature Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: تعديل مدخل الادب الرمادي ـ    </translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation> ـ </translation>
     </message>
     <message>
         <source>BiblioteQ: View Grey Literature Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: عرض تفاصيل الادب الرمادي ـ </translation>
     </message>
     <message>
         <source>Double-click to edit.</source>
-        <translation type="unfinished"></translation>
+        <translation>انقر نقراً مزدوجاً من أجل التعديل</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>أياً من</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>بحث</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Grey Literature Search</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: بحث في قاعدة الادب الرمادي </translation>
     </message>
     <message>
         <source>BiblioteQ: Grey Literature File Attachment(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: الملفات المرفقة في الادب الرمادي </translation>
     </message>
     <message>
         <source>Uploading files...</source>
-        <translation type="unfinished"></translation>
+        <translation>يتم تحميل الملفات </translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك:مربع حوار المعالجة</translation>
     </message>
     <message>
         <source>Please select at least one file to delete.</source>
-        <translation type="unfinished">لطفاً ينبغي اختيار على الأقل ملف واحد من أجل حذفه.</translation>
+        <translation>لطفاً ينبغي اختيار على الأقل ملف واحد من أجل حذفه.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected file(s)?</source>
-        <translation type="unfinished">هل أنت متأكد من أنك تريد حذف الملفات المحددة ؟</translation>
+        <translation>هل أنت متأكد من أنك تريد حذف الملفات المحددة ؟</translation>
     </message>
     <message>
         <source>BiblioteQ: Grey Literature File Export</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك: ملف تصدير الادب الرمادي ـ </translation>
     </message>
     <message>
         <source>Exporting file(s)...</source>
-        <translation type="unfinished">تصدير ملفات</translation>
+        <translation>تصدير ملفات</translation>
     </message>
     <message>
         <source>BiblioteQ: File Description</source>
-        <translation type="unfinished">ببليوتيك: وصف الملف</translation>
+        <translation>ببليوتيك: وصف الملف</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">الوصف</translation>
+        <translation>الوصف</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished">العنوان:</translation>
+        <translation>العنوان:</translation>
     </message>
     <message>
         <source>ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>المُعرف</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>التاريخ</translation>
     </message>
     <message>
         <source>Authors:</source>
-        <translation type="unfinished"></translation>
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>Clients:</source>
-        <translation type="unfinished"></translation>
+        <translation>العملاء</translation>
     </message>
     <message>
         <source>Code-A:</source>
-        <translation type="unfinished"></translation>
+        <translation>كود أ</translation>
     </message>
     <message>
         <source>Code-B:</source>
-        <translation type="unfinished"></translation>
+        <translation>كود ب</translation>
     </message>
     <message>
         <source>Job Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>رقم الوظيفة</translation>
     </message>
     <message>
         <source>Notes:</source>
-        <translation type="unfinished"></translation>
+        <translation>ملاحظة</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">الموقع:</translation>
+        <translation>الموقع</translation>
     </message>
     <message>
         <source>Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>الحالة</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>النوع</translation>
     </message>
     <message>
         <source>Unable to update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على تحديث المدخل </translation>
     </message>
 </context>
 <context>
     <name>biblioteq_greyliteratureinfo</name>
     <message>
         <source>Title</source>
-        <translation type="unfinished">العنوان</translation>
+        <translation>العنوان</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">النوع</translation>
+        <translation>النوع</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">الموقع</translation>
+        <translation>الموقع</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">ملاحظة</translation>
+        <translation>ملاحظة</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="unfinished">yyyy-MM-dd</translation>
+        <translation>yyyy-MM-dd</translation>
     </message>
     <message>
         <source>Digest</source>
-        <translation type="unfinished">موجز</translation>
+        <translation>موجز</translation>
     </message>
     <message>
         <source>Compressed Size</source>
-        <translation type="unfinished">حجم الضغط</translation>
+        <translation>حجم الضغط</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">الوصف</translation>
+        <translation>الوصف</translation>
     </message>
     <message>
         <source>myoid</source>
@@ -4444,55 +4444,55 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished">الملفات</translation>
+        <translation>الملفات</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">موافق</translation>
+        <translation>موافق</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك</translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>Code-A</source>
-        <translation type="unfinished"></translation>
+        <translation>Code-A</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>الحالة</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>المُعرف</translation>
     </message>
     <message>
         <source>Code-B</source>
-        <translation type="unfinished"></translation>
+        <translation>Code-B</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>التاريخ</translation>
     </message>
     <message>
         <source>Clients</source>
-        <translation type="unfinished"></translation>
+        <translation>العملاء</translation>
     </message>
     <message>
         <source>Job Number</source>
-        <translation type="unfinished"></translation>
+        <translation>رقم الوظيفة</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين التاريخ في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>ملف</translation>
     </message>
     <message>
         <source>MYOID</source>
@@ -4500,27 +4500,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Attach...</source>
-        <translation type="unfinished"></translation>
+        <translation>المُرفق...</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف</translation>
     </message>
     <message>
         <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>تصدير</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>طباعة</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>إغلاق</translation>
     </message>
 </context>
 <context>
@@ -4550,91 +4550,91 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="vanished">إعادة تعيين صورة الغلاف الأمامية</translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامية</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="vanished">إعادة تعيين صورة الغلاف الخلفي</translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset &amp;ISSN</source>
-        <translation type="vanished">إعادة تعيين ردمد</translation>
+        <translation>إعادة تعيين ردمد</translation>
     </message>
     <message>
         <source>Reset &amp;Volume</source>
-        <translation type="vanished">إعادة تعيين المجلد</translation>
+        <translation>إعادة تعيين المجلد</translation>
     </message>
     <message>
         <source>Reset &amp;Issue</source>
-        <translation type="vanished">إعادة تعيين العدد</translation>
+        <translation>إعادة تعيين العدد</translation>
     </message>
     <message>
         <source>Reset &amp;LC Control Number</source>
-        <translation type="vanished">إعادة تعيين رقم الضبط في مكتبة الكونغرس</translation>
+        <translation>إعادة تعيين رقم الضبط في مكتبة الكونغرس</translation>
     </message>
     <message>
         <source>Reset &amp;Call Number</source>
-        <translation type="vanished">إعادة تعيين رمز الاستدعاء</translation>
+        <translation>إعادة تعيين رمز الاستدعاء</translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Number</source>
-        <translation type="vanished">إعادة تعيين رقم تصنيف ديوي</translation>
+        <translation>إعادة تعيين رقم تصنيف ديوي</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation type="vanished">إعادة تعيين العنوان</translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation type="vanished">إعادة تعيين تاريخ النشر</translation>
+        <translation>إعادة تعيين تاريخ النشر</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation type="vanished">إعادة تعيين الناشر</translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation type="vanished">إعادة تعيين مكان النشر</translation>
+        <translation>إعادة تعيين مكان النشر</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation type="vanished">إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation type="vanished">إعادة تعيين السعر</translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation type="vanished">إعادة تعيين اللغة</translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="vanished">إعادة تعيين العملة</translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation type="vanished">إعادة تعيين النُسخ</translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation type="vanished">إعادة تعيين الموقع</translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation type="vanished">إعادة تعيين المستخلص</translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation type="vanished">إعادة تعيين تيجان مارك</translation>
+        <translation>إعادة تعيين تيجان مارك</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="vanished">إعادة تعيين الكلمات المفتاحية</translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset &amp;Accession Number</source>
-        <translation type="vanished">إعادة تعيين رقم الانضمام</translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -4838,11 +4838,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>A network error (%1) occurred.</source>
-        <translation type="unfinished">حدثَ خطأ (%1) في الشبكة.</translation>
+        <translation>حدثَ خطأ (%1) في الشبكة.</translation>
     </message>
     <message>
         <source>One or more SSL errors occurred. Please verify your settings.</source>
-        <translation type="unfinished">واحد أو أكثر من أخطاء SSL قد حدث. لطفاً ينبغي التحقق من الإعدادات الخاصة بك.</translation>
+        <translation>واحد أو أكثر من أخطاء SSL قد حدث. لطفاً ينبغي التحقق من الإعدادات الخاصة بك.</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
@@ -5046,103 +5046,103 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامي</translation>
     </message>
     <message>
         <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset ISSN</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الـ ردمد</translation>
     </message>
     <message>
         <source>Reset Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المجلد</translation>
     </message>
     <message>
         <source>Reset Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العدد</translation>
     </message>
     <message>
         <source>Reset LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم ضبط مكتبة الكونغرس</translation>
     </message>
     <message>
         <source>Reset Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رمز الاستدعاء</translation>
     </message>
     <message>
         <source>Reset Dewey Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم تصنيف ديوي</translation>
     </message>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تاريخ النشر</translation>
     </message>
     <message>
         <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين مكان النشر</translation>
     </message>
     <message>
         <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المُعالجة الموضوعية والببليوثرابية</translation>
     </message>
     <message>
         <source>Reset Price</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset Language</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تيجان مارك</translation>
     </message>
     <message>
         <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Downloading.</source>
-        <translation type="unfinished"></translation>
+        <translation>تحميل</translation>
     </message>
     <message>
         <source>Double-click to edit.</source>
-        <translation type="unfinished"></translation>
+        <translation>انقر نقراً مزدوجاً من أجل التعديل</translation>
     </message>
     <message>
         <source>Exporting file(s)...</source>
-        <translation type="unfinished">تصدير ملفات</translation>
+        <translation>تصدير ملفات</translation>
     </message>
 </context>
 <context>
@@ -5229,7 +5229,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Author(s)</source>
-        <translation type="vanished">المؤلفون</translation>
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -5373,43 +5373,43 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>Clients</source>
-        <translation type="unfinished"></translation>
+        <translation>العملاء</translation>
     </message>
     <message>
         <source>Document Code A</source>
-        <translation type="unfinished"></translation>
+        <translation>وثيقة أ</translation>
     </message>
     <message>
         <source>Document Code B</source>
-        <translation type="unfinished"></translation>
+        <translation>وثيقة ب</translation>
     </message>
     <message>
         <source>Document Date</source>
-        <translation type="unfinished"></translation>
+        <translation>تاريخ الوثيقة</translation>
     </message>
     <message>
         <source>Document ID</source>
-        <translation type="unfinished"></translation>
+        <translation>معرف الوثيقة</translation>
     </message>
     <message>
         <source>Document Status</source>
-        <translation type="unfinished"></translation>
+        <translation>حالة الوثيقة</translation>
     </message>
     <message>
         <source>Document Type</source>
-        <translation type="unfinished"></translation>
+        <translation>نوع الوثيقة</translation>
     </message>
     <message>
         <source>Job Number</source>
-        <translation type="unfinished"></translation>
+        <translation>رقم الوظيفة</translation>
     </message>
     <message>
         <source>File Count</source>
-        <translation type="unfinished"></translation>
+        <translation>عدد الملفات</translation>
     </message>
 </context>
 <context>
@@ -5452,7 +5452,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
+        <translation>الأدب الرمادي</translation>
     </message>
 </context>
 <context>
@@ -5499,38 +5499,38 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك:مربع حوار المعالجة</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_photographcollection</name>
     <message>
         <source>Reset Collection &amp;Image</source>
-        <translation type="vanished">إعادة تعيين مجموعة الصور</translation>
+        <translation>إعادة تعيين مجموعة الصور</translation>
     </message>
     <message>
         <source>Reset Collection &amp;ID</source>
-        <translation type="vanished">إعادة تعيين مُعرف المجموعة</translation>
+        <translation>إعادة تعيين مُعرف المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection &amp;Title</source>
-        <translation type="vanished">إعادة تعيين عنوان المجموعة</translation>
+        <translation>إعادة تعيين عنوان المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection &amp;Location</source>
-        <translation type="vanished">إعادة تعيين موقع المجموعة</translation>
+        <translation>إعادة تعيين موقع المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection &amp;About</source>
-        <translation type="vanished">إعادة تعيين حقل حول هذه المجموعة</translation>
+        <translation>إعادة تعيين حقل حول هذه المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection &amp;Notes</source>
-        <translation type="vanished">إعادة تعيين ملاحظات المجموعة</translation>
+        <translation>إعادة تعيين ملاحظات المجموعة</translation>
     </message>
     <message>
         <source>Reset &amp;Accession Number</source>
-        <translation type="vanished">إعادة تعيين رقم الانضمام</translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>&amp;All...</source>
@@ -5683,7 +5683,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Item Creator(s):</source>
-        <translation type="vanished">مُنشيء/مُنتج المصدر:</translation>
+        <translation>مُنشيء/مُنتج المصدر:</translation>
     </message>
     <message>
         <source>Item Publication Date:</source>
@@ -5759,7 +5759,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please complete the item&apos;s Creator(s) field.</source>
-        <translation type="vanished">لطفاً ينبغي إكمال حقل المُنشيء أو المنتج.</translation>
+        <translation>لطفاً ينبغي إكمال حقل المُنشيء أو المنتج.</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Medium field.</source>
@@ -5835,39 +5835,39 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset Collection Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين مجموعة الصور</translation>
     </message>
     <message>
         <source>Reset Collection ID</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين مُعرف المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين عنوان المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين موقع المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection About</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين حقل حول هذه المجموعة</translation>
     </message>
     <message>
         <source>Reset Collection Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين ملاحظات المجموعة</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Item Creators:</source>
-        <translation type="unfinished"></translation>
+        <translation>مُنشيء/مُنتج المصدر:</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Creators field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل المُنشيء أو المنتج.</translation>
     </message>
 </context>
 <context>
@@ -5881,83 +5881,83 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_videogame</name>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="vanished">إعادة تعيين صورة الغلاف الأمامي</translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامي</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="vanished">إعادة تعيين صورة الغلاف الخلفي</translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset &amp;UPC</source>
-        <translation type="vanished">إعادة تعيين كود الإنتاج العالمي </translation>
+        <translation>إعادة تعيين كود الإنتاج العالمي </translation>
     </message>
     <message>
         <source>Reset &amp;Game Rating</source>
-        <translation type="vanished">إعادة تعيين تقييم اللعبة</translation>
+        <translation>إعادة تعيين تقييم اللعبة</translation>
     </message>
     <message>
         <source>Reset &amp;Developer(s)</source>
-        <translation type="vanished">إعادة تعيين المطورين</translation>
+        <translation>إعادة تعيين المطورين</translation>
     </message>
     <message>
         <source>Reset &amp;Platform</source>
-        <translation type="vanished">إعادة تعيين المنصة</translation>
+        <translation>إعادة تعيين المنصة</translation>
     </message>
     <message>
         <source>Reset &amp;Mode</source>
-        <translation type="vanished">إعادة تعيين الوضع</translation>
+        <translation>إعادة تعيين الوضع</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation type="vanished">إعادة تعيين العنوان</translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation type="vanished">إعادة تعيين تاريخ الاصدار</translation>
+        <translation>إعادة تعيين تاريخ الاصدار</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation type="vanished">إعادة تعيين الناشر</translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation type="vanished">إعادة تعيين مكان النشر</translation>
+        <translation>إعادة تعيين مكان النشر</translation>
     </message>
     <message>
         <source>Reset &amp;Genres</source>
-        <translation type="vanished">إعادة تعيين الأنواع </translation>
+        <translation>إعادة تعيين الأنواع </translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation type="vanished">إعادة تعيين السعر</translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation type="vanished">إعادة تعيين اللغة</translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="vanished">إعادة تعيين العملات</translation>
+        <translation>إعادة تعيين العملات</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation type="vanished">إعادة تعيين النسخ</translation>
+        <translation>إعادة تعيين النسخ</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation type="vanished">إعادة تعيين الموقع</translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation type="vanished">إعادة تعيين الملخص</translation>
+        <translation>إعادة تعيين الملخص</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="vanished">إعادة تعيين الكلمات المفتاحية</translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset &amp;Accession Number</source>
-        <translation type="vanished">إعادة تعيين رقم الاتضمام</translation>
+        <translation>إعادة تعيين رقم الاتضمام</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -6017,7 +6017,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please complete the Developer(s) field.</source>
-        <translation type="vanished">لطفاً ينبغي إكمال حقل المطورين.</translation>
+        <translation>لطفاً ينبغي إكمال حقل المطورين.</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -6137,7 +6137,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Developer(s):</source>
-        <translation type="vanished">المطورين:</translation>
+        <translation>المطورين:</translation>
     </message>
     <message>
         <source>Platform:</source>
@@ -6213,91 +6213,91 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الأمامي</translation>
     </message>
     <message>
         <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين صورة الغلاف الخلفي</translation>
     </message>
     <message>
         <source>Reset UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين كود الإنتاج العالمي</translation>
     </message>
     <message>
         <source>Reset Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تقييم اللعبة</translation>
     </message>
     <message>
         <source>Reset Developers</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المطورين</translation>
     </message>
     <message>
         <source>Reset Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المنصة</translation>
     </message>
     <message>
         <source>Reset Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الوضع</translation>
     </message>
     <message>
         <source>Reset Title</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العنوان</translation>
     </message>
     <message>
         <source>Reset Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين تاريخ الاصدار</translation>
     </message>
     <message>
         <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الناشر</translation>
     </message>
     <message>
         <source>Reset Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين مكان النشر</translation>
     </message>
     <message>
         <source>Reset Genres</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الأنواع </translation>
     </message>
     <message>
         <source>Reset Price</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين السعر</translation>
     </message>
     <message>
         <source>Reset Language</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين اللغة</translation>
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين العملة</translation>
     </message>
     <message>
         <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين النُسخ</translation>
     </message>
     <message>
         <source>Reset Location</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الموقع</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين المستخلص</translation>
     </message>
     <message>
         <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين الكلمات المفتاحية</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation>إعادة تعيين رقم الانضمام</translation>
     </message>
     <message>
         <source>Please complete the Developers field.</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفاً ينبغي إكمال حقل المطورين.</translation>
     </message>
     <message>
         <source>Developers:</source>
-        <translation type="unfinished"></translation>
+        <translation>المطورون</translation>
     </message>
 </context>
 <context>
@@ -6363,7 +6363,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Save new due dates.</source>
-        <translation type="unfinished"></translation>
+        <translation>حفظ تواريخ الاستحقاق الجديدة</translation>
     </message>
 </context>
 <context>
@@ -6453,7 +6453,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Artist(s)</source>
-        <translation type="vanished">الفنانون</translation>
+        <translation>الفنانون</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -6593,11 +6593,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Artists</source>
-        <translation type="unfinished"></translation>
+        <translation>الفنان </translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Release Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين تاريخ الإصدار في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -6741,11 +6741,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add CD Format</source>
-        <translation type="vanished">إضافة صيغة قرص سيدي</translation>
+        <translation>إضافة صيغة قرص سيدي</translation>
     </message>
     <message>
         <source>Remove CD Format</source>
-        <translation type="vanished">إزالة صيغة قرص سيدي</translation>
+        <translation>إزالة صيغة قرص سيدي</translation>
     </message>
     <message>
         <source>CD Formats</source>
@@ -6757,11 +6757,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
-        <translation type="vanished">إضافة نسبة مظهر لـِ الديفيدي </translation>
+        <translation>إضافة نسبة مظهر لـِ الديفيدي </translation>
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
-        <translation type="vanished">إزالة نسبة مظهر لـِ الديفيدي</translation>
+        <translation>إزالة نسبة مظهر لـِ الديفيدي</translation>
     </message>
     <message>
         <source>DVD Ratings</source>
@@ -6769,11 +6769,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add DVD Rating</source>
-        <translation type="vanished">إضافة تقييم قرص ديفيدي</translation>
+        <translation>إضافة تقييم قرص ديفيدي</translation>
     </message>
     <message>
         <source>Remove DVD Rating</source>
-        <translation type="vanished">إزالة تقييم قرص ديفيدي</translation>
+        <translation>إزالة تقييم قرص ديفيدي</translation>
     </message>
     <message>
         <source>DVD Regions</source>
@@ -6781,11 +6781,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add DVD Region</source>
-        <translation type="vanished">إضافة منطقة لـِ الديفيدي</translation>
+        <translation>إضافة منطقة لـِ الديفيدي</translation>
     </message>
     <message>
         <source>Remove DVD Region</source>
-        <translation type="vanished">إزالة منطقة لـِ الديفيدي</translation>
+        <translation>إزالة منطقة لـِ الديفيدي</translation>
     </message>
     <message>
         <source>Languages</source>
@@ -6793,11 +6793,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add Language</source>
-        <translation type="vanished">إضافة لغة</translation>
+        <translation>إضافة لغة</translation>
     </message>
     <message>
         <source>Remove Language</source>
-        <translation type="vanished">إزالة لغة</translation>
+        <translation>إزالة لغة</translation>
     </message>
     <message>
         <source>Locations</source>
@@ -6813,11 +6813,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add Location</source>
-        <translation type="vanished">إضافة موقع</translation>
+        <translation>إضافة موقع</translation>
     </message>
     <message>
         <source>Remove Location</source>
-        <translation type="vanished">إزالة موقع</translation>
+        <translation>إزالة موقع</translation>
     </message>
     <message>
         <source>Monetary Units</source>
@@ -6825,11 +6825,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add Monetary Unit</source>
-        <translation type="vanished">إضافة عملة</translation>
+        <translation>إضافة عملة</translation>
     </message>
     <message>
         <source>Remove Monetary Unit</source>
-        <translation type="vanished">إزالة عملة</translation>
+        <translation>إزالة عملة</translation>
     </message>
     <message>
         <source>Reservations Minimum Days</source>
@@ -6901,11 +6901,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add Video Game Platform</source>
-        <translation type="vanished">إضافة نوع منصة لعبة فيديو</translation>
+        <translation>إضافة نوع منصة لعبة فيديو</translation>
     </message>
     <message>
         <source>Remove Video Game Platform</source>
-        <translation type="vanished">إزالة نوع منصة لعبة فيديو</translation>
+        <translation>إزالة نوع منصة لعبة فيديو</translation>
     </message>
     <message>
         <source>Video Game Ratings</source>
@@ -6913,11 +6913,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add Video Game Rating</source>
-        <translation type="vanished">إضافة تقييم لعبة فيديو</translation>
+        <translation>إضافة تقييم لعبة فيديو</translation>
     </message>
     <message>
         <source>Remove Video Game Rating</source>
-        <translation type="vanished">إزالة تقييم لعبة فيديو</translation>
+        <translation>إزالة تقييم لعبة فيديو</translation>
     </message>
     <message>
         <source>Save Changes</source>
@@ -6933,15 +6933,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>إضافة</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>إزالة</translation>
     </message>
     <message>
         <source>Grey Literature Document Types</source>
-        <translation type="unfinished"></translation>
+        <translation>أنواع وثائق الأدب الرمادي</translation>
     </message>
 </context>
 <context>
@@ -6980,11 +6980,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Actor(s)</source>
-        <translation type="vanished">الممثلون</translation>
+        <translation>الممثلون</translation>
     </message>
     <message>
         <source>Director(s)</source>
-        <translation type="vanished">المُخرجون</translation>
+        <translation>المُخرجون</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -7096,15 +7096,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>الممثلون</translation>
     </message>
     <message>
         <source>Directors</source>
-        <translation type="unfinished"></translation>
+        <translation>المُخرجون</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Release Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين تاريخ الإصدار في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -7154,11 +7154,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>generalmessagediag</name>
     <message>
         <source>BiblioteQ: General Message Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ببليوتيك:مربع حوار الرسائل العامة</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>إغلاق</translation>
     </message>
 </context>
 <context>
@@ -7304,7 +7304,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Author(s)</source>
-        <translation type="vanished">المؤلف</translation>
+        <translation>المؤلف</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
@@ -7468,7 +7468,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>myoid</source>
-        <translation type="vanished">myoid</translation>
+        <translation>myoid</translation>
     </message>
     <message>
         <source>&amp;Attach...</source>
@@ -7508,7 +7508,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="vanished">طباعة</translation>
+        <translation>طباعة</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -7516,19 +7516,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين تاريخ النشر في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>طباعة</translation>
     </message>
 </context>
 <context>
@@ -7675,7 +7675,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>myoid</source>
-        <translation type="vanished">myoid</translation>
+        <translation>myoid</translation>
     </message>
     <message>
         <source>&amp;Attach...</source>
@@ -7723,11 +7723,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين تاريخ النشر في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
 </context>
 <context>
@@ -7830,7 +7830,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Preferred &amp;SRU Site</source>
-        <translation type="vanished">الموقع المفضل لـِ إس آر يو</translation>
+        <translation>الموقع المفضل لـِ إس آر يو</translation>
     </message>
     <message>
         <source>P&amp;hotographs per Page</source>
@@ -7870,7 +7870,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Resize Columns to Contents</source>
-        <translation type="vanished">تغيير قياس الأعمدة ـ احتواء ـ</translation>
+        <translation>تغيير قياس الأعمدة ـ احتواء ـ</translation>
     </message>
     <message>
         <source>&amp;Save Settings</source>
@@ -8194,15 +8194,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Preferred SRU S&amp;ite</source>
-        <translation type="unfinished"></translation>
+        <translation>الموقع المفضل لـِ إس آر يو</translation>
     </message>
     <message>
         <source>Re&amp;size Columns to Contents</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيير قياس الأعمدة ـ احتواء ـ</translation>
     </message>
     <message>
         <source>&amp;Grey Literature...</source>
-        <translation type="unfinished"></translation>
+        <translation>الأدب الرمادي</translation>
     </message>
 </context>
 <context>
@@ -8441,7 +8441,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Creator(s)</source>
-        <translation type="vanished">المُنشيء/المنتج</translation>
+        <translation>المُنشيء/المنتج</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -8497,7 +8497,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Export Items...</source>
-        <translation type="vanished">تصدير المصادر...</translation>
+        <translation>تصدير المصادر...</translation>
     </message>
     <message>
         <source>&amp;Import Items...</source>
@@ -8513,11 +8513,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Creators</source>
-        <translation type="unfinished"></translation>
+        <translation>المُنشيء/المنتج</translation>
     </message>
     <message>
         <source>&amp;Export Items</source>
-        <translation type="unfinished"></translation>
+        <translation>تصدير المصادر...</translation>
     </message>
 </context>
 <context>
@@ -8536,11 +8536,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Actual Size</source>
-        <translation type="vanished">القياس الفعلي</translation>
+        <translation>القياس الفعلي</translation>
     </message>
     <message>
         <source>Best Fit</source>
-        <translation type="vanished">أفضل ملاءمة</translation>
+        <translation>أفضل ملاءمة</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -8564,51 +8564,51 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>50%</source>
-        <translation type="unfinished">50%</translation>
+        <translation>50%</translation>
     </message>
     <message>
         <source>75%</source>
-        <translation type="unfinished">25% {75%?}</translation>
+        <translation>25% {75%?}</translation>
     </message>
     <message>
         <source>85%</source>
-        <translation type="unfinished">25% {85%?}</translation>
+        <translation>25% {85%?}</translation>
     </message>
     <message>
         <source>95%</source>
-        <translation type="unfinished">25% {95%?}</translation>
+        <translation>25% {95%?}</translation>
     </message>
     <message>
         <source>100%</source>
-        <translation type="unfinished">100%</translation>
+        <translation>100%</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>بحث</translation>
     </message>
     <message>
         <source>&amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>التالي</translation>
     </message>
     <message>
         <source>&amp;Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>السابق</translation>
     </message>
     <message>
         <source>&amp;Case Sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>حساسية حالة الأحرف</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">تحرير</translation>
+        <translation>تحرير</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>إيجاد</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation type="unfinished">Ctrl+F</translation>
+        <translation>Ctrl+F</translation>
     </message>
 </context>
 <context>
@@ -8627,7 +8627,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Creator(s)</source>
-        <translation type="vanished">المُبدعون أو المُنتجون</translation>
+        <translation>المُبدعون أو المُنتجون</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -8695,7 +8695,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Creators</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -8864,7 +8864,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Developer(s)</source>
-        <translation type="vanished">المطورون</translation>
+        <translation>المطورون</translation>
     </message>
     <message>
         <source>Platform</source>
@@ -8972,11 +8972,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Developers</source>
-        <translation type="unfinished"></translation>
+        <translation>المطورون</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Release Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;قم بتضمين تاريخ الإصدار في استعلام البحث&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
