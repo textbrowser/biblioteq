@@ -19,7 +19,7 @@
 
 #undef BIBLIOTEQ_CALLNUM_DEBUG
 
-static int callnum_lt(QString m, QString n)
+static int callnum_lt(const QString &m, const QString &n)
 {
   // In all of its glory.
 
