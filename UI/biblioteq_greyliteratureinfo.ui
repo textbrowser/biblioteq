@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>482</width>
-         <height>897</height>
+         <height>888</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -500,6 +500,9 @@
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+W</string>
         </property>
        </widget>
       </item>

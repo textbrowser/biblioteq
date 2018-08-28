@@ -165,6 +165,9 @@
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
+        <property name="shortcut">
+         <string>Ctrl+W</string>
+        </property>
        </widget>
       </item>
       <item>

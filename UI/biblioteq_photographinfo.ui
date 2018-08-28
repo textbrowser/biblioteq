@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-82</y>
+         <y>0</y>
          <width>1098</width>
-         <height>956</height>
+         <height>1010</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -750,6 +750,9 @@
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+W</string>
         </property>
        </widget>
       </item>

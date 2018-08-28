@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>476</width>
-         <height>334</height>
+         <width>482</width>
+         <height>340</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -146,6 +146,9 @@
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
         </property>
+        <property name="shortcut">
+         <string>Ctrl+S</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -168,6 +171,9 @@
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+W</string>
         </property>
        </widget>
       </item>
