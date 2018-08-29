@@ -4,6 +4,7 @@
 
 #include <QCryptographicHash>
 #include <QInputDialog>
+#include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QUuid>
@@ -125,6 +126,9 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			       this,
+			       SLOT(slotGo(void)));
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.files->setColumnHidden(m_ui.files->columnCount() - 1, true); // myoid
 

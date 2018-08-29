@@ -6,6 +6,7 @@
 #include <QCryptographicHash>
 #include <QInputDialog>
 #include <QNetworkProxy>
+#include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QTimer>
@@ -112,6 +113,9 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			       this,
+			       SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),

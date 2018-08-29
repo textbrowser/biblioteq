@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QUuid>
@@ -93,6 +94,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
     (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			       this,
+			       SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_photo_diag->setWindowModality(Qt::WindowModal);
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_photo_diag));

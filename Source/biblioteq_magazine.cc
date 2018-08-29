@@ -7,6 +7,7 @@
 #include <QInputDialog>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
+#include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QTimer>
@@ -117,6 +118,9 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			       this,
+			       SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));

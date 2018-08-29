@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
 
@@ -70,6 +71,9 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 #else
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
+  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			       this,
+			       SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));

@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
 
@@ -58,6 +59,9 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			       this,
+			       SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,
