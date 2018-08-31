@@ -262,6 +262,9 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="isbn13to10">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent. The 13-digit ISBN must start with the digits 978.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="text">
                     <string>From &amp;ISBN-13</string>
                    </property>

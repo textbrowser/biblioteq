@@ -520,7 +520,8 @@ void biblioteq_book::slotGo(void)
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{
-	  if(id.isbn13->text().length() == 13)
+	  if(id.isbn13->text().length() == 13 &&
+	     id.isbn13->text().startsWith("978"))
 	    slotConvertISBN13to10();
 	}
       else
@@ -2098,6 +2099,9 @@ void biblioteq_book::slotConvertISBN10to13(void)
 
 void biblioteq_book::slotConvertISBN13to10(void)
 {
+  if(!id.isbn13->text().trimmed().startsWith("978"))
+    return;
+
   QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
   QString z("");
   int total = 0;
