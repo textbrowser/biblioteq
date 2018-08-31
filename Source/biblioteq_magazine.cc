@@ -1007,7 +1007,7 @@ void biblioteq_magazine::slotGo(void)
 	    "Please verify that "
 	    "the entry does not already exist."));
     }
-  else
+  else if(m_engWindowTitle.contains("Search"))
     {
       searchstr = QString("SELECT DISTINCT %1.title, "
 			  "%1.publisher, %1.pdate, %1.place, "

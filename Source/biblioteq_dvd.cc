@@ -850,7 +850,7 @@ void biblioteq_dvd::slotGo(void)
 			       "Please verify that "
 			       "the entry does not already exist."));
     }
-  else
+  else if(m_engWindowTitle.contains("Search"))
     {
       searchstr = "SELECT DISTINCT dvd.title, "
 	"dvd.dvdformat, "

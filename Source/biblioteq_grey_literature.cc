@@ -1135,7 +1135,7 @@ void biblioteq_grey_literature::slotGo(void)
       if(validateWidgets())
 	updateDatabase();
     }
-  else
+  else if(m_engWindowTitle.contains("Search"))
     {
       QString searchstr("");
 
