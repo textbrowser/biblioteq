@@ -513,7 +513,8 @@ void biblioteq_book::slotGo(void)
       if(id.isbnAvailableCheckBox->isChecked())
 	{
 	  if(id.id->text().length() == 10)
-	    slotConvertISBN10to13();
+	    if(!id.isbn13->text().startsWith("979"))
+	      slotConvertISBN10to13();
 	}
       else
 	id.id->clear();
