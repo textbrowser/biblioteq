@@ -394,6 +394,7 @@
      a post-search reset is performed. (Done)
 213. Context menus. (TBD)
 214. Improve PDF pagination. (Done)
-215. Documentation. (Dibe)
+215. Documentation. (Done)
 216. Bar scanner. (TBD)
 217. Database import. (TBD)
+218. Translation files are not properly generated on OS X. (TBD)
