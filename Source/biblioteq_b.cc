@@ -4508,8 +4508,6 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	}
     }
 
-  QApplication::restoreOverrideCursor();
-
   if(!errors.isEmpty())
     {
       QDialog dialog(this);
@@ -4521,14 +4519,20 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      SIGNAL(clicked(void)),
 	      &dialog,
 	      SLOT(close(void)));
+      dialog.setWindowTitle(tr("BiblioteQ: Upgrade SQLite Schema Results"));
+      dialog.show();
+      QApplication::restoreOverrideCursor();
       dialog.exec();
     }
   else
-    QMessageBox::information
-      (this,
-       tr("BiblioteQ: Information"),
-       tr("The database %1 was upgraded successfully.").
-       arg(m_db.databaseName()));
+    {
+      QApplication::restoreOverrideCursor();
+      QMessageBox::information
+	(this,
+	 tr("BiblioteQ: Information"),
+	 tr("The database %1 was upgraded successfully.").
+	 arg(m_db.databaseName()));
+    }
 }
 
 void biblioteq::preparePhotographsPerPageMenu(void)
