@@ -4458,7 +4458,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "document_status TEXT,"
 	      "document_title TEXT NOT NULL,"
 	      "document_type TEXT NOT NULL,"
-	      "front_cover BYTEA, "
+	      "front_cover BYTEA,"
 	      "job_number TEXT NOT NULL,"
 	      "location TEXT,"
 	      "myoid BIGINT UNIQUE,"
@@ -4496,9 +4496,12 @@ void biblioteq::slotUpgradeSqliteScheme(void)
     {
       QSqlQuery query(m_db);
 
+      errors.append(list.at(i));
+      errors.append("\n\n");
+
       if(!query.exec(list.at(i)))
 	{
-	  errors.append(QString("Error %1: %2. Statement: %3.\n").
+	  errors.append(QString("Error %1: %2. Statement: %3.\n\n").
 			arg(ct).arg(query.lastError().text().toLower()).
 			arg(list.at(i)));
 	  ct += 1;
