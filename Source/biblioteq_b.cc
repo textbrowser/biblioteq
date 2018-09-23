@@ -4522,7 +4522,6 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      &dialog,
 	      SLOT(close(void)));
       dialog.setWindowTitle(tr("BiblioteQ: Upgrade SQLite Schema Results"));
-      dialog.show();
       QApplication::restoreOverrideCursor();
       dialog.exec();
     }
