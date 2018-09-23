@@ -4517,6 +4517,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
       ui.setupUi(&dialog);
       ui.text->setPlainText(errors);
+      connect(ui.cancelButton,
+	      SIGNAL(clicked(void)),
+	      &dialog,
+	      SLOT(close(void)));
       dialog.exec();
     }
   else
