@@ -4492,6 +4492,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   QString errors("");
   int ct = 0;
 
+  errors.append(tr("Executing %1 statements.\n\n").arg(list.size()));
+
   for(int i = 0; i < list.size(); i++)
     {
       QSqlQuery query(m_db);
@@ -4501,7 +4503,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
       if(!query.exec(list.at(i)))
 	{
-	  errors.append(QString("Error %1: %2. Statement: %3.\n\n").
+	  errors.append(tr("Error %1: %2. Statement: %3.\n\n").
 			arg(ct).arg(query.lastError().text().toLower()).
 			arg(list.at(i)));
 	  ct += 1;
