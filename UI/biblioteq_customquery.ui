@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
+    <width>359</width>
     <height>640</height>
    </rect>
   </property>
@@ -107,6 +107,23 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="refresh_pb">
+        <property name="minimumSize">
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;Refresh</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="execute_pb">
         <property name="minimumSize">
          <size>
@@ -161,6 +178,13 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>tables_t</tabstop>
+  <tabstop>query_te</tabstop>
+  <tabstop>refresh_pb</tabstop>
+  <tabstop>execute_pb</tabstop>
+  <tabstop>close_pb</tabstop>
+ </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>
  </resources>

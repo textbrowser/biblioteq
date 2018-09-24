@@ -403,6 +403,7 @@ class biblioteq: public QMainWindow
   void slotQuery(void);
   void slotRefresh(void);
   void slotRefreshAdminList(void);
+  void slotRefreshCustomQuery(void);
   void slotReloadBiblioteqConf(void);
   void slotRemoveMember(void);
   void slotRequest(void);

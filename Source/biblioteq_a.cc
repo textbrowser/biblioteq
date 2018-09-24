@@ -609,6 +609,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotCloseCustomQueryDialog(void)));
   connect(cq.execute_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotExecuteCustomQuery(void)));
+  connect(cq.refresh_pb, SIGNAL(clicked(void)), this,
+	  SLOT(slotRefreshCustomQuery(void)));
   connect(pass.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSavePassword(void)));
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,
@@ -6808,139 +6810,8 @@ void biblioteq::setGlobalFonts(const QFont &font)
 
 void biblioteq::slotShowCustomQuery(void)
 {
-  QSqlField field;
-  QSqlRecord rec;
-  QStringList list;
-  QTreeWidgetItem *item1 = 0;
-  QTreeWidgetItem *item2 = 0;
-  int i = 0;
-  int j = 0;
-
   if(cq.tables_t->columnCount() == 0)
-    {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      if(m_db.driverName() == "QSQLITE")
-	list << "book"
-	     << "book_copy_info"
-	     << "cd"
-	     << "cd_copy_info"
-	     << "cd_formats"
-	     << "cd_songs"
-	     << "dvd"
-	     << "dvd_aspect_ratios"
-	     << "dvd_copy_info"
-	     << "dvd_ratings"
-	     << "dvd_regions"
-	     << "grey_literature"
-	     << "item_borrower"
-	     << "item_borrower_vw"
-	     << "journal"
-	     << "journal_copy_info"
-	     << "languages"
-	     << "locations"
-	     << "magazine"
-	     << "magazine_copy_info"
-	     << "member"
-	     << "member_history"
-	     << "minimum_days"
-	     << "monetary_units"
-	     << "photograph"
-	     << "photograph_collection"
-	     << "videogame"
-	     << "videogame_copy_info"
-	     << "videogame_platforms"
-	     << "videogame_ratings";
-      else
-	list << "admin"
-	     << "book"
-	     << "book_copy_info"
-	     << "cd"
-	     << "cd_copy_info"
-	     << "cd_formats"
-	     << "cd_songs"
-	     << "dvd"
-	     << "dvd_aspect_ratios"
-	     << "dvd_copy_info"
-	     << "dvd_ratings"
-	     << "dvd_regions"
-	     << "grey_literature"
-	     << "item_borrower"
-	     << "item_borrower_vw"
-	     << "item_request"
-	     << "journal"
-	     << "journal_copy_info"
-	     << "languages"
-	     << "locations"
-	     << "magazine"
-	     << "magazine_copy_info"
-	     << "member"
-	     << "member_history"
-	     << "minimum_days"
-	     << "monetary_units"
-	     << "photograph"
-	     << "photograph_collection"
-	     << "videogame"
-	     << "videogame_copy_info"
-	     << "videogame_platforms"
-	     << "videogame_ratings";
-
-      list.sort();
-      cq.tables_t->setSortingEnabled(false);
-      cq.tables_t->setColumnCount(3);
-      cq.tables_t->setHeaderLabels(QStringList()
-				   << tr("Table Name")
-				   << tr("Column")
-				   << tr("Column Type")
-				   << tr("NULL"));
-
-
-      for(i = 0; i < list.size(); i++)
-	if((item1 = new(std::nothrow) QTreeWidgetItem(cq.tables_t)) != 0)
-	  {
-	    item1->setText(0, list[i]);
-	    rec = m_db.record(list[i]);
-
-	    for(j = 0; j < rec.count(); j++)
-	      {
-		if((item2 = new(std::nothrow) QTreeWidgetItem(item1)) == 0)
-		  {
-		    addError(QString(tr("Memory Error")),
-			     QString(tr("Unable to allocate "
-					"memory for the \"item2\" "
-					"object. "
-					"This is a serious "
-					"problem!")), QString(""),
-			     __FILE__, __LINE__);
-		    continue;
-		  }
-
-		field = rec.field(rec.fieldName(j));
-		item2->setText(1, rec.fieldName(j));
-		item2->setText(2, QVariant::typeToName(field.type()));
-
-		if(field.requiredStatus() == QSqlField::Required)
-		  item2->setText(3, tr("No"));
-		else
-		  item2->setText(3, "");
-	      }
-	  }
-	else
-	  addError(QString(tr("Memory Error")),
-		   QString(tr("Unable to allocate "
-			      "memory for the \"item1\" "
-			      "object. "
-			      "This is a serious "
-			      "problem!")), QString(""),
-		   __FILE__, __LINE__);
-
-      for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
-	cq.tables_t->resizeColumnToContents(i);
-
-      cq.tables_t->setSortingEnabled(true);
-      cq.tables_t->sortByColumn(0, Qt::AscendingOrder);
-      QApplication::restoreOverrideCursor();
-    }
+    slotRefreshCustomQuery();
 
   static bool resized = false;
 
