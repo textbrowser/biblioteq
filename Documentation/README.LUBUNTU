@@ -22,4 +22,4 @@ mkdir -p biblioteq-lubuntu/usr/share/applications
 cp -p ./biblioteq.d/biblioteq.qt5.desktop biblioteq-lubuntu/usr/share/applications/.
 cp -pr ./biblioteq.d/LUBUNTU biblioteq-lubuntu/.
 cp -r /usr/local/biblioteq biblioteq-lubuntu/usr/local/.
-fakeroot dpkg-deb --build biblioteq-lubuntu BiblioteQ-2018.11.01_amd64.deb
+fakeroot dpkg-deb --build biblioteq-lubuntu BiblioteQ-2018.11.01_lubuntu_amd64.deb
