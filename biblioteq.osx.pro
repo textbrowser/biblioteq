@@ -84,6 +84,10 @@ doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
+install_name_tool1.path      = .
+install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.69.0/lib/libpoppler.80.dylib @executable_path/../Frameworks/libpoppler.80.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool2.path      = .
+install_name_tool2.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.69.0_1/lib/libpoppler.80.dylib @executable_path/../Frameworks/libpoppler.80.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
@@ -109,4 +113,6 @@ INSTALLS	= preinstall \
 		  lrelease \
 		  sql \
 		  translations \
-		  postinstall
+                  postinstall \
+                  install_name_tool1 \
+                  install_name_tool2
