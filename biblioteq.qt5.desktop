@@ -1,7 +1,8 @@
 [Desktop Entry]
-Categories=
+Categories=Library
 Comment=BiblioteQ
 Exec=/usr/local/biblioteq/biblioteq.qt5.sh
+GenericName=BiblioteQ
 Icon=/usr/local/biblioteq/book.png
 MimeType=text/html;/text/xml;application/xhtml_xml;
 Name=BiblioteQ
