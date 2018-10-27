@@ -9211,8 +9211,8 @@ void biblioteq::changeEvent(QEvent *event)
 	  bb.retranslateUi(m_members_diag);
 	  br.retranslateUi(m_branch_diag);
 	  cq.retranslateUi(m_customquery_diag);
-	  history.retranslateUi(m_history_diag);
 	  er.retranslateUi(m_error_diag);
+	  history.retranslateUi(m_history_diag);
 	  pass.retranslateUi(m_pass_diag);
 	  ui.retranslateUi(this);
 	  ui.graphicsView->scene()->clear();
