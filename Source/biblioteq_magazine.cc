@@ -3305,8 +3305,6 @@ void biblioteq_magazine::slotSRUQuery(void)
 	{
 	  if(m_sruWorking)
 	    m_sruWorking->deleteLater();
-
-	  m_sruWorking = 0;
 	}
     }
 }
@@ -3322,8 +3320,6 @@ void biblioteq_magazine::slotSRUDownloadFinished(bool error)
       canceled = m_sruWorking->wasCanceled();
       m_sruWorking->deleteLater();
     }
-
-  m_sruWorking = 0;
 
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
@@ -3343,8 +3339,6 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
       canceled = m_sruWorking->wasCanceled();
       m_sruWorking->deleteLater();
     }
-
-  m_sruWorking = 0;
 
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
@@ -3951,8 +3945,6 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  m_sruWorking = 0;
-
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
@@ -3976,7 +3968,6 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  m_sruWorking = 0;
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));

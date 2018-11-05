@@ -2389,8 +2389,6 @@ void biblioteq_book::slotSRUQuery(void)
 	{
 	  if(m_sruWorking)
 	    m_sruWorking->deleteLater();
-
-	  m_sruWorking = 0;
 	}
     }
 }
@@ -2866,22 +2864,22 @@ void biblioteq_book::slotDownloadImage(void)
   if(pb == id.dwnldFront)
     url = QUrl::fromUserInput
       (qmain->getAmazonHash().value("front_cover_host") +
-       qmain->getAmazonHash()["front_cover_path"].replace
+       QString(qmain->getAmazonHash().value("front_cover_path")).replace
        ("%", id.id->text().trimmed()));
   else
     url = QUrl::fromUserInput
       (qmain->getAmazonHash().value("back_cover_host") +
-       qmain->getAmazonHash()["back_cover_path"].replace
+       QString(qmain->getAmazonHash().value("back_cover_path")).replace
        ("%", id.id->text().trimmed()));
 
   QHash<QString, QString> hash(qmain->getAmazonHash());
   QNetworkProxy proxy;
-  QString type;
+  QString type("none");
 
-  if(hash.contains("front_proxy_type"))
-    type = hash["front_proxy_type"].toLower().trimmed();
-  else if(hash.contains("back_proxy_type"))
-    type = hash["back_proxy_type"].toLower().trimmed();
+  if(pb == id.dwnldFront)
+    type = hash.value("front_proxy_type").toLower().trimmed();
+  else
+    type = hash.value("back_proxy_type").toLower().trimmed();
 
   if(type == "none")
     proxy.setType(QNetworkProxy::NoProxy);
@@ -3054,7 +3052,6 @@ void biblioteq_book::slotDownloadFinished(bool error)
   if(m_httpProgress)
     m_httpProgress->deleteLater();
 
-  m_httpProgress = 0;
   QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
 
@@ -3068,7 +3065,6 @@ void biblioteq_book::slotDownloadFinished(void)
   if(m_httpProgress)
     m_httpProgress->deleteLater();
 
-  m_httpProgress = 0;
   QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
 
@@ -3126,8 +3122,6 @@ void biblioteq_book::slotCancelImageDownload(void)
 {
   if(m_httpProgress)
     m_httpProgress->deleteLater();
-
-  m_httpProgress = 0;
 
   if(useHttp())
     {
@@ -3227,8 +3221,6 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
       m_sruWorking->deleteLater();
     }
 
-  m_sruWorking = 0;
-
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
@@ -3247,8 +3239,6 @@ void biblioteq_book::slotSRUDownloadFinished(void)
       canceled = m_sruWorking->wasCanceled();
       m_sruWorking->deleteLater();
     }
-
-  m_sruWorking = 0;
 
   if(!canceled)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
@@ -3484,8 +3474,6 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  m_sruWorking = 0;
-
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
@@ -3509,7 +3497,6 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  m_sruWorking = 0;
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
