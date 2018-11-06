@@ -3048,10 +3048,6 @@ void biblioteq_book::slotDownloadImage(void)
 void biblioteq_book::slotDownloadFinished(bool error)
 {
   Q_UNUSED(error);
-
-  if(m_httpProgress)
-    m_httpProgress->deleteLater();
-
   QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
 
@@ -3062,14 +3058,14 @@ void biblioteq_book::slotDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
-  if(m_httpProgress)
-    m_httpProgress->deleteLater();
-
   QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
 }
 
 void biblioteq_book::downloadFinished(void)
 {
+  if(m_httpProgress)
+    m_httpProgress->deleteLater();
+
   if(m_imageBuffer.property("which") == "front")
     {
       if(m_imageBuffer.data().size() > 1000)
@@ -3144,12 +3140,17 @@ void biblioteq_book::slotCancelImageDownload(void)
 void biblioteq_book::slotReadyRead(const QHttpResponseHeader &resp)
 {
   Q_UNUSED(resp);
-  m_imageBuffer.write(m_imageHttp->readAll());
+
+  if(m_imageBuffer.isOpen())
+    m_imageBuffer.write(m_imageHttp->readAll());
 }
 #endif
 
 void biblioteq_book::slotReadyRead(void)
 {
+  if(!m_imageBuffer.isOpen())
+    return;
+
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
