@@ -68,7 +68,6 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   QPalette m_te_orig_pal;
   QPalette m_white_pal;
   QPointer<biblioteq_generic_thread> m_thread;
-  QPointer<biblioteq_item_working_dialog> m_httpProgress;
   QPointer<biblioteq_item_working_dialog> m_sruWorking;
   QString m_cb_orig_ss;
   QString m_dt_orig_ss;
@@ -76,13 +75,13 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Ui_informationDialog id;
   Ui_passwordDialog ui_p;
   bool m_duplicate;
+  biblioteq_item_working_dialog *createImageDownloadDialog(QPushButton *pb);
   bool useHttp(void) const;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,
 		  const QByteArray &bytes,
 		  const QString &fileName) const;
-  void createImageDownloadDialog(void);
   void createSRUDialog(void);
   void populateFiles(void);
 

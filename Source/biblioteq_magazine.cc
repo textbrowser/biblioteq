@@ -2029,7 +2029,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       working.setCancelButton(0);
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading."));
+      working.setLabelText(tr("Downloading..."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.resize(working.sizeHint());
@@ -3983,13 +3983,17 @@ void biblioteq_magazine::createSRUDialog(void)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_sruWorking->resize(m_sruWorking->sizeHint());
-  m_sruWorking->setLabelText(tr("Downloading."));
+  m_sruWorking->setLabelText(tr("Downloading..."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
   m_sruWorking->setModal(true);
   m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
   connect(m_sruWorking,
 	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
+  connect(m_sruWorking,
+	  SIGNAL(rejected(void)),
 	  this,
 	  SLOT(slotSRUCanceled(void)));
 }

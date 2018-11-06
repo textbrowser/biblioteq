@@ -35,7 +35,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
-  m_httpProgress = 0;
   m_sruWorking = 0;
 
   QGraphicsScene *scene1 = 0;
@@ -2425,7 +2424,7 @@ void biblioteq_book::slotZ3950Query(void)
       working.setCancelButton(0);
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading."));
+      working.setLabelText(tr("Downloading..."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.resize(working.sizeHint());
@@ -2823,9 +2822,6 @@ void biblioteq_book::slotSelectImage(void)
 
 void biblioteq_book::slotDownloadImage(void)
 {
-  if(m_httpProgress)
-    return;
-
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -2989,6 +2985,8 @@ void biblioteq_book::slotDownloadImage(void)
 	}
     }
 
+  biblioteq_item_working_dialog *dialog = createImageDownloadDialog(pb);
+
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -2996,6 +2994,8 @@ void biblioteq_book::slotDownloadImage(void)
 	url.setPort(80);
 
       m_imageHttp->abort();
+      connect(m_imageHttp, SIGNAL(done(bool)),
+	      dialog, SLOT(deleteLater(void)));
       connect(m_imageHttp, SIGNAL(done(bool)),
 	      this, SLOT(slotDownloadFinished(bool)),
 	      Qt::UniqueConnection);
@@ -3012,6 +3012,7 @@ void biblioteq_book::slotDownloadImage(void)
 
       if(!reply)
 	{
+	  dialog->deleteLater();
 	  m_imageBuffer.close();
 	  return;
 	}
@@ -3021,28 +3022,14 @@ void biblioteq_book::slotDownloadImage(void)
       connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
 	      this, SLOT(slotDataTransferProgress(qint64, qint64)));
       connect(reply, SIGNAL(finished(void)),
+	      dialog, SLOT(deleteLater(void)));
+      connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotDownloadFinished(void)));
     }
 
-  createImageDownloadDialog();
-  m_httpProgress->show();
-  m_httpProgress->repaint();
 #ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
-
-  if(pb == id.dwnldFront)
-    {
-      m_httpProgress->setWindowTitle
-	(tr("BiblioteQ: Front Cover Image Download"));
-      m_httpProgress->setLabelText(tr("Downloading."));
-    }
-  else
-    {
-      m_httpProgress->setWindowTitle
-	(tr("BiblioteQ: Back Cover Image Download"));
-      m_httpProgress->setLabelText(tr("Downloading."));
-    }
 }
 
 void biblioteq_book::slotDownloadFinished(bool error)
@@ -3063,9 +3050,6 @@ void biblioteq_book::slotDownloadFinished(void)
 
 void biblioteq_book::downloadFinished(void)
 {
-  if(m_httpProgress)
-    m_httpProgress->deleteLater();
-
   if(m_imageBuffer.property("which") == "front")
     {
       if(m_imageBuffer.data().size() > 1000)
@@ -3107,18 +3091,12 @@ void biblioteq_book::downloadFinished(void)
 void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 					      qint64 totalbytes)
 {
-  if(m_httpProgress)
-    {
-      m_httpProgress->setMaximum(static_cast<int> (totalbytes));
-      m_httpProgress->setValue(static_cast<int> (bytesread));
-    }
+  Q_UNUSED(bytesread);
+  Q_UNUSED(totalbytes);
 }
 
 void biblioteq_book::slotCancelImageDownload(void)
 {
-  if(m_httpProgress)
-    m_httpProgress->deleteLater();
-
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
@@ -4046,7 +4024,7 @@ void biblioteq_book::createSRUDialog(void)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_sruWorking->resize(m_sruWorking->sizeHint());
-  m_sruWorking->setLabelText(tr("Downloading."));
+  m_sruWorking->setLabelText(tr("Downloading..."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
   m_sruWorking->setModal(true);
@@ -4055,24 +4033,42 @@ void biblioteq_book::createSRUDialog(void)
 	  SIGNAL(canceled(void)),
 	  this,
 	  SLOT(slotSRUCanceled(void)));
+  connect(m_sruWorking,
+	  SIGNAL(rejected(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
 }
 
-void biblioteq_book::createImageDownloadDialog(void)
+biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
+(QPushButton *pb)
 {
-  if(m_httpProgress)
-    m_httpProgress->deleteLater();
+  biblioteq_item_working_dialog *dialog = 0;
 
-  if((m_httpProgress = new(std::nothrow)
+  if((dialog = new(std::nothrow)
       biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  m_httpProgress->resize(m_httpProgress->sizeHint());
-  m_httpProgress->setMaximum(0);
-  m_httpProgress->setMinimum(0);
-  m_httpProgress->setModal(true);
-  m_httpProgress->setWindowTitle(tr("BiblioteQ: Image Download"));
-  connect(m_httpProgress, SIGNAL(canceled(void)), this,
+  dialog->resize(dialog->sizeHint());
+  dialog->setLabelText(tr("Downloading..."));
+  dialog->setMaximum(0);
+  dialog->setMinimum(0);
+  dialog->setModal(true);
+
+  if(pb == id.dwnldFront)
+    dialog->setWindowTitle(tr("BiblioteQ: Front Cover Image Download"));
+  else
+    dialog->setWindowTitle(tr("BiblioteQ: Back Cover Image Download"));
+
+  dialog->show();
+  dialog->update();
+  dialog->repaint();
+  connect(dialog, SIGNAL(canceled(void)), dialog,
+	  SLOT(deleteLater(void)));
+  connect(dialog, SIGNAL(rejected(void)), dialog,
+	  SLOT(deleteLater(void)));
+  connect(dialog, SIGNAL(canceled(void)), this,
 	  SLOT(slotCancelImageDownload(void)));
-  connect(m_httpProgress, SIGNAL(rejected(void)), this,
+  connect(dialog, SIGNAL(rejected(void)), this,
 	  SLOT(slotCancelImageDownload(void)));
+  return dialog;
 }
