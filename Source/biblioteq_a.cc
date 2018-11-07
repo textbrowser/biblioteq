@@ -3064,7 +3064,7 @@ void biblioteq::readConfig(void)
   else
     ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-  QColor color(settings.value("mainwindow_canvas_backgound_color").
+  QColor color(settings.value("mainwindow_canvas_background_color").
 	       toString().trimmed());
 
   if(!color.isValid())

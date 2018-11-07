@@ -35,12 +35,12 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 
   if(color.isValid())
     {
-      settings.setValue("mainwindow_canvas_backgound_color", color.name());
+      settings.setValue("mainwindow_canvas_background_color", color.name());
       ui.graphicsView->scene()->setBackgroundBrush(color);
     }
   else
     {
-      QColor color(settings.value("mainwindow_canvas_backgound_color").
+      QColor color(settings.value("mainwindow_canvas_background_color").
 		   toString().trimmed());
 
       if(!color.isValid())
