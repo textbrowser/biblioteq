@@ -2990,7 +2990,7 @@ void biblioteq::readConfig(void)
   QApplication::setFont(font);
 #endif
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
-    (settings.value("save_settings_on_exit", false).toBool());
+    (settings.value("save_settings_on_exit", true).toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_members_"
 		    "list_on_display", false).toBool());

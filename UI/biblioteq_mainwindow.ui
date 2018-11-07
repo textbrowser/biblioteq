@@ -114,20 +114,11 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>280</height>
+          <height>276</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
@@ -384,7 +375,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -1022,6 +1013,9 @@
   </action>
   <action name="actionAutomaticallySaveSettingsOnExit">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="text">
