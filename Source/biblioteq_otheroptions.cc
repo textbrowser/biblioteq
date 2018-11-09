@@ -263,7 +263,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   settings.setValue
     ("mainwindow_canvas_background_color",
-     m_ui.main_window_canvas_background_color->text());
+     m_ui.main_window_canvas_background_color->text().toLatin1());
   emit mainWindowCanvasBackgroundColorChanged
     (QColor(m_ui.main_window_canvas_background_color->text()));
   emit saved();
