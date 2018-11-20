@@ -4724,13 +4724,13 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
       if(bb.filtertype->currentIndex() == 0) // Member ID
 	{
-	  str.append("member.memberid LIKE " + E + "'%' || ");
-	  str.append("?");
+	  str.append("LOWER(member.memberid) LIKE " + E + "'%' || ");
+	  str.append("LOWER(?)");
 	}
       else
 	{
-	  str.append("member.last_name LIKE " + E + "'%' || ");
-	  str.append("?");
+	  str.append("LOWER(member.last_name) LIKE " + E + "'%' || ");
+	  str.append("LOWER(?)");
 	}
 
       str.append("|| '%' ");

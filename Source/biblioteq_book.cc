@@ -1135,64 +1135,67 @@ void biblioteq_book::slotGo(void)
 	"WHERE ";
 
       if(!id.id->text().trimmed().isEmpty())
-	searchstr.append("id LIKE '%" + id.id->text().trimmed() +
-			 "%' AND ");
+	searchstr.append("LOWER(id) LIKE LOWER('%" + id.id->text().trimmed() +
+			 "%') AND ");
 
       QString E("");
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("title LIKE " + E + "'%" +
+      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::
 		       escape(id.title->text().trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
 
       if(!m_engWindowTitle.isEmpty())
 	if(!id.isbn13->text().trimmed().isEmpty())
-	  searchstr.append("isbn13 LIKE '%" +
-			   id.isbn13->text().trimmed() + "%' AND ");
+	  searchstr.append("LOWER(isbn13) LIKE LOWER('%" +
+			   id.isbn13->text().trimmed() + "%') AND ");
 
-      searchstr.append("COALESCE(lccontrolnumber, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::
-		       escape(id.lcnum->text().trimmed()) +
-		       "%' AND ");
-      searchstr.append("COALESCE(callnumber, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::
-		       escape(id.callnum->text().trimmed()) +
-		       "%' AND ");
-      searchstr.append("COALESCE(deweynumber, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::
-		       escape(id.deweynum->text().trimmed()) +
-		       "%' AND ");
+      searchstr.append
+	("LOWER(COALESCE(lccontrolnumber, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::
+	 escape(id.lcnum->text().trimmed()) +
+	 "%') AND ");
+      searchstr.append
+	("LOWER(COALESCE(callnumber, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::
+	 escape(id.callnum->text().trimmed()) +
+	 "%') AND ");
+      searchstr.append
+	("LOWER(COALESCE(deweynumber, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::
+	 escape(id.deweynum->text().trimmed()) +
+	 "%') AND ");
 
       if(id.edition->currentIndex() != 0)
 	searchstr.append("edition = '" +
 			 id.edition->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("author LIKE " + E + "'%" +
+      searchstr.append("LOWER(author) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::
 		       escape(id.author->toPlainText().
-			      trimmed()) + "%' AND ");
+			      trimmed()) + "%') AND ");
 
       if(id.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(pdate, 7) = '" +
 			 id.publication_date->date().toString("yyyy") +
 			 "' AND ");
 
-      searchstr.append("publisher LIKE " + E + "'%" +
+      searchstr.append("LOWER(publisher) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (id.publisher->toPlainText().trimmed()) +
-		       "%' AND ");
-      searchstr.append("place LIKE " + E + "'%" +
+		       "%') AND ");
+      searchstr.append("LOWER(place) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (id.place->toPlainText().trimmed()) +
-		       "%' AND ");
-      searchstr.append("category LIKE " + E + "'%" +
+		       "%') AND ");
+      searchstr.append("LOWER(category) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (id.category->toPlainText().trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
 
       if(id.price->value() > -0.01)
 	{
@@ -1221,10 +1224,10 @@ void biblioteq_book::slotGo(void)
 				trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE " + E + "'%" +
+      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (id.description->toPlainText().trimmed()) +
-		       "%' ");
+		       "%') ");
 
       if(id.quantity->value() != 0)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
@@ -1234,14 +1237,16 @@ void biblioteq_book::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (id.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(marc_tags, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (id.marc_tags->toPlainText().trimmed()) +
-		       "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (id.keyword->toPlainText().trimmed()) +
-		       "%' ");
+      searchstr.append
+	("AND LOWER(COALESCE(marc_tags, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (id.marc_tags->toPlainText().trimmed()) +
+	 "%') ");
+      searchstr.append
+	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (id.keyword->toPlainText().trimmed()) +
+	 "%') ");
 
       if(id.originality->currentIndex() != 0)
 	searchstr.append("AND originality = " + E + "'" +
@@ -1253,10 +1258,11 @@ void biblioteq_book::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (id.condition->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(accession_number, '') LIKE " + E +
-		       "'%" +
-		       biblioteq_myqstring::escape(id.accession_number->text().
-						   trimmed()) + "%' ");
+      searchstr.append
+	("AND LOWER(COALESCE(accession_number, '')) LIKE "
+	 "LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape(id.accession_number->text().
+				     trimmed()) + "%') ");
 
       /*
       ** Search the database.
