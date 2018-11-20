@@ -845,8 +845,9 @@ void biblioteq_cd::slotGo(void)
 	"cd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'CD' "
 	"WHERE ";
-      searchstr.append("id LIKE '%").append(cd.id->text().
-					    trimmed()).append("%' AND ");
+      searchstr.append
+	("LOWER(id) LIKE LOWER('%").append(cd.id->text().
+					   trimmed()).append("%') AND ");
 
       QString E("");
 
@@ -860,18 +861,18 @@ void biblioteq_cd::slotGo(void)
 				trimmed()) +
 			 "' AND ");
 
-      searchstr.append("(cd.artist LIKE " + E + "'%").append
+      searchstr.append("(LOWER(cd.artist) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::
-	 escape(cd.artist->toPlainText().trimmed())).append("%' OR ");
+	 escape(cd.artist->toPlainText().trimmed())).append("%') OR ");
       searchstr.append
 	("(cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
 	 "cd_songs.item_oid = cd.myoid AND (");
-      searchstr.append("cd_songs.artist LIKE " + E + "'%").append
+      searchstr.append("LOWER(cd_songs.artist) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::
-	 escape(cd.artist->toPlainText().trimmed())).append("%' OR ");
-      searchstr.append("cd_songs.composer LIKE " + E + "'%").append
-	(biblioteq_myqstring::
-	 escape(cd.composer->toPlainText().trimmed())).append("%')");
+	 escape(cd.artist->toPlainText().trimmed())).append("%') OR ");
+      searchstr.append("LOWER(cd_songs.composer) LIKE LOWER(" + E + "'%").
+	append(biblioteq_myqstring::
+	       escape(cd.composer->toPlainText().trimmed())).append("%'))");
       searchstr.append("))) AND ");
 
       if(cd.no_of_discs->value() > 0)
@@ -892,23 +893,23 @@ void biblioteq_cd::slotGo(void)
 			 cd.recording_type->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("title LIKE " + E + "'%").append
+      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::
-	 escape(cd.title->text().trimmed())).append("%' AND ");
+	 escape(cd.title->text().trimmed())).append("%') AND ");
 
       if(cd.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(rdate, 7) = '" +
 			 cd.release_date->date().toString("yyyy") +"' AND ");
 
-      searchstr.append("recording_label LIKE " + E + "'%" +
+      searchstr.append("LOWER(recording_label) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::
 		       escape(cd.recording_label->toPlainText().
-			      trimmed()) + "%' AND ");
-      searchstr.append("category LIKE " + E + "'%" +
+			      trimmed()) + "%') AND ");
+      searchstr.append("LOWER(category) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::
 		       escape(cd.category->toPlainText().
 			      trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
 
       if(cd.price->value() > -0.01)
 	{
@@ -930,13 +931,14 @@ void biblioteq_cd::slotGo(void)
 			 (cd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE " + E + "'%" +
+      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
-		       (cd.description->toPlainText().trimmed()) + "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (cd.keyword->toPlainText().trimmed()) +
-		       "%' ");
+		       (cd.description->toPlainText().trimmed()) + "%') ");
+      searchstr.append
+	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (cd.keyword->toPlainText().trimmed()) +
+	 "%') ");
 
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
@@ -946,9 +948,10 @@ void biblioteq_cd::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (cd.location->currentText().trimmed()) + "' ");
 
-      searchstr.append(" AND COALESCE(accession_number, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::
-		       escape(cd.accession_number->text().trimmed()) + "%' ");
+      searchstr.append
+	(" AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::
+	 escape(cd.accession_number->text().trimmed()) + "%') ");
 
       /*
       ** Search the database.
