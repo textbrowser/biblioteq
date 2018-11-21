@@ -503,40 +503,43 @@ void biblioteq_photographcollection::slotGo(void)
 	"photograph "
 	"ON photograph_collection.myoid = photograph.collection_oid "
 	"WHERE ";
-      searchstr.append("photograph_collection.id LIKE '%" +
+      searchstr.append("LOWER(photograph_collection.id) LIKE LOWER('%" +
 		       pc.id_collection->text().trimmed() +
-		       "%' AND ");
+		       "%') AND ");
 
       QString E("");
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("photograph_collection.title LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape(pc.title_collection->
-						   text().trimmed()) +
-		       "%' AND ");
+      searchstr.append
+	("LOWER(photograph_collection.title) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape(pc.title_collection->
+				     text().trimmed()) +
+	 "%') AND ");
 
       if(pc.location->currentIndex() != 0)
 	searchstr.append("photograph_collection.location = " + E + "'" +
 			 biblioteq_myqstring::escape
 			 (pc.location->currentText().trimmed()) + "' AND ");
 
-      searchstr.append("COALESCE(photograph_collection.about, '') LIKE " +
-		       E + "'%" +
-		       biblioteq_myqstring::escape
-		       (pc.about_collection->toPlainText().trimmed()) +
-		       "%' AND ");
-      searchstr.append("COALESCE(photograph_collection.notes, '') LIKE " +
-		       E + "'%" +
-		       biblioteq_myqstring::escape
-		       (pc.notes_collection->toPlainText().trimmed()) +
-		       "%' AND ");
       searchstr.append
-	("COALESCE(photograph_collection.accession_number, '') LIKE " +
+	("LOWER(COALESCE(photograph_collection.about, '')) LIKE LOWER(" +
 	 E + "'%" +
+	 biblioteq_myqstring::escape
+	 (pc.about_collection->toPlainText().trimmed()) +
+	 "%') AND ");
+      searchstr.append
+	("LOWER(COALESCE(photograph_collection.notes, '')) LIKE LOWER(" +
+	 E + "'%" +
+	 biblioteq_myqstring::escape
+	 (pc.notes_collection->toPlainText().trimmed()) +
+	 "%') AND ");
+      searchstr.append
+	("LOWER(COALESCE(photograph_collection.accession_number, '')) "
+	 "LIKE LOWER(" + E + "'%" +
 	 biblioteq_myqstring::escape(pc.accession_number->text().trimmed()) +
-	 "%'");
+	 "%')");
 
       /*
       ** Search the database.
