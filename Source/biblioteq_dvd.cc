@@ -881,29 +881,29 @@ void biblioteq_dvd::slotGo(void)
 	"dvd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'DVD' "
 	"WHERE ";
-      searchstr.append("id LIKE '%").append
-	(dvd.id->text().trimmed()).append("%' AND ");
+      searchstr.append("LOWER(id) LIKE LOWER('%").append
+	(dvd.id->text().trimmed()).append("%') AND ");
 
       QString E("");
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("dvdformat LIKE " + E + "'%").append
+      searchstr.append("LOWER(dvdformat) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::escape
-	 (dvd.format->text().trimmed())).append("%' AND ");
+	 (dvd.format->text().trimmed())).append("%') AND ");
 
       if(dvd.aspectratio->currentIndex() != 0)
 	searchstr.append("dvdaspectratio = '" +
 			 dvd.aspectratio->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("dvdactor LIKE " + E + "'%").append
+      searchstr.append("LOWER(dvdactor) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::escape(dvd.actors->toPlainText().trimmed())).
-	append("%' AND ");
-      searchstr.append("dvddirector LIKE " + E + "'%").append
+	append("%') AND ");
+      searchstr.append("LOWER(dvddirector) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::escape(dvd.directors->toPlainText().trimmed())).
-	append("%' AND ");
+	append("%') AND ");
 
       if(dvd.no_of_discs->value() > 0)
 	searchstr.append("dvddiskcount = ").append
@@ -927,23 +927,23 @@ void biblioteq_dvd::slotGo(void)
 			  trimmed()) +
 			 "' AND ");
 
-      searchstr.append("title LIKE " + E + "'%").append
+      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%").append
 	(biblioteq_myqstring::escape
-	 (dvd.title->text().trimmed())).append("%' AND ");
+	 (dvd.title->text().trimmed())).append("%') AND ");
 
       if(dvd.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(rdate, 7) = '" +
 			 dvd.release_date->date().toString("yyyy") +
 			 "' AND ");
 
-      searchstr.append("studio LIKE " + E + "'%" +
+      searchstr.append("LOWER(studio) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (dvd.studio->toPlainText().trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
       searchstr.append
-	("category LIKE " + E + "'%" +
+	("LOWER(category) LIKE LOWER(" + E + "'%" +
 	 biblioteq_myqstring::escape(dvd.category->toPlainText().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
 
       if(dvd.price->value() > -0.01)
 	{
@@ -965,13 +965,13 @@ void biblioteq_dvd::slotGo(void)
 			 (dvd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE " + E + "'%" +
+      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
-		       (dvd.description->toPlainText().trimmed()) + "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (dvd.keyword->toPlainText().trimmed()) +
-		       "%' ");
+		       (dvd.description->toPlainText().trimmed()) + "%') ");
+      searchstr.append
+	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape(dvd.keyword->toPlainText().trimmed()) +
+	 "%') ");
 
       if(dvd.quantity->value() != 0)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
@@ -981,9 +981,10 @@ void biblioteq_dvd::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (dvd.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape(dvd.accession_number->
-						   text().trimmed()) + "%' ");
+      searchstr.append
+	("AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape(dvd.accession_number->
+				     text().trimmed()) + "%') ");
 
       /*
       ** Search the database.
