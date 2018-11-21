@@ -732,9 +732,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = 'Book' "
 				 "WHERE "
-				 "member.memberid LIKE '%");
-		searchstr.append(searchstrArg);
-		searchstr.append("%' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append
 		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
 		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
@@ -791,9 +792,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = 'CD' "
 				 "WHERE "
-				 "member.memberid LIKE '%");
-		searchstr.append(searchstrArg);
-		searchstr.append("%' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append
 		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
 		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
@@ -850,9 +852,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = 'DVD' "
 				 "WHERE "
-				 "member.memberid LIKE '%");
-		searchstr.append(searchstrArg);
-		searchstr.append("%' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append
 		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
 		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
@@ -909,9 +912,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = journal.type "
 				 "WHERE "
-				 "member.memberid LIKE '%");
-		searchstr.append(searchstrArg);
-		searchstr.append("%' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append
 		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
 		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
@@ -969,9 +973,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = magazine.type "
 				 "WHERE "
-				 "member.memberid LIKE '%");
-		searchstr.append(searchstrArg);
-		searchstr.append("%' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append
 		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
 		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
@@ -1030,9 +1035,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.item_oid "
 				 "AND item_borrower.type = 'Video Game' "
 				 "WHERE "
-				 "member.memberid LIKE '%");
-		searchstr.append(searchstrArg);
-		searchstr.append("%' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append
 		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
 		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
@@ -1899,9 +1905,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = 'Book' "
 				 "WHERE "
-				 "member.memberid LIKE '");
-		searchstr.append(searchstrArg);
-		searchstr.append("' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
 		searchstr.append("GROUP BY "
@@ -1953,9 +1960,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = 'CD' "
 				 "WHERE "
-				 "member.memberid LIKE '");
-		searchstr.append(searchstrArg);
-		searchstr.append("' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2007,9 +2015,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.myoid = item_borrower.item_oid "
 				 "AND item_borrower.type = 'DVD' "
 				 "WHERE "
-				 "member.memberid LIKE '");
-		searchstr.append(searchstrArg);
-		searchstr.append("' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2062,9 +2071,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.item_oid "
 				 "AND item_borrower.type = journal.type "
 				 "WHERE "
-				 "member.memberid LIKE '");
-		searchstr.append(searchstrArg);
-		searchstr.append("' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2117,9 +2127,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.item_oid "
 				 "AND item_borrower.type = magazine.type "
 				 "WHERE "
-				 "member.memberid LIKE '");
-		searchstr.append(searchstrArg);
-		searchstr.append("' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2172,9 +2183,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.item_oid "
 				 "AND item_borrower.type = 'Video Game' "
 				 "WHERE "
-				 "member.memberid LIKE '");
-		searchstr.append(searchstrArg);
-		searchstr.append("' AND ");
+				 "LOWER(member.memberid) LIKE LOWER('");
+		searchstr.append(searchstrArg.trimmed().isEmpty() ?
+				 "%" : searchstrArg.trimmed());
+		searchstr.append("') AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
 		searchstr.append("GROUP BY "
