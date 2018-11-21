@@ -1037,26 +1037,29 @@ void biblioteq_magazine::slotGo(void)
 			  "WHERE %1.type = '%1' AND ").arg(m_subType);
 
       if(!ma.id->text().trimmed().isEmpty())
-	searchstr.append("id LIKE '%" + ma.id->text().trimmed() +
-			 "%' AND ");
+	searchstr.append("LOWER(id) LIKE LOWER('%" + ma.id->text().trimmed() +
+			 "%') AND ");
 
       QString E("");
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("COALESCE(lccontrolnumber, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (ma.lcnum->text().trimmed()) +
-		       "%' AND ");
-      searchstr.append("COALESCE(callnumber, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (ma.callnum->text().trimmed()) +
-		       "%' AND ");
-      searchstr.append("COALESCE(deweynumber, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (ma.deweynum->text().trimmed()) +
-		       "%' AND ");
+      searchstr.append
+	("LOWER(COALESCE(lccontrolnumber, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (ma.lcnum->text().trimmed()) +
+	 "%') AND ");
+      searchstr.append
+	("LOWER(COALESCE(callnumber, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (ma.callnum->text().trimmed()) +
+	 "%') AND ");
+      searchstr.append
+	("LOWER(COALESCE(deweynumber, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (ma.deweynum->text().trimmed()) +
+	 "%') AND ");
 
       if(ma.volume->value() != -1)
 	searchstr.append("issuevolume = " + ma.volume->text() +
@@ -1066,28 +1069,28 @@ void biblioteq_magazine::slotGo(void)
 	searchstr.append("issueno = " + ma.issue->text() +
 			 " AND ");
 
-      searchstr.append("title LIKE " + E + "'%" +
+      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (ma.title->text().trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
 
       if(ma.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(pdate, 7) = '" +
 			 ma.publication_date->date().toString("yyyy") +
 			 "' AND ");
 
-      searchstr.append("publisher LIKE " + E+ "'%" +
+      searchstr.append("LOWER(publisher) LIKE LOWER(" + E+ "'%" +
 		       biblioteq_myqstring::escape
 		       (ma.publisher->toPlainText().trimmed()) +
-		       "%' AND ");
-      searchstr.append("place LIKE " + E + "'%" +
+		       "%') AND ");
+      searchstr.append("LOWER(place) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (ma.place->toPlainText().trimmed()) +
-		       "%' AND ");
-      searchstr.append("category LIKE " + E + "'%" +
+		       "%') AND ");
+      searchstr.append("LOWER(category) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape(ma.category->toPlainText().
 						   trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
 
       if(ma.price->value() > -0.01)
 	{
@@ -1109,9 +1112,9 @@ void biblioteq_magazine::slotGo(void)
 			 (ma.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE " + E + "'%" +
+      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
 		       biblioteq_myqstring::escape
-		       (ma.description->toPlainText().trimmed()) + "%' ");
+		       (ma.description->toPlainText().trimmed()) + "%') ");
 
       if(ma.quantity->value() != 0)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
@@ -1121,16 +1124,18 @@ void biblioteq_magazine::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (ma.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(marc_tags, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (ma.marc_tags->toPlainText().trimmed()) + "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (ma.keyword->toPlainText().trimmed()) + "%' ");
       searchstr.append
-	("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
+	("AND LOWER(COALESCE(marc_tags, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (ma.marc_tags->toPlainText().trimmed()) + "%') ");
+      searchstr.append
+	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
+	 biblioteq_myqstring::escape
+	 (ma.keyword->toPlainText().trimmed()) + "%') ");
+      searchstr.append
+	("AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" + E + "'%" +
 	 biblioteq_myqstring::escape(ma.accession_number->text().
-				     trimmed()) + "%' ");
+				     trimmed()) + "%') ");
 
       /*
       ** Search the database.

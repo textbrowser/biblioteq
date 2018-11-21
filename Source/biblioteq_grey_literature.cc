@@ -1163,18 +1163,18 @@ void biblioteq_grey_literature::slotGo(void)
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("document_title LIKE " +
+      searchstr.append("LOWER(document_title) LIKE LOWER(" +
 		       E +
 		       "'%" +
 		       biblioteq_myqstring::
 		       escape(m_ui.title->text().trimmed()) +
-		       "%' AND ");
-      searchstr.append("document_id LIKE " +
+		       "%') AND ");
+      searchstr.append("LOWER(document_id) LIKE LOWER(" +
 		       E +
 		       "'%" +
 		       biblioteq_myqstring::
 		       escape(m_ui.id->text().trimmed()) +
-		       "%' AND ");
+		       "%') AND ");
 
       if(m_ui.date_enabled->isChecked())
 	searchstr.append("SUBSTR(document_date, 7) = '" +
@@ -1182,41 +1182,41 @@ void biblioteq_grey_literature::slotGo(void)
 			 "' AND ");
 
       searchstr.append
-	("author LIKE " +
+	("LOWER(author) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.author->toPlainText().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
       searchstr.append
-	("COALESCE(client, '') LIKE " +
+	("LOWER(COALESCE(client, '')) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.client->toPlainText().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
       searchstr.append
-	("document_code_a LIKE " +
+	("LOWER(document_code_a) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
       searchstr.append
-	("document_code_b LIKE " +
+	("LOWER(document_code_b) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
       searchstr.append
-	("job_number LIKE " +
+	("LOWER(job_number) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
       searchstr.append
-	("COALESCE(notes, '') LIKE " +
+	("LOWER(COALESCE(notes, '')) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()) +
-	 "%' AND ");
+	 "%') AND ");
 
       if(m_ui.location->currentIndex() != 0)
 	searchstr.append("location = '" +
@@ -1224,11 +1224,11 @@ void biblioteq_grey_literature::slotGo(void)
 			 "' AND ");
 
       searchstr.append
-	("COALESCE(document_status, '') LIKE " +
+	("LOWER(COALESCE(document_status, '')) LIKE LOWER(" +
 	 E +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.status->text().trimmed()) +
-	 "%' ");
+	 "%') ");
 
       if(m_ui.type->currentIndex() != 0)
 	searchstr.append
