@@ -3956,6 +3956,8 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
     {
       QString error(reply->errorString());
 
+      reply->deleteLater();
+
       QMessageBox::critical
 	(this, tr("BiblioteQ: SRU Query Error"),
 	 tr("A network error (%1) occurred.").arg(error));
@@ -3972,6 +3974,11 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
 
   if(m_sruWorking)
     m_sruWorking->deleteLater();
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    reply->deleteLater();
 
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
