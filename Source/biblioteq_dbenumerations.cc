@@ -362,7 +362,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	  m_ui.locationsTable->resizeColumnToContents(0);
 	}
-      else if(tablewidget == m_ui.minimumDaysTable)
+      else if(tablewidget == m_ui.minimumDaysTable && tablewidget)
 	{
 	  for(int j = 0; j < list.size(); j++)
 	    if(tablewidget->item(j, 1))
@@ -643,7 +643,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget == m_ui.locationsTable)
+      else if(tablewidget == m_ui.locationsTable && tablewidget)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
 	    if(tablewidget->cellWidget(j, 0) &&
@@ -732,7 +732,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget == m_ui.minimumDaysTable)
+      else if(tablewidget == m_ui.minimumDaysTable && tablewidget)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
 	    if(tablewidget->item(j, 1))
