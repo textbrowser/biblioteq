@@ -58,11 +58,10 @@ void biblioteq_marc::parseBookSRUMarc21(void)
   while(!reader.atEnd())
     if(reader.readNextStartElement())
       {
-	if(reader.name().toString().toLower().
-	   trimmed() == "datafield")
+	if(reader.name().toString().toLower().trimmed() == "datafield")
 	  {
-	    QString tag(reader.attributes().value("tag").
-			toString().toLower().trimmed());
+	    QString tag
+	      (reader.attributes().value("tag").toString().toLower().trimmed());
 
 	    if(tag == "010")
 	      {
@@ -84,6 +83,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			  str.append(reader.readElementText());
 			  break;
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -150,6 +151,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			 reader.attributes().value("code").
 			 toString().toLower().trimmed() == "b")
 			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -182,6 +185,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			 reader.attributes().value("code").
 			 toString().toLower().trimmed() == "q")
 			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -223,6 +228,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			  str.append(reader.readElementText());
 			  break;
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -267,6 +274,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			 reader.attributes().value("code").
 			 toString().toLower().trimmed() == "b")
 			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -297,6 +306,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			  str.append(reader.readElementText());
 			  break;
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -337,7 +348,15 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
-			place = reader.readElementText();
+			{
+			  QString p(reader.readElementText().trimmed());
+
+			  if(!p.isEmpty())
+			    if(!p.at(p.length() - 1).isLetter())
+			      p = p.mid(0, p.length() - 1);
+
+			  place.append(p.trimmed()).append('\n');
+			}
 		      else if(reader.attributes().value("code").
 			      toString().toLower().trimmed() == "b")
 			publisher = reader.readElementText();
@@ -350,23 +369,15 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			    if(!date.at(i).isNumber())
 			      date.remove(i, 1);
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
 
+		m_place = place.trimmed();
 		m_publicationDate = QDate::fromString
 		  ("01/01/" + date.mid(0, 4), "MM/dd/yyyy");
-
-		if(place.lastIndexOf(" ") > -1)
-		  place = place.mid(0, place.lastIndexOf(" ")).
-		    trimmed();
-
-		if(!place.isEmpty())
-		  if(!place[place.length() - 1].isLetter())
-		    place = place.remove(place.length() - 1, 1).
-		      trimmed();
-
-		m_place = place;
 
 		if(publisher.endsWith(","))
 		  publisher = publisher.mid
@@ -431,6 +442,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			  str.append(reader.readElementText());
 			  break;
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;

@@ -2801,11 +2801,9 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
   while(!reader.atEnd())
     if(reader.readNextStartElement())
-      if(reader.name().toString().toLower().
-	 trimmed() == "datafield")
+      if(reader.name().toString().toLower().trimmed() == "datafield")
 	{
-	  QString tag(reader.attributes().value("tag").
-		      toString().trimmed());
+	  QString tag(reader.attributes().value("tag").toString().trimmed());
 
 	  if(tag == "260")
 	    ma.place->clear();
@@ -2819,11 +2817,9 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
   while(!reader.atEnd())
     if(reader.readNextStartElement())
       {
-	if(reader.name().toString().toLower().
-	   trimmed() == "datafield")
+	if(reader.name().toString().toLower().trimmed() == "datafield")
 	  {
-	    QString tag(reader.attributes().value("tag").
-			toString().trimmed());
+	    QString tag(reader.attributes().value("tag").toString().trimmed());
 
 	    if(tag == "010")
 	      {
@@ -2837,8 +2833,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().trimmed() == "a")
@@ -2846,6 +2841,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 			  str.append(reader.readElementText());
 			  break;
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -2868,14 +2865,15 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().trimmed() == "a" ||
 			 reader.attributes().value("code").
 			 toString().trimmed() == "b")
 			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -2899,8 +2897,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().trimmed() == "a" ||
@@ -2911,6 +2908,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 			 reader.attributes().value("code").
 			 toString().trimmed() == "q")
 			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -2939,14 +2938,15 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().trimmed() == "a" ||
 			 reader.attributes().value("code").
 			 toString().trimmed() == "b")
 			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -2977,8 +2977,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString publisher("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().trimmed() == "a")
@@ -2989,6 +2988,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		      else if(reader.attributes().value("code").
 			      toString().trimmed() == "c")
 			date = reader.readElementText();
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;
@@ -3037,8 +3038,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    str.append(reader.readElementText());
 		  else
 		    break;
@@ -3072,8 +3072,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().trimmed() == "a")
@@ -3081,6 +3080,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 			  str.append(reader.readElementText());
 			  break;
 			}
+		      else
+			reader.skipCurrentElement();
 		    }
 		  else
 		    break;

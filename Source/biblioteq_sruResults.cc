@@ -38,8 +38,8 @@ biblioteq_sruresults::biblioteq_sruresults
 	  {
 	    if(reader.name().toString().toLower().trimmed() == "datafield")
 	      {
-		QString tag(reader.attributes().value("tag").
-			    toString().trimmed());
+		QString tag
+		  (reader.attributes().value("tag").toString().trimmed());
 
 		if(tag == "022")
 		  {
@@ -57,6 +57,8 @@ biblioteq_sruresults::biblioteq_sruresults
 			      issn.append(reader.readElementText());
 			      break;
 			    }
+			  else
+			    reader.skipCurrentElement();
 			}
 		      else
 			break;
@@ -141,14 +143,15 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
 	  if(tag == "245")
 	    {
 	      while(reader.readNextStartElement())
-		if(reader.name().toString().toLower().
-		   trimmed() == "subfield")
+		if(reader.name().toString().toLower().trimmed() == "subfield")
 		  {
 		    if(reader.attributes().value("code").
 		       toString().trimmed() == "a" ||
 		       reader.attributes().value("code").
 		       toString().trimmed() == "b")
 		      title.append(reader.readElementText());
+		    else
+		      reader.skipCurrentElement();
 		  }
 		else
 		  break;
