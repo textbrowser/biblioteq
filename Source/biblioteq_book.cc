@@ -3259,8 +3259,7 @@ void biblioteq_book::sruDownloadFinished(void)
 			       QMessageBox::No) == QMessageBox::Yes)
 	{
 	  id.edition->setCurrentIndex(0);
-	  id.edition->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
+	  id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
 	  id.marc_tags->setText(m_sruResults);
 	  biblioteq_misc_functions::highlightWidget
 	    (id.marc_tags->viewport(), QColor(162, 205, 90));
@@ -3279,8 +3278,7 @@ void biblioteq_book::sruDownloadFinished(void)
 
 	  while(!reader.atEnd())
 	    if(reader.readNextStartElement())
-	      if(reader.name().toString().toLower().
-		 trimmed() == "datafield")
+	      if(reader.name().toString().toLower().trimmed() == "datafield")
 		{
 		  QString tag(reader.attributes().value("tag").
 			      toString().toLower().trimmed());
