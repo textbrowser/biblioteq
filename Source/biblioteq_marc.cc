@@ -76,8 +76,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
@@ -105,8 +104,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    str.append(reader.readElementText());
 		  else
 		    break;
@@ -145,8 +143,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a" ||
@@ -174,8 +171,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a" ||
@@ -219,8 +215,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
@@ -265,8 +260,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str;
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a" ||
@@ -295,8 +289,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
@@ -340,8 +333,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString publisher("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
@@ -399,8 +391,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    str.append(reader.readElementText());
 		  else
 		    break;
@@ -432,8 +423,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		QString str("");
 
 		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().
-		     trimmed() == "subfield")
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
