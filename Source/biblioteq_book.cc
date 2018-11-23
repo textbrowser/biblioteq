@@ -3436,6 +3436,10 @@ void biblioteq_book::sruDownloadFinished(void)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("An SRU entry may not yet exist for the provided ISBN(s)."));
+  else
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("The SRU query produced invalid results."));
 }
 
 #if QT_VERSION < 0x050000
