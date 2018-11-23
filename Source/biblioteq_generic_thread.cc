@@ -6,7 +6,6 @@
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QNetworkReply>
-#include <QXmlStreamReader>
 
 /*
 ** -- Local Includes --
