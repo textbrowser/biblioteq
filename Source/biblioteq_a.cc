@@ -4041,7 +4041,7 @@ void biblioteq::slotConnectDB(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("The current database driver that you're using "
 			"does not support transactions. "
-			"Please upgradie your database and/or driver.")),
+			"Please upgrade your database and/or driver.")),
 	     m_db.lastError().text(),
 	     __FILE__, __LINE__);
 	  QMessageBox::critical
@@ -4059,6 +4059,8 @@ void biblioteq::slotConnectDB(void)
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  m_roles = biblioteq_misc_functions::getRoles
 	    (m_db, br.userid->text().trimmed(), errorstr).toLower();
+	  m_unaccent = biblioteq_misc_functions::hasUnaccentExtension(m_db) ?
+	    "unaccent" : "";
 	  QApplication::restoreOverrideCursor();
 
 	  if(errorstr.isEmpty())
@@ -4399,6 +4401,7 @@ void biblioteq::slotDisconnect(void)
   m_members_diag->close();
   m_history_diag->close();
   m_customquery_diag->close();
+  m_unaccent.clear();
   cq.tables_t->clear();
   cq.tables_t->setColumnCount(0);
   cq.tables_t->scrollToTop();

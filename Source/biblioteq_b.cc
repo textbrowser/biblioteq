@@ -4646,3 +4646,8 @@ void biblioteq::slotReloadBiblioteqConf(void)
   m_otheroptions->prepareSettings();
   readGlobalSetup();
 }
+
+QString biblioteq::unaccent(void) const
+{
+  return m_unaccent;
+}

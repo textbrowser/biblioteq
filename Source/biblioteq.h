@@ -206,6 +206,7 @@ class biblioteq: public QMainWindow
   biblioteq(void);
   ~biblioteq();
   QMenu *m_configToolMenu;
+  QString m_unaccent;
   QHash<QString, QString> getAmazonHash(void) const;
   QMainWindow *getMembersBrowser(void) const;
   QMap<QString, QHash<QString, QString> > getSRUMaps(void) const;
@@ -217,6 +218,7 @@ class biblioteq: public QMainWindow
   QString getRoles(void) const;
   QString getTypeFilterString(void) const;
   QString publicationDateFormat(const QString &itemType) const;
+  QString unaccent(void) const;
   QVariant setting(const QString &name) const;
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;

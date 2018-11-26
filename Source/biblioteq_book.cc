@@ -1139,6 +1139,7 @@ void biblioteq_book::slotGo(void)
 			 "%') AND ");
 
       QString ESCAPE("");
+      QString UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
