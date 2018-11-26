@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.0" language="de_DE">
 <context>
     <name>QObject</name>
     <message>
@@ -9,326 +9,310 @@
     </message>
     <message>
         <source>#</source>
-        <translation>#</translation>
+        <translation type="obsolete">#</translation>
     </message>
     <message>
         <source>Barcode: </source>
-        <translation>Strichcode:</translation>
+        <translation type="obsolete">Strichcode:</translation>
     </message>
     <message>
         <source> Location: </source>
-        <translation> Ort: </translation>
+        <translation type="obsolete"> Ort: </translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Typ: </translation>
+        <translation type="obsolete">Typ: </translation>
     </message>
     <message>
         <source>Title: </source>
-        <translation>Titel:</translation>
+        <translation type="obsolete">Titel:</translation>
     </message>
     <message>
         <source>Due Date: </source>
-        <translation>Fälligkeitsdatum: </translation>
+        <translation type="obsolete">Fälligkeitsdatum: </translation>
     </message>
     <message>
         <source>NULL availability value.</source>
-        <translation>NULL Verfügbarkeitswert</translation>
+        <translation type="obsolete">NULL Verfügbarkeitswert</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Datenbankfehler</translation>
+        <translation type="obsolete">Datenbankfehler</translation>
     </message>
     <message>
         <source>Unable to determine the query size.</source>
-        <translation>Die Ergebnisse der Anfrage können nicht bestimmt werden.</translation>
+        <translation type="obsolete">Die Ergebnisse der Anfrage können nicht bestimmt werden.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
-    </message>
-    <message>
-        <source>hardcover</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>paperback</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Exporting image(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
 </context>
 <context>
     <name>UserInfo</name>
     <message>
         <source>BiblioteQ: Borrower Information</source>
-        <translation>BiblioteQ: Ausleiher Information</translation>
+        <translation type="obsolete">BiblioteQ: Ausleiher Information</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allgemein</translation>
+        <translation type="obsolete">Allgemein</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>N/A</translation>
+        <translation type="obsolete">N/A</translation>
     </message>
     <message>
         <source>AK</source>
-        <translation>AK</translation>
+        <translation type="obsolete">AK</translation>
     </message>
     <message>
         <source>AL</source>
-        <translation>AL</translation>
+        <translation type="obsolete">AL</translation>
     </message>
     <message>
         <source>AR</source>
-        <translation>AR</translation>
+        <translation type="obsolete">AR</translation>
     </message>
     <message>
         <source>AZ</source>
-        <translation>AZ</translation>
+        <translation type="obsolete">AZ</translation>
     </message>
     <message>
         <source>CA</source>
-        <translation>CA</translation>
+        <translation type="obsolete">CA</translation>
     </message>
     <message>
         <source>CO</source>
-        <translation>CO</translation>
+        <translation type="obsolete">CO</translation>
     </message>
     <message>
         <source>CT</source>
-        <translation>CT</translation>
+        <translation type="obsolete">CT</translation>
     </message>
     <message>
         <source>DE</source>
-        <translation>DE</translation>
+        <translation type="obsolete">DE</translation>
     </message>
     <message>
         <source>FL</source>
-        <translation>FL</translation>
+        <translation type="obsolete">FL</translation>
     </message>
     <message>
         <source>GA</source>
-        <translation>GA</translation>
+        <translation type="obsolete">GA</translation>
     </message>
     <message>
         <source>HI</source>
-        <translation>HI</translation>
+        <translation type="obsolete">HI</translation>
     </message>
     <message>
         <source>IA</source>
-        <translation>IA</translation>
+        <translation type="obsolete">IA</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>IL</source>
-        <translation>IL</translation>
+        <translation type="obsolete">IL</translation>
     </message>
     <message>
         <source>IN</source>
-        <translation>IN</translation>
+        <translation type="obsolete">IN</translation>
     </message>
     <message>
         <source>KS</source>
-        <translation>KS</translation>
+        <translation type="obsolete">KS</translation>
     </message>
     <message>
         <source>KY</source>
-        <translation>KY</translation>
+        <translation type="obsolete">KY</translation>
     </message>
     <message>
         <source>LA</source>
-        <translation>LA</translation>
+        <translation type="obsolete">LA</translation>
     </message>
     <message>
         <source>MA</source>
-        <translation>MA</translation>
+        <translation type="obsolete">MA</translation>
     </message>
     <message>
         <source>MD</source>
-        <translation>MD</translation>
+        <translation type="obsolete">MD</translation>
     </message>
     <message>
         <source>ME</source>
-        <translation>ME</translation>
+        <translation type="obsolete">ME</translation>
     </message>
     <message>
         <source>MI</source>
-        <translation>MI</translation>
+        <translation type="obsolete">MI</translation>
     </message>
     <message>
         <source>MN</source>
-        <translation>MN</translation>
+        <translation type="obsolete">MN</translation>
     </message>
     <message>
         <source>MO</source>
-        <translation>MO</translation>
+        <translation type="obsolete">MO</translation>
     </message>
     <message>
         <source>MS</source>
-        <translation>MS</translation>
+        <translation type="obsolete">MS</translation>
     </message>
     <message>
         <source>MT</source>
-        <translation>MT</translation>
+        <translation type="obsolete">MT</translation>
     </message>
     <message>
         <source>NC</source>
-        <translation>NC</translation>
+        <translation type="obsolete">NC</translation>
     </message>
     <message>
         <source>ND</source>
-        <translation>ND</translation>
+        <translation type="obsolete">ND</translation>
     </message>
     <message>
         <source>NE</source>
-        <translation>NE</translation>
+        <translation type="obsolete">NE</translation>
     </message>
     <message>
         <source>NH</source>
-        <translation>NH</translation>
+        <translation type="obsolete">NH</translation>
     </message>
     <message>
         <source>NJ</source>
-        <translation>NJ</translation>
+        <translation type="obsolete">NJ</translation>
     </message>
     <message>
         <source>NM</source>
-        <translation>NM</translation>
+        <translation type="obsolete">NM</translation>
     </message>
     <message>
         <source>NV</source>
-        <translation>NV</translation>
+        <translation type="obsolete">NV</translation>
     </message>
     <message>
         <source>NY</source>
-        <translation>NY</translation>
+        <translation type="obsolete">NY</translation>
     </message>
     <message>
         <source>OH</source>
-        <translation>OH</translation>
+        <translation type="obsolete">OH</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
         <source>OR</source>
-        <translation>OR</translation>
+        <translation type="obsolete">OR</translation>
     </message>
     <message>
         <source>PA</source>
-        <translation>PA</translation>
+        <translation type="obsolete">PA</translation>
     </message>
     <message>
         <source>RI</source>
-        <translation>RI</translation>
+        <translation type="obsolete">RI</translation>
     </message>
     <message>
         <source>SC</source>
-        <translation>SC</translation>
+        <translation type="obsolete">SC</translation>
     </message>
     <message>
         <source>SD</source>
-        <translation>SD</translation>
+        <translation type="obsolete">SD</translation>
     </message>
     <message>
         <source>TN</source>
-        <translation>TN</translation>
+        <translation type="obsolete">TN</translation>
     </message>
     <message>
         <source>TX</source>
-        <translation>TX</translation>
+        <translation type="obsolete">TX</translation>
     </message>
     <message>
         <source>UT</source>
-        <translation>UT</translation>
+        <translation type="obsolete">UT</translation>
     </message>
     <message>
         <source>VA</source>
-        <translation>VA</translation>
+        <translation type="obsolete">VA</translation>
     </message>
     <message>
         <source>VT</source>
-        <translation>VT</translation>
+        <translation type="obsolete">VT</translation>
     </message>
     <message>
         <source>WA</source>
-        <translation>WA</translation>
+        <translation type="obsolete">WA</translation>
     </message>
     <message>
         <source>WI</source>
-        <translation>WI</translation>
+        <translation type="obsolete">WI</translation>
     </message>
     <message>
         <source>WV</source>
-        <translation>WV</translation>
+        <translation type="obsolete">WV</translation>
     </message>
     <message>
         <source>WY</source>
-        <translation>WY</translation>
+        <translation type="obsolete">WY</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Mitgliedsnummer</translation>
+        <translation type="obsolete">Mitgliedsnummer</translation>
     </message>
     <message>
         <source>Telephone Number</source>
-        <translation>Telefon-Nummer</translation>
+        <translation type="obsolete">Telefon-Nummer</translation>
     </message>
     <message>
         <source>Street</source>
-        <translation>Straße</translation>
+        <translation type="obsolete">Straße</translation>
     </message>
     <message>
         <source>Date of Birth</source>
-        <translation>Geburtsdatum</translation>
+        <translation type="obsolete">Geburtsdatum</translation>
     </message>
     <message>
         <source>City</source>
-        <translation>Stadt</translation>
+        <translation type="obsolete">Stadt</translation>
     </message>
     <message>
         <source>State &amp; ZIP Code</source>
-        <translation>PLZ und Ort</translation>
+        <translation type="obsolete">PLZ und Ort</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Nachname</translation>
+        <translation type="obsolete">Nachname</translation>
     </message>
     <message>
         <source>Member Since</source>
-        <translation>Mitglied seit</translation>
+        <translation type="obsolete">Mitglied seit</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Vorname</translation>
+        <translation type="obsolete">Vorname</translation>
     </message>
     <message>
         <source>Middle Initial</source>
-        <translation>Mittel-Initiale</translation>
+        <translation type="obsolete">Mittel-Initiale</translation>
     </message>
     <message>
         <source>Sex</source>
-        <translation>Geschlecht</translation>
+        <translation type="obsolete">Geschlecht</translation>
     </message>
     <message>
         <source>Female</source>
-        <translation>Weiblich</translation>
+        <translation type="obsolete">Weiblich</translation>
     </message>
     <message>
         <source>Male</source>
-        <translation>Männlich</translation>
+        <translation type="obsolete">Männlich</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -336,134 +320,126 @@
     </message>
     <message>
         <source>E-Mail Address</source>
-        <translation>E-Mail-Adresse</translation>
+        <translation type="obsolete">E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation>Auslauf-Datum</translation>
+        <translation type="obsolete">Auslauf-Datum</translation>
     </message>
     <message>
         <source>Overdue Fees</source>
-        <translation>Gebühren für Überfälligkeit</translation>
+        <translation type="obsolete">Gebühren für Überfälligkeit</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>Kommentare</translation>
+        <translation type="obsolete">Kommentare</translation>
     </message>
     <message>
         <source>Site</source>
-        <translation type="unfinished">Seite</translation>
+        <translation type="obsolete">Seite</translation>
     </message>
     <message>
         <source>Class</source>
-        <translation type="unfinished">Klasse</translation>
+        <translation type="obsolete">Klasse</translation>
     </message>
     <message>
         <source>General Registration Number</source>
-        <translation>Generelle Registrations-Nummer</translation>
+        <translation type="obsolete">Generelle Registrations-Nummer</translation>
     </message>
     <message>
         <source>Previous Member</source>
-        <translation>Vorheriges Mitglied</translation>
+        <translation type="obsolete">Vorheriges Mitglied</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>Next Member</source>
-        <translation>Nächstes Mitglied</translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Nächstes Mitglied</translation>
     </message>
 </context>
 <context>
     <name>adminBrowser</name>
     <message>
         <source>BiblioteQ: Administrator Browser</source>
-        <translation>BiblioteQ: Administrator Ansicht</translation>
+        <translation type="obsolete">BiblioteQ: Administrator Ansicht</translation>
     </message>
     <message>
         <source>Item Creation</source>
-        <translation>Ausleihe Erstellen</translation>
+        <translation type="obsolete">Ausleihe Erstellen</translation>
     </message>
     <message>
         <source>Item Deletion</source>
-        <translation>Ausleihe Löschen</translation>
+        <translation type="obsolete">Ausleihe Löschen</translation>
     </message>
     <message>
         <source>Item Returns</source>
-        <translation>Ausleihe Rückgabe</translation>
+        <translation type="obsolete">Ausleihe Rückgabe</translation>
     </message>
     <message>
         <source>Item Reservations</source>
-        <translation>Ausleihe Reservieren</translation>
+        <translation type="obsolete">Ausleihe Reservieren</translation>
     </message>
     <message>
         <source>Item Updates</source>
-        <translation>Ausleihe Aktualisieren</translation>
+        <translation type="obsolete">Ausleihe Aktualisieren</translation>
     </message>
     <message>
         <source>Member Creation</source>
-        <translation>Nutzer anlegen</translation>
+        <translation type="obsolete">Nutzer anlegen</translation>
     </message>
     <message>
         <source>Member Deletion</source>
-        <translation>Nutzer löschen</translation>
+        <translation type="obsolete">Nutzer löschen</translation>
     </message>
     <message>
         <source>Member Updates</source>
-        <translation>Nutzer aktualisieren</translation>
+        <translation type="obsolete">Nutzer aktualisieren</translation>
     </message>
     <message>
         <source>Reservation Histories</source>
-        <translation>Ausleih-Historie</translation>
+        <translation type="obsolete">Ausleih-Historie</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation>Administrator</translation>
+        <translation type="obsolete">Administrator</translation>
     </message>
     <message>
         <source>Circulation</source>
-        <translation>Zirkulation</translation>
+        <translation type="obsolete">Zirkulation</translation>
     </message>
     <message>
         <source>Librarian</source>
-        <translation>Bibliothekar</translation>
+        <translation type="obsolete">Bibliothekar</translation>
     </message>
     <message>
         <source>Membership</source>
-        <translation>Nutzung</translation>
+        <translation type="obsolete">Nutzung</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Add Administrator</source>
-        <translation>Administrator hinzufügen</translation>
+        <translation type="obsolete">Administrator hinzufügen</translation>
     </message>
     <message>
         <source>Delete Selected Administrator</source>
-        <translation>Lösche ausgewählten Administrator</translation>
+        <translation type="obsolete">Lösche ausgewählten Administrator</translation>
     </message>
     <message>
         <source>Save Changes</source>
-        <translation>Änderungen speichern</translation>
+        <translation type="obsolete">Änderungen speichern</translation>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation>Aktualisiere die Tabelle</translation>
+        <translation type="obsolete">Aktualisiere die Tabelle</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -471,26 +447,22 @@
     </message>
     <message>
         <source>Close Browser</source>
-        <translation>Browser Schließen</translation>
-    </message>
-    <message>
-        <source>Please use lower-case IDs.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Browser Schließen</translation>
     </message>
 </context>
 <context>
     <name>allDialog</name>
     <message>
         <source>BiblioteQ: General Database Search</source>
-        <translation>BiblioteQ: Allgemeine Datenbankabfrage</translation>
+        <translation type="obsolete">BiblioteQ: Allgemeine Datenbankabfrage</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID-Nummer</translation>
+        <translation type="obsolete">ID-Nummer</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Release Date</source>
@@ -502,7 +474,7 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum der Veröffentlichung</translation>
+        <translation type="obsolete">Datum der Veröffentlichung</translation>
     </message>
     <message>
         <source>MM/yyyy</source>
@@ -510,106 +482,78 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Verleger</translation>
+        <translation type="obsolete">Verleger</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorien</translation>
+        <translation type="obsolete">Kategorien</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Währung</translation>
+        <translation type="obsolete">Währung</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Schlüsselworte</translation>
+        <translation type="obsolete">Schlüsselworte</translation>
     </message>
     <message>
         <source>Available</source>
-        <translation>Verfügbar</translation>
+        <translation type="obsolete">Verfügbar</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Monetary Units, Price, Publication Date, and Publisher will be ignored for Grey Literature and Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Case-Insensitive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear the main table and reset the search widgets.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>biblioteq</name>
     <message>
         <source> in file </source>
-        <translation type="unfinished">in Datei</translation>
+        <translation type="obsolete">in Datei</translation>
     </message>
     <message>
         <source>, line </source>
-        <translation type="unfinished">, Zeile</translation>
+        <translation type="obsolete">, Zeile</translation>
     </message>
     <message>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>An unknown error occurred in file </source>
-        <translation type="unfinished">Unbekannter Fehler in der Datei</translation>
+        <translation type="obsolete">Unbekannter Fehler in der Datei</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
-        <translation type="unfinished">BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
@@ -617,363 +561,363 @@
     </message>
     <message>
         <source>Administrator Mode</source>
-        <translation type="unfinished">Administratorinnen Modus</translation>
+        <translation type="obsolete">Administratorinnen Modus</translation>
     </message>
     <message>
         <source>Circulation Mode</source>
-        <translation type="unfinished">Zirkulationsmodus</translation>
+        <translation type="obsolete">Zirkulationsmodus</translation>
     </message>
     <message>
         <source>Librarian Mode</source>
-        <translation type="unfinished">Bibliotheks Modus</translation>
+        <translation type="obsolete">Bibliotheks Modus</translation>
     </message>
     <message>
         <source>Membership Mode</source>
-        <translation type="unfinished">Nutzerinnen Modus</translation>
+        <translation type="obsolete">Nutzerinnen Modus</translation>
     </message>
     <message>
         <source>Privileged Mode</source>
-        <translation type="unfinished">Vorrechte-Modus</translation>
+        <translation type="obsolete">Vorrechte-Modus</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished">Unverbunden</translation>
+        <translation type="obsolete">Unverbunden</translation>
     </message>
     <message>
         <source>Standard User Mode</source>
-        <translation type="unfinished">Standard Nutzerinnen Modus</translation>
+        <translation type="obsolete">Standard Nutzerinnen Modus</translation>
     </message>
     <message>
         <source>Empty Error Log</source>
-        <translation type="unfinished">Leerer Fehlermodus</translation>
+        <translation type="obsolete">Leerer Fehlermodus</translation>
     </message>
     <message>
         <source>BiblioteQ: About</source>
-        <translation type="unfinished">BiblioteQ: Über das Programm</translation>
+        <translation type="obsolete">BiblioteQ: Über das Programm</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Please select at least one item to modify.</source>
-        <translation type="unfinished">Bitte wähle zumindest eine Ausleihe zur Bearbeitung aus.</translation>
+        <translation type="obsolete">Bitte wähle zumindest eine Ausleihe zur Bearbeitung aus.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to modify the </source>
-        <translation type="unfinished">Bist Du sicher, dass Du dieses bearbeiten willst:</translation>
+        <translation type="obsolete">Bist Du sicher, dass Du dieses bearbeiten willst:</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation type="unfinished">BiblioteQ: Fehler</translation>
+        <translation type="obsolete">BiblioteQ: Fehler</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s type.</source>
-        <translation type="unfinished">Kann den ausgewählten Typ der Ausleihe nicht bestimmen.</translation>
+        <translation type="obsolete">Kann den ausgewählten Typ der Ausleihe nicht bestimmen.</translation>
     </message>
     <message>
         <source>Please select at least one item to view.</source>
-        <translation type="unfinished">Bitte wähle für eien Ansicht zumindest eine Ausleihe aus.</translation>
+        <translation type="obsolete">Bitte wähle für eien Ansicht zumindest eine Ausleihe aus.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to view the </source>
-        <translation type="unfinished">Bist Du sicher, Dir folgendes anzuschauen:</translation>
+        <translation type="obsolete">Bist Du sicher, Dir folgendes anzuschauen:</translation>
     </message>
     <message>
         <source>Please select an item to delete.</source>
-        <translation type="unfinished">Bitte wähle eine Ausleihe, um diese zu löschen.</translation>
+        <translation type="obsolete">Bitte wähle eine Ausleihe, um diese zu löschen.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation type="obsolete">Fehler</translation>
     </message>
     <message>
         <source>The main table does not contain enough information for item deletion.</source>
-        <translation type="unfinished">Die Haupt-Tabelle enthält nicht genügend Informationen, um die Ausleihe zu löschen.</translation>
+        <translation type="obsolete">Die Haupt-Tabelle enthält nicht genügend Informationen, um die Ausleihe zu löschen.</translation>
     </message>
     <message>
         <source>Unable to determine if the item has been reserved.</source>
-        <translation type="unfinished">Kann den Reservierungsstatus der Ausleihe nicht bestimmen.</translation>
+        <translation type="obsolete">Kann den Reservierungsstatus der Ausleihe nicht bestimmen.</translation>
     </message>
     <message>
         <source>Reserved items may not be deleted.</source>
-        <translation type="unfinished">Reservierte Ausleihen dürfen nicht gelöscht werden.</translation>
+        <translation type="obsolete">Reservierte Ausleihen dürfen nicht gelöscht werden.</translation>
     </message>
     <message>
         <source>Unable to determine if the item has been requested.</source>
-        <translation type="unfinished">Kann nicht bestimmen, ob die Ausleihe angefragt wurde.</translation>
+        <translation type="obsolete">Kann nicht bestimmen, ob die Ausleihe angefragt wurde.</translation>
     </message>
     <message>
         <source>Requested items may not be deleted.</source>
-        <translation type="unfinished">Angefragte Ausleihen dürfen nicht gelöscht werden.</translation>
+        <translation type="obsolete">Angefragte Ausleihen dürfen nicht gelöscht werden.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation type="unfinished">Bist Du sicher, dass die gewählte(n) Ausleihe(n) dauerhaft gelöscht werden?</translation>
+        <translation type="obsolete">Bist Du sicher, dass die gewählte(n) Ausleihe(n) dauerhaft gelöscht werden?</translation>
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
-        <translation type="unfinished">Lösche die ausgewählten Ausleihen...</translation>
+        <translation type="obsolete">Lösche die ausgewählten Ausleihen...</translation>
     </message>
     <message>
         <source>Unable to delete the item.</source>
-        <translation type="unfinished">Kann die Ausleihe nicht löschen.</translation>
+        <translation type="obsolete">Kann die Ausleihe nicht löschen.</translation>
     </message>
     <message>
         <source>Unable to delete all or some of the selected items.</source>
-        <translation type="unfinished">Kann alle oder einige ausgewählte Ausleihen nicht löschen.</translation>
+        <translation type="obsolete">Kann alle oder einige ausgewählte Ausleihen nicht löschen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create New Member</source>
-        <translation type="unfinished">BiblioteQ: Erstelle eine neue Nutzerin</translation>
+        <translation type="obsolete">BiblioteQ: Erstelle eine neue Nutzerin</translation>
     </message>
     <message>
         <source>The Member ID </source>
-        <translation type="unfinished">Die ID der Nutzerin.</translation>
+        <translation type="obsolete">Die ID der Nutzerin.</translation>
     </message>
     <message>
         <source> already exists.</source>
-        <translation type="unfinished">besteht bereits.</translation>
+        <translation type="obsolete">besteht bereits.</translation>
     </message>
     <message>
         <source>Please provide a valid First Name.</source>
-        <translation type="unfinished">Bitte gebe einen gültigen Vornamen ein.</translation>
+        <translation type="obsolete">Bitte gebe einen gültigen Vornamen ein.</translation>
     </message>
     <message>
         <source>Please provide a valid Last Name.</source>
-        <translation type="unfinished">Bitte geben einen gültigen Nachnamen ein.</translation>
+        <translation type="obsolete">Bitte geben einen gültigen Nachnamen ein.</translation>
     </message>
     <message>
         <source>Please provide a valid Street.</source>
-        <translation type="unfinished">Bitte gebe eine gültige Strasse ein.</translation>
+        <translation type="obsolete">Bitte gebe eine gültige Strasse ein.</translation>
     </message>
     <message>
         <source>Please provide a valid City.</source>
-        <translation type="unfinished">Bitte gebe eine gültige Stadt ein.</translation>
+        <translation type="obsolete">Bitte gebe eine gültige Stadt ein.</translation>
     </message>
     <message>
         <source>Unable to determine the uniqueness of the proposed member.</source>
-        <translation type="unfinished">Kann die Einzigartigkeit der vorgeschlagenen Nutzerin nicht bestimmen.</translation>
+        <translation type="obsolete">Kann die Einzigartigkeit der vorgeschlagenen Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
         <source>An identical member already exists.</source>
-        <translation type="unfinished">Eine identische Nutzerin besteht bereits.</translation>
+        <translation type="obsolete">Eine identische Nutzerin besteht bereits.</translation>
     </message>
     <message>
         <source>Unable to save the member&apos;s information.</source>
-        <translation type="unfinished">Kann die Information zur Nutzerin nicht speichern.</translation>
+        <translation type="obsolete">Kann die Information zur Nutzerin nicht speichern.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create a database account for the new member.</source>
-        <translation type="unfinished">Ein Fehler trat auf, als versucht wurde, einen Datenbank-Zugang für die neue Nutzerin anzulegen.</translation>
+        <translation type="obsolete">Ein Fehler trat auf, als versucht wurde, einen Datenbank-Zugang für die neue Nutzerin anzulegen.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to update the database account for </source>
-        <translation type="unfinished">Ein Fehler entstand, während versucht wurde, den Datenbank-Zugang zu aktualisieren für:</translation>
+        <translation type="obsolete">Ein Fehler entstand, während versucht wurde, den Datenbank-Zugang zu aktualisieren für:</translation>
     </message>
     <message>
         <source>BiblioteQ: Information</source>
-        <translation type="unfinished">BiblioteQ: Information</translation>
+        <translation type="obsolete">BiblioteQ: Information</translation>
     </message>
     <message>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
-        <translation type="unfinished">Bitte benachrichtige die neue Nutzerin, dass das voreingestellte Passwort auf ein temporäres Passwort umgeändert wurde.</translation>
+        <translation type="obsolete">Bitte benachrichtige die neue Nutzerin, dass das voreingestellte Passwort auf ein temporäres Passwort umgeändert wurde.</translation>
     </message>
     <message>
         <source>Please select a member to delete.</source>
-        <translation type="unfinished">Bitte wähle eine Nutzerin zum Löschen.</translation>
+        <translation type="obsolete">Bitte wähle eine Nutzerin zum Löschen.</translation>
     </message>
     <message>
         <source>Unable to determine the number of items that are reserved by the selected member.</source>
-        <translation type="unfinished">Kann de Anzahl der reservierten Ausleihen der gewählten Nutzerin nicht bestimmen.</translation>
+        <translation type="obsolete">Kann de Anzahl der reservierten Ausleihen der gewählten Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
         <source>You may not remove a member that has reserved items.</source>
-        <translation type="unfinished">Du darfste eine Nutzerin mir reservierten Ausleihen nicht entfernen.</translation>
+        <translation type="obsolete">Du darfste eine Nutzerin mir reservierten Ausleihen nicht entfernen.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation type="unfinished">Bist Du sicher, dass die ausgewählte Nutzerin gelöscht werden soll?</translation>
+        <translation type="obsolete">Bist Du sicher, dass die ausgewählte Nutzerin gelöscht werden soll?</translation>
     </message>
     <message>
         <source>Unable to remove the selected member.</source>
-        <translation type="unfinished">Kann die ausgewählte Nutzerin nicht entfernen.</translation>
+        <translation type="obsolete">Kann die ausgewählte Nutzerin nicht entfernen.</translation>
     </message>
     <message>
         <source>Unable to remove the patron account </source>
-        <translation type="unfinished">Kann den Patron-Zugang nicht entfernen.</translation>
+        <translation type="obsolete">Kann den Patron-Zugang nicht entfernen.</translation>
     </message>
     <message>
         <source>Available</source>
-        <translation type="unfinished">Verfügbar</translation>
+        <translation type="obsolete">Verfügbar</translation>
     </message>
     <message>
         <source>Unavailable</source>
-        <translation type="unfinished">Nicht Verfügbar</translation>
+        <translation type="obsolete">Nicht Verfügbar</translation>
     </message>
     <message>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
-        <translation type="unfinished">Die ausgewählte Datenbank des Bereiches hat keinen Treiber, der mit ihr verbunden ist.</translation>
+        <translation type="obsolete">Die ausgewählte Datenbank des Bereiches hat keinen Treiber, der mit ihr verbunden ist.</translation>
     </message>
     <message>
         <source>The following drivers are available: </source>
-        <translation type="unfinished">Die folgenden Treiber sind verfügbar:</translation>
+        <translation type="obsolete">Die folgenden Treiber sind verfügbar:</translation>
     </message>
     <message>
         <source>In addition, Qt expects plugins to exist in: </source>
-        <translation type="unfinished">Ergänzend, Qt erwartet vorhandene Plugins in:</translation>
+        <translation type="obsolete">Ergänzend, Qt erwartet vorhandene Plugins in:</translation>
     </message>
     <message>
         <source>Please contact your administrator.</source>
-        <translation type="unfinished">Bitte kontaktiere Deine Administratorin.</translation>
+        <translation type="obsolete">Bitte kontaktiere Deine Administratorin.</translation>
     </message>
     <message>
         <source>Unable to open a database connection with the provided information.</source>
-        <translation type="unfinished">Kann mit der vorhandenen Information keine Datenbankverbindung herstellen.</translation>
+        <translation type="obsolete">Kann mit der vorhandenen Information keine Datenbankverbindung herstellen.</translation>
     </message>
     <message>
         <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
-        <translation type="unfinished">Der aktuell vorhandene Datenbank Treiber unterstützt keine Datenbank-Übertragungen. Bitte erneuere Deine Datenbank und/oder die Treiber.</translation>
+        <translation type="obsolete">Der aktuell vorhandene Datenbank Treiber unterstützt keine Datenbank-Übertragungen. Bitte erneuere Deine Datenbank und/oder die Treiber.</translation>
     </message>
     <message>
         <source>It appears that the user </source>
-        <translation type="unfinished">Es scheint, als wenn die Nutzerin</translation>
+        <translation type="obsolete">Es scheint, als wenn die Nutzerin</translation>
     </message>
     <message>
         <source> does not have administrator privileges.</source>
-        <translation type="unfinished">nicht die Rechte einer Administratorin hat.</translation>
+        <translation type="obsolete">nicht die Rechte einer Administratorin hat.</translation>
     </message>
     <message>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
-        <translation type="unfinished">Es scheint, dass Du versuchst,  in einem nicht-administrierbaren Modus als Administratorin zu handeln.</translation>
+        <translation type="obsolete">Es scheint, dass Du versuchst,  in einem nicht-administrierbaren Modus als Administratorin zu handeln.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished">Verbunden</translation>
+        <translation type="obsolete">Verbunden</translation>
     </message>
     <message>
         <source>Request Selected Item(s)</source>
-        <translation type="unfinished">Frage ausgewählte Ausleihe(n) an</translation>
+        <translation type="obsolete">Frage ausgewählte Ausleihe(n) an</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Circulation</source>
-        <translation type="unfinished">Zirkulation</translation>
+        <translation type="obsolete">Zirkulation</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation type="obsolete">Vorname</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation type="obsolete">Nachname</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished">Auslauf-Datum</translation>
+        <translation type="obsolete">Auslauf-Datum</translation>
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation type="unfinished">Bücher reserviert</translation>
+        <translation type="obsolete">Bücher reserviert</translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation type="unfinished">CDs reserviert</translation>
+        <translation type="obsolete">CDs reserviert</translation>
     </message>
     <message>
         <source>DVDs Reserved</source>
-        <translation type="unfinished">DVDs reserviert</translation>
+        <translation type="obsolete">DVDs reserviert</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation type="unfinished">Journale reserviert</translation>
+        <translation type="obsolete">Journale reserviert</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation type="unfinished">Magazine reserviert</translation>
+        <translation type="obsolete">Magazine reserviert</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation type="unfinished">Videospiele reserviert</translation>
+        <translation type="obsolete">Videospiele reserviert</translation>
     </message>
     <message>
         <source>Unable to retrieve member data for table populating.</source>
-        <translation type="unfinished">Kann  für die Erstellung der Tabelle die Daten der Nutzerin nicht erreichen.</translation>
+        <translation type="obsolete">Kann  für die Erstellung der Tabelle die Daten der Nutzerin nicht erreichen.</translation>
     </message>
     <message>
         <source>Populating the table...</source>
-        <translation type="unfinished">Erstelle die Tabelle...</translation>
+        <translation type="obsolete">Erstelle die Tabelle...</translation>
     </message>
     <message>
         <source>Unable to determine the number of reserved items for the selected member.</source>
-        <translation type="unfinished">Kann die Anzahl der reservierten Ausleihen für die ausgewählte Nutzerin nicht bestimmen.</translation>
+        <translation type="obsolete">Kann die Anzahl der reservierten Ausleihen für die ausgewählte Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
         <source>Please select a member to modify.</source>
-        <translation type="unfinished">Bitte wähle eine Nutzerin zur Bearbeitung.</translation>
+        <translation type="obsolete">Bitte wähle eine Nutzerin zur Bearbeitung.</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected member&apos;s information.</source>
-        <translation type="unfinished">Kann die Informationen zur ausgewählten Nutzerin nicht erhalten.</translation>
+        <translation type="obsolete">Kann die Informationen zur ausgewählten Nutzerin nicht erhalten.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Member</source>
-        <translation type="unfinished">BiblioteQ: Bearbeite Stammdaten zur Nutzerin</translation>
+        <translation type="obsolete">BiblioteQ: Bearbeite Stammdaten zur Nutzerin</translation>
     </message>
     <message>
         <source>Unable to determine the availability of the selected item.</source>
-        <translation type="unfinished">Kann die Verfügbarkeit der ausgewählten Ausleihen nicht bestimmen.</translation>
+        <translation type="obsolete">Kann die Verfügbarkeit der ausgewählten Ausleihen nicht bestimmen.</translation>
     </message>
     <message>
         <source>Please select a member and an item to continue with the reservation process.</source>
-        <translation type="unfinished">Bitte wähle eine Nutzerin und eine Ausleihe, um mit dem Reservierungsprozess fortzufahren.</translation>
+        <translation type="obsolete">Bitte wähle eine Nutzerin und eine Ausleihe, um mit dem Reservierungsprozess fortzufahren.</translation>
     </message>
     <message>
         <source>Cancel Selected Request(s)</source>
-        <translation type="unfinished">Die ausgewählte(n) Anfrage(n) abbrechen.</translation>
+        <translation type="obsolete">Die ausgewählte(n) Anfrage(n) abbrechen.</translation>
     </message>
     <message>
         <source>Error Log Active</source>
-        <translation type="unfinished">Fehler-Aufzeichnung aktiv</translation>
+        <translation type="obsolete">Fehler-Aufzeichnung aktiv</translation>
     </message>
     <message>
         <source>Memory failure in addError()!</source>
-        <translation type="unfinished">Speicher Fehler in addError()!</translation>
+        <translation type="obsolete">Speicher Fehler in addError()!</translation>
     </message>
     <message>
         <source>Event Time</source>
-        <translation type="unfinished">Ereigniszeit</translation>
+        <translation type="obsolete">Ereigniszeit</translation>
     </message>
     <message>
         <source>Event Type</source>
-        <translation type="unfinished">Ereignistyp</translation>
+        <translation type="obsolete">Ereignistyp</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <source>Line Number</source>
-        <translation type="unfinished">Zeilennummer</translation>
+        <translation type="obsolete">Zeilennummer</translation>
     </message>
     <message>
         <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
-        <translation type="unfinished">Um die reservierten Ausleihen einer Nutzerin anzuzeigen, musst Du zuerst die Nutzerin auswählen.</translation>
+        <translation type="obsolete">Um die reservierten Ausleihen einer Nutzerin anzuzeigen, musst Du zuerst die Nutzerin auswählen.</translation>
     </message>
     <message>
         <source>In order to reserve an item, you must first select it.</source>
-        <translation type="unfinished">Um eine Ausleihe zu reservieren, musst Du zuerst eine auswählen.</translation>
+        <translation type="obsolete">Um eine Ausleihe zu reservieren, musst Du zuerst eine auswählen.</translation>
     </message>
     <message>
         <source>Would you like to retrieve the list of members?</source>
-        <translation type="unfinished">Möchtest Du eine Liste aller Nutzerinnen erhalten?</translation>
+        <translation type="obsolete">Möchtest Du eine Liste aller Nutzerinnen erhalten?</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
@@ -1001,191 +945,191 @@
     </message>
     <message>
         <source>Table Name</source>
-        <translation type="unfinished">Tabellenname</translation>
+        <translation type="obsolete">Tabellenname</translation>
     </message>
     <message>
         <source>Column</source>
-        <translation type="unfinished">Spalte</translation>
+        <translation type="obsolete">Spalte</translation>
     </message>
     <message>
         <source>Column Type</source>
-        <translation type="unfinished">Spaltentyp</translation>
+        <translation type="obsolete">Spaltentyp</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kann nicht genügend Speicher für das Objekt  &quot;Ausleihe 2&quot; zur Verfügung stellen. Dieses ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Kann nicht genügend Speicher für das Objekt  &quot;Ausleihe 2&quot; zur Verfügung stellen. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kann nicht genügend Speicher für das Objekt &quot;Ausleihe 1&quot; zur Verfügung stellen. Dieses ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Kann nicht genügend Speicher für das Objekt &quot;Ausleihe 1&quot; zur Verfügung stellen. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Please provide a valid SQL statement.</source>
-        <translation type="unfinished">Bitte stelle eine gültige SQL-Aussage zur Verfügung.</translation>
+        <translation type="obsolete">Bitte stelle eine gültige SQL-Aussage zur Verfügung.</translation>
     </message>
     <message>
         <source>Please provide a non-destructive SQL statement.</source>
-        <translation type="unfinished">Bitte stelle eine nicht-destruktive SQL-Aussage zur Verfügung.</translation>
+        <translation type="obsolete">Bitte stelle eine nicht-destruktive SQL-Aussage zur Verfügung.</translation>
     </message>
     <message>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
-        <translation type="unfinished">Um die reservierten Ausleihen einer Nutzerin zu drucken, musst Du zuerst die Nutzerin auswählen.</translation>
+        <translation type="obsolete">Um die reservierten Ausleihen einer Nutzerin zu drucken, musst Du zuerst die Nutzerin auswählen.</translation>
     </message>
     <message>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation type="unfinished">Die von Dir ausgewählte Nutzerin hat keine reservierten Ausleihen.</translation>
+        <translation type="obsolete">Die von Dir ausgewählte Nutzerin hat keine reservierten Ausleihen.</translation>
     </message>
     <message>
         <source>Reserved Items for </source>
-        <translation type="unfinished">Reservierte Ausleihen für</translation>
+        <translation type="obsolete">Reservierte Ausleihen für</translation>
     </message>
     <message>
         <source>, </source>
-        <translation type="unfinished">,</translation>
+        <translation type="obsolete">,</translation>
     </message>
     <message>
         <source>Unable to determine the reserved items for the selected member.</source>
-        <translation type="unfinished">Kann die reservierten Ausleihen für die ausgewählte Nutzerin nicht bestimmen.</translation>
+        <translation type="obsolete">Kann die reservierten Ausleihen für die ausgewählte Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
-        <translation type="unfinished">Um die Reservierungs-Historie einer Nutzerin anzuzeigen, musst du zuerst eine Nutzerin auswählen.</translation>
+        <translation type="obsolete">Um die Reservierungs-Historie einer Nutzerin anzuzeigen, musst du zuerst eine Nutzerin auswählen.</translation>
     </message>
     <message>
         <source>Unable to retrieve reservation history data for table populating.</source>
-        <translation type="unfinished">Kann die Daten der Reservierungs-Historie nicht erhalten, um damit die Tabelle zu füllen.</translation>
+        <translation type="obsolete">Kann die Daten der Reservierungs-Historie nicht erhalten, um damit die Tabelle zu füllen.</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Original Due Date</source>
-        <translation type="unfinished">Originäres Rückgabedatum</translation>
+        <translation type="obsolete">Originäres Rückgabedatum</translation>
     </message>
     <message>
         <source>The selected member does not yet have a reservation history to print.</source>
-        <translation type="unfinished">Die ausgewählte Nutzerin hat bislang keine Reservierungshistorie, die gedruckt werden könnte.</translation>
+        <translation type="obsolete">Die ausgewählte Nutzerin hat bislang keine Reservierungshistorie, die gedruckt werden könnte.</translation>
     </message>
     <message>
         <source>You do not yet have a reservation history to print.</source>
-        <translation type="unfinished">Du hast bislang keine Reservierungs-Historie, die gedruckt werden kann.</translation>
+        <translation type="obsolete">Du hast bislang keine Reservierungs-Historie, die gedruckt werden kann.</translation>
     </message>
     <message>
         <source>Reservation History</source>
-        <translation type="unfinished">Reservierungs-Historie</translation>
+        <translation type="obsolete">Reservierungs-Historie</translation>
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
-        <translation type="unfinished">Das Passwort muss wenigstens acht Zeichen umfassen.</translation>
+        <translation type="obsolete">Das Passwort muss wenigstens acht Zeichen umfassen.</translation>
     </message>
     <message>
         <source>The passwords do not match. Please try again.</source>
-        <translation type="unfinished">Die Passwörter stimmen nicht überein. Bitte versuche es erneut.</translation>
+        <translation type="obsolete">Die Passwörter stimmen nicht überein. Bitte versuche es erneut.</translation>
     </message>
     <message>
         <source>Unable to save the new password.</source>
-        <translation type="unfinished">Kann das neue Passwort nicht speichern.</translation>
+        <translation type="obsolete">Kann das neue Passwort nicht speichern.</translation>
     </message>
     <message>
         <source>BiblioteQ: SQLite Database Selection</source>
-        <translation type="unfinished">BiblioteQ: SQLite Datenbank Auswahl</translation>
+        <translation type="obsolete">BiblioteQ: SQLite Datenbank Auswahl</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kann nicht genügend Speicherplatz für das Objekt &quot;checkBox&quot; erhalten. Das ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Kann nicht genügend Speicherplatz für das Objekt &quot;checkBox&quot; erhalten. Das ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>To delete an entry, you must first select it.</source>
-        <translation type="unfinished">Um eine Ausleihe zu löschen, musst Du zuerst eine auswählen.</translation>
+        <translation type="obsolete">Um eine Ausleihe zu löschen, musst Du zuerst eine auswählen.</translation>
     </message>
     <message>
         <source>As an administrator, you may not delete your account.</source>
-        <translation type="unfinished">Als Administratorin darfst Du Deinen eigenen Zugang nicht löschen.</translation>
+        <translation type="obsolete">Als Administratorin darfst Du Deinen eigenen Zugang nicht löschen.</translation>
     </message>
     <message>
         <source>Unable to retrieve administrator data for table populating.</source>
-        <translation type="unfinished">Kann die Daten der Administratorin nicht erhalten, um die Tabelle zu erstellen.</translation>
+        <translation type="obsolete">Kann die Daten der Administratorin nicht erhalten, um die Tabelle zu erstellen.</translation>
     </message>
     <message>
         <source>Duplicate administrator ids are not allowed.</source>
-        <translation type="unfinished">Doppelte IDs für Administratorinnen sind nicht erlaubt.</translation>
+        <translation type="obsolete">Doppelte IDs für Administratorinnen sind nicht erlaubt.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove </source>
-        <translation type="unfinished">Während des Entfernens trat ein Fehler auf.</translation>
+        <translation type="obsolete">Während des Entfernens trat ein Fehler auf.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the database account </source>
-        <translation type="unfinished">Während des Versuchs, den Datenbank-Zugang zu entfernen, trat ein Fehler auf.</translation>
+        <translation type="obsolete">Während des Versuchs, den Datenbank-Zugang zu entfernen, trat ein Fehler auf.</translation>
     </message>
     <message>
         <source>Saving administrator information...</source>
-        <translation type="unfinished">Speichere die Informationen zur Administratorin...</translation>
+        <translation type="obsolete">Speichere die Informationen zur Administratorin...</translation>
     </message>
     <message>
         <source>Unable to create or update the administrator entry for </source>
-        <translation type="unfinished">Kann den Eintrag zur Administration nicht erstellen oder aktualisieren für</translation>
+        <translation type="obsolete">Kann den Eintrag zur Administration nicht erstellen oder aktualisieren für</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create a database account for </source>
-        <translation type="unfinished">Ein Fehler trat auf während der Erstellung des Datenbank Zugangs für</translation>
+        <translation type="obsolete">Ein Fehler trat auf während der Erstellung des Datenbank Zugangs für</translation>
     </message>
     <message>
         <source>An error occurred while attempting to revoke privileges from </source>
-        <translation type="unfinished">Ein Fehler trat auf während des Versuches die Rechts zu entziehen von</translation>
+        <translation type="obsolete">Ein Fehler trat auf während des Versuches die Rechts zu entziehen von</translation>
     </message>
     <message>
         <source>An error occurred while attempting to grant privileges to </source>
-        <translation type="unfinished">Ein Fehler trat auf während des Versuches die Rechte zu gewähren für</translation>
+        <translation type="obsolete">Ein Fehler trat auf während des Versuches die Rechte zu gewähren für</translation>
     </message>
     <message>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation type="unfinished">Bitte benachrichtige neue Administratorinnen, dass ihr voreingestelltes Passwort auf ein temporäres Passwort gesetzt wurde.</translation>
+        <translation type="obsolete">Bitte benachrichtige neue Administratorinnen, dass ihr voreingestelltes Passwort auf ein temporäres Passwort gesetzt wurde.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to save the administrator information.</source>
-        <translation type="unfinished">Ein Fehler trat auf während des Versuches, die Information der Administration zu speichern.</translation>
+        <translation type="obsolete">Ein Fehler trat auf während des Versuches, die Information der Administration zu speichern.</translation>
     </message>
     <message>
         <source>Please select at least one item to place on request.</source>
-        <translation type="unfinished">Bitte wähle zumindest eine Ausleihe, um sie auf Anfrage zu setzen.</translation>
+        <translation type="obsolete">Bitte wähle zumindest eine Ausleihe, um sie auf Anfrage zu setzen.</translation>
     </message>
     <message>
         <source>Please select at least one request to cancel.</source>
-        <translation type="unfinished">Bitte wähle zumindest eine Anfrage, um sie abzubrechen.</translation>
+        <translation type="obsolete">Bitte wähle zumindest eine Anfrage, um sie abzubrechen.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation type="unfinished">Bist Du sicher, das die ausgewählten Anfragen abgebrochen werden sollen?</translation>
+        <translation type="obsolete">Bist Du sicher, das die ausgewählten Anfragen abgebrochen werden sollen?</translation>
     </message>
     <message>
         <source>Requesting the selected item(s)...</source>
-        <translation type="unfinished">Frage die ausgewählen Ausleihen an...</translation>
+        <translation type="obsolete">Frage die ausgewählen Ausleihen an...</translation>
     </message>
     <message>
         <source>Unable to request the item.</source>
-        <translation type="unfinished">Kann die Ausleihe nicht anfragen.</translation>
+        <translation type="obsolete">Kann die Ausleihe nicht anfragen.</translation>
     </message>
     <message>
         <source>Unable to cancel the request.</source>
-        <translation type="unfinished">Kann die Anfrage nicht abbrechen.</translation>
+        <translation type="obsolete">Kann die Anfrage nicht abbrechen.</translation>
     </message>
     <message>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
-        <translation type="unfinished">Kann einige oder alle ausgewählte Ausleihen nicht anfragen. Bitte prüfen, dass nicht doppelte Ausleihen angefragt werden.</translation>
+        <translation type="obsolete">Kann einige oder alle ausgewählte Ausleihen nicht anfragen. Bitte prüfen, dass nicht doppelte Ausleihen angefragt werden.</translation>
     </message>
     <message>
         <source>Unable to cancel some or all of the selected requests.</source>
-        <translation type="unfinished">Es können einige oder alle ausgewählten Anfragen nicht abgebrochen werden.</translation>
+        <translation type="obsolete">Es können einige oder alle ausgewählten Anfragen nicht abgebrochen werden.</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
@@ -1193,593 +1137,7 @@
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
-    </message>
-    <message>
-        <source>Reset ID Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Case-Insensitive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Unlimited Entries per Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Icons Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Table Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Arabic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Czech</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch (&amp;Belgium)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch (&amp;Netherlands)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;French</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Hungarian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;German</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>G&amp;reek</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Requests</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0 Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ was not able to discover the biblioteq.conf file. Default values will be assumed. The current working directory is %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The PostgreSQL and SQLite database drivers are not available. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists. Please resolve!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The PostgreSQL and SQLite database drivers are not available. Please resolve!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please provide a ZIP Code.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to update the database account %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 File(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 Photograph(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue?
-%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The selected SQLite file is not accessible. Please verify that the file exists, is readable, and is writable.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>
-The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to open a database connection with the provided information. Please review the Error Log.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to set the role for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine the roles of </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to set a guest role.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Librarian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Membership</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Member ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Member Since</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Granting privileges...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to grant privileges to all of the members.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the number of reserved items of the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey literature may not be reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photographs may not be reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine if the membership of the selected member has expired.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that the selected member&apos;s membership has expired.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that the item that you selected is not available for reservation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that the item you selected is not available for reservation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Book...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;DVD...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Grey Literature...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Journal...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Magazine...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add Music &amp;CD...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Photograph Collection...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Video Game...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>General &amp;Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Book Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;DVD Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Grey Literature Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Journal Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Magazine Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Music &amp;CD Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Video Game Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Select Global Font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NULL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The option is not available because an error occurred while attempting to retrieve its value.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The option is only available for patrons.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The option is not available for SQLite databases as such databases do not support actual patrons.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ID Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Returned Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lender</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Administrators must belong to at least one category.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The function biblioteq_misc_functions::userExists() failed for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Canceling the selected request(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Overdue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Reserved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Books</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Journals</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Magazines</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Music CDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Collections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Video Games</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Requested</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Clear Menu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: New SQLite Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CSV (*.csv)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select at least one item to duplicate.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure that you wish to duplicate the </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 Result(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the data required for populating the main views.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> %1 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> 1 ... </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> ... </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> ... %1 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populating the views...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to insert into member_history_dnt for member %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to update member_history_dnt for member %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The database %1 was upgraded successfully.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Unlimited</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Open PDF File</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 <context>
@@ -1810,11 +1168,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
-        <translation type="unfinished">Bitte vervollständige beides, die ISBN-10 und die ISBN-13.</translation>
+        <translation type="obsolete">Bitte vervollständige beides, die ISBN-10 und die ISBN-13.</translation>
     </message>
     <message>
         <source>Please complete the Author(s) field.</source>
@@ -1822,63 +1180,63 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
+        <translation type="obsolete">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry (</source>
-        <translation type="unfinished">BiblioteQ: Bearbeite Buch Eintrag (</translation>
+        <translation type="obsolete">BiblioteQ: Bearbeite Buch Eintrag (</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry</source>
-        <translation type="unfinished">BiblioteQ: Bearbeite den Bucheintrag (</translation>
+        <translation type="obsolete">BiblioteQ: Bearbeite den Bucheintrag (</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Book Search</source>
-        <translation type="unfinished">BiblioteQ: Datenbank Buch-Suche</translation>
+        <translation type="obsolete">BiblioteQ: Datenbank Buch-Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: View Book Details (</source>
-        <translation type="unfinished">BiblioteQ: Ansicht der Buch Details (</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht der Buch Details (</translation>
     </message>
     <message>
         <source>BiblioteQ: View Book Details</source>
-        <translation type="unfinished">BiblioteQ: Ansicht der Buch Details</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht der Buch Details</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected book&apos;s data.</source>
-        <translation type="unfinished">Kann die Daten der ausgewählten Bücher nicht erhalten.</translation>
+        <translation type="obsolete">Kann die Daten der ausgewählten Bücher nicht erhalten.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Book Entry</source>
-        <translation type="unfinished">BiblioteQ: Buch Eintrag erstellen</translation>
+        <translation type="obsolete">BiblioteQ: Buch Eintrag erstellen</translation>
     </message>
     <message>
         <source>ISBN-10:</source>
-        <translation type="unfinished">ISBN-10:</translation>
+        <translation type="obsolete">ISBN-10:</translation>
     </message>
     <message>
         <source>ISBN-13:</source>
-        <translation type="unfinished">ISBN-13:</translation>
+        <translation type="obsolete">ISBN-13:</translation>
     </message>
     <message>
         <source>Edition:</source>
-        <translation type="unfinished">Edition:</translation>
+        <translation type="obsolete">Edition:</translation>
     </message>
     <message>
         <source>Author(s):</source>
@@ -1886,55 +1244,55 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book Binding Type:</source>
-        <translation type="unfinished">Typ der Buchbindung:</translation>
+        <translation type="obsolete">Typ der Buchbindung:</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
-        <translation type="unfinished">LC Kontroll-Nummer:</translation>
+        <translation type="obsolete">LC Kontroll-Nummer:</translation>
     </message>
     <message>
         <source>Publisher:</source>
-        <translation type="unfinished">Verlag:</translation>
+        <translation type="obsolete">Verlag:</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation type="unfinished">Erscheinungsort:</translation>
+        <translation type="obsolete">Erscheinungsort:</translation>
     </message>
     <message>
         <source>Categories:</source>
-        <translation type="unfinished">Kategorien:</translation>
+        <translation type="obsolete">Kategorien:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation type="unfinished">Preis:</translation>
+        <translation type="obsolete">Preis:</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished">Sprache:</translation>
+        <translation type="obsolete">Sprache:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation type="unfinished">Währungseinheit:</translation>
+        <translation type="obsolete">Währungseinheit:</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation type="unfinished">Kopien:</translation>
+        <translation type="obsolete">Kopien:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Ort:</translation>
+        <translation type="obsolete">Ort:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
+        <translation type="obsolete">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
     <message>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
-        <translation type="unfinished">Um ein Titelbild von Amazon herunterzuladen, muss die ISBN-10 angegeben sein.</translation>
+        <translation type="obsolete">Um ein Titelbild von Amazon herunterzuladen, muss die ISBN-10 angegeben sein.</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Download</source>
-        <translation type="unfinished">BiblioteQ: Titelbild Download</translation>
+        <translation type="obsolete">BiblioteQ: Titelbild Download</translation>
     </message>
     <message>
         <source>Downloading the front cover image. Please be patient...</source>
@@ -1942,7 +1300,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Download</source>
-        <translation type="unfinished">BiblioteQ: Bild des Rückendeckels Herunterladen</translation>
+        <translation type="obsolete">BiblioteQ: Bild des Rückendeckels Herunterladen</translation>
     </message>
     <message>
         <source>Downloading the back cover image. Please be patient...</source>
@@ -1950,470 +1308,78 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: HTTP Warning</source>
-        <translation type="unfinished">BiblioteQ: HTTP Warnmeldung</translation>
+        <translation type="obsolete">BiblioteQ: HTTP Warnmeldung</translation>
     </message>
     <message>
         <source>The front cover image for the specified ISBN may not exist.</source>
-        <translation type="unfinished">Das Titelbild der genannten ISBN könnte nicht existieren.</translation>
+        <translation type="obsolete">Das Titelbild der genannten ISBN könnte nicht existieren.</translation>
     </message>
     <message>
         <source>The back cover image for the specified ISBN may not exist.</source>
-        <translation type="unfinished">Das Bild des Rückendeckels der genannten ISBN könnte nicht exisitieren.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ was not assembled with Poppler support.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset ISBN-10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset ISBN-13</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Edition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Authors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Book Binding Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset LC Control Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Call Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Dewey Class Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Place of Publication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the book binding types.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the book locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Author, Title, Dewey Class Number...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Call Number, Dewey Class Number...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Authors field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Publisher field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Place of Publication field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a thread due to insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authors:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Call Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dewey Class Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publication Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Originality:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Abstract:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MARC Tags:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keywords:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Book Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The proxy %1:%2 is requesting credentials.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the SRU site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A network error (%1) occurred.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>One or more SSL errors occurred. Please verify your settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Book Attachment(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uploading files...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Double-click to edit.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select at least one file to delete.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure that you wish to delete the selected file(s)?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Book File Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Exporting file(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: File Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Data Retrieval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Image Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Das Bild des Rückendeckels der genannten ISBN könnte nicht exisitieren.</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="unfinished">BiblioteQ: Ausleihe - Status der Reservierung</translation>
+        <translation type="obsolete">BiblioteQ: Ausleihe - Status der Reservierung</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="unfinished">BiblioteQ: Ausleihe - Status der Reservierung</translation>
+        <translation type="obsolete">BiblioteQ: Ausleihe - Status der Reservierung</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation type="obsolete">Vorname</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation type="obsolete">Nachname</translation>
     </message>
     <message>
         <source>Copy Due Date</source>
-        <translation type="unfinished">Kopiere Fälligkeitsdatum</translation>
+        <translation type="obsolete">Kopiere Fälligkeitsdatum</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kein ausreichender Speicher vorhanden für &quot;Datumseingabe&quot;. Dieses is ein ernstes Problem!</translation>
+        <translation type="obsolete">Kein ausreichender Speicher vorhanden für &quot;Datumseingabe&quot;. Dieses is ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
-        <translation type="unfinished">Kann die Daten der Ausleiherin nicht bekommen.</translation>
+        <translation type="obsolete">Kann die Daten der Ausleiherin nicht bekommen.</translation>
     </message>
     <message>
         <source>Retrieving borrower data...</source>
-        <translation type="unfinished">Erhalte die Daten der Ausleiherin...</translation>
+        <translation type="obsolete">Erhalte die Daten der Ausleiherin...</translation>
     </message>
     <message>
         <source>Please select the copy that has been returned.</source>
-        <translation type="unfinished">Bitte wählen die zurückgegebene Kopie aus.</translation>
+        <translation type="obsolete">Bitte wählen die zurückgegebene Kopie aus.</translation>
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation type="unfinished">Es scheint, dass das ausgewählte Objekt nicht reserviert wurde.</translation>
+        <translation type="obsolete">Es scheint, dass das ausgewählte Objekt nicht reserviert wurde.</translation>
     </message>
     <message>
         <source>Are you sure that the copy has been returned?</source>
-        <translation type="unfinished">Bist Du sicher, dass die Kopie zurückgegeben wurde?</translation>
+        <translation type="obsolete">Bist Du sicher, dass die Kopie zurückgegeben wurde?</translation>
     </message>
     <message>
         <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation type="unfinished">Kann den Reservierungsstatus der ausgewählten Kopie nicht verändern.</translation>
+        <translation type="obsolete">Kann den Reservierungsstatus der ausgewählten Kopie nicht verändern.</translation>
     </message>
     <message>
         <source>Unable to modify the returned date of the selected copy.</source>
-        <translation type="unfinished">Kann das Rückgabedatum der ausgewählten Kopie nicht verändern.</translation>
+        <translation type="obsolete">Kann das Rückgabedatum der ausgewählten Kopie nicht verändern.</translation>
     </message>
     <message>
         <source>Updating the due date(s)...</source>
@@ -2421,67 +1387,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to update the due date.</source>
-        <translation type="unfinished">Kann die Rückgabedaten nicht aktualisieren.</translation>
+        <translation type="obsolete">Kann die Rückgabedaten nicht aktualisieren.</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
-        <translation type="unfinished">Einige oder alle Fälligkeitsdaten wurden nicht aktualisiert aufgrund von ungültigen Daten.</translation>
+        <translation type="obsolete">Einige oder alle Fälligkeitsdaten wurden nicht aktualisiert aufgrund von ungültigen Daten.</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated because of database errors.</source>
-        <translation type="unfinished">Einige oder alle Fälligkeitsdaten wurden nicht aktualisiert aufgrund von Datenbank-Fehlern.</translation>
-    </message>
-    <message>
-        <source>Copy Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Member ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lender</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Updating the due dates...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Einige oder alle Fälligkeitsdaten wurden nicht aktualisiert aufgrund von Datenbank-Fehlern.</translation>
     </message>
 </context>
 <context>
@@ -2508,956 +1422,448 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Please complete the Catalog Number field.</source>
-        <translation type="unfinished">Bitte fülle das Feld Katalog aus.</translation>
+        <translation type="obsolete">Bitte fülle das Feld Katalog aus.</translation>
     </message>
     <message>
         <source>Please complete the Artist field.</source>
-        <translation type="unfinished">Bitte fülle das Feld Artist/Künstlerin aus.</translation>
+        <translation type="obsolete">Bitte fülle das Feld Artist/Künstlerin aus.</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
-        <translation type="unfinished">Bitte gebe eine gültige Laufzeit ein.</translation>
+        <translation type="obsolete">Bitte gebe eine gültige Laufzeit ein.</translation>
     </message>
     <message>
         <source>Please complete the Recording Label field.</source>
-        <translation type="unfinished">Bitte gebe im entsprechenden Feld das Aufnahme Label an.</translation>
+        <translation type="obsolete">Bitte gebe im entsprechenden Feld das Aufnahme Label an.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
+        <translation type="obsolete">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Unable to retrieve the CD&apos;s OID.</source>
-        <translation type="unfinished">Kann die OID der CD´s nicht erhalten.</translation>
+        <translation type="obsolete">Kann die OID der CD´s nicht erhalten.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
-        <translation type="unfinished">Kann die Daten der ausgewählten CD´s nicht erhalten.</translation>
+        <translation type="obsolete">Kann die Daten der ausgewählten CD´s nicht erhalten.</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
-        <translation type="unfinished">Kann die Daten zu den Tracks nicht erhalten, um die Tabelle zu erstellen.</translation>
+        <translation type="obsolete">Kann die Daten zu den Tracks nicht erhalten, um die Tabelle zu erstellen.</translation>
     </message>
     <message>
         <source>Album Number</source>
-        <translation type="unfinished">Album Nummer</translation>
+        <translation type="obsolete">Album Nummer</translation>
     </message>
     <message>
         <source>Track Number</source>
-        <translation type="unfinished">Track Nummer</translation>
+        <translation type="obsolete">Track Nummer</translation>
     </message>
     <message>
         <source>Track Runtime</source>
-        <translation type="unfinished">Laufzeit des Tracks</translation>
+        <translation type="obsolete">Laufzeit des Tracks</translation>
     </message>
     <message>
         <source>BiblioteQ: Album Tracks Browser (</source>
-        <translation type="unfinished">BiblioteQ: Browser der Album Tracks (</translation>
+        <translation type="obsolete">BiblioteQ: Browser der Album Tracks (</translation>
     </message>
     <message>
         <source>Populating the table...</source>
-        <translation type="unfinished">Erstelle die Tabelle...</translation>
+        <translation type="obsolete">Erstelle die Tabelle...</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kann für das Objekt &quot;comboBox&quot; keinen Speicher freigeben. Das ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Kann für das Objekt &quot;comboBox&quot; keinen Speicher freigeben. Das ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kann für das Objekt &quot;Track Bearbeiten&quot; keinen Speicher freigeben. Das ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Kann für das Objekt &quot;Track Bearbeiten&quot; keinen Speicher freigeben. Das ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kann für das Objekt &quot;Zeit bearbeiten&quot; keinen Speicher freigeben. Das ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Kann für das Objekt &quot;Zeit bearbeiten&quot; keinen Speicher freigeben. Das ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation type="unfinished">Spaltennummer</translation>
+        <translation type="obsolete">Spaltennummer</translation>
     </message>
     <message>
         <source> contains an empty Song Title.</source>
-        <translation type="unfinished">enthält einen leeren Song Titel.</translation>
+        <translation type="obsolete">enthält einen leeren Song Titel.</translation>
     </message>
     <message>
         <source>Unable to purge track data.</source>
-        <translation type="unfinished">Kann die Daten zum Track nicht entfernen.</translation>
+        <translation type="obsolete">Kann die Daten zum Track nicht entfernen.</translation>
     </message>
     <message>
         <source>Saving the track data...</source>
-        <translation type="unfinished">Speicher die Daten zum Track...</translation>
+        <translation type="obsolete">Speicher die Daten zum Track...</translation>
     </message>
     <message>
         <source>Unable to create track data.</source>
-        <translation type="unfinished">Kann die Daten zum Track nicht erstellen.</translation>
+        <translation type="obsolete">Kann die Daten zum Track nicht erstellen.</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
-        <translation type="unfinished">Die gesamte Laufzeit der verfügbaren Tracks ist Null. Bitte gebe die individuellen Laufzeiten an.</translation>
+        <translation type="obsolete">Die gesamte Laufzeit der verfügbaren Tracks ist Null. Bitte gebe die individuellen Laufzeiten an.</translation>
     </message>
     <message>
         <source>Catalog Number:</source>
-        <translation type="unfinished">Katalog-Nummer:</translation>
+        <translation type="obsolete">Katalog-Nummer:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished">Format:</translation>
+        <translation type="obsolete">Format:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished">Künstlerin:</translation>
+        <translation type="obsolete">Künstlerin:</translation>
     </message>
     <message>
         <source>Number of Discs:</source>
-        <translation type="unfinished">Anzahl der Disks:</translation>
+        <translation type="obsolete">Anzahl der Disks:</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation type="unfinished">Audio:</translation>
+        <translation type="obsolete">Audio:</translation>
     </message>
     <message>
         <source>Recording Type:</source>
-        <translation type="unfinished">Typ der Aufnahme:</translation>
+        <translation type="obsolete">Typ der Aufnahme:</translation>
     </message>
     <message>
         <source>Recording Label:</source>
-        <translation type="unfinished">Aufnahme Label:</translation>
+        <translation type="obsolete">Aufnahme Label:</translation>
     </message>
     <message>
         <source>Categories:</source>
-        <translation type="unfinished">Kategorien:</translation>
+        <translation type="obsolete">Kategorien:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation type="unfinished">Preis:</translation>
+        <translation type="obsolete">Preis:</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished">Sprache:</translation>
+        <translation type="obsolete">Sprache:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation type="unfinished">Währungseinheit:</translation>
+        <translation type="obsolete">Währungseinheit:</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation type="unfinished">Kopien:</translation>
+        <translation type="obsolete">Kopien:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Ort:</translation>
+        <translation type="obsolete">Ort:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
-    </message>
-    <message>
-        <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Catalog Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Composer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Number of Discs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Runtime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Recording Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Release Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Recording Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the cd locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the cd formats.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Music CD Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Music CD Details (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Music CD Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Create Music CD Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Track Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Composer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Some or all of the track data has not been saved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Runtime:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Release Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Abstract:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keywords:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_copy_editor</name>
     <message>
         <source>Please select the copy that you intend to delete.</source>
-        <translation type="unfinished">Bitte wähle die Kopie, die Du löschen möchtest.</translation>
+        <translation type="obsolete">Bitte wähle die Kopie, die Du löschen möchtest.</translation>
     </message>
     <message>
         <source>You must have at least one copy.</source>
-        <translation type="unfinished">Du musst zumindest eine Kopie haben.</translation>
+        <translation type="obsolete">Du musst zumindest eine Kopie haben.</translation>
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation type="unfinished">Es scheint, dass Deine zum Löschen ausgewählte Kopie reserviert ist.</translation>
+        <translation type="obsolete">Es scheint, dass Deine zum Löschen ausgewählte Kopie reserviert ist.</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished">Der Reservierungsstatus der ausgewählten Kopie kann nicht bestimmt werden.</translation>
+        <translation type="obsolete">Der Reservierungsstatus der ausgewählten Kopie kann nicht bestimmt werden.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished">Kann die Mindest-Anzahl an Tagen nicht ermitteln.</translation>
+        <translation type="obsolete">Kann die Mindest-Anzahl an Tagen nicht ermitteln.</translation>
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation type="unfinished">&amp;Reservieren</translation>
+        <translation type="obsolete">&amp;Reservieren</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished">Die Daten der Kopie können nicht bezogen werden.</translation>
+        <translation type="obsolete">Die Daten der Kopie können nicht bezogen werden.</translation>
     </message>
     <message>
         <source>Retrieving copy information...</source>
-        <translation type="unfinished">Bezug der Kopie Informationen..</translation>
+        <translation type="obsolete">Bezug der Kopie Informationen..</translation>
     </message>
     <message>
         <source>Please select a copy to reserve.</source>
-        <translation type="unfinished">Bitte wähle eine Kopie für die Reservierung aus.</translation>
+        <translation type="obsolete">Bitte wähle eine Kopie für die Reservierung aus.</translation>
     </message>
     <message>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation type="unfinished">Es scheint, dass die ausgewählte Kopie nicht verfügbar ist oder nicht exisitiert.</translation>
+        <translation type="obsolete">Es scheint, dass die ausgewählte Kopie nicht verfügbar ist oder nicht exisitiert.</translation>
     </message>
     <message>
         <source>Please select a future Due Date.</source>
-        <translation type="unfinished">Bitte wähle ein Fälligkeitsdatum in der Zukunft.</translation>
+        <translation type="obsolete">Bitte wähle ein Fälligkeitsdatum in der Zukunft.</translation>
     </message>
     <message>
         <source>Unable to determine the selected copy&apos;s availability.</source>
-        <translation type="unfinished">Die Verfügbarkeit der ausgewählten Kopie kann nicht bestimmt werden.</translation>
+        <translation type="obsolete">Die Verfügbarkeit der ausgewählten Kopie kann nicht bestimmt werden.</translation>
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation type="unfinished">Die ausgewählte Kope ist nicht verfügbar oder reserviert.</translation>
+        <translation type="obsolete">Die ausgewählte Kope ist nicht verfügbar oder reserviert.</translation>
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
-        <translation type="unfinished">Die Reservierungseingabe kann nicht erstellt werden.</translation>
+        <translation type="obsolete">Die Reservierungseingabe kann nicht erstellt werden.</translation>
     </message>
     <message>
         <source>Unable to create a history record.</source>
-        <translation type="unfinished">Die Einabe zur Historie kann nicht erstellt werden</translation>
+        <translation type="obsolete">Die Einabe zur Historie kann nicht erstellt werden</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation type="unfinished">Spaltennummer</translation>
+        <translation type="obsolete">Spaltennummer</translation>
     </message>
     <message>
         <source> contains an empty Barcode.</source>
-        <translation type="unfinished">enthält einen leeren Strichcode.</translation>
+        <translation type="obsolete">enthält einen leeren Strichcode.</translation>
     </message>
     <message>
         <source> contains a duplicate Barcode.</source>
-        <translation type="unfinished">enthält ein Dublikat als Strichcode.</translation>
+        <translation type="obsolete">enthält ein Dublikat als Strichcode.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Nicht genügend Speicherkapazität für das &quot;Kopie&quot; Objekt. Dieses ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Nicht genügend Speicherkapazität für das &quot;Kopie&quot; Objekt. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished">Die Häufigkeit der Ausleihe kann nicht gespeichert werden.</translation>
+        <translation type="obsolete">Die Häufigkeit der Ausleihe kann nicht gespeichert werden.</translation>
     </message>
     <message>
         <source>Unable to save the copy data.</source>
-        <translation type="unfinished">Die Daten der Kopie können nicht gespeichert werden.</translation>
+        <translation type="obsolete">Die Daten der Kopie können nicht gespeichert werden.</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
-        <translation type="unfinished">Die &quot;Kopie&quot;-Daten können nicht übertragen werden.</translation>
+        <translation type="obsolete">Die &quot;Kopie&quot;-Daten können nicht übertragen werden.</translation>
     </message>
     <message>
         <source>Unable to purge copy data.</source>
-        <translation type="unfinished">Die &quot;Kopie&quot; Daten können nicht entfernt werden.</translation>
+        <translation type="obsolete">Die &quot;Kopie&quot; Daten können nicht entfernt werden.</translation>
     </message>
     <message>
         <source>Saving the copy data...</source>
-        <translation type="unfinished">Speichere die Kopie-Daten...</translation>
+        <translation type="obsolete">Speichere die Kopie-Daten...</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create copy data.</source>
-        <translation type="unfinished">Kopie-Daten können nicht erstellt werden.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Kopie-Daten können nicht erstellt werden.</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_copy_editor_book</name>
     <message>
         <source>Please select the copy that you intend to delete.</source>
-        <translation type="unfinished">Bitte wähle die Kopie, die Du löschen möchtest.</translation>
+        <translation type="obsolete">Bitte wähle die Kopie, die Du löschen möchtest.</translation>
     </message>
     <message>
         <source>You must have at least one copy.</source>
-        <translation type="unfinished">Du musst zumindest eine Kopie haben.</translation>
+        <translation type="obsolete">Du musst zumindest eine Kopie haben.</translation>
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation type="unfinished">Es scheint, dass Deine zum Löschen ausgewählte Kopie reserviert ist.</translation>
+        <translation type="obsolete">Es scheint, dass Deine zum Löschen ausgewählte Kopie reserviert ist.</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished">Der Reservierungsstatus der ausgewählten Kopie kann nicht bestimmt werden.</translation>
+        <translation type="obsolete">Der Reservierungsstatus der ausgewählten Kopie kann nicht bestimmt werden.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished">Kann die Mindest-Anzahl an Tagen nicht ermitteln.</translation>
+        <translation type="obsolete">Kann die Mindest-Anzahl an Tagen nicht ermitteln.</translation>
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation type="unfinished">&amp;Reservieren</translation>
+        <translation type="obsolete">&amp;Reservieren</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished">Die Daten der Kopie können nicht bezogen werden.</translation>
+        <translation type="obsolete">Die Daten der Kopie können nicht bezogen werden.</translation>
     </message>
     <message>
         <source>Retrieving copy information...</source>
-        <translation type="unfinished">Bezug der Kopie Informationen..</translation>
+        <translation type="obsolete">Bezug der Kopie Informationen..</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation type="unfinished">Spaltennummer</translation>
+        <translation type="obsolete">Spaltennummer</translation>
     </message>
     <message>
         <source> contains an empty Barcode.</source>
-        <translation type="unfinished">enthält einen leeren Strichcode.</translation>
+        <translation type="obsolete">enthält einen leeren Strichcode.</translation>
     </message>
     <message>
         <source> contains a duplicate Barcode.</source>
-        <translation type="unfinished">enthält ein Dublikat als Strichcode.</translation>
+        <translation type="obsolete">enthält ein Dublikat als Strichcode.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Nicht genügend Speicherkapazität für das &quot;Kopie&quot; Objekt. Dieses ist ein ernstes Problem!</translation>
+        <translation type="obsolete">Nicht genügend Speicherkapazität für das &quot;Kopie&quot; Objekt. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished">Die Häufigkeit der Ausleihe kann nicht gespeichert werden.</translation>
+        <translation type="obsolete">Die Häufigkeit der Ausleihe kann nicht gespeichert werden.</translation>
     </message>
     <message>
         <source>Unable to save the copy data.</source>
-        <translation type="unfinished">Die Daten der Kopie können nicht gespeichert werden.</translation>
+        <translation type="obsolete">Die Daten der Kopie können nicht gespeichert werden.</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
-        <translation type="unfinished">Die &quot;Kopie&quot;-Daten können nicht übertragen werden.</translation>
+        <translation type="obsolete">Die &quot;Kopie&quot;-Daten können nicht übertragen werden.</translation>
     </message>
     <message>
         <source>Unable to purge copy data.</source>
-        <translation type="unfinished">Die &quot;Kopie&quot; Daten können nicht entfernt werden.</translation>
+        <translation type="obsolete">Die &quot;Kopie&quot; Daten können nicht entfernt werden.</translation>
     </message>
     <message>
         <source>Saving the copy data...</source>
-        <translation type="unfinished">Speichere die Kopie-Daten...</translation>
+        <translation type="obsolete">Speichere die Kopie-Daten...</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create copy data.</source>
-        <translation type="unfinished">Kopie-Daten können nicht erstellt werden.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Black &amp; White Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>As New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Binding Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Club</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ex-Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Very Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Kopie-Daten können nicht erstellt werden.</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_dbenumerations</name>
     <message>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Buch</translation>
+        <translation type="obsolete">Buch</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">Journal</translation>
+        <translation type="obsolete">Journal</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">Magazin</translation>
+        <translation type="obsolete">Magazin</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">Musik-CD</translation>
+        <translation type="obsolete">Musik-CD</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">Videospiel</translation>
+        <translation type="obsolete">Videospiel</translation>
     </message>
     <message>
         <source>CD Format</source>
-        <translation type="unfinished">CD Format</translation>
+        <translation type="obsolete">CD Format</translation>
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation type="unfinished">DVD Seitenverhältnis</translation>
+        <translation type="obsolete">DVD Seitenverhältnis</translation>
     </message>
     <message>
         <source>DVD Rating</source>
-        <translation type="unfinished">DVD Bewertung</translation>
+        <translation type="obsolete">DVD Bewertung</translation>
     </message>
     <message>
         <source>DVD Region</source>
-        <translation type="unfinished">DVD Region</translation>
+        <translation type="obsolete">DVD Region</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Unit</source>
-        <translation type="unfinished">Währungseinheit</translation>
+        <translation type="obsolete">Währungseinheit</translation>
     </message>
     <message>
         <source>Video Game Platform</source>
-        <translation type="unfinished">Videospiel Plattform</translation>
+        <translation type="obsolete">Videospiel Plattform</translation>
     </message>
     <message>
         <source>Video Game Rating</source>
-        <translation type="unfinished">Videospiel-Bewertung</translation>
+        <translation type="obsolete">Videospiel-Bewertung</translation>
     </message>
     <message>
         <source>, </source>
-        <translation type="unfinished">,</translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the contents of </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Binding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove entries from the %1 table.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create an entry in </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the location (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the minimum day (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to save the database enumerations.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">,</translation>
     </message>
 </context>
 <context>
@@ -3492,11 +1898,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
-        <translation type="unfinished">Bitte vervollständige das Feld UPC.</translation>
+        <translation type="obsolete">Bitte vervollständige das Feld UPC.</translation>
     </message>
     <message>
         <source>Please complete the Actor(s) field.</source>
@@ -3508,75 +1914,75 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
-        <translation type="unfinished">Bitte gebe eine gültige Laufzeit ein.</translation>
+        <translation type="obsolete">Bitte gebe eine gültige Laufzeit ein.</translation>
     </message>
     <message>
         <source>Please complete the Format field.</source>
-        <translation type="unfinished">Bitte vervollständige das Feld &quot;Format&quot;.</translation>
+        <translation type="obsolete">Bitte vervollständige das Feld &quot;Format&quot;.</translation>
     </message>
     <message>
         <source>Please complete the Studio field.</source>
-        <translation type="unfinished">Bitte vervollständige das Feld &quot;Studio&quot;.</translation>
+        <translation type="obsolete">Bitte vervollständige das Feld &quot;Studio&quot;.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
+        <translation type="obsolete">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify DVD Entry (</source>
-        <translation type="unfinished">BiblioteQ: Bearbeite den DVD Eintrag (</translation>
+        <translation type="obsolete">BiblioteQ: Bearbeite den DVD Eintrag (</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
-        <translation type="unfinished">Kann die OID der DVD nicht erhalten.</translation>
+        <translation type="obsolete">Kann die OID der DVD nicht erhalten.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: Database DVD Search</source>
-        <translation type="unfinished">BiblioteQ: DVD Datenbank Suche</translation>
+        <translation type="obsolete">BiblioteQ: DVD Datenbank Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: View DVD Details (</source>
-        <translation type="unfinished">BiblioteQ: DVD Detailsl anzeigen (</translation>
+        <translation type="obsolete">BiblioteQ: DVD Detailsl anzeigen (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify DVD Entry</source>
-        <translation type="unfinished">BiblioteQ: DVD Eintrag bearbeiten</translation>
+        <translation type="obsolete">BiblioteQ: DVD Eintrag bearbeiten</translation>
     </message>
     <message>
         <source>BiblioteQ: View DVD Details</source>
-        <translation type="unfinished">BiblioteQ: Ansicht der DVD Details</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht der DVD Details</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected DVD&apos;s data.</source>
-        <translation type="unfinished">Kann die Daten der ausgewählten DVD´s nicht erhalten.</translation>
+        <translation type="obsolete">Kann die Daten der ausgewählten DVD´s nicht erhalten.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create DVD Entry</source>
-        <translation type="unfinished">BiblioteQ: DVD Eintrag erstellen</translation>
+        <translation type="obsolete">BiblioteQ: DVD Eintrag erstellen</translation>
     </message>
     <message>
         <source>UPC:</source>
-        <translation type="unfinished">UPC:</translation>
+        <translation type="obsolete">UPC:</translation>
     </message>
     <message>
         <source>Rating:</source>
-        <translation type="unfinished">Bewertung:</translation>
+        <translation type="obsolete">Bewertung:</translation>
     </message>
     <message>
         <source>Actor(s):</source>
@@ -3588,703 +1994,132 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Number of Discs:</source>
-        <translation type="unfinished">Anzahl der Disks:</translation>
+        <translation type="obsolete">Anzahl der Disks:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished">Format:</translation>
+        <translation type="obsolete">Format:</translation>
     </message>
     <message>
         <source>Region:</source>
-        <translation type="unfinished">Region:</translation>
+        <translation type="obsolete">Region:</translation>
     </message>
     <message>
         <source>Aspect Ratio:</source>
-        <translation type="unfinished">Seitenverhältnis:</translation>
+        <translation type="obsolete">Seitenverhältnis:</translation>
     </message>
     <message>
         <source>Studio:</source>
-        <translation type="unfinished">Studio:</translation>
+        <translation type="obsolete">Studio:</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished">Kategorien:</translation>
+        <translation type="obsolete">Kategorien:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation type="unfinished">Preis:</translation>
+        <translation type="obsolete">Preis:</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished">Sprache:</translation>
+        <translation type="obsolete">Sprache:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation type="unfinished">Währungseinheit:</translation>
+        <translation type="obsolete">Währungseinheit:</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation type="unfinished">Kopien:</translation>
+        <translation type="obsolete">Kopien:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Ort:</translation>
+        <translation type="obsolete">Ort:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
-    </message>
-    <message>
-        <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset UPC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Actors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Directors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Number of Discs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Runtime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Aspect Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Release Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the dvd locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the dvd ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the dvd regions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Actors field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Directors field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actors:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Directors:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Runtime:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Release Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Abstract:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keywords:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate DVD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_generic_thread</name>
     <message>
         <source>. This file is required by BiblioteQ.</source>
-        <translation type="unfinished">. Diese Datei wird von BiblioteQ benötigt.</translation>
-    </message>
-    <message>
-        <source>Unable to read </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Z39.50 Empty Results Set</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">. Diese Datei wird von BiblioteQ benötigt.</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_grey_literature</name>
     <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Authors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Clients</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Code-A</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Code-B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Job Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the grey literature locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the grey literature document types.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
-    </message>
-    <message>
-        <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the ID field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Authors field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Code-A field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Code-B field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Job Number field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Create Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Grey Literature Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the selected grey literature&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Grey Literature Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Grey Literature Details (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Double-click to edit.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Grey Literature Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Grey Literature File Attachment(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uploading files...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select at least one file to delete.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure that you wish to delete the selected file(s)?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Grey Literature File Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Exporting file(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: File Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authors:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clients:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Code-A:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Code-B:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Job Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Notes:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Ort:</translation>
-    </message>
-    <message>
-        <source>Status:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ort:</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_greyliteratureinfo</name>
     <message>
         <source>BiblioteQ</source>
-        <translation type="unfinished">BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation type="obsolete">&amp;Löschen</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Code-A</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Code-B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clients</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Job Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Digest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compressed Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
-    </message>
-    <message>
-        <source>&amp;Attach...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>biblioteq_journal</name>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
 </context>
 <context>
@@ -4307,1202 +2142,292 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Please complete the ISSN field.</source>
-        <translation type="unfinished">Bitte vervollständige das Feld ISSN.</translation>
+        <translation type="obsolete">Bitte vervollständige das Feld ISSN.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
+        <translation type="obsolete">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Journal Entry (</source>
-        <translation type="unfinished">BiblioteQ: Den Journal Eintrag bearbeiten (</translation>
+        <translation type="obsolete">BiblioteQ: Den Journal Eintrag bearbeiten (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Magazine Entry (</source>
-        <translation type="unfinished">BiblioteQ: Den Magazin Eintrag bearbeiten (</translation>
+        <translation type="obsolete">BiblioteQ: Den Magazin Eintrag bearbeiten (</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Journal Entry</source>
-        <translation type="unfinished">BiblioteQ: Journal Eintrag bearbeiten</translation>
+        <translation type="obsolete">BiblioteQ: Journal Eintrag bearbeiten</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Magazine Entry</source>
-        <translation type="unfinished">BiblioteQ: Magazin Eintrag bearbeiten</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Eintrag bearbeiten</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Journal Search</source>
-        <translation type="unfinished">BiblioteQ: Journal Datenbank Suche</translation>
+        <translation type="obsolete">BiblioteQ: Journal Datenbank Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Magazine Search</source>
-        <translation type="unfinished">BiblioteQ: Magazin Datenbank Suche</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Datenbank Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details (</source>
-        <translation type="unfinished">BiblioteQ: Ansicht der Journal Details (</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht der Journal Details (</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details (</source>
-        <translation type="unfinished">BiblioteQ: Ansicht der Magazin Details (</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht der Magazin Details (</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details</source>
-        <translation type="unfinished">BiblioteQ: Ansicht Journal Details</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht Journal Details</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details</source>
-        <translation type="unfinished">BiblioteQ: Ansicht Magazin Details</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht Magazin Details</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
-        <translation type="unfinished">Kann die ausgewählten Daten der Journale nicht erreichen.</translation>
+        <translation type="obsolete">Kann die ausgewählten Daten der Journale nicht erreichen.</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected magazine&apos;s data.</source>
-        <translation type="unfinished">Kann die ausgewählten Daten der Magazine nicht erreichen.</translation>
+        <translation type="obsolete">Kann die ausgewählten Daten der Magazine nicht erreichen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Journal Entry</source>
-        <translation type="unfinished">BiblioteQ: Journal Eintrag erstellen</translation>
+        <translation type="obsolete">BiblioteQ: Journal Eintrag erstellen</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Magazine Entry</source>
-        <translation type="unfinished">BiblioteQ: Magazin Eintrag erstellen</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Eintrag erstellen</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
-        <translation type="unfinished">BiblioteQ: Speicher Fehler</translation>
+        <translation type="obsolete">BiblioteQ: Speicher Fehler</translation>
     </message>
     <message>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>ISSN:</source>
-        <translation type="unfinished">ISSN:</translation>
+        <translation type="obsolete">ISSN:</translation>
     </message>
     <message>
         <source>Volume:</source>
-        <translation type="unfinished">Ausgabe:</translation>
+        <translation type="obsolete">Ausgabe:</translation>
     </message>
     <message>
         <source>Issue (Number):</source>
-        <translation type="unfinished">Heft/Issue (Nummer):</translation>
+        <translation type="obsolete">Heft/Issue (Nummer):</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
-        <translation type="unfinished">LC Kontroll-Nummer:</translation>
+        <translation type="obsolete">LC Kontroll-Nummer:</translation>
     </message>
     <message>
         <source>Publisher:</source>
-        <translation type="unfinished">Verlag:</translation>
+        <translation type="obsolete">Verlag:</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation type="unfinished">Erscheinungsort:</translation>
+        <translation type="obsolete">Erscheinungsort:</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished">Kategorien:</translation>
+        <translation type="obsolete">Kategorien:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation type="unfinished">Preis:</translation>
+        <translation type="obsolete">Preis:</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished">Sprache:</translation>
+        <translation type="obsolete">Sprache:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation type="unfinished">Währungseinheit:</translation>
+        <translation type="obsolete">Währungseinheit:</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation type="unfinished">Kopien:</translation>
+        <translation type="obsolete">Kopien:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Ort:</translation>
+        <translation type="obsolete">Ort:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
-    </message>
-    <message>
-        <source>BiblioteQ was not assembled with Poppler support.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset ISSN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Volume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset LC Control Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Call Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Dewey Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Place of Publication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the journal locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the magazine locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Publisher field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Place of Publication field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Journal Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Magazine Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A Z39.50 entry may not yet exist for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a thread because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Z39.50 entry could not be retrieved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Call Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dewey Class Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publication Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Abstract:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MARC Tags:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keywords:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Journal Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Magazine Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query an SRU site, the ISSN must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the SRU site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An SRU entry may not yet exist for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> or a network error occurred.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The proxy %1:%2 is requesting credentials.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: %1 Attachment(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uploading files...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Double-click to edit.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select at least one file to delete.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure that you wish to delete the selected file(s)?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Journal File Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Magazine File Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Exporting file(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: File Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A network error (%1) occurred.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>One or more SSL errors occurred. Please verify your settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Data Retrieval</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_main_table</name>
     <message>
         <source>Borrower</source>
-        <translation type="unfinished">Entleiher</translation>
+        <translation type="obsolete">Entleiher</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="unfinished">Fälligkeitsdatum</translation>
+        <translation type="obsolete">Fälligkeitsdatum</translation>
     </message>
     <message>
         <source>Request Date</source>
-        <translation type="unfinished">Anfragedatum</translation>
+        <translation type="obsolete">Anfragedatum</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished">Kategorien</translation>
+        <translation type="obsolete">Kategorien</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Total Reserved</source>
-        <translation type="unfinished">Total Reserviert</translation>
+        <translation type="obsolete">Total Reserviert</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation type="unfinished">Edition</translation>
+        <translation type="obsolete">Edition</translation>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation type="unfinished">ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ISBN-13</source>
-        <translation type="unfinished">ISBN-13</translation>
+        <translation type="obsolete">ISBN-13</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation type="unfinished">Aufruf Nummer</translation>
+        <translation type="obsolete">Aufruf Nummer</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished">Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation type="unfinished">Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation type="unfinished">Laufzeit</translation>
+        <translation type="obsolete">Laufzeit</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation type="unfinished">UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="unfinished">Bewertung</translation>
+        <translation type="obsolete">Bewertung</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation type="unfinished">Region</translation>
+        <translation type="obsolete">Region</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation type="unfinished">Seitenverhältnis</translation>
+        <translation type="obsolete">Seitenverhältnis</translation>
     </message>
     <message>
         <source>ISSN</source>
-        <translation type="unfinished">ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished">Modus</translation>
-    </message>
-    <message>
-        <source>Member ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ID Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publisher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quantity</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Binding Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LC Control Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dewey Class Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Release Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Number of Discs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clients</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document Code A</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document Code B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Document Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Job Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Volume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dewey Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Recording Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Catalog Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Recording Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Game Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Genres</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>biblioteq_otheroptions</name>
-    <message>
-        <source>Books</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Journals</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Magazines</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Music CDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Collections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Video Games</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>biblioteq_pdfreader</name>
-    <message>
-        <source>BiblioteQ was assembled without Poppler support.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The PDF data could not be processed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Page 1 of %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: PDF Reader</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: PDF Reader (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Page %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Printing PDF...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Printing PDF... Page %1...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Save PDF As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Page %1 of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Modus</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_photographcollection</name>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
+        <translation type="obsolete">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
-        <translation type="unfinished">Lösche die ausgewählten Ausleihen...</translation>
+        <translation type="obsolete">Lösche die ausgewählten Ausleihen...</translation>
     </message>
     <message>
         <source>BiblioteQ: Information</source>
-        <translation type="unfinished">BiblioteQ: Information</translation>
-    </message>
-    <message>
-        <source>Reset Collection Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;All...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Current Page...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Selected...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the photograph collection locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the collection&apos;s ID field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the collection&apos;s Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Photograph Collection Details (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Photograph Collection Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Create Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Location:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection About:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Notes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Creators:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Publication Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Copies:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Medium:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Reproduction Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Copyright:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Call Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Other Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Notes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Subjects:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Format:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Loading image(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s ID field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Creators field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Medium field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Reproduction Number field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Copyright field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the item. Please verify that the item does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to update the item. Please verify that the item does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure that you wish to permanently delete the selected %1 item(s)?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Photographs Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Delete Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Modify Photograph...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Photograph...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Import</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Importing image(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to import photograph.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A total of %1 image(s) were imported from the directory %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Photograph Export</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">BiblioteQ: Information</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_sruresults</name>
     <message>
         <source>Record #</source>
-        <translation type="unfinished">Eintrag #</translation>
+        <translation type="obsolete">Eintrag #</translation>
     </message>
 </context>
 <context>
@@ -5533,11 +2458,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">UNBEKANNT</translation>
+        <translation type="obsolete">UNBEKANNT</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
-        <translation type="unfinished">Bitte vervollständige das Feld UPC.</translation>
+        <translation type="obsolete">Bitte vervollständige das Feld UPC.</translation>
     </message>
     <message>
         <source>Please complete the Developer(s) field.</source>
@@ -5545,67 +2470,67 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please complete the Genres field.</source>
-        <translation type="unfinished">Bitte vervollständige das Feld &quot;Genre&quot;</translation>
+        <translation type="obsolete">Bitte vervollständige das Feld &quot;Genre&quot;</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
+        <translation type="obsolete">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
+        <translation type="obsolete">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry (</source>
-        <translation type="unfinished">BiblioteQ: Eintrag Video Game bearbeiten (</translation>
+        <translation type="obsolete">BiblioteQ: Eintrag Video Game bearbeiten (</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game&apos;s OID.</source>
-        <translation type="unfinished">Kann die OID des Videospiels nicht erhalten.</translation>
+        <translation type="obsolete">Kann die OID des Videospiels nicht erhalten.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Video Game Search</source>
-        <translation type="unfinished">BiblioteQ: Videospiel Datenbank Suche</translation>
+        <translation type="obsolete">BiblioteQ: Videospiel Datenbank Suche</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details (</source>
-        <translation type="unfinished">BiblioteQ: Ansicht Videlspiel Details (</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht Videlspiel Details (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry</source>
-        <translation type="unfinished">BiblioteQ: Bearbeite Videospiel Eintrag</translation>
+        <translation type="obsolete">BiblioteQ: Bearbeite Videospiel Eintrag</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details</source>
-        <translation type="unfinished">BiblioteQ: Ansicht Videospiel Details</translation>
+        <translation type="obsolete">BiblioteQ: Ansicht Videospiel Details</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
-        <translation type="unfinished">Die Daten der ausgewählten Videospiele können nicht erhalten werden.</translation>
+        <translation type="obsolete">Die Daten der ausgewählten Videospiele können nicht erhalten werden.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Video Game Entry</source>
-        <translation type="unfinished">BiblioteQ: Einen Videospiel Eintrag erstellen.</translation>
+        <translation type="obsolete">BiblioteQ: Einen Videospiel Eintrag erstellen.</translation>
     </message>
     <message>
         <source>UPC:</source>
-        <translation type="unfinished">UPC:</translation>
+        <translation type="obsolete">UPC:</translation>
     </message>
     <message>
         <source>Game Rating:</source>
-        <translation type="unfinished">Videospiel Bewertung:</translation>
+        <translation type="obsolete">Videospiel Bewertung:</translation>
     </message>
     <message>
         <source>Developer(s):</source>
@@ -5613,277 +2538,61 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Platform:</source>
-        <translation type="unfinished">Betriebssystem(e):</translation>
+        <translation type="obsolete">Betriebssystem(e):</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation type="unfinished">Modus:</translation>
+        <translation type="obsolete">Modus:</translation>
     </message>
     <message>
         <source>Publisher:</source>
-        <translation type="unfinished">Verlag:</translation>
+        <translation type="obsolete">Verlag:</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation type="unfinished">Erscheinungsort:</translation>
+        <translation type="obsolete">Erscheinungsort:</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation type="unfinished">Genre:</translation>
+        <translation type="obsolete">Genre:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation type="unfinished">Preis:</translation>
+        <translation type="obsolete">Preis:</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished">Sprache:</translation>
+        <translation type="obsolete">Sprache:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation type="unfinished">Währungseinheit:</translation>
+        <translation type="obsolete">Währungseinheit:</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation type="unfinished">Kopien:</translation>
+        <translation type="obsolete">Kopien:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Ort:</translation>
+        <translation type="obsolete">Ort:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
-    </message>
-    <message>
-        <source>Reset Front Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Back Cover Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset UPC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Game Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Developers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Release Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Publisher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Place of Publication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Genres</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the video game ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the video game platforms.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the video game locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Developers field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Publisher field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Place of Publication field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Developers:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Release Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Abstract:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keywords:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Video Game Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
 </context>
 <context>
     <name>biblioteq_z3950results</name>
     <message>
         <source>Record #</source>
-        <translation type="unfinished">Eintrag #</translation>
+        <translation type="obsolete">Eintrag #</translation>
     </message>
 </context>
 <context>
     <name>bookcopybrowser</name>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="unfinished">BiblioteQ: Kopien Browser</translation>
+        <translation type="obsolete">BiblioteQ: Kopien Browser</translation>
     </message>
     <message>
         <source>Due Date</source>
@@ -5891,55 +2600,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation type="obsolete">&amp;Löschen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&amp;Due Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save new due dates.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -6085,7 +2766,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>branchSelect</name>
     <message>
         <source>BiblioteQ: Branch Selection</source>
-        <translation>BiblioteQ: Bereichsauswahl</translation>
+        <translation type="obsolete">BiblioteQ: Bereichsauswahl</translation>
     </message>
     <message>
         <source>Branch Name</source>
@@ -6101,7 +2782,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Administrator</source>
-        <translation>Administrator</translation>
+        <translation type="obsolete">Administrator</translation>
     </message>
     <message>
         <source>Password</source>
@@ -6109,58 +2790,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Verbinde</translation>
+        <translation type="obsolete">&amp;Verbinde</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Abbrechen</translation>
-    </message>
-    <message>
-        <source>&amp;Branch Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Select SQLite Database...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Userid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>xbook_guest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Guest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Patron</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Abbrechen</translation>
     </message>
 </context>
 <context>
     <name>cdDialog</name>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Umschlagbilder</translation>
+        <translation type="obsolete">Umschlagbilder</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Titelbild</translation>
+        <translation type="obsolete">Titelbild</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -6168,19 +2821,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Bild des Rückendeckels</translation>
+        <translation type="obsolete">Bild des Rückendeckels</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Spezifische Information</translation>
+        <translation type="obsolete">Spezifische Information</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Katalog Nummer</translation>
+        <translation type="obsolete">Katalog Nummer</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Artist</source>
@@ -6188,47 +2841,47 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Anzahl der Scheiben</translation>
+        <translation type="obsolete">Anzahl der Scheiben</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Laufzeit</translation>
+        <translation type="obsolete">Laufzeit</translation>
     </message>
     <message>
         <source>hh:mm:ss</source>
-        <translation>hh:mm:ss</translation>
+        <translation type="obsolete">hh:mm:ss</translation>
     </message>
     <message>
         <source>&amp;Compute</source>
-        <translation>&amp;Ausführen</translation>
+        <translation type="obsolete">&amp;Ausführen</translation>
     </message>
     <message>
         <source>Audio</source>
-        <translation>Audio</translation>
+        <translation type="obsolete">Audio</translation>
     </message>
     <message>
         <source>Mono</source>
-        <translation>Mono</translation>
+        <translation type="obsolete">Mono</translation>
     </message>
     <message>
         <source>Stereo</source>
-        <translation>Stereo</translation>
+        <translation type="obsolete">Stereo</translation>
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Aufzeichnungstyp</translation>
+        <translation type="obsolete">Aufzeichnungstyp</translation>
     </message>
     <message>
         <source>Live</source>
-        <translation>Live</translation>
+        <translation type="obsolete">Live</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>Tracks</source>
-        <translation>Spuren</translation>
+        <translation type="obsolete">Spuren</translation>
     </message>
     <message>
         <source>&amp;Show Tracks</source>
@@ -6236,19 +2889,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>General Information</source>
-        <translation>Allgemeine Information</translation>
+        <translation type="obsolete">Allgemeine Information</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Veröffentlichungsdatum</translation>
+        <translation type="obsolete">Veröffentlichungsdatum</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Schlüsselworte</translation>
+        <translation type="obsolete">Schlüsselworte</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -6256,27 +2909,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Audioverlag</translation>
+        <translation type="obsolete">Audioverlag</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorien</translation>
+        <translation type="obsolete">Kategorien</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Währung</translation>
+        <translation type="obsolete">Währung</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
@@ -6288,11 +2941,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Location</source>
-        <translation>Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -6302,15 +2955,15 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Anfrage</translation>
+        <translation type="obsolete">&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Print</source>
@@ -6318,102 +2971,62 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Artists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Show Tracks...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Composer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Release Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
     <message>
         <source>BiblioteQ: Current Borrowers</source>
-        <translation>BiblioteQ: Aktuelle Ausleiher</translation>
+        <translation type="obsolete">BiblioteQ: Aktuelle Ausleiher</translation>
     </message>
     <message>
         <source>Copy Number</source>
-        <translation>Nummer der Kopie</translation>
+        <translation type="obsolete">Nummer der Kopie</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>ID der Nutzerin</translation>
+        <translation type="obsolete">ID der Nutzerin</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Vorname</translation>
+        <translation type="obsolete">Vorname</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Nachname</translation>
+        <translation type="obsolete">Nachname</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Reservierungsdatum</translation>
+        <translation type="obsolete">Reservierungsdatum</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Fälligkeitsdatum</translation>
+        <translation type="obsolete">Fälligkeitsdatum</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Leiherin</translation>
+        <translation type="obsolete">Leiherin</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation>MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>&amp;Return</source>
-        <translation>&amp;Zurück</translation>
+        <translation type="obsolete">&amp;Zurück</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -6686,7 +3299,7 @@ Web-Adresse</translation>
     <name>copybrowser</name>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation>BiblioteQ: Kopien Browser</translation>
+        <translation type="obsolete">BiblioteQ: Kopien Browser</translation>
     </message>
     <message>
         <source>Due Date</source>
@@ -6698,50 +3311,42 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Verfügbarkeit</translation>
+        <translation type="obsolete">Verfügbarkeit</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation>MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>Copy Number</source>
-        <translation>Kopie Anzahl</translation>
+        <translation type="obsolete">Kopie Anzahl</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Löschen</translation>
+        <translation type="obsolete">&amp;Löschen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&amp;Due Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>customquery</name>
     <message>
         <source>BiblioteQ: Custom Query</source>
-        <translation>BiblioteQ: Individuelle Anfrage</translation>
+        <translation type="obsolete">BiblioteQ: Individuelle Anfrage</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</source>
@@ -6749,19 +3354,19 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
-        <translation type="unfinished">Dieses Menü ist für fortgeschrittene Nutzer, die eine tiefergehende Kenntnis von SQL und dem Datenbank-Layout von BiblioteQ haben. Bitte beachte, dass die Suche nach Bilder-Informationen (font_cover, back_cover) die Suchdauer erheblich überfordern kann.</translation>
+        <translation type="obsolete">Dieses Menü ist für fortgeschrittene Nutzer, die eine tiefergehende Kenntnis von SQL und dem Datenbank-Layout von BiblioteQ haben. Bitte beachte, dass die Suche nach Bilder-Informationen (font_cover, back_cover) die Suchdauer erheblich überfordern kann.</translation>
     </message>
     <message>
         <source>Database Tables</source>
-        <translation>Datenbank Tabellen</translation>
+        <translation type="obsolete">Datenbank Tabellen</translation>
     </message>
     <message>
         <source>Query Statement</source>
-        <translation>Suchanfrage</translation>
+        <translation type="obsolete">Suchanfrage</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>Execute</source>
@@ -6771,224 +3376,200 @@ Web-Adresse</translation>
         <source>Close</source>
         <translation type="obsolete">Schließen</translation>
     </message>
-    <message>
-        <source>&amp;Execute</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>dbEnumerations</name>
     <message>
         <source>CD Formats</source>
-        <translation type="unfinished">CD Formate</translation>
+        <translation type="obsolete">CD Formate</translation>
     </message>
     <message>
         <source>Add CD Format</source>
-        <translation type="vanished">Füge ein CD Format hinzu</translation>
+        <translation type="obsolete">Füge ein CD Format hinzu</translation>
     </message>
     <message>
         <source>Remove CD Format</source>
-        <translation type="vanished">Entferne ein CD Format</translation>
+        <translation type="obsolete">Entferne ein CD Format</translation>
     </message>
     <message>
         <source>DVD Regions</source>
-        <translation>DVD Regionen</translation>
+        <translation type="obsolete">DVD Regionen</translation>
     </message>
     <message>
         <source>Add DVD Region</source>
-        <translation type="vanished">Füge DVD Regionen hinzu</translation>
+        <translation type="obsolete">Füge DVD Regionen hinzu</translation>
     </message>
     <message>
         <source>Remove DVD Region</source>
-        <translation type="vanished">Entferne DVD Region</translation>
+        <translation type="obsolete">Entferne DVD Region</translation>
     </message>
     <message>
         <source>Reservations Minimum Days</source>
-        <translation>Minimum an Reservierungstagen</translation>
+        <translation type="obsolete">Minimum an Reservierungstagen</translation>
     </message>
     <message>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="obsolete">2</translation>
     </message>
     <message>
         <source>3</source>
-        <translation>3</translation>
+        <translation type="obsolete">3</translation>
     </message>
     <message>
         <source>4</source>
-        <translation>4</translation>
+        <translation type="obsolete">4</translation>
     </message>
     <message>
         <source>5</source>
-        <translation>5</translation>
+        <translation type="obsolete">5</translation>
     </message>
     <message>
         <source>6</source>
-        <translation>6</translation>
+        <translation type="obsolete">6</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Days</source>
-        <translation>Tage</translation>
+        <translation type="obsolete">Tage</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>Bücher</translation>
+        <translation type="obsolete">Bücher</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVDs</translation>
+        <translation type="obsolete">DVDs</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Journale</translation>
+        <translation type="obsolete">Journale</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Magazine</translation>
+        <translation type="obsolete">Magazine</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Musik CDs</translation>
+        <translation type="obsolete">Musik CDs</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Videospiele</translation>
+        <translation type="obsolete">Videospiele</translation>
     </message>
     <message>
         <source>Video Game Ratings</source>
-        <translation>Videospiel-Bewertungen</translation>
+        <translation type="obsolete">Videospiel-Bewertungen</translation>
     </message>
     <message>
         <source>Add Video Game Rating</source>
-        <translation type="vanished">Füge eine Videospiel-Bewertung hinzu</translation>
+        <translation type="obsolete">Füge eine Videospiel-Bewertung hinzu</translation>
     </message>
     <message>
         <source>Remove Video Game Rating</source>
-        <translation type="vanished">Entferne eine Videospiel-Bewertung</translation>
+        <translation type="obsolete">Entferne eine Videospiel-Bewertung</translation>
     </message>
     <message>
         <source>DVD Aspect Ratios</source>
-        <translation>DVD Seitenverhältnis</translation>
+        <translation type="obsolete">DVD Seitenverhältnis</translation>
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
-        <translation type="vanished">Füge DVD Seitenverhältnis hinzu</translation>
+        <translation type="obsolete">Füge DVD Seitenverhältnis hinzu</translation>
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
-        <translation type="vanished">Entferne DVD Seitenverhältnis</translation>
+        <translation type="obsolete">Entferne DVD Seitenverhältnis</translation>
     </message>
     <message>
         <source>Languages</source>
-        <translation>Sprachen</translation>
+        <translation type="obsolete">Sprachen</translation>
     </message>
     <message>
         <source>Add Language</source>
-        <translation type="vanished">Füge Sprache hinzu</translation>
+        <translation type="obsolete">Füge Sprache hinzu</translation>
     </message>
     <message>
         <source>Remove Language</source>
-        <translation type="vanished">Entferne Sprache</translation>
+        <translation type="obsolete">Entferne Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Währungseinheit</translation>
+        <translation type="obsolete">Währungseinheit</translation>
     </message>
     <message>
         <source>Add Monetary Unit</source>
-        <translation type="vanished">Füge Währungseinheit hinzu</translation>
+        <translation type="obsolete">Füge Währungseinheit hinzu</translation>
     </message>
     <message>
         <source>Remove Monetary Unit</source>
-        <translation type="vanished">Entferne Währungseinheit</translation>
+        <translation type="obsolete">Entferne Währungseinheit</translation>
     </message>
     <message>
         <source>DVD Ratings</source>
-        <translation>DVD Bewertungen</translation>
+        <translation type="obsolete">DVD Bewertungen</translation>
     </message>
     <message>
         <source>Add DVD Rating</source>
-        <translation type="vanished">Füge DVD Bewertung hinzu</translation>
+        <translation type="obsolete">Füge DVD Bewertung hinzu</translation>
     </message>
     <message>
         <source>Remove DVD Rating</source>
-        <translation type="vanished">Entferne DVD Bewertung</translation>
+        <translation type="obsolete">Entferne DVD Bewertung</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>Orte</translation>
+        <translation type="obsolete">Orte</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Add Location</source>
-        <translation type="vanished">Füge Ort hinzu</translation>
+        <translation type="obsolete">Füge Ort hinzu</translation>
     </message>
     <message>
         <source>Remove Location</source>
-        <translation type="vanished">Entferne Ort</translation>
+        <translation type="obsolete">Entferne Ort</translation>
     </message>
     <message>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>14</source>
-        <translation type="unfinished">14</translation>
+        <translation type="obsolete">14</translation>
     </message>
     <message>
         <source>Video Game Platforms</source>
-        <translation>Videospiel Plattform</translation>
+        <translation type="obsolete">Videospiel Plattform</translation>
     </message>
     <message>
         <source>Add Video Game Platform</source>
-        <translation type="vanished">Füge Videospiel-Plattform hinzu</translation>
+        <translation type="obsolete">Füge Videospiel-Plattform hinzu</translation>
     </message>
     <message>
         <source>Remove Video Game Platform</source>
-        <translation type="vanished">Entferne Videospiel-Plattform</translation>
+        <translation type="obsolete">Entferne Videospiel-Plattform</translation>
     </message>
     <message>
         <source>Save Changes</source>
-        <translation>Änderungen speichern</translation>
+        <translation type="obsolete">Änderungen speichern</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Aktualisieren</translation>
+        <translation type="obsolete">Aktualisieren</translation>
     </message>
     <message>
         <source>Close Browser</source>
-        <translation>Schließe den Browser</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Binding Types</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey Literature Document Types</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Schließe den Browser</translation>
     </message>
 </context>
 <context>
@@ -7078,15 +3659,15 @@ Web-Adresse</translation>
     <name>dvdDialog</name>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Umschlagbilder</translation>
+        <translation type="obsolete">Umschlagbilder</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Titelbild</translation>
+        <translation type="obsolete">Titelbild</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -7094,67 +3675,67 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Bild des Rückendeckels</translation>
+        <translation type="obsolete">Bild des Rückendeckels</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Spezielle Informationen</translation>
+        <translation type="obsolete">Spezielle Informationen</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation type="unfinished">UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Bewertung</translation>
+        <translation type="obsolete">Bewertung</translation>
     </message>
     <message>
         <source>Actor(s)</source>
-        <translation type="vanished">Schauspieler</translation>
+        <translation type="obsolete">Schauspieler</translation>
     </message>
     <message>
         <source>Director(s)</source>
-        <translation type="vanished">Direktor(en)</translation>
+        <translation type="obsolete">Direktor(en)</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Anzahl der Scheiben</translation>
+        <translation type="obsolete">Anzahl der Scheiben</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Laufzeit</translation>
+        <translation type="obsolete">Laufzeit</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Region</translation>
+        <translation type="obsolete">Region</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Seitenverhältnis</translation>
+        <translation type="obsolete">Seitenverhältnis</translation>
     </message>
     <message>
         <source>hh:mm:ss</source>
-        <translation>hh:mm:ss</translation>
+        <translation type="obsolete">hh:mm:ss</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation>Allgemeine Iinformationen</translation>
+        <translation type="obsolete">Allgemeine Iinformationen</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Veröffentlichungsdatum</translation>
+        <translation type="obsolete">Veröffentlichungsdatum</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Stichworte</translation>
+        <translation type="obsolete">Stichworte</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -7162,27 +3743,27 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorien</translation>
+        <translation type="obsolete">Kategorien</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Währung</translation>
+        <translation type="obsolete">Währung</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
@@ -7194,11 +3775,11 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -7207,15 +3788,15 @@ URL</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Anfrage</translation>
+        <translation type="obsolete">&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Print</source>
@@ -7223,97 +3804,57 @@ URL</source>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Directors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Release Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>errordialog</name>
     <message>
         <source>BiblioteQ: Error Log</source>
-        <translation>BiblioteQ: Fehlerdialog</translation>
+        <translation type="obsolete">BiblioteQ: Fehlerdialog</translation>
     </message>
     <message>
         <source>Event Time</source>
-        <translation>Ereigniszeit</translation>
+        <translation type="obsolete">Ereigniszeit</translation>
     </message>
     <message>
         <source>Event Type</source>
-        <translation>Ereignistyp</translation>
+        <translation type="obsolete">Ereignistyp</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation>Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>Full Description</source>
-        <translation>Vollständige Beschreibung</translation>
+        <translation type="obsolete">Vollständige Beschreibung</translation>
     </message>
     <message>
         <source>File</source>
-        <translation>Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <source>Line Number</source>
-        <translation>Zeilennummer</translation>
+        <translation type="obsolete">Zeilennummer</translation>
     </message>
     <message>
         <source>&amp;To Clipboard</source>
-        <translation>&amp;Zur Zwischenablage</translation>
+        <translation type="obsolete">&amp;Zur Zwischenablage</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>generalmessagediag</name>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: General Message Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -7335,63 +3876,63 @@ URL</source>
     <name>historyDialog</name>
     <message>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
-        <translation>BiblioteQ: Reservierungs-Historie des Nutzers</translation>
+        <translation type="obsolete">BiblioteQ: Reservierungs-Historie des Nutzers</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>ID des Nutzers</translation>
+        <translation type="obsolete">ID des Nutzers</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Vorname</translation>
+        <translation type="obsolete">Vorname</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Nachname</translation>
+        <translation type="obsolete">Nachname</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Strichcode</translation>
+        <translation type="obsolete">Strichcode</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Reservierungsdatum</translation>
+        <translation type="obsolete">Reservierungsdatum</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Fälligkeitsdatum</translation>
+        <translation type="obsolete">Fälligkeitsdatum</translation>
     </message>
     <message>
         <source>Returned Date</source>
-        <translation>Rückgabedatum</translation>
+        <translation type="obsolete">Rückgabedatum</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Entleiher</translation>
+        <translation type="obsolete">Entleiher</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation>MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>Previous Member</source>
-        <translation>Vorheriger Nutzer</translation>
+        <translation type="obsolete">Vorheriger Nutzer</translation>
     </message>
     <message>
         <source>&amp;Reload</source>
-        <translation>&amp;Erneut Laden</translation>
+        <translation type="obsolete">&amp;Erneut Laden</translation>
     </message>
     <message>
         <source>&amp;Print</source>
@@ -7399,38 +3940,30 @@ URL</source>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>Next Member</source>
-        <translation>Nächster Nutzer</translation>
-    </message>
-    <message>
-        <source>&amp;Do not record reservation history.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Nächster Nutzer</translation>
     </message>
 </context>
 <context>
     <name>informationDialog</name>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Umschlagbilder</translation>
+        <translation type="obsolete">Umschlagbilder</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Titelbild</translation>
+        <translation type="obsolete">Titelbild</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation>&amp;Herunterladen</translation>
+        <translation type="obsolete">&amp;Herunterladen</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -7438,15 +3971,15 @@ URL</source>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Bild des Rückendeckels</translation>
+        <translation type="obsolete">Bild des Rückendeckels</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Spezifische Informationen</translation>
+        <translation type="obsolete">Spezifische Informationen</translation>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>&amp;Generate</source>
@@ -7458,11 +3991,11 @@ URL</source>
     </message>
     <message>
         <source>ISBN-13</source>
-        <translation>ISBN-13</translation>
+        <translation type="obsolete">ISBN-13</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Edition</translation>
+        <translation type="obsolete">Edition</translation>
     </message>
     <message>
         <source>1st</source>
@@ -7566,11 +4099,11 @@ URL</source>
     </message>
     <message>
         <source>Author(s)</source>
-        <translation type="vanished">Autor(en)</translation>
+        <translation type="obsolete">Autor(en)</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Typ der Buchbindung</translation>
+        <translation type="obsolete">Typ der Buchbindung</translation>
     </message>
     <message>
         <source>Hardcover</source>
@@ -7582,27 +4115,27 @@ URL</source>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Kontroll Nummer</translation>
+        <translation type="obsolete">LC Kontroll Nummer</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aufruf Nummer</translation>
+        <translation type="obsolete">Aufruf Nummer</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Klassifizierungs-Nummer</translation>
+        <translation type="obsolete">Dewey Klassifizierungs-Nummer</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation>Allgemeine Informationen</translation>
+        <translation type="obsolete">Allgemeine Informationen</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Veröffentlichungsdatum</translation>
+        <translation type="obsolete">Veröffentlichungsdatum</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -7610,27 +4143,27 @@ URL</source>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Verlag</translation>
+        <translation type="obsolete">Verlag</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorien</translation>
+        <translation type="obsolete">Kategorien</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Währung</translation>
+        <translation type="obsolete">Währung</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
@@ -7642,11 +4175,11 @@ URL</source>
     </message>
     <message>
         <source>Location</source>
-        <translation>Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -7655,183 +4188,43 @@ URL</source>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Platz der Veröffentlichung</translation>
+        <translation type="obsolete">Platz der Veröffentlichung</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Stichworte</translation>
+        <translation type="obsolete">Stichworte</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation type="obsolete">&amp;Löschen</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Anfrage</translation>
+        <translation type="obsolete">&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drucken</translation>
+        <translation type="obsolete">&amp;Drucken</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>Download the book&apos;s front cover image from Amazon.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download the book&apos;s back cover image from Amazon.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ISBNs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>From &amp;ISBN-13</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>From &amp;ISBN-10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Black &amp; White Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>As New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Binding Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Club</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ex-Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Very Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Digest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compressed Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
-    </message>
-    <message>
-        <source>&amp;Attach...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View PDF...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;SRU Query</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
 </context>
 <context>
@@ -7868,15 +4261,15 @@ URL</source>
     <name>magDialog</name>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Umschlagbilder</translation>
+        <translation type="obsolete">Umschlagbilder</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Titelbild</translation>
+        <translation type="obsolete">Titelbild</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -7884,11 +4277,11 @@ URL</source>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Bild des Rückendeckels</translation>
+        <translation type="obsolete">Bild des Rückendeckels</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Spezifische Informationen</translation>
+        <translation type="obsolete">Spezifische Informationen</translation>
     </message>
     <message>
         <source>Issue (Number)</source>
@@ -7896,7 +4289,7 @@ URL</source>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Kontroll Nummer</translation>
+        <translation type="obsolete">LC Kontroll Nummer</translation>
     </message>
     <message>
         <source>ISSN (9999-9999)</source>
@@ -7904,27 +4297,27 @@ URL</source>
     </message>
     <message>
         <source>Volume</source>
-        <translation>Ausgabe</translation>
+        <translation type="obsolete">Ausgabe</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aufruf Nummer</translation>
+        <translation type="obsolete">Aufruf Nummer</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Klassifizierungs-Nummer</translation>
+        <translation type="obsolete">Dewey Klassifizierungs-Nummer</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation>Allgemeine Informationen</translation>
+        <translation type="obsolete">Allgemeine Informationen</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Veröffentlichungsdatum</translation>
+        <translation type="obsolete">Veröffentlichungsdatum</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -7932,39 +4325,39 @@ URL</source>
     </message>
     <message>
         <source>ISSN</source>
-        <translation type="unfinished">ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Verlag</translation>
+        <translation type="obsolete">Verlag</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorien</translation>
+        <translation type="obsolete">Kategorien</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Währung</translation>
+        <translation type="obsolete">Währung</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation type="obsolete">&amp;Löschen</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
@@ -7976,11 +4369,11 @@ URL</source>
     </message>
     <message>
         <source>Location</source>
-        <translation>Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -7989,23 +4382,23 @@ URL</source>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Erscheinungsort</translation>
+        <translation type="obsolete">Erscheinungsort</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Stichworte</translation>
+        <translation type="obsolete">Stichworte</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Anfrage</translation>
+        <translation type="obsolete">&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Print</source>
@@ -8013,106 +4406,34 @@ URL</source>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Issue Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Digest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compressed Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
-    </message>
-    <message>
-        <source>&amp;Attach...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View PDF...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;SRU Query</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
 </context>
 <context>
     <name>mainWindow</name>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source>2</source>
@@ -8176,91 +4497,91 @@ URL</source>
     </message>
     <message>
         <source>Previous Page</source>
-        <translation>Vorherige Seite</translation>
+        <translation type="obsolete">Vorherige Seite</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation>Nächste Seite</translation>
+        <translation type="obsolete">Nächste Seite</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hilfe</translation>
+        <translation type="obsolete">&amp;Hilfe</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation>&amp;Werkzeuge</translation>
+        <translation type="obsolete">&amp;Werkzeuge</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Datei</translation>
+        <translation type="obsolete">&amp;Datei</translation>
     </message>
     <message>
         <source>&amp;Recent SQLite Files</source>
-        <translation>Letzte SQLite Dateien</translation>
+        <translation type="obsolete">Letzte SQLite Dateien</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Eingabe</translation>
+        <translation type="obsolete">&amp;Eingabe</translation>
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation type="unfinished">Füge Objekt hinzu</translation>
+        <translation type="obsolete">Füge Objekt hinzu</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Ansicht</translation>
+        <translation type="obsolete">&amp;Ansicht</translation>
     </message>
     <message>
         <source>&amp;Options</source>
-        <translation>&amp;Optionen</translation>
+        <translation type="obsolete">&amp;Optionen</translation>
     </message>
     <message>
         <source>E&amp;ntries per Page</source>
-        <translation type="unfinished">Einträge pro Seite</translation>
+        <translation type="obsolete">Einträge pro Seite</translation>
     </message>
     <message>
         <source>Preferred &amp;Z39.50 Site</source>
-        <translation>Bevorzugte &amp;Z39.50 Seite</translation>
+        <translation type="obsolete">Bevorzugte &amp;Z39.50 Seite</translation>
     </message>
     <message>
         <source>&amp;Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Connect Toobar</source>
-        <translation>Verbinde Werkzeugleiste</translation>
+        <translation type="obsolete">Verbinde Werkzeugleiste</translation>
     </message>
     <message>
         <source>Edit Toolbar</source>
-        <translation>Ediere Werkzeugleiste</translation>
+        <translation type="obsolete">Ediere Werkzeugleiste</translation>
     </message>
     <message>
         <source>Reservations Toolbar</source>
-        <translation type="unfinished">Werkzeugleiste Reservierungen</translation>
+        <translation type="obsolete">Werkzeugleiste Reservierungen</translation>
     </message>
     <message>
         <source>Search Toolbar</source>
-        <translation type="unfinished">Werkzeugleiste Suche</translation>
+        <translation type="obsolete">Werkzeugleiste Suche</translation>
     </message>
     <message>
         <source>Configurations Toolbar</source>
-        <translation type="unfinished">Werkzeugleiste Konfiguration</translation>
+        <translation type="obsolete">Werkzeugleiste Konfiguration</translation>
     </message>
     <message>
         <source>Exit Toolbar</source>
-        <translation type="unfinished">Exit Werkzeugleiste</translation>
+        <translation type="obsolete">Exit Werkzeugleiste</translation>
     </message>
     <message>
         <source>&amp;Populate View on Connect</source>
-        <translation type="unfinished">Fülle die Ansicht bei Verbindung</translation>
+        <translation type="obsolete">Fülle die Ansicht bei Verbindung</translation>
     </message>
     <message>
         <source>Exit Bibliote&amp;Q</source>
-        <translation type="unfinished">Schließe BiblioteQ</translation>
+        <translation type="obsolete">Schließe BiblioteQ</translation>
     </message>
     <message>
         <source>&amp;Refresh View</source>
-        <translation type="unfinished">Ansicht Aktualisieren</translation>
+        <translation type="obsolete">Ansicht Aktualisieren</translation>
     </message>
     <message>
         <source>Select &amp;Global Font</source>
@@ -8268,15 +4589,15 @@ URL</source>
     </message>
     <message>
         <source>Populate View on Item &amp;Creation</source>
-        <translation type="unfinished">Fülle die Ansicht bei Objekterstellung</translation>
+        <translation type="obsolete">Fülle die Ansicht bei Objekterstellung</translation>
     </message>
     <message>
         <source>Print Current View</source>
-        <translation type="unfinished">Drucke derzeitige Ansicht</translation>
+        <translation type="obsolete">Drucke derzeitige Ansicht</translation>
     </message>
     <message>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
-        <translation type="unfinished">Behalte die Größe des Hauptfensters immer bei</translation>
+        <translation type="obsolete">Behalte die Größe des Hauptfensters immer bei</translation>
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
@@ -8312,7 +4633,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Display Table Grid</source>
-        <translation type="unfinished">&amp;Zeige Tabellenraster</translation>
+        <translation type="obsolete">&amp;Zeige Tabellenraster</translation>
     </message>
     <message>
         <source>&amp;Resize Columns to Contents</source>
@@ -8320,15 +4641,15 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
     </message>
     <message>
         <source>&amp;Save Settings</source>
-        <translation type="unfinished">&amp;Speichere die Einstellungen</translation>
+        <translation type="obsolete">&amp;Speichere die Einstellungen</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="obsolete">Ctrl+S</translation>
     </message>
     <message>
         <source>&amp;Populate Table on Connect</source>
@@ -8348,11 +4669,11 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation>Ctrl+L</translation>
+        <translation type="obsolete">Ctrl+L</translation>
     </message>
     <message>
         <source>Reset &amp;Error Log on Disconnect</source>
-        <translation type="unfinished">Lösche &amp;Fehler- und Log-Dateien beim Verbindungsabbruch</translation>
+        <translation type="obsolete">Lösche &amp;Fehler- und Log-Dateien beim Verbindungsabbruch</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -8360,15 +4681,15 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+C</source>
-        <translation>Ctrl+C</translation>
+        <translation type="obsolete">Ctrl+C</translation>
     </message>
     <message>
         <source>&amp;Disconnect</source>
-        <translation type="unfinished">&amp;Verbindungsabbruch</translation>
+        <translation type="obsolete">&amp;Verbindungsabbruch</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
-        <translation>Ctrl+D</translation>
+        <translation type="obsolete">Ctrl+D</translation>
     </message>
     <message>
         <source>&amp;Exit BiblioteQ</source>
@@ -8380,11 +4701,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Delete Selected Item(s)</source>
-        <translation type="unfinished">&amp;Lösche ausgewählte Ausleihen</translation>
+        <translation type="obsolete">&amp;Lösche ausgewählte Ausleihen</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
+        <translation type="obsolete">Ctrl+X</translation>
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
@@ -8392,7 +4713,7 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation>Ctrl+V</translation>
+        <translation type="obsolete">Ctrl+V</translation>
     </message>
     <message>
         <source>&amp;Members Browser</source>
@@ -8400,7 +4721,7 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation>Ctrl+M</translation>
+        <translation type="obsolete">Ctrl+M</translation>
     </message>
     <message>
         <source>&amp;Database Search</source>
@@ -8408,11 +4729,11 @@ URL</source>
     </message>
     <message>
         <source>Database Search</source>
-        <translation type="unfinished">Datenbank Suche</translation>
+        <translation type="obsolete">Datenbank Suche</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation>Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
     <message>
         <source>Refresh &amp;Table</source>
@@ -8432,7 +4753,7 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation>Ctrl+G</translation>
+        <translation type="obsolete">Ctrl+G</translation>
     </message>
     <message>
         <source>Populate Table on Item &amp;Creation</source>
@@ -8440,27 +4761,27 @@ URL</source>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished">Verbinde</translation>
+        <translation type="obsolete">Verbinde</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished">Unterbreche die Verbindung</translation>
+        <translation type="obsolete">Unterbreche die Verbindung</translation>
     </message>
     <message>
         <source>View Selected Item(s)</source>
-        <translation type="unfinished">Zeige ausgewählte Ausleihe(n) an</translation>
+        <translation type="obsolete">Zeige ausgewählte Ausleihe(n) an</translation>
     </message>
     <message>
         <source>Add Item</source>
-        <translation type="unfinished">Füge Ausleihe hinzu</translation>
+        <translation type="obsolete">Füge Ausleihe hinzu</translation>
     </message>
     <message>
         <source>Delete Selected Item(s)</source>
-        <translation type="unfinished">Lösche ausgewählte Ausleihe(n)</translation>
+        <translation type="obsolete">Lösche ausgewählte Ausleihe(n)</translation>
     </message>
     <message>
         <source>Modify Selected Item(s)</source>
-        <translation type="unfinished">Verändere ausgewählte Ausleihe(n)</translation>
+        <translation type="obsolete">Verändere ausgewählte Ausleihe(n)</translation>
     </message>
     <message>
         <source>Print Selected Item(s)</source>
@@ -8468,27 +4789,27 @@ URL</source>
     </message>
     <message>
         <source>Reserve Selected Item</source>
-        <translation type="unfinished">Reserviere ausgewählte Ausleihen</translation>
+        <translation type="obsolete">Reserviere ausgewählte Ausleihen</translation>
     </message>
     <message>
         <source>Display Members Browser</source>
-        <translation type="unfinished">Zeige den Nutzerinnen Browser</translation>
+        <translation type="obsolete">Zeige den Nutzerinnen Browser</translation>
     </message>
     <message>
         <source>Custom Database Query</source>
-        <translation type="unfinished">Individuelle Datenbankabfrage</translation>
+        <translation type="obsolete">Individuelle Datenbankabfrage</translation>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation type="unfinished">Aktualisiere die Tabelle</translation>
+        <translation type="obsolete">Aktualisiere die Tabelle</translation>
     </message>
     <message>
         <source>Select Viewable Columns</source>
-        <translation type="unfinished">Wähle anzuzeigende Spalten aus</translation>
+        <translation type="obsolete">Wähle anzuzeigende Spalten aus</translation>
     </message>
     <message>
         <source>Exit BiblioteQ</source>
-        <translation type="unfinished">Schließe BiblioteQ</translation>
+        <translation type="obsolete">Schließe BiblioteQ</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
@@ -8496,7 +4817,7 @@ URL</source>
     </message>
     <message>
         <source>Change Password</source>
-        <translation type="unfinished">Wechel das Passwort</translation>
+        <translation type="obsolete">Wechel das Passwort</translation>
     </message>
     <message>
         <source>Remember S&amp;QLite Filename</source>
@@ -8508,15 +4829,15 @@ URL</source>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
-        <translation type="unfinished">Speichere die Einstellungen automatisch beim &amp;Schließen des Programms</translation>
+        <translation type="obsolete">Speichere die Einstellungen automatisch beim &amp;Schließen des Programms</translation>
     </message>
     <message>
         <source>Configure Administrator Privileges</source>
-        <translation type="unfinished">Stelle die Privilegien der Administratorin ein</translation>
+        <translation type="obsolete">Stelle die Privilegien der Administratorin ein</translation>
     </message>
     <message>
         <source>Item Requests</source>
-        <translation type="unfinished">Ausleih Anfragen</translation>
+        <translation type="obsolete">Ausleih Anfragen</translation>
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
@@ -8525,182 +4846,6 @@ URL</source>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
         <translation type="obsolete">Zeige Inhalte der Tabelle im Browser der Administratorinnen während der Anzeige</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keyword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please press the Enter key to execute the query.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Case-Insensitive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear the main table and reset the nearby search widgets.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Preferred SRU S&amp;ite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>P&amp;hotographs per Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;About...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Re&amp;size Columns to Contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View Error &amp;Log...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Connect...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Modify Selected Item(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Members Browser...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Database Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Selected Item(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select &amp;Global Font...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View Member&apos;s Reservation History (Patrons Only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populate &amp;Members Browser on Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populate &amp;Administrator Browser on Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;New SQLite Database...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database Enumerations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populate Database En&amp;umerations Browser on Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export Table View as CSV...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Duplicate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Duplicate Selected Item(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>D&amp;uplicate Selected Item(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Book...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;DVD...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Journal...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Magazine...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Music &amp;CD...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Video Game...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Upgrade SQLite Schema</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically &amp;Resize Column Widths</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reload &amp;biblioteq.conf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Other &amp;Options...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Open PDF File...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Grey Literature...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8954,7 +5099,7 @@ URL</source>
     <name>membersBrowser</name>
     <message>
         <source>BiblioteQ: Members Browser</source>
-        <translation>BiblioteQ: Browser der Nutzerinnen</translation>
+        <translation type="obsolete">BiblioteQ: Browser der Nutzerinnen</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -8962,11 +5107,11 @@ URL</source>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>ID der Nutzerin</translation>
+        <translation type="obsolete">ID der Nutzerin</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Nachname</translation>
+        <translation type="obsolete">Nachname</translation>
     </message>
     <message>
         <source>Apply Filter</source>
@@ -8974,75 +5119,75 @@ URL</source>
     </message>
     <message>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation type="obsolete">Vorname</translation>
     </message>
     <message>
         <source>Member Since</source>
-        <translation type="unfinished">Nutzerin seit</translation>
+        <translation type="obsolete">Nutzerin seit</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished">Auslauf-Datum</translation>
+        <translation type="obsolete">Auslauf-Datum</translation>
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation type="unfinished">Bücher reserviert</translation>
+        <translation type="obsolete">Bücher reserviert</translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation type="unfinished">CDs reserviert</translation>
+        <translation type="obsolete">CDs reserviert</translation>
     </message>
     <message>
         <source>DVDs Reserved</source>
-        <translation type="unfinished">DVDs reserviert</translation>
+        <translation type="obsolete">DVDs reserviert</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation type="unfinished">Journale reserviert</translation>
+        <translation type="obsolete">Journale reserviert</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation type="unfinished">Magazine reserviert</translation>
+        <translation type="obsolete">Magazine reserviert</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation type="unfinished">Videospiele reserviert</translation>
+        <translation type="obsolete">Videospiele reserviert</translation>
     </message>
     <message>
         <source>Add Member</source>
-        <translation type="unfinished">Füge Nutzerin hinzu</translation>
+        <translation type="obsolete">Füge Nutzerin hinzu</translation>
     </message>
     <message>
         <source>Delete Selected Member</source>
-        <translation type="unfinished">Lösche ausgewählte Nutzerin</translation>
+        <translation type="obsolete">Lösche ausgewählte Nutzerin</translation>
     </message>
     <message>
         <source>Modify Selected Member</source>
-        <translation type="unfinished">Bearbeite ausgewählte Nutzerin</translation>
+        <translation type="obsolete">Bearbeite ausgewählte Nutzerin</translation>
     </message>
     <message>
         <source>Show Selected Member&apos;s Reservation History</source>
-        <translation type="unfinished">Zeige die Reservierungshistorie der ausgewählten Nutzerin</translation>
+        <translation type="obsolete">Zeige die Reservierungshistorie der ausgewählten Nutzerin</translation>
     </message>
     <message>
         <source>List Selected Member&apos;s Reserved Items</source>
-        <translation type="unfinished">Liste die reservierten Ausleihen der ausgewählten Nutzerin</translation>
+        <translation type="obsolete">Liste die reservierten Ausleihen der ausgewählten Nutzerin</translation>
     </message>
     <message>
         <source>Print Selected Member&apos;s Reserved Items</source>
-        <translation type="unfinished">Drucke die Reservierungsliste der ausgewählten Nutzerin</translation>
+        <translation type="obsolete">Drucke die Reservierungsliste der ausgewählten Nutzerin</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
-        <translation type="unfinished">Reserviere die ausgewählte Ausleihe</translation>
+        <translation type="obsolete">Reserviere die ausgewählte Ausleihe</translation>
     </message>
     <message>
         <source>List All Overdue Items</source>
-        <translation type="unfinished">Zeige alle überfälligen Ausleihen an</translation>
+        <translation type="obsolete">Zeige alle überfälligen Ausleihen an</translation>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation type="unfinished">Aktualisiere die Tabelle</translation>
+        <translation type="obsolete">Aktualisiere die Tabelle</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -9050,57 +5195,29 @@ URL</source>
     </message>
     <message>
         <source>Close Browser</source>
-        <translation type="unfinished">Schließe den Browser</translation>
-    </message>
-    <message>
-        <source>&amp;Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Apply Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grant Privileges</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Schließe den Browser</translation>
     </message>
 </context>
 <context>
     <name>otheroptions</name>
     <message>
         <source>Item Type</source>
-        <translation type="unfinished">Typ der Ausleihe</translation>
+        <translation type="obsolete">Typ der Ausleihe</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Other Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Main Window Canvas Background Color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>#ffffff</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publication Date Format</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>passSelect</name>
     <message>
         <source>BiblioteQ: Password Selection</source>
-        <translation type="unfinished">BiblioteQ: Auswahl des Passworts</translation>
+        <translation type="obsolete">BiblioteQ: Auswahl des Passworts</translation>
     </message>
     <message>
         <source>Userid</source>
@@ -9120,23 +5237,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
-    </message>
-    <message>
-        <source>&amp;Userid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;New Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Confirm Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -9145,28 +5250,12 @@ URL</source>
         <source>Password</source>
         <translation type="obsolete">Passwort</translation>
     </message>
-    <message>
-        <source>BiblioteQ: Proxy Authentication Required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Password</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>pcDialog</name>
     <message>
         <source>BiblioteQ</source>
-        <translation type="unfinished">BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -9174,31 +5263,31 @@ URL</source>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation type="unfinished">Aufruf Nummer</translation>
+        <translation type="obsolete">Aufruf Nummer</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished">Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Add Item</source>
@@ -9206,7 +5295,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Print</source>
@@ -9214,174 +5303,54 @@ URL</source>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>About Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Creators</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Other Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copyright</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Medium</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reproduction Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subjects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Add Item...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export Items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Import Items...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>pdfreader</name>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Ansicht</translation>
+        <translation type="obsolete">&amp;Ansicht</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished">&amp;Datei</translation>
+        <translation type="obsolete">&amp;Datei</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: PDF Reader</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
     <message>
         <source>50%</source>
-        <translation type="unfinished">50%</translation>
+        <translation type="obsolete">50%</translation>
     </message>
     <message>
         <source>75%</source>
-        <translation type="unfinished">75%</translation>
+        <translation type="obsolete">75%</translation>
     </message>
     <message>
         <source>85%</source>
-        <translation type="unfinished">85%</translation>
+        <translation type="obsolete">85%</translation>
     </message>
     <message>
         <source>95%</source>
-        <translation type="unfinished">95%</translation>
+        <translation type="obsolete">95%</translation>
     </message>
     <message>
         <source>100%</source>
-        <translation type="unfinished">100%</translation>
+        <translation type="obsolete">100%</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
-    </message>
-    <message>
-        <source>&amp;Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Previous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Case Sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Eingabe</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Eingabe</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation type="unfinished">Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
 </context>
 <context>
@@ -9392,126 +5361,54 @@ URL</source>
     </message>
     <message>
         <source>Call Number</source>
-        <translation type="unfinished">Aufruf Nummer</translation>
+        <translation type="obsolete">Aufruf Nummer</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished">Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Creators</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Other Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copyright</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Medium</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reproduction Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subjects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>photographView</name>
     <message>
         <source>100%</source>
-        <translation type="unfinished">100%</translation>
+        <translation type="obsolete">100%</translation>
     </message>
     <message>
         <source>80%</source>
-        <translation type="unfinished">80%</translation>
+        <translation type="obsolete">80%</translation>
     </message>
     <message>
         <source>50%</source>
-        <translation type="unfinished">50%</translation>
+        <translation type="obsolete">50%</translation>
     </message>
     <message>
         <source>25%</source>
-        <translation type="unfinished">25%</translation>
+        <translation type="obsolete">25%</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Previous Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Next Photograph</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -13106,27 +9003,23 @@ URL</source>
     <name>sruResultsDialog</name>
     <message>
         <source>&amp;Records Retrieved</source>
-        <translation type="unfinished">&amp;Ergebnisse erhalten</translation>
+        <translation type="obsolete">&amp;Ergebnisse erhalten</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished">Erhalte &amp;Inhalte</translation>
+        <translation type="obsolete">Erhalte &amp;Inhalte</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Auswahl</translation>
+        <translation type="obsolete">&amp;Auswahl</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Query Results</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -13140,74 +9033,54 @@ URL</source>
     <name>tracksDialog</name>
     <message>
         <source>BiblioteQ: Album Tracks Browser</source>
-        <translation type="unfinished">BiblioteQ: Browser der Album Titel</translation>
+        <translation type="obsolete">BiblioteQ: Browser der Album Titel</translation>
     </message>
     <message>
         <source>Album Number</source>
-        <translation type="unfinished">Album Nummer</translation>
+        <translation type="obsolete">Album Nummer</translation>
     </message>
     <message>
         <source>Track Number</source>
-        <translation type="unfinished">Track Nummer</translation>
+        <translation type="obsolete">Track Nummer</translation>
     </message>
     <message>
         <source>Track Title</source>
-        <translation type="unfinished">Titel des Tracks</translation>
+        <translation type="obsolete">Titel des Tracks</translation>
     </message>
     <message>
         <source>Track Runtime</source>
-        <translation type="unfinished">Laufzeit des Tracks</translation>
+        <translation type="obsolete">Laufzeit des Tracks</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation type="obsolete">&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Insert</source>
-        <translation type="unfinished">&amp;Einfügen</translation>
+        <translation type="obsolete">&amp;Einfügen</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation type="obsolete">&amp;Löschen</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Composer</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>userinfo_diag_class</name>
-    <message>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?
-%1</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>vgDialog</name>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation type="unfinished">Umschlagbilder</translation>
+        <translation type="obsolete">Umschlagbilder</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation type="unfinished">Titelbild</translation>
+        <translation type="obsolete">Titelbild</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -13215,19 +9088,19 @@ URL</source>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation type="unfinished">Bild des Rückendeckels</translation>
+        <translation type="obsolete">Bild des Rückendeckels</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation type="unfinished">Spezifische Informationen</translation>
+        <translation type="obsolete">Spezifische Informationen</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation type="unfinished">Bewertung des Spiels</translation>
+        <translation type="obsolete">Bewertung des Spiels</translation>
     </message>
     <message>
         <source>Developer(s)</source>
@@ -13235,31 +9108,31 @@ URL</source>
     </message>
     <message>
         <source>Platform</source>
-        <translation type="unfinished">Platform</translation>
+        <translation type="obsolete">Platform</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished">Modus</translation>
+        <translation type="obsolete">Modus</translation>
     </message>
     <message>
         <source>Multiplayer</source>
-        <translation type="unfinished">Netzwerkfähig (Multiplayer)</translation>
+        <translation type="obsolete">Netzwerkfähig (Multiplayer)</translation>
     </message>
     <message>
         <source>Single Player</source>
-        <translation type="unfinished">Einzelspielerin (Single Player)</translation>
+        <translation type="obsolete">Einzelspielerin (Single Player)</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation type="unfinished">Allgemeine Information</translation>
+        <translation type="obsolete">Allgemeine Information</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation type="unfinished">Veröffentlichungsdatum</translation>
+        <translation type="obsolete">Veröffentlichungsdatum</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -13267,27 +9140,27 @@ URL</source>
     </message>
     <message>
         <source>Publisher</source>
-        <translation type="unfinished">Verlag</translation>
+        <translation type="obsolete">Verlag</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="unfinished">Genre</translation>
+        <translation type="obsolete">Genre</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation type="obsolete">Preis</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation type="unfinished">Währungseinheit</translation>
+        <translation type="obsolete">Währungseinheit</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation type="obsolete">Kopien</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
@@ -13299,11 +9172,11 @@ URL</source>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation type="obsolete">Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -13312,19 +9185,19 @@ URL</source>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation type="unfinished">Erscheinungsort</translation>
+        <translation type="obsolete">Erscheinungsort</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished">&amp;Z39.50 Anfrage</translation>
+        <translation type="obsolete">&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation type="obsolete">&amp;Zurücksetzen</translation>
     </message>
     <message>
         <source>&amp;Print</source>
@@ -13332,70 +9205,34 @@ URL</source>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Developers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Release Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accession Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Schließen</translation>
     </message>
 </context>
 <context>
     <name>z3950ResultsDialog</name>
     <message>
         <source>BiblioteQ: Z39.50 Query Results</source>
-        <translation type="unfinished">BiblioteQ: Z39.50 Suchergebnisse</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Suchergebnisse</translation>
     </message>
     <message>
         <source>&amp;Records Retrieved</source>
-        <translation type="unfinished">&amp;Ergebnisse erhalten</translation>
+        <translation type="obsolete">&amp;Ergebnisse erhalten</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished">Erhalte &amp;Inhalte</translation>
+        <translation type="obsolete">Erhalte &amp;Inhalte</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Auswahl</translation>
+        <translation type="obsolete">&amp;Auswahl</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation type="obsolete">&amp;Abbrechen</translation>
     </message>
 </context>
 <context>
