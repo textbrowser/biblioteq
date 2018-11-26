@@ -2060,3 +2060,17 @@ QStringList biblioteq_misc_functions::getGreyLiteratureTypes
 
   return types;
 }
+
+bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
+{
+  if(db.driverName() == "QSQLITE")
+    return false;
+
+  QSqlQuery query(db);
+
+  if(query.exec("SELECT LOWER(extname) FROM pg_extension WHERE "
+		"LOWER(extname) = 'unaccent'") && query.next())
+    return query.value(0).toString() == "unaccent";
+
+  return false;
+}

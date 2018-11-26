@@ -69,6 +69,7 @@ class biblioteq_misc_functions
 			     const QSqlDatabase &, QString &);
   static bool hasMemberExpired(const QSqlDatabase &db,
 			       const QString &memberid, QString &errorstr);
+  static bool hasUnaccentExtension(const QSqlDatabase &db);
   static bool isCheckedOut(const QSqlDatabase &,
 			   const QString &, const QString &, QString &);
   static bool isCopyAvailable(const QSqlDatabase &, const QString &,
