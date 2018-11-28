@@ -849,30 +849,34 @@ void biblioteq_cd::slotGo(void)
 	("LOWER(id) LIKE LOWER('%").append(cd.id->text().
 					   trimmed()).append("%') AND ");
 
-      QString E("");
+      QString ESCAPE("");
 
       if(qmain->getDB().driverName() != "QSQLITE")
-	E = "E";
+	ESCAPE = "E";
 
       if(cd.format->currentIndex() != 0)
-	searchstr.append("cdformat = " + E + "'" +
+	searchstr.append("cdformat = " + ESCAPE + "'" +
 			 biblioteq_myqstring::
 			 escape(cd.format->currentText().
 				trimmed()) +
 			 "' AND ");
 
-      searchstr.append("(LOWER(cd.artist) LIKE LOWER(" + E + "'%").append
+      searchstr.append("(LOWER(cd.artist) LIKE LOWER(" + ESCAPE + "'%").append
 	(biblioteq_myqstring::
 	 escape(cd.artist->toPlainText().trimmed())).append("%') OR ");
       searchstr.append
 	("(cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
 	 "cd_songs.item_oid = cd.myoid AND (");
-      searchstr.append("LOWER(cd_songs.artist) LIKE LOWER(" + E + "'%").append
-	(biblioteq_myqstring::
-	 escape(cd.artist->toPlainText().trimmed())).append("%') OR ");
-      searchstr.append("LOWER(cd_songs.composer) LIKE LOWER(" + E + "'%").
-	append(biblioteq_myqstring::
-	       escape(cd.composer->toPlainText().trimmed())).append("%'))");
+      searchstr.append
+	("LOWER(cd_songs.artist) LIKE LOWER(" +
+	 ESCAPE + "'%").
+	append(biblioteq_myqstring::escape(cd.artist->toPlainText().
+					   trimmed())).append("%') OR ");
+      searchstr.append
+	("LOWER(cd_songs.composer) LIKE LOWER(" +
+	 ESCAPE + "'%").append(biblioteq_myqstring::
+			       escape(cd.composer->toPlainText().trimmed())).
+	append("%'))");
       searchstr.append("))) AND ");
 
       if(cd.no_of_discs->value() > 0)
@@ -893,7 +897,7 @@ void biblioteq_cd::slotGo(void)
 			 cd.recording_type->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%").append
+      searchstr.append("LOWER(title) LIKE LOWER(" + ESCAPE + "'%").append
 	(biblioteq_myqstring::
 	 escape(cd.title->text().trimmed())).append("%') AND ");
 
@@ -901,14 +905,13 @@ void biblioteq_cd::slotGo(void)
 	searchstr.append("SUBSTR(rdate, 7) = '" +
 			 cd.release_date->date().toString("yyyy") +"' AND ");
 
-      searchstr.append("LOWER(recording_label) LIKE LOWER(" + E + "'%" +
+      searchstr.append("LOWER(recording_label) LIKE LOWER(" + ESCAPE + "'%" +
 		       biblioteq_myqstring::
 		       escape(cd.recording_label->toPlainText().
 			      trimmed()) + "%') AND ");
-      searchstr.append("LOWER(category) LIKE LOWER(" + E + "'%" +
+      searchstr.append("LOWER(category) LIKE LOWER(" + ESCAPE + "'%" +
 		       biblioteq_myqstring::
-		       escape(cd.category->toPlainText().
-			      trimmed()) +
+		       escape(cd.category->toPlainText().trimmed()) +
 		       "%') AND ");
 
       if(cd.price->value() > -0.01)
@@ -919,37 +922,38 @@ void biblioteq_cd::slotGo(void)
 	}
 
       if(cd.language->currentIndex() != 0)
-	searchstr.append("language = " + E + "'" +
+	searchstr.append("language = " + ESCAPE + "'" +
 			 biblioteq_myqstring::
-			 escape(cd.language->currentText().
-				trimmed()) +
+			 escape(cd.language->currentText().trimmed()) +
 			 "' AND ");
 
       if(cd.monetary_units->currentIndex() != 0)
-	searchstr.append("monetary_units = " + E + "'" +
+	searchstr.append("monetary_units = " + ESCAPE + "'" +
 			 biblioteq_myqstring::escape
 			 (cd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (cd.description->toPlainText().trimmed()) + "%') ");
       searchstr.append
-	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
-	 biblioteq_myqstring::escape
-	 (cd.keyword->toPlainText().trimmed()) +
+	("LOWER(description) LIKE LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(cd.description->toPlainText().
+				     trimmed()) + "%') ");
+      searchstr.append
+	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(cd.keyword->toPlainText().trimmed()) +
 	 "%') ");
 
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
 
       if(cd.location->currentIndex() != 0)
-	searchstr.append(" AND location = " + E + "'" +
-			 biblioteq_myqstring::escape
-			 (cd.location->currentText().trimmed()) + "' ");
+	searchstr.append
+	  (" AND location = " + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(cd.location->currentText().
+				       trimmed()) + "' ");
 
       searchstr.append
-	(" AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" + E + "'%" +
+	(" AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" +
+	 ESCAPE + "'%" +
 	 biblioteq_myqstring::
 	 escape(cd.accession_number->text().trimmed()) + "%') ");
 
