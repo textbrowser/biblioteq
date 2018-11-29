@@ -884,26 +884,35 @@ void biblioteq_dvd::slotGo(void)
       searchstr.append("LOWER(id) LIKE LOWER('%").append
 	(dvd.id->text().trimmed()).append("%') AND ");
 
-      QString E("");
+      QString ESCAPE("");
+      QString UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
-	E = "E";
+	ESCAPE = "E";
 
-      searchstr.append("LOWER(dvdformat) LIKE LOWER(" + E + "'%").append
-	(biblioteq_myqstring::escape
-	 (dvd.format->text().trimmed())).append("%') AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(dvdformat)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%").
+	append(biblioteq_myqstring::escape(dvd.format->text().trimmed())).
+	append("%')) AND ");
 
       if(dvd.aspectratio->currentIndex() != 0)
 	searchstr.append("dvdaspectratio = '" +
 			 dvd.aspectratio->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("LOWER(dvdactor) LIKE LOWER(" + E + "'%").append
-	(biblioteq_myqstring::escape(dvd.actors->toPlainText().trimmed())).
-	append("%') AND ");
-      searchstr.append("LOWER(dvddirector) LIKE LOWER(" + E + "'%").append
-	(biblioteq_myqstring::escape(dvd.directors->toPlainText().trimmed())).
-	append("%') AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(dvdactor)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%").
+	append(biblioteq_myqstring::escape(dvd.actors->toPlainText().
+					   trimmed())).
+	append("%')) AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(dvddirector)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%").
+	append(biblioteq_myqstring::escape(dvd.directors->toPlainText().
+					   trimmed())).
+	append("%')) AND ");
 
       if(dvd.no_of_discs->value() > 0)
 	searchstr.append("dvddiskcount = ").append
@@ -914,36 +923,40 @@ void biblioteq_dvd::slotGo(void)
 			 "' AND ");
 
       if(dvd.rating->currentIndex() != 0)
-	searchstr.append("dvdrating = " + E + "'" +
+	searchstr.append("dvdrating = " + ESCAPE + "'" +
 			 biblioteq_myqstring::escape
 			 (dvd.rating->currentText().
 			  trimmed()) +
 			 "' AND ");
 
       if(dvd.region->currentIndex() != 0)
-	searchstr.append("dvdregion = " + E + "'" +
+	searchstr.append("dvdregion = " + ESCAPE + "'" +
 			 biblioteq_myqstring::escape
 			 (dvd.region->currentText().
 			  trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%").append
-	(biblioteq_myqstring::escape
-	 (dvd.title->text().trimmed())).append("%') AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%").append
+	(biblioteq_myqstring::escape(dvd.title->text().trimmed())).
+	append("%')) AND ");
 
       if(dvd.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(rdate, 7) = '" +
 			 dvd.release_date->date().toString("yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(studio) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (dvd.studio->toPlainText().trimmed()) +
-		       "%') AND ");
       searchstr.append
-	("LOWER(category) LIKE LOWER(" + E + "'%" +
+	(UNACCENT + "(LOWER(studio)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(dvd.studio->toPlainText().trimmed()) +
+	 "%')) AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(category)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(dvd.category->toPlainText().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
 
       if(dvd.price->value() > -0.01)
 	{
@@ -953,38 +966,44 @@ void biblioteq_dvd::slotGo(void)
 	}
 
       if(dvd.language->currentIndex() != 0)
-	searchstr.append("language = " + E + "'" +
+	searchstr.append("language = " + ESCAPE + "'" +
 			 biblioteq_myqstring::escape
 			 (dvd.language->currentText().
 			  trimmed()) +
 			 "' AND ");
 
       if(dvd.monetary_units->currentIndex() != 0)
-	searchstr.append("monetary_units = " + E + "'" +
+	searchstr.append("monetary_units = " + ESCAPE + "'" +
 			 biblioteq_myqstring::escape
 			 (dvd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (dvd.description->toPlainText().trimmed()) + "%') ");
       searchstr.append
-	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
+	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(dvd.description->toPlainText().
+				     trimmed()) + "%')) ");
+      searchstr.append
+	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(dvd.keyword->toPlainText().trimmed()) +
-	 "%') ");
+	 "%')) ");
 
       if(dvd.quantity->value() != 0)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
 
       if(dvd.location->currentIndex() != 0)
-	searchstr.append("AND location = " + E + "'" +
-			 biblioteq_myqstring::escape
-			 (dvd.location->currentText().trimmed()) + "' ");
+	searchstr.append
+	  ("AND location = " + ESCAPE + "'" +
+	   biblioteq_myqstring::
+	   escape(dvd.location->currentText().trimmed()) + "' ");
 
       searchstr.append
-	("AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" + E + "'%" +
+	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, '')))" +
+	 "LIKE " + UNACCENT + "(LOWER(" +
+	 ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(dvd.accession_number->
-				     text().trimmed()) + "%') ");
+				     text().trimmed()) + "%')) ");
 
       /*
       ** Search the database.
