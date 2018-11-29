@@ -50,35 +50,14 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      if((m_imageHttp = new(std::nothrow) QHttp(this)) == 0)
-	biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-#endif
-    }
-  else
-    {
-      if((m_imageManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
-	biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-    }
+  if((m_imageManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_proxyDialog = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      if((m_sruHttp = new(std::nothrow) QHttp(this)) == 0)
-	biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-#endif
-    }
-  else
-    {
-      if((m_sruManager = new(std::nothrow)
-	  QNetworkAccessManager(this)) == 0)
-	biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-    }
+  if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   ui_p.setupUi(m_proxyDialog);
 #ifdef Q_OS_MAC
@@ -2194,18 +2173,8 @@ void biblioteq_book::slotShowUsers(void)
 
 void biblioteq_book::slotSRUQuery(void)
 {
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      if(m_sruHttp->currentId() != 0)
-	return;
-#endif
-    }
-  else
-    {
-      if(m_sruManager->findChild<QNetworkReply *> ())
-	return;
-    }
+  if(m_sruManager->findChild<QNetworkReply *> ())
+    return;
 
   if(!(id.id->text().trimmed().length() == 10 ||
        id.isbn13->text().trimmed().length() == 13))
@@ -2272,40 +2241,24 @@ void biblioteq_book::slotSRUQuery(void)
     {
       if(type == "http" || type == "socks5" || type == "system")
 	{
-	  if(useHttp())
-	    {
-#if QT_VERSION < 0x050000
-	      connect
-		(m_sruHttp,
-		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						    QAuthenticator *)),
-		 this,
-		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						      QAuthenticator *)),
-		 Qt::UniqueConnection);
-#endif
-	    }
-	  else
-	    {
-	      /*
-	      ** This is required to resolve an odd error.
-	      */
+	  /*
+	  ** This is required to resolve an odd error.
+	  */
 
-	      QNetworkReply *reply = m_sruManager->get
-		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+	  QNetworkReply *reply = m_sruManager->get
+	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
-	      if(reply)
-		reply->deleteLater();
+	  if(reply)
+	    reply->deleteLater();
 
-	      connect
-		(m_sruManager,
-		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						    QAuthenticator *)),
-		 this,
-		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						      QAuthenticator *)),
-		 Qt::UniqueConnection);
-	    }
+	  connect
+	    (m_sruManager,
+	     SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						QAuthenticator *)),
+	     this,
+	     SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						  QAuthenticator *)),
+	     Qt::UniqueConnection);
 	}
 
       if(type == "http" || type == "socks5")
@@ -2333,14 +2286,7 @@ void biblioteq_book::slotSRUQuery(void)
 	  if(!password.isEmpty())
 	    proxy.setPassword(password);
 
-	  if(useHttp())
-	    {
-#if QT_VERSION < 0x050000
-	      m_sruHttp->setProxy(proxy);
-#endif
-	    }
-	  else
-	    m_sruManager->setProxy(proxy);
+	  m_sruManager->setProxy(proxy);
 	}
       else if(type == "system")
 	{
@@ -2352,59 +2298,28 @@ void biblioteq_book::slotSRUQuery(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
-	  if(useHttp())
-	    {
-#if QT_VERSION < 0x050000
-	      m_sruHttp->setProxy(proxy);
-#endif
-	    }
-	  else
-	    m_sruManager->setProxy(proxy);
+	  m_sruManager->setProxy(proxy);
 	}
     }
 
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      if(url.port() == -1)
-	url.setPort(80);
+  QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
 
-      m_sruHttp->abort();
+  if(reply)
+    {
       m_sruResults.clear();
-      connect(m_sruHttp, SIGNAL(done(bool)),
-	      this, SLOT(slotSRUDownloadFinished(bool)),
-	      Qt::UniqueConnection);
-      connect(m_sruHttp, SIGNAL(readyRead(const QHttpResponseHeader &)),
-	      this, SLOT(slotSRUReadyRead(const QHttpResponseHeader &)),
-	      Qt::UniqueConnection);
-      connect(m_sruHttp, SIGNAL(sslErrors(const QList<QSslError> &)),
-	      this, SLOT(slotSRUSslErrors(const QList<QSslError> &)),
-	      Qt::UniqueConnection);
-      m_sruHttp->setHost(url.host(), url.port());
-      m_sruHttp->get(url.toEncoded());
-#endif
+      connect(reply, SIGNAL(readyRead(void)),
+	      this, SLOT(slotSRUReadyRead(void)));
+      connect(reply, SIGNAL(finished(void)),
+	      this, SLOT(slotSRUDownloadFinished(void)));
+      connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+	      this, SLOT(slotSRUError(QNetworkReply::NetworkError)));
+      connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
+	      this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
     }
   else
     {
-      QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
-
-      if(reply)
-	{
-	  m_sruResults.clear();
-	  connect(reply, SIGNAL(readyRead(void)),
-		  this, SLOT(slotSRUReadyRead(void)));
-	  connect(reply, SIGNAL(finished(void)),
-		  this, SLOT(slotSRUDownloadFinished(void)));
-	  connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-		  this, SLOT(slotSRUError(QNetworkReply::NetworkError)));
-	  connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
-		  this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
-	}
-      else
-	{
-	  if(m_sruWorking)
-	    m_sruWorking->deleteLater();
-	}
+      if(m_sruWorking)
+	m_sruWorking->deleteLater();
     }
 }
 
@@ -2838,18 +2753,8 @@ void biblioteq_book::slotSelectImage(void)
 
 void biblioteq_book::slotDownloadImage(void)
 {
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      if(m_imageHttp->currentId() != 0)
-	return;
-#endif
-    }
-  else
-    {
-      if(m_imageManager->findChild<QNetworkReply *> ())
-	return;
-    }
+  if(m_imageManager->findChild<QNetworkReply *> ())
+    return;
 
   if(id.id->text().trimmed().length() != 10)
     {
@@ -2899,40 +2804,24 @@ void biblioteq_book::slotDownloadImage(void)
     {
       if(type == "http" || type == "socks5" || type == "system")
 	{
-	  if(useHttp())
-	    {
-#if QT_VERSION < 0x050000
-	      connect
-		 (m_imageHttp,
-		  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						     QAuthenticator *)),
-		  this,
-		  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						       QAuthenticator *)),
-		  Qt::UniqueConnection);
-#endif
-	    }
-	  else
-	    {
-	      /*
-	      ** This is required to resolve an odd error.
-	      */
+	  /*
+	  ** This is required to resolve an odd error.
+	  */
 
-	      QNetworkReply *reply = m_imageManager->get
-		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+	  QNetworkReply *reply = m_imageManager->get
+	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
-	      if(reply)
-		reply->deleteLater();
+	  if(reply)
+	    reply->deleteLater();
 
-	      connect
-		(m_imageManager,
-		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						    QAuthenticator *)),
-		 this,
-		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						      QAuthenticator *)),
-		 Qt::UniqueConnection);
-	    }
+	  connect
+	    (m_imageManager,
+	     SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						QAuthenticator *)),
+	     this,
+	     SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						  QAuthenticator *)),
+	     Qt::UniqueConnection);
 	}
 
       if(type == "http" || type == "socks5")
@@ -2971,14 +2860,7 @@ void biblioteq_book::slotDownloadImage(void)
 	  if(!password.isEmpty())
 	    proxy.setPassword(password);
 
-	  if(useHttp())
-	    {
-#if QT_VERSION < 0x050000
-	      m_imageHttp->setProxy(proxy);
-#endif
-	    }
-	  else
-	    m_imageManager->setProxy(proxy);
+	  m_imageManager->setProxy(proxy);
 	}
       else if(type == "system")
 	{
@@ -2990,58 +2872,35 @@ void biblioteq_book::slotDownloadImage(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
-	  if(useHttp())
-	    {
-#if QT_VERSION < 0x050000
-	      m_imageHttp->setProxy(proxy);
-#endif
-	    }
-	  else
-	    m_imageManager->setProxy(proxy);
+	  m_imageManager->setProxy(proxy);
 	}
     }
 
   biblioteq_item_working_dialog *dialog = createImageDownloadDialog(pb);
 
-  if(useHttp())
+  if(!dialog)
     {
-#if QT_VERSION < 0x050000
-      if(url.port() == -1)
-	url.setPort(80);
-
-      m_imageHttp->abort();
-      connect(m_imageHttp, SIGNAL(done(bool)),
-	      dialog, SLOT(deleteLater(void)));
-      connect(m_imageHttp, SIGNAL(done(bool)),
-	      this, SLOT(slotDownloadFinished(bool)),
-	      Qt::UniqueConnection);
-      connect(m_imageHttp, SIGNAL(readyRead(const QHttpResponseHeader &)),
-	      this, SLOT(slotReadyRead(const QHttpResponseHeader &)),
-	      Qt::UniqueConnection);
-      m_imageHttp->setHost(url.host(), url.port());
-      m_imageHttp->get(url.toEncoded());
-#endif
+      m_imageBuffer.close();
+      return;
     }
-  else
+
+  QNetworkReply *reply = m_imageManager->get(QNetworkRequest(url));
+
+  if(!reply)
     {
-      QNetworkReply *reply = m_imageManager->get(QNetworkRequest(url));
-
-      if(!reply)
-	{
-	  dialog->deleteLater();
-	  m_imageBuffer.close();
-	  return;
-	}
-
-      connect(reply, SIGNAL(readyRead(void)),
-	      this, SLOT(slotReadyRead(void)));
-      connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
-	      this, SLOT(slotDataTransferProgress(qint64, qint64)));
-      connect(reply, SIGNAL(finished(void)),
-	      dialog, SLOT(deleteLater(void)));
-      connect(reply, SIGNAL(finished(void)),
-	      this, SLOT(slotDownloadFinished(void)));
+      dialog->deleteLater();
+      m_imageBuffer.close();
+      return;
     }
+
+  connect(reply, SIGNAL(readyRead(void)),
+	  this, SLOT(slotReadyRead(void)));
+  connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
+	  this, SLOT(slotDataTransferProgress(qint64, qint64)));
+  connect(reply, SIGNAL(finished(void)),
+	  dialog, SLOT(deleteLater(void)));
+  connect(reply, SIGNAL(finished(void)),
+	  this, SLOT(slotDownloadFinished(void)));
 
 #ifndef Q_OS_MAC
   QApplication::processEvents();
@@ -3113,32 +2972,13 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 
 void biblioteq_book::slotCancelImageDownload(void)
 {
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      m_imageHttp->abort();
-#endif
-    }
-  else
-    {
-      QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
+  QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
 
-      if(reply)
-	reply->deleteLater();
-    }
+  if(reply)
+    reply->deleteLater();
 
   m_imageBuffer.close();
 }
-
-#if QT_VERSION < 0x050000
-void biblioteq_book::slotReadyRead(const QHttpResponseHeader &resp)
-{
-  Q_UNUSED(resp);
-
-  if(m_imageBuffer.isOpen())
-    m_imageBuffer.write(m_imageHttp->readAll());
-}
-#endif
 
 void biblioteq_book::slotReadyRead(void)
 {
@@ -3450,14 +3290,6 @@ void biblioteq_book::sruDownloadFinished(void)
        tr("The SRU query produced invalid results."));
 }
 
-#if QT_VERSION < 0x050000
-void biblioteq_book::slotSRUReadyRead(const QHttpResponseHeader &resp)
-{
-  Q_UNUSED(resp);
-  m_sruResults.append(m_sruHttp->readAll());
-}
-#endif
-
 void biblioteq_book::slotSRUReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
@@ -3504,22 +3336,6 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
-}
-
-bool biblioteq_book::useHttp(void) const
-{
-#if QT_VERSION < 0x050000
-#ifdef Q_OS_MAC
-  if(QSysInfo::MacintoshVersion <= QSysInfo::MV_10_6)
-    return true;
-  else
-    return false;
-#else
-  return false;
-#endif
-#else
-  return false;
-#endif
 }
 
 void biblioteq_book::slotAttachFiles(void)
@@ -4022,19 +3838,10 @@ void biblioteq_book::slotPublicationDateEnabled(bool state)
 
 void biblioteq_book::slotSRUCanceled(void)
 {
-  if(useHttp())
-    {
-#if QT_VERSION < 0x050000
-      m_sruHttp->abort();
-#endif
-    }
-  else
-    {
-      QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
+  QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
 
-      if(reply)
-	reply->deleteLater();
-    }
+  if(reply)
+    reply->deleteLater();
 
   m_sruResults.clear();
 }

@@ -8,9 +8,6 @@
 #include <QBuffer>
 #include <QDialog>
 #include <QFileDialog>
-#if QT_VERSION < 0x050000
-#include <QHttp>
-#endif
 #include <QMainWindow>
 #include <QMenu>
 #include <QNetworkAccessManager>
@@ -59,10 +56,6 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   QBuffer m_imageBuffer;
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
-#if QT_VERSION < 0x050000
-  QHttp *m_imageHttp;
-  QHttp *m_sruHttp;
-#endif
   QNetworkAccessManager *m_imageManager;
   QNetworkAccessManager *m_sruManager;
   QPalette m_te_orig_pal;
@@ -76,7 +69,6 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Ui_passwordDialog ui_p;
   bool m_duplicate;
   biblioteq_item_working_dialog *createImageDownloadDialog(QPushButton *pb);
-  bool useHttp(void) const;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,
@@ -107,9 +99,6 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotProxyAuthenticationRequired
     (const QNetworkProxy &proxy, QAuthenticator *authenticator);
   void slotPublicationDateEnabled(bool state);
-#if QT_VERSION < 0x050000
-  void slotReadyRead(const QHttpResponseHeader &resp);
-#endif
   void slotReadyRead(void);
   void slotReset(void);
   void slotSRUCanceled(void);
@@ -117,9 +106,6 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotSRUDownloadFinished(void);
   void slotSRUError(QNetworkReply::NetworkError error);
   void slotSRUQuery(void);
-#if QT_VERSION < 0x050000
-  void slotSRUReadyRead(const QHttpResponseHeader &resp);
-#endif
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
   void slotSelectImage(void);
