@@ -233,25 +233,16 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
 biblioteq::biblioteq(void):QMainWindow()
 {
-  bool anomaly = false;
-
 #if QT_VERSION < 0x050000
 #ifdef Q_OS_MAC
-  if(QSysInfo::MacintoshVersion <= QSysInfo::MV_10_6)
-    anomaly = false;
-  else
-    anomaly = true;
-#endif
-#endif
-
-  if(anomaly)
+  if(QSysInfo::MacintoshVersion > QSysInfo::MV_10_6)
     {
       QNetworkAccessManager manager;
       QNetworkReply *reply = 0;
 
       /*
       ** We need to perform this before a PostgreSQL database connection is
-      ** made. Otherwise, the connection may be severed later.
+      ** established. Otherwise, the connection may be severed later.
       ** The anomaly occurs on OS X 10.7.4 and Qt 4.8.6.
       ** It may also occur on OS X 10.7.5 and Qt 4.8.7.
       */
@@ -260,6 +251,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
       reply->deleteLater();
     }
+#endif
+#endif
 
   QMenu *menu1 = 0;
 
