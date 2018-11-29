@@ -6,9 +6,6 @@
 */
 
 #include <QDialog>
-#if QT_VERSION < 0x050000
-#include <QHttp>
-#endif
 #include <QMainWindow>
 #include <QMenu>
 #include <QNetworkAccessManager>
@@ -62,9 +59,6 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
  protected:
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
-#if QT_VERSION < 0x050000
-  QHttp *m_sruHttp;
-#endif
   QNetworkAccessManager *m_sruManager;
   QPalette m_cb_orig_pal;
   QPalette m_te_orig_pal;
@@ -77,7 +71,6 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   Ui_magDialog ma;
   Ui_passwordDialog ui_p;
   bool m_duplicate;
-  bool useHttp(void) const;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,
@@ -104,9 +97,6 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void slotSRUDownloadFinished(void);
   void slotSRUError(QNetworkReply::NetworkError error);
   void slotSRUQuery(void);
-#if QT_VERSION < 0x050000
-  void slotSRUReadyRead(const QHttpResponseHeader &resp);
-#endif
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
   void slotSelectImage(void);
