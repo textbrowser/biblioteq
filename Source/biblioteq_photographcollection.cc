@@ -503,43 +503,51 @@ void biblioteq_photographcollection::slotGo(void)
 	"photograph "
 	"ON photograph_collection.myoid = photograph.collection_oid "
 	"WHERE ";
-      searchstr.append("LOWER(photograph_collection.id) LIKE LOWER('%" +
-		       pc.id_collection->text().trimmed() +
-		       "%') AND ");
 
-      QString E("");
+      QString ESCAPE("");
+      QString UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
-	E = "E";
+	ESCAPE = "E";
 
       searchstr.append
-	("LOWER(photograph_collection.title) LIKE LOWER(" + E + "'%" +
+	(UNACCENT + "(LOWER(photograph_collection.id)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 pc.id_collection->text().trimmed() +
+	 "%')) AND ");
+
+      searchstr.append
+	(UNACCENT + "(LOWER(photograph_collection.title)) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(pc.title_collection->
 				     text().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
 
       if(pc.location->currentIndex() != 0)
-	searchstr.append("photograph_collection.location = " + E + "'" +
+	searchstr.append("photograph_collection.location = " + ESCAPE + "'" +
 			 biblioteq_myqstring::escape
 			 (pc.location->currentText().trimmed()) + "' AND ");
 
       searchstr.append
-	("LOWER(COALESCE(photograph_collection.about, '')) LIKE LOWER(" +
-	 E + "'%" +
-	 biblioteq_myqstring::escape
-	 (pc.about_collection->toPlainText().trimmed()) +
-	 "%') AND ");
+	(UNACCENT + "(LOWER(COALESCE(photograph_collection.about, ''))) " +
+	 "LIKE " + UNACCENT + "(LOWER(" +
+	 ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(pc.about_collection->toPlainText().
+				     trimmed()) +
+	 "%')) AND ");
       searchstr.append
-	("LOWER(COALESCE(photograph_collection.notes, '')) LIKE LOWER(" +
-	 E + "'%" +
-	 biblioteq_myqstring::escape
-	 (pc.notes_collection->toPlainText().trimmed()) +
-	 "%') AND ");
+	(UNACCENT + "(LOWER(COALESCE(photograph_collection.notes, ''))) " +
+	 "LIKE " + UNACCENT + "(LOWER(" +
+	 ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(pc.notes_collection->toPlainText().
+				     trimmed()) +
+	 "%')) AND ");
       searchstr.append
-	("LOWER(COALESCE(photograph_collection.accession_number, '')) "
-	 "LIKE LOWER(" + E + "'%" +
+	(UNACCENT +
+	 "(LOWER(COALESCE(photograph_collection.accession_number, ''))) "
+	 "LIKE " + UNACCENT + "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(pc.accession_number->text().trimmed()) +
-	 "%')");
+	 "%'))");
 
       /*
       ** Search the database.
