@@ -1158,23 +1158,30 @@ void biblioteq_grey_literature::slotGo(void)
 	"grey_literature.front_cover "
 	"FROM grey_literature WHERE ";
 
-      QString E("");
+      QString ESCAPE("");
+      QString UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
-	E = "E";
+	ESCAPE = "E";
 
-      searchstr.append("LOWER(document_title) LIKE LOWER(" +
-		       E +
+      searchstr.append(UNACCENT +
+		       "(LOWER(document_title)) LIKE " +
+		       UNACCENT +
+		       "(LOWER(" +
+		       ESCAPE +
 		       "'%" +
 		       biblioteq_myqstring::
 		       escape(m_ui.title->text().trimmed()) +
-		       "%') AND ");
-      searchstr.append("LOWER(document_id) LIKE LOWER(" +
-		       E +
+		       "%')) AND ");
+      searchstr.append(UNACCENT +
+		       "(LOWER(document_id)) LIKE " +
+		       UNACCENT +
+		       "(LOWER(" +
+		       ESCAPE +
 		       "'%" +
 		       biblioteq_myqstring::
 		       escape(m_ui.id->text().trimmed()) +
-		       "%') AND ");
+		       "%')) AND ");
 
       if(m_ui.date_enabled->isChecked())
 	searchstr.append("SUBSTR(document_date, 7) = '" +
@@ -1182,41 +1189,59 @@ void biblioteq_grey_literature::slotGo(void)
 			 "' AND ");
 
       searchstr.append
-	("LOWER(author) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(author)) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.author->toPlainText().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
       searchstr.append
-	("LOWER(COALESCE(client, '')) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(COALESCE(client, ''))) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.client->toPlainText().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
       searchstr.append
-	("LOWER(document_code_a) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(document_code_a)) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
       searchstr.append
-	("LOWER(document_code_b) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(document_code_b)) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
       searchstr.append
-	("LOWER(job_number) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(job_number)) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
       searchstr.append
-	("LOWER(COALESCE(notes, '')) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(COALESCE(notes, ''))) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()) +
-	 "%') AND ");
+	 "%')) AND ");
 
       if(m_ui.location->currentIndex() != 0)
 	searchstr.append("location = '" +
@@ -1224,11 +1249,14 @@ void biblioteq_grey_literature::slotGo(void)
 			 "' AND ");
 
       searchstr.append
-	("LOWER(COALESCE(document_status, '')) LIKE LOWER(" +
-	 E +
+	(UNACCENT +
+	 "(LOWER(COALESCE(document_status, ''))) LIKE " +
+	 UNACCENT +
+	 "(LOWER(" +
+	 ESCAPE +
 	 "'%" +
 	 biblioteq_myqstring::escape(m_ui.status->text().trimmed()) +
-	 "%') ");
+	 "%')) ");
 
       if(m_ui.type->currentIndex() != 0)
 	searchstr.append
