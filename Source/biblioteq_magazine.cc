@@ -1108,31 +1108,38 @@ void biblioteq_magazine::slotGo(void)
 				       trimmed()) +
 	   "') AND ");
 
-      searchstr.append("LOWER(description) LIKE LOWER(" + ESCAPE + "'%" +
-		       biblioteq_myqstring::escape
-		       (ma.description->toPlainText().trimmed()) + "%') ");
+      searchstr.append
+	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(ma.description->toPlainText().
+				     trimmed()) + "%')) ");
 
       if(ma.quantity->value() != 0)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
 
       if(ma.location->currentIndex() != 0)
-	searchstr.append("AND location = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (ma.location->currentText().trimmed()) + "' ");
+	searchstr.append
+	  ("AND " + UNACCENT + "(location) = " +
+	   UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(ma.location->currentText().
+				       trimmed()) + "') ");
 
       searchstr.append
-	("AND LOWER(COALESCE(marc_tags, '')) LIKE LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape
-	 (ma.marc_tags->toPlainText().trimmed()) + "%') ");
+	("AND " + UNACCENT + "(LOWER(COALESCE(marc_tags, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(ma.marc_tags->toPlainText().
+				     trimmed()) + "%')) ");
       searchstr.append
-	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + ESCAPE + "'%" +
+	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape
-	 (ma.keyword->toPlainText().trimmed()) + "%') ");
+	 (ma.keyword->toPlainText().trimmed()) + "%')) ");
       searchstr.append
-	("AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" +
+	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" +
 	 ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(ma.accession_number->text().
-				     trimmed()) + "%') ");
+				     trimmed()) + "%')) ");
 
       /*
       ** Search the database.
