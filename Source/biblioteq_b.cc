@@ -4204,7 +4204,6 @@ void biblioteq::slotResetGeneralSearch(void)
   foreach(QWidget *widget, m_all_diag->findChildren<QWidget *> ())
     widget->setEnabled(true);
 
-  al.publication_date_enabled->setChecked(false);
   al.reset->setVisible(false);
   al.idnumber->setFocus();
 }

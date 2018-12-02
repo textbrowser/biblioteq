@@ -1443,7 +1443,10 @@ void biblioteq::slotSearch(void)
 		       qRound(0.75 * size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(m_all_diag, this);
+
+  if(!m_all_diag->isVisible())
+    biblioteq_misc_functions::center(m_all_diag, this);
+
   m_all_diag->showNormal();
   m_all_diag->activateWindow();
   m_all_diag->raise();
