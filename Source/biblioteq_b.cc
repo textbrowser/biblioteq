@@ -2655,7 +2655,8 @@ int biblioteq::populateTable(const int search_type_arg,
 			     "%') ").arg(idField));
 		else
 		  str.append
-		    (QString("(%1 IS NULL OR %1 LIKE " + UNACCENT + "(" +
+		    (QString("(%1 IS NULL OR " + UNACCENT + "(%1) LIKE " +
+			     UNACCENT + "(" +
 			     ESCAPE + "'%" +
 			     biblioteq_myqstring::
 			     escape(al.idnumber->text().trimmed()) +
@@ -2686,15 +2687,17 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		if(caseinsensitive)
 		  str.append
-		    (QString("LOWER(%1) LIKE " + ESCAPE + "'%" +
+		    (QString(UNACCENT + "(LOWER(%1)) LIKE " + UNACCENT + "(" +
+			     ESCAPE + "'%" +
 			     biblioteq_myqstring::
 			     escape(al.title->text().trimmed(), true) +
-			     "%'").arg(titleField));
+			     "%')").arg(titleField));
 		else
-		  str.append(QString("%1 LIKE " + ESCAPE + "'%" +
+		  str.append(QString(UNACCENT + "(%1) LIKE " + UNACCENT + "(" +
+				     ESCAPE + "'%" +
 				     biblioteq_myqstring::
 				     escape(al.title->text().trimmed()) +
-				     "%'").arg(titleField));
+				     "%')").arg(titleField));
 
 		if(type != "Grey Literature" &&
 		   type != "Photograph Collection")
@@ -2722,17 +2725,21 @@ int biblioteq::populateTable(const int search_type_arg,
 
 				if(caseinsensitive)
 				  str.append
-				    ("LOWER(category) LIKE " + ESCAPE + "'%" +
+				    (UNACCENT +
+				     "(LOWER(category)) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (word.trimmed(),
 				      true) +
-				     "%'" + (words.isEmpty() ? "" : " OR "));
+				     "%')" + (words.isEmpty() ? "" : " OR "));
 				else
 				  str.append
-				    ("category LIKE " + ESCAPE + "'%" +
+				    (UNACCENT +
+				     "(category) LIKE " + UNACCENT + "(" +
+				     ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (word.trimmed()) +
-				     "%'" + (words.isEmpty() ? "" : " OR "));
+				     "%')" + (words.isEmpty() ? "" : " OR "));
 			      }
 
 			    str.append(") AND ");
@@ -2741,31 +2748,35 @@ int biblioteq::populateTable(const int search_type_arg,
 		    else
 		      {
 			if(caseinsensitive)
-			  str.append("LOWER(category) LIKE " + ESCAPE + "'%" +
+			  str.append(UNACCENT + "(LOWER(category)) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (al.category->toPlainText().trimmed(),
 				      true) +
-				     "%' AND ");
+				     "%') AND ");
 			else
-			  str.append("category LIKE " + ESCAPE + "'%" +
+			  str.append(UNACCENT + "(category) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (al.category->toPlainText().trimmed()) +
-				     "%' AND ");
+				     "%') AND ");
 		      }
 
 		    if(caseinsensitive)
 		      str.append
-			("LOWER(publisher) LIKE " + ESCAPE + "'%" +
+			(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
+			 "(" + ESCAPE + "'%" +
 			 biblioteq_myqstring::
 			 escape(al.publisher->text().trimmed(),
 				true) +
-			 "%' AND ");
+			 "%') AND ");
 		    else
 		      str.append
-			("publisher LIKE " + ESCAPE + "'%" +
+			(UNACCENT + "(publisher) LIKE " + UNACCENT + "(" +
+			 ESCAPE + "'%" +
 			 biblioteq_myqstring::
 			 escape(al.publisher->text().trimmed()) +
-			 "%' AND ");
+			 "%') AND ");
 
 		    if(al.price->value() > -0.01)
 		      {
@@ -2777,35 +2788,39 @@ int biblioteq::populateTable(const int search_type_arg,
 		    if(al.language->currentIndex() != 0)
 		      {
 			if(caseinsensitive)
-			  str.append("LOWER(language) = " + ESCAPE + "'" +
+			  str.append(UNACCENT + "(LOWER(language)) = " +
+				     UNACCENT + "(" + ESCAPE + "'" +
 				     biblioteq_myqstring::escape
 				     (al.language->currentText().trimmed(),
 				      true) +
-				     "' AND ");
+				     "') AND ");
 			else
-			  str.append("language = " + ESCAPE + "'" +
+			  str.append(UNACCENT + "(language) = " + UNACCENT +
+				     "(" + ESCAPE + "'" +
 				     biblioteq_myqstring::escape
 				     (al.language->currentText().trimmed()) +
-				     "' AND ");
+				     "') AND ");
 		      }
 
 		    if(al.monetary_units->currentIndex() != 0)
 		      {
 			if(caseinsensitive)
 			  str.append
-			    ("LOWER(monetary_units) = " + ESCAPE + "'" +
+			    (UNACCENT + "(LOWER(monetary_units)) = " +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::
 			     escape(al.monetary_units->
 				    currentText().trimmed(),
 				    true) +
-			     "' AND ");
+			     "') AND ");
 			else
 			  str.append
-			    ("monetary_units = " + ESCAPE + "'" +
+			    (UNACCENT + "(monetary_units) = " + UNACCENT
+			     + "(" +ESCAPE + "'" +
 			     biblioteq_myqstring::
 			     escape(al.monetary_units->
 				    currentText().trimmed()) +
-			     "' AND ");
+			     "') AND ");
 		      }
 
 		    if(al.abstract_checkbox->isChecked())
@@ -2824,18 +2839,20 @@ int biblioteq::populateTable(const int search_type_arg,
 
 				if(caseinsensitive)
 				  str.append
-				    ("LOWER(description) LIKE " + ESCAPE
+				    (UNACCENT + "(LOWER(description)) LIKE " +
+				     UNACCENT + "(" + ESCAPE
 				     + "'%" +
 				     biblioteq_myqstring::escape
 				     (word.trimmed(),
 				      true) +
-				     "%'" + (words.isEmpty() ? "" : " OR "));
+				     "%')" + (words.isEmpty() ? "" : " OR "));
 				else
 				  str.append
-				    ("description LIKE " + ESCAPE + "'%" +
+				    (UNACCENT + "(description) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (word.trimmed()) +
-				     "%'" + (words.isEmpty() ? "" : " OR "));
+				     "%')" + (words.isEmpty() ? "" : " OR "));
 			      }
 
 			    str.append(") ");
@@ -2844,34 +2861,38 @@ int biblioteq::populateTable(const int search_type_arg,
 			  {
 			    if(caseinsensitive)
 			      str.append
-				("LOWER(description) LIKE " + ESCAPE + "'%" +
+				(UNACCENT + "(LOWER(description)) LIKE " +
+				 UNACCENT + "(" + ESCAPE + "'%" +
 				 biblioteq_myqstring::
 				 escape(al.description->
 					toPlainText().trimmed(),
-					true) + "%' ");
+					true) + "%') ");
 			    else
 			      str.append
-				("description LIKE " + ESCAPE + "'%" +
+				(UNACCENT + "(description) LIKE " +
+				 UNACCENT + "(" + ESCAPE + "'%" +
 				 biblioteq_myqstring::
 				 escape(al.description->
-					toPlainText().trimmed()) + "%' ");
+					toPlainText().trimmed()) + "%') ");
 			  }
 		      }
 		    else
 		      {
 			if(caseinsensitive)
 			  str.append
-			    ("LOWER(description) LIKE " + ESCAPE + "'%" +
+			    (UNACCENT + "(LOWER(description)) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%" +
 			     biblioteq_myqstring::
 			     escape(al.description->
 				    toPlainText().trimmed(),
-				    true) + "%' ");
+				    true) + "%') ");
 			else
 			  str.append
-			    ("description LIKE " + ESCAPE + "'%" +
+			    (UNACCENT + "(description) LIKE " + UNACCENT +
+			     "(" + ESCAPE + "'%" +
 			     biblioteq_myqstring::
 			     escape(al.description->
-				    toPlainText().trimmed()) + "%' ");
+				    toPlainText().trimmed()) + "%') ");
 		      }
 
 		    if(al.keywords_checkbox->isChecked())
@@ -2890,19 +2911,21 @@ int biblioteq::populateTable(const int search_type_arg,
 
 				if(caseinsensitive)
 				  str.append
-				    ("COALESCE(LOWER(keyword), '') LIKE " +
-				     ESCAPE + "'%" +
+				    (UNACCENT +
+				     "(COALESCE(LOWER(keyword), '')) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (word.trimmed(),
 				      true) +
-				     "%'" + (words.isEmpty() ? "" : " OR "));
+				     "%')" + (words.isEmpty() ? "" : " OR "));
 				else
 				  str.append
-				    ("COALESCE(keyword, '') LIKE " +
-				     ESCAPE + "'%" +
+				    (UNACCENT +
+				     "(COALESCE(keyword, '')) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (word.trimmed()) +
-				     "%'" + (words.isEmpty() ? "" : " OR "));
+				     "%')" + (words.isEmpty() ? "" : " OR "));
 			      }
 
 			    str.append(") ");
@@ -2911,18 +2934,20 @@ int biblioteq::populateTable(const int search_type_arg,
 		    else
 		      {
 			if(caseinsensitive)
-			  str.append("AND COALESCE(LOWER(keyword), '') LIKE " +
-				     ESCAPE + "'%" +
+			  str.append("AND " + UNACCENT +
+				     "(COALESCE(LOWER(keyword), '')) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (al.keyword->toPlainText().trimmed(),
 				      true) +
-				     "%' ");
+				     "%') ");
 			else
-			  str.append("AND COALESCE(keyword, '') LIKE " +
-				     ESCAPE + "'%" +
+			  str.append("AND " + UNACCENT +
+				     "(COALESCE(keyword, '')) LIKE " +
+				     UNACCENT + "(" + ESCAPE + "'%" +
 				     biblioteq_myqstring::escape
 				     (al.keyword->toPlainText().trimmed()) +
-				     "%' ");
+				     "%') ");
 		      }
 
 		    if(al.quantity->value() != 0)
@@ -2933,15 +2958,17 @@ int biblioteq::populateTable(const int search_type_arg,
 		      {
 			if(caseinsensitive)
 			  str.append
-			    ("AND LOWER(location) = " + ESCAPE + "'" +
+			    ("AND " + UNACCENT + "(LOWER(location)) = " +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::escape
 			     (al.location->currentText().trimmed(),
-			      true) + "' ");
+			      true) + "') ");
 			else
 			  str.append
-			    ("AND location = " + ESCAPE + "'" +
+			    ("AND " + UNACCENT + "(location) = " +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::escape
-			     (al.location->currentText().trimmed()) + "' ");
+			     (al.location->currentText().trimmed()) + "') ");
 		      }
 
 		    str += QString("GROUP BY "
@@ -2968,15 +2995,17 @@ int biblioteq::populateTable(const int search_type_arg,
 		      {
 			if(caseinsensitive)
 			  str.append
-			    ("AND LOWER(location) = " + ESCAPE + "'" +
+			    ("AND " + UNACCENT + "(LOWER(location)) = " +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::escape
 			     (al.location->currentText().trimmed(),
-			      true) + "' ");
+			      true) + "') ");
 			else
 			  str.append
-			    ("AND location = " + ESCAPE + "'" +
+			    ("AND " + UNACCENT + "(location) = " +
+			     UNACCENT + "(" +ESCAPE + "'" +
 			     biblioteq_myqstring::escape
-			     (al.location->currentText().trimmed()) + "' ");
+			     (al.location->currentText().trimmed()) + "') ");
 		      }
 
 		    str += "GROUP BY grey_literature.document_title, "
@@ -2994,15 +3023,17 @@ int biblioteq::populateTable(const int search_type_arg,
 		      {
 			if(caseinsensitive)
 			  str.append
-			    ("AND LOWER(location) = " + ESCAPE + "'" +
+			    ("AND " + UNACCENT + "(LOWER(location)) = " +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::escape
 			     (al.location->currentText().trimmed(),
-			      true) + "' ");
+			      true) + "') ");
 			else
 			  str.append
-			    ("AND location = " + ESCAPE + "'" +
+			    ("AND " + UNACCENT + "(location) = " +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::escape
-			     (al.location->currentText().trimmed()) + "' ");
+			     (al.location->currentText().trimmed()) + "') ");
 		      }
 
 		    str += "GROUP BY "
