@@ -178,14 +178,16 @@ int main(int argc, char *argv[])
 
 #ifdef Q_OS_MAC
   biblioteq::s_qtTranslator->load
-    ("qt_" + biblioteq::s_locale, "../../../Translations");
+    ("qt_" + biblioteq::s_locale,
+     QCoreApplication::applicationDirPath() + "/../../../Translations");
 #else
   biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale, "Translations");
 #endif
   qapplication.installTranslator(biblioteq::s_qtTranslator);
 #ifdef Q_OS_MAC
-  biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
-				   "../../../Translations");
+  biblioteq::s_appTranslator->load
+    ("biblioteq_" + biblioteq::s_locale,
+     QCoreApplication::applicationDirPath() + "/../../../Translations");
 #else
   biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
 				   "Translations");
@@ -9202,13 +9204,17 @@ void biblioteq::slotLanguageChanged(void)
       QApplication::removeTranslator(s_qtTranslator);
       QApplication::removeTranslator(s_appTranslator);
 #ifdef Q_OS_MAC
-      s_qtTranslator->load("qt_" + s_locale, "../../../Translations");
+      s_qtTranslator->load
+	("qt_" + s_locale,
+	 QCoreApplication::applicationDirPath() + "/../../../Translations");
 #else
       s_qtTranslator->load("qt_" + s_locale, "Translations");
 #endif
       QApplication::installTranslator(s_qtTranslator);
 #ifdef Q_OS_MAC
-      s_appTranslator->load("biblioteq_" + s_locale, "../../../Translations");
+      s_appTranslator->load
+	("biblioteq_" + s_locale,
+	 QCoreApplication::applicationDirPath() + "/../../../Translations");
 #else
       s_appTranslator->load("biblioteq_" + s_locale, "Translations");
 #endif
