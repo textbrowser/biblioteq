@@ -109,8 +109,6 @@ INSTALLS	= preinstall \
 		  conf \
 		  doc1 \
 		  doc2 \
-		  lupdate \
-		  lrelease \
 		  sql \
 		  translations \
                   postinstall \
