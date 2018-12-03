@@ -856,11 +856,10 @@ void biblioteq_cd::slotGo(void)
 	ESCAPE = "E";
 
       if(cd.format->currentIndex() != 0)
-	searchstr.append("cdformat = " + ESCAPE + "'" +
-			 biblioteq_myqstring::
-			 escape(cd.format->currentText().
-				trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(cdformat) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::
+	   escape(cd.format->currentText().trimmed()) + "') AND ");
 
       searchstr.append
 	("(" + UNACCENT + "(LOWER(cd.artist)) LIKE " + UNACCENT +
