@@ -1244,9 +1244,15 @@ void biblioteq_grey_literature::slotGo(void)
 	 "%')) AND ");
 
       if(m_ui.location->currentIndex() != 0)
-	searchstr.append("location = '" +
-			 m_ui.location->currentText().trimmed() +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT +
+	   "(location) = " +
+	   UNACCENT +
+	   "(" +
+	   ESCAPE +
+	   "'" +
+	   m_ui.location->currentText().trimmed() +
+	   "') AND ");
 
       searchstr.append
 	(UNACCENT +
@@ -1260,9 +1266,15 @@ void biblioteq_grey_literature::slotGo(void)
 
       if(m_ui.type->currentIndex() != 0)
 	searchstr.append
-	  ("AND document_type = '" +
+	  ("AND " +
+	   UNACCENT +
+	   "(document_type) = " +
+	   UNACCENT +
+	   "(" +
+	   ESCAPE +
+	   "'" +
 	   m_ui.type->currentText().trimmed() +
-	   "' ");
+	   "') ");
 
       /*
       ** Search the database.
