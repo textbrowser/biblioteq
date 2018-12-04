@@ -928,16 +928,18 @@ void biblioteq_cd::slotGo(void)
 	}
 
       if(cd.language->currentIndex() != 0)
-	searchstr.append("language = " + ESCAPE + "'" +
-			 biblioteq_myqstring::
-			 escape(cd.language->currentText().trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(language) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::
+	   escape(cd.language->currentText().trimmed()) +
+	   "') AND ");
 
       if(cd.monetary_units->currentIndex() != 0)
-	searchstr.append("monetary_units = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (cd.monetary_units->currentText().trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(monetary_units) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(cd.monetary_units->currentText().
+				       trimmed()) +
+	   "') AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
@@ -955,9 +957,10 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.location->currentIndex() != 0)
 	searchstr.append
-	  (" AND location = " + ESCAPE + "'" +
+	  (" AND " + UNACCENT + "(location) = " + UNACCENT + "(" +
+	   ESCAPE + "'" +
 	   biblioteq_myqstring::escape(cd.location->currentText().
-				       trimmed()) + "' ");
+				       trimmed()) + "') ");
 
       searchstr.append
 	(" AND " + UNACCENT +
