@@ -524,9 +524,11 @@ void biblioteq_photographcollection::slotGo(void)
 	 "%')) AND ");
 
       if(pc.location->currentIndex() != 0)
-	searchstr.append("photograph_collection.location = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (pc.location->currentText().trimmed()) + "' AND ");
+	searchstr.append
+	  (UNACCENT + "(photograph_collection.location) = " + UNACCENT +
+	   "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(pc.location->currentText().
+				       trimmed()) + "') AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(photograph_collection.about, ''))) " +
