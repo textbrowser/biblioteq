@@ -1196,24 +1196,23 @@ void biblioteq_book::slotGo(void)
 	searchstr.append(UNACCENT + "(language) = " + UNACCENT +
 			 "(" + ESCAPE + "'" +
 			 biblioteq_myqstring::
-			 escape(id.language->currentText().
-				trimmed()) +
+			 escape(id.language->currentText().trimmed()) +
 			 "') AND ");
 
       if(id.monetary_units->currentIndex() != 0)
-	searchstr.append(UNACCENT + "(monetary_units) = " + UNACCENT
-			 + "(" + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (id.monetary_units->currentText().trimmed()) +
-			 "') AND ");
+	searchstr.append
+	  (UNACCENT + "(monetary_units) = " + UNACCENT
+	   + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(id.monetary_units->currentText().
+				       trimmed()) + "') AND ");
 
       if(id.binding->currentIndex() != 0)
-	searchstr.append(UNACCENT + "(binding_type) = " + UNACCENT +
-			 "(" + ESCAPE + "'" +
-			 biblioteq_myqstring::
-			 escape(id.binding->currentText().
-				trimmed()) +
-			 "') AND ");
+	searchstr.append
+	  (UNACCENT + "(binding_type) = " + UNACCENT +
+	   "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::
+	   escape(id.binding->currentText().trimmed()) +
+	   "') AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +

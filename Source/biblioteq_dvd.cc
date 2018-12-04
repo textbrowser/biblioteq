@@ -897,9 +897,10 @@ void biblioteq_dvd::slotGo(void)
 	append("%')) AND ");
 
       if(dvd.aspectratio->currentIndex() != 0)
-	searchstr.append("dvdaspectratio = '" +
-			 dvd.aspectratio->currentText().trimmed() +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(dvdaspectratio) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   dvd.aspectratio->currentText().trimmed() +
+	   "') AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(dvdactor)) LIKE " + UNACCENT +
@@ -923,18 +924,17 @@ void biblioteq_dvd::slotGo(void)
 			 "' AND ");
 
       if(dvd.rating->currentIndex() != 0)
-	searchstr.append("dvdrating = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (dvd.rating->currentText().
-			  trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(dvdrating) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(dvd.rating->currentText().trimmed()) +
+	   "') AND ");
 
       if(dvd.region->currentIndex() != 0)
-	searchstr.append("dvdregion = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (dvd.region->currentText().
-			  trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(dvdregion) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(dvd.region->currentText().
+				       trimmed()) +
+	   "') AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
@@ -966,17 +966,18 @@ void biblioteq_dvd::slotGo(void)
 	}
 
       if(dvd.language->currentIndex() != 0)
-	searchstr.append("language = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (dvd.language->currentText().
-			  trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(language) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape
+	   (dvd.language->currentText().trimmed()) +
+	   "') AND ");
 
       if(dvd.monetary_units->currentIndex() != 0)
-	searchstr.append("monetary_units = " + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (dvd.monetary_units->currentText().trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(monetary_units) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(dvd.monetary_units->currentText().
+				       trimmed()) +
+	   "') AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
@@ -994,9 +995,10 @@ void biblioteq_dvd::slotGo(void)
 
       if(dvd.location->currentIndex() != 0)
 	searchstr.append
-	  ("AND location = " + ESCAPE + "'" +
-	   biblioteq_myqstring::
-	   escape(dvd.location->currentText().trimmed()) + "' ");
+	  ("AND " + UNACCENT + "(location) = " + UNACCENT + "("
+	   + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(dvd.location->currentText().
+				       trimmed()) + "') ");
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, '')))" +

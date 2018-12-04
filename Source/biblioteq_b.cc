@@ -2816,7 +2816,7 @@ int biblioteq::populateTable(const int search_type_arg,
 			else
 			  str.append
 			    (UNACCENT + "(monetary_units) = " + UNACCENT
-			     + "(" +ESCAPE + "'" +
+			     + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::
 			     escape(al.monetary_units->
 				    currentText().trimmed()) +
@@ -3003,7 +3003,7 @@ int biblioteq::populateTable(const int search_type_arg,
 			else
 			  str.append
 			    ("AND " + UNACCENT + "(location) = " +
-			     UNACCENT + "(" +ESCAPE + "'" +
+			     UNACCENT + "(" + ESCAPE + "'" +
 			     biblioteq_myqstring::escape
 			     (al.location->currentText().trimmed()) + "') ");
 		      }
