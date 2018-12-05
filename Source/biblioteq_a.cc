@@ -1298,23 +1298,23 @@ void biblioteq::slotAbout(void)
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
   mb.setText
-    (QString("<html>BiblioteQ Version %1<br>"
-	     "Architecture %4.<br>"
-	     "Compiled on %2, %3.<br>"
-	     "Copyright (c) 2005 - present, Mushroom.<br>"
+    (tr("<html>BiblioteQ Version %1<br>"
+	"Architecture %4.<br>"
+	"Compiled on %2, %3.<br>"
+	"Copyright (c) 2005 - present, Mushroom.<br>"
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
-	     "Poppler version %5.<br>"
+	"Poppler version %5.<br>"
 #else
-	     "%5"
+	"%5"
 #endif
-	     "Qt version %6 (runtime %7).<br>"
-	     "YAZ version %8."
-	     "<hr>"
-	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
-	     "http://biblioteq.sourceforge.net</a> or "
-	     "<a href=\"https://textbrowser.github.io/biblioteq/\">"
-	     "https://textbrowser.github.io/biblioteq</a> "
-	     "for project information.</html>").
+	"Qt version %6 (runtime %7).<br>"
+	"YAZ version %8."
+	"<hr>"
+	"Please visit <a href=\"http://biblioteq.sourceforge.net\">"
+	"http://biblioteq.sourceforge.net</a> or "
+	"<a href=\"https://textbrowser.github.io/biblioteq/\">"
+	"https://textbrowser.github.io/biblioteq</a> "
+	"for project information.</html>").
      arg(BIBLIOTEQ_VERSION).
      arg(__DATE__).
      arg(__TIME__).
