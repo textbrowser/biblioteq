@@ -790,26 +790,31 @@ void biblioteq_videogame::slotGo(void)
       searchstr.append("LOWER(id) LIKE LOWER('%" + vg.id->text().trimmed() +
 		       "%') AND ");
 
-      QString E("");
+      QString ESCAPE("");
+      QString UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
-	E = "E";
-
-      searchstr.append("LOWER(title) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (vg.title->text().trimmed()) +
-		       "%') AND ");
-
-      if(vg.rating->currentIndex() != 0)
-	searchstr.append("vgrating = " + E + "'" +
-			 biblioteq_myqstring::escape(vg.rating->currentText().
-						     trimmed()) +
-			 "' AND ");
+	ESCAPE = "E";
 
       searchstr.append
-	("LOWER(developer) LIKE LOWER(" + E + "'%" +
+	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape
+	 (vg.title->text().trimmed()) +
+	 "%')) AND ");
+
+      if(vg.rating->currentIndex() != 0)
+	searchstr.append
+	  (UNACCENT + "(vgrating) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(vg.rating->currentText().
+				       trimmed()) +
+	   "') AND ");
+
+      searchstr.append
+	(UNACCENT + "(LOWER(developer)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(vg.developer->toPlainText().
-				     trimmed()) + "%') "
+				     trimmed()) + "%')) "
 	 "AND ");
 
       if(vg.publication_date_enabled->isChecked())
@@ -817,18 +822,21 @@ void biblioteq_videogame::slotGo(void)
 			 vg.release_date->date().toString("yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(publisher) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (vg.publisher->toPlainText().trimmed()) +
-		       "%') AND ");
-      searchstr.append("LOWER(place) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (vg.place->toPlainText().trimmed()) +
-		       "%') AND ");
-      searchstr.append("LOWER(genre) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (vg.genre->toPlainText().trimmed()) +
-		       "%') AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(vg.publisher->toPlainText().trimmed()) +
+	 "%')) AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(place)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(vg.place->toPlainText().trimmed()) +
+	 "%')) AND ");
+      searchstr.append
+	(UNACCENT + "(LOWER(genre)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(vg.genre->toPlainText().trimmed()) +
+	 "%')) AND ");
 
       if(vg.price->value() > -0.01)
 	{
@@ -838,49 +846,58 @@ void biblioteq_videogame::slotGo(void)
 	}
 
       if(vg.language->currentIndex() != 0)
-	searchstr.append("language = " + E + "'" +
-			 biblioteq_myqstring::escape
-			 (vg.language->currentText().
-			  trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(language) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(vg.language->currentText().
+				       trimmed()) +
+	   "') AND ");
 
       if(vg.monetary_units->currentIndex() != 0)
-	searchstr.append("monetary_units = " + E + "'" +
-			 biblioteq_myqstring::escape
-			 (vg.monetary_units->currentText().trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(monetary_units) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(vg.monetary_units->currentText().
+				       trimmed()) +
+	   "') AND ");
 
       if(vg.platform->currentIndex() != 0)
-	searchstr.append("vgplatform = " + E + "'" +
-			 biblioteq_myqstring::escape(vg.platform->currentText().
-						     trimmed()) +
-			 "' AND ");
+	searchstr.append
+	  (UNACCENT + "(vgplatform) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(vg.platform->currentText().trimmed()) +
+	   "') AND ");
 
-      searchstr.append("LOWER(description) LIKE LOWER(" + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (vg.description->toPlainText().trimmed()) + "%') ");
+      searchstr.append
+	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
+	 "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(vg.description->toPlainText().
+				     trimmed()) + "%')) ");
 
       if(vg.quantity->value() != 0)
 	searchstr.append("AND quantity = " + vg.quantity->text() + " ");
 
       if(vg.location->currentIndex() != 0)
-	searchstr.append("AND location = " + E + "'" +
-			 biblioteq_myqstring::escape
-			 (vg.location->currentText().trimmed()) + "' ");
+	searchstr.append
+	  ("AND " + UNACCENT + "(location) = " + UNACCENT + "(" +
+	   ESCAPE + "'" +
+	   biblioteq_myqstring::escape(vg.location->currentText().
+				       trimmed()) + "') ");
 
       if(vg.mode->currentIndex() != 0)
-	searchstr.append("AND vgmode = " + E + "'" +
-			 biblioteq_myqstring::escape
-			 (vg.mode->currentText().trimmed()) + "' ");
+	searchstr.append
+	  ("AND " + UNACCENT + "(vgmode) = " + UNACCENT + "(" + ESCAPE + "'" +
+	   biblioteq_myqstring::escape(vg.mode->currentText().
+				       trimmed()) + "') ");
 
       searchstr.append
-	("AND LOWER(COALESCE(keyword, '')) LIKE LOWER(" + E + "'%" +
-	 biblioteq_myqstring::escape
-	 (vg.keyword->toPlainText().trimmed()) + "%') ");
+	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
+	 biblioteq_myqstring::escape(vg.keyword->toPlainText().
+				     trimmed()) + "%')) ");
       searchstr.append
-	("AND LOWER(COALESCE(accession_number, '')) LIKE LOWER(" + E + "'%" +
+	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" +
+	 ESCAPE + "'%" +
 	 biblioteq_myqstring::
-	 escape(vg.accession_number->text().trimmed()) + "%') ");
+	 escape(vg.accession_number->text().trimmed()) + "%')) ");
 
       /*
       ** Search the database.
