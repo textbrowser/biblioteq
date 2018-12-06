@@ -1261,3 +1261,7 @@ GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_admi
 GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
+
+/* Release 2018.12.12 */
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
