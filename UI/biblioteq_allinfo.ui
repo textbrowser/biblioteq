@@ -43,23 +43,14 @@
          <x>0</x>
          <y>0</y>
          <width>622</width>
-         <height>905</height>
+         <height>907</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -461,16 +452,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="reset">
-        <property name="toolTip">
-         <string>Clear the main table and reset the search widgets.</string>
-        </property>
-        <property name="text">
-         <string>Reset</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <spacer>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -511,7 +492,6 @@
   <tabstop>okButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>cancelButton</tabstop>
-  <tabstop>reset</tabstop>
  </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>

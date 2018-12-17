@@ -413,7 +413,6 @@ class biblioteq: public QMainWindow
   void slotReset(void);
   void slotResetAllSearch(void);
   void slotResetErrorLog(void);
-  void slotResetGeneralSearch(void);
   void slotResetLoginDialog(void);
   void slotResizeColumnsAfterSort(void);
   void slotRoleChanged(int index);
