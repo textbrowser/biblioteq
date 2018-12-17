@@ -340,7 +340,6 @@ class biblioteq: public QMainWindow
   void readConfig(void);
   void readGlobalSetup(void);
   void resetAdminBrowser(void);
-  void resetAllSearchWidgets(void);
   void resetMembersBrowser(void);
 
  private slots:

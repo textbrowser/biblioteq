@@ -4973,10 +4973,7 @@ void biblioteq::slotDisconnect(void)
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
-  resetAllSearchWidgets();
-
-  foreach(QWidget *widget, m_all_diag->findChildren<QWidget *> ())
-    widget->setEnabled(true);
+  slotResetAllSearch();
 
   if(m_db.isOpen())
     {
