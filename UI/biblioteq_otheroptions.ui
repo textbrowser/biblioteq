@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>482</width>
-         <height>342</height>
+         <width>476</width>
+         <height>334</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -158,12 +158,6 @@
           <width>105</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Close</string>
