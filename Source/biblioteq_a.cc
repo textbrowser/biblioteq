@@ -672,6 +672,20 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
   al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu1);
+
+#ifdef Q_OS_MAC
+  foreach(QToolButton *tool_button, m_all_diag->findChildren<QToolButton *> ())
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    tool_button->setStyleSheet
+    ("QToolButton {border: none; padding-right: 10px}"
+     "QToolButton::menu-button {border: none;}");
+#else
+    tool_button->setStyleSheet
+      ("QToolButton {border: none; padding-right: 15px}"
+       "QToolButton::menu-button {border: none; width: 15px;}");
+#endif
+#endif
+
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
   ui.actionRequests->setEnabled(false);

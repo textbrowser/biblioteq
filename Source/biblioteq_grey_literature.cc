@@ -158,6 +158,19 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
   if(m_ui.type->findText(tr("UNKNOWN")) == -1)
     m_ui.type->addItem(tr("UNKNOWN"));
 
+#ifdef Q_OS_MAC
+  foreach(QToolButton *tool_button, findChildren<QToolButton *> ())
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    tool_button->setStyleSheet
+    ("QToolButton {border: none; padding-right: 10px}"
+     "QToolButton::menu-button {border: none;}");
+#else
+    tool_button->setStyleSheet
+      ("QToolButton {border: none; padding-right: 15px}"
+       "QToolButton::menu-button {border: none; width: 15px;}");
+#endif
+#endif
+
   QApplication::restoreOverrideCursor();
   m_dt_orig_ss = m_ui.date->styleSheet();
   m_te_orig_pal = m_ui.author->viewport()->palette();

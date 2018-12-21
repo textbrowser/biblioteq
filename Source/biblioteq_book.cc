@@ -413,6 +413,19 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     resize(qRound(0.95 * m_parentWid->size().width()),
 	   qRound(0.95 * m_parentWid->size().height()));
 
+#ifdef Q_OS_MAC
+  foreach(QToolButton *tool_button, findChildren<QToolButton *> ())
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    tool_button->setStyleSheet
+    ("QToolButton {border: none; padding-right: 10px}"
+     "QToolButton::menu-button {border: none;}");
+#else
+    tool_button->setStyleSheet
+      ("QToolButton {border: none; padding-right: 15px}"
+       "QToolButton::menu-button {border: none; width: 15px;}");
+#endif
+#endif
+
   id.splitter->setStretchFactor(0, 0);
   id.splitter->setStretchFactor(1, 1);
   id.splitter->setStretchFactor(2, 0);
