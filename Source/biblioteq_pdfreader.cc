@@ -120,9 +120,8 @@ bool biblioteq_pdfreader::event(QEvent *event)
 	  case Qt::Key_PageDown:
 	    {
 	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
-		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
-		  m_ui.scrollArea->verticalScrollBar()->maximum() ==
-		  m_ui.scrollArea->verticalScrollBar()->value()))
+		 m_ui.scrollArea->verticalScrollBar()->maximum() ==
+		 m_ui.scrollArea->verticalScrollBar()->value())
 		m_ui.page->setValue(m_ui.page->value() + 2);
 
 	      break;
@@ -131,9 +130,8 @@ bool biblioteq_pdfreader::event(QEvent *event)
 	  case Qt::Key_Up:
 	    {
 	      if(!m_ui.scrollArea->verticalScrollBar()->isVisible() ||
-		 (m_ui.scrollArea->verticalScrollBar()->isVisible() &&
-		  m_ui.scrollArea->verticalScrollBar()->minimum() ==
-		  m_ui.scrollArea->verticalScrollBar()->value()))
+		 m_ui.scrollArea->verticalScrollBar()->minimum() ==
+		 m_ui.scrollArea->verticalScrollBar()->value())
 		m_ui.page->setValue(m_ui.page->value() - 2);
 
 	      break;
