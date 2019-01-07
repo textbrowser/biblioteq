@@ -14,11 +14,6 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
 {
   setWindowModality(Qt::WindowModal);
   m_bd.setupUi(this);
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   m_ioid = ioidArg;
   m_quantity = quantityArg;
   m_bitem = bitemArg;
@@ -84,12 +79,6 @@ void biblioteq_borrowers_editor::showUsers(void)
   int j = 0;
   int row = 0;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress1.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  progress2.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   m_bd.table->setCurrentItem(0);
   m_bd.table->setColumnCount(0);
   m_bd.table->setRowCount(0);
@@ -488,11 +477,6 @@ void biblioteq_borrowers_editor::slotSave(void)
   bool error = false;
   int i = 0;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));

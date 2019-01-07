@@ -10,10 +10,6 @@ CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
                    QT_DEPRECATED_WARNINGS
 
-lessThan(QT_MAJOR_VERSION, 5) {
-DEFINES         += BIBLIOTEQ_WA_MACMETALSTYLE=1
-}
-
 LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit

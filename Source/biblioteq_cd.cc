@@ -56,13 +56,6 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
   cd.setupUi(this);
   cd.publication_date_enabled->setVisible(false);
   cd.release_date->setDisplayFormat(qmain->publicationDateFormat("musiccds"));
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_tracks_diag->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(m_tracks_diag);
@@ -1455,11 +1448,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   QProgressDialog progress(m_tracks_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   query.prepare("SELECT albumnum, songnum, songtitle, runtime, "
 		"artist, composer "
 		"FROM cd_songs WHERE item_oid = ? "
@@ -1751,12 +1739,6 @@ void biblioteq_cd::slotSaveTracks(void)
   QString lastError = "";
   QSqlQuery query(qmain->getDB());
   QProgressDialog progress(this);
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
 
   for(i = 0; i < trd.table->rowCount(); i++)
     if(trd.table->item(i, 2) != 0 &&
@@ -2250,11 +2232,6 @@ void biblioteq_cd::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setOption(QFileDialog::DontUseNativeDialog);

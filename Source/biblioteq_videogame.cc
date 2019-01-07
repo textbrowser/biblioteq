@@ -54,11 +54,6 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
   vg.setupUi(this);
   vg.publication_date_enabled->setVisible(false);
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 			       this,
 			       SLOT(slotGo(void)));
@@ -1636,11 +1631,6 @@ void biblioteq_videogame::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setOption(QFileDialog::DontUseNativeDialog);

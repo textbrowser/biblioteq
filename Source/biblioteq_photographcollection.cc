@@ -87,13 +87,6 @@ biblioteq_photographcollection::biblioteq_photographcollection
 				  photographsPerPage() / 5 * 200 + 15);
 
   pc.thumbnail_item->setReadOnly(true);
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_photo_diag->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 			       this,
 			       SLOT(slotGo(void)));
@@ -1025,11 +1018,6 @@ void biblioteq_photographcollection::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setOption(QFileDialog::DontUseNativeDialog);
@@ -1124,11 +1112,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 {
   QProgressDialog progress(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setLabelText(tr("Loading image(s)..."));
   progress.setMinimum(0);
   progress.setModal(true);
@@ -1983,11 +1966,6 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
   QProgressDialog progress(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -2092,11 +2070,6 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setDirectory(QDir::homePath());
   dialog.setOption(QFileDialog::DontUseNativeDialog);
@@ -2455,11 +2428,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 
   list << "*" << "*.bmp" << "*.jpg" << "*.jpeg" << "*.png";
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFiles);
   dialog.setNameFilters(list);
@@ -2482,11 +2450,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 
   QProgressDialog progress(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setLabelText(tr("Importing image(s)..."));
   progress.setMaximum(files.size());
   progress.setMinimum(0);
@@ -2795,11 +2758,6 @@ void biblioteq_photographcollection::slotExportItem(void)
   QFileDialog dialog(this);
 
   dialog.setAcceptMode(QFileDialog::AcceptSave);
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setOption(QFileDialog::DontUseNativeDialog);

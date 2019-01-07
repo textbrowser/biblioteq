@@ -32,6 +32,8 @@ int biblioteq::populateTable(const int search_type_arg,
   QDate now(QDate::currentDate());
   QProgressDialog progress(this);
   QString itemType = "";
+  QString limitStr("");
+  QString offsetStr("");
   QString searchstr = "";
   QString str = "";
   QString type = "";
@@ -39,17 +41,8 @@ int biblioteq::populateTable(const int search_type_arg,
   QStringList types;
   QTableWidgetItem *item = 0;
   int i = -1;
-  int search_type = search_type_arg;
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
-
-  QString limitStr("");
-  QString offsetStr("");
   int limit = 0;
+  int search_type = search_type_arg;
   qint64 offset = m_queryOffset;
 
   for(int ii = 0; ii < ui.menuEntriesPerPage->actions().size(); ii++)

@@ -60,12 +60,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   ui_p.setupUi(m_proxyDialog);
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  m_proxyDialog->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   m_parentWid = parentArg;
   m_oid = oidArg;
   m_row = rowArg;
@@ -85,11 +79,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowPDF(void)));
-#endif
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
 #endif
   new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 			       this,
@@ -2710,11 +2699,6 @@ void biblioteq_book::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setOption(QFileDialog::DontUseNativeDialog);
@@ -3378,11 +3362,6 @@ void biblioteq_book::slotAttachFiles(void)
       QStringList files(fileDialog.selectedFiles());
       int i = -1;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
       progress.setMinimum(0);
@@ -3598,11 +3577,6 @@ void biblioteq_book::slotExportFiles(void)
 
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setDirectory(QDir::homePath());
   dialog.setOption(QFileDialog::DontUseNativeDialog);
@@ -3618,11 +3592,6 @@ void biblioteq_book::slotExportFiles(void)
 
       QProgressDialog progress(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
       progress.setLabelText(tr("Exporting file(s)..."));
       progress.setMaximum(list.size());
       progress.setMinimum(0);
@@ -3768,11 +3737,6 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
   QPrintDialog dialog(&printer, this);
   QTextDocument document;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   printer.setColorMode(QPrinter::GrayScale);
   printer.setPageSize(QPrinter::Letter);
 
@@ -3802,11 +3766,6 @@ void biblioteq_book::slotPrintCallDewey(void)
   QPrintDialog dialog(&printer, this);
   QTextDocument document;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   printer.setColorMode(QPrinter::GrayScale);
   printer.setPageSize(QPrinter::Letter);
 

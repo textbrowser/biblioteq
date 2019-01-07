@@ -121,11 +121,6 @@ biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 			       this,
 			       SLOT(slotGo(void)));
@@ -859,11 +854,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       QStringList files(fileDialog.selectedFiles());
       int i = -1;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
       progress.setMinimum(0);
@@ -975,11 +965,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
 
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
@@ -996,11 +981,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
 
   QProgressDialog progress(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setLabelText(tr("Exporting file(s)..."));
   progress.setMaximum(list.size());
   progress.setMinimum(0);

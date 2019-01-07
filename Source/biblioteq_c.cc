@@ -95,11 +95,6 @@ void biblioteq::slotOpenPDFFile(void)
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setNameFilter("PDF File (*.pdf)");

@@ -351,11 +351,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Case-Insensitive")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   ui.action_Open_PDF_File->setEnabled(false);
 #endif
@@ -432,20 +427,6 @@ biblioteq::biblioteq(void):QMainWindow()
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  m_members_diag->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_history_diag->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_branch_diag->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_pass_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_all_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_customquery_diag->setAttribute
-    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_error_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  m_admin_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
   m_pass_diag->setModal(true);
@@ -1962,12 +1943,6 @@ void biblioteq::slotDelete(void)
   QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
 
   if(list.isEmpty())
     {
@@ -5205,11 +5180,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
   else
     progress.reset(new QProgressDialog(this));
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   str = "SELECT member.memberid, "
     "member.first_name, "
     "member.last_name, "
@@ -5385,11 +5355,6 @@ void biblioteq::slotGrantPrivileges(void)
   QProgressDialog progress(m_members_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -7285,11 +7250,6 @@ void biblioteq::slotSetFonts(void)
 {
   QFontDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setCurrentFont(QApplication::font());
   dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
@@ -7394,11 +7354,6 @@ void biblioteq::slotPrintView(void)
   QPrintDialog dialog(&printer, this);
   QTextDocument document;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
   html += "<table border=1>";
   html += "<tr>";
@@ -7447,12 +7402,6 @@ void biblioteq::slotPrintReserved(void)
   QPrintDialog dialog(&printer, m_members_diag);
   QTextDocument document;
   QMap<QString, QString> memberinfo;
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
 
   if(row < 0)
     {
@@ -7597,12 +7546,6 @@ void biblioteq::slotShowHistory(void)
     progress.reset(new QProgressDialog(m_members_diag));
   else
     progress.reset(new QProgressDialog(this));
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
 
   if(m_db.driverName() == "QPSQL" && m_roles.isEmpty())
     {
@@ -7993,12 +7936,6 @@ void biblioteq::slotPrintReservationHistory(void)
   QPrintDialog dialog(&printer, m_history_diag);
   QTextDocument document;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
-
   if(history.table->rowCount() == 0)
     {
       if(m_members_diag->isVisible())
@@ -8211,11 +8148,6 @@ void biblioteq::slotSelectDatabaseFile(void)
 {
   QFileDialog dialog(m_branch_diag);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("SQLite Database (*.sqlite)");
@@ -8373,11 +8305,6 @@ void biblioteq::slotRefreshAdminList(void)
   else
     progress.reset(new QProgressDialog(this));
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   query.prepare("SELECT username, LOWER(roles) "
 		"FROM admin ORDER BY username");
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -8501,11 +8428,6 @@ void biblioteq::slotSaveAdministrators(void)
   int i = 0;
   int j = 0;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   /*
   ** 1. Prohibit duplicate administrator ids and administrators
   **    without privileges.
@@ -8822,12 +8744,6 @@ void biblioteq::slotRequest(void)
   QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
 
   if(!m_roles.isEmpty())
     isRequesting = false;
@@ -9273,11 +9189,6 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   bool error = true;
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("SQLite Database (*.sqlite)");
@@ -9442,11 +9353,6 @@ void biblioteq::slotExportAsCSV(void)
 {
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter(tr("CSV (*.csv)"));

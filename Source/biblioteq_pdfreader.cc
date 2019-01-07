@@ -39,11 +39,6 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
   m_ui.page_2->setText(m_ui.page_1->text());
 #endif
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   connect(m_ui.action_Close,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -317,11 +312,6 @@ void biblioteq_pdfreader::slotPrint(void)
   QPrinter printer;
   QPrintDialog dialog(&printer, this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setMinMax(1, m_document->numPages());
   printer.setColorMode(QPrinter::Color);
   printer.setDuplex(QPrinter::DuplexAuto);
@@ -332,11 +322,6 @@ void biblioteq_pdfreader::slotPrint(void)
     {
       QProgressDialog progress(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
       progress.setLabelText(tr("Printing PDF..."));
       progress.setMaximum(0);
       progress.setMinimum(0);
@@ -407,11 +392,6 @@ void biblioteq_pdfreader::slotSaveAs(void)
 
   QFileDialog dialog(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);

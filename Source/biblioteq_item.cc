@@ -130,11 +130,6 @@ void biblioteq_item::print(QWidget *parent)
   QPrintDialog dialog(&printer, parent);
   QTextDocument document;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   printer.setPageSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
 

@@ -17,11 +17,6 @@ extern biblioteq *qmain;
 biblioteq_otheroptions::biblioteq_otheroptions(void):QMainWindow()
 {
   m_ui.setupUi(this);
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,

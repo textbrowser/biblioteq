@@ -1803,11 +1803,6 @@ void biblioteq_misc_functions::exportPhotographs
 {
   QProgressDialog progress(parent);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setLabelText(QObject::tr("Exporting image(s)..."));
   progress.setMaximum(items.size());
   progress.setMinimum(0);
@@ -1877,11 +1872,6 @@ void biblioteq_misc_functions::exportPhotographs
 {
   QProgressDialog progress(parent);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   progress.setLabelText(QObject::tr("Exporting image(s)..."));
   progress.setMinimum(0);
   progress.setModal(true);

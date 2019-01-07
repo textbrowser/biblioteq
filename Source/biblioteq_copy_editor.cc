@@ -33,11 +33,6 @@ biblioteq_copy_editor::biblioteq_copy_editor
     setWindowModality(Qt::WindowModal);
 
   m_cb.setupUi(this);
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   m_bitem = bitemArg;
   m_ioid = ioidArg;
   m_itemType = itemTypeArg;
@@ -187,12 +182,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress1.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-  progress2.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   m_cb.table->setColumnCount(0);
   m_cb.table->setRowCount(0);
   list.append(tr("Title"));
@@ -781,11 +770,6 @@ QString biblioteq_copy_editor::saveCopies(void)
   copy_class *copy = 0;
   int i = 0;
 
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
-#endif
-#endif
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 			"item_oid = ?").arg(m_itemType.
 					    toLower().remove(" ")));
