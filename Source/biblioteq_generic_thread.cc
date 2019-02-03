@@ -212,6 +212,7 @@ void biblioteq_generic_thread::setType(const int type)
 void biblioteq_generic_thread::setZ3950Name(const QString &name)
 {
   m_z3950Name = name;
+  m_z3950Name.remove("&");
 }
 
 void biblioteq_generic_thread::setZ3950SearchString

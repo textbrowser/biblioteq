@@ -3161,6 +3161,8 @@ void biblioteq_magazine::slotSRUQuery(void)
   if(!found)
     name = qmain->getPreferredSRUSite();
 
+  name.remove("&");
+
   QString searchstr("");
   QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
 
