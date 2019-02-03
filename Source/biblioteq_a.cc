@@ -3359,13 +3359,14 @@ void biblioteq::readGlobalSetup(void)
 	    {
 	      QHash<QString, QString> hash;
 
-	      hash["Name"] = settings.value("name", "").toString().trimmed();
+	      hash["Name"] = settings.value("name", "").toString().
+		remove("&").trimmed();
 	      hash["url_isbn"] = settings.value
 		("url_isbn", "").toString().trimmed().remove('"');
 	      hash["url_issn"] = settings.value
 		("url_issn", "").toString().trimmed().remove('"');
-	      m_sruMaps[settings.value("name", "").toString().trimmed()] =
-		hash;
+	      m_sruMaps[settings.value("name", "").toString().remove("&").
+			trimmed()] = hash;
 	    }
 	}
       else if(settings.group().startsWith("Z39.50"))
@@ -3375,7 +3376,7 @@ void biblioteq::readGlobalSetup(void)
 	      QHash<QString, QString> hash;
 
 	      hash["Name"] = settings.value("name", "Z39.50 Site").
-		toString().trimmed();
+		toString().remove("&").trimmed();
 	      hash["Address"] = settings.value("hostname", "").
 		toString().trimmed();
 	      hash["Port"] = settings.value("port", "").toString().trimmed();
@@ -3394,7 +3395,7 @@ void biblioteq::readGlobalSetup(void)
 	      hash["proxy_port"] = settings.value("proxy_port", "").
 		toString().trimmed();
 	      m_z3950Maps[settings.value("name", "Z39.50 Site").
-			  toString().trimmed()] = hash;
+			  toString().remove("&").trimmed()] = hash;
 	    }
 	}
 
