@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2018.12.12"
+#define BIBLIOTEQ_VERSION "2019.02.10"
 
 /*
 ** -- C++ Includes --
@@ -208,9 +208,9 @@ class biblioteq: public QMainWindow
   QMenu *m_configToolMenu;
   QString m_unaccent;
   QHash<QString, QString> getAmazonHash(void) const;
+  QHash<QString, QString> getSRUHash(const QString &name) const;
+  QHash<QString, QString> getZ3950Hash(const QString &name) const;
   QMainWindow *getMembersBrowser(void) const;
-  QMap<QString, QHash<QString, QString> > getSRUMaps(void) const;
-  QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
   QSqlDatabase getDB(void) const;
   QString getAdminID(void) const;
   QString getPreferredSRUSite(void) const;
@@ -219,6 +219,8 @@ class biblioteq: public QMainWindow
   QString getTypeFilterString(void) const;
   QString publicationDateFormat(const QString &itemType) const;
   QString unaccent(void) const;
+  QStringList getSRUNames(void) const;
+  QStringList getZ3950Names(void) const;
   QVariant setting(const QString &name) const;
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;

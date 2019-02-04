@@ -1161,10 +1161,11 @@ void biblioteq::showMain(void)
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 0; i < getSRUMaps().size(); i++)
+  QStringList list(m_sruMaps.keys());
+
+  for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = group1->addAction
-	(getSRUMaps().values()[i].value("Name"));
+      QAction *action = group1->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -1188,10 +1189,11 @@ void biblioteq::showMain(void)
   if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 0; i < getZ3950Maps().size(); i++)
+  list = m_z3950Maps.keys();
+
+  for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = group2->addAction
-	(getZ3950Maps().values()[i].value("Name"));
+      QAction *action = group2->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -3359,14 +3361,12 @@ void biblioteq::readGlobalSetup(void)
 	    {
 	      QHash<QString, QString> hash;
 
-	      hash["Name"] = settings.value("name", "").toString().
-		remove("&").trimmed();
+	      hash["Name"] = settings.value("name", "").toString().trimmed();
 	      hash["url_isbn"] = settings.value
 		("url_isbn", "").toString().trimmed().remove('"');
 	      hash["url_issn"] = settings.value
 		("url_issn", "").toString().trimmed().remove('"');
-	      m_sruMaps[settings.value("name", "").toString().remove("&").
-			trimmed()] = hash;
+	      m_sruMaps[settings.value("name", "").toString().trimmed()] = hash;
 	    }
 	}
       else if(settings.group().startsWith("Z39.50"))
@@ -3376,7 +3376,7 @@ void biblioteq::readGlobalSetup(void)
 	      QHash<QString, QString> hash;
 
 	      hash["Name"] = settings.value("name", "Z39.50 Site").
-		toString().remove("&").trimmed();
+		toString().trimmed();
 	      hash["Address"] = settings.value("hostname", "").
 		toString().trimmed();
 	      hash["Port"] = settings.value("port", "").toString().trimmed();
@@ -3395,7 +3395,7 @@ void biblioteq::readGlobalSetup(void)
 	      hash["proxy_port"] = settings.value("proxy_port", "").
 		toString().trimmed();
 	      m_z3950Maps[settings.value("name", "Z39.50 Site").
-			  toString().remove("&").trimmed()] = hash;
+			  toString().trimmed()] = hash;
 	    }
 	}
 
@@ -3514,8 +3514,9 @@ void biblioteq::readConfig(void)
   bool found = false;
 
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
-    if(settings.value("preferred_sru_site").toString().trimmed() ==
-       ui.menuPreferredSRUSite->actions()[i]->text())
+    if(QString(settings.value("preferred_sru_site").toString()).
+       remove("&").trimmed() ==
+       QString(ui.menuPreferredSRUSite->actions()[i]->text()).remove("&"))
       {
 	found = true;
 	ui.menuPreferredSRUSite->actions()[i]->setChecked(true);
@@ -3528,8 +3529,9 @@ void biblioteq::readConfig(void)
   found = false;
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
-    if(settings.value("preferred_z3950_site").toString().trimmed() ==
-       ui.menuPreferredZ3950Server->actions()[i]->text())
+    if(QString(settings.value("preferred_z3950_site").toString()).
+       remove("&").trimmed() ==
+       QString(ui.menuPreferredZ3950Server->actions()[i]->text()).remove("&"))
       {
 	found = true;
 	ui.menuPreferredZ3950Server->actions()[i]->setChecked(true);
@@ -7174,9 +7176,19 @@ void biblioteq::slotReserveCopy(void)
     bb.table->selectRow(0);
 }
 
-QMap<QString, QHash<QString, QString> > biblioteq::getZ3950Maps(void) const
+QHash<QString, QString> biblioteq::getZ3950Hash(const QString &name) const
 {
-  return m_z3950Maps;
+  QMapIterator<QString, QHash<QString, QString> > it(m_z3950Maps);
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(QString(it.key()).remove("&") == QString(name).remove("&"))
+	return it.value();
+    }
+
+  return QHash<QString, QString> ();
 }
 
 QHash<QString, QString> biblioteq::getAmazonHash(void) const
@@ -9685,9 +9697,19 @@ void biblioteq::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-QMap<QString, QHash<QString, QString> > biblioteq::getSRUMaps(void) const
+QHash<QString, QString> biblioteq::getSRUHash(const QString &name) const
 {
-  return m_sruMaps;
+  QMapIterator<QString, QHash<QString, QString> > it(m_sruMaps);
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(QString(it.key()).remove("&") == QString(name).remove("&"))
+	return it.value();
+    }
+
+  return QHash<QString, QString> ();
 }
 
 void biblioteq::slotClosePasswordDialog(void)

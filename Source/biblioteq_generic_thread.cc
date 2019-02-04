@@ -96,8 +96,7 @@ void biblioteq_generic_thread::run(void)
       }
     case Z3950_QUERY:
       {
-	QHash<QString, QString> hash
-	  (qmain->getZ3950Maps().value(m_z3950Name));
+	QHash<QString, QString> hash(qmain->getZ3950Hash(m_z3950Name));
 	QString recordSyntax(hash.value("RecordSyntax").trimmed());
 	ZOOM_connection zoomConnection = 0;
 	ZOOM_options options = ZOOM_options_create();
@@ -212,7 +211,6 @@ void biblioteq_generic_thread::setType(const int type)
 void biblioteq_generic_thread::setZ3950Name(const QString &name)
 {
   m_z3950Name = name;
-  m_z3950Name.remove("&");
 }
 
 void biblioteq_generic_thread::setZ3950SearchString

@@ -325,3 +325,13 @@ void biblioteq::slotRefreshCustomQuery(void)
   cq.tables_t->sortByColumn(0, Qt::AscendingOrder);
   QApplication::restoreOverrideCursor();
 }
+
+QStringList biblioteq::getSRUNames(void) const
+{
+  return m_sruMaps.keys();
+}
+
+QStringList biblioteq::getZ3950Names(void) const
+{
+  return m_z3950Maps.keys();
+}

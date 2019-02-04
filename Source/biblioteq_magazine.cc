@@ -264,12 +264,12 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  QStringList list(qmain->getSRUNames());
   bool found = false;
-  QMap<QString, QHash<QString, QString> > hashes(qmain->getSRUMaps());
 
-  for(int i = 0; i < hashes.size(); i++)
+  for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = actionGroup1->addAction(hashes.keys().at(i));
+      QAction *action = actionGroup1->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -293,12 +293,11 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
     ma.sruQueryButton->actions()[0]->setChecked(true);
 
   found = false;
-  hashes.clear();
-  hashes = qmain->getZ3950Maps();
+  list = qmain->getZ3950Names();
 
-  for(int i = 0; i < hashes.size(); i++)
+  for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = actionGroup2->addAction(hashes.keys().at(i));
+      QAction *action = actionGroup2->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -320,8 +319,6 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
     }
   else if(!found)
     ma.z3950QueryButton->actions()[0]->setChecked(true);
-
-  hashes.clear();
 
   /*
   ** Save some palettes and style sheets.
@@ -2064,7 +2061,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 	if(ma.z3950QueryButton->actions().at(i)->isChecked())
 	  {
 	    found = true;
-	    recordSyntax = qmain->getZ3950Maps().value
+	    recordSyntax = qmain->getZ3950Hash
 	      (ma.z3950QueryButton->actions().at(i)->text()).
 	      value("RecordSyntax");
 	    m_thread->setZ3950Name
@@ -2074,7 +2071,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 
       if(!found)
 	{
-	  recordSyntax = qmain->getZ3950Maps().value
+	  recordSyntax = qmain->getZ3950Hash
 	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
 	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
 	}
@@ -3161,10 +3158,8 @@ void biblioteq_magazine::slotSRUQuery(void)
   if(!found)
     name = qmain->getPreferredSRUSite();
 
-  name.remove("&");
-
   QString searchstr("");
-  QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
+  QHash<QString, QString> hash(qmain->getSRUHash(name));
 
   searchstr = hash.value("url_issn");
   searchstr.replace("%1", ma.id->text().trimmed());
