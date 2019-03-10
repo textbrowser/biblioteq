@@ -95,6 +95,7 @@ TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
 		  Translations/biblioteq_it_IT.ts \
                   Translations/biblioteq_nl_BE.ts \
                   Translations/biblioteq_nl_NL.ts \
+		  Translations/biblioteq_ru_RU.ts \
                   Translations/biblioteq_zh_CN.ts
 
 UI_DIR          = temp
