@@ -4,7 +4,7 @@ Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
 Section: Database
-Version: 2018.12.12
+Version: 2019.04.04
 Description: BiblioteQ
  Welcome to BiblioteQ!
  A biblioteq.desktop file will also be installed in /usr/share/applications/.
