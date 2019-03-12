@@ -7,4 +7,5 @@ Section: Database
 Version: 2018.12.12
 Description: BiblioteQ
  Welcome to BiblioteQ!
+ BiblioteQ is governed by a BSD license. Enjoy!
  A biblioteq.qt5.desktop file will also be installed in /usr/share/applications/.

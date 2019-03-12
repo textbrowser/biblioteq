@@ -1749,6 +1749,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>

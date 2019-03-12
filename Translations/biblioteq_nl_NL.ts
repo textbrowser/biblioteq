@@ -1869,6 +1869,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>BiblioteQ: Open PDF File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>

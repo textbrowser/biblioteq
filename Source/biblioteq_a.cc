@@ -173,7 +173,8 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "fr_FR" ||
        biblioteq::s_locale == "hu_HU" ||
        biblioteq::s_locale == "nl_BE" ||
-       biblioteq::s_locale == "nl_NL"))
+       biblioteq::s_locale == "nl_NL" ||
+       biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
 #ifdef Q_OS_MAC
@@ -828,14 +829,17 @@ biblioteq::biblioteq(void):QMainWindow()
   (action = group3->addAction(tr("&French")))->setCheckable(true);
   action->setData("fr_FR");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Hungarian")))->setCheckable(true);
-  action->setData("hu_HU");
-  ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&German")))->setCheckable(true);
   action->setData("de_DE");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("G&reek")))->setCheckable(true);
   action->setData("el_GR");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&Hungarian")))->setCheckable(true);
+  action->setData("hu_HU");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&Russian")))->setCheckable(true);
+  action->setData("ru_RU");
   ui.menu_Language->addAction(action);
 
   foreach(QAction *action, ui.menu_Language->actions())

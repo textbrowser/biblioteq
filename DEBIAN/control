@@ -1,5 +1,5 @@
 Architecture: amd64
-Depends: libpoppler-qt5-1 (>= 0.41), libpq5 (>= 5.8), libqt5core5a (>= 5.5.1), libqt5gui5 (>= 5.5.1), libqt5network5 (>= 5.5.1), libqt5printsupport5 (>= 5.5.1), libqt5sql5 (>= 5.5.1), libqt5sql5-psql (>= 5.5.1), libqt5sql5-sqlite (>= 5.5.1), libqt5widgets5 (>= 5.5.1), libsqlite3-0 (>= 3.11), libyaz4 (>= 4.0)
+Depends: libpoppler-qt5-1 (>= 0.41), libpq5 (>= 5.8), libqt5core5a (>= 5.5.1), libqt5gui5 (>= 5.5.1), libqt5network5 (>= 5.5.1), libqt5printsupport5 (>= 5.5.1), libqt5sql5 (>= 5.5.1), libqt5sql5-psql (>= 5.5.1), libqt5sql5-sqlite (>= 5.5.1), libqt5widgets5 (>= 5.5.1), libsqlite3-0 (>= 3.11), libyaz (>= 4.0)
 Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
@@ -7,4 +7,5 @@ Section: Database
 Version: 2018.12.12
 Description: BiblioteQ
  Welcome to BiblioteQ!
+ BiblioteQ is governed by a BSD license. Enjoy!
  A biblioteq.qt5.desktop file will also be installed in /usr/share/applications/.
