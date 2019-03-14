@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>476</width>
-         <height>334</height>
+         <width>482</width>
+         <height>346</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -73,6 +73,13 @@
            </spacer>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="show_maintable_tooltips">
+          <property name="text">
+           <string>&amp;Show Main Table Tool Tips</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QTableWidget" name="publication_date">
@@ -192,6 +199,7 @@
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
+  <tabstop>show_maintable_tooltips</tabstop>
   <tabstop>publication_date</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close</tabstop>

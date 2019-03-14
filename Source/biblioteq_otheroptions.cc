@@ -191,6 +191,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.main_window_canvas_background_color->setStyleSheet
     (QString("background-color: %1").arg(color.name()));
   m_ui.main_window_canvas_background_color->setText(color.name());
+  m_ui.show_maintable_tooltips->setChecked
+    (settings.value("show_maintable_tooltips", false).toBool());
   QApplication::restoreOverrideCursor();
 }
 
@@ -259,6 +261,8 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("mainwindow_canvas_background_color",
      m_ui.main_window_canvas_background_color->text().toLatin1());
+  settings.setValue
+    ("show_maintable_tooltips", m_ui.show_maintable_tooltips->isChecked());
   emit mainWindowCanvasBackgroundColorChanged
     (QColor(m_ui.main_window_canvas_background_color->text()));
   emit saved();
