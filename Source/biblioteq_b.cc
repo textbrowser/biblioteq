@@ -3029,6 +3029,17 @@ int biblioteq::populateTable(const int search_type_arg,
   QStringList columnNames(ui.table->columnNames());
   bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
+  if(search_type == CUSTOM_QUERY)
+    {
+      columnNames.clear();
+
+      QSqlRecord record(query.record());
+
+      for(int ii = 0; ii < record.count(); ii++)
+	if(!columnNames.contains(record.fieldName(ii)))
+	  columnNames.append(record.fieldName(ii));
+    }
+
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -3050,14 +3061,20 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(record.field(j).type() == QVariant::ByteArray)
 		    continue;
 
+		  QString columnName(columnNames.value(j));
+
+		  if(columnName.isEmpty())
+		    columnName = "N/A";
+
 		  tooltip.append("<b>");
-		  tooltip.append(columnNames.value(j));
+		  tooltip.append(columnName);
 		  tooltip.append(":</b> ");
 		  tooltip.append(query.value(j).toString().trimmed());
-
-		  if(j < record.count() - 2)
-		    tooltip.append("<br>");
+		  tooltip.append("<br>");
 		}
+
+	      if(tooltip.endsWith("<br>"))
+		tooltip = tooltip.mid(0, tooltip.length() - 4);
 
 	      tooltip.append("</html>");
 	    }
@@ -3261,10 +3278,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	  for(int ii = 0; ii < record.count(); ii++)
 	    if(!tmplist.contains(record.fieldName(ii)))
-	      {
-		tmplist.append(record.fieldName(ii));
-		ui.table->setColumnCount(tmplist.size());
-	      }
+	      tmplist.append(record.fieldName(ii));
 	}
 
       ui.table->setColumnCount(tmplist.size());
