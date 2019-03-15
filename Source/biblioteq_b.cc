@@ -4,6 +4,7 @@
 
 #include <QSettings>
 #include <QSqlDriver>
+#include <QSqlField>
 #include <QSqlRecord>
 #include <QtDebug>
 
@@ -3024,6 +3025,10 @@ int biblioteq::populateTable(const int search_type_arg,
   if(limit != -1 && m_db.driver()->hasFeature(QSqlDriver::QuerySize))
     progress.setMaximum(query.size());
 
+  QSettings settings;
+  QStringList columnNames(ui.table->columnNames());
+  bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -3033,7 +3038,29 @@ int biblioteq::populateTable(const int search_type_arg,
       if(query.isValid())
 	{
 	  QSqlRecord record(query.record());
+	  QString tooltip("");
 	  QTableWidgetItem *first = 0;
+
+	  if(showToolTips)
+	    {
+	      tooltip = "<html>";
+
+	      for(int j = 0; j < record.count(); j++)
+		{
+		  if(record.field(j).type() == QVariant::ByteArray)
+		    continue;
+
+		  tooltip.append("<b>");
+		  tooltip.append(columnNames.value(j));
+		  tooltip.append(":</b> ");
+		  tooltip.append(query.value(j).toString().trimmed());
+
+		  if(j < record.count() - 2)
+		    tooltip.append("<br>");
+		}
+
+	      tooltip.append("</html>");
+	    }
 
 	  for(int j = 0; j < record.count(); j++)
 	    {
@@ -3159,6 +3186,7 @@ int biblioteq::populateTable(const int search_type_arg,
 						  arg(ui.table->rowCount()));
 		    }
 
+		  item->setToolTip(tooltip);
 		  ui.table->setItem(i, j, item);
 
 		  if(record.fieldName(j).endsWith("type"))

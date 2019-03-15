@@ -76,6 +76,9 @@
         </item>
         <item>
          <widget class="QCheckBox" name="show_maintable_tooltips">
+          <property name="toolTip">
+           <string>Please reload table on value change.</string>
+          </property>
           <property name="text">
            <string>&amp;Show Main Table Tool Tips</string>
           </property>
