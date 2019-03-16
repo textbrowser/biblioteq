@@ -1240,21 +1240,21 @@ void biblioteq::showMain(void)
 	  "file. Default values will be assumed. The current working "
 	  "directory is %1.").arg(QDir::currentPath()));
 
-  if(!QSqlDatabase::isDriverAvailable("QPSQL") ||
-     !QSqlDatabase::isDriverAvailable("QSQLITE"))
+  if(!(QSqlDatabase::isDriverAvailable("QPSQL") ||
+       QSqlDatabase::isDriverAvailable("QSQLITE")))
     {
       QFileInfo fileInfo("qt.conf");
       QString str("");
 
       if(fileInfo.isReadable() && fileInfo.size() > 0)
-	str = tr("The PostgreSQL and/or SQLite database driver(s) "
-		 "are/is not available. "
+	str = tr("Please verify that the PostgreSQL driver or the "
+		 "SQLite driver is installed. "
 		 "The file qt.conf is present in BiblioteQ's "
-		 "current working directory. Perhaps a conflict "
+		 "current working directory. Perhaps a plugin conflict "
 		 "exists. Please resolve!");
       else
-	str = tr("The PostgreSQL and/or SQLite database driver(s) "
-		 "are/is not available. Please resolve!");
+	str = tr("Please verify that the PostgreSQL driver or the "
+		 "SQLite driver is installed.");
 
       QMessageBox::critical(this, tr("BiblioteQ: Error"), str);
     }
