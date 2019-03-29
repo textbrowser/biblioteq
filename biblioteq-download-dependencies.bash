@@ -10,7 +10,6 @@ rm -f $postgresql
 wget --output-document=$postgresql \
      --progress=bar \
      "https://get.enterprisedb.com/postgresql/postgresql-9.6.12-1-windows-binaries.zip?ls=Crossover&type=Crossover&_ga=2.53582379.223986836.1553804077-504097994.1552479753"
-
 unzip $postgresql
 mv pgsql/bin/libeay32.dll Libraries.win32/postgresql.d/.
 mv pgsql/bin/libiconv-2.dll Libraries.win32/postgresql.d/.
