@@ -43,5 +43,5 @@ rm -f $sqlite
 
 sqlite=sqlite-amalgamation-3270200
 
-mv $sqlite/*.h Include.win32/sqlite3/.
+mv $sqlite/*.h Include.win32/sqlite3.d/.
 rm -fr $sqlite
