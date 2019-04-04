@@ -858,8 +858,8 @@
         <location filename="../Source/biblioteq_a.cc" line="8964"/>
         <location filename="../Source/biblioteq_a.cc" line="8994"/>
         <location filename="../Source/biblioteq_a.cc" line="9020"/>
-        <location filename="../Source/biblioteq_b.cc" line="2884"/>
-        <location filename="../Source/biblioteq_b.cc" line="2889"/>
+        <location filename="../Source/biblioteq_b.cc" line="2885"/>
+        <location filename="../Source/biblioteq_b.cc" line="2890"/>
         <source>All</source>
         <translation>Все</translation>
     </message>
@@ -870,7 +870,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="759"/>
-        <location filename="../Source/biblioteq_b.cc" line="4028"/>
+        <location filename="../Source/biblioteq_b.cc" line="4070"/>
         <source>&amp;%1</source>
         <translation>&amp;%1</translation>
     </message>
@@ -990,9 +990,9 @@
         <location filename="../Source/biblioteq_a.cc" line="5029"/>
         <location filename="../Source/biblioteq_a.cc" line="5934"/>
         <location filename="../Source/biblioteq_a.cc" line="9688"/>
-        <location filename="../Source/biblioteq_b.cc" line="30"/>
-        <location filename="../Source/biblioteq_b.cc" line="2827"/>
-        <location filename="../Source/biblioteq_b.cc" line="3267"/>
+        <location filename="../Source/biblioteq_b.cc" line="31"/>
+        <location filename="../Source/biblioteq_b.cc" line="2828"/>
+        <location filename="../Source/biblioteq_b.cc" line="3309"/>
         <source>0 Results</source>
         <translation>Результаты</translation>
     </message>
@@ -1013,14 +1013,12 @@
         <translation>BiblioteQ не смог обнаружить файл biblioteq.conf. Значения по умолчанию будут приняты. Текущий рабочий каталог -% 1.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_a.cc" line="1250"/>
         <source>The PostgreSQL and/or SQLite database driver(s) are/is not available. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists. Please resolve!</source>
-        <translation>Драйверы баз данных PostgreSQL и / или SQLite недоступны. Файл qt.conf присутствует в текущем рабочем каталоге BiblioteQ. Возможно, возникла ошибка.  Пожалуйста, разрешите!</translation>
+        <translation type="obsolete">Драйверы баз данных PostgreSQL и / или SQLite недоступны. Файл qt.conf присутствует в текущем рабочем каталоге BiblioteQ. Возможно, возникла ошибка.  Пожалуйста, разрешите!</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_a.cc" line="1256"/>
         <source>The PostgreSQL and/or SQLite database driver(s) are/is not available. Please resolve!</source>
-        <translation>Драйверы баз данных PostgreSQL и / или SQLite недоступны. Пожалуйста, разрешите!</translation>
+        <translation type="obsolete">Драйверы баз данных PostgreSQL и / или SQLite недоступны. Пожалуйста, разрешите!</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1259"/>
@@ -1097,9 +1095,9 @@
         <location filename="../Source/biblioteq_a.cc" line="8870"/>
         <location filename="../Source/biblioteq_a.cc" line="9246"/>
         <location filename="../Source/biblioteq_a.cc" line="9253"/>
-        <location filename="../Source/biblioteq_b.cc" line="2855"/>
-        <location filename="../Source/biblioteq_b.cc" line="3664"/>
-        <location filename="../Source/biblioteq_b.cc" line="3677"/>
+        <location filename="../Source/biblioteq_b.cc" line="2856"/>
+        <location filename="../Source/biblioteq_b.cc" line="3706"/>
+        <location filename="../Source/biblioteq_b.cc" line="3719"/>
         <source>Database Error</source>
         <translation>Ошибка базы данных</translation>
     </message>
@@ -1203,7 +1201,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8794"/>
         <location filename="../Source/biblioteq_a.cc" line="9291"/>
         <location filename="../Source/biblioteq_a.cc" line="9481"/>
-        <location filename="../Source/biblioteq_b.cc" line="3689"/>
+        <location filename="../Source/biblioteq_b.cc" line="3731"/>
         <source>BiblioteQ: Question</source>
         <translation>BiblioteQ: Вопрос</translation>
     </message>
@@ -1301,7 +1299,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8900"/>
         <location filename="../Source/biblioteq_a.cc" line="8906"/>
         <location filename="../Source/biblioteq_a.cc" line="9334"/>
-        <location filename="../Source/biblioteq_b.cc" line="2859"/>
+        <location filename="../Source/biblioteq_b.cc" line="2860"/>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ: Ошибка базы данных</translation>
     </message>
@@ -1334,7 +1332,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8347"/>
         <location filename="../Source/biblioteq_a.cc" line="8554"/>
         <location filename="../Source/biblioteq_a.cc" line="8807"/>
-        <location filename="../Source/biblioteq_b.cc" line="2991"/>
+        <location filename="../Source/biblioteq_b.cc" line="2992"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>BiblioteQ:диалога статуса выполнения </translation>
     </message>
@@ -1468,7 +1466,7 @@
         <location filename="../Source/biblioteq_a.cc" line="3279"/>
         <location filename="../Source/biblioteq_a.cc" line="8724"/>
         <location filename="../Source/biblioteq_a.cc" line="9692"/>
-        <location filename="../Source/biblioteq_b.cc" line="4000"/>
+        <location filename="../Source/biblioteq_b.cc" line="4042"/>
         <source>BiblioteQ: Information</source>
         <translation>BiblioteQ: Информация</translation>
     </message>
@@ -1546,6 +1544,16 @@
     <message>
         <source>The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists.</source>
         <translation type="obsolete">Файл qt.conf присутствует в текущем рабочем каталоге BiblioteQ. Возможно, есть конфликт.</translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_a.cc" line="1250"/>
+        <source>Please verify that the PostgreSQL driver or the SQLite driver is installed. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a plugin conflict exists. Please resolve!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_a.cc" line="1256"/>
+        <source>Please verify that the PostgreSQL driver or the SQLite driver is installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4476"/>
@@ -1745,7 +1753,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="8381"/>
         <location filename="../Source/biblioteq_a.cc" line="8402"/>
         <location filename="../Source/biblioteq_a.cc" line="8409"/>
-        <location filename="../Source/biblioteq_b.cc" line="3175"/>
+        <location filename="../Source/biblioteq_b.cc" line="3220"/>
         <location filename="../Source/biblioteq_c.cc" line="292"/>
         <location filename="../Source/biblioteq_c.cc" line="313"/>
         <source>Memory Error</source>
@@ -1757,7 +1765,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="8215"/>
         <location filename="../Source/biblioteq_a.cc" line="8382"/>
         <location filename="../Source/biblioteq_a.cc" line="8410"/>
-        <location filename="../Source/biblioteq_b.cc" line="3176"/>
+        <location filename="../Source/biblioteq_b.cc" line="3221"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation>Невозможно выделить память для объекта &quot;элемент&quot;. Это серьезная проблема!</translation>
     </message>
@@ -2413,80 +2421,80 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Возможно, вы выбрали новый язык. Пожалуйста, перезапустите BiblioteQ после сохранения настроек.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2829"/>
-        <location filename="../Source/biblioteq_b.cc" line="3158"/>
-        <location filename="../Source/biblioteq_b.cc" line="3269"/>
+        <location filename="../Source/biblioteq_b.cc" line="2830"/>
+        <location filename="../Source/biblioteq_b.cc" line="3202"/>
+        <location filename="../Source/biblioteq_b.cc" line="3311"/>
         <source>%1 Result(s)</source>
         <translation>%1 Результаты</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2856"/>
-        <location filename="../Source/biblioteq_b.cc" line="2860"/>
+        <location filename="../Source/biblioteq_b.cc" line="2857"/>
+        <location filename="../Source/biblioteq_b.cc" line="2861"/>
         <source>Unable to retrieve the data required for populating the main views.</source>
         <translation>Невозможно получить данные, необходимые для заполнения основных представлений.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2923"/>
-        <location filename="../Source/biblioteq_b.cc" line="2946"/>
+        <location filename="../Source/biblioteq_b.cc" line="2924"/>
+        <location filename="../Source/biblioteq_b.cc" line="2947"/>
         <source> %1 </source>
         <translation> %1 </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2925"/>
-        <location filename="../Source/biblioteq_b.cc" line="2948"/>
-        <location filename="../Source/biblioteq_b.cc" line="2953"/>
+        <location filename="../Source/biblioteq_b.cc" line="2926"/>
+        <location filename="../Source/biblioteq_b.cc" line="2949"/>
+        <location filename="../Source/biblioteq_b.cc" line="2954"/>
         <source>%1</source>
         <translation> %1 </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2936"/>
+        <location filename="../Source/biblioteq_b.cc" line="2937"/>
         <source> 1 ... </source>
         <translation> 1 ... </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2938"/>
+        <location filename="../Source/biblioteq_b.cc" line="2939"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2938"/>
+        <location filename="../Source/biblioteq_b.cc" line="2939"/>
         <source> ... </source>
         <translation> ... </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2951"/>
+        <location filename="../Source/biblioteq_b.cc" line="2952"/>
         <source> ... %1 </source>
         <translation> ... %1 </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="2982"/>
+        <location filename="../Source/biblioteq_b.cc" line="2983"/>
         <source>Populating the views...</source>
         <translation>Заполнение полей ...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3665"/>
+        <location filename="../Source/biblioteq_b.cc" line="3707"/>
         <source>Unable to insert into member_history_dnt for member %1.</source>
         <translation>Невозможно вставить в member_history_dnt для читателя %1.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3678"/>
+        <location filename="../Source/biblioteq_b.cc" line="3720"/>
         <source>Unable to update member_history_dnt for member %1.</source>
         <translation>Невозможно обновить member_history_dnt для читателя% 1.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3690"/>
+        <location filename="../Source/biblioteq_b.cc" line="3732"/>
         <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
         <translation>Вы собираетесь обновить устаревшую базу данных SQLite %1. Пожалуйста, убедитесь, что вы сделали копию этой базы данных. Вы уверены, что хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3962"/>
+        <location filename="../Source/biblioteq_b.cc" line="4004"/>
         <source>Executing %1 statements.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3973"/>
+        <location filename="../Source/biblioteq_b.cc" line="4015"/>
         <source>Error %1: %2. Statement: %3.
 
 </source>
@@ -2501,17 +2509,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Ошибка %1: %2. Заявление: %3.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3991"/>
+        <location filename="../Source/biblioteq_b.cc" line="4033"/>
         <source>BiblioteQ: Upgrade SQLite Schema Results</source>
         <translation>BiblioteQ: обновить результаты схемы SQLite</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4001"/>
+        <location filename="../Source/biblioteq_b.cc" line="4043"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation>База данных %1 была успешно обновлена.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4026"/>
+        <location filename="../Source/biblioteq_b.cc" line="4068"/>
         <source>&amp;Unlimited</source>
         <translation>&amp;Не ограничено</translation>
     </message>
@@ -10546,32 +10554,42 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Цвет фона главного окна</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="102"/>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="80"/>
+        <source>Please reload table on value change.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="83"/>
+        <source>&amp;Show Main Table Tool Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="112"/>
         <source>Item Type</source>
         <translation>Тип Произведения</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="107"/>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="117"/>
         <source>Publication Date Format</source>
         <translation>Формат даты публикации</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="143"/>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="153"/>
         <source>&amp;Save</source>
         <translation>&amp;Сохранить</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="150"/>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="160"/>
         <source>Ctrl+S</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="163"/>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="173"/>
         <source>&amp;Close</source>
         <translation>&amp;закрыть</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="170"/>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="180"/>
         <source>Ctrl+W</source>
         <translation>Закрыть текущую вкладку окна</translation>
     </message>

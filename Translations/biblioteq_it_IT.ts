@@ -760,14 +760,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The PostgreSQL and/or SQLite database driver(s) are/is not available. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists. Please resolve!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The PostgreSQL and/or SQLite database driver(s) are/is not available. Please resolve!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1751,6 +1743,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please verify that the PostgreSQL driver or the SQLite driver is installed. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a plugin conflict exists. Please resolve!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please verify that the PostgreSQL driver or the SQLite driver is installed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7632,6 +7632,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please reload table on value change.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Main Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
