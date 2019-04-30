@@ -748,7 +748,7 @@ biblioteq::biblioteq(void):QMainWindow()
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 1; i <= 5; i++)
+  for(int i = 1; i <= 20; i++)
     {
       QAction *action = 0;
 
@@ -756,7 +756,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	action = group1->addAction
 	  (QString(tr("&Unlimited Entries per Page")));
       else
-	action = group1->addAction(QString(tr("&%1")).arg(25 * i));
+	action = group1->addAction(QString(tr("&%1")).arg(5 * i));
 
       if(!action)
 	continue;
@@ -769,7 +769,7 @@ biblioteq::biblioteq(void):QMainWindow()
       if(i == 5)
 	action->setData(-1);
       else
-	action->setData(25 * i);
+	action->setData(5 * i);
 
       action->setCheckable(true);
 
@@ -4902,6 +4902,7 @@ void biblioteq::slotDisconnect(void)
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
+  m_searchQuery.clear();
   userinfo_diag->m_memberProperties.clear();
   m_all_diag->close();
   m_members_diag->close();
@@ -9157,22 +9158,48 @@ void biblioteq::createSqliteMenuActions(void)
 void biblioteq::slotPreviousPage(void)
 {
   if(m_db.isOpen())
-    (void) populateTable(m_lastSearchType, m_previousTypeFilter,
-			 m_lastSearchStr, PREVIOUS_PAGE);
+    {
+      if(m_lastSearchStr == "Item Search Query")
+	(void) populateTable(m_searchQuery,
+			     m_previousTypeFilter,
+			     PREVIOUS_PAGE,
+			     m_lastSearchType);
+      else
+	(void) populateTable(m_lastSearchType,
+			     m_previousTypeFilter,
+			     m_lastSearchStr,
+			     PREVIOUS_PAGE);
+    }
 }
 
 void biblioteq::slotNextPage(void)
 {
   if(m_db.isOpen())
-    (void) populateTable(m_lastSearchType, m_previousTypeFilter,
-			 m_lastSearchStr, NEXT_PAGE);
+    {
+      if(m_lastSearchStr == "Item Search Query")
+	(void) populateTable
+	  (m_searchQuery, m_previousTypeFilter, NEXT_PAGE, m_lastSearchType);
+      else
+	(void) populateTable
+	  (m_lastSearchType, m_previousTypeFilter, m_lastSearchStr, NEXT_PAGE);
+    }
 }
 
 void biblioteq::slotPageClicked(const QString &link)
 {
   if(m_db.isOpen())
-    (void) populateTable(m_lastSearchType, m_previousTypeFilter,
-			 m_lastSearchStr, -link.toInt());
+    {
+      if(m_lastSearchStr == "Item Search Query")
+	(void) populateTable(m_searchQuery,
+			     m_previousTypeFilter,
+			     -link.toInt(),
+			     m_lastSearchType);
+      else
+	(void) populateTable(m_lastSearchType,
+			     m_previousTypeFilter,
+			     m_lastSearchStr,
+			     -link.toInt());
+    }
 }
 
 QString biblioteq::getPreferredSRUSite(void) const

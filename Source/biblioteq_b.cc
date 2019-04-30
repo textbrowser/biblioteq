@@ -2827,8 +2827,8 @@ int biblioteq::populateTable(const int search_type_arg,
   if(ui.table->rowCount() == 0)
     ui.itemsCountLabel->setText(tr("0 Results"));
   else
-    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-				arg(ui.table->rowCount()));
+    ui.itemsCountLabel->setText
+      (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
 
   QSqlQuery query(m_db);
 
@@ -4147,4 +4147,18 @@ void biblioteq::slotReloadBiblioteqConf(void)
 QString biblioteq::unaccent(void) const
 {
   return m_unaccent;
+}
+
+int biblioteq::pageLimit(void) const
+{
+  int limit = 25;
+
+  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+      {
+	limit = ui.menuEntriesPerPage->actions()[i]->data().toInt();
+	break;
+      }
+
+  return limit;
 }

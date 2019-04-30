@@ -362,7 +362,7 @@
      issue with this requirement is that the item may not be listed
      in the main table and so its row number will not be available. (TBD)
 198. Bind values in SQL queries:
-     biblioteq_a.cc (Done)
+     biblioteq_a.cc (TBD)
      biblioteq_b.cc (TBD)
      biblioteq_book.cc (Done) (Searching, TBD)
      biblioteq_borrowers_editor.cc (Done)
@@ -371,7 +371,7 @@
      biblioteq_copy_editor_book.cc (Done)
      biblioteq_dbenumerations.cc (Done)
      biblioteq_dvd.cc (Done) (Searching, TBD)
-     biblioteq_grey_literature.cc (Done) (Searching, TBD)
+     biblioteq_grey_literature.cc (Done) (Searching, Done)
      biblioteq_magazine.cc (Done) (Searching, TBD)
      biblioteq_misc_functions.cc (Done)
      biblioteq_photographcollection.cc (Done) (Searching, TBD)

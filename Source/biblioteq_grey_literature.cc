@@ -1130,6 +1130,7 @@ void biblioteq_grey_literature::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QSqlQuery query(qmain->getDB());
       QString searchstr("");
 
       searchstr = "SELECT DISTINCT grey_literature.author, "
@@ -1162,19 +1163,17 @@ void biblioteq_grey_literature::slotGo(void)
 		       UNACCENT +
 		       "(LOWER(" +
 		       ESCAPE +
-		       "'%" +
-		       biblioteq_myqstring::
-		       escape(m_ui.title->text().trimmed()) +
-		       "%')) AND ");
+		       "'%' || "
+		       "?"
+		       " || '%')) AND ");
       searchstr.append(UNACCENT +
 		       "(LOWER(document_id)) LIKE " +
 		       UNACCENT +
 		       "(LOWER(" +
 		       ESCAPE +
-		       "'%" +
-		       biblioteq_myqstring::
-		       escape(m_ui.id->text().trimmed()) +
-		       "%')) AND ");
+		       "'%' || "
+		       "?"
+		       " || '%')) AND ");
 
       if(m_ui.date_enabled->isChecked())
 	searchstr.append("SUBSTR(document_date, 7) = '" +
@@ -1187,54 +1186,54 @@ void biblioteq_grey_literature::slotGo(void)
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.author->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "'%' || "
+	 "?"
+	 " || '%')) AND ");
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(COALESCE(client, ''))) LIKE " +
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.client->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "'%' || "
+	 "?"
+	 " || '%')) AND ");
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(document_code_a)) LIKE " +
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()) +
-	 "%')) AND ");
+	 "'%' || "
+	 "?"
+	 " || '%')) AND ");
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(document_code_b)) LIKE " +
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()) +
-	 "%')) AND ");
+	 "'%' || "
+	 "?"
+	 " || '%')) AND ");
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(job_number)) LIKE " +
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()) +
-	 "%')) AND ");
+	 "'%' || "
+	 "?"
+	 " || '%')) AND ");
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(COALESCE(notes, ''))) LIKE " +
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "'%' || "
+	 "?"
+	 " || '%')) AND ");
 
       if(m_ui.location->currentIndex() != 0)
 	searchstr.append
@@ -1253,9 +1252,9 @@ void biblioteq_grey_literature::slotGo(void)
 	 UNACCENT +
 	 "(LOWER(" +
 	 ESCAPE +
-	 "'%" +
-	 biblioteq_myqstring::escape(m_ui.status->text().trimmed()) +
-	 "%')) ");
+	 "'%' || "
+	 "?"
+	 " || '%')) ");
 
       if(m_ui.type->currentIndex() != 0)
 	searchstr.append
@@ -1269,12 +1268,39 @@ void biblioteq_grey_literature::slotGo(void)
 	   m_ui.type->currentText().trimmed() +
 	   "') ");
 
-      /*
-      ** Search the database.
-      */
-
+      searchstr.append("GROUP BY grey_literature.document_title, "
+		       "grey_literature.document_id, "
+		       "grey_literature.location, "
+		       "grey_literature.notes, "
+		       "grey_literature.job_number, "
+		       "grey_literature.type, "
+		       "grey_literature.myoid, "
+		       "grey_literature.front_cover "
+		       "ORDER BY grey_literature.document_title");
+      query.prepare(searchstr);
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.title->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.id->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.author->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.client->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.status->text().trimmed()));
       (void) qmain->populateTable
-	(biblioteq::POPULATE_SEARCH, "Grey Literature", searchstr);
+	(query,
+	 "Grey Literature",
+	 biblioteq::NEW_PAGE,
+	 biblioteq::POPULATE_SEARCH);
     }
 }
 

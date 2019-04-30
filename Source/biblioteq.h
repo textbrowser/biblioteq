@@ -226,6 +226,11 @@ class biblioteq: public QMainWindow
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
   bool isGuest(void) const;
+  int pageLimit(void) const;
+  int populateTable(const QSqlQuery &query,
+		    const QString &typefilter,
+		    const int pagingType,
+		    const int searchType);
   int populateTable(const int search_type_arg,
 		    const QString &typefilter,
 		    const QString &searchstrArg,
@@ -301,6 +306,7 @@ class biblioteq: public QMainWindow
   QMap<QString, QHash<QString, QString> > m_sruMaps;
   QMap<QString, QHash<QString, QString> > m_z3950Maps;
   QSqlDatabase m_db;
+  QSqlQuery m_searchQuery;
   QString m_engUserinfoTitle;
   QString m_lastCategory;
   QString m_lastSearchStr;
