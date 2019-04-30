@@ -345,7 +345,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 {
   if(pagingType == NEW_PAGE)
     {
-      m_searchQuery.clear();
+      if(m_searchQuery.isActive())
+	m_searchQuery.clear();
+
       m_searchQuery = query;
     }
 
