@@ -403,6 +403,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   if(pagingType == NEW_PAGE)
     ok = m_searchQuery.exec();
+  else if(pagingType == NEXT_PAGE || pagingType == PREVIOUS_PAGE)
+    ok = m_searchQuery.seek(offset);
   else if(pagingType < 0)
     ok = m_searchQuery.seek(limit * qAbs(pagingType + 1));
 
@@ -430,7 +432,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve the data required for "
 			  "populating the main views.")),
-	       query.lastError().text(), __FILE__, __LINE__);
+	       m_searchQuery.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main views."));
@@ -557,7 +559,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QApplication::processEvents();
 #endif
 
-  biblioteq_graphicsitempixmap *pixmapItem = 0;
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -568,22 +569,24 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   if(limit == -1)
     {
-      QSqlQuery q(m_searchQuery);
+      m_searchQuery.seek(0);
+
       int size = 0;
 
-      if(q.exec())
-	while(q.next())
-	  size += 1;
+      while(m_searchQuery.next())
+	size += 1;
 
       if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
 	ui.graphicsView->setSceneRect(0, 0, 5 * 150, size * 250 + 15);
       else
 	ui.graphicsView->setSceneRect
 	  (0, 0, 5 * 150, std::numeric_limits<int>::max());
+
+      m_searchQuery.seek(offset);
     }
 
   if(limit != -1 && m_db.driver()->hasFeature(QSqlDriver::QuerySize))
-    progress.setMaximum(query.size());
+    progress.setMaximum(qMin(limit, m_searchQuery.size()));
 
   QSettings settings;
   QStringList columnNames(ui.table->columnNames());
@@ -591,29 +594,16 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   i = -1;
 
-  while(i++, !progress.wasCanceled())
+  while(i++, !progress.wasCanceled() && m_searchQuery.next())
     {
-      if(pagingType == NEXT_PAGE)
-	{
-	  if(!m_searchQuery.next())
-	    break;
-	}
-      else if(pagingType == PREVIOUS_PAGE)
-	{
-	  if(!m_searchQuery.previous())
-	    break;
-	}
-      else if(!m_searchQuery.next())
-	break;
-
       if(i == limit)
 	break;
 
-      pixmapItem = 0;
+      biblioteq_graphicsitempixmap *pixmapItem = 0;
 
-      if(query.isValid())
+      if(m_searchQuery.isValid())
 	{
-	  QSqlRecord record(query.record());
+	  QSqlRecord record(m_searchQuery.record());
 	  QString tooltip("");
 	  QTableWidgetItem *first = 0;
 
@@ -634,7 +624,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  tooltip.append("<b>");
 		  tooltip.append(columnName);
 		  tooltip.append(":</b> ");
-		  tooltip.append(query.value(j).toString().trimmed());
+		  tooltip.append(m_searchQuery.value(j).toString().trimmed());
 		  tooltip.append("<br>");
 		}
 
@@ -654,16 +644,16 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(record.fieldName(j).contains("date") ||
 		     record.fieldName(j).contains("membersince"))
 		    {
-		      QDate date(QDate::fromString(query.value(j).toString(),
-						   "MM/dd/yyyy"));
+		      QDate date(QDate::fromString(m_searchQuery.value(j).
+						   toString(), "MM/dd/yyyy"));
 
 		      str = date.toString(Qt::ISODate);
 
 		      if(str.isEmpty())
-			str = query.value(j).toString().trimmed();
+			str = m_searchQuery.value(j).toString().trimmed();
 		    }
 		  else
-		    str = query.value(j).toString();
+		    str = m_searchQuery.value(j).toString();
 		}
 
 	      if(record.fieldName(j).endsWith("availability") ||
@@ -682,16 +672,17 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(record.fieldName(j).endsWith("price"))
 		    {
 		      item = new(std::nothrow) biblioteq_numeric_table_item
-			(query.value(j).toDouble());
-		      str = QString::number(query.value(j).toDouble(), 'f', 2);
+			(m_searchQuery.value(j).toDouble());
+		      str = QString::number
+			(m_searchQuery.value(j).toDouble(), 'f', 2);
 		    }
 		  else
 		    item = new(std::nothrow) biblioteq_numeric_table_item
-		      (query.value(j).toInt());
+		      (m_searchQuery.value(j).toInt());
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
-		  str = query.value(j).toString();
+		  str = m_searchQuery.value(j).toString();
 		  item = new(std::nothrow) biblioteq_callnum_table_item(str);
 		}
 	      else if(record.fieldName(j).endsWith("front_cover") ||
@@ -699,14 +690,15 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		{
 		  QImage image;
 
-		  if(!query.isNull(j))
+		  if(!m_searchQuery.isNull(j))
 		    {
 		      image.loadFromData
-			(QByteArray::fromBase64(query.value(j).
+			(QByteArray::fromBase64(m_searchQuery.value(j).
 						toByteArray()));
 
 		      if(image.isNull())
-			image.loadFromData(query.value(j).toByteArray());
+			image.loadFromData
+			  (m_searchQuery.value(j).toByteArray());
 		    }
 
 		  if(image.isNull())
@@ -795,17 +787,17 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	    }
 	}
 
-      if(query.isValid())
+      if(m_searchQuery.isValid())
 	if(pixmapItem)
 	  {
-	    QSqlRecord record(query.record());
+	    QSqlRecord record(m_searchQuery.record());
 
 	    for(int ii = 0; ii < record.count(); ii++)
 	      {
 		if(record.fieldName(ii).endsWith("myoid"))
-		  pixmapItem->setData(0, query.value(ii));
+		  pixmapItem->setData(0, m_searchQuery.value(ii));
 		else if(record.fieldName(ii).endsWith("type"))
-		  pixmapItem->setData(1, query.value(ii));
+		  pixmapItem->setData(1, m_searchQuery.value(ii));
 	      }
 	  }
 
@@ -871,6 +863,5 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.table->hide();
   ui.table->show();
 #endif
-
   return 0;
 }

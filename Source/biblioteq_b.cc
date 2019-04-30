@@ -2841,8 +2841,7 @@ int biblioteq::populateTable(const int search_type_arg,
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
-	for(int ii = 0; ii < ui.menu_Category->actions().size();
-	    ii++)
+	for(int ii = 0; ii < ui.menu_Category->actions().size(); ii++)
 	  if(m_previousTypeFilter ==
 	     ui.menu_Category->actions().at(ii)->data().toString())
 	    {
