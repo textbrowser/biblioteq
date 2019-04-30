@@ -4902,7 +4902,10 @@ void biblioteq::slotDisconnect(void)
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
-  m_searchQuery.clear();
+
+  if(m_searchQuery.isActive())
+    m_searchQuery.clear();
+
   userinfo_diag->m_memberProperties.clear();
   m_all_diag->close();
   m_members_diag->close();
