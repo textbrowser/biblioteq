@@ -1275,8 +1275,7 @@ void biblioteq_grey_literature::slotGo(void)
 		       "grey_literature.job_number, "
 		       "grey_literature.type, "
 		       "grey_literature.myoid, "
-		       "grey_literature.front_cover "
-		       "ORDER BY grey_literature.document_title");
+		       "grey_literature.front_cover");
       query.prepare(searchstr);
       query.addBindValue
 	(biblioteq_myqstring::escape(m_ui.title->text().trimmed()));

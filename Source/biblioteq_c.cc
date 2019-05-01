@@ -410,7 +410,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   else if(pagingType < 0)
     ok = m_searchQuery.seek(limit * qAbs(pagingType + 1));
 
-  if(!ok)
+  if(m_searchQuery.lastError().isValid() && !ok)
     {
       progress.close();
 #ifndef Q_OS_MAC
@@ -596,10 +596,14 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   i = -1;
 
-  while(i++, !progress.wasCanceled() && m_searchQuery.next())
+  while(i++, !progress.wasCanceled())
     {
       if(i == limit)
 	break;
+
+      if(m_searchQuery.at() == QSql::BeforeFirstRow)
+	if(!m_searchQuery.next())
+	  break;
 
       biblioteq_graphicsitempixmap *pixmapItem = 0;
 
@@ -810,6 +814,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 #ifndef Q_OS_MAC
       QApplication::processEvents();
 #endif
+
+      if(m_searchQuery.at() != QSql::BeforeFirstRow)
+	if(!m_searchQuery.next())
+	  break;
     }
 
   if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))

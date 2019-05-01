@@ -740,19 +740,19 @@ biblioteq::biblioteq(void):QMainWindow()
 
   addConfigOptions(m_lastCategory);
   setUpdatesEnabled(true);
-  userinfo_diag->m_userinfo.expirationdate->setMaximumDate
-    (QDate(3000, 1, 1));
+  userinfo_diag->m_userinfo.expirationdate->setMaximumDate(QDate(3000, 1, 1));
 
   QActionGroup *group1 = 0;
+  int end = 21;
 
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 1; i <= 20; i++)
+  for(int i = 1; i <= end; i++)
     {
       QAction *action = 0;
 
-      if(i == 5)
+      if(i == end)
 	action = group1->addAction
 	  (QString(tr("&Unlimited Entries per Page")));
       else
@@ -766,7 +766,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	      this,
 	      SLOT(slotRefresh(void)));
 
-      if(i == 5)
+      if(i == end)
 	action->setData(-1);
       else
 	action->setData(5 * i);
@@ -4732,22 +4732,24 @@ void biblioteq::slotConnectDB(void)
       ui.action_Upgrade_SQLite_Schema->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 
-      if(ui.menuEntriesPerPage->actions().size() >= 5)
-	ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
+      if(ui.menuEntriesPerPage->actions().size() > 0)
+	ui.menuEntriesPerPage->actions().at
+	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 
       /*
       ** Set the window's title.
       */
 
-      setWindowTitle(tr("BiblioteQ: ") +
-		     QFileInfo(br.filename->text()).fileName());
+      setWindowTitle
+	(tr("BiblioteQ: ") + QFileInfo(br.filename->text()).fileName());
     }
   else
     {
       ui.menuEntriesPerPage->setEnabled(true);
 
-      if(ui.menuEntriesPerPage->actions().size() >= 5)
-	ui.menuEntriesPerPage->actions()[4]->setEnabled(false);
+      if(ui.menuEntriesPerPage->actions().size() > 0)
+	ui.menuEntriesPerPage->actions().at
+	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(false);
 
       ui.actionChangePassword->setEnabled(true);
       disconnect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
@@ -4956,8 +4958,9 @@ void biblioteq::slotDisconnect(void)
   ui.menuEntriesPerPage->setEnabled(true);
   ui.action_Upgrade_SQLite_Schema->setEnabled(false);
 
-  if(ui.menuEntriesPerPage->actions().size() >= 5)
-    ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
+  if(ui.menuEntriesPerPage->actions().size() > 0)
+    ui.menuEntriesPerPage->actions().at
+      (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
     (false);
