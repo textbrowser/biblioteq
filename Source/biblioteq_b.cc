@@ -3434,63 +3434,49 @@ void biblioteq::slotSearchBasic(void)
 	    {
 	      if(ui.case_insensitive->isChecked())
 		{
+		  str.append("LOWER(category) LIKE " +
+			     E + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		  str.append("LOWER(category) LIKE " +
-			     E + "'%' || "
-			     "?"
-			     " || '%' ");
 		}
 	      else
 		{
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
-		  str.append("category LIKE " +
-			     E + "'%' || "
-			     "?"
-			     " || '%' ");
+		  str.append("category LIKE " + E + "'%' || ? || '%' ");
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	  else if(type == "Grey Literature")
 	    {
 	      if(ui.case_insensitive->isChecked())
 		{
+		  str.append("COALESCE(LOWER(notes), '') LIKE " +
+			     E + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		  str.append("COALESCE(LOWER(notes), '') LIKE " +
-			     E + "'%' || "
-			     "?"
-			     " || '%' ");
 		}
 	      else
 		{
+		  str.append
+		    ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.trimmed()));
-		  str.append("COALESCE(notes, '') LIKE " +
-			     E + "'%' || "
-			     "?"
-			     " || '%' ");
 		}
 	    }
 	  else if(type == "Photograph Collection")
 	    {
 	      if(ui.case_insensitive->isChecked())
 		{
+		  str.append("COALESCE(LOWER(about), '') LIKE " +
+			     E + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		  str.append("COALESCE(LOWER(about), '') LIKE " +
-			     E + "'%' || "
-			     "?"
-			     " || '%' ");
 		}
 	      else
 		{
+		  str.append
+		    ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.trimmed()));
-		  str.append("COALESCE(about, '') LIKE " +
-			     E + "'%' || "
-			     "?"
-			     " || '%' ");
 		}
 	    }
 	}
@@ -3499,28 +3485,29 @@ void biblioteq::slotSearchBasic(void)
 	  if(type == "Grey Literature")
 	    {
 	      if(ui.case_insensitive->isChecked())
-		str.append
-		  ("(LOWER(document_id) LIKE " + E + "'%" +
-		   biblioteq_myqstring::
-		   escape(text.toLower().trimmed()) +
-		   "%' ");
+		{
+		  str.append
+		    ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
+		  values.append
+		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		}
 	      else
-		str.append
-		  ("(document_id LIKE " + E + "'%" +
-		   biblioteq_myqstring::escape(text.trimmed()) +
-		   "%' ");
+		{
+		  str.append("(document_id LIKE " + E + "'%' || ? || '%' ");
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
+		}
 	    }
 	  else if(ui.case_insensitive->isChecked())
-	    str.append
-	      ("(LOWER(id) LIKE " + E + "'%" +
-	       biblioteq_myqstring::
-	       escape(text.toLower().trimmed()) +
-	       "%' ");
+	    {
+	      str.append("(LOWER(id) LIKE " + E + "'%' || ? || '%' ");
+	      values.append
+		(biblioteq_myqstring::escape(text.toLower().trimmed()));
+	    }
 	  else
-	    str.append
-	      ("(id LIKE " + E + "'%" +
-	       biblioteq_myqstring::escape(text.trimmed()) +
-	       "%' ");
+	    {
+	      str.append("(id LIKE " + E + "'%' || ? || '%' ");
+	      values.append(biblioteq_myqstring::escape(text.trimmed()));
+	    }
 
 	  if(type == "Book")
 	    {
