@@ -3512,15 +3512,16 @@ void biblioteq::slotSearchBasic(void)
 	  if(type == "Book")
 	    {
 	      if(ui.case_insensitive->isChecked())
-		str.append
-		  ("OR LOWER(isbn13) LIKE " + E + "'%" +
-		   biblioteq_myqstring::escape(text.toLower().
-					       trimmed()) + "%') ");
+		{
+		  str.append("OR LOWER(isbn13) LIKE " + E + "'%' || ? || '%' ");
+		  values.append
+		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		}
 	      else
-		str.append
-		  ("OR isbn13 LIKE " + E + "'%" +
-		   biblioteq_myqstring::escape(text.
-					       trimmed()) + "%') ");
+		{
+		  str.append("OR isbn13 LIKE " + E + "'%' || ? || '%' ");
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
+		}
 	    }
 	  else
 	    str.append(") ");
@@ -3531,17 +3532,19 @@ void biblioteq::slotSearchBasic(void)
 	     type != "Photograph Collection")
 	    {
 	      if(ui.case_insensitive->isChecked())
-		str.append("COALESCE(LOWER(keyword), '') LIKE " +
-			   E + "'%" +
-			   biblioteq_myqstring::escape
-			   (text.toLower().trimmed()) +
-			   "%' ");
+		{
+		  str.append("COALESCE(LOWER(keyword), '') LIKE " +
+			     E + "'%' || ? || '%' ");
+		  values.append
+		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		}
 	      else
-		str.append("COALESCE(keyword, '') LIKE " +
-			   E + "'%" +
-			   biblioteq_myqstring::escape
-			   (text.trimmed()) +
-			   "%' ");
+		{
+		  str.append("COALESCE(keyword, '') LIKE " +
+			     E + "'%' || ? || '%' ");
+		  values.append
+		    (biblioteq_myqstring::escape(text.trimmed()));
+		}
 	    }
 	  else if(type == "Grey Literature")
 	    {
