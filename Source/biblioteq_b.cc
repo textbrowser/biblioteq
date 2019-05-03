@@ -3595,9 +3595,8 @@ void biblioteq::slotSearchBasic(void)
 	      else
 		{
 		  str.append("document_title LIKE " + E + "'%' || ? || '%' ");
-			     biblioteq_myqstring::
-			     escape(text.trimmed()) +
-			     "%' ");
+		  values.append
+		    (biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	  else if(ui.case_insensitive->isChecked())
