@@ -363,7 +363,7 @@
      in the main table and so its row number will not be available. (TBD)
 198. Bind values in SQL queries:
      biblioteq_a.cc (TBD)
-     biblioteq_b.cc (TBD)
+     biblioteq_b.cc (Done)
      biblioteq_book.cc (Done) (Searching, TBD)
      biblioteq_borrowers_editor.cc (Done)
      biblioteq_cd.cc (Done) (Searching, TBD)
