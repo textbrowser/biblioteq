@@ -3339,6 +3339,8 @@ void biblioteq::slotSearchBasic(void)
   if(!m_db.isOpen())
     return;
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   QList<QVariant> values;
   QSqlQuery query(m_db);
   QString str("");
@@ -3521,8 +3523,8 @@ void biblioteq::slotSearchBasic(void)
 		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
-	  else
-	    str.append(") ");
+
+	  str.append(") ");
 	}
       else if(ui.searchType->currentIndex() == 2) // Keyword
 	{
@@ -3672,6 +3674,7 @@ void biblioteq::slotSearchBasic(void)
   while(!values.isEmpty())
     query.addBindValue(values.takeFirst());
 
+  QApplication::restoreOverrideCursor();
   (void) populateTable
     (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH_BASIC);
 }
