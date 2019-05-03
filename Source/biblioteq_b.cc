@@ -3586,15 +3586,19 @@ void biblioteq::slotSearchBasic(void)
 	  if(type == "Grey Literature")
 	    {
 	      if(ui.case_insensitive->isChecked())
-		str.append("LOWER(document_title) LIKE " + E + "'%" +
-			   biblioteq_myqstring::
-			   escape(text.toLower().trimmed()) +
-			   "%' ");
+		{
+		  str.append("LOWER(document_title) LIKE " +
+			     E + "'%' || ? || '%' ");
+		  values.append
+		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		}
 	      else
-		str.append("document_title LIKE " + E + "'%" +
-			   biblioteq_myqstring::
-			   escape(text.trimmed()) +
-			   "%' ");
+		{
+		  str.append("document_title LIKE " + E + "'%' || ? || '%' ");
+			     biblioteq_myqstring::
+			     escape(text.trimmed()) +
+			     "%' ");
+		}
 	    }
 	  else if(ui.case_insensitive->isChecked())
 	    str.append("LOWER(title) LIKE " + E + "'%" +
