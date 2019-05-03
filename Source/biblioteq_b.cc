@@ -3434,8 +3434,7 @@ void biblioteq::slotSearchBasic(void)
 	    {
 	      if(ui.case_insensitive->isChecked())
 		{
-		  str.append("LOWER(category) LIKE " +
-			     E + "'%' || ? || '%' ");
+		  str.append("LOWER(category) LIKE " + E + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
 		}
@@ -3449,8 +3448,8 @@ void biblioteq::slotSearchBasic(void)
 	    {
 	      if(ui.case_insensitive->isChecked())
 		{
-		  str.append("COALESCE(LOWER(notes), '') LIKE " +
-			     E + "'%' || ? || '%' ");
+		  str.append("COALESCE(LOWER(notes), '') LIKE " + E
+			     + "'%' || ? || '%' ");
 		  values.append
 		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
 		}
@@ -3475,8 +3474,7 @@ void biblioteq::slotSearchBasic(void)
 		{
 		  str.append
 		    ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	}
@@ -3542,8 +3540,7 @@ void biblioteq::slotSearchBasic(void)
 		{
 		  str.append("COALESCE(keyword, '') LIKE " +
 			     E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	  else if(type == "Grey Literature")
@@ -3559,8 +3556,7 @@ void biblioteq::slotSearchBasic(void)
 		{
 		  str.append
 		    ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	  else if(type == "Photograph Collection")
@@ -3576,8 +3572,7 @@ void biblioteq::slotSearchBasic(void)
 		{
 		  str.append
 		    ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	}
@@ -3595,20 +3590,20 @@ void biblioteq::slotSearchBasic(void)
 	      else
 		{
 		  str.append("document_title LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
+		  values.append(biblioteq_myqstring::escape(text.trimmed()));
 		}
 	    }
 	  else if(ui.case_insensitive->isChecked())
-	    str.append("LOWER(title) LIKE " + E + "'%" +
-		       biblioteq_myqstring::
-		       escape(text.toLower().trimmed()) +
-		       "%' ");
+	    {
+	      str.append("LOWER(title) LIKE " + E + "'%' || ? || '%' ");
+	      values.append
+		(biblioteq_myqstring::escape(text.toLower().trimmed()));
+	    }
 	  else
-	    str.append("title LIKE " + E + "'%" +
-		       biblioteq_myqstring::
-		       escape(text.trimmed()) +
-		       "%' ");
+	    {
+	      str.append("title LIKE " + E + "'%' || ? || '%' ");
+	      values.append(biblioteq_myqstring::escape(text.trimmed()));
+	    }
 	}
 
       if(type != "Grey Literature" &&
@@ -3672,7 +3667,11 @@ void biblioteq::slotSearchBasic(void)
       searchstr += str;
     }
 
-  searchstr += "ORDER BY 1 ";
+  query.prepare(searchstr);
+
+  while(!values.isEmpty())
+    query.addBindValue(values.takeFirst());
+
   (void) populateTable
     (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH_BASIC);
 }
