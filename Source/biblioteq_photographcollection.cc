@@ -494,6 +494,7 @@ void biblioteq_photographcollection::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QSqlQuery query(qmain->getDB());
       QString searchstr("");
 
       searchstr = "SELECT DISTINCT photograph_collection.title, "
@@ -562,7 +563,10 @@ void biblioteq_photographcollection::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(biblioteq::POPULATE_SEARCH, "Photograph Collections", searchstr);
+	(query,
+	 "Photograph Collections",
+	 biblioteq::NEW_PAGE,
+	 biblioteq::POPULATE_SEARCH);
     }
 }
 
