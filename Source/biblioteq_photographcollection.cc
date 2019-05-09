@@ -519,16 +519,11 @@ void biblioteq_photographcollection::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(photograph_collection.id)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 pc.id_collection->text().trimmed() +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(photograph_collection.title)) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(pc.title_collection->
-				     text().trimmed()) +
-	 "%')) AND ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(pc.location->currentIndex() != 0)
 	searchstr.append
@@ -540,28 +535,35 @@ void biblioteq_photographcollection::slotGo(void)
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(photograph_collection.about, ''))) " +
 	 "LIKE " + UNACCENT + "(LOWER(" +
-	 ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(pc.about_collection->toPlainText().
-				     trimmed()) +
-	 "%')) AND ");
+	 ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(photograph_collection.notes, ''))) " +
 	 "LIKE " + UNACCENT + "(LOWER(" +
-	 ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(pc.notes_collection->toPlainText().
-				     trimmed()) +
-	 "%')) AND ");
+	 ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(COALESCE(photograph_collection.accession_number, ''))) "
-	 "LIKE " + UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(pc.accession_number->text().trimmed()) +
-	 "%'))");
-
-      /*
-      ** Search the database.
-      */
-
+	 "LIKE " + UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%'))");
+      searchstr.append("GROUP BY photograph_collection.title, "
+		       "photograph_collection.id, "
+		       "photograph_collection.location, "
+		       "photograph_collection.about, "
+		       "photograph_collection.accession_number, "
+		       "photograph_collection.type, "
+		       "photograph_collection.myoid, "
+		       "photograph_collection.image_scaled");
+      query.prepare(searchstr);
+      query.addBindValue(pc.id_collection->text().trimmed());
+      query.addBindValue
+	(biblioteq_myqstring::escape(pc.title_collection->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(pc.about_collection->toPlainText().
+				     trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(pc.notes_collection->toPlainText().
+				     trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(pc.accession_number->text().trimmed()));
       (void) qmain->populateTable
 	(query,
 	 "Photograph Collections",
