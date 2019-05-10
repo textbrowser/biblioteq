@@ -2227,8 +2227,15 @@ void biblioteq::slotResizeColumns(void)
 
 void biblioteq::slotAllGo(void)
 {
-  QString str("");
+  if(!m_db.isOpen())
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QVariant> values;
+  QSqlQuery query(m_db);
   QString searchstr("");
+  QString str("");
   QString type("");
   QStringList types;
   bool caseinsensitive = al.caseinsensitive->isChecked();
@@ -2754,7 +2761,12 @@ void biblioteq::slotAllGo(void)
       searchstr += str;
     }
 
-  searchstr += "ORDER BY 1 ";
+  query.prepare(searchstr);
+
+  while(!values.isEmpty())
+    query.addBindValue(values.takeFirst());
+
+  QApplication::restoreOverrideCursor();
   (void) populateTable(POPULATE_SEARCH, "All", searchstr);
 }
 
