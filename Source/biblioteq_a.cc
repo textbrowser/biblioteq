@@ -2440,35 +2440,40 @@ void biblioteq::slotAllGo(void)
 	  else
 	    {
 	      if(caseinsensitive)
-		str.append(UNACCENT + "(LOWER(category)) LIKE " +
-			   UNACCENT + "(" + ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (al.category->toPlainText().trimmed(),
-			    true) +
-			   "%') AND ");
+		{
+		  str.append(UNACCENT + "(LOWER(category)) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') AND ");
+		  values.append
+		    (biblioteq_myqstring::
+		     escape(al.category->toPlainText().trimmed(), true));
+		}
 	      else
-		str.append(UNACCENT + "(category) LIKE " +
-			   UNACCENT + "(" + ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (al.category->toPlainText().trimmed()) +
-			   "%') AND ");
+		{
+		  str.append(UNACCENT + "(category) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') AND ");
+		  values.append
+		    (biblioteq_myqstring::
+		     escape(al.category->toPlainText().trimmed()));
+		}
 	    }
 
 	  if(caseinsensitive)
-	    str.append
-	      (UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
-	       "(" + ESCAPE + "'%" +
-	       biblioteq_myqstring::
-	       escape(al.publisher->text().trimmed(),
-		      true) +
-	       "%') AND ");
+	    {
+	      str.append
+		(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
+		 "(" + ESCAPE + "'%' || ? || '%') AND ");
+	      values.append
+		(biblioteq_myqstring::
+		 escape(al.publisher->text().trimmed(), true));
+	    }
 	  else
-	    str.append
-	      (UNACCENT + "(publisher) LIKE " + UNACCENT + "(" +
-	       ESCAPE + "'%" +
-	       biblioteq_myqstring::
-	       escape(al.publisher->text().trimmed()) +
-	       "%') AND ");
+	    {
+	      str.append
+		(UNACCENT + "(publisher) LIKE " + UNACCENT + "(" +
+		 ESCAPE + "'%' || ? || '%') AND ");
+	      values.append
+		(biblioteq_myqstring::escape(al.publisher->text().trimmed()));
+	    }
 
 	  if(al.price->value() > -0.01)
 	    {
