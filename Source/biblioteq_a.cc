@@ -2348,15 +2348,19 @@ void biblioteq::slotAllGo(void)
       if(type == "Book")
 	{
 	  if(caseinsensitive)
-	    str.append("OR LOWER(isbn13) LIKE " + ESCAPE + "'%" +
-		       biblioteq_myqstring::
-		       escape(al.idnumber->text().
-			      trimmed(), true) + "%')");
+	    {
+	      str.append
+		("OR LOWER(isbn13) LIKE " + ESCAPE + "'%' || ? || '%')");
+	      values.append
+		(biblioteq_myqstring::
+		 escape(al.idnumber->text().trimmed(), true));
+	    }
 	  else
-	    str.append("OR isbn13 LIKE " + ESCAPE + "'%" +
-		       biblioteq_myqstring::
-		       escape(al.idnumber->text().
-			      trimmed()) + "%')");
+	    {
+	      str.append("OR isbn13 LIKE " + ESCAPE + "'%' || ? || '%')");
+	      values.append
+		(biblioteq_myqstring::escape(al.idnumber->text().trimmed()));
+	    }
 	}
       else
 	str.append(")");
@@ -2369,18 +2373,20 @@ void biblioteq::slotAllGo(void)
 	titleField = "document_title";
 
       if(caseinsensitive)
-	str.append
-	  (QString(UNACCENT + "(LOWER(%1)) LIKE " + UNACCENT + "(" +
-		   ESCAPE + "'%" +
-		   biblioteq_myqstring::
-		   escape(al.title->text().trimmed(), true) +
-		   "%')").arg(titleField));
+	{
+	  str.append
+	    (QString(UNACCENT + "(LOWER(%1)) LIKE " + UNACCENT + "(" +
+		     ESCAPE + "'%' || ? || '%')").arg(titleField));
+	  values.append
+	    (biblioteq_myqstring::escape(al.title->text().trimmed(), true));
+	}
       else
-	str.append(QString(UNACCENT + "(%1) LIKE " + UNACCENT + "(" +
-			   ESCAPE + "'%" +
-			   biblioteq_myqstring::
-			   escape(al.title->text().trimmed()) +
-			   "%')").arg(titleField));
+	{
+	  str.append(QString(UNACCENT + "(%1) LIKE " + UNACCENT + "(" +
+			     ESCAPE + "'%' || ? || '%')").arg(titleField));
+	  values.append
+	    (biblioteq_myqstring::escape(al.title->text().trimmed()));
+	}
 
       if(type != "Grey Literature" &&
 	 type != "Photograph Collection")
@@ -2407,22 +2413,25 @@ void biblioteq::slotAllGo(void)
 		      QString word(words.takeFirst());
 
 		      if(caseinsensitive)
-			str.append
-			  (UNACCENT +
-			   "(LOWER(category)) LIKE " +
-			   UNACCENT + "(" + ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (word.trimmed(),
-			    true) +
-			   "%')" + (words.isEmpty() ? "" : " OR "));
+			{
+			  str.append
+			    (UNACCENT +
+			     "(LOWER(category)) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%')" +
+			     (words.isEmpty() ? "" : " OR "));
+			  values.append
+			    (biblioteq_myqstring::escape(word.trimmed(), true));
+			}
 		      else
-			str.append
-			  (UNACCENT +
-			   "(category) LIKE " + UNACCENT + "(" +
-			   ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (word.trimmed()) +
-			   "%')" + (words.isEmpty() ? "" : " OR "));
+			{
+			  str.append
+			    (UNACCENT +
+			     "(category) LIKE " + UNACCENT + "(" +
+			     ESCAPE + "'%' || ? || '%')" +
+			     (words.isEmpty() ? "" : " OR "));
+			  values.append
+			    (biblioteq_myqstring::escape(word.trimmed()));
+			}
 		    }
 
 		  str.append(") AND ");
