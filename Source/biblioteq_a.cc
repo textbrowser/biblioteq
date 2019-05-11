@@ -2327,21 +2327,23 @@ void biblioteq::slotAllGo(void)
 	idField = "document_id";
 
       if(caseinsensitive)
-	str.append
-	  (QString("(%1 IS NULL OR " + UNACCENT +
-		   "(LOWER(%1)) LIKE " + UNACCENT + "(" +
-		   ESCAPE + "'%" +
-		   biblioteq_myqstring::
-		   escape(al.idnumber->text().trimmed(), true) +
-		   "%') ").arg(idField));
+	{
+	  str.append
+	    (QString("(%1 IS NULL OR " + UNACCENT +
+		     "(LOWER(%1)) LIKE " + UNACCENT + "(" +
+		     ESCAPE + "'%' || ? || '%') ").arg(idField));
+	  values.append
+	    (biblioteq_myqstring::escape(al.idnumber->text().trimmed(), true));
+	}
       else
-	str.append
-	  (QString("(%1 IS NULL OR " + UNACCENT + "(%1) LIKE " +
-		   UNACCENT + "(" +
-		   ESCAPE + "'%" +
-		   biblioteq_myqstring::
-		   escape(al.idnumber->text().trimmed()) +
-		   "%') ").arg(idField));
+	{
+	  str.append
+	    (QString("(%1 IS NULL OR " + UNACCENT + "(%1) LIKE " +
+		     UNACCENT + "(" +
+		     ESCAPE + "'%' || ? || '%') ").arg(idField));
+	  values.append
+	    (biblioteq_myqstring::escape(al.idnumber->text().trimmed()));
+	}
 
       if(type == "Book")
 	{
