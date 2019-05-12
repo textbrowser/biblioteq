@@ -3333,7 +3333,10 @@ void biblioteq::slotSaveUser(void)
 void biblioteq::readGlobalSetup(void)
 {
 #ifdef Q_OS_WIN32
-  QSettings settings(QCoreApplication::applicationDirPath() + QDir::separator() + "biblioteq.conf", QSettings::IniFormat);
+  QSettings settings(QCoreApplication::applicationDirPath() +
+		     QDir::separator() +
+		     "biblioteq.conf",
+		     QSettings::IniFormat);
 #else
   QSettings settings(BIBLIOTEQ_CONFIGFILE, QSettings::IniFormat);
 #endif
