@@ -2535,21 +2535,24 @@ void biblioteq::slotAllGo(void)
 		      QString word(words.takeFirst());
 
 		      if(caseinsensitive)
-			str.append
-			  (UNACCENT + "(LOWER(description)) LIKE " +
-			   UNACCENT + "(" + ESCAPE
-			   + "'%" +
-			   biblioteq_myqstring::escape
-			   (word.trimmed(),
-			    true) +
-			   "%')" + (words.isEmpty() ? "" : " OR "));
+			{
+			  str.append
+			    (UNACCENT + "(LOWER(description)) LIKE " +
+			     UNACCENT + "(" + ESCAPE
+			     + "'%' || ? || '%')" +
+			     (words.isEmpty() ? "" : " OR "));
+			  values.append
+			    (biblioteq_myqstring::escape(word.trimmed(), true));
+			}
 		      else
-			str.append
-			  (UNACCENT + "(description) LIKE " +
-			   UNACCENT + "(" + ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (word.trimmed()) +
-			   "%')" + (words.isEmpty() ? "" : " OR "));
+			{
+			  str.append
+			    (UNACCENT + "(description) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%')" +
+			     (words.isEmpty() ? "" : " OR "));
+			  values.append
+			    (biblioteq_myqstring::escape(word.trimmed()));
+			}
 		    }
 
 		  str.append(") ");
@@ -2557,20 +2560,23 @@ void biblioteq::slotAllGo(void)
 	      else
 		{
 		  if(caseinsensitive)
-		    str.append
-		      (UNACCENT + "(LOWER(description)) LIKE " +
-		       UNACCENT + "(" + ESCAPE + "'%" +
-		       biblioteq_myqstring::
-		       escape(al.description->
-			      toPlainText().trimmed(),
-			      true) + "%') ");
+		    {
+		      str.append
+			(UNACCENT + "(LOWER(description)) LIKE " +
+			 UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
+		      values.append
+			(biblioteq_myqstring::
+			 escape(al.description->toPlainText().trimmed(), true));
+		    }
 		  else
-		    str.append
-		      (UNACCENT + "(description) LIKE " +
-		       UNACCENT + "(" + ESCAPE + "'%" +
-		       biblioteq_myqstring::
-		       escape(al.description->
-			      toPlainText().trimmed()) + "%') ");
+		    {
+		      str.append
+			(UNACCENT + "(description) LIKE " +
+			 UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
+		      values.append
+			(biblioteq_myqstring::
+			 escape(al.description->toPlainText().trimmed()));
+		    }
 		}
 	    }
 	  else
