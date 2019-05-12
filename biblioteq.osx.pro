@@ -7,8 +7,7 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
-                   QT_DEPRECATED_WARNINGS
+DEFINES		+= QT_DEPRECATED_WARNINGS
 
 LANGUAGE	= C++
 QT		+= network sql

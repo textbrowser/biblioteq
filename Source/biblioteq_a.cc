@@ -1227,7 +1227,10 @@ void biblioteq::showMain(void)
 #endif
   slotResizeColumns();
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_MAC
+  QFileInfo fileInfo
+    (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
+#elif def(Q_OS_WIN32)
   QFileInfo fileInfo("biblioteq.conf");
 #else
   QFileInfo fileInfo(BIBLIOTEQ_CONFIGFILE);
@@ -3332,7 +3335,11 @@ void biblioteq::slotSaveUser(void)
 
 void biblioteq::readGlobalSetup(void)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_MAC
+  QSettings settings
+    (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf",
+     QSettings::IniFormat);
+#elif def(Q_OS_WIN32)
   QSettings settings(QCoreApplication::applicationDirPath() +
 		     QDir::separator() +
 		     "biblioteq.conf",
