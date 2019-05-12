@@ -2643,20 +2643,23 @@ void biblioteq::slotAllGo(void)
 	  else
 	    {
 	      if(caseinsensitive)
-		str.append("AND " + UNACCENT +
-			   "(COALESCE(LOWER(keyword), '')) LIKE " +
-			   UNACCENT + "(" + ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (al.keyword->toPlainText().trimmed(),
-			    true) +
-			   "%') ");
+		{
+		  str.append("AND " + UNACCENT +
+			     "(COALESCE(LOWER(keyword), '')) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
+		  values.append
+		    (biblioteq_myqstring::escape(al.keyword->toPlainText().
+						 trimmed(), true));
+		}
 	      else
-		str.append("AND " + UNACCENT +
-			   "(COALESCE(keyword, '')) LIKE " +
-			   UNACCENT + "(" + ESCAPE + "'%" +
-			   biblioteq_myqstring::escape
-			   (al.keyword->toPlainText().trimmed()) +
-			   "%') ");
+		{
+		  str.append("AND " + UNACCENT +
+			     "(COALESCE(keyword, '')) LIKE " +
+			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
+		  values.append
+		    (biblioteq_myqstring::escape(al.keyword->toPlainText().
+						 trimmed()));
+		}
 	    }
 
 	  if(al.quantity->value() != 0)
@@ -2795,7 +2798,8 @@ void biblioteq::slotAllGo(void)
     query.addBindValue(values.takeFirst());
 
   QApplication::restoreOverrideCursor();
-  (void) populateTable(POPULATE_SEARCH, "All", searchstr);
+  (void) populateTable
+    (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
 }
 
 void biblioteq::slotQuery(void)
