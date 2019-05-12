@@ -1230,7 +1230,7 @@ void biblioteq::showMain(void)
 #ifdef Q_OS_MAC
   QFileInfo fileInfo
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
-#elif def(Q_OS_WIN32)
+#elif defined(Q_OS_WIN32)
   QFileInfo fileInfo("biblioteq.conf");
 #else
   QFileInfo fileInfo(BIBLIOTEQ_CONFIGFILE);
@@ -3339,7 +3339,7 @@ void biblioteq::readGlobalSetup(void)
   QSettings settings
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf",
      QSettings::IniFormat);
-#elif def(Q_OS_WIN32)
+#elif defined(Q_OS_WIN32)
   QSettings settings(QCoreApplication::applicationDirPath() +
 		     QDir::separator() +
 		     "biblioteq.conf",
