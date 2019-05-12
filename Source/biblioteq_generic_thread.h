@@ -16,7 +16,11 @@
 ** -- YAZ Includes --
 */
 
+#ifdef Q_OS_WIN32
+#include <yaz.d/zoom.h>
+#else
 #include <yaz/zoom.h>
+#endif
 
 /*
 ** -- Local Includes --
