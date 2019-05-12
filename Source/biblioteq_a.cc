@@ -66,15 +66,11 @@ extern "C"
 {
 #include <math.h>
 #ifdef Q_OS_WIN32
-#include <sqlite3.d/sqlite3.h>
+#include <sqlite3/sqlite3.h>
 #else
 #include <sqlite3.h>
 #endif
-#ifdef Q_OS_WIN32
-#include <yaz.d/yaz-version.h>
-#else
 #include <yaz/yaz-version.h>
-#endif
 }
 
 /*
