@@ -1231,7 +1231,9 @@ void biblioteq::showMain(void)
   QFileInfo fileInfo
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_WIN32)
-  QFileInfo fileInfo("biblioteq.conf");
+  QFileInfo fileInfo(QCoreApplication::applicationDirPath() +
+		     QDir::separator() +
+		     "biblioteq.conf");
 #else
   QFileInfo fileInfo(BIBLIOTEQ_CONFIGFILE);
 #endif
@@ -1240,8 +1242,8 @@ void biblioteq::showMain(void)
     QMessageBox::warning
       (this, tr("BiblioteQ: Warning"),
        tr("BiblioteQ was not able to discover the biblioteq.conf "
-	  "file. Default values will be assumed. The current working "
-	  "directory is %1.").arg(QDir::currentPath()));
+	  "file. Default values will be assumed. The expected absolute "
+	  "path of biblioteq.conf is %1.").arg(fileInfo.absolutePath()));
 
   if(!(QSqlDatabase::isDriverAvailable("QPSQL") ||
        QSqlDatabase::isDriverAvailable("QSQLITE")))
