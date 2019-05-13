@@ -237,6 +237,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   list << "otheroptions/book_publication_date_format"
        << "otheroptions/dvd_publication_date_format"
+       << "otheroptions/grey_literature_date_format"
        << "otheroptions/journal_publication_date_format"
        << "otheroptions/magazine_publication_date_format"
        << "otheroptions/cd_publication_date_format"
