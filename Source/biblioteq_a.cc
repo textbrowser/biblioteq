@@ -4758,8 +4758,7 @@ void biblioteq::slotConnectDB(void)
 
   QSettings settings;
 
-  settings.setValue("previous_branch_name",
-		    br.branch_name->currentText());
+  settings.setValue("previous_branch_name", br.branch_name->currentText());
   m_selectedBranch = m_branches[br.branch_name->currentText()];
 
   if(m_connected_bar_label != 0)
