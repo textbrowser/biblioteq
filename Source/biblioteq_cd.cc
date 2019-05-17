@@ -824,6 +824,8 @@ void biblioteq_cd::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QSqlQuery query(qmain->getDB());
+
       searchstr = "SELECT DISTINCT cd.title, "
 	"cd.artist, "
 	"cd.cdformat, "
@@ -852,8 +854,8 @@ void biblioteq_cd::slotGo(void)
 	"AND item_borrower_vw.type = 'CD' "
 	"WHERE ";
       searchstr.append
-	("LOWER(id) LIKE LOWER('%").append(cd.id->text().
-					   trimmed()).append("%') AND ");
+	("LOWER(id) LIKE LOWER('%").
+	append(cd.id->text().trimmed()).append("%') AND ");
 
       QString ESCAPE("");
       QString UNACCENT(qmain->unaccent());
