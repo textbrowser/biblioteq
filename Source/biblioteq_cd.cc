@@ -854,8 +854,7 @@ void biblioteq_cd::slotGo(void)
 	"AND item_borrower_vw.type = 'CD' "
 	"WHERE ";
       searchstr.append
-	("LOWER(id) LIKE LOWER('%").
-	append(cd.id->text().trimmed()).append("%') AND ");
+	("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
       QString UNACCENT(qmain->unaccent());
@@ -981,6 +980,8 @@ void biblioteq_cd::slotGo(void)
       ** Search the database.
       */
 
+      query.prepare(searchstr);
+      query.addBindValue(cd.id->text().trimmed());
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "Music CDs", searchstr);
     }
