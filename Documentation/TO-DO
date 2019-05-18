@@ -375,7 +375,7 @@
      biblioteq_magazine.cc (Done) (Searching, TBD)
      biblioteq_misc_functions.cc (Done)
      biblioteq_photographcollection.cc (Done) (Searching, Done)
-     biblioteq_videogame.cc (Done) (Searching, TBD)
+     biblioteq_videogame.cc (Done) (Searching, Done)
 199. Settings panel, per Csanád Baksay. (TBD)
 200. Remove OFFSET? (TBD)
 201. Deleting NULL pointers is redundant, save for deleteLater(). (Done)
