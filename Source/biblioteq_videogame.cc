@@ -774,6 +774,8 @@ void biblioteq_videogame::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QSqlQuery query(qmain->getDB());
+
       searchstr = "SELECT DISTINCT videogame.title, "
 	"videogame.vgrating, "
 	"videogame.vgplatform, "
@@ -795,8 +797,7 @@ void biblioteq_videogame::slotGo(void)
 	"videogame.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'Video Game' "
 	"WHERE ";
-      searchstr.append("LOWER(id) LIKE LOWER('%" + vg.id->text().trimmed() +
-		       "%') AND ");
+      searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
       QString UNACCENT(qmain->unaccent());
@@ -906,11 +907,8 @@ void biblioteq_videogame::slotGo(void)
 	 ESCAPE + "'%" +
 	 biblioteq_myqstring::
 	 escape(vg.accession_number->text().trimmed()) + "%')) ");
-
-      /*
-      ** Search the database.
-      */
-
+      query.prepare(searchstr);
+      query.addBindValue(vg.id->text().trimmed());
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "Video Games", searchstr);
     }
