@@ -68,7 +68,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Ui_informationDialog id;
   Ui_passwordDialog ui_p;
   bool m_duplicate;
-  biblioteq_item_working_dialog *createImageDownloadDialog(QPushButton *pb);
+  biblioteq_item_working_dialog *createImageDownloadDialog(QWidget *pb);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,

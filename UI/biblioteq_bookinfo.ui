@@ -32,24 +32,15 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1112</width>
-         <height>1545</height>
+         <width>1118</width>
+         <height>1529</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -94,15 +85,9 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="dwnldFront">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
+               <widget class="QToolButton" name="dwnldFront">
                 <property name="toolTip">
-                 <string>Download the book's front cover image from Amazon.</string>
+                 <string>Download the book's front cover image.</string>
                 </property>
                 <property name="text">
                  <string>&amp;Download</string>
@@ -110,6 +95,12 @@
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
+                </property>
+                <property name="popupMode">
+                 <enum>QToolButton::MenuButtonPopup</enum>
+                </property>
+                <property name="toolButtonStyle">
+                 <enum>Qt::ToolButtonTextBesideIcon</enum>
                 </property>
                </widget>
               </item>
@@ -177,15 +168,9 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="dwnldBack">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
+               <widget class="QToolButton" name="dwnldBack">
                 <property name="toolTip">
-                 <string>Download the book's back cover image from Amazon.</string>
+                 <string>Download the book's back cover image.</string>
                 </property>
                 <property name="text">
                  <string>&amp;Download</string>
@@ -193,6 +178,12 @@
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
+                </property>
+                <property name="popupMode">
+                 <enum>QToolButton::MenuButtonPopup</enum>
+                </property>
+                <property name="toolButtonStyle">
+                 <enum>Qt::ToolButtonTextBesideIcon</enum>
                 </property>
                </widget>
               </item>

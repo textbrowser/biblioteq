@@ -2767,7 +2767,7 @@ void biblioteq_book::slotDownloadImage(void)
       return;
     }
 
-  QPushButton *pb = qobject_cast<QPushButton *> (sender());
+  QWidget *pb = qobject_cast<QWidget *> (sender());
 
   if(pb == id.dwnldFront)
     m_imageBuffer.setProperty("which", "front");
@@ -3848,7 +3848,7 @@ void biblioteq_book::createSRUDialog(void)
 }
 
 biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
-(QPushButton *pb)
+(QWidget *pb)
 {
   biblioteq_item_working_dialog *dialog = 0;
 
