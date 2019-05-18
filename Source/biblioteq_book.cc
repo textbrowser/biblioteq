@@ -310,6 +310,43 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 
   QAction *action = 0;
 
+  for(int i = 1; i <= 4; i++)
+    {
+      if(i == 1 || i == 3)
+	action = new(std::nothrow) QAction(tr("&Amazon"), this);
+      else
+	action = new(std::nothrow) QAction(tr("&Open Library"), this);
+
+      if(action)
+	{
+	  if(i == 1)
+	    {
+	      action->setProperty("download_type", "amazon_front");
+	      id.dwnldFront->addAction(action);
+	    }
+	  else if(i == 2)
+	    {
+	      action->setProperty("download_type", "open_library_front");
+	      id.dwnldFront->addAction(action);
+	    }
+	  else if(i == 3)
+	    {
+	      action->setProperty("download_type", "amazon_back");
+	      id.dwnldBack->addAction(action);
+	    }
+	  else
+	    {
+	      action->setProperty("download_type", "open_library_back");
+	      id.dwnldBack->addAction(action);
+	    }
+
+	  connect(action,
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotDownloadImage(void)));
+	}
+    }
+
   action = new(std::nothrow) QAction(tr("All..."), this);
 
   if(action)
