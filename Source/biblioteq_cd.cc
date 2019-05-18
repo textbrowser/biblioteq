@@ -913,9 +913,7 @@ void biblioteq_cd::slotGo(void)
 	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(category)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(cd.category->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(cd.price->value() > -0.01)
 	{
@@ -940,14 +938,10 @@ void biblioteq_cd::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(cd.description->toPlainText().
-				     trimmed()) + "%')) ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(cd.keyword->toPlainText().trimmed()) +
-	 "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
 
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
@@ -962,14 +956,28 @@ void biblioteq_cd::slotGo(void)
       searchstr.append
 	(" AND " + UNACCENT +
 	 "(LOWER(COALESCE(accession_number, ''))) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::
-	 escape(cd.accession_number->text().trimmed()) + "%')) ");
-
-      /*
-      ** Search the database.
-      */
-
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      searchstr.append("GROUP BY "
+		       "cd.title, "
+		       "cd.artist, "
+		       "cd.cdformat, "
+		       "cd.recording_label, "
+		       "cd.rdate, "
+		       "cd.cddiskcount, "
+		       "cd.cdruntime, "
+		       "cd.category, "
+		       "cd.language, "
+		       "cd.id, "
+		       "cd.price, "
+		       "cd.monetary_units, "
+		       "cd.quantity, "
+		       "cd.location, "
+		       "cd.cdaudio, "
+		       "cd.cdrecording, "
+		       "cd.accession_number, "
+		       "cd.type, "
+		       "cd.myoid, "
+		       "cd.front_cover");
       query.prepare(searchstr);
       query.addBindValue(cd.id->text().trimmed());
       query.addBindValue
@@ -983,8 +991,19 @@ void biblioteq_cd::slotGo(void)
       query.addBindValue
 	(biblioteq_myqstring::
 	 escape(cd.recording_label->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(cd.category->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(cd.description->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(cd.keyword->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(cd.accession_number->text().trimmed()));
       (void) qmain->populateTable
-	(biblioteq::POPULATE_SEARCH, "Music CDs", searchstr);
+	(query,
+	 "Music CDs",
+	 biblioteq::NEW_PAGE,
+	 biblioteq::POPULATE_SEARCH);
     }
 }
 
