@@ -827,19 +827,13 @@ void biblioteq_videogame::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(vg.publisher->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(place)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(vg.place->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(genre)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(vg.genre->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(vg.price->value() > -0.01)
 	{
@@ -907,6 +901,12 @@ void biblioteq_videogame::slotGo(void)
 	(biblioteq_myqstring::escape(vg.title->text().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(vg.developer->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(vg.publisher->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(vg.place->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(vg.genre->toPlainText().trimmed()));
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "Video Games", searchstr);
     }
