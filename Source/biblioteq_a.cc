@@ -3352,6 +3352,7 @@ void biblioteq::readGlobalSetup(void)
 
   m_amazonImages.clear();
   m_branches.clear();
+  m_openLibraryImages.clear();
   m_sruMaps.clear();
   m_z3950Maps.clear();
 
@@ -3415,6 +3416,9 @@ void biblioteq::readGlobalSetup(void)
 			 toString().trimmed()] = hash;
 	    }
 	}
+      else if(settings.group().startsWith("Open Library Cover Images"))
+	m_openLibraryImages["url"] =
+	  settings.value("url", "").toString().trimmed();
       else if(settings.group().startsWith("SRU"))
 	{
 	  if(!settings.value("name", "").toString().trimmed().isEmpty())

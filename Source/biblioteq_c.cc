@@ -875,3 +875,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 #endif
   return 0;
 }
+
+QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
+{
+  return m_openLibraryImages;
+}

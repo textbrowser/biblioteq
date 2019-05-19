@@ -208,6 +208,7 @@ class biblioteq: public QMainWindow
   QMenu *m_configToolMenu;
   QString m_unaccent;
   QHash<QString, QString> getAmazonHash(void) const;
+  QHash<QString, QString> getOpenLibraryHash(void) const;
   QHash<QString, QString> getSRUHash(const QString &name) const;
   QHash<QString, QString> getZ3950Hash(const QString &name) const;
   QMainWindow *getMembersBrowser(void) const;
@@ -293,6 +294,7 @@ class biblioteq: public QMainWindow
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;
   QHash<QString, QString> m_amazonImages;
+  QHash<QString, QString> m_openLibraryImages;
   QHash<QString, QString> m_selectedBranch;
   QLabel *m_connected_bar_label;
   QLabel *m_status_bar_label;
