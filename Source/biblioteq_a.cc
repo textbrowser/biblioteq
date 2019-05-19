@@ -3417,8 +3417,12 @@ void biblioteq::readGlobalSetup(void)
 	    }
 	}
       else if(settings.group().startsWith("Open Library Cover Images"))
-	m_openLibraryImages["url"] =
-	  settings.value("url", "").toString().trimmed();
+	{
+	  m_openLibraryImages["back_url"] =
+	    settings.value("back_url", "").toString().trimmed();
+	  m_openLibraryImages["front_url"] =
+	    settings.value("front_url", "").toString().trimmed();
+	}
       else if(settings.group().startsWith("SRU"))
 	{
 	  if(!settings.value("name", "").toString().trimmed().isEmpty())

@@ -187,10 +187,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
-  connect(id.dwnldFront, SIGNAL(clicked(void)), this,
-	  SLOT(slotDownloadImage(void)));
-  connect(id.dwnldBack, SIGNAL(clicked(void)), this,
-	  SLOT(slotDownloadImage(void)));
+  connect(id.dwnldFront, SIGNAL(clicked(void)), id.dwnldFront,
+	  SLOT(showMenu(void)));
+  connect(id.dwnldBack, SIGNAL(clicked(void)), id.dwnldBack,
+	  SLOT(showMenu(void)));
   id.resetButton->setMenu(menu);
 
   if(menu->actions().size() >= 4)
@@ -2794,127 +2794,149 @@ void biblioteq_book::slotDownloadImage(void)
   if(m_imageManager->findChild<QNetworkReply *> ())
     return;
 
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
   if(id.id->text().trimmed().length() != 10)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to download a cover image from Amazon, the ISBN-10 "
-	    "must be provided."));
+	 tr("In order to download a cover image, "
+	    "the ISBN-10 must be provided."));
       id.id->setFocus();
       return;
     }
 
-  QWidget *pb = qobject_cast<QWidget *> (sender());
+  QString downloadType(action->property("download_type").toString());
 
-  if(pb == id.dwnldFront)
-    m_imageBuffer.setProperty("which", "front");
-  else
+  if(downloadType.contains("back"))
     m_imageBuffer.setProperty("which", "back");
+  else
+    m_imageBuffer.setProperty("which", "front");
 
   if(!m_imageBuffer.open(QIODevice::WriteOnly))
     return;
 
   QUrl url;
 
-  if(pb == id.dwnldFront)
-    url = QUrl::fromUserInput
-      (qmain->getAmazonHash().value("front_cover_host") +
-       QString(qmain->getAmazonHash().value("front_cover_path")).replace
-       ("%", id.id->text().trimmed()));
-  else
-    url = QUrl::fromUserInput
-      (qmain->getAmazonHash().value("back_cover_host") +
-       QString(qmain->getAmazonHash().value("back_cover_path")).replace
-       ("%", id.id->text().trimmed()));
-
-  QHash<QString, QString> hash(qmain->getAmazonHash());
-  QNetworkProxy proxy;
-  QString type("none");
-
-  if(pb == id.dwnldFront)
-    type = hash.value("front_proxy_type").toLower().trimmed();
-  else
-    type = hash.value("back_proxy_type").toLower().trimmed();
-
-  if(type == "none")
-    proxy.setType(QNetworkProxy::NoProxy);
-  else
+  if(downloadType.contains("amazon"))
     {
-      if(type == "http" || type == "socks5" || type == "system")
+      if(downloadType.contains("back"))
+	url = QUrl::fromUserInput
+	  (qmain->getAmazonHash().value("back_cover_host") +
+	   QString(qmain->getAmazonHash().value("back_cover_path")).replace
+	   ("%", id.id->text().trimmed()));
+      else
+	url = QUrl::fromUserInput
+	  (qmain->getAmazonHash().value("front_cover_host") +
+	   QString(qmain->getAmazonHash().value("front_cover_path")).replace
+	   ("%", id.id->text().trimmed()));
+
+      QHash<QString, QString> hash(qmain->getAmazonHash());
+      QNetworkProxy proxy;
+      QString type("none");
+
+      if(downloadType.contains("back"))
+	type = hash.value("back_proxy_type").toLower().trimmed();
+      else
+	type = hash.value("front_proxy_type").toLower().trimmed();
+
+      if(type == "none")
+	proxy.setType(QNetworkProxy::NoProxy);
+      else
 	{
-	  /*
-	  ** This is required to resolve an odd error.
-	  */
-
-	  QNetworkReply *reply = m_imageManager->get
-	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
-
-	  if(reply)
-	    reply->deleteLater();
-
-	  connect
-	    (m_imageManager,
-	     SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						QAuthenticator *)),
-	     this,
-	     SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						  QAuthenticator *)),
-	     Qt::UniqueConnection);
-	}
-
-      if(type == "http" || type == "socks5")
-	{
-	  if(type == "http")
-	    proxy.setType(QNetworkProxy::HttpProxy);
-	  else
-	    proxy.setType(QNetworkProxy::Socks5Proxy);
-
-	  QString host("");
-	  QString password("");
-	  QString user("");
-	  quint16 port = 0;
-
-	  if(pb == id.dwnldFront)
+	  if(type == "http" || type == "socks5" || type == "system")
 	    {
-	      host = hash.value("front_proxy_host");
-	      port = hash.value("front_proxy_port").toUShort();
-	      user = hash.value("front_proxy_username");
-	      password = hash.value("front_proxy_password");
-	    }
-	  else
-	    {
-	      host = hash.value("back_proxy_host");
-	      port = hash.value("back_proxy_port").toUShort();
-	      user = hash.value("back_proxy_username");
-	      password = hash.value("back_proxy_password");
+	      /*
+	      ** This is required to resolve an odd error.
+	      */
+
+	      QNetworkReply *reply = m_imageManager->get
+		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+	      if(reply)
+		reply->deleteLater();
+
+	      connect
+		(m_imageManager,
+		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						    QAuthenticator *)),
+		 this,
+		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						      QAuthenticator *)),
+		 Qt::UniqueConnection);
 	    }
 
-	  proxy.setHostName(host);
-	  proxy.setPort(port);
+	  if(type == "http" || type == "socks5")
+	    {
+	      if(type == "http")
+		proxy.setType(QNetworkProxy::HttpProxy);
+	      else
+		proxy.setType(QNetworkProxy::Socks5Proxy);
 
-	  if(!user.isEmpty())
-	    proxy.setUser(user);
+	      QString host("");
+	      QString password("");
+	      QString user("");
+	      quint16 port = 0;
 
-	  if(!password.isEmpty())
-	    proxy.setPassword(password);
+	      if(downloadType.contains("back"))
+		{
+		  host = hash.value("back_proxy_host");
+		  port = hash.value("back_proxy_port").toUShort();
+		  user = hash.value("back_proxy_username");
+		  password = hash.value("back_proxy_password");
+		}
+	      else
+		{
+		  host = hash.value("front_proxy_host");
+		  port = hash.value("front_proxy_port").toUShort();
+		  user = hash.value("front_proxy_username");
+		  password = hash.value("front_proxy_password");
+		}
 
-	  m_imageManager->setProxy(proxy);
-	}
-      else if(type == "system")
-	{
-	  QList<QNetworkProxy> list;
-	  QNetworkProxyQuery query(url);
+	      proxy.setHostName(host);
+	      proxy.setPort(port);
 
-	  list = QNetworkProxyFactory::systemProxyForQuery(query);
+	      if(!user.isEmpty())
+		proxy.setUser(user);
 
-	  if(!list.isEmpty())
-	    proxy = list.at(0);
+	      if(!password.isEmpty())
+		proxy.setPassword(password);
 
-	  m_imageManager->setProxy(proxy);
+	      m_imageManager->setProxy(proxy);
+	    }
+	  else if(type == "system")
+	    {
+	      QList<QNetworkProxy> list;
+	      QNetworkProxyQuery query(url);
+
+	      list = QNetworkProxyFactory::systemProxyForQuery(query);
+
+	      if(!list.isEmpty())
+		proxy = list.at(0);
+
+	      m_imageManager->setProxy(proxy);
+	    }
 	}
     }
+  else
+    {
+      QString string("");
 
-  biblioteq_item_working_dialog *dialog = createImageDownloadDialog(pb);
+      if(downloadType.contains("back"))
+	string = qmain->getOpenLibraryHash().value("back_url");
+      else
+	string = qmain->getOpenLibraryHash().value("front_url");
+
+      string.replace("$key", "isbn");
+      string.replace("$value-$size", id.id->text().trimmed() + "-L");
+      url = QUrl::fromUserInput(string);
+    }
+
+  biblioteq_item_working_dialog *dialog = createImageDownloadDialog
+    (downloadType);
 
   if(!dialog)
     {
@@ -3885,7 +3907,7 @@ void biblioteq_book::createSRUDialog(void)
 }
 
 biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
-(QWidget *pb)
+(const QString &downloadType)
 {
   biblioteq_item_working_dialog *dialog = 0;
 
@@ -3899,10 +3921,10 @@ biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
   dialog->setMinimum(0);
   dialog->setModal(true);
 
-  if(pb == id.dwnldFront)
-    dialog->setWindowTitle(tr("BiblioteQ: Front Cover Image Download"));
-  else
+  if(downloadType.contains("back"))
     dialog->setWindowTitle(tr("BiblioteQ: Back Cover Image Download"));
+  else
+    dialog->setWindowTitle(tr("BiblioteQ: Front Cover Image Download"));
 
   dialog->show();
   dialog->update();
