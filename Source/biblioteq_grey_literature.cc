@@ -1288,9 +1288,9 @@ void biblioteq_grey_literature::slotGo(void)
       query.addBindValue
 	(biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()));
       query.addBindValue
-	(biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()));
-      query.addBindValue
 	(biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()));
       query.addBindValue
