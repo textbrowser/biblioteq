@@ -1003,6 +1003,7 @@ void biblioteq_magazine::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QList<QVariant> values;
       QSqlQuery query(qmain->getDB());
 
       searchstr = QString("SELECT DISTINCT %1.title, "
@@ -1033,8 +1034,10 @@ void biblioteq_magazine::slotGo(void)
 			  "WHERE %1.type = '%1' AND ").arg(m_subType);
 
       if(!ma.id->text().trimmed().isEmpty())
-	searchstr.append("LOWER(id) LIKE LOWER('%" + ma.id->text().trimmed() +
-			 "%') AND ");
+	{
+	  searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
+	  values.append(ma.id->text().trimmed());
+	}
 
       QString ESCAPE("");
       QString UNACCENT(qmain->unaccent());
@@ -1044,14 +1047,12 @@ void biblioteq_magazine::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(lccontrolnumber, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.lcnum->text().trimmed()) +
-	 "%')) AND ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(ma.lcnum->text().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(callnumber, ''))) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.callnum->text().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(ma.callnum->text().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(deweynumber, ''))) LIKE " + UNACCENT +
 	 "(LOWER(" + ESCAPE + "'%" +
@@ -1147,6 +1148,10 @@ void biblioteq_magazine::slotGo(void)
 	 ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(ma.accession_number->text().
 				     trimmed()) + "%')) ");
+      query.prepare(searchstr);
+
+      while(!values.isEmpty())
+	query.addBindValue(values.takeFirst());
 
       if(m_subType == "Journal")
 	(void) qmain->populateTable
