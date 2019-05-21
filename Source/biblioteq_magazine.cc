@@ -1003,6 +1003,8 @@ void biblioteq_magazine::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QSqlQuery query(qmain->getDB());
+
       searchstr = QString("SELECT DISTINCT %1.title, "
 			  "%1.publisher, %1.pdate, %1.place, "
 			  "%1.issuevolume, "
@@ -1145,10 +1147,6 @@ void biblioteq_magazine::slotGo(void)
 	 ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(ma.accession_number->text().
 				     trimmed()) + "%')) ");
-
-      /*
-      ** Search the database.
-      */
 
       if(m_subType == "Journal")
 	(void) qmain->populateTable
