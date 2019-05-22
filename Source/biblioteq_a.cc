@@ -5246,16 +5246,20 @@ void biblioteq::slotShowMembersBrowser(void)
 void biblioteq::slotPopulateMembersBrowser(void)
 {
   QScopedPointer<QProgressDialog> progress;
+
+  if(m_members_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
+  else
+    progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
   QSqlQuery query(m_db);
   QString str = "";
   QTableWidgetItem *item = 0;
   int i = -1;
   int j = 0;
-
-  if(m_members_diag->isVisible())
-    progress.reset(new QProgressDialog(m_members_diag));
-  else
-    progress.reset(new QProgressDialog(this));
 
   str = "SELECT member.memberid, "
     "member.first_name, "
@@ -7616,6 +7620,17 @@ void biblioteq::slotCopyError(void)
 void biblioteq::slotShowHistory(void)
 {
   QScopedPointer<QProgressDialog> progress;
+
+  if(m_history_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_history_diag));
+  else if(m_members_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
+  else
+    progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
   QSqlQuery query(m_db);
   QString errorstr("");
   QString memberid("");
@@ -7626,13 +7641,6 @@ void biblioteq::slotShowHistory(void)
   int i = -1;
   int j = 0;
   int row = bb.table->currentRow();
-
-  if(m_history_diag->isVisible())
-    progress.reset(new QProgressDialog(m_history_diag));
-  else if(m_members_diag->isVisible())
-    progress.reset(new QProgressDialog(m_members_diag));
-  else
-    progress.reset(new QProgressDialog(this));
 
   if(m_db.driverName() == "QPSQL" && m_roles.isEmpty())
     {
@@ -8377,8 +8385,17 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 
 void biblioteq::slotRefreshAdminList(void)
 {
-  QCheckBox *checkBox = 0;
   QScopedPointer<QProgressDialog> progress;
+
+  if(m_admin_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_admin_diag));
+  else
+    progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
+  QCheckBox *checkBox = 0;
   QSqlQuery query(m_db);
   QString columnname = "";
   QString str = "";
@@ -8386,11 +8403,6 @@ void biblioteq::slotRefreshAdminList(void)
   QTableWidgetItem *item = 0;
   int i = -1;
   int j = 0;
-
-  if(m_admin_diag->isVisible())
-    progress.reset(new QProgressDialog(m_admin_diag));
-  else
-    progress.reset(new QProgressDialog(this));
 
   query.prepare("SELECT username, LOWER(roles) "
 		"FROM admin ORDER BY username");

@@ -191,6 +191,9 @@ void biblioteq::greyLiteratureSearch
 
 void biblioteq::slotRefreshCustomQuery(void)
 {
+  if(!m_db.isOpen())
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSqlField field;
