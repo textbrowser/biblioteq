@@ -1055,9 +1055,8 @@ void biblioteq_magazine::slotGo(void)
       values.append(biblioteq_myqstring::escape(ma.callnum->text().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(deweynumber, ''))) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.deweynum->text().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(ma.deweynum->text().trimmed()));
 
       if(ma.volume->value() != -1)
 	searchstr.append("issuevolume = " + ma.volume->text() +
@@ -1069,9 +1068,8 @@ void biblioteq_magazine::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.title->text().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(ma.title->text().trimmed()));
 
       if(ma.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(pdate, 7) = '" +
@@ -1080,20 +1078,19 @@ void biblioteq_magazine::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE+ "'%" +
-	 biblioteq_myqstring::escape(ma.publisher->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE+ "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(ma.publisher->toPlainText().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(place)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.place->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(ma.place->toPlainText().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(category)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.category->toPlainText().
-				     trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(ma.category->toPlainText().trimmed()));
 
       if(ma.price->value() > -0.01)
 	{
@@ -1118,9 +1115,9 @@ void biblioteq_magazine::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.description->toPlainText().
-				     trimmed()) + "%')) ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(ma.description->toPlainText().trimmed()));
 
       if(ma.quantity->value() != 0)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
@@ -1134,20 +1131,60 @@ void biblioteq_magazine::slotGo(void)
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(marc_tags, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.marc_tags->toPlainText().
-				     trimmed()) + "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(ma.marc_tags->toPlainText().trimmed()));
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape
-	 (ma.keyword->toPlainText().trimmed()) + "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(ma.keyword->toPlainText().trimmed()));
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, ''))) LIKE " +
 	 UNACCENT + "(LOWER(" +
-	 ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(ma.accession_number->text().
-				     trimmed()) + "%')) ");
+	 ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(ma.accession_number->text().trimmed()));
+
+      if(m_subType == "Journal")
+	searchstr.append("GROUP BY journal.title, "
+			 "journal.publisher, journal.pdate, "
+			 "journal.place, "
+			 "journal.issuevolume, "
+			 "journal.issueno, "
+			 "journal.category, journal.language, "
+			 "journal.id, "
+			 "journal.price, "
+			 "journal.monetary_units, "
+			 "journal.quantity, "
+			 "journal.location, "
+			 "journal.lccontrolnumber, "
+			 "journal.callnumber, "
+			 "journal.deweynumber, "
+			 "journal.accession_number, "
+			 "journal.type, "
+			 "journal.myoid, "
+			 "journal.front_cover");
+      else
+	searchstr.append("GROUP BY magazine.title, "
+			 "magazine.publisher, magazine.pdate, "
+			 "magazine.place, "
+			 "magazine.issuevolume, "
+			 "magazine.issueno, "
+			 "magazine.category, magazine.language, "
+			 "magazine.id, "
+			 "magazine.price, "
+			 "magazine.monetary_units, "
+			 "magazine.quantity, "
+			 "magazine.location, "
+			 "magazine.lccontrolnumber, "
+			 "magazine.callnumber, "
+			 "magazine.deweynumber, "
+			 "magazine.accession_number, "
+			 "magazine.type, "
+			 "magazine.myoid, "
+			 "magazine.front_cover");
+
       query.prepare(searchstr);
 
       while(!values.isEmpty())
@@ -1155,10 +1192,16 @@ void biblioteq_magazine::slotGo(void)
 
       if(m_subType == "Journal")
 	(void) qmain->populateTable
-	  (biblioteq::POPULATE_SEARCH, "Journals", searchstr);
+	  (query,
+	   "Journals",
+	   biblioteq::NEW_PAGE,
+	   biblioteq::POPULATE_SEARCH);
       else
 	(void) qmain->populateTable
-	  (biblioteq::POPULATE_SEARCH, "Magazines", searchstr);
+	  (query,
+	   "Magazines",
+	   biblioteq::NEW_PAGE,
+	   biblioteq::POPULATE_SEARCH);
     }
 }
 
