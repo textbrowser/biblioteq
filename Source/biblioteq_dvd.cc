@@ -860,6 +860,8 @@ void biblioteq_dvd::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QSqlQuery query(qmain->getDB());
+
       searchstr = "SELECT DISTINCT dvd.title, "
 	"dvd.dvdformat, "
 	"dvd.studio, "
@@ -889,8 +891,7 @@ void biblioteq_dvd::slotGo(void)
 	"dvd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'DVD' "
 	"WHERE ";
-      searchstr.append("LOWER(id) LIKE LOWER('%").append
-	(dvd.id->text().trimmed()).append("%') AND ");
+      searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
       QString UNACCENT(qmain->unaccent());
@@ -1014,11 +1015,8 @@ void biblioteq_dvd::slotGo(void)
 	 ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(dvd.accession_number->
 				     text().trimmed()) + "%')) ");
-
-      /*
-      ** Search the database.
-      */
-
+      query.prepare(searchstr);
+      query.addBindValue(dvd.id->text().trimmed());
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "DVDs", searchstr);
     }
