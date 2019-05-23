@@ -901,9 +901,7 @@ void biblioteq_dvd::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(dvdformat)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%").
-	append(biblioteq_myqstring::escape(dvd.format->text().trimmed())).
-	append("%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(dvd.aspectratio->currentIndex() != 0)
 	searchstr.append
@@ -913,10 +911,7 @@ void biblioteq_dvd::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(dvdactor)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%").
-	append(biblioteq_myqstring::escape(dvd.actors->toPlainText().
-					   trimmed())).
-	append("%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(dvddirector)) LIKE " + UNACCENT +
 	 "(LOWER(" + ESCAPE + "'%").
@@ -1017,6 +1012,10 @@ void biblioteq_dvd::slotGo(void)
 				     text().trimmed()) + "%')) ");
       query.prepare(searchstr);
       query.addBindValue(dvd.id->text().trimmed());
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.format->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.actors->toPlainText().trimmed()));
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "DVDs", searchstr);
     }
