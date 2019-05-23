@@ -914,10 +914,7 @@ void biblioteq_dvd::slotGo(void)
 	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(dvddirector)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%").
-	append(biblioteq_myqstring::escape(dvd.directors->toPlainText().
-					   trimmed())).
-	append("%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(dvd.no_of_discs->value() > 0)
 	searchstr.append("dvddiskcount = ").append
@@ -942,9 +939,7 @@ void biblioteq_dvd::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%").append
-	(biblioteq_myqstring::escape(dvd.title->text().trimmed())).
-	append("%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(dvd.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(rdate, 7) = '" +
@@ -1016,6 +1011,10 @@ void biblioteq_dvd::slotGo(void)
 	(biblioteq_myqstring::escape(dvd.format->text().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(dvd.actors->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.directors->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.title->text().trimmed()));
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "DVDs", searchstr);
     }
