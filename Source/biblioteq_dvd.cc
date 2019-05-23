@@ -948,14 +948,10 @@ void biblioteq_dvd::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(studio)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(dvd.studio->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       searchstr.append
 	(UNACCENT + "(LOWER(category)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(dvd.category->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
 
       if(dvd.price->value() > -0.01)
 	{
@@ -1015,6 +1011,10 @@ void biblioteq_dvd::slotGo(void)
 	(biblioteq_myqstring::escape(dvd.directors->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(dvd.title->text().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.studio->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.category->toPlainText().trimmed()));
       (void) qmain->populateTable
 	(biblioteq::POPULATE_SEARCH, "DVDs", searchstr);
     }
