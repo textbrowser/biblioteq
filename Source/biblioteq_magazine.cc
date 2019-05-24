@@ -965,12 +965,10 @@ void biblioteq_magazine::slotGo(void)
 		{
 		  if(m_subType == "Journal")
 		    (void) qmain->populateTable
-		      (biblioteq::POPULATE_ALL, "Journals",
-		       QString(""));
+		      (biblioteq::POPULATE_ALL, "Journals", QString(""));
 		  else
 		    (void) qmain->populateTable
-		      (biblioteq::POPULATE_ALL, "Magazines",
-		       QString(""));
+		      (biblioteq::POPULATE_ALL, "Magazines", QString(""));
 		}
 
 	      raise();
@@ -1192,16 +1190,10 @@ void biblioteq_magazine::slotGo(void)
 
       if(m_subType == "Journal")
 	(void) qmain->populateTable
-	  (query,
-	   "Journals",
-	   biblioteq::NEW_PAGE,
-	   biblioteq::POPULATE_SEARCH);
+	  (query, "Journals", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
       else
 	(void) qmain->populateTable
-	  (query,
-	   "Magazines",
-	   biblioteq::NEW_PAGE,
-	   biblioteq::POPULATE_SEARCH);
+	  (query, "Magazines", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
     }
 }
 

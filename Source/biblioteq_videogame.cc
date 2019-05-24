@@ -925,10 +925,7 @@ void biblioteq_videogame::slotGo(void)
       query.addBindValue
 	(biblioteq_myqstring::escape(vg.accession_number->text().trimmed()));
       (void) qmain->populateTable
-	(query,
-	 "Video Games",
-	 biblioteq::NEW_PAGE,
-	 biblioteq::POPULATE_SEARCH);
+	(query, "Video Games", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
     }
 }
 

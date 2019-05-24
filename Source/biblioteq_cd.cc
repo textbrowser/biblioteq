@@ -1000,10 +1000,7 @@ void biblioteq_cd::slotGo(void)
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.accession_number->text().trimmed()));
       (void) qmain->populateTable
-	(query,
-	 "Music CDs",
-	 biblioteq::NEW_PAGE,
-	 biblioteq::POPULATE_SEARCH);
+	(query, "Music CDs", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
     }
 }
 

@@ -976,14 +976,10 @@ void biblioteq_dvd::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(dvd.description->toPlainText().
-				     trimmed()) + "%')) ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(dvd.keyword->toPlainText().trimmed()) +
-	 "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
 
       if(dvd.quantity->value() != 0)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
@@ -997,10 +993,28 @@ void biblioteq_dvd::slotGo(void)
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, '')))" +
-	 "LIKE " + UNACCENT + "(LOWER(" +
-	 ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(dvd.accession_number->
-				     text().trimmed()) + "%')) ");
+	 "LIKE " + UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      searchstr.append("GROUP BY "
+		       "dvd.title, "
+		       "dvd.dvdformat, "
+		       "dvd.studio, "
+		       "dvd.rdate, "
+		       "dvd.dvddiskcount, "
+		       "dvd.dvdruntime, "
+		       "dvd.category, "
+		       "dvd.language, "
+		       "dvd.id, "
+		       "dvd.price, "
+		       "dvd.monetary_units, "
+		       "dvd.quantity, "
+		       "dvd.location, "
+		       "dvd.dvdrating, "
+		       "dvd.dvdregion, "
+		       "dvd.dvdaspectratio, "
+		       "dvd.accession_number, "
+		       "dvd.type, "
+		       "dvd.myoid, "
+		       "dvd.front_cover");
       query.prepare(searchstr);
       query.addBindValue(dvd.id->text().trimmed());
       query.addBindValue
@@ -1015,8 +1029,14 @@ void biblioteq_dvd::slotGo(void)
 	(biblioteq_myqstring::escape(dvd.studio->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(dvd.category->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.description->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.keyword->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(dvd.accession_number->text().trimmed()));
       (void) qmain->populateTable
-	(biblioteq::POPULATE_SEARCH, "DVDs", searchstr);
+	(query, "DVDs", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
     }
 }
 
