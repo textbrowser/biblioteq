@@ -1122,6 +1122,9 @@ void biblioteq_book::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
+      QList<QVariant> values;
+      QSqlQuery query(qmain->getDB());
+
       searchstr = "SELECT DISTINCT book.title, "
 	"book.author, "
 	"book.publisher, book.pdate, book.place, book.edition, "
@@ -1150,8 +1153,10 @@ void biblioteq_book::slotGo(void)
 	"WHERE ";
 
       if(!id.id->text().trimmed().isEmpty())
-	searchstr.append("LOWER(id) LIKE LOWER('%" + id.id->text().trimmed() +
-			 "%') AND ");
+	{
+	  searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
+	  values.append(id.id->text().trimmed());
+	}
 
       QString ESCAPE("");
       QString UNACCENT(qmain->unaccent());
@@ -1295,13 +1300,13 @@ void biblioteq_book::slotGo(void)
 	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
 	 biblioteq_myqstring::escape(id.accession_number->text().
 				     trimmed()) + "%')) ");
+      query.prepare(searchstr);
 
-      /*
-      ** Search the database.
-      */
+      while(!values.isEmpty())
+	query.addBindValue(values.takeFirst());
 
       (void) qmain->populateTable
-	(biblioteq::POPULATE_SEARCH, "Books", searchstr);
+	(query, "Books", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
     }
 }
 

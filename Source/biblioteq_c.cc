@@ -413,7 +413,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   else if(pagingType < 0)
     ok = m_searchQuery.seek(limit * qAbs(pagingType + 1));
 
-  if(m_searchQuery.lastError().isValid() && !ok)
+  if(m_searchQuery.lastError().isValid() || !ok)
     {
       progress.close();
 #ifndef Q_OS_MAC
@@ -434,10 +434,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      break;
 	    }
 
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve the data required for "
-			  "populating the main views.")),
-	       m_searchQuery.lastError().text(), __FILE__, __LINE__);
+      if(m_searchQuery.lastError().isValid())
+	addError(QString(tr("Database Error")),
+		 QString(tr("Unable to retrieve the data required for "
+			    "populating the main views.")),
+		 m_searchQuery.lastError().text(), __FILE__, __LINE__);
+
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main views."));

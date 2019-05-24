@@ -364,7 +364,7 @@
 198. Bind values in SQL queries:
      biblioteq_a.cc (Done)
      biblioteq_b.cc (Done)
-     biblioteq_book.cc (Done) (Searching, TBD)
+     biblioteq_book.cc (Done) (Searching, Done)
      biblioteq_borrowers_editor.cc (Done)
      biblioteq_cd.cc (Done) (Searching, Done)
      biblioteq_copy_editor.cc (Done)
@@ -379,7 +379,7 @@
 199. Settings panel, per Csanád Baksay. (TBD)
 200. Remove OFFSET? (TBD)
 201. Deleting NULL pointers is redundant, save for deleteLater(). (Done)
-202. SQL injections. See item #198. (TBD)
+202. SQL injections. See item #198. (Done)
 203. Warn the user if there are stale photograph item data. (Done)
 204. item_borrower and item_request privacy. (TBD)
 205. Can BiblioteQ benefit from EXISTS()? Replaced most COUNT()
