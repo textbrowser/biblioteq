@@ -1166,8 +1166,8 @@ void biblioteq_book::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.title->text().trimmed()) + "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(id.title->text().trimmed()));
 
       if(!m_engWindowTitle.isEmpty())
 	if(!id.isbn13->text().trimmed().isEmpty())
@@ -1177,22 +1177,16 @@ void biblioteq_book::slotGo(void)
       searchstr.append
 	(UNACCENT +
 	 "(LOWER(COALESCE(lccontrolnumber, ''))) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::
-	 escape(id.lcnum->text().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(id.lcnum->text().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(callnumber, ''))) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::
-	 escape(id.callnum->text().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(id.callnum->text().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(deweynumber, ''))) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::
-	 escape(id.deweynum->text().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append(biblioteq_myqstring::escape(id.deweynum->text().trimmed()));
 
       if(id.edition->currentIndex() != 0)
 	searchstr.append("edition = '" +
