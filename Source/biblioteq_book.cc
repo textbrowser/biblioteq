@@ -1195,9 +1195,9 @@ void biblioteq_book::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(author)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::
-	 escape(id.author->toPlainText().trimmed()) + "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(id.author->toPlainText().trimmed()));
 
       if(id.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(pdate, 7) = '" +
@@ -1206,19 +1206,19 @@ void biblioteq_book::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.publisher->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(id.publisher->toPlainText().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(place)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.place->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(id.place->toPlainText().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(category)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.category->toPlainText().trimmed()) +
-	 "%')) AND ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
+      values.append
+	(biblioteq_myqstring::escape(id.category->toPlainText().trimmed()));
 
       if(id.price->value() > -0.01)
 	{
