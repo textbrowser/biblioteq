@@ -1251,9 +1251,9 @@ void biblioteq_book::slotGo(void)
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
-	 "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.description->toPlainText().trimmed()) +
-	 "%')) ");
+	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.description->toPlainText().trimmed()));
 
       if(id.quantity->value() != 0)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
@@ -1266,14 +1266,14 @@ void biblioteq_book::slotGo(void)
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(marc_tags, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.marc_tags->toPlainText().trimmed()) +
-	 "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.marc_tags->toPlainText().trimmed()));
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(keyword, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.keyword->toPlainText().trimmed()) +
-	 "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.keyword->toPlainText().trimmed()));
 
       if(id.originality->currentIndex() != 0)
 	searchstr.append
@@ -1291,9 +1291,31 @@ void biblioteq_book::slotGo(void)
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%" +
-	 biblioteq_myqstring::escape(id.accession_number->text().
-				     trimmed()) + "%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.accession_number->text().trimmed()));
+      searchstr.append
+	("GROUP BY book.title, "
+	 "book.author, "
+	 "book.publisher, book.pdate, book.place, "
+	 "book.edition, "
+	 "book.category, book.language, "
+	 "book.id, "
+	 "book.price, "
+	 "book.monetary_units, "
+	 "book.quantity, "
+	 "book.binding_type, "
+	 "book.location, "
+	 "book.isbn13, "
+	 "book.lccontrolnumber, "
+	 "book.callnumber, "
+	 "book.deweynumber, "
+	 "book.originality, "
+	 "book.condition, "
+	 "book.accession_number, "
+	 "book.type, "
+	 "book.myoid, "
+	 "book.front_cover");
       query.prepare(searchstr);
 
       while(!values.isEmpty())
