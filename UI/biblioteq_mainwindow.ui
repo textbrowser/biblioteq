@@ -36,6 +36,9 @@
         <property name="sizeAdjustPolicy">
          <enum>QComboBox::AdjustToContents</enum>
         </property>
+        <property name="minimumContentsLength">
+         <number>15</number>
+        </property>
         <item>
          <property name="text">
           <string>Category</string>
@@ -375,7 +378,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>31</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
