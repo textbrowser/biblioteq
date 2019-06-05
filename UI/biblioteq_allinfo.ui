@@ -43,7 +43,7 @@
          <x>0</x>
          <y>0</y>
          <width>622</width>
-         <height>907</height>
+         <height>905</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -56,6 +56,9 @@
         <item>
          <widget class="QFrame" name="frame">
           <layout class="QFormLayout" name="formLayout">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+           </property>
            <item row="0" column="0">
             <widget class="QLabel" name="label">
              <property name="text">
@@ -136,6 +139,16 @@
            <item row="3" column="1">
             <widget class="QLineEdit" name="publisher"/>
            </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="categories_checkbox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Categories</string>
+             </property>
+            </widget>
+           </item>
            <item row="4" column="1">
             <widget class="QTextEdit" name="category">
              <property name="tabChangesFocus">
@@ -186,12 +199,18 @@
             <layout class="QGridLayout">
              <item row="0" column="0">
               <widget class="QComboBox" name="language">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="sizeAdjustPolicy">
                 <enum>QComboBox::AdjustToContents</enum>
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
+             <item row="0" column="2">
               <spacer>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -213,16 +232,13 @@
              </property>
             </widget>
            </item>
-           <item row="7" column="1">
-            <widget class="QComboBox" name="monetary_units">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+           <item row="8" column="0">
+            <widget class="QCheckBox" name="abstract_checkbox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
+             <property name="text">
+              <string>Abstract</string>
              </property>
             </widget>
            </item>
@@ -287,6 +303,12 @@
             <layout class="QHBoxLayout">
              <item>
               <widget class="QComboBox" name="location">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="sizeAdjustPolicy">
                 <enum>QComboBox::AdjustToContents</enum>
                </property>
@@ -306,6 +328,16 @@
               </spacer>
              </item>
             </layout>
+           </item>
+           <item row="11" column="0">
+            <widget class="QCheckBox" name="keywords_checkbox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Keywords</string>
+             </property>
+            </widget>
            </item>
            <item row="11" column="1">
             <widget class="QTextEdit" name="keyword">
@@ -330,35 +362,35 @@
            <item row="12" column="1">
             <widget class="QCheckBox" name="available"/>
            </item>
-           <item row="4" column="0">
-            <widget class="QCheckBox" name="categories_checkbox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Categories</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0">
-            <widget class="QCheckBox" name="abstract_checkbox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Abstract</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0">
-            <widget class="QCheckBox" name="keywords_checkbox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Keywords</string>
-             </property>
-            </widget>
+           <item row="7" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QComboBox" name="monetary_units">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>

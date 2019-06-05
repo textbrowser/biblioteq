@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>476</width>
-         <height>882</height>
+         <y>-33</y>
+         <width>462</width>
+         <height>929</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -140,6 +140,12 @@
          <layout class="QHBoxLayout" name="_5">
           <item>
            <widget class="QComboBox" name="type">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToContents</enum>
             </property>
@@ -195,6 +201,12 @@
          <layout class="QHBoxLayout" name="_6">
           <item>
            <widget class="QComboBox" name="location">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToContents</enum>
             </property>
