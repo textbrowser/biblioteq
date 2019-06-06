@@ -1442,8 +1442,8 @@ void biblioteq::slotSearch(void)
   static bool resized = false;
 
   if(!resized)
-    m_all_diag->resize(qRound(0.75 * size().width()),
-		       qRound(0.75 * size().height()));
+    m_all_diag->resize(qRound(0.85 * size().width()),
+		       qRound(0.85 * size().height()));
 
   resized = true;
 
@@ -5230,8 +5230,8 @@ void biblioteq::slotShowMembersBrowser(void)
   static bool resized = false;
 
   if(!resized)
-    m_members_diag->resize(qRound(0.75 * size().width()),
-			   qRound(0.75 * size().height()));
+    m_members_diag->resize(qRound(0.85 * size().width()),
+			   qRound(0.85 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_members_diag, this);
@@ -6113,8 +6113,8 @@ void biblioteq::slotShowErrorDialog(void)
   static bool resized = false;
 
   if(!resized)
-    m_error_diag->resize(qRound(0.75 * size().width()),
-			 qRound(0.75 * size().height()));
+    m_error_diag->resize(qRound(0.85 * size().width()),
+			 qRound(0.85 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_error_diag, this);
@@ -7389,8 +7389,8 @@ void biblioteq::slotShowCustomQuery(void)
   static bool resized = false;
 
   if(!resized)
-    m_customquery_diag->resize(qRound(0.75 * size().width()),
-			       qRound(0.75 * size().height()));
+    m_customquery_diag->resize(qRound(0.85 * size().width()),
+			       qRound(0.85 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_customquery_diag, this);
@@ -7996,8 +7996,8 @@ void biblioteq::slotShowHistory(void)
       static bool resized = false;
 
       if(!resized)
-	m_history_diag->resize(qRound(0.75 * m_members_diag->size().width()),
-			       qRound(0.75 * m_members_diag->size().height()));
+	m_history_diag->resize(qRound(0.85 * m_members_diag->size().width()),
+			       qRound(0.85 * m_members_diag->size().height()));
 
       resized = true;
       biblioteq_misc_functions::center(m_history_diag, m_members_diag);
@@ -8007,8 +8007,8 @@ void biblioteq::slotShowHistory(void)
       static bool resized = false;
 
       if(!resized)
-	m_history_diag->resize(qRound(0.75 * size().width()),
-			       qRound(0.75 * size().height()));
+	m_history_diag->resize(qRound(0.85 * size().width()),
+			       qRound(0.85 * size().height()));
 
       resized = true;
       biblioteq_misc_functions::center(m_history_diag, this);

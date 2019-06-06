@@ -90,8 +90,8 @@ biblioteq_sruresults::biblioteq_sruresults
   setGlobalFonts(font);
 
   if(parent)
-    resize(qRound(0.75 * parent->size().width()),
-	   qRound(0.75 * parent->size().height()));
+    resize(qRound(0.85 * parent->size().width()),
+	   qRound(0.85 * parent->size().height()));
 
   exec();
 }

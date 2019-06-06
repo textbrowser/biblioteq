@@ -130,7 +130,7 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
   static bool resized = false;
 
   if(parent && !resized)
-    resize(qRound(0.95 * parent->size().width()),
+    resize(qRound(0.85 * parent->size().width()),
 	   parent->size().height());
 
   resized = true;
