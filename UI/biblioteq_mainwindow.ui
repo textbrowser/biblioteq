@@ -84,7 +84,7 @@
       <item>
        <widget class="QPushButton" name="resetAllSearch">
         <property name="toolTip">
-         <string>Clear the main table and reset the nearby search widgets.</string>
+         <string>Reset the nearby search widgets.</string>
         </property>
         <property name="text">
          <string>Reset</string>
