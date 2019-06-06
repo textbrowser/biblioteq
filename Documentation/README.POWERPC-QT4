@@ -22,4 +22,4 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/DEBIAN-POWERPC biblioteq-debian/DEBIAN
 cp -r /usr/local/biblioteq-qt4 biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2019.03.15_qt4_powerpc.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2019.06.06_qt4_powerpc.deb
