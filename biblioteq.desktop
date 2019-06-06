@@ -1,9 +1,9 @@
 [Desktop Entry]
 Categories=Library
 Comment=BiblioteQ
-Exec=/usr/local/biblioteq/biblioteq.sh
+Exec=/usr/local/biblioteq-qt4/biblioteq.sh
 GenericName=BiblioteQ
-Icon=/usr/local/biblioteq/book.png
+Icon=/usr/local/biblioteq-qt4/book.png
 MimeType=text/html;/text/xml;application/xhtml_xml;
 Name=BiblioteQ
 StartupNotify=true
