@@ -7,6 +7,8 @@
 #include <QSqlField>
 #include <QSqlRecord>
 
+#include <limits>
+
 /*
 ** -- Local Includes --
 */
