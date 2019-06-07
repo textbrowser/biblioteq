@@ -284,6 +284,11 @@ biblioteq::biblioteq(void):QMainWindow()
   if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_menuCategoryActionGroup = new(std::nothrow) QActionGroup(this)) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  else
+    m_menuCategoryActionGroup->setExclusive(true);
+
   if((m_otheroptions = new(std::nothrow) biblioteq_otheroptions()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
@@ -724,18 +729,20 @@ biblioteq::biblioteq(void):QMainWindow()
        ui.menu_Category->actions().at(i)->data().toString())
       {
 	found = true;
-	ui.menu_Category->setDefaultAction
-	  (ui.menu_Category->actions().at(i));
-	ui.categoryLabel->setText
-	  (ui.menu_Category->actions().at(i)->text());
+	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
+	ui.menu_Category->actions().at(i)->setChecked(true);
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
 	break;
       }
 
   if(!found)
     {
-      ui.menu_Category->setDefaultAction
-	(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
+
+      if(!ui.menu_Category->actions().isEmpty())
+	ui.menu_Category->actions().at(0)->setChecked(true);
+
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
   addConfigOptions(m_lastCategory);
@@ -4931,18 +4938,20 @@ void biblioteq::slotConnectDB(void)
        ui.menu_Category->actions().at(i)->data().toString())
       {
 	found = true;
-	ui.menu_Category->setDefaultAction
-	  (ui.menu_Category->actions().at(i));
-	ui.categoryLabel->setText
-	  (ui.menu_Category->actions().at(i)->text());
+	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
+	ui.menu_Category->actions().at(i)->setChecked(true);
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
 	break;
       }
 
   if(!found)
     {
-      ui.menu_Category->setDefaultAction
-	(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
+
+      if(!ui.menu_Category->actions().isEmpty())
+	ui.menu_Category->actions().at(0)->setChecked(true);
+
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
   if(ui.actionPopulateOnStart->isChecked())
@@ -5103,10 +5112,9 @@ void biblioteq::slotDisconnect(void)
     if(m_previousTypeFilter ==
        ui.menu_Category->actions().at(i)->data().toString())
       {
-	ui.menu_Category->setDefaultAction
-	  (ui.menu_Category->actions().at(i));
-	ui.categoryLabel->setText
-	  (ui.menu_Category->actions().at(i)->text());
+	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
+	ui.menu_Category->actions().at(i)->setChecked(true);
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
 	break;
       }
 
@@ -5975,6 +5983,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
   disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
+  action->setChecked(true);
   ui.menu_Category->setDefaultAction(action);
   connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
@@ -9119,12 +9128,20 @@ void biblioteq::prepareFilter(void)
 	     SLOT(slotAutoPopOnFilter(QAction *)));
   ui.menu_Category->clear();
 
+  for(int i = 0; i < m_menuCategoryActionGroup->actions().size(); i++)
+    m_menuCategoryActionGroup->removeAction
+      (m_menuCategoryActionGroup->actions().at(i));
+
   for(int i = 0; i < tmplist1.size(); i++)
     {
       QAction *action = ui.menu_Category->addAction(tmplist2[i]);
 
       if(action)
-	action->setData(tmplist1[i]);
+	{
+	  action->setCheckable(true);
+	  action->setData(tmplist1[i]);
+	  m_menuCategoryActionGroup->addAction(action);
+	}
     }
 
   connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,

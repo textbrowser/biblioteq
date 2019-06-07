@@ -429,10 +429,11 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	  if(m_previousTypeFilter ==
 	     ui.menu_Category->actions().at(ii)->data().toString())
 	    {
-	      ui.menu_Category->setDefaultAction
-		(ui.menu_Category->actions().at(ii));
 	      ui.categoryLabel->setText
 		(ui.menu_Category->actions().at(ii)->text());
+	      ui.menu_Category->actions().at(ii)->setChecked(true);
+	      ui.menu_Category->setDefaultAction
+		(ui.menu_Category->actions().at(ii));
 	      break;
 	    }
 
@@ -458,20 +459,29 @@ int biblioteq::populateTable(const QSqlQuery &query,
       {
 	found = true;
 	m_previousTypeFilter = typefilter;
-	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(ii));
 	ui.categoryLabel->setText(ui.menu_Category->actions().at(ii)->text());
+	ui.menu_Category->actions().at(ii)->setChecked(true);
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(ii));
 	break;
       }
 
   if(typefilter.isEmpty())
     {
-      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
+
+      if(!ui.menu_Category->actions().isEmpty())
+	ui.menu_Category->actions().at(0)->setChecked(true);
+
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
   else if(!found)
     {
-      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
       ui.categoryLabel->setText(tr("All"));
+
+      if(!ui.menu_Category->actions().isEmpty())
+	ui.menu_Category->actions().at(0)->setChecked(true);
+
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
   ui.table->resetTable(m_db.userName(), typefilter, m_roles);

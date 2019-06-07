@@ -291,6 +291,7 @@ class biblioteq: public QMainWindow
   void slotResizeColumns(void);
 
  private:
+  QActionGroup *m_menuCategoryActionGroup;
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;
   QHash<QString, QString> m_amazonImages;
