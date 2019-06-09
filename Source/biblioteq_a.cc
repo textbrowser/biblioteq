@@ -1472,7 +1472,6 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  QModelIndex index;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
@@ -1512,7 +1511,7 @@ void biblioteq::slotModify(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -1708,7 +1707,6 @@ void biblioteq::slotModify(void)
 
 void biblioteq::slotViewDetails(void)
 {
-  QModelIndex index;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
@@ -1747,7 +1745,7 @@ void biblioteq::slotViewDetails(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -1958,7 +1956,6 @@ void biblioteq::slotDelete(void)
   QString errorstr = "";
   QString itemType = "";
   QSqlQuery query(m_db);
-  QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
@@ -1971,7 +1968,7 @@ void biblioteq::slotDelete(void)
 
   col = ui.table->columnNumber("MYOID");
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
 
@@ -2074,7 +2071,7 @@ void biblioteq::slotDelete(void)
   QApplication::processEvents();
 #endif
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
 
@@ -4517,7 +4514,7 @@ void biblioteq::slotConnectDB(void)
   else if(tmphash.value("database_type") == "sqlite")
     str = "QSQLITE";
 
-  foreach(QString driver, QSqlDatabase::drivers())
+  foreach(const QString &driver, QSqlDatabase::drivers())
     drivers += driver + ", ";
 
   if(drivers.endsWith(", "))
@@ -4526,7 +4523,7 @@ void biblioteq::slotConnectDB(void)
   if(drivers.isEmpty())
     drivers = "N/A";
 
-  foreach(QString path, QApplication::libraryPaths())
+  foreach(const QString &path, QApplication::libraryPaths())
     if(path.toLower().contains("plugin"))
       {
 	plugins = path;
@@ -7593,7 +7590,6 @@ void biblioteq::slotCopyError(void)
   int j = 0;
   QString text = "";
   QClipboard *clipboard = QApplication::clipboard();
-  QModelIndex index;
   QModelIndexList list = er.table->selectionModel()->selectedRows();
 
   if(list.isEmpty())
@@ -7608,7 +7604,7 @@ void biblioteq::slotCopyError(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
 
@@ -8849,7 +8845,6 @@ void biblioteq::slotRequest(void)
   QString oid = "";
   QString itemType = "";
   QSqlQuery query(m_db);
-  QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
@@ -8910,7 +8905,7 @@ void biblioteq::slotRequest(void)
   QApplication::processEvents();
 #endif
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
       ct += 1;
@@ -9579,7 +9574,6 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  QModelIndex index;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
@@ -9622,7 +9616,7 @@ void biblioteq::slotDuplicate(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(index, list)
+  foreach(const QModelIndex &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
