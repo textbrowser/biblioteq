@@ -6,6 +6,6 @@ Priority: optional
 Section: Database
 Version: 2019.06.06
 Description: BiblioteQ
- Welcome to BiblioteQ!
+ Welcome to BiblioteQ on PowerPC!
  BiblioteQ is governed by a BSD license. Enjoy!
  A biblioteq.desktop file will also be installed in /usr/share/applications/.
