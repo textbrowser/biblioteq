@@ -714,11 +714,11 @@ biblioteq::biblioteq(void):QMainWindow()
   typefilter = m_lastCategory =
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
-  ui.graphicsView->scene()->clear();
-  ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
-  ui.table->setIconSize(QSize(32, 47));
-  ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
+  ui.graphicsView->scene()->clear();
+  ui.summary->setVisible(false);
+  ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
+  ui.table->setIconSize(QSize(64, 94));
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
 
