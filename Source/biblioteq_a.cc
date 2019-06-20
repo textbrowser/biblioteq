@@ -1318,8 +1318,8 @@ void biblioteq::slotAbout(void)
 	"Qt version %6 (runtime %7).<br>"
 	"YAZ version %8."
 	"<hr>"
-	"Please visit <a href=\"http://biblioteq.sourceforge.net\">"
-	"http://biblioteq.sourceforge.net</a> or "
+	"Please visit <a href=\"https://biblioteq.sourceforge.io\">"
+	"https://biblioteq.sourceforge.io</a> or "
 	"<a href=\"https://textbrowser.github.io/biblioteq/\">"
 	"https://textbrowser.github.io/biblioteq</a> "
 	"for project information.</html>").
