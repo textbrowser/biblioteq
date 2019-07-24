@@ -9,7 +9,7 @@ postgresql=postgresql.zip
 rm -f $postgresql
 wget --output-document=$postgresql \
      --progress=bar \
-     "https://get.enterprisedb.com/postgresql/postgresql-9.6.14-1-windows-binaries.zip"
+     "https://get.enterprisedb.com/postgresql/postgresql-9.6.14-3-windows-binaries.zip"
 unzip $postgresql
 mv pgsql/bin/libeay32.dll Libraries.win32/postgresql/.
 mv pgsql/bin/libiconv-2.dll Libraries.win32/postgresql/.
@@ -23,7 +23,7 @@ rm -fr pgsql
 
 # SQLite Binaries
 
-sqlite=sqlite-dll-win32-x86-3280000.zip
+sqlite=sqlite-dll-win32-x86-3290000.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2019/$sqlite
@@ -34,14 +34,14 @@ rm -f $sqlite
 
 # SQLite Source
 
-sqlite=sqlite-amalgamation-3280000.zip
+sqlite=sqlite-amalgamation-3290000.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2019/$sqlite
 unzip -o $sqlite
 rm -f $sqlite
 
-sqlite=sqlite-amalgamation-3280000
+sqlite=sqlite-amalgamation-3290000
 
 mv $sqlite/*.h Include.win32/sqlite3/.
 rm -fr $sqlite
