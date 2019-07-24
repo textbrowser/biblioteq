@@ -29,23 +29,32 @@ class biblioteq_misc_functions
   static const int CREATE_USER = 100;
   static const int DELETE_USER = 200;
   static const int UPDATE_USER = 300;
-  static QImage getImage(const QString &, const QString &,
-			 const QString &, const QSqlDatabase &);
+  static QImage getImage(const QString &,
+			 const QString &,
+			 const QString &,
+			 const QSqlDatabase &);
   static QList<QPair<QString, QString> > getLocations
     (const QSqlDatabase &, QString &);
   static QMap<QString, QString> getItemsReservedCounts
     (const QSqlDatabase &, const QString &, QString &);
-  static QString getAbstractInfo(const QString &, const QString &,
+  static QString getAbstractInfo(const QString &,
+				 const QString &,
 				 const QSqlDatabase &);
-  static QString getAvailability(const QString &, const QSqlDatabase &,
-				 const QString &, QString &);
-  static QString getColumnString(const QTableWidget *, const int,
+  static QString getAvailability(const QString &,
+				 const QSqlDatabase &,
+				 const QString &,
+				 QString &);
+  static QString getColumnString(const QTableWidget *,
+				 const int,
 				 const QString &);
   static QString getColumnString(const QTableWidget *, const int, const int);
   static QString getMemberName(const QSqlDatabase &,
-			       const QString &, QString &);
-  static QString getOID(const QString &, const QString &,
-			const QSqlDatabase &, QString &);
+			       const QString &,
+			       QString &);
+  static QString getOID(const QString &,
+			const QString &,
+			const QSqlDatabase &,
+			QString &);
   static QString getRoles(const QSqlDatabase &, const QString &, QString &);
   static QString imageFormatGuess(const QByteArray &bytes);
   static QStringList getBookBindingTypes(const QSqlDatabase &, QString &);
@@ -56,64 +65,102 @@ class biblioteq_misc_functions
   static QStringList getGreyLiteratureTypes(const QSqlDatabase &db,
 					    QString &errorstr);
   static QStringList getLanguages(const QSqlDatabase &, QString &);
-  static QStringList getLocations(const QSqlDatabase &, const QString &,
+  static QStringList getLocations(const QSqlDatabase &,
+				  const QString &,
 				  QString &);
   static QStringList getMinimumDays(const QSqlDatabase &, QString &);
   static QStringList getMonetaryUnits(const QSqlDatabase &, QString &);
-  static QStringList getReservedItems(const QString &, const QSqlDatabase &,
+  static QStringList getReservedItems(const QString &,
+				      const QSqlDatabase &,
 				      QString &);
   static QStringList getVideoGamePlatforms(const QSqlDatabase &, QString &);
   static QStringList getVideoGameRatings(const QSqlDatabase &, QString &);
   static bool dnt(const QSqlDatabase &, const QString &, QString &);
-  static bool getMemberMatch(const QString &, const QString &,
-			     const QSqlDatabase &, QString &);
+  static bool getMemberMatch(const QString &,
+			     const QString &,
+			     const QSqlDatabase &,
+			     QString &);
   static bool hasMemberExpired(const QSqlDatabase &db,
-			       const QString &memberid, QString &errorstr);
+			       const QString &memberid,
+			       QString &errorstr);
   static bool hasUnaccentExtension(const QSqlDatabase &db);
   static bool isCheckedOut(const QSqlDatabase &,
-			   const QString &, const QString &, QString &);
-  static bool isCopyAvailable(const QSqlDatabase &, const QString &,
-			      const QString &, const QString &, QString &);
-  static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
-			       const QString &, const QString &, QString &);
+			   const QString &,
+			   const QString &,
+			   QString &);
+  static bool isCopyAvailable(const QSqlDatabase &,
+			      const QString &,
+			      const QString &,
+			      const QString &,
+			      QString &);
+  static bool isCopyCheckedOut(const QSqlDatabase &,
+			       const QString &,
+			       const QString &,
+			       const QString &,
+			       QString &);
   static bool isGnome(void);
-  static bool isRequested(const QSqlDatabase &, const QString &,
-			  const QString &, QString &);
+  static bool isRequested(const QSqlDatabase &,
+			  const QString &,
+			  const QString &,
+			  QString &);
   static bool userExists(const QString &, const QSqlDatabase &, QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
-  static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
-			      const QString &, QString &);
+  static int getMaxCopyNumber(const QSqlDatabase &,
+			      const QString &,
+			      const QString &,
+			      QString &);
   static int getMinimumDays(const QSqlDatabase &, const QString &, QString &);
-  static int sqliteQuerySize(const QString &, const QMap<QString, QVariant> &,
-			     const QSqlDatabase &, const char *, const int);
-  static int sqliteQuerySize(const QString &, const QSqlDatabase &,
-			     const char *, const int);
+  static int sqliteQuerySize(const QString &,
+			     const QMap<QString, QVariant> &,
+			     const QSqlDatabase &,
+			     const char *,
+			     const int);
+  static int sqliteQuerySize(const QString &,
+			     const QSqlDatabase &,
+			     const char *,
+			     const int);
   static qint64 getSqliteUniqueId(const QSqlDatabase &, QString &);
-  static void DBAccount(const QString &, const QSqlDatabase &,
-			const int, QString &, const QString & = "");
+  static void DBAccount(const QString &,
+			const QSqlDatabase &,
+			const int,
+			QString &,
+			const QString & = "");
   static void center(QWidget *, QMainWindow *);
-  static void createInitialCopies(QString const &, const int,
-				  const QSqlDatabase &, const QString &,
+  static void createInitialCopies(QString const &,
+				  const int,
+				  const QSqlDatabase &,
+				  const QString &,
 				  QString &);
   static void exportPhotographs(const QSqlDatabase &,
 				const QString &,
 				const QString &,
 				QList<QGraphicsItem *> items,
 				QWidget *parent);
-  static void exportPhotographs(const QSqlDatabase &, const QString &,
-				const int, const QString &,
+  static void exportPhotographs(const QSqlDatabase &,
+				const QString &,
+				const int,
+				const QString &,
 				QWidget *parent);
-  static void grantPrivs(const QString &, const QString &,
-			 const QSqlDatabase &, QString &);
+  static void grantPrivs(const QString &,
+			 const QString &,
+			 const QSqlDatabase &,
+			 QString &);
   static void hideAdminFields(QMainWindow *, const QString &);
   static void highlightWidget(QWidget *, const QColor &);
   static void revokeAll(const QString &, const QSqlDatabase &, QString &);
-  static void savePassword(const QString &, const QSqlDatabase &,
-			   const QString &, QString &);
-  static void saveQuantity(const QSqlDatabase &, const QString &,
-			   const int, const QString &, QString &);
+  static void savePassword(const QString &,
+			   const QSqlDatabase &,
+			   const QString &,
+			   QString &);
+  static void saveQuantity(const QSqlDatabase &,
+			   const QString &,
+			   const int,
+			   const QString &,
+			   QString &);
   static void setRole(const QSqlDatabase &, QString &, const QString &);
-  static void updateColumn(QTableWidget *, const int, const int,
+  static void updateColumn(QTableWidget *,
+			   const int,
+			   const int,
 			   const QString &);
   static void updateSQLiteDatabase(const QSqlDatabase &);
 
