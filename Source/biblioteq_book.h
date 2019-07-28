@@ -97,8 +97,8 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotPrint(void);
   void slotPrintAuthorTitleDewey(void);
   void slotPrintCallDewey(void);
-  void slotProxyAuthenticationRequired
-    (const QNetworkProxy &proxy, QAuthenticator *authenticator);
+  void slotProxyAuthenticationRequired(const QNetworkProxy &proxy,
+				       QAuthenticator *authenticator);
   void slotPublicationDateEnabled(bool state);
   void slotReadyRead(void);
   void slotReset(void);

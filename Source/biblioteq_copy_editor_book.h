@@ -25,9 +25,11 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   Q_OBJECT
 
  public:
-  biblioteq_copy_editor_book(QWidget *parent, biblioteq_item *bitemArg,
+  biblioteq_copy_editor_book(QWidget *parent,
+			     biblioteq_item *bitemArg,
 			     const bool showForLendingArg,
-			     const int quantityArg, const QString &ioidArg,
+			     const int quantityArg,
+			     const QString &ioidArg,
 			     QSpinBox *spinboxArg,
 			     const QFont &font,
 			     const QString &uniqueIdArg);

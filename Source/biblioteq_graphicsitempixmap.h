@@ -2,7 +2,8 @@
 #define _BIBLIOTEQ_GRAPHICSITEMPIXMAP_H_
 
 static void qt_graphicsItem_highlightSelected
-(QGraphicsItem *item, QPainter *painter,
+(QGraphicsItem *item,
+ QPainter *painter,
  const QStyleOptionGraphicsItem *option)
 {
   if(!item || !option || !painter)
