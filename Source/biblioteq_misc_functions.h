@@ -33,10 +33,11 @@ class biblioteq_misc_functions
 			 const QString &,
 			 const QString &,
 			 const QSqlDatabase &);
-  static QList<QPair<QString, QString> > getLocations
-    (const QSqlDatabase &, QString &);
-  static QMap<QString, QString> getItemsReservedCounts
-    (const QSqlDatabase &, const QString &, QString &);
+  static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
+						      QString &);
+  static QMap<QString, QString> getItemsReservedCounts(const QSqlDatabase &,
+						       const QString &,
+						       QString &);
   static QString getAbstractInfo(const QString &,
 				 const QString &,
 				 const QSqlDatabase &);

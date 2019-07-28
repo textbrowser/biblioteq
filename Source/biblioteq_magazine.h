@@ -88,8 +88,8 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
-  void slotProxyAuthenticationRequired
-    (const QNetworkProxy &proxy, QAuthenticator *authenticator);
+  void slotProxyAuthenticationRequired(const QNetworkProxy &proxy,
+				       QAuthenticator *authenticator);
   void slotPublicationDateEnabled(bool state);
   void slotReset(void);
   void slotSRUCanceled(void);
