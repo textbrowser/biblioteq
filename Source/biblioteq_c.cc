@@ -20,6 +20,11 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 
+QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
+{
+  return m_openLibraryImages;
+}
+
 void biblioteq::slotShowOtherOptions(void)
 {
   biblioteq_misc_functions::center(m_otheroptions, this);
@@ -891,9 +896,4 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.table->show();
 #endif
   return 0;
-}
-
-QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
-{
-  return m_openLibraryImages;
 }
