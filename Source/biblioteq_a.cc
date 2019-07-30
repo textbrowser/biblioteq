@@ -9793,8 +9793,8 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.retranslateUi(this);
 	  ui.graphicsView->scene()->clear();
 	  ui.graphicsView->resetTransform();
-	  ui.graphicsView->verticalScrollBar()->setValue(0);
 	  ui.graphicsView->horizontalScrollBar()->setValue(0);
+	  ui.graphicsView->verticalScrollBar()->setValue(0);
 	  ui.nextPageButton->setEnabled(false);
 	  ui.pagesLabel->setText("1");
 	  ui.previousPageButton->setEnabled(false);
