@@ -1080,6 +1080,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
   dvd.accession_number->clear();
+  m_engWindowTitle = "Search";
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1093,7 +1094,6 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
 
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database DVD Search"));
-      m_engWindowTitle = "Search";
       dvd.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();

@@ -796,6 +796,7 @@ void biblioteq_grey_literature::populateFiles(void)
 void biblioteq_grey_literature::search(const QString &field,
 				       const QString &value)
 {
+  m_engWindowTitle = "Search";
   m_ui.attach_files->setVisible(false);
   m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
   m_ui.date->setDisplayFormat("yyyy");
@@ -812,7 +813,6 @@ void biblioteq_grey_literature::search(const QString &field,
 
   if(field.isEmpty() && value.isEmpty())
     {
-      m_engWindowTitle = "Search";
       m_ui.title->setFocus();
       setWindowTitle(tr("BiblioteQ: Database Grey Literature Search"));
       biblioteq_misc_functions::center(this, m_parentWid);

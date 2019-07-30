@@ -931,6 +931,7 @@ void biblioteq_videogame::slotGo(void)
 
 void biblioteq_videogame::search(const QString &field, const QString &value)
 {
+  m_engWindowTitle = "Search";
   vg.coverImages->setVisible(false);
   vg.id->clear();
   vg.developer->clear();
@@ -976,7 +977,6 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
 
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
-      m_engWindowTitle = "Search";
       vg.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();

@@ -11,8 +11,34 @@ extern biblioteq *qmain;
 biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 (QWidget *parent):QTextBrowser(parent)
 {
-  connect(this, SIGNAL(anchorClicked(const QUrl &)),
-	  this, SLOT(slotAnchorClicked(const QUrl &)));
+  connect(this,
+	  SIGNAL(anchorClicked(const QUrl &)),
+	  this,
+	  SLOT(slotAnchorClicked(const QUrl &)));
+}
+
+void biblioteq_hyperlinked_text_edit::setMultipleLinks
+(const QString &searchType,
+ const QString &searchField,
+ const QString &str)
+{
+  QString html("");
+  QStringList tmplist;
+  int i = 0;
+
+  tmplist = str.split("\n");
+
+  for(i = 0; i < tmplist.size(); i++)
+    {
+      html += QString
+	("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
+	(searchType).arg(searchField).arg(tmplist[i].trimmed());
+
+      if(i != tmplist.size() - 1)
+	html += "<br>";
+    }
+
+  setText(html);
 }
 
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
@@ -48,28 +74,4 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
     }
 
   tmplist.clear();
-}
-
-void biblioteq_hyperlinked_text_edit::setMultipleLinks
-(const QString &searchType,
- const QString &searchField,
- const QString &str)
-{
-  QString html("");
-  QStringList tmplist;
-  int i = 0;
-
-  tmplist = str.split("\n");
-
-  for(i = 0; i < tmplist.size(); i++)
-    {
-      html += QString
-	("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
-	(searchType).arg(searchField).arg(tmplist[i].trimmed());
-
-      if(i != tmplist.size() - 1)
-	html += "<br>";
-    }
-
-  setText(html);
 }

@@ -1047,6 +1047,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
   cd.accession_number->clear();
+  m_engWindowTitle = "Search";
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1061,7 +1062,6 @@ void biblioteq_cd::search(const QString &field, const QString &value)
       actions.clear();
       cd.coverImages->setVisible(false);
       setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
-      m_engWindowTitle = "Search";
       cd.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();

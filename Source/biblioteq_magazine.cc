@@ -1199,6 +1199,7 @@ void biblioteq_magazine::slotGo(void)
 
 void biblioteq_magazine::search(const QString &field, const QString &value)
 {
+  m_engWindowTitle = "Search";
   ma.attach_files->setVisible(false);
   ma.view_pdf->setVisible(false);
   ma.coverImages->setVisible(false);
@@ -1260,7 +1261,6 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
       else
 	setWindowTitle(QString(tr("BiblioteQ: Database Magazine Search")));
 
-      m_engWindowTitle = "Search";
       ma.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();

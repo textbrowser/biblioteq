@@ -1376,6 +1376,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.condition->setCurrentIndex(0);
   id.accession_number->clear();
   id.isbnAvailableCheckBox->setCheckable(false);
+  m_engWindowTitle = "Search";
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1389,7 +1390,6 @@ void biblioteq_book::search(const QString &field, const QString &value)
 
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
-      m_engWindowTitle = "Search";
       id.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
