@@ -9805,6 +9805,7 @@ void biblioteq::changeEvent(QEvent *event)
 	     "All",
 	     m_roles);
 	  ui.itemsCountLabel->setText(tr("0 Results"));
+	  addConfigOptions(m_lastCategory);
 	  prepareFilter();
 	  QMessageBox::information
 	    (this,
