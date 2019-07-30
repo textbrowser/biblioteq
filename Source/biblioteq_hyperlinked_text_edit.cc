@@ -30,9 +30,12 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
 
   for(i = 0; i < tmplist.size(); i++)
     {
-      html += QString
-	("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
-	(searchType).arg(searchField).arg(tmplist[i].trimmed());
+      if(qmain->getDB().driverName() == "QSQLITE")
+	html += tmplist[i].trimmed();
+      else
+	html += QString
+	  ("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
+	  (searchType).arg(searchField).arg(tmplist[i].trimmed());
 
       if(i != tmplist.size() - 1)
 	html += "<br>";
@@ -53,8 +56,8 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 
   if(tmplist.size() >= 3)
     {
-      searchType = tmplist[0];
       searchKey = tmplist[1];
+      searchType = tmplist[0];
       searchValue = tmplist[2];
 
       if(searchType == "book_search")

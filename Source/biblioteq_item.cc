@@ -16,20 +16,20 @@
 #include "biblioteq_hyperlinked_text_edit.h"
 #include "biblioteq_item.h"
 
-biblioteq_item::biblioteq_item(void)
-{
-  m_isQueryEnabled = false;
-  m_oldq = -1;
-  m_parentWid = 0;
-  m_row = -1;
-}
-
 biblioteq_item::biblioteq_item(const int rowArg)
 {
   m_isQueryEnabled = false;
   m_oldq = -1;
   m_parentWid = 0;
   m_row = rowArg;
+}
+
+biblioteq_item::biblioteq_item(void)
+{
+  m_isQueryEnabled = false;
+  m_oldq = -1;
+  m_parentWid = 0;
+  m_row = -1;
 }
 
 biblioteq_item::~biblioteq_item()
@@ -60,26 +60,25 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
       classname = widget->metaObject()->className();
       objectname = widget->objectName();
 
-      if(classname == "QSpinBox")
-	newdata[objectname] =
-	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
-      else if(classname == "QLineEdit")
-	newdata[objectname] =
-	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
-      else if(classname == "QComboBox")
+      if(classname == "QComboBox")
 	newdata[objectname] =
 	  (qobject_cast<QComboBox *> (widget))->currentText().
 	  trimmed();
       else if(classname == "QDateEdit")
 	newdata[objectname] =
-	  (qobject_cast<QDateEdit *> (widget))->date().toString
-	  ("MM/dd/yyyy");
-      else if(classname == "QTextEdit")
-	newdata[objectname] =
-	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
+	  (qobject_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
       else if(classname == "QDoubleSpinBox")
 	newdata[objectname] =
 	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();
+      else if(classname == "QLineEdit")
+	newdata[objectname] =
+	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
+      else if(classname == "QSpinBox")
+	newdata[objectname] =
+	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
+      else if(classname == "QTextEdit")
+	newdata[objectname] =
+	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "QTimeEdit")
 	newdata[objectname] =
 	  (qobject_cast<QTimeEdit *> (widget))->text().trimmed();
@@ -92,6 +91,14 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 
+  for(i = 0; i < m_imageValues.size(); i++)
+    if(m_imageValues[m_imageValues.keys()[i]] !=
+       newimg[m_imageValues.keys()[i]])
+      {
+	hasChanged = true;
+	break;
+      }
+
   for(i = 0; i < m_widgetValues.size(); i++)
     if(m_widgetValues[m_widgetValues.keys()[i]] !=
        newdata[m_widgetValues.keys()[i]])
@@ -100,17 +107,8 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	break;
       }
 
-  if(!hasChanged)
-    for(i = 0; i < m_imageValues.size(); i++)
-      if(m_imageValues[m_imageValues.keys()[i]] !=
-	 newimg[m_imageValues.keys()[i]])
-	{
-	  hasChanged = true;
-	  break;
-	}
-
-  newimg.clear();
   newdata.clear();
+  newimg.clear();
   return hasChanged;
 }
 
