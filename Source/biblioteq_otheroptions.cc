@@ -264,6 +264,7 @@ void biblioteq_otheroptions::slotSave(void)
      m_ui.main_window_canvas_background_color->text().toLatin1());
   settings.setValue
     ("show_maintable_tooltips", m_ui.show_maintable_tooltips->isChecked());
+  settings.sync();
   emit mainWindowCanvasBackgroundColorChanged
     (QColor(m_ui.main_window_canvas_background_color->text()));
   emit saved();

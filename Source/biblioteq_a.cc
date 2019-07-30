@@ -1282,6 +1282,7 @@ void biblioteq::slotExit(void)
   QSettings settings;
 
   settings.setValue("mainwindowState", saveState());
+  settings.sync();
   biblioteq::quit();
 }
 
@@ -3885,6 +3886,8 @@ void biblioteq::slotSaveConfig(void)
     settings.setValue
       (ui.table->friendlyStates().keys().at(i),
        ui.table->friendlyStates()[ui.table->friendlyStates().keys().at(i)]);
+
+  settings.sync();
 }
 
 void biblioteq::slotShowColumns(void)
