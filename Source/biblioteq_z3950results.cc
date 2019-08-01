@@ -87,6 +87,55 @@ biblioteq_z3950results::~biblioteq_z3950results()
   m_records.clear();
 }
 
+void biblioteq_z3950results::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  m_ui.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}
+
+void biblioteq_z3950results::closeEvent(QCloseEvent *event)
+{
+  Q_UNUSED(event);
+  slotClose();
+}
+
+void biblioteq_z3950results::keyPressEvent(QKeyEvent *event)
+{
+  if(event && event->key() == Qt::Key_Escape)
+    close();
+
+  QDialog::keyPressEvent(event);
+}
+
+void biblioteq_z3950results::slotClose(void)
+{
+  deleteLater();
+}
+
+void biblioteq_z3950results::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
+}
+
 void biblioteq_z3950results::slotSelectRecord(void)
 {
   QStringList list;
@@ -162,53 +211,4 @@ void biblioteq_z3950results::slotUpdateQueryText(void)
   m_ui.title->setText(title);
   m_ui.title->setCursorPosition(0);
   m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
-}
-
-void biblioteq_z3950results::closeEvent(QCloseEvent *event)
-{
-  Q_UNUSED(event);
-  slotClose();
-}
-
-void biblioteq_z3950results::slotClose(void)
-{
-  deleteLater();
-}
-
-void biblioteq_z3950results::setGlobalFonts(const QFont &font)
-{
-  setFont(font);
-
-  foreach(QWidget *widget, findChildren<QWidget *> ())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
-
-  update();
-}
-
-void biblioteq_z3950results::keyPressEvent(QKeyEvent *event)
-{
-  if(event && event->key() == Qt::Key_Escape)
-    close();
-
-  QDialog::keyPressEvent(event);
-}
-
-void biblioteq_z3950results::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  m_ui.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QDialog::changeEvent(event);
 }
