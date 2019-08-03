@@ -205,6 +205,115 @@ biblioteq_photographcollection::~biblioteq_photographcollection()
 {
 }
 
+bool biblioteq_photographcollection::verifyItemFields(void)
+{
+  QString str("");
+
+  str = photo.id_item->text().trimmed();
+  photo.id_item->setText(str);
+
+  if(photo.id_item->text().isEmpty())
+    {
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's "
+			       "ID field."));
+      photo.id_item->setFocus();
+      return false;
+    }
+
+  str = photo.title_item->text().trimmed();
+  photo.title_item->setText(str);
+
+  if(photo.title_item->text().isEmpty())
+    {
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's "
+			       "Title field."));
+      photo.title_item->setFocus();
+      return false;
+    }
+
+  str = photo.creators_item->toPlainText().trimmed();
+  photo.creators_item->setPlainText(str);
+
+  if(photo.creators_item->toPlainText().isEmpty())
+    {
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's "
+			       "Creators field."));
+      photo.creators_item->setFocus();
+      return false;
+    }
+
+  str = photo.medium_item->text().trimmed();
+  photo.medium_item->setText(str);
+
+  if(photo.medium_item->text().isEmpty())
+    {
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's "
+			       "Medium field."));
+      photo.medium_item->setFocus();
+      return false;
+    }
+
+  str = photo.reproduction_number_item->toPlainText().trimmed();
+  photo.reproduction_number_item->setPlainText(str);
+
+  if(photo.reproduction_number_item->toPlainText().isEmpty())
+    {
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's "
+			       "Reproduction Number field."));
+      photo.reproduction_number_item->setFocus();
+      return false;
+    }
+
+  str = photo.copyright_item->toPlainText().trimmed();
+  photo.copyright_item->setPlainText(str);
+
+  if(photo.copyright_item->toPlainText().isEmpty())
+    {
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's "
+			       "Copyright field."));
+      photo.copyright_item->setFocus();
+      return false;
+    }
+
+  str = photo.accession_number_item->text().trimmed();
+  photo.accession_number_item->setText(str);
+  return true;
+}
+
+int biblioteq_photographcollection::photographsPerPage(void)
+{
+  int integer = qmain->setting("photographs_per_page").toInt();
+
+  if(!(integer == -1 || (integer >= 25 && integer <= 100)))
+    integer = 25;
+
+  return integer;
+}
+
+void biblioteq_photographcollection::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  pc.retranslateUi(this);
+	  photo.retranslateUi(m_photo_diag);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
+
 void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -260,6 +369,130 @@ void biblioteq_photographcollection::insert(void)
   showNormal();
   activateWindow();
   raise();
+}
+
+void biblioteq_photographcollection::loadPhotographFromItem
+(QGraphicsScene *scene, QGraphicsPixmapItem *item, const int percent)
+{
+  if(!item || !scene)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  query.prepare("SELECT image FROM "
+		"photograph WHERE "
+		"collection_oid = ? AND "
+		"myoid = ?");
+  query.bindValue(0, m_oid);
+  query.bindValue(1, item->data(0).toLongLong());
+
+  if(query.exec())
+    if(query.next())
+      {
+	QByteArray bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
+	QImage image;
+
+	image.loadFromData(bytes);
+
+	if(image.isNull())
+	  {
+	    bytes = query.value(0).toByteArray();
+	    image.loadFromData(bytes);
+	  }
+
+	if(image.isNull())
+	  image = QImage(":/no_image.png");
+
+	QImage originalImage(image);
+	QSize size(image.size());
+
+	size.setHeight((percent * size.height()) / 100);
+	size.setWidth((percent * size.width()) / 100);
+
+	if(!image.isNull())
+	  image = image.scaled
+	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	pc.graphicsView->scene()->clearSelection();
+	scene->clear();
+
+	QGraphicsPixmapItem *pixmapItem = scene->addPixmap
+	  (QPixmap::fromImage(image));
+
+	if(pixmapItem)
+	  pixmapItem->setData(1, bytes);
+
+	item->setSelected(true);
+
+	if(!scene->items().isEmpty())
+	  {
+	    scene->items().at(0)->setData(0, item->data(0)); // myoid
+	    scene->items().at(0)->setData(2, item->data(2)); // Navigation.
+	  }
+
+	scene->setSceneRect(scene->itemsBoundingRect());
+
+	QGraphicsView *view = scene->views().value(0);
+
+	if(view)
+	  {
+	    view->horizontalScrollBar()->setValue(0);
+	    view->verticalScrollBar()->setValue(0);
+	  }
+      }
+
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
+(QGraphicsPixmapItem *item)
+{
+  if(item)
+    {
+      QMainWindow *mainWindow = 0;
+      Ui_photographView ui;
+
+      if((mainWindow = new(std::nothrow) QMainWindow(this)) != 0)
+	{
+	  mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
+	  ui.setupUi(mainWindow);
+	  connect(ui.closeButton,
+		  SIGNAL(clicked(void)),
+		  mainWindow,
+		  SLOT(close(void)));
+	  connect(ui.exportItem,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotExportItem(void)));
+	  connect(ui.next,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotViewNextPhotograph(void)));
+	  connect(ui.previous,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotViewPreviousPhotograph(void)));
+	  connect(ui.view_size,
+		  SIGNAL(currentIndexChanged(const QString &)),
+		  this,
+		  SLOT(slotImageViewSizeChanged(const QString &)));
+
+	  QGraphicsScene *scene = 0;
+
+	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
+	    {
+	      ui.view->setScene(scene);
+	      loadPhotographFromItem
+		(scene, item,
+		 ui.view_size->currentText().remove("%").toInt());
+	      biblioteq_misc_functions::center(mainWindow, this);
+	      mainWindow->show();
+	    }
+	  else
+	    mainWindow->show();
+	}
+    }
 }
 
 void biblioteq_photographcollection::modify(const int state,
@@ -506,9 +739,429 @@ void biblioteq_photographcollection::search(const QString &field,
   raise();
 }
 
+void biblioteq_photographcollection::showPhotographs(const int page)
+{
+  QProgressDialog progress(this);
+
+  progress.setLabelText(tr("Loading image(s)..."));
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  QSqlQuery query(qmain->getDB());
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      if(photographsPerPage() == -1) // Unlimited.
+	{
+	  query.prepare("SELECT COUNT(*) FROM photograph "
+			"photograph WHERE "
+			"collection_oid = ? "
+			"ORDER BY id");
+	  query.bindValue(0, m_oid);
+	}
+      else
+	{
+	  query.prepare("SELECT COUNT(*) FROM photograph "
+			"photograph WHERE "
+			"collection_oid = ? "
+			"ORDER BY id "
+			"LIMIT ? "
+			"OFFSET ?");
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, photographsPerPage());
+	  query.bindValue(2, photographsPerPage() * (page - 1));
+	}
+
+      if(query.exec() && query.next())
+	progress.setMaximum(query.value(0).toInt());
+      else
+	progress.setMaximum(0);
+    }
+
+  if(photographsPerPage() == -1) // Unlimited.
+    {
+      query.prepare("SELECT image_scaled, myoid FROM "
+		    "photograph WHERE "
+		    "collection_oid = ? "
+		    "ORDER BY id");
+      query.bindValue(0, m_oid);
+    }
+  else
+    {
+      query.prepare("SELECT image_scaled, myoid FROM "
+		    "photograph WHERE "
+		    "collection_oid = ? "
+		    "ORDER BY id "
+		    "LIMIT ? "
+		    "OFFSET ?");
+      query.bindValue(0, m_oid);
+      query.bindValue(1, photographsPerPage());
+      query.bindValue(2, photographsPerPage() * (page - 1));
+    }
+
+  if(query.exec())
+    {
+      if(qmain->getDB().driverName() == "QPSQL")
+	progress.setMaximum(query.size());
+
+      pc.graphicsView->scene()->clear();
+      pc.graphicsView->resetTransform();
+      pc.graphicsView->verticalScrollBar()->setValue(0);
+      pc.graphicsView->horizontalScrollBar()->setValue(0);
+
+      int columnIdx = 0;
+      int i = -1;
+      int rowIdx = 0;
+
+      while(query.next())
+	{
+	  i += 1;
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+
+	  if(progress.wasCanceled())
+	    break;
+
+	  QImage image;
+	  biblioteq_graphicsitempixmap *pixmapItem = 0;
+
+	  image.loadFromData
+	    (QByteArray::fromBase64(query.value(0).
+				    toByteArray()));
+
+	  if(image.isNull())
+	    image.loadFromData(query.value(0).toByteArray());
+
+	  if(image.isNull())
+	    image = QImage(":/no_image.png");
+
+	  /*
+	  ** The size of no_image.png is 126x187.
+	  */
+
+	  if(!image.isNull())
+	    image = image.scaled
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+	    (QPixmap::fromImage(image), 0);
+
+	  if(pixmapItem)
+	    {
+	      if(rowIdx == 0)
+		pixmapItem->setPos(140 * columnIdx + 15, 15);
+	      else
+		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx);
+
+	      pixmapItem->setData(0, query.value(1)); // myoid
+	      pixmapItem->setData(2, i); // Next / previous navigation.
+	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+	      pc.graphicsView->scene()->addItem(pixmapItem);
+	    }
+
+	  columnIdx += 1;
+
+	  if(columnIdx >= 5)
+	    {
+	      rowIdx += 1;
+	      columnIdx = 0;
+	    }
+	}
+    }
+
+  progress.close();
+}
+
+void biblioteq_photographcollection::slotAddItem(void)
+{
+  photo.saveButton->disconnect(SIGNAL(clicked(void)));
+  connect(photo.saveButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotInsertItem(void)));
+  m_photo_diag->resize(m_photo_diag->width(),
+		       qRound(0.95 * size().height()));
+  biblioteq_misc_functions::center(m_photo_diag, this);
+  photo.thumbnail_item->clear();
+#if QT_VERSION >= 0x040700
+  photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
+#else
+  QDateTime dateTime(QDateTime::currentDateTime());
+
+  photo.id_item->setText(QString::
+                         number(static_cast<qint64> (dateTime.toTime_t())));
+#endif
+  photo.title_item->setText("N/A");
+  photo.creators_item->setPlainText("N/A");
+  photo.publication_date->setDate(QDate::fromString("01/01/2000",
+						    "MM/dd/yyyy"));
+  photo.quantity->setValue(1);
+  photo.medium_item->setText("N/A");
+  photo.reproduction_number_item->setPlainText("N/A");
+  photo.copyright_item->setPlainText("N/A");
+  photo.call_number_item->clear();
+  photo.other_number_item->clear();
+  photo.notes_item->clear();
+  photo.subjects_item->clear();
+  photo.format_item->clear();
+  photo.scrollArea->ensureVisible(0, 0);
+  photo.accession_number_item->clear();
+  photo.id_item->setFocus();
+  m_photo_diag->show();
+}
+
 void biblioteq_photographcollection::slotCancel(void)
 {
   close();
+}
+
+void biblioteq_photographcollection::slotClosePhoto(void)
+{
+  m_photo_diag->close();
+}
+
+void biblioteq_photographcollection::slotDeleteItem(void)
+{
+  QList<QGraphicsItem *> items(pc.graphicsView->scene()->selectedItems());
+
+  if(items.isEmpty())
+    return;
+  else
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to permanently "
+				  "delete the selected %1 item(s)?").
+			       arg(items.size()),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	return;
+    }
+
+  QProgressDialog progress(this);
+
+  progress.setCancelButton(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Deleting the selected item(s)..."));
+  progress.setMaximum(items.size());
+  progress.setMinimum(0);
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  int i = -1;
+
+  while(!items.isEmpty())
+    {
+      i += 1;
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QGraphicsPixmapItem *item = 0;
+
+      if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
+							    takeFirst())))
+	{
+	  QSqlQuery query(qmain->getDB());
+	  QString itemOid(item->data(0).toString());
+
+	  query.prepare("DELETE FROM photograph WHERE "
+			"collection_oid = ? AND myoid = ?");
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, itemOid);
+
+	  if(query.exec())
+	    {
+	      pc.graphicsView->scene()->removeItem(item);
+	      delete item;
+	    }
+	}
+    }
+
+  QSqlQuery query(qmain->getDB());
+  int pages = 1;
+
+  query.prepare("SELECT COUNT(*) "
+		"FROM photograph "
+		"WHERE collection_oid = ?");
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      {
+	updateTablePhotographCount(query.value(0).toInt());
+
+	int i = photographsPerPage();
+
+	if(i == -1) // Unlimited.
+	  pages = 1;
+	else
+	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+      }
+
+  pages = qMax(1, pages);
+  pc.page->blockSignals(true);
+  pc.page->clear();
+
+  for(int i = 1; i <= pages; i++)
+    pc.page->addItem(QString::number(i));
+
+  pc.page->blockSignals(false);
+  progress.close();
+  repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+  showPhotographs(pc.page->currentText().toInt());
+}
+
+void biblioteq_photographcollection::slotExportItem(void)
+{
+  QPushButton *pushButton = qobject_cast<QPushButton *> (sender());
+
+  if(!pushButton)
+    return;
+
+  QWidget *parent = pushButton->parentWidget();
+
+  do
+    {
+      if(!parent)
+	break;
+
+      if(qobject_cast<QMainWindow *> (parent))
+	break;
+
+      parent = parent->parentWidget();
+    }
+  while(true);
+
+  if(!parent)
+    return;
+
+  QByteArray bytes;
+  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+
+  if(scene)
+    {
+      QGraphicsPixmapItem *item = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(0));
+
+      if(item)
+	bytes = item->data(1).toByteArray();
+    }
+
+  if(bytes.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photograph "
+			   "Export"));
+  dialog.selectFile(QString("biblioteq-image-export.%1").
+		    arg(biblioteq_misc_functions::imageFormatGuess(bytes)));
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      QFile file(dialog.selectedFiles().value(0));
+
+      if(file.open(QIODevice::WriteOnly))
+	{
+	  file.write(bytes);
+	  file.flush();
+	  file.close();
+	}
+    }
+}
+
+void biblioteq_photographcollection::slotExportPhotographs(void)
+{
+  if(pc.graphicsView->scene()->items().isEmpty())
+    return;
+  else
+    {
+      if(!qobject_cast<QAction *> (sender()))
+	if(pc.graphicsView->scene()->selectedItems().isEmpty())
+	  return;
+    }
+
+  QFileDialog dialog(this);
+
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photographs "
+			   "Export"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted &&
+     dialog.selectedFiles().size() > 0)
+    {
+      repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QAction *action = qobject_cast<QAction *> (sender());
+
+      if(!action ||
+	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
+	/*
+	** Export all photographs.
+	*/
+
+	biblioteq_misc_functions::exportPhotographs
+	  (qmain->getDB(),
+	   m_oid,
+	   -1,
+	   dialog.selectedFiles().value(0),
+	   this);
+      else if(action ==
+	      pc.exportPhotographsToolButton->menu()->actions().value(1))
+	/*
+	** Export the current page.
+	*/
+
+	biblioteq_misc_functions::exportPhotographs
+	  (qmain->getDB(),
+	   m_oid,
+	   pc.page->currentText().toInt(),
+	   dialog.selectedFiles().value(0),
+	   this);
+      else
+	/*
+	** Export the selected photograp(s).
+	*/
+
+	biblioteq_misc_functions::exportPhotographs
+	  (qmain->getDB(),
+	   m_oid,
+	   dialog.selectedFiles().value(0),
+	   pc.graphicsView->scene()->selectedItems(),
+	   this);
+    }
 }
 
 void biblioteq_photographcollection::slotGo(void)
@@ -878,6 +1531,267 @@ void biblioteq_photographcollection::slotGo(void)
     }
 }
 
+void biblioteq_photographcollection::slotImageViewSizeChanged
+(const QString &text)
+{
+  QComboBox *comboBox = qobject_cast<QComboBox *> (sender());
+
+  if(!comboBox)
+    return;
+
+  QWidget *parent = comboBox->parentWidget();
+
+  do
+    {
+      if(!parent)
+	break;
+
+      if(qobject_cast<QMainWindow *> (parent))
+	break;
+
+      parent = parent->parentWidget();
+    }
+  while(true);
+
+  if(!parent)
+    return;
+
+  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+
+  if(scene)
+    {
+      QGraphicsPixmapItem *item = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(0));
+
+      if(item)
+	{
+	  QImage image;
+
+	  if(image.loadFromData(item->data(1).toByteArray()))
+	    {
+	      QSize size(image.size());
+	      int percent = QString(text).remove("%").toInt();
+
+	      size.setHeight((percent * size.height()) / 100);
+	      size.setWidth((percent * size.width()) / 100);
+
+	      if(!image.isNull())
+		image = image.scaled
+		  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	      item->setPixmap(QPixmap::fromImage(image));
+	      scene->setSceneRect(scene->itemsBoundingRect());
+	    }
+	}
+    }
+}
+
+void biblioteq_photographcollection::slotImportItems(void)
+{
+  QFileDialog dialog(this);
+  QStringList list;
+
+  list << "*" << "*.bmp" << "*.jpg" << "*.jpeg" << "*.png";
+
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::ExistingFiles);
+  dialog.setNameFilters(list);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Import"));
+  dialog.exec();
+
+  if(dialog.result() != QDialog::Accepted)
+    return;
+
+  repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  QStringList files(dialog.selectedFiles());
+
+  if(files.isEmpty())
+    return;
+
+  QProgressDialog progress(this);
+
+  progress.setLabelText(tr("Importing image(s)..."));
+  progress.setMaximum(files.size());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  int imported = 0;
+  int pages = 0;
+
+  for(int i = 0; i < files.size(); i++)
+    {
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      if(progress.wasCanceled())
+	break;
+
+      QByteArray bytes1;
+      QFile file(files.at(i));
+
+      if(!file.open(QIODevice::ReadOnly))
+	continue;
+      else
+	bytes1 = file.readAll();
+
+      if(static_cast<qint64> (bytes1.length()) != file.size())
+	continue;
+
+      QImage image;
+
+      if(!image.loadFromData(bytes1))
+	continue;
+
+      QSqlQuery query(qmain->getDB());
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	query.prepare("INSERT INTO photograph "
+		      "(id, collection_oid, title, creators, pdate, "
+		      "quantity, medium, reproduction_number, "
+		      "copyright, callnumber, other_number, notes, subjects, "
+		      "format, image, image_scaled, accession_number) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
+		      "?, ?, ?, ?, ?, ?, ?, ?)");
+      else
+	query.prepare("INSERT INTO photograph "
+		      "(id, collection_oid, title, creators, pdate, "
+		      "quantity, medium, reproduction_number, "
+		      "copyright, callnumber, other_number, notes, subjects, "
+		      "format, image, image_scaled, accession_number, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
+		      "?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+      QString id("");
+
+#if QT_VERSION >= 0x040700
+      id = QString::number(QDateTime::currentMSecsSinceEpoch() +
+			   static_cast<qint64> (imported));
+#else
+      QDateTime dateTime(QDateTime::currentDateTime());
+
+      id = QString::number(static_cast<qint64> (dateTime.toTime_t()) +
+			   static_cast<qint64> (imported));
+#endif
+
+      query.bindValue(0, id);
+      query.bindValue(1, m_oid);
+      query.bindValue(2, "N/A");
+      query.bindValue(3, "N/A");
+      query.bindValue(4, "01/01/2000");
+      query.bindValue(5, 1);
+      query.bindValue(6, "N/A");
+      query.bindValue(7, "N/A");
+      query.bindValue(8, "N/A");
+      query.bindValue(9, "N/A");
+      query.bindValue(10, "N/A");
+      query.bindValue(11, "N/A");
+      query.bindValue(12, "N/A");
+      query.bindValue(13, "N/A");
+      query.bindValue(14, bytes1.toBase64());
+
+      QBuffer buffer;
+      QByteArray bytes2;
+      QString format(biblioteq_misc_functions::imageFormatGuess(bytes1));
+
+      buffer.setBuffer(&bytes2);
+      buffer.open(QIODevice::WriteOnly);
+
+      if(!image.isNull())
+	image = image.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(image.isNull() || !image.save(&buffer, format.toLatin1().constData(),
+				       100))
+	bytes2 = bytes1;
+
+      query.bindValue(15, bytes2.toBase64());
+      query.bindValue(16, "N/A");
+
+      if(qmain->getDB().driverName() == "QSQLITE")
+	{
+	  QString errorstr("");
+	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	    (qmain->getDB(),
+	     errorstr);
+
+	  if(errorstr.isEmpty())
+	    query.bindValue(17, value);
+	  else
+	    qmain->addError(QString(tr("Database Error")),
+			    QString(tr("Unable to generate a unique "
+				       "integer.")),
+			    errorstr);
+	}
+
+      if(!query.exec())
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to import photograph.")),
+			query.lastError().text(), __FILE__, __LINE__);
+      else
+	imported += 1;
+    }
+
+  progress.close();
+  repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSqlQuery query(qmain->getDB());
+
+  query.prepare("SELECT COUNT(*) "
+		"FROM photograph "
+		"WHERE collection_oid = ?");
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      {
+	updateTablePhotographCount(query.value(0).toInt());
+
+	int i = photographsPerPage();
+
+	if(i == -1) // Unlimited.
+	  pages = 1;
+	else
+	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+      }
+
+  QApplication::restoreOverrideCursor();
+  pages = qMax(1, pages);
+  pc.page->blockSignals(true);
+  pc.page->clear();
+
+  for(int i = 1; i <= pages; i++)
+    pc.page->addItem(QString::number(i));
+
+  pc.page->blockSignals(false);
+  showPhotographs(1);
+  QMessageBox::information(this,
+			   tr("BiblioteQ: Information"),
+			   tr("A total of %1 image(s) were imported from "
+			      "the directory %2.").
+			   arg(imported).
+			   arg(dialog.directory().absolutePath()));
+}
+
 void biblioteq_photographcollection::slotPrint(void)
 {
   m_html = "<html>";
@@ -1056,329 +1970,6 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	    (photo.thumbnail_item->scene()->itemsBoundingRect());
 	}
     }
-}
-
-void biblioteq_photographcollection::updateWindow(const int state)
-{
-  QString str("");
-
-  if(state == biblioteq::EDITABLE)
-    {
-      pc.okButton->setVisible(true);
-      pc.addItemButton->setEnabled(true);
-      pc.importItems->setEnabled(true);
-      pc.resetButton->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
-	pc.id_collection->text() + tr(")");
-      m_engWindowTitle = "Modify";
-      disconnect(m_scene,
-		 SIGNAL(deleteKeyPressed(void)),
-		 this,
-		 SLOT(slotDeleteItem(void)));
-      connect(m_scene,
-	      SIGNAL(deleteKeyPressed(void)),
-	      this,
-	      SLOT(slotDeleteItem(void)));
-    }
-  else
-    {
-      pc.okButton->setVisible(false);
-      pc.addItemButton->setEnabled(false);
-      pc.importItems->setEnabled(false);
-      pc.resetButton->setVisible(false);
-      str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
-	pc.id_collection->text() + tr(")");
-      m_engWindowTitle = "View";
-    }
-
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
-  pc.page->setEnabled(true);
-}
-
-void biblioteq_photographcollection::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  pc.retranslateUi(this);
-	  photo.retranslateUi(m_photo_diag);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QMainWindow::changeEvent(event);
-}
-
-void biblioteq_photographcollection::showPhotographs(const int page)
-{
-  QProgressDialog progress(this);
-
-  progress.setLabelText(tr("Loading image(s)..."));
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  QSqlQuery query(qmain->getDB());
-
-  if(qmain->getDB().driverName() == "QSQLITE")
-    {
-      if(photographsPerPage() == -1) // Unlimited.
-	{
-	  query.prepare("SELECT COUNT(*) FROM photograph "
-			"photograph WHERE "
-			"collection_oid = ? "
-			"ORDER BY id");
-	  query.bindValue(0, m_oid);
-	}
-      else
-	{
-	  query.prepare("SELECT COUNT(*) FROM photograph "
-			"photograph WHERE "
-			"collection_oid = ? "
-			"ORDER BY id "
-			"LIMIT ? "
-			"OFFSET ?");
-	  query.bindValue(0, m_oid);
-	  query.bindValue(1, photographsPerPage());
-	  query.bindValue(2, photographsPerPage() * (page - 1));
-	}
-
-      if(query.exec() && query.next())
-	progress.setMaximum(query.value(0).toInt());
-      else
-	progress.setMaximum(0);
-    }
-
-  if(photographsPerPage() == -1) // Unlimited.
-    {
-      query.prepare("SELECT image_scaled, myoid FROM "
-		    "photograph WHERE "
-		    "collection_oid = ? "
-		    "ORDER BY id");
-      query.bindValue(0, m_oid);
-    }
-  else
-    {
-      query.prepare("SELECT image_scaled, myoid FROM "
-		    "photograph WHERE "
-		    "collection_oid = ? "
-		    "ORDER BY id "
-		    "LIMIT ? "
-		    "OFFSET ?");
-      query.bindValue(0, m_oid);
-      query.bindValue(1, photographsPerPage());
-      query.bindValue(2, photographsPerPage() * (page - 1));
-    }
-
-  if(query.exec())
-    {
-      if(qmain->getDB().driverName() == "QPSQL")
-	progress.setMaximum(query.size());
-
-      pc.graphicsView->scene()->clear();
-      pc.graphicsView->resetTransform();
-      pc.graphicsView->verticalScrollBar()->setValue(0);
-      pc.graphicsView->horizontalScrollBar()->setValue(0);
-
-      int columnIdx = 0;
-      int i = -1;
-      int rowIdx = 0;
-
-      while(query.next())
-	{
-	  i += 1;
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-
-	  if(progress.wasCanceled())
-	    break;
-
-	  QImage image;
-	  biblioteq_graphicsitempixmap *pixmapItem = 0;
-
-	  image.loadFromData
-	    (QByteArray::fromBase64(query.value(0).
-				    toByteArray()));
-
-	  if(image.isNull())
-	    image.loadFromData(query.value(0).toByteArray());
-
-	  if(image.isNull())
-	    image = QImage(":/no_image.png");
-
-	  /*
-	  ** The size of no_image.png is 126x187.
-	  */
-
-	  if(!image.isNull())
-	    image = image.scaled
-	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-	  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
-	    (QPixmap::fromImage(image), 0);
-
-	  if(pixmapItem)
-	    {
-	      if(rowIdx == 0)
-		pixmapItem->setPos(140 * columnIdx + 15, 15);
-	      else
-		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx);
-
-	      pixmapItem->setData(0, query.value(1)); // myoid
-	      pixmapItem->setData(2, i); // Next / previous navigation.
-	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
-	      pc.graphicsView->scene()->addItem(pixmapItem);
-	    }
-
-	  columnIdx += 1;
-
-	  if(columnIdx >= 5)
-	    {
-	      rowIdx += 1;
-	      columnIdx = 0;
-	    }
-	}
-    }
-
-  progress.close();
-}
-
-void biblioteq_photographcollection::slotAddItem(void)
-{
-  photo.saveButton->disconnect(SIGNAL(clicked(void)));
-  connect(photo.saveButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotInsertItem(void)));
-  m_photo_diag->resize(m_photo_diag->width(),
-		       qRound(0.95 * size().height()));
-  biblioteq_misc_functions::center(m_photo_diag, this);
-  photo.thumbnail_item->clear();
-#if QT_VERSION >= 0x040700
-  photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
-#else
-  QDateTime dateTime(QDateTime::currentDateTime());
-
-  photo.id_item->setText(QString::
-                         number(static_cast<qint64> (dateTime.toTime_t())));
-#endif
-  photo.title_item->setText("N/A");
-  photo.creators_item->setPlainText("N/A");
-  photo.publication_date->setDate(QDate::fromString("01/01/2000",
-						    "MM/dd/yyyy"));
-  photo.quantity->setValue(1);
-  photo.medium_item->setText("N/A");
-  photo.reproduction_number_item->setPlainText("N/A");
-  photo.copyright_item->setPlainText("N/A");
-  photo.call_number_item->clear();
-  photo.other_number_item->clear();
-  photo.notes_item->clear();
-  photo.subjects_item->clear();
-  photo.format_item->clear();
-  photo.scrollArea->ensureVisible(0, 0);
-  photo.accession_number_item->clear();
-  photo.id_item->setFocus();
-  m_photo_diag->show();
-}
-
-void biblioteq_photographcollection::slotClosePhoto(void)
-{
-  m_photo_diag->close();
-}
-
-bool biblioteq_photographcollection::verifyItemFields(void)
-{
-  QString str("");
-
-  str = photo.id_item->text().trimmed();
-  photo.id_item->setText(str);
-
-  if(photo.id_item->text().isEmpty())
-    {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "ID field."));
-      photo.id_item->setFocus();
-      return false;
-    }
-
-  str = photo.title_item->text().trimmed();
-  photo.title_item->setText(str);
-
-  if(photo.title_item->text().isEmpty())
-    {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Title field."));
-      photo.title_item->setFocus();
-      return false;
-    }
-
-  str = photo.creators_item->toPlainText().trimmed();
-  photo.creators_item->setPlainText(str);
-
-  if(photo.creators_item->toPlainText().isEmpty())
-    {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Creators field."));
-      photo.creators_item->setFocus();
-      return false;
-    }
-
-  str = photo.medium_item->text().trimmed();
-  photo.medium_item->setText(str);
-
-  if(photo.medium_item->text().isEmpty())
-    {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Medium field."));
-      photo.medium_item->setFocus();
-      return false;
-    }
-
-  str = photo.reproduction_number_item->toPlainText().trimmed();
-  photo.reproduction_number_item->setPlainText(str);
-
-  if(photo.reproduction_number_item->toPlainText().isEmpty())
-    {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Reproduction Number field."));
-      photo.reproduction_number_item->setFocus();
-      return false;
-    }
-
-  str = photo.copyright_item->toPlainText().trimmed();
-  photo.copyright_item->setPlainText(str);
-
-  if(photo.copyright_item->toPlainText().isEmpty())
-    {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Copyright field."));
-      photo.copyright_item->setFocus();
-      return false;
-    }
-
-  str = photo.accession_number_item->text().trimmed();
-  photo.accession_number_item->setText(str);
-  return true;
 }
 
 void biblioteq_photographcollection::slotInsertItem(void)
@@ -1953,182 +2544,11 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 			   "the item does not already exist."));
 }
 
-void biblioteq_photographcollection::slotDeleteItem(void)
-{
-  QList<QGraphicsItem *> items(pc.graphicsView->scene()->selectedItems());
-
-  if(items.isEmpty())
-    return;
-  else
-    {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			       tr("Are you sure that you wish to permanently "
-				  "delete the selected %1 item(s)?").
-			       arg(items.size()),
-			       QMessageBox::Yes | QMessageBox::No,
-			       QMessageBox::No) == QMessageBox::No)
-	return;
-    }
-
-  QProgressDialog progress(this);
-
-  progress.setCancelButton(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Deleting the selected item(s)..."));
-  progress.setMaximum(items.size());
-  progress.setMinimum(0);
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  int i = -1;
-
-  while(!items.isEmpty())
-    {
-      i += 1;
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      QGraphicsPixmapItem *item = 0;
-
-      if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
-							    takeFirst())))
-	{
-	  QSqlQuery query(qmain->getDB());
-	  QString itemOid(item->data(0).toString());
-
-	  query.prepare("DELETE FROM photograph WHERE "
-			"collection_oid = ? AND myoid = ?");
-	  query.bindValue(0, m_oid);
-	  query.bindValue(1, itemOid);
-
-	  if(query.exec())
-	    {
-	      pc.graphicsView->scene()->removeItem(item);
-	      delete item;
-	    }
-	}
-    }
-
-  QSqlQuery query(qmain->getDB());
-  int pages = 1;
-
-  query.prepare("SELECT COUNT(*) "
-		"FROM photograph "
-		"WHERE collection_oid = ?");
-  query.bindValue(0, m_oid);
-
-  if(query.exec())
-    if(query.next())
-      {
-	updateTablePhotographCount(query.value(0).toInt());
-
-	int i = photographsPerPage();
-
-	if(i == -1) // Unlimited.
-	  pages = 1;
-	else
-	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
-      }
-
-  pages = qMax(1, pages);
-  pc.page->blockSignals(true);
-  pc.page->clear();
-
-  for(int i = 1; i <= pages; i++)
-    pc.page->addItem(QString::number(i));
-
-  pc.page->blockSignals(false);
-  progress.close();
-  repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-  showPhotographs(pc.page->currentText().toInt());
-}
-
 void biblioteq_photographcollection::slotPageChanged(const QString &text)
 {
   pc.page->repaint();
   QApplication::processEvents();
   showPhotographs(text.toInt());
-}
-
-void biblioteq_photographcollection::slotExportPhotographs(void)
-{
-  if(pc.graphicsView->scene()->items().isEmpty())
-    return;
-  else
-    {
-      if(!qobject_cast<QAction *> (sender()))
-	if(pc.graphicsView->scene()->selectedItems().isEmpty())
-	  return;
-    }
-
-  QFileDialog dialog(this);
-
-  dialog.setFileMode(QFileDialog::Directory);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photographs "
-			   "Export"));
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted &&
-     dialog.selectedFiles().size() > 0)
-    {
-      repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      QAction *action = qobject_cast<QAction *> (sender());
-
-      if(!action ||
-	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
-	/*
-	** Export all photographs.
-	*/
-
-	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(),
-	   m_oid,
-	   -1,
-	   dialog.selectedFiles().value(0),
-	   this);
-      else if(action ==
-	      pc.exportPhotographsToolButton->menu()->actions().value(1))
-	/*
-	** Export the current page.
-	*/
-
-	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(),
-	   m_oid,
-	   pc.page->currentText().toInt(),
-	   dialog.selectedFiles().value(0),
-	   this);
-      else
-	/*
-	** Export the selected photograp(s).
-	*/
-
-	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(),
-	   m_oid,
-	   dialog.selectedFiles().value(0),
-	   pc.graphicsView->scene()->selectedItems(),
-	   this);
-    }
 }
 
 void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
@@ -2165,146 +2585,6 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 	  action->setData(pos);
 	  menu.exec(QCursor::pos());
 	  item->setSelected(true);
-	}
-    }
-}
-
-void biblioteq_photographcollection::slotViewPhotograph(void)
-{
-  QAction *action = qobject_cast<QAction *> (sender());
-  QPoint pos;
-
-  if(action)
-    pos = action->data().toPoint();
-
-  if(pos.isNull())
-    pos = pc.graphicsView->mapFromGlobal(QCursor::pos());
-
-  loadPhotographFromItemInNewWindow
-    (qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (pc.graphicsView->
-							 itemAt(pos)));
-}
-
-void biblioteq_photographcollection::loadPhotographFromItem
-(QGraphicsScene *scene, QGraphicsPixmapItem *item, const int percent)
-{
-  if(!item || !scene)
-    return;
-
-  QSqlQuery query(qmain->getDB());
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  query.prepare("SELECT image FROM "
-		"photograph WHERE "
-		"collection_oid = ? AND "
-		"myoid = ?");
-  query.bindValue(0, m_oid);
-  query.bindValue(1, item->data(0).toLongLong());
-
-  if(query.exec())
-    if(query.next())
-      {
-	QByteArray bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
-	QImage image;
-
-	image.loadFromData(bytes);
-
-	if(image.isNull())
-	  {
-	    bytes = query.value(0).toByteArray();
-	    image.loadFromData(bytes);
-	  }
-
-	if(image.isNull())
-	  image = QImage(":/no_image.png");
-
-	QImage originalImage(image);
-	QSize size(image.size());
-
-	size.setHeight((percent * size.height()) / 100);
-	size.setWidth((percent * size.width()) / 100);
-
-	if(!image.isNull())
-	  image = image.scaled
-	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-	pc.graphicsView->scene()->clearSelection();
-	scene->clear();
-
-	QGraphicsPixmapItem *pixmapItem = scene->addPixmap
-	  (QPixmap::fromImage(image));
-
-	if(pixmapItem)
-	  pixmapItem->setData(1, bytes);
-
-	item->setSelected(true);
-
-	if(!scene->items().isEmpty())
-	  {
-	    scene->items().at(0)->setData(0, item->data(0)); // myoid
-	    scene->items().at(0)->setData(2, item->data(2)); // Navigation.
-	  }
-
-	scene->setSceneRect(scene->itemsBoundingRect());
-
-	QGraphicsView *view = scene->views().value(0);
-
-	if(view)
-	  {
-	    view->horizontalScrollBar()->setValue(0);
-	    view->verticalScrollBar()->setValue(0);
-	  }
-      }
-
-  QApplication::restoreOverrideCursor();
-}
-
-void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
-(QGraphicsPixmapItem *item)
-{
-  if(item)
-    {
-      QMainWindow *mainWindow = 0;
-      Ui_photographView ui;
-
-      if((mainWindow = new(std::nothrow) QMainWindow(this)) != 0)
-	{
-	  mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
-	  ui.setupUi(mainWindow);
-	  connect(ui.closeButton,
-		  SIGNAL(clicked(void)),
-		  mainWindow,
-		  SLOT(close(void)));
-	  connect(ui.exportItem,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotExportItem(void)));
-	  connect(ui.next,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotViewNextPhotograph(void)));
-	  connect(ui.previous,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotViewPreviousPhotograph(void)));
-	  connect(ui.view_size,
-		  SIGNAL(currentIndexChanged(const QString &)),
-		  this,
-		  SLOT(slotImageViewSizeChanged(const QString &)));
-
-	  QGraphicsScene *scene = 0;
-
-	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
-	    {
-	      ui.view->setScene(scene);
-	      loadPhotographFromItem
-		(scene, item,
-		 ui.view_size->currentText().remove("%").toInt());
-	      biblioteq_misc_functions::center(mainWindow, this);
-	      mainWindow->show();
-	    }
-	  else
-	    mainWindow->show();
 	}
     }
 }
@@ -2368,6 +2648,22 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
     }
 }
 
+void biblioteq_photographcollection::slotViewPhotograph(void)
+{
+  QAction *action = qobject_cast<QAction *> (sender());
+  QPoint pos;
+
+  if(action)
+    pos = action->data().toPoint();
+
+  if(pos.isNull())
+    pos = pc.graphicsView->mapFromGlobal(QCursor::pos());
+
+  loadPhotographFromItemInNewWindow
+    (qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (pc.graphicsView->
+							 itemAt(pos)));
+}
+
 void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 {
   QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
@@ -2427,267 +2723,6 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
     }
 }
 
-void biblioteq_photographcollection::slotImportItems(void)
-{
-  QFileDialog dialog(this);
-  QStringList list;
-
-  list << "*" << "*.bmp" << "*.jpg" << "*.jpeg" << "*.png";
-
-  dialog.setDirectory(QDir::homePath());
-  dialog.setFileMode(QFileDialog::ExistingFiles);
-  dialog.setNameFilters(list);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Import"));
-  dialog.exec();
-
-  if(dialog.result() != QDialog::Accepted)
-    return;
-
-  repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  QStringList files(dialog.selectedFiles());
-
-  if(files.isEmpty())
-    return;
-
-  QProgressDialog progress(this);
-
-  progress.setLabelText(tr("Importing image(s)..."));
-  progress.setMaximum(files.size());
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  int imported = 0;
-  int pages = 0;
-
-  for(int i = 0; i < files.size(); i++)
-    {
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      if(progress.wasCanceled())
-	break;
-
-      QByteArray bytes1;
-      QFile file(files.at(i));
-
-      if(!file.open(QIODevice::ReadOnly))
-	continue;
-      else
-	bytes1 = file.readAll();
-
-      if(static_cast<qint64> (bytes1.length()) != file.size())
-	continue;
-
-      QImage image;
-
-      if(!image.loadFromData(bytes1))
-	continue;
-
-      QSqlQuery query(qmain->getDB());
-
-      if(qmain->getDB().driverName() != "QSQLITE")
-	query.prepare("INSERT INTO photograph "
-		      "(id, collection_oid, title, creators, pdate, "
-		      "quantity, medium, reproduction_number, "
-		      "copyright, callnumber, other_number, notes, subjects, "
-		      "format, image, image_scaled, accession_number) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, ?, ?, ?, ?, ?)");
-      else
-	query.prepare("INSERT INTO photograph "
-		      "(id, collection_oid, title, creators, pdate, "
-		      "quantity, medium, reproduction_number, "
-		      "copyright, callnumber, other_number, notes, subjects, "
-		      "format, image, image_scaled, accession_number, myoid) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-      QString id("");
-
-#if QT_VERSION >= 0x040700
-      id = QString::number(QDateTime::currentMSecsSinceEpoch() +
-			   static_cast<qint64> (imported));
-#else
-      QDateTime dateTime(QDateTime::currentDateTime());
-
-      id = QString::number(static_cast<qint64> (dateTime.toTime_t()) +
-			   static_cast<qint64> (imported));
-#endif
-
-      query.bindValue(0, id);
-      query.bindValue(1, m_oid);
-      query.bindValue(2, "N/A");
-      query.bindValue(3, "N/A");
-      query.bindValue(4, "01/01/2000");
-      query.bindValue(5, 1);
-      query.bindValue(6, "N/A");
-      query.bindValue(7, "N/A");
-      query.bindValue(8, "N/A");
-      query.bindValue(9, "N/A");
-      query.bindValue(10, "N/A");
-      query.bindValue(11, "N/A");
-      query.bindValue(12, "N/A");
-      query.bindValue(13, "N/A");
-      query.bindValue(14, bytes1.toBase64());
-
-      QBuffer buffer;
-      QByteArray bytes2;
-      QString format(biblioteq_misc_functions::imageFormatGuess(bytes1));
-
-      buffer.setBuffer(&bytes2);
-      buffer.open(QIODevice::WriteOnly);
-
-      if(!image.isNull())
-	image = image.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-      if(image.isNull() || !image.save(&buffer, format.toLatin1().constData(),
-				       100))
-	bytes2 = bytes1;
-
-      query.bindValue(15, bytes2.toBase64());
-      query.bindValue(16, "N/A");
-
-      if(qmain->getDB().driverName() == "QSQLITE")
-	{
-	  QString errorstr("");
-	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	    (qmain->getDB(),
-	     errorstr);
-
-	  if(errorstr.isEmpty())
-	    query.bindValue(17, value);
-	  else
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique "
-				       "integer.")),
-			    errorstr);
-	}
-
-      if(!query.exec())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to import photograph.")),
-			query.lastError().text(), __FILE__, __LINE__);
-      else
-	imported += 1;
-    }
-
-  progress.close();
-  repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QSqlQuery query(qmain->getDB());
-
-  query.prepare("SELECT COUNT(*) "
-		"FROM photograph "
-		"WHERE collection_oid = ?");
-  query.bindValue(0, m_oid);
-
-  if(query.exec())
-    if(query.next())
-      {
-	updateTablePhotographCount(query.value(0).toInt());
-
-	int i = photographsPerPage();
-
-	if(i == -1) // Unlimited.
-	  pages = 1;
-	else
-	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
-      }
-
-  QApplication::restoreOverrideCursor();
-  pages = qMax(1, pages);
-  pc.page->blockSignals(true);
-  pc.page->clear();
-
-  for(int i = 1; i <= pages; i++)
-    pc.page->addItem(QString::number(i));
-
-  pc.page->blockSignals(false);
-  showPhotographs(1);
-  QMessageBox::information(this,
-			   tr("BiblioteQ: Information"),
-			   tr("A total of %1 image(s) were imported from "
-			      "the directory %2.").
-			   arg(imported).
-			   arg(dialog.directory().absolutePath()));
-}
-
-void biblioteq_photographcollection::slotImageViewSizeChanged
-(const QString &text)
-{
-  QComboBox *comboBox = qobject_cast<QComboBox *> (sender());
-
-  if(!comboBox)
-    return;
-
-  QWidget *parent = comboBox->parentWidget();
-
-  do
-    {
-      if(!parent)
-	break;
-
-      if(qobject_cast<QMainWindow *> (parent))
-	break;
-
-      parent = parent->parentWidget();
-    }
-  while(true);
-
-  if(!parent)
-    return;
-
-  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
-
-  if(scene)
-    {
-      QGraphicsPixmapItem *item = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(0));
-
-      if(item)
-	{
-	  QImage image;
-
-	  if(image.loadFromData(item->data(1).toByteArray()))
-	    {
-	      QSize size(image.size());
-	      int percent = QString(text).remove("%").toInt();
-
-	      size.setHeight((percent * size.height()) / 100);
-	      size.setWidth((percent * size.width()) / 100);
-
-	      if(!image.isNull())
-		image = image.scaled
-		  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-	      item->setPixmap(QPixmap::fromImage(image));
-	      scene->setSceneRect(scene->itemsBoundingRect());
-	    }
-	}
-    }
-}
-
 void biblioteq_photographcollection::updateTablePhotographCount
 (const int count)
 {
@@ -2722,75 +2757,40 @@ void biblioteq_photographcollection::updateTablePhotographCount
     }
 }
 
-void biblioteq_photographcollection::slotExportItem(void)
+void biblioteq_photographcollection::updateWindow(const int state)
 {
-  QPushButton *pushButton = qobject_cast<QPushButton *> (sender());
+  QString str("");
 
-  if(!pushButton)
-    return;
-
-  QWidget *parent = pushButton->parentWidget();
-
-  do
+  if(state == biblioteq::EDITABLE)
     {
-      if(!parent)
-	break;
-
-      if(qobject_cast<QMainWindow *> (parent))
-	break;
-
-      parent = parent->parentWidget();
+      pc.okButton->setVisible(true);
+      pc.addItemButton->setEnabled(true);
+      pc.importItems->setEnabled(true);
+      pc.resetButton->setVisible(true);
+      str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
+	pc.id_collection->text() + tr(")");
+      m_engWindowTitle = "Modify";
+      disconnect(m_scene,
+		 SIGNAL(deleteKeyPressed(void)),
+		 this,
+		 SLOT(slotDeleteItem(void)));
+      connect(m_scene,
+	      SIGNAL(deleteKeyPressed(void)),
+	      this,
+	      SLOT(slotDeleteItem(void)));
     }
-  while(true);
-
-  if(!parent)
-    return;
-
-  QByteArray bytes;
-  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
-
-  if(scene)
+  else
     {
-      QGraphicsPixmapItem *item = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(0));
-
-      if(item)
-	bytes = item->data(1).toByteArray();
+      pc.okButton->setVisible(false);
+      pc.addItemButton->setEnabled(false);
+      pc.importItems->setEnabled(false);
+      pc.resetButton->setVisible(false);
+      str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
+	pc.id_collection->text() + tr(")");
+      m_engWindowTitle = "View";
     }
 
-  if(bytes.isEmpty())
-    return;
-
-  QFileDialog dialog(this);
-
-  dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setFileMode(QFileDialog::AnyFile);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photograph "
-			   "Export"));
-  dialog.selectFile(QString("biblioteq-image-export.%1").
-		    arg(biblioteq_misc_functions::imageFormatGuess(bytes)));
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      QFile file(dialog.selectedFiles().value(0));
-
-      if(file.open(QIODevice::WriteOnly))
-	{
-	  file.write(bytes);
-	  file.flush();
-	  file.close();
-	}
-    }
-}
-
-int biblioteq_photographcollection::photographsPerPage(void)
-{
-  int integer = qmain->setting("photographs_per_page").toInt();
-
-  if(!(integer == -1 || (integer >= 25 && integer <= 100)))
-    integer = 25;
-
-  return integer;
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
+  pc.page->setEnabled(true);
 }
