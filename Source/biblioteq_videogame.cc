@@ -244,7 +244,7 @@ void biblioteq_videogame::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-void biblioteq_videogame::closeEvent(QCloseEvent *e)
+void biblioteq_videogame::closeEvent(QCloseEvent *event)
 {
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -255,8 +255,8 @@ void biblioteq_videogame::closeEvent(QCloseEvent *e)
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::No)
 	{
-	  if(e)
-	    e->ignore();
+	  if(event)
+	    event->ignore();
 
 	  return;
 	}

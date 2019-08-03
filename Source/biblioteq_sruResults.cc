@@ -101,6 +101,55 @@ biblioteq_sruresults::~biblioteq_sruresults()
   m_records.clear();
 }
 
+void biblioteq_sruresults::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  m_ui.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}
+
+void biblioteq_sruresults::closeEvent(QCloseEvent *event)
+{
+  Q_UNUSED(event);
+  slotClose();
+}
+
+void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
+{
+  if(event && event->key() == Qt::Key_Escape)
+    close();
+
+  QDialog::keyPressEvent(event);
+}
+
+void biblioteq_sruresults::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
+}
+
+void biblioteq_sruresults::slotClose(void)
+{
+  deleteLater();
+}
+
 void biblioteq_sruresults::slotSelectRecord(void)
 {
   if(m_magazine)
@@ -158,53 +207,4 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
   m_ui.title->setText(title);
   m_ui.title->setCursorPosition(0);
   m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
-}
-
-void biblioteq_sruresults::closeEvent(QCloseEvent *e)
-{
-  Q_UNUSED(e);
-  slotClose();
-}
-
-void biblioteq_sruresults::slotClose(void)
-{
-  deleteLater();
-}
-
-void biblioteq_sruresults::setGlobalFonts(const QFont &font)
-{
-  setFont(font);
-
-  foreach(QWidget *widget, findChildren<QWidget *> ())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
-
-  update();
-}
-
-void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
-{
-  if(event && event->key() == Qt::Key_Escape)
-    close();
-
-  QDialog::keyPressEvent(event);
-}
-
-void biblioteq_sruresults::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  m_ui.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QDialog::changeEvent(event);
 }
