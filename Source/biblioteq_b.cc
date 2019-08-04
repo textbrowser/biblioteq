@@ -6,7 +6,6 @@
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>
-#include <QtDebug>
 
 /*
 ** -- C++ Includes --
@@ -22,6 +21,60 @@
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "ui_biblioteq_generalmessagediag.h"
+
+QString biblioteq::homePath(void)
+{
+#ifdef Q_OS_WIN32
+  return QDir::currentPath() + QDir::separator() + ".biblioteq";
+#else
+  return QDir::homePath() + QDir::separator() + ".biblioteq";
+#endif
+}
+
+QString biblioteq::unaccent(void) const
+{
+  return m_unaccent;
+}
+
+QVariant biblioteq::setting(const QString &name) const
+{
+  if(name == "automatically_resize_column_widths")
+    return ui.actionAutomatically_Resize_Column_Widths->isChecked();
+  else if(name == "photographs_per_page")
+    {
+      foreach(QAction *action, ui.menuPhotographs_per_Page->actions())
+	if(action->isChecked())
+	  return action->data().toInt();
+
+      return 25;
+    }
+  else
+    return QVariant();
+}
+
+bool biblioteq::isGuest(void) const
+{
+  if(m_db.driverName() == "QSQLITE")
+    return false;
+  else if(m_db.userName() == "xbook_guest")
+    return true;
+  else
+    return false;
+}
+
+int biblioteq::pageLimit(void) const
+{
+  int limit = 25;
+
+  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+      {
+	limit = ui.menuEntriesPerPage->actions()[i]->data().toInt();
+	break;
+      }
+
+  return limit;
+}
 
 int biblioteq::populateTable(const int search_type_arg,
 			     const QString &typefilter,
@@ -3344,6 +3397,133 @@ int biblioteq::populateTable(const int search_type_arg,
   return 0;
 }
 
+void biblioteq::preparePhotographsPerPageMenu(void)
+{
+  QActionGroup *group = 0;
+
+  if((group = new(std::nothrow) QActionGroup(this)) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  ui.menuPhotographs_per_Page->clear();
+
+  QSettings settings;
+  int integer = settings.value("photographs_per_page", 25).toInt();
+
+  if(!(integer == -1 || (integer >= 25 && integer <= 100)))
+    integer = 25;
+
+  for(int i = 1; i <= 5; i++)
+    {
+      QAction *action = 0;
+
+      if(i == 5)
+	action = group->addAction(tr("&Unlimited"));
+      else
+	action = group->addAction(QString(tr("&%1")).arg(25 * i));
+
+      if(!action)
+	continue;
+
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPhotographsPerPageChanged(void)));
+
+      if(i == 5)
+	action->setData(-1);
+      else
+	action->setData(25 * i);
+
+      action->setCheckable(true);
+
+      if(action->data().toInt() == integer)
+	action->setChecked(true);
+
+      ui.menuPhotographs_per_Page->addAction(action);
+    }
+}
+
+void biblioteq::slotPhotographsPerPageChanged(void)
+{
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  QSettings settings;
+
+  settings.setValue("photographs_per_page", action->data().toInt());
+}
+
+void biblioteq::slotReloadBiblioteqConf(void)
+{
+  m_otheroptions->prepareSettings();
+  readGlobalSetup();
+}
+
+void biblioteq::slotResetAllSearch(void)
+{
+  ui.case_insensitive->setChecked(false);
+  ui.case_insensitive->setEnabled(true);
+  ui.search->clear();
+  ui.search->setEnabled(true);
+  ui.searchType->setCurrentIndex(0);
+  ui.searchType->setEnabled(true);
+}
+
+void biblioteq::slotRoleChanged(int index)
+{
+  if(index == 1)
+    {
+      br.password->setEnabled(false);
+      br.password->setText("xbook_guest");
+      br.userid->setEnabled(false);
+      br.userid->setText("xbook_guest");
+    }
+  else
+    {
+      br.password->clear();
+      br.password->setEnabled(true);
+      br.userid->clear();
+      br.userid->setEnabled(true);
+    }
+
+  br.userid->setFocus();
+}
+
+void biblioteq::slotSaveDnt(bool state)
+{
+  QSqlQuery query(m_db);
+
+  query.prepare("INSERT INTO member_history_dnt "
+		"(dnt, memberid) "
+		"VALUES (?, ?)");
+  query.bindValue(0, QVariant(state).toInt());
+  query.bindValue(1, m_db.userName());
+  query.exec();
+
+  if(!(query.lastError().text().toLower().contains("duplicate") ||
+       query.lastError().text().toLower().contains("unique")))
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to insert into member_history_dnt for "
+			"member %1.").arg(m_db.userName())),
+	     query.lastError().text(), __FILE__, __LINE__);
+
+  query.prepare("UPDATE member_history_dnt "
+		"SET dnt = ? "
+		"WHERE memberid = ?");
+  query.bindValue(0, QVariant(state).toInt());
+  query.bindValue(1, m_db.userName());
+  query.exec();
+
+  if(query.lastError().isValid())
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to update member_history_dnt for "
+			"member %1.").arg(m_db.userName())),
+	     query.lastError().text(), __FILE__, __LINE__);
+
+}
+
 void biblioteq::slotSearchBasic(void)
 {
   if(!m_db.isOpen())
@@ -3689,69 +3869,6 @@ void biblioteq::slotSearchBasic(void)
     (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH_BASIC);
 }
 
-void biblioteq::slotResetAllSearch(void)
-{
-  ui.case_insensitive->setChecked(false);
-  ui.case_insensitive->setEnabled(true);
-  ui.search->clear();
-  ui.search->setEnabled(true);
-  ui.searchType->setCurrentIndex(0);
-  ui.searchType->setEnabled(true);
-}
-
-void biblioteq::slotRoleChanged(int index)
-{
-  if(index == 1)
-    {
-      br.password->setEnabled(false);
-      br.password->setText("xbook_guest");
-      br.userid->setEnabled(false);
-      br.userid->setText("xbook_guest");
-    }
-  else
-    {
-      br.password->clear();
-      br.password->setEnabled(true);
-      br.userid->clear();
-      br.userid->setEnabled(true);
-    }
-
-  br.userid->setFocus();
-}
-
-void biblioteq::slotSaveDnt(bool state)
-{
-  QSqlQuery query(m_db);
-
-  query.prepare("INSERT INTO member_history_dnt "
-		"(dnt, memberid) "
-		"VALUES (?, ?)");
-  query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, m_db.userName());
-  query.exec();
-
-  if(!(query.lastError().text().toLower().contains("duplicate") ||
-       query.lastError().text().toLower().contains("unique")))
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to insert into member_history_dnt for "
-			"member %1.").arg(m_db.userName())),
-	     query.lastError().text(), __FILE__, __LINE__);
-
-  query.prepare("UPDATE member_history_dnt "
-		"SET dnt = ? "
-		"WHERE memberid = ?");
-  query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, m_db.userName());
-  query.exec();
-
-  if(query.lastError().isValid())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to update member_history_dnt for "
-			"member %1.").arg(m_db.userName())),
-	     query.lastError().text(), __FILE__, __LINE__);
-
-}
-
 void biblioteq::slotUpgradeSqliteScheme(void)
 {
   if(m_db.driverName() != "QSQLITE")
@@ -4072,122 +4189,4 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	 tr("The database %1 was upgraded successfully.").
 	 arg(m_db.databaseName()));
     }
-}
-
-void biblioteq::preparePhotographsPerPageMenu(void)
-{
-  QActionGroup *group = 0;
-
-  if((group = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  ui.menuPhotographs_per_Page->clear();
-
-  QSettings settings;
-  int integer = settings.value("photographs_per_page", 25).toInt();
-
-  if(!(integer == -1 || (integer >= 25 && integer <= 100)))
-    integer = 25;
-
-  for(int i = 1; i <= 5; i++)
-    {
-      QAction *action = 0;
-
-      if(i == 5)
-	action = group->addAction(tr("&Unlimited"));
-      else
-	action = group->addAction(QString(tr("&%1")).arg(25 * i));
-
-      if(!action)
-	continue;
-
-      connect(action,
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotPhotographsPerPageChanged(void)));
-
-      if(i == 5)
-	action->setData(-1);
-      else
-	action->setData(25 * i);
-
-      action->setCheckable(true);
-
-      if(action->data().toInt() == integer)
-	action->setChecked(true);
-
-      ui.menuPhotographs_per_Page->addAction(action);
-    }
-}
-
-void biblioteq::slotPhotographsPerPageChanged(void)
-{
-  QAction *action = qobject_cast<QAction *> (sender());
-
-  if(!action)
-    return;
-
-  QSettings settings;
-
-  settings.setValue("photographs_per_page", action->data().toInt());
-}
-
-QVariant biblioteq::setting(const QString &name) const
-{
-  if(name == "automatically_resize_column_widths")
-    return ui.actionAutomatically_Resize_Column_Widths->isChecked();
-  else if(name == "photographs_per_page")
-    {
-      foreach(QAction *action, ui.menuPhotographs_per_Page->actions())
-	if(action->isChecked())
-	  return action->data().toInt();
-
-      return 25;
-    }
-  else
-    return QVariant();
-}
-
-QString biblioteq::homePath(void)
-{
-#ifdef Q_OS_WIN32
-  return QDir::currentPath() + QDir::separator() + ".biblioteq";
-#else
-  return QDir::homePath() + QDir::separator() + ".biblioteq";
-#endif
-}
-
-bool biblioteq::isGuest(void) const
-{
-  if(m_db.driverName() == "QSQLITE")
-    return false;
-  else if(m_db.userName() == "xbook_guest")
-    return true;
-  else
-    return false;
-}
-
-void biblioteq::slotReloadBiblioteqConf(void)
-{
-  m_otheroptions->prepareSettings();
-  readGlobalSetup();
-}
-
-QString biblioteq::unaccent(void) const
-{
-  return m_unaccent;
-}
-
-int biblioteq::pageLimit(void) const
-{
-  int limit = 25;
-
-  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
-      {
-	limit = ui.menuEntriesPerPage->actions()[i]->data().toInt();
-	break;
-      }
-
-  return limit;
 }
