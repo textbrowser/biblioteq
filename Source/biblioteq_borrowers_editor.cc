@@ -64,6 +64,50 @@ biblioteq_borrowers_editor::~biblioteq_borrowers_editor()
 {
 }
 
+void biblioteq_borrowers_editor::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  m_bd.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}
+
+void biblioteq_borrowers_editor::closeEvent(QCloseEvent *event)
+{
+  Q_UNUSED(event);
+  slotCloseCurrentBorrowers();
+}
+
+void biblioteq_borrowers_editor::keyPressEvent(QKeyEvent *event)
+{
+  if(event && event->key() == Qt::Key_Escape)
+    slotCloseCurrentBorrowers();
+
+  QDialog::keyPressEvent(event);
+}
+
+void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
+}
+
 void biblioteq_borrowers_editor::showUsers(void)
 {
   QDateEdit *dateEdit = 0;
@@ -333,6 +377,11 @@ void biblioteq_borrowers_editor::showUsers(void)
     m_bd.table->resizeColumnToContents(i);
 }
 
+void biblioteq_borrowers_editor::slotCloseCurrentBorrowers(void)
+{
+  deleteLater();
+}
+
 void biblioteq_borrowers_editor::slotEraseBorrower(void)
 {
   QSqlQuery query(qmain->getDB());
@@ -462,11 +511,6 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
     }
 }
 
-void biblioteq_borrowers_editor::slotCloseCurrentBorrowers(void)
-{
-  deleteLater();
-}
-
 void biblioteq_borrowers_editor::slotSave(void)
 {
   QDate now = QDate::currentDate();
@@ -547,48 +591,4 @@ void biblioteq_borrowers_editor::slotSave(void)
     QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			  tr("Some or all of the Due Dates were not updated "
 			     "because of database errors."));
-}
-
-void biblioteq_borrowers_editor::keyPressEvent(QKeyEvent *event)
-{
-  if(event && event->key() == Qt::Key_Escape)
-    slotCloseCurrentBorrowers();
-
-  QDialog::keyPressEvent(event);
-}
-
-void biblioteq_borrowers_editor::closeEvent(QCloseEvent *event)
-{
-  Q_UNUSED(event);
-  slotCloseCurrentBorrowers();
-}
-
-void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
-{
-  setFont(font);
-
-  foreach(QWidget *widget, findChildren<QWidget *> ())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
-
-  update();
-}
-
-void biblioteq_borrowers_editor::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  m_bd.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QDialog::changeEvent(event);
 }
