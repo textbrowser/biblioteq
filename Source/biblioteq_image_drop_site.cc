@@ -22,6 +22,51 @@ biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   setAcceptDrops(true);
 }
 
+QString biblioteq_image_drop_site::determineFormat
+(const QByteArray &bytes) const
+{
+  return biblioteq_misc_functions::imageFormatGuess(bytes);
+}
+
+QString biblioteq_image_drop_site::determineFormat
+(const QString &filename) const
+{
+  QByteArray bytes(10, 0);
+  QFile file(filename);
+  QString imgf("");
+  qint64 bytesRead = 0;
+
+  if(file.open(QIODevice::ReadOnly) && (bytesRead =
+					file.read(bytes.data(),
+						  bytes.length())) > 0)
+    imgf = biblioteq_misc_functions::imageFormatGuess(bytes);
+
+  if(imgf.isEmpty())
+    {
+      QString ext("");
+
+      if(filename.contains("."))
+	ext = filename.mid(filename.lastIndexOf(".") + 1);
+
+      if(ext.isEmpty())
+	imgf = "JPG";
+      else
+	imgf = ext.toUpper();
+    }
+
+  file.close();
+  return imgf;
+}
+
+void biblioteq_image_drop_site::clear(void)
+{
+  m_doubleclicked = false;
+  m_image = QImage();
+  m_imageFormat.clear();
+  scene()->clear();
+  scene()->clearSelection();
+}
+
 void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
   QString filename = "";
@@ -53,6 +98,11 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 	 imgf == "PNG")
 	event->acceptProposedAction();
     }
+}
+
+void biblioteq_image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
+{
+  QGraphicsView::dragLeaveEvent(event);
 }
 
 void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
@@ -92,8 +142,8 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
 void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 {
-  QString imgf("");
   QString filename("");
+  QString imgf("");
 
 #if defined(Q_OS_WIN32)
   if(event)
@@ -159,6 +209,11 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
     }
 }
 
+void biblioteq_image_drop_site::enableDoubleClickResize(const bool state)
+{
+  m_doubleClickResizeEnabled = state;
+}
+
 void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 {
   if(acceptDrops())
@@ -166,51 +221,6 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
       if(event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
 	if(!scene()->selectedItems().isEmpty())
 	  clear();
-}
-
-void biblioteq_image_drop_site::clear(void)
-{
-  m_doubleclicked = false;
-  m_image = QImage();
-  m_imageFormat.clear();
-  scene()->clear();
-  scene()->clearSelection();
-}
-
-QString biblioteq_image_drop_site::determineFormat
-(const QByteArray &bytes) const
-{
-  return biblioteq_misc_functions::imageFormatGuess(bytes);
-}
-
-QString biblioteq_image_drop_site::determineFormat
-(const QString &filename) const
-{
-  QByteArray bytes(10, 0);
-  QFile file(filename);
-  QString imgf("");
-  qint64 bytesRead = 0;
-
-  if(file.open(QIODevice::ReadOnly) && (bytesRead =
-					file.read(bytes.data(),
-						  bytes.length())) > 0)
-    imgf = biblioteq_misc_functions::imageFormatGuess(bytes);
-
-  if(imgf.isEmpty())
-    {
-      QString ext("");
-
-      if(filename.contains("."))
-	ext = filename.mid(filename.lastIndexOf(".") + 1);
-
-      if(ext.isEmpty())
-	imgf = "JPG";
-      else
-	imgf = ext.toUpper();
-    }
-
-  file.close();
-  return imgf;
 }
 
 void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
@@ -290,11 +300,6 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
   scene()->setSceneRect(scene()->itemsBoundingRect());
 }
 
-void biblioteq_image_drop_site::setReadOnly(const bool readOnly)
-{
-  setAcceptDrops(!readOnly);
-}
-
 void biblioteq_image_drop_site::setImage(const QImage &image)
 {
   QPixmap pixmap;
@@ -327,12 +332,7 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
-void biblioteq_image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
+void biblioteq_image_drop_site::setReadOnly(const bool readOnly)
 {
-  QGraphicsView::dragLeaveEvent(event);
-}
-
-void biblioteq_image_drop_site::enableDoubleClickResize(const bool state)
-{
-  m_doubleClickResizeEnabled = state;
+  setAcceptDrops(!readOnly);
 }
