@@ -1,7 +1,6 @@
 #include <QObject>
 #include <QStringList>
 #include <QXmlStreamReader>
-#include <QtDebug>
 
 #include "biblioteq_marc.h"
 

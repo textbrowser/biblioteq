@@ -32,6 +32,137 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
 #endif
 }
 
+QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
+{
+  QHash<QString, QString> states;
+
+  for(int i = 0; i < m_hiddenColumns.keys().size(); i++)
+    {
+      QString state("");
+
+      for(int j = 0; j < m_hiddenColumns[m_hiddenColumns.keys().at(i)].size();
+	  j++)
+	state += QString::number
+	  (m_hiddenColumns[m_hiddenColumns.keys().at(i)].at(j)).append(",");
+
+      if(state.endsWith(","))
+	state = state.mid(0, state.length() - 1);
+
+      states[m_hiddenColumns.keys().at(i)] = state;
+    }
+
+  return states;
+}
+
+QStringList biblioteq_main_table::columnNames(void) const
+{
+  return m_columnHeaderIndexes.toList();
+}
+
+int biblioteq_main_table::columnNumber(const QString &name) const
+{
+  int index = m_columnHeaderIndexes.indexOf(name);
+
+  if(index >= 0)
+    return index;
+
+  for(int i = 0; i < m_columnHeaderIndexes.size(); i++)
+    if(m_columnHeaderIndexes.at(i).toLower() == name.toLower())
+      {
+	index = i;
+	break;
+      }
+
+  return index;
+}
+
+void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
+{
+  m_hiddenColumns.clear();
+
+  for(int i = 0; i < states.keys().size(); i++)
+    {
+      QList<int> intList;
+      QStringList strList
+	(states[states.keys().at(i)].split(",",
+					   QString::SkipEmptyParts));
+
+      for(int j = 0; j < strList.size(); j++)
+	if(strList.at(j).toInt() >= 0)
+	  intList.append(strList.at(j).toInt());
+
+      m_hiddenColumns[states.keys().at(i)] = intList;
+    }
+}
+
+void biblioteq_main_table::recordColumnHidden(const QString &username,
+					      const QString &type,
+					      const int index,
+					      const bool hidden)
+{
+  QString indexstr("");
+  QString l_type(type);
+
+  indexstr.append(username);
+  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append("_header_state");
+
+  if(hidden)
+    {
+      if(!m_hiddenColumns[indexstr].contains(index))
+	m_hiddenColumns[indexstr].append(index);
+    }
+  else if(m_hiddenColumns.contains(indexstr))
+    m_hiddenColumns[indexstr].removeAll(index);
+}
+
+void biblioteq_main_table::resetTable(const QString &username,
+				      const QString &type,
+				      const QString &roles)
+{
+  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
+    setColumnCount(0);
+  else
+    {
+      if(m_lastType == type)
+	{
+	}
+      else
+	setColumnCount(0);
+    }
+
+  setRowCount(0);
+  scrollToTop();
+  horizontalScrollBar()->setValue(0);
+
+  if(!type.isEmpty())
+    if(columnCount() == 0)
+      setColumns(username, type, roles);
+
+  horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  horizontalHeader()->setSortIndicatorShown(true);
+
+  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
+    {
+      for(int i = 0; i < columnCount() - 1; i++)
+	resizeColumnToContents(i);
+
+      horizontalHeader()->setStretchLastSection(true);
+    }
+
+  clearSelection();
+  m_lastType = type;
+  setCurrentItem(0);
+}
+
+void biblioteq_main_table::setColumnNames(const QStringList &list)
+{
+  m_columnHeaderIndexes.clear();
+
+  for(int i = 0; i < list.size(); i++)
+    m_columnHeaderIndexes.append(list.at(i));
+}
+
 void biblioteq_main_table::setColumns(const QString &username,
 				      const QString &type,
 				      const QString &roles)
@@ -438,135 +569,4 @@ void biblioteq_main_table::setColumns(const QString &username,
 
   for(int i = 0; i < m_hiddenColumns[indexstr].size(); i++)
     setColumnHidden(m_hiddenColumns[indexstr][i], true);
-}
-
-void biblioteq_main_table::resetTable(const QString &username,
-				      const QString &type,
-				      const QString &roles)
-{
-  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
-    setColumnCount(0);
-  else
-    {
-      if(m_lastType == type)
-	{
-	}
-      else
-	setColumnCount(0);
-    }
-
-  setRowCount(0);
-  scrollToTop();
-  horizontalScrollBar()->setValue(0);
-
-  if(!type.isEmpty())
-    if(columnCount() == 0)
-      setColumns(username, type, roles);
-
-  horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  horizontalHeader()->setSortIndicatorShown(true);
-
-  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
-    {
-      for(int i = 0; i < columnCount() - 1; i++)
-	resizeColumnToContents(i);
-
-      horizontalHeader()->setStretchLastSection(true);
-    }
-
-  clearSelection();
-  m_lastType = type;
-  setCurrentItem(0);
-}
-
-void biblioteq_main_table::recordColumnHidden(const QString &username,
-					      const QString &type,
-					      const int index,
-					      const bool hidden)
-{
-  QString indexstr("");
-  QString l_type(type);
-
-  indexstr.append(username);
-  indexstr.append(l_type.replace(" ", "_"));
-  indexstr.append("_header_state");
-
-  if(hidden)
-    {
-      if(!m_hiddenColumns[indexstr].contains(index))
-	m_hiddenColumns[indexstr].append(index);
-    }
-  else if(m_hiddenColumns.contains(indexstr))
-    m_hiddenColumns[indexstr].removeAll(index);
-}
-
-QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
-{
-  QHash<QString, QString> states;
-
-  for(int i = 0; i < m_hiddenColumns.keys().size(); i++)
-    {
-      QString state("");
-
-      for(int j = 0; j < m_hiddenColumns[m_hiddenColumns.keys().at(i)].size();
-	  j++)
-	state += QString::number
-	  (m_hiddenColumns[m_hiddenColumns.keys().at(i)].at(j)).append(",");
-
-      if(state.endsWith(","))
-	state = state.mid(0, state.length() - 1);
-
-      states[m_hiddenColumns.keys().at(i)] = state;
-    }
-
-  return states;
-}
-
-void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
-{
-  m_hiddenColumns.clear();
-
-  for(int i = 0; i < states.keys().size(); i++)
-    {
-      QList<int> intList;
-      QStringList strList
-	(states[states.keys().at(i)].split(",",
-					   QString::SkipEmptyParts));
-
-      for(int j = 0; j < strList.size(); j++)
-	if(strList.at(j).toInt() >= 0)
-	  intList.append(strList.at(j).toInt());
-
-      m_hiddenColumns[states.keys().at(i)] = intList;
-    }
-}
-
-int biblioteq_main_table::columnNumber(const QString &name) const
-{
-  int index = m_columnHeaderIndexes.indexOf(name);
-
-  if(index >= 0)
-    return index;
-
-  for(int i = 0; i < m_columnHeaderIndexes.size(); i++)
-    if(m_columnHeaderIndexes.at(i).toLower() == name.toLower())
-      {
-	index = i;
-	break;
-      }
-
-  return index;
-}
-
-QStringList biblioteq_main_table::columnNames(void) const
-{
-  return m_columnHeaderIndexes.toList();
-}
-
-void biblioteq_main_table::setColumnNames(const QStringList &list)
-{
-  m_columnHeaderIndexes.clear();
-
-  for(int i = 0; i < list.size(); i++)
-    m_columnHeaderIndexes.append(list.at(i));
 }
