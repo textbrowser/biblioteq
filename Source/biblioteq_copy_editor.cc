@@ -17,9 +17,11 @@ biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
 }
 
 biblioteq_copy_editor::biblioteq_copy_editor
-(QWidget *parent, biblioteq_item *bitemArg,
+(QWidget *parent,
+ biblioteq_item *bitemArg,
  const bool showForLendingArg,
- const int quantityArg, const QString &ioidArg,
+ const int quantityArg,
+ const QString &ioidArg,
  QSpinBox *spinboxArg,
  const QFont &font,
  const QString &itemTypeArg,
@@ -59,66 +61,147 @@ biblioteq_copy_editor::~biblioteq_copy_editor()
   clearCopiesList();
 }
 
-void biblioteq_copy_editor::slotDeleteCopy(void)
+QString biblioteq_copy_editor::saveCopies(void)
 {
-  QString copyid = "";
-  QString errorstr = "";
-  bool isCheckedOut = false;
-  int row = m_cb.table->currentRow();
+  QProgressDialog progress(this);
+  QSqlQuery query(qmain->getDB());
+  QString lastError = "";
+  copy_class *copy = 0;
+  int i = 0;
 
-  if(row < 0)
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("Please select the copy that you intend to "
-			       "delete."));
-      return;
-    }
-  else if(m_cb.table->rowCount() == 1)
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("You must have at least one copy."));
-      return;
-    }
-
-  copyid = biblioteq_misc_functions::getColumnString
-    (m_cb.table, row, m_columnHeaderIndexes.indexOf("Barcode"));
+  query.prepare(QString("DELETE FROM %1_copy_info WHERE "
+			"item_oid = ?").arg(m_itemType.
+					    toLower().remove(" ")));
+  query.bindValue(0, m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  isCheckedOut = biblioteq_misc_functions::isCopyCheckedOut(qmain->getDB(),
-							    copyid,
-							    m_ioid,
-							    m_itemType,
-							    errorstr);
-  QApplication::restoreOverrideCursor();
 
-  if(isCheckedOut)
+  if(!query.exec())
     {
-      if(m_cb.table->item(row, 1) != 0)
-	m_cb.table->item(row, 1)->setFlags(0);
+      QApplication::restoreOverrideCursor();
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to purge copy data.")),
+		      query.lastError().text(), __FILE__, __LINE__);
+      return query.lastError().text();
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+      progress.setCancelButton(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.setLabelText(tr("Saving the copy data..."));
+      progress.setMaximum(m_copies.size());
+      progress.setMinimum(0);
+      progress.show();
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
 
-      if(m_cb.table->item(row, 2) != 0)
+      for(i = 0; i < m_copies.size(); i++)
 	{
-	  m_cb.table->item(row, 2)->setFlags(0);
-	  m_cb.table->item(row, 2)->setText("0");
+	  copy = m_copies.at(i);
+
+	  if(!copy)
+	    goto continue_label;
+
+	  if(qmain->getDB().driverName() != "QSQLITE")
+	    query.prepare(QString("INSERT INTO %1_copy_info "
+				  "(item_oid, copy_number, "
+				  "copyid) "
+				  "VALUES (?, "
+				  "?, ?)").arg
+			  (m_itemType.toLower().remove(" ")));
+	  else
+	    query.prepare(QString("INSERT INTO %1_copy_info "
+				  "(item_oid, copy_number, "
+				  "copyid, myoid) "
+				  "VALUES (?, "
+				  "?, ?, ?)").arg
+			  (m_itemType.toLower().remove(" ")));
+
+	  query.bindValue(0, copy->m_itemoid);
+	  query.bindValue(1, i + 1);
+	  query.bindValue(2, copy->m_copyid);
+
+	  if(qmain->getDB().driverName() == "QSQLITE")
+	    {
+	      qint64 value = 0;
+	      QString errorstr("");
+
+	      value = biblioteq_misc_functions::getSqliteUniqueId
+		(qmain->getDB(),
+		 errorstr);
+
+	      if(errorstr.isEmpty())
+		query.bindValue(3, value);
+	      else
+		qmain->addError(QString(tr("Database Error")),
+				QString(tr("Unable to generate a unique "
+					   "integer.")),
+				errorstr);
+	    }
+
+	  if(!query.exec())
+	    {
+	      lastError = query.lastError().text();
+	      qmain->addError(QString(tr("Database Error")),
+			      QString(tr("Unable to create copy data.")),
+			      query.lastError().text(), __FILE__, __LINE__);
+	    }
+
+	continue_label:
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
 	}
 
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("It appears that the copy you selected to "
-			       "delete is reserved."));
-      return;
-    }
-  else if(errorstr.length() > 0)
-    {
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to determine the reservation "
-				 "status of the selected copy.")),
-		      errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to determine the reservation status "
-			       "of the selected copy."));
-      return;
+      progress.close();
     }
 
-  m_cb.table->removeRow(m_cb.table->currentRow());
+  return lastError;
+}
+
+void biblioteq_copy_editor::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  m_cb.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}
+
+void biblioteq_copy_editor::clearCopiesList(void)
+{
+  while(!m_copies.isEmpty())
+    delete m_copies.takeFirst();
+}
+
+void biblioteq_copy_editor::closeEvent(QCloseEvent *event)
+{
+  Q_UNUSED(event);
+  slotCloseCopyEditor();
+}
+
+void biblioteq_copy_editor::keyPressEvent(QKeyEvent *event)
+{
+  if(event && event->key() == Qt::Key_Escape)
+    slotCloseCopyEditor();
+
+  QDialog::keyPressEvent(event);
 }
 
 void biblioteq_copy_editor::populateCopiesEditor(void)
@@ -388,6 +471,19 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     m_cb.table->resizeColumnToContents(i);
 }
 
+void biblioteq_copy_editor::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
+}
+
 void biblioteq_copy_editor::slotCheckoutCopy(void)
 {
   QDate now = QDate::currentDate();
@@ -601,17 +697,85 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     qmain->slotDisplaySummary();
 }
 
+void biblioteq_copy_editor::slotCloseCopyEditor(void)
+{
+  clearCopiesList();
+  deleteLater();
+}
+
+void biblioteq_copy_editor::slotDeleteCopy(void)
+{
+  QString copyid = "";
+  QString errorstr = "";
+  bool isCheckedOut = false;
+  int row = m_cb.table->currentRow();
+
+  if(row < 0)
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select the copy that you intend to "
+			       "delete."));
+      return;
+    }
+  else if(m_cb.table->rowCount() == 1)
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("You must have at least one copy."));
+      return;
+    }
+
+  copyid = biblioteq_misc_functions::getColumnString
+    (m_cb.table, row, m_columnHeaderIndexes.indexOf("Barcode"));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  isCheckedOut = biblioteq_misc_functions::isCopyCheckedOut(qmain->getDB(),
+							    copyid,
+							    m_ioid,
+							    m_itemType,
+							    errorstr);
+  QApplication::restoreOverrideCursor();
+
+  if(isCheckedOut)
+    {
+      if(m_cb.table->item(row, 1) != 0)
+	m_cb.table->item(row, 1)->setFlags(0);
+
+      if(m_cb.table->item(row, 2) != 0)
+	{
+	  m_cb.table->item(row, 2)->setFlags(0);
+	  m_cb.table->item(row, 2)->setText("0");
+	}
+
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("It appears that the copy you selected to "
+			       "delete is reserved."));
+      return;
+    }
+  else if(errorstr.length() > 0)
+    {
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to determine the reservation "
+				 "status of the selected copy.")),
+		      errorstr, __FILE__, __LINE__);
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the reservation status "
+			       "of the selected copy."));
+      return;
+    }
+
+  m_cb.table->removeRow(m_cb.table->currentRow());
+}
+
 void biblioteq_copy_editor::slotSaveCopies(void)
 {
-  int i = 0;
-  QString str = "";
+  QString availability = "";
   QString errormsg = "";
   QString errorstr = "";
-  QString availability = "";
-  copy_class *copy = 0;
+  QString str = "";
   QStringList duplicates;
   QTableWidgetItem *item1 = 0;
   QTableWidgetItem *item2 = 0;
+  copy_class *copy = 0;
+  int i = 0;
 
   m_cb.table->setFocus();
 
@@ -760,166 +924,4 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   while(!m_copies.isEmpty())
     delete m_copies.takeFirst();
-}
-
-QString biblioteq_copy_editor::saveCopies(void)
-{
-  QProgressDialog progress(this);
-  QSqlQuery query(qmain->getDB());
-  QString lastError = "";
-  copy_class *copy = 0;
-  int i = 0;
-
-  query.prepare(QString("DELETE FROM %1_copy_info WHERE "
-			"item_oid = ?").arg(m_itemType.
-					    toLower().remove(" ")));
-  query.bindValue(0, m_ioid);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to purge copy data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
-      return query.lastError().text();
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-      progress.setCancelButton(0);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-      progress.setLabelText(tr("Saving the copy data..."));
-      progress.setMaximum(m_copies.size());
-      progress.setMinimum(0);
-      progress.show();
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      for(i = 0; i < m_copies.size(); i++)
-	{
-	  copy = m_copies.at(i);
-
-	  if(!copy)
-	    goto continue_label;
-
-	  if(qmain->getDB().driverName() != "QSQLITE")
-	    query.prepare(QString("INSERT INTO %1_copy_info "
-				  "(item_oid, copy_number, "
-				  "copyid) "
-				  "VALUES (?, "
-				  "?, ?)").arg
-			  (m_itemType.toLower().remove(" ")));
-	  else
-	    query.prepare(QString("INSERT INTO %1_copy_info "
-				  "(item_oid, copy_number, "
-				  "copyid, myoid) "
-				  "VALUES (?, "
-				  "?, ?, ?)").arg
-			  (m_itemType.toLower().remove(" ")));
-
-	  query.bindValue(0, copy->m_itemoid);
-	  query.bindValue(1, i + 1);
-	  query.bindValue(2, copy->m_copyid);
-
-	  if(qmain->getDB().driverName() == "QSQLITE")
-	    {
-	      qint64 value = 0;
-	      QString errorstr("");
-
-	      value = biblioteq_misc_functions::getSqliteUniqueId
-		(qmain->getDB(),
-		 errorstr);
-
-	      if(errorstr.isEmpty())
-		query.bindValue(3, value);
-	      else
-		qmain->addError(QString(tr("Database Error")),
-				QString(tr("Unable to generate a unique "
-					   "integer.")),
-				errorstr);
-	    }
-
-	  if(!query.exec())
-	    {
-	      lastError = query.lastError().text();
-	      qmain->addError(QString(tr("Database Error")),
-			      QString(tr("Unable to create copy data.")),
-			      query.lastError().text(), __FILE__, __LINE__);
-	    }
-
-	continue_label:
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-	}
-
-      progress.close();
-    }
-
-  return lastError;
-}
-
-void biblioteq_copy_editor::keyPressEvent(QKeyEvent *event)
-{
-  if(event && event->key() == Qt::Key_Escape)
-    slotCloseCopyEditor();
-
-  QDialog::keyPressEvent(event);
-}
-
-void biblioteq_copy_editor::slotCloseCopyEditor(void)
-{
-  clearCopiesList();
-  deleteLater();
-}
-
-void biblioteq_copy_editor::clearCopiesList(void)
-{
-  while(!m_copies.isEmpty())
-    delete m_copies.takeFirst();
-}
-
-void biblioteq_copy_editor::closeEvent(QCloseEvent *event)
-{
-  Q_UNUSED(event);
-  slotCloseCopyEditor();
-}
-
-void biblioteq_copy_editor::setGlobalFonts(const QFont &font)
-{
-  setFont(font);
-
-  foreach(QWidget *widget, findChildren<QWidget *> ())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
-
-  update();
-}
-
-void biblioteq_copy_editor::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  m_cb.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QDialog::changeEvent(event);
 }
