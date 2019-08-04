@@ -18,10 +18,7 @@ extern biblioteq *qmain;
 biblioteq_journal::biblioteq_journal(QMainWindow *parent,
 				     const QString &oidArg,
 				     const int rowArg):
-  biblioteq_magazine(parent,
-		     oidArg,
-		     rowArg,
-		     "journal")
+  biblioteq_magazine(parent, oidArg, rowArg, "journal")
 {
   m_subType = "Journal";
   ma.publication_date->setDisplayFormat
@@ -35,31 +32,6 @@ biblioteq_journal::biblioteq_journal(QMainWindow *parent,
 
 biblioteq_journal::~biblioteq_journal()
 {
-}
-
-void biblioteq_journal::slotCancel(void)
-{
-  close();
-}
-
-void biblioteq_journal::closeEvent(QCloseEvent *e)
-{
-  if(m_engWindowTitle.contains("Create") ||
-     m_engWindowTitle.contains("Modify"))
-    if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
-
-	  return;
-	}
-
-  qmain->removeJournal(this);
 }
 
 void biblioteq_journal::changeEvent(QEvent *event)
@@ -77,4 +49,29 @@ void biblioteq_journal::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+void biblioteq_journal::closeEvent(QCloseEvent *event)
+{
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue closing?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  if(event)
+	    event->ignore();
+
+	  return;
+	}
+
+  qmain->removeJournal(this);
+}
+
+void biblioteq_journal::slotCancel(void)
+{
+  close();
 }
