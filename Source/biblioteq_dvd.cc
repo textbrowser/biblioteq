@@ -25,12 +25,12 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
 			     const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
-  QMenu *menu = 0;
-  QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-	      "[0-9]");
-  QValidator *validator1 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
+  QMenu *menu = 0;
+  QRegExp rx1
+    ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
+  QValidator *validator1 = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -251,13 +251,13 @@ biblioteq_dvd::~biblioteq_dvd()
 
 void biblioteq_dvd::slotGo(void)
 {
-  int i = 0;
-  int newq = 0;
-  int maxcopynumber = 0;
-  QString str = "";
+  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
-  QSqlQuery query(qmain->getDB());
+  QString str = "";
+  int i = 0;
+  int maxcopynumber = 0;
+  int newq = 0;
 
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -1159,11 +1159,11 @@ void biblioteq_dvd::updateWindow(const int state)
 
 void biblioteq_dvd::modify(const int state)
 {
-  int i = 0;
-  QString str = "";
-  QString fieldname = "";
-  QVariant var;
   QSqlQuery query(qmain->getDB());
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
 
   if(state == biblioteq::EDITABLE)
     {
@@ -1718,7 +1718,7 @@ void biblioteq_dvd::slotReset(void)
     }
 }
 
-void biblioteq_dvd::closeEvent(QCloseEvent *e)
+void biblioteq_dvd::closeEvent(QCloseEvent *event)
 {
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -1729,8 +1729,8 @@ void biblioteq_dvd::closeEvent(QCloseEvent *e)
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::No)
 	{
-	  if(e)
-	    e->ignore();
+	  if(event)
+	    event->ignore();
 
 	  return;
 	}
