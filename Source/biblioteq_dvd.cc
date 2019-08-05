@@ -249,6 +249,83 @@ biblioteq_dvd::~biblioteq_dvd()
 {
 }
 
+void biblioteq_dvd::search(const QString &field, const QString &value)
+{
+  dvd.coverImages->setVisible(false);
+  dvd.id->clear();
+  dvd.actors->clear();
+  dvd.directors->clear();
+  dvd.format->clear();
+  dvd.title->clear();
+  dvd.studio->clear();
+  dvd.category->clear();
+  dvd.description->clear();
+  dvd.keyword->clear();
+  dvd.copiesButton->setVisible(false);
+  dvd.queryButton->setVisible(false);
+  dvd.showUserButton->setVisible(false);
+  dvd.okButton->setText(tr("&Search"));
+  dvd.publication_date_enabled->setVisible(true);
+  dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  dvd.release_date->setDisplayFormat("yyyy");
+  dvd.runtime->setTime(QTime(0, 0, 0));
+  dvd.runtime->setMinimumTime(QTime(0, 0, 0));
+  dvd.price->setMinimum(-0.01);
+  dvd.price->setValue(-0.01);
+  dvd.quantity->setMinimum(0);
+  dvd.quantity->setValue(0);
+  dvd.no_of_discs->setMinimum(0);
+  dvd.no_of_discs->setValue(0);
+  dvd.language->insertItem(0, tr("Any"));
+  dvd.monetary_units->insertItem(0, tr("Any"));
+  dvd.location->insertItem(0, tr("Any"));
+  dvd.rating->insertItem(0, tr("Any"));
+  dvd.region->insertItem(0, tr("Any"));
+  dvd.aspectratio->insertItem(0, tr("Any"));
+  dvd.location->setCurrentIndex(0);
+  dvd.language->setCurrentIndex(0);
+  dvd.monetary_units->setCurrentIndex(0);
+  dvd.rating->setCurrentIndex(0);
+  dvd.region->setCurrentIndex(0);
+  dvd.aspectratio->setCurrentIndex(0);
+  dvd.accession_number->clear();
+  m_engWindowTitle = "Search";
+
+  if(field.isEmpty() && value.isEmpty())
+    {
+      QList<QAction *> actions = dvd.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+      setWindowTitle(tr("BiblioteQ: Database DVD Search"));
+      dvd.id->setFocus();
+      biblioteq_misc_functions::center(this, m_parentWid);
+      showNormal();
+      activateWindow();
+      raise();
+    }
+  else
+    {
+      if(field == "actors")
+	dvd.actors->setPlainText(value);
+      else if(field == "directors")
+	dvd.directors->setPlainText(value);
+      else if(field == "studio")
+	dvd.studio->setPlainText(value);
+      else if(field == "category")
+	dvd.category->setPlainText(value);
+      else if(field == "keyword")
+	dvd.keyword->setPlainText(value);
+
+      slotGo();
+    }
+}
+
 void biblioteq_dvd::slotGo(void)
 {
   QSqlQuery query(qmain->getDB());
@@ -1037,83 +1114,6 @@ void biblioteq_dvd::slotGo(void)
 	(biblioteq_myqstring::escape(dvd.accession_number->text().trimmed()));
       (void) qmain->populateTable
 	(query, "DVDs", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
-    }
-}
-
-void biblioteq_dvd::search(const QString &field, const QString &value)
-{
-  dvd.coverImages->setVisible(false);
-  dvd.id->clear();
-  dvd.actors->clear();
-  dvd.directors->clear();
-  dvd.format->clear();
-  dvd.title->clear();
-  dvd.studio->clear();
-  dvd.category->clear();
-  dvd.description->clear();
-  dvd.keyword->clear();
-  dvd.copiesButton->setVisible(false);
-  dvd.queryButton->setVisible(false);
-  dvd.showUserButton->setVisible(false);
-  dvd.okButton->setText(tr("&Search"));
-  dvd.publication_date_enabled->setVisible(true);
-  dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
-  dvd.release_date->setDisplayFormat("yyyy");
-  dvd.runtime->setTime(QTime(0, 0, 0));
-  dvd.runtime->setMinimumTime(QTime(0, 0, 0));
-  dvd.price->setMinimum(-0.01);
-  dvd.price->setValue(-0.01);
-  dvd.quantity->setMinimum(0);
-  dvd.quantity->setValue(0);
-  dvd.no_of_discs->setMinimum(0);
-  dvd.no_of_discs->setValue(0);
-  dvd.language->insertItem(0, tr("Any"));
-  dvd.monetary_units->insertItem(0, tr("Any"));
-  dvd.location->insertItem(0, tr("Any"));
-  dvd.rating->insertItem(0, tr("Any"));
-  dvd.region->insertItem(0, tr("Any"));
-  dvd.aspectratio->insertItem(0, tr("Any"));
-  dvd.location->setCurrentIndex(0);
-  dvd.language->setCurrentIndex(0);
-  dvd.monetary_units->setCurrentIndex(0);
-  dvd.rating->setCurrentIndex(0);
-  dvd.region->setCurrentIndex(0);
-  dvd.aspectratio->setCurrentIndex(0);
-  dvd.accession_number->clear();
-  m_engWindowTitle = "Search";
-
-  if(field.isEmpty() && value.isEmpty())
-    {
-      QList<QAction *> actions = dvd.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-      setWindowTitle(tr("BiblioteQ: Database DVD Search"));
-      dvd.id->setFocus();
-      biblioteq_misc_functions::center(this, m_parentWid);
-      showNormal();
-      activateWindow();
-      raise();
-    }
-  else
-    {
-      if(field == "actors")
-	dvd.actors->setPlainText(value);
-      else if(field == "directors")
-	dvd.directors->setPlainText(value);
-      else if(field == "studio")
-	dvd.studio->setPlainText(value);
-      else if(field == "category")
-	dvd.category->setPlainText(value);
-      else if(field == "keyword")
-	dvd.keyword->setPlainText(value);
-
-      slotGo();
     }
 }
 
