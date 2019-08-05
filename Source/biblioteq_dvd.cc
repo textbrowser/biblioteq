@@ -249,6 +249,385 @@ biblioteq_dvd::~biblioteq_dvd()
 {
 }
 
+void biblioteq_dvd::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  dvd.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
+
+void biblioteq_dvd::closeEvent(QCloseEvent *event)
+{
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue closing?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  if(event)
+	    event->ignore();
+
+	  return;
+	}
+
+  qmain->removeDVD(this);
+}
+
+void biblioteq_dvd::duplicate(const QString &p_oid, const int state)
+{
+  modify(state); // Initial population.
+  dvd.copiesButton->setEnabled(false);
+  dvd.showUserButton->setEnabled(false);
+  m_oid = p_oid;
+  setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
+  m_engWindowTitle = "Create";
+}
+
+void biblioteq_dvd::insert(void)
+{
+  slotReset();
+  dvd.id->clear();
+  dvd.actors->setPlainText("N/A");
+  dvd.directors->setPlainText("N/A");
+  dvd.format->setText("N/A");
+  dvd.title->clear();
+  dvd.studio->setPlainText("N/A");
+  dvd.description->setPlainText("N/A");
+  dvd.keyword->clear();
+  dvd.category->setPlainText("N/A");
+  dvd.copiesButton->setEnabled(false);
+  dvd.showUserButton->setEnabled(false);
+  dvd.queryButton->setEnabled(true);
+  dvd.okButton->setText(tr("&Save"));
+  dvd.release_date->setDate(QDate::fromString("01/01/2000",
+					      "MM/dd/yyyy"));
+  dvd.runtime->setTime(QTime(0, 0, 1));
+  dvd.runtime->setMinimumTime(QTime(0, 0, 1));
+  dvd.price->setMinimum(0.00);
+  dvd.price->setValue(0.00);
+  dvd.quantity->setMinimum(1);
+  dvd.quantity->setValue(1);
+  dvd.no_of_discs->setMinimum(1);
+  dvd.no_of_discs->setValue(1);
+  dvd.location->setCurrentIndex(0);
+  dvd.language->setCurrentIndex(0);
+  dvd.monetary_units->setCurrentIndex(0);
+  dvd.rating->setCurrentIndex(0);
+  dvd.region->setCurrentIndex(0);
+  dvd.aspectratio->setCurrentIndex(0);
+  dvd.accession_number->clear();
+  biblioteq_misc_functions::highlightWidget
+    (dvd.id, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.title, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.actors->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.directors->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.description->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.studio->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.format, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (dvd.category->viewport(), QColor(255, 248, 220));
+  setWindowTitle(tr("BiblioteQ: Create DVD Entry"));
+  m_engWindowTitle = "Create";
+  dvd.id->setFocus();
+  storeData(this);
+  showNormal();
+  activateWindow();
+  raise();
+}
+
+void biblioteq_dvd::modify(const int state)
+{
+  QSqlQuery query(qmain->getDB());
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
+
+  if(state == biblioteq::EDITABLE)
+    {
+      setReadOnlyFields(this, false);
+      setWindowTitle(tr("BiblioteQ: Modify DVD Entry"));
+      m_engWindowTitle = "Modify";
+      dvd.showUserButton->setEnabled(true);
+      dvd.copiesButton->setEnabled(true);
+      dvd.okButton->setVisible(true);
+      dvd.queryButton->setVisible(m_isQueryEnabled);
+      dvd.resetButton->setVisible(true);
+      dvd.frontButton->setVisible(true);
+      dvd.backButton->setVisible(true);
+      biblioteq_misc_functions::highlightWidget
+	(dvd.id, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.title, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.actors->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.directors->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.description->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.studio->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.format, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(dvd.category->viewport(), QColor(255, 248, 220));
+    }
+  else
+    {
+      setReadOnlyFields(this, true);
+      setWindowTitle(tr("BiblioteQ: View DVD Details"));
+      m_engWindowTitle = "View";
+
+      if(qmain->isGuest())
+	dvd.showUserButton->setVisible(false);
+      else
+	dvd.showUserButton->setEnabled(true);
+
+      dvd.copiesButton->setVisible(false);
+      dvd.okButton->setVisible(false);
+      dvd.queryButton->setVisible(false);
+      dvd.resetButton->setVisible(false);
+      dvd.frontButton->setVisible(false);
+      dvd.backButton->setVisible(false);
+
+      QList<QAction *> actions = dvd.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+    }
+
+  dvd.queryButton->setEnabled(true);
+  dvd.okButton->setText(tr("&Save"));
+  dvd.runtime->setMinimumTime(QTime(0, 0, 1));
+  dvd.price->setMinimum(0.00);
+  dvd.quantity->setMinimum(1);
+  dvd.quantity->setValue(1);
+  dvd.no_of_discs->setMinimum(1);
+  dvd.no_of_discs->setValue(1);
+  str = m_oid;
+  query.prepare("SELECT id, "
+		"title, "
+		"dvdformat, "
+		"dvddiskcount, "
+		"dvdruntime, "
+		"rdate, "
+		"studio, "
+		"category, "
+		"price, "
+		"language, "
+		"monetary_units, "
+		"description, "
+		"quantity, "
+		"dvdactor, "
+		"dvddirector, "
+		"dvdrating, "
+		"dvdregion, "
+		"dvdaspectratio, "
+		"location, "
+		"front_cover, "
+		"back_cover, "
+		"keyword, "
+		"accession_number "
+		"FROM "
+		"dvd "
+		"WHERE myoid = ?");
+  query.bindValue(0, str);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec() || !query.next())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve the selected DVD's data.")),
+	 query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve the selected DVD's "
+			       "data."));
+      close();
+      return;
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+      showNormal();
+      activateWindow();
+      raise();
+
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
+	{
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
+
+	  if(fieldname == "title")
+	    dvd.title->setText(var.toString());
+	  else if(fieldname == "studio")
+	    dvd.studio->setMultipleLinks
+	      ("dvd_search", "studio",
+	       var.toString());
+	  else if(fieldname == "rdate")
+	    dvd.release_date->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "price")
+	    dvd.price->setValue(var.toDouble());
+	  else if(fieldname == "category")
+	    dvd.category->setMultipleLinks("dvd_search", "category",
+					   var.toString());
+	  else if(fieldname == "language")
+	    {
+	      if(dvd.language->findText(var.toString()) > -1)
+		dvd.language->setCurrentIndex
+		  (dvd.language->findText(var.toString()));
+	      else
+		dvd.language->setCurrentIndex
+		  (dvd.language->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "quantity")
+	    dvd.quantity->setValue(var.toInt());
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(dvd.monetary_units->findText(var.toString()) > -1)
+		dvd.monetary_units->setCurrentIndex
+		  (dvd.monetary_units->findText(var.toString()));
+	      else
+		dvd.monetary_units->setCurrentIndex
+		  (dvd.monetary_units->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "dvddiskcount")
+	    dvd.no_of_discs->setValue(var.toInt());
+	  else if(fieldname == "dvdruntime")
+	    dvd.runtime->setTime(QTime::fromString(var.toString(),
+						   "hh:mm:ss"));
+	  else if(fieldname == "location")
+	    {
+	      if(dvd.location->findText(var.toString()) > -1)
+		dvd.location->setCurrentIndex
+		  (dvd.location->findText(var.toString()));
+	      else
+		dvd.location->setCurrentIndex
+		  (dvd.location->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "id")
+	    {
+	      if(state == biblioteq::EDITABLE)
+		{
+		  str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
+		    var.toString() + tr(")");
+		  m_engWindowTitle = "Modify";
+		}
+	      else
+		{
+		  str = QString(tr("BiblioteQ: View DVD Details (")) +
+		    var.toString() + tr(")");
+		  m_engWindowTitle = "View";
+		}
+
+	      setWindowTitle(str);
+	      dvd.id->setText(var.toString());
+	    }
+	  else if(fieldname == "description")
+	    dvd.description->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    dvd.keyword->setMultipleLinks("dvd_search",
+					  "keyword",
+					  var.toString());
+	  else if(fieldname == "dvdformat")
+	    dvd.format->setText(var.toString());
+	  else if(fieldname == "dvdactor")
+	    dvd.actors->setMultipleLinks("dvd_search", "actors",
+					 var.toString());
+	  else if(fieldname == "dvddirector")
+	    dvd.directors->setMultipleLinks("dvd_search", "directors",
+					    var.toString());
+	  else if(fieldname == "dvdrating")
+	    {
+	      if(dvd.rating->findText(var.toString()) > -1)
+		dvd.rating->setCurrentIndex
+		  (dvd.rating->findText(var.toString()));
+	      else
+		dvd.rating->setCurrentIndex
+		  (dvd.rating->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "dvdregion")
+	    {
+	      if(dvd.region->findText(var.toString()) > -1)
+		dvd.region->setCurrentIndex
+		  (dvd.region->findText(var.toString()));
+	      else
+		dvd.region->setCurrentIndex
+		  (dvd.region->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "dvdaspectratio")
+	    {
+	      if(dvd.aspectratio->findText(var.toString()) > -1)
+		dvd.aspectratio->setCurrentIndex
+		  (dvd.aspectratio->findText(var.toString()));
+	      else
+		dvd.aspectratio->setCurrentIndex
+		  (dvd.aspectratio->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  dvd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(dvd.front_image->m_image.isNull())
+		    dvd.front_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  dvd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(dvd.back_image->m_image.isNull())
+		    dvd.back_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "accession_number")
+	    dvd.accession_number->setText(var.toString());
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      storeData(this);
+    }
+
+  dvd.id->setFocus();
+  raise();
+}
+
 void biblioteq_dvd::search(const QString &field, const QString &value)
 {
   dvd.coverImages->setVisible(false);
@@ -324,6 +703,11 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
 
       slotGo();
     }
+}
+
+void biblioteq_dvd::slotCancel(void)
+{
+  close();
 }
 
 void biblioteq_dvd::slotGo(void)
@@ -1117,376 +1501,79 @@ void biblioteq_dvd::slotGo(void)
     }
 }
 
-void biblioteq_dvd::updateWindow(const int state)
+void biblioteq_dvd::slotPopulateCopiesEditor(void)
 {
-  QString str = "";
+  biblioteq_copy_editor *copyeditor = 0;
 
-  if(state == biblioteq::EDITABLE)
-    {
-      dvd.showUserButton->setEnabled(true);
-      dvd.copiesButton->setEnabled(true);
-      dvd.okButton->setVisible(true);
-      dvd.queryButton->setVisible(m_isQueryEnabled);
-      dvd.resetButton->setVisible(true);
-      dvd.frontButton->setVisible(true);
-      dvd.backButton->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
-	dvd.id->text() + tr(")");
-      m_engWindowTitle = "Modify";
-    }
-  else
-    {
-      if(qmain->isGuest())
-	dvd.showUserButton->setVisible(false);
-      else
-	dvd.showUserButton->setEnabled(true);
-
-      dvd.copiesButton->setVisible(false);
-      dvd.okButton->setVisible(false);
-      dvd.queryButton->setVisible(false);
-      dvd.resetButton->setVisible(false);
-      dvd.frontButton->setVisible(false);
-      dvd.backButton->setVisible(false);
-      str = QString(tr("BiblioteQ: View DVD Details (")) +
-	dvd.id->text() + tr(")");
-      m_engWindowTitle = "View";
-    }
-
-  dvd.coverImages->setVisible(true);
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
+  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
+      (qobject_cast<QWidget *> (this),
+       static_cast<biblioteq_item *> (this),
+       false,
+       dvd.quantity->value(), m_oid,
+       dvd.quantity, font(), "DVD", dvd.id->text().trimmed())) != 0)
+    copyeditor->populateCopiesEditor();
 }
 
-void biblioteq_dvd::modify(const int state)
+void biblioteq_dvd::slotPrint(void)
 {
-  QSqlQuery query(qmain->getDB());
-  QString fieldname = "";
-  QString str = "";
-  QVariant var;
-  int i = 0;
+  m_html = "<html>";
+  m_html += "<b>" + tr("UPC:") + "</b> " + dvd.id->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Rating:") + "</b> " + dvd.rating->currentText() +
+    "<br>";
+  m_html += "<b>" + tr("Actors:") + "</b> " +
+    dvd.actors->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Directors:") + "</b> " +
+    dvd.directors->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Number of Discs:") + "</b> " +
+    dvd.no_of_discs->text() + "<br>";
+  m_html += "<b>" + tr("Runtime:") + "</b> " + dvd.runtime->text() + "<br>";
+  m_html += "<b>" + tr("Format:") + "</b> " +
+    dvd.format->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Region:") + "</b> " + dvd.region->currentText() +
+    "<br>";
+  m_html += "<b>" + tr("Aspect Ratio:") + "</b> " +
+    dvd.aspectratio->currentText() + "<br>";
 
-  if(state == biblioteq::EDITABLE)
-    {
-      setReadOnlyFields(this, false);
-      setWindowTitle(tr("BiblioteQ: Modify DVD Entry"));
-      m_engWindowTitle = "Modify";
-      dvd.showUserButton->setEnabled(true);
-      dvd.copiesButton->setEnabled(true);
-      dvd.okButton->setVisible(true);
-      dvd.queryButton->setVisible(m_isQueryEnabled);
-      dvd.resetButton->setVisible(true);
-      dvd.frontButton->setVisible(true);
-      dvd.backButton->setVisible(true);
-      biblioteq_misc_functions::highlightWidget
-	(dvd.id, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.title, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.actors->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.directors->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.description->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.studio->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.format, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(dvd.category->viewport(), QColor(255, 248, 220));
-    }
-  else
-    {
-      setReadOnlyFields(this, true);
-      setWindowTitle(tr("BiblioteQ: View DVD Details"));
-      m_engWindowTitle = "View";
+  /*
+  ** General information.
+  */
 
-      if(qmain->isGuest())
-	dvd.showUserButton->setVisible(false);
-      else
-	dvd.showUserButton->setEnabled(true);
-
-      dvd.copiesButton->setVisible(false);
-      dvd.okButton->setVisible(false);
-      dvd.queryButton->setVisible(false);
-      dvd.resetButton->setVisible(false);
-      dvd.frontButton->setVisible(false);
-      dvd.backButton->setVisible(false);
-
-      QList<QAction *> actions = dvd.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-    }
-
-  dvd.queryButton->setEnabled(true);
-  dvd.okButton->setText(tr("&Save"));
-  dvd.runtime->setMinimumTime(QTime(0, 0, 1));
-  dvd.price->setMinimum(0.00);
-  dvd.quantity->setMinimum(1);
-  dvd.quantity->setValue(1);
-  dvd.no_of_discs->setMinimum(1);
-  dvd.no_of_discs->setValue(1);
-  str = m_oid;
-  query.prepare("SELECT id, "
-		"title, "
-		"dvdformat, "
-		"dvddiskcount, "
-		"dvdruntime, "
-		"rdate, "
-		"studio, "
-		"category, "
-		"price, "
-		"language, "
-		"monetary_units, "
-		"description, "
-		"quantity, "
-		"dvdactor, "
-		"dvddirector, "
-		"dvdrating, "
-		"dvdregion, "
-		"dvdaspectratio, "
-		"location, "
-		"front_cover, "
-		"back_cover, "
-		"keyword, "
-		"accession_number "
-		"FROM "
-		"dvd "
-		"WHERE myoid = ?");
-  query.bindValue(0, str);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec() || !query.next())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected DVD's data.")),
-	 query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to retrieve the selected DVD's "
-			       "data."));
-      close();
-      return;
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-      showNormal();
-      activateWindow();
-      raise();
-
-      QSqlRecord record(query.record());
-
-      for(i = 0; i < record.count(); i++)
-	{
-	  var = record.field(i).value();
-	  fieldname = record.fieldName(i);
-
-	  if(fieldname == "title")
-	    dvd.title->setText(var.toString());
-	  else if(fieldname == "studio")
-	    dvd.studio->setMultipleLinks
-	      ("dvd_search", "studio",
-	       var.toString());
-	  else if(fieldname == "rdate")
-	    dvd.release_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "price")
-	    dvd.price->setValue(var.toDouble());
-	  else if(fieldname == "category")
-	    dvd.category->setMultipleLinks("dvd_search", "category",
-					   var.toString());
-	  else if(fieldname == "language")
-	    {
-	      if(dvd.language->findText(var.toString()) > -1)
-		dvd.language->setCurrentIndex
-		  (dvd.language->findText(var.toString()));
-	      else
-		dvd.language->setCurrentIndex
-		  (dvd.language->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "quantity")
-	    dvd.quantity->setValue(var.toInt());
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(dvd.monetary_units->findText(var.toString()) > -1)
-		dvd.monetary_units->setCurrentIndex
-		  (dvd.monetary_units->findText(var.toString()));
-	      else
-		dvd.monetary_units->setCurrentIndex
-		  (dvd.monetary_units->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "dvddiskcount")
-	    dvd.no_of_discs->setValue(var.toInt());
-	  else if(fieldname == "dvdruntime")
-	    dvd.runtime->setTime(QTime::fromString(var.toString(),
-						   "hh:mm:ss"));
-	  else if(fieldname == "location")
-	    {
-	      if(dvd.location->findText(var.toString()) > -1)
-		dvd.location->setCurrentIndex
-		  (dvd.location->findText(var.toString()));
-	      else
-		dvd.location->setCurrentIndex
-		  (dvd.location->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "id")
-	    {
-	      if(state == biblioteq::EDITABLE)
-		{
-		  str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
-		    var.toString() + tr(")");
-		  m_engWindowTitle = "Modify";
-		}
-	      else
-		{
-		  str = QString(tr("BiblioteQ: View DVD Details (")) +
-		    var.toString() + tr(")");
-		  m_engWindowTitle = "View";
-		}
-
-	      setWindowTitle(str);
-	      dvd.id->setText(var.toString());
-	    }
-	  else if(fieldname == "description")
-	    dvd.description->setPlainText(var.toString());
-	  else if(fieldname == "keyword")
-	    dvd.keyword->setMultipleLinks("dvd_search",
-					  "keyword",
-					  var.toString());
-	  else if(fieldname == "dvdformat")
-	    dvd.format->setText(var.toString());
-	  else if(fieldname == "dvdactor")
-	    dvd.actors->setMultipleLinks("dvd_search", "actors",
-					 var.toString());
-	  else if(fieldname == "dvddirector")
-	    dvd.directors->setMultipleLinks("dvd_search", "directors",
-					    var.toString());
-	  else if(fieldname == "dvdrating")
-	    {
-	      if(dvd.rating->findText(var.toString()) > -1)
-		dvd.rating->setCurrentIndex
-		  (dvd.rating->findText(var.toString()));
-	      else
-		dvd.rating->setCurrentIndex
-		  (dvd.rating->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "dvdregion")
-	    {
-	      if(dvd.region->findText(var.toString()) > -1)
-		dvd.region->setCurrentIndex
-		  (dvd.region->findText(var.toString()));
-	      else
-		dvd.region->setCurrentIndex
-		  (dvd.region->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "dvdaspectratio")
-	    {
-	      if(dvd.aspectratio->findText(var.toString()) > -1)
-		dvd.aspectratio->setCurrentIndex
-		  (dvd.aspectratio->findText(var.toString()));
-	      else
-		dvd.aspectratio->setCurrentIndex
-		  (dvd.aspectratio->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  dvd.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(dvd.front_image->m_image.isNull())
-		    dvd.front_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  dvd.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(dvd.back_image->m_image.isNull())
-		    dvd.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    dvd.accession_number->setText(var.toString());
-	}
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	textfield->setCursorPosition(0);
-
-      storeData(this);
-    }
-
-  dvd.id->setFocus();
-  raise();
+  m_html += "<b>" + tr("Title:") + "</b> " +
+    dvd.title->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Release Date:") + "</b> " + dvd.release_date->date().
+    toString(Qt::ISODate) + "<br>";
+  m_html += "<b>" + tr("Studio:") + "</b> " +
+    dvd.studio->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Category:") + "</b> " +
+    dvd.category->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Price:") + "</b> " + dvd.price->cleanText() + "<br>";
+  m_html += "<b>" + tr("Language:") + "</b> " +
+    dvd.language->currentText() + "<br>";
+  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
+    dvd.monetary_units->currentText() + "<br>";
+  m_html += "<b>" + tr("Copies:") + "</b> " + dvd.quantity->text() + "<br>";
+  m_html += "<b>" + tr("Location:") + "</b> " +
+    dvd.location->currentText() + "<br>";
+  m_html += "<b>" + tr("Abstract:") + "</b> " +
+    dvd.description->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Keywords:") + "</b> " +
+    dvd.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
+    dvd.accession_number->text().trimmed();
+  m_html += "</html>";
+  print(this);
 }
 
-void biblioteq_dvd::insert(void)
+void biblioteq_dvd::slotPublicationDateEnabled(bool state)
 {
-  slotReset();
-  dvd.id->clear();
-  dvd.actors->setPlainText("N/A");
-  dvd.directors->setPlainText("N/A");
-  dvd.format->setText("N/A");
-  dvd.title->clear();
-  dvd.studio->setPlainText("N/A");
-  dvd.description->setPlainText("N/A");
-  dvd.keyword->clear();
-  dvd.category->setPlainText("N/A");
-  dvd.copiesButton->setEnabled(false);
-  dvd.showUserButton->setEnabled(false);
-  dvd.queryButton->setEnabled(true);
-  dvd.okButton->setText(tr("&Save"));
-  dvd.release_date->setDate(QDate::fromString("01/01/2000",
-					      "MM/dd/yyyy"));
-  dvd.runtime->setTime(QTime(0, 0, 1));
-  dvd.runtime->setMinimumTime(QTime(0, 0, 1));
-  dvd.price->setMinimum(0.00);
-  dvd.price->setValue(0.00);
-  dvd.quantity->setMinimum(1);
-  dvd.quantity->setValue(1);
-  dvd.no_of_discs->setMinimum(1);
-  dvd.no_of_discs->setValue(1);
-  dvd.location->setCurrentIndex(0);
-  dvd.language->setCurrentIndex(0);
-  dvd.monetary_units->setCurrentIndex(0);
-  dvd.rating->setCurrentIndex(0);
-  dvd.region->setCurrentIndex(0);
-  dvd.aspectratio->setCurrentIndex(0);
-  dvd.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (dvd.id, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.title, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.actors->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.directors->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.description->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.studio->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.format, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (dvd.category->viewport(), QColor(255, 248, 220));
-  setWindowTitle(tr("BiblioteQ: Create DVD Entry"));
-  m_engWindowTitle = "Create";
-  dvd.id->setFocus();
-  storeData(this);
-  showNormal();
-  activateWindow();
-  raise();
+  dvd.release_date->setEnabled(state);
+
+  if(!state)
+    dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+}
+
+void biblioteq_dvd::slotQuery(void)
+{
 }
 
 void biblioteq_dvd::slotReset(void)
@@ -1718,115 +1805,6 @@ void biblioteq_dvd::slotReset(void)
     }
 }
 
-void biblioteq_dvd::closeEvent(QCloseEvent *event)
-{
-  if(m_engWindowTitle.contains("Create") ||
-     m_engWindowTitle.contains("Modify"))
-    if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(event)
-	    event->ignore();
-
-	  return;
-	}
-
-  qmain->removeDVD(this);
-}
-
-void biblioteq_dvd::slotCancel(void)
-{
-  close();
-}
-
-void biblioteq_dvd::slotPopulateCopiesEditor(void)
-{
-  biblioteq_copy_editor *copyeditor = 0;
-
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       static_cast<biblioteq_item *> (this),
-       false,
-       dvd.quantity->value(), m_oid,
-       dvd.quantity, font(), "DVD", dvd.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
-}
-
-void biblioteq_dvd::slotShowUsers(void)
-{
-  int state = 0;
-  biblioteq_borrowers_editor *borrowerseditor = 0;
-
-  if(!dvd.okButton->isHidden())
-    state = biblioteq::EDITABLE;
-  else
-    state = biblioteq::VIEW_ONLY;
-
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
-       dvd.quantity->value(), m_oid, dvd.id->text(), font(), "DVD",
-       state)) != 0)
-    borrowerseditor->showUsers();
-}
-
-void biblioteq_dvd::slotQuery(void)
-{
-}
-
-void biblioteq_dvd::slotPrint(void)
-{
-  m_html = "<html>";
-  m_html += "<b>" + tr("UPC:") + "</b> " + dvd.id->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Rating:") + "</b> " + dvd.rating->currentText() +
-    "<br>";
-  m_html += "<b>" + tr("Actors:") + "</b> " +
-    dvd.actors->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Directors:") + "</b> " +
-    dvd.directors->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Number of Discs:") + "</b> " +
-    dvd.no_of_discs->text() + "<br>";
-  m_html += "<b>" + tr("Runtime:") + "</b> " + dvd.runtime->text() + "<br>";
-  m_html += "<b>" + tr("Format:") + "</b> " +
-    dvd.format->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Region:") + "</b> " + dvd.region->currentText() +
-    "<br>";
-  m_html += "<b>" + tr("Aspect Ratio:") + "</b> " +
-    dvd.aspectratio->currentText() + "<br>";
-
-  /*
-  ** General information.
-  */
-
-  m_html += "<b>" + tr("Title:") + "</b> " +
-    dvd.title->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Release Date:") + "</b> " + dvd.release_date->date().
-    toString(Qt::ISODate) + "<br>";
-  m_html += "<b>" + tr("Studio:") + "</b> " +
-    dvd.studio->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Category:") + "</b> " +
-    dvd.category->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Price:") + "</b> " + dvd.price->cleanText() + "<br>";
-  m_html += "<b>" + tr("Language:") + "</b> " +
-    dvd.language->currentText() + "<br>";
-  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
-    dvd.monetary_units->currentText() + "<br>";
-  m_html += "<b>" + tr("Copies:") + "</b> " + dvd.quantity->text() + "<br>";
-  m_html += "<b>" + tr("Location:") + "</b> " +
-    dvd.location->currentText() + "<br>";
-  m_html += "<b>" + tr("Abstract:") + "</b> " +
-    dvd.description->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Keywords:") + "</b> " +
-    dvd.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b> " +
-    dvd.accession_number->text().trimmed();
-  m_html += "</html>";
-  print(this);
-}
-
 void biblioteq_dvd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
@@ -1888,37 +1866,59 @@ void biblioteq_dvd::slotSelectImage(void)
     }
 }
 
-void biblioteq_dvd::duplicate(const QString &p_oid, const int state)
+void biblioteq_dvd::slotShowUsers(void)
 {
-  modify(state); // Initial population.
-  dvd.copiesButton->setEnabled(false);
-  dvd.showUserButton->setEnabled(false);
-  m_oid = p_oid;
-  setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
-  m_engWindowTitle = "Create";
+  biblioteq_borrowers_editor *borrowerseditor = 0;
+  int state = 0;
+
+  if(!dvd.okButton->isHidden())
+    state = biblioteq::EDITABLE;
+  else
+    state = biblioteq::VIEW_ONLY;
+
+  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
+      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
+       dvd.quantity->value(), m_oid, dvd.id->text(), font(), "DVD",
+       state)) != 0)
+    borrowerseditor->showUsers();
 }
 
-void biblioteq_dvd::changeEvent(QEvent *event)
+void biblioteq_dvd::updateWindow(const int state)
 {
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  dvd.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
+  QString str = "";
 
-  QMainWindow::changeEvent(event);
-}
+  if(state == biblioteq::EDITABLE)
+    {
+      dvd.showUserButton->setEnabled(true);
+      dvd.copiesButton->setEnabled(true);
+      dvd.okButton->setVisible(true);
+      dvd.queryButton->setVisible(m_isQueryEnabled);
+      dvd.resetButton->setVisible(true);
+      dvd.frontButton->setVisible(true);
+      dvd.backButton->setVisible(true);
+      str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
+	dvd.id->text() + tr(")");
+      m_engWindowTitle = "Modify";
+    }
+  else
+    {
+      if(qmain->isGuest())
+	dvd.showUserButton->setVisible(false);
+      else
+	dvd.showUserButton->setEnabled(true);
 
-void biblioteq_dvd::slotPublicationDateEnabled(bool state)
-{
-  dvd.release_date->setEnabled(state);
+      dvd.copiesButton->setVisible(false);
+      dvd.okButton->setVisible(false);
+      dvd.queryButton->setVisible(false);
+      dvd.resetButton->setVisible(false);
+      dvd.frontButton->setVisible(false);
+      dvd.backButton->setVisible(false);
+      str = QString(tr("BiblioteQ: View DVD Details (")) +
+	dvd.id->text() + tr(")");
+      m_engWindowTitle = "View";
+    }
 
-  if(!state)
-    dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  dvd.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
 }
