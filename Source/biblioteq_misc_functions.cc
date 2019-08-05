@@ -17,41 +17,6 @@
 
 extern biblioteq *qmain;
 
-/*
-** As of SQLite 3.5.9, users are not supported.
-*/
-
-bool biblioteq_misc_functions::userExists(const QString &userid,
-					  const QSqlDatabase &db,
-					  QString &errorstr)
-{
-  QSqlQuery query(db);
-  bool exists = false;
-
-  errorstr = "";
-
-  if(db.driverName() == "QSQLITE")
-    query.prepare("SELECT EXISTS(SELECT 1 FROM member WHERE "
-		  "memberid = ?)");
-  else
-    query.prepare("SELECT EXISTS(SELECT 1 FROM pg_user WHERE "
-		  "LOWER(usename) = LOWER(?))");
-
-  query.bindValue(0, userid);
-
-  if(query.exec())
-    if(query.next())
-      exists = query.value(0).toBool();
-
-  if(query.lastError().isValid())
-    {
-      exists = false;
-      errorstr = query.lastError().text();
-    }
-
-  return exists;
-}
-
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
@@ -91,6 +56,145 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
       str = query.value(0).toString();
 
   return str;
+}
+
+QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
+{
+  QString format("");
+
+  if(bytes.size() >= 4 &&
+     tolower(bytes[1]) == 'p' &&
+     tolower(bytes[2]) == 'n' &&
+     tolower(bytes[3]) == 'g')
+    format = "PNG";
+  else if(bytes.size() >= 10 &&
+	  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
+	  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
+    format = "JPG";
+  else if(bytes.size() >= 2 &&
+	  tolower(bytes[0]) == 'b' &&
+	  tolower(bytes[1]) == 'm')
+    format = "BMP";
+  else // Guess!
+    format = "JPG";
+
+  return format;
+}
+
+QStringList biblioteq_misc_functions::getBookBindingTypes
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+
+  errorstr = "";
+  querystr = "SELECT binding_type FROM book_binding_types "
+    "WHERE LENGTH(TRIM(binding_type)) > 0 "
+    "ORDER BY binding_type";
+
+  if(query.exec(querystr))
+    while(query.next())
+      types.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return types;
+}
+
+QStringList biblioteq_misc_functions::getGreyLiteratureTypes
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+
+  errorstr = "";
+  querystr = "SELECT document_type FROM grey_literature_types "
+    "WHERE LENGTH(TRIM(document_type)) > 0 "
+    "ORDER BY document_type";
+
+  if(query.exec(querystr))
+    while(query.next())
+      types.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return types;
+}
+
+bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
+				   const QString &memberid,
+				   QString &errorstr)
+{
+  if(db.driverName() == "QSQLITE")
+    return false;
+
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+  bool dnt = true;
+
+  errorstr = "";
+  querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
+  query.prepare(querystr);
+  query.bindValue(0, memberid);
+
+  if(query.exec())
+    while(query.next())
+      dnt = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return dnt;
+}
+
+bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
+{
+  if(db.driverName() == "QSQLITE")
+    return false;
+
+  QSqlQuery query(db);
+
+  if(query.exec("SELECT LOWER(extname) FROM pg_extension WHERE "
+		"LOWER(extname) = 'unaccent'") && query.next())
+    return query.value(0).toString() == "unaccent";
+
+  return false;
+}
+
+bool biblioteq_misc_functions::userExists(const QString &userid,
+					  const QSqlDatabase &db,
+					  QString &errorstr)
+{
+  QSqlQuery query(db);
+  bool exists = false;
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    query.prepare("SELECT EXISTS(SELECT 1 FROM member WHERE "
+		  "memberid = ?)");
+  else
+    query.prepare("SELECT EXISTS(SELECT 1 FROM pg_user WHERE "
+		  "LOWER(usename) = LOWER(?))");
+
+  query.bindValue(0, userid);
+
+  if(query.exec())
+    if(query.next())
+      exists = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    {
+      exists = false;
+      errorstr = query.lastError().text();
+    }
+
+  return exists;
 }
 
 QImage biblioteq_misc_functions::getImage(const QString &oid,
@@ -1955,112 +2059,4 @@ void biblioteq_misc_functions::exportPhotographs
 	    }
 	}
     }
-}
-
-QStringList biblioteq_misc_functions::getBookBindingTypes
-(const QSqlDatabase &db, QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList types;
-
-  errorstr = "";
-  querystr = "SELECT binding_type FROM book_binding_types "
-    "WHERE LENGTH(TRIM(binding_type)) > 0 "
-    "ORDER BY binding_type";
-
-  if(query.exec(querystr))
-    while(query.next())
-      types.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return types;
-}
-
-bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
-				   const QString &memberid,
-				   QString &errorstr)
-{
-  if(db.driverName() == "QSQLITE")
-    return false;
-
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList types;
-  bool dnt = true;
-
-  errorstr = "";
-  querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
-  query.prepare(querystr);
-  query.bindValue(0, memberid);
-
-  if(query.exec())
-    while(query.next())
-      dnt = query.value(0).toBool();
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return dnt;
-}
-
-QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
-{
-  QString format("");
-
-  if(bytes.size() >= 4 &&
-     tolower(bytes[1]) == 'p' &&
-     tolower(bytes[2]) == 'n' &&
-     tolower(bytes[3]) == 'g')
-    format = "PNG";
-  else if(bytes.size() >= 10 &&
-	  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
-	  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
-    format = "JPG";
-  else if(bytes.size() >= 2 &&
-	  tolower(bytes[0]) == 'b' &&
-	  tolower(bytes[1]) == 'm')
-    format = "BMP";
-  else // Guess!
-    format = "JPG";
-
-  return format;
-}
-
-QStringList biblioteq_misc_functions::getGreyLiteratureTypes
-(const QSqlDatabase &db, QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList types;
-
-  errorstr = "";
-  querystr = "SELECT document_type FROM grey_literature_types "
-    "WHERE LENGTH(TRIM(document_type)) > 0 "
-    "ORDER BY document_type";
-
-  if(query.exec(querystr))
-    while(query.next())
-      types.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return types;
-}
-
-bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
-{
-  if(db.driverName() == "QSQLITE")
-    return false;
-
-  QSqlQuery query(db);
-
-  if(query.exec("SELECT LOWER(extname) FROM pg_extension WHERE "
-		"LOWER(extname) = 'unaccent'") && query.next())
-    return query.value(0).toString() == "unaccent";
-
-  return false;
 }
