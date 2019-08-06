@@ -4941,6 +4941,8 @@ void biblioteq::slotConnectDB(void)
       ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
+  addConfigOptions(m_lastCategory);
+
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
 }
@@ -5987,10 +5989,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
   */
 
   if(m_db.isOpen())
-    {
-      addConfigOptions(m_lastCategory);
-      slotRefresh();
-    }
+    slotRefresh();
   else
     {
       QString typefilter("");
