@@ -3890,19 +3890,6 @@ void biblioteq::slotSaveConfig(void)
   settings.sync();
 }
 
-void biblioteq::slotShowColumns(void)
-{
-  int i = 0;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  for(i = 0; i < ui.table->columnNames().size(); i++)
-    if(ui.table->columnNames().at(i) == "Publisher")
-      ui.table->setColumnHidden(i, false);
-
-  QApplication::restoreOverrideCursor();
-}
-
 void biblioteq::slotSceneSelectionChanged(void)
 {
   if(ui.stackedWidget->currentIndex() != 0)
@@ -6000,7 +5987,10 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
   */
 
   if(m_db.isOpen())
-    slotRefresh();
+    {
+      addConfigOptions(m_lastCategory);
+      slotRefresh();
+    }
   else
     {
       QString typefilter("");

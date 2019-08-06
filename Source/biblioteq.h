@@ -440,7 +440,6 @@ class biblioteq: public QMainWindow
   void slotSetFonts(void);
   void slotShowAdminDialog(void);
   void slotShowChangePassword(void);
-  void slotShowColumns(void);
   void slotShowConnectionDB(void);
   void slotShowCustomQuery(void);
   void slotShowDbEnumerations(void);
