@@ -14,8 +14,8 @@ extern biblioteq *qmain;
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
-  setDragEnabled(false);
   setAcceptDrops(false);
+  setDragEnabled(false);
 #if QT_VERSION >= 0x050000
   horizontalHeader()->setSectionsMovable(true);
 #else

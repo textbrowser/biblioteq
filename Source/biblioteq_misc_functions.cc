@@ -17,6 +17,50 @@
 
 extern biblioteq *qmain;
 
+QImage biblioteq_misc_functions::getImage(const QString &oid,
+					  const QString &which,
+					  const QString &typeArg,
+					  const QSqlDatabase &db)
+{
+  QImage image = QImage();
+  QSqlQuery query(db);
+  QString type(typeArg.toLower());
+
+  if(type == "photograph collection")
+    type = type.replace(" ", "_");
+  else
+    type = type.remove(" ");
+
+  if(type == "book" || type == "cd" || type == "dvd" || type == "journal" ||
+     type == "magazine" || type == "photograph_collection" ||
+     type == "videogame")
+    {
+      if(which == "back_cover" || which == "front_cover" ||
+	 which == "image_scaled")
+	{
+	  query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
+			arg(which).arg(type));
+	  query.bindValue(0, oid);
+	}
+      else
+	return image;
+    }
+  else
+    return image;
+
+  if(query.exec())
+    if(query.next())
+      {
+	image.loadFromData
+	  (QByteArray::fromBase64(query.value(0).toByteArray()));
+
+	if(image.isNull())
+	  image.loadFromData(query.value(0).toByteArray());
+      }
+
+  return image;
+}
+
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
@@ -197,161 +241,6 @@ bool biblioteq_misc_functions::userExists(const QString &userid,
   return exists;
 }
 
-QImage biblioteq_misc_functions::getImage(const QString &oid,
-					  const QString &which,
-					  const QString &typeArg,
-					  const QSqlDatabase &db)
-{
-  QImage image = QImage();
-  QSqlQuery query(db);
-  QString type(typeArg.toLower());
-
-  if(type == "photograph collection")
-    type = type.replace(" ", "_");
-  else
-    type = type.remove(" ");
-
-  if(type == "book" || type == "cd" || type == "dvd" || type == "journal" ||
-     type == "magazine" || type == "photograph_collection" ||
-     type == "videogame")
-    {
-      if(which == "back_cover" || which == "front_cover" ||
-	 which == "image_scaled")
-	{
-	  query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
-			arg(which).arg(type));
-	  query.bindValue(0, oid);
-	}
-      else
-	return image;
-    }
-  else
-    return image;
-
-  if(query.exec())
-    if(query.next())
-      {
-	image.loadFromData
-	  (QByteArray::fromBase64(query.value(0).toByteArray()));
-
-	if(image.isNull())
-	  image.loadFromData(query.value(0).toByteArray());
-      }
-
-  return image;
-}
-
-void biblioteq_misc_functions::grantPrivs(const QString &userid,
-					  const QString &roles,
-					  const QSqlDatabase &db,
-					  QString &errorstr)
-{
-  errorstr = "";
-
-  if(db.driverName() == "QSQLITE")
-    return; // Users are not supported.
-
-  QSqlQuery query(db);
-  QString querystr = "";
-  QString str(roles);
-
-  if(str.isEmpty() || str == "none")
-    str = "biblioteq_patron";
-  else
-    {
-      str.replace(" ", "_");
-      str.prepend("biblioteq_");
-    }
-
-  if(str.contains("administrator"))
-    {
-      (void) query.exec(QString("GRANT biblioteq_administrator "
-				"TO %1 WITH ADMIN OPTION").
-			arg(userid));
-
-      if(!query.lastError().isValid())
-	{
-	  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
-	  (void) query.exec(querystr);
-	}
-
-      goto done_label;
-    }
-
-  if(str.contains("membership"))
-    {
-      (void) query.exec(QString("GRANT %1 "
-				"TO %2 WITH ADMIN OPTION").
-			arg(str).arg(userid));
-
-      if(!query.lastError().isValid())
-	{
-	  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
-	  (void) query.exec(querystr);
-	}
-
-      goto done_label;
-    }
-
-  (void) query.exec(QString("GRANT %1 "
-			    "TO %2").arg(str).arg(userid));
-
- done_label:
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-}
-
-void biblioteq_misc_functions::revokeAll(const QString &userid,
-					 const QSqlDatabase &db,
-					 QString &errorstr)
-{
-  errorstr = "";
-
-  if(db.driverName() == "QSQLITE")
-    return; // Users are not supported.
-
-  QSqlQuery query(db);
-  QString querystr = "";
-  QStringList objectlist;
-  bool exists = userExists(userid, db, errorstr);
-
-  if(exists)
-    {
-      objectlist << "biblioteq_administrator"
-		 << "biblioteq_circulation"
-		 << "biblioteq_circulation_librarian"
-		 << "biblioteq_circulation_librarian_membership"
-		 << "biblioteq_circulation_membership"
-		 << "biblioteq_librarian"
-		 << "biblioteq_librarian_membership"
-		 << "biblioteq_membership"
-		 << "biblioteq_patron";
-
-      while(!objectlist.isEmpty())
-	{
-	  querystr = QString("REVOKE %1 FROM %2").arg
-	    (objectlist.takeFirst()).arg(userid);
-
-	  if(!query.exec(querystr))
-	    break;
-	}
-
-      objectlist.clear();
-
-      if(query.lastError().isValid())
-	errorstr = query.lastError().text();
-      else
-	{
-	  querystr = QString("ALTER USER %1 NOCREATEROLE").arg(userid);
-	  (void) query.exec(querystr);
-
-	  if(query.lastError().isValid())
-	    errorstr = query.lastError().text();
-	}
-    }
-}
-
 void biblioteq_misc_functions::DBAccount(const QString &userid,
 					 const QSqlDatabase &db,
 					 const int action,
@@ -504,6 +393,211 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	  (void) query.exec(QString("DROP USER IF EXISTS %1").arg(userid));
 
 	  if(errorstr.isEmpty() && query.lastError().isValid())
+	    errorstr = query.lastError().text();
+	}
+    }
+}
+
+void biblioteq_misc_functions::exportPhotographs
+(const QSqlDatabase &db,
+ const QString &collectionOid,
+ const int pageOffset,
+ const QString &destinationPath,
+ QWidget *parent)
+{
+  QProgressDialog progress(parent);
+
+  progress.setLabelText(QObject::tr("Exporting image(s)..."));
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  QSqlQuery query(db);
+
+  if(pageOffset <= 0)
+    {
+      query.prepare("SELECT image FROM photograph WHERE "
+		    "collection_oid = ? AND image IS NOT NULL");
+      query.bindValue(0, collectionOid);
+    }
+  else
+    {
+      int integer = biblioteq_photographcollection::photographsPerPage();
+
+      query.prepare
+	(QString("SELECT image FROM photograph WHERE "
+		 "collection_oid = ? AND image IS NOT NULL "
+		 "LIMIT %1 "
+		 "OFFSET %2").
+	 arg(integer).
+	 arg(integer * (pageOffset - 1)));
+      query.bindValue(0, collectionOid);
+    }
+
+  if(query.exec())
+    {
+      if(db.driverName() == "QPSQL")
+	progress.setMaximum(query.size());
+      else
+	progress.setMaximum(0);
+
+      int i = 0;
+      int j = -1;
+#if QT_VERSION >= 0x040700
+      qint64 id = QDateTime::currentMSecsSinceEpoch();
+#else
+      QDateTime dateTime(QDateTime::currentDateTime());
+      qint64 id = static_cast<qint64> (dateTime.toTime_t());
+#endif
+
+      while(query.next())
+	{
+	  if(db.driverName() == "QPSQL")
+	    {
+	      j += 1;
+
+	      if(j + 1 <= progress.maximum())
+		progress.setValue(j + 1);
+	    }
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+
+	  if(progress.wasCanceled())
+	    break;
+
+	  QByteArray bytes
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+	  QImage image;
+	  QString format(imageFormatGuess(bytes));
+
+	  image.loadFromData(bytes, format.toLatin1().constData());
+
+	  if(!image.isNull())
+	    {
+	      i += 1;
+	      image.save
+		(destinationPath + QDir::separator() +
+		 QString("%1_%2.%3").arg(id).arg(i).arg(format).toLower(),
+		 format.toLatin1().constData(), 100);
+	    }
+	}
+    }
+}
+
+void biblioteq_misc_functions::grantPrivs(const QString &userid,
+					  const QString &roles,
+					  const QSqlDatabase &db,
+					  QString &errorstr)
+{
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
+
+  QSqlQuery query(db);
+  QString querystr = "";
+  QString str(roles);
+
+  if(str.isEmpty() || str == "none")
+    str = "biblioteq_patron";
+  else
+    {
+      str.replace(" ", "_");
+      str.prepend("biblioteq_");
+    }
+
+  if(str.contains("administrator"))
+    {
+      (void) query.exec(QString("GRANT biblioteq_administrator "
+				"TO %1 WITH ADMIN OPTION").
+			arg(userid));
+
+      if(!query.lastError().isValid())
+	{
+	  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
+	  (void) query.exec(querystr);
+	}
+
+      goto done_label;
+    }
+
+  if(str.contains("membership"))
+    {
+      (void) query.exec(QString("GRANT %1 "
+				"TO %2 WITH ADMIN OPTION").
+			arg(str).arg(userid));
+
+      if(!query.lastError().isValid())
+	{
+	  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
+	  (void) query.exec(querystr);
+	}
+
+      goto done_label;
+    }
+
+  (void) query.exec(QString("GRANT %1 "
+			    "TO %2").arg(str).arg(userid));
+
+ done_label:
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+}
+
+void biblioteq_misc_functions::revokeAll(const QString &userid,
+					 const QSqlDatabase &db,
+					 QString &errorstr)
+{
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
+
+  QSqlQuery query(db);
+  QString querystr = "";
+  QStringList objectlist;
+  bool exists = userExists(userid, db, errorstr);
+
+  if(exists)
+    {
+      objectlist << "biblioteq_administrator"
+		 << "biblioteq_circulation"
+		 << "biblioteq_circulation_librarian"
+		 << "biblioteq_circulation_librarian_membership"
+		 << "biblioteq_circulation_membership"
+		 << "biblioteq_librarian"
+		 << "biblioteq_librarian_membership"
+		 << "biblioteq_membership"
+		 << "biblioteq_patron";
+
+      while(!objectlist.isEmpty())
+	{
+	  querystr = QString("REVOKE %1 FROM %2").arg
+	    (objectlist.takeFirst()).arg(userid);
+
+	  if(!query.exec(querystr))
+	    break;
+	}
+
+      objectlist.clear();
+
+      if(query.lastError().isValid())
+	errorstr = query.lastError().text();
+      else
+	{
+	  querystr = QString("ALTER USER %1 NOCREATEROLE").arg(userid);
+	  (void) query.exec(querystr);
+
+	  if(query.lastError().isValid())
 	    errorstr = query.lastError().text();
 	}
     }
@@ -1962,100 +2056,6 @@ void biblioteq_misc_functions::exportPhotographs
 	      (destinationPath + QDir::separator() +
 	       QString("%1_%2.%3").arg(id).arg(i + 1).arg(format).toLower(),
 	       format.toLatin1().constData(), 100);
-	}
-    }
-}
-
-void biblioteq_misc_functions::exportPhotographs
-(const QSqlDatabase &db,
- const QString &collectionOid,
- const int pageOffset,
- const QString &destinationPath,
- QWidget *parent)
-{
-  QProgressDialog progress(parent);
-
-  progress.setLabelText(QObject::tr("Exporting image(s)..."));
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  QSqlQuery query(db);
-
-  if(pageOffset <= 0)
-    {
-      query.prepare("SELECT image FROM photograph WHERE "
-		    "collection_oid = ? AND image IS NOT NULL");
-      query.bindValue(0, collectionOid);
-    }
-  else
-    {
-      int integer = biblioteq_photographcollection::photographsPerPage();
-
-      query.prepare
-	(QString("SELECT image FROM photograph WHERE "
-		 "collection_oid = ? AND image IS NOT NULL "
-		 "LIMIT %1 "
-		 "OFFSET %2").
-	 arg(integer).
-	 arg(integer * (pageOffset - 1)));
-      query.bindValue(0, collectionOid);
-    }
-
-  if(query.exec())
-    {
-      if(db.driverName() == "QPSQL")
-	progress.setMaximum(query.size());
-      else
-	progress.setMaximum(0);
-
-      int i = 0;
-      int j = -1;
-#if QT_VERSION >= 0x040700
-      qint64 id = QDateTime::currentMSecsSinceEpoch();
-#else
-      QDateTime dateTime(QDateTime::currentDateTime());
-      qint64 id = static_cast<qint64> (dateTime.toTime_t());
-#endif
-
-      while(query.next())
-	{
-	  if(db.driverName() == "QPSQL")
-	    {
-	      j += 1;
-
-	      if(j + 1 <= progress.maximum())
-		progress.setValue(j + 1);
-	    }
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-
-	  if(progress.wasCanceled())
-	    break;
-
-	  QByteArray bytes
-	    (QByteArray::fromBase64(query.value(0).toByteArray()));
-	  QImage image;
-	  QString format(imageFormatGuess(bytes));
-
-	  image.loadFromData(bytes, format.toLatin1().constData());
-
-	  if(!image.isNull())
-	    {
-	      i += 1;
-	      image.save
-		(destinationPath + QDir::separator() +
-		 QString("%1_%2.%3").arg(id).arg(i).arg(format).toLower(),
-		 format.toLatin1().constData(), 100);
-	    }
 	}
     }
 }
