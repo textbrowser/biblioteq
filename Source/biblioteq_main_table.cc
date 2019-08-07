@@ -14,7 +14,6 @@ extern biblioteq *qmain;
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
-  m_lastType.clear();
   setDragEnabled(false);
   setAcceptDrops(false);
 #if QT_VERSION >= 0x050000
@@ -120,27 +119,13 @@ void biblioteq_main_table::resetTable(const QString &username,
 				      const QString &type,
 				      const QString &roles)
 {
-  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
-    setColumnCount(0);
-  else
-    {
-      if(m_lastType == type)
-	{
-	}
-      else
-	setColumnCount(0);
-    }
-
+  setColumnCount(0);
   setRowCount(0);
   scrollToTop();
-  horizontalScrollBar()->setValue(0);
-
-  if(!type.isEmpty())
-    if(columnCount() == 0)
-      setColumns(username, type, roles);
-
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
+  horizontalScrollBar()->setValue(0);
+  setColumns(username, type, roles);
 
   if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
     {
@@ -151,7 +136,6 @@ void biblioteq_main_table::resetTable(const QString &username,
     }
 
   clearSelection();
-  m_lastType = type;
   setCurrentItem(0);
 }
 
@@ -164,12 +148,16 @@ void biblioteq_main_table::setColumnNames(const QStringList &list)
 }
 
 void biblioteq_main_table::setColumns(const QString &username,
-				      const QString &type,
+				      const QString &t,
 				      const QString &roles)
 {
+  QString type(t.trimmed());
   QStringList list;
 
   m_columnHeaderIndexes.clear();
+
+  if(type.isEmpty())
+    type = "All";
 
   if(type == "All" ||
      type == "All Available" ||

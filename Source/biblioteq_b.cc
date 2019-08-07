@@ -2955,7 +2955,7 @@ int biblioteq::populateTable(const int search_type_arg,
   if(search_type != CUSTOM_QUERY)
     ui.table->resetTable(m_db.userName(), typefilter, m_roles);
   else
-    ui.table->resetTable(m_db.userName(), "", m_roles);
+    ui.table->resetTable(m_db.userName(), "Custom", m_roles);
 
   qint64 currentPage = 0;
 
