@@ -1082,8 +1082,7 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
   QString roles = "";
 
   errorstr = "";
-  querystr = "SELECT LOWER(roles) FROM admin WHERE "
-    "LOWER(username) = LOWER(?)";
+  querystr = "SELECT LOWER(roles) FROM admin WHERE LOWER(username) = LOWER(?)";
   query.prepare(querystr);
   query.bindValue(0, username);
 

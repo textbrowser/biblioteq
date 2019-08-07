@@ -4797,8 +4797,16 @@ void biblioteq::slotConnectDB(void)
       ** Set the window's title.
       */
 
-      setWindowTitle
-	(tr("BiblioteQ: ") + QFileInfo(br.filename->text()).fileName());
+      if(!m_roles.isEmpty())
+	setWindowTitle
+	  (tr("BiblioteQ: %1 (%2)").
+	   arg(QFileInfo(br.filename->text()).fileName()).
+	   arg(m_roles));
+      else
+	setWindowTitle
+	  (tr("BiblioteQ: %1 (%2)").
+	   arg(QFileInfo(br.filename->text()).fileName()).
+	   arg("missing roles"));
     }
   else
     {
