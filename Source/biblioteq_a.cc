@@ -4829,6 +4829,8 @@ void biblioteq::slotConnectDB(void)
 		     QString(" (%1)").arg(m_db.userName()));
     }
 
+  prepareFilter();
+
   if(br.role->currentIndex() == 0 || m_db.driverName() == "QSQLITE")
     {
       if(m_db.driverName() == "QSQLITE")
@@ -4938,8 +4940,6 @@ void biblioteq::slotConnectDB(void)
 
       ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
-
-  prepareFilter();
 
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
