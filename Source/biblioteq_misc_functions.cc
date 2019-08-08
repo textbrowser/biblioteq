@@ -198,6 +198,50 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
   return types;
 }
 
+QStringList biblioteq_misc_functions::getDVDAspectRatios
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList aspectratios;
+
+  errorstr = "";
+  querystr = "SELECT dvd_aspect_ratio FROM dvd_aspect_ratios "
+    "WHERE LENGTH(TRIM(dvd_aspect_ratio)) > 0 "
+    "ORDER BY dvd_aspect_ratio";
+
+  if(query.exec(querystr))
+    while(query.next())
+      aspectratios.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return aspectratios;
+}
+
+QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
+						    QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList regions;
+
+  errorstr = "";
+  querystr = "SELECT dvd_region FROM dvd_regions "
+    "WHERE LENGTH(TRIM(dvd_region)) > 0 "
+    "ORDER BY dvd_region";
+
+  if(query.exec(querystr))
+    while(query.next())
+      regions.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return regions;
+}
+
 QStringList biblioteq_misc_functions::getGreyLiteratureTypes
 (const QSqlDatabase &db, QString &errorstr)
 {
@@ -218,6 +262,75 @@ QStringList biblioteq_misc_functions::getGreyLiteratureTypes
     errorstr = query.lastError().text();
 
   return types;
+}
+
+QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
+						     QString &errorstr)
+{
+  QMap<QString, QString> map;
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList minimumdays;
+
+  errorstr = "";
+  querystr = "SELECT type, days FROM minimum_days "
+    "WHERE LENGTH(TRIM(type)) > 0 "
+    "ORDER BY type";
+
+  if(query.exec(querystr))
+    while(query.next())
+      {
+	if(query.value(0).toString() == "CD")
+	  map["Music CD"] = query.value(1).toString();
+	else
+	  map[query.value(0).toString()] = query.value(1).toString();
+      }
+
+  if(!map.contains("Book"))
+    map["Book"] = "1";
+
+  if(!map.contains("DVD"))
+    map["DVD"] = "1";
+
+  if(!map.contains("Journal"))
+    map["Journal"] = "1";
+
+  if(!map.contains("Magazine"))
+    map["Magazine"] = "1";
+
+  if(!map.contains("Music CD"))
+    map["Music CD"] = "1";
+
+  if(!map.contains("Video Game"))
+    map["Video Game"] = "1";
+
+  for(int i = 0; i < map.values().size(); i++)
+    minimumdays.append(map.values().at(i));
+
+  map.clear();
+  return minimumdays;
+}
+
+QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
+						    QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList ratings;
+
+  errorstr = "";
+  querystr = "SELECT dvd_rating FROM dvd_ratings "
+    "WHERE LENGTH(TRIM(dvd_rating)) > 0 "
+    "ORDER BY dvd_rating";
+
+  if(query.exec(querystr))
+    while(query.next())
+      ratings.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return ratings;
 }
 
 QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
@@ -348,6 +461,50 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
   return list;
 }
 
+QStringList biblioteq_misc_functions::getVideoGamePlatforms
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList platforms;
+
+  errorstr = "";
+  querystr = "SELECT videogame_platform FROM videogame_platforms "
+    "WHERE LENGTH(TRIM(videogame_platform)) > 0 "
+    "ORDER BY videogame_platform";
+
+  if(query.exec(querystr))
+    while(query.next())
+      platforms.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return platforms;
+}
+
+QStringList biblioteq_misc_functions::getVideoGameRatings
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList ratings;
+
+  errorstr = "";
+  querystr = "SELECT videogame_rating FROM videogame_ratings "
+    "WHERE LENGTH(TRIM(videogame_rating)) > 0 "
+    "ORDER BY videogame_rating";
+
+  if(query.exec(querystr))
+    while(query.next())
+      ratings.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return ratings;
+}
+
 bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 				   const QString &memberid,
 				   QString &errorstr)
@@ -408,6 +565,52 @@ bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
   return exists;
 }
 
+bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
+						const QString &memberid,
+						QString &errorstr)
+{
+  QSqlQuery query(db);
+  bool expired = true;
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    query.prepare("SELECT expiration_date "
+		  "FROM member WHERE memberid = ?");
+  else
+    query.prepare("SELECT TO_DATE(expiration_date, 'mm/dd/yyyy') - "
+		  "current_date FROM member WHERE memberid = ?");
+
+  query.bindValue(0, memberid);
+
+  if(query.exec())
+    if(query.next())
+      {
+	if(db.driverName() == "QSQLITE")
+	  {
+	    QDate date(QDate::fromString(query.value(0).toString(),
+					 "MM/dd/yyyy"));
+
+	    if(date.daysTo(QDate::currentDate()) > 0)
+	      expired = true;
+	    else
+	      expired = false;
+	  }
+	else
+	  {
+	    if(query.value(0).toLongLong() < 0)
+	      expired = true;
+	    else
+	      expired = false;
+	  }
+      }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return expired;
+}
+
 bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
 {
   if(db.driverName() == "QSQLITE")
@@ -461,6 +664,60 @@ bool biblioteq_misc_functions::userExists(const QString &userid,
     }
 
   return exists;
+}
+
+int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
+					     const QString &type,
+					     QString &errorstr)
+{
+  QSqlQuery query(db);
+  int minimumdays = 1;
+
+  errorstr = "";
+  query.prepare("SELECT days FROM minimum_days WHERE type = ?");
+  query.bindValue(0, type);
+
+  if(query.exec())
+    if(query.next())
+      minimumdays = query.value(0).toInt();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return minimumdays;
+}
+
+qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
+						   QString &errorstr)
+{
+  qint64 value = -1;
+
+  if(db.driverName() != "QSQLITE")
+    return value;
+
+  QSqlQuery query(db);
+
+  errorstr = "";
+
+  if(query.exec("INSERT INTO sequence VALUES (NULL)"))
+    {
+      QVariant variant(query.lastInsertId());
+
+      if(variant.isValid())
+	{
+	  value = variant.toLongLong();
+	  query.exec
+	    (QString("DELETE FROM sequence WHERE value < %1").arg(value));
+	}
+      else
+	errorstr = "Invalid variant.";
+    }
+  else if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+  else
+    errorstr = "Query failure.";
+
+  return value;
 }
 
 void biblioteq_misc_functions::DBAccount(const QString &userid,
@@ -1795,263 +2052,6 @@ QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return formats;
-}
-
-QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
-						    QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList ratings;
-
-  errorstr = "";
-  querystr = "SELECT dvd_rating FROM dvd_ratings "
-    "WHERE LENGTH(TRIM(dvd_rating)) > 0 "
-    "ORDER BY dvd_rating";
-
-  if(query.exec(querystr))
-    while(query.next())
-      ratings.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return ratings;
-}
-
-QStringList biblioteq_misc_functions::getDVDAspectRatios
-(const QSqlDatabase &db, QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList aspectratios;
-
-  errorstr = "";
-  querystr = "SELECT dvd_aspect_ratio FROM dvd_aspect_ratios "
-    "WHERE LENGTH(TRIM(dvd_aspect_ratio)) > 0 "
-    "ORDER BY dvd_aspect_ratio";
-
-  if(query.exec(querystr))
-    while(query.next())
-      aspectratios.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return aspectratios;
-}
-
-QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
-						    QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList regions;
-
-  errorstr = "";
-  querystr = "SELECT dvd_region FROM dvd_regions "
-    "WHERE LENGTH(TRIM(dvd_region)) > 0 "
-    "ORDER BY dvd_region";
-
-  if(query.exec(querystr))
-    while(query.next())
-      regions.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return regions;
-}
-
-int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
-					     const QString &type,
-					     QString &errorstr)
-{
-  QSqlQuery query(db);
-  int minimumdays = 1;
-
-  errorstr = "";
-  query.prepare("SELECT days FROM minimum_days WHERE type = ?");
-  query.bindValue(0, type);
-
-  if(query.exec())
-    if(query.next())
-      minimumdays = query.value(0).toInt();
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return minimumdays;
-}
-
-QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
-						     QString &errorstr)
-{
-  QMap<QString, QString> map;
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList minimumdays;
-
-  errorstr = "";
-  querystr = "SELECT type, days FROM minimum_days "
-    "WHERE LENGTH(TRIM(type)) > 0 "
-    "ORDER BY type";
-
-  if(query.exec(querystr))
-    while(query.next())
-      {
-	if(query.value(0).toString() == "CD")
-	  map["Music CD"] = query.value(1).toString();
-	else
-	  map[query.value(0).toString()] = query.value(1).toString();
-      }
-
-  if(!map.contains("Book"))
-    map["Book"] = "1";
-
-  if(!map.contains("DVD"))
-    map["DVD"] = "1";
-
-  if(!map.contains("Journal"))
-    map["Journal"] = "1";
-
-  if(!map.contains("Magazine"))
-    map["Magazine"] = "1";
-
-  if(!map.contains("Music CD"))
-    map["Music CD"] = "1";
-
-  if(!map.contains("Video Game"))
-    map["Video Game"] = "1";
-
-  for(int i = 0; i < map.values().size(); i++)
-    minimumdays.append(map.values().at(i));
-
-  map.clear();
-  return minimumdays;
-}
-
-QStringList biblioteq_misc_functions::getVideoGameRatings
-(const QSqlDatabase &db, QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList ratings;
-
-  errorstr = "";
-  querystr = "SELECT videogame_rating FROM videogame_ratings "
-    "WHERE LENGTH(TRIM(videogame_rating)) > 0 "
-    "ORDER BY videogame_rating";
-
-  if(query.exec(querystr))
-    while(query.next())
-      ratings.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return ratings;
-}
-
-QStringList biblioteq_misc_functions::getVideoGamePlatforms
-(const QSqlDatabase &db, QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList platforms;
-
-  errorstr = "";
-  querystr = "SELECT videogame_platform FROM videogame_platforms "
-    "WHERE LENGTH(TRIM(videogame_platform)) > 0 "
-    "ORDER BY videogame_platform";
-
-  if(query.exec(querystr))
-    while(query.next())
-      platforms.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return platforms;
-}
-
-qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
-						   QString &errorstr)
-{
-  qint64 value = -1;
-
-  if(db.driverName() != "QSQLITE")
-    return value;
-
-  QSqlQuery query(db);
-
-  errorstr = "";
-
-  if(query.exec("INSERT INTO sequence VALUES (NULL)"))
-    {
-      QVariant variant(query.lastInsertId());
-
-      if(variant.isValid())
-	{
-	  value = variant.toLongLong();
-	  query.exec
-	    (QString("DELETE FROM sequence WHERE value < %1").arg(value));
-	}
-      else
-	errorstr = "Invalid variant.";
-    }
-  else if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-  else
-    errorstr = "Query failure.";
-
-  return value;
-}
-
-bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
-						const QString &memberid,
-						QString &errorstr)
-{
-  QSqlQuery query(db);
-  bool expired = true;
-
-  errorstr = "";
-
-  if(db.driverName() == "QSQLITE")
-    query.prepare("SELECT expiration_date "
-		  "FROM member WHERE memberid = ?");
-  else
-    query.prepare("SELECT TO_DATE(expiration_date, 'mm/dd/yyyy') - "
-		  "current_date FROM member WHERE memberid = ?");
-
-  query.bindValue(0, memberid);
-
-  if(query.exec())
-    if(query.next())
-      {
-	if(db.driverName() == "QSQLITE")
-	  {
-	    QDate date(QDate::fromString(query.value(0).toString(),
-					 "MM/dd/yyyy"));
-
-	    if(date.daysTo(QDate::currentDate()) > 0)
-	      expired = true;
-	    else
-	      expired = false;
-	  }
-	else
-	  {
-	    if(query.value(0).toLongLong() < 0)
-	      expired = true;
-	    else
-	      expired = false;
-	  }
-      }
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return expired;
 }
 
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
