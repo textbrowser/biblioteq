@@ -169,6 +169,134 @@ QStringList biblioteq_misc_functions::getGreyLiteratureTypes
   return types;
 }
 
+QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
+						       const QSqlDatabase &db,
+						       QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr = "";
+  QString str = "";
+  QStringList list;
+
+  errorstr = "";
+  querystr =
+    "SELECT "
+    "item_borrower.copyid, "
+    "book.location, "
+    "book.type, "
+    "book.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "book, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = book.myoid AND "
+    "item_borrower.type = 'Book' AND "
+    "item_borrower.memberid = ? "
+    "UNION ALL "
+    "SELECT "
+    "item_borrower.copyid, "
+    "cd.location, "
+    "cd.type, "
+    "cd.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "cd, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = cd.myoid AND "
+    "item_borrower.type = 'CD' AND "
+    "item_borrower.memberid = ? "
+    "UNION ALL "
+    "SELECT "
+    "item_borrower.copyid, "
+    "dvd.location, "
+    "dvd.type, "
+    "dvd.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "dvd, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = dvd.myoid AND "
+    "item_borrower.type = 'DVD' AND "
+    "item_borrower.memberid = ? "
+    "UNION ALL "
+    "SELECT "
+    "item_borrower.copyid, "
+    "journal.location, "
+    "journal.type, "
+    "journal.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "journal, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = journal.myoid AND "
+    "item_borrower.type = 'Journal' AND "
+    "item_borrower.memberid = ? "
+    "UNION ALL "
+    "SELECT "
+    "item_borrower.copyid, "
+    "magazine.location, "
+    "magazine.type, "
+    "magazine.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "magazine, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = magazine.myoid AND "
+    "item_borrower.type = 'Magazine' AND "
+    "item_borrower.memberid = ? "
+    "UNION ALL "
+    "SELECT "
+    "item_borrower.copyid, "
+    "videogame.location, "
+    "videogame.type, "
+    "videogame.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "videogame, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = videogame.myoid AND "
+    "item_borrower.type = 'Video Game' AND "
+    "item_borrower.memberid = ? ";
+  query.prepare(querystr);
+  query.bindValue(0, memberid);
+  query.bindValue(1, memberid);
+  query.bindValue(2, memberid);
+  query.bindValue(3, memberid);
+  query.bindValue(4, memberid);
+  query.bindValue(5, memberid);
+
+  QDate date;
+
+  if(query.exec())
+    while(query.next())
+      {
+	date = QDate::fromString(query.value(4).toString(),
+				 "MM/dd/yyyy");
+	str = QString(QObject::tr("#")) +
+	  QString::number(list.size() + 1) + "<br>";
+	str += QObject::tr("Barcode: ") +
+	  query.value(0).toString() + "<br>" +
+	  QObject::tr(" Location: ") +
+	  query.value(1).toString() + "<br>" +
+	  QObject::tr("Type: ") + query.value(2).toString() + "<br>" +
+	  QObject::tr("Title: ") + query.value(3).toString() + "<br>" +
+	  QObject::tr("Due Date: ") +
+	  date.toString(Qt::ISODate);
+	list.append(str);
+      }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return list;
+}
+
 bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 				   const QString &memberid,
 				   QString &errorstr)
@@ -401,6 +529,75 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 void biblioteq_misc_functions::exportPhotographs
 (const QSqlDatabase &db,
  const QString &collectionOid,
+ const QString &destinationPath,
+ QList<QGraphicsItem *> items,
+ QWidget *parent)
+{
+  QProgressDialog progress(parent);
+
+  progress.setLabelText(QObject::tr("Exporting image(s)..."));
+  progress.setMaximum(items.size());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  QSqlQuery query(db);
+
+  query.prepare("SELECT image FROM photograph WHERE "
+		"collection_oid = ? AND image IS NOT NULL AND myoid = ?");
+  query.bindValue(0, collectionOid);
+
+  for(int i = 0; i < items.size(); i++)
+    {
+      QGraphicsItem *item = items.at(i);
+
+      if(!item)
+	continue;
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      query.bindValue(1, item->data(0).toString());
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      if(progress.wasCanceled())
+	break;
+
+      if(query.exec() && query.next())
+	{
+#if QT_VERSION >= 0x040700
+	  qint64 id = QDateTime::currentMSecsSinceEpoch();
+#else
+	  QDateTime dateTime(QDateTime::currentDateTime());
+	  qint64 id = static_cast<qint64> (dateTime.toTime_t());
+#endif
+	  QByteArray bytes
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+	  QImage image;
+	  QString format(imageFormatGuess(bytes));
+
+	  image.loadFromData(bytes, format.toLatin1().constData());
+
+	  if(!image.isNull())
+	    image.save
+	      (destinationPath + QDir::separator() +
+	       QString("%1_%2.%3").arg(id).arg(i + 1).arg(format).toLower(),
+	       format.toLatin1().constData(), 100);
+	}
+    }
+}
+
+void biblioteq_misc_functions::exportPhotographs
+(const QSqlDatabase &db,
+ const QString &collectionOid,
  const int pageOffset,
  const QString &destinationPath,
  QWidget *parent)
@@ -622,134 +819,6 @@ void biblioteq_misc_functions::savePassword(const QString &userid,
 
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
-}
-
-QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
-						       const QSqlDatabase &db,
-						       QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr = "";
-  QString str = "";
-  QStringList list;
-
-  errorstr = "";
-  querystr =
-    "SELECT "
-    "item_borrower.copyid, "
-    "book.location, "
-    "book.type, "
-    "book.title, "
-    "item_borrower.duedate "
-    "FROM "
-    "book, "
-    "item_borrower "
-    "WHERE "
-    "item_borrower.item_oid = book.myoid AND "
-    "item_borrower.type = 'Book' AND "
-    "item_borrower.memberid = ? "
-    "UNION ALL "
-    "SELECT "
-    "item_borrower.copyid, "
-    "cd.location, "
-    "cd.type, "
-    "cd.title, "
-    "item_borrower.duedate "
-    "FROM "
-    "cd, "
-    "item_borrower "
-    "WHERE "
-    "item_borrower.item_oid = cd.myoid AND "
-    "item_borrower.type = 'CD' AND "
-    "item_borrower.memberid = ? "
-    "UNION ALL "
-    "SELECT "
-    "item_borrower.copyid, "
-    "dvd.location, "
-    "dvd.type, "
-    "dvd.title, "
-    "item_borrower.duedate "
-    "FROM "
-    "dvd, "
-    "item_borrower "
-    "WHERE "
-    "item_borrower.item_oid = dvd.myoid AND "
-    "item_borrower.type = 'DVD' AND "
-    "item_borrower.memberid = ? "
-    "UNION ALL "
-    "SELECT "
-    "item_borrower.copyid, "
-    "journal.location, "
-    "journal.type, "
-    "journal.title, "
-    "item_borrower.duedate "
-    "FROM "
-    "journal, "
-    "item_borrower "
-    "WHERE "
-    "item_borrower.item_oid = journal.myoid AND "
-    "item_borrower.type = 'Journal' AND "
-    "item_borrower.memberid = ? "
-    "UNION ALL "
-    "SELECT "
-    "item_borrower.copyid, "
-    "magazine.location, "
-    "magazine.type, "
-    "magazine.title, "
-    "item_borrower.duedate "
-    "FROM "
-    "magazine, "
-    "item_borrower "
-    "WHERE "
-    "item_borrower.item_oid = magazine.myoid AND "
-    "item_borrower.type = 'Magazine' AND "
-    "item_borrower.memberid = ? "
-    "UNION ALL "
-    "SELECT "
-    "item_borrower.copyid, "
-    "videogame.location, "
-    "videogame.type, "
-    "videogame.title, "
-    "item_borrower.duedate "
-    "FROM "
-    "videogame, "
-    "item_borrower "
-    "WHERE "
-    "item_borrower.item_oid = videogame.myoid AND "
-    "item_borrower.type = 'Video Game' AND "
-    "item_borrower.memberid = ? ";
-  query.prepare(querystr);
-  query.bindValue(0, memberid);
-  query.bindValue(1, memberid);
-  query.bindValue(2, memberid);
-  query.bindValue(3, memberid);
-  query.bindValue(4, memberid);
-  query.bindValue(5, memberid);
-
-  QDate date;
-
-  if(query.exec())
-    while(query.next())
-      {
-	date = QDate::fromString(query.value(4).toString(),
-				 "MM/dd/yyyy");
-	str = QString(QObject::tr("#")) +
-	  QString::number(list.size() + 1) + "<br>";
-	str += QObject::tr("Barcode: ") +
-	  query.value(0).toString() + "<br>" +
-	  QObject::tr(" Location: ") +
-	  query.value(1).toString() + "<br>" +
-	  QObject::tr("Type: ") + query.value(2).toString() + "<br>" +
-	  QObject::tr("Title: ") + query.value(3).toString() + "<br>" +
-	  QObject::tr("Due Date: ") +
-	  date.toString(Qt::ISODate);
-	list.append(str);
-      }
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return list;
 }
 
 bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
@@ -1989,73 +2058,4 @@ bool biblioteq_misc_functions::isGnome(void)
     return true;
   else
     return false;
-}
-
-void biblioteq_misc_functions::exportPhotographs
-(const QSqlDatabase &db,
- const QString &collectionOid,
- const QString &destinationPath,
- QList<QGraphicsItem *> items,
- QWidget *parent)
-{
-  QProgressDialog progress(parent);
-
-  progress.setLabelText(QObject::tr("Exporting image(s)..."));
-  progress.setMaximum(items.size());
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  QSqlQuery query(db);
-
-  query.prepare("SELECT image FROM photograph WHERE "
-		"collection_oid = ? AND image IS NOT NULL AND myoid = ?");
-  query.bindValue(0, collectionOid);
-
-  for(int i = 0; i < items.size(); i++)
-    {
-      QGraphicsItem *item = items.at(i);
-
-      if(!item)
-	continue;
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      query.bindValue(1, item->data(0).toString());
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      if(progress.wasCanceled())
-	break;
-
-      if(query.exec() && query.next())
-	{
-#if QT_VERSION >= 0x040700
-	  qint64 id = QDateTime::currentMSecsSinceEpoch();
-#else
-	  QDateTime dateTime(QDateTime::currentDateTime());
-	  qint64 id = static_cast<qint64> (dateTime.toTime_t());
-#endif
-	  QByteArray bytes
-	    (QByteArray::fromBase64(query.value(0).toByteArray()));
-	  QImage image;
-	  QString format(imageFormatGuess(bytes));
-
-	  image.loadFromData(bytes, format.toLatin1().constData());
-
-	  if(!image.isNull())
-	    image.save
-	      (destinationPath + QDir::separator() +
-	       QString("%1_%2.%3").arg(id).arg(i + 1).arg(format).toLower(),
-	       format.toLatin1().constData(), 100);
-	}
-    }
 }
