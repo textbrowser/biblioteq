@@ -102,6 +102,57 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
   return str;
 }
 
+QString biblioteq_misc_functions::getAvailability(const QString &oid,
+						  const QSqlDatabase &db,
+						  const QString &itemTypeArg,
+						  QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  QString querystr = "";
+  QString str = "";
+
+  errorstr = "";
+  itemType = itemTypeArg;
+
+  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
+     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
+     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
+    querystr = QString("SELECT %1.quantity - "
+		       "COUNT(item_borrower_vw.item_oid) "
+		       "FROM "
+		       "%1 LEFT JOIN item_borrower_vw ON "
+		       "%1.myoid = item_borrower_vw.item_oid AND "
+		       "item_borrower_vw.type = '%2' "
+		       "WHERE "
+		       "%1.myoid = ? "
+		       "GROUP BY %1.quantity, "
+		       "%1.myoid").arg(itemType.toLower().remove(" ")).arg
+      (itemType);
+  else
+    return str;
+
+  query.prepare(querystr);
+  query.bindValue(0, oid);
+
+  if(query.exec())
+    if(query.next())
+      str = query.value(0).toString();
+
+  if(query.lastError().isValid())
+    {
+      str = "0";
+      errorstr = query.lastError().text();
+    }
+  else if(str.isEmpty())
+    {
+      str = "0";
+      errorstr = QObject::tr("NULL availability value.");
+    }
+
+  return str;
+}
+
 QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 {
   QString format("");
@@ -324,6 +375,39 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
   return dnt;
 }
 
+bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
+					      const QString &memberid,
+					      const QSqlDatabase &db,
+					      QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr = "";
+  bool exists = false;
+
+  errorstr = "";
+  querystr = "SELECT EXISTS(SELECT 1 FROM member "
+    "WHERE "
+    "dob || sex || first_name || "
+    "middle_init || "
+    "last_name || street || city || state_abbr || zip = ? "
+    "AND memberid != ?)";
+  query.prepare(querystr);
+  query.bindValue(0, checksum);
+  query.bindValue(1, memberid);
+
+  if(query.exec())
+    if(query.next())
+      exists = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    {
+      exists = false;
+      errorstr = query.lastError().text();
+    }
+
+  return exists;
+}
+
 bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
 {
   if(db.driverName() == "QSQLITE")
@@ -336,6 +420,16 @@ bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
     return query.value(0).toString() == "unaccent";
 
   return false;
+}
+
+bool biblioteq_misc_functions::isGnome(void)
+{
+  QByteArray session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
+
+  if(session == "gnome" || session == "ubuntu")
+    return true;
+  else
+    return false;
 }
 
 bool biblioteq_misc_functions::userExists(const QString &userid,
@@ -821,88 +915,51 @@ void biblioteq_misc_functions::savePassword(const QString &userid,
     errorstr = query.lastError().text();
 }
 
-bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
-					      const QString &memberid,
-					      const QSqlDatabase &db,
-					      QString &errorstr)
+void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
+				       QString &errorstr,
+				       const QString &roles)
 {
-  QSqlQuery query(db);
-  QString querystr = "";
-  bool exists = false;
-
   errorstr = "";
-  querystr = "SELECT EXISTS(SELECT 1 FROM member "
-    "WHERE "
-    "dob || sex || first_name || "
-    "middle_init || "
-    "last_name || street || city || state_abbr || zip = ? "
-    "AND memberid != ?)";
-  query.prepare(querystr);
-  query.bindValue(0, checksum);
-  query.bindValue(1, memberid);
 
-  if(query.exec())
-    if(query.next())
-      exists = query.value(0).toBool();
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
 
-  if(query.lastError().isValid())
+  QSqlQuery query(db);
+
+  if(!roles.isEmpty())
     {
-      exists = false;
-      errorstr = query.lastError().text();
+      if(roles.contains("administrator"))
+	query.exec("SET ROLE biblioteq_administrator");
+      else
+	{
+	  if(roles.contains("circulation") &&
+	     roles.contains("librarian") &&
+	     roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_circulation_librarian_membership");
+	  else if(roles.contains("circulation") && roles.contains("librarian"))
+	    query.exec("SET ROLE biblioteq_circulation_librarian");
+	  else if(roles.contains("circulation") &&
+		  roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_circulation_membership");
+	  else if(roles.contains("librarian") && roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_librarian_membership");
+	  else if(roles.contains("circulation"))
+	    query.exec("SET ROLE biblioteq_circulation");
+	  else if(roles.contains("librarian"))
+	    query.exec("SET ROLE biblioteq_librarian");
+	  else if(roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_membership");
+	  else if(roles.contains("patron"))
+	    query.exec("SET ROLE biblioteq_patron");
+	  else
+	    query.exec("SET ROLE biblioteq_guest");
+	}
     }
-
-  return exists;
-}
-
-QString biblioteq_misc_functions::getAvailability(const QString &oid,
-						  const QSqlDatabase &db,
-						  const QString &itemTypeArg,
-						  QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
-  QString str = "";
-
-  errorstr = "";
-  itemType = itemTypeArg;
-
-  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
-     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
-     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
-    querystr = QString("SELECT %1.quantity - "
-		       "COUNT(item_borrower_vw.item_oid) "
-		       "FROM "
-		       "%1 LEFT JOIN item_borrower_vw ON "
-		       "%1.myoid = item_borrower_vw.item_oid AND "
-		       "item_borrower_vw.type = '%2' "
-		       "WHERE "
-		       "%1.myoid = ? "
-		       "GROUP BY %1.quantity, "
-		       "%1.myoid").arg(itemType.toLower().remove(" ")).arg
-      (itemType);
   else
-    return str;
-
-  query.prepare(querystr);
-  query.bindValue(0, oid);
-
-  if(query.exec())
-    if(query.next())
-      str = query.value(0).toString();
+    query.exec("SET ROLE biblioteq_guest");
 
   if(query.lastError().isValid())
-    {
-      str = "0";
-      errorstr = query.lastError().text();
-    }
-  else if(str.isEmpty())
-    {
-      str = "0";
-      errorstr = QObject::tr("NULL availability value.");
-    }
-
-  return str;
+    errorstr = query.lastError().text();
 }
 
 QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
@@ -2001,61 +2058,4 @@ void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 {
   if(db.driverName() != "QSQLITE")
     return;
-}
-
-void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
-				       QString &errorstr,
-				       const QString &roles)
-{
-  errorstr = "";
-
-  if(db.driverName() == "QSQLITE")
-    return; // Users are not supported.
-
-  QSqlQuery query(db);
-
-  if(!roles.isEmpty())
-    {
-      if(roles.contains("administrator"))
-	query.exec("SET ROLE biblioteq_administrator");
-      else
-	{
-	  if(roles.contains("circulation") &&
-	     roles.contains("librarian") &&
-	     roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_circulation_librarian_membership");
-	  else if(roles.contains("circulation") && roles.contains("librarian"))
-	    query.exec("SET ROLE biblioteq_circulation_librarian");
-	  else if(roles.contains("circulation") &&
-		  roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_circulation_membership");
-	  else if(roles.contains("librarian") && roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_librarian_membership");
-	  else if(roles.contains("circulation"))
-	    query.exec("SET ROLE biblioteq_circulation");
-	  else if(roles.contains("librarian"))
-	    query.exec("SET ROLE biblioteq_librarian");
-	  else if(roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_membership");
-	  else if(roles.contains("patron"))
-	    query.exec("SET ROLE biblioteq_patron");
-	  else
-	    query.exec("SET ROLE biblioteq_guest");
-	}
-    }
-  else
-    query.exec("SET ROLE biblioteq_guest");
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-}
-
-bool biblioteq_misc_functions::isGnome(void)
-{
-  QByteArray session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
-
-  if(session == "gnome" || session == "ubuntu")
-    return true;
-  else
-    return false;
 }
