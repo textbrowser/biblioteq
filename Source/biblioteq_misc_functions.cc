@@ -85,6 +85,80 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
   return locations;
 }
 
+QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
+(const QSqlDatabase &db,
+ const QString &memberid,
+ QString &errorstr)
+{
+  QMap<QString, QString> counts;
+  QSqlQuery query(db);
+  QString querystr = "";
+  QString str = "";
+
+  errorstr = "";
+  querystr =
+    "SELECT COUNT(myoid) AS numbooks FROM item_borrower_vw WHERE memberid = ? "
+    "AND type = 'Book' "
+    "UNION ALL "
+    "SELECT COUNT(myoid) AS numcds FROM item_borrower_vw WHERE memberid = ? "
+    "AND type = 'CD' "
+    "UNION ALL "
+    "SELECT COUNT(myoid) AS numdvds FROM item_borrower_vw WHERE memberid = ? "
+    "AND type = 'DVD' "
+    "UNION ALL "
+    "SELECT COUNT(myoid) AS numjournals FROM item_borrower_vw WHERE "
+    "memberid = ? AND type = 'Journal' "
+    "UNION ALL "
+    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower_vw WHERE "
+    "memberid = ? AND type = 'Magazine' "
+    "UNION ALL "
+    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower_vw WHERE "
+    "memberid = ? AND type = 'Video Game'";
+  query.prepare(querystr);
+  query.bindValue(0, memberid);
+  query.bindValue(1, memberid);
+  query.bindValue(2, memberid);
+  query.bindValue(3, memberid);
+  query.bindValue(4, memberid);
+  query.bindValue(5, memberid);
+
+  if(query.exec())
+    while(query.next())
+      {
+	str = query.value(0).toString();
+
+	if(str == "0")
+	  str = "";
+
+	if(counts.size() == 0)
+	  counts["numbooks"] = str;
+	else if(counts.size() == 1)
+	  counts["numcds"] = str;
+	else if(counts.size() == 2)
+	  counts["numdvds"] = str;
+	else if(counts.size() == 3)
+	  counts["numjournals"] = str;
+	else if(counts.size() == 4)
+	  counts["nummagazines"] = str;
+	else
+	  counts["numvideogames"] = str;
+      }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+  else if(counts.isEmpty())
+    {
+      counts["numbooks"] = "";
+      counts["numcds"] = "";
+      counts["numdvds"] = "";
+      counts["numjournals"] = "";
+      counts["nummagazines"] = "";
+      counts["numvideogames"] = "";
+    }
+
+  return counts;
+}
+
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
@@ -219,6 +293,115 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
     return item->text();
   else
     return QString("");
+}
+
+QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
+						const QString &memberid,
+						QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr = "";
+  QString str = "";
+
+  errorstr = "";
+  querystr = "SELECT last_name, first_name FROM member WHERE memberid = ?";
+  query.prepare(querystr);
+  query.bindValue(0, memberid);
+
+  if(query.exec())
+    if(query.next())
+      str = query.value(0).toString() + ", " + query.value(1).toString();
+
+  if(query.lastError().isValid())
+    {
+      errorstr = query.lastError().text();
+      str = "Unknown";
+    }
+
+  return str;
+}
+
+QString biblioteq_misc_functions::getOID(const QString &idArg,
+					 const QString &itemTypeArg,
+					 const QSqlDatabase &db,
+					 QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString id = "";
+  QString itemType = "";
+  QString oid = "";
+  QString querystr = "";
+  int i = 0;
+
+  id = idArg;
+  itemType = itemTypeArg.toLower();
+
+  if(itemType == "photograph collection")
+    itemType = itemType.replace(" ", "_");
+  else
+    itemType = itemType.remove(" ");
+
+  if(itemType == "journal" || itemType == "magazine")
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
+		       "issuevolume = ? AND issueno = ? AND "
+		       "id IS NOT NULL").arg(itemType);
+  else if(itemType == "book")
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
+		       "id IS NOT NULL").arg(itemType);
+  else if(itemType == "cd" || itemType == "dvd" ||
+	  itemType == "photograph_collection" || itemType == "videogame")
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
+  else
+    return oid;
+
+  query.prepare(querystr);
+
+  if(itemType == "journal" || itemType == "magazine")
+    {
+      QStringList list = id.split(",");
+
+      for(i = 0; i < list.size(); i++)
+	query.bindValue(i, list[i]);
+    }
+  else
+    query.bindValue(0, id);
+
+  if(query.exec())
+    if(query.next())
+      oid = query.value(0).toString();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return oid;
+}
+
+QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
+					   const QString &username,
+					   QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr = "";
+  QString roles = "";
+
+  errorstr = "";
+  querystr = "SELECT LOWER(roles) FROM admin WHERE LOWER(username) = LOWER(?)";
+  query.prepare(querystr);
+  query.bindValue(0, username);
+
+  if(query.exec())
+    if(query.next())
+      {
+	roles = query.value(0).toString();
+
+	if(roles == "none")
+	  roles = "";
+      }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return roles;
 }
 
 QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
@@ -819,6 +1002,51 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
   return isCheckedOut;
 }
 
+bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
+					       const QString &oid,
+					       const QString &copyid,
+					       const QString &itemTypeArg,
+					       QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  QString querystr = "";
+  bool isAvailable = false;
+
+  errorstr = "";
+  itemType = itemTypeArg;
+
+  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
+     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
+     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
+    querystr = QString
+      ("SELECT EXISTS(SELECT 1 FROM %1_copy_info "
+       "WHERE copyid = ? AND item_oid = ? "
+       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
+       "WHERE item_oid = ? AND type = '%2'))").arg(itemType.
+						   toLower().remove(" ")).
+      arg(itemType);
+  else
+    return isAvailable;
+
+  query.prepare(querystr);
+  query.bindValue(0, copyid);
+  query.bindValue(1, oid);
+  query.bindValue(2, oid);
+
+  if(query.exec())
+    if(query.next())
+      isAvailable = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    {
+      errorstr = query.lastError().text();
+      isAvailable = false;
+    }
+
+  return isAvailable;
+}
+
 bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 						const QString &copyid,
 						const QString &oid,
@@ -953,6 +1181,35 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
   return num;
 }
 
+int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
+					       const QString &oid,
+					       const QString &itemTypeArg,
+					       QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  int copy_number = -1;
+
+  errorstr = "";
+  itemType = itemTypeArg;
+  query.prepare("SELECT MAX(copy_number) FROM item_borrower_vw "
+		"WHERE item_oid = ? AND type = ?");
+  query.bindValue(0, oid);
+  query.bindValue(1, itemType);
+
+  if(query.exec())
+    if(query.next())
+      copy_number = query.value(0).toInt();
+
+  if(query.lastError().isValid())
+    {
+      copy_number = -1;
+      errorstr = query.lastError().text();
+    }
+
+  return copy_number;
+}
+
 int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 					     const QString &type,
 					     QString &errorstr)
@@ -996,6 +1253,34 @@ int biblioteq_misc_functions::sqliteQuerySize
     query.bindValue(i, list.at(i));
 
   if(query.exec())
+    while(query.next())
+      count += 1;
+
+  if(query.lastError().isValid())
+    if(qmain)
+      qmain->addError
+	(QString(QObject::tr("Database Error")),
+	 QString(QObject::tr("Unable to determine the query size.")),
+	 query.lastError().text(), file, line);
+
+  return count;
+}
+
+int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
+					      const QSqlDatabase &db,
+					      const char *file,
+					      const int line)
+{
+  int count = 0;
+
+  if(db.driverName() != "QSQLITE")
+    return count; // SQLite only.
+  else if(querystr.trimmed().isEmpty())
+    return count;
+
+  QSqlQuery query(db);
+
+  if(query.exec(querystr))
     while(query.next())
       count += 1;
 
@@ -1197,6 +1482,125 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	    errorstr = query.lastError().text();
 	}
     }
+}
+
+void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
+{
+  if(!child || !parent)
+    return;
+
+  QPoint p(0, 0);
+  int X = 0;
+  int Y = 0;
+
+  p = parent->pos();
+
+  if(parent->width() >= child->width())
+    X = p.x() + (parent->width() - child->width()) / 2;
+  else
+    X = p.x() - (child->width() - parent->width()) / 2;
+
+  if(parent->height() >= child->height())
+    Y = p.y() + (parent->height() - child->height()) / 2;
+  else
+    Y = p.y() - (child->height() - parent->height()) / 2;
+
+  child->move(X, Y);
+}
+
+void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
+						   const int numCopies,
+						   const QSqlDatabase &db,
+						   const QString &itemTypeArg,
+						   QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString id = "";
+  QString itemType = "";
+  QString itemoid = "";
+  int i = 0;
+
+  /*
+  ** Retrieve the item's OID. Use the OID to create initial copies.
+  */
+
+  errorstr = "";
+  id = idArg;
+  itemType = itemTypeArg.toLower().remove(" ");
+  itemoid = getOID(id, itemType, db, errorstr);
+
+  if(!errorstr.isEmpty())
+    return;
+
+  if(itemType == "journal" || itemType == "magazine")
+    {
+      if(itemoid.isEmpty())
+	/*
+	** If the id from getOID() is empty, createInitialCopies() was called
+	** with an oid.
+	*/
+
+	id = itemoid = id.split(",").value(0);
+      else
+	id = id.split(",").value(0);
+    }
+  else if(itemType == "book")
+    {
+      if(itemoid.isEmpty())
+	/*
+	** If the id from getOID() is empty, createInitialCopies() was called
+	** with an oid.
+	*/
+
+	itemoid = id;
+    }
+
+  if(!itemoid.isEmpty())
+    for(i = 0; i < numCopies; i++)
+      {
+	if(db.driverName() != "QSQLITE")
+	  {
+	    if(itemType == "book" || itemType == "cd" ||
+	       itemType == "dvd" || itemType == "journal" ||
+	       itemType == "magazine" || itemType == "videogame")
+	      query.prepare(QString("INSERT INTO %1_copy_info "
+				    "(item_oid, copy_number, "
+				    "copyid) "
+				    "VALUES (?, "
+				    "?, ?)").arg(itemType));
+	  }
+	else
+	  {
+	    if(itemType == "book" || itemType == "cd" ||
+	       itemType == "dvd" || itemType == "journal" ||
+	       itemType == "magazine" || itemType == "videogame")
+	      query.prepare(QString("INSERT INTO %1_copy_info "
+				    "(item_oid, copy_number, "
+				    "copyid, myoid) "
+				    "VALUES (?, "
+				    "?, ?, ?)").arg(itemType));
+	  }
+
+	query.bindValue(0, itemoid);
+	query.bindValue(1, i + 1);
+	query.bindValue(2, id + "-" + QString::number(i + 1));
+
+	if(db.driverName() == "QSQLITE")
+	  {
+	    qint64 value = getSqliteUniqueId(db, errorstr);
+
+	    if(errorstr.isEmpty())
+	      query.bindValue(3, value);
+	    else
+	      break;
+	  }
+
+	if(!query.exec())
+	  {
+	    errorstr = query.lastError().text();
+	    break;
+	  }
+      }
 }
 
 void biblioteq_misc_functions::exportPhotographs
@@ -1467,6 +1871,19 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	}
 }
 
+void biblioteq_misc_functions::highlightWidget(QWidget *widget,
+					       const QColor &color)
+{
+  if(!widget)
+    return;
+
+  QPalette pal;
+
+  pal = widget->palette();
+  pal.setColor(widget->backgroundRole(), color);
+  widget->setPalette(pal);
+}
+
 void biblioteq_misc_functions::revokeAll(const QString &userid,
 					 const QSqlDatabase &db,
 					 QString &errorstr)
@@ -1538,6 +1955,36 @@ void biblioteq_misc_functions::savePassword(const QString &userid,
     errorstr = query.lastError().text();
 }
 
+void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
+					    const QString &oid,
+					    const int quantity,
+					    const QString &itemTypeArg,
+					    QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  QString querystr = "";
+
+  errorstr = "";
+  itemType = itemTypeArg.toLower().remove(" ");
+
+  if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
+     itemType == "journal" || itemType == "magazine" ||
+     itemType == "videogame")
+    querystr = QString("UPDATE %1 SET quantity = ? WHERE "
+		       "myoid = ?").arg(itemType);
+  else
+    return;
+
+  query.prepare(querystr);
+  query.bindValue(0, quantity);
+  query.bindValue(1, oid);
+  (void) query.exec();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+}
+
 void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
 				       QString &errorstr,
 				       const QString &roles)
@@ -1604,453 +2051,6 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 
   if(sortingEnabled)
     table->setSortingEnabled(true);
-}
-
-void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
-					    const QString &oid,
-					    const int quantity,
-					    const QString &itemTypeArg,
-					    QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
-
-  errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
-
-  if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
-     itemType == "journal" || itemType == "magazine" ||
-     itemType == "videogame")
-    querystr = QString("UPDATE %1 SET quantity = ? WHERE "
-		       "myoid = ?").arg(itemType);
-  else
-    return;
-
-  query.prepare(querystr);
-  query.bindValue(0, quantity);
-  query.bindValue(1, oid);
-  (void) query.exec();
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-}
-
-int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
-					       const QString &oid,
-					       const QString &itemTypeArg,
-					       QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString itemType = "";
-  int copy_number = -1;
-
-  errorstr = "";
-  itemType = itemTypeArg;
-  query.prepare("SELECT MAX(copy_number) FROM item_borrower_vw "
-		"WHERE item_oid = ? AND type = ?");
-  query.bindValue(0, oid);
-  query.bindValue(1, itemType);
-
-  if(query.exec())
-    if(query.next())
-      copy_number = query.value(0).toInt();
-
-  if(query.lastError().isValid())
-    {
-      copy_number = -1;
-      errorstr = query.lastError().text();
-    }
-
-  return copy_number;
-}
-
-bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
-					       const QString &oid,
-					       const QString &copyid,
-					       const QString &itemTypeArg,
-					       QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
-  bool isAvailable = false;
-
-  errorstr = "";
-  itemType = itemTypeArg;
-
-  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
-     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
-     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
-    querystr = QString
-      ("SELECT EXISTS(SELECT 1 FROM %1_copy_info "
-       "WHERE copyid = ? AND item_oid = ? "
-       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
-       "WHERE item_oid = ? AND type = '%2'))").arg(itemType.
-						   toLower().remove(" ")).
-      arg(itemType);
-  else
-    return isAvailable;
-
-  query.prepare(querystr);
-  query.bindValue(0, copyid);
-  query.bindValue(1, oid);
-  query.bindValue(2, oid);
-
-  if(query.exec())
-    if(query.next())
-      isAvailable = query.value(0).toBool();
-
-  if(query.lastError().isValid())
-    {
-      errorstr = query.lastError().text();
-      isAvailable = false;
-    }
-
-  return isAvailable;
-}
-
-QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
-(const QSqlDatabase &db,
- const QString &memberid,
- QString &errorstr)
-{
-  QMap<QString, QString> counts;
-  QSqlQuery query(db);
-  QString querystr = "";
-  QString str = "";
-
-  errorstr = "";
-  querystr =
-    "SELECT COUNT(myoid) AS numbooks FROM item_borrower_vw WHERE memberid = ? "
-    "AND type = 'Book' "
-    "UNION ALL "
-    "SELECT COUNT(myoid) AS numcds FROM item_borrower_vw WHERE memberid = ? "
-    "AND type = 'CD' "
-    "UNION ALL "
-    "SELECT COUNT(myoid) AS numdvds FROM item_borrower_vw WHERE memberid = ? "
-    "AND type = 'DVD' "
-    "UNION ALL "
-    "SELECT COUNT(myoid) AS numjournals FROM item_borrower_vw WHERE "
-    "memberid = ? AND type = 'Journal' "
-    "UNION ALL "
-    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower_vw WHERE "
-    "memberid = ? AND type = 'Magazine' "
-    "UNION ALL "
-    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower_vw WHERE "
-    "memberid = ? AND type = 'Video Game'";
-  query.prepare(querystr);
-  query.bindValue(0, memberid);
-  query.bindValue(1, memberid);
-  query.bindValue(2, memberid);
-  query.bindValue(3, memberid);
-  query.bindValue(4, memberid);
-  query.bindValue(5, memberid);
-
-  if(query.exec())
-    while(query.next())
-      {
-	str = query.value(0).toString();
-
-	if(str == "0")
-	  str = "";
-
-	if(counts.size() == 0)
-	  counts["numbooks"] = str;
-	else if(counts.size() == 1)
-	  counts["numcds"] = str;
-	else if(counts.size() == 2)
-	  counts["numdvds"] = str;
-	else if(counts.size() == 3)
-	  counts["numjournals"] = str;
-	else if(counts.size() == 4)
-	  counts["nummagazines"] = str;
-	else
-	  counts["numvideogames"] = str;
-      }
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-  else if(counts.isEmpty())
-    {
-      counts["numbooks"] = "";
-      counts["numcds"] = "";
-      counts["numdvds"] = "";
-      counts["numjournals"] = "";
-      counts["nummagazines"] = "";
-      counts["numvideogames"] = "";
-    }
-
-  return counts;
-}
-
-QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
-					   const QString &username,
-					   QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr = "";
-  QString roles = "";
-
-  errorstr = "";
-  querystr = "SELECT LOWER(roles) FROM admin WHERE LOWER(username) = LOWER(?)";
-  query.prepare(querystr);
-  query.bindValue(0, username);
-
-  if(query.exec())
-    if(query.next())
-      {
-	roles = query.value(0).toString();
-
-	if(roles == "none")
-	  roles = "";
-      }
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return roles;
-}
-
-QString biblioteq_misc_functions::getOID(const QString &idArg,
-					 const QString &itemTypeArg,
-					 const QSqlDatabase &db,
-					 QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString id = "";
-  QString itemType = "";
-  QString oid = "";
-  QString querystr = "";
-  int i = 0;
-
-  id = idArg;
-  itemType = itemTypeArg.toLower();
-
-  if(itemType == "photograph collection")
-    itemType = itemType.replace(" ", "_");
-  else
-    itemType = itemType.remove(" ");
-
-  if(itemType == "journal" || itemType == "magazine")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "issuevolume = ? AND issueno = ? AND "
-		       "id IS NOT NULL").arg(itemType);
-  else if(itemType == "book")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "id IS NOT NULL").arg(itemType);
-  else if(itemType == "cd" || itemType == "dvd" ||
-	  itemType == "photograph_collection" || itemType == "videogame")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
-  else
-    return oid;
-
-  query.prepare(querystr);
-
-  if(itemType == "journal" || itemType == "magazine")
-    {
-      QStringList list = id.split(",");
-
-      for(i = 0; i < list.size(); i++)
-	query.bindValue(i, list[i]);
-    }
-  else
-    query.bindValue(0, id);
-
-  if(query.exec())
-    if(query.next())
-      oid = query.value(0).toString();
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return oid;
-}
-
-void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
-						   const int numCopies,
-						   const QSqlDatabase &db,
-						   const QString &itemTypeArg,
-						   QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString id = "";
-  QString itemType = "";
-  QString itemoid = "";
-  int i = 0;
-
-  /*
-  ** Retrieve the item's OID. Use the OID to create initial copies.
-  */
-
-  errorstr = "";
-  id = idArg;
-  itemType = itemTypeArg.toLower().remove(" ");
-  itemoid = getOID(id, itemType, db, errorstr);
-
-  if(!errorstr.isEmpty())
-    return;
-
-  if(itemType == "journal" || itemType == "magazine")
-    {
-      if(itemoid.isEmpty())
-	/*
-	** If the id from getOID() is empty, createInitialCopies() was called
-	** with an oid.
-	*/
-
-	id = itemoid = id.split(",").value(0);
-      else
-	id = id.split(",").value(0);
-    }
-  else if(itemType == "book")
-    {
-      if(itemoid.isEmpty())
-	/*
-	** If the id from getOID() is empty, createInitialCopies() was called
-	** with an oid.
-	*/
-
-	itemoid = id;
-    }
-
-  if(!itemoid.isEmpty())
-    for(i = 0; i < numCopies; i++)
-      {
-	if(db.driverName() != "QSQLITE")
-	  {
-	    if(itemType == "book" || itemType == "cd" ||
-	       itemType == "dvd" || itemType == "journal" ||
-	       itemType == "magazine" || itemType == "videogame")
-	      query.prepare(QString("INSERT INTO %1_copy_info "
-				    "(item_oid, copy_number, "
-				    "copyid) "
-				    "VALUES (?, "
-				    "?, ?)").arg(itemType));
-	  }
-	else
-	  {
-	    if(itemType == "book" || itemType == "cd" ||
-	       itemType == "dvd" || itemType == "journal" ||
-	       itemType == "magazine" || itemType == "videogame")
-	      query.prepare(QString("INSERT INTO %1_copy_info "
-				    "(item_oid, copy_number, "
-				    "copyid, myoid) "
-				    "VALUES (?, "
-				    "?, ?, ?)").arg(itemType));
-	  }
-
-	query.bindValue(0, itemoid);
-	query.bindValue(1, i + 1);
-	query.bindValue(2, id + "-" + QString::number(i + 1));
-
-	if(db.driverName() == "QSQLITE")
-	  {
-	    qint64 value = getSqliteUniqueId(db, errorstr);
-
-	    if(errorstr.isEmpty())
-	      query.bindValue(3, value);
-	    else
-	      break;
-	  }
-
-	if(!query.exec())
-	  {
-	    errorstr = query.lastError().text();
-	    break;
-	  }
-      }
-}
-
-QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
-						const QString &memberid,
-						QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr = "";
-  QString str = "";
-
-  errorstr = "";
-  querystr = "SELECT last_name, first_name FROM member WHERE memberid = ?";
-  query.prepare(querystr);
-  query.bindValue(0, memberid);
-
-  if(query.exec())
-    if(query.next())
-      str = query.value(0).toString() + ", " + query.value(1).toString();
-
-  if(query.lastError().isValid())
-    {
-      errorstr = query.lastError().text();
-      str = "Unknown";
-    }
-
-  return str;
-}
-
-void biblioteq_misc_functions::highlightWidget(QWidget *widget,
-					       const QColor &color)
-{
-  if(!widget)
-    return;
-
-  QPalette pal;
-
-  pal = widget->palette();
-  pal.setColor(widget->backgroundRole(), color);
-  widget->setPalette(pal);
-}
-
-int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
-					      const QSqlDatabase &db,
-					      const char *file,
-					      const int line)
-{
-  int count = 0;
-
-  if(db.driverName() != "QSQLITE")
-    return count; // SQLite only.
-  else if(querystr.trimmed().isEmpty())
-    return count;
-
-  QSqlQuery query(db);
-
-  if(query.exec(querystr))
-    while(query.next())
-      count += 1;
-
-  if(query.lastError().isValid())
-    if(qmain)
-      qmain->addError
-	(QString(QObject::tr("Database Error")),
-	 QString(QObject::tr("Unable to determine the query size.")),
-	 query.lastError().text(), file, line);
-
-  return count;
-}
-
-void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
-{
-  if(!child || !parent)
-    return;
-
-  QPoint p(0, 0);
-  int X = 0;
-  int Y = 0;
-
-  p = parent->pos();
-
-  if(parent->width() >= child->width())
-    X = p.x() + (parent->width() - child->width()) / 2;
-  else
-    X = p.x() - (child->width() - parent->width()) / 2;
-
-  if(parent->height() >= child->height())
-    Y = p.y() + (parent->height() - child->height()) / 2;
-  else
-    Y = p.y() - (child->height() - parent->height()) / 2;
-
-  child->move(X, Y);
 }
 
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
