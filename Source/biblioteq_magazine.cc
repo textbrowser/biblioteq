@@ -360,6 +360,28 @@ biblioteq_magazine::~biblioteq_magazine()
 {
 }
 
+Ui_magDialog biblioteq_magazine::dialog(void) const
+{
+  return ma;
+}
+
+void biblioteq_magazine::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ma.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
+
 void biblioteq_magazine::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -378,6 +400,48 @@ void biblioteq_magazine::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeMagazine(this);
+}
+
+void biblioteq_magazine::createFile(const QByteArray &digest,
+				    const QByteArray &bytes,
+				    const QString &fileName) const
+{
+  QSqlQuery query(qmain->getDB());
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    query.prepare(QString("INSERT INTO %1_files "
+			  "(file, file_digest, file_name, item_oid) "
+			  "VALUES (?, ?, ?, ?)").arg(m_subType));
+  else
+    query.prepare(QString("INSERT INTO %1_files "
+			  "(file, file_digest, file_name, item_oid, myoid) "
+			  "VALUES (?, ?, ?, ?, ?)").arg(m_subType));
+
+  query.bindValue(0, bytes);
+  query.bindValue(1, digest.toHex().constData());
+  query.bindValue(2, fileName);
+  query.bindValue(3, m_oid);
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      QString errorstr("");
+      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	(qmain->getDB(), errorstr);
+
+      if(errorstr.isEmpty())
+	query.bindValue(4, value);
+      else
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to generate a unique "
+				   "integer.")),
+			errorstr);
+    }
+
+  if(!query.exec())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to create a database transaction.")),
+       query.lastError().text(), __FILE__, __LINE__);
 }
 
 void biblioteq_magazine::createSRUDialog(void)
@@ -403,6 +467,27 @@ void biblioteq_magazine::createSRUDialog(void)
 	  SIGNAL(rejected(void)),
 	  this,
 	  SLOT(slotSRUCanceled(void)));
+}
+
+void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
+{
+  m_duplicate = true;
+  modify(state); // Initial population.
+  ma.attach_files->setEnabled(false);
+  ma.view_pdf->setEnabled(false);
+  ma.delete_files->setEnabled(false);
+  ma.export_files->setEnabled(false);
+  ma.copiesButton->setEnabled(false);
+  ma.showUserButton->setEnabled(false);
+  m_oid = p_oid;
+
+  if(m_subType.toLower() == "journal")
+    setWindowTitle(tr("BiblioteQ: Duplicate Journal Entry"));
+  else
+    setWindowTitle(tr("BiblioteQ: Duplicate Magazine Entry"));
+
+  m_duplicate = false;
+  m_engWindowTitle = "Create";
 }
 
 void biblioteq_magazine::insert(void)
@@ -806,6 +891,802 @@ void biblioteq_magazine::modify(const int state)
   raise();
 }
 
+void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
+{
+  if(!data.isEmpty())
+    {
+      ma.marc_tags->setText(data);
+      biblioteq_misc_functions::highlightWidget
+	(ma.marc_tags->viewport(), QColor(162, 205, 90));
+    }
+
+  QXmlStreamReader reader(data);
+
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      if(reader.name().toString().toLower().trimmed() == "datafield")
+	{
+	  QString tag(reader.attributes().value("tag").toString().trimmed());
+
+	  if(tag == "260")
+	    ma.place->clear();
+	  else if(tag == "650")
+	    ma.category->clear();
+	}
+
+  reader.clear();
+  reader.addData(data);
+
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      {
+	if(reader.name().toString().toLower().trimmed() == "datafield")
+	  {
+	    QString tag(reader.attributes().value("tag").toString().trimmed());
+
+	    if(tag == "010")
+	      {
+		/*
+		** $a - LC control number (NR)
+		** $b - NUCMC control number (R)
+		** $z - Canceled/invalid LC control number (R)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a")
+			{
+			  str.append(reader.readElementText());
+			  break;
+			}
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		str = str.trimmed();
+		ma.lcnum->setText(str);
+		biblioteq_misc_functions::highlightWidget
+		  (ma.lcnum, QColor(162, 205, 90));
+	      }
+	    else if(tag == "050")
+	      {
+		/*
+		** $a - Classification number (R)
+		** $b - Item number (NR)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "b")
+			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		ma.callnum->setText(str);
+		biblioteq_misc_functions::highlightWidget
+		  (ma.callnum, QColor(162, 205, 90));
+	      }
+	    else if(tag == "082")
+	      {
+		/*
+		** $a - Classification number (R)
+		** $b - Item number (NR)
+		** $m - Standard or optional designation (NR)
+		** $q - Assigning agency (NR)
+		** $2 - Edition number (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "b" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "m" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "q")
+			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		ma.deweynum->setText(str);
+		biblioteq_misc_functions::highlightWidget
+		  (ma.deweynum, QColor(162, 205, 90));
+	      }
+	    else if(tag == "245")
+	      {
+		/*
+		** $a - Title (NR)
+		** $b - Remainder of title (NR)
+		** $c - Statement of responsibility, etc. (NR)
+		** $f - Inclusive dates (NR)
+		** $g - Bulk dates (NR)
+		** $h - Medium (NR)
+		** $k - Form (R)
+		** $n - Number of part/section of a work (R)
+		** $p - Name of part/section of a work (R)
+		** $s - Version (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "b")
+			str.append(reader.readElementText());
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		if(str.lastIndexOf('/') > -1)
+		  str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
+		ma.title->setText(str.trimmed());
+		biblioteq_misc_functions::highlightWidget
+		  (ma.title, QColor(162, 205, 90));
+	      }
+	    else if(tag == "260")
+	      {
+		/*
+		** $a - Place of publication, distribution, etc. (R)
+		** $b - Name of publisher, distributor, etc. (R)
+		** $c - Date of publication, distribution, etc. (R)
+		** $e - Place of manufacture (R)
+		** $f - Manufacturer (R)
+		** $g - Date of manufacture (R)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString date("");
+		QString place("");
+		QString publisher("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a")
+			place = reader.readElementText();
+		      else if(reader.attributes().value("code").
+			      toString().trimmed() == "b")
+			publisher = reader.readElementText();
+		      else if(reader.attributes().value("code").
+			      toString().trimmed() == "c")
+			date = reader.readElementText();
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		ma.publication_date->setDate
+		  (QDate::fromString("01/01/" + date,
+				     "MM/dd/yyyy"));
+		ma.publication_date->setStyleSheet
+		  ("background-color: rgb(162, 205, 90)");
+
+		if(place.lastIndexOf(" ") > -1)
+		  place = place.mid(0, place.lastIndexOf(" ")).
+		    trimmed();
+
+		if(!place.isEmpty())
+		  if(!place[place.length() - 1].isLetter())
+		    place = place.remove(place.length() - 1, 1).
+		      trimmed();
+
+		ma.place->setPlainText(place);
+		biblioteq_misc_functions::highlightWidget
+		  (ma.place->viewport(), QColor(162, 205, 90));
+
+		if(publisher.endsWith(","))
+		  publisher = publisher.mid
+		    (0, publisher.length() - 1).trimmed();
+
+		ma.publisher->setPlainText(publisher);
+		biblioteq_misc_functions::highlightWidget
+		  (ma.publisher->viewport(), QColor(162, 205, 90));
+	      }
+	    else if(tag == "300")
+	      {
+		/*
+		** $a - Extent (R)
+		** $b - Other physical details (NR)
+		** $c - Dimensions (R)
+		** $e - Accompanying material (NR)
+		** $f - Type of unit (R)
+		** $g - Size of unit (R)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    str.append(reader.readElementText());
+		  else
+		    break;
+
+		ma.description->setPlainText(str);
+		biblioteq_misc_functions::highlightWidget
+		  (ma.description->viewport(), QColor(162, 205, 90));
+	      }
+	    else if(tag == "650")
+	      {
+		/*
+		** $a - Topical term or geographic name entry
+		**      element (NR)
+		** $b - Topical term following geographic name entry
+		**      element (NR)
+		** $c - Location of event (NR)
+		** $d - Active dates (NR)
+		** $e - Relator term (R)
+		** $4 - Relator code (R)
+		** $v - Form subdivision (R)
+		** $x - General subdivision (R)
+		** $y - Chronological subdivision (R)
+		** $z - Geographic subdivision (R)
+		** $0 - Authority record control number (R)
+		** $2 - Source of heading or term (NR)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a")
+			{
+			  str.append(reader.readElementText());
+			  break;
+			}
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		if(!str.isEmpty())
+		  {
+		    if(!str[str.length() - 1].isPunct())
+		      str += ".";
+
+		    if(!ma.category->toPlainText().contains(str))
+		      {
+			if(!ma.category->toPlainText().isEmpty())
+			  ma.category->setPlainText
+			    (ma.category->toPlainText() + "\n" +
+			     str);
+			else
+			  ma.category->setPlainText(str);
+
+			biblioteq_misc_functions::highlightWidget
+			  (ma.category->viewport(),
+			   QColor(162, 205, 90));
+		      }
+		  }
+	      }
+	  }
+      }
+
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+    textfield->setCursorPosition(0);
+}
+
+void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
+						   const QString &recordSyntax)
+{
+  QString str = "";
+  QStringList tmplist;
+  int i = 0;
+  int j = 0;
+
+  if(!list.isEmpty())
+    ma.marc_tags->clear();
+
+  if(recordSyntax == "MARC21")
+    {
+      for(i = 0; i < list.size(); i++)
+	{
+	  if(list[i].startsWith("260 "))
+	    ma.place->clear();
+	  else if(list[i].startsWith("650 "))
+	    ma.category->clear();
+
+	  str += list[i] + "\n";
+	}
+    }
+  else
+    {
+      for(i = 0; i < list.size(); i++)
+	{
+	  if(list[i].startsWith("210 "))
+	    ma.place->clear();
+	  else if(list[i].startsWith("606 "))
+	    ma.category->clear();
+
+	  str += list[i] + "\n";
+	}
+    }
+
+  if(!str.isEmpty())
+    ma.marc_tags->setPlainText(str.trimmed());
+
+  if(!list.isEmpty())
+    biblioteq_misc_functions::highlightWidget
+      (ma.marc_tags->viewport(), QColor(162, 205, 90));
+
+  if(recordSyntax == "UNIMARC")
+    {
+      biblioteq_marc m;
+
+      m.initialize(biblioteq_marc::MAGAZINE, biblioteq_marc::Z3950,
+		   biblioteq_marc::UNIMARC);
+      m.setData(str);
+      str = m.category();
+
+      if(!str.isEmpty())
+	{
+	  ma.category->setPlainText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.category->viewport(),
+	     QColor(162, 205, 90));
+	}
+
+      str = m.description();
+
+      if(!str.isEmpty())
+	{
+	  ma.description->setPlainText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.description->viewport(), QColor(162, 205, 90));
+	}
+
+      str = m.place();
+
+      if(!str.isEmpty())
+	{
+	  ma.place->setPlainText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.place->viewport(), QColor(162, 205, 90));
+	}
+
+      if(!m.publicationDate().isNull())
+	{
+	  ma.publication_date->setDate(m.publicationDate());
+	  ma.publication_date->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
+	}
+
+      str = m.publisher();
+
+      if(!str.isEmpty())
+	{
+	  ma.publisher->setPlainText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.publisher->viewport(), QColor(162, 205, 90));
+	}
+
+      str = m.title();
+
+      if(!str.isEmpty())
+	{
+	  ma.title->setText(str.trimmed());
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.title, QColor(162, 205, 90));
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      return;
+    }
+
+  for(i = 0; i < list.size(); i++)
+    {
+      str = list[i];
+
+      if(str.startsWith("010 "))
+	{
+	  /*
+	  ** $a - LC control number (NR)
+	  ** $b - NUCMC control number (R)
+	  ** $z - Canceled/invalid LC control number (R)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$z"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.removeFirst();
+
+	  ma.lcnum->setText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.lcnum, QColor(162, 205, 90));
+	}
+      else if(str.startsWith("050 "))
+	{
+	  /*
+	  ** $a - Classification number (R)
+	  ** $b - Item number (NR)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $b").trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$3"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.removeFirst();
+
+	  ma.callnum->setText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.callnum, QColor(162, 205, 90));
+	}
+      else if(str.startsWith("082 "))
+	{
+	  /*
+	  ** $a - Classification number (R)
+	  ** $b - Item number (NR)
+	  ** $m - Standard or optional designation (NR)
+	  ** $q - Assigning agency (NR)
+	  ** $2 - Edition number (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $b").remove
+	    (" $m").remove(" $q").trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$2"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.removeFirst();
+
+	  ma.deweynum->setText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.deweynum, QColor(162, 205, 90));
+	}
+      else if(str.startsWith("245 "))
+	{
+	  /*
+	  ** $a - Title (NR)
+	  ** $b - Remainder of title (NR)
+	  ** $c - Statement of responsibility, etc. (NR)
+	  ** $f - Inclusive dates (NR)
+	  ** $g - Bulk dates (NR)
+	  ** $h - Medium (NR)
+	  ** $k - Form (R)
+	  ** $n - Number of part/section of a work (R)
+	  ** $p - Name of part/section of a work (R)
+	  ** $s - Version (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $b").trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$c"
+		    << "$f"
+		    << "$g"
+		    << "$h"
+		    << "$k"
+		    << "$n"
+		    << "$p"
+		    << "$s"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.removeFirst();
+
+	  if(str.lastIndexOf('/') > -1)
+	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
+	  ma.title->setText(str.trimmed());
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.title, QColor(162, 205, 90));
+	}
+      else if(str.startsWith("260 "))
+	{
+	  /*
+	  ** $a - Place of publication, distribution, etc. (R)
+	  ** $b - Name of publisher, distributor, etc. (R)
+	  ** $c - Date of publication, distribution, etc. (R)
+	  ** $e - Place of manufacture (R)
+	  ** $f - Manufacturer (R)
+	  ** $g - Date of manufacture (R)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  QString tmpstr = "";
+
+	  if(str.indexOf("$a") > -1)
+	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
+	  else
+	    tmpstr = str;
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$c"
+		    << "$e"
+		    << "$f"
+		    << "$g"
+		    << "$3"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(tmpstr.contains(subfields.first()))
+	      tmpstr = tmpstr.mid
+		(0, tmpstr.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.removeFirst();
+
+	  tmplist = tmpstr.split("$a");
+
+	  for(j = 0; j < tmplist.size(); j++)
+	    {
+	      tmpstr = tmplist.at(j).trimmed();
+
+	      if(tmpstr.lastIndexOf(" ") > -1)
+		tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
+		  trimmed();
+
+	      if(tmpstr.isEmpty())
+		continue;
+
+	      if(!tmpstr[0].isLetterOrNumber())
+		tmpstr = tmpstr.mid(1).trimmed();
+
+	      if(tmpstr.isEmpty())
+		continue;
+
+	      if(!tmpstr[tmpstr.length() - 1].isLetter())
+		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
+		  trimmed();
+
+	      if(ma.place->toPlainText().isEmpty())
+		ma.place->setPlainText(tmpstr);
+	      else
+		ma.place->setPlainText(ma.place->toPlainText() +
+				       "\n" + tmpstr);
+	    }
+
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.place->viewport(), QColor(162, 205, 90));
+
+	  if(str.indexOf("$c") > -1 &&
+	     str.mid(str.indexOf("$c") + 2, 4).contains("c"))
+	    ma.publication_date->setDate
+	      (QDate::fromString
+	       ("01/01/" +
+		str.mid(str.indexOf("$c") + 4, 4),
+		"MM/dd/yyyy"));
+	  else if(str.indexOf("$c") > -1)
+	    ma.publication_date->setDate
+	      (QDate::fromString
+	       ("01/01/" +
+		str.mid(str.indexOf("$c") + 3, 4),
+		"MM/dd/yyyy"));
+
+	  ma.publication_date->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
+
+	  if(str.contains("$b"))
+	    str = str.mid(str.indexOf("$b") + 2).trimmed();
+
+	  if(str.contains("$a"))
+	    {
+	      str = str.mid(0, str.indexOf("$a")).trimmed();
+
+	      if(str.lastIndexOf(" ") > -1)
+		str = str.mid(0, str.lastIndexOf(" ")).trimmed();
+	    }
+	  else if(str.indexOf("$c") > -1)
+	    str = str.mid(0, str.indexOf("$c")).trimmed();
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1).trimmed();
+
+	  ma.publisher->setPlainText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.publisher->viewport(), QColor(162, 205, 90));
+	}
+      else if(str.startsWith("300 "))
+	{
+	  /*
+	  ** $a - Extent (R)
+	  ** $b - Other physical details (NR)
+	  ** $c - Dimensions (R)
+	  ** $e - Accompanying material (NR)
+	  ** $f - Type of unit (R)
+	  ** $g - Size of unit (R)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $b").trimmed();
+	  str = str.remove(" $c").trimmed();
+	  str = str.remove(" $e").trimmed();
+	  str = str.remove(" $f").trimmed();
+	  str = str.remove(" $g").trimmed();
+	  str = str.remove(" $3").trimmed();
+	  str = str.remove(" $6").trimmed();
+	  str = str.remove(" $8").trimmed();
+	  ma.description->setPlainText(str);
+	  biblioteq_misc_functions::highlightWidget
+	    (ma.description->viewport(), QColor(162, 205, 90));
+	}
+      else if(str.startsWith("650 "))
+	{
+	  /*
+	  ** $a - Topical term or geographic name entry
+	  **      element (NR)
+	  ** $b - Topical term following geographic name entry
+	  **      element (NR)
+	  ** $c - Location of event (NR)
+	  ** $d - Active dates (NR)
+	  ** $e - Relator term (R)
+	  ** $4 - Relator code (R)
+	  ** $v - Form subdivision (R)
+	  ** $x - General subdivision (R)
+	  ** $y - Chronological subdivision (R)
+	  ** $z - Geographic subdivision (R)
+	  ** $0 - Authority record control number (R)
+	  ** $2 - Source of heading or term (NR)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$c"
+		    << "$d"
+		    << "$e"
+		    << "$4"
+		    << "$v"
+		    << "$x"
+		    << "$y"
+		    << "$z"
+		    << "$0"
+		    << "$2"
+		    << "$3"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.removeFirst();
+
+	  if(!str.isEmpty())
+	    {
+	      if(!str[str.length() - 1].isPunct())
+		str += ".";
+
+	      if(!ma.category->toPlainText().contains(str))
+		{
+		  if(!ma.category->toPlainText().isEmpty())
+		    ma.category->setPlainText
+		      (ma.category->toPlainText() + "\n" +
+		       str);
+		  else
+		    ma.category->setPlainText(str);
+
+		  biblioteq_misc_functions::highlightWidget
+		    (ma.category->viewport(),
+		     QColor(162, 205, 90));
+		}
+	    }
+	}
+    }
+
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+    textfield->setCursorPosition(0);
+}
+
 void biblioteq_magazine::populateFiles(void)
 {
   ma.files->setRowCount(0);
@@ -967,6 +1848,181 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 void biblioteq_magazine::slotCancel(void)
 {
   close();
+}
+
+void biblioteq_magazine::slotExportFiles(void)
+{
+  QModelIndexList list(ma.files->selectionModel()->
+		       selectedRows(ma.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setDirectory(QDir::homePath());
+
+  if(m_subType.toLower() == "journal")
+    dialog.setWindowTitle(tr("BiblioteQ: Journal File Export"));
+  else
+    dialog.setWindowTitle(tr("BiblioteQ: Magazine File Export"));
+
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QProgressDialog progress(this);
+
+      progress.setLabelText(tr("Exporting file(s)..."));
+      progress.setMaximum(list.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      int i = -1;
+
+      while(i++, !list.isEmpty() && !progress.wasCanceled())
+	{
+	  QSqlQuery query(qmain->getDB());
+
+	  if(m_subType == "Journal")
+	    query.prepare("SELECT file, file_name FROM journal_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+	  else
+	    query.prepare("SELECT file, file_name FROM magazine_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, list.takeFirst().data());
+
+	  if(query.exec() && query.next())
+	    {
+	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
+			 query.value(1).toString());
+
+	      if(file.open(QIODevice::WriteOnly))
+		file.write(qUncompress(query.value(0).toByteArray()));
+
+	      file.flush();
+	      file.close();
+	    }
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+	}
+    }
+}
+
+void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
+{
+  if(!item)
+    return;
+
+  if(item->column() != 3 || m_engWindowTitle != "Modify")
+    {
+      QTableWidgetItem *item1 = ma.files->item(item->row(), 0); // File
+
+      if(!item1)
+	return;
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      if(item1->text().toLower().trimmed().endsWith(".pdf"))
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	  QByteArray data;
+	  QSqlQuery query(qmain->getDB());
+
+	  if(m_subType == "Journal")
+	    query.prepare("SELECT file, file_name FROM journal_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+	  else
+	    query.prepare("SELECT file, file_name FROM magazine_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+
+	  query.addBindValue(m_oid);
+	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
+
+	  if(query.exec() && query.next())
+	    data = qUncompress(query.value(0).toByteArray());
+
+	  if(!data.isEmpty())
+	    {
+	      biblioteq_pdfreader *reader =
+		new(std::nothrow) biblioteq_pdfreader(this);
+
+	      if(reader)
+		{
+		  reader->load(data, item1->text());
+		  biblioteq_misc_functions::center(reader, this);
+		  reader->show();
+		}
+	    }
+
+	  QApplication::restoreOverrideCursor();
+	}
+#endif
+
+      return;
+    }
+
+  if(m_engWindowTitle != "Modify")
+    return;
+
+  QTableWidgetItem *item1 = ma.files->item(item->row(), 3); // Description
+
+  if(!item1)
+    return;
+
+  QString description(item1->text());
+  QTableWidgetItem *item2 =
+    ma.files->item(item->row(), ma.files->columnCount() - 1); // myoid
+
+  if(!item2)
+    return;
+
+  bool ok = true;
+  QString text
+    (QInputDialog::getText(this,
+			   tr("BiblioteQ: File Description"),
+			   tr("Description"), QLineEdit::Normal,
+			   description, &ok).trimmed());
+
+  if(!ok)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
+
+  if(m_subType == "Journal")
+    query.prepare("UPDATE journal_files SET description = ? "
+		  "WHERE item_oid = ? AND myoid = ?");
+  else
+    query.prepare("UPDATE magazine_files SET description = ? "
+		  "WHERE item_oid = ? AND myoid = ?");
+
+  query.bindValue(0, text);
+  query.bindValue(1, m_oid);
+  query.bindValue(2, myoid);
+
+  if(query.exec())
+    item1->setText(text);
 }
 
 void biblioteq_magazine::slotGo(void)
@@ -2092,494 +3148,6 @@ void biblioteq_magazine::slotReset(void)
     }
 }
 
-void biblioteq_magazine::slotShowUsers(void)
-{
-  int state = 0;
-  biblioteq_borrowers_editor *borrowerseditor = 0;
-
-  if(!ma.okButton->isHidden())
-    state = biblioteq::EDITABLE;
-  else
-    state = biblioteq::VIEW_ONLY;
-
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
-       ma.quantity->value(), m_oid, ma.id->text(), font(), m_subType,
-       state)) != 0)
-    borrowerseditor->showUsers();
-}
-
-void biblioteq_magazine::populateDisplayAfterZ3950
-(const QStringList &list, const QString &recordSyntax)
-{
-  int i = 0;
-  int j = 0;
-  QString str = "";
-  QStringList tmplist;
-
-  if(!list.isEmpty())
-    ma.marc_tags->clear();
-
-  if(recordSyntax == "MARC21")
-    {
-      for(i = 0; i < list.size(); i++)
-	{
-	  if(list[i].startsWith("260 "))
-	    ma.place->clear();
-	  else if(list[i].startsWith("650 "))
-	    ma.category->clear();
-
-	  str += list[i] + "\n";
-	}
-    }
-  else
-    {
-      for(i = 0; i < list.size(); i++)
-	{
-	  if(list[i].startsWith("210 "))
-	    ma.place->clear();
-	  else if(list[i].startsWith("606 "))
-	    ma.category->clear();
-
-	  str += list[i] + "\n";
-	}
-    }
-
-  if(!str.isEmpty())
-    ma.marc_tags->setPlainText(str.trimmed());
-
-  if(!list.isEmpty())
-    biblioteq_misc_functions::highlightWidget
-      (ma.marc_tags->viewport(), QColor(162, 205, 90));
-
-  if(recordSyntax == "UNIMARC")
-    {
-      biblioteq_marc m;
-
-      m.initialize(biblioteq_marc::MAGAZINE, biblioteq_marc::Z3950,
-		   biblioteq_marc::UNIMARC);
-      m.setData(str);
-      str = m.category();
-
-      if(!str.isEmpty())
-	{
-	  ma.category->setPlainText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.category->viewport(),
-	     QColor(162, 205, 90));
-	}
-
-      str = m.description();
-
-      if(!str.isEmpty())
-	{
-	  ma.description->setPlainText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.description->viewport(), QColor(162, 205, 90));
-	}
-
-      str = m.place();
-
-      if(!str.isEmpty())
-	{
-	  ma.place->setPlainText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.place->viewport(), QColor(162, 205, 90));
-	}
-
-      if(!m.publicationDate().isNull())
-	{
-	  ma.publication_date->setDate(m.publicationDate());
-	  ma.publication_date->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
-	}
-
-      str = m.publisher();
-
-      if(!str.isEmpty())
-	{
-	  ma.publisher->setPlainText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.publisher->viewport(), QColor(162, 205, 90));
-	}
-
-      str = m.title();
-
-      if(!str.isEmpty())
-	{
-	  ma.title->setText(str.trimmed());
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.title, QColor(162, 205, 90));
-	}
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	textfield->setCursorPosition(0);
-
-      return;
-    }
-
-  for(i = 0; i < list.size(); i++)
-    {
-      str = list[i];
-
-      if(str.startsWith("010 "))
-	{
-	  /*
-	  ** $a - LC control number (NR)
-	  ** $b - NUCMC control number (R)
-	  ** $z - Canceled/invalid LC control number (R)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  if(str.indexOf("$a") > -1)
-	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-
-	  QStringList subfields;
-
-	  subfields << "$b"
-		    << "$z"
-		    << "$8";
-
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
-
-	  ma.lcnum->setText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.lcnum, QColor(162, 205, 90));
-	}
-      else if(str.startsWith("050 "))
-	{
-	  /*
-	  ** $a - Classification number (R)
-	  ** $b - Item number (NR)
-	  ** $3 - Materials specified (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  if(str.indexOf("$a") > -1)
-	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-
-	  str = str.remove(" $b").trimmed();
-
-	  QStringList subfields;
-
-	  subfields << "$3"
-		    << "$6"
-		    << "$8";
-
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
-
-	  ma.callnum->setText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.callnum, QColor(162, 205, 90));
-	}
-      else if(str.startsWith("082 "))
-	{
-	  /*
-	  ** $a - Classification number (R)
-	  ** $b - Item number (NR)
-	  ** $m - Standard or optional designation (NR)
-	  ** $q - Assigning agency (NR)
-	  ** $2 - Edition number (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  if(str.indexOf("$a") > -1)
-	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-
-	  str = str.remove(" $b").remove
-	    (" $m").remove(" $q").trimmed();
-
-	  QStringList subfields;
-
-	  subfields << "$2"
-		    << "$6"
-		    << "$8";
-
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
-
-	  ma.deweynum->setText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.deweynum, QColor(162, 205, 90));
-	}
-      else if(str.startsWith("245 "))
-	{
-	  /*
-	  ** $a - Title (NR)
-	  ** $b - Remainder of title (NR)
-	  ** $c - Statement of responsibility, etc. (NR)
-	  ** $f - Inclusive dates (NR)
-	  ** $g - Bulk dates (NR)
-	  ** $h - Medium (NR)
-	  ** $k - Form (R)
-	  ** $n - Number of part/section of a work (R)
-	  ** $p - Name of part/section of a work (R)
-	  ** $s - Version (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  if(str.indexOf("$a") > -1)
-	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-
-	  str = str.remove(" $b").trimmed();
-
-	  QStringList subfields;
-
-	  subfields << "$c"
-		    << "$f"
-		    << "$g"
-		    << "$h"
-		    << "$k"
-		    << "$n"
-		    << "$p"
-		    << "$s"
-		    << "$6"
-		    << "$8";
-
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
-
-	  if(str.lastIndexOf('/') > -1)
-	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
-
-	  ma.title->setText(str.trimmed());
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.title, QColor(162, 205, 90));
-	}
-      else if(str.startsWith("260 "))
-	{
-	  /*
-	  ** $a - Place of publication, distribution, etc. (R)
-	  ** $b - Name of publisher, distributor, etc. (R)
-	  ** $c - Date of publication, distribution, etc. (R)
-	  ** $e - Place of manufacture (R)
-	  ** $f - Manufacturer (R)
-	  ** $g - Date of manufacture (R)
-	  ** $3 - Materials specified (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  QString tmpstr = "";
-
-	  if(str.indexOf("$a") > -1)
-	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
-	  else
-	    tmpstr = str;
-
-	  QStringList subfields;
-
-	  subfields << "$b"
-		    << "$c"
-		    << "$e"
-		    << "$f"
-		    << "$g"
-		    << "$3"
-		    << "$6"
-		    << "$8";
-
-	  while(!subfields.isEmpty())
-	    if(tmpstr.contains(subfields.first()))
-	      tmpstr = tmpstr.mid
-		(0, tmpstr.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
-
-	  tmplist = tmpstr.split("$a");
-
-	  for(j = 0; j < tmplist.size(); j++)
-	    {
-	      tmpstr = tmplist.at(j).trimmed();
-
-	      if(tmpstr.lastIndexOf(" ") > -1)
-		tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
-		  trimmed();
-
-	      if(tmpstr.isEmpty())
-		continue;
-
-	      if(!tmpstr[0].isLetterOrNumber())
-		tmpstr = tmpstr.mid(1).trimmed();
-
-	      if(tmpstr.isEmpty())
-		continue;
-
-	      if(!tmpstr[tmpstr.length() - 1].isLetter())
-		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
-		  trimmed();
-
-	      if(ma.place->toPlainText().isEmpty())
-		ma.place->setPlainText(tmpstr);
-	      else
-		ma.place->setPlainText(ma.place->toPlainText() +
-				       "\n" + tmpstr);
-	    }
-
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.place->viewport(), QColor(162, 205, 90));
-
-	  if(str.indexOf("$c") > -1 &&
-	     str.mid(str.indexOf("$c") + 2, 4).contains("c"))
-	    ma.publication_date->setDate
-	      (QDate::fromString
-	       ("01/01/" +
-		str.mid(str.indexOf("$c") + 4, 4),
-		"MM/dd/yyyy"));
-	  else if(str.indexOf("$c") > -1)
-	    ma.publication_date->setDate
-	      (QDate::fromString
-	       ("01/01/" +
-		str.mid(str.indexOf("$c") + 3, 4),
-		"MM/dd/yyyy"));
-
-	  ma.publication_date->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
-
-	  if(str.contains("$b"))
-	    str = str.mid(str.indexOf("$b") + 2).trimmed();
-
-	  if(str.contains("$a"))
-	    {
-	      str = str.mid(0, str.indexOf("$a")).trimmed();
-
-	      if(str.lastIndexOf(" ") > -1)
-		str = str.mid(0, str.lastIndexOf(" ")).trimmed();
-	    }
-	  else if(str.indexOf("$c") > -1)
-	    str = str.mid(0, str.indexOf("$c")).trimmed();
-
-	  if(str.endsWith(","))
-	    str = str.mid(0, str.length() - 1).trimmed();
-
-	  ma.publisher->setPlainText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.publisher->viewport(), QColor(162, 205, 90));
-	}
-      else if(str.startsWith("300 "))
-	{
-	  /*
-	  ** $a - Extent (R)
-	  ** $b - Other physical details (NR)
-	  ** $c - Dimensions (R)
-	  ** $e - Accompanying material (NR)
-	  ** $f - Type of unit (R)
-	  ** $g - Size of unit (R)
-	  ** $3 - Materials specified (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  if(str.indexOf("$a") > -1)
-	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-
-	  str = str.remove(" $b").trimmed();
-	  str = str.remove(" $c").trimmed();
-	  str = str.remove(" $e").trimmed();
-	  str = str.remove(" $f").trimmed();
-	  str = str.remove(" $g").trimmed();
-	  str = str.remove(" $3").trimmed();
-	  str = str.remove(" $6").trimmed();
-	  str = str.remove(" $8").trimmed();
-	  ma.description->setPlainText(str);
-	  biblioteq_misc_functions::highlightWidget
-	    (ma.description->viewport(), QColor(162, 205, 90));
-	}
-      else if(str.startsWith("650 "))
-	{
-	  /*
-	  ** $a - Topical term or geographic name entry
-	  **      element (NR)
-	  ** $b - Topical term following geographic name entry
-	  **      element (NR)
-	  ** $c - Location of event (NR)
-	  ** $d - Active dates (NR)
-	  ** $e - Relator term (R)
-	  ** $4 - Relator code (R)
-	  ** $v - Form subdivision (R)
-	  ** $x - General subdivision (R)
-	  ** $y - Chronological subdivision (R)
-	  ** $z - Geographic subdivision (R)
-	  ** $0 - Authority record control number (R)
-	  ** $2 - Source of heading or term (NR)
-	  ** $3 - Materials specified (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R)
-	  */
-
-	  if(str.indexOf("$a") > -1)
-	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-
-	  QStringList subfields;
-
-	  subfields << "$b"
-		    << "$c"
-		    << "$d"
-		    << "$e"
-		    << "$4"
-		    << "$v"
-		    << "$x"
-		    << "$y"
-		    << "$z"
-		    << "$0"
-		    << "$2"
-		    << "$3"
-		    << "$6"
-		    << "$8";
-
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
-
-	  if(!str.isEmpty())
-	    {
-	      if(!str[str.length() - 1].isPunct())
-		str += ".";
-
-	      if(!ma.category->toPlainText().contains(str))
-		{
-		  if(!ma.category->toPlainText().isEmpty())
-		    ma.category->setPlainText
-		      (ma.category->toPlainText() + "\n" +
-		       str);
-		  else
-		    ma.category->setPlainText(str);
-
-		  biblioteq_misc_functions::highlightWidget
-		    (ma.category->viewport(),
-		     QColor(162, 205, 90));
-		}
-	    }
-	}
-    }
-
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-    textfield->setCursorPosition(0);
-}
-
 void biblioteq_magazine::slotSelectImage(void)
 {
   QFileDialog dialog(this);
@@ -2641,372 +3209,21 @@ void biblioteq_magazine::slotSelectImage(void)
     }
 }
 
-Ui_magDialog biblioteq_magazine::dialog(void) const
+void biblioteq_magazine::slotShowUsers(void)
 {
-  return ma;
-}
+  int state = 0;
+  biblioteq_borrowers_editor *borrowerseditor = 0;
 
-void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
-{
-  m_duplicate = true;
-  modify(state); // Initial population.
-  ma.attach_files->setEnabled(false);
-  ma.view_pdf->setEnabled(false);
-  ma.delete_files->setEnabled(false);
-  ma.export_files->setEnabled(false);
-  ma.copiesButton->setEnabled(false);
-  ma.showUserButton->setEnabled(false);
-  m_oid = p_oid;
-
-  if(m_subType.toLower() == "journal")
-    setWindowTitle(tr("BiblioteQ: Duplicate Journal Entry"));
+  if(!ma.okButton->isHidden())
+    state = biblioteq::EDITABLE;
   else
-    setWindowTitle(tr("BiblioteQ: Duplicate Magazine Entry"));
+    state = biblioteq::VIEW_ONLY;
 
-  m_duplicate = false;
-  m_engWindowTitle = "Create";
-}
-
-void biblioteq_magazine::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  ma.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QMainWindow::changeEvent(event);
-}
-
-void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
-{
-  if(!data.isEmpty())
-    {
-      ma.marc_tags->setText(data);
-      biblioteq_misc_functions::highlightWidget
-	(ma.marc_tags->viewport(), QColor(162, 205, 90));
-    }
-
-  QXmlStreamReader reader(data);
-
-  while(!reader.atEnd())
-    if(reader.readNextStartElement())
-      if(reader.name().toString().toLower().trimmed() == "datafield")
-	{
-	  QString tag(reader.attributes().value("tag").toString().trimmed());
-
-	  if(tag == "260")
-	    ma.place->clear();
-	  else if(tag == "650")
-	    ma.category->clear();
-	}
-
-  reader.clear();
-  reader.addData(data);
-
-  while(!reader.atEnd())
-    if(reader.readNextStartElement())
-      {
-	if(reader.name().toString().toLower().trimmed() == "datafield")
-	  {
-	    QString tag(reader.attributes().value("tag").toString().trimmed());
-
-	    if(tag == "010")
-	      {
-		/*
-		** $a - LC control number (NR)
-		** $b - NUCMC control number (R)
-		** $z - Canceled/invalid LC control number (R)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString str("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    {
-		      if(reader.attributes().value("code").
-			 toString().trimmed() == "a")
-			{
-			  str.append(reader.readElementText());
-			  break;
-			}
-		      else
-			reader.skipCurrentElement();
-		    }
-		  else
-		    break;
-
-		str = str.trimmed();
-		ma.lcnum->setText(str);
-		biblioteq_misc_functions::highlightWidget
-		  (ma.lcnum, QColor(162, 205, 90));
-	      }
-	    else if(tag == "050")
-	      {
-		/*
-		** $a - Classification number (R)
-		** $b - Item number (NR)
-		** $3 - Materials specified (NR)
-		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString str("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    {
-		      if(reader.attributes().value("code").
-			 toString().trimmed() == "a" ||
-			 reader.attributes().value("code").
-			 toString().trimmed() == "b")
-			str.append(reader.readElementText());
-		      else
-			reader.skipCurrentElement();
-		    }
-		  else
-		    break;
-
-		ma.callnum->setText(str);
-		biblioteq_misc_functions::highlightWidget
-		  (ma.callnum, QColor(162, 205, 90));
-	      }
-	    else if(tag == "082")
-	      {
-		/*
-		** $a - Classification number (R)
-		** $b - Item number (NR)
-		** $m - Standard or optional designation (NR)
-		** $q - Assigning agency (NR)
-		** $2 - Edition number (NR)
-		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString str("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    {
-		      if(reader.attributes().value("code").
-			 toString().trimmed() == "a" ||
-			 reader.attributes().value("code").
-			 toString().trimmed() == "b" ||
-			 reader.attributes().value("code").
-			 toString().trimmed() == "m" ||
-			 reader.attributes().value("code").
-			 toString().trimmed() == "q")
-			str.append(reader.readElementText());
-		      else
-			reader.skipCurrentElement();
-		    }
-		  else
-		    break;
-
-		ma.deweynum->setText(str);
-		biblioteq_misc_functions::highlightWidget
-		  (ma.deweynum, QColor(162, 205, 90));
-	      }
-	    else if(tag == "245")
-	      {
-		/*
-		** $a - Title (NR)
-		** $b - Remainder of title (NR)
-		** $c - Statement of responsibility, etc. (NR)
-		** $f - Inclusive dates (NR)
-		** $g - Bulk dates (NR)
-		** $h - Medium (NR)
-		** $k - Form (R)
-		** $n - Number of part/section of a work (R)
-		** $p - Name of part/section of a work (R)
-		** $s - Version (NR)
-		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString str("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    {
-		      if(reader.attributes().value("code").
-			 toString().trimmed() == "a" ||
-			 reader.attributes().value("code").
-			 toString().trimmed() == "b")
-			str.append(reader.readElementText());
-		      else
-			reader.skipCurrentElement();
-		    }
-		  else
-		    break;
-
-		if(str.lastIndexOf('/') > -1)
-		  str = str.mid(0, str.lastIndexOf('/')).trimmed();
-
-		ma.title->setText(str.trimmed());
-		biblioteq_misc_functions::highlightWidget
-		  (ma.title, QColor(162, 205, 90));
-	      }
-	    else if(tag == "260")
-	      {
-		/*
-		** $a - Place of publication, distribution, etc. (R)
-		** $b - Name of publisher, distributor, etc. (R)
-		** $c - Date of publication, distribution, etc. (R)
-		** $e - Place of manufacture (R)
-		** $f - Manufacturer (R)
-		** $g - Date of manufacture (R)
-		** $3 - Materials specified (NR)
-		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString date("");
-		QString place("");
-		QString publisher("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    {
-		      if(reader.attributes().value("code").
-			 toString().trimmed() == "a")
-			place = reader.readElementText();
-		      else if(reader.attributes().value("code").
-			      toString().trimmed() == "b")
-			publisher = reader.readElementText();
-		      else if(reader.attributes().value("code").
-			      toString().trimmed() == "c")
-			date = reader.readElementText();
-		      else
-			reader.skipCurrentElement();
-		    }
-		  else
-		    break;
-
-		ma.publication_date->setDate
-		  (QDate::fromString("01/01/" + date,
-				     "MM/dd/yyyy"));
-		ma.publication_date->setStyleSheet
-		  ("background-color: rgb(162, 205, 90)");
-
-		if(place.lastIndexOf(" ") > -1)
-		  place = place.mid(0, place.lastIndexOf(" ")).
-		    trimmed();
-
-		if(!place.isEmpty())
-		  if(!place[place.length() - 1].isLetter())
-		    place = place.remove(place.length() - 1, 1).
-		      trimmed();
-
-		ma.place->setPlainText(place);
-		biblioteq_misc_functions::highlightWidget
-		  (ma.place->viewport(), QColor(162, 205, 90));
-
-		if(publisher.endsWith(","))
-		  publisher = publisher.mid
-		    (0, publisher.length() - 1).trimmed();
-
-		ma.publisher->setPlainText(publisher);
-		biblioteq_misc_functions::highlightWidget
-		  (ma.publisher->viewport(), QColor(162, 205, 90));
-	      }
-	    else if(tag == "300")
-	      {
-		/*
-		** $a - Extent (R)
-		** $b - Other physical details (NR)
-		** $c - Dimensions (R)
-		** $e - Accompanying material (NR)
-		** $f - Type of unit (R)
-		** $g - Size of unit (R)
-		** $3 - Materials specified (NR)
-		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString str("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    str.append(reader.readElementText());
-		  else
-		    break;
-
-		ma.description->setPlainText(str);
-		biblioteq_misc_functions::highlightWidget
-		  (ma.description->viewport(), QColor(162, 205, 90));
-	      }
-	    else if(tag == "650")
-	      {
-		/*
-		** $a - Topical term or geographic name entry
-		**      element (NR)
-		** $b - Topical term following geographic name entry
-		**      element (NR)
-		** $c - Location of event (NR)
-		** $d - Active dates (NR)
-		** $e - Relator term (R)
-		** $4 - Relator code (R)
-		** $v - Form subdivision (R)
-		** $x - General subdivision (R)
-		** $y - Chronological subdivision (R)
-		** $z - Geographic subdivision (R)
-		** $0 - Authority record control number (R)
-		** $2 - Source of heading or term (NR)
-		** $3 - Materials specified (NR)
-		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R)
-		*/
-
-		QString str("");
-
-		while(reader.readNextStartElement())
-		  if(reader.name().toString().toLower().trimmed() == "subfield")
-		    {
-		      if(reader.attributes().value("code").
-			 toString().trimmed() == "a")
-			{
-			  str.append(reader.readElementText());
-			  break;
-			}
-		      else
-			reader.skipCurrentElement();
-		    }
-		  else
-		    break;
-
-		if(!str.isEmpty())
-		  {
-		    if(!str[str.length() - 1].isPunct())
-		      str += ".";
-
-		    if(!ma.category->toPlainText().contains(str))
-		      {
-			if(!ma.category->toPlainText().isEmpty())
-			  ma.category->setPlainText
-			    (ma.category->toPlainText() + "\n" +
-			     str);
-			else
-			  ma.category->setPlainText(str);
-
-			biblioteq_misc_functions::highlightWidget
-			  (ma.category->viewport(),
-			   QColor(162, 205, 90));
-		      }
-		  }
-	      }
-	  }
-      }
-
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-    textfield->setCursorPosition(0);
+  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
+      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
+       ma.quantity->value(), m_oid, ma.id->text(), font(), m_subType,
+       state)) != 0)
+    borrowerseditor->showUsers();
 }
 
 void biblioteq_magazine::slotSRUQuery(void)
@@ -3185,60 +3402,6 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 
-void biblioteq_magazine::sruDownloadFinished(void)
-{
-  QList<QByteArray> list;
-
-  while(m_sruResults.indexOf("<record") >= 0 &&
-	m_sruResults.indexOf("</record>") >= 0)
-    {
-      list.append(m_sruResults.mid(m_sruResults.indexOf("<record"),
-				   m_sruResults.indexOf("</record>") -
-				   m_sruResults.indexOf("<record") + 9));
-      m_sruResults.remove(m_sruResults.indexOf("<record"),
-			  m_sruResults.indexOf("</record>") -
-			  m_sruResults.indexOf("<record") + 9);
-    }
-
-  if(list.size() == 1)
-    {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			       tr("Replace existing values with "
-				  "those retrieved "
-				  "from the SRU site?"),
-			       QMessageBox::Yes | QMessageBox::No,
-			       QMessageBox::No) == QMessageBox::Yes)
-	populateDisplayAfterSRU(list[0]);
-    }
-  else if(list.size() > 1)
-    {
-      /*
-      ** Display a selection dialog. Destroyed on close.
-      */
-
-      if((new(std::nothrow) biblioteq_sruresults
-	  (qobject_cast<QWidget *> (this),
-	   list, this, font())) == 0)
-	{
-	  qmain->addError
-	    (QString(tr("Memory Error")),
-	     QString(tr("Unable to create a \"dialog\" object "
-			"because of insufficient resources.")),
-	     QString(""),
-	     __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Memory Error"),
-	     tr("Unable to create a \"dialog\" object "
-		"because of insufficient resources."));
-	}
-    }
-  else
-    QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
-       tr("An SRU entry may not yet exist for ") +
-       ma.id->text() + tr(" or a network error occurred."));
-}
-
 void biblioteq_magazine::slotSRUReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
@@ -3342,48 +3505,6 @@ void biblioteq_magazine::slotAttachFiles(void)
     }
 }
 
-void biblioteq_magazine::createFile(const QByteArray &digest,
-				    const QByteArray &bytes,
-				    const QString &fileName) const
-{
-  QSqlQuery query(qmain->getDB());
-
-  if(qmain->getDB().driverName() != "QSQLITE")
-    query.prepare(QString("INSERT INTO %1_files "
-			  "(file, file_digest, file_name, item_oid) "
-			  "VALUES (?, ?, ?, ?)").arg(m_subType));
-  else
-    query.prepare(QString("INSERT INTO %1_files "
-			  "(file, file_digest, file_name, item_oid, myoid) "
-			  "VALUES (?, ?, ?, ?, ?)").arg(m_subType));
-
-  query.bindValue(0, bytes);
-  query.bindValue(1, digest.toHex().constData());
-  query.bindValue(2, fileName);
-  query.bindValue(3, m_oid);
-
-  if(qmain->getDB().driverName() == "QSQLITE")
-    {
-      QString errorstr("");
-      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	(qmain->getDB(), errorstr);
-
-      if(errorstr.isEmpty())
-	query.bindValue(4, value);
-      else
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique "
-				   "integer.")),
-			errorstr);
-    }
-
-  if(!query.exec())
-    qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to create a database transaction.")),
-       query.lastError().text(), __FILE__, __LINE__);
-}
-
 void biblioteq_magazine::slotDeleteFiles(void)
 {
   QModelIndexList list(ma.files->selectionModel()->
@@ -3427,219 +3548,6 @@ void biblioteq_magazine::slotDeleteFiles(void)
 
   QApplication::restoreOverrideCursor();
   populateFiles();
-}
-
-void biblioteq_magazine::slotExportFiles(void)
-{
-  QModelIndexList list(ma.files->selectionModel()->
-		       selectedRows(ma.files->columnCount() - 1)); // myoid
-
-  if(list.isEmpty())
-    return;
-
-  QFileDialog dialog(this);
-
-  dialog.setFileMode(QFileDialog::Directory);
-  dialog.setDirectory(QDir::homePath());
-
-  if(m_subType.toLower() == "journal")
-    dialog.setWindowTitle(tr("BiblioteQ: Journal File Export"));
-  else
-    dialog.setWindowTitle(tr("BiblioteQ: Magazine File Export"));
-
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
-    {
-      repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      QProgressDialog progress(this);
-
-      progress.setLabelText(tr("Exporting file(s)..."));
-      progress.setMaximum(list.size());
-      progress.setMinimum(0);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-      progress.show();
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      int i = -1;
-
-      while(i++, !list.isEmpty() && !progress.wasCanceled())
-	{
-	  QSqlQuery query(qmain->getDB());
-
-	  if(m_subType == "Journal")
-	    query.prepare("SELECT file, file_name FROM journal_files "
-			  "WHERE item_oid = ? AND myoid = ?");
-	  else
-	    query.prepare("SELECT file, file_name FROM magazine_files "
-			  "WHERE item_oid = ? AND myoid = ?");
-
-	  query.bindValue(0, m_oid);
-	  query.bindValue(1, list.takeFirst().data());
-
-	  if(query.exec() && query.next())
-	    {
-	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
-			 query.value(1).toString());
-
-	      if(file.open(QIODevice::WriteOnly))
-		file.write(qUncompress(query.value(0).toByteArray()));
-
-	      file.flush();
-	      file.close();
-	    }
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-	}
-    }
-}
-
-void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
-{
-  if(!item)
-    return;
-
-  if(item->column() != 3 || m_engWindowTitle != "Modify")
-    {
-      QTableWidgetItem *item1 = ma.files->item(item->row(), 0); // File
-
-      if(!item1)
-	return;
-
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      if(item1->text().toLower().trimmed().endsWith(".pdf"))
-	{
-	  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-	  QByteArray data;
-	  QSqlQuery query(qmain->getDB());
-
-	  if(m_subType == "Journal")
-	    query.prepare("SELECT file, file_name FROM journal_files "
-			  "WHERE item_oid = ? AND myoid = ?");
-	  else
-	    query.prepare("SELECT file, file_name FROM magazine_files "
-			  "WHERE item_oid = ? AND myoid = ?");
-
-	  query.addBindValue(m_oid);
-	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
-
-	  if(query.exec() && query.next())
-	    data = qUncompress(query.value(0).toByteArray());
-
-	  if(!data.isEmpty())
-	    {
-	      biblioteq_pdfreader *reader =
-		new(std::nothrow) biblioteq_pdfreader(this);
-
-	      if(reader)
-		{
-		  reader->load(data, item1->text());
-		  biblioteq_misc_functions::center(reader, this);
-		  reader->show();
-		}
-	    }
-
-	  QApplication::restoreOverrideCursor();
-	}
-#endif
-
-      return;
-    }
-
-  if(m_engWindowTitle != "Modify")
-    return;
-
-  QTableWidgetItem *item1 = ma.files->item(item->row(), 3); // Description
-
-  if(!item1)
-    return;
-
-  QString description(item1->text());
-  QTableWidgetItem *item2 =
-    ma.files->item(item->row(), ma.files->columnCount() - 1); // myoid
-
-  if(!item2)
-    return;
-
-  bool ok = true;
-  QString text
-    (QInputDialog::getText(this,
-			   tr("BiblioteQ: File Description"),
-			   tr("Description"), QLineEdit::Normal,
-			   description, &ok).trimmed());
-
-  if(!ok)
-    return;
-
-  QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
-
-  if(m_subType == "Journal")
-    query.prepare("UPDATE journal_files SET description = ? "
-		  "WHERE item_oid = ? AND myoid = ?");
-  else
-    query.prepare("UPDATE magazine_files SET description = ? "
-		  "WHERE item_oid = ? AND myoid = ?");
-
-  query.bindValue(0, text);
-  query.bindValue(1, m_oid);
-  query.bindValue(2, myoid);
-
-  if(query.exec())
-    item1->setText(text);
-}
-
-void biblioteq_magazine::slotShowPDF(void)
-{
-  QModelIndexList list(ma.files->selectionModel()->
-		       selectedRows(ma.files->columnCount() - 1)); // myoid
-
-  if(list.isEmpty())
-    return;
-
-  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
-
-  if(!reader)
-    return;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QByteArray data;
-  QSqlQuery query(qmain->getDB());
-
-  if(m_subType == "Journal")
-    query.prepare
-      ("SELECT file, file_name FROM journal_files "
-       "WHERE item_oid = ? AND myoid = ?");
-  else
-    query.prepare
-      ("SELECT file, file_name FROM magazine_files "
-       "WHERE item_oid = ? AND myoid = ?");
-
-  query.bindValue(0, m_oid);
-  query.bindValue(1, list.takeFirst().data());
-
-  if(query.exec() && query.next())
-    data = qUncompress(query.value(0).toByteArray());
-
-  reader->load(data, query.value(1).toString());
-  reader->show();
-  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_magazine::slotPublicationDateEnabled(bool state)
@@ -3698,6 +3606,44 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
+}
+
+void biblioteq_magazine::slotShowPDF(void)
+{
+  QModelIndexList list(ma.files->selectionModel()->
+		       selectedRows(ma.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
+
+  if(!reader)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QByteArray data;
+  QSqlQuery query(qmain->getDB());
+
+  if(m_subType == "Journal")
+    query.prepare
+      ("SELECT file, file_name FROM journal_files "
+       "WHERE item_oid = ? AND myoid = ?");
+  else
+    query.prepare
+      ("SELECT file, file_name FROM magazine_files "
+       "WHERE item_oid = ? AND myoid = ?");
+
+  query.bindValue(0, m_oid);
+  query.bindValue(1, list.takeFirst().data());
+
+  if(query.exec() && query.next())
+    data = qUncompress(query.value(0).toByteArray());
+
+  reader->load(data, query.value(1).toString());
+  reader->show();
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_magazine::slotZ3950Query(void)
@@ -3853,6 +3799,60 @@ void biblioteq_magazine::slotZ3950Query(void)
 	(this, tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("The Z39.50 entry could not be retrieved."));
     }
+}
+
+void biblioteq_magazine::sruDownloadFinished(void)
+{
+  QList<QByteArray> list;
+
+  while(m_sruResults.indexOf("<record") >= 0 &&
+	m_sruResults.indexOf("</record>") >= 0)
+    {
+      list.append(m_sruResults.mid(m_sruResults.indexOf("<record"),
+				   m_sruResults.indexOf("</record>") -
+				   m_sruResults.indexOf("<record") + 9));
+      m_sruResults.remove(m_sruResults.indexOf("<record"),
+			  m_sruResults.indexOf("</record>") -
+			  m_sruResults.indexOf("<record") + 9);
+    }
+
+  if(list.size() == 1)
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Replace existing values with "
+				  "those retrieved "
+				  "from the SRU site?"),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::Yes)
+	populateDisplayAfterSRU(list[0]);
+    }
+  else if(list.size() > 1)
+    {
+      /*
+      ** Display a selection dialog. Destroyed on close.
+      */
+
+      if((new(std::nothrow) biblioteq_sruresults
+	  (qobject_cast<QWidget *> (this),
+	   list, this, font())) == 0)
+	{
+	  qmain->addError
+	    (QString(tr("Memory Error")),
+	     QString(tr("Unable to create a \"dialog\" object "
+			"because of insufficient resources.")),
+	     QString(""),
+	     __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Memory Error"),
+	     tr("Unable to create a \"dialog\" object "
+		"because of insufficient resources."));
+	}
+    }
+  else
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("An SRU entry may not yet exist for ") +
+       ma.id->text() + tr(" or a network error occurred."));
 }
 
 void biblioteq_magazine::updateWindow(const int state)
