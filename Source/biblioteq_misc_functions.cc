@@ -61,6 +61,30 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
   return image;
 }
 
+QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QList<QPair<QString, QString> > locations;
+  QSqlQuery query(db);
+  QString querystr("");
+
+  errorstr = "";
+  querystr = "SELECT type, location FROM locations "
+    "WHERE LENGTH(TRIM(type)) > 0 AND "
+    "LENGTH(TRIM(location)) > 0 "
+    "ORDER BY type, location";
+
+  if(query.exec(querystr))
+    while(query.next())
+      locations.append(qMakePair(query.value(0).toString(),
+				 query.value(1).toString()));
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return locations;
+}
+
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
@@ -372,6 +396,37 @@ QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return languages;
+}
+
+QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
+						   const QString &type,
+						   QString &errorstr)
+{
+  QSqlQuery query(db);
+  QStringList locations;
+
+  errorstr = "";
+
+  if(type.isEmpty())
+    query.prepare("SELECT DISTINCT(location) FROM locations "
+		  "WHERE LENGTH(TRIM(location)) > 0 "
+		  "ORDER BY location");
+  else
+    {
+      query.prepare("SELECT location FROM locations WHERE type = ? AND "
+		    "LENGTH(TRIM(location)) > 0 "
+		    "ORDER BY location");
+      query.bindValue(0, type);
+    }
+
+  if(query.exec())
+    while(query.next())
+      locations.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return locations;
 }
 
 QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
@@ -745,6 +800,40 @@ bool biblioteq_misc_functions::isGnome(void)
     return false;
 }
 
+bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
+					   const QString &oid,
+					   const QString &itemTypeArg,
+					   QString &errorstr)
+{
+  bool isRequested = false;
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return isRequested; // Requests are not supported.
+
+  QSqlQuery query(db);
+  QString itemType = "";
+
+  itemType = itemTypeArg;
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_request "
+		"WHERE item_oid = ? AND type = ?)");
+  query.bindValue(0, oid);
+  query.bindValue(1, itemType);
+
+  if(query.exec())
+    if(query.next())
+      isRequested = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    {
+      errorstr = query.lastError().text();
+      isRequested = false;
+    }
+
+  return isRequested;
+}
+
 bool biblioteq_misc_functions::userExists(const QString &userid,
 					  const QSqlDatabase &db,
 					  QString &errorstr)
@@ -795,6 +884,41 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return minimumdays;
+}
+
+int biblioteq_misc_functions::sqliteQuerySize
+(const QString &querystr,
+ const QMap<QString, QVariant> &boundValues,
+ const QSqlDatabase &db,
+ const char *file, const int line)
+{
+  int count = 0;
+
+  if(db.driverName() != "QSQLITE")
+    return count; // SQLite only.
+  else if(querystr.trimmed().isEmpty())
+    return count;
+
+  QList<QVariant> list = boundValues.values();
+  QSqlQuery query(db);
+
+  query.prepare(querystr);
+
+  for(int i = 0; i < list.size(); i++)
+    query.bindValue(i, list.at(i));
+
+  if(query.exec())
+    while(query.next())
+      count += 1;
+
+  if(query.lastError().isValid())
+    if(qmain)
+      qmain->addError
+	(QString(QObject::tr("Database Error")),
+	 QString(QObject::tr("Unable to determine the query size.")),
+	 query.lastError().text(), file, line);
+
+  return count;
 }
 
 qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
@@ -1861,41 +1985,6 @@ int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
   return count;
 }
 
-int biblioteq_misc_functions::sqliteQuerySize
-(const QString &querystr,
- const QMap<QString, QVariant> &boundValues,
- const QSqlDatabase &db,
- const char *file, const int line)
-{
-  int count = 0;
-
-  if(db.driverName() != "QSQLITE")
-    return count; // SQLite only.
-  else if(querystr.trimmed().isEmpty())
-    return count;
-
-  QList<QVariant> list = boundValues.values();
-  QSqlQuery query(db);
-
-  query.prepare(querystr);
-
-  for(int i = 0; i < list.size(); i++)
-    query.bindValue(i, list.at(i));
-
-  if(query.exec())
-    while(query.next())
-      count += 1;
-
-  if(query.lastError().isValid())
-    if(qmain)
-      qmain->addError
-	(QString(QObject::tr("Database Error")),
-	 QString(QObject::tr("Unable to determine the query size.")),
-	 query.lastError().text(), file, line);
-
-  return count;
-}
-
 void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
 {
   if(!child || !parent)
@@ -1962,96 +2051,6 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	  if(str.contains("price") || str.contains("monetary"))
 	    action->setVisible(showWidgets);
 	}
-}
-
-bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
-					   const QString &oid,
-					   const QString &itemTypeArg,
-					   QString &errorstr)
-{
-  bool isRequested = false;
-
-  errorstr = "";
-
-  if(db.driverName() == "QSQLITE")
-    return isRequested; // Requests are not supported.
-
-  QSqlQuery query(db);
-  QString itemType = "";
-
-  itemType = itemTypeArg;
-  query.prepare("SELECT EXISTS(SELECT 1 FROM item_request "
-		"WHERE item_oid = ? AND type = ?)");
-  query.bindValue(0, oid);
-  query.bindValue(1, itemType);
-
-  if(query.exec())
-    if(query.next())
-      isRequested = query.value(0).toBool();
-
-  if(query.lastError().isValid())
-    {
-      errorstr = query.lastError().text();
-      isRequested = false;
-    }
-
-  return isRequested;
-}
-
-QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
-						   const QString &type,
-						   QString &errorstr)
-{
-  QSqlQuery query(db);
-  QStringList locations;
-
-  errorstr = "";
-
-  if(type.isEmpty())
-    query.prepare("SELECT DISTINCT(location) FROM locations "
-		  "WHERE LENGTH(TRIM(location)) > 0 "
-		  "ORDER BY location");
-  else
-    {
-      query.prepare("SELECT location FROM locations WHERE type = ? AND "
-		    "LENGTH(TRIM(location)) > 0 "
-		    "ORDER BY location");
-      query.bindValue(0, type);
-    }
-
-  if(query.exec())
-    while(query.next())
-      locations.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return locations;
-}
-
-QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
-(const QSqlDatabase &db,
- QString &errorstr)
-{
-  QList<QPair<QString, QString> > locations;
-  QSqlQuery query(db);
-  QString querystr("");
-
-  errorstr = "";
-  querystr = "SELECT type, location FROM locations "
-    "WHERE LENGTH(TRIM(type)) > 0 AND "
-    "LENGTH(TRIM(location)) > 0 "
-    "ORDER BY type, location";
-
-  if(query.exec(querystr))
-    while(query.next())
-      locations.append(qMakePair(query.value(0).toString(),
-				 query.value(1).toString()));
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return locations;
 }
 
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
