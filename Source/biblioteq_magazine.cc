@@ -44,11 +44,11 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   m_duplicate = false;
   m_sruWorking = 0;
 
+  QGraphicsScene *scene1 = 0;
+  QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
   QValidator *validator1 = 0;
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -360,15 +360,624 @@ biblioteq_magazine::~biblioteq_magazine()
 {
 }
 
+void biblioteq_magazine::closeEvent(QCloseEvent *e)
+{
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue closing?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  if(e)
+	    e->ignore();
+
+	  return;
+	}
+
+  qmain->removeMagazine(this);
+}
+
+void biblioteq_magazine::createSRUDialog(void)
+{
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  if((m_sruWorking = new(std::nothrow)
+      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  m_sruWorking->resize(m_sruWorking->sizeHint());
+  m_sruWorking->setLabelText(tr("Downloading..."));
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->setModal(true);
+  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+  connect(m_sruWorking,
+	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
+  connect(m_sruWorking,
+	  SIGNAL(rejected(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
+}
+
+void biblioteq_magazine::insert(void)
+{
+  slotReset();
+  ma.attach_files->setEnabled(false);
+  ma.delete_files->setEnabled(false);
+  ma.export_files->setEnabled(false);
+  ma.view_pdf->setEnabled(false);
+  ma.id->clear();
+  ma.lcnum->clear();
+  ma.callnum->clear();
+  ma.deweynum->clear();
+  ma.title->clear();
+  ma.publisher->setPlainText("N/A");
+  ma.description->setPlainText("N/A");
+  ma.marc_tags->clear();
+  ma.keyword->clear();
+  ma.category->setPlainText("N/A");
+  ma.place->setPlainText("N/A");
+  ma.copiesButton->setEnabled(false);
+  ma.sruQueryButton->setVisible(true);
+  ma.z3950QueryButton->setVisible(true);
+  ma.okButton->setText(tr("&Save"));
+  ma.publication_date->setDate(QDate::fromString("01/01/2000",
+						 "MM/dd/yyyy"));
+  ma.id->setCursorPosition(0);
+  ma.price->setMinimum(0.00);
+  ma.price->setValue(0.00);
+  ma.quantity->setMinimum(1);
+  ma.quantity->setValue(1);
+  ma.volume->setMinimum(0);
+  ma.volume->setValue(0);
+  ma.issue->setMinimum(0);
+  ma.issue->setValue(0);
+  ma.showUserButton->setEnabled(false);
+  ma.location->setCurrentIndex(0);
+  ma.language->setCurrentIndex(0);
+  ma.monetary_units->setCurrentIndex(0);
+  ma.accession_number->clear();
+  biblioteq_misc_functions::highlightWidget
+    (ma.id, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (ma.title, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (ma.publisher->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (ma.description->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (ma.category->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (ma.place->viewport(), QColor(255, 248, 220));
+  m_te_orig_pal = ma.description->viewport()->palette();
+
+  if(m_subType == "Journal")
+    setWindowTitle(QString(tr("BiblioteQ: Create Journal Entry")));
+  else
+    setWindowTitle(QString(tr("BiblioteQ: Create Magazine Entry")));
+
+  m_engWindowTitle = "Create";
+  ma.id->setFocus();
+  storeData(this);
+  showNormal();
+  activateWindow();
+  raise();
+}
+
+void biblioteq_magazine::modify(const int state)
+{
+  QSqlQuery query(qmain->getDB());
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
+
+  if(state == biblioteq::EDITABLE)
+    {
+      if(m_subType == "Journal")
+	setWindowTitle(QString(tr("BiblioteQ: Modify Journal Entry")));
+      else
+	setWindowTitle(QString(tr("BiblioteQ: Modify Magazine Entry")));
+
+      m_engWindowTitle = "Modify";
+      ma.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      ma.view_pdf->setEnabled(true);
+#endif
+      ma.delete_files->setEnabled(true);
+      ma.export_files->setEnabled(true);
+      ma.showUserButton->setEnabled(true);
+      ma.copiesButton->setEnabled(true);
+      ma.sruQueryButton->setVisible(true);
+      ma.z3950QueryButton->setVisible(true);
+      ma.okButton->setVisible(true);
+      ma.resetButton->setVisible(true);
+      ma.frontButton->setVisible(true);
+      ma.backButton->setVisible(true);
+      biblioteq_misc_functions::highlightWidget
+	(ma.id, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(ma.title, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(ma.publisher->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(ma.description->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(ma.category->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(ma.place->viewport(), QColor(255, 248, 220));
+      m_te_orig_pal = ma.description->viewport()->palette();
+      setReadOnlyFields(this, false);
+    }
+  else
+    {
+      if(m_subType == "Journal")
+	setWindowTitle(QString(tr("BiblioteQ: View Journal Details")));
+      else
+	setWindowTitle(QString(tr("BiblioteQ: View Magazine Details")));
+
+      m_engWindowTitle = "Modify";
+      ma.attach_files->setVisible(false);
+      ma.view_pdf->setVisible(true);
+      ma.delete_files->setVisible(false);
+      ma.export_files->setVisible(true);
+      ma.issnAvailableCheckBox->setCheckable(false);
+
+      if(qmain->isGuest())
+	ma.showUserButton->setVisible(false);
+      else
+	ma.showUserButton->setEnabled(true);
+
+      ma.copiesButton->setVisible(false);
+      ma.sruQueryButton->setVisible(false);
+      ma.z3950QueryButton->setVisible(false);
+      ma.okButton->setVisible(false);
+      ma.resetButton->setVisible(false);
+      ma.frontButton->setVisible(false);
+      ma.backButton->setVisible(false);
+
+      QList<QAction *> actions = ma.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+      setReadOnlyFields(this, true);
+    }
+
+  ma.quantity->setMinimum(1);
+  ma.price->setMinimum(0.00);
+  ma.okButton->setText(tr("&Save"));
+  ma.volume->setMinimum(0);
+  ma.issue->setMinimum(0);
+  str = m_oid;
+  query.prepare(QString("SELECT title, "
+			"publisher, pdate, place, issuevolume, "
+			"category, language, id, "
+			"price, monetary_units, quantity, "
+			"issueno, "
+			"location, lccontrolnumber, callnumber, "
+			"deweynumber, description, "
+			"front_cover, "
+			"back_cover, "
+			"marc_tags, "
+			"keyword, "
+			"accession_number "
+			"FROM "
+			"%1 "
+			"WHERE myoid = ?").arg(m_subType));
+  query.bindValue(0, str);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec() || !query.next())
+    {
+      QApplication::restoreOverrideCursor();
+
+      if(m_subType == "Journal")
+	{
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the selected journal's data.")),
+	     query.lastError().text(), __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Database Error"),
+	     QString(tr("Unable to retrieve the selected journal's "
+			"data.")));
+	}
+      else
+	{
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the selected magazine's data.")),
+	     query.lastError().text(), __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Database Error"),
+	     QString(tr("Unable to retrieve the selected magazine's "
+			"data.")));
+	}
+
+      close();
+      return;
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+      showNormal();
+      activateWindow();
+      raise();
+
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
+	{
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
+
+	  if(fieldname == "title")
+	    ma.title->setText(var.toString());
+	  else if(fieldname == "publisher")
+	    {
+	      if(m_subType == "Journal")
+		ma.publisher->setMultipleLinks
+		  ("journal_search", "publisher",
+		   var.toString());
+	      else
+		ma.publisher->setMultipleLinks
+		  ("magazine_search", "publisher",
+		   var.toString());
+	    }
+	  else if(fieldname == "pdate")
+	    ma.publication_date->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "price")
+	    ma.price->setValue(var.toDouble());
+	  else if(fieldname == "place")
+	    {
+	      if(m_subType == "Journal")
+		ma.place->setMultipleLinks("journal_search", "place",
+					   var.toString());
+	      else
+		ma.place->setMultipleLinks("magazine_search", "place",
+					   var.toString());
+	    }
+	  else if(fieldname == "category")
+	    {
+	      if(m_subType == "Journal")
+		ma.category->setMultipleLinks("journal_search", "category",
+					      var.toString());
+	      else
+		ma.category->setMultipleLinks("magazine_search", "category",
+					      var.toString());
+	    }
+	  else if(fieldname == "language")
+	    {
+	      if(ma.language->findText(var.toString()) > -1)
+		ma.language->setCurrentIndex
+		  (ma.language->findText(var.toString()));
+	      else
+		ma.language->setCurrentIndex
+		  (ma.language->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "quantity")
+	    ma.quantity->setValue(var.toInt());
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(ma.monetary_units->findText(var.toString()) > -1)
+		ma.monetary_units->setCurrentIndex
+		  (ma.monetary_units->findText(var.toString()));
+	      else
+		ma.monetary_units->setCurrentIndex
+		  (ma.monetary_units->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "issuevolume")
+	    ma.volume->setValue(var.toInt());
+	  else if(fieldname == "issueno")
+	    ma.issue->setValue(var.toInt());
+	  else if(fieldname == "location")
+	    {
+	      if(ma.location->findText(var.toString()) > -1)
+		ma.location->setCurrentIndex
+		  (ma.location->findText(var.toString()));
+	      else
+		ma.location->setCurrentIndex
+		  (ma.location->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "id")
+	    {
+	      if(state == biblioteq::EDITABLE)
+		{
+		  if(!var.toString().trimmed().isEmpty())
+		    {
+		      if(m_subType == "Journal")
+			str =
+			  QString(tr("BiblioteQ: Modify Journal Entry (")) +
+			  var.toString() + tr(")");
+		      else
+			str =
+			  QString(tr("BiblioteQ: Modify Magazine Entry (")) +
+			  var.toString() + tr(")");
+		    }
+		  else
+		    {
+		      if(m_subType == "Journal")
+			str = tr("BiblioteQ: Modify Journal Entry");
+		      else
+			str = tr("BiblioteQ: Modify Magazine Entry");
+		    }
+
+		  m_engWindowTitle = "Modify";
+		}
+	      else
+		{
+		  if(!var.toString().trimmed().isEmpty())
+		    {
+		      if(m_subType == "Journal")
+			str =
+			  QString(tr("BiblioteQ: View Journal Details (")) +
+			  var.toString() + tr(")");
+		      else
+			str =
+			  QString(tr("BiblioteQ: View Magazine Details (")) +
+			  var.toString() + tr(")");
+		    }
+		  else
+		    {
+		      if(m_subType == "Journal")
+			str = tr("BiblioteQ: View Journal Details");
+		      else
+			str = tr("BiblioteQ: View Magazine Details");
+		    }
+
+		  m_engWindowTitle = "View";
+		}
+
+	      setWindowTitle(str);
+	      ma.id->setText(var.toString());
+
+	      if(query.isNull(i))
+		ma.issnAvailableCheckBox->setChecked(false);
+	      else
+		ma.issnAvailableCheckBox->setChecked(true);
+	    }
+	  else if(fieldname == "description")
+	    ma.description->setPlainText(var.toString());
+	  else if(fieldname == "marc_tags")
+	    ma.marc_tags->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    {
+	      if(m_subType == "Journal")
+		ma.keyword->setMultipleLinks("journal_search", "keyword",
+					     var.toString());
+	      else
+		ma.keyword->setMultipleLinks("magazine_search", "keyword",
+					     var.toString());
+	    }
+	  else if(fieldname == "lccontrolnumber")
+	    ma.lcnum->setText(var.toString());
+	  else if(fieldname == "callnumber")
+	    ma.callnum->setText(var.toString());
+	  else if(fieldname == "deweynumber")
+	    ma.deweynum->setText(var.toString());
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  ma.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(ma.front_image->m_image.isNull())
+		    ma.front_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  ma.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(ma.back_image->m_image.isNull())
+		    ma.back_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "accession_number")
+	    ma.accession_number->setText(var.toString());
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      storeData(this);
+
+      if(!m_duplicate)
+	populateFiles();
+    }
+
+  ma.id->setFocus();
+  raise();
+}
+
+void biblioteq_magazine::populateFiles(void)
+{
+  ma.files->setRowCount(0);
+  ma.files->setSortingEnabled(false);
+
+  QSqlQuery query(qmain->getDB());
+
+  if(m_subType == "Journal")
+    query.prepare("SELECT COUNT(*) FROM journal_files WHERE item_oid = ?");
+  else
+    query.prepare("SELECT COUNT(*) FROM magazine_files WHERE item_oid = ?");
+
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      ma.files->setRowCount(query.value(0).toInt());
+
+  query.prepare(QString("SELECT file_name, "
+			"file_digest, "
+			"LENGTH(file) AS f_s, "
+			"description, "
+			"myoid FROM %1_files "
+			"WHERE item_oid = ? ORDER BY file_name").
+		arg(m_subType));
+  query.bindValue(0, m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QLocale locale;
+  int row = 0;
+  int totalRows = 0;
+
+  if(query.exec())
+    while(query.next() && totalRows < ma.files->rowCount())
+      {
+	totalRows += 1;
+
+	QSqlRecord record(query.record());
+
+	for(int i = 0; i < record.count(); i++)
+	  {
+	    QTableWidgetItem *item = 0;
+
+	    if(record.fieldName(i) == "f_s")
+	      item = new(std::nothrow) biblioteq_filesize_table_item
+		(locale.toString(query.value(i).toLongLong()));
+	    else
+	      item = new(std::nothrow)
+		QTableWidgetItem(query.value(i).toString());
+
+	    if(!item)
+	      continue;
+
+	    item->setData
+	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
+	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+	    if(m_engWindowTitle == "Modify")
+	      if(record.fieldName(i) == "description")
+		item->setToolTip(tr("Double-click to edit."));
+
+	    ma.files->setItem(row, i, item);
+	  }
+
+	row += 1;
+      }
+
+  ma.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  ma.files->setRowCount(totalRows);
+  ma.files->setSortingEnabled(true);
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_magazine::search(const QString &field, const QString &value)
+{
+  m_engWindowTitle = "Search";
+  ma.attach_files->setVisible(false);
+  ma.view_pdf->setVisible(false);
+  ma.coverImages->setVisible(false);
+  ma.delete_files->setVisible(false);
+  ma.export_files->setVisible(false);
+  ma.files->setVisible(false);
+  ma.files_label->setVisible(false);
+  ma.id->clear();
+  ma.lcnum->clear();
+  ma.callnum->clear();
+  ma.deweynum->clear();
+  ma.title->clear();
+  ma.publisher->clear();
+  ma.place->clear();
+  ma.description->clear();
+  ma.marc_tags->clear();
+  ma.keyword->clear();
+  ma.category->clear();
+  ma.copiesButton->setVisible(false);
+  ma.showUserButton->setVisible(false);
+  ma.sruQueryButton->setVisible(false);
+  ma.z3950QueryButton->setVisible(false);
+  ma.okButton->setText(tr("&Search"));
+  ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+  ma.publication_date->setDisplayFormat("yyyy");
+  ma.publication_date_enabled->setVisible(true);
+  ma.id->setCursorPosition(0);
+  ma.price->setMinimum(-0.01);
+  ma.price->setValue(-0.01);
+  ma.quantity->setMinimum(0);
+  ma.quantity->setValue(0);
+  ma.volume->setMinimum(-1);
+  ma.volume->setValue(-1);
+  ma.issue->setMinimum(-1);
+  ma.issue->setValue(-1);
+  ma.language->insertItem(0, tr("Any"));
+  ma.monetary_units->insertItem(0, tr("Any"));
+  ma.location->insertItem(0, tr("Any"));
+  ma.location->setCurrentIndex(0);
+  ma.language->setCurrentIndex(0);
+  ma.monetary_units->setCurrentIndex(0);
+  ma.accession_number->clear();
+  ma.issnAvailableCheckBox->setCheckable(false);
+
+  if(field.isEmpty() && value.isEmpty())
+    {
+      QList<QAction *> actions = ma.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+
+      if(m_subType == "Journal")
+	setWindowTitle(QString(tr("BiblioteQ: Database Journal Search")));
+      else
+	setWindowTitle(QString(tr("BiblioteQ: Database Magazine Search")));
+
+      ma.id->setFocus();
+      biblioteq_misc_functions::center(this, m_parentWid);
+      showNormal();
+      activateWindow();
+      raise();
+    }
+  else
+    {
+      if(field == "publisher")
+	ma.publisher->setPlainText(value);
+      else if(field == "category")
+	ma.category->setPlainText(value);
+      else if(field == "place")
+	ma.place->setPlainText(value);
+      else if(field == "keyword")
+	ma.keyword->setPlainText(value);
+
+      slotGo();
+    }
+}
+
+void biblioteq_magazine::slotCancel(void)
+{
+  close();
+}
+
 void biblioteq_magazine::slotGo(void)
 {
-  int i = 0;
-  int newq = 0;
-  int maxcopynumber = 0;
-  QString str = "";
+  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
-  QSqlQuery query(qmain->getDB());
+  QString str = "";
+  int i = 0;
+  int maxcopynumber = 0;
+  int newq = 0;
 
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -1197,579 +1806,65 @@ void biblioteq_magazine::slotGo(void)
     }
 }
 
-void biblioteq_magazine::search(const QString &field, const QString &value)
+void biblioteq_magazine::slotPopulateCopiesEditor(void)
 {
-  m_engWindowTitle = "Search";
-  ma.attach_files->setVisible(false);
-  ma.view_pdf->setVisible(false);
-  ma.coverImages->setVisible(false);
-  ma.delete_files->setVisible(false);
-  ma.export_files->setVisible(false);
-  ma.files->setVisible(false);
-  ma.files_label->setVisible(false);
-  ma.id->clear();
-  ma.lcnum->clear();
-  ma.callnum->clear();
-  ma.deweynum->clear();
-  ma.title->clear();
-  ma.publisher->clear();
-  ma.place->clear();
-  ma.description->clear();
-  ma.marc_tags->clear();
-  ma.keyword->clear();
-  ma.category->clear();
-  ma.copiesButton->setVisible(false);
-  ma.showUserButton->setVisible(false);
-  ma.sruQueryButton->setVisible(false);
-  ma.z3950QueryButton->setVisible(false);
-  ma.okButton->setText(tr("&Search"));
-  ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
-  ma.publication_date->setDisplayFormat("yyyy");
-  ma.publication_date_enabled->setVisible(true);
-  ma.id->setCursorPosition(0);
-  ma.price->setMinimum(-0.01);
-  ma.price->setValue(-0.01);
-  ma.quantity->setMinimum(0);
-  ma.quantity->setValue(0);
-  ma.volume->setMinimum(-1);
-  ma.volume->setValue(-1);
-  ma.issue->setMinimum(-1);
-  ma.issue->setValue(-1);
-  ma.language->insertItem(0, tr("Any"));
-  ma.monetary_units->insertItem(0, tr("Any"));
-  ma.location->insertItem(0, tr("Any"));
-  ma.location->setCurrentIndex(0);
-  ma.language->setCurrentIndex(0);
-  ma.monetary_units->setCurrentIndex(0);
-  ma.accession_number->clear();
-  ma.issnAvailableCheckBox->setCheckable(false);
+  biblioteq_copy_editor *copyeditor = 0;
 
-  if(field.isEmpty() && value.isEmpty())
-    {
-      QList<QAction *> actions = ma.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-
-      if(m_subType == "Journal")
-	setWindowTitle(QString(tr("BiblioteQ: Database Journal Search")));
-      else
-	setWindowTitle(QString(tr("BiblioteQ: Database Magazine Search")));
-
-      ma.id->setFocus();
-      biblioteq_misc_functions::center(this, m_parentWid);
-      showNormal();
-      activateWindow();
-      raise();
-    }
-  else
-    {
-      if(field == "publisher")
-	ma.publisher->setPlainText(value);
-      else if(field == "category")
-	ma.category->setPlainText(value);
-      else if(field == "place")
-	ma.place->setPlainText(value);
-      else if(field == "keyword")
-	ma.keyword->setPlainText(value);
-
-      slotGo();
-    }
+  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
+      (qobject_cast<QWidget *> (this),
+       static_cast<biblioteq_item *> (this),
+       false,
+       ma.quantity->value(), m_oid,
+       ma.quantity, font(), m_subType, ma.id->text().trimmed())) != 0)
+    copyeditor->populateCopiesEditor();
 }
 
-void biblioteq_magazine::updateWindow(const int state)
+void biblioteq_magazine::slotPrint(void)
 {
-  QString str = "";
+  m_html = "<html>";
+  m_html += "<b>" + tr("ISSN:") + "</b> " + ma.id->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Volume:") + "</b> " + ma.volume->text() + "<br>";
+  m_html += "<b>" + tr("Issue (Number):") + "</b> " + ma.issue->text() +
+    "<br>";
+  m_html += "<b>" + tr("LC Control Number:") + "</b> " +
+    ma.lcnum->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Call Number:") + "</b> " +
+    ma.callnum->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Dewey Class Number:") + "</b> " +
+    ma.deweynum->text().trimmed() + "<br>";
 
-  if(state == biblioteq::EDITABLE)
-    {
-      ma.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      ma.view_pdf->setEnabled(true);
-#endif
-      ma.copiesButton->setEnabled(true);
-      ma.delete_files->setEnabled(true);
-      ma.export_files->setEnabled(true);
-      ma.showUserButton->setEnabled(true);
-      ma.copiesButton->setEnabled(true);
-      ma.sruQueryButton->setVisible(true);
-      ma.z3950QueryButton->setVisible(true);
-      ma.okButton->setVisible(true);
-      ma.resetButton->setVisible(true);
-      ma.frontButton->setVisible(true);
-      ma.backButton->setVisible(true);
+  /*
+  ** General information.
+  */
 
-      if(!ma.id->text().trimmed().isEmpty())
-	{
-	  if(m_subType == "Journal")
-	    str = QString(tr("BiblioteQ: Modify Journal Entry ("));
-	  else
-	    str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
-
-	  str += ma.id->text() + tr(")");
-	}
-      else
-	{
-	  if(m_subType == "Journal")
-	    str = tr("BiblioteQ: Modify Journal Entry");
-	  else
-	    str = tr("BiblioteQ: Modify Magazine Entry");
-	}
-
-      m_engWindowTitle = "Modify";
-    }
-  else
-    {
-      ma.attach_files->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      ma.view_pdf->setEnabled(true);
-#endif
-      ma.delete_files->setVisible(false);
-      ma.export_files->setEnabled(true);
-      ma.issnAvailableCheckBox->setCheckable(false);
-
-      if(qmain->isGuest())
-	ma.showUserButton->setVisible(false);
-      else
-	ma.showUserButton->setEnabled(true);
-
-      ma.copiesButton->setVisible(false);
-      ma.sruQueryButton->setVisible(false);
-      ma.z3950QueryButton->setVisible(false);
-      ma.okButton->setVisible(false);
-      ma.resetButton->setVisible(false);
-      ma.frontButton->setVisible(false);
-      ma.backButton->setVisible(false);
-
-      if(!ma.id->text().trimmed().isEmpty())
-	{
-	  if(m_subType == "Journal")
-	    str = QString(tr("BiblioteQ: View Journal Details ("));
-	  else
-	    str = QString(tr("BiblioteQ: View Magazine Details ("));
-
-	  str += ma.id->text() + tr(")");
-	}
-      else
-	{
-	  if(m_subType == "Journal")
-	    str = tr("BiblioteQ: View Journal Entry");
-	  else
-	    str = tr("BiblioteQ: View Magazine Entry");
-	}
-
-      m_engWindowTitle = "View";
-    }
-
-  ma.coverImages->setVisible(true);
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
-}
-
-void biblioteq_magazine::modify(const int state)
-{
-  int i = 0;
-  QString str = "";
-  QString fieldname = "";
-  QVariant var;
-  QSqlQuery query(qmain->getDB());
-
-  if(state == biblioteq::EDITABLE)
-    {
-      if(m_subType == "Journal")
-	setWindowTitle(QString(tr("BiblioteQ: Modify Journal Entry")));
-      else
-	setWindowTitle(QString(tr("BiblioteQ: Modify Magazine Entry")));
-
-      m_engWindowTitle = "Modify";
-      ma.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      ma.view_pdf->setEnabled(true);
-#endif
-      ma.delete_files->setEnabled(true);
-      ma.export_files->setEnabled(true);
-      ma.showUserButton->setEnabled(true);
-      ma.copiesButton->setEnabled(true);
-      ma.sruQueryButton->setVisible(true);
-      ma.z3950QueryButton->setVisible(true);
-      ma.okButton->setVisible(true);
-      ma.resetButton->setVisible(true);
-      ma.frontButton->setVisible(true);
-      ma.backButton->setVisible(true);
-      biblioteq_misc_functions::highlightWidget
-	(ma.id, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(ma.title, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(ma.publisher->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(ma.description->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(ma.category->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(ma.place->viewport(), QColor(255, 248, 220));
-      m_te_orig_pal = ma.description->viewport()->palette();
-      setReadOnlyFields(this, false);
-    }
-  else
-    {
-      if(m_subType == "Journal")
-	setWindowTitle(QString(tr("BiblioteQ: View Journal Details")));
-      else
-	setWindowTitle(QString(tr("BiblioteQ: View Magazine Details")));
-
-      m_engWindowTitle = "Modify";
-      ma.attach_files->setVisible(false);
-      ma.view_pdf->setVisible(true);
-      ma.delete_files->setVisible(false);
-      ma.export_files->setVisible(true);
-      ma.issnAvailableCheckBox->setCheckable(false);
-
-      if(qmain->isGuest())
-	ma.showUserButton->setVisible(false);
-      else
-	ma.showUserButton->setEnabled(true);
-
-      ma.copiesButton->setVisible(false);
-      ma.sruQueryButton->setVisible(false);
-      ma.z3950QueryButton->setVisible(false);
-      ma.okButton->setVisible(false);
-      ma.resetButton->setVisible(false);
-      ma.frontButton->setVisible(false);
-      ma.backButton->setVisible(false);
-
-      QList<QAction *> actions = ma.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-      setReadOnlyFields(this, true);
-    }
-
-  ma.quantity->setMinimum(1);
-  ma.price->setMinimum(0.00);
-  ma.okButton->setText(tr("&Save"));
-  ma.volume->setMinimum(0);
-  ma.issue->setMinimum(0);
-  str = m_oid;
-  query.prepare(QString("SELECT title, "
-			"publisher, pdate, place, issuevolume, "
-			"category, language, id, "
-			"price, monetary_units, quantity, "
-			"issueno, "
-			"location, lccontrolnumber, callnumber, "
-			"deweynumber, description, "
-			"front_cover, "
-			"back_cover, "
-			"marc_tags, "
-			"keyword, "
-			"accession_number "
-			"FROM "
-			"%1 "
-			"WHERE myoid = ?").arg(m_subType));
-  query.bindValue(0, str);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec() || !query.next())
-    {
-      QApplication::restoreOverrideCursor();
-
-      if(m_subType == "Journal")
-	{
-	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to retrieve the selected journal's data.")),
-	     query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
-	     QString(tr("Unable to retrieve the selected journal's "
-			"data.")));
-	}
-      else
-	{
-	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to retrieve the selected magazine's data.")),
-	     query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
-	     QString(tr("Unable to retrieve the selected magazine's "
-			"data.")));
-	}
-
-      close();
-      return;
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-      showNormal();
-      activateWindow();
-      raise();
-
-      QSqlRecord record(query.record());
-
-      for(i = 0; i < record.count(); i++)
-	{
-	  var = record.field(i).value();
-	  fieldname = record.fieldName(i);
-
-	  if(fieldname == "title")
-	    ma.title->setText(var.toString());
-	  else if(fieldname == "publisher")
-	    {
-	      if(m_subType == "Journal")
-		ma.publisher->setMultipleLinks
-		  ("journal_search", "publisher",
-		   var.toString());
-	      else
-		ma.publisher->setMultipleLinks
-		  ("magazine_search", "publisher",
-		   var.toString());
-	    }
-	  else if(fieldname == "pdate")
-	    ma.publication_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "price")
-	    ma.price->setValue(var.toDouble());
-	  else if(fieldname == "place")
-	    {
-	      if(m_subType == "Journal")
-		ma.place->setMultipleLinks("journal_search", "place",
-					   var.toString());
-	      else
-		ma.place->setMultipleLinks("magazine_search", "place",
-					   var.toString());
-	    }
-	  else if(fieldname == "category")
-	    {
-	      if(m_subType == "Journal")
-		ma.category->setMultipleLinks("journal_search", "category",
-					      var.toString());
-	      else
-		ma.category->setMultipleLinks("magazine_search", "category",
-					      var.toString());
-	    }
-	  else if(fieldname == "language")
-	    {
-	      if(ma.language->findText(var.toString()) > -1)
-		ma.language->setCurrentIndex
-		  (ma.language->findText(var.toString()));
-	      else
-		ma.language->setCurrentIndex
-		  (ma.language->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "quantity")
-	    ma.quantity->setValue(var.toInt());
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(ma.monetary_units->findText(var.toString()) > -1)
-		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText(var.toString()));
-	      else
-		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "issuevolume")
-	    ma.volume->setValue(var.toInt());
-	  else if(fieldname == "issueno")
-	    ma.issue->setValue(var.toInt());
-	  else if(fieldname == "location")
-	    {
-	      if(ma.location->findText(var.toString()) > -1)
-		ma.location->setCurrentIndex
-		  (ma.location->findText(var.toString()));
-	      else
-		ma.location->setCurrentIndex
-		  (ma.location->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "id")
-	    {
-	      if(state == biblioteq::EDITABLE)
-		{
-		  if(!var.toString().trimmed().isEmpty())
-		    {
-		      if(m_subType == "Journal")
-			str =
-			  QString(tr("BiblioteQ: Modify Journal Entry (")) +
-			  var.toString() + tr(")");
-		      else
-			str =
-			  QString(tr("BiblioteQ: Modify Magazine Entry (")) +
-			  var.toString() + tr(")");
-		    }
-		  else
-		    {
-		      if(m_subType == "Journal")
-			str = tr("BiblioteQ: Modify Journal Entry");
-		      else
-			str = tr("BiblioteQ: Modify Magazine Entry");
-		    }
-
-		  m_engWindowTitle = "Modify";
-		}
-	      else
-		{
-		  if(!var.toString().trimmed().isEmpty())
-		    {
-		      if(m_subType == "Journal")
-			str =
-			  QString(tr("BiblioteQ: View Journal Details (")) +
-			  var.toString() + tr(")");
-		      else
-			str =
-			  QString(tr("BiblioteQ: View Magazine Details (")) +
-			  var.toString() + tr(")");
-		    }
-		  else
-		    {
-		      if(m_subType == "Journal")
-			str = tr("BiblioteQ: View Journal Details");
-		      else
-			str = tr("BiblioteQ: View Magazine Details");
-		    }
-
-		  m_engWindowTitle = "View";
-		}
-
-	      setWindowTitle(str);
-	      ma.id->setText(var.toString());
-
-	      if(query.isNull(i))
-		ma.issnAvailableCheckBox->setChecked(false);
-	      else
-		ma.issnAvailableCheckBox->setChecked(true);
-	    }
-	  else if(fieldname == "description")
-	    ma.description->setPlainText(var.toString());
-	  else if(fieldname == "marc_tags")
-	    ma.marc_tags->setPlainText(var.toString());
-	  else if(fieldname == "keyword")
-	    {
-	      if(m_subType == "Journal")
-		ma.keyword->setMultipleLinks("journal_search", "keyword",
-					     var.toString());
-	      else
-		ma.keyword->setMultipleLinks("magazine_search", "keyword",
-					     var.toString());
-	    }
-	  else if(fieldname == "lccontrolnumber")
-	    ma.lcnum->setText(var.toString());
-	  else if(fieldname == "callnumber")
-	    ma.callnum->setText(var.toString());
-	  else if(fieldname == "deweynumber")
-	    ma.deweynum->setText(var.toString());
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  ma.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(ma.front_image->m_image.isNull())
-		    ma.front_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  ma.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(ma.back_image->m_image.isNull())
-		    ma.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    ma.accession_number->setText(var.toString());
-	}
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	textfield->setCursorPosition(0);
-
-      storeData(this);
-
-      if(!m_duplicate)
-	populateFiles();
-    }
-
-  ma.id->setFocus();
-  raise();
-}
-
-void biblioteq_magazine::insert(void)
-{
-  slotReset();
-  ma.attach_files->setEnabled(false);
-  ma.delete_files->setEnabled(false);
-  ma.export_files->setEnabled(false);
-  ma.view_pdf->setEnabled(false);
-  ma.id->clear();
-  ma.lcnum->clear();
-  ma.callnum->clear();
-  ma.deweynum->clear();
-  ma.title->clear();
-  ma.publisher->setPlainText("N/A");
-  ma.description->setPlainText("N/A");
-  ma.marc_tags->clear();
-  ma.keyword->clear();
-  ma.category->setPlainText("N/A");
-  ma.place->setPlainText("N/A");
-  ma.copiesButton->setEnabled(false);
-  ma.sruQueryButton->setVisible(true);
-  ma.z3950QueryButton->setVisible(true);
-  ma.okButton->setText(tr("&Save"));
-  ma.publication_date->setDate(QDate::fromString("01/01/2000",
-						 "MM/dd/yyyy"));
-  ma.id->setCursorPosition(0);
-  ma.price->setMinimum(0.00);
-  ma.price->setValue(0.00);
-  ma.quantity->setMinimum(1);
-  ma.quantity->setValue(1);
-  ma.volume->setMinimum(0);
-  ma.volume->setValue(0);
-  ma.issue->setMinimum(0);
-  ma.issue->setValue(0);
-  ma.showUserButton->setEnabled(false);
-  ma.location->setCurrentIndex(0);
-  ma.language->setCurrentIndex(0);
-  ma.monetary_units->setCurrentIndex(0);
-  ma.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (ma.id, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (ma.title, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (ma.publisher->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (ma.description->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (ma.category->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (ma.place->viewport(), QColor(255, 248, 220));
-  m_te_orig_pal = ma.description->viewport()->palette();
-
-  if(m_subType == "Journal")
-    setWindowTitle(QString(tr("BiblioteQ: Create Journal Entry")));
-  else
-    setWindowTitle(QString(tr("BiblioteQ: Create Magazine Entry")));
-
-  m_engWindowTitle = "Create";
-  ma.id->setFocus();
-  storeData(this);
-  showNormal();
-  activateWindow();
-  raise();
+  m_html += "<b>" + tr("Title:") + "</b> " + ma.title->text().trimmed() +
+    "<br>";
+  m_html += "<b>" + tr("Publication Date:") + "</b> " +
+    ma.publication_date->date().toString(Qt::ISODate) + "<br>";
+  m_html += "<b>" + tr("Publisher:") + "</b> " +
+    ma.publisher->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Place of Publication:") + "</b> " +
+    ma.place->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Category:") + "</b> " +
+    ma.category->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Price:") + "</b> " + ma.price->cleanText() + "<br>";
+  m_html += "<b>" + tr("Language:") + "</b> " +
+    ma.language->currentText() + "<br>";
+  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
+    ma.monetary_units->currentText() + "<br>";
+  m_html += "<b>" + tr("Copies:") + "</b> " + ma.quantity->text() + "<br>";
+  m_html += "<b>" + tr("Location:") + "</b> " +
+    ma.location->currentText() + "<br>";
+  m_html += "<b>" + tr("Abstract:") + "</b> " +
+    ma.description->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("MARC Tags:") + "</b> " +
+    ma.marc_tags->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Keywords:") + "</b> " +
+    ma.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
+    ma.accession_number->text().trimmed();
+  m_html += "</html>";
+  print(this);
 }
 
 void biblioteq_magazine::slotReset(void)
@@ -1997,44 +2092,6 @@ void biblioteq_magazine::slotReset(void)
     }
 }
 
-void biblioteq_magazine::closeEvent(QCloseEvent *e)
-{
-  if(m_engWindowTitle.contains("Create") ||
-     m_engWindowTitle.contains("Modify"))
-    if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
-
-	  return;
-	}
-
-  qmain->removeMagazine(this);
-}
-
-void biblioteq_magazine::slotCancel(void)
-{
-  close();
-}
-
-void biblioteq_magazine::slotPopulateCopiesEditor(void)
-{
-  biblioteq_copy_editor *copyeditor = 0;
-
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       static_cast<biblioteq_item *> (this),
-       false,
-       ma.quantity->value(), m_oid,
-       ma.quantity, font(), m_subType, ma.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
-}
-
 void biblioteq_magazine::slotShowUsers(void)
 {
   int state = 0;
@@ -2050,209 +2107,6 @@ void biblioteq_magazine::slotShowUsers(void)
        ma.quantity->value(), m_oid, ma.id->text(), font(), m_subType,
        state)) != 0)
     borrowerseditor->showUsers();
-}
-
-void biblioteq_magazine::slotZ3950Query(void)
-{
-  if(findChild<biblioteq_generic_thread *> ())
-    return;
-
-  int i = 0;
-  QString etype = "";
-  QString errorstr = "";
-  QString searchstr = "";
-  QStringList list;
-
-  if(ma.id->text().trimmed().length() != 9)
-    {
-      QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query a Z39.50 site, the ISSN "
-	    "must be provided."));
-      ma.id->setFocus();
-      return;
-    }
-
-  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this)) != 0)
-    {
-      biblioteq_item_working_dialog working
-	(qobject_cast<QMainWindow *> (this));
-
-      working.setCancelButton(0);
-      working.setModal(true);
-      working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading..."));
-      working.setMaximum(0);
-      working.setMinimum(0);
-      working.resize(working.sizeHint());
-      working.show();
-      working.update();
-      working.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      QString recordSyntax("MARC21");
-      bool found = false;
-
-      for(i = 0; i < ma.z3950QueryButton->actions().size(); i++)
-	if(ma.z3950QueryButton->actions().at(i)->isChecked())
-	  {
-	    found = true;
-	    recordSyntax = qmain->getZ3950Hash
-	      (ma.z3950QueryButton->actions().at(i)->text()).
-	      value("RecordSyntax");
-	    m_thread->setZ3950Name
-	      (ma.z3950QueryButton->actions().at(i)->text());
-	    break;
-	  }
-
-      if(!found)
-	{
-	  recordSyntax = qmain->getZ3950Hash
-	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
-	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
-	}
-
-      searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
-      m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
-      m_thread->setZ3950SearchString(searchstr);
-      m_thread->start();
-
-      while(!m_thread->isFinished())
-	{
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-	  m_thread->msleep(100);
-	}
-
-      bool canceled = working.wasCanceled(); // QProgressDialog::close()!
-
-      working.close();
-      working.reset(); // Qt 5.5.x adjustment.
-
-      if(canceled)
-	{
-	  m_thread->deleteLater();
-	  return;
-	}
-
-      if((errorstr = m_thread->getErrorStr()).isEmpty())
-	{
-	  if(m_thread->getZ3950Results().size() == 1)
-	    {
-	      if(QMessageBox::question
-		 (this, tr("BiblioteQ: Question"),
-		  tr("Replace existing values with those retrieved "
-		     "from the Z39.50 site?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::Yes)
-		{
-		  list = QString(m_thread->getZ3950Results()[0]).split("\n");
-		  populateDisplayAfterZ3950(list, recordSyntax);
-		  list.clear();
-		}
-	    }
-	  else if(m_thread->getZ3950Results().size() > 1)
-	    {
-	      for(i = 0; i < m_thread->getZ3950Results().size(); i++)
-		list.append(m_thread->getZ3950Results()[i]);
-
-	      /*
-	      ** Display a selection dialog.
-	      */
-
-	      if((new(std::nothrow)
-		  biblioteq_z3950results(qobject_cast<QWidget *> (this), list,
-					 this, font(), recordSyntax)) == 0)
-		{
-		  qmain->addError
-		    (QString(tr("Memory Error")),
-		     QString(tr("Unable to create a \"dialog\" object "
-				"because of insufficient resources.")),
-		     QString(""),
-		     __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this, tr("BiblioteQ: Memory Error"),
-		     tr("Unable to create a \"dialog\" object "
-			"because of insufficient resources."));
-		}
-	    }
-	  else
-	    QMessageBox::critical
-	      (this, tr("BiblioteQ: Z39.50 Query Error"),
-	       tr("A Z39.50 entry may not yet exist for ") +
-	       ma.id->text() + tr("."));
-	}
-      else
-	etype = m_thread->getEType();
-
-      m_thread->deleteLater();
-    }
-  else
-    {
-      etype = tr("Memory Error");
-      errorstr = tr("Unable to create a thread because of insufficient "
-		    "resources.");
-    }
-
-  if(!errorstr.isEmpty())
-    {
-      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
-		      __FILE__, __LINE__);
-      QMessageBox::critical
-	(this, tr("BiblioteQ: Z39.50 Query Error"),
-	 tr("The Z39.50 entry could not be retrieved."));
-    }
-}
-
-void biblioteq_magazine::slotPrint(void)
-{
-  m_html = "<html>";
-  m_html += "<b>" + tr("ISSN:") + "</b> " + ma.id->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Volume:") + "</b> " + ma.volume->text() + "<br>";
-  m_html += "<b>" + tr("Issue (Number):") + "</b> " + ma.issue->text() +
-    "<br>";
-  m_html += "<b>" + tr("LC Control Number:") + "</b> " +
-    ma.lcnum->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Call Number:") + "</b> " +
-    ma.callnum->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Dewey Class Number:") + "</b> " +
-    ma.deweynum->text().trimmed() + "<br>";
-
-  /*
-  ** General information.
-  */
-
-  m_html += "<b>" + tr("Title:") + "</b> " + ma.title->text().trimmed() +
-    "<br>";
-  m_html += "<b>" + tr("Publication Date:") + "</b> " +
-    ma.publication_date->date().toString(Qt::ISODate) + "<br>";
-  m_html += "<b>" + tr("Publisher:") + "</b> " +
-    ma.publisher->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Place of Publication:") + "</b> " +
-    ma.place->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Category:") + "</b> " +
-    ma.category->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Price:") + "</b> " + ma.price->cleanText() + "<br>";
-  m_html += "<b>" + tr("Language:") + "</b> " +
-    ma.language->currentText() + "<br>";
-  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
-    ma.monetary_units->currentText() + "<br>";
-  m_html += "<b>" + tr("Copies:") + "</b> " + ma.quantity->text() + "<br>";
-  m_html += "<b>" + tr("Location:") + "</b> " +
-    ma.location->currentText() + "<br>";
-  m_html += "<b>" + tr("Abstract:") + "</b> " +
-    ma.description->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("MARC Tags:") + "</b> " +
-    ma.marc_tags->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Keywords:") + "</b> " +
-    ma.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b> " +
-    ma.accession_number->text().trimmed();
-  m_html += "</html>";
-  print(this);
 }
 
 void biblioteq_magazine::populateDisplayAfterZ3950
@@ -3530,79 +3384,6 @@ void biblioteq_magazine::createFile(const QByteArray &digest,
        query.lastError().text(), __FILE__, __LINE__);
 }
 
-void biblioteq_magazine::populateFiles(void)
-{
-  ma.files->setRowCount(0);
-  ma.files->setSortingEnabled(false);
-
-  QSqlQuery query(qmain->getDB());
-
-  if(m_subType == "Journal")
-    query.prepare("SELECT COUNT(*) FROM journal_files WHERE item_oid = ?");
-  else
-    query.prepare("SELECT COUNT(*) FROM magazine_files WHERE item_oid = ?");
-
-  query.bindValue(0, m_oid);
-
-  if(query.exec())
-    if(query.next())
-      ma.files->setRowCount(query.value(0).toInt());
-
-  query.prepare(QString("SELECT file_name, "
-			"file_digest, "
-			"LENGTH(file) AS f_s, "
-			"description, "
-			"myoid FROM %1_files "
-			"WHERE item_oid = ? ORDER BY file_name").
-		arg(m_subType));
-  query.bindValue(0, m_oid);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QLocale locale;
-  int row = 0;
-  int totalRows = 0;
-
-  if(query.exec())
-    while(query.next() && totalRows < ma.files->rowCount())
-      {
-	totalRows += 1;
-
-	QSqlRecord record(query.record());
-
-	for(int i = 0; i < record.count(); i++)
-	  {
-	    QTableWidgetItem *item = 0;
-
-	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) biblioteq_filesize_table_item
-		(locale.toString(query.value(i).toLongLong()));
-	    else
-	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString());
-
-	    if(!item)
-	      continue;
-
-	    item->setData
-	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
-	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-
-	    if(m_engWindowTitle == "Modify")
-	      if(record.fieldName(i) == "description")
-		item->setToolTip(tr("Double-click to edit."));
-
-	    ma.files->setItem(row, i, item);
-	  }
-
-	row += 1;
-      }
-
-  ma.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  ma.files->setRowCount(totalRows);
-  ma.files->setSortingEnabled(true);
-  QApplication::restoreOverrideCursor();
-}
-
 void biblioteq_magazine::slotDeleteFiles(void)
 {
   QModelIndexList list(ma.files->selectionModel()->
@@ -3919,27 +3700,246 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
      tr("One or more SSL errors occurred. Please verify your settings."));
 }
 
-void biblioteq_magazine::createSRUDialog(void)
+void biblioteq_magazine::slotZ3950Query(void)
 {
-  if(m_sruWorking)
-    m_sruWorking->deleteLater();
+  if(findChild<biblioteq_generic_thread *> ())
+    return;
 
-  if((m_sruWorking = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  int i = 0;
+  QString etype = "";
+  QString errorstr = "";
+  QString searchstr = "";
+  QStringList list;
 
-  m_sruWorking->resize(m_sruWorking->sizeHint());
-  m_sruWorking->setLabelText(tr("Downloading..."));
-  m_sruWorking->setMaximum(0);
-  m_sruWorking->setMinimum(0);
-  m_sruWorking->setModal(true);
-  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  connect(m_sruWorking,
-	  SIGNAL(canceled(void)),
-	  this,
-	  SLOT(slotSRUCanceled(void)));
-  connect(m_sruWorking,
-	  SIGNAL(rejected(void)),
-	  this,
-	  SLOT(slotSRUCanceled(void)));
+  if(ma.id->text().trimmed().length() != 9)
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query a Z39.50 site, the ISSN "
+	    "must be provided."));
+      ma.id->setFocus();
+      return;
+    }
+
+  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this)) != 0)
+    {
+      biblioteq_item_working_dialog working
+	(qobject_cast<QMainWindow *> (this));
+
+      working.setCancelButton(0);
+      working.setModal(true);
+      working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
+      working.setLabelText(tr("Downloading..."));
+      working.setMaximum(0);
+      working.setMinimum(0);
+      working.resize(working.sizeHint());
+      working.show();
+      working.update();
+      working.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QString recordSyntax("MARC21");
+      bool found = false;
+
+      for(i = 0; i < ma.z3950QueryButton->actions().size(); i++)
+	if(ma.z3950QueryButton->actions().at(i)->isChecked())
+	  {
+	    found = true;
+	    recordSyntax = qmain->getZ3950Hash
+	      (ma.z3950QueryButton->actions().at(i)->text()).
+	      value("RecordSyntax");
+	    m_thread->setZ3950Name
+	      (ma.z3950QueryButton->actions().at(i)->text());
+	    break;
+	  }
+
+      if(!found)
+	{
+	  recordSyntax = qmain->getZ3950Hash
+	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
+	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
+	}
+
+      searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
+      m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
+      m_thread->setZ3950SearchString(searchstr);
+      m_thread->start();
+
+      while(!m_thread->isFinished())
+	{
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+	  m_thread->msleep(100);
+	}
+
+      bool canceled = working.wasCanceled(); // QProgressDialog::close()!
+
+      working.close();
+      working.reset(); // Qt 5.5.x adjustment.
+
+      if(canceled)
+	{
+	  m_thread->deleteLater();
+	  return;
+	}
+
+      if((errorstr = m_thread->getErrorStr()).isEmpty())
+	{
+	  if(m_thread->getZ3950Results().size() == 1)
+	    {
+	      if(QMessageBox::question
+		 (this, tr("BiblioteQ: Question"),
+		  tr("Replace existing values with those retrieved "
+		     "from the Z39.50 site?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::Yes)
+		{
+		  list = QString(m_thread->getZ3950Results()[0]).split("\n");
+		  populateDisplayAfterZ3950(list, recordSyntax);
+		  list.clear();
+		}
+	    }
+	  else if(m_thread->getZ3950Results().size() > 1)
+	    {
+	      for(i = 0; i < m_thread->getZ3950Results().size(); i++)
+		list.append(m_thread->getZ3950Results()[i]);
+
+	      /*
+	      ** Display a selection dialog.
+	      */
+
+	      if((new(std::nothrow)
+		  biblioteq_z3950results(qobject_cast<QWidget *> (this), list,
+					 this, font(), recordSyntax)) == 0)
+		{
+		  qmain->addError
+		    (QString(tr("Memory Error")),
+		     QString(tr("Unable to create a \"dialog\" object "
+				"because of insufficient resources.")),
+		     QString(""),
+		     __FILE__, __LINE__);
+		  QMessageBox::critical
+		    (this, tr("BiblioteQ: Memory Error"),
+		     tr("Unable to create a \"dialog\" object "
+			"because of insufficient resources."));
+		}
+	    }
+	  else
+	    QMessageBox::critical
+	      (this, tr("BiblioteQ: Z39.50 Query Error"),
+	       tr("A Z39.50 entry may not yet exist for ") +
+	       ma.id->text() + tr("."));
+	}
+      else
+	etype = m_thread->getEType();
+
+      m_thread->deleteLater();
+    }
+  else
+    {
+      etype = tr("Memory Error");
+      errorstr = tr("Unable to create a thread because of insufficient "
+		    "resources.");
+    }
+
+  if(!errorstr.isEmpty())
+    {
+      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
+		      __FILE__, __LINE__);
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	 tr("The Z39.50 entry could not be retrieved."));
+    }
+}
+
+void biblioteq_magazine::updateWindow(const int state)
+{
+  QString str = "";
+
+  if(state == biblioteq::EDITABLE)
+    {
+      ma.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      ma.view_pdf->setEnabled(true);
+#endif
+      ma.copiesButton->setEnabled(true);
+      ma.delete_files->setEnabled(true);
+      ma.export_files->setEnabled(true);
+      ma.showUserButton->setEnabled(true);
+      ma.copiesButton->setEnabled(true);
+      ma.sruQueryButton->setVisible(true);
+      ma.z3950QueryButton->setVisible(true);
+      ma.okButton->setVisible(true);
+      ma.resetButton->setVisible(true);
+      ma.frontButton->setVisible(true);
+      ma.backButton->setVisible(true);
+
+      if(!ma.id->text().trimmed().isEmpty())
+	{
+	  if(m_subType == "Journal")
+	    str = QString(tr("BiblioteQ: Modify Journal Entry ("));
+	  else
+	    str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
+
+	  str += ma.id->text() + tr(")");
+	}
+      else
+	{
+	  if(m_subType == "Journal")
+	    str = tr("BiblioteQ: Modify Journal Entry");
+	  else
+	    str = tr("BiblioteQ: Modify Magazine Entry");
+	}
+
+      m_engWindowTitle = "Modify";
+    }
+  else
+    {
+      ma.attach_files->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      ma.view_pdf->setEnabled(true);
+#endif
+      ma.delete_files->setVisible(false);
+      ma.export_files->setEnabled(true);
+      ma.issnAvailableCheckBox->setCheckable(false);
+
+      if(qmain->isGuest())
+	ma.showUserButton->setVisible(false);
+      else
+	ma.showUserButton->setEnabled(true);
+
+      ma.copiesButton->setVisible(false);
+      ma.sruQueryButton->setVisible(false);
+      ma.z3950QueryButton->setVisible(false);
+      ma.okButton->setVisible(false);
+      ma.resetButton->setVisible(false);
+      ma.frontButton->setVisible(false);
+      ma.backButton->setVisible(false);
+
+      if(!ma.id->text().trimmed().isEmpty())
+	{
+	  if(m_subType == "Journal")
+	    str = QString(tr("BiblioteQ: View Journal Details ("));
+	  else
+	    str = QString(tr("BiblioteQ: View Magazine Details ("));
+
+	  str += ma.id->text() + tr(")");
+	}
+      else
+	{
+	  if(m_subType == "Journal")
+	    str = tr("BiblioteQ: View Journal Entry");
+	  else
+	    str = tr("BiblioteQ: View Magazine Entry");
+	}
+
+      m_engWindowTitle = "View";
+    }
+
+  ma.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
 }
