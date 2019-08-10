@@ -3044,6 +3044,25 @@ void biblioteq_magazine::slotPrint(void)
   print(this);
 }
 
+void biblioteq_magazine::slotProxyAuthenticationRequired
+(const QNetworkProxy &proxy, QAuthenticator *authenticator)
+{
+  if(authenticator)
+    {
+      ui_p.messageLabel->setText
+	(QString(tr("The proxy %1:%2 is requesting "
+		    "credentials.").
+		 arg(proxy.hostName()).
+		 arg(proxy.port())));
+
+      if(m_proxyDialog->exec() == QDialog::Accepted)
+	{
+	  authenticator->setUser(ui_p.usernameLineEdit->text());
+	  authenticator->setPassword(ui_p.passwordLineEdit->text());
+	}
+    }
+}
+
 void biblioteq_magazine::slotPublicationDateEnabled(bool state)
 {
   ma.publication_date->setEnabled(state);
@@ -3343,25 +3362,6 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("A network error (%1) occurred.").arg(error));
-}
-
-void biblioteq_magazine::slotProxyAuthenticationRequired
-(const QNetworkProxy &proxy, QAuthenticator *authenticator)
-{
-  if(authenticator)
-    {
-      ui_p.messageLabel->setText
-	(QString(tr("The proxy %1:%2 is requesting "
-		    "credentials.").
-		 arg(proxy.hostName()).
-		 arg(proxy.port())));
-
-      if(m_proxyDialog->exec() == QDialog::Accepted)
-	{
-	  authenticator->setUser(ui_p.usernameLineEdit->text());
-	  authenticator->setPassword(ui_p.passwordLineEdit->text());
-	}
-    }
 }
 
 void biblioteq_magazine::slotSRUQuery(void)
