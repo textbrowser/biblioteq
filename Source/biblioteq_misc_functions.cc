@@ -790,6 +790,67 @@ bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
   return false;
 }
 
+bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
+					    const QString &oid,
+					    const QString &itemTypeArg,
+					    QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  bool isCheckedOut = false;
+
+  errorstr = "";
+  itemType = itemTypeArg;
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw "
+		"WHERE item_oid = ? AND type = ?)");
+  query.bindValue(0, oid);
+  query.bindValue(1, itemType);
+
+  if(query.exec())
+    if(query.next())
+      isCheckedOut = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    {
+      errorstr = query.lastError().text();
+      isCheckedOut = false;
+    }
+
+  return isCheckedOut;
+}
+
+bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
+						const QString &copyid,
+						const QString &oid,
+						const QString &itemTypeArg,
+						QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  bool isCheckedOut = false;
+
+  errorstr = "";
+  itemType = itemTypeArg;
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw WHERE "
+		"copyid = ? AND item_oid = ? AND "
+		"type = ?)");
+  query.bindValue(0, copyid);
+  query.bindValue(1, oid);
+  query.bindValue(2, itemType);
+
+  if(query.exec())
+    if(query.next())
+      isCheckedOut = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    {
+      errorstr = query.lastError().text();
+      isCheckedOut = false;
+    }
+
+  return isCheckedOut;
+}
+
 bool biblioteq_misc_functions::isGnome(void)
 {
   QByteArray session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
@@ -863,6 +924,33 @@ bool biblioteq_misc_functions::userExists(const QString &userid,
     }
 
   return exists;
+}
+
+int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
+					      const QString &columnName)
+{
+  if(columnName.isEmpty() || !table)
+    return -1;
+
+  QTableWidgetItem *column = 0;
+  int i = 0;
+  int num = -1;
+
+  for(i = 0; i < table->columnCount(); i++)
+    {
+      column = table->horizontalHeaderItem(i);
+
+      if(column == 0)
+	continue;
+
+      if(column->text().toLower() == columnName.toLower())
+	{
+	  num = i;
+	  break;
+	}
+    }
+
+  return num;
 }
 
 int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
@@ -1335,6 +1423,50 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
     errorstr = query.lastError().text();
 }
 
+void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
+					       const QString &roles)
+{
+  if(!window)
+    return;
+
+  QString str = "";
+  bool showWidgets = true;
+
+  if(roles.isEmpty())
+    showWidgets = false;
+  else if(roles.contains("administrator") ||
+	  roles.contains("librarian"))
+    showWidgets = true;
+  else
+    showWidgets = false;
+
+  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+    {
+      str = widget->objectName().toLower();
+
+      if(str.contains("price") || str.contains("monetary"))
+	widget->setVisible(showWidgets);
+    }
+
+  foreach(QLabel *widget, window->findChildren<QLabel *> ())
+    {
+      str = widget->text().toLower();
+
+      if(str.contains("price") || str.contains("monetary"))
+	widget->setVisible(showWidgets);
+    }
+
+  foreach(QToolButton *button, window->findChildren<QToolButton *> ())
+    if(button->menu())
+      foreach(QAction *action, button->menu()->findChildren<QAction *> ())
+	{
+	  str = action->text().toLower();
+
+	  if(str.contains("price") || str.contains("monetary"))
+	    action->setVisible(showWidgets);
+	}
+}
+
 void biblioteq_misc_functions::revokeAll(const QString &userid,
 					 const QSqlDatabase &db,
 					 QString &errorstr)
@@ -1453,33 +1585,6 @@ void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 }
 
-int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
-					      const QString &columnName)
-{
-  if(columnName.isEmpty() || !table)
-    return -1;
-
-  QTableWidgetItem *column = 0;
-  int i = 0;
-  int num = -1;
-
-  for(i = 0; i < table->columnCount(); i++)
-    {
-      column = table->horizontalHeaderItem(i);
-
-      if(column == 0)
-	continue;
-
-      if(column->text().toLower() == columnName.toLower())
-	{
-	  num = i;
-	  break;
-	}
-    }
-
-  return num;
-}
-
 void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 					    const int row, int column,
 					    const QString &value)
@@ -1499,67 +1604,6 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 
   if(sortingEnabled)
     table->setSortingEnabled(true);
-}
-
-bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
-					    const QString &oid,
-					    const QString &itemTypeArg,
-					    QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString itemType = "";
-  bool isCheckedOut = false;
-
-  errorstr = "";
-  itemType = itemTypeArg;
-  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw "
-		"WHERE item_oid = ? AND type = ?)");
-  query.bindValue(0, oid);
-  query.bindValue(1, itemType);
-
-  if(query.exec())
-    if(query.next())
-      isCheckedOut = query.value(0).toBool();
-
-  if(query.lastError().isValid())
-    {
-      errorstr = query.lastError().text();
-      isCheckedOut = false;
-    }
-
-  return isCheckedOut;
-}
-
-bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
-						const QString &copyid,
-						const QString &oid,
-						const QString &itemTypeArg,
-						QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString itemType = "";
-  bool isCheckedOut = false;
-
-  errorstr = "";
-  itemType = itemTypeArg;
-  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw WHERE "
-		"copyid = ? AND item_oid = ? AND "
-		"type = ?)");
-  query.bindValue(0, copyid);
-  query.bindValue(1, oid);
-  query.bindValue(2, itemType);
-
-  if(query.exec())
-    if(query.next())
-      isCheckedOut = query.value(0).toBool();
-
-  if(query.lastError().isValid())
-    {
-      errorstr = query.lastError().text();
-      isCheckedOut = false;
-    }
-
-  return isCheckedOut;
 }
 
 void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
@@ -2007,50 +2051,6 @@ void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
     Y = p.y() - (child->height() - parent->height()) / 2;
 
   child->move(X, Y);
-}
-
-void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
-					       const QString &roles)
-{
-  if(!window)
-    return;
-
-  QString str = "";
-  bool showWidgets = true;
-
-  if(roles.isEmpty())
-    showWidgets = false;
-  else if(roles.contains("administrator") ||
-	  roles.contains("librarian"))
-    showWidgets = true;
-  else
-    showWidgets = false;
-
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
-    {
-      str = widget->objectName().toLower();
-
-      if(str.contains("price") || str.contains("monetary"))
-	widget->setVisible(showWidgets);
-    }
-
-  foreach(QLabel *widget, window->findChildren<QLabel *> ())
-    {
-      str = widget->text().toLower();
-
-      if(str.contains("price") || str.contains("monetary"))
-	widget->setVisible(showWidgets);
-    }
-
-  foreach(QToolButton *button, window->findChildren<QToolButton *> ())
-    if(button->menu())
-      foreach(QAction *action, button->menu()->findChildren<QAction *> ())
-	{
-	  str = action->text().toLower();
-
-	  if(str.contains("price") || str.contains("monetary"))
-	    action->setVisible(showWidgets);
-	}
 }
 
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
