@@ -153,6 +153,50 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
   return str;
 }
 
+QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
+						  const int row,
+						  const QString &columnName)
+{
+  if(columnName.isEmpty() || row < 0 || !table)
+    return QString("");
+
+  QString str = "";
+  QTableWidgetItem *column = 0;
+  int i = 0;
+
+  if(row >= 0 && row < table->rowCount())
+    for(i = 0; i < table->columnCount(); i++)
+      {
+	column = table->horizontalHeaderItem(i);
+
+	if(column == 0 || table->item(row, i) == 0)
+	  continue;
+
+	if(column->text().toLower() == columnName.toLower())
+	  {
+	    str = table->item(row, i)->text();
+	    break;
+	  }
+      }
+
+  return str;
+}
+
+QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
+						  const int row,
+						  const int column)
+{
+  if(column < 0 || row < 0 || !table)
+    return QString("");
+
+  QTableWidgetItem *item = 0;
+
+  if((item = table->item(row, column)))
+    return item->text();
+  else
+    return QString("");
+}
+
 QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 {
   QString format("");
@@ -198,6 +242,28 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
   return types;
 }
 
+QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
+						   QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList formats;
+
+  errorstr = "";
+  querystr = "SELECT cd_format FROM cd_formats "
+    "WHERE LENGTH(TRIM(cd_format)) > 0 "
+    "ORDER BY cd_format";
+
+  if(query.exec(querystr))
+    while(query.next())
+      formats.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return formats;
+}
+
 QStringList biblioteq_misc_functions::getDVDAspectRatios
 (const QSqlDatabase &db, QString &errorstr)
 {
@@ -218,6 +284,28 @@ QStringList biblioteq_misc_functions::getDVDAspectRatios
     errorstr = query.lastError().text();
 
   return aspectratios;
+}
+
+QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
+						    QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList ratings;
+
+  errorstr = "";
+  querystr = "SELECT dvd_rating FROM dvd_ratings "
+    "WHERE LENGTH(TRIM(dvd_rating)) > 0 "
+    "ORDER BY dvd_rating";
+
+  if(query.exec(querystr))
+    while(query.next())
+      ratings.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return ratings;
 }
 
 QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
@@ -262,6 +350,28 @@ QStringList biblioteq_misc_functions::getGreyLiteratureTypes
     errorstr = query.lastError().text();
 
   return types;
+}
+
+QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
+						   QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList languages;
+
+  errorstr = "";
+  querystr = "SELECT language FROM languages "
+    "WHERE LENGTH(TRIM(language)) > 0 "
+    "ORDER BY language";
+
+  if(query.exec(querystr))
+    while(query.next())
+      languages.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return languages;
 }
 
 QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
@@ -311,26 +421,26 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   return minimumdays;
 }
 
-QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
-						    QString &errorstr)
+QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
+						       QString &errorstr)
 {
   QSqlQuery query(db);
   QString querystr("");
-  QStringList ratings;
+  QStringList monetary_units;
 
   errorstr = "";
-  querystr = "SELECT dvd_rating FROM dvd_ratings "
-    "WHERE LENGTH(TRIM(dvd_rating)) > 0 "
-    "ORDER BY dvd_rating";
+  querystr = "SELECT monetary_unit FROM monetary_units "
+    "WHERE LENGTH(TRIM(monetary_unit)) > 0 "
+    "ORDER BY monetary_unit";
 
   if(query.exec(querystr))
     while(query.next())
-      ratings.append(query.value(0).toString());
+      monetary_units.append(query.value(0).toString());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
 
-  return ratings;
+  return monetary_units;
 }
 
 QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
@@ -1219,50 +1329,6 @@ void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 }
 
-QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
-						  const int row,
-						  const int column)
-{
-  if(column < 0 || row < 0 || !table)
-    return QString("");
-
-  QTableWidgetItem *item = 0;
-
-  if((item = table->item(row, column)))
-    return item->text();
-  else
-    return QString("");
-}
-
-QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
-						  const int row,
-						  const QString &columnName)
-{
-  if(columnName.isEmpty() || row < 0 || !table)
-    return QString("");
-
-  QString str = "";
-  QTableWidgetItem *column = 0;
-  int i = 0;
-
-  if(row >= 0 && row < table->rowCount())
-    for(i = 0; i < table->columnCount(); i++)
-      {
-	column = table->horizontalHeaderItem(i);
-
-	if(column == 0 || table->item(row, i) == 0)
-	  continue;
-
-	if(column->text().toLower() == columnName.toLower())
-	  {
-	    str = table->item(row, i)->text();
-	    break;
-	  }
-      }
-
-  return str;
-}
-
 int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
 					      const QString &columnName)
 {
@@ -1986,72 +2052,6 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
     errorstr = query.lastError().text();
 
   return locations;
-}
-
-QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
-						       QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList monetary_units;
-
-  errorstr = "";
-  querystr = "SELECT monetary_unit FROM monetary_units "
-    "WHERE LENGTH(TRIM(monetary_unit)) > 0 "
-    "ORDER BY monetary_unit";
-
-  if(query.exec(querystr))
-    while(query.next())
-      monetary_units.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return monetary_units;
-}
-
-QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
-						   QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList languages;
-
-  errorstr = "";
-  querystr = "SELECT language FROM languages "
-    "WHERE LENGTH(TRIM(language)) > 0 "
-    "ORDER BY language";
-
-  if(query.exec(querystr))
-    while(query.next())
-      languages.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return languages;
-}
-
-QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
-						   QString &errorstr)
-{
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList formats;
-
-  errorstr = "";
-  querystr = "SELECT cd_format FROM cd_formats "
-    "WHERE LENGTH(TRIM(cd_format)) > 0 "
-    "ORDER BY cd_format";
-
-  if(query.exec(querystr))
-    while(query.next())
-      formats.append(query.value(0).toString());
-
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-
-  return formats;
 }
 
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
