@@ -5,8 +5,6 @@
 #include "biblioteq.h"
 #include "biblioteq_hyperlinked_text_edit.h"
 
-extern biblioteq *qmain;
-
 biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 (QWidget *parent):QTextBrowser(parent)
 {
@@ -14,6 +12,7 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 	  SIGNAL(anchorClicked(const QUrl &)),
 	  this,
 	  SLOT(slotAnchorClicked(const QUrl &)));
+  qmain = 0;
 }
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
@@ -21,6 +20,9 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
  const QString &searchField,
  const QString &str)
 {
+  if(!qmain)
+    return;
+
   QString html("");
   QStringList tmplist;
   int i = 0;
@@ -43,8 +45,16 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
   setText(html);
 }
 
+void biblioteq_hyperlinked_text_edit::setQMain(biblioteq *biblioteq)
+{
+  qmain = biblioteq;
+}
+
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 {
+  if(!qmain)
+    return;
+
   QString path(url.toString());
   QString searchKey("");
   QString searchType("");

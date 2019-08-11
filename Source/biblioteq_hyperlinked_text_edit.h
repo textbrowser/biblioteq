@@ -4,7 +4,7 @@
 #include <QTextBrowser>
 #include <QUrl>
 
-#include <iostream>
+class biblioteq;
 
 class biblioteq_hyperlinked_text_edit: public QTextBrowser
 {
@@ -15,6 +15,10 @@ class biblioteq_hyperlinked_text_edit: public QTextBrowser
   void setMultipleLinks(const QString &searchType,
 			const QString &searchField,
 			const QString &str);
+  void setQMain(biblioteq *biblioteq);
+
+ private:
+  biblioteq *qmain;
 
  private slots:
   void slotAnchorClicked(const QUrl &url);
