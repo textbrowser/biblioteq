@@ -55,9 +55,9 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   dvd.setupUi(this);
   dvd.publication_date_enabled->setVisible(false);
   dvd.release_date->setDisplayFormat(qmain->publicationDateFormat("dvds"));
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,
@@ -1508,10 +1508,15 @@ void biblioteq_dvd::slotPopulateCopiesEditor(void)
 
   if((copyeditor = new(std::nothrow) biblioteq_copy_editor
       (qobject_cast<QWidget *> (this),
+       qmain,
        static_cast<biblioteq_item *> (this),
        false,
-       dvd.quantity->value(), m_oid,
-       dvd.quantity, font(), "DVD", dvd.id->text().trimmed())) != 0)
+       dvd.quantity->value(),
+       m_oid,
+       dvd.quantity,
+       font(),
+       "DVD",
+       dvd.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
 

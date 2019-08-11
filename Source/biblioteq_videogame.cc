@@ -55,9 +55,9 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   vg.setupUi(this);
   vg.publication_date_enabled->setVisible(false);
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(vg.showUserButton, SIGNAL(clicked(void)), this,
@@ -1357,10 +1357,15 @@ void biblioteq_videogame::slotPopulateCopiesEditor(void)
 
   if((copyeditor = new(std::nothrow) biblioteq_copy_editor
       (qobject_cast<QWidget *> (this),
+       qmain,
        static_cast<biblioteq_item *> (this),
        false,
-       vg.quantity->value(), m_oid,
-       vg.quantity, font(), "Video Game", vg.id->text().trimmed())) != 0)
+       vg.quantity->value(),
+       m_oid,
+       vg.quantity,
+       font(),
+       "Video Game",
+       vg.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
 

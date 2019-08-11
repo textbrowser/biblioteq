@@ -24,6 +24,8 @@
 
 #include "biblioteq_myqstring.h"
 
+class biblioteq;
+
 class biblioteq_generic_thread: public QThread
 {
   Q_OBJECT
@@ -32,7 +34,7 @@ class biblioteq_generic_thread: public QThread
   static const int READ_GLOBAL_CONFIG_FILE = 200;
   static const int Z3950_QUERY = 300;
 
-  biblioteq_generic_thread(QObject *parent);
+  biblioteq_generic_thread(QObject *parent, biblioteq *biblioteq);
   ~biblioteq_generic_thread();
   QString getEType(void) const;
   QString getErrorStr(void) const;
@@ -55,6 +57,7 @@ class biblioteq_generic_thread: public QThread
   QString m_z3950SearchStr;
   QStringList m_list;
   QStringList m_z3950Results;
+  biblioteq *qmain;
   int m_type;
 };
 

@@ -102,9 +102,9 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
@@ -2989,10 +2989,15 @@ void biblioteq_magazine::slotPopulateCopiesEditor(void)
 
   if((copyeditor = new(std::nothrow) biblioteq_copy_editor
       (qobject_cast<QWidget *> (this),
+       qmain,
        static_cast<biblioteq_item *> (this),
        false,
-       ma.quantity->value(), m_oid,
-       ma.quantity, font(), m_subType, ma.id->text().trimmed())) != 0)
+       ma.quantity->value(),
+       m_oid,
+       ma.quantity,
+       font(),
+       m_subType,
+       ma.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -3673,7 +3678,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       return;
     }
 
-  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this)) != 0)
+  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this, qmain)) != 0)
     {
       biblioteq_item_working_dialog working
 	(qobject_cast<QMainWindow *> (this));

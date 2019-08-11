@@ -281,7 +281,7 @@ biblioteq::biblioteq(void):QMainWindow()
   if((m_error_diag = new(std::nothrow) QMainWindow()) == 0)
     quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(0)) == 0)
+  if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(this)) == 0)
     quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
@@ -5909,11 +5909,16 @@ void biblioteq::slotCheckout(void)
 	      (ui.table, row2, "id");
 
 	  if((copyeditor = new(std::nothrow)
-	      biblioteq_copy_editor(m_members_diag, item,
+	      biblioteq_copy_editor(m_members_diag,
+				    this,
+				    item,
 				    true,
-				    quantity, oid,
+				    quantity,
+				    oid,
 				    0,
-				    font(), type, itemid)) != 0)
+				    font(),
+				    type,
+				    itemid)) != 0)
 	    {
 	      copyeditor->populateCopiesEditor();
 	      copyeditor->exec();

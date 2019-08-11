@@ -81,9 +81,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  this,
 	  SLOT(slotShowPDF(void)));
 #endif
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),
@@ -2421,7 +2421,7 @@ void biblioteq_book::slotZ3950Query(void)
       return;
     }
 
-  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this)) != 0)
+  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this, qmain)) != 0)
     {
       biblioteq_item_working_dialog working
 	(qobject_cast<QMainWindow *> (this));

@@ -88,9 +88,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
 				  photographsPerPage() / 5 * 200 + 15);
 
   pc.thumbnail_item->setReadOnly(true);
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_photo_diag->setWindowModality(Qt::WindowModal);
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_photo_diag));

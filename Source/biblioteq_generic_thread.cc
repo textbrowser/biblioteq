@@ -14,15 +14,15 @@
 #include "biblioteq.h"
 #include "biblioteq_generic_thread.h"
 
-extern biblioteq *qmain;
-
-biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent):
+biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent,
+						   biblioteq *biblioteq):
   QThread(parent)
 {
   m_eType = "";
   m_errorStr = "";
   m_type = -1;
   m_z3950Name = "";
+  qmain = biblioteq;
   setTerminationEnabled(true);
 }
 

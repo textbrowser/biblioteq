@@ -65,9 +65,9 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 #else
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
@@ -1608,10 +1608,15 @@ void biblioteq_cd::slotPopulateCopiesEditor(void)
 
   if((copyeditor = new(std::nothrow) biblioteq_copy_editor
       (qobject_cast<QWidget *> (this),
+       qmain,
        static_cast<biblioteq_item *> (this),
        false,
-       cd.quantity->value(), m_oid,
-       cd.quantity, font(), "CD", cd.id->text().trimmed())) != 0)
+       cd.quantity->value(),
+       m_oid,
+       cd.quantity,
+       font(),
+       "CD",
+       cd.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
 

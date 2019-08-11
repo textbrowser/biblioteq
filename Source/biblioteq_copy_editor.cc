@@ -5,8 +5,6 @@
 #include "biblioteq.h"
 #include "biblioteq_copy_editor.h"
 
-extern biblioteq *qmain;
-
 biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
 {
   m_bitem = 0;
@@ -18,6 +16,7 @@ biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
 
 biblioteq_copy_editor::biblioteq_copy_editor
 (QWidget *parent,
+ biblioteq *biblioteq,
  biblioteq_item *bitemArg,
  const bool showForLendingArg,
  const int quantityArg,
@@ -28,6 +27,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
  const QString &uniqueIdArg):QDialog(parent)
 {
   m_parent = parent;
+  qmain = biblioteq;
 
   if(m_parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);

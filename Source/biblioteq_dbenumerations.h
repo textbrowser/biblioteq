@@ -15,12 +15,14 @@
 
 #include "ui_biblioteq_dbenumerations.h"
 
+class biblioteq;
+
 class biblioteq_dbenumerations: public QMainWindow
 {
   Q_OBJECT
 
  public:
-  biblioteq_dbenumerations(QWidget *parent);
+  biblioteq_dbenumerations(biblioteq *parent);
   void clear(void);
   void closeEvent(QCloseEvent *event);
   void show(QMainWindow *parent, const bool populate);
@@ -29,6 +31,7 @@ class biblioteq_dbenumerations: public QMainWindow
   QHash<QWidget *, QStringList> m_listData;
   QHash<QWidget *, QMap<QString, QString> > m_tableData;
   Ui_dbEnumerations m_ui;
+  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void populateWidgets(void);
   void saveData(QHash<QWidget *,

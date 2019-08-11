@@ -6,12 +6,11 @@
 #include "biblioteq_dbenumerations.h"
 #include "biblioteq_misc_functions.h"
 
-extern biblioteq *qmain;
-
-biblioteq_dbenumerations::biblioteq_dbenumerations(QWidget *parent):
+biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
   QMainWindow(parent)
 {
   m_ui.setupUi(this);
+  qmain = parent;
   connect(m_ui.saveButton,
 	  SIGNAL(clicked(void)),
 	  this,

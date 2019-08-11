@@ -122,9 +122,9 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  new (std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			       this,
-			       SLOT(slotGo(void)));
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+			      this,
+			      SLOT(slotGo(void)));
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.files->setColumnHidden(m_ui.files->columnCount() - 1, true); // myoid
 

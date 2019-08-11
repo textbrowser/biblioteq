@@ -19,6 +19,8 @@
 #include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_copybrowser.h"
 
+class biblioteq;
+
 class biblioteq_copy_editor: public QDialog
 {
   Q_OBJECT
@@ -26,6 +28,7 @@ class biblioteq_copy_editor: public QDialog
  public:
   biblioteq_copy_editor(QWidget *parent);
   biblioteq_copy_editor(QWidget *parent,
+			biblioteq *qmain,
 			biblioteq_item *bitemArg,
 			const bool showForLendingArg,
 			const int quantityArg,
@@ -60,6 +63,7 @@ class biblioteq_copy_editor: public QDialog
   QWidget *m_parent;
   Ui_copybrowser m_cb;
   biblioteq_item *m_bitem;
+  biblioteq *qmain;
   bool m_showForLending;
   int m_quantity;
   QString saveCopies(void);
