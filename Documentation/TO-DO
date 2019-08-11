@@ -418,7 +418,7 @@
      	_grey_literature (Done)
         _magazine (Done)
      	_misc_functions (Done)
-229. Review all included files:
+229. Review all included files and remove extraneous instances:
      	*.cc (TBD)
 	*.h (TBD)
 230. Remove qmain. (TBD)
