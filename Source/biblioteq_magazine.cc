@@ -4,6 +4,7 @@
 
 #include <QAuthenticator>
 #include <QCryptographicHash>
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>

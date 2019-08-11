@@ -3,7 +3,6 @@
 */
 
 #include "biblioteq.h"
-#include "biblioteq_book.h"
 #include "biblioteq_hyperlinked_text_edit.h"
 
 extern biblioteq *qmain;

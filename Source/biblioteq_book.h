@@ -6,27 +6,22 @@
 */
 
 #include <QBuffer>
-#include <QDialog>
-#include <QFileDialog>
 #include <QMainWindow>
-#include <QMenu>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QPointer>
-#include <QStringList>
 
 /*
 ** -- Local Includes --
 */
 
-#include "biblioteq_copy_editor_book.h"
-#include "biblioteq_generic_thread.h"
 #include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_bookinfo.h"
 #include "ui_biblioteq_borrowers.h"
 #include "ui_biblioteq_passwordPrompt.h"
 
+class QDialog;
+class QNetworkAccessManager;
+class biblioteq;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor_book;
 class biblioteq_generic_thread;
@@ -36,7 +31,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_book(QMainWindow *parentArg,
+  biblioteq_book(biblioteq *parentArg,
 		 const QString &oidArg,
 		 const int rowArg);
   ~biblioteq_book();
@@ -68,6 +63,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Ui_informationDialog id;
   Ui_passwordDialog ui_p;
   bool m_duplicate;
+  biblioteq *qmain;
   biblioteq_item_working_dialog *createImageDownloadDialog
     (const QString &downloadType);
   void changeEvent(QEvent *event);

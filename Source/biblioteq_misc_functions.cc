@@ -3,6 +3,7 @@
 */
 
 #include <QDate>
+#include <QDir>
 #include <QProgressDialog>
 #include <QSqlField>
 #include <QSqlIndex>

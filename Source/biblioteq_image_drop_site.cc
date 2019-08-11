@@ -9,8 +9,8 @@
 ** -- Local Includes --
 */
 
-#include "biblioteq_book.h"
 #include "biblioteq_image_drop_site.h"
+#include "biblioteq_misc_functions.h"
 
 biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   QGraphicsView(parent)

@@ -4,6 +4,7 @@
 
 #include <QAuthenticator>
 #include <QCryptographicHash>
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QNetworkProxy>
 #include <QShortcut>
@@ -23,19 +24,19 @@
 #include "biblioteq.h"
 #include "biblioteq_book.h"
 #include "biblioteq_borrowers_editor.h"
+#include "biblioteq_copy_editor_book.h"
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_marc.h"
 #include "biblioteq_pdfreader.h"
 
-extern biblioteq *qmain;
-
-biblioteq_book::biblioteq_book(QMainWindow *parentArg,
+biblioteq_book::biblioteq_book(biblioteq *parentArg,
 			       const QString &oidArg,
 			       const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
   m_sruWorking = 0;
+  qmain = parentArg;
 
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;

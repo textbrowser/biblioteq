@@ -3,6 +3,7 @@
 */
 
 #include <QCryptographicHash>
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QShortcut>
 #include <QSqlField>

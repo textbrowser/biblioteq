@@ -31,6 +31,7 @@
 
 #include <QClipboard>
 #include <QDesktopWidget>
+#include <QFileDialog>
 #include <QFontDialog>
 #include <QLibraryInfo>
 #ifdef Q_OS_MAC

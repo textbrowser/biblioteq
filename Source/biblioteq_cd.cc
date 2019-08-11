@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QFileDialog>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
