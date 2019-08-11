@@ -13,9 +13,7 @@
 #include "biblioteq.h"
 #include "biblioteq_magazine.h"
 
-extern biblioteq *qmain;
-
-biblioteq_journal::biblioteq_journal(QMainWindow *parent,
+biblioteq_journal::biblioteq_journal(biblioteq *parent,
 				     const QString &oidArg,
 				     const int rowArg):
   biblioteq_magazine(parent, oidArg, rowArg, "journal")

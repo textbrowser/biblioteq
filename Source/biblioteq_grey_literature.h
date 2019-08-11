@@ -15,12 +15,14 @@
 #include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_greyliteratureinfo.h"
 
+class biblioteq;
+
 class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 {
   Q_OBJECT
 
  public:
-  biblioteq_grey_literature(QMainWindow *parentArg,
+  biblioteq_grey_literature(biblioteq *parentArg,
 			    const QString &oidArg,
 			    const int rowArg);
   ~biblioteq_grey_literature();
@@ -42,6 +44,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   QString m_engWindowTitle;
   Ui_biblioteq_greyliteratureinfo m_ui;
   bool m_duplicate;
+  biblioteq *qmain;
   bool validateWidgets(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);

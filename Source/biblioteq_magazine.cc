@@ -34,9 +34,7 @@
 #include "biblioteq_pdfreader.h"
 #include "biblioteq_sruResults.h"
 
-extern biblioteq *qmain;
-
-biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
+biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 				       const QString &oidArg,
 				       const int rowArg,
 				       const QString &subTypeArg):
@@ -44,6 +42,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 {
   m_duplicate = false;
   m_sruWorking = 0;
+  qmain = parentArg;
 
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;

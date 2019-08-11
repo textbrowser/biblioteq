@@ -26,6 +26,7 @@
 #include "ui_biblioteq_maginfo.h"
 #include "ui_biblioteq_passwordPrompt.h"
 
+class biblioteq;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;
 class biblioteq_generic_thread;
@@ -35,7 +36,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_magazine(QMainWindow *parentArg,
+  biblioteq_magazine(biblioteq *parentArg,
 		     const QString &oidArg,
 		     const int rowArg,
 		     const QString &subTypeArg);
@@ -71,6 +72,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   Ui_magDialog ma;
   Ui_passwordDialog ui_p;
   bool m_duplicate;
+  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,
@@ -111,7 +113,7 @@ class biblioteq_journal: public biblioteq_magazine
   Q_OBJECT
 
  public:
-  biblioteq_journal(QMainWindow *parentArg,
+  biblioteq_journal(biblioteq *parentArg,
 		    const QString &oidArg,
 		    const int rowArg);
   ~biblioteq_journal();

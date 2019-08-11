@@ -23,13 +23,13 @@
 #include "biblioteq_grey_literature.h"
 #include "biblioteq_pdfreader.h"
 
-extern biblioteq *qmain;
-
-biblioteq_grey_literature::biblioteq_grey_literature(QMainWindow *parentArg,
+biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 						     const QString &oidArg,
 						     const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
+  qmain = parentArg;
+
   QMenu *menu = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
