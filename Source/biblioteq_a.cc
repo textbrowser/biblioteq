@@ -207,43 +207,6 @@ int main(int argc, char *argv[])
   return qapplication.exec();
 }
 
-void biblioteq::quit(void)
-{
-  if(qmain != 0)
-    {
-      if(qmain->ui.actionAutomaticallySaveSettingsOnExit->isChecked())
-	qmain->slotSaveConfig();
-
-      qmain->cleanup();
-    }
-
-  QApplication::quit();
-}
-
-void biblioteq::cleanup(void)
-{
-  if(m_db.isOpen())
-    m_db.close();
-}
-
-void biblioteq::quit(const char *msg, const char *file, const int line)
-{
-  if(msg != 0 && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
-    qDebug() << tr(msg)
-	     << tr(" in file ")
-	     << file << tr(", line ") << line
-	     << tr(".");
-  else
-    qDebug() << tr("An unknown error occurred in file ")
-	     << file << tr(", line ")
-	     << line << tr(".");
-
-  if(qmain != 0)
-    qmain->cleanup();
-
-  exit(EXIT_FAILURE);
-}
-
 biblioteq::biblioteq(void):QMainWindow()
 {
 #if QT_VERSION < 0x050000
@@ -282,49 +245,49 @@ biblioteq::biblioteq(void):QMainWindow()
   m_status_bar_label = 0;
 
   if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_menuCategoryActionGroup = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
   else
     m_menuCategoryActionGroup->setExclusive(true);
 
   if((m_otheroptions = new(std::nothrow) biblioteq_otheroptions()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_pass_diag = new(std::nothrow) QDialog(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_all_diag = new(std::nothrow) QMainWindow()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_admin_diag = new(std::nothrow) QMainWindow()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_members_diag = new(std::nothrow) QMainWindow()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_history_diag = new(std::nothrow) QMainWindow()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_customquery_diag = new(std::nothrow) QMainWindow()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((userinfo_diag =
       new(std::nothrow) userinfo_diag_class(m_members_diag)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_error_diag = new(std::nothrow) QMainWindow()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(0)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu1 = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_configToolMenu->setTearOffEnabled(true);
   m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
@@ -413,7 +376,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
   if((scene = new(std::nothrow)
       biblioteq_bgraphicsscene(ui.graphicsView)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(scene,
 	  SIGNAL(selectionChanged(void)),
@@ -753,7 +716,7 @@ biblioteq::biblioteq(void):QMainWindow()
   int end = 21;
 
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   for(int i = 1; i <= end; i++)
     {
@@ -792,7 +755,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QActionGroup *group2 = 0;
 
   if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   group2->setObjectName("ViewModeMenu");
   group2->setExclusive(true);
@@ -815,7 +778,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QActionGroup *group3 = 0;
 
   if((group3 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   group3->setExclusive(true);
   (action = group3->addAction(tr("&Arabic")))->setCheckable(true);
@@ -864,7 +827,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QValidator *validator1 = 0;
 
   if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   userinfo_diag->m_userinfo.memberid->setValidator(validator1);
 
@@ -887,6 +850,20 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.splitter->setCollapsible(1, false);
   ui.splitter->setStretchFactor(0, 0);
   ui.splitter->setStretchFactor(1, 1);
+}
+
+biblioteq::~biblioteq()
+{
+  qmain = 0;
+}
+
+QString biblioteq::getRoles(void) const
+{
+  /*
+  ** Empty roles suggest that the user is a patron.
+  */
+
+  return m_roles;
 }
 
 void biblioteq::addConfigOptions(const QString &typefilter)
@@ -927,31 +904,6 @@ void biblioteq::addConfigOptions(const QString &typefilter)
       connect(action, SIGNAL(triggered(void)), this,
 	      SLOT(slotSetColumns(void)));
     }
-}
-
-void biblioteq::slotSetColumns(void)
-{
-  QString typefilter = ui.menu_Category->defaultAction() ?
-    ui.menu_Category->defaultAction()->data().toString() : "All";
-
-  for(int i = 0; i < m_configToolMenu->actions().size(); i++)
-    {
-      ui.table->setColumnHidden
-	(i, !m_configToolMenu->actions().at(i)->isChecked());
-      ui.table->recordColumnHidden
-	(m_db.userName(),
-	 typefilter, i, !m_configToolMenu->actions().at(i)->
-	 isChecked());
-    }
-}
-
-QString biblioteq::getRoles(void) const
-{
-  /*
-  ** Empty roles suggest that the user is a patron.
-  */
-
-  return m_roles;
 }
 
 void biblioteq::adminSetup(void)
@@ -1103,6 +1055,43 @@ void biblioteq::adminSetup(void)
     }
 
   resetAdminBrowser();
+}
+
+void biblioteq::cleanup(void)
+{
+  if(m_db.isOpen())
+    m_db.close();
+}
+
+void biblioteq::quit(const char *msg, const char *file, const int line)
+{
+  if(msg != 0 && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
+    qDebug() << tr(msg)
+	     << tr(" in file ")
+	     << file << tr(", line ") << line
+	     << tr(".");
+  else
+    qDebug() << tr("An unknown error occurred in file ")
+	     << file << tr(", line ")
+	     << line << tr(".");
+
+  if(qmain != 0)
+    qmain->cleanup();
+
+  exit(EXIT_FAILURE);
+}
+
+void biblioteq::quit(void)
+{
+  if(qmain != 0)
+    {
+      if(qmain->ui.actionAutomaticallySaveSettingsOnExit->isChecked())
+	qmain->slotSaveConfig();
+
+      qmain->cleanup();
+    }
+
+  QApplication::quit();
 }
 
 void biblioteq::showMain(void)
@@ -1272,9 +1261,20 @@ void biblioteq::showMain(void)
     }
 }
 
-biblioteq::~biblioteq()
+void biblioteq::slotSetColumns(void)
 {
-  qmain = 0;
+  QString typefilter = ui.menu_Category->defaultAction() ?
+    ui.menu_Category->defaultAction()->data().toString() : "All";
+
+  for(int i = 0; i < m_configToolMenu->actions().size(); i++)
+    {
+      ui.table->setColumnHidden
+	(i, !m_configToolMenu->actions().at(i)->isChecked());
+      ui.table->recordColumnHidden
+	(m_db.userName(),
+	 typefilter, i, !m_configToolMenu->actions().at(i)->
+	 isChecked());
+    }
 }
 
 void biblioteq::slotExit(void)
