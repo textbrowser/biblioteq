@@ -1,9 +1,8 @@
 #include "biblioteq_borrowers_editor.h"
 
-extern biblioteq *qmain;
-
 biblioteq_borrowers_editor::biblioteq_borrowers_editor
 (QWidget *parent,
+ biblioteq *biblioteq,
  biblioteq_item *bitemArg,
  const int quantityArg,
  const QString &ioidArg,
@@ -19,6 +18,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
   m_bitem = bitemArg;
   m_state = stateArg;
   m_itemType = itemTypeArg;
+  qmain = biblioteq;
 
   /*
   ** Override the state, if necessary.

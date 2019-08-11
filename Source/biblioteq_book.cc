@@ -2230,8 +2230,14 @@ void biblioteq_book::slotShowUsers(void)
     state = biblioteq::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
-       id.quantity->value(), m_oid, id.id->text().trimmed(), font(), "Book",
+      (qobject_cast<QWidget *> (this),
+       qmain,
+       static_cast<biblioteq_item *> (this),
+       id.quantity->value(),
+       m_oid,
+       id.id->text().trimmed(),
+       font(),
+       "Book",
        state)) != 0)
     borrowerseditor->showUsers();
 }

@@ -24,6 +24,7 @@ class biblioteq_borrowers_editor: public QDialog
 
  public:
   biblioteq_borrowers_editor(QWidget *parent,
+			     biblioteq *biblioteq,
 			     biblioteq_item *bitemArg,
 			     const int quantityArg,
 			     const QString &ioidArg,
@@ -39,6 +40,7 @@ class biblioteq_borrowers_editor: public QDialog
   QString m_itemType;
   QVector<QString> m_columnHeaderIndexes;
   Ui_checkedOutDialog m_bd;
+  biblioteq *qmain;
   biblioteq_item *m_bitem;
   int m_quantity;
   int m_state;

@@ -1878,8 +1878,14 @@ void biblioteq_dvd::slotShowUsers(void)
     state = biblioteq::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
-       dvd.quantity->value(), m_oid, dvd.id->text(), font(), "DVD",
+      (qobject_cast<QWidget *> (this),
+       qmain,
+       static_cast<biblioteq_item *> (this),
+       dvd.quantity->value(),
+       m_oid,
+       dvd.id->text(),
+       font(),
+       "DVD",
        state)) != 0)
     borrowerseditor->showUsers();
 }

@@ -1689,9 +1689,15 @@ void biblioteq_videogame::slotShowUsers(void)
     state = biblioteq::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
-       vg.quantity->value(), m_oid, vg.id->text(), font(),
-       "Video Game", state)) != 0)
+      (qobject_cast<QWidget *> (this),
+       qmain,
+       static_cast<biblioteq_item *> (this),
+       vg.quantity->value(),
+       m_oid,
+       vg.id->text(),
+       font(),
+       "Video Game",
+       state)) != 0)
     borrowerseditor->showUsers();
 }
 
