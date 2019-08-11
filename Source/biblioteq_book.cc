@@ -68,6 +68,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   id.setupUi(this);
+  setQMain(this);
   id.files->setColumnHidden(id.files->columnCount() - 1, true); // myoid
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
   id.publication_date_enabled->setVisible(false);

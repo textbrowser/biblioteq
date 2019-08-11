@@ -21,7 +21,6 @@
 
 class QDialog;
 class QNetworkAccessManager;
-class biblioteq;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor_book;
 class biblioteq_generic_thread;
@@ -62,7 +61,6 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   QString m_engWindowTitle;
   Ui_informationDialog id;
   Ui_passwordDialog ui_p;
-  biblioteq *qmain;
   bool m_duplicate;
   biblioteq_item_working_dialog *createImageDownloadDialog
     (const QString &downloadType);

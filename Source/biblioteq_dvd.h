@@ -19,7 +19,6 @@
 #include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_dvdinfo.h"
 
-class biblioteq;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;
 
@@ -47,7 +46,6 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
  private:
   QString m_engWindowTitle;
   Ui_dvdDialog dvd;
-  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
 

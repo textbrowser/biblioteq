@@ -55,6 +55,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   pc.setupUi(this);
+  setQMain(this);
   pc.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("photographcollections"));
   pc.thumbnail_item->enableDoubleClickResize(false);

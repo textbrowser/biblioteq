@@ -41,6 +41,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
   m_parentWid = parentArg;
   m_row = rowArg;
   m_ui.setupUi(this);
+  setQMain(this);
   m_ui.resetButton->setMenu(menu);
   connect(m_ui.attach_files,
 	  SIGNAL(clicked(void)),

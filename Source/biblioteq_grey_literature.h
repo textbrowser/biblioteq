@@ -15,8 +15,6 @@
 #include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_greyliteratureinfo.h"
 
-class biblioteq;
-
 class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 {
   Q_OBJECT
@@ -43,7 +41,6 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   QString m_dt_orig_ss;
   QString m_engWindowTitle;
   Ui_biblioteq_greyliteratureinfo m_ui;
-  biblioteq *qmain;
   bool m_duplicate;
   bool validateWidgets(void);
   void changeEvent(QEvent *event);

@@ -53,6 +53,7 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
+  setQMain(this);
   vg.publication_date_enabled->setVisible(false);
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
   new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),

@@ -20,7 +20,6 @@
 #include "ui_biblioteq_borrowers.h"
 #include "ui_biblioteq_videogameinfo.h"
 
-class biblioteq;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;
 
@@ -48,7 +47,6 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
  private:
   QString m_engWindowTitle;
   Ui_vgDialog vg;
-  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
 

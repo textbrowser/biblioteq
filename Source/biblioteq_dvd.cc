@@ -53,6 +53,7 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   dvd.setupUi(this);
+  setQMain(this);
   dvd.publication_date_enabled->setVisible(false);
   dvd.release_date->setDisplayFormat(qmain->publicationDateFormat("dvds"));
   new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),

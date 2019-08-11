@@ -55,6 +55,7 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   cd.setupUi(this);
+  setQMain(this);
   cd.publication_date_enabled->setVisible(false);
   cd.release_date->setDisplayFormat(qmain->publicationDateFormat("musiccds"));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));

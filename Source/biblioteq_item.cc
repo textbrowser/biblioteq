@@ -143,6 +143,21 @@ void biblioteq_item::setOldQ(const int q)
   m_oldq = q;
 }
 
+void biblioteq_item::setQMain(QMainWindow *window)
+{
+  if(!window)
+    return;
+
+  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+    {
+      QString classname(widget->metaObject()->className());
+
+      if(classname == "biblioteq_hyperlinked_text_edit")
+	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
+	  setQMain(qmain);
+    }
+}
+
 void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)
 {
   if(!window)

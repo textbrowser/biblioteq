@@ -76,6 +76,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
+  setQMain(this);
   ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("magazines"));

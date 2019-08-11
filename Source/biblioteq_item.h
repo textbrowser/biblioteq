@@ -21,6 +21,8 @@
 #include <QTextDocument>
 #include <QWidget>
 
+class biblioteq;
+
 class biblioteq_item_working_dialog: public QProgressDialog
 {
   Q_OBJECT
@@ -69,11 +71,13 @@ class biblioteq_item
   QMap<QString, QString> m_widgetValues;
   QString m_html;
   QString m_oid;
+  biblioteq *qmain;
   bool m_isQueryEnabled;
   int m_oldq;
   int m_row;
   bool hasDataChanged(QMainWindow *window) const;
   void print(QWidget *parent);
+  void setQMain(QMainWindow *window);
   void setReadOnlyFields(QMainWindow *window, const bool state);
   void storeData(QMainWindow *window);
 };

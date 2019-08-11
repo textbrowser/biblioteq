@@ -19,7 +19,6 @@
 #include "ui_biblioteq_photograph.h"
 #include "ui_biblioteq_photographinfo.h"
 
-class biblioteq;
 class biblioteq_bgraphicsscene;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;
@@ -52,7 +51,6 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   QString m_itemOid;
   Ui_pcDialog pc;
   Ui_photographDialog photo;
-  biblioteq *qmain;
   biblioteq_bgraphicsscene *m_scene;
   bool verifyItemFields(void);
   int photographsPerPage(void);
