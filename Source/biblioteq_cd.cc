@@ -25,11 +25,11 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 			   const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
+  QGraphicsScene *scene1 = 0;
+  QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = 0;
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -244,15 +244,514 @@ biblioteq_cd::~biblioteq_cd()
 {
 }
 
+void biblioteq_cd::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  cd.retranslateUi(this);
+	  trd.retranslateUi(m_tracks_diag);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
+
+void biblioteq_cd::closeEvent(QCloseEvent *e)
+{
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue closing?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  if(e)
+	    e->ignore();
+
+	  return;
+	}
+
+  qmain->removeCD(this);
+}
+
+void biblioteq_cd::duplicate(const QString &p_oid, const int state)
+{
+  modify(state); // Initial population.
+  cd.copiesButton->setEnabled(false);
+  cd.tracksButton->setEnabled(false);
+  cd.showUserButton->setEnabled(false);
+  m_oid = p_oid;
+  setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
+  m_engWindowTitle = "Create";
+}
+
+void biblioteq_cd::insert(void)
+{
+  slotReset();
+  cd.id->clear();
+  cd.artist->setPlainText("N/A");
+  cd.title->clear();
+  cd.recording_label->setPlainText("N/A");
+  cd.description->setPlainText("N/A");
+  cd.keyword->clear();
+  cd.category->setPlainText("N/A");
+  cd.copiesButton->setEnabled(false);
+  cd.tracksButton->setEnabled(false);
+  cd.showUserButton->setEnabled(false);
+  cd.queryButton->setEnabled(true);
+  cd.computeButton->setVisible(true);
+  cd.okButton->setText(tr("&Save"));
+  cd.release_date->setDate(QDate::fromString("01/01/2000",
+					     "MM/dd/yyyy"));
+  cd.runtime->setTime(QTime(0, 0, 1));
+  cd.runtime->setMinimumTime(QTime(0, 0, 1));
+  cd.price->setMinimum(0.00);
+  cd.price->setValue(0.00);
+  cd.quantity->setMinimum(1);
+  cd.quantity->setValue(1);
+  cd.no_of_discs->setMinimum(1);
+  cd.no_of_discs->setValue(1);
+  cd.audio->setCurrentIndex(0);
+  cd.location->setCurrentIndex(0);
+  cd.language->setCurrentIndex(0);
+  cd.monetary_units->setCurrentIndex(0);
+  cd.recording_type->setCurrentIndex(0);
+  cd.format->setCurrentIndex(0);
+  cd.accession_number->clear();
+  biblioteq_misc_functions::highlightWidget
+    (cd.id, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (cd.title, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (cd.recording_label->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (cd.artist->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (cd.description->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (cd.category->viewport(), QColor(255, 248, 220));
+  setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
+  m_engWindowTitle = "Create";
+  cd.id->setFocus();
+  storeData(this);
+  showNormal();
+  activateWindow();
+  raise();
+}
+
+void biblioteq_cd::modify(const int state)
+{
+  QSqlQuery query(qmain->getDB());
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
+
+  if(state == biblioteq::EDITABLE)
+    {
+      setReadOnlyFields(this, false);
+      setWindowTitle(tr("BiblioteQ: Modify Music CD Entry"));
+      m_engWindowTitle = "Modify";
+      cd.showUserButton->setEnabled(true);
+      cd.copiesButton->setEnabled(true);
+      cd.okButton->setVisible(true);
+      cd.queryButton->setVisible(m_isQueryEnabled);
+      cd.resetButton->setVisible(true);
+      cd.computeButton->setVisible(true);
+      trd.saveButton->setVisible(true);
+      trd.insertButton->setVisible(true);
+      trd.deleteButton->setVisible(true);
+      cd.frontButton->setVisible(true);
+      cd.backButton->setVisible(true);
+      biblioteq_misc_functions::highlightWidget
+	(cd.id, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(cd.title, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(cd.recording_label->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(cd.artist->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(cd.description->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(cd.category->viewport(), QColor(255, 248, 220));
+    }
+  else
+    {
+      setReadOnlyFields(this, true);
+      setWindowTitle(tr("BiblioteQ: View Music CD Details"));
+      m_engWindowTitle = "View";
+
+      if(qmain->isGuest())
+	cd.showUserButton->setVisible(false);
+      else
+	cd.showUserButton->setEnabled(true);
+
+      cd.copiesButton->setVisible(false);
+      cd.okButton->setVisible(false);
+      cd.queryButton->setVisible(false);
+      cd.resetButton->setVisible(false);
+      cd.computeButton->setVisible(false);
+      trd.saveButton->setVisible(false);
+      trd.insertButton->setVisible(false);
+      trd.deleteButton->setVisible(false);
+      cd.frontButton->setVisible(false);
+      cd.backButton->setVisible(false);
+
+      QList<QAction *> actions = cd.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+    }
+
+  cd.tracksButton->setEnabled(true);
+  cd.queryButton->setEnabled(true);
+  cd.okButton->setText(tr("&Save"));
+  cd.runtime->setMinimumTime(QTime(0, 0, 1));
+  cd.price->setMinimum(0.00);
+  cd.quantity->setMinimum(1);
+  cd.quantity->setValue(1);
+  cd.no_of_discs->setMinimum(1);
+  cd.no_of_discs->setValue(1);
+  str = m_oid;
+  query.prepare("SELECT id, "
+		"title, "
+		"cdformat, "
+		"artist, "
+		"cddiskcount, "
+		"cdruntime, "
+		"rdate, "
+		"recording_label, "
+		"category, "
+		"price, "
+		"language, "
+		"monetary_units, "
+		"description, "
+		"quantity, "
+		"cdaudio, "
+		"cdrecording, "
+		"location, "
+		"front_cover, "
+		"back_cover, "
+		"keyword, "
+		"accession_number "
+		"FROM "
+		"cd "
+		"WHERE myoid = ?");
+  query.bindValue(0, str);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec() || !query.next())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve the selected CD's data.")),
+	 query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve the selected CD's "
+			       "data."));
+      close();
+      return;
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+      showNormal();
+      activateWindow();
+      raise();
+
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
+	{
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
+
+	  if(fieldname == "title")
+	    cd.title->setText(var.toString());
+	  else if(fieldname == "recording_label")
+	    cd.recording_label->setMultipleLinks
+	      ("cd_search", "recording_label",
+	       var.toString());
+	  else if(fieldname == "rdate")
+	    cd.release_date->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "price")
+	    cd.price->setValue(var.toDouble());
+	  else if(fieldname == "category")
+	    cd.category->setMultipleLinks("cd_search", "category",
+					  var.toString());
+	  else if(fieldname == "language")
+	    {
+	      if(cd.language->findText(var.toString()) > -1)
+		cd.language->setCurrentIndex
+		  (cd.language->findText(var.toString()));
+	      else
+		cd.language->setCurrentIndex
+		  (cd.language->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "quantity")
+	    cd.quantity->setValue(var.toInt());
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(cd.monetary_units->findText(var.toString()) > -1)
+		cd.monetary_units->setCurrentIndex
+		  (cd.monetary_units->findText(var.toString()));
+	      else
+		cd.monetary_units->setCurrentIndex
+		  (cd.monetary_units->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "cddiskcount")
+	    cd.no_of_discs->setValue(var.toInt());
+	  else if(fieldname == "cdruntime")
+	    cd.runtime->setTime
+	      (QTime::fromString(var.toString(), "hh:mm:ss"));
+	  else if(fieldname == "location")
+	    {
+	      if(cd.location->findText(var.toString()) > -1)
+		cd.location->setCurrentIndex
+		  (cd.location->findText(var.toString()));
+	      else
+		cd.location->setCurrentIndex
+		  (cd.location->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "id")
+	    {
+	      if(state == biblioteq::EDITABLE)
+		{
+		  str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
+		    var.toString() + tr(")");
+		  m_engWindowTitle = "Modify";
+		}
+	      else
+		{
+		  str = QString(tr("BiblioteQ: View Music CD Details (")) +
+		    var.toString() + tr(")");
+		  m_engWindowTitle = "View";
+		}
+
+	      setWindowTitle(str);
+	      cd.id->setText(var.toString());
+	    }
+	  else if(fieldname == "description")
+	    cd.description->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    cd.keyword->setMultipleLinks("cd_search", "keyword",
+					 var.toString());
+	  else if(fieldname == "cdformat")
+	    {
+	      if(cd.format->findText(var.toString()) > -1)
+		cd.format->setCurrentIndex
+		  (cd.format->findText(var.toString()));
+	      else
+		cd.format->setCurrentIndex
+		  (cd.format->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "artist")
+	    cd.artist->setMultipleLinks
+	      ("cd_search", "artist", var.toString());
+	  else if(fieldname == "cdaudio")
+	    {
+	      if(cd.audio->findText(var.toString()) > -1)
+		cd.audio->setCurrentIndex
+		  (cd.audio->findText(var.toString()));
+	      else
+		cd.audio->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "cdrecording")
+	    {
+	      if(cd.recording_type->findText(var.toString()) > -1)
+		cd.recording_type->setCurrentIndex
+		  (cd.recording_type->findText(var.toString()));
+	      else
+		cd.recording_type->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  cd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(cd.front_image->m_image.isNull())
+		    cd.front_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  cd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(cd.back_image->m_image.isNull())
+		    cd.back_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "accession_number")
+	    cd.accession_number->setText(var.toString());
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      storeData(this);
+    }
+
+  cd.id->setFocus();
+  raise();
+}
+
+void biblioteq_cd::search(const QString &field, const QString &value)
+{
+  m_composer_action->setVisible(true);
+  cd.composer->setVisible(true);
+  cd.composer_label->setVisible(true);
+  cd.id->clear();
+  cd.artist->clear();
+  cd.title->clear();
+  cd.recording_label->clear();
+  cd.description->clear();
+  cd.keyword->clear();
+  cd.category->clear();
+  cd.copiesButton->setVisible(false);
+  cd.tracksButton->setVisible(false);
+  cd.queryButton->setVisible(false);
+  cd.showUserButton->setVisible(false);
+  cd.computeButton->setVisible(false);
+  cd.tracks_lbl->setVisible(false);
+  cd.okButton->setText(tr("&Search"));
+  cd.publication_date_enabled->setVisible(true);
+  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  cd.release_date->setDisplayFormat("yyyy");
+  cd.runtime->setTime(QTime(0, 0, 0));
+  cd.runtime->setMinimumTime(QTime(0, 0, 0));
+  cd.price->setMinimum(-0.01);
+  cd.price->setValue(-0.01);
+  cd.quantity->setMinimum(0);
+  cd.quantity->setValue(0);
+  cd.no_of_discs->setMinimum(0);
+  cd.no_of_discs->setValue(0);
+  cd.audio->insertItem(0, tr("Any"));
+  cd.recording_type->insertItem(0, tr("Any"));
+  cd.format->insertItem(0, tr("Any"));
+  cd.language->insertItem(0, tr("Any"));
+  cd.monetary_units->insertItem(0, tr("Any"));
+  cd.location->insertItem(0, tr("Any"));
+  cd.audio->setCurrentIndex(0);
+  cd.location->setCurrentIndex(0);
+  cd.language->setCurrentIndex(0);
+  cd.monetary_units->setCurrentIndex(0);
+  cd.recording_type->setCurrentIndex(0);
+  cd.format->setCurrentIndex(0);
+  cd.accession_number->clear();
+  m_engWindowTitle = "Search";
+
+  if(field.isEmpty() && value.isEmpty())
+    {
+      QList<QAction *> actions = cd.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+      cd.coverImages->setVisible(false);
+      setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
+      cd.id->setFocus();
+      biblioteq_misc_functions::center(this, m_parentWid);
+      showNormal();
+      activateWindow();
+      raise();
+    }
+  else
+    {
+      if(field == "artist")
+	cd.artist->setPlainText(value);
+      else if(field == "recording_label")
+	cd.recording_label->setPlainText(value);
+      else if(field == "category")
+	cd.category->setPlainText(value);
+      else if(field == "keyword")
+	cd.keyword->setPlainText(value);
+
+      slotGo();
+    }
+}
+
+void biblioteq_cd::slotCancel(void)
+{
+  close();
+}
+
+void biblioteq_cd::slotCloseTracksBrowser(void)
+{
+  trd.table->setCurrentItem(0);
+  trd.table->setColumnCount(0);
+  trd.table->setRowCount(0);
+  m_tracks_diag->close();
+}
+
+void biblioteq_cd::slotComputeRuntime(void)
+{
+  int secs = 0;
+  QTime sum(0, 0, 0);
+  QTime time(0, 0, 0);
+  QSqlQuery query(qmain->getDB());
+
+  query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
+  query.bindValue(0, m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(query.exec())
+    while(query.next())
+      {
+	time = QTime::fromString(query.value(0).toString(), "hh:mm:ss");
+	secs = time.hour() * 3600 + time.minute() * 60 + time.second();
+	sum = sum.addSecs(secs);
+      }
+
+  QApplication::restoreOverrideCursor();
+
+  if(sum.toString("hh:mm:ss") == "00:00:00")
+    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			  tr("The total runtime of the available tracks is "
+			     "zero. Please set the individual runtimes."));
+  else
+    cd.runtime->setTime(QTime::fromString(sum.toString("hh:mm:ss"),
+					  "hh:mm:ss"));
+}
+
+void biblioteq_cd::slotDeleteTrack(void)
+{
+  trd.table->removeRow(trd.table->currentRow());
+}
+
 void biblioteq_cd::slotGo(void)
 {
-  int i = 0;
-  int newq = 0;
-  int maxcopynumber = 0;
-  QString str = "";
+  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
-  QSqlQuery query(qmain->getDB());
+  QString str = "";
+  int i = 0;
+  int maxcopynumber = 0;
+  int newq = 0;
 
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -1004,469 +1503,130 @@ void biblioteq_cd::slotGo(void)
     }
 }
 
-void biblioteq_cd::search(const QString &field, const QString &value)
+void biblioteq_cd::slotInsertTrack(void)
 {
-  m_composer_action->setVisible(true);
-  cd.composer->setVisible(true);
-  cd.composer_label->setVisible(true);
-  cd.id->clear();
-  cd.artist->clear();
-  cd.title->clear();
-  cd.recording_label->clear();
-  cd.description->clear();
-  cd.keyword->clear();
-  cd.category->clear();
-  cd.copiesButton->setVisible(false);
-  cd.tracksButton->setVisible(false);
-  cd.queryButton->setVisible(false);
-  cd.showUserButton->setVisible(false);
-  cd.computeButton->setVisible(false);
-  cd.tracks_lbl->setVisible(false);
-  cd.okButton->setText(tr("&Search"));
-  cd.publication_date_enabled->setVisible(true);
-  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
-  cd.release_date->setDisplayFormat("yyyy");
-  cd.runtime->setTime(QTime(0, 0, 0));
-  cd.runtime->setMinimumTime(QTime(0, 0, 0));
-  cd.price->setMinimum(-0.01);
-  cd.price->setValue(-0.01);
-  cd.quantity->setMinimum(0);
-  cd.quantity->setValue(0);
-  cd.no_of_discs->setMinimum(0);
-  cd.no_of_discs->setValue(0);
-  cd.audio->insertItem(0, tr("Any"));
-  cd.recording_type->insertItem(0, tr("Any"));
-  cd.format->insertItem(0, tr("Any"));
-  cd.language->insertItem(0, tr("Any"));
-  cd.monetary_units->insertItem(0, tr("Any"));
-  cd.location->insertItem(0, tr("Any"));
-  cd.audio->setCurrentIndex(0);
-  cd.location->setCurrentIndex(0);
-  cd.language->setCurrentIndex(0);
-  cd.monetary_units->setCurrentIndex(0);
-  cd.recording_type->setCurrentIndex(0);
-  cd.format->setCurrentIndex(0);
-  cd.accession_number->clear();
-  m_engWindowTitle = "Search";
-
-  if(field.isEmpty() && value.isEmpty())
-    {
-      QList<QAction *> actions = cd.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-      cd.coverImages->setVisible(false);
-      setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
-      cd.id->setFocus();
-      biblioteq_misc_functions::center(this, m_parentWid);
-      showNormal();
-      activateWindow();
-      raise();
-    }
-  else
-    {
-      if(field == "artist")
-	cd.artist->setPlainText(value);
-      else if(field == "recording_label")
-	cd.recording_label->setPlainText(value);
-      else if(field == "category")
-	cd.category->setPlainText(value);
-      else if(field == "keyword")
-	cd.keyword->setPlainText(value);
-
-      slotGo();
-    }
-}
-
-void biblioteq_cd::updateWindow(const int state)
-{
+  QComboBox *comboBox = 0;
+  QSpinBox *trackEdit = 0;
   QString str = "";
-
-  if(state == biblioteq::EDITABLE)
-    {
-      cd.showUserButton->setEnabled(true);
-      cd.copiesButton->setEnabled(true);
-      cd.okButton->setVisible(true);
-      cd.queryButton->setVisible(m_isQueryEnabled);
-      cd.resetButton->setVisible(true);
-      cd.computeButton->setVisible(true);
-      trd.saveButton->setVisible(true);
-      trd.insertButton->setVisible(true);
-      trd.deleteButton->setVisible(true);
-      cd.frontButton->setVisible(true);
-      cd.backButton->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
-	cd.id->text() + tr(")");
-      m_engWindowTitle = "Modify";
-    }
-  else
-    {
-      if(qmain->isGuest())
-	cd.showUserButton->setVisible(false);
-      else
-	cd.showUserButton->setEnabled(true);
-
-      cd.copiesButton->setVisible(false);
-      cd.okButton->setVisible(false);
-      cd.queryButton->setVisible(false);
-      cd.resetButton->setVisible(false);
-      cd.computeButton->setVisible(false);
-      trd.saveButton->setVisible(false);
-      trd.insertButton->setVisible(false);
-      trd.deleteButton->setVisible(false);
-      cd.frontButton->setVisible(false);
-      cd.backButton->setVisible(false);
-      str = QString(tr("BiblioteQ: View Music CD Details (")) +
-	cd.id->text() + tr(")");
-      m_engWindowTitle = "View";
-    }
-
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
-  cd.tracksButton->setEnabled(true);
-}
-
-void biblioteq_cd::modify(const int state)
-{
+  QStringList list;
+  QTableWidgetItem *item = 0;
+  QTimeEdit *timeEdit = 0;
   int i = 0;
-  QString str = "";
-  QString fieldname = "";
-  QVariant var;
-  QSqlQuery query(qmain->getDB());
+  int trow = trd.table->currentRow();
 
-  if(state == biblioteq::EDITABLE)
-    {
-      setReadOnlyFields(this, false);
-      setWindowTitle(tr("BiblioteQ: Modify Music CD Entry"));
-      m_engWindowTitle = "Modify";
-      cd.showUserButton->setEnabled(true);
-      cd.copiesButton->setEnabled(true);
-      cd.okButton->setVisible(true);
-      cd.queryButton->setVisible(m_isQueryEnabled);
-      cd.resetButton->setVisible(true);
-      cd.computeButton->setVisible(true);
-      trd.saveButton->setVisible(true);
-      trd.insertButton->setVisible(true);
-      trd.deleteButton->setVisible(true);
-      cd.frontButton->setVisible(true);
-      cd.backButton->setVisible(true);
-      biblioteq_misc_functions::highlightWidget
-	(cd.id, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(cd.title, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(cd.recording_label->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(cd.artist->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(cd.description->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(cd.category->viewport(), QColor(255, 248, 220));
-    }
+  if(trow < 0)
+    trow = trd.table->rowCount();
   else
-    {
-      setReadOnlyFields(this, true);
-      setWindowTitle(tr("BiblioteQ: View Music CD Details"));
-      m_engWindowTitle = "View";
+    trow += 1;
 
-      if(qmain->isGuest())
-	cd.showUserButton->setVisible(false);
+  trd.table->insertRow(trow);
+  trd.table->setSortingEnabled(false);
+
+  for(i = 1; i <= cd.no_of_discs->value(); i++)
+    list.append(QString::number(i));
+
+  for(i = 0; i < trd.table->columnCount(); i++)
+    {
+      if(i == 1)
+	str = "1";
+      else if(i == 2)
+	str = tr("Title");
+      else if(i == 4 || i == 5)
+	str = tr("UNKNOWN");
       else
-	cd.showUserButton->setEnabled(true);
+	str.clear();
 
-      cd.copiesButton->setVisible(false);
-      cd.okButton->setVisible(false);
-      cd.queryButton->setVisible(false);
-      cd.resetButton->setVisible(false);
-      cd.computeButton->setVisible(false);
-      trd.saveButton->setVisible(false);
-      trd.insertButton->setVisible(false);
-      trd.deleteButton->setVisible(false);
-      cd.frontButton->setVisible(false);
-      cd.backButton->setVisible(false);
-
-      QList<QAction *> actions = cd.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
+      if(i == 0)
 	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
+	  if((comboBox = new(std::nothrow) QComboBox()) != 0)
+	    {
+	      trd.table->setCellWidget(trow, i, comboBox);
+	      comboBox->addItems(list);
+	    }
+	  else
+	    qmain->addError(QString(tr("Memory Error")),
+			    QString(tr("Unable to allocate memory for the "
+				       "\"comboBox\" object. "
+				       "This is a serious problem!")),
+			    QString(""), __FILE__, __LINE__);
 	}
-
-      actions.clear();
-    }
-
-  cd.tracksButton->setEnabled(true);
-  cd.queryButton->setEnabled(true);
-  cd.okButton->setText(tr("&Save"));
-  cd.runtime->setMinimumTime(QTime(0, 0, 1));
-  cd.price->setMinimum(0.00);
-  cd.quantity->setMinimum(1);
-  cd.quantity->setValue(1);
-  cd.no_of_discs->setMinimum(1);
-  cd.no_of_discs->setValue(1);
-  str = m_oid;
-  query.prepare("SELECT id, "
-		"title, "
-		"cdformat, "
-		"artist, "
-		"cddiskcount, "
-		"cdruntime, "
-		"rdate, "
-		"recording_label, "
-		"category, "
-		"price, "
-		"language, "
-		"monetary_units, "
-		"description, "
-		"quantity, "
-		"cdaudio, "
-		"cdrecording, "
-		"location, "
-		"front_cover, "
-		"back_cover, "
-		"keyword, "
-		"accession_number "
-		"FROM "
-		"cd "
-		"WHERE myoid = ?");
-  query.bindValue(0, str);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec() || !query.next())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected CD's data.")),
-	 query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to retrieve the selected CD's "
-			       "data."));
-      close();
-      return;
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-      showNormal();
-      activateWindow();
-      raise();
-
-      QSqlRecord record(query.record());
-
-      for(i = 0; i < record.count(); i++)
+      else if(i == 1)
 	{
-	  var = record.field(i).value();
-	  fieldname = record.fieldName(i);
-
-	  if(fieldname == "title")
-	    cd.title->setText(var.toString());
-	  else if(fieldname == "recording_label")
-	    cd.recording_label->setMultipleLinks
-	      ("cd_search", "recording_label",
-	       var.toString());
-	  else if(fieldname == "rdate")
-	    cd.release_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "price")
-	    cd.price->setValue(var.toDouble());
-	  else if(fieldname == "category")
-	    cd.category->setMultipleLinks("cd_search", "category",
-					  var.toString());
-	  else if(fieldname == "language")
+	  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
 	    {
-	      if(cd.language->findText(var.toString()) > -1)
-		cd.language->setCurrentIndex
-		  (cd.language->findText(var.toString()));
-	      else
-		cd.language->setCurrentIndex
-		  (cd.language->findText(tr("UNKNOWN")));
+	      trd.table->setCellWidget(trow, i, trackEdit);
+	      trackEdit->setMinimum(1);
+	      trackEdit->setValue(trd.table->rowCount());
 	    }
-	  else if(fieldname == "quantity")
-	    cd.quantity->setValue(var.toInt());
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(cd.monetary_units->findText(var.toString()) > -1)
-		cd.monetary_units->setCurrentIndex
-		  (cd.monetary_units->findText(var.toString()));
-	      else
-		cd.monetary_units->setCurrentIndex
-		  (cd.monetary_units->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "cddiskcount")
-	    cd.no_of_discs->setValue(var.toInt());
-	  else if(fieldname == "cdruntime")
-	    cd.runtime->setTime
-	      (QTime::fromString(var.toString(), "hh:mm:ss"));
-	  else if(fieldname == "location")
-	    {
-	      if(cd.location->findText(var.toString()) > -1)
-		cd.location->setCurrentIndex
-		  (cd.location->findText(var.toString()));
-	      else
-		cd.location->setCurrentIndex
-		  (cd.location->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "id")
-	    {
-	      if(state == biblioteq::EDITABLE)
-		{
-		  str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
-		    var.toString() + tr(")");
-		  m_engWindowTitle = "Modify";
-		}
-	      else
-		{
-		  str = QString(tr("BiblioteQ: View Music CD Details (")) +
-		    var.toString() + tr(")");
-		  m_engWindowTitle = "View";
-		}
-
-	      setWindowTitle(str);
-	      cd.id->setText(var.toString());
-	    }
-	  else if(fieldname == "description")
-	    cd.description->setPlainText(var.toString());
-	  else if(fieldname == "keyword")
-	    cd.keyword->setMultipleLinks("cd_search", "keyword",
-					 var.toString());
-	  else if(fieldname == "cdformat")
-	    {
-	      if(cd.format->findText(var.toString()) > -1)
-		cd.format->setCurrentIndex
-		  (cd.format->findText(var.toString()));
-	      else
-		cd.format->setCurrentIndex
-		  (cd.format->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "artist")
-	    cd.artist->setMultipleLinks
-	      ("cd_search", "artist", var.toString());
-	  else if(fieldname == "cdaudio")
-	    {
-	      if(cd.audio->findText(var.toString()) > -1)
-		cd.audio->setCurrentIndex
-		  (cd.audio->findText(var.toString()));
-	      else
-		cd.audio->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "cdrecording")
-	    {
-	      if(cd.recording_type->findText(var.toString()) > -1)
-		cd.recording_type->setCurrentIndex
-		  (cd.recording_type->findText(var.toString()));
-	      else
-		cd.recording_type->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  cd.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(cd.front_image->m_image.isNull())
-		    cd.front_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  cd.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(cd.back_image->m_image.isNull())
-		    cd.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    cd.accession_number->setText(var.toString());
+	  else
+	    qmain->addError(QString(tr("Memory Error")),
+			    QString(tr("Unable to allocate memory for the "
+				       "\"trackEdit\" object. "
+				       "This is a serious problem!")),
+			    QString(""), __FILE__, __LINE__);
 	}
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	textfield->setCursorPosition(0);
-
-      storeData(this);
+      else if(i == 3)
+	{
+	  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
+	    {
+	      trd.table->setCellWidget(trow, i, timeEdit);
+	      timeEdit->setDisplayFormat("hh:mm:ss");
+	    }
+	  else
+	    qmain->addError(QString(tr("Memory Error")),
+			    QString(tr("Unable to allocate memory for the "
+				       "\"timeEdit\" object. "
+				       "This is a serious problem!")),
+			    QString(""), __FILE__, __LINE__);
+	}
+      else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	{
+	  item->setText(str);
+	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+			 Qt::ItemIsEditable);
+	  trd.table->setItem(trow, i, item);
+	}
+      else
+	qmain->addError(QString(tr("Memory Error")),
+			QString(tr("Unable to allocate memory for the "
+				   "\"item\" object. "
+				   "This is a serious problem!")),
+			QString(""), __FILE__, __LINE__);
     }
 
-  cd.id->setFocus();
-  raise();
+  list.clear();
+  trd.table->setSortingEnabled(false);
+
+  for(int i = 0; i < trd.table->columnCount() - 1; i++)
+    trd.table->resizeColumnToContents(i);
 }
 
-void biblioteq_cd::insert(void)
+void biblioteq_cd::slotPopulateCopiesEditor(void)
 {
-  slotReset();
-  cd.id->clear();
-  cd.artist->setPlainText("N/A");
-  cd.title->clear();
-  cd.recording_label->setPlainText("N/A");
-  cd.description->setPlainText("N/A");
-  cd.keyword->clear();
-  cd.category->setPlainText("N/A");
-  cd.copiesButton->setEnabled(false);
-  cd.tracksButton->setEnabled(false);
-  cd.showUserButton->setEnabled(false);
-  cd.queryButton->setEnabled(true);
-  cd.computeButton->setVisible(true);
-  cd.okButton->setText(tr("&Save"));
-  cd.release_date->setDate(QDate::fromString("01/01/2000",
-					     "MM/dd/yyyy"));
-  cd.runtime->setTime(QTime(0, 0, 1));
-  cd.runtime->setMinimumTime(QTime(0, 0, 1));
-  cd.price->setMinimum(0.00);
-  cd.price->setValue(0.00);
-  cd.quantity->setMinimum(1);
-  cd.quantity->setValue(1);
-  cd.no_of_discs->setMinimum(1);
-  cd.no_of_discs->setValue(1);
-  cd.audio->setCurrentIndex(0);
-  cd.location->setCurrentIndex(0);
-  cd.language->setCurrentIndex(0);
-  cd.monetary_units->setCurrentIndex(0);
-  cd.recording_type->setCurrentIndex(0);
-  cd.format->setCurrentIndex(0);
-  cd.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (cd.id, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (cd.title, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (cd.recording_label->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (cd.artist->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (cd.description->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (cd.category->viewport(), QColor(255, 248, 220));
-  setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
-  m_engWindowTitle = "Create";
-  cd.id->setFocus();
-  storeData(this);
-  showNormal();
-  activateWindow();
-  raise();
+  biblioteq_copy_editor *copyeditor = 0;
+
+  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
+      (qobject_cast<QWidget *> (this),
+       static_cast<biblioteq_item *> (this),
+       false,
+       cd.quantity->value(), m_oid,
+       cd.quantity, font(), "CD", cd.id->text().trimmed())) != 0)
+    copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_cd::slotPopulateTracksBrowser(void)
 {
+  QComboBox *comboBox = 0;
+  QProgressDialog progress(m_tracks_diag);
+  QSpinBox *trackEdit = 0;
+  QSqlQuery query(qmain->getDB());
+  QString str = "";
+  QStringList comboBoxList;
+  QStringList list;
+  QTableWidgetItem *item = 0;
+  QTimeEdit * timeEdit = 0;
   int i = -1;
   int j = 0;
-  QString str = "";
-  QSpinBox *trackEdit = 0;
-  QComboBox *comboBox = 0;
-  QSqlQuery query(qmain->getDB());
-  QTimeEdit * timeEdit = 0;
-  QStringList list;
-  QStringList comboBoxList;
-  QProgressDialog progress(m_tracks_diag);
-  QTableWidgetItem *item = 0;
 
   query.prepare("SELECT albumnum, songnum, songtitle, runtime, "
 		"artist, composer "
@@ -1641,269 +1801,61 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     trd.table->resizeColumnToContents(i);
 }
 
-void biblioteq_cd::slotCloseTracksBrowser(void)
+void biblioteq_cd::slotPrint(void)
 {
-  trd.table->setCurrentItem(0);
-  trd.table->setColumnCount(0);
-  trd.table->setRowCount(0);
-  m_tracks_diag->close();
+  m_html = "<html>";
+  m_html += "<b>" + tr("Catalog Number:") + "</b> " +
+    cd.id->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Format:") + "</b> " + cd.format->currentText() + "<br>";
+  m_html += "<b>" + tr("Artist:") + "</b> " +
+    cd.artist->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Number of Discs:") + "</b> " +
+    cd.no_of_discs->text() + "<br>";
+  m_html += "<b>" + tr("Runtime:") + "</b> " + cd.runtime->text() + "<br>";
+  m_html += "<b>" + tr("Audio:") + "</b> " + cd.audio->currentText() + "<br>";
+  m_html += "<b>" + tr("Recording Type:") + "</b> " +
+    cd.recording_type->currentText() + "<br>";
+
+  /*
+  ** General information.
+  */
+
+  m_html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() +
+    "<br>";
+  m_html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
+    toString(Qt::ISODate) + "<br>";
+  m_html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->
+    toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Categories:") + "</b> " +
+    cd.category->toPlainText().trimmed() + "<br>";
+  m_html += "<b>"+ tr("Price:") + "</b> " + cd.price->cleanText() + "<br>";
+  m_html += "<b>" + tr("Language:") + "</b> " +
+    cd.language->currentText() + "<br>";
+  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
+    cd.monetary_units->currentText() + "<br>";
+  m_html += "<b>" + tr("Copies:") + "</b> " + cd.quantity->text() + "<br>";
+  m_html += "<b>" + tr("Location:") + "</b> " +
+    cd.location->currentText() + "<br>";
+  m_html += "<b>" + tr("Abstract:") + "</b> " +
+    cd.description->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Keywords:") + "</b> " +
+    cd.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
+    cd.accession_number->text().trimmed();
+  m_html += "</html>";
+  print(this);
 }
 
-void biblioteq_cd::slotInsertTrack(void)
+void biblioteq_cd::slotPublicationDateEnabled(bool state)
 {
-  int i = 0;
-  int trow = trd.table->currentRow();
-  QString str = "";
-  QSpinBox *trackEdit = 0;
-  QStringList list;
-  QComboBox *comboBox = 0;
-  QTimeEdit *timeEdit = 0;
-  QTableWidgetItem *item = 0;
+  cd.release_date->setEnabled(state);
 
-  if(trow < 0)
-    trow = trd.table->rowCount();
-  else
-    trow += 1;
-
-  trd.table->insertRow(trow);
-  trd.table->setSortingEnabled(false);
-
-  for(i = 1; i <= cd.no_of_discs->value(); i++)
-    list.append(QString::number(i));
-
-  for(i = 0; i < trd.table->columnCount(); i++)
-    {
-      if(i == 1)
-	str = "1";
-      else if(i == 2)
-	str = tr("Title");
-      else if(i == 4 || i == 5)
-	str = tr("UNKNOWN");
-      else
-	str.clear();
-
-      if(i == 0)
-	{
-	  if((comboBox = new(std::nothrow) QComboBox()) != 0)
-	    {
-	      trd.table->setCellWidget(trow, i, comboBox);
-	      comboBox->addItems(list);
-	    }
-	  else
-	    qmain->addError(QString(tr("Memory Error")),
-			    QString(tr("Unable to allocate memory for the "
-				       "\"comboBox\" object. "
-				       "This is a serious problem!")),
-			    QString(""), __FILE__, __LINE__);
-	}
-      else if(i == 1)
-	{
-	  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
-	    {
-	      trd.table->setCellWidget(trow, i, trackEdit);
-	      trackEdit->setMinimum(1);
-	      trackEdit->setValue(trd.table->rowCount());
-	    }
-	  else
-	    qmain->addError(QString(tr("Memory Error")),
-			    QString(tr("Unable to allocate memory for the "
-				       "\"trackEdit\" object. "
-				       "This is a serious problem!")),
-			    QString(""), __FILE__, __LINE__);
-	}
-      else if(i == 3)
-	{
-	  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
-	    {
-	      trd.table->setCellWidget(trow, i, timeEdit);
-	      timeEdit->setDisplayFormat("hh:mm:ss");
-	    }
-	  else
-	    qmain->addError(QString(tr("Memory Error")),
-			    QString(tr("Unable to allocate memory for the "
-				       "\"timeEdit\" object. "
-				       "This is a serious problem!")),
-			    QString(""), __FILE__, __LINE__);
-	}
-      else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	{
-	  item->setText(str);
-	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-			 Qt::ItemIsEditable);
-	  trd.table->setItem(trow, i, item);
-	}
-      else
-	qmain->addError(QString(tr("Memory Error")),
-			QString(tr("Unable to allocate memory for the "
-				   "\"item\" object. "
-				   "This is a serious problem!")),
-			QString(""), __FILE__, __LINE__);
-    }
-
-  list.clear();
-  trd.table->setSortingEnabled(false);
-
-  for(int i = 0; i < trd.table->columnCount() - 1; i++)
-    trd.table->resizeColumnToContents(i);
+  if(!state)
+    cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 }
 
-void biblioteq_cd::slotDeleteTrack(void)
+void biblioteq_cd::slotQuery(void)
 {
-  trd.table->removeRow(trd.table->currentRow());
-}
-
-void biblioteq_cd::slotSaveTracks(void)
-{
-  int i = 0;
-  QString errormsg = "";
-  QString lastError = "";
-  QSqlQuery query(qmain->getDB());
-  QProgressDialog progress(this);
-
-  for(i = 0; i < trd.table->rowCount(); i++)
-    if(trd.table->item(i, 2) != 0 &&
-       trd.table->item(i, 2)->text().trimmed().isEmpty())
-      {
-	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
-	  tr(" contains an empty Song Title.");
-	QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: User Error"),
-			      errormsg);
-	return;
-      }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!qmain->getDB().transaction())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: Database Error"),
-			    tr("Unable to create a database transaction."));
-      return;
-    }
-
-  QApplication::restoreOverrideCursor();
-  query.prepare("DELETE FROM cd_songs WHERE item_oid = ?");
-  query.bindValue(0, m_oid);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to purge track data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      if(!qmain->getDB().rollback())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Rollback failure.")),
-			qmain->getDB().lastError().text(),
-			__FILE__, __LINE__);
-
-      QApplication::restoreOverrideCursor();
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-      progress.setCancelButton(0);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-      progress.setLabelText(tr("Saving the track data..."));
-      progress.setMaximum(trd.table->rowCount());
-      progress.setMinimum(0);
-      progress.show();
-      progress.update();
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      for(i = 0; i < trd.table->rowCount(); i++)
-	{
-	  query.prepare("INSERT INTO cd_songs ("
-			"item_oid, "
-			"albumnum, "
-			"songnum, "
-			"songtitle, "
-			"runtime, "
-			"artist, "
-			"composer "
-			") "
-			"VALUES (?, "
-			"?, ?, ?, ?, ?, ?)");
-	  query.bindValue(0, m_oid);
-
-	  if(trd.table->cellWidget(i, 0) != 0)
-	    query.bindValue(1, qobject_cast<QComboBox *>
-			    (trd.table->cellWidget(i, 0))->currentText());
-
-	  if(trd.table->cellWidget(i, 1) != 0)
-	    query.bindValue(2, qobject_cast<QSpinBox *>
-			    (trd.table->cellWidget(i, 1))->value());
-
-	  if(trd.table->item(i, 2) != 0)
-	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
-
-	  if(trd.table->cellWidget(i, 3) != 0)
-	    query.bindValue
-	      (4, qobject_cast<QTimeEdit *> (trd.table->
-					     cellWidget(i, 3))->time().
-	       toString("hh:mm:ss"));
-
-	  if(trd.table->item(i, 4) != 0)
-	    query.bindValue(5, trd.table->item(i, 4)->text().trimmed());
-
-	  if(trd.table->item(i, 2) != 0)
-	    query.bindValue(6, trd.table->item(i, 5)->text().trimmed());
-
-	  if(!query.exec())
-	    {
-	      qmain->addError(QString(tr("Database Error")),
-			      QString(tr("Unable to create track data.")),
-			      query.lastError().text(), __FILE__, __LINE__);
-	      lastError = query.lastError().text();
-	    }
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-	}
-
-      progress.close();
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      if(!qmain->getDB().commit())
-	{
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Commit failure.")),
-			  qmain->getDB().lastError().text(), __FILE__,
-			  __LINE__);
-	  qmain->getDB().rollback();
-	}
-
-      QApplication::restoreOverrideCursor();
-
-      if(!lastError.isEmpty() ||
-	 qmain->getDB().lastError().isValid())
-	QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: Database Error"),
-			      tr("Some or all of the track data has not "
-				 "been saved."));
-
-      /*
-      ** Update the runtime.
-      */
-
-      if(lastError.isEmpty() &&
-	 !qmain->getDB().lastError().isValid())
-	slotComputeRuntime();
-    }
 }
 
 void biblioteq_cd::slotReset(void)
@@ -2113,138 +2065,158 @@ void biblioteq_cd::slotReset(void)
     }
 }
 
-void biblioteq_cd::closeEvent(QCloseEvent *e)
+void biblioteq_cd::slotSaveTracks(void)
 {
-  if(m_engWindowTitle.contains("Create") ||
-     m_engWindowTitle.contains("Modify"))
-    if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
-
-	  return;
-	}
-
-  qmain->removeCD(this);
-}
-
-void biblioteq_cd::slotCancel(void)
-{
-  close();
-}
-
-void biblioteq_cd::slotPopulateCopiesEditor(void)
-{
-  biblioteq_copy_editor *copyeditor = 0;
-
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       static_cast<biblioteq_item *> (this),
-       false,
-       cd.quantity->value(), m_oid,
-       cd.quantity, font(), "CD", cd.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
-}
-
-void biblioteq_cd::slotShowUsers(void)
-{
-  int state = 0;
-  biblioteq_borrowers_editor *borrowerseditor = 0;
-
-  if(!cd.okButton->isHidden())
-    state = biblioteq::EDITABLE;
-  else
-    state = biblioteq::VIEW_ONLY;
-
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
-       cd.quantity->value(), m_oid, cd.id->text(), font(), "CD",
-       state)) != 0)
-    borrowerseditor->showUsers();
-}
-
-void biblioteq_cd::slotQuery(void)
-{
-}
-
-void biblioteq_cd::slotComputeRuntime(void)
-{
-  int secs = 0;
-  QTime sum(0, 0, 0);
-  QTime time(0, 0, 0);
+  QProgressDialog progress(this);
   QSqlQuery query(qmain->getDB());
+  QString errormsg = "";
+  QString lastError = "";
+  int i = 0;
 
-  query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
+  for(i = 0; i < trd.table->rowCount(); i++)
+    if(trd.table->item(i, 2) != 0 &&
+       trd.table->item(i, 2)->text().trimmed().isEmpty())
+      {
+	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
+	  tr(" contains an empty Song Title.");
+	QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: User Error"),
+			      errormsg);
+	return;
+      }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!qmain->getDB().transaction())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to create a database transaction.")),
+		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create a database transaction."));
+      return;
+    }
+
+  QApplication::restoreOverrideCursor();
+  query.prepare("DELETE FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, m_oid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  if(query.exec())
-    while(query.next())
-      {
-	time = QTime::fromString(query.value(0).toString(), "hh:mm:ss");
-	secs = time.hour() * 3600 + time.minute() * 60 + time.second();
-	sum = sum.addSecs(secs);
-      }
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to purge track data.")),
+		      query.lastError().text(), __FILE__, __LINE__);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QApplication::restoreOverrideCursor();
+      if(!qmain->getDB().rollback())
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Rollback failure.")),
+			qmain->getDB().lastError().text(),
+			__FILE__, __LINE__);
 
-  if(sum.toString("hh:mm:ss") == "00:00:00")
-    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			  tr("The total runtime of the available tracks is "
-			     "zero. Please set the individual runtimes."));
+      QApplication::restoreOverrideCursor();
+    }
   else
-    cd.runtime->setTime(QTime::fromString(sum.toString("hh:mm:ss"),
-					  "hh:mm:ss"));
-}
+    {
+      QApplication::restoreOverrideCursor();
+      progress.setCancelButton(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.setLabelText(tr("Saving the track data..."));
+      progress.setMaximum(trd.table->rowCount());
+      progress.setMinimum(0);
+      progress.show();
+      progress.update();
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
 
-void biblioteq_cd::slotPrint(void)
-{
-  m_html = "<html>";
-  m_html += "<b>" + tr("Catalog Number:") + "</b> " +
-    cd.id->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Format:") + "</b> " + cd.format->currentText() + "<br>";
-  m_html += "<b>" + tr("Artist:") + "</b> " +
-    cd.artist->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Number of Discs:") + "</b> " +
-    cd.no_of_discs->text() + "<br>";
-  m_html += "<b>" + tr("Runtime:") + "</b> " + cd.runtime->text() + "<br>";
-  m_html += "<b>" + tr("Audio:") + "</b> " + cd.audio->currentText() + "<br>";
-  m_html += "<b>" + tr("Recording Type:") + "</b> " +
-    cd.recording_type->currentText() + "<br>";
+      for(i = 0; i < trd.table->rowCount(); i++)
+	{
+	  query.prepare("INSERT INTO cd_songs ("
+			"item_oid, "
+			"albumnum, "
+			"songnum, "
+			"songtitle, "
+			"runtime, "
+			"artist, "
+			"composer "
+			") "
+			"VALUES (?, "
+			"?, ?, ?, ?, ?, ?)");
+	  query.bindValue(0, m_oid);
 
-  /*
-  ** General information.
-  */
+	  if(trd.table->cellWidget(i, 0) != 0)
+	    query.bindValue(1, qobject_cast<QComboBox *>
+			    (trd.table->cellWidget(i, 0))->currentText());
 
-  m_html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() +
-    "<br>";
-  m_html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
-    toString(Qt::ISODate) + "<br>";
-  m_html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->
-    toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Categories:") + "</b> " +
-    cd.category->toPlainText().trimmed() + "<br>";
-  m_html += "<b>"+ tr("Price:") + "</b> " + cd.price->cleanText() + "<br>";
-  m_html += "<b>" + tr("Language:") + "</b> " +
-    cd.language->currentText() + "<br>";
-  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
-    cd.monetary_units->currentText() + "<br>";
-  m_html += "<b>" + tr("Copies:") + "</b> " + cd.quantity->text() + "<br>";
-  m_html += "<b>" + tr("Location:") + "</b> " +
-    cd.location->currentText() + "<br>";
-  m_html += "<b>" + tr("Abstract:") + "</b> " +
-    cd.description->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Keywords:") + "</b> " +
-    cd.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b> " +
-    cd.accession_number->text().trimmed();
-  m_html += "</html>";
-  print(this);
+	  if(trd.table->cellWidget(i, 1) != 0)
+	    query.bindValue(2, qobject_cast<QSpinBox *>
+			    (trd.table->cellWidget(i, 1))->value());
+
+	  if(trd.table->item(i, 2) != 0)
+	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
+
+	  if(trd.table->cellWidget(i, 3) != 0)
+	    query.bindValue
+	      (4, qobject_cast<QTimeEdit *> (trd.table->
+					     cellWidget(i, 3))->time().
+	       toString("hh:mm:ss"));
+
+	  if(trd.table->item(i, 4) != 0)
+	    query.bindValue(5, trd.table->item(i, 4)->text().trimmed());
+
+	  if(trd.table->item(i, 2) != 0)
+	    query.bindValue(6, trd.table->item(i, 5)->text().trimmed());
+
+	  if(!query.exec())
+	    {
+	      qmain->addError(QString(tr("Database Error")),
+			      QString(tr("Unable to create track data.")),
+			      query.lastError().text(), __FILE__, __LINE__);
+	      lastError = query.lastError().text();
+	    }
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+	}
+
+      progress.close();
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      if(!qmain->getDB().commit())
+	{
+	  qmain->addError(QString(tr("Database Error")),
+			  QString(tr("Commit failure.")),
+			  qmain->getDB().lastError().text(), __FILE__,
+			  __LINE__);
+	  qmain->getDB().rollback();
+	}
+
+      QApplication::restoreOverrideCursor();
+
+      if(!lastError.isEmpty() ||
+	 qmain->getDB().lastError().isValid())
+	QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: Database Error"),
+			      tr("Some or all of the track data has not "
+				 "been saved."));
+
+      /*
+      ** Update the runtime.
+      */
+
+      if(lastError.isEmpty() &&
+	 !qmain->getDB().lastError().isValid())
+	slotComputeRuntime();
+    }
 }
 
 void biblioteq_cd::slotSelectImage(void)
@@ -2308,39 +2280,67 @@ void biblioteq_cd::slotSelectImage(void)
     }
 }
 
-void biblioteq_cd::duplicate(const QString &p_oid, const int state)
+void biblioteq_cd::slotShowUsers(void)
 {
-  modify(state); // Initial population.
-  cd.copiesButton->setEnabled(false);
-  cd.tracksButton->setEnabled(false);
-  cd.showUserButton->setEnabled(false);
-  m_oid = p_oid;
-  setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
-  m_engWindowTitle = "Create";
+  biblioteq_borrowers_editor *borrowerseditor = 0;
+  int state = 0;
+
+  if(!cd.okButton->isHidden())
+    state = biblioteq::EDITABLE;
+  else
+    state = biblioteq::VIEW_ONLY;
+
+  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
+      (qobject_cast<QWidget *> (this), static_cast<biblioteq_item *> (this),
+       cd.quantity->value(), m_oid, cd.id->text(), font(), "CD",
+       state)) != 0)
+    borrowerseditor->showUsers();
 }
 
-void biblioteq_cd::changeEvent(QEvent *event)
+void biblioteq_cd::updateWindow(const int state)
 {
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  cd.retranslateUi(this);
-	  trd.retranslateUi(m_tracks_diag);
-	  break;
-	}
-      default:
-	break;
-      }
+  QString str = "";
 
-  QMainWindow::changeEvent(event);
-}
+  if(state == biblioteq::EDITABLE)
+    {
+      cd.showUserButton->setEnabled(true);
+      cd.copiesButton->setEnabled(true);
+      cd.okButton->setVisible(true);
+      cd.queryButton->setVisible(m_isQueryEnabled);
+      cd.resetButton->setVisible(true);
+      cd.computeButton->setVisible(true);
+      trd.saveButton->setVisible(true);
+      trd.insertButton->setVisible(true);
+      trd.deleteButton->setVisible(true);
+      cd.frontButton->setVisible(true);
+      cd.backButton->setVisible(true);
+      str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
+	cd.id->text() + tr(")");
+      m_engWindowTitle = "Modify";
+    }
+  else
+    {
+      if(qmain->isGuest())
+	cd.showUserButton->setVisible(false);
+      else
+	cd.showUserButton->setEnabled(true);
 
-void biblioteq_cd::slotPublicationDateEnabled(bool state)
-{
-  cd.release_date->setEnabled(state);
+      cd.copiesButton->setVisible(false);
+      cd.okButton->setVisible(false);
+      cd.queryButton->setVisible(false);
+      cd.resetButton->setVisible(false);
+      cd.computeButton->setVisible(false);
+      trd.saveButton->setVisible(false);
+      trd.insertButton->setVisible(false);
+      trd.deleteButton->setVisible(false);
+      cd.frontButton->setVisible(false);
+      cd.backButton->setVisible(false);
+      str = QString(tr("BiblioteQ: View Music CD Details (")) +
+	cd.id->text() + tr(")");
+      m_engWindowTitle = "View";
+    }
 
-  if(!state)
-    cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
+  cd.tracksButton->setEnabled(true);
 }
