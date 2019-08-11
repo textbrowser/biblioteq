@@ -21,6 +21,7 @@
 #include "ui_biblioteq_cdinfo.h"
 #include "ui_biblioteq_tracks.h"
 
+class biblioteq;
 class biblioteq_copy_editor;
 
 class biblioteq_cd: public QMainWindow, public biblioteq_item
@@ -28,7 +29,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_cd(QMainWindow *parentArg,
+  biblioteq_cd(biblioteq *parentArg,
 	       const QString &oidArg,
 	       const int rowArg);
   ~biblioteq_cd();
@@ -50,6 +51,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   QString m_engWindowTitle;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
+  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
 

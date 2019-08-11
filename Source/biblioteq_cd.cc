@@ -19,13 +19,13 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_cd.h"
 
-extern biblioteq *qmain;
-
-biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
+biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QString &oidArg,
 			   const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
+  qmain = parentArg;
+
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
