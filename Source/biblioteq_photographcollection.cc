@@ -23,13 +23,13 @@
 #include "biblioteq_photographcollection.h"
 #include "ui_biblioteq_photographview.h"
 
-extern biblioteq *qmain;
-
 biblioteq_photographcollection::biblioteq_photographcollection
-(QMainWindow *parentArg,
+(biblioteq *parentArg,
  const QString &oidArg,
  const int rowArg):QMainWindow(), biblioteq_item(rowArg)
 {
+  qmain = parentArg;
+
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QGraphicsScene *scene3 = 0;
@@ -1137,6 +1137,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 	  (qmain->getDB(),
 	   m_oid,
 	   -1,
+	   photographsPerPage(),
 	   dialog.selectedFiles().value(0),
 	   this);
       else if(action ==
@@ -1149,6 +1150,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 	  (qmain->getDB(),
 	   m_oid,
 	   pc.page->currentText().toInt(),
+	   photographsPerPage(),
 	   dialog.selectedFiles().value(0),
 	   this);
       else

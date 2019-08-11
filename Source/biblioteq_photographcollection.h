@@ -19,6 +19,7 @@
 #include "ui_biblioteq_photograph.h"
 #include "ui_biblioteq_photographinfo.h"
 
+class biblioteq;
 class biblioteq_bgraphicsscene;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;
@@ -29,11 +30,10 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_photographcollection(QMainWindow *parentArg,
+  biblioteq_photographcollection(biblioteq *parentArg,
 				 const QString &oidArg,
 				 const int rowArg);
   ~biblioteq_photographcollection();
-  static int photographsPerPage(void);
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state, const QString &behavior = "");
@@ -52,8 +52,10 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   QString m_itemOid;
   Ui_pcDialog pc;
   Ui_photographDialog photo;
+  biblioteq *qmain;
   biblioteq_bgraphicsscene *m_scene;
   bool verifyItemFields(void);
+  int photographsPerPage(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void loadPhotographFromItem(QGraphicsScene *scene,

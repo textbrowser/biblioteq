@@ -1677,6 +1677,7 @@ void biblioteq_misc_functions::exportPhotographs
 (const QSqlDatabase &db,
  const QString &collectionOid,
  const int pageOffset,
+ const int photographsPerPage,
  const QString &destinationPath,
  QWidget *parent)
 {
@@ -1702,15 +1703,13 @@ void biblioteq_misc_functions::exportPhotographs
     }
   else
     {
-      int integer = biblioteq_photographcollection::photographsPerPage();
-
       query.prepare
 	(QString("SELECT image FROM photograph WHERE "
 		 "collection_oid = ? AND image IS NOT NULL "
 		 "LIMIT %1 "
 		 "OFFSET %2").
-	 arg(integer).
-	 arg(integer * (pageOffset - 1)));
+	 arg(photographsPerPage).
+	 arg(photographsPerPage * (pageOffset - 1)));
       query.bindValue(0, collectionOid);
     }
 

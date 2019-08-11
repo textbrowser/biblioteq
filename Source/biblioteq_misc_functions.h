@@ -140,6 +140,7 @@ class biblioteq_misc_functions
   static void exportPhotographs(const QSqlDatabase &,
 				const QString &,
 				const int,
+				const int,
 				const QString &,
 				QWidget *parent);
   static void grantPrivs(const QString &,
