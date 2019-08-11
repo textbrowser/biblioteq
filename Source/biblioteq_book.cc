@@ -2211,10 +2211,13 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
 
   if((copyeditor = new(std::nothrow) biblioteq_copy_editor_book
       (qobject_cast<QWidget *> (this),
+       qmain,
        static_cast<biblioteq_item *> (this),
        false,
-       id.quantity->value(), m_oid,
-       id.quantity, font(),
+       id.quantity->value(),
+       m_oid,
+       id.quantity,
+       font(),
        id.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }

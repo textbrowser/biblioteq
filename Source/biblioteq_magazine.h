@@ -71,8 +71,8 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   QString m_subType;
   Ui_magDialog ma;
   Ui_passwordDialog ui_p;
-  bool m_duplicate;
   biblioteq *qmain;
+  bool m_duplicate;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &digest,

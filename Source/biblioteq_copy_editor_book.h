@@ -20,12 +20,15 @@
 #include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_bookcopybrowser.h"
 
+class biblioteq;
+
 class biblioteq_copy_editor_book: public biblioteq_copy_editor
 {
   Q_OBJECT
 
  public:
   biblioteq_copy_editor_book(QWidget *parent,
+			     biblioteq *biblioteq,
 			     biblioteq_item *bitemArg,
 			     const bool showForLendingArg,
 			     const int quantityArg,
@@ -65,6 +68,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
   Ui_bookcopybrowser m_cb;
+  biblioteq *qmain;
   biblioteq_item *m_bitem;
   bool m_showForLending;
   int m_quantity;

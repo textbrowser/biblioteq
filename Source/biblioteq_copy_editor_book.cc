@@ -5,10 +5,9 @@
 #include "biblioteq.h"
 #include "biblioteq_copy_editor_book.h"
 
-extern biblioteq *qmain;
-
 biblioteq_copy_editor_book::biblioteq_copy_editor_book
 (QWidget *parent,
+ biblioteq *biblioteq,
  biblioteq_item *bitemArg,
  const bool showForLendingArg,
  const int quantityArg,
@@ -17,6 +16,8 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
  const QFont &font,
  const QString &uniqueIdArg):biblioteq_copy_editor(parent)
 {
+  qmain = biblioteq;
+
   if(parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);
   else
