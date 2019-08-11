@@ -1083,7 +1083,7 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
 void biblioteq::quit(void)
 {
-  QApplication::quit();
+  QCoreApplication::quit();
 }
 
 void biblioteq::showMain(void)
@@ -1275,6 +1275,7 @@ void biblioteq::slotExit(void)
 
   settings.setValue("mainwindowState", saveState());
   settings.sync();
+  slotLastWindowClosed();
   biblioteq::quit();
 }
 
