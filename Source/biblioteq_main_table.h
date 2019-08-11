@@ -12,6 +12,8 @@
 #include <QTableWidget>
 #include <QTableWidgetItem>
 
+class biblioteq;
+
 class biblioteq_main_table: public QTableWidget
 {
   Q_OBJECT
@@ -30,10 +32,12 @@ class biblioteq_main_table: public QTableWidget
 		  const QString &t,
 		  const QString &roles);
   void setColumnNames(const QStringList &list);
+  void setQMain(biblioteq *biblioteq);
 
  private:
   QHash<QString, QList<int> > m_hiddenColumns;
   QVector<QString> m_columnHeaderIndexes;
+  biblioteq *qmain;
   void setColumns(const QString &username,
 		  const QString &type,
 		  const QString &roles);

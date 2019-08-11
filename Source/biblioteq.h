@@ -394,6 +394,7 @@ class biblioteq: public QMainWindow
   void slotInsertVideoGame(void);
   void slotJournSearch(void);
   void slotLanguageChanged(void);
+  void slotLastWindowClosed(void);
   void slotListOverdueItems(void);
   void slotListReservedItems(void);
   void slotMagSearch(void);

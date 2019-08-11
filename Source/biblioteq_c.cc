@@ -657,6 +657,14 @@ void biblioteq::slotInsertGreyLiterature(void)
     gl->insert();
 }
 
+void biblioteq::slotLastWindowClosed(void)
+{
+  if(ui.actionAutomaticallySaveSettingsOnExit->isChecked())
+    slotSaveConfig();
+
+  cleanup();
+}
+
 void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 {
   QSettings settings;

@@ -422,4 +422,5 @@
      	*.cc (TBD)
 	*.h (TBD)
 230. Remove qmain singleton. (Done)
-231. Review and remove Q_UNUSED. (TBD)
+231. Review and remove Q_UNUSED. (Done)
+232. Propagate qmain to biblioteq_hyperlinked_text_edit. (TBD)

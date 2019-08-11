@@ -300,7 +300,8 @@ void biblioteq_borrowers_editor::showUsers(void)
 						     query.boundValues(),
 						     qmain->getDB(),
 						     __FILE__,
-						     __LINE__));
+						     __LINE__,
+						     qmain));
     }
   else
     progress2.setMaximum(query.size());

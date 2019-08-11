@@ -9,11 +9,10 @@
 #include "biblioteq.h"
 #include "biblioteq_main_table.h"
 
-extern biblioteq *qmain;
-
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
+  qmain = 0;
   setAcceptDrops(false);
   setDragEnabled(false);
 #if QT_VERSION >= 0x050000
@@ -557,4 +556,9 @@ void biblioteq_main_table::setColumns(const QString &username,
 
   for(int i = 0; i < m_hiddenColumns[indexstr].size(); i++)
     setColumnHidden(m_hiddenColumns[indexstr][i], true);
+}
+
+void biblioteq_main_table::setQMain(biblioteq *biblioteq)
+{
+  qmain = biblioteq;
 }

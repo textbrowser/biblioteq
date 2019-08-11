@@ -22,6 +22,7 @@
 #include <QVariant>
 
 class QMainWindow;
+class biblioteq;
 
 class biblioteq_misc_functions
 {
@@ -115,11 +116,13 @@ class biblioteq_misc_functions
 			     const QMap<QString, QVariant> &,
 			     const QSqlDatabase &,
 			     const char *,
-			     const int);
+			     const int,
+			     biblioteq *);
   static int sqliteQuerySize(const QString &,
 			     const QSqlDatabase &,
 			     const char *,
-			     const int);
+			     const int,
+			     biblioteq *);
   static qint64 getSqliteUniqueId(const QSqlDatabase &, QString &);
   static void DBAccount(const QString &,
 			const QSqlDatabase &,

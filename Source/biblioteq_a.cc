@@ -91,7 +91,6 @@ extern "C"
 QString biblioteq::s_locale = "";
 QTranslator *biblioteq::s_appTranslator = 0;
 QTranslator *biblioteq::s_qtTranslator = 0;
-biblioteq *qmain = 0;
 
 int main(int argc, char *argv[])
 {
@@ -196,10 +195,9 @@ int main(int argc, char *argv[])
 #endif
   qapplication.installTranslator(biblioteq::s_appTranslator);
 
-  if((qmain = new(std::nothrow) biblioteq()) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  biblioteq biblioteq;
 
-  qmain->showMain();
+  biblioteq.showMain();
 
   /*
   ** Enter an endless loop.
@@ -234,6 +232,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QMenu *menu1 = 0;
 
   ui.setupUi(this);
+  ui.table->setQMain(this);
 
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
@@ -253,7 +252,7 @@ biblioteq::biblioteq(void):QMainWindow()
   else
     m_menuCategoryActionGroup->setExclusive(true);
 
-  if((m_otheroptions = new(std::nothrow) biblioteq_otheroptions()) == 0)
+  if((m_otheroptions = new(std::nothrow) biblioteq_otheroptions(this)) == 0)
     quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_pass_diag = new(std::nothrow) QDialog(this)) == 0)
@@ -293,6 +292,10 @@ biblioteq::biblioteq(void):QMainWindow()
   m_configToolMenu->setTearOffEnabled(true);
   m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
   m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
+  connect(QCoreApplication::instance(),
+	  SIGNAL(lastWindowClosed(void)),
+	  this,
+	  SLOT(slotLastWindowClosed(void)));
   connect(menu1->addAction(tr("Reset ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Title")),
@@ -855,7 +858,6 @@ biblioteq::biblioteq(void):QMainWindow()
 
 biblioteq::~biblioteq()
 {
-  qmain = 0;
 }
 
 QString biblioteq::getRoles(void) const
@@ -1076,22 +1078,11 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 	     << file << tr(", line ")
 	     << line << tr(".");
 
-  if(qmain != 0)
-    qmain->cleanup();
-
   exit(EXIT_FAILURE);
 }
 
 void biblioteq::quit(void)
 {
-  if(qmain != 0)
-    {
-      if(qmain->ui.actionAutomaticallySaveSettingsOnExit->isChecked())
-	qmain->slotSaveConfig();
-
-      qmain->cleanup();
-    }
-
   QApplication::quit();
 }
 
@@ -5352,7 +5343,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
     bb.table->setRowCount
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
-						 m_db, __FILE__, __LINE__));
+						 m_db,
+						 __FILE__,
+						 __LINE__,
+						 this));
 
   progress->setModal(true);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -5363,7 +5357,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
     progress->setMaximum
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
-						 m_db, __FILE__, __LINE__));
+						 m_db,
+						 __FILE__,
+						 __LINE__,
+						 this));
   else
     progress->setMaximum(query.size());
 
@@ -7932,7 +7929,10 @@ void biblioteq::slotShowHistory(void)
     history.table->setRowCount
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
-						 m_db, __FILE__, __LINE__));
+						 m_db,
+						 __FILE__,
+						 __LINE__,
+						 this));
 
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
@@ -9152,6 +9152,7 @@ void biblioteq::prepareFilter(void)
 void biblioteq::slotSqliteFileSelected(bool state)
 {
   Q_UNUSED(state);
+
   QAction *action = qobject_cast<QAction *> (sender());
 
   if(!action)
@@ -9565,7 +9566,8 @@ void biblioteq::slotExportAsCSV(void)
     }
 }
 
-void biblioteq::slotSectionResized(int logicalIndex, int oldSize,
+void biblioteq::slotSectionResized(int logicalIndex,
+				   int oldSize,
 				   int newSize)
 {
   Q_UNUSED(logicalIndex);

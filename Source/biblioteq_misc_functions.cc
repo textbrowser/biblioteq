@@ -16,8 +16,6 @@
 #include "biblioteq.h"
 #include "biblioteq_misc_functions.h"
 
-extern biblioteq *qmain;
-
 QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QString &which,
 					  const QString &typeArg,
@@ -1236,7 +1234,9 @@ int biblioteq_misc_functions::sqliteQuerySize
 (const QString &querystr,
  const QMap<QString, QVariant> &boundValues,
  const QSqlDatabase &db,
- const char *file, const int line)
+ const char *file,
+ const int line,
+ biblioteq *qmain)
 {
   int count = 0;
 
@@ -1270,7 +1270,8 @@ int biblioteq_misc_functions::sqliteQuerySize
 int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
 					      const QSqlDatabase &db,
 					      const char *file,
-					      const int line)
+					      const int line,
+					      biblioteq *qmain)
 {
   int count = 0;
 

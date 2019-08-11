@@ -1700,7 +1700,9 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 	  (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						     query.boundValues(),
 						     qmain->getDB(),
-						     __FILE__, __LINE__));
+						     __FILE__,
+						     __LINE__,
+						     qmain));
     }
   else
     progress.setMaximum(query.size());

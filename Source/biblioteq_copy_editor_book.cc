@@ -430,7 +430,9 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						     query.boundValues(),
 						     qmain->getDB(),
-						     __FILE__, __LINE__));
+						     __FILE__,
+						     __LINE__,
+						     qmain));
     }
   else
     progress2.setMaximum(query.size());

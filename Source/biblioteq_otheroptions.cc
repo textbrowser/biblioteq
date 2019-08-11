@@ -12,11 +12,10 @@
 #include "biblioteq.h"
 #include "biblioteq_otheroptions.h"
 
-extern biblioteq *qmain;
-
-biblioteq_otheroptions::biblioteq_otheroptions(void):QMainWindow()
+biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 {
   m_ui.setupUi(this);
+  qmain = parent;
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,

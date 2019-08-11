@@ -3073,7 +3073,7 @@ int biblioteq::populateTable(const int search_type_arg,
   if(limit == -1)
     {
       int size = biblioteq_misc_functions::sqliteQuerySize
-	(searchstr, m_db, __FILE__, __LINE__);
+	(searchstr, m_db, __FILE__, __LINE__, this);
 
       if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
 	ui.graphicsView->setSceneRect(0, 0,

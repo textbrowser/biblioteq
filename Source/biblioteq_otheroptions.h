@@ -13,18 +13,21 @@
 
 #include "ui_biblioteq_otheroptions.h"
 
+class biblioteq;
+
 class biblioteq_otheroptions: public QMainWindow
 {
   Q_OBJECT
 
  public:
-  biblioteq_otheroptions(void);
+  biblioteq_otheroptions(biblioteq *parent);
   ~biblioteq_otheroptions();
   QString publicationDateFormat(const QString &itemType) const;
   void prepareSettings(void);
 
  private:
   Ui_otheroptions m_ui;
+  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
