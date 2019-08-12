@@ -3,8 +3,6 @@
 
 #include "ui_biblioteq_copybrowser.h"
 
-#include <QDialog>
-
 class QSpinBox;
 class biblioteq;
 class biblioteq_item;

@@ -4,10 +4,6 @@
 #include "biblioteq_item.h"
 #include "ui_biblioteq_dvdinfo.h"
 
-#include <QMainWindow>
-
-class biblioteq_borrowers_editor;
-
 class biblioteq_dvd: public QMainWindow, public biblioteq_item
 {
   Q_OBJECT

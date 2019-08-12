@@ -4,8 +4,6 @@
 #include "biblioteq_item.h"
 #include "ui_biblioteq_greyliteratureinfo.h"
 
-#include <QMainWindow>
-
 class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 {
   Q_OBJECT

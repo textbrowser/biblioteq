@@ -420,7 +420,7 @@
      	_misc_functions (Done)
 229. Review all included files and remove extraneous instances:
      	*.cc (TBD)
-	*.h (TBD)
+	*.h (Done)
 230. Remove qmain singleton. (Done)
 231. Review and remove Q_UNUSED. (Done)
 232. Propagate qmain to biblioteq_hyperlinked_text_edit. (Done)

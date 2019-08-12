@@ -3,8 +3,6 @@
 
 #include "ui_biblioteq_borrowers.h"
 
-#include <QDialog>
-
 class biblioteq;
 class biblioteq_item;
 

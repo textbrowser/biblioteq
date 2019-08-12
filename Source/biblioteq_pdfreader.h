@@ -1,15 +1,7 @@
 #ifndef _BIBLIOTEQ_PDFREADER_H_
 #define _BIBLIOTEQ_PDFREADER_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QMainWindow>
-
-/*
-** -- Poppler Includes --
-*/
+#include "ui_biblioteq_pdfreader.h"
 
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
 #if QT_VERSION < 0x050000
@@ -18,12 +10,6 @@
 #include <poppler-qt5.h>
 #endif
 #endif
-
-/*
-** -- Local Includes --
-*/
-
-#include "ui_biblioteq_pdfreader.h"
 
 class biblioteq_pdfreader: public QMainWindow
 {

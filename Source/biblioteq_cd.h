@@ -5,10 +5,6 @@
 #include "ui_biblioteq_cdinfo.h"
 #include "ui_biblioteq_tracks.h"
 
-#include <QMainWindow>
-
-class QDialog;
-
 class biblioteq_cd: public QMainWindow, public biblioteq_item
 {
   Q_OBJECT
