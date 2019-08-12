@@ -5,10 +5,7 @@
 #include "ui_biblioteq_photograph.h"
 #include "ui_biblioteq_photographinfo.h"
 
-#include <QMainWindow>
-
 class biblioteq_bgraphicsscene;
-class biblioteq_graphicsitempixmap;
 
 class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 {
