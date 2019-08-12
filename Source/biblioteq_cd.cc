@@ -19,6 +19,7 @@
 #include "biblioteq.h"
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_cd.h"
+#include "biblioteq_copy_editor.h"
 
 biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QString &oidArg,

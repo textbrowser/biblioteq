@@ -17,6 +17,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_borrowers_editor.h"
+#include "biblioteq_copy_editor.h"
 #include "biblioteq_videogame.h"
 
 biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,

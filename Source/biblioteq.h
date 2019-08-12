@@ -3,28 +3,6 @@
 
 #define BIBLIOTEQ_VERSION "2019.09.09"
 
-/*
-** -- C++ Includes --
-*/
-
-#include <iostream>
-
-/*
-** -- Qt Includes --
-*/
-
-#include <QHash>
-#include <QMainWindow>
-#include <QMap>
-#include <QMessageBox>
-#include <QSqlDatabase>
-#include <QStringList>
-#include <QtDebug>
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
 #include "biblioteq_cd.h"
@@ -48,6 +26,8 @@
 #include "ui_biblioteq_members_browser.h"
 #include "ui_biblioteq_password.h"
 #include "ui_biblioteq_userinfo.h"
+
+#include <QMessageBox>
 
 class biblioteq_otheroptions;
 

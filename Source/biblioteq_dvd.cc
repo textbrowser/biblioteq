@@ -17,6 +17,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_borrowers_editor.h"
+#include "biblioteq_copy_editor.h"
 #include "biblioteq_dvd.h"
 
 biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,

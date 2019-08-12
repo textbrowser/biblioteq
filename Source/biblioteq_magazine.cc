@@ -28,11 +28,13 @@
 
 #include "biblioteq.h"
 #include "biblioteq_borrowers_editor.h"
+#include "biblioteq_copy_editor.h"
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_magazine.h"
 #include "biblioteq_marc.h"
 #include "biblioteq_pdfreader.h"
 #include "biblioteq_sruResults.h"
+#include "biblioteq_z3950results.h"
 
 biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 				       const QString &oidArg,

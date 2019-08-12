@@ -1,33 +1,13 @@
 #ifndef _BIBLIOTEQ_MAGAZINE_H_
 #define _BIBLIOTEQ_MAGAZINE_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QDialog>
-#include <QMainWindow>
-#include <QMenu>
-#include <QNetworkAccessManager>
-#include <QPointer>
-#include <QNetworkReply>
-#include <QStringList>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_copy_editor.h"
-#include "biblioteq_generic_thread.h"
 #include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
-#include "biblioteq_z3950results.h"
-#include "ui_biblioteq_borrowers.h"
 #include "ui_biblioteq_maginfo.h"
 #include "ui_biblioteq_passwordPrompt.h"
 
-class biblioteq_borrowers_editor;
-class biblioteq_copy_editor;
+#include <QNetworkReply>
+#include <QPointer>
+
 class biblioteq_generic_thread;
 
 class biblioteq_magazine: public QMainWindow, public biblioteq_item

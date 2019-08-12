@@ -82,6 +82,7 @@ extern "C"
 #include "biblioteq.h"
 #include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
+#include "biblioteq_copy_editor.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_create_schema.h"
 
