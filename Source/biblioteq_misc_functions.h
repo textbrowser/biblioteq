@@ -2,12 +2,10 @@
 #define _BIBLIOTEQ_MISC_FUNCTIONS_H_
 
 #include <QGraphicsItem>
-#include <QPair>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QTableWidget>
-#include <QVariant>
 
 class QMainWindow;
 class biblioteq;

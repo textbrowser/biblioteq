@@ -1,5 +1,7 @@
+#ifndef _BIBLIOTEQ_MARC_H_
+#define _BIBLIOTEQ_MARC_H_
+
 #include <QDate>
-#include <QString>
 
 class biblioteq_marc
 {
@@ -132,3 +134,5 @@ class biblioteq_marc
   void parseSRU(void);
   void parseZ3950(void);
 };
+
+#endif

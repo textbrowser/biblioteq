@@ -1,9 +1,6 @@
 #ifndef _BIBLIOTEQ_MYQSTRING_H_
 #define _BIBLIOTEQ_MYQSTRING_H_
 
-#include <QRegExp>
-#include <QString>
-
 class biblioteq_myqstring: public QString
 {
  public:

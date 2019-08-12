@@ -1,16 +1,6 @@
 #ifndef _BIBLIOTEQ_OTHEROPTIONS_H_
 #define _BIBLIOTEQ_OTHEROPTIONS_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QMainWindow>
-
-/*
-** -- Local Includes --
-*/
-
 #include "ui_biblioteq_otheroptions.h"
 
 class biblioteq;
