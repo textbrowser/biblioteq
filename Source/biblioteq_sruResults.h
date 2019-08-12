@@ -1,18 +1,6 @@
 #ifndef _BIBLIOTEQ_SRURESULTS_H_
 #define _BIBLIOTEQ_SRURESULTS_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QDialog>
-#include <QStringList>
-#include <QWidget>
-
-/*
-** -- Local Includes --
-*/
-
 #include "ui_biblioteq_sruResults.h"
 
 class biblioteq_magazine;
