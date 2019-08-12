@@ -1,19 +1,10 @@
 #ifndef _BIBLIOTEQ_GREY_LITERATURE_H_
 #define _BIBLIOTEQ_GREY_LITERATURE_H_
 
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_item.h"
+#include "ui_biblioteq_greyliteratureinfo.h"
 
 #include <QMainWindow>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
-#include "ui_biblioteq_greyliteratureinfo.h"
 
 class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 {

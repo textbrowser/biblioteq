@@ -2,7 +2,9 @@
 ** -- Qt Includes --
 */
 
+#include <QDropEvent>
 #include <QMimeData>
+#include <QUrl>
 #include <QtDebug>
 
 /*

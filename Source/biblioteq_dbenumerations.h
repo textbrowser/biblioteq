@@ -1,19 +1,11 @@
 #ifndef _BIBLIOTEQ_DBENUMERATIONS_H_
 #define _BIBLIOTEQ_DBENUMERATIONS_H_
 
-/*
-** -- Qt Includes --
-*/
+#include "ui_biblioteq_dbenumerations.h"
 
 #include <QHash>
 #include <QMainWindow>
 #include <QMap>
-
-/*
-** -- Local Includes --
-*/
-
-#include "ui_biblioteq_dbenumerations.h"
 
 class biblioteq;
 

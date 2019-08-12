@@ -1,4 +1,6 @@
+#include "biblioteq.h"
 #include "biblioteq_borrowers_editor.h"
+#include "biblioteq_misc_functions.h"
 
 biblioteq_borrowers_editor::biblioteq_borrowers_editor
 (QWidget *parent,

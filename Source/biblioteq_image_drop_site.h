@@ -1,23 +1,11 @@
 #ifndef _BIBLIOTEQ_IMAGE_DROP_SITE_H_
 #define _BIBLIOTEQ_IMAGE_DROP_SITE_H_
 
-/*
-** -- C++ Includes --
-*/
-
-#include <iostream>
-
-/*
-** -- Qt Includes --
-*/
-
-#include <QApplication>
-#include <QDragEnterEvent>
-#include <QDropEvent>
-#include <QGraphicsItem>
 #include <QGraphicsView>
-#include <QKeyEvent>
-#include <QUrl>
+
+class QDragEnterEvent;
+class QDropEvent;
+class QKeyEvent;
 
 class biblioteq_image_drop_site: public QGraphicsView
 {

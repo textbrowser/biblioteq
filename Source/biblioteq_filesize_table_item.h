@@ -1,10 +1,6 @@
 #ifndef _BIBLIOTEQ_FILESIZE_TABLE_ITEM_H_
 #define _BIBLIOTEQ_FILESIZE_TABLE_ITEM_H_
 
-/*
-** -- Qt Includes --
-*/
-
 #include <QTableWidgetItem>
 
 class biblioteq_filesize_table_item: public QTableWidgetItem

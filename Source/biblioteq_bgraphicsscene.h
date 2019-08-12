@@ -1,10 +1,6 @@
 #ifndef _BIBLIOTEQ_BGRAPHICSSCENE_H_
 #define _BIBLIOTEQ_BGRAPHICSSCENE_H_
 
-/*
-** -- Qt Includes --
-*/
-
 #include <QGraphicsScene>
 
 class QGraphicsSceneMouseEvent;

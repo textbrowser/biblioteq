@@ -1,22 +1,12 @@
 #ifndef _BIBLIOTEQ_BORROWERS_EDITOR_H_
 #define _BIBLIOTEQ_BORROWERS_EDITOR_H_
 
-/*
-** -- Qt Includes --
-*/
+#include "ui_biblioteq_borrowers.h"
 
 #include <QDialog>
-#include <QString>
-#include <QWidget>
 
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
-#include "ui_biblioteq_borrowers.h"
+class biblioteq;
+class biblioteq_item;
 
 class biblioteq_borrowers_editor: public QDialog
 {

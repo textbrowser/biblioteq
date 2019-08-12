@@ -1,28 +1,7 @@
 #ifndef _BIBLIOTEQ_GENERIC_THREAD_H_
 #define _BIBLIOTEQ_GENERIC_THREAD_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QFile>
-#include <QString>
-#include <QStringList>
-#include <QTextStream>
 #include <QThread>
-#include <QWaitCondition>
-
-/*
-** -- YAZ Includes --
-*/
-
-#include <yaz/zoom.h>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_myqstring.h"
 
 class biblioteq;
 

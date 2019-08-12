@@ -1,27 +1,13 @@
 #ifndef _BIBLIOTEQ_CD_H_
 #define _BIBLIOTEQ_CD_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QDialog>
-#include <QGraphicsScene>
-#include <QMainWindow>
-#include <QMenu>
-#include <QStringList>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_copy_editor.h"
-#include "biblioteq_misc_functions.h"
 #include "biblioteq_item.h"
 #include "ui_biblioteq_cdinfo.h"
 #include "ui_biblioteq_tracks.h"
 
-class biblioteq_copy_editor;
+#include <QMainWindow>
+
+class QDialog;
 
 class biblioteq_cd: public QMainWindow, public biblioteq_item
 {

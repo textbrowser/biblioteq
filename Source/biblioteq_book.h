@@ -1,23 +1,15 @@
 #ifndef _BIBLIOTEQ_BOOK_H_
 #define _BIBLIOTEQ_BOOK_H_
 
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_item.h"
+#include "ui_biblioteq_bookinfo.h"
+#include "ui_biblioteq_borrowers.h"
+#include "ui_biblioteq_passwordPrompt.h"
 
 #include <QBuffer>
 #include <QMainWindow>
 #include <QNetworkReply>
 #include <QPointer>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_item.h"
-#include "ui_biblioteq_bookinfo.h"
-#include "ui_biblioteq_borrowers.h"
-#include "ui_biblioteq_passwordPrompt.h"
 
 class QDialog;
 class QNetworkAccessManager;

@@ -14,6 +14,7 @@
 */
 
 #include "biblioteq_hyperlinked_text_edit.h"
+#include "biblioteq_image_drop_site.h"
 #include "biblioteq_item.h"
 
 biblioteq_item::biblioteq_item(const int rowArg)

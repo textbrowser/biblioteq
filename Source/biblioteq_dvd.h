@@ -1,26 +1,12 @@
 #ifndef _BIBLIOTEQ_DVD_H_
 #define _BIBLIOTEQ_DVD_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QDialog>
-#include <QMainWindow>
-#include <QMenu>
-#include <QStringList>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_copy_editor.h"
 #include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_dvdinfo.h"
 
+#include <QMainWindow>
+
 class biblioteq_borrowers_editor;
-class biblioteq_copy_editor;
 
 class biblioteq_dvd: public QMainWindow, public biblioteq_item
 {

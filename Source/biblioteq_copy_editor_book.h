@@ -1,26 +1,12 @@
 #ifndef _BIBLIOTEQ_COPY_EDITOR_BOOK_H_
 #define _BIBLIOTEQ_COPY_EDITOR_BOOK_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QDialog>
-#include <QMainWindow>
-#include <QMessageBox>
-#include <QSpinBox>
-#include <QString>
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_copy_editor.h"
-#include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_bookcopybrowser.h"
 
+class QSpinBox;
 class biblioteq;
+class biblioteq_item;
 
 class biblioteq_copy_editor_book: public biblioteq_copy_editor
 {

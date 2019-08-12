@@ -1,25 +1,12 @@
 #ifndef _BIBLIOTEQ_ITEM_H_
 #define _BIBLIOTEQ_ITEM_H_
 
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_image_drop_site.h"
-
-/*
-** -- Qt Includes --
-*/
-
 #include <QFont>
 #include <QKeyEvent>
 #include <QMainWindow>
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QProgressDialog>
-#include <QString>
-#include <QTextDocument>
-#include <QWidget>
 
 class biblioteq;
 
