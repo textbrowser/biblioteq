@@ -1,24 +1,12 @@
 #ifndef _BIBLIOTEQ_MISC_FUNCTIONS_H_
 #define _BIBLIOTEQ_MISC_FUNCTIONS_H_
 
-/*
-** -- C++ Includes --
-*/
-
-#include <iostream>
-
-/*
-** -- Qt Includes --
-*/
-
 #include <QGraphicsItem>
 #include <QPair>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-#include <QString>
 #include <QTableWidget>
-#include <QTableWidgetItem>
 #include <QVariant>
 
 class QMainWindow;

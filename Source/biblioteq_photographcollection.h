@@ -1,27 +1,13 @@
 #ifndef _BIBLIOTEQ_PHOTOGRAPHCOLLECTION_H_
 #define _BIBLIOTEQ_PHOTOGRAPHCOLLECTION_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QDialog>
-#include <QMainWindow>
-#include <QMenu>
-#include <QStringList>
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_item.h"
-#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_photograph.h"
 #include "ui_biblioteq_photographinfo.h"
 
+#include <QMainWindow>
+
 class biblioteq_bgraphicsscene;
-class biblioteq_borrowers_editor;
-class biblioteq_copy_editor;
 class biblioteq_graphicsitempixmap;
 
 class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
