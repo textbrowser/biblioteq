@@ -2,6 +2,8 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_misc_functions.h"
 
+#include <QScrollBar>
+
 biblioteq_borrowers_editor::biblioteq_borrowers_editor
 (QWidget *parent,
  biblioteq *biblioteq,

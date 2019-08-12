@@ -3,10 +3,6 @@
 
 #include "ui_biblioteq_dbenumerations.h"
 
-#include <QHash>
-#include <QMainWindow>
-#include <QMap>
-
 class biblioteq;
 
 class biblioteq_dbenumerations: public QMainWindow

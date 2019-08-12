@@ -3,6 +3,7 @@
 */
 
 #include <QDir>
+#include <QScrollBar>
 #include <QSettings>
 #include <QSqlDriver>
 #include <QSqlField>

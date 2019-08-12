@@ -1,16 +1,7 @@
 #ifndef _BIBLIOTEQ_MAIN_TABLE_H_
 #define _BIBLIOTEQ_MAIN_TABLE_H_
 
-/*
-** -- Qt Includes --
-*/
-
-#include <QApplication>
-#include <QHash>
-#include <QHeaderView>
-#include <QScrollBar>
 #include <QTableWidget>
-#include <QTableWidgetItem>
 
 class biblioteq;
 

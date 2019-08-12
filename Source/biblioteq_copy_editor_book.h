@@ -4,10 +4,6 @@
 #include "biblioteq_copy_editor.h"
 #include "ui_biblioteq_bookcopybrowser.h"
 
-class QSpinBox;
-class biblioteq;
-class biblioteq_item;
-
 class biblioteq_copy_editor_book: public biblioteq_copy_editor
 {
   Q_OBJECT

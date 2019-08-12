@@ -4,6 +4,7 @@
 
 #include <QFileDialog>
 #include <QSettings>
+#include <QScrollBar>
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>

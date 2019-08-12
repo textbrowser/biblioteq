@@ -5,10 +5,6 @@
 #ifndef _BIBLIOTEQ_CALLNUM_TABLE_ITEM_H_
 #define _BIBLIOTEQ_CALLNUM_TABLE_ITEM_H_
 
-/*
-** -- Qt Includes --
-*/
-
 #include <QTableWidgetItem>
 
 class biblioteq_callnum_table_item: public QTableWidgetItem

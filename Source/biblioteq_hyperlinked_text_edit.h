@@ -2,7 +2,6 @@
 #define _BIBLIOTEQ_HYPERLINKED_TEXT_EDIT_H_
 
 #include <QTextBrowser>
-#include <QUrl>
 
 class biblioteq;
 

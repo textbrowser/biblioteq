@@ -3,18 +3,12 @@
 
 #include "biblioteq_item.h"
 #include "ui_biblioteq_bookinfo.h"
-#include "ui_biblioteq_borrowers.h"
 #include "ui_biblioteq_passwordPrompt.h"
 
 #include <QBuffer>
-#include <QMainWindow>
 #include <QNetworkReply>
 #include <QPointer>
 
-class QDialog;
-class QNetworkAccessManager;
-class biblioteq_borrowers_editor;
-class biblioteq_copy_editor_book;
 class biblioteq_generic_thread;
 
 class biblioteq_book: public QMainWindow, public biblioteq_item

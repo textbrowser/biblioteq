@@ -3,9 +3,6 @@
 
 #include <QGraphicsScene>
 
-class QGraphicsSceneMouseEvent;
-class QKeyEvent;
-
 class biblioteq_bgraphicsscene: public QGraphicsScene
 {
   Q_OBJECT

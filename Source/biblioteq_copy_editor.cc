@@ -1,3 +1,5 @@
+#include <QScrollBar>
+
 /*
 ** -- Local Includes --
 */

@@ -40,6 +40,7 @@
 #endif
 #endif
 #include <QPointer>
+#include <QScrollBar>
 #include <QSettings>
 #include <QSqlDriver>
 #include <QSqlField>

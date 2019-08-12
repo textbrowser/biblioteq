@@ -2,6 +2,8 @@
 ** -- Qt Includes --
 */
 
+#include <QScrollBar>
+
 /*
 ** -- Local Includes --
 */

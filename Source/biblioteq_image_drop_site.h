@@ -3,10 +3,6 @@
 
 #include <QGraphicsView>
 
-class QDragEnterEvent;
-class QDropEvent;
-class QKeyEvent;
-
 class biblioteq_image_drop_site: public QGraphicsView
 {
   Q_OBJECT
