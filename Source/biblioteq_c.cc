@@ -1482,17 +1482,17 @@ void biblioteq::slotRequest(void)
   ** This method is used to either request an item or cancel a request.
   */
 
-  int i = 0;
-  int ct = 0;
-  int numcompleted = 0;
+  QDate now = QDate::currentDate();
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  QProgressDialog progress(this);
+  QSqlQuery query(m_db);
+  QString itemType = "";
+  QString oid = "";
   bool error = false;
   bool isRequesting = true;
-  QDate now = QDate::currentDate();
-  QString oid = "";
-  QString itemType = "";
-  QSqlQuery query(m_db);
-  QProgressDialog progress(this);
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  int ct = 0;
+  int i = 0;
+  int numcompleted = 0;
 
   if(!m_roles.isEmpty())
     isRequesting = false;
