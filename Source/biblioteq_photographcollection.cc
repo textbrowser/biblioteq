@@ -206,6 +206,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
 biblioteq_photographcollection::~biblioteq_photographcollection()
 {
+  while(!m_removedItems.isEmpty())
+    delete m_removedItems.takeFirst();
 }
 
 bool biblioteq_photographcollection::verifyItemFields(void)
@@ -756,6 +758,9 @@ void biblioteq_photographcollection::showPhotographs(const int page)
   QApplication::processEvents();
 #endif
 
+  while(!m_removedItems.isEmpty())
+    delete m_removedItems.takeFirst();
+
   QSqlQuery query(qmain->getDB());
 
   if(qmain->getDB().driverName() == "QSQLITE")
@@ -993,8 +998,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 	  if(query.exec())
 	    {
+	      m_removedItems.append(item);
 	      pc.graphicsView->scene()->removeItem(item);
-	      delete item;
 	    }
 	}
     }
