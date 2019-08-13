@@ -592,8 +592,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   return 0;
 }
 
-void biblioteq::greyLiteratureSearch
-(const QString &field, const QString &value)
+void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
   biblioteq_grey_literature *gl =
     new(std::nothrow) biblioteq_grey_literature(this, "", -1);
@@ -602,6 +601,316 @@ void biblioteq::greyLiteratureSearch
     {
       gl->search(field, value);
       gl->deleteLater();
+    }
+}
+
+void biblioteq::readConfig(void)
+{
+  QFont font;
+  QSettings settings;
+
+  ui.actionAutoPopulateOnCreation->setChecked
+    (settings.value("automatically_populate_on_create", false).toBool());
+  ui.actionAutomatically_Resize_Column_Widths->setChecked
+    (settings.value("automatically_resize_column_widths", false).toBool());
+  ui.actionPopulateOnStart->setChecked
+    (settings.value("populate_table_on_connect", false).toBool());
+  ui.actionResetErrorLogOnDisconnect->setChecked
+    (settings.value("reset_error_log_on_disconnect", false).toBool());
+  ui.actionShowGrid->setChecked
+    (settings.value("show_table_grid", false).toBool());
+
+  if(settings.contains("main_window_geometry"))
+    {
+      ui.actionPreserveGeometry->setChecked(true);
+
+      if(biblioteq_misc_functions::isGnome())
+	setGeometry(settings.value("main_window_geometry").toRect());
+      else
+	restoreGeometry(settings.value("main_window_geometry").toByteArray());
+    }
+  else
+    ui.actionPreserveGeometry->setChecked(false);
+
+#ifndef Q_OS_MAC
+  font = QApplication::font();
+
+  if(settings.contains("global_font"))
+    font.fromString(settings.value("global_font", "").toString());
+
+  QApplication::setFont(font);
+#endif
+  ui.actionAutomaticallySaveSettingsOnExit->setChecked
+    (settings.value("save_settings_on_exit", true).toBool());
+  ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
+    (settings.value("automatically_populate_members_"
+		    "list_on_display", false).toBool());
+  ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
+    (settings.value("automatically_populate_admin_list_on_display",
+		    false).toBool());
+  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setChecked
+    (settings.value("automatically_populate_enum_list_on_display",
+		    false).toBool());
+
+  QHash<QString, QString> states;
+
+  for(int i = 0; i < settings.allKeys().size(); i++)
+    if(settings.allKeys().at(i).contains("_header_state"))
+      states[settings.allKeys().at(i)] =
+	settings.value(settings.allKeys().at(i)).toString();
+
+  ui.table->parseStates(states);
+  states.clear();
+
+  bool found = false;
+
+  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
+    if(QString(settings.value("preferred_sru_site").toString()).
+       remove("&").trimmed() ==
+       QString(ui.menuPreferredSRUSite->actions()[i]->text()).remove("&"))
+      {
+	found = true;
+	ui.menuPreferredSRUSite->actions()[i]->setChecked(true);
+	break;
+      }
+
+  if(!found && !ui.menuPreferredSRUSite->actions().isEmpty())
+    ui.menuPreferredSRUSite->actions()[0]->setChecked(true);
+
+  found = false;
+
+  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
+    if(QString(settings.value("preferred_z3950_site").toString()).
+       remove("&").trimmed() ==
+       QString(ui.menuPreferredZ3950Server->actions()[i]->text()).remove("&"))
+      {
+	found = true;
+	ui.menuPreferredZ3950Server->actions()[i]->setChecked(true);
+	break;
+      }
+
+  if(!found && !ui.menuPreferredZ3950Server->actions().isEmpty())
+    ui.menuPreferredZ3950Server->actions()[0]->setChecked(true);
+
+  int index = br.branch_name->findText
+    (settings.value("previous_branch_name", "").toString());
+
+  if(index >= 0)
+    br.branch_name->setCurrentIndex(index);
+  else
+    br.branch_name->setCurrentIndex(0);
+
+  int viewModeIndex = settings.value("view_mode_index", 1).toInt();
+
+  if(viewModeIndex < 0 || viewModeIndex > 1)
+    viewModeIndex = 1;
+
+  QActionGroup *ag = findChild<QActionGroup *> ("ViewModeMenu");
+
+  if(ag && ag->actions().size() > viewModeIndex)
+    ag->actions().at(viewModeIndex)->setChecked(true);
+
+  ui.stackedWidget->setCurrentIndex(viewModeIndex);
+
+  if(ui.stackedWidget->currentIndex() == 0)
+    ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
+  else
+    ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+  QColor color(settings.value("mainwindow_canvas_background_color").
+	       toString().trimmed());
+
+  if(!color.isValid())
+    color = Qt::white;
+
+  ui.graphicsView->scene()->setBackgroundBrush(color);
+  slotResizeColumns();
+  createSqliteMenuActions();
+}
+
+void biblioteq::readGlobalSetup(void)
+{
+#ifdef Q_OS_MAC
+  QSettings settings
+    (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf",
+     QSettings::IniFormat);
+#elif defined(Q_OS_WIN32)
+  QSettings settings(QCoreApplication::applicationDirPath() +
+		     QDir::separator() +
+		     "biblioteq.conf",
+		     QSettings::IniFormat);
+#else
+  QSettings settings(BIBLIOTEQ_CONFIGFILE, QSettings::IniFormat);
+#endif
+
+  m_amazonImages.clear();
+  m_branches.clear();
+  m_openLibraryImages.clear();
+  m_sruMaps.clear();
+  m_z3950Maps.clear();
+
+  for(int i = 0; i < settings.childGroups().size(); i++)
+    {
+      settings.beginGroup(settings.childGroups().at(i));
+
+      if(settings.group() == "Amazon Back Cover Images")
+	{
+	  m_amazonImages["back_cover_host"] = settings.value("host", "").
+	    toString().trimmed();
+	  m_amazonImages["back_cover_path"] = settings.value("path", "").
+	    toString().trimmed().remove('"');
+	  m_amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
+	    toString().trimmed();
+	  m_amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
+	    toString().trimmed();
+	  m_amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
+	    toString().trimmed();
+	  m_amazonImages["back_proxy_username"] = settings.value
+	    ("proxy_username", "").toString().trimmed();
+	  m_amazonImages["back_proxy_password"] = settings.value
+	    ("proxy_password", "").toString().trimmed();
+	}
+      else if(settings.group() == "Amazon Front Cover Images")
+	{
+	  m_amazonImages["front_cover_host"] = settings.value("host", "").
+	    toString().trimmed();
+	  m_amazonImages["front_cover_path"] = settings.value("path", "").
+	    toString().trimmed().remove('"');
+	  m_amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
+	    toString().trimmed();
+	  m_amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
+	    toString().trimmed();
+	  m_amazonImages["front_proxy_type"] = settings.value("proxy_type", "").
+	    toString().trimmed();
+	  m_amazonImages["front_proxy_username"] = settings.value
+	    ("proxy_username", "").toString().trimmed();
+	  m_amazonImages["front_proxy_password"] = settings.value
+	    ("proxy_password", "").toString().trimmed();
+	}
+      else if(settings.group().startsWith("Branch"))
+	{
+	  if(!settings.value("database_name", "").
+	     toString().trimmed().isEmpty())
+	    {
+	      QHash<QString, QString> hash;
+
+	      hash["branch_name"] = settings.value("database_name", "").
+		toString().trimmed();
+	      hash["connection_options"] = settings.value
+		("connection_options", "").toString().trimmed();
+	      hash["hostname"] = settings.value("hostname", "").
+		toString().trimmed();
+	      hash["database_type"] = settings.value("database_type", "").
+		toString().trimmed();
+	      hash["port"] = settings.value("port", "").toString().trimmed();
+	      hash["ssl_enabled"] = settings.value("ssl_enabled", "").
+		toString().trimmed();
+	      m_branches[settings.value("database_name", "").
+			 toString().trimmed()] = hash;
+	    }
+	}
+      else if(settings.group().startsWith("Open Library Cover Images"))
+	{
+	  m_openLibraryImages["back_url"] =
+	    settings.value("back_url", "").toString().trimmed();
+	  m_openLibraryImages["front_url"] =
+	    settings.value("front_url", "").toString().trimmed();
+	}
+      else if(settings.group().startsWith("SRU"))
+	{
+	  if(!settings.value("name", "").toString().trimmed().isEmpty())
+	    {
+	      QHash<QString, QString> hash;
+
+	      hash["Name"] = settings.value("name", "").toString().trimmed();
+	      hash["url_isbn"] = settings.value
+		("url_isbn", "").toString().trimmed().remove('"');
+	      hash["url_issn"] = settings.value
+		("url_issn", "").toString().trimmed().remove('"');
+	      m_sruMaps[settings.value("name", "").toString().trimmed()] = hash;
+	    }
+	}
+      else if(settings.group().startsWith("Z39.50"))
+	{
+	  if(!settings.value("name", "").toString().trimmed().isEmpty())
+	    {
+	      QHash<QString, QString> hash;
+
+	      hash["Name"] = settings.value("name", "Z39.50 Site").
+		toString().trimmed();
+	      hash["Address"] = settings.value("hostname", "").
+		toString().trimmed();
+	      hash["Port"] = settings.value("port", "").toString().trimmed();
+	      hash["Database"] = settings.value("database_name", "").
+		toString().trimmed();
+	      hash["Format"] = settings.value("format", "marc8,utf-8").
+		toString().trimmed().remove('"');
+	      hash["RecordSyntax"] = settings.value
+		("record_syntax", "MARC21").toString().trimmed();
+	      hash["Userid"] = settings.value("username", "").
+		toString().trimmed();
+	      hash["Password"] = settings.value("password", "").
+		toString().trimmed();
+	      hash["proxy_host"] = settings.value("proxy_host", "").
+		toString().trimmed();
+	      hash["proxy_port"] = settings.value("proxy_port", "").
+		toString().trimmed();
+	      m_z3950Maps[settings.value("name", "Z39.50 Site").
+			  toString().trimmed()] = hash;
+	    }
+	}
+
+      settings.endGroup();
+    }
+
+  br.branch_name->clear();
+
+  QStringList list(m_branches.keys());
+
+  for(int i = 0; i < list.size(); i++)
+    br.branch_name->addItem(list.at(i));
+
+  if(br.branch_name->count() == 0)
+    {
+      QHash<QString, QString> hash;
+
+      hash["branch_name"] = "local_db";
+      hash["hostname"] = "127.0.0.1";
+      hash["database_type"] = "sqlite";
+      hash["port"] = "-1";
+      hash["ssl_enabled"] = "false";
+
+      if(!m_branches.contains(hash.value("branch_name")))
+	m_branches[hash.value("branch_name")] = hash;
+
+      br.branch_name->addItem(hash.value("branch_name"));
+    }
+
+  if(m_sruMaps.isEmpty())
+    {
+      QHash<QString, QString> hash;
+
+      hash["Name"] = "Library of Congress";
+      hash["url_isbn"] = "https://www.loc.gov/z39voy?operation=searchRetrieve&"
+	"version=1.1&query=bath.isbn=%1 or bath.isbn=%2&"
+	"recordSchema=marcxml&startRecord=1&maximumRecords=1";
+      hash["url_issn"] = "https://www.loc.gov/z39voy?operation="
+	"searchRetrieve&version=1.1&query=bath.issn=%1&"
+	"recordSchema=marcxml&startRecord=1&maximumRecords=100";
+      m_sruMaps["Library of Congress"] = hash;
+    }
+
+  if(m_z3950Maps.isEmpty())
+    {
+      QHash<QString, QString> hash;
+
+      hash["Name"] = "Library of Congress";
+      hash["Address"] = "lx2.loc.gov";
+      hash["Port"] = "210";
+      hash["Database"] = "LCDB";
+      hash["Format"] = "marc8,utf-8";
+      hash["RecordSyntax"] = "MARC21";
+      m_z3950Maps["Library of Congress"] = hash;
     }
 }
 
@@ -1606,6 +1915,152 @@ void biblioteq::slotRefreshCustomQuery(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq::slotRemoveMember(void)
+{
+  QMap<QString, QString> counts;
+  QSqlQuery query(m_db);
+  QString errorstr = "";
+  QString memberid = "";
+  int row = bb.table->currentRow();
+  int totalReserved;
+
+  if(row < 0)
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("Please select a member to delete."));
+      return;
+    }
+
+  memberid = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  counts = biblioteq_misc_functions::getItemsReservedCounts
+    (m_db, memberid, errorstr);
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    {
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the number of items that "
+			  "are reserved by the selected member.")),
+	       errorstr, __FILE__, __LINE__);
+      QMessageBox::critical
+	(m_members_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to determine the number of items that "
+	    "are reserved by the selected member."));
+      return;
+    }
+
+  totalReserved = counts.value("numbooks").toInt() +
+    counts.value("numcds").toInt() +
+    counts.value("numdvds").toInt() +
+    counts.value("numjournals").toInt() +
+    counts.value("nummagazines").toInt() +
+    counts.value("numvideogames").toInt();
+  counts.clear();
+
+  if(totalReserved != 0)
+    {
+      QMessageBox::critical
+	(m_members_diag, tr("BiblioteQ: User Error"),
+	 tr("You may not remove a member that has reserved "
+	    "items."));
+      return;
+    }
+
+  if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
+			   tr("Are you sure that you wish to delete the "
+			      "selected member?"),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!m_db.transaction())
+    {
+      QApplication::restoreOverrideCursor();
+      addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create a database transaction.")),
+	 m_db.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(m_members_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to create a database transaction."));
+      return;
+    }
+
+  QApplication::restoreOverrideCursor();
+  query.prepare("DELETE FROM member WHERE memberid = ?");
+  query.bindValue(0, memberid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      if(!m_db.rollback())
+	addError
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	   m_db.lastError().text(), __FILE__, __LINE__);
+
+      QApplication::restoreOverrideCursor();
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to remove the selected member.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to remove the selected member."));
+    }
+  else
+    {
+      biblioteq_misc_functions::DBAccount
+	(memberid, m_db, biblioteq_misc_functions::DELETE_USER,
+	 errorstr);
+
+      if(!errorstr.isEmpty())
+	{
+	  addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to remove the patron account ")) +
+	     memberid + tr("."),
+	     errorstr, __FILE__, __LINE__);
+
+	  if(!m_db.rollback())
+	    addError
+	      (QString(tr("Database Error")),
+	       QString(tr("Rollback failure.")),
+	       m_db.lastError().text(), __FILE__, __LINE__);
+
+	  QApplication::restoreOverrideCursor();
+	  QMessageBox::critical
+	    (m_members_diag,
+	     tr("BiblioteQ: Database Error"),
+	     QString(tr("Unable to remove the patron account ")) +
+	     memberid + tr("."));
+	}
+      else
+	{
+	  if(!m_db.commit())
+	    {
+	      addError
+		(QString(tr("Database Error")),
+		 QString(tr("Unable to commit the current database "
+			    "transaction.")),
+		 m_db.lastError().text(), __FILE__,
+		 __LINE__);
+	      m_db.rollback();
+	      QApplication::restoreOverrideCursor();
+	      QMessageBox::critical(m_members_diag,
+				    tr("BiblioteQ: Database Error"),
+				    tr("Unable to commit the current "
+				       "database transaction."));
+	      return;
+	    }
+	}
+
+      QApplication::restoreOverrideCursor();
+      slotPopulateMembersBrowser();
+    }
+}
+
 void biblioteq::slotRequest(void)
 {
   /*
@@ -2085,6 +2540,1044 @@ void biblioteq::slotSaveAdministrators(void)
   QMessageBox::critical(m_admin_diag, tr("BiblioteQ: Database Error"),
 			tr("An error occurred while attempting to save "
 			   "the administrator information."));
+}
+
+void biblioteq::slotSaveConfig(void)
+{
+  QSettings settings;
+
+  settings.setValue
+    ("automatically_populate_admin_list_on_display",
+     ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked());
+  settings.setValue
+    ("automatically_populate_enum_list_on_display",
+     ui.actionPopulate_Database_Enumerations_Browser_on_Display->isChecked());
+  settings.setValue
+    ("automatically_populate_members_list_on_display",
+     ui.actionPopulate_Members_Browser_Table_on_Display->isChecked());
+  settings.setValue("automatically_populate_on_create",
+		    ui.actionAutoPopulateOnCreation->isChecked());
+  settings.setValue("automatically_resize_column_widths",
+		    ui.actionAutomatically_Resize_Column_Widths->isChecked());
+  settings.setValue("global_font", font().toString());
+  settings.setValue("last_category", getTypeFilterString());
+  settings.setValue("locale", s_locale);
+  settings.setValue("main_splitter_state", ui.splitter->saveState());
+  settings.setValue("populate_table_on_connect",
+		    ui.actionPopulateOnStart->isChecked());
+  settings.setValue("reset_error_log_on_disconnect",
+		    ui.actionResetErrorLogOnDisconnect->isChecked());
+  settings.setValue("save_settings_on_exit",
+		    ui.actionAutomaticallySaveSettingsOnExit->isChecked());
+  settings.setValue("show_table_grid", ui.actionShowGrid->isChecked());
+
+  if(ui.actionPreserveGeometry->isChecked())
+    {
+      if(!isFullScreen())
+	{
+	  if(biblioteq_misc_functions::isGnome())
+	    settings.setValue("main_window_geometry", geometry());
+	  else
+	    settings.setValue("main_window_geometry", saveGeometry());
+	}
+    }
+  else
+    settings.remove("main_window_geometry");
+
+  if(m_db.isOpen())
+    {
+      if(m_db.driverName() == "QSQLITE")
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("sqlite_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+      else
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("postgresql_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+    }
+
+  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
+    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
+      {
+	settings.setValue
+	  ("preferred_sru_site",
+	   ui.menuPreferredSRUSite->actions()[i]->text().trimmed());
+	break;
+      }
+
+  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
+    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
+      {
+	settings.setValue
+	  ("preferred_z3950_site",
+	   ui.menuPreferredZ3950Server->actions()[i]->text().trimmed());
+	break;
+      }
+
+  for(int i = 0; i < ui.table->friendlyStates().keys().size(); i++)
+    settings.setValue
+      (ui.table->friendlyStates().keys().at(i),
+       ui.table->friendlyStates()[ui.table->friendlyStates().keys().at(i)]);
+
+  settings.sync();
+}
+
+void biblioteq::slotSaveUser(void)
+{
+  QSqlQuery query(m_db);
+  QString checksum = "";
+  QString errorstr = "";
+  QString str = "";
+  bool exists = false;
+  int i = 0;
+  int row = bb.table->currentRow();
+
+  str = userinfo_diag->m_userinfo.memberid->text().trimmed();
+  userinfo_diag->m_userinfo.memberid->setText(str);
+  str = userinfo_diag->m_userinfo.firstName->text().trimmed();
+  userinfo_diag->m_userinfo.firstName->setText(str);
+  str = userinfo_diag->m_userinfo.lastName->text().trimmed();
+  userinfo_diag->m_userinfo.lastName->setText(str);
+  str = userinfo_diag->m_userinfo.middle->text().trimmed();
+  userinfo_diag->m_userinfo.middle->setText(str);
+  str = userinfo_diag->m_userinfo.street->text().trimmed();
+  userinfo_diag->m_userinfo.street->setText(str);
+  str = userinfo_diag->m_userinfo.city->text().trimmed();
+  userinfo_diag->m_userinfo.city->setText(str);
+  str = userinfo_diag->m_userinfo.zip->text().trimmed();
+  userinfo_diag->m_userinfo.zip->setText(str);
+  str = userinfo_diag->m_userinfo.telephoneNumber->text().trimmed();
+  userinfo_diag->m_userinfo.telephoneNumber->setText(str);
+  str = userinfo_diag->m_userinfo.email->text().trimmed();
+  userinfo_diag->m_userinfo.email->setText(str);
+
+  if(m_engUserinfoTitle.contains("New"))
+    {
+      if(userinfo_diag->m_userinfo.memberid->text().length() < 5)
+	{
+	  QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+				tr("The Member ID must be at least five "
+				   "characters long."));
+	  userinfo_diag->m_userinfo.memberid->setFocus();
+	  return;
+	}
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      bool uexists = biblioteq_misc_functions::userExists
+	(userinfo_diag->m_userinfo.memberid->text(), m_db, errorstr);
+
+      QApplication::restoreOverrideCursor();
+
+      if(uexists)
+	{
+	  QMessageBox::critical
+	    (userinfo_diag, tr("BiblioteQ: User Error"),
+	     QString(tr("The Member ID ")) +
+	     userinfo_diag->m_userinfo.memberid->text() +
+	     QString(tr(" already exists.")));
+	  userinfo_diag->m_userinfo.memberid->setFocus();
+	  return;
+	}
+    }
+
+  if(userinfo_diag->m_userinfo.firstName->text().isEmpty())
+    {
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid First Name."));
+      userinfo_diag->m_userinfo.firstName->setFocus();
+      return;
+    }
+
+  if(userinfo_diag->m_userinfo.lastName->text().isEmpty())
+    {
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid Last Name."));
+      userinfo_diag->m_userinfo.lastName->setFocus();
+      return;
+    }
+
+  if(userinfo_diag->m_userinfo.street->text().isEmpty())
+    {
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid Street."));
+      userinfo_diag->m_userinfo.street->setFocus();
+      return;
+    }
+
+  if(userinfo_diag->m_userinfo.city->text().isEmpty())
+    {
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid City."));
+      userinfo_diag->m_userinfo.city->setFocus();
+      return;
+    }
+
+  if(userinfo_diag->m_userinfo.zip->text().isEmpty())
+    {
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a ZIP Code."));
+      userinfo_diag->m_userinfo.zip->setFocus();
+      return;
+    }
+
+  checksum.append(userinfo_diag->m_userinfo.dob->date().
+		  toString("MM/dd/yyyy"));
+  checksum.append(userinfo_diag->m_userinfo.sex->currentText());
+  checksum.append(userinfo_diag->m_userinfo.firstName->text());
+  checksum.append(userinfo_diag->m_userinfo.middle->text());
+  checksum.append(userinfo_diag->m_userinfo.lastName->text());
+  checksum.append(userinfo_diag->m_userinfo.street->text());
+  checksum.append(userinfo_diag->m_userinfo.city->text());
+  checksum.append(userinfo_diag->m_userinfo.state->currentText());
+  checksum.append(userinfo_diag->m_userinfo.zip->text());
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  exists = biblioteq_misc_functions::getMemberMatch
+    (checksum,
+     userinfo_diag->m_userinfo.memberid->text(),
+     m_db,
+     errorstr);
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    {
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the uniqueness of the "
+			  "proposed member.")),
+	       errorstr, __FILE__, __LINE__);
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the uniqueness of "
+			       "the proposed member."));
+      return;
+    }
+
+  if(exists)
+    {
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("An identical member already exists."));
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!m_db.transaction())
+    {
+      QApplication::restoreOverrideCursor();
+      addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create a database transaction.")),
+	 m_db.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(userinfo_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to create a database transaction."));
+      return;
+    }
+
+  QApplication::restoreOverrideCursor();
+
+  if(m_engUserinfoTitle.contains("New"))
+    { 
+      query.prepare("INSERT INTO member "
+		    "(memberid, membersince, dob, sex, "
+		    "first_name, middle_init, last_name, "
+		    "telephone_num, street, city, "
+		    "state_abbr, zip, email, expiration_date, overdue_fees, "
+		    "comments, general_registration_number, memberclass) "
+		    "VALUES "
+		    "(?, ?, ?, ?, "
+		    "?, ?, ?, "
+		    "?, ?, ?, ?, ?, ?, "
+		    "?, ?, ?, ?, ?)");
+      query.bindValue(0, userinfo_diag->m_userinfo.memberid->text().trimmed());
+      query.bindValue(1, userinfo_diag->m_userinfo.membersince->
+		      date().toString("MM/dd/yyyy"));
+      query.bindValue(2, userinfo_diag->m_userinfo.dob->date().
+		      toString("MM/dd/yyyy"));
+      query.bindValue(3, userinfo_diag->m_userinfo.sex->currentText());
+      query.bindValue(4, userinfo_diag->m_userinfo.firstName->text().trimmed());
+      query.bindValue(5, userinfo_diag->m_userinfo.middle->text().trimmed());
+      query.bindValue(6, userinfo_diag->m_userinfo.lastName->text().trimmed());
+      query.bindValue(7, userinfo_diag->m_userinfo.telephoneNumber->text());
+      query.bindValue(8, userinfo_diag->m_userinfo.street->text().trimmed());
+      query.bindValue(9, userinfo_diag->m_userinfo.city->text().trimmed());
+      query.bindValue(10, userinfo_diag->m_userinfo.state->currentText());
+      query.bindValue(11, userinfo_diag->m_userinfo.zip->text());
+      query.bindValue(12, userinfo_diag->m_userinfo.email->text().trimmed());
+      query.bindValue(13, userinfo_diag->m_userinfo.expirationdate->
+		      date().toString("MM/dd/yyyy"));
+      query.bindValue(14, userinfo_diag->m_userinfo.overduefees->value());
+      query.bindValue
+	(15, userinfo_diag->m_userinfo.comments->toPlainText().trimmed());
+      query.bindValue
+	(16, userinfo_diag->m_userinfo.generalregistrationnumber->text().
+	 trimmed());
+      query.bindValue(17, userinfo_diag->m_userinfo.memberclass->text().
+		      trimmed());
+    }
+  else
+    {
+      query.prepare("UPDATE member SET "
+		    "membersince = ?, "
+		    "dob = ?, "
+		    "sex = ?, "
+		    "first_name = ?, "
+		    "middle_init = ?, "
+		    "last_name = ?, "
+		    "telephone_num = ?, "
+		    "street = ?, "
+		    "city = ?, "
+		    "state_abbr = ?, "
+		    "zip = ?, "
+		    "email = ?, "
+		    "expiration_date = ?, "
+		    "overdue_fees = ?, "
+		    "comments = ?, "
+		    "general_registration_number = ?, "
+		    "memberclass = ? "
+		    "WHERE memberid = ?");
+      query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
+		      toString("MM/dd/yyyy"));
+      query.bindValue(1, userinfo_diag->m_userinfo.dob->date().
+		      toString("MM/dd/yyyy"));
+      query.bindValue(2, userinfo_diag->m_userinfo.sex->currentText());
+      query.bindValue
+	(3, userinfo_diag->m_userinfo.firstName->text().trimmed());
+      query.bindValue(4, userinfo_diag->m_userinfo.middle->text().trimmed());
+      query.bindValue(5, userinfo_diag->m_userinfo.lastName->text().trimmed());
+      query.bindValue(6, userinfo_diag->m_userinfo.telephoneNumber->text());
+      query.bindValue(7, userinfo_diag->m_userinfo.street->text().trimmed());
+      query.bindValue(8, userinfo_diag->m_userinfo.city->text().trimmed());
+      query.bindValue(9, userinfo_diag->m_userinfo.state->currentText());
+      query.bindValue(10, userinfo_diag->m_userinfo.zip->text());
+      query.bindValue(11, userinfo_diag->m_userinfo.email->text().trimmed());
+      query.bindValue(12, userinfo_diag->m_userinfo.expirationdate->
+		      date().toString("MM/dd/yyyy"));
+      query.bindValue(13, userinfo_diag->m_userinfo.overduefees->value());
+      query.bindValue(14, userinfo_diag->m_userinfo.comments->toPlainText().
+		      trimmed());
+      query.bindValue(15, userinfo_diag->m_userinfo.generalregistrationnumber->
+		      text().trimmed());
+      query.bindValue(16, userinfo_diag->m_userinfo.memberclass->text().
+		      trimmed());
+      query.bindValue
+	(17, userinfo_diag->m_userinfo.memberid->text().trimmed());
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      if(!m_db.rollback())
+	addError
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	   m_db.lastError().text(), __FILE__, __LINE__);
+
+      QApplication::restoreOverrideCursor();
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to save the member's information.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to save the member's information."));
+    }
+  else
+    {
+      if(m_engUserinfoTitle.contains("New"))
+	{
+	  /*
+	  ** Create a database account for the new member.
+	  */
+
+	  biblioteq_misc_functions::DBAccount
+	    (userinfo_diag->m_userinfo.memberid->text(),
+	     m_db, biblioteq_misc_functions::CREATE_USER,
+	     errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      if(!m_db.rollback())
+		addError
+		  (QString(tr("Database Error")),
+		   QString(tr("Rollback failure.")),
+		   m_db.lastError().text(), __FILE__, __LINE__);
+
+	      QApplication::restoreOverrideCursor();
+	      addError
+		(QString(tr("Database Error")),
+		 QString(tr("An error occurred while attempting to "
+			    "create a database account "
+			    "for the new member.")),
+		 errorstr, __FILE__, __LINE__);
+	      QMessageBox::critical
+		(userinfo_diag,
+		 tr("BiblioteQ: Database Error"),
+		 tr("An error occurred while attempting to "
+		    "create a database account "
+		    "for the new member."));
+	      return;
+	    }
+	  else
+	    {
+	      if(!m_db.commit())
+		{
+		  addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
+		     m_db.lastError().text(), __FILE__,
+		     __LINE__);
+		  m_db.rollback();
+		  QApplication::restoreOverrideCursor();
+		  QMessageBox::critical(userinfo_diag,
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
+		  return;
+		}
+	    }
+	}
+      else
+	{
+	  /*
+	  ** Update privileges.
+	  */
+
+	  biblioteq_misc_functions::DBAccount
+	    (userinfo_diag->m_userinfo.memberid->text(),
+	     m_db, biblioteq_misc_functions::UPDATE_USER,
+	     errorstr);
+
+	  if(errorstr.trimmed().contains("not exist"))
+	    /*
+	    ** Attempt to create the account.
+	    */
+
+	    biblioteq_misc_functions::DBAccount
+	      (userinfo_diag->m_userinfo.memberid->text(),
+	       m_db, biblioteq_misc_functions::CREATE_USER,
+	       errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      if(!m_db.rollback())
+		addError
+		  (QString(tr("Database Error")),
+		   QString(tr("Rollback failure.")),
+		   m_db.lastError().text(), __FILE__, __LINE__);
+
+	      QApplication::restoreOverrideCursor();
+	      addError(QString(tr("Database Error")),
+		       QString(tr("An error occurred while attempting to "
+				  "update the database account "
+				  "for ")) +
+		       userinfo_diag->m_userinfo.memberid->text() +
+		       QString(tr(".")),
+		       errorstr, __FILE__, __LINE__);
+	      QMessageBox::critical
+		(userinfo_diag,
+		 tr("BiblioteQ: Database Error"),
+		 tr("An error occurred while attempting "
+		    "to update the database account %1.").
+		 arg(userinfo_diag->m_userinfo.memberid->text()));
+	      return;
+	    }
+	  else
+	    {
+	      if(!m_db.commit())
+		{
+		  addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
+		     m_db.lastError().text(), __FILE__,
+		     __LINE__);
+		  m_db.rollback();
+		  QApplication::restoreOverrideCursor();
+		  QMessageBox::critical(userinfo_diag,
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
+		  return;
+		}
+	    }
+	}
+
+      QApplication::restoreOverrideCursor();
+      userinfo_diag->m_memberProperties["membersince"] =
+	userinfo_diag->m_userinfo.membersince->date().toString
+	(Qt::ISODate);
+      userinfo_diag->m_memberProperties["dob"] =
+	userinfo_diag->m_userinfo.dob->date().toString
+	(Qt::ISODate);
+      userinfo_diag->m_memberProperties["sex"] =
+	userinfo_diag->m_userinfo.sex->currentText();
+      userinfo_diag->m_memberProperties["first_name"] =
+	userinfo_diag->m_userinfo.firstName->text().trimmed();
+      userinfo_diag->m_memberProperties["middle_init"] =
+	userinfo_diag->m_userinfo.middle->text().trimmed();
+      userinfo_diag->m_memberProperties["last_name"] =
+	userinfo_diag->m_userinfo.lastName->text().trimmed();
+      userinfo_diag->m_memberProperties["telephone_num"] =
+	userinfo_diag->m_userinfo.telephoneNumber->text();
+      userinfo_diag->m_memberProperties["street"] =
+	userinfo_diag->m_userinfo.street->text().trimmed();
+      userinfo_diag->m_memberProperties["city"] =
+	userinfo_diag->m_userinfo.city->text().trimmed();
+      userinfo_diag->m_memberProperties["state_abbr"] =
+	userinfo_diag->m_userinfo.state->currentText();
+      userinfo_diag->m_memberProperties["zip"] =
+	userinfo_diag->m_userinfo.zip->text();
+      userinfo_diag->m_memberProperties["email"] =
+	userinfo_diag->m_userinfo.email->text().trimmed();
+      userinfo_diag->m_memberProperties["expiration_date"] =
+	userinfo_diag->m_userinfo.expirationdate->date().toString
+	(Qt::ISODate);
+      userinfo_diag->m_memberProperties["overdue_fees"] =
+	userinfo_diag->m_userinfo.overduefees->text();
+      userinfo_diag->m_memberProperties["comments"] =
+	userinfo_diag->m_userinfo.comments->toPlainText().trimmed();
+      userinfo_diag->m_memberProperties["general_registration_number"] =
+	userinfo_diag->m_userinfo.generalregistrationnumber->text().trimmed();
+      userinfo_diag->m_memberProperties["memberclass"] =
+	userinfo_diag->m_userinfo.memberclass->text().trimmed();
+
+      if(m_engUserinfoTitle.contains("Modify"))
+	{
+	  bb.table->setSortingEnabled(false);
+
+	  for(i = 0; i < m_bbColumnHeaderIndexes.size(); i++)
+	    {
+	      if(!bb.table->item(row, i))
+		continue;
+
+	      if(m_bbColumnHeaderIndexes.at(i) == "First Name")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.firstName->text());
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Last Name")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.lastName->text());
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Member Since")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.membersince->date().
+		   toString(Qt::ISODate));
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Expiration Date")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.expirationdate->
+		   date().toString(Qt::ISODate));
+	    }
+
+	  bb.table->setSortingEnabled(true);
+	}
+      else
+	{
+	  userinfo_diag->close();
+
+	  if(m_db.driverName() != "QSQLITE")
+	    QMessageBox::information
+	      (m_members_diag,
+	       tr("BiblioteQ: Information"),
+	       tr("Please notify the new member that their "
+		  "default password has been set "
+		  "to tempPass."));
+
+	  slotPopulateMembersBrowser();
+	}
+    }
+}
+
+void biblioteq::slotSceneSelectionChanged(void)
+{
+  if(ui.stackedWidget->currentIndex() != 0)
+    return;
+
+  ui.table->clearSelection();
+  ui.table->setCurrentCell(-1, -1);
+  slotDisplaySummary();
+
+  QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
+
+  if(!items.isEmpty())
+    {
+      QStringList oids;
+      QStringList types;
+      QGraphicsItem *item = 0;
+
+      while(!items.isEmpty())
+	if((item = items.takeFirst()))
+	  {
+	    oids.append(item->data(0).toString());
+	    types.append(item->data(1).toString());
+	  }
+
+      int column1 = ui.table->columnNumber("MYOID");
+      int column2 = ui.table->columnNumber("Type");
+
+      for(int i = 0; i < ui.table->rowCount(); i++)
+	if(ui.table->item(i, column1) &&
+	   oids.contains(ui.table->item(i, column1)->text()) &&
+	   ui.table->item(i, column2) &&
+	   types.contains(ui.table->item(i, column2)->text()))
+	  ui.table->selectRow(i);
+
+      oids.clear();
+      types.clear();
+    }
+}
+
+void biblioteq::slotDisplaySummary(void)
+{
+  QImage backImage;
+  QImage frontImage;
+  QString oid = "";
+  QString summary = "";
+  QString tmpstr = "";
+  QString type = "";
+  int i = 0;
+
+  /*
+  ** Display a preview.
+  */
+
+  if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
+    {
+      i = ui.table->currentRow();
+      oid = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
+
+      if(ui.stackedWidget->currentIndex() == 1)
+	{
+	  /*
+	  ** This method is also called by slotSceneSelectionChanged().
+	  */
+
+	  QPainterPath painterPath;
+	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
+	  QList<QTableWidgetItem *> tableItems(ui.table->selectedItems());
+
+	  for(int ii = 0; ii < tableItems.size(); ii++)
+	    {
+	      QString oid = biblioteq_misc_functions::getColumnString
+		(ui.table, tableItems.at(ii)->row(),
+		 ui.table->columnNumber("MYOID"));
+	      QString type =  biblioteq_misc_functions::getColumnString
+		(ui.table, tableItems.at(ii)->row(),
+		 ui.table->columnNumber("Type"));
+
+	      for(int jj = 0; jj < items.size(); jj++)
+		if(oid == items.at(jj)->data(0).toString() &&
+		   type == items.at(jj)->data(1).toString())
+		  {
+		    QRectF rect;
+
+		    rect.setTopLeft(items.at(jj)->scenePos());
+		    rect.setWidth(126);
+		    rect.setHeight(187);
+		    painterPath.addRect(rect);
+		  }
+		else
+		  items.at(jj)->setSelected(false);
+	    }
+
+	  items.clear();
+	  ui.graphicsView->scene()->setSelectionArea(painterPath);
+	}
+
+      type = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
+      summary = "<html>";
+
+      if(type == "Book")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("ISBN-10"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Place of Publication"));
+	  summary += "<br>";
+	}
+      else if(type == "CD")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Catalog Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Recording Label"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == "DVD")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("UPC"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Studio"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == "Grey Literature")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ID"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("File Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 File(s)")).arg(tmpstr);
+
+	  summary += "<br>";
+	}
+      else if(type == "Journal" || type == "Magazine")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ISSN"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+	  else
+	    {
+	      tmpstr += QString(" Vol. %1, No. %2").
+		arg(biblioteq_misc_functions::
+		    getColumnString(ui.table, i,
+				    ui.table->
+				    columnNumber("Volume"))).
+		arg(biblioteq_misc_functions::
+		    getColumnString(ui.table, i,
+				    ui.table->
+				    columnNumber("Issue")));
+	    }
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Place of Publication"));
+	  summary += "<br>";
+	}
+      else if(type == "Photograph Collection")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ID"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Photograph Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 Photograph(s)")).arg(tmpstr);
+
+	  summary += "<br>";
+	}
+      else if(type == "Video Game")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("UPC"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	}
+
+      summary += biblioteq_misc_functions::getAbstractInfo(oid, type, m_db);
+      summary += "<br>";
+
+      if(type != "Grey Literature" && type != "Photograph Collection")
+	{
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Availability"));
+
+	  if(!tmpstr.isEmpty())
+	    {
+	      if(tmpstr.toInt() > 0)
+		summary += tr("Available") + "<br>";
+	      else
+		summary += tr("Unavailable") + "<br>";
+	    }
+	}
+
+      summary += biblioteq_misc_functions::getColumnString
+	(ui.table, i,
+	 ui.table->columnNumber("Location"));
+
+      while(summary.contains("<br><br>"))
+	summary.replace("<br><br>", "<br>");
+
+      summary += "</html>";
+      ui.summary->setText(summary);
+      ui.summary->setVisible(true);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	frontImage = biblioteq_misc_functions::getImage
+	  (oid, "front_cover", type,
+	   m_db);
+      else
+	frontImage = biblioteq_misc_functions::getImage
+	  (oid, "image_scaled", type,
+	   m_db);
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	backImage = biblioteq_misc_functions::getImage
+	  (oid, "back_cover", type,
+	   m_db);
+
+      QApplication::restoreOverrideCursor();
+
+      /*
+      ** The size of no_image.png is 126x187.
+      */
+
+      if(frontImage.isNull())
+	frontImage = QImage(":/no_image.png");
+
+      if(!frontImage.isNull())
+	frontImage = frontImage.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	{
+	  if(backImage.isNull())
+	    backImage = QImage(":/no_image.png");
+
+	  if(!backImage.isNull())
+	    backImage = backImage.scaled
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	}
+
+      if(!frontImage.isNull())
+	{
+	  ui.frontImage->setVisible(true);
+	  ui.frontImage->setPixmap(QPixmap::fromImage(frontImage));
+	}
+      else
+	ui.frontImage->clear();
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	{
+	  if(!backImage.isNull())
+	    {
+	      ui.backImage->setVisible(true);
+	      ui.backImage->setPixmap(QPixmap::fromImage(backImage));
+	    }
+	  else
+	    ui.backImage->clear();
+	}
+      else
+	ui.backImage->clear();
+    }
+  else
+    {
+      /*
+      ** Clear the scene.
+      */
+
+      ui.summary->setVisible(false);
+      ui.summary->clear();
+      ui.frontImage->setVisible(false);
+      ui.frontImage->clear();
+      ui.backImage->setVisible(false);
+      ui.backImage->clear();
+    }
 }
 
 void biblioteq::slotShowOtherOptions(void)
