@@ -1334,6 +1334,136 @@ void biblioteq::slotPreviewCanvasBackgroundColor(const QColor &color)
   ui.graphicsView->scene()->setBackgroundBrush(color);
 }
 
+void biblioteq::slotRefreshAdminList(void)
+{
+  QScopedPointer<QProgressDialog> progress;
+
+  if(m_admin_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_admin_diag));
+  else
+    progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
+  QCheckBox *checkBox = 0;
+  QSqlQuery query(m_db);
+  QString columnname = "";
+  QString str = "";
+  QStringList list;
+  QTableWidgetItem *item = 0;
+  int i = -1;
+  int j = 0;
+
+  query.prepare("SELECT username, LOWER(roles) "
+		"FROM admin ORDER BY username");
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve administrator data for table "
+			  "populating.")),
+	       query.lastError().text(),
+	       __FILE__, __LINE__);
+      QMessageBox::critical(m_admin_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve administrator "
+			       "data for table populating."));
+      return;
+    }
+
+  QApplication::restoreOverrideCursor();
+  resetAdminBrowser();
+  ab.table->setRowCount(query.size());
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMaximum(query.size());
+  progress->setMinimum(0);
+  progress->show();
+  progress->repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+  i = -1;
+
+  while(i++, !progress->wasCanceled() && query.next())
+    {
+      if(query.isValid())
+	{
+	  if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	    {
+	      str = query.value(0).toString();
+	      item->setText(str);
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	      str = query.value(1).toString();
+	      ab.table->setItem(i, 0, item);
+
+	      for(j = 1; j < ab.table->columnCount(); j++)
+		if(query.value(0).toString() == getAdminID() && j > 1)
+		  {
+		    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		      {
+			item->setFlags(Qt::ItemIsEnabled |
+				       Qt::ItemIsSelectable);
+			ab.table->setItem(i, j, item);
+		      }
+		    else
+		      addError
+			(QString(tr("Memory Error")),
+			 QString(tr("Unable to allocate memory for the "
+				    "\"item\" object. "
+				    "This is a serious problem!")),
+			 QString(""), __FILE__, __LINE__);
+		  }
+		else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
+		  {
+		    ab.table->setCellWidget(i, j, checkBox);
+		    columnname = m_abColumnHeaderIndexes.value(j).toLower();
+
+		    if(str.toLower().contains(columnname))
+		      checkBox->setChecked(true);
+
+		    if(query.value(0).toString() == getAdminID())
+		      checkBox->setEnabled(false);
+		    else
+		      connect(checkBox, SIGNAL(stateChanged(int)), this,
+			      SLOT(slotAdminCheckBoxClicked(int)));
+		  }
+		else
+		  addError(QString(tr("Memory Error")),
+			   QString(tr("Unable to allocate memory for the "
+				      "\"checkBox\" object. "
+				      "This is a serious problem!")),
+			   QString(""), __FILE__, __LINE__);
+	    }
+	  else
+	    addError(QString(tr("Memory Error")),
+		     QString(tr("Unable to allocate memory for the "
+				"\"item\" object. "
+				"This is a serious problem!")),
+		     QString(""), __FILE__, __LINE__);
+	}
+
+      if(i + 1 <= progress->maximum())
+	progress->setValue(i + 1);
+
+      progress->repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+    }
+
+  progress->close();
+  ab.table->setRowCount(i); // Support cancellation.
+
+  for(int i = 0; i < ab.table->columnCount() - 1; i++)
+    ab.table->resizeColumnToContents(i);
+
+  m_deletedAdmins.clear();
+}
+
 void biblioteq::slotRefreshCustomQuery(void)
 {
   if(!m_db.isOpen())
