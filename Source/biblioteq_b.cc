@@ -3867,8 +3867,7 @@ void biblioteq::slotSearchBasic(void)
     query.addBindValue(values.takeFirst());
 
   QApplication::restoreOverrideCursor();
-  (void) populateTable
-    (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH_BASIC);
+  (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH_BASIC);
 }
 
 void biblioteq::slotUpgradeSqliteScheme(void)

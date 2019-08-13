@@ -877,6 +877,29 @@ QHash<QString, QString> biblioteq::getSRUHash(const QString &name) const
   return QHash<QString, QString> ();
 }
 
+QMainWindow *biblioteq::getMembersBrowser(void) const
+{
+  return m_members_diag;
+}
+
+QString biblioteq::getPreferredSRUSite(void) const
+{
+  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
+    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
+      return ui.menuPreferredSRUSite->actions()[i]->text();
+
+  return "";
+}
+
+QString biblioteq::getPreferredZ3950Site(void) const
+{
+  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
+    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
+      return ui.menuPreferredZ3950Server->actions()[i]->text();
+
+  return "";
+}
+
 QString biblioteq::getRoles(void) const
 {
   /*
@@ -884,6 +907,14 @@ QString biblioteq::getRoles(void) const
   */
 
   return m_roles;
+}
+
+QString biblioteq::getTypeFilterString(void) const
+{
+  if(ui.menu_Category->defaultAction())
+    return ui.menu_Category->defaultAction()->data().toString();
+  else
+    return "All";
 }
 
 void biblioteq::addConfigOptions(const QString &typefilter)
@@ -1077,6 +1108,52 @@ void biblioteq::adminSetup(void)
   resetAdminBrowser();
 }
 
+void biblioteq::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ab.retranslateUi(m_admin_diag);
+	  al.retranslateUi(m_all_diag);
+	  bb.retranslateUi(m_members_diag);
+	  br.retranslateUi(m_branch_diag);
+	  cq.retranslateUi(m_customquery_diag);
+	  er.retranslateUi(m_error_diag);
+	  history.retranslateUi(m_history_diag);
+	  pass.retranslateUi(m_pass_diag);
+	  ui.retranslateUi(this);
+	  ui.graphicsView->scene()->clear();
+	  ui.graphicsView->resetTransform();
+	  ui.graphicsView->horizontalScrollBar()->setValue(0);
+	  ui.graphicsView->verticalScrollBar()->setValue(0);
+	  ui.nextPageButton->setEnabled(false);
+	  ui.pagesLabel->setText("1");
+	  ui.previousPageButton->setEnabled(false);
+	  ui.table->resetTable
+	    (m_db.userName(),
+	     ui.menu_Category->defaultAction() ?
+	     ui.menu_Category->defaultAction()->data().toString() :
+	     "All",
+	     m_roles);
+	  ui.itemsCountLabel->setText(tr("0 Results"));
+	  addConfigOptions(m_lastCategory);
+	  prepareFilter();
+	  QMessageBox::information
+	    (this,
+	     tr("BiblioteQ: Information"),
+	     tr("You may have selected a new language. Please restart "
+		"BiblioteQ after saving your settings."));
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
+
 void biblioteq::cleanup(void)
 {
   if(m_db.isOpen())
@@ -1087,6 +1164,212 @@ void biblioteq::closeEvent(QCloseEvent *e)
 {
   slotExit();
   Q_UNUSED(e);
+}
+
+void biblioteq::createSqliteMenuActions(void)
+{
+  QSettings settings;
+  QStringList dups;
+  QStringList allKeys(settings.allKeys());
+
+  ui.menu_Recent_SQLite_Files->clear();
+
+  for(int i = 0; i < allKeys.size(); i++)
+    {
+      if(!allKeys[i].startsWith("sqlite_db_"))
+	continue;
+
+      QString str(settings.value(allKeys[i], "").toString().trimmed());
+
+      if(str.isEmpty())
+	{
+	  settings.remove(allKeys[i]);
+	  continue;
+	}
+
+      if(!dups.contains(str) && QFileInfo(str).isReadable() &&
+	 QFileInfo(str).isWritable())
+	dups.append(str);
+      else
+	{
+	  settings.remove(allKeys[i]);
+	  continue;
+	}
+
+      QAction *action = new(std::nothrow) QAction
+	(str, ui.menu_Recent_SQLite_Files);
+
+      if(!action)
+	continue;
+
+      action->setData(str);
+      connect(action, SIGNAL(triggered(bool)), this,
+	      SLOT(slotSqliteFileSelected(bool)));
+      ui.menu_Recent_SQLite_Files->addAction(action);
+    }
+
+  dups.clear();
+  allKeys.clear();
+
+  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"),
+					      ui.menu_Recent_SQLite_Files);
+
+  if(action)
+    {
+      connect(action, SIGNAL(triggered(bool)), this,
+	      SLOT(slotClearSqliteMenu(bool)));
+
+      if(ui.menu_Recent_SQLite_Files->actions().size() > 0)
+	ui.menu_Recent_SQLite_Files->addSeparator();
+
+      ui.menu_Recent_SQLite_Files->addAction(action);
+    }
+}
+
+void biblioteq::prepareFilter(void)
+{
+  QStringList tmplist1;
+  QStringList tmplist2;
+
+  if(m_db.driverName() == "QSQLITE")
+    {
+      tmplist1 << "All"
+	       << "All Available"
+	       << "All Overdue"
+	       << "All Reserved"
+	       << "Books"
+	       << "DVDs"
+	       << "Grey Literature"
+	       << "Journals"
+	       << "Magazines"
+	       << "Music CDs"
+	       << "Photograph Collections"
+	       << "Video Games";
+      tmplist2 << tr("All")
+	       << tr("All Available")
+	       << tr("All Overdue")
+	       << tr("All Reserved")
+	       << tr("Books")
+	       << tr("DVDs")
+	       << tr("Grey Literature")
+	       << tr("Journals")
+	       << tr("Magazines")
+	       << tr("Music CDs")
+	       << tr("Photograph Collections")
+	       << tr("Video Games");
+    }
+  else if(m_roles.contains("administrator") ||
+	  m_roles.contains("circulation"))
+    {
+      tmplist1 << "All"
+	       << "All Available"
+	       << "All Overdue"
+	       << "All Requested"
+	       << "All Reserved"
+	       << "Books"
+	       << "DVDs"
+	       << "Grey Literature"
+	       << "Journals"
+	       << "Magazines"
+	       << "Music CDs"
+	       << "Photograph Collections"
+	       << "Video Games";
+      tmplist2 << tr("All")
+	       << tr("All Available")
+	       << tr("All Overdue")
+	       << tr("All Requested")
+	       << tr("All Reserved")
+	       << tr("Books")
+	       << tr("DVDs")
+	       << tr("Grey Literature")
+	       << tr("Journals")
+	       << tr("Magazines")
+	       << tr("Music CDs")
+	       << tr("Photograph Collections")
+	       << tr("Video Games");
+    }
+  else
+    {
+      if(m_db.userName() == "xbook_guest" ||
+	 m_roles == "librarian" ||
+	 m_roles == "membership")
+	{
+	  tmplist1 << "All"
+		   << "All Available"
+		   << "Books"
+		   << "DVDs"
+		   << "Grey Literature"
+		   << "Journals"
+		   << "Magazines"
+		   << "Music CDs"
+		   << "Photograph Collections"
+		   << "Video Games";
+	  tmplist2 << tr("All")
+		   << tr("All Available")
+		   << tr("Books")
+		   << tr("DVDs")
+		   << tr("Grey Literature")
+		   << tr("Journals")
+		   << tr("Magazines")
+		   << tr("Music CDs")
+		   << tr("Photograph Collections")
+		   << tr("Video Games");
+	}
+      else
+	{
+	  tmplist1 << "All"
+		   << "All Available"
+		   << "All Overdue"
+		   << "All Requested"
+		   << "All Reserved"
+		   << "Books"
+		   << "DVDs"
+		   << "Grey Literature"
+		   << "Journals"
+		   << "Magazines"
+		   << "Music CDs"
+		   << "Photograph Collections"
+		   << "Video Games";
+	  tmplist2 << tr("All")
+		   << tr("All Available")
+		   << tr("All Overdue")
+		   << tr("All Requested")
+		   << tr("All Reserved")
+		   << tr("Books")
+		   << tr("DVDs")
+		   << tr("Grey Literature")
+		   << tr("Journals")
+		   << tr("Magazines")
+		   << tr("Music CDs")
+		   << tr("Photograph Collections")
+		   << tr("Video Games");
+	}
+    }
+
+  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+	     SLOT(slotAutoPopOnFilter(QAction *)));
+  ui.menu_Category->clear();
+
+  for(int i = 0; i < m_menuCategoryActionGroup->actions().size(); i++)
+    m_menuCategoryActionGroup->removeAction
+      (m_menuCategoryActionGroup->actions().at(i));
+
+  for(int i = 0; i < tmplist1.size(); i++)
+    {
+      QAction *action = ui.menu_Category->addAction(tmplist2[i]);
+
+      if(action)
+	{
+	  action->setCheckable(true);
+	  action->setData(tmplist1[i]);
+	  m_menuCategoryActionGroup->addAction(action);
+	}
+    }
+
+  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+	  SLOT(slotAutoPopOnFilter(QAction *)));
+  tmplist1.clear();
+  tmplist2.clear();
 }
 
 void biblioteq::quit(const char *msg, const char *file, const int line)
@@ -1334,6 +1617,96 @@ void biblioteq::slotAbout(void)
   mb.exec();
 }
 
+void biblioteq::slotAddBorrower(void)
+{
+  QDate now = QDate::currentDate();
+  QDateTime nowTime = QDateTime::currentDateTime();
+
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.memberid,
+					    QColor(255, 248, 220));
+  userinfo_diag->m_memberProperties.clear();
+  userinfo_diag->m_userinfo.memberid->setReadOnly(false);
+  userinfo_diag->m_userinfo.memberid->setText
+    ("m" + nowTime.toString("yyyyMMddhhmmss"));
+  userinfo_diag->m_userinfo.membersince->setDate(now);
+  userinfo_diag->m_userinfo.membersince->setMaximumDate(now);
+  userinfo_diag->m_userinfo.firstName->clear();
+  userinfo_diag->m_userinfo.lastName->clear();
+  userinfo_diag->m_userinfo.middle->clear();
+  userinfo_diag->m_userinfo.dob->setDate(now.addYears(-25));
+  userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
+  userinfo_diag->m_userinfo.street->clear();
+  userinfo_diag->m_userinfo.city->clear();
+  userinfo_diag->m_userinfo.state->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.zip->setText("N/A");
+  userinfo_diag->m_userinfo.zip->setCursorPosition(0);
+  userinfo_diag->m_userinfo.telephoneNumber->clear();
+  userinfo_diag->m_userinfo.email->clear();
+  userinfo_diag->m_userinfo.expirationdate->setDate
+    (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
+  userinfo_diag->m_userinfo.overduefees->setValue(0.00);
+  userinfo_diag->m_userinfo.comments->clear();
+  userinfo_diag->m_userinfo.memberclass->clear();
+  userinfo_diag->m_userinfo.generalregistrationnumber->clear();
+  userinfo_diag->m_memberProperties["membersince"] =
+    userinfo_diag->m_userinfo.membersince->date().toString
+    (Qt::ISODate);
+  userinfo_diag->m_memberProperties["dob"] =
+    userinfo_diag->m_userinfo.dob->date().toString
+    (Qt::ISODate);
+  userinfo_diag->m_memberProperties["sex"] =
+    userinfo_diag->m_userinfo.sex->currentText();
+  userinfo_diag->m_memberProperties["state_abbr"] =
+    userinfo_diag->m_userinfo.state->currentText();
+  userinfo_diag->m_memberProperties["zip"] = userinfo_diag->m_userinfo.zip->
+    text();
+  userinfo_diag->m_memberProperties["telephone_num"] =
+    userinfo_diag->m_userinfo.telephoneNumber->text();
+  userinfo_diag->m_memberProperties["expiration_date"] =
+    userinfo_diag->m_userinfo.expirationdate->date().toString
+    (Qt::ISODate);
+  userinfo_diag->m_memberProperties["overdue_fees"] =
+    userinfo_diag->m_userinfo.overduefees->text();
+  userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
+  m_engUserinfoTitle = "Create New Member";
+  userinfo_diag->m_userinfo.prevTool->setVisible(false);
+  userinfo_diag->m_userinfo.nextTool->setVisible(false);
+  userinfo_diag->m_userinfo.memberid->selectAll();
+  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.memberid->setFocus();
+  userinfo_diag->updateGeometry();
+  biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
+  userinfo_diag->show();
+}
+
+void biblioteq::slotChangeView(bool checked)
+{
+  Q_UNUSED(checked);
+
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(action)
+    {
+      ui.stackedWidget->setCurrentIndex(action->data().toInt());
+
+      if(ui.stackedWidget->currentIndex() == 0)
+	ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
+      else
+	ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+      QSettings settings;
+
+      settings.setValue("view_mode_index", action->data().toInt());
+    }
+}
+
+void biblioteq::slotClosePasswordDialog(void)
+{
+  m_pass_diag->setVisible(false);
+  pass.password->clear();
+  pass.userid->clear();
+}
+
 void biblioteq::slotDelete(void)
 {
   if(!m_db.isOpen())
@@ -1531,6 +1904,275 @@ void biblioteq::slotDelete(void)
   list.clear();
 }
 
+void biblioteq::slotDisplayNewSqliteDialog(void)
+{
+  bool error = true;
+  QFileDialog dialog(this);
+
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setNameFilter("SQLite Database (*.sqlite)");
+  dialog.setDefaultSuffix("sqlite");
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      int rc = 0;
+      sqlite3 *ppDb = 0;
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      QFile::remove(dialog.selectedFiles().value(0));
+      rc = sqlite3_open_v2(dialog.selectedFiles().value(0).toUtf8(),
+			   &ppDb,
+			   SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE,
+			   0);
+
+      if(rc == SQLITE_OK)
+	{
+	  char *errorstr = 0;
+
+	  if(sqlite3_exec(ppDb,
+			  sqlite_create_schema_text,
+			  0,
+			  0,
+			  &errorstr) == SQLITE_OK)
+	    error = false;
+	  else
+	    addError(tr("Database Error"),
+		     "Unable to create the specified SQLite database.",
+		     errorstr, __FILE__, __LINE__);
+
+	  sqlite3_free(errorstr);
+	}
+      else
+	addError(tr("Database Error"),
+		 tr("Unable to create the specified SQLite database."),
+		 "sqlite3_open_v2() failure.", __FILE__, __LINE__);
+
+      sqlite3_close(ppDb);
+      QApplication::restoreOverrideCursor();
+
+      if(!error)
+	{
+	  /*
+	  ** The user may not wish to open the new database, so let's not
+	  ** connect automatically.
+	  */
+
+	  if(m_db.isOpen())
+	    {
+	      /*
+	      ** Attempt to locate an SQLite branch.
+	      */
+
+	      bool found = false;
+
+	      for(int i = 0; i < br.branch_name->count(); i++)
+		{
+		  if(m_branches.contains(br.branch_name->itemText(i)))
+		    if(m_branches[br.branch_name->itemText(i)].
+		       value("database_type") == "sqlite")
+		      {
+			found = true;
+			br.branch_name->setCurrentIndex(i);
+			break;
+		      }
+		}
+
+	      if(found)
+		{
+		  if(QMessageBox::question
+		     (this,
+		      tr("BiblioteQ: Question"),
+		      tr("It appears that you are already "
+			 "connected to a database. Do you "
+			 "want to terminate the current connection "
+			 "and connect to the new SQLite database?"),
+		      QMessageBox::Yes | QMessageBox::No,
+		      QMessageBox::No) == QMessageBox::Yes)
+		    {
+		      slotDisconnect();
+		      br.filename->setText(dialog.selectedFiles().value(0));
+		      slotConnectDB();
+		    }
+		}
+	    }
+	  else
+	    {
+	      /*
+	      ** Attempt to locate an SQLite branch.
+	      */
+
+	      bool found = false;
+
+	      for(int i = 0; i < br.branch_name->count(); i++)
+		{
+		  if(m_branches.contains(br.branch_name->itemText(i)))
+		    if(m_branches[br.branch_name->itemText(i)].
+		       value("database_type") == "sqlite")
+		      {
+			found = true;
+			br.branch_name->setCurrentIndex(i);
+			break;
+		      }
+		}
+
+	      if(found)
+		{
+		  br.filename->setText(dialog.selectedFiles().value(0));
+		  slotConnectDB();
+		}
+	    }
+	}
+      else
+	QMessageBox::critical
+	  (this, tr("BiblioteQ: Database Error"),
+	   tr("An error occurred while attempting "
+	      "to create the specified SQLite database."));
+    }
+}
+
+void biblioteq::slotDuplicate(void)
+{
+  if(!m_db.isOpen())
+    return;
+
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  QString oid = "";
+  QString type = "";
+  biblioteq_book *book = 0;
+  biblioteq_cd *cd = 0;
+  biblioteq_dvd *dvd = 0;
+  biblioteq_grey_literature *gl = 0;
+  biblioteq_journal *journal = 0;
+  biblioteq_magazine *magazine = 0;
+  biblioteq_main_table *table = ui.table;
+  biblioteq_photographcollection *photograph = 0;
+  biblioteq_videogame *video_game = 0;
+  bool error = false;
+  int i = 0;
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select at least one item to "
+			       "duplicate."));
+      return;
+    }
+  else if(list.size() >= 5)
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to duplicate "
+				"the ") +
+			     QString::number(list.size()) +
+			     tr(" selected items? BiblioteQ will exit if "
+				"it's unable "
+				"to acquire resources."),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	list.clear();
+	return;
+      }
+
+  QString id("");
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  std::stable_sort(list.begin(), list.end());
+
+  foreach(const QModelIndex &index, list)
+    {
+      i = index.row();
+      oid = biblioteq_misc_functions::getColumnString
+	(table, i, table->columnNumber("MYOID"));
+      type = biblioteq_misc_functions::getColumnString
+	(table, i, table->columnNumber("Type"));
+      m_idCt += 1;
+      id = QString("duplicate_%1").arg(m_idCt);
+
+      if(type.toLower() == "book")
+	{
+	  book = new(std::nothrow) biblioteq_book(this, oid, i);
+
+	  if(book)
+	    book->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "cd")
+	{
+	  cd = new(std::nothrow) biblioteq_cd(this, oid, i);
+
+	  if(cd)
+	    cd->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "dvd")
+	{
+	  dvd = new(std::nothrow) biblioteq_dvd(this, oid, i);
+
+	  if(dvd)
+	    dvd->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "grey literature")
+	{
+	  gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
+
+	  if(gl)
+	    gl->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "journal")
+	{
+	  journal = new(std::nothrow) biblioteq_journal(this, oid, i);
+
+	  if(journal)
+	    journal->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "magazine")
+	{
+	  magazine = new(std::nothrow) biblioteq_magazine(this,
+							  oid, i,
+							  "magazine");
+
+	  if(magazine)
+	    magazine->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "photograph collection")
+	{
+	  photograph = new(std::nothrow) biblioteq_photographcollection
+	    (this, oid, i);
+
+	  if(photograph)
+	    photograph->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "video game")
+	{
+	  video_game = new(std::nothrow) biblioteq_videogame(this,
+							     oid, i);
+
+	  if(video_game)
+	    video_game->duplicate(id, EDITABLE);
+	}
+      else
+	{
+	  error = true;
+	  break;
+	}
+    }
+
+  list.clear();
+  QApplication::restoreOverrideCursor();
+
+  if(error)
+    QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			  tr("Unable to determine the selected item's "
+			     "type."));
+}
+
 void biblioteq::slotExit(void)
 {
   QSettings settings;
@@ -1539,6 +2181,109 @@ void biblioteq::slotExit(void)
   settings.sync();
   slotLastWindowClosed();
   quit();
+}
+
+void biblioteq::slotExportAsCSV(void)
+{
+  QFileDialog dialog(this);
+
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setNameFilter(tr("CSV (*.csv)"));
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Export Table View as CSV"));
+  dialog.setDefaultSuffix("csv");
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QFile file(dialog.selectedFiles().value(0));
+
+      if(file.open(QIODevice::WriteOnly | QIODevice::Truncate |
+		   QIODevice::Text))
+	{
+	  QString str("");
+	  QTextStream stream(&file);
+
+	  for(int i = 0; i < ui.table->columnCount(); i++)
+	    if(!ui.table->isColumnHidden(i))
+	      {
+		if(ui.table->horizontalHeaderItem(i)->text().contains(","))
+		  str += QString("\"%1\",").arg
+		    (ui.table->horizontalHeaderItem(i)->text());
+		else
+		  str += QString("%1,").arg
+		    (ui.table->horizontalHeaderItem(i)->text());
+	      }
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1);
+
+	  if(!str.isEmpty())
+	    stream << str << endl;
+
+	  for(int i = 0; i < ui.table->rowCount(); i++)
+	    {
+	      str = "";
+
+	      for(int j = 0; j < ui.table->columnCount(); j++)
+		if(!ui.table->isColumnHidden(j))
+		  {
+		    QString cleaned(ui.table->item(i, j)->text());
+
+		    cleaned.replace("\n", " ");
+		    cleaned.replace("\r\n", " ");
+		    cleaned = cleaned.trimmed();
+
+		    if(cleaned.contains(","))
+		      str += QString("\"%1\",").arg(cleaned);
+		    else
+		      str += QString("%1,").arg(cleaned);
+		  }
+
+	      if(str.endsWith(","))
+		str = str.mid(0, str.length() - 1);
+
+	      if(!str.isEmpty())
+		stream << str << endl;
+	    }
+
+	  file.close();
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
+}
+
+void biblioteq::slotLanguageChanged(void)
+{
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(action && action->isChecked())
+    {
+      s_locale = action->data().toString();
+      QApplication::removeTranslator(s_qtTranslator);
+      QApplication::removeTranslator(s_appTranslator);
+#ifdef Q_OS_MAC
+      s_qtTranslator->load
+	("qt_" + s_locale,
+	 QCoreApplication::applicationDirPath() + "/../../../Translations");
+#else
+      s_qtTranslator->load("qt_" + s_locale, "Translations");
+#endif
+      QApplication::installTranslator(s_qtTranslator);
+#ifdef Q_OS_MAC
+      s_appTranslator->load
+	("biblioteq_" + s_locale,
+	 QCoreApplication::applicationDirPath() + "/../../../Translations");
+#else
+      s_appTranslator->load("biblioteq_" + s_locale, "Translations");
+#endif
+      QApplication::installTranslator(s_appTranslator);
+    }
 }
 
 void biblioteq::slotModify(void)
@@ -1779,6 +2524,67 @@ void biblioteq::slotModify(void)
 			     "type."));
 }
 
+void biblioteq::slotRefresh(void)
+{
+  if(m_db.isOpen())
+    {
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QString str = "";
+      QVariant data(ui.menu_Category->defaultAction() ?
+		    ui.menu_Category->defaultAction()->data().
+		    toString() : "All");
+
+      if(data.toString() == "All Overdue" && m_roles.isEmpty())
+	str = m_db.userName();
+      else if(data.toString() == "All Requested" && m_roles.isEmpty())
+	str = m_db.userName();
+      else if(data.toString() == "All Reserved" && m_roles.isEmpty())
+	str = m_db.userName();
+      else if(data.toString() == "All Reserved")
+	str = "%";
+
+      (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
+    }
+}
+
+void biblioteq::slotResizeColumns(void)
+{
+  if(!sender())
+    if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
+      return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  for(int i = 0; i < ui.table->columnCount() - 1; i++)
+    ui.table->resizeColumnToContents(i);
+
+  ui.table->horizontalHeader()->setStretchLastSection(true);
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq::slotResizeColumnsAfterSort(void)
+{
+  QObject *object = qobject_cast<QObject *> (sender());
+  QObject *parent = 0;
+
+  if(object != 0 && object->parent() != 0)
+    {
+      if(object->parent() == ui.table)
+	if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
+	  return;
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      parent = object->parent();
+      (qobject_cast<QTableWidget *> (parent))->resizeColumnsToContents();
+      (qobject_cast<QTableWidget *> (parent))->horizontalHeader()->
+	setStretchLastSection(true);
+      QApplication::restoreOverrideCursor();
+    }
+}
+
 void biblioteq::slotSearch(void)
 {
   if(!m_db.isOpen())
@@ -1898,6 +2704,13 @@ void biblioteq::slotSearch(void)
   m_all_diag->raise();
 }
 
+void biblioteq::slotSectionResized(int logicalIndex, int oldSize, int newSize)
+{
+  Q_UNUSED(logicalIndex);
+  Q_UNUSED(oldSize);
+  Q_UNUSED(newSize);
+}
+
 void biblioteq::slotSetColumns(void)
 {
   QString typefilter = ui.menu_Category->defaultAction() ?
@@ -1914,9 +2727,48 @@ void biblioteq::slotSetColumns(void)
     }
 }
 
+void biblioteq::slotShowDbEnumerations(void)
+{
+  db_enumerations->show
+    (this,
+     ui.actionPopulate_Database_Enumerations_Browser_on_Display->
+     isChecked());
+}
+
 void biblioteq::slotShowGrid(void)
 {
   ui.table->setShowGrid(ui.actionShowGrid->isChecked());
+}
+
+void biblioteq::slotUpdateIndicesAfterSort(int column)
+{
+  int i = 0;
+  QString oid = "";
+  QString itemType = "";
+  Qt::SortOrder order;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(ui.table->horizontalHeader()->sortIndicatorOrder() !=
+     Qt::AscendingOrder)
+    order = Qt::DescendingOrder;
+  else
+    order = Qt::AscendingOrder;
+
+  ui.table->horizontalHeader()->setSortIndicator(column, order);
+  ui.table->sortByColumn(column, order);
+
+  for(i = 0; i < ui.table->rowCount(); i++)
+    {
+      oid = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
+      itemType = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
+      itemType = itemType.toLower().remove(" ");
+      updateRows(oid, i, itemType);
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::slotViewDetails(void)
@@ -2151,741 +3003,6 @@ void biblioteq::slotViewDetails(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
-}
-
-void biblioteq::slotRefresh(void)
-{
-  if(m_db.isOpen())
-    {
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      QString str = "";
-      QVariant data(ui.menu_Category->defaultAction() ?
-		    ui.menu_Category->defaultAction()->data().
-		    toString() : "All");
-
-      if(data.toString() == "All Overdue" && m_roles.isEmpty())
-	str = m_db.userName();
-      else if(data.toString() == "All Requested" && m_roles.isEmpty())
-	str = m_db.userName();
-      else if(data.toString() == "All Reserved" && m_roles.isEmpty())
-	str = m_db.userName();
-      else if(data.toString() == "All Reserved")
-	str = "%";
-
-      (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
-    }
-}
-
-void biblioteq::slotResizeColumnsAfterSort(void)
-{
-  QObject *object = qobject_cast<QObject *> (sender());
-  QObject *parent = 0;
-
-  if(object != 0 && object->parent() != 0)
-    {
-      if(object->parent() == ui.table)
-	if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
-	  return;
-
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      parent = object->parent();
-      (qobject_cast<QTableWidget *> (parent))->resizeColumnsToContents();
-      (qobject_cast<QTableWidget *> (parent))->horizontalHeader()->
-	setStretchLastSection(true);
-      QApplication::restoreOverrideCursor();
-    }
-}
-
-void biblioteq::slotUpdateIndicesAfterSort(int column)
-{
-  int i = 0;
-  QString oid = "";
-  QString itemType = "";
-  Qt::SortOrder order;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(ui.table->horizontalHeader()->sortIndicatorOrder() !=
-     Qt::AscendingOrder)
-    order = Qt::DescendingOrder;
-  else
-    order = Qt::AscendingOrder;
-
-  ui.table->horizontalHeader()->setSortIndicator(column, order);
-  ui.table->sortByColumn(column, order);
-
-  for(i = 0; i < ui.table->rowCount(); i++)
-    {
-      oid = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("MYOID"));
-      itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type"));
-      itemType = itemType.toLower().remove(" ");
-      updateRows(oid, i, itemType);
-    }
-
-  QApplication::restoreOverrideCursor();
-}
-
-void biblioteq::slotResizeColumns(void)
-{
-  if(!sender())
-    if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
-      return;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  for(int i = 0; i < ui.table->columnCount() - 1; i++)
-    ui.table->resizeColumnToContents(i);
-
-  ui.table->horizontalHeader()->setStretchLastSection(true);
-  QApplication::restoreOverrideCursor();
-}
-
-void biblioteq::slotAllGo(void)
-{
-  if(!m_db.isOpen())
-    return;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QList<QVariant> values;
-  QSqlQuery query(m_db);
-  QString searchstr("");
-  QString str("");
-  QString type("");
-  QStringList types;
-  bool caseinsensitive = al.caseinsensitive->isChecked();
-
-  types.append("Book");
-  types.append("CD");
-  types.append("DVD");
-  types.append("Grey Literature");
-  types.append("Journal");
-  types.append("Magazine");
-  types.append("Photograph Collection");
-  types.append("Video Game");
-
-  while(!types.isEmpty())
-    {
-      type = types.takeFirst();
-
-      if(type == "Grey Literature")
-	str = "SELECT DISTINCT grey_literature.document_title, "
-	  "grey_literature.document_id, "
-	  "'', grey_literature.document_date, "
-	  "'', "
-	  "'', "
-	  "0.00, '', "
-	  "1, "
-	  "grey_literature.location, "
-	  "0 AS availability, "
-	  "0 AS total_reserved, "
-	  "grey_literature.job_number, "
-	  "grey_literature.type, "
-	  "grey_literature.myoid, "
-	  "grey_literature.front_cover "
-	  "FROM grey_literature "
-	  "WHERE ";
-      else if(type == "Photograph Collection")
-	str = "SELECT DISTINCT photograph_collection.title, "
-	  "photograph_collection.id, "
-	  "'', '', "
-	  "'', "
-	  "'', "
-	  "0.00, '', "
-	  "1, "
-	  "photograph_collection.location, "
-	  "0 AS availability, "
-	  "0 AS total_reserved, "
-	  "photograph_collection.accession_number, "
-	  "photograph_collection.type, "
-	  "photograph_collection.myoid, "
-	  "photograph_collection.image_scaled "
-	  "FROM photograph_collection "
-	  "WHERE ";
-      else
-	{
-	  str = QString
-	    ("SELECT DISTINCT %1.title, "
-	     "%1.id, "
-	     "%1.publisher, %1.pdate, "
-	     "%1.category, "
-	     "%1.language, "
-	     "%1.price, %1.monetary_units, "
-	     "%1.quantity, "
-	     "%1.location, "
-	     "%1.quantity - "
-	     "COUNT(item_borrower_vw.item_oid) AS availability, "
-	     "COUNT(item_borrower_vw.item_oid) AS total_reserved, "
-	     "%1.accession_number, "
-	     "%1.type, ").
-	    arg(type.toLower().remove(" "));
-	  str += QString("%1.myoid, "
-			 "%1.front_cover "
-			 "FROM "
-			 "%1 LEFT JOIN item_borrower_vw ON "
-			 "%1.myoid = "
-			 "item_borrower_vw.item_oid "
-			 "AND item_borrower_vw.type = '%2' "
-			 "WHERE ").arg(type.toLower().remove(" ")).
-	    arg(type);
-	}
-
-      QString ESCAPE("");
-      QString UNACCENT(unaccent());
-
-      if(m_db.driverName() != "QSQLITE")
-	ESCAPE = "E";
-
-      QString idField("id");
-
-      if(type == "Grey Literature")
-	idField = "document_id";
-
-      if(caseinsensitive)
-	{
-	  str.append
-	    (QString("(%1 IS NULL OR " + UNACCENT +
-		     "(LOWER(%1)) LIKE " + UNACCENT + "(" +
-		     ESCAPE + "'%' || ? || '%') ").arg(idField));
-	  values.append
-	    (biblioteq_myqstring::escape(al.idnumber->text().trimmed(), true));
-	}
-      else
-	{
-	  str.append
-	    (QString("(%1 IS NULL OR " + UNACCENT + "(%1) LIKE " +
-		     UNACCENT + "(" +
-		     ESCAPE + "'%' || ? || '%') ").arg(idField));
-	  values.append
-	    (biblioteq_myqstring::escape(al.idnumber->text().trimmed()));
-	}
-
-      if(type == "Book")
-	{
-	  if(caseinsensitive)
-	    {
-	      str.append
-		("OR LOWER(isbn13) LIKE " + ESCAPE + "'%' || ? || '%')");
-	      values.append
-		(biblioteq_myqstring::
-		 escape(al.idnumber->text().trimmed(), true));
-	    }
-	  else
-	    {
-	      str.append("OR isbn13 LIKE " + ESCAPE + "'%' || ? || '%')");
-	      values.append
-		(biblioteq_myqstring::escape(al.idnumber->text().trimmed()));
-	    }
-	}
-      else
-	str.append(")");
-
-      str.append(" AND ");
-
-      QString titleField("title");
-
-      if(type == "Grey Literature")
-	titleField = "document_title";
-
-      if(caseinsensitive)
-	{
-	  str.append
-	    (QString(UNACCENT + "(LOWER(%1)) LIKE " + UNACCENT + "(" +
-		     ESCAPE + "'%' || ? || '%')").arg(titleField));
-	  values.append
-	    (biblioteq_myqstring::escape(al.title->text().trimmed(), true));
-	}
-      else
-	{
-	  str.append(QString(UNACCENT + "(%1) LIKE " + UNACCENT + "(" +
-			     ESCAPE + "'%' || ? || '%')").arg(titleField));
-	  values.append
-	    (biblioteq_myqstring::escape(al.title->text().trimmed()));
-	}
-
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
-	{
-	  str.append(" AND ");
-
-	  if(al.publication_date_enabled->isChecked())
-	    str.append("SUBSTR(pdate, 7) = '" +
-		       al.publication_date->date().
-		       toString("yyyy") + "' AND ");
-
-	  if(al.categories_checkbox->isChecked())
-	    {
-	      QStringList words
-		(al.category->toPlainText().trimmed().
-		 split(QRegExp("\\s+"), QString::SkipEmptyParts));
-
-	      if(!words.isEmpty())
-		{
-		  str.append("(");
-
-		  while(!words.isEmpty())
-		    {
-		      QString word(words.takeFirst());
-
-		      if(caseinsensitive)
-			{
-			  str.append
-			    (UNACCENT +
-			     "(LOWER(category)) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%')" +
-			     (words.isEmpty() ? "" : " OR "));
-			  values.append
-			    (biblioteq_myqstring::escape(word.trimmed(), true));
-			}
-		      else
-			{
-			  str.append
-			    (UNACCENT +
-			     "(category) LIKE " + UNACCENT + "(" +
-			     ESCAPE + "'%' || ? || '%')" +
-			     (words.isEmpty() ? "" : " OR "));
-			  values.append
-			    (biblioteq_myqstring::escape(word.trimmed()));
-			}
-		    }
-
-		  str.append(") AND ");
-		}
-	    }
-	  else
-	    {
-	      if(caseinsensitive)
-		{
-		  str.append(UNACCENT + "(LOWER(category)) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') AND ");
-		  values.append
-		    (biblioteq_myqstring::
-		     escape(al.category->toPlainText().trimmed(), true));
-		}
-	      else
-		{
-		  str.append(UNACCENT + "(category) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') AND ");
-		  values.append
-		    (biblioteq_myqstring::
-		     escape(al.category->toPlainText().trimmed()));
-		}
-	    }
-
-	  if(caseinsensitive)
-	    {
-	      str.append
-		(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
-		 "(" + ESCAPE + "'%' || ? || '%') AND ");
-	      values.append
-		(biblioteq_myqstring::
-		 escape(al.publisher->text().trimmed(), true));
-	    }
-	  else
-	    {
-	      str.append
-		(UNACCENT + "(publisher) LIKE " + UNACCENT + "(" +
-		 ESCAPE + "'%' || ? || '%') AND ");
-	      values.append
-		(biblioteq_myqstring::escape(al.publisher->text().trimmed()));
-	    }
-
-	  if(al.price->value() > -0.01)
-	    {
-	      str.append("price = ");
-	      str.append(QString::number(al.price->value()));
-	      str.append(" AND ");
-	    }
-
-	  if(al.language->currentIndex() != 0)
-	    {
-	      if(caseinsensitive)
-		str.append(UNACCENT + "(LOWER(language)) = " +
-			   UNACCENT + "(" + ESCAPE + "'" +
-			   biblioteq_myqstring::escape
-			   (al.language->currentText().trimmed(),
-			    true) +
-			   "') AND ");
-	      else
-		str.append(UNACCENT + "(language) = " + UNACCENT +
-			   "(" + ESCAPE + "'" +
-			   biblioteq_myqstring::escape
-			   (al.language->currentText().trimmed()) +
-			   "') AND ");
-	    }
-
-	  if(al.monetary_units->currentIndex() != 0)
-	    {
-	      if(caseinsensitive)
-		str.append
-		  (UNACCENT + "(LOWER(monetary_units)) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::
-		   escape(al.monetary_units->
-			  currentText().trimmed(),
-			  true) +
-		   "') AND ");
-	      else
-		str.append
-		  (UNACCENT + "(monetary_units) = " + UNACCENT
-		   + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::
-		   escape(al.monetary_units->
-			  currentText().trimmed()) +
-		   "') AND ");
-	    }
-
-	  if(al.abstract_checkbox->isChecked())
-	    {
-	      QStringList words
-		(al.description->toPlainText().trimmed().
-		 split(QRegExp("\\s+"), QString::SkipEmptyParts));
-
-	      if(!words.isEmpty())
-		{
-		  str.append("(");
-
-		  while(!words.isEmpty())
-		    {
-		      QString word(words.takeFirst());
-
-		      if(caseinsensitive)
-			{
-			  str.append
-			    (UNACCENT + "(LOWER(description)) LIKE " +
-			     UNACCENT + "(" + ESCAPE
-			     + "'%' || ? || '%')" +
-			     (words.isEmpty() ? "" : " OR "));
-			  values.append
-			    (biblioteq_myqstring::escape(word.trimmed(), true));
-			}
-		      else
-			{
-			  str.append
-			    (UNACCENT + "(description) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%')" +
-			     (words.isEmpty() ? "" : " OR "));
-			  values.append
-			    (biblioteq_myqstring::escape(word.trimmed()));
-			}
-		    }
-
-		  str.append(") ");
-		}
-	      else
-		{
-		  if(caseinsensitive)
-		    {
-		      str.append
-			(UNACCENT + "(LOWER(description)) LIKE " +
-			 UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
-		      values.append
-			(biblioteq_myqstring::
-			 escape(al.description->toPlainText().trimmed(), true));
-		    }
-		  else
-		    {
-		      str.append
-			(UNACCENT + "(description) LIKE " +
-			 UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
-		      values.append
-			(biblioteq_myqstring::
-			 escape(al.description->toPlainText().trimmed()));
-		    }
-		}
-	    }
-	  else
-	    {
-	      if(caseinsensitive)
-		{
-		  str.append
-		    (UNACCENT + "(LOWER(description)) LIKE " +
-		     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
-		  values.append
-		    (biblioteq_myqstring::
-		     escape(al.description->toPlainText().trimmed(), true));
-		}
-	      else
-		{
-		  str.append
-		    (UNACCENT + "(description) LIKE " + UNACCENT +
-		     "(" + ESCAPE + "'%' || ? || '%') ");
-		  values.append
-		    (biblioteq_myqstring::
-		     escape(al.description->toPlainText().trimmed()));
-		}
-	    }
-
-	  if(al.keywords_checkbox->isChecked())
-	    {
-	      QStringList words
-		(al.keyword->toPlainText().trimmed().
-		 split(QRegExp("\\s+"), QString::SkipEmptyParts));
-
-	      if(!words.isEmpty())
-		{
-		  str.append(" AND (");
-
-		  while(!words.isEmpty())
-		    {
-		      QString word(words.takeFirst());
-
-		      if(caseinsensitive)
-			{
-			  str.append
-			    (UNACCENT +
-			     "(COALESCE(LOWER(keyword), '')) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%')" +
-			     (words.isEmpty() ? "" : " OR "));
-			  values.append
-			    (biblioteq_myqstring::escape(word.trimmed(), true));
-			}
-		      else
-			{
-			  str.append
-			    (UNACCENT +
-			     "(COALESCE(keyword, '')) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%')" +
-			     (words.isEmpty() ? "" : " OR "));
-			  values.append
-			    (biblioteq_myqstring::escape(word.trimmed()));
-			}
-		    }
-
-		  str.append(") ");
-		}
-	    }
-	  else
-	    {
-	      if(caseinsensitive)
-		{
-		  str.append("AND " + UNACCENT +
-			     "(COALESCE(LOWER(keyword), '')) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
-		  values.append
-		    (biblioteq_myqstring::escape(al.keyword->toPlainText().
-						 trimmed(), true));
-		}
-	      else
-		{
-		  str.append("AND " + UNACCENT +
-			     "(COALESCE(keyword, '')) LIKE " +
-			     UNACCENT + "(" + ESCAPE + "'%' || ? || '%') ");
-		  values.append
-		    (biblioteq_myqstring::escape(al.keyword->toPlainText().
-						 trimmed()));
-		}
-	    }
-
-	  if(al.quantity->value() != 0)
-	    str.append("AND quantity = " +
-		       al.quantity->text() + " ");
-
-	  if(al.location->currentIndex() != 0)
-	    {
-	      if(caseinsensitive)
-		str.append
-		  ("AND " + UNACCENT + "(LOWER(location)) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::escape
-		   (al.location->currentText().trimmed(),
-		    true) + "') ");
-	      else
-		str.append
-		  ("AND " + UNACCENT + "(location) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::escape
-		   (al.location->currentText().trimmed()) + "') ");
-	    }
-
-	  str += QString("GROUP BY "
-			 "%1.title, "
-			 "%1.id, "
-			 "%1.publisher, %1.pdate, "
-			 "%1.category, "
-			 "%1.language, "
-			 "%1.price, "
-			 "%1.monetary_units, "
-			 "%1.quantity, "
-			 "%1.location, "
-			 "%1.keyword, "
-			 "%1.accession_number, "
-			 "%1.type, "
-			 "%1.myoid, "
-			 "%1.front_cover "
-			 ).arg
-	    (type.toLower().remove(" "));
-	}
-      else if(type == "Grey Literature")
-	{
-	  if(al.location->currentIndex() != 0)
-	    {
-	      if(caseinsensitive)
-		str.append
-		  ("AND " + UNACCENT + "(LOWER(location)) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::escape
-		   (al.location->currentText().trimmed(),
-		    true) + "') ");
-	      else
-		str.append
-		  ("AND " + UNACCENT + "(location) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::escape
-		   (al.location->currentText().trimmed()) + "') ");
-	    }
-
-	  str += "GROUP BY grey_literature.document_title, "
-	    "grey_literature.document_id, "
-	    "grey_literature.document_date, "
-	    "grey_literature.location, "
-	    "grey_literature.job_number, "
-	    "grey_literature.type, "
-	    "grey_literature.myoid, "
-	    "grey_literature.front_cover ";
-	}
-      else if(type == "Photograph Collection")
-	{
-	  if(al.location->currentIndex() != 0)
-	    {
-	      if(caseinsensitive)
-		str.append
-		  ("AND " + UNACCENT + "(LOWER(location)) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::escape
-		   (al.location->currentText().trimmed(),
-		    true) + "') ");
-	      else
-		str.append
-		  ("AND " + UNACCENT + "(location) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::escape
-		   (al.location->currentText().trimmed()) + "') ");
-	    }
-
-	  str += "GROUP BY "
-	    "photograph_collection.title, "
-	    "photograph_collection.id, "
-	    "photograph_collection.location, "
-	    "photograph_collection.accession_number, "
-	    "photograph_collection.type, "
-	    "photograph_collection.myoid, "
-	    "photograph_collection.image_scaled ";
-	}
-
-      if(type == "CD")
-	{
-	  str = str.replace("pdate", "rdate");
-	  str = str.replace("publisher", "recording_label");
-	}
-      else if(type == "DVD")
-	{
-	  str = str.replace("pdate", "rdate");
-	  str = str.replace("publisher", "studio");
-	}
-      else if(type == "Video Game")
-	{
-	  str = str.replace("pdate", "rdate");
-	  str = str.replace("category", "genre");
-	}
-
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
-	{
-	  if(al.available->isChecked())
-	    str.append
-	      (QString("HAVING (%1.quantity - "
-		       "COUNT(item_borrower_vw.item_oid)) > 0 ").
-	       arg(type.toLower().remove(" ")));
-	}
-
-      if(type != "Video Game")
-	str += "UNION ALL ";
-      else
-	str += " ";
-
-      searchstr += str;
-    }
-
-  query.prepare(searchstr);
-
-  while(!values.isEmpty())
-    query.addBindValue(values.takeFirst());
-
-  QApplication::restoreOverrideCursor();
-  (void) populateTable
-    (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
-}
-
-void biblioteq::slotQuery(void)
-{
-}
-
-void biblioteq::slotAddBorrower(void)
-{
-  QDate now = QDate::currentDate();
-  QDateTime nowTime = QDateTime::currentDateTime();
-
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.memberid,
-					    QColor(255, 248, 220));
-  userinfo_diag->m_memberProperties.clear();
-  userinfo_diag->m_userinfo.memberid->setReadOnly(false);
-  userinfo_diag->m_userinfo.memberid->setText
-    ("m" + nowTime.toString("yyyyMMddhhmmss"));
-  userinfo_diag->m_userinfo.membersince->setDate(now);
-  userinfo_diag->m_userinfo.membersince->setMaximumDate(now);
-  userinfo_diag->m_userinfo.firstName->clear();
-  userinfo_diag->m_userinfo.lastName->clear();
-  userinfo_diag->m_userinfo.middle->clear();
-  userinfo_diag->m_userinfo.dob->setDate(now.addYears(-25));
-  userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
-  userinfo_diag->m_userinfo.street->clear();
-  userinfo_diag->m_userinfo.city->clear();
-  userinfo_diag->m_userinfo.state->setCurrentIndex(0);
-  userinfo_diag->m_userinfo.zip->setText("N/A");
-  userinfo_diag->m_userinfo.zip->setCursorPosition(0);
-  userinfo_diag->m_userinfo.telephoneNumber->clear();
-  userinfo_diag->m_userinfo.email->clear();
-  userinfo_diag->m_userinfo.expirationdate->setDate
-    (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
-  userinfo_diag->m_userinfo.overduefees->setValue(0.00);
-  userinfo_diag->m_userinfo.comments->clear();
-  userinfo_diag->m_userinfo.memberclass->clear();
-  userinfo_diag->m_userinfo.generalregistrationnumber->clear();
-  userinfo_diag->m_memberProperties["membersince"] =
-    userinfo_diag->m_userinfo.membersince->date().toString
-    (Qt::ISODate);
-  userinfo_diag->m_memberProperties["dob"] =
-    userinfo_diag->m_userinfo.dob->date().toString
-    (Qt::ISODate);
-  userinfo_diag->m_memberProperties["sex"] =
-    userinfo_diag->m_userinfo.sex->currentText();
-  userinfo_diag->m_memberProperties["state_abbr"] =
-    userinfo_diag->m_userinfo.state->currentText();
-  userinfo_diag->m_memberProperties["zip"] = userinfo_diag->m_userinfo.zip->
-    text();
-  userinfo_diag->m_memberProperties["telephone_num"] =
-    userinfo_diag->m_userinfo.telephoneNumber->text();
-  userinfo_diag->m_memberProperties["expiration_date"] =
-    userinfo_diag->m_userinfo.expirationdate->date().toString
-    (Qt::ISODate);
-  userinfo_diag->m_memberProperties["overdue_fees"] =
-    userinfo_diag->m_userinfo.overduefees->text();
-  userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
-  m_engUserinfoTitle = "Create New Member";
-  userinfo_diag->m_userinfo.prevTool->setVisible(false);
-  userinfo_diag->m_userinfo.nextTool->setVisible(false);
-  userinfo_diag->m_userinfo.memberid->selectAll();
-  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
-  userinfo_diag->m_userinfo.memberid->setFocus();
-  userinfo_diag->updateGeometry();
-  biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
-  userinfo_diag->show();
 }
 
 void biblioteq::slotSaveUser(void)
@@ -8046,11 +8163,6 @@ void biblioteq::slotShowHistory(void)
   m_history_diag->raise();
 }
 
-QMainWindow *biblioteq::getMembersBrowser(void) const
-{
-  return m_members_diag;
-}
-
 void biblioteq::slotPrintReservationHistory(void)
 {
   QString html = "<html>";
@@ -8540,633 +8652,6 @@ void biblioteq::slotRefreshAdminList(void)
   m_deletedAdmins.clear();
 }
 
-void biblioteq::slotSaveAdministrators(void)
-{
-  QCheckBox *checkBox = 0;
-  QProgressDialog progress(m_admin_diag);
-  QSqlQuery query(m_db);
-  QString adminStr = "";
-  QString errorstr = "";
-  QString str = "";
-  QStringList tmplist;
-  bool adminCreated = false;
-  bool uexists = false;
-  int i = 0;
-  int j = 0;
-
-  /*
-  ** 1. Prohibit duplicate administrator ids and administrators
-  **    without privileges.
-  ** 2. Create a database transaction.
-  ** 3. Delete required entries from the admin table.
-  ** 4. Remove all deleted database accounts.
-  ** 5. Create new entries in the admin table.
-  ** 6. Create new database accounts with correct privileges.
-  ** 7. Commit or rollback the current database transaction.
-  */
-
-  ab.saveButton->setFocus();
-
-  for(i = 0; i < ab.table->rowCount(); i++)
-    {
-      if(ab.table->item(i, 0)->text().trimmed().isEmpty())
-	continue;
-
-      if(!(qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, 1))->isChecked() ||
-	   qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, 2))->isChecked() ||
-	   qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, 3))->isChecked() ||
-	   qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, 4))->isChecked()))
-	{
-	  tmplist.clear();
-	  ab.table->selectRow(i);
-	  ab.table->horizontalScrollBar()->setValue(i);
-	  QMessageBox::critical
-	    (m_admin_diag, tr("BiblioteQ: User Error"),
-	     tr("Administrators must belong to at least one category."));
-	  return;
-	}
-
-      if(!tmplist.contains(ab.table->item(i, 0)->text().toLower().trimmed()))
-	tmplist.append(ab.table->item(i, 0)->text().toLower().trimmed());
-      else
-	{
-	  tmplist.clear();
-	  ab.table->selectRow(i);
-	  ab.table->horizontalScrollBar()->setValue(i);
-	  QMessageBox::critical
-	    (m_admin_diag, tr("BiblioteQ: User Error"),
-	     tr("Duplicate administrator ids are not allowed."));
-	  return;
-	}
-    }
-
-  tmplist.clear();
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!m_db.transaction())
-    {
-      QApplication::restoreOverrideCursor();
-      addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to create a database transaction.")),
-	 m_db.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical
-	(m_admin_diag, tr("BiblioteQ: Database Error"),
-	 tr("Unable to create a database transaction."));
-      return;
-    }
-
-  /*
-  ** Remove database accounts.
-  */
-
-  for(i = 0; i < m_deletedAdmins.size(); i++)
-    {
-      query.prepare("DELETE FROM admin WHERE LOWER(username) = LOWER(?)");
-      query.bindValue(0, m_deletedAdmins[i].toLower());
-
-      if(!query.exec())
-	{
-	  QApplication::restoreOverrideCursor();
-	  addError(QString(tr("Database Error")),
-		   QString(tr("An error occurred while attempting to "
-			      "remove ")) + m_deletedAdmins[i].toLower() +
-		   QString(tr(".")),
-		   query.lastError().text(), __FILE__, __LINE__);
-	  goto db_rollback;
-	}
-
-      biblioteq_misc_functions::DBAccount
-	(m_deletedAdmins[i].toLower(), m_db,
-	 biblioteq_misc_functions::DELETE_USER, errorstr);
-
-      if(!errorstr.isEmpty())
-	{
-	  QApplication::restoreOverrideCursor();
-	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("An error occurred while attempting to "
-			"remove the database account ")) +
-	     m_deletedAdmins[i].toLower() + QString(tr(".")),
-	     errorstr, __FILE__, __LINE__);
-	  goto db_rollback;
-	}
-    }
-
-  QApplication::restoreOverrideCursor();
-  progress.setCancelButton(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Saving administrator information..."));
-  progress.setMaximum(ab.table->rowCount());
-  progress.setMinimum(0);
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  /*
-  ** Add or modify administrators.
-  */
-
-  for(i = 0; i < ab.table->rowCount(); i++)
-    {
-      str = "";
-      adminStr = ab.table->item(i, 0)->text().toLower().trimmed();
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      if(adminStr.isEmpty())
-	continue; // Ignore empty administrator ids.
-      else if(adminStr == getAdminID())
-	continue; // Ignore current administrator.
-
-      if((qobject_cast<QCheckBox *> (ab.table->cellWidget(i, 1)))->
-	 isChecked())
-	str = "administrator";
-      else
-	for(j = 2; j < ab.table->columnCount(); j++)
-	  {
-	    checkBox = qobject_cast<QCheckBox *> (ab.table->cellWidget(i, j));
-
-	    if(checkBox->isChecked())
-	      str += m_abColumnHeaderIndexes.value(j).toLower() +
-		" ";
-	  }
-
-      str = str.trimmed();
-
-      if(str.isEmpty())
-	str = "none";
-
-      uexists = biblioteq_misc_functions::userExists(adminStr, m_db, errorstr);
-
-      if(!errorstr.isEmpty())
-	{
-	  progress.close();
-	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("The function biblioteq_misc_functions::"
-			"userExists() failed "
-			"for ")) + adminStr + QString(tr(".")),
-	     errorstr, __FILE__, __LINE__);
-	  goto db_rollback;
-	}
-
-      if(!uexists)
-	{
-	  query.prepare("INSERT INTO admin (username, roles) "
-			"VALUES (LOWER(?), LOWER(?))");
-	  query.bindValue(0, adminStr);
-	  query.bindValue(1, str);
-	}
-      else
-	{
-	  query.prepare
-	    ("UPDATE admin SET roles = LOWER(?), username = LOWER(?) WHERE "
-	     "LOWER(username) = LOWER(?)");
-	  query.bindValue(0, str);
-	  query.bindValue(1, adminStr);
-	  query.bindValue(2, adminStr);
-	}
-
-      if(!query.exec())
-	{
-	  progress.close();
-	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create or update the administrator entry "
-			"for ")) + adminStr + QString(tr(".")),
-	     query.lastError().text(), __FILE__, __LINE__);
-	  goto db_rollback;
-	}
-
-      if(!uexists)
-	{
-	  biblioteq_misc_functions::DBAccount
-	    (adminStr, m_db,
-	     biblioteq_misc_functions::CREATE_USER,
-	     errorstr, str);
-
-	  if(!errorstr.isEmpty())
-	    {
-	      progress.close();
-	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "create a database account for ")) + adminStr +
-		 QString(tr(".")),
-		 errorstr, __FILE__, __LINE__);
-	      goto db_rollback;
-	    }
-
-	  adminCreated = true;
-	}
-      else
-	{
-	  biblioteq_misc_functions::revokeAll(adminStr, m_db, errorstr);
-
-	  if(!errorstr.isEmpty())
-	    {
-	      progress.close();
-	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "revoke privileges from ")) + adminStr +
-		 QString(tr(".")),
-		 errorstr, __FILE__, __LINE__);
-	      goto db_rollback;
-	    }
-
-	  biblioteq_misc_functions::grantPrivs(adminStr, str, m_db, errorstr);
-
-	  if(!errorstr.isEmpty())
-	    {
-	      progress.close();
-	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "grant privileges to ")) + adminStr +
-		 QString(tr(".")),
-		 errorstr, __FILE__, __LINE__);
-	      goto db_rollback;
-	    }
-	}
-    }
-
-  progress.close();
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!m_db.commit())
-    {
-      addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to commit the current database "
-		    "transaction.")),
-	 m_db.lastError().text(), __FILE__,
-	 __LINE__);
-      m_db.rollback();
-      QApplication::restoreOverrideCursor();
-      QMessageBox::critical(m_admin_diag,
-			    tr("BiblioteQ: Database Error"),
-			    tr("Unable to commit the current "
-			       "database transaction."));
-      return;
-    }
-
-  QApplication::restoreOverrideCursor();
-  m_deletedAdmins.clear();
-
-  if(adminCreated)
-    QMessageBox::information
-      (m_admin_diag, tr("BiblioteQ: Information"),
-       tr("Please notify new administrators that their "
-	  "default password has been set "
-	  "to tempPass."));
-
-  slotRefreshAdminList();
-  return;
-
- db_rollback:
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!m_db.rollback())
-    addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	     m_db.lastError().text(), __FILE__, __LINE__);
-
-  QApplication::restoreOverrideCursor();
-  QMessageBox::critical(m_admin_diag, tr("BiblioteQ: Database Error"),
-			tr("An error occurred while attempting to save "
-			   "the administrator information."));
-}
-
-void biblioteq::slotRequest(void)
-{
-  /*
-  ** This method is used to either request an item or cancel a request.
-  */
-
-  int i = 0;
-  int ct = 0;
-  int numcompleted = 0;
-  bool error = false;
-  bool isRequesting = true;
-  QDate now = QDate::currentDate();
-  QString oid = "";
-  QString itemType = "";
-  QSqlQuery query(m_db);
-  QProgressDialog progress(this);
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
-
-  if(!m_roles.isEmpty())
-    isRequesting = false;
-  else if(ui.menu_Category->defaultAction() &&
-	  ui.menu_Category->defaultAction()->data().
-	  toString() == "All Requested")
-    isRequesting = false;
-
-  if(isRequesting)
-    {
-      if(list.isEmpty())
-	{
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: User Error"),
-	     tr("Please select at least one item to place "
-		"on request."));
-	  return;
-	}
-    }
-  else
-    {
-      if(list.isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please select at least one request to "
-				   "cancel."));
-	  return;
-	}
-
-      if(list.size() > 0)
-	if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-				 tr("Are you sure that you wish to "
-				    "cancel the selected request(s)?"),
-				 QMessageBox::Yes | QMessageBox::No,
-				 QMessageBox::No) == QMessageBox::No)
-	  {
-	    list.clear();
-	    return;
-	  }
-    }
-
-  progress.setCancelButton(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-
-  if(isRequesting)
-    progress.setLabelText(tr("Requesting the selected item(s)..."));
-  else
-    progress.setLabelText(tr("Canceling the selected request(s)..."));
-
-  progress.setMaximum(list.size());
-  progress.setMinimum(0);
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  foreach(const QModelIndex &index, list)
-    {
-      i = index.row();
-      ct += 1;
-
-      if(isRequesting)
-	oid = biblioteq_misc_functions::getColumnString
-	  (ui.table, i, ui.table->columnNumber("MYOID"));
-      else
-	{
-	  oid = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("REQUESTOID"));
-
-	  if(oid.isEmpty())
-	    oid = "-1";
-	}
-
-      itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i,
-	 ui.table->columnNumber("Type"));
-
-      if(itemType != "Grey Literature" &&
-	 itemType != "Photograph Collection")
-	{
-	  if(isRequesting)
-	    {
-	      query.prepare("INSERT INTO item_request (item_oid, memberid, "
-			    "requestdate, type) VALUES (?, ?, ?, ?)");
-	      query.bindValue(0, oid);
-	      query.bindValue(1, m_db.userName());
-	      query.bindValue(2, now.toString("MM/dd/yyyy"));
-	      query.bindValue(3, itemType);
-	    }
-	  else
-	    {
-	      query.prepare("DELETE FROM item_request WHERE myoid = ?");
-	      query.bindValue(0, oid);
-	    }
-
-	  if(!query.exec())
-	    {
-	      error = true;
-
-	      if(isRequesting)
-		addError(QString(tr("Database Error")),
-			 QString(tr("Unable to request the item.")),
-			 query.lastError().text(), __FILE__, __LINE__);
-	      else
-		addError(QString(tr("Database Error")),
-			 QString(tr("Unable to cancel the request.")),
-			 query.lastError().text(), __FILE__, __LINE__);
-	    }
-	  else
-	    {
-	      numcompleted += 1;
-
-	      if(!isRequesting)
-		deleteItem(oid, itemType);
-	    }
-	}
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(ct);
-
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-    }
-
-  progress.close();
-
-  /*
-  ** Provide some fancy messages.
-  */
-
-  if(error && isRequesting)
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			  tr("Unable to request some or all of the selected "
-			     "items. "
-			     "Please verify that you are not attempting to "
-			     "request duplicate items."));
-  else if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			  tr("Unable to cancel some or all of the selected "
-			     "requests."));
-
-  if(!isRequesting && numcompleted > 0)
-    slotRefresh();
-
-  list.clear();
-}
-
-void biblioteq::prepareFilter(void)
-{
-  QStringList tmplist1;
-  QStringList tmplist2;
-
-  if(m_db.driverName() == "QSQLITE")
-    {
-      tmplist1 << "All"
-	       << "All Available"
-	       << "All Overdue"
-	       << "All Reserved"
-	       << "Books"
-	       << "DVDs"
-	       << "Grey Literature"
-	       << "Journals"
-	       << "Magazines"
-	       << "Music CDs"
-	       << "Photograph Collections"
-	       << "Video Games";
-      tmplist2 << tr("All")
-	       << tr("All Available")
-	       << tr("All Overdue")
-	       << tr("All Reserved")
-	       << tr("Books")
-	       << tr("DVDs")
-	       << tr("Grey Literature")
-	       << tr("Journals")
-	       << tr("Magazines")
-	       << tr("Music CDs")
-	       << tr("Photograph Collections")
-	       << tr("Video Games");
-    }
-  else if(m_roles.contains("administrator") ||
-	  m_roles.contains("circulation"))
-    {
-      tmplist1 << "All"
-	       << "All Available"
-	       << "All Overdue"
-	       << "All Requested"
-	       << "All Reserved"
-	       << "Books"
-	       << "DVDs"
-	       << "Grey Literature"
-	       << "Journals"
-	       << "Magazines"
-	       << "Music CDs"
-	       << "Photograph Collections"
-	       << "Video Games";
-      tmplist2 << tr("All")
-	       << tr("All Available")
-	       << tr("All Overdue")
-	       << tr("All Requested")
-	       << tr("All Reserved")
-	       << tr("Books")
-	       << tr("DVDs")
-	       << tr("Grey Literature")
-	       << tr("Journals")
-	       << tr("Magazines")
-	       << tr("Music CDs")
-	       << tr("Photograph Collections")
-	       << tr("Video Games");
-    }
-  else
-    {
-      if(m_db.userName() == "xbook_guest" ||
-	 m_roles == "librarian" ||
-	 m_roles == "membership")
-	{
-	  tmplist1 << "All"
-		   << "All Available"
-		   << "Books"
-		   << "DVDs"
-		   << "Grey Literature"
-		   << "Journals"
-		   << "Magazines"
-		   << "Music CDs"
-		   << "Photograph Collections"
-		   << "Video Games";
-	  tmplist2 << tr("All")
-		   << tr("All Available")
-		   << tr("Books")
-		   << tr("DVDs")
-		   << tr("Grey Literature")
-		   << tr("Journals")
-		   << tr("Magazines")
-		   << tr("Music CDs")
-		   << tr("Photograph Collections")
-		   << tr("Video Games");
-	}
-      else
-	{
-	  tmplist1 << "All"
-		   << "All Available"
-		   << "All Overdue"
-		   << "All Requested"
-		   << "All Reserved"
-		   << "Books"
-		   << "DVDs"
-		   << "Grey Literature"
-		   << "Journals"
-		   << "Magazines"
-		   << "Music CDs"
-		   << "Photograph Collections"
-		   << "Video Games";
-	  tmplist2 << tr("All")
-		   << tr("All Available")
-		   << tr("All Overdue")
-		   << tr("All Requested")
-		   << tr("All Reserved")
-		   << tr("Books")
-		   << tr("DVDs")
-		   << tr("Grey Literature")
-		   << tr("Journals")
-		   << tr("Magazines")
-		   << tr("Music CDs")
-		   << tr("Photograph Collections")
-		   << tr("Video Games");
-	}
-    }
-
-  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
-	     SLOT(slotAutoPopOnFilter(QAction *)));
-  ui.menu_Category->clear();
-
-  for(int i = 0; i < m_menuCategoryActionGroup->actions().size(); i++)
-    m_menuCategoryActionGroup->removeAction
-      (m_menuCategoryActionGroup->actions().at(i));
-
-  for(int i = 0; i < tmplist1.size(); i++)
-    {
-      QAction *action = ui.menu_Category->addAction(tmplist2[i]);
-
-      if(action)
-	{
-	  action->setCheckable(true);
-	  action->setData(tmplist1[i]);
-	  m_menuCategoryActionGroup->addAction(action);
-	}
-    }
-
-  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
-	  SLOT(slotAutoPopOnFilter(QAction *)));
-  tmplist1.clear();
-  tmplist2.clear();
-}
-
 void biblioteq::slotSqliteFileSelected(bool state)
 {
   Q_UNUSED(state);
@@ -9209,66 +8694,6 @@ void biblioteq::slotClearSqliteMenu(bool state)
 
   allKeys.clear();
   createSqliteMenuActions();
-}
-
-void biblioteq::createSqliteMenuActions(void)
-{
-  QSettings settings;
-  QStringList dups;
-  QStringList allKeys(settings.allKeys());
-
-  ui.menu_Recent_SQLite_Files->clear();
-
-  for(int i = 0; i < allKeys.size(); i++)
-    {
-      if(!allKeys[i].startsWith("sqlite_db_"))
-	continue;
-
-      QString str(settings.value(allKeys[i], "").toString().trimmed());
-
-      if(str.isEmpty())
-	{
-	  settings.remove(allKeys[i]);
-	  continue;
-	}
-
-      if(!dups.contains(str) && QFileInfo(str).isReadable() &&
-	 QFileInfo(str).isWritable())
-	dups.append(str);
-      else
-	{
-	  settings.remove(allKeys[i]);
-	  continue;
-	}
-
-      QAction *action = new(std::nothrow) QAction
-	(str, ui.menu_Recent_SQLite_Files);
-
-      if(!action)
-	continue;
-
-      action->setData(str);
-      connect(action, SIGNAL(triggered(bool)), this,
-	      SLOT(slotSqliteFileSelected(bool)));
-      ui.menu_Recent_SQLite_Files->addAction(action);
-    }
-
-  dups.clear();
-  allKeys.clear();
-
-  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"),
-					      ui.menu_Recent_SQLite_Files);
-
-  if(action)
-    {
-      connect(action, SIGNAL(triggered(bool)), this,
-	      SLOT(slotClearSqliteMenu(bool)));
-
-      if(ui.menu_Recent_SQLite_Files->actions().size() > 0)
-	ui.menu_Recent_SQLite_Files->addSeparator();
-
-      ui.menu_Recent_SQLite_Files->addAction(action);
-    }
 }
 
 void biblioteq::slotPreviousPage(void)
@@ -9318,414 +8743,6 @@ void biblioteq::slotPageClicked(const QString &link)
     }
 }
 
-QString biblioteq::getPreferredSRUSite(void) const
-{
-  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
-    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
-      return ui.menuPreferredSRUSite->actions()[i]->text();
-
-  return "";
-}
-
-QString biblioteq::getPreferredZ3950Site(void) const
-{
-  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
-    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
-      return ui.menuPreferredZ3950Server->actions()[i]->text();
-
-  return "";
-}
-
-QString biblioteq::getTypeFilterString(void) const
-{
-  if(ui.menu_Category->defaultAction())
-    return ui.menu_Category->defaultAction()->data().toString();
-  else
-    return "All";
-}
-
-void biblioteq::slotDisplayNewSqliteDialog(void)
-{
-  bool error = true;
-  QFileDialog dialog(this);
-
-  dialog.setFileMode(QFileDialog::AnyFile);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("SQLite Database (*.sqlite)");
-  dialog.setDefaultSuffix("sqlite");
-  dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
-    {
-      repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      int rc = 0;
-      sqlite3 *ppDb = 0;
-
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      QFile::remove(dialog.selectedFiles().value(0));
-      rc = sqlite3_open_v2(dialog.selectedFiles().value(0).toUtf8(),
-			   &ppDb,
-			   SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE,
-			   0);
-
-      if(rc == SQLITE_OK)
-	{
-	  char *errorstr = 0;
-
-	  if(sqlite3_exec(ppDb,
-			  sqlite_create_schema_text,
-			  0,
-			  0,
-			  &errorstr) == SQLITE_OK)
-	    error = false;
-	  else
-	    addError(tr("Database Error"),
-		     "Unable to create the specified SQLite database.",
-		     errorstr, __FILE__, __LINE__);
-
-	  sqlite3_free(errorstr);
-	}
-      else
-	addError(tr("Database Error"),
-		 tr("Unable to create the specified SQLite database."),
-		 "sqlite3_open_v2() failure.", __FILE__, __LINE__);
-
-      sqlite3_close(ppDb);
-      QApplication::restoreOverrideCursor();
-
-      if(!error)
-	{
-	  /*
-	  ** The user may not wish to open the new database, so let's not
-	  ** connect automatically.
-	  */
-
-	  if(m_db.isOpen())
-	    {
-	      /*
-	      ** Attempt to locate an SQLite branch.
-	      */
-
-	      bool found = false;
-
-	      for(int i = 0; i < br.branch_name->count(); i++)
-		{
-		  if(m_branches.contains(br.branch_name->itemText(i)))
-		    if(m_branches[br.branch_name->itemText(i)].
-		       value("database_type") == "sqlite")
-		      {
-			found = true;
-			br.branch_name->setCurrentIndex(i);
-			break;
-		      }
-		}
-
-	      if(found)
-		{
-		  if(QMessageBox::question
-		     (this,
-		      tr("BiblioteQ: Question"),
-		      tr("It appears that you are already "
-			 "connected to a database. Do you "
-			 "want to terminate the current connection "
-			 "and connect to the new SQLite database?"),
-		      QMessageBox::Yes | QMessageBox::No,
-		      QMessageBox::No) == QMessageBox::Yes)
-		    {
-		      slotDisconnect();
-		      br.filename->setText(dialog.selectedFiles().value(0));
-		      slotConnectDB();
-		    }
-		}
-	    }
-	  else
-	    {
-	      /*
-	      ** Attempt to locate an SQLite branch.
-	      */
-
-	      bool found = false;
-
-	      for(int i = 0; i < br.branch_name->count(); i++)
-		{
-		  if(m_branches.contains(br.branch_name->itemText(i)))
-		    if(m_branches[br.branch_name->itemText(i)].
-		       value("database_type") == "sqlite")
-		      {
-			found = true;
-			br.branch_name->setCurrentIndex(i);
-			break;
-		      }
-		}
-
-	      if(found)
-		{
-		  br.filename->setText(dialog.selectedFiles().value(0));
-		  slotConnectDB();
-		}
-	    }
-	}
-      else
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: Database Error"),
-	   tr("An error occurred while attempting "
-	      "to create the specified SQLite database."));
-    }
-}
-
-void biblioteq::slotShowDbEnumerations(void)
-{
-  db_enumerations->show
-    (this,
-     ui.actionPopulate_Database_Enumerations_Browser_on_Display->
-     isChecked());
-}
-
-void biblioteq::slotChangeView(bool checked)
-{
-  Q_UNUSED(checked);
-
-  QAction *action = qobject_cast<QAction *> (sender());
-
-  if(action)
-    {
-      ui.stackedWidget->setCurrentIndex(action->data().toInt());
-
-      if(ui.stackedWidget->currentIndex() == 0)
-	ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
-      else
-	ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-      QSettings settings;
-
-      settings.setValue("view_mode_index", action->data().toInt());
-    }
-}
-
-void biblioteq::slotExportAsCSV(void)
-{
-  QFileDialog dialog(this);
-
-  dialog.setFileMode(QFileDialog::AnyFile);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter(tr("CSV (*.csv)"));
-  dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Export Table View as CSV"));
-  dialog.setDefaultSuffix("csv");
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
-    {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      QFile file(dialog.selectedFiles().value(0));
-
-      if(file.open(QIODevice::WriteOnly | QIODevice::Truncate |
-		   QIODevice::Text))
-	{
-	  QString str("");
-	  QTextStream stream(&file);
-
-	  for(int i = 0; i < ui.table->columnCount(); i++)
-	    if(!ui.table->isColumnHidden(i))
-	      {
-		if(ui.table->horizontalHeaderItem(i)->text().contains(","))
-		  str += QString("\"%1\",").arg
-		    (ui.table->horizontalHeaderItem(i)->text());
-		else
-		  str += QString("%1,").arg
-		    (ui.table->horizontalHeaderItem(i)->text());
-	      }
-
-	  if(str.endsWith(","))
-	    str = str.mid(0, str.length() - 1);
-
-	  if(!str.isEmpty())
-	    stream << str << endl;
-
-	  for(int i = 0; i < ui.table->rowCount(); i++)
-	    {
-	      str = "";
-
-	      for(int j = 0; j < ui.table->columnCount(); j++)
-		if(!ui.table->isColumnHidden(j))
-		  {
-		    QString cleaned(ui.table->item(i, j)->text());
-
-		    cleaned.replace("\n", " ");
-		    cleaned.replace("\r\n", " ");
-		    cleaned = cleaned.trimmed();
-
-		    if(cleaned.contains(","))
-		      str += QString("\"%1\",").arg(cleaned);
-		    else
-		      str += QString("%1,").arg(cleaned);
-		  }
-
-	      if(str.endsWith(","))
-		str = str.mid(0, str.length() - 1);
-
-	      if(!str.isEmpty())
-		stream << str << endl;
-	    }
-
-	  file.close();
-	}
-
-      QApplication::restoreOverrideCursor();
-    }
-}
-
-void biblioteq::slotSectionResized(int logicalIndex,
-				   int oldSize,
-				   int newSize)
-{
-  Q_UNUSED(logicalIndex);
-  Q_UNUSED(oldSize);
-  Q_UNUSED(newSize);
-}
-
-void biblioteq::slotDuplicate(void)
-{
-  if(!m_db.isOpen())
-    return;
-
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
-  QString oid = "";
-  QString type = "";
-  biblioteq_book *book = 0;
-  biblioteq_cd *cd = 0;
-  biblioteq_dvd *dvd = 0;
-  biblioteq_grey_literature *gl = 0;
-  biblioteq_journal *journal = 0;
-  biblioteq_magazine *magazine = 0;
-  biblioteq_main_table *table = ui.table;
-  biblioteq_photographcollection *photograph = 0;
-  biblioteq_videogame *video_game = 0;
-  bool error = false;
-  int i = 0;
-
-  if(list.isEmpty())
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("Please select at least one item to "
-			       "duplicate."));
-      return;
-    }
-  else if(list.size() >= 5)
-    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to duplicate "
-				"the ") +
-			     QString::number(list.size()) +
-			     tr(" selected items? BiblioteQ will exit if "
-				"it's unable "
-				"to acquire resources."),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
-
-  QString id("");
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  std::stable_sort(list.begin(), list.end());
-
-  foreach(const QModelIndex &index, list)
-    {
-      i = index.row();
-      oid = biblioteq_misc_functions::getColumnString
-	(table, i, table->columnNumber("MYOID"));
-      type = biblioteq_misc_functions::getColumnString
-	(table, i, table->columnNumber("Type"));
-      m_idCt += 1;
-      id = QString("duplicate_%1").arg(m_idCt);
-
-      if(type.toLower() == "book")
-	{
-	  book = new(std::nothrow) biblioteq_book(this, oid, i);
-
-	  if(book)
-	    book->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "cd")
-	{
-	  cd = new(std::nothrow) biblioteq_cd(this, oid, i);
-
-	  if(cd)
-	    cd->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "dvd")
-	{
-	  dvd = new(std::nothrow) biblioteq_dvd(this, oid, i);
-
-	  if(dvd)
-	    dvd->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "grey literature")
-	{
-	  gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
-
-	  if(gl)
-	    gl->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "journal")
-	{
-	  journal = new(std::nothrow) biblioteq_journal(this, oid, i);
-
-	  if(journal)
-	    journal->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "magazine")
-	{
-	  magazine = new(std::nothrow) biblioteq_magazine(this,
-							  oid, i,
-							  "magazine");
-
-	  if(magazine)
-	    magazine->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "photograph collection")
-	{
-	  photograph = new(std::nothrow) biblioteq_photographcollection
-	    (this, oid, i);
-
-	  if(photograph)
-	    photograph->duplicate(id, EDITABLE);
-	}
-      else if(type.toLower() == "video game")
-	{
-	  video_game = new(std::nothrow) biblioteq_videogame(this,
-							     oid, i);
-
-	  if(video_game)
-	    video_game->duplicate(id, EDITABLE);
-	}
-      else
-	{
-	  error = true;
-	  break;
-	}
-    }
-
-  list.clear();
-  QApplication::restoreOverrideCursor();
-
-  if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			  tr("Unable to determine the selected item's "
-			     "type."));
-}
-
 void biblioteq::updateSceneItem(const QString &oid, const QString &type,
 				const QImage &image)
 {
@@ -9769,85 +8786,4 @@ void biblioteq::updateSceneItem(const QString &oid, const QString &type,
 
       items.clear();
     }
-}
-
-void biblioteq::slotLanguageChanged(void)
-{
-  QAction *action = qobject_cast<QAction *> (sender());
-
-  if(action && action->isChecked())
-    {
-      s_locale = action->data().toString();
-      QApplication::removeTranslator(s_qtTranslator);
-      QApplication::removeTranslator(s_appTranslator);
-#ifdef Q_OS_MAC
-      s_qtTranslator->load
-	("qt_" + s_locale,
-	 QCoreApplication::applicationDirPath() + "/../../../Translations");
-#else
-      s_qtTranslator->load("qt_" + s_locale, "Translations");
-#endif
-      QApplication::installTranslator(s_qtTranslator);
-#ifdef Q_OS_MAC
-      s_appTranslator->load
-	("biblioteq_" + s_locale,
-	 QCoreApplication::applicationDirPath() + "/../../../Translations");
-#else
-      s_appTranslator->load("biblioteq_" + s_locale, "Translations");
-#endif
-      QApplication::installTranslator(s_appTranslator);
-    }
-}
-
-void biblioteq::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  ab.retranslateUi(m_admin_diag);
-	  al.retranslateUi(m_all_diag);
-	  bb.retranslateUi(m_members_diag);
-	  br.retranslateUi(m_branch_diag);
-	  cq.retranslateUi(m_customquery_diag);
-	  er.retranslateUi(m_error_diag);
-	  history.retranslateUi(m_history_diag);
-	  pass.retranslateUi(m_pass_diag);
-	  ui.retranslateUi(this);
-	  ui.graphicsView->scene()->clear();
-	  ui.graphicsView->resetTransform();
-	  ui.graphicsView->horizontalScrollBar()->setValue(0);
-	  ui.graphicsView->verticalScrollBar()->setValue(0);
-	  ui.nextPageButton->setEnabled(false);
-	  ui.pagesLabel->setText("1");
-	  ui.previousPageButton->setEnabled(false);
-	  ui.table->resetTable
-	    (m_db.userName(),
-	     ui.menu_Category->defaultAction() ?
-	     ui.menu_Category->defaultAction()->data().toString() :
-	     "All",
-	     m_roles);
-	  ui.itemsCountLabel->setText(tr("0 Results"));
-	  addConfigOptions(m_lastCategory);
-	  prepareFilter();
-	  QMessageBox::information
-	    (this,
-	     tr("BiblioteQ: Information"),
-	     tr("You may have selected a new language. Please restart "
-		"BiblioteQ after saving your settings."));
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QMainWindow::changeEvent(event);
-}
-
-void biblioteq::slotClosePasswordDialog(void)
-{
-  pass.password->clear();
-  pass.userid->clear();
-  m_pass_diag->setVisible(false);
 }
