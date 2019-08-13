@@ -862,6 +862,21 @@ biblioteq::~biblioteq()
 {
 }
 
+QHash<QString, QString> biblioteq::getSRUHash(const QString &name) const
+{
+  QMapIterator<QString, QHash<QString, QString> > it(m_sruMaps);
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(QString(it.key()).remove("&") == QString(name).remove("&"))
+	return it.value();
+    }
+
+  return QHash<QString, QString> ();
+}
+
 QString biblioteq::getRoles(void) const
 {
   /*
@@ -1068,6 +1083,12 @@ void biblioteq::cleanup(void)
     m_db.close();
 }
 
+void biblioteq::closeEvent(QCloseEvent *e)
+{
+  slotExit();
+  Q_UNUSED(e);
+}
+
 void biblioteq::quit(const char *msg, const char *file, const int line)
 {
   if(msg != 0 && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
@@ -1153,7 +1174,7 @@ void biblioteq::showMain(void)
   QActionGroup *group1 = 0;
 
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   QStringList list(m_sruMaps.keys());
 
@@ -1181,7 +1202,7 @@ void biblioteq::showMain(void)
   QActionGroup *group2 = 0;
 
   if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+    quit("Memory allocation failure", __FILE__, __LINE__);
 
   list = m_z3950Maps.keys();
 
@@ -1255,32 +1276,6 @@ void biblioteq::showMain(void)
     }
 }
 
-void biblioteq::slotSetColumns(void)
-{
-  QString typefilter = ui.menu_Category->defaultAction() ?
-    ui.menu_Category->defaultAction()->data().toString() : "All";
-
-  for(int i = 0; i < m_configToolMenu->actions().size(); i++)
-    {
-      ui.table->setColumnHidden
-	(i, !m_configToolMenu->actions().at(i)->isChecked());
-      ui.table->recordColumnHidden
-	(m_db.userName(),
-	 typefilter, i, !m_configToolMenu->actions().at(i)->
-	 isChecked());
-    }
-}
-
-void biblioteq::slotExit(void)
-{
-  QSettings settings;
-
-  settings.setValue("mainwindowState", saveState());
-  settings.sync();
-  slotLastWindowClosed();
-  biblioteq::quit();
-}
-
 void biblioteq::slotAbout(void)
 {
   QMessageBox mb(this);
@@ -1339,128 +1334,211 @@ void biblioteq::slotAbout(void)
   mb.exec();
 }
 
-void biblioteq::slotSearch(void)
+void biblioteq::slotDelete(void)
 {
   if(!m_db.isOpen())
     return;
-  else if(!al.resetButton->isEnabled())
-    {
-      if(!m_all_diag->isVisible())
-	m_all_diag->updateGeometry();
 
-      biblioteq_misc_functions::center(m_all_diag, this);
-      m_all_diag->showNormal();
-      m_all_diag->activateWindow();
-      m_all_diag->raise();
+  int i = 0;
+  int col = -1;
+  int numdeleted = 0;
+  bool error = false;
+  bool isRequested = false;
+  bool isCheckedOut = false;
+  QString oid = "";
+  QString str = "";
+  QString title = "";
+  QString errorstr = "";
+  QString itemType = "";
+  QSqlQuery query(m_db);
+  QProgressDialog progress(this);
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select an item to delete."));
       return;
     }
 
+  col = ui.table->columnNumber("MYOID");
+
+  foreach(const QModelIndex &index, list)
+    {
+      i = index.row();
+
+      if(ui.table->item(i, col) == 0)
+	continue;
+
+      oid = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
+      itemType = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
+
+      if(oid.isEmpty() || itemType.isEmpty())
+	{
+	  addError(QString(tr("Error")),
+		   QString(tr("The main table does not contain enough "
+			      "information for item deletion.")),
+		   QString(tr("The main table does not contain enough "
+			      "information for item deletion.")),
+		   __FILE__, __LINE__);
+	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+				tr("The main table does not contain enough "
+				   "information for item deletion."));
+	  list.clear();
+	  return;
+	}
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      isCheckedOut = biblioteq_misc_functions::isCheckedOut(m_db, oid, itemType,
+							    errorstr);
+      QApplication::restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	{
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to determine if the item has been "
+			      "reserved.")),
+		   errorstr, __FILE__, __LINE__);
+	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+				tr("Unable to determine if the item has "
+				   "been reserved."));
+	  list.clear();
+	  return;
+	}
+
+      if(isCheckedOut)
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Reserved items may not be deleted."));
+	  list.clear();
+	  return;
+	}
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      isRequested = biblioteq_misc_functions::isRequested
+	(m_db, oid, itemType, errorstr);
+      QApplication::restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	{
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to determine if the item has been "
+			      "requested.")),
+		   errorstr, __FILE__, __LINE__);
+	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+				tr("Unable to determine if the item has "
+				   "been requested."));
+	  list.clear();
+	  return;
+	}
+
+      if(isRequested)
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Requested items may not be deleted."));
+	  list.clear();
+	  return;
+	}
+    }
+
+  if(list.size() > 0)
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to permanently "
+				"delete the selected item(s)?"),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	list.clear();
+	return;
+      }
+
+  progress.setCancelButton(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Deleting the selected item(s)..."));
+  progress.setMaximum(list.size());
+  progress.setMinimum(0);
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  foreach(const QModelIndex &index, list)
+    {
+      i = index.row();
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      if(ui.table->item(i, col) == 0)
+	continue;
+
+      str = ui.table->item(i, col)->text();
+      itemType = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type")).
+	toLower();
+
+      if(itemType == "grey literature" || itemType == "photograph collection")
+	itemType = itemType.replace(" ", "_");
+      else
+	itemType = itemType.remove(" ");
+
+      if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
+	 itemType == "grey_literature" ||
+	 itemType == "journal" || itemType == "magazine" ||
+	 itemType == "photograph_collection" || itemType == "videogame")
+	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").
+		      arg(itemType));
+
+      query.bindValue(0, str);
+
+      if(!query.exec())
+	{
+	  error = true;
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to delete the item.")),
+		   query.lastError().text(), __FILE__, __LINE__);
+	}
+      else
+	{
+	  deleteItem(str, itemType);
+	  numdeleted += 1;
+	}
+    }
+
+  progress.close();
+
   /*
-  ** Hide certain fields if we're a regular user.
+  ** Provide some fancy messages.
   */
 
-  biblioteq_misc_functions::hideAdminFields(m_all_diag, m_roles);
-  al.idnumber->clear();
-  al.title->clear();
-  al.publisher->clear();
-  al.categories_checkbox->setChecked(false);
-  al.category->clear();
-  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
-  al.publication_date_enabled->setChecked(false);
-  al.price->setMinimum(-0.01);
-  al.price->setValue(-0.01);
-  al.quantity->setMinimum(0);
-  al.quantity->setValue(0);
-  al.abstract_checkbox->setChecked(false);
-  al.description->clear();
-  al.language->clear();
-  al.monetary_units->clear();
-  al.location->clear();
-  al.keyword->clear();
-  al.keywords_checkbox->setChecked(false);
-  al.available->setChecked(false);
-  al.caseinsensitive->setChecked(false);
-  al.photograph_reminder_label->setVisible(true); /*
-						  ** Hidden by
-						  ** hideAdminFields().
-						  */
+  if(error)
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("Unable to delete all or some of the selected "
+			     "items."));
 
-  /*
-  ** Populate combination boxes.
-  */
+  if(numdeleted > 0)
+    slotRefresh();
 
-  QString errorstr("");
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  al.language->addItems
-    (biblioteq_misc_functions::getLanguages(m_db,
-					    errorstr));
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the languages.")),
-       errorstr, __FILE__, __LINE__);
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  al.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(m_db,
-						errorstr));
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the monetary units.")),
-       errorstr, __FILE__, __LINE__);
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  al.location->addItems
-    (biblioteq_misc_functions::getLocations(m_db,
-					    "",
-					    errorstr));
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the locations.")),
-       errorstr, __FILE__, __LINE__);
-
-  al.language->insertItem(0, tr("Any"));
-  al.monetary_units->insertItem(0, tr("Any"));
-  al.location->insertItem(0, tr("Any"));
-  al.language->addItem(tr("UNKNOWN"));
-  al.monetary_units->addItem(tr("UNKNOWN"));
-  al.location->addItem(tr("UNKNOWN"));
-  al.location->setCurrentIndex(0);
-  al.language->setCurrentIndex(0);
-  al.monetary_units->setCurrentIndex(0);
-  al.idnumber->setFocus();
-
-  if(!m_all_diag->isVisible())
-    m_all_diag->updateGeometry();
-
-  static bool resized = false;
-
-  if(!resized)
-    m_all_diag->resize(qRound(0.85 * size().width()),
-		       qRound(0.85 * size().height()));
-
-  resized = true;
-
-  if(!m_all_diag->isVisible())
-    biblioteq_misc_functions::center(m_all_diag, this);
-
-  m_all_diag->showNormal();
-  m_all_diag->activateWindow();
-  m_all_diag->raise();
+  list.clear();
 }
 
-void biblioteq::slotShowGrid(void)
+void biblioteq::slotExit(void)
 {
-  ui.table->setShowGrid(ui.actionShowGrid->isChecked());
+  QSettings settings;
+
+  settings.setValue("mainwindowState", saveState());
+  settings.sync();
+  slotLastWindowClosed();
+  quit();
 }
 
 void biblioteq::slotModify(void)
@@ -1701,6 +1779,146 @@ void biblioteq::slotModify(void)
 			     "type."));
 }
 
+void biblioteq::slotSearch(void)
+{
+  if(!m_db.isOpen())
+    return;
+  else if(!al.resetButton->isEnabled())
+    {
+      if(!m_all_diag->isVisible())
+	m_all_diag->updateGeometry();
+
+      biblioteq_misc_functions::center(m_all_diag, this);
+      m_all_diag->showNormal();
+      m_all_diag->activateWindow();
+      m_all_diag->raise();
+      return;
+    }
+
+  /*
+  ** Hide certain fields if we're a regular user.
+  */
+
+  biblioteq_misc_functions::hideAdminFields(m_all_diag, m_roles);
+  al.idnumber->clear();
+  al.title->clear();
+  al.publisher->clear();
+  al.categories_checkbox->setChecked(false);
+  al.category->clear();
+  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+  al.publication_date_enabled->setChecked(false);
+  al.price->setMinimum(-0.01);
+  al.price->setValue(-0.01);
+  al.quantity->setMinimum(0);
+  al.quantity->setValue(0);
+  al.abstract_checkbox->setChecked(false);
+  al.description->clear();
+  al.language->clear();
+  al.monetary_units->clear();
+  al.location->clear();
+  al.keyword->clear();
+  al.keywords_checkbox->setChecked(false);
+  al.available->setChecked(false);
+  al.caseinsensitive->setChecked(false);
+  al.photograph_reminder_label->setVisible(true); /*
+						  ** Hidden by
+						  ** hideAdminFields().
+						  */
+
+  /*
+  ** Populate combination boxes.
+  */
+
+  QString errorstr("");
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  al.language->addItems
+    (biblioteq_misc_functions::getLanguages(m_db,
+					    errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  al.monetary_units->addItems
+    (biblioteq_misc_functions::getMonetaryUnits(m_db,
+						errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  al.location->addItems
+    (biblioteq_misc_functions::getLocations(m_db,
+					    "",
+					    errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the locations.")),
+       errorstr, __FILE__, __LINE__);
+
+  al.language->insertItem(0, tr("Any"));
+  al.monetary_units->insertItem(0, tr("Any"));
+  al.location->insertItem(0, tr("Any"));
+  al.language->addItem(tr("UNKNOWN"));
+  al.monetary_units->addItem(tr("UNKNOWN"));
+  al.location->addItem(tr("UNKNOWN"));
+  al.location->setCurrentIndex(0);
+  al.language->setCurrentIndex(0);
+  al.monetary_units->setCurrentIndex(0);
+  al.idnumber->setFocus();
+
+  if(!m_all_diag->isVisible())
+    m_all_diag->updateGeometry();
+
+  static bool resized = false;
+
+  if(!resized)
+    m_all_diag->resize(qRound(0.85 * size().width()),
+		       qRound(0.85 * size().height()));
+
+  resized = true;
+
+  if(!m_all_diag->isVisible())
+    biblioteq_misc_functions::center(m_all_diag, this);
+
+  m_all_diag->showNormal();
+  m_all_diag->activateWindow();
+  m_all_diag->raise();
+}
+
+void biblioteq::slotSetColumns(void)
+{
+  QString typefilter = ui.menu_Category->defaultAction() ?
+    ui.menu_Category->defaultAction()->data().toString() : "All";
+
+  for(int i = 0; i < m_configToolMenu->actions().size(); i++)
+    {
+      ui.table->setColumnHidden
+	(i, !m_configToolMenu->actions().at(i)->isChecked());
+      ui.table->recordColumnHidden
+	(m_db.userName(),
+	 typefilter, i, !m_configToolMenu->actions().at(i)->
+	 isChecked());
+    }
+}
+
+void biblioteq::slotShowGrid(void)
+{
+  ui.table->setShowGrid(ui.actionShowGrid->isChecked());
+}
+
 void biblioteq::slotViewDetails(void)
 {
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
@@ -1933,209 +2151,6 @@ void biblioteq::slotViewDetails(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
-}
-
-void biblioteq::slotDelete(void)
-{
-  if(!m_db.isOpen())
-    return;
-
-  int i = 0;
-  int col = -1;
-  int numdeleted = 0;
-  bool error = false;
-  bool isRequested = false;
-  bool isCheckedOut = false;
-  QString oid = "";
-  QString str = "";
-  QString title = "";
-  QString errorstr = "";
-  QString itemType = "";
-  QSqlQuery query(m_db);
-  QProgressDialog progress(this);
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
-
-  if(list.isEmpty())
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("Please select an item to delete."));
-      return;
-    }
-
-  col = ui.table->columnNumber("MYOID");
-
-  foreach(const QModelIndex &index, list)
-    {
-      i = index.row();
-
-      if(ui.table->item(i, col) == 0)
-	continue;
-
-      oid = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("MYOID"));
-      itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type"));
-
-      if(oid.isEmpty() || itemType.isEmpty())
-	{
-	  addError(QString(tr("Error")),
-		   QString(tr("The main table does not contain enough "
-			      "information for item deletion.")),
-		   QString(tr("The main table does not contain enough "
-			      "information for item deletion.")),
-		   __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
-				tr("The main table does not contain enough "
-				   "information for item deletion."));
-	  list.clear();
-	  return;
-	}
-
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      isCheckedOut = biblioteq_misc_functions::isCheckedOut(m_db, oid, itemType,
-							    errorstr);
-      QApplication::restoreOverrideCursor();
-
-      if(!errorstr.isEmpty())
-	{
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to determine if the item has been "
-			      "reserved.")),
-		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-				tr("Unable to determine if the item has "
-				   "been reserved."));
-	  list.clear();
-	  return;
-	}
-
-      if(isCheckedOut)
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Reserved items may not be deleted."));
-	  list.clear();
-	  return;
-	}
-
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      isRequested = biblioteq_misc_functions::isRequested
-	(m_db, oid, itemType, errorstr);
-      QApplication::restoreOverrideCursor();
-
-      if(!errorstr.isEmpty())
-	{
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to determine if the item has been "
-			      "requested.")),
-		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-				tr("Unable to determine if the item has "
-				   "been requested."));
-	  list.clear();
-	  return;
-	}
-
-      if(isRequested)
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Requested items may not be deleted."));
-	  list.clear();
-	  return;
-	}
-    }
-
-  if(list.size() > 0)
-    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to permanently "
-				"delete the selected item(s)?"),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
-
-  progress.setCancelButton(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Deleting the selected item(s)..."));
-  progress.setMaximum(list.size());
-  progress.setMinimum(0);
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  foreach(const QModelIndex &index, list)
-    {
-      i = index.row();
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      if(ui.table->item(i, col) == 0)
-	continue;
-
-      str = ui.table->item(i, col)->text();
-      itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type")).
-	toLower();
-
-      if(itemType == "grey literature" || itemType == "photograph collection")
-	itemType = itemType.replace(" ", "_");
-      else
-	itemType = itemType.remove(" ");
-
-      if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
-	 itemType == "grey_literature" ||
-	 itemType == "journal" || itemType == "magazine" ||
-	 itemType == "photograph_collection" || itemType == "videogame")
-	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").
-		      arg(itemType));
-
-      query.bindValue(0, str);
-
-      if(!query.exec())
-	{
-	  error = true;
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to delete the item.")),
-		   query.lastError().text(), __FILE__, __LINE__);
-	}
-      else
-	{
-	  deleteItem(str, itemType);
-	  numdeleted += 1;
-	}
-    }
-
-  progress.close();
-
-  /*
-  ** Provide some fancy messages.
-  */
-
-  if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			  tr("Unable to delete all or some of the selected "
-			     "items."));
-
-  if(numdeleted > 0)
-    slotRefresh();
-
-  list.clear();
-}
-
-void biblioteq::closeEvent(QCloseEvent *e)
-{
-  slotExit();
-  Q_UNUSED(e);
 }
 
 void biblioteq::slotRefresh(void)
@@ -9828,21 +9843,6 @@ void biblioteq::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
-}
-
-QHash<QString, QString> biblioteq::getSRUHash(const QString &name) const
-{
-  QMapIterator<QString, QHash<QString, QString> > it(m_sruMaps);
-
-  while(it.hasNext())
-    {
-      it.next();
-
-      if(QString(it.key()).remove("&") == QString(name).remove("&"))
-	return it.value();
-    }
-
-  return QHash<QString, QString> ();
 }
 
 void biblioteq::slotClosePasswordDialog(void)
