@@ -937,6 +937,11 @@ QString biblioteq::getTypeFilterString(void) const
     return "All";
 }
 
+QVector<QString> biblioteq::getBBColumnIndexes(void) const
+{
+  return m_bbColumnHeaderIndexes;
+}
+
 void biblioteq::addConfigOptions(const QString &typefilter)
 {
   int i = 0;
@@ -2626,6 +2631,36 @@ void biblioteq::slotModify(void)
 			     "type."));
 }
 
+void biblioteq::slotNextPage(void)
+{
+  if(m_db.isOpen())
+    {
+      if(m_lastSearchStr == "Item Search Query")
+	(void) populateTable
+	  (m_searchQuery, m_previousTypeFilter, NEXT_PAGE, m_lastSearchType);
+      else
+	(void) populateTable
+	  (m_lastSearchType, m_previousTypeFilter, m_lastSearchStr, NEXT_PAGE);
+    }
+}
+
+void biblioteq::slotPageClicked(const QString &link)
+{
+  if(m_db.isOpen())
+    {
+      if(m_lastSearchStr == "Item Search Query")
+	(void) populateTable(m_searchQuery,
+			     m_previousTypeFilter,
+			     -link.toInt(),
+			     m_lastSearchType);
+      else
+	(void) populateTable(m_lastSearchType,
+			     m_previousTypeFilter,
+			     m_lastSearchStr,
+			     -link.toInt());
+    }
+}
+
 void biblioteq::slotRefresh(void)
 {
   if(m_db.isOpen())
@@ -2848,6 +2883,35 @@ void biblioteq::slotShowDbEnumerations(void)
 void biblioteq::slotShowGrid(void)
 {
   ui.table->setShowGrid(ui.actionShowGrid->isChecked());
+}
+
+void biblioteq::slotShowMembersBrowser(void)
+{
+  if(!m_db.isOpen())
+    return;
+
+  bb.filter->clear();
+  bb.filterBox->setCheckState(Qt::Checked);
+  bb.filtertype->setCurrentIndex(0);
+  bb.filter->setFocus();
+
+  for(int i = 0; i < bb.table->columnCount() - 1; i++)
+    bb.table->resizeColumnToContents(i);
+
+  static bool resized = false;
+
+  if(!resized)
+    m_members_diag->resize(qRound(0.85 * size().width()),
+			   qRound(0.85 * size().height()));
+
+  resized = true;
+  biblioteq_misc_functions::center(m_members_diag, this);
+  m_members_diag->showNormal();
+  m_members_diag->activateWindow();
+  m_members_diag->raise();
+
+  if(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
+    slotPopulateMembersBrowser();
 }
 
 void biblioteq::slotShowNext(void)
@@ -3190,232 +3254,6 @@ void biblioteq::slotViewDetails(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
-}
-
-QVector<QString> biblioteq::getBBColumnIndexes(void) const
-{
-  return m_bbColumnHeaderIndexes;
-}
-
-void biblioteq::slotShowMembersBrowser(void)
-{
-  if(!m_db.isOpen())
-    return;
-
-  bb.filter->clear();
-  bb.filterBox->setCheckState(Qt::Checked);
-  bb.filtertype->setCurrentIndex(0);
-  bb.filter->setFocus();
-
-  for(int i = 0; i < bb.table->columnCount() - 1; i++)
-    bb.table->resizeColumnToContents(i);
-
-  static bool resized = false;
-
-  if(!resized)
-    m_members_diag->resize(qRound(0.85 * size().width()),
-			   qRound(0.85 * size().height()));
-
-  resized = true;
-  biblioteq_misc_functions::center(m_members_diag, this);
-  m_members_diag->showNormal();
-  m_members_diag->activateWindow();
-  m_members_diag->raise();
-
-  if(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
-    slotPopulateMembersBrowser();
-}
-
-void biblioteq::slotPopulateMembersBrowser(void)
-{
-  QScopedPointer<QProgressDialog> progress;
-
-  if(m_members_diag->isVisible())
-    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
-  else
-    progress.reset(new(std::nothrow) QProgressDialog(this));
-
-  if(!progress)
-    return;
-
-  QSqlQuery query(m_db);
-  QString str = "";
-  QTableWidgetItem *item = 0;
-  int i = -1;
-  int j = 0;
-
-  str = "SELECT member.memberid, "
-    "member.first_name, "
-    "member.last_name, "
-    "member.membersince, "
-    "member.expiration_date, "
-    "COUNT(DISTINCT ib1.myoid) AS numbooks, "
-    "COUNT(DISTINCT ib2.myoid) AS numcds, "
-    "COUNT(DISTINCT ib3.myoid) AS numdvds, "
-    "COUNT(DISTINCT ib4.myoid) AS numjournals, "
-    "COUNT(DISTINCT ib5.myoid) AS nummagazines, "
-    "COUNT(DISTINCT ib6.myoid) AS numvideogames "
-    "FROM member member "
-    "LEFT JOIN item_borrower_vw ib1 ON "
-    "member.memberid = ib1.memberid AND ib1.type = 'Book' "
-    "LEFT JOIN item_borrower_vw ib2 ON "
-    "member.memberid = ib2.memberid AND ib2.type = 'CD' "
-    "LEFT JOIN item_borrower_vw ib3 ON "
-    "member.memberid = ib3.memberid AND ib3.type = 'DVD' "
-    "LEFT JOIN item_borrower_vw ib4 ON "
-    "member.memberid = ib4.memberid AND ib4.type = 'Journal' "
-    "LEFT JOIN item_borrower_vw ib5 ON "
-    "member.memberid = ib5.memberid AND ib5.type = 'Magazine' "
-    "LEFT JOIN item_borrower_vw ib6 ON "
-    "member.memberid = ib6.memberid AND ib6.type = 'Video Game' ";
-
-  if(bb.filterBox->isChecked())
-    {
-      str.append("WHERE ");
-
-      QString E("");
-
-      if(m_db.driverName() != "QSQLITE")
-	E = "E";
-
-      if(bb.filtertype->currentIndex() == 0) // Member ID
-	{
-	  str.append("LOWER(member.memberid) LIKE " + E + "'%' || ");
-	  str.append("LOWER(?)");
-	}
-      else
-	{
-	  str.append("LOWER(member.last_name) LIKE " + E + "'%' || ");
-	  str.append("LOWER(?)");
-	}
-
-      str.append("|| '%' ");
-    }
-
-  str.append("GROUP BY "
-	     "member.memberid, "
-	     "member.first_name, "
-	     "member.last_name, "
-	     "member.membersince, "
-	     "member.expiration_date ");
-  str.append("ORDER BY member.memberid");
-  query.prepare(str);
-
-  if(bb.filterBox->isChecked())
-    query.bindValue
-      (0, biblioteq_myqstring::escape(bb.filter->text().trimmed()));
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec())
-    {
-      QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve member data for table "
-			  "populating.")),
-	       query.lastError().text(),
-	       __FILE__, __LINE__);
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			    tr("Unable to retrieve member data for "
-			       "table populating."));
-      return;
-    }
-
-  QApplication::restoreOverrideCursor();
-  resetMembersBrowser();
-  bb.table->setSortingEnabled(false);
-
-  if(m_db.driverName() != "QSQLITE")
-    bb.table->setRowCount(query.size());
-  else
-    bb.table->setRowCount
-      (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
-						 query.boundValues(),
-						 m_db,
-						 __FILE__,
-						 __LINE__,
-						 this));
-
-  progress->setModal(true);
-  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress->setLabelText(tr("Populating the table..."));
-  progress->setMinimum(0);
-
-  if(m_db.driverName() == "QSQLITE")
-    progress->setMaximum
-      (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
-						 query.boundValues(),
-						 m_db,
-						 __FILE__,
-						 __LINE__,
-						 this));
-  else
-    progress->setMaximum(query.size());
-
-  progress->show();
-  progress->repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-  i = -1;
-
-  while(i++, !progress->wasCanceled() && query.next())
-    {
-      if(query.isValid())
-	{
-	  QSqlRecord record(query.record());
-
-	  for(j = 0; j < record.count(); j++)
-	    {
-	      if(record.fieldName(j).contains("date") ||
-		 record.fieldName(j).contains("membersince"))
-		{
-		  QDate date(QDate::fromString(query.value(j).toString(),
-					       "MM/dd/yyyy"));
-
-		  str = date.toString(Qt::ISODate);
-		}
-	      else
-		str = query.value(j).toString();
-
-	      if(str == "0")
-		str = "";
-
-	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-		{
-		  item->setText(str);
-		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		  bb.table->setItem(i, j, item);
-		}
-	      else
-		addError(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate memory for the "
-				    "\"item\" object. "
-				    "This is a serious problem!")),
-			 QString(""), __FILE__, __LINE__);
-	    }
-	}
-
-      if(i + 1 <= progress->maximum())
-	progress->setValue(i + 1);
-
-      progress->repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-    }
-
-  progress->close();
-  bb.table->setSortingEnabled(true);
-  bb.table->setRowCount(i); // Support cancellation.
-
-  for(int i = 0; i < bb.table->columnCount() - 1; i++)
-    bb.table->resizeColumnToContents(i);
-
-#ifdef Q_OS_MAC
-  bb.table->hide();
-  bb.table->show();
-#endif
 }
 
 void biblioteq::slotGrantPrivileges(void)
@@ -6413,36 +6251,6 @@ void biblioteq::slotPreviousPage(void)
 			     m_previousTypeFilter,
 			     m_lastSearchStr,
 			     PREVIOUS_PAGE);
-    }
-}
-
-void biblioteq::slotNextPage(void)
-{
-  if(m_db.isOpen())
-    {
-      if(m_lastSearchStr == "Item Search Query")
-	(void) populateTable
-	  (m_searchQuery, m_previousTypeFilter, NEXT_PAGE, m_lastSearchType);
-      else
-	(void) populateTable
-	  (m_lastSearchType, m_previousTypeFilter, m_lastSearchStr, NEXT_PAGE);
-    }
-}
-
-void biblioteq::slotPageClicked(const QString &link)
-{
-  if(m_db.isOpen())
-    {
-      if(m_lastSearchStr == "Item Search Query")
-	(void) populateTable(m_searchQuery,
-			     m_previousTypeFilter,
-			     -link.toInt(),
-			     m_lastSearchType);
-      else
-	(void) populateTable(m_lastSearchType,
-			     m_previousTypeFilter,
-			     m_lastSearchStr,
-			     -link.toInt());
     }
 }
 

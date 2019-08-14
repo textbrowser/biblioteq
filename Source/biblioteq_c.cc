@@ -2163,6 +2163,449 @@ void biblioteq::slotDisconnect(void)
   setWindowTitle(tr("BiblioteQ"));
 }
 
+void biblioteq::slotDisplaySummary(void)
+{
+  QImage backImage;
+  QImage frontImage;
+  QString oid = "";
+  QString summary = "";
+  QString tmpstr = "";
+  QString type = "";
+  int i = 0;
+
+  /*
+  ** Display a preview.
+  */
+
+  if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
+    {
+      i = ui.table->currentRow();
+      oid = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
+
+      if(ui.stackedWidget->currentIndex() == 1)
+	{
+	  /*
+	  ** This method is also called by slotSceneSelectionChanged().
+	  */
+
+	  QPainterPath painterPath;
+	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
+	  QList<QTableWidgetItem *> tableItems(ui.table->selectedItems());
+
+	  for(int ii = 0; ii < tableItems.size(); ii++)
+	    {
+	      QString oid = biblioteq_misc_functions::getColumnString
+		(ui.table, tableItems.at(ii)->row(),
+		 ui.table->columnNumber("MYOID"));
+	      QString type =  biblioteq_misc_functions::getColumnString
+		(ui.table, tableItems.at(ii)->row(),
+		 ui.table->columnNumber("Type"));
+
+	      for(int jj = 0; jj < items.size(); jj++)
+		if(oid == items.at(jj)->data(0).toString() &&
+		   type == items.at(jj)->data(1).toString())
+		  {
+		    QRectF rect;
+
+		    rect.setTopLeft(items.at(jj)->scenePos());
+		    rect.setWidth(126);
+		    rect.setHeight(187);
+		    painterPath.addRect(rect);
+		  }
+		else
+		  items.at(jj)->setSelected(false);
+	    }
+
+	  items.clear();
+	  ui.graphicsView->scene()->setSelectionArea(painterPath);
+	}
+
+      type = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
+      summary = "<html>";
+
+      if(type == "Book")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("ISBN-10"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Place of Publication"));
+	  summary += "<br>";
+	}
+      else if(type == "CD")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Catalog Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Recording Label"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == "DVD")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("UPC"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Studio"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == "Grey Literature")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ID"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("File Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 File(s)")).arg(tmpstr);
+
+	  summary += "<br>";
+	}
+      else if(type == "Journal" || type == "Magazine")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ISSN"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+	  else
+	    {
+	      tmpstr += QString(" Vol. %1, No. %2").
+		arg(biblioteq_misc_functions::
+		    getColumnString(ui.table, i,
+				    ui.table->
+				    columnNumber("Volume"))).
+		arg(biblioteq_misc_functions::
+		    getColumnString(ui.table, i,
+				    ui.table->
+				    columnNumber("Issue")));
+	    }
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Place of Publication"));
+	  summary += "<br>";
+	}
+      else if(type == "Photograph Collection")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("ID"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Photograph Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 Photograph(s)")).arg(tmpstr);
+
+	  summary += "<br>";
+	}
+      else if(type == "Video Game")
+	{
+	  summary += "<b>" +
+	    biblioteq_misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("UPC"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = biblioteq_misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	}
+
+      summary += biblioteq_misc_functions::getAbstractInfo(oid, type, m_db);
+      summary += "<br>";
+
+      if(type != "Grey Literature" && type != "Photograph Collection")
+	{
+	  tmpstr = biblioteq_misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Availability"));
+
+	  if(!tmpstr.isEmpty())
+	    {
+	      if(tmpstr.toInt() > 0)
+		summary += tr("Available") + "<br>";
+	      else
+		summary += tr("Unavailable") + "<br>";
+	    }
+	}
+
+      summary += biblioteq_misc_functions::getColumnString
+	(ui.table, i,
+	 ui.table->columnNumber("Location"));
+
+      while(summary.contains("<br><br>"))
+	summary.replace("<br><br>", "<br>");
+
+      summary += "</html>";
+      ui.summary->setText(summary);
+      ui.summary->setVisible(true);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	frontImage = biblioteq_misc_functions::getImage
+	  (oid, "front_cover", type,
+	   m_db);
+      else
+	frontImage = biblioteq_misc_functions::getImage
+	  (oid, "image_scaled", type,
+	   m_db);
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	backImage = biblioteq_misc_functions::getImage
+	  (oid, "back_cover", type,
+	   m_db);
+
+      QApplication::restoreOverrideCursor();
+
+      /*
+      ** The size of no_image.png is 126x187.
+      */
+
+      if(frontImage.isNull())
+	frontImage = QImage(":/no_image.png");
+
+      if(!frontImage.isNull())
+	frontImage = frontImage.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	{
+	  if(backImage.isNull())
+	    backImage = QImage(":/no_image.png");
+
+	  if(!backImage.isNull())
+	    backImage = backImage.scaled
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	}
+
+      if(!frontImage.isNull())
+	{
+	  ui.frontImage->setVisible(true);
+	  ui.frontImage->setPixmap(QPixmap::fromImage(frontImage));
+	}
+      else
+	ui.frontImage->clear();
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	{
+	  if(!backImage.isNull())
+	    {
+	      ui.backImage->setVisible(true);
+	      ui.backImage->setPixmap(QPixmap::fromImage(backImage));
+	    }
+	  else
+	    ui.backImage->clear();
+	}
+      else
+	ui.backImage->clear();
+    }
+  else
+    {
+      /*
+      ** Clear the scene.
+      */
+
+      ui.summary->setVisible(false);
+      ui.summary->clear();
+      ui.frontImage->setVisible(false);
+      ui.frontImage->clear();
+      ui.backImage->setVisible(false);
+      ui.backImage->clear();
+    }
+}
+
 void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
 {
   al.publication_date->setEnabled(state);
@@ -2309,6 +2752,198 @@ void biblioteq::slotOtherOptionsSaved(void)
 	(m_otheroptions->publicationDateFormat("videogames"));
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq::slotPopulateMembersBrowser(void)
+{
+  QScopedPointer<QProgressDialog> progress;
+
+  if(m_members_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
+  else
+    progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
+  QSqlQuery query(m_db);
+  QString str = "";
+  QTableWidgetItem *item = 0;
+  int i = -1;
+  int j = 0;
+
+  str = "SELECT member.memberid, "
+    "member.first_name, "
+    "member.last_name, "
+    "member.membersince, "
+    "member.expiration_date, "
+    "COUNT(DISTINCT ib1.myoid) AS numbooks, "
+    "COUNT(DISTINCT ib2.myoid) AS numcds, "
+    "COUNT(DISTINCT ib3.myoid) AS numdvds, "
+    "COUNT(DISTINCT ib4.myoid) AS numjournals, "
+    "COUNT(DISTINCT ib5.myoid) AS nummagazines, "
+    "COUNT(DISTINCT ib6.myoid) AS numvideogames "
+    "FROM member member "
+    "LEFT JOIN item_borrower_vw ib1 ON "
+    "member.memberid = ib1.memberid AND ib1.type = 'Book' "
+    "LEFT JOIN item_borrower_vw ib2 ON "
+    "member.memberid = ib2.memberid AND ib2.type = 'CD' "
+    "LEFT JOIN item_borrower_vw ib3 ON "
+    "member.memberid = ib3.memberid AND ib3.type = 'DVD' "
+    "LEFT JOIN item_borrower_vw ib4 ON "
+    "member.memberid = ib4.memberid AND ib4.type = 'Journal' "
+    "LEFT JOIN item_borrower_vw ib5 ON "
+    "member.memberid = ib5.memberid AND ib5.type = 'Magazine' "
+    "LEFT JOIN item_borrower_vw ib6 ON "
+    "member.memberid = ib6.memberid AND ib6.type = 'Video Game' ";
+
+  if(bb.filterBox->isChecked())
+    {
+      str.append("WHERE ");
+
+      QString E("");
+
+      if(m_db.driverName() != "QSQLITE")
+	E = "E";
+
+      if(bb.filtertype->currentIndex() == 0) // Member ID
+	{
+	  str.append("LOWER(member.memberid) LIKE " + E + "'%' || ");
+	  str.append("LOWER(?)");
+	}
+      else
+	{
+	  str.append("LOWER(member.last_name) LIKE " + E + "'%' || ");
+	  str.append("LOWER(?)");
+	}
+
+      str.append("|| '%' ");
+    }
+
+  str.append("GROUP BY "
+	     "member.memberid, "
+	     "member.first_name, "
+	     "member.last_name, "
+	     "member.membersince, "
+	     "member.expiration_date ");
+  str.append("ORDER BY member.memberid");
+  query.prepare(str);
+
+  if(bb.filterBox->isChecked())
+    query.bindValue
+      (0, biblioteq_myqstring::escape(bb.filter->text().trimmed()));
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve member data for table "
+			  "populating.")),
+	       query.lastError().text(),
+	       __FILE__, __LINE__);
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve member data for "
+			       "table populating."));
+      return;
+    }
+
+  QApplication::restoreOverrideCursor();
+  resetMembersBrowser();
+  bb.table->setSortingEnabled(false);
+
+  if(m_db.driverName() != "QSQLITE")
+    bb.table->setRowCount(query.size());
+  else
+    bb.table->setRowCount
+      (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
+						 query.boundValues(),
+						 m_db,
+						 __FILE__,
+						 __LINE__,
+						 this));
+
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMinimum(0);
+
+  if(m_db.driverName() == "QSQLITE")
+    progress->setMaximum
+      (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
+						 query.boundValues(),
+						 m_db,
+						 __FILE__,
+						 __LINE__,
+						 this));
+  else
+    progress->setMaximum(query.size());
+
+  progress->show();
+  progress->repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+  i = -1;
+
+  while(i++, !progress->wasCanceled() && query.next())
+    {
+      if(query.isValid())
+	{
+	  QSqlRecord record(query.record());
+
+	  for(j = 0; j < record.count(); j++)
+	    {
+	      if(record.fieldName(j).contains("date") ||
+		 record.fieldName(j).contains("membersince"))
+		{
+		  QDate date(QDate::fromString(query.value(j).toString(),
+					       "MM/dd/yyyy"));
+
+		  str = date.toString(Qt::ISODate);
+		}
+	      else
+		str = query.value(j).toString();
+
+	      if(str == "0")
+		str = "";
+
+	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		{
+		  item->setText(str);
+		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		  bb.table->setItem(i, j, item);
+		}
+	      else
+		addError(QString(tr("Memory Error")),
+			 QString(tr("Unable to allocate memory for the "
+				    "\"item\" object. "
+				    "This is a serious problem!")),
+			 QString(""), __FILE__, __LINE__);
+	    }
+	}
+
+      if(i + 1 <= progress->maximum())
+	progress->setValue(i + 1);
+
+      progress->repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+    }
+
+  progress->close();
+  bb.table->setSortingEnabled(true);
+  bb.table->setRowCount(i); // Support cancellation.
+
+  for(int i = 0; i < bb.table->columnCount() - 1; i++)
+    bb.table->resizeColumnToContents(i);
+
+#ifdef Q_OS_MAC
+  bb.table->hide();
+  bb.table->show();
+#endif
 }
 
 void biblioteq::slotPreviewCanvasBackgroundColor(const QColor &color)
@@ -3807,449 +4442,6 @@ void biblioteq::slotSceneSelectionChanged(void)
 
       oids.clear();
       types.clear();
-    }
-}
-
-void biblioteq::slotDisplaySummary(void)
-{
-  QImage backImage;
-  QImage frontImage;
-  QString oid = "";
-  QString summary = "";
-  QString tmpstr = "";
-  QString type = "";
-  int i = 0;
-
-  /*
-  ** Display a preview.
-  */
-
-  if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
-    {
-      i = ui.table->currentRow();
-      oid = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("MYOID"));
-
-      if(ui.stackedWidget->currentIndex() == 1)
-	{
-	  /*
-	  ** This method is also called by slotSceneSelectionChanged().
-	  */
-
-	  QPainterPath painterPath;
-	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
-	  QList<QTableWidgetItem *> tableItems(ui.table->selectedItems());
-
-	  for(int ii = 0; ii < tableItems.size(); ii++)
-	    {
-	      QString oid = biblioteq_misc_functions::getColumnString
-		(ui.table, tableItems.at(ii)->row(),
-		 ui.table->columnNumber("MYOID"));
-	      QString type =  biblioteq_misc_functions::getColumnString
-		(ui.table, tableItems.at(ii)->row(),
-		 ui.table->columnNumber("Type"));
-
-	      for(int jj = 0; jj < items.size(); jj++)
-		if(oid == items.at(jj)->data(0).toString() &&
-		   type == items.at(jj)->data(1).toString())
-		  {
-		    QRectF rect;
-
-		    rect.setTopLeft(items.at(jj)->scenePos());
-		    rect.setWidth(126);
-		    rect.setHeight(187);
-		    painterPath.addRect(rect);
-		  }
-		else
-		  items.at(jj)->setSelected(false);
-	    }
-
-	  items.clear();
-	  ui.graphicsView->scene()->setSelectionArea(painterPath);
-	}
-
-      type = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type"));
-      summary = "<html>";
-
-      if(type == "Book")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("ISBN-10"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Place of Publication"));
-	  summary += "<br>";
-	}
-      else if(type == "CD")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Catalog Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Release Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Recording Label"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	}
-      else if(type == "DVD")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("UPC"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Release Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Studio"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	}
-      else if(type == "Grey Literature")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("ID"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("File Count"));
-
-	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 File(s)")).arg(tmpstr);
-
-	  summary += "<br>";
-	}
-      else if(type == "Journal" || type == "Magazine")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("ISSN"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-	  else
-	    {
-	      tmpstr += QString(" Vol. %1, No. %2").
-		arg(biblioteq_misc_functions::
-		    getColumnString(ui.table, i,
-				    ui.table->
-				    columnNumber("Volume"))).
-		arg(biblioteq_misc_functions::
-		    getColumnString(ui.table, i,
-				    ui.table->
-				    columnNumber("Issue")));
-	    }
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Place of Publication"));
-	  summary += "<br>";
-	}
-      else if(type == "Photograph Collection")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("ID"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Photograph Count"));
-
-	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 Photograph(s)")).arg(tmpstr);
-
-	  summary += "<br>";
-	}
-      else if(type == "Video Game")
-	{
-	  summary += "<b>" +
-	    biblioteq_misc_functions::getColumnString
-	    (ui.table, i, ui.table->columnNumber("Title")) +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("UPC"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Release Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
-	  summary += "<br>";
-	}
-
-      summary += biblioteq_misc_functions::getAbstractInfo(oid, type, m_db);
-      summary += "<br>";
-
-      if(type != "Grey Literature" && type != "Photograph Collection")
-	{
-	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Availability"));
-
-	  if(!tmpstr.isEmpty())
-	    {
-	      if(tmpstr.toInt() > 0)
-		summary += tr("Available") + "<br>";
-	      else
-		summary += tr("Unavailable") + "<br>";
-	    }
-	}
-
-      summary += biblioteq_misc_functions::getColumnString
-	(ui.table, i,
-	 ui.table->columnNumber("Location"));
-
-      while(summary.contains("<br><br>"))
-	summary.replace("<br><br>", "<br>");
-
-      summary += "</html>";
-      ui.summary->setText(summary);
-      ui.summary->setVisible(true);
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
-	frontImage = biblioteq_misc_functions::getImage
-	  (oid, "front_cover", type,
-	   m_db);
-      else
-	frontImage = biblioteq_misc_functions::getImage
-	  (oid, "image_scaled", type,
-	   m_db);
-
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
-	backImage = biblioteq_misc_functions::getImage
-	  (oid, "back_cover", type,
-	   m_db);
-
-      QApplication::restoreOverrideCursor();
-
-      /*
-      ** The size of no_image.png is 126x187.
-      */
-
-      if(frontImage.isNull())
-	frontImage = QImage(":/no_image.png");
-
-      if(!frontImage.isNull())
-	frontImage = frontImage.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
-	{
-	  if(backImage.isNull())
-	    backImage = QImage(":/no_image.png");
-
-	  if(!backImage.isNull())
-	    backImage = backImage.scaled
-	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-	}
-
-      if(!frontImage.isNull())
-	{
-	  ui.frontImage->setVisible(true);
-	  ui.frontImage->setPixmap(QPixmap::fromImage(frontImage));
-	}
-      else
-	ui.frontImage->clear();
-
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
-	{
-	  if(!backImage.isNull())
-	    {
-	      ui.backImage->setVisible(true);
-	      ui.backImage->setPixmap(QPixmap::fromImage(backImage));
-	    }
-	  else
-	    ui.backImage->clear();
-	}
-      else
-	ui.backImage->clear();
-    }
-  else
-    {
-      /*
-      ** Clear the scene.
-      */
-
-      ui.summary->setVisible(false);
-      ui.summary->clear();
-      ui.frontImage->setVisible(false);
-      ui.frontImage->clear();
-      ui.backImage->setVisible(false);
-      ui.backImage->clear();
     }
 }
 
