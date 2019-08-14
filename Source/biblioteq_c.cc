@@ -17,6 +17,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_book.h"
+#include "biblioteq_copy_editor.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_grey_literature.h"
 #include "biblioteq_otheroptions.h"
@@ -1488,6 +1489,181 @@ void biblioteq::slotAllGo(void)
 
   QApplication::restoreOverrideCursor();
   (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH);
+}
+
+void biblioteq::slotCheckout(void)
+{
+  QString errorstr = "";
+  QString itemid = "";
+  QString oid = "";
+  QString type = "";
+  biblioteq_copy_editor *copyeditor = 0;
+  biblioteq_item *item = 0;
+  int availability = 0;
+  int quantity = 0;
+  int row1 = bb.table->currentRow();
+  int row2 = ui.table->currentRow();
+
+  type = biblioteq_misc_functions::getColumnString
+    (ui.table, row2, ui.table->columnNumber("Type"));
+
+  if(type == "Grey Literature")
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("Grey literature may not be reserved."));
+      return;
+    }
+  else if(type == "Photograph Collection")
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("Photographs may not be reserved."));
+      return;
+    }
+
+  if(row1 > -1)
+    {
+      /*
+      ** Has the member's membership expired?
+      */
+
+      bool expired = true;
+      QString memberid =
+	biblioteq_misc_functions::getColumnString
+	(bb.table, row1, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      expired = biblioteq_misc_functions::hasMemberExpired
+	(m_db, memberid, errorstr);
+      QApplication::restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	addError(QString(tr("Database Error")),
+		 QString(tr("Unable to determine if the membership of "
+			    "the selected member has expired.")),
+		 errorstr, __FILE__, __LINE__);
+
+      if(expired || !errorstr.isEmpty())
+	{
+	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+				tr("It appears that the selected member's "
+				   "membership has expired."));
+	  return;
+	}
+    }
+
+  if(row2 > -1)
+    {
+      /*
+      ** Is the item available?
+      */
+
+      oid = biblioteq_misc_functions::getColumnString
+	(ui.table, row2, ui.table->columnNumber("MYOID"));
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      availability = biblioteq_misc_functions::getAvailability
+	(oid, m_db, type, errorstr).toInt();
+      QApplication::restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	addError(QString(tr("Database Error")),
+		 QString(tr("Unable to determine the availability of "
+			    "the selected item.")),
+		 errorstr, __FILE__, __LINE__);
+
+      if(availability < 1 || !errorstr.isEmpty())
+	{
+	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+				tr("It appears that the item that you "
+				   "selected "
+				   "is not available for reservation."));
+	  return;
+	}
+    }
+
+  if(row1 < 0 || row2 < 0)
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("Please select a member and an item "
+			       "to continue with the reservation process."));
+      return;
+    }
+  else
+    {
+      if((item = new(std::nothrow) biblioteq_item(row2)) != 0)
+	{
+	  quantity = biblioteq_misc_functions::getColumnString
+	    (ui.table, row2,
+	     ui.table->columnNumber("Quantity")).toInt();
+
+	  if(type.toLower() == "book")
+	    {
+	      itemid = biblioteq_misc_functions::getColumnString
+		(ui.table, row2,
+		 ui.table->columnNumber("ISBN-10"));
+
+	      if(itemid.isEmpty())
+		itemid = biblioteq_misc_functions::getColumnString
+		  (ui.table, row2,
+		   ui.table->columnNumber("ISBN-13"));
+	    }
+	  else if(type.toLower() == "dvd")
+	    itemid = biblioteq_misc_functions::getColumnString
+	      (ui.table, row2,
+	       ui.table->columnNumber("UPC"));
+	  else if(type.toLower() == "journal" ||
+		  type.toLower() == "magazine")
+	    itemid = biblioteq_misc_functions::getColumnString
+	      (ui.table, row2,
+	       ui.table->columnNumber("ISSN"));
+	  else if(type.toLower() == "cd")
+	    itemid = biblioteq_misc_functions::getColumnString
+	      (ui.table, row2,
+	       ui.table->columnNumber("Catalog Number"));
+	  else if(type.toLower() == "video game")
+	    itemid = biblioteq_misc_functions::getColumnString
+	      (ui.table, row2,
+	       ui.table->columnNumber("UPC"));
+	  else
+	    {
+	      QMessageBox::critical
+		(m_members_diag, tr("BiblioteQ: User Error"),
+		 tr("Unable to determine the selected item's type."));
+	      delete item;
+	      return;
+	    }
+
+	  if(itemid.isEmpty())
+	    itemid = biblioteq_misc_functions::getColumnString
+	      (ui.table, row2,
+	       ui.table->columnNumber("ID Number"));
+
+	  /*
+	  ** Custom search?
+	  */
+
+	  if(itemid.isEmpty())
+	    itemid = biblioteq_misc_functions::getColumnString
+	      (ui.table, row2, "id");
+
+	  if((copyeditor = new(std::nothrow)
+	      biblioteq_copy_editor(m_members_diag,
+				    this,
+				    item,
+				    true,
+				    quantity,
+				    oid,
+				    0,
+				    font(),
+				    type,
+				    itemid)) != 0)
+	    {
+	      copyeditor->populateCopiesEditor();
+	      copyeditor->exec();
+	    }
+
+	  delete item;
+	}
+    }
 }
 
 void biblioteq::slotConnectDB(void)

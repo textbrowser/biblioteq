@@ -82,7 +82,6 @@ extern "C"
 #include "biblioteq.h"
 #include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
-#include "biblioteq_copy_editor.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_create_schema.h"
 
@@ -985,14 +984,14 @@ void biblioteq::addConfigOptions(const QString &typefilter)
 void biblioteq::adminSetup(void)
 {
   bb.addButton->setEnabled(true);
-  bb.grantButton->setEnabled(true);
+  bb.checkoutButton->setEnabled(true);
   bb.deleteButton->setEnabled(true);
-  bb.modifyButton->setEnabled(true);
+  bb.grantButton->setEnabled(true);
   bb.historyButton->setEnabled(true);
   bb.listButton->setEnabled(true);
-  bb.printButton->setEnabled(true);
-  bb.checkoutButton->setEnabled(true);
+  bb.modifyButton->setEnabled(true);
   bb.overdueButton->setEnabled(true);
+  bb.printButton->setEnabled(true);
 
   if(m_db.driverName() == "QSQLITE")
     ui.actionChangePassword->setEnabled(false);
@@ -1194,8 +1193,8 @@ void biblioteq::closeEvent(QCloseEvent *e)
 void biblioteq::createSqliteMenuActions(void)
 {
   QSettings settings;
-  QStringList dups;
   QStringList allKeys(settings.allKeys());
+  QStringList dups;
 
   ui.menu_Recent_SQLite_Files->clear();
 
@@ -1786,6 +1785,12 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->show();
 }
 
+void biblioteq::slotCancelAddUser(void)
+{
+  if(userinfo_diag->isVisible())
+    userinfo_diag->close();
+}
+
 void biblioteq::slotChangeView(bool checked)
 {
   Q_UNUSED(checked);
@@ -1819,20 +1824,20 @@ void biblioteq::slotDelete(void)
   if(!m_db.isOpen())
     return;
 
-  int i = 0;
-  int col = -1;
-  int numdeleted = 0;
-  bool error = false;
-  bool isRequested = false;
-  bool isCheckedOut = false;
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  QProgressDialog progress(this);
+  QSqlQuery query(m_db);
+  QString errorstr = "";
+  QString itemType = "";
   QString oid = "";
   QString str = "";
   QString title = "";
-  QString errorstr = "";
-  QString itemType = "";
-  QSqlQuery query(m_db);
-  QProgressDialog progress(this);
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  bool error = false;
+  bool isCheckedOut = false;
+  bool isRequested = false;
+  int col = -1;
+  int i = 0;
+  int numdeleted = 0;
 
   if(list.isEmpty())
     {
@@ -2013,8 +2018,8 @@ void biblioteq::slotDelete(void)
 
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
-  bool error = true;
   QFileDialog dialog(this);
+  bool error = true;
 
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
@@ -2363,6 +2368,64 @@ void biblioteq::slotExportAsCSV(void)
 
       QApplication::restoreOverrideCursor();
     }
+}
+
+void biblioteq::slotGrantPrivileges(void)
+{
+  QProgressDialog progress(m_members_diag);
+  QString errorstr("");
+  QTableWidgetItem *item = 0;
+  bool error = false;
+
+  progress.setCancelButton(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Granting privileges..."));
+  progress.setMaximum(bb.table->rowCount());
+  progress.setMinimum(0);
+  progress.show();
+  progress.repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
+  for(int i = 0; i < bb.table->rowCount(); i++)
+    {
+      if((item = bb.table->item(i, 0)))
+	{
+	  biblioteq_misc_functions::DBAccount
+	    (item->text(),
+	     m_db, biblioteq_misc_functions::UPDATE_USER,
+	     errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      error = true;
+	      addError(QString(tr("Database Error")),
+		       QString(tr("An error occurred while attempting to "
+				  "update the database account "
+				  "for ")) +
+		       item->text() +
+		       QString(tr(".")),
+		       errorstr, __FILE__, __LINE__);
+	    }
+	}
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+    }
+
+  progress.close();
+
+  if(error)
+    QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			  tr("Unable to grant privileges to all of "
+			     "the members."));
 }
 
 void biblioteq::slotLanguageChanged(void)
@@ -2844,8 +2907,8 @@ void biblioteq::slotSearch(void)
 void biblioteq::slotSectionResized(int logicalIndex, int oldSize, int newSize)
 {
   Q_UNUSED(logicalIndex);
-  Q_UNUSED(oldSize);
   Q_UNUSED(newSize);
+  Q_UNUSED(oldSize);
 }
 
 void biblioteq::slotSetColumns(void)
@@ -2916,8 +2979,8 @@ void biblioteq::slotShowMembersBrowser(void)
 
 void biblioteq::slotShowNext(void)
 {
-  int row = -1;
   QTableWidget *table = 0;
+  int row = -1;
 
   table = bb.table;
   row = table->currentRow();
@@ -2953,8 +3016,8 @@ void biblioteq::slotShowNext(void)
 
 void biblioteq::slotShowPrev(void)
 {
-  int row = -1;
   QTableWidget *table = 0;
+  int row = -1;
 
   table = bb.table;
   row = table->currentRow();
@@ -2993,10 +3056,10 @@ void biblioteq::slotShowPrev(void)
 
 void biblioteq::slotUpdateIndicesAfterSort(int column)
 {
-  int i = 0;
-  QString oid = "";
   QString itemType = "";
+  QString oid = "";
   Qt::SortOrder order;
+  int i = 0;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -3256,189 +3319,14 @@ void biblioteq::slotViewDetails(void)
 			     "type."));
 }
 
-void biblioteq::slotGrantPrivileges(void)
-{
-  bool error = false;
-  QString errorstr("");
-  QProgressDialog progress(m_members_diag);
-  QTableWidgetItem *item = 0;
-
-  progress.setCancelButton(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Granting privileges..."));
-  progress.setMaximum(bb.table->rowCount());
-  progress.setMinimum(0);
-  progress.show();
-  progress.repaint();
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
-#endif
-
-  for(int i = 0; i < bb.table->rowCount(); i++)
-    {
-      if((item = bb.table->item(i, 0)))
-	{
-	  biblioteq_misc_functions::DBAccount
-	    (item->text(),
-	     m_db, biblioteq_misc_functions::UPDATE_USER,
-	     errorstr);
-
-	  if(!errorstr.isEmpty())
-	    {
-	      error = true;
-	      addError(QString(tr("Database Error")),
-		       QString(tr("An error occurred while attempting to "
-				  "update the database account "
-				  "for ")) +
-		       item->text() +
-		       QString(tr(".")),
-		       errorstr, __FILE__, __LINE__);
-	    }
-	}
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-    }
-
-  progress.close();
-
-  if(error)
-    QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			  tr("Unable to grant privileges to all of "
-			     "the members."));
-}
-
-void biblioteq::updateMembersBrowser(void)
-{
-  int row = 0;
-  QString errorstr = "";
-  QString memberid = "";
-  QMap<QString, QString> counts;
-
-  /*
-  ** Called from the Copy Editor when an item has been reserved.
-  */
-
-  if((row = bb.table->currentRow()) < 0)
-    return;
-
-  memberid = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  counts = biblioteq_misc_functions::getItemsReservedCounts
-    (m_db, memberid, errorstr);
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to determine the number of reserved items "
-			"for the selected member.")),
-	     errorstr, __FILE__, __LINE__);
-  else
-    {
-      biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
-	 counts.value("numbooks"));
-      biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
-	 counts.value("numcds"));
-      biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
-	 counts.value("numdvds"));
-      biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
-	 counts.value("numjournals"));
-      biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
-	 counts.value("nummagazines"));
-      biblioteq_misc_functions::updateColumn
-	(bb.table, row,
-	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
-	 counts.value("numvideogames"));
-      counts.clear();
-
-      if(m_history_diag->isVisible())
-	slotShowHistory();
-    }
-}
-
-void biblioteq::updateMembersBrowser(const QString &memberid)
-{
-  int i = 0;
-  QString str = "";
-  QString errorstr = "";
-  QMap<QString, QString> counts;
-
-  /*
-  ** Called from the Borrowers Editor when an item has been updated.
-  */
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  counts = biblioteq_misc_functions::getItemsReservedCounts
-    (m_db, memberid, errorstr);
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to retrieve the number of reserved items "
-			"of the selected member.")),
-	     errorstr, __FILE__, __LINE__);
-  else
-    {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      for(i = 0; i < bb.table->rowCount(); i++)
-	{
-	  str = biblioteq_misc_functions::getColumnString
-	    (bb.table, i, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-
-	  if(str == memberid)
-	    {
-	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
-		 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
-		 counts.value("numbooks"));
-	      biblioteq_misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
-		 counts.value("numcds"));
-	      biblioteq_misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
-		 counts.value("numdvds"));
-	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
-		 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
-		 counts.value("numjournals"));
-	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
-		 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
-		 counts.value("nummagazines"));
-	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
-		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
-		 counts.value("numvideogames"));
-	      break;
-	    }
-	}
-
-      counts.clear();
-      QApplication::restoreOverrideCursor();
-    }
-}
-
 void biblioteq::slotModifyBorrower(void)
 {
+  QSqlQuery query(m_db);
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
   int i = 0;
   int row = bb.table->currentRow();
-  QString str = "";
-  QString fieldname = "";
-  QVariant var;
-  QSqlQuery query(m_db);
 
   if(row < 0)
     {
@@ -3569,187 +3457,6 @@ void biblioteq::slotModifyBorrower(void)
     (userinfo_diag->m_userinfo.telephoneNumber->palette());
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
-}
-
-void biblioteq::slotCancelAddUser(void)
-{
-  if(userinfo_diag->isVisible())
-    userinfo_diag->close();
-}
-
-void biblioteq::slotCheckout(void)
-{
-  int row1 = bb.table->currentRow();
-  int row2 = ui.table->currentRow();
-  int quantity = 0;
-  int availability = 0;
-  QString oid = "";
-  QString type = "";
-  QString itemid = "";
-  QString errorstr = "";
-  biblioteq_copy_editor *copyeditor = 0;
-  biblioteq_item *item = 0;
-
-  type = biblioteq_misc_functions::getColumnString
-    (ui.table, row2, ui.table->columnNumber("Type"));
-
-  if(type == "Grey Literature")
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("Grey literature may not be reserved."));
-      return;
-    }
-  else if(type == "Photograph Collection")
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("Photographs may not be reserved."));
-      return;
-    }
-
-  if(row1 > -1)
-    {
-      /*
-      ** Has the member's membership expired?
-      */
-
-      bool expired = true;
-      QString memberid =
-	biblioteq_misc_functions::getColumnString
-	(bb.table, row1, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      expired = biblioteq_misc_functions::hasMemberExpired
-	(m_db, memberid, errorstr);
-      QApplication::restoreOverrideCursor();
-
-      if(!errorstr.isEmpty())
-	addError(QString(tr("Database Error")),
-		 QString(tr("Unable to determine if the membership of "
-			    "the selected member has expired.")),
-		 errorstr, __FILE__, __LINE__);
-
-      if(expired || !errorstr.isEmpty())
-	{
-	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-				tr("It appears that the selected member's "
-				   "membership has expired."));
-	  return;
-	}
-    }
-
-  if(row2 > -1)
-    {
-      /*
-      ** Is the item available?
-      */
-
-      oid = biblioteq_misc_functions::getColumnString
-	(ui.table, row2, ui.table->columnNumber("MYOID"));
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      availability = biblioteq_misc_functions::getAvailability
-	(oid, m_db, type, errorstr).toInt();
-      QApplication::restoreOverrideCursor();
-
-      if(!errorstr.isEmpty())
-	addError(QString(tr("Database Error")),
-		 QString(tr("Unable to determine the availability of "
-			    "the selected item.")),
-		 errorstr, __FILE__, __LINE__);
-
-      if(availability < 1 || !errorstr.isEmpty())
-	{
-	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-				tr("It appears that the item that you "
-				   "selected "
-				   "is not available for reservation."));
-	  return;
-	}
-    }
-
-  if(row1 < 0 || row2 < 0)
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("Please select a member and an item "
-			       "to continue with the reservation process."));
-      return;
-    }
-  else
-    {
-      if((item = new(std::nothrow) biblioteq_item(row2)) != 0)
-	{
-	  quantity = biblioteq_misc_functions::getColumnString
-	    (ui.table, row2,
-	     ui.table->columnNumber("Quantity")).toInt();
-
-	  if(type.toLower() == "book")
-	    {
-	      itemid = biblioteq_misc_functions::getColumnString
-		(ui.table, row2,
-		 ui.table->columnNumber("ISBN-10"));
-
-	      if(itemid.isEmpty())
-		itemid = biblioteq_misc_functions::getColumnString
-		  (ui.table, row2,
-		   ui.table->columnNumber("ISBN-13"));
-	    }
-	  else if(type.toLower() == "dvd")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("UPC"));
-	  else if(type.toLower() == "journal" ||
-		  type.toLower() == "magazine")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("ISSN"));
-	  else if(type.toLower() == "cd")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("Catalog Number"));
-	  else if(type.toLower() == "video game")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("UPC"));
-	  else
-	    {
-	      QMessageBox::critical
-		(m_members_diag, tr("BiblioteQ: User Error"),
-		 tr("Unable to determine the selected item's type."));
-	      delete item;
-	      return;
-	    }
-
-	  if(itemid.isEmpty())
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("ID Number"));
-
-	  /*
-	  ** Custom search?
-	  */
-
-	  if(itemid.isEmpty())
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2, "id");
-
-	  if((copyeditor = new(std::nothrow)
-	      biblioteq_copy_editor(m_members_diag,
-				    this,
-				    item,
-				    true,
-				    quantity,
-				    oid,
-				    0,
-				    font(),
-				    type,
-				    itemid)) != 0)
-	    {
-	      copyeditor->populateCopiesEditor();
-	      copyeditor->exec();
-	    }
-
-	  delete item;
-	}
-    }
 }
 
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
@@ -6251,6 +5958,123 @@ void biblioteq::slotPreviousPage(void)
 			     m_previousTypeFilter,
 			     m_lastSearchStr,
 			     PREVIOUS_PAGE);
+    }
+}
+
+void biblioteq::updateMembersBrowser(const QString &memberid)
+{
+  int i = 0;
+  QString str = "";
+  QString errorstr = "";
+  QMap<QString, QString> counts;
+
+  /*
+  ** Called from the Borrowers Editor when an item has been updated.
+  */
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  counts = biblioteq_misc_functions::getItemsReservedCounts
+    (m_db, memberid, errorstr);
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the number of reserved items "
+			"of the selected member.")),
+	     errorstr, __FILE__, __LINE__);
+  else
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      for(i = 0; i < bb.table->rowCount(); i++)
+	{
+	  str = biblioteq_misc_functions::getColumnString
+	    (bb.table, i, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+
+	  if(str == memberid)
+	    {
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
+		 counts.value("numbooks"));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
+		 counts.value("numcds"));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
+		 counts.value("numdvds"));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
+		 counts.value("numjournals"));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
+		 counts.value("nummagazines"));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
+		 counts.value("numvideogames"));
+	      break;
+	    }
+	}
+
+      counts.clear();
+      QApplication::restoreOverrideCursor();
+    }
+}
+
+void biblioteq::updateMembersBrowser(void)
+{
+  int row = 0;
+  QString errorstr = "";
+  QString memberid = "";
+  QMap<QString, QString> counts;
+
+  /*
+  ** Called from the Copy Editor when an item has been reserved.
+  */
+
+  if((row = bb.table->currentRow()) < 0)
+    return;
+
+  memberid = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  counts = biblioteq_misc_functions::getItemsReservedCounts
+    (m_db, memberid, errorstr);
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to determine the number of reserved items "
+			"for the selected member.")),
+	     errorstr, __FILE__, __LINE__);
+  else
+    {
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
+	 counts.value("numbooks"));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
+	 counts.value("numcds"));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
+	 counts.value("numdvds"));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
+	 counts.value("numjournals"));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
+	 counts.value("nummagazines"));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row,
+	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
+	 counts.value("numvideogames"));
+      counts.clear();
+
+      if(m_history_diag->isVisible())
+	slotShowHistory();
     }
 }
 
