@@ -1490,6 +1490,679 @@ void biblioteq::slotAllGo(void)
   (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH);
 }
 
+void biblioteq::slotConnectDB(void)
+{
+  /*
+  ** Prevent duplicate connections.
+  */
+
+  if(m_db.isOpen())
+    return;
+
+  QHash<QString, QString> tmphash(m_branches[br.branch_name->currentText()]);
+
+  if(tmphash.value("database_type") == "sqlite")
+    {
+      QFileInfo fileInfo(br.filename->text());
+
+      if(!fileInfo.exists() || !fileInfo.isReadable() || !fileInfo.isWritable())
+	{
+	  QWidget *parent = this;
+
+	  if(m_branch_diag->isVisible())
+	    parent = m_branch_diag;
+
+	  QMessageBox::critical
+	    (parent, tr("BiblioteQ: User Error"),
+	     tr("The selected SQLite file is not accessible. Please "
+		"verify that the file exists, is readable, and is writable."));
+	  return;
+	}
+    }
+
+  QString drivers = "";
+  QString errorstr = "";
+  QString plugins = "";
+  QString str = "";
+  bool error = false;
+
+  /*
+  ** Configure some database attributes.
+  */
+
+  br.userid->setFocus();
+
+  if(tmphash.value("database_type") == "postgresql")
+    str = "QPSQL";
+  else if(tmphash.value("database_type") == "sqlite")
+    str = "QSQLITE";
+
+  foreach(const QString &driver, QSqlDatabase::drivers())
+    drivers += driver + ", ";
+
+  if(drivers.endsWith(", "))
+    drivers = drivers.mid(0, drivers.length() - 2);
+
+  if(drivers.isEmpty())
+    drivers = "N/A";
+
+  foreach(const QString &path, QApplication::libraryPaths())
+    if(path.toLower().contains("plugin"))
+      {
+	plugins = path;
+	break;
+      }
+
+  if(plugins.isEmpty())
+    plugins = "N/A";
+
+  if(!QSqlDatabase::isDriverAvailable(str))
+    {
+      tmphash.clear();
+
+      QFileInfo fileInfo("qt.conf");
+      QString str("");
+
+      if(fileInfo.isReadable() && fileInfo.size() > 0)
+	str = tr("\nThe file qt.conf is present in BiblioteQ's "
+		 "current working directory. Perhaps a conflict "
+		 "exists.");
+
+      QMessageBox::critical
+	(m_branch_diag, tr("BiblioteQ: Database Error"),
+	 tr("The selected branch's database type does not "
+	    "have a driver associated with it.") + "\n" +
+	 tr("The following drivers are available: ") +
+	 drivers + tr(".") + "\n" +
+	 tr("In addition, Qt expects plugins to exist "
+	    "in: ") + plugins + tr(".") + str + "\n" +
+	 tr("Please contact your administrator."));
+      return;
+    }
+
+  m_db = QSqlDatabase::addDatabase(str, "Default");
+
+  if(tmphash.value("database_type") == "sqlite")
+    m_db.setDatabaseName(br.filename->text());
+  else
+    {
+      m_db.setHostName(tmphash.value("hostname"));
+      m_db.setDatabaseName(br.branch_name->currentText());
+      m_db.setPort(tmphash.value("port").toInt());
+    }
+
+  if(tmphash.value("database_type") != "sqlite")
+    {
+      QString str(tmphash.value("connection_options"));
+
+      if(tmphash.value("ssl_enabled") == "true")
+	str.append(";requiressl=1");
+
+      m_db.setConnectOptions(str);
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(tmphash.value("database_type") == "sqlite")
+    (void) m_db.open();
+  else
+    {
+      (void) m_db.open(br.userid->text().trimmed(), br.password->text());
+
+      if(br.role->currentIndex() != 1)
+	br.password->clear();
+    }
+
+  QApplication::restoreOverrideCursor();
+
+  if(!m_db.isOpen())
+    {
+      error = true;
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to open a database connection "
+			  "with the provided information.")),
+	       m_db.lastError().text(),
+	       __FILE__, __LINE__);
+      QMessageBox::critical
+	(m_branch_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to open a database "
+	    "connection with the provided information. Please "
+	    "review the Error Log."));
+    }
+  else
+    {
+      if(!m_db.driver()->hasFeature(QSqlDriver::Transactions))
+	{
+	  error = true;
+	  addError
+	    (QString(tr("Database Error")),
+	     QString(tr("The current database driver that you're using "
+			"does not support transactions. "
+			"Please upgrade your database and/or driver.")),
+	     m_db.lastError().text(),
+	     __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (m_branch_diag, tr("BiblioteQ: Database Error"),
+	     tr("The current database driver that you're using "
+		"does not support transactions. "
+		"Please upgrade your database and/or driver."));
+	}
+    }
+
+  if(tmphash.value("database_type") != "sqlite")
+    {
+      if(!error)
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+	  m_roles = biblioteq_misc_functions::getRoles
+	    (m_db, br.userid->text().trimmed(), errorstr).toLower();
+	  m_unaccent = biblioteq_misc_functions::hasUnaccentExtension(m_db) ?
+	    "unaccent" : "";
+	  QApplication::restoreOverrideCursor();
+
+	  if(errorstr.isEmpty())
+	    {
+	      if(br.role->currentIndex() == 0 && m_roles.isEmpty())
+		{
+		  error = true;
+		  QMessageBox::critical
+		    (m_branch_diag, tr("BiblioteQ: User Error"),
+		     QString(tr("It appears that the user ")) +
+		     br.userid->text().trimmed() +
+		     QString(tr(" does not have "
+				"administrator privileges.")));
+		}
+	      else if(br.role->currentIndex() != 0 && !m_roles.isEmpty())
+		{
+		  error = true;
+		  QMessageBox::critical
+		    (m_branch_diag, tr("BiblioteQ: User Error"),
+		     tr("It appears that you are attempting to assume an "
+			"administrator role in a non-administrator mode."));
+		}
+	      else
+		{
+		  if(br.role->currentIndex() == 0)
+		    biblioteq_misc_functions::setRole
+		      (m_db, errorstr, m_roles);
+		  else if(br.role->currentIndex() == 1)
+		    biblioteq_misc_functions::setRole
+		      (m_db, errorstr, "guest");
+		  else
+		    biblioteq_misc_functions::setRole
+		      (m_db, errorstr, "patron");
+
+		  if(!errorstr.isEmpty())
+		    {
+		      error = true;
+		      addError(QString(tr("Database Error")),
+			       QString(tr("Unable to set "
+					  "the role for ")) +
+			       br.userid->text().trimmed() +
+			       tr("."),
+			       errorstr,
+			       __FILE__, __LINE__);
+		      QMessageBox::critical
+			(m_branch_diag, tr("BiblioteQ: Database Error"),
+			 QString(tr("Unable to set the role "
+				    "for ")) +
+			 br.userid->text().trimmed() +
+			 tr("."));
+		    }
+		}
+	    }
+	  else if(br.role->currentIndex() == 0)
+	    {
+	      error = true;
+	      addError(QString(tr("Database Error")),
+		       QString(tr("Unable to determine the "
+				  "roles of ")) +
+		       br.userid->text().trimmed() +
+		       tr("."),
+		       errorstr,
+		       __FILE__, __LINE__);
+	      QMessageBox::critical
+		(m_branch_diag, tr("BiblioteQ: Database Error"),
+		 QString(tr("Unable to determine the "
+			    "roles of ")) +
+		 br.userid->text().trimmed() +
+		 tr("."));
+	    }
+	  else if(br.role->currentIndex() == 1)
+	    {
+	      QSqlQuery query(m_db);
+
+	      if(!query.exec("SET ROLE biblioteq_guest"))
+		{
+		  error = true;
+		  addError(QString(tr("Database Error")),
+			   tr("Unable to set "
+			      "a guest role."),
+			   errorstr,
+			   __FILE__, __LINE__);
+		  QMessageBox::critical
+		    (m_branch_diag, tr("BiblioteQ: Database Error"),
+		     tr("Unable to set a guest role."));
+		}
+	    }
+	  else
+	    {
+	      QSqlQuery query(m_db);
+
+	      if(!query.exec("SET ROLE biblioteq_patron"))
+		{
+		  error = true;
+		  addError(QString(tr("Database Error")),
+			   QString(tr("Unable to set "
+				      "the role for ")) +
+			   br.userid->text().trimmed() +
+			   tr("."),
+			   errorstr,
+			   __FILE__, __LINE__);
+		  QMessageBox::critical
+		    (m_branch_diag, tr("BiblioteQ: Database Error"),
+		     QString(tr("Unable to set the role "
+				"for ")) +
+		     br.userid->text().trimmed() +
+		     tr("."));
+		}
+	    }
+	}
+    }
+  else
+    {
+      if(!error)
+	m_roles = "administrator";
+    }
+
+  tmphash.clear();
+
+  if(error)
+    {
+      m_db = QSqlDatabase();
+      QSqlDatabase::removeDatabase("Default");
+      return;
+    }
+  else
+    m_branch_diag->close();
+
+  /*
+  ** We've connected successfully. Let's initialize
+  ** other containers and widgets.
+  */
+
+  QSettings settings;
+
+  settings.setValue("previous_branch_name", br.branch_name->currentText());
+  m_selectedBranch = m_branches[br.branch_name->currentText()];
+
+  if(m_connected_bar_label != 0)
+    {
+      m_connected_bar_label->setPixmap(QPixmap(":/16x16/connected.png"));
+      m_connected_bar_label->setToolTip(tr("Connected"));
+    }
+
+  ui.printTool->setEnabled(true);
+  ui.detailsTool->setEnabled(true);
+  ui.searchTool->setEnabled(true);
+  ui.customQueryTool->setEnabled(true);
+  ui.actionDatabaseSearch->setEnabled(true);
+  ui.actionViewDetails->setEnabled(true);
+  ui.refreshTool->setEnabled(true);
+  ui.actionRefreshTable->setEnabled(true);
+  ui.disconnectTool->setEnabled(true);
+  ui.actionDisconnect->setEnabled(true);
+  ui.configTool->setEnabled(true);
+  ui.connectTool->setEnabled(false);
+  ui.actionConnect->setEnabled(false);
+
+  if(m_db.driverName() == "QSQLITE")
+    {
+      ui.actionChangePassword->setEnabled(false);
+      ui.action_Upgrade_SQLite_Schema->setEnabled(true);
+      ui.menuEntriesPerPage->setEnabled(true);
+
+      if(ui.menuEntriesPerPage->actions().size() > 0)
+	ui.menuEntriesPerPage->actions().at
+	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
+
+      /*
+      ** Set the window's title.
+      */
+
+      if(!m_roles.isEmpty())
+	setWindowTitle
+	  (tr("BiblioteQ: %1 (%2)").
+	   arg(QFileInfo(br.filename->text()).fileName()).
+	   arg(m_roles));
+      else
+	setWindowTitle
+	  (tr("BiblioteQ: %1 (%2)").
+	   arg(QFileInfo(br.filename->text()).fileName()).
+	   arg("missing roles"));
+    }
+  else
+    {
+      ui.menuEntriesPerPage->setEnabled(true);
+
+      if(ui.menuEntriesPerPage->actions().size() > 0)
+	ui.menuEntriesPerPage->actions().at
+	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(false);
+
+      ui.actionChangePassword->setEnabled(true);
+      disconnect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+		 SLOT(slotViewDetails(void)));
+      disconnect(ui.graphicsView->scene(),
+		 SIGNAL(itemDoubleClicked(void)),
+		 this,
+		 SLOT(slotViewDetails(void)));
+      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+	      SLOT(slotViewDetails(void)));
+      connect(ui.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)), this,
+	      SLOT(slotViewDetails(void)));
+
+      /*
+      ** Set the window's title.
+      */
+
+      setWindowTitle(tr("BiblioteQ: ") + m_selectedBranch.
+		     value("branch_name") +
+		     QString(" (%1)").arg(m_db.userName()));
+    }
+
+  prepareFilter();
+
+  if(br.role->currentIndex() == 0 || m_db.driverName() == "QSQLITE")
+    {
+      if(m_db.driverName() == "QSQLITE")
+	{
+	  /*
+	  ** Add the database's information to the pulldown menu.
+	  */
+
+	  bool exists = false;
+	  QList<QAction *> actions = ui.menu_Recent_SQLite_Files->actions();
+
+	  for(int i = 0; i < actions.size(); i++)
+	    if(actions[i]->data().toString() == br.filename->text())
+	      {
+		exists = true;
+		break;
+	      }
+
+	  actions.clear();
+
+	  if(!exists)
+	    {
+	      int index = 1;
+	      QSettings settings;
+	      QStringList allKeys(settings.allKeys());
+
+	      for(int i = 0; i < allKeys.size(); i++)
+		if(allKeys[i].startsWith("sqlite_db_"))
+		  index += 1;
+
+	      allKeys.clear();
+	      settings.setValue(QString("sqlite_db_%1").arg(index),
+				br.filename->text());
+	      createSqliteMenuActions();
+	    }
+	}
+
+      adminSetup();
+    }
+  else if(br.role->currentIndex() == 1)
+    {
+      /*
+      ** Guest.
+      */
+
+      ui.actionChangePassword->setEnabled(false);
+    }
+  else
+    {
+      /*
+      ** Patron.
+      */
+
+      ui.actionChangePassword->setEnabled(true);
+      ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
+      ui.actionRequests->setEnabled(true);
+      ui.actionReservationHistory->setEnabled(true);
+    }
+
+  bool found = false;
+
+  if(m_db.driverName() == "QSQLITE")
+    {
+      for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
+	   settings.value("sqlite_entries_per_page").toInt())
+	  {
+	    found = true;
+	    ui.menuEntriesPerPage->actions()[i]->setChecked(true);
+	    break;
+	  }
+    }
+  else
+    {
+      for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
+	   settings.value("postgresql_entries_per_page").toInt())
+	  {
+	    found = true;
+	    ui.menuEntriesPerPage->actions()[i]->setChecked(true);
+	    break;
+	  }
+    }
+
+  if(!found && !ui.menuEntriesPerPage->actions().isEmpty())
+    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+
+  found = false;
+
+  for(int i = 0; i < ui.menu_Category->actions().size(); i++)
+    if(m_lastCategory ==
+       ui.menu_Category->actions().at(i)->data().toString())
+      {
+	found = true;
+	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
+	ui.menu_Category->actions().at(i)->setChecked(true);
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
+	break;
+      }
+
+  if(!found)
+    {
+      ui.categoryLabel->setText(tr("All"));
+
+      if(!ui.menu_Category->actions().isEmpty())
+	ui.menu_Category->actions().at(0)->setChecked(true);
+
+      ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
+    }
+
+  if(ui.actionPopulateOnStart->isChecked())
+    slotRefresh();
+}
+
+void biblioteq::slotDisconnect(void)
+{
+  if(db_enumerations->isVisible() && !db_enumerations->close())
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!emptyContainers())
+    {
+      QApplication::restoreOverrideCursor();
+      return;
+    }
+  else
+    QApplication::restoreOverrideCursor();
+
+  m_roles = "";
+  m_pages = 0;
+  m_queryOffset = 0;
+
+  if(m_searchQuery.isActive())
+    m_searchQuery.clear();
+
+  userinfo_diag->m_memberProperties.clear();
+  m_all_diag->close();
+  m_members_diag->close();
+  m_history_diag->close();
+  m_customquery_diag->close();
+  m_unaccent.clear();
+  cq.tables_t->clear();
+  cq.tables_t->setColumnCount(0);
+  cq.tables_t->scrollToTop();
+  cq.tables_t->horizontalScrollBar()->setValue(0);
+  cq.tables_t->clearSelection();
+  cq.tables_t->setCurrentItem(0);
+  cq.query_te->clear();
+  m_admin_diag->close();
+  db_enumerations->clear();
+  resetAdminBrowser();
+  resetMembersBrowser();
+  ui.pagesLabel->setText("1");
+  ui.previousPageButton->setEnabled(false);
+  ui.nextPageButton->setEnabled(false);
+  ui.actionReservationHistory->setEnabled(false);
+  ui.printTool->setEnabled(false);
+  ui.actionChangePassword->setEnabled(false);
+  ui.deleteTool->setEnabled(false);
+  ui.menu_Add_Item->setEnabled(false);
+  ui.actionDeleteEntry->setEnabled(false);
+  ui.actionDuplicateEntry->setEnabled(false);
+  ui.createTool->setEnabled(false);
+  ui.duplicateTool->setEnabled(false);
+  ui.modifyTool->setEnabled(false);
+  ui.actionModifyEntry->setEnabled(false);
+  ui.searchTool->setEnabled(false);
+  ui.customQueryTool->setEnabled(false);
+  ui.detailsTool->setEnabled(false);
+  ui.actionDatabaseSearch->setEnabled(false);
+  ui.actionViewDetails->setEnabled(false);
+  ui.refreshTool->setEnabled(false);
+  ui.actionRefreshTable->setEnabled(false);
+  ui.disconnectTool->setEnabled(false);
+  ui.actionDisconnect->setEnabled(false);
+  ui.userTool->setEnabled(false);
+  ui.reserveTool->setEnabled(false);
+  ui.actionMembersBrowser->setEnabled(false);
+  ui.configTool->setEnabled(false);
+  ui.connectTool->setEnabled(true);
+  ui.actionConnect->setEnabled(true);
+  ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.menuEntriesPerPage->setEnabled(true);
+  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
+
+  if(ui.menuEntriesPerPage->actions().size() > 0)
+    ui.menuEntriesPerPage->actions().at
+      (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
+
+  ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
+    (false);
+  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
+    (false);
+  ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
+  ui.actionConfigureAdministratorPrivileges->setEnabled(false);
+  ui.actionDatabase_Enumerations->setEnabled(false);
+  ui.actionRequests->setEnabled(false);
+  ui.actionRequests->setToolTip(tr("Item Requests"));
+  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+  ui.graphicsView->scene()->clear();
+  bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+  ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+  ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
+  slotResetAllSearch();
+
+  if(m_db.isOpen())
+    {
+      QSettings settings;
+
+      if(m_db.driverName() == "QSQLITE")
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("sqlite_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+      else
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("postgresql_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+    }
+
+  if(!ui.menuEntriesPerPage->actions().isEmpty())
+    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+
+  if(m_connected_bar_label != 0)
+    {
+      m_connected_bar_label->setPixmap
+	(QPixmap(":/16x16/disconnected.png"));
+      m_connected_bar_label->setToolTip(tr("Disconnected"));
+    }
+
+  if(m_status_bar_label != 0)
+    {
+      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
+      m_status_bar_label->setToolTip(tr("Standard User Mode"));
+    }
+
+  if(ui.actionResetErrorLogOnDisconnect->isChecked())
+    slotResetErrorLog();
+
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
+  ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.nextPageButton->setEnabled(false);
+  ui.pagesLabel->setText("1");
+  ui.previousPageButton->setEnabled(false);
+  ui.table->resetTable(m_db.userName(), m_previousTypeFilter, m_roles);
+  ui.itemsCountLabel->setText(tr("0 Results"));
+  prepareFilter();
+
+  for(int i = 0; i < ui.menu_Category->actions().size(); i++)
+    if(m_previousTypeFilter ==
+       ui.menu_Category->actions().at(i)->data().toString())
+      {
+	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
+	ui.menu_Category->actions().at(i)->setChecked(true);
+	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
+	break;
+      }
+
+  addConfigOptions(m_previousTypeFilter);
+  slotDisplaySummary();
+  m_deletedAdmins.clear();
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(m_db.isOpen())
+    m_db.close();
+
+  QApplication::restoreOverrideCursor();
+  m_db = QSqlDatabase();
+
+  if(QSqlDatabase::contains("Default"))
+    QSqlDatabase::removeDatabase("Default");
+
+  setWindowTitle(tr("BiblioteQ"));
+}
+
 void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
 {
   al.publication_date->setEnabled(state);
