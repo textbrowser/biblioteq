@@ -901,6 +901,11 @@ QMainWindow *biblioteq::getMembersBrowser(void) const
   return m_members_diag;
 }
 
+QSqlDatabase biblioteq::getDB(void) const
+{
+  return m_db;
+}
+
 QString biblioteq::getPreferredSRUSite(void) const
 {
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
@@ -934,6 +939,16 @@ QString biblioteq::getTypeFilterString(void) const
     return ui.menu_Category->defaultAction()->data().toString();
   else
     return "All";
+}
+
+Ui_mainWindow biblioteq::getUI(void) const
+{
+  return ui;
+}
+
+Ui_membersBrowser biblioteq::getBB(void) const
+{
+  return bb;
 }
 
 QVector<QString> biblioteq::getBBColumnIndexes(void) const
@@ -979,6 +994,68 @@ void biblioteq::addConfigOptions(const QString &typefilter)
       connect(action, SIGNAL(triggered(void)), this,
 	      SLOT(slotSetColumns(void)));
     }
+}
+
+void biblioteq::addError(const QString &type,
+			 const QString &summary,
+			 const QString &error,
+			 const char *file,
+			 const int line)
+{
+  if(error.trimmed().isEmpty())
+    return;
+
+  QDateTime now = QDateTime::currentDateTime();
+  QString str = "";
+  QTableWidgetItem *item = 0;
+  int i = 0;
+
+  if(m_error_bar_label != 0)
+    {
+      m_error_bar_label->setIcon(QIcon(":/16x16/log.png"));
+      m_error_bar_label->setToolTip(tr("Error Log Active"));
+    }
+
+  er.table->setSortingEnabled(false);
+  er.table->setRowCount(er.table->rowCount() + 1);
+
+  for(i = 0; i < 6; i++)
+    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+      {
+	if(i == 0)
+	  item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
+	else if(i == 1)
+	  item->setText(type.trimmed());
+	else if(i == 2)
+	  item->setText(summary.trimmed());
+	else if(i == 3)
+	  {
+	    if(error.simplified().isEmpty())
+	      item->setText(summary);
+	    else
+	      item->setText(error.simplified());
+	  }
+	else if(i == 4)
+	  {
+	    if(file)
+	      item->setText(file);
+	  }
+	else
+	  {
+	    str.setNum(line);
+	    item->setText(str);
+	  }
+
+	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	er.table->setItem(er.table->rowCount() - 1, i, item);
+      }
+    else
+      qDebug() << tr("Memory failure in addError()!");
+
+  for(int i = 0; i < er.table->columnCount() - 1; i++)
+    er.table->resizeColumnToContents(i);
+
+  er.table->setSortingEnabled(true);
 }
 
 void biblioteq::adminSetup(void)
@@ -1411,6 +1488,54 @@ void biblioteq::prepareFilter(void)
   tmplist2.clear();
 }
 
+void biblioteq::prepareRequestToolButton(const QString &typefilter)
+{
+  if(m_db.driverName() != "QSQLITE")
+    if(m_db.isOpen())
+      {
+	if(m_db.userName() == "xbook_guest")
+	  {
+	    ui.actionRequests->setToolTip(tr("Item Requests"));
+	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	    ui.actionRequests->setEnabled(false);
+	  }
+	else if((m_roles == "administrator" || m_roles == "circulation") &&
+		typefilter == "All Requested")
+	  {
+	    ui.actionRequests->setEnabled(true);
+	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
+	    ui.actionRequests->setIcon
+	      (QIcon(":/32x32/remove_request.png"));
+	  }
+	else if(m_roles.isEmpty() && (typefilter == "All" ||
+				      typefilter == "All Available" ||
+				      typefilter == "Books" ||
+				      typefilter == "DVDs" ||
+				      typefilter == "Journals" ||
+				      typefilter == "Magazines" ||
+				      typefilter == "Music CDs" ||
+				      typefilter == "Video Games"))
+	  {
+	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
+	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	    ui.actionRequests->setEnabled(true);
+	  }
+	else if(m_roles.isEmpty() && typefilter == "All Requested")
+	  {
+	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
+	    ui.actionRequests->setIcon
+	      (QIcon(":/32x32/remove_request.png"));
+	    ui.actionRequests->setEnabled(true);
+	  }
+	else
+	  {
+	    ui.actionRequests->setToolTip(tr("Item Requests"));
+	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	    ui.actionRequests->setEnabled(false);
+	  }
+      }
+}
+
 void biblioteq::quit(const char *msg, const char *file, const int line)
 {
   if(msg != 0 && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
@@ -1783,6 +1908,48 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->updateGeometry();
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
+}
+
+void biblioteq::slotAutoPopOnFilter(QAction *action)
+{
+  if(!action)
+    return;
+
+  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+	     SLOT(slotAutoPopOnFilter(QAction *)));
+  action->setChecked(true);
+  ui.menu_Category->setDefaultAction(action);
+  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+	  SLOT(slotAutoPopOnFilter(QAction *)));
+  ui.categoryLabel->setText(action->text());
+  prepareRequestToolButton(action->data().toString());
+
+  QSettings settings;
+
+  m_lastCategory = getTypeFilterString();
+  settings.setValue("last_category", m_lastCategory);
+
+  /*
+  ** Populate the main table only if we're connected to a database.
+  */
+
+  if(m_db.isOpen())
+    slotRefresh();
+  else
+    {
+      QString typefilter("");
+
+      typefilter = action->data().toString();
+      ui.graphicsView->scene()->clear();
+      ui.graphicsView->resetTransform();
+      ui.graphicsView->verticalScrollBar()->setValue(0);
+      ui.graphicsView->horizontalScrollBar()->setValue(0);
+      ui.nextPageButton->setEnabled(false);
+      ui.pagesLabel->setText("1");
+      ui.previousPageButton->setEnabled(false);
+      ui.table->resetTable(m_db.userName(), typefilter, "");
+      ui.itemsCountLabel->setText(tr("0 Results"));
+    }
 }
 
 void biblioteq::slotCancelAddUser(void)
@@ -2724,6 +2891,23 @@ void biblioteq::slotPageClicked(const QString &link)
     }
 }
 
+void biblioteq::slotPreviousPage(void)
+{
+  if(m_db.isOpen())
+    {
+      if(m_lastSearchStr == "Item Search Query")
+	(void) populateTable(m_searchQuery,
+			     m_previousTypeFilter,
+			     PREVIOUS_PAGE,
+			     m_lastSearchType);
+      else
+	(void) populateTable(m_lastSearchType,
+			     m_previousTypeFilter,
+			     m_lastSearchStr,
+			     PREVIOUS_PAGE);
+    }
+}
+
 void biblioteq::slotRefresh(void)
 {
   if(m_db.isOpen())
@@ -2747,6 +2931,131 @@ void biblioteq::slotRefresh(void)
 	str = "%";
 
       (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
+    }
+}
+
+void biblioteq::slotReset(void)
+{
+  if(m_all_diag->isVisible())
+    {
+      QAction *action = qobject_cast<QAction *> (sender());
+
+      if(action != 0)
+	{
+	  QList<QAction *> actions = al.resetButton->menu()->actions();
+
+	  if(actions.size() < 14)
+	    {
+	      // Error.
+	    }
+	  else if(action == actions[0])
+	    {
+	      al.idnumber->clear();
+	      al.idnumber->setFocus();
+	    }
+	  else if(action == actions[1])
+	    {
+	      al.title->clear();
+	      al.title->setFocus();
+	    }
+	  else if(action == actions[2])
+	    {
+	      al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+	      al.publication_date->setFocus();
+	      al.publication_date_enabled->setChecked(false);
+	    }
+	  else if(action == actions[3])
+	    {
+	      al.publisher->clear();
+	      al.publisher->setFocus();
+	    }
+	  else if(action == actions[4])
+	    {
+	      al.categories_checkbox->setChecked(false);
+	      al.category->clear();
+	      al.category->setFocus();
+	    }
+	  else if(action == actions[5])
+	    {
+	      al.price->setValue(-0.01);
+	      al.price->setFocus();
+	    }
+	  else if(action == actions[6])
+	    {
+	      al.language->setCurrentIndex(0);
+	      al.language->setFocus();
+	    }
+	  else if(action == actions[7])
+	    {
+	      al.monetary_units->setCurrentIndex(0);
+	      al.monetary_units->setFocus();
+	    }
+	  else if(action == actions[8])
+	    {
+	      al.abstract_checkbox->setChecked(false);
+	      al.description->clear();
+	      al.description->setFocus();
+	    }
+	  else if(action == actions[9])
+	    {
+	      al.quantity->setValue(0);
+	      al.quantity->setFocus();
+	    }
+	  else if(action == actions[10])
+	    {
+	      al.location->setCurrentIndex(0);
+	      al.location->setFocus();
+	    }
+	  else if(action == actions[11])
+	    {
+	      al.keyword->clear();
+	      al.keyword->setFocus();
+	      al.keywords_checkbox->setChecked(false);
+	    }
+	  else if(action == actions[12])
+	    {
+	      al.available->setChecked(false);
+	      al.available->setFocus();
+	    }
+	  else if(action == actions[13])
+	    {
+	      al.caseinsensitive->setChecked(false);
+	      al.caseinsensitive->setFocus();
+	    }
+
+	  actions.clear();
+	}
+    }
+}
+
+void biblioteq::slotResetErrorLog(void)
+{
+  QStringList list;
+
+  list.append(tr("Event Time"));
+  list.append(tr("Event Type"));
+  list.append(tr("Summary"));
+  list.append(tr("Full Description"));
+  list.append(tr("File"));
+  list.append(tr("Line Number"));
+  er.table->setCurrentItem(0);
+  er.table->setColumnCount(0);
+  er.table->setRowCount(0);
+  er.table->setColumnCount(0);
+  er.table->scrollToTop();
+  er.table->horizontalScrollBar()->setValue(0);
+  er.table->setColumnCount(list.size());
+  er.table->setHorizontalHeaderLabels(list);
+  list.clear();
+  er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+
+  for(int i = 0; i < er.table->columnCount() - 1; i++)
+    er.table->resizeColumnToContents(i);
+
+  if(m_error_bar_label != 0)
+    {
+      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
+      m_error_bar_label->setToolTip(tr("Empty Error Log"));
     }
 }
 
@@ -2941,6 +3250,26 @@ void biblioteq::slotShowDbEnumerations(void)
     (this,
      ui.actionPopulate_Database_Enumerations_Browser_on_Display->
      isChecked());
+}
+
+void biblioteq::slotShowErrorDialog(void)
+{
+  er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+
+  for(int i = 0; i < er.table->columnCount() - 1; i++)
+    er.table->resizeColumnToContents(i);
+
+  static bool resized = false;
+
+  if(!resized)
+    m_error_diag->resize(qRound(0.85 * size().width()),
+			 qRound(0.85 * size().height()));
+
+  resized = true;
+  biblioteq_misc_functions::center(m_error_diag, this);
+  m_error_diag->showNormal();
+  m_error_diag->activateWindow();
+  m_error_diag->raise();
 }
 
 void biblioteq::slotShowGrid(void)
@@ -3317,456 +3646,6 @@ void biblioteq::slotViewDetails(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
-}
-
-void biblioteq::slotModifyBorrower(void)
-{
-  QSqlQuery query(m_db);
-  QString fieldname = "";
-  QString str = "";
-  QVariant var;
-  int i = 0;
-  int row = bb.table->currentRow();
-
-  if(row < 0)
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("Please select a member to modify."));
-      return;
-    }
-
-  str = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  query.prepare("SELECT * FROM member WHERE memberid = ?");
-  query.bindValue(0, str);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec() || !query.next())
-    {
-      QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve the selected member's "
-			  "information.")),
-	       query.lastError().text(),
-	       __FILE__, __LINE__);
-
-      if(userinfo_diag->isVisible())
-	QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
-			      tr("Unable to retrieve the selected member's "
-				 "information."));
-      else
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			      tr("Unable to retrieve the selected member's "
-				 "information."));
-
-      return;
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-
-      QSqlRecord record(query.record());
-
-      for(i = 0; i < record.count(); i++)
-	{
-	  str = query.value(i).toString();
-	  var = record.field(i).value();
-	  fieldname = record.fieldName(i);
-
-	  if(fieldname == "memberid")
-	    userinfo_diag->m_userinfo.memberid->setText(var.toString());
-	  else if(fieldname == "membersince")
-	    userinfo_diag->m_userinfo.membersince->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "dob")
-	    userinfo_diag->m_userinfo.dob->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "sex")
-	    {
-	      if(userinfo_diag->m_userinfo.sex->findText(var.toString()) > -1)
-		userinfo_diag->m_userinfo.sex->setCurrentIndex
-		  (userinfo_diag->m_userinfo.sex->findText(var.toString()));
-	      else
-		userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
-	    }
-	  else if(fieldname == "first_name")
-	    userinfo_diag->m_userinfo.firstName->setText(var.toString());
-	  else if(fieldname == "middle_init")
-	    userinfo_diag->m_userinfo.middle->setText(var.toString());
-	  else if(fieldname == "last_name")
-	    userinfo_diag->m_userinfo.lastName->setText(var.toString());
-	  else if(fieldname == "telephone_num")
-	    userinfo_diag->m_userinfo.telephoneNumber->setText(var.toString());
-	  else if(fieldname == "street")
-	    userinfo_diag->m_userinfo.street->setText(var.toString());
-	  else if(fieldname == "city")
-	    userinfo_diag->m_userinfo.city->setText(var.toString());
-	  else if(fieldname == "state_abbr")
-	    {
-	      if(userinfo_diag->m_userinfo.state->
-		 findText(var.toString()) == -1)
-		userinfo_diag->m_userinfo.state->setCurrentIndex(0);
-	      else
-		userinfo_diag->m_userinfo.state->setCurrentIndex
-		  (userinfo_diag->m_userinfo.state->findText(var.toString()));
-	    }
-	  else if(fieldname == "zip")
-	    userinfo_diag->m_userinfo.zip->setText(var.toString());
-	  else if(fieldname == "email")
-	    userinfo_diag->m_userinfo.email->setText(var.toString());
-	  else if(fieldname == "expiration_date")
-	    userinfo_diag->m_userinfo.expirationdate->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "overdue_fees")
-	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
-	  else if(fieldname == "comments")
-	    userinfo_diag->m_userinfo.comments->setPlainText(var.toString());
-	  else if(fieldname == "general_registration_number")
-	    userinfo_diag->m_userinfo.generalregistrationnumber->setText
-	      (var.toString());
-	  else if(fieldname == "memberclass")
-	    userinfo_diag->m_userinfo.memberclass->setText(var.toString());
-
-	  if(fieldname.contains("dob") ||
-	     fieldname.contains("date") ||
-	     fieldname.contains("membersince"))
-	    userinfo_diag->m_memberProperties[fieldname] =
-	      QDate::fromString(var.toString(), "MM/dd/yyyy").
-	      toString(Qt::ISODate);
-	  else if(fieldname == "overdue_fees")
-	    userinfo_diag->m_memberProperties[fieldname] =
-	      userinfo_diag->m_userinfo.overduefees->text();
-	  else
-	    userinfo_diag->m_memberProperties[fieldname] = var.toString();
-	}
-
-      foreach(QLineEdit *textfield,
-	      userinfo_diag->findChildren<QLineEdit *> ())
-	textfield->setCursorPosition(0);
-    }
-
-  userinfo_diag->m_userinfo.memberid->setReadOnly(true);
-  userinfo_diag->m_userinfo.prevTool->setVisible(true);
-  userinfo_diag->m_userinfo.nextTool->setVisible(true);
-  userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
-  m_engUserinfoTitle = "Modify Member";
-  userinfo_diag->m_userinfo.membersince->setMaximumDate(QDate::currentDate());
-  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
-  userinfo_diag->m_userinfo.membersince->setFocus();
-  userinfo_diag->m_userinfo.memberid->setPalette
-    (userinfo_diag->m_userinfo.telephoneNumber->palette());
-  userinfo_diag->updateGeometry();
-  userinfo_diag->show();
-}
-
-void biblioteq::prepareRequestToolButton(const QString &typefilter)
-{
-  if(m_db.driverName() != "QSQLITE")
-    if(m_db.isOpen())
-      {
-	if(m_db.userName() == "xbook_guest")
-	  {
-	    ui.actionRequests->setToolTip(tr("Item Requests"));
-	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-	    ui.actionRequests->setEnabled(false);
-	  }
-	else if((m_roles == "administrator" || m_roles == "circulation") &&
-		typefilter == "All Requested")
-	  {
-	    ui.actionRequests->setEnabled(true);
-	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
-	    ui.actionRequests->setIcon
-	      (QIcon(":/32x32/remove_request.png"));
-	  }
-	else if(m_roles.isEmpty() && (typefilter == "All" ||
-				      typefilter == "All Available" ||
-				      typefilter == "Books" ||
-				      typefilter == "DVDs" ||
-				      typefilter == "Journals" ||
-				      typefilter == "Magazines" ||
-				      typefilter == "Music CDs" ||
-				      typefilter == "Video Games"))
-	  {
-	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
-	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-	    ui.actionRequests->setEnabled(true);
-	  }
-	else if(m_roles.isEmpty() && typefilter == "All Requested")
-	  {
-	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
-	    ui.actionRequests->setIcon
-	      (QIcon(":/32x32/remove_request.png"));
-	    ui.actionRequests->setEnabled(true);
-	  }
-	else
-	  {
-	    ui.actionRequests->setToolTip(tr("Item Requests"));
-	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-	    ui.actionRequests->setEnabled(false);
-	  }
-      }
-}
-
-void biblioteq::slotAutoPopOnFilter(QAction *action)
-{
-  if(!action)
-    return;
-
-  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
-	     SLOT(slotAutoPopOnFilter(QAction *)));
-  action->setChecked(true);
-  ui.menu_Category->setDefaultAction(action);
-  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
-	  SLOT(slotAutoPopOnFilter(QAction *)));
-  ui.categoryLabel->setText(action->text());
-  prepareRequestToolButton(action->data().toString());
-
-  QSettings settings;
-
-  m_lastCategory = getTypeFilterString();
-  settings.setValue("last_category", m_lastCategory);
-
-  /*
-  ** Populate the main table only if we're connected to a database.
-  */
-
-  if(m_db.isOpen())
-    slotRefresh();
-  else
-    {
-      QString typefilter("");
-
-      typefilter = action->data().toString();
-      ui.graphicsView->scene()->clear();
-      ui.graphicsView->resetTransform();
-      ui.graphicsView->verticalScrollBar()->setValue(0);
-      ui.graphicsView->horizontalScrollBar()->setValue(0);
-      ui.nextPageButton->setEnabled(false);
-      ui.pagesLabel->setText("1");
-      ui.previousPageButton->setEnabled(false);
-      ui.table->resetTable(m_db.userName(), typefilter, "");
-      ui.itemsCountLabel->setText(tr("0 Results"));
-    }
-}
-
-void biblioteq::slotReset(void)
-{
-  if(m_all_diag->isVisible())
-    {
-      QAction *action = qobject_cast<QAction *> (sender());
-
-      if(action != 0)
-	{
-	  QList<QAction *> actions = al.resetButton->menu()->actions();
-
-	  if(actions.size() < 14)
-	    {
-	      // Error.
-	    }
-	  else if(action == actions[0])
-	    {
-	      al.idnumber->clear();
-	      al.idnumber->setFocus();
-	    }
-	  else if(action == actions[1])
-	    {
-	      al.title->clear();
-	      al.title->setFocus();
-	    }
-	  else if(action == actions[2])
-	    {
-	      al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
-	      al.publication_date->setFocus();
-	      al.publication_date_enabled->setChecked(false);
-	    }
-	  else if(action == actions[3])
-	    {
-	      al.publisher->clear();
-	      al.publisher->setFocus();
-	    }
-	  else if(action == actions[4])
-	    {
-	      al.categories_checkbox->setChecked(false);
-	      al.category->clear();
-	      al.category->setFocus();
-	    }
-	  else if(action == actions[5])
-	    {
-	      al.price->setValue(-0.01);
-	      al.price->setFocus();
-	    }
-	  else if(action == actions[6])
-	    {
-	      al.language->setCurrentIndex(0);
-	      al.language->setFocus();
-	    }
-	  else if(action == actions[7])
-	    {
-	      al.monetary_units->setCurrentIndex(0);
-	      al.monetary_units->setFocus();
-	    }
-	  else if(action == actions[8])
-	    {
-	      al.abstract_checkbox->setChecked(false);
-	      al.description->clear();
-	      al.description->setFocus();
-	    }
-	  else if(action == actions[9])
-	    {
-	      al.quantity->setValue(0);
-	      al.quantity->setFocus();
-	    }
-	  else if(action == actions[10])
-	    {
-	      al.location->setCurrentIndex(0);
-	      al.location->setFocus();
-	    }
-	  else if(action == actions[11])
-	    {
-	      al.keyword->clear();
-	      al.keyword->setFocus();
-	      al.keywords_checkbox->setChecked(false);
-	    }
-	  else if(action == actions[12])
-	    {
-	      al.available->setChecked(false);
-	      al.available->setFocus();
-	    }
-	  else if(action == actions[13])
-	    {
-	      al.caseinsensitive->setChecked(false);
-	      al.caseinsensitive->setFocus();
-	    }
-
-	  actions.clear();
-	}
-    }
-}
-
-void biblioteq::slotShowErrorDialog(void)
-{
-  er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-
-  for(int i = 0; i < er.table->columnCount() - 1; i++)
-    er.table->resizeColumnToContents(i);
-
-  static bool resized = false;
-
-  if(!resized)
-    m_error_diag->resize(qRound(0.85 * size().width()),
-			 qRound(0.85 * size().height()));
-
-  resized = true;
-  biblioteq_misc_functions::center(m_error_diag, this);
-  m_error_diag->showNormal();
-  m_error_diag->activateWindow();
-  m_error_diag->raise();
-}
-
-void biblioteq::addError(const QString &type, const QString &summary,
-			 const QString &error, const char *file,
-			 const int line)
-{
-  if(error.trimmed().isEmpty())
-    return;
-
-  QDateTime now = QDateTime::currentDateTime();
-  QString str = "";
-  QTableWidgetItem *item = 0;
-  int i = 0;
-
-  if(m_error_bar_label != 0)
-    {
-      m_error_bar_label->setIcon(QIcon(":/16x16/log.png"));
-      m_error_bar_label->setToolTip(tr("Error Log Active"));
-    }
-
-  er.table->setSortingEnabled(false);
-  er.table->setRowCount(er.table->rowCount() + 1);
-
-  for(i = 0; i < 6; i++)
-    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-      {
-	if(i == 0)
-	  item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
-	else if(i == 1)
-	  item->setText(type.trimmed());
-	else if(i == 2)
-	  item->setText(summary.trimmed());
-	else if(i == 3)
-	  {
-	    if(error.simplified().isEmpty())
-	      item->setText(summary);
-	    else
-	      item->setText(error.simplified());
-	  }
-	else if(i == 4)
-	  {
-	    if(file)
-	      item->setText(file);
-	  }
-	else
-	  {
-	    str.setNum(line);
-	    item->setText(str);
-	  }
-
-	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-	er.table->setItem(er.table->rowCount() - 1, i, item);
-      }
-    else
-      qDebug() << tr("Memory failure in addError()!");
-
-  for(int i = 0; i < er.table->columnCount() - 1; i++)
-    er.table->resizeColumnToContents(i);
-
-  er.table->setSortingEnabled(true);
-}
-
-void biblioteq::slotResetErrorLog(void)
-{
-  QStringList list;
-
-  list.append(tr("Event Time"));
-  list.append(tr("Event Type"));
-  list.append(tr("Summary"));
-  list.append(tr("Full Description"));
-  list.append(tr("File"));
-  list.append(tr("Line Number"));
-  er.table->setCurrentItem(0);
-  er.table->setColumnCount(0);
-  er.table->setRowCount(0);
-  er.table->setColumnCount(0);
-  er.table->scrollToTop();
-  er.table->horizontalScrollBar()->setValue(0);
-  er.table->setColumnCount(list.size());
-  er.table->setHorizontalHeaderLabels(list);
-  list.clear();
-  er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-
-  for(int i = 0; i < er.table->columnCount() - 1; i++)
-    er.table->resizeColumnToContents(i);
-
-  if(m_error_bar_label != 0)
-    {
-      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
-      m_error_bar_label->setToolTip(tr("Empty Error Log"));
-    }
-}
-
-Ui_membersBrowser biblioteq::getBB(void) const
-{
-  return bb;
-}
-
-Ui_mainWindow biblioteq::getUI(void) const
-{
-  return ui;
-}
-
-QSqlDatabase biblioteq::getDB(void) const
-{
-  return m_db;
 }
 
 void biblioteq::removeCD(biblioteq_cd *cd)
@@ -5942,23 +5821,6 @@ void biblioteq::slotClearSqliteMenu(bool state)
 
   allKeys.clear();
   createSqliteMenuActions();
-}
-
-void biblioteq::slotPreviousPage(void)
-{
-  if(m_db.isOpen())
-    {
-      if(m_lastSearchStr == "Item Search Query")
-	(void) populateTable(m_searchQuery,
-			     m_previousTypeFilter,
-			     PREVIOUS_PAGE,
-			     m_lastSearchType);
-      else
-	(void) populateTable(m_lastSearchType,
-			     m_previousTypeFilter,
-			     m_lastSearchStr,
-			     PREVIOUS_PAGE);
-    }
 }
 
 void biblioteq::updateMembersBrowser(const QString &memberid)

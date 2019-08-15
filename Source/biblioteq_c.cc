@@ -1499,7 +1499,6 @@ void biblioteq::slotCheckout(void)
   QString type = "";
   biblioteq_copy_editor *copyeditor = 0;
   biblioteq_item *item = 0;
-  int availability = 0;
   int quantity = 0;
   int row1 = bb.table->currentRow();
   int row2 = ui.table->currentRow();
@@ -1560,8 +1559,10 @@ void biblioteq::slotCheckout(void)
       oid = biblioteq_misc_functions::getColumnString
 	(ui.table, row2, ui.table->columnNumber("MYOID"));
       QApplication::setOverrideCursor(Qt::WaitCursor);
-      availability = biblioteq_misc_functions::getAvailability
+
+      int availability = biblioteq_misc_functions::getAvailability
 	(oid, m_db, type, errorstr).toInt();
+
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
@@ -2862,6 +2863,146 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 
       ui.graphicsView->scene()->setBackgroundBrush(color);
     }
+}
+
+void biblioteq::slotModifyBorrower(void)
+{
+  QSqlQuery query(m_db);
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
+  int row = bb.table->currentRow();
+
+  if(row < 0)
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("Please select a member to modify."));
+      return;
+    }
+
+  str = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  query.prepare("SELECT * FROM member WHERE memberid = ?");
+  query.bindValue(0, str);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec() || !query.next())
+    {
+      QApplication::restoreOverrideCursor();
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve the selected member's "
+			  "information.")),
+	       query.lastError().text(),
+	       __FILE__, __LINE__);
+
+      if(userinfo_diag->isVisible())
+	QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve the selected member's "
+				 "information."));
+      else
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve the selected member's "
+				 "information."));
+
+      return;
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
+	{
+	  str = query.value(i).toString();
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
+
+	  if(fieldname == "memberid")
+	    userinfo_diag->m_userinfo.memberid->setText(var.toString());
+	  else if(fieldname == "membersince")
+	    userinfo_diag->m_userinfo.membersince->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "dob")
+	    userinfo_diag->m_userinfo.dob->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "sex")
+	    {
+	      if(userinfo_diag->m_userinfo.sex->findText(var.toString()) > -1)
+		userinfo_diag->m_userinfo.sex->setCurrentIndex
+		  (userinfo_diag->m_userinfo.sex->findText(var.toString()));
+	      else
+		userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
+	    }
+	  else if(fieldname == "first_name")
+	    userinfo_diag->m_userinfo.firstName->setText(var.toString());
+	  else if(fieldname == "middle_init")
+	    userinfo_diag->m_userinfo.middle->setText(var.toString());
+	  else if(fieldname == "last_name")
+	    userinfo_diag->m_userinfo.lastName->setText(var.toString());
+	  else if(fieldname == "telephone_num")
+	    userinfo_diag->m_userinfo.telephoneNumber->setText(var.toString());
+	  else if(fieldname == "street")
+	    userinfo_diag->m_userinfo.street->setText(var.toString());
+	  else if(fieldname == "city")
+	    userinfo_diag->m_userinfo.city->setText(var.toString());
+	  else if(fieldname == "state_abbr")
+	    {
+	      if(userinfo_diag->m_userinfo.state->
+		 findText(var.toString()) == -1)
+		userinfo_diag->m_userinfo.state->setCurrentIndex(0);
+	      else
+		userinfo_diag->m_userinfo.state->setCurrentIndex
+		  (userinfo_diag->m_userinfo.state->findText(var.toString()));
+	    }
+	  else if(fieldname == "zip")
+	    userinfo_diag->m_userinfo.zip->setText(var.toString());
+	  else if(fieldname == "email")
+	    userinfo_diag->m_userinfo.email->setText(var.toString());
+	  else if(fieldname == "expiration_date")
+	    userinfo_diag->m_userinfo.expirationdate->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "overdue_fees")
+	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
+	  else if(fieldname == "comments")
+	    userinfo_diag->m_userinfo.comments->setPlainText(var.toString());
+	  else if(fieldname == "general_registration_number")
+	    userinfo_diag->m_userinfo.generalregistrationnumber->setText
+	      (var.toString());
+	  else if(fieldname == "memberclass")
+	    userinfo_diag->m_userinfo.memberclass->setText(var.toString());
+
+	  if(fieldname.contains("dob") ||
+	     fieldname.contains("date") ||
+	     fieldname.contains("membersince"))
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      QDate::fromString(var.toString(), "MM/dd/yyyy").
+	      toString(Qt::ISODate);
+	  else if(fieldname == "overdue_fees")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.overduefees->text();
+	  else
+	    userinfo_diag->m_memberProperties[fieldname] = var.toString();
+	}
+
+      foreach(QLineEdit *textfield,
+	      userinfo_diag->findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+    }
+
+  userinfo_diag->m_userinfo.memberid->setReadOnly(true);
+  userinfo_diag->m_userinfo.prevTool->setVisible(true);
+  userinfo_diag->m_userinfo.nextTool->setVisible(true);
+  userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
+  m_engUserinfoTitle = "Modify Member";
+  userinfo_diag->m_userinfo.membersince->setMaximumDate(QDate::currentDate());
+  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.membersince->setFocus();
+  userinfo_diag->m_userinfo.memberid->setPalette
+    (userinfo_diag->m_userinfo.telephoneNumber->palette());
+  userinfo_diag->updateGeometry();
+  userinfo_diag->show();
 }
 
 void biblioteq::slotOpenPDFFile(void)
