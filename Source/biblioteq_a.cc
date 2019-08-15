@@ -906,6 +906,14 @@ QSqlDatabase biblioteq::getDB(void) const
   return m_db;
 }
 
+QString biblioteq::getAdminID(void) const
+{
+  if(m_db.driverName() != "QSQLITE")
+    return m_db.userName();
+  else
+    return "N/A";
+}
+
 QString biblioteq::getPreferredSRUSite(void) const
 {
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
@@ -2010,6 +2018,41 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->show();
 }
 
+void biblioteq::slotAdminCheckBoxClicked(int state)
+{
+  QCheckBox *box = qobject_cast<QCheckBox *> (sender());
+  int column = -1;
+  int i = 0;
+  int j = 0;
+  int row = -1;
+
+  (void) state;
+
+  for(i = 0; i < ab.table->rowCount(); i++)
+    for(j = 1; j < ab.table->columnCount(); j++)
+      if(ab.table->cellWidget(i, j) == box)
+	{
+	  row = i;
+	  column = j;
+	  break;
+	}
+
+  if(row > -1)
+    {
+      if(column == 1)
+	{
+	  for(i = 2; i < ab.table->columnCount(); i++)
+	    if(box->isChecked())
+	      (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
+		setChecked(false);
+	}
+      else
+	if(box->isChecked())
+	  (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
+	    setChecked(false);
+    }
+}
+
 void biblioteq::slotAutoPopOnFilter(QAction *action)
 {
   if(!action)
@@ -2077,6 +2120,23 @@ void biblioteq::slotChangeView(bool checked)
 
       settings.setValue("view_mode_index", action->data().toInt());
     }
+}
+
+void biblioteq::slotClearSqliteMenu(bool state)
+{
+  Q_UNUSED(state);
+  br.filename->clear();
+  ui.menu_Recent_SQLite_Files->clear();
+
+  QSettings settings;
+  QStringList allKeys(settings.allKeys());
+
+  for(int i = 0; i < allKeys.size(); i++)
+    if(allKeys[i].startsWith("sqlite_db_"))
+      settings.remove(allKeys[i]);
+
+  allKeys.clear();
+  createSqliteMenuActions();
 }
 
 void biblioteq::slotClosePasswordDialog(void)
@@ -2695,6 +2755,97 @@ void biblioteq::slotGrantPrivileges(void)
 			     "the members."));
 }
 
+void biblioteq::slotInsertBook(void)
+{
+  QString id("");
+  biblioteq_book *book = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  book = new(std::nothrow) biblioteq_book(this, id, -1);
+
+  if(book)
+    book->insert();
+}
+
+void biblioteq::slotInsertCD(void)
+{
+  QString id("");
+  biblioteq_cd *cd = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  cd = new(std::nothrow) biblioteq_cd(this, id, -1);
+
+  if(cd)
+    cd->insert();
+}
+
+void biblioteq::slotInsertDVD(void)
+{
+  QString id("");
+  biblioteq_dvd *dvd = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  dvd = new(std::nothrow) biblioteq_dvd(this, id, -1);
+
+  if(dvd)
+    dvd->insert();
+}
+
+void biblioteq::slotInsertJourn(void)
+{
+  QString id("");
+  biblioteq_journal *journal = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  journal = new(std::nothrow) biblioteq_journal(this, id, -1);
+
+  if(journal)
+    journal->insert();
+}
+
+void biblioteq::slotInsertMag(void)
+{
+  QString id("");
+  biblioteq_magazine *magazine = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  magazine = new(std::nothrow) biblioteq_magazine(this, id, -1, "magazine");
+
+  if(magazine)
+    magazine->insert();
+}
+
+void biblioteq::slotInsertPhotograph(void)
+{
+  QString id("");
+  biblioteq_photographcollection *photograph = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  photograph = new(std::nothrow) biblioteq_photographcollection(this, id, -1);
+
+  if(photograph)
+    photograph->insert();
+}
+
+void biblioteq::slotInsertVideoGame(void)
+{
+  QString id("");
+  biblioteq_videogame *videogame = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  videogame = new(std::nothrow) biblioteq_videogame(this, id, -1);
+
+  if(videogame)
+    videogame->insert();
+}
+
 void biblioteq::slotLanguageChanged(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
@@ -3032,6 +3183,108 @@ void biblioteq::slotRefresh(void)
 
       (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
     }
+}
+
+void biblioteq::slotReserveCopy(void)
+{
+  QString errorstr = "";
+  QString oid = "";
+  QString type = "";
+  int availability = 0;
+  int row = ui.table->currentRow();
+
+  if(row < 0)
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			      tr("In order to reserve an item, you must "
+				 "first select it."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("In order to reserve an item, you must "
+				 "first select it."));
+
+      return;
+    }
+
+  type = biblioteq_misc_functions::getColumnString
+    (ui.table, row, ui.table->columnNumber("Type"));
+
+  if(type == "Grey Literature")
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			      tr("Grey literature may not be reserved."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("Grey literature may not be reserved."));
+
+      return;
+    }
+  else if(type == "Photograph Collection")
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			      tr("Photographs may not be reserved."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("Photographs may not be reserved."));
+
+      return;
+    }
+
+  oid = biblioteq_misc_functions::getColumnString
+    (ui.table, row, ui.table->columnNumber("MYOID"));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  availability = biblioteq_misc_functions::getAvailability
+    (oid, m_db, type, errorstr).toInt();
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    {
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the availability of "
+			  "the selected item.")),
+	       errorstr, __FILE__, __LINE__);
+
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to determine the availability of "
+				 "the selected item."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			      tr("Unable to determine the availability of "
+				 "the selected item."));
+
+      return;
+    }
+
+  if(availability < 1)
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			      tr("It appears that the item you selected "
+				 "is not available for reservation."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("It appears that the item you selected "
+				 "is not available for reservation."));
+
+      return;
+    }
+
+  slotShowMembersBrowser();
+
+  if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
+    if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
+			     tr("Would you like to retrieve the list of "
+				"members?"),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::Yes)
+      slotPopulateMembersBrowser();
+
+  if(bb.table->currentRow() < 0)
+    bb.table->selectRow(0);
 }
 
 void biblioteq::slotReset(void)
@@ -3483,6 +3736,33 @@ void biblioteq::slotShowPrev(void)
     }
 }
 
+void biblioteq::slotSqliteFileSelected(bool state)
+{
+  Q_UNUSED(state);
+
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  slotDisconnect();
+  br.filename->setText(action->data().toString());
+  br.filename->setCursorPosition(0);
+
+  for(int i = 0; i < br.branch_name->count(); i++)
+    {
+      if(m_branches.contains(br.branch_name->itemText(i)))
+	if(m_branches[br.branch_name->itemText(i)].value("database_type") ==
+	   "sqlite")
+	  {
+	    br.branch_name->setCurrentIndex(i);
+	    break;
+	  }
+    }
+
+  slotConnectDB();
+}
+
 void biblioteq::slotUpdateIndicesAfterSort(int column)
 {
   QString itemType = "";
@@ -3792,305 +4072,6 @@ void biblioteq::updateItemWindows(void)
     }
 
   QApplication::restoreOverrideCursor();
-}
-
-bool biblioteq::emptyContainers(void)
-{
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
-      biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
-      biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
-      biblioteq_grey_literature *gl =
-	qobject_cast<biblioteq_grey_literature *> (w);
-      biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
-      biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
-      biblioteq_photographcollection *photograph =
-	qobject_cast<biblioteq_photographcollection *> (w);
-      biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
-
-      if(book)
-	{
-	  if(book->isVisible() && !book->close())
-	    return false;
-	  else
-	    book->deleteLater();
-	}
-
-      if(cd)
-	{
-	  if(cd->isVisible() && !cd->close())
-	    return false;
-	  else
-	    cd->deleteLater();
-	}
-
-      if(dvd)
-	{
-	  if(dvd->isVisible() && !dvd->close())
-	    return false;
-	  else
-	    dvd->deleteLater();
-	}
-
-      if(gl)
-	{
-	  if(gl->isVisible() && !gl->close())
-	    return false;
-	  else
-	    gl->deleteLater();
-	}
-
-      if(journal)
-	{
-	  if(journal->isVisible() && !journal->close())
-	    return false;
-	  else
-	    journal->deleteLater();
-	}
-
-      if(!qobject_cast<biblioteq_journal *> (w))
-	if(magazine)
-	  {
-	    if(magazine->isVisible() && !magazine->close())
-	      return false;
-	    else
-	      magazine->deleteLater();
-	  }
-
-      if(videogame)
-	{
-	  if(videogame->isVisible() && !videogame->close())
-	    return false;
-	  else
-	    videogame->deleteLater();
-	}
-
-      if(photograph)
-	{
-	  if(photograph->isVisible() && !photograph->close())
-	    return false;
-	  else
-	    photograph->deleteLater();
-	}
-    }
-
-  return true;
-}
-
-QString biblioteq::getAdminID(void) const
-{
-  if(m_db.driverName() != "QSQLITE")
-    return m_db.userName();
-  else
-    return "N/A";
-}
-
-void biblioteq::slotInsertCD(void)
-{
-  QString id("");
-  biblioteq_cd *cd = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  cd = new(std::nothrow) biblioteq_cd(this, id, -1);
-
-  if(cd)
-    cd->insert();
-}
-
-void biblioteq::slotInsertDVD(void)
-{
-  QString id("");
-  biblioteq_dvd *dvd = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  dvd = new(std::nothrow) biblioteq_dvd(this, id, -1);
-
-  if(dvd)
-    dvd->insert();
-}
-
-void biblioteq::slotInsertBook(void)
-{
-  QString id("");
-  biblioteq_book *book = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  book = new(std::nothrow) biblioteq_book(this, id, -1);
-
-  if(book)
-    book->insert();
-}
-
-void biblioteq::slotInsertJourn(void)
-{
-  QString id("");
-  biblioteq_journal *journal = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  journal = new(std::nothrow) biblioteq_journal(this, id, -1);
-
-  if(journal)
-    journal->insert();
-}
-
-void biblioteq::slotInsertMag(void)
-{
-  QString id("");
-  biblioteq_magazine *magazine = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  magazine = new(std::nothrow) biblioteq_magazine(this, id, -1, "magazine");
-
-  if(magazine)
-    magazine->insert();
-}
-
-void biblioteq::slotInsertPhotograph(void)
-{
-  QString id("");
-  biblioteq_photographcollection *photograph = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  photograph = new(std::nothrow) biblioteq_photographcollection(this, id, -1);
-
-  if(photograph)
-    photograph->insert();
-}
-
-void biblioteq::slotInsertVideoGame(void)
-{
-  QString id("");
-  biblioteq_videogame *videogame = 0;
-
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  videogame = new(std::nothrow) biblioteq_videogame(this, id, -1);
-
-  if(videogame)
-    videogame->insert();
-}
-
-void biblioteq::deleteItem(const QString &oid, const QString &itemType)
-{
-  if(itemType == "book")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
-
-	  if(book && book->getID() == oid)
-	    {
-	      removeBook(book);
-	      break;
-	    }
-	}
-    }
-  else if(itemType == "cd")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
-
-	  if(cd && cd->getID() == oid)
-	    {
-	      removeCD(cd);
-	      break;
-	    }
-	}
-    }
-  else if(itemType == "dvd")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
-
-	  if(dvd && dvd->getID() == oid)
-	    {
-	      removeDVD(dvd);
-	      break;
-	    }
-	}
-    }
-  else if(itemType == "grey_literature")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_grey_literature *gl =
-	    qobject_cast<biblioteq_grey_literature *> (w);
-
-	  if(gl && gl->getID() == oid)
-	    {
-	      removeGreyLiterature(gl);
-	      break;
-	    }
-	}
-    }
-  else if(itemType == "journal")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
-
-	  if(journal && journal->getID() == oid)
-	    {
-	      removeJournal(journal);
-	      break;
-	    }
-	}
-    }
-  else if(itemType == "magazine")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
-
-	  /*
-	  ** The class biblioteq_journal inherits biblioteq_magazine.
-	  */
-
-	  if(!qobject_cast<biblioteq_journal *> (w))
-	    if(magazine && magazine->getID() == oid)
-	      {
-		removeMagazine(magazine);
-		break;
-	      }
-	}
-    }
-  else if(itemType == "photograph_collection")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_photographcollection *photograph =
-	    qobject_cast<biblioteq_photographcollection *> (w);
-
-	  if(photograph && photograph->getID() == oid)
-	    {
-	      removePhotographCollection(photograph);
-	      break;
-	    }
-	}
-    }
-  else if(itemType == "videogame")
-    {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
-	{
-	  biblioteq_videogame *videogame =
-	    qobject_cast<biblioteq_videogame *> (w);
-
-	  if(videogame && videogame->getID() == oid)
-	    {
-	      removeVideoGame(videogame);
-	      break;
-	    }
-	}
-    }
 }
 
 void biblioteq::bookSearch(const QString &field, const QString &value)
@@ -4569,108 +4550,6 @@ void biblioteq::slotListOverdueItems(void)
   m_members_diag->showNormal();
   m_members_diag->activateWindow();
   m_members_diag->raise();
-}
-
-void biblioteq::slotReserveCopy(void)
-{
-  int row = ui.table->currentRow();
-  int availability = 0;
-  QString oid = "";
-  QString type = "";
-  QString errorstr = "";
-
-  if(row < 0)
-    {
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("In order to reserve an item, you must "
-				 "first select it."));
-      else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("In order to reserve an item, you must "
-				 "first select it."));
-
-      return;
-    }
-
-  type = biblioteq_misc_functions::getColumnString
-    (ui.table, row, ui.table->columnNumber("Type"));
-
-  if(type == "Grey Literature")
-    {
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("Grey literature may not be reserved."));
-      else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("Grey literature may not be reserved."));
-
-      return;
-    }
-  else if(type == "Photograph Collection")
-    {
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("Photographs may not be reserved."));
-      else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("Photographs may not be reserved."));
-
-      return;
-    }
-
-  oid = biblioteq_misc_functions::getColumnString
-    (ui.table, row, ui.table->columnNumber("MYOID"));
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  availability = biblioteq_misc_functions::getAvailability
-    (oid, m_db, type, errorstr).toInt();
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to determine the availability of "
-			  "the selected item.")),
-	       errorstr, __FILE__, __LINE__);
-
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			      tr("Unable to determine the availability of "
-				 "the selected item."));
-      else
-	QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			      tr("Unable to determine the availability of "
-				 "the selected item."));
-
-      return;
-    }
-
-  if(availability < 1)
-    {
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("It appears that the item you selected "
-				 "is not available for reservation."));
-      else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("It appears that the item you selected "
-				 "is not available for reservation."));
-
-      return;
-    }
-
-  slotShowMembersBrowser();
-
-  if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
-    if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
-			     tr("Would you like to retrieve the list of "
-				"members?"),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::Yes)
-      slotPopulateMembersBrowser();
-
-  if(bb.table->currentRow() < 0)
-    bb.table->selectRow(0);
 }
 
 void biblioteq::slotShowMenu(void)
@@ -5744,91 +5623,12 @@ void biblioteq::slotDeleteAdmin(void)
     }
 }
 
-void biblioteq::slotAdminCheckBoxClicked(int state)
-{
-  int i = 0;
-  int j = 0;
-  int row = -1;
-  int column = -1;
-  QCheckBox *box = qobject_cast<QCheckBox *> (sender());
-
-  (void) state;
-
-  for(i = 0; i < ab.table->rowCount(); i++)
-    for(j = 1; j < ab.table->columnCount(); j++)
-      if(ab.table->cellWidget(i, j) == box)
-	{
-	  row = i;
-	  column = j;
-	  break;
-	}
-
-  if(row > -1)
-    {
-      if(column == 1)
-	{
-	  for(i = 2; i < ab.table->columnCount(); i++)
-	    if(box->isChecked())
-	      (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
-		setChecked(false);
-	}
-      else
-	if(box->isChecked())
-	  (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
-	    setChecked(false);
-    }
-}
-
-void biblioteq::slotSqliteFileSelected(bool state)
-{
-  Q_UNUSED(state);
-
-  QAction *action = qobject_cast<QAction *> (sender());
-
-  if(!action)
-    return;
-
-  slotDisconnect();
-  br.filename->setText(action->data().toString());
-  br.filename->setCursorPosition(0);
-
-  for(int i = 0; i < br.branch_name->count(); i++)
-    {
-      if(m_branches.contains(br.branch_name->itemText(i)))
-	if(m_branches[br.branch_name->itemText(i)].value("database_type") ==
-	   "sqlite")
-	  {
-	    br.branch_name->setCurrentIndex(i);
-	    break;
-	  }
-    }
-
-  slotConnectDB();
-}
-
-void biblioteq::slotClearSqliteMenu(bool state)
-{
-  Q_UNUSED(state);
-  br.filename->clear();
-  ui.menu_Recent_SQLite_Files->clear();
-
-  QSettings settings;
-  QStringList allKeys(settings.allKeys());
-
-  for(int i = 0; i < allKeys.size(); i++)
-    if(allKeys[i].startsWith("sqlite_db_"))
-      settings.remove(allKeys[i]);
-
-  allKeys.clear();
-  createSqliteMenuActions();
-}
-
 void biblioteq::updateMembersBrowser(const QString &memberid)
 {
-  int i = 0;
-  QString str = "";
-  QString errorstr = "";
   QMap<QString, QString> counts;
+  QString errorstr = "";
+  QString str = "";
+  int i = 0;
 
   /*
   ** Called from the Borrowers Editor when an item has been updated.
@@ -5888,10 +5688,10 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 
 void biblioteq::updateMembersBrowser(void)
 {
-  int row = 0;
+  QMap<QString, QString> counts;
   QString errorstr = "";
   QString memberid = "";
-  QMap<QString, QString> counts;
+  int row = 0;
 
   /*
   ** Called from the Copy Editor when an item has been reserved.

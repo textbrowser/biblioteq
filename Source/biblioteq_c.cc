@@ -43,6 +43,90 @@ QStringList biblioteq::getZ3950Names(void) const
   return m_z3950Maps.keys();
 }
 
+bool biblioteq::emptyContainers(void)
+{
+  foreach(QWidget *w, QApplication::topLevelWidgets())
+    {
+      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+      biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
+      biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
+      biblioteq_grey_literature *gl =
+	qobject_cast<biblioteq_grey_literature *> (w);
+      biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
+      biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
+      biblioteq_photographcollection *photograph =
+	qobject_cast<biblioteq_photographcollection *> (w);
+      biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
+
+      if(book)
+	{
+	  if(book->isVisible() && !book->close())
+	    return false;
+	  else
+	    book->deleteLater();
+	}
+
+      if(cd)
+	{
+	  if(cd->isVisible() && !cd->close())
+	    return false;
+	  else
+	    cd->deleteLater();
+	}
+
+      if(dvd)
+	{
+	  if(dvd->isVisible() && !dvd->close())
+	    return false;
+	  else
+	    dvd->deleteLater();
+	}
+
+      if(gl)
+	{
+	  if(gl->isVisible() && !gl->close())
+	    return false;
+	  else
+	    gl->deleteLater();
+	}
+
+      if(journal)
+	{
+	  if(journal->isVisible() && !journal->close())
+	    return false;
+	  else
+	    journal->deleteLater();
+	}
+
+      if(!qobject_cast<biblioteq_journal *> (w))
+	if(magazine)
+	  {
+	    if(magazine->isVisible() && !magazine->close())
+	      return false;
+	    else
+	      magazine->deleteLater();
+	  }
+
+      if(videogame)
+	{
+	  if(videogame->isVisible() && !videogame->close())
+	    return false;
+	  else
+	    videogame->deleteLater();
+	}
+
+      if(photograph)
+	{
+	  if(photograph->isVisible() && !photograph->close())
+	    return false;
+	  else
+	    photograph->deleteLater();
+	}
+    }
+
+  return true;
+}
+
 int biblioteq::populateTable(const QSqlQuery &query,
 			     const QString &typefilter,
 			     const int pagingType,
@@ -591,6 +675,122 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.table->show();
 #endif
   return 0;
+}
+
+void biblioteq::deleteItem(const QString &oid, const QString &itemType)
+{
+  if(itemType == "book")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+
+	  if(book && book->getID() == oid)
+	    {
+	      removeBook(book);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "cd")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
+
+	  if(cd && cd->getID() == oid)
+	    {
+	      removeCD(cd);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "dvd")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
+
+	  if(dvd && dvd->getID() == oid)
+	    {
+	      removeDVD(dvd);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "grey_literature")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_grey_literature *gl =
+	    qobject_cast<biblioteq_grey_literature *> (w);
+
+	  if(gl && gl->getID() == oid)
+	    {
+	      removeGreyLiterature(gl);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "journal")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
+
+	  if(journal && journal->getID() == oid)
+	    {
+	      removeJournal(journal);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "magazine")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
+
+	  /*
+	  ** The class biblioteq_journal inherits biblioteq_magazine.
+	  */
+
+	  if(!qobject_cast<biblioteq_journal *> (w))
+	    if(magazine && magazine->getID() == oid)
+	      {
+		removeMagazine(magazine);
+		break;
+	      }
+	}
+    }
+  else if(itemType == "photograph_collection")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_photographcollection *photograph =
+	    qobject_cast<biblioteq_photographcollection *> (w);
+
+	  if(photograph && photograph->getID() == oid)
+	    {
+	      removePhotographCollection(photograph);
+	      break;
+	    }
+	}
+    }
+  else if(itemType == "videogame")
+    {
+      foreach(QWidget *w, QApplication::topLevelWidgets())
+	{
+	  biblioteq_videogame *videogame =
+	    qobject_cast<biblioteq_videogame *> (w);
+
+	  if(videogame && videogame->getID() == oid)
+	    {
+	      removeVideoGame(videogame);
+	      break;
+	    }
+	}
+    }
 }
 
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
