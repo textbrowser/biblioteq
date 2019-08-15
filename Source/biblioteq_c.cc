@@ -677,6 +677,28 @@ int biblioteq::populateTable(const QSqlQuery &query,
   return 0;
 }
 
+void biblioteq::bookSearch(const QString &field, const QString &value)
+{
+  biblioteq_book *book = new(std::nothrow) biblioteq_book(this, "", -1);
+
+  if(book)
+    {
+      book->search(field, value);
+      book->deleteLater();
+    }
+}
+
+void biblioteq::cdSearch(const QString &field, const QString &value)
+{
+  biblioteq_cd *cd = new(std::nothrow) biblioteq_cd(this, "", -1);
+
+  if(cd)
+    {
+      cd->search(field, value);
+      cd->deleteLater();
+    }
+}
+
 void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
   if(itemType == "book")
@@ -793,6 +815,17 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
 }
 
+void biblioteq::dvdSearch(const QString &field, const QString &value)
+{
+  biblioteq_dvd *dvd = new(std::nothrow) biblioteq_dvd(this, "", -1);
+
+  if(dvd)
+    {
+      dvd->search(field, value);
+      dvd->deleteLater();
+    }
+}
+
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
   biblioteq_grey_literature *gl =
@@ -802,6 +835,42 @@ void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
     {
       gl->search(field, value);
       gl->deleteLater();
+    }
+}
+
+void biblioteq::journSearch(const QString &field, const QString &value)
+{
+  biblioteq_journal *journal = new(std::nothrow) biblioteq_journal
+    (this, "", -1);
+
+  if(journal)
+    {
+      journal->search(field, value);
+      journal->deleteLater();
+    }
+}
+
+void biblioteq::magSearch(const QString &field, const QString &value)
+{
+  biblioteq_magazine *magazine = new(std::nothrow) biblioteq_magazine
+    (this, "", -1, "magazine");
+
+  if(magazine)
+    {
+      magazine->search(field, value);
+      magazine->deleteLater();
+    }
+}
+
+void biblioteq::pcSearch(const QString &field, const QString &value)
+{
+  biblioteq_photographcollection *photograph =
+    new(std::nothrow) biblioteq_photographcollection(this, "", -1);
+
+  if(photograph)
+    {
+      photograph->search(field, value);
+      photograph->deleteLater();
     }
 }
 
@@ -4962,10 +5031,427 @@ void biblioteq::slotSceneSelectionChanged(void)
     }
 }
 
+void biblioteq::slotShowHistory(void)
+{
+  QScopedPointer<QProgressDialog> progress;
+
+  if(m_history_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_history_diag));
+  else if(m_members_diag->isVisible())
+    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
+  else
+    progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
+  QSqlQuery query(m_db);
+  QString errorstr("");
+  QString memberid("");
+  QString querystr = "";
+  QString str = "";
+  QStringList list;
+  QTableWidgetItem *item = 0;
+  int i = -1;
+  int j = 0;
+  int row = bb.table->currentRow();
+
+  if(m_db.driverName() == "QPSQL" && m_roles.isEmpty())
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      bool dnt = biblioteq_misc_functions::dnt(m_db, m_db.userName(),
+					       errorstr);
+
+      if(errorstr.isEmpty())
+	{
+	  history.dnt->setChecked(dnt);
+	  history.dnt->setEnabled(true);
+	  history.dnt->setToolTip("");
+	}
+      else
+	{
+	  history.dnt->setEnabled(false);
+	  history.dnt->setToolTip
+	    (tr("The option is not available because an error "
+		"occurred while attempting to retrieve its value."));
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
+  else
+    {
+      history.dnt->setChecked(true);
+      history.dnt->setEnabled(false);
+
+      if(m_db.driverName() == "QPSQL")
+	history.dnt->setToolTip
+	  (tr("The option is only available for patrons."));
+      else
+	history.dnt->setToolTip
+	  (tr("The option is not available for SQLite databases as "
+	      "such databases do not support actual patrons."));
+    }
+
+  if(m_members_diag->isVisible())
+    if(row < 0)
+      {
+	QMessageBox::critical
+	  (m_members_diag, tr("BiblioteQ: User Error"),
+	   tr("In order to display a member's reservation "
+	      "history, you must first select the member."));
+	return;
+      }
+
+  list << "cd" << "dvd" << "book" << "journal" << "magazine" << "videogame";
+
+  if(!m_roles.isEmpty())
+    memberid = biblioteq_misc_functions::getColumnString
+      (bb.table, row,
+       m_bbColumnHeaderIndexes.
+       indexOf("Member ID"));
+  else
+    memberid = m_db.userName();
+
+  if(!m_roles.isEmpty())
+    for(i = 0; i < list.size(); i++)
+      {
+	if(list[i] != "book")
+	  querystr += QString("SELECT "
+			      "history.memberid, "
+			      "member.first_name, "
+			      "member.last_name, "
+			      "%1.title, "
+			      "%1.id, "
+			      "history.copyid, "
+			      "%1.type, "
+			      "history.reserved_date, "
+			      "history.duedate, "
+			      "history.returned_date, "
+			      "history.reserved_by, "
+			      "%1.myoid "
+			      "FROM member_history history, "
+			      "%1 %1, "
+			      "member member "
+			      "WHERE history.memberid = member.memberid AND "
+			      "%1.myoid = history.item_oid AND "
+			      "member.memberid = ? AND %1.type = "
+			      "history.type ").arg(list[i]);
+	else
+	  {
+	    if(m_db.driverName() != "QSQLITE")
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "member.first_name, "
+		 "member.last_name, "
+		 "book.title, "
+		 "book.id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book, "
+		 "member member "
+		 "WHERE history.memberid = member.memberid AND "
+		 "book.myoid = history.item_oid AND "
+		 "member.memberid = ? AND book.type = "
+		 "history.type ");
+	    else
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "member.first_name, "
+		 "member.last_name, "
+		 "book.title, "
+		 "book.id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book, "
+		 "member member "
+		 "WHERE history.memberid = member.memberid AND "
+		 "book.myoid = history.item_oid AND "
+		 "member.memberid = ? AND book.type = "
+		 "history.type ");
+	  }
+
+	if(i != list.size() - 1)
+	  querystr += "UNION ALL ";
+      }
+  else
+    for(i = 0; i < list.size(); i++)
+      {
+	if(list[i] != "book")
+	  querystr += QString("SELECT "
+			      "history.memberid, "
+			      "%1.title, "
+			      "%1.id, "
+			      "history.copyid, "
+			      "%1.type, "
+			      "history.reserved_date, "
+			      "history.duedate, "
+			      "history.returned_date, "
+			      "history.reserved_by, "
+			      "%1.myoid "
+			      "FROM member_history history, "
+			      "%1 %1 "
+			      "WHERE history.memberid = ? AND "
+			      "%1.myoid = history.item_oid AND %1.type = "
+			      "history.type ").arg(list[i]);
+	else
+	  {
+	    if(m_db.driverName() != "QSQLITE")
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "book.title, "
+		 "book.id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book "
+		 "WHERE history.memberid = ? AND "
+		 "book.myoid = history.item_oid AND book.type = "
+		 "history.type ");
+	    else
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "book.title, "
+		 "book.id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book "
+		 "WHERE history.memberid = ? AND "
+		 "book.myoid = history.item_oid AND book.type = "
+		 "history.type ");
+	  }
+
+	if(i != list.size() - 1)
+	  querystr += "UNION ALL ";
+      }
+
+  querystr.append("ORDER BY 1");
+  query.prepare(querystr);
+
+  /*
+  ** The number of bound values should equal the size of list.
+  */
+
+  query.bindValue(0, memberid);
+  query.bindValue(1, memberid);
+  query.bindValue(2, memberid);
+  query.bindValue(3, memberid);
+  query.bindValue(4, memberid);
+  query.bindValue(5, memberid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve reservation history data for table "
+		    "populating.")),
+	 query.lastError().text(),
+	 __FILE__, __LINE__);
+
+      if(m_history_diag->isVisible())
+	QMessageBox::critical(m_history_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve reservation "
+				 "history data for table populating."));
+      else if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve reservation "
+				 "history data for table populating."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve reservation "
+				 "history data for table populating."));
+
+      return;
+    }
+
+  QApplication::restoreOverrideCursor();
+  history.table->setCurrentItem(0);
+  history.table->setColumnCount(0);
+  history.table->setRowCount(0);
+  list.clear();
+  list.append(tr("Member ID"));
+
+  if(!m_roles.isEmpty())
+    {
+      list.append(tr("First Name"));
+      list.append(tr("Last Name"));
+    }
+
+  list.append(tr("Title"));
+  list.append(tr("ID Number"));
+  list.append(tr("Barcode"));
+  list.append(tr("Type"));
+  list.append(tr("Reservation Date"));
+  list.append(tr("Original Due Date"));
+  list.append(tr("Returned Date"));
+  list.append(tr("Lender"));
+  list.append("MYOID");
+  m_historyColumnHeaderIndexes.clear();
+  m_historyColumnHeaderIndexes.append("Title");
+  m_historyColumnHeaderIndexes.append("ID Number");
+  m_historyColumnHeaderIndexes.append("Barcode");
+  m_historyColumnHeaderIndexes.append("Type");
+  m_historyColumnHeaderIndexes.append("Reservation Date");
+  m_historyColumnHeaderIndexes.append("Original Due Date");
+  m_historyColumnHeaderIndexes.append("Returned Date");
+  m_historyColumnHeaderIndexes.append("Lender");
+  m_historyColumnHeaderIndexes.append("MYOID");
+  history.table->setColumnCount(list.size());
+  history.table->setHorizontalHeaderLabels(list);
+  history.table->setColumnHidden(history.table->columnCount() - 1, true);
+  list.clear();
+  history.table->setSortingEnabled(false);
+
+  if(m_db.driverName() != "QSQLITE")
+    history.table->setRowCount(query.size());
+  else
+    history.table->setRowCount
+      (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
+						 query.boundValues(),
+						 m_db,
+						 __FILE__,
+						 __LINE__,
+						 this));
+
+  history.table->scrollToTop();
+  history.table->horizontalScrollBar()->setValue(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMinimum(0);
+  progress->setMaximum(history.table->rowCount());
+  progress->show();
+  progress->repaint();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+  i = -1;
+
+  while(i++, !progress->wasCanceled() && query.next())
+    {
+      if(query.isValid())
+	{
+	  QSqlRecord record(query.record());
+
+	  for(j = 0; j < record.count(); j++)
+	    {
+	      if(record.fieldName(j).contains("date"))
+		{
+		  QDate date(QDate::fromString(query.value(j).toString(),
+					       "MM/dd/yyyy"));
+
+		  str = date.toString(Qt::ISODate);
+		}
+	      else
+		str = query.value(j).toString();
+
+	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		{
+		  item->setText(str);
+		  history.table->setItem(i, j, item);
+		}
+	      else
+		addError(QString(tr("Memory Error")),
+			 QString(tr("Unable to allocate memory for the "
+				    "\"item\" object. "
+				    "This is a serious problem!")),
+			 QString(""), __FILE__, __LINE__);
+	    }
+	}
+
+      if(i + 1 <= progress->maximum())
+	progress->setValue(i + 1);
+
+      progress->repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+    }
+
+  progress->close();
+  history.table->setRowCount(i); // Support cancellation.
+  history.table->setSortingEnabled(true);
+  history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+
+  for(int i = 0; i < history.table->columnCount() - 1; i++)
+    history.table->resizeColumnToContents(i);
+
+  history.nextTool->setVisible(!m_roles.isEmpty());
+  history.prevTool->setVisible(!m_roles.isEmpty());
+
+  if(m_members_diag->isVisible())
+    {
+      static bool resized = false;
+
+      if(!resized)
+	m_history_diag->resize(qRound(0.85 * m_members_diag->size().width()),
+			       qRound(0.85 * m_members_diag->size().height()));
+
+      resized = true;
+      biblioteq_misc_functions::center(m_history_diag, m_members_diag);
+    }
+  else
+    {
+      static bool resized = false;
+
+      if(!resized)
+	m_history_diag->resize(qRound(0.85 * size().width()),
+			       qRound(0.85 * size().height()));
+
+      resized = true;
+      biblioteq_misc_functions::center(m_history_diag, this);
+    }
+
+  m_history_diag->showNormal();
+  m_history_diag->activateWindow();
+  m_history_diag->raise();
+}
+
 void biblioteq::slotShowOtherOptions(void)
 {
   biblioteq_misc_functions::center(m_otheroptions, this);
   m_otheroptions->showNormal();
   m_otheroptions->activateWindow();
   m_otheroptions->raise();
+}
+
+void biblioteq::vgSearch(const QString &field, const QString &value)
+{
+  biblioteq_videogame *videogame = new(std::nothrow) biblioteq_videogame
+    (this, "", -1);
+
+  if(videogame)
+    {
+      videogame->search(field, value);
+      videogame->deleteLater();
+    }
 }
