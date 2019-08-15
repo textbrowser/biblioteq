@@ -1556,6 +1556,106 @@ void biblioteq::quit(void)
   QCoreApplication::quit();
 }
 
+void biblioteq::removeBook(biblioteq_book *book)
+{
+  if(book)
+    book->deleteLater();
+}
+
+void biblioteq::removeCD(biblioteq_cd *cd)
+{
+  if(cd)
+    cd->deleteLater();
+}
+
+void biblioteq::removeDVD(biblioteq_dvd *dvd)
+{
+  if(dvd)
+    dvd->deleteLater();
+}
+
+void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
+{
+  if(gl)
+    gl->deleteLater();
+}
+
+void biblioteq::removeJournal(biblioteq_journal *journal)
+{
+  if(journal)
+    journal->deleteLater();
+}
+
+void biblioteq::removeMagazine(biblioteq_magazine *magazine)
+{
+  if(magazine)
+    magazine->deleteLater();
+}
+
+void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
+{
+  if(pc)
+    pc->deleteLater();
+}
+
+void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
+{
+  if(videogame)
+    videogame->deleteLater();
+}
+
+void biblioteq::replaceBook(const QString &id, biblioteq_book *book)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(book);
+}
+
+void biblioteq::replaceCD(const QString &id, biblioteq_cd *cd)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(cd);
+}
+
+void biblioteq::replaceDVD(const QString &id, biblioteq_dvd *dvd)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(dvd);
+}
+
+void biblioteq::replaceGreyLiterature(const QString &id,
+				      biblioteq_grey_literature *gl)
+{
+  Q_UNUSED(gl);
+  Q_UNUSED(id);
+}
+
+void biblioteq::replaceJournal(const QString &id, biblioteq_journal *journal)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(journal);
+}
+
+void biblioteq::replaceMagazine(const QString &id,
+				biblioteq_magazine *magazine)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(magazine);
+}
+
+void biblioteq::replacePhotographCollection
+(const QString &id, biblioteq_photographcollection *photograph)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(photograph);
+}
+
+void biblioteq::replaceVideoGame(const QString &id,
+				 biblioteq_videogame *videogame)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(videogame);
+}
+
 void biblioteq::resetAdminBrowser(void)
 {
   QStringList list;
@@ -3646,106 +3746,6 @@ void biblioteq::slotViewDetails(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
-}
-
-void biblioteq::removeCD(biblioteq_cd *cd)
-{
-  if(cd)
-    cd->deleteLater();
-}
-
-void biblioteq::replaceCD(const QString &id, biblioteq_cd *cd)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(cd);
-}
-
-void biblioteq::removeDVD(biblioteq_dvd *dvd)
-{
-  if(dvd)
-    dvd->deleteLater();
-}
-
-void biblioteq::replaceDVD(const QString &id, biblioteq_dvd *dvd)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(dvd);
-}
-
-void biblioteq::removeBook(biblioteq_book *book)
-{
-  if(book)
-    book->deleteLater();
-}
-
-void biblioteq::replaceBook(const QString &id, biblioteq_book *book)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(book);
-}
-
-void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
-{
-  if(gl)
-    gl->deleteLater();
-}
-
-void biblioteq::replaceGreyLiterature
-(const QString &id, biblioteq_grey_literature *gl)
-{
-  Q_UNUSED(gl);
-  Q_UNUSED(id);
-}
-
-void biblioteq::removeJournal(biblioteq_journal *journal)
-{
-  if(journal)
-    journal->deleteLater();
-}
-
-void biblioteq::removeMagazine(biblioteq_magazine *magazine)
-{
-  if(magazine)
-    magazine->deleteLater();
-}
-
-void biblioteq::replaceJournal(const QString &id, biblioteq_journal *journal)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(journal);
-}
-
-void biblioteq::replaceMagazine(const QString &id, biblioteq_magazine *magazine)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(magazine);
-}
-
-void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
-{
-  if(pc)
-    pc->deleteLater();
-}
-
-void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
-{
-  if(videogame)
-    videogame->deleteLater();
-}
-
-void biblioteq::replaceVideoGame(const QString &id,
-				 biblioteq_videogame *videogame)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(videogame);
-}
-
-void biblioteq::replacePhotographCollection
-(const QString &id,
- biblioteq_photographcollection *photograph)
-{
-  Q_UNUSED(id);
-  Q_UNUSED(photograph);
 }
 
 void biblioteq::updateItemWindows(void)
