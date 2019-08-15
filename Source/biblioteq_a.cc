@@ -2924,6 +2924,45 @@ void biblioteq::slotLanguageChanged(void)
     }
 }
 
+void biblioteq::slotListOverdueItems(void)
+{
+  QString memberid = "";
+  int row = bb.table->currentRow();
+
+  if(m_members_diag->isVisible())
+    memberid = biblioteq_misc_functions::getColumnString
+      (bb.table, row,
+       m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  else if(m_roles.isEmpty())
+    memberid = m_db.userName();
+
+  (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
+  m_members_diag->showNormal();
+  m_members_diag->activateWindow();
+  m_members_diag->raise();
+}
+
+void biblioteq::slotListReservedItems(void)
+{
+  QString memberid = "";
+  int row = bb.table->currentRow();
+
+  if(row < 0)
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("In order to list a member's reserved items, "
+			       "you must first select the member."));
+      return;
+    }
+
+  memberid = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
+  m_members_diag->showNormal();
+  m_members_diag->activateWindow();
+  m_members_diag->raise();
+}
+
 void biblioteq::slotModify(void)
 {
   if(!m_db.isOpen())
@@ -3709,6 +3748,69 @@ void biblioteq::slotShowMembersBrowser(void)
     slotPopulateMembersBrowser();
 }
 
+void biblioteq::slotShowMenu(void)
+{
+  if(sender() == ui.configTool)
+    m_configToolMenu->exec(QCursor::pos());
+  else if(sender() == ui.createTool)
+    {
+      QMenu menu(this);
+
+      connect(menu.addAction(tr("Add &Book...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
+      // menu.addAction(tr("Add &Cassette Tape..."));
+      connect(menu.addAction(tr("Add &DVD...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
+      connect(menu.addAction(tr("Add &Grey Literature...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertGreyLiterature(void)));
+      connect(menu.addAction(tr("Add &Journal...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
+      connect(menu.addAction(tr("Add &Magazine...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
+      connect(menu.addAction(tr("Add Music &CD...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
+      // menu.addAction(tr("Add &Newspaper..."));
+      connect(menu.addAction(tr("Add &Photograph Collection...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
+      connect(menu.addAction(tr("Add &Video Game...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
+      // menu.addAction(tr("Add &VHS..."));
+      // menu.addAction(tr("Add &Vinyl Record..."));
+      menu.exec(QCursor::pos());
+    }
+  else if(sender() == ui.searchTool)
+    {
+      QMenu menu(this);
+
+      connect(menu.addAction(tr("General &Search...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
+      menu.addSeparator();
+      connect(menu.addAction(tr("&Book Search...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
+      connect(menu.addAction(tr("&DVD Search...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
+      connect(menu.addAction(tr("&Grey Literature Search...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotGreyLiteratureSearch(void)));
+      connect(menu.addAction(tr("&Journal Search...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
+      connect(menu.addAction(tr("&Magazine Search...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
+      connect(menu.addAction(tr("Music &CD Search...")),
+	      SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
+      connect
+	(menu.addAction(tr("&Photograph Collection Search...")),
+	 SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
+      connect
+	(menu.addAction(tr("&Video Game Search...")),
+	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
+      menu.exec(QCursor::pos());
+    }
+}
+
 void biblioteq::slotShowNext(void)
 {
   QTableWidget *table = 0;
@@ -4465,108 +4567,6 @@ void biblioteq::updateRows(const QString &oid, const int row,
 	      break;
 	    }
 	}
-    }
-}
-
-void biblioteq::slotListReservedItems(void)
-{
-  int row = bb.table->currentRow();
-  QString memberid = "";
-
-  if(row < 0)
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("In order to list a member's reserved items, "
-			       "you must first select the member."));
-      return;
-    }
-
-  memberid = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
-  m_members_diag->showNormal();
-  m_members_diag->activateWindow();
-  m_members_diag->raise();
-}
-
-void biblioteq::slotListOverdueItems(void)
-{
-  int row = bb.table->currentRow();
-  QString memberid = "";
-
-  if(m_members_diag->isVisible())
-    memberid = biblioteq_misc_functions::getColumnString
-      (bb.table, row,
-       m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  else if(m_roles.isEmpty())
-    memberid = m_db.userName();
-
-  (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
-  m_members_diag->showNormal();
-  m_members_diag->activateWindow();
-  m_members_diag->raise();
-}
-
-void biblioteq::slotShowMenu(void)
-{
-  if(sender() == ui.configTool)
-    m_configToolMenu->exec(QCursor::pos());
-  else if(sender() == ui.createTool)
-    {
-      QMenu menu(this);
-
-      connect(menu.addAction(tr("Add &Book...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
-      // menu.addAction(tr("Add &Cassette Tape..."));
-      connect(menu.addAction(tr("Add &DVD...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
-      connect(menu.addAction(tr("Add &Grey Literature...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertGreyLiterature(void)));
-      connect(menu.addAction(tr("Add &Journal...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
-      connect(menu.addAction(tr("Add &Magazine...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
-      connect(menu.addAction(tr("Add Music &CD...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
-      // menu.addAction(tr("Add &Newspaper..."));
-      connect(menu.addAction(tr("Add &Photograph Collection...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
-      connect(menu.addAction(tr("Add &Video Game...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
-      // menu.addAction(tr("Add &VHS..."));
-      // menu.addAction(tr("Add &Vinyl Record..."));
-      menu.exec(QCursor::pos());
-    }
-  else if(sender() == ui.searchTool)
-    {
-      QMenu menu(this);
-
-      connect(menu.addAction(tr("General &Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
-      menu.addSeparator();
-      connect(menu.addAction(tr("&Book Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
-      connect(menu.addAction(tr("&DVD Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
-      connect(menu.addAction(tr("&Grey Literature Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotGreyLiteratureSearch(void)));
-      connect(menu.addAction(tr("&Journal Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
-      connect(menu.addAction(tr("&Magazine Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
-      connect(menu.addAction(tr("Music &CD Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
-      connect
-	(menu.addAction(tr("&Photograph Collection Search...")),
-	 SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
-      connect
-	(menu.addAction(tr("&Video Game Search...")),
-	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
-      menu.exec(QCursor::pos());
     }
 }
 
