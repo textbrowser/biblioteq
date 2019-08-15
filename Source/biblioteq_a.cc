@@ -2167,6 +2167,30 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
     }
 }
 
+void biblioteq::slotBranchChanged(void)
+{
+  QHash<QString, QString> tmphash;
+
+  tmphash = m_branches[br.branch_name->currentText()];
+
+  if(tmphash.value("database_type") == "sqlite")
+    {
+      br.stackedWidget->setCurrentIndex(0);
+      br.fileButton->setFocus();
+    }
+  else
+    {
+      br.stackedWidget->setCurrentIndex(1);
+      br.userid->selectAll();
+    }
+
+  tmphash.clear();
+  m_branch_diag->update();
+  m_branch_diag->resize(m_branch_diag->width(),
+			m_branch_diag->minimumSize().height());
+  m_branch_diag->show();
+}
+
 void biblioteq::slotCancelAddUser(void)
 {
   if(userinfo_diag->isVisible())
@@ -3573,6 +3597,27 @@ void biblioteq::slotResetErrorLog(void)
     }
 }
 
+void biblioteq::slotResetLoginDialog(void)
+{
+  br.filename->clear();
+  br.role->setCurrentIndex(1);
+  br.password->setText("xbook_guest");
+  br.userid->setText("xbook_guest");
+
+  int index = 0;
+  QSettings settings;
+
+  index = br.branch_name->findText(settings.value("previous_branch_name").
+				   toString());
+
+  if(index >= 0)
+    br.branch_name->setCurrentIndex(index);
+  else
+    br.branch_name->setCurrentIndex(0);
+
+  slotBranchChanged();
+}
+
 void biblioteq::slotResizeColumns(void)
 {
   if(!sender())
@@ -3606,6 +3651,55 @@ void biblioteq::slotResizeColumnsAfterSort(void)
 	setStretchLastSection(true);
       QApplication::restoreOverrideCursor();
     }
+}
+
+void biblioteq::slotSavePassword(void)
+{
+  QString errorstr = "";
+
+  if(pass.password->text().length() < 8)
+    {
+      QMessageBox::critical
+	(m_pass_diag, tr("BiblioteQ: User Error"),
+	 tr("The password must be at least eight characters "
+	    "long."));
+      pass.password->selectAll();
+      pass.password->setFocus();
+      return;
+    }
+  else if(pass.password->text() != pass.passwordAgain->text())
+    {
+      QMessageBox::critical
+	(m_pass_diag, tr("BiblioteQ: User Error"),
+	 tr("The passwords do not match. Please try again."));
+      pass.password->selectAll();
+      pass.password->setFocus();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  biblioteq_misc_functions::savePassword
+    (pass.userid->text(), m_db, pass.password->text(), errorstr);
+
+  if(m_roles.isEmpty())
+    biblioteq_misc_functions::setRole(m_db, errorstr, "patron");
+  else
+    biblioteq_misc_functions::setRole(m_db, errorstr, m_roles);
+
+  QApplication::restoreOverrideCursor();
+  pass.password->clear();
+  pass.passwordAgain->clear();
+
+  if(!errorstr.isEmpty())
+    {
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to save the new password.")),
+	       errorstr, __FILE__, __LINE__);
+      QMessageBox::critical(m_pass_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to save the new password."));
+    }
+  else
+    m_pass_diag->close();
 }
 
 void biblioteq::slotSearch(void)
@@ -3734,6 +3828,21 @@ void biblioteq::slotSectionResized(int logicalIndex, int oldSize, int newSize)
   Q_UNUSED(oldSize);
 }
 
+void biblioteq::slotSelectDatabaseFile(void)
+{
+  QFileDialog dialog(m_branch_diag);
+
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setNameFilter("SQLite Database (*.sqlite)");
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    br.filename->setText(dialog.selectedFiles().value(0));
+}
+
 void biblioteq::slotSetColumns(void)
 {
   QString typefilter = ui.menu_Category->defaultAction() ?
@@ -3766,6 +3875,15 @@ void biblioteq::slotShowAdminDialog(void)
 
   if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
     slotRefreshAdminList();
+}
+
+void biblioteq::slotShowChangePassword(void)
+{
+  pass.userid->setText(m_db.userName());
+  pass.password->clear();
+  pass.passwordAgain->clear();
+  pass.password->setFocus();
+  m_pass_diag->show();
 }
 
 void biblioteq::slotShowConnectionDB(void)
@@ -4964,179 +5082,6 @@ void biblioteq::slotPrintReservationHistory(void)
     }
 }
 
-void biblioteq::slotBranchChanged(void)
-{
-  QHash<QString, QString> tmphash;
-
-  tmphash = m_branches[br.branch_name->currentText()];
-
-  if(tmphash.value("database_type") == "sqlite")
-    {
-      br.stackedWidget->setCurrentIndex(0);
-      br.fileButton->setFocus();
-    }
-  else
-    {
-      br.stackedWidget->setCurrentIndex(1);
-      br.userid->selectAll();
-    }
-
-  tmphash.clear();
-  m_branch_diag->update();
-  m_branch_diag->resize(m_branch_diag->width(),
-			m_branch_diag->minimumSize().height());
-  m_branch_diag->show();
-}
-
-void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
-						const QString &ioid,
-						const QString &copyid,
-						const QString &itemType,
-						const QString &returnedDate)
-{
-  int i = 0;
-  QString value1 = "";
-  QString value2 = "";
-  QString value3 = "";
-
-  /*
-  ** Called from the Borrowers Editor when an item has been updated.
-  */
-
-  if(m_history_diag->isVisible())
-    if(history.table->rowCount() > 0 &&
-       biblioteq_misc_functions::getColumnString
-       (history.table, 0,
-	m_historyColumnHeaderIndexes.
-	indexOf("Member ID")) ==
-       memberid)
-      {
-	QApplication::setOverrideCursor(Qt::WaitCursor);
-
-	for(i = 0; i < history.table->rowCount(); i++)
-	  {
-	    value1 = biblioteq_misc_functions::getColumnString
-	      (history.table, i,
-	       m_historyColumnHeaderIndexes.indexOf("MYOID"));
-	    value2 = biblioteq_misc_functions::getColumnString
-	      (history.table, i,
-	       m_historyColumnHeaderIndexes.indexOf("Barcode"));
-	    value3 = biblioteq_misc_functions::getColumnString
-	      (history.table, i,
-	       m_historyColumnHeaderIndexes.indexOf("Type")).
-	      toLower().remove(" ");
-
-	    if(value1 == ioid && value2 == copyid && value3 == itemType)
-	      {
-		QDate date(QDate::fromString(returnedDate,
-					     "MM/dd/yyyy"));
-
-		biblioteq_misc_functions::updateColumn
-		  (history.table, i,
-		   m_historyColumnHeaderIndexes.indexOf("Returned Date"),
-		   date.toString(Qt::ISODate));
-		break;
-	      }
-	  }
-
-	QApplication::restoreOverrideCursor();
-      }
-}
-
-void biblioteq::slotShowChangePassword(void)
-{
-  pass.userid->setText(m_db.userName());
-  pass.password->clear();
-  pass.passwordAgain->clear();
-  pass.password->setFocus();
-  m_pass_diag->show();
-}
-
-void biblioteq::slotSavePassword(void)
-{
-  QString errorstr = "";
-
-  if(pass.password->text().length() < 8)
-    {
-      QMessageBox::critical
-	(m_pass_diag, tr("BiblioteQ: User Error"),
-	 tr("The password must be at least eight characters "
-	    "long."));
-      pass.password->selectAll();
-      pass.password->setFocus();
-      return;
-    }
-  else if(pass.password->text() != pass.passwordAgain->text())
-    {
-      QMessageBox::critical
-	(m_pass_diag, tr("BiblioteQ: User Error"),
-	 tr("The passwords do not match. Please try again."));
-      pass.password->selectAll();
-      pass.password->setFocus();
-      return;
-    }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  biblioteq_misc_functions::savePassword
-    (pass.userid->text(), m_db, pass.password->text(), errorstr);
-
-  if(m_roles.isEmpty())
-    biblioteq_misc_functions::setRole(m_db, errorstr, "patron");
-  else
-    biblioteq_misc_functions::setRole(m_db, errorstr, m_roles);
-
-  QApplication::restoreOverrideCursor();
-  pass.password->clear();
-  pass.passwordAgain->clear();
-
-  if(!errorstr.isEmpty())
-    {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to save the new password.")),
-	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(m_pass_diag, tr("BiblioteQ: Database Error"),
-			    tr("Unable to save the new password."));
-    }
-  else
-    m_pass_diag->close();
-}
-
-void biblioteq::slotResetLoginDialog(void)
-{
-  br.filename->clear();
-  br.role->setCurrentIndex(1);
-  br.password->setText("xbook_guest");
-  br.userid->setText("xbook_guest");
-
-  int index = 0;
-  QSettings settings;
-
-  index = br.branch_name->findText(settings.value("previous_branch_name").
-				   toString());
-
-  if(index >= 0)
-    br.branch_name->setCurrentIndex(index);
-  else
-    br.branch_name->setCurrentIndex(0);
-
-  slotBranchChanged();
-}
-
-void biblioteq::slotSelectDatabaseFile(void)
-{
-  QFileDialog dialog(m_branch_diag);
-
-  dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("SQLite Database (*.sqlite)");
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
-    br.filename->setText(dialog.selectedFiles().value(0));
-}
-
 void biblioteq::updateMembersBrowser(const QString &memberid)
 {
   QMap<QString, QString> counts;
@@ -5252,6 +5197,61 @@ void biblioteq::updateMembersBrowser(void)
       if(m_history_diag->isVisible())
 	slotShowHistory();
     }
+}
+
+void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
+						const QString &ioid,
+						const QString &copyid,
+						const QString &itemType,
+						const QString &returnedDate)
+{
+  int i = 0;
+  QString value1 = "";
+  QString value2 = "";
+  QString value3 = "";
+
+  /*
+  ** Called from the Borrowers Editor when an item has been updated.
+  */
+
+  if(m_history_diag->isVisible())
+    if(history.table->rowCount() > 0 &&
+       biblioteq_misc_functions::getColumnString
+       (history.table, 0,
+	m_historyColumnHeaderIndexes.
+	indexOf("Member ID")) ==
+       memberid)
+      {
+	QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	for(i = 0; i < history.table->rowCount(); i++)
+	  {
+	    value1 = biblioteq_misc_functions::getColumnString
+	      (history.table, i,
+	       m_historyColumnHeaderIndexes.indexOf("MYOID"));
+	    value2 = biblioteq_misc_functions::getColumnString
+	      (history.table, i,
+	       m_historyColumnHeaderIndexes.indexOf("Barcode"));
+	    value3 = biblioteq_misc_functions::getColumnString
+	      (history.table, i,
+	       m_historyColumnHeaderIndexes.indexOf("Type")).
+	      toLower().remove(" ");
+
+	    if(value1 == ioid && value2 == copyid && value3 == itemType)
+	      {
+		QDate date(QDate::fromString(returnedDate,
+					     "MM/dd/yyyy"));
+
+		biblioteq_misc_functions::updateColumn
+		  (history.table, i,
+		   m_historyColumnHeaderIndexes.indexOf("Returned Date"),
+		   date.toString(Qt::ISODate));
+		break;
+	      }
+	  }
+
+	QApplication::restoreOverrideCursor();
+      }
 }
 
 void biblioteq::updateSceneItem(const QString &oid, const QString &type,
