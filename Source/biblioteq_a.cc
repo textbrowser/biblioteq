@@ -1731,6 +1731,38 @@ void biblioteq::resetMembersBrowser(void)
     bb.table->resizeColumnToContents(i);
 }
 
+void biblioteq::setGlobalFonts(const QFont &font)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  QApplication::setFont(font);
+
+  foreach(QWidget *widget, QApplication::allWidgets())
+    {
+      widget->setFont(font);
+
+      if(!(qobject_cast<QDialog *> (widget) ||
+	   qobject_cast<QMainWindow *> (widget)))
+	widget->adjustSize();
+
+      widget->update();
+    }
+
+  QMenuBar *mb = menuBar();
+
+  if(mb)
+    {
+      mb->setFont(font);
+
+      foreach(QMenu *menu, mb->findChildren<QMenu *> ())
+	foreach(QAction *action, menu->actions())
+	  action->setFont(font);
+
+      mb->update();
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq::showMain(void)
 {
   statusBar()->setStyleSheet("QStatusBar::item{border: 0px;}");
@@ -1954,6 +1986,46 @@ void biblioteq::slotAbout(void)
 				  Qt::KeepAspectRatio,
 				  Qt::SmoothTransformation));
   mb.exec();
+}
+
+void biblioteq::slotAddAdmin(void)
+{
+  int i = 0;
+  QCheckBox *checkBox = 0;
+  QTableWidgetItem *item = 0;
+
+  ab.table->setRowCount(ab.table->rowCount() + 1);
+
+  for(i = 0; i < ab.table->columnCount(); i++)
+    if(i == 0)
+      {
+	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	  {
+	    item->setFlags(item->flags() | Qt::ItemIsEditable);
+	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
+	  }
+	else
+	  addError(QString(tr("Memory Error")),
+		   QString(tr("Unable to allocate memory for the "
+			      "\"item\" object. "
+			      "This is a serious problem!")),
+		   QString(""), __FILE__, __LINE__);
+      }
+    else
+      {
+	if((checkBox = new(std::nothrow) QCheckBox()) == 0)
+	  addError(QString(tr("Memory Error")),
+		   QString(tr("Unable to allocate memory for the "
+			      "\"checkBox\" object. "
+			      "This is a serious problem!")),
+		   QString(""), __FILE__, __LINE__);
+	else
+	  {
+	    ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
+	    connect(checkBox, SIGNAL(stateChanged(int)), this,
+		    SLOT(slotAdminCheckBoxClicked(int)));
+	  }
+      }
 }
 
 void biblioteq::slotAddBorrower(void)
@@ -3678,6 +3750,24 @@ void biblioteq::slotSetColumns(void)
     }
 }
 
+void biblioteq::slotShowAdminDialog(void)
+{
+  static bool resized = false;
+
+  if(!resized)
+    m_admin_diag->resize(qRound(0.85 * size().width()),
+			 qRound(0.85 * size().height()));
+
+  resized = true;
+  biblioteq_misc_functions::center(m_admin_diag, this);
+  m_admin_diag->showNormal();
+  m_admin_diag->activateWindow();
+  m_admin_diag->raise();
+
+  if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
+    slotRefreshAdminList();
+}
+
 void biblioteq::slotShowConnectionDB(void)
 {
   if(m_db.isOpen())
@@ -4582,38 +4672,6 @@ void biblioteq::slotSetFonts(void)
     setGlobalFonts(dialog.selectedFont());
 }
 
-void biblioteq::setGlobalFonts(const QFont &font)
-{
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  QApplication::setFont(font);
-
-  foreach(QWidget *widget, QApplication::allWidgets())
-    {
-      widget->setFont(font);
-
-      if(!(qobject_cast<QDialog *> (widget) ||
-	   qobject_cast<QMainWindow *> (widget)))
-	widget->adjustSize();
-
-      widget->update();
-    }
-
-  QMenuBar *mb = menuBar();
-
-  if(mb)
-    {
-      mb->setFont(font);
-
-      foreach(QMenu *menu, mb->findChildren<QMenu *> ())
-	foreach(QAction *action, menu->actions())
-	  action->setFont(font);
-
-      mb->update();
-    }
-
-  QApplication::restoreOverrideCursor();
-}
-
 void biblioteq::slotShowCustomQuery(void)
 {
   if(cq.tables_t->columnCount() == 0)
@@ -5077,64 +5135,6 @@ void biblioteq::slotSelectDatabaseFile(void)
 
   if(dialog.result() == QDialog::Accepted)
     br.filename->setText(dialog.selectedFiles().value(0));
-}
-
-void biblioteq::slotShowAdminDialog(void)
-{
-  static bool resized = false;
-
-  if(!resized)
-    m_admin_diag->resize(qRound(0.85 * size().width()),
-			 qRound(0.85 * size().height()));
-
-  resized = true;
-  biblioteq_misc_functions::center(m_admin_diag, this);
-  m_admin_diag->showNormal();
-  m_admin_diag->activateWindow();
-  m_admin_diag->raise();
-
-  if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
-    slotRefreshAdminList();
-}
-
-void biblioteq::slotAddAdmin(void)
-{
-  int i = 0;
-  QCheckBox *checkBox = 0;
-  QTableWidgetItem *item = 0;
-
-  ab.table->setRowCount(ab.table->rowCount() + 1);
-
-  for(i = 0; i < ab.table->columnCount(); i++)
-    if(i == 0)
-      {
-	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	  {
-	    item->setFlags(item->flags() | Qt::ItemIsEditable);
-	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
-	  }
-	else
-	  addError(QString(tr("Memory Error")),
-		   QString(tr("Unable to allocate memory for the "
-			      "\"item\" object. "
-			      "This is a serious problem!")),
-		   QString(""), __FILE__, __LINE__);
-      }
-    else
-      {
-	if((checkBox = new(std::nothrow) QCheckBox()) == 0)
-	  addError(QString(tr("Memory Error")),
-		   QString(tr("Unable to allocate memory for the "
-			      "\"checkBox\" object. "
-			      "This is a serious problem!")),
-		   QString(""), __FILE__, __LINE__);
-	else
-	  {
-	    ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
-	    connect(checkBox, SIGNAL(stateChanged(int)), this,
-		    SLOT(slotAdminCheckBoxClicked(int)));
-	  }
-      }
 }
 
 void biblioteq::updateMembersBrowser(const QString &memberid)
