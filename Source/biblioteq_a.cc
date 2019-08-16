@@ -2256,6 +2256,44 @@ void biblioteq::slotClosePasswordDialog(void)
   pass.userid->clear();
 }
 
+void biblioteq::slotCopyError(void)
+{
+  int i = 0;
+  int j = 0;
+  QString text = "";
+  QClipboard *clipboard = QApplication::clipboard();
+  QModelIndexList list = er.table->selectionModel()->selectedRows();
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical(m_error_diag, tr("BiblioteQ: User Error"),
+			    tr("To copy the contents of the Error "
+			       "Log into "
+			       "the clipboard buffer, you must first "
+			       "select at least one entry."));
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  foreach(const QModelIndex &index, list)
+    {
+      i = index.row();
+
+      for(j = 0; j < er.table->columnCount(); j++)
+	text += er.table->item(i, j)->text() + ",";
+
+      text = text.trimmed();
+      text += "\n";
+    }
+
+  if(!text.isEmpty())
+    clipboard->setText(text);
+
+  list.clear();
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq::slotDelete(void)
 {
   if(!m_db.isOpen())
@@ -2756,6 +2794,40 @@ void biblioteq::slotDuplicate(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
+}
+
+void biblioteq::slotExecuteCustomQuery(void)
+{
+  QString querystr = "";
+
+  querystr = cq.query_te->toPlainText().trimmed();
+
+  if(querystr.isEmpty())
+    {
+      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid SQL statement."));
+      return;
+    }
+
+  if(querystr.toLower().contains("alter ") ||
+     querystr.toLower().contains("cluster ") ||
+     querystr.toLower().contains("create " ) ||
+     querystr.toLower().contains("delete ") ||
+     querystr.toLower().contains("drop ") ||
+     querystr.toLower().contains("grant ") ||
+     querystr.toLower().contains("insert ") ||
+     querystr.toLower().contains("lock ") ||
+     querystr.toLower().contains("revoke ") ||
+     querystr.toLower().contains("truncate ") ||
+     querystr.toLower().contains("update "))
+    {
+      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a non-destructive SQL "
+			       "statement."));
+      return;
+    }
+
+  populateTable(CUSTOM_QUERY, "Custom", querystr);
 }
 
 void biblioteq::slotExit(void)
@@ -3344,6 +3416,203 @@ void biblioteq::slotPreviousPage(void)
     }
 }
 
+void biblioteq::slotPrintReservationHistory(void)
+{
+  QPrinter printer;
+  QPrintDialog dialog(&printer, m_history_diag);
+  QString html = "<html>";
+  QTextDocument document;
+
+  if(history.table->rowCount() == 0)
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
+			      tr("The selected member does not yet have a "
+				 "reservation history to print."));
+      else
+	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
+			      tr("You do not yet have a reservation history "
+				 "to print."));
+
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  html = tr("Reservation History") + "<br><br>";
+  html += "<table border=1>";
+  html += "<tr>";
+
+  for(int i = 0; i < history.table->columnCount(); i++)
+    if(!history.table->isColumnHidden(i))
+      html += "<th>" + history.table->horizontalHeaderItem(i)->text() +
+	"</th>";
+
+  html += "</tr>";
+
+  for(int i = 0; i < history.table->rowCount(); i++)
+    {
+      html += "<tr>";
+
+      for(int j = 0; j < history.table->columnCount(); j++)
+	if(!history.table->isColumnHidden(j))
+	  html += "<td>" + history.table->item(i, j)->text() + "</td>";
+
+      html += "</tr>";
+    }
+
+  html += "</table>";
+  html += "</html>";
+  QApplication::restoreOverrideCursor();
+  printer.setPageSize(QPrinter::Letter);
+  printer.setColorMode(QPrinter::GrayScale);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
+}
+
+void biblioteq::slotPrintReserved(void)
+{
+  QMap<QString, QString> memberinfo;
+  QPrinter printer;
+  QPrintDialog dialog(&printer, m_members_diag);
+  QString errorstr = "";
+  QString memberid = "";
+  QString str = "";
+  QStringList itemsList;
+  QTextDocument document;
+  int itemsReserved = 0;
+  int row = bb.table->currentRow();
+
+  if(row < 0)
+    {
+      QMessageBox::critical
+	(m_members_diag, tr("BiblioteQ: User Error"),
+	 tr("In order to print a member's reserved items, "
+	    "you must first select the member."));
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  itemsReserved = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved")).
+    toInt() +
+    biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved")).toInt() +
+    biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved")).toInt() +
+    biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved")).
+    toInt() +
+    biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved")).
+    toInt() +
+    biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).
+    toInt();
+  QApplication::restoreOverrideCursor();
+
+  if(itemsReserved < 1)
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+			    tr("The member that you selected does not have "
+			       "any reserved items."));
+      return;
+    }
+
+  memberid = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  memberinfo["firstname"] = biblioteq_misc_functions::getColumnString
+    (bb.table, row,
+     m_bbColumnHeaderIndexes.indexOf("First Name"));
+  memberinfo["lastname"] = biblioteq_misc_functions::getColumnString
+    (bb.table, row,
+     m_bbColumnHeaderIndexes.indexOf("Last Name"));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  itemsList = biblioteq_misc_functions::getReservedItems
+    (memberid, m_db, errorstr);
+  QApplication::restoreOverrideCursor();
+
+  if(errorstr.isEmpty())
+    {
+      str = "<html>\n";
+      str += tr("Reserved Items for ") + memberinfo.value("lastname") +
+	tr(", ") + memberinfo.value("firstname") + "<br><br>";
+
+      for(int i = 0; i < itemsList.size(); i++)
+	str += itemsList[i] + "<br><br>";
+
+      str = str.mid(0, str.length() - 8);
+      str += "</html>";
+      printer.setPageSize(QPrinter::Letter);
+      printer.setColorMode(QPrinter::GrayScale);
+
+      if(dialog.exec() == QDialog::Accepted)
+	{
+	  document.setHtml(str);
+	  document.print(&printer);
+	}
+    }
+  else
+    {
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the reserved items for "
+			  "the selected member.")),
+	       errorstr, __FILE__, __LINE__);
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the reserved items for "
+			       "the selected member."));
+    }
+
+  itemsList.clear();
+  memberinfo.clear();
+}
+
+void biblioteq::slotPrintView(void)
+{
+  QString html = "<html>";
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+  QTextDocument document;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  html += "<table border=1>";
+  html += "<tr>";
+
+  for(int i = 0; i < ui.table->columnCount(); i++)
+    if(!ui.table->isColumnHidden(i))
+      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() +
+	"</th>";
+
+  html += "</tr>";
+  
+  for(int i = 0; i < ui.table->rowCount(); i++)
+    {
+      html += "<tr>";
+
+      for(int j = 0; j < ui.table->columnCount(); j++)
+	if(!ui.table->isColumnHidden(j))
+	  html += "<td>" + ui.table->item(i, j)->text() + "</td>";
+
+      html += "</tr>";
+    }
+
+  html += "</table>";
+  html += "</html>";
+  QApplication::restoreOverrideCursor();
+  printer.setPaperSize(QPrinter::Letter);
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setOrientation(QPrinter::Landscape);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
+}
+
 void biblioteq::slotRefresh(void)
 {
   if(m_db.isOpen())
@@ -3859,6 +4128,18 @@ void biblioteq::slotSetColumns(void)
     }
 }
 
+void biblioteq::slotSetFonts(void)
+{
+  QFontDialog dialog(this);
+
+  dialog.setOption(QFontDialog::DontUseNativeDialog);
+  dialog.setCurrentFont(QApplication::font());
+  dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
+
+  if(dialog.exec() == QDialog::Accepted)
+    setGlobalFonts(dialog.selectedFont());
+}
+
 void biblioteq::slotShowAdminDialog(void)
 {
   static bool resized = false;
@@ -3892,6 +4173,24 @@ void biblioteq::slotShowConnectionDB(void)
     return;
 
   slotBranchChanged();
+}
+
+void biblioteq::slotShowCustomQuery(void)
+{
+  if(cq.tables_t->columnCount() == 0)
+    slotRefreshCustomQuery();
+
+  static bool resized = false;
+
+  if(!resized)
+    m_customquery_diag->resize(qRound(0.85 * size().width()),
+			       qRound(0.85 * size().height()));
+
+  resized = true;
+  biblioteq_misc_functions::center(m_customquery_diag, this);
+  m_customquery_diag->showNormal();
+  m_customquery_diag->activateWindow();
+  m_customquery_diag->raise();
 }
 
 void biblioteq::slotShowDbEnumerations(void)
@@ -4660,7 +4959,8 @@ void biblioteq::slotVideoGameSearch(void)
     }
 }
 
-void biblioteq::updateRows(const QString &oid, const int row,
+void biblioteq::updateRows(const QString &oid,
+			   const int row,
 			   const QString &itemType)
 {
   if(itemType == "book")
@@ -4778,308 +5078,9 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
 }
 
-void biblioteq::slotSetFonts(void)
-{
-  QFontDialog dialog(this);
-
-  dialog.setOption(QFontDialog::DontUseNativeDialog);
-  dialog.setCurrentFont(QApplication::font());
-  dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
-
-  if(dialog.exec() == QDialog::Accepted)
-    setGlobalFonts(dialog.selectedFont());
-}
-
-void biblioteq::slotShowCustomQuery(void)
-{
-  if(cq.tables_t->columnCount() == 0)
-    slotRefreshCustomQuery();
-
-  static bool resized = false;
-
-  if(!resized)
-    m_customquery_diag->resize(qRound(0.85 * size().width()),
-			       qRound(0.85 * size().height()));
-
-  resized = true;
-  biblioteq_misc_functions::center(m_customquery_diag, this);
-  m_customquery_diag->showNormal();
-  m_customquery_diag->activateWindow();
-  m_customquery_diag->raise();
-}
-
 void biblioteq::slotCloseCustomQueryDialog(void)
 {
   m_customquery_diag->close();
-}
-
-void biblioteq::slotExecuteCustomQuery(void)
-{
-  QString querystr = "";
-
-  querystr = cq.query_te->toPlainText().trimmed();
-
-  if(querystr.isEmpty())
-    {
-      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
-			    tr("Please provide a valid SQL statement."));
-      return;
-    }
-
-  if(querystr.toLower().contains("alter ") ||
-     querystr.toLower().contains("cluster ") ||
-     querystr.toLower().contains("create " ) ||
-     querystr.toLower().contains("delete ") ||
-     querystr.toLower().contains("drop ") ||
-     querystr.toLower().contains("grant ") ||
-     querystr.toLower().contains("insert ") ||
-     querystr.toLower().contains("lock ") ||
-     querystr.toLower().contains("revoke ") ||
-     querystr.toLower().contains("truncate ") ||
-     querystr.toLower().contains("update "))
-    {
-      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
-			    tr("Please provide a non-destructive SQL "
-			       "statement."));
-      return;
-    }
-
-  populateTable(CUSTOM_QUERY, "Custom", querystr);
-}
-
-void biblioteq::slotPrintView(void)
-{
-  QString html = "<html>";
-  QPrinter printer;
-  QPrintDialog dialog(&printer, this);
-  QTextDocument document;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  html += "<table border=1>";
-  html += "<tr>";
-
-  for(int i = 0; i < ui.table->columnCount(); i++)
-    if(!ui.table->isColumnHidden(i))
-      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() +
-	"</th>";
-
-  html += "</tr>";
-  
-  for(int i = 0; i < ui.table->rowCount(); i++)
-    {
-      html += "<tr>";
-
-      for(int j = 0; j < ui.table->columnCount(); j++)
-	if(!ui.table->isColumnHidden(j))
-	  html += "<td>" + ui.table->item(i, j)->text() + "</td>";
-
-      html += "</tr>";
-    }
-
-  html += "</table>";
-  html += "</html>";
-  QApplication::restoreOverrideCursor();
-  printer.setPaperSize(QPrinter::Letter);
-  printer.setColorMode(QPrinter::GrayScale);
-  printer.setOrientation(QPrinter::Landscape);
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      document.setHtml(html);
-      document.print(&printer);
-    }
-}
-
-void biblioteq::slotPrintReserved(void)
-{
-  int row = bb.table->currentRow();
-  int itemsReserved = 0;
-  QString str = "";
-  QString errorstr = "";
-  QString memberid = "";
-  QPrinter printer;
-  QStringList itemsList;
-  QPrintDialog dialog(&printer, m_members_diag);
-  QTextDocument document;
-  QMap<QString, QString> memberinfo;
-
-  if(row < 0)
-    {
-      QMessageBox::critical
-	(m_members_diag, tr("BiblioteQ: User Error"),
-	 tr("In order to print a member's reserved items, "
-	    "you must first select the member."));
-      return;
-    }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  itemsReserved = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved")).
-    toInt() +
-    biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved")).toInt() +
-    biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved")).toInt() +
-    biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved")).
-    toInt() +
-    biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved")).
-    toInt() +
-    biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).
-    toInt();
-  QApplication::restoreOverrideCursor();
-
-  if(itemsReserved < 1)
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("The member that you selected does not have "
-			       "any reserved items."));
-      return;
-    }
-
-  memberid = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  memberinfo["firstname"] = biblioteq_misc_functions::getColumnString
-    (bb.table, row,
-     m_bbColumnHeaderIndexes.indexOf("First Name"));
-  memberinfo["lastname"] = biblioteq_misc_functions::getColumnString
-    (bb.table, row,
-     m_bbColumnHeaderIndexes.indexOf("Last Name"));
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  itemsList = biblioteq_misc_functions::getReservedItems
-    (memberid, m_db, errorstr);
-  QApplication::restoreOverrideCursor();
-
-  if(errorstr.isEmpty())
-    {
-      str = "<html>\n";
-      str += tr("Reserved Items for ") + memberinfo.value("lastname") +
-	tr(", ") + memberinfo.value("firstname") + "<br><br>";
-
-      for(int i = 0; i < itemsList.size(); i++)
-	str += itemsList[i] + "<br><br>";
-
-      str = str.mid(0, str.length() - 8);
-      str += "</html>";
-      printer.setPageSize(QPrinter::Letter);
-      printer.setColorMode(QPrinter::GrayScale);
-
-      if(dialog.exec() == QDialog::Accepted)
-	{
-	  document.setHtml(str);
-	  document.print(&printer);
-	}
-    }
-  else
-    {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to determine the reserved items for "
-			  "the selected member.")),
-	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			    tr("Unable to determine the reserved items for "
-			       "the selected member."));
-    }
-
-  itemsList.clear();
-  memberinfo.clear();
-}
-
-void biblioteq::slotCopyError(void)
-{
-  int i = 0;
-  int j = 0;
-  QString text = "";
-  QClipboard *clipboard = QApplication::clipboard();
-  QModelIndexList list = er.table->selectionModel()->selectedRows();
-
-  if(list.isEmpty())
-    {
-      QMessageBox::critical(m_error_diag, tr("BiblioteQ: User Error"),
-			    tr("To copy the contents of the Error "
-			       "Log into "
-			       "the clipboard buffer, you must first "
-			       "select at least one entry."));
-      return;
-    }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  foreach(const QModelIndex &index, list)
-    {
-      i = index.row();
-
-      for(j = 0; j < er.table->columnCount(); j++)
-	text += er.table->item(i, j)->text() + ",";
-
-      text = text.trimmed();
-      text += "\n";
-    }
-
-  if(!text.isEmpty())
-    clipboard->setText(text);
-
-  list.clear();
-  QApplication::restoreOverrideCursor();
-}
-
-void biblioteq::slotPrintReservationHistory(void)
-{
-  QString html = "<html>";
-  QPrinter printer;
-  QPrintDialog dialog(&printer, m_history_diag);
-  QTextDocument document;
-
-  if(history.table->rowCount() == 0)
-    {
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
-			      tr("The selected member does not yet have a "
-				 "reservation history to print."));
-      else
-	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
-			      tr("You do not yet have a reservation history "
-				 "to print."));
-
-      return;
-    }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  html = tr("Reservation History") + "<br><br>";
-  html += "<table border=1>";
-  html += "<tr>";
-
-  for(int i = 0; i < history.table->columnCount(); i++)
-    if(!history.table->isColumnHidden(i))
-      html += "<th>" + history.table->horizontalHeaderItem(i)->text() +
-	"</th>";
-
-  html += "</tr>";
-
-  for(int i = 0; i < history.table->rowCount(); i++)
-    {
-      html += "<tr>";
-
-      for(int j = 0; j < history.table->columnCount(); j++)
-	if(!history.table->isColumnHidden(j))
-	  html += "<td>" + history.table->item(i, j)->text() + "</td>";
-
-      html += "</tr>";
-    }
-
-  html += "</table>";
-  html += "</html>";
-  QApplication::restoreOverrideCursor();
-  printer.setPageSize(QPrinter::Letter);
-  printer.setColorMode(QPrinter::GrayScale);
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      document.setHtml(html);
-      document.print(&printer);
-    }
 }
 
 void biblioteq::updateMembersBrowser(const QString &memberid)
@@ -5205,10 +5206,10 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 						const QString &itemType,
 						const QString &returnedDate)
 {
-  int i = 0;
   QString value1 = "";
   QString value2 = "";
   QString value3 = "";
+  int i = 0;
 
   /*
   ** Called from the Borrowers Editor when an item has been updated.
@@ -5254,7 +5255,8 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
       }
 }
 
-void biblioteq::updateSceneItem(const QString &oid, const QString &type,
+void biblioteq::updateSceneItem(const QString &oid,
+				const QString &type,
 				const QImage &image)
 {
   QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
