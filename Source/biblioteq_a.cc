@@ -1990,9 +1990,9 @@ void biblioteq::slotAbout(void)
 
 void biblioteq::slotAddAdmin(void)
 {
-  int i = 0;
   QCheckBox *checkBox = 0;
   QTableWidgetItem *item = 0;
+  int i = 0;
 
   ab.table->setRowCount(ab.table->rowCount() + 1);
 
@@ -2233,6 +2233,11 @@ void biblioteq::slotClearSqliteMenu(bool state)
 
   allKeys.clear();
   createSqliteMenuActions();
+}
+
+void biblioteq::slotCloseCustomQueryDialog(void)
+{
+  m_customquery_diag->close();
 }
 
 void biblioteq::slotCloseMembersBrowser(void)
@@ -3572,9 +3577,9 @@ void biblioteq::slotPrintReserved(void)
 
 void biblioteq::slotPrintView(void)
 {
-  QString html = "<html>";
   QPrinter printer;
   QPrintDialog dialog(&printer, this);
+  QString html = "<html>";
   QTextDocument document;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -4733,232 +4738,6 @@ void biblioteq::updateItemWindows(void)
   QApplication::restoreOverrideCursor();
 }
 
-void biblioteq::slotBookSearch(void)
-{
-  biblioteq_book *book = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
-
-      if(b && b->getID() == "search")
-	{
-	  book = b;
-	  break;
-	}
-    }
-
-  if(!book)
-    {
-      book = new(std::nothrow) biblioteq_book(this, "search", -1);
-
-      if(book)
-	book->search();
-    }
-
-  if(book)
-    {
-      book->showNormal();
-      book->activateWindow();
-      book->raise();
-    }
-}
-
-void biblioteq::slotCDSearch(void)
-{
-  biblioteq_cd *cd = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_cd *c = qobject_cast<biblioteq_cd *> (w);
-
-      if(c && c->getID() == "search")
-	{
-	  cd = c;
-	  break;
-	}
-    }
-
-  if(!cd)
-    {
-      cd = new(std::nothrow) biblioteq_cd(this, "search", -1);
-
-      if(cd)
-	cd->search();
-    }
-
-  if(cd)
-    {
-      cd->showNormal();
-      cd->activateWindow();
-      cd->raise();
-    }
-}
-
-void biblioteq::slotDVDSearch(void)
-{
-  biblioteq_dvd *dvd = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_dvd *d = qobject_cast<biblioteq_dvd *> (w);
-
-      if(d && d->getID() == "search")
-	{
-	  dvd = d;
-	  break;
-	}
-    }
-
-  if(!dvd)
-    {
-      dvd = new(std::nothrow) biblioteq_dvd(this, "search", -1);
-
-      if(dvd)
-	dvd->search();
-    }
-
-  if(dvd)
-    {
-      dvd->showNormal();
-      dvd->activateWindow();
-      dvd->raise();
-    }
-}
-
-void biblioteq::slotJournSearch(void)
-{
-  biblioteq_journal *journal = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_journal *j = qobject_cast<biblioteq_journal *> (w);
-
-      if(j && j->getID() == "search")
-	{
-	  journal = j;
-	  break;
-	}
-    }
-
-  if(!journal)
-    {
-      journal = new(std::nothrow) biblioteq_journal(this, "search", -1);
-
-      if(journal)
-	journal->search();
-    }
-
-  if(journal)
-    {
-      journal->showNormal();
-      journal->activateWindow();
-      journal->raise();
-    }
-}
-
-void biblioteq::slotMagSearch(void)
-{
-  biblioteq_magazine *magazine = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_magazine *m = qobject_cast<biblioteq_magazine *> (w);
-
-      /*
-      ** The class biblioteq_journal inherits biblioteq_magazine.
-      */
-
-      if(!qobject_cast<biblioteq_journal *> (w))
-	if(m && m->getID() == "search")
-	  {
-	    magazine = m;
-	    break;
-	  }
-    }
-
-  if(!magazine)
-    {
-      magazine = new(std::nothrow) biblioteq_magazine
-	(this, "search", -1, "magazine");
-
-      if(magazine)
-	magazine->search();
-    }
-
-  if(magazine)
-    {
-      magazine->showNormal();
-      magazine->activateWindow();
-      magazine->raise();
-    }
-}
-
-void biblioteq::slotPhotographSearch(void)
-{
-  biblioteq_photographcollection *photograph = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_photographcollection *p =
-	qobject_cast<biblioteq_photographcollection *> (w);
-
-      if(p && p->getID() == "search")
-	{
-	  photograph = p;
-	  break;
-	}
-    }
-
-  if(!photograph)
-    {
-      photograph = new(std::nothrow) biblioteq_photographcollection
-	(this, "search", -1);
-
-      if(photograph)
-	photograph->search();
-    }
-
-  if(photograph)
-    {
-      photograph->showNormal();
-      photograph->activateWindow();
-      photograph->raise();
-    }
-}
-
-void biblioteq::slotVideoGameSearch(void)
-{
-  biblioteq_videogame *videogame = 0;
-
-  foreach(QWidget *w, QApplication::topLevelWidgets())
-    {
-      biblioteq_videogame *v = qobject_cast<biblioteq_videogame *> (w);
-
-      if(v && v->getID() == "search")
-	{
-	  videogame = v;
-	  break;
-	}
-    }
-
-  if(!videogame)
-    {
-      videogame = new(std::nothrow) biblioteq_videogame
-	(this, "search", -1);
-
-      if(videogame)
-	videogame->search();
-    }
-
-  if(videogame)
-    {
-      videogame->showNormal();
-      videogame->activateWindow();
-      videogame->raise();
-    }
-}
-
 void biblioteq::updateRows(const QString &oid,
 			   const int row,
 			   const QString &itemType)
@@ -5076,11 +4855,6 @@ void biblioteq::updateRows(const QString &oid,
 	    }
 	}
     }
-}
-
-void biblioteq::slotCloseCustomQueryDialog(void)
-{
-  m_customquery_diag->close();
 }
 
 void biblioteq::updateMembersBrowser(const QString &memberid)
