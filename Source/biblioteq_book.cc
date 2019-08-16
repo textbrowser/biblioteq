@@ -496,6 +496,24 @@ biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
   return dialog;
 }
 
+void biblioteq_book::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  id.retranslateUi(this);
+	  ui_p.retranslateUi(m_proxyDialog);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
+
 void biblioteq_book::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -514,6 +532,48 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeBook(this);
+}
+
+void biblioteq_book::createFile(const QByteArray &digest,
+				const QByteArray &bytes,
+				const QString &fileName) const
+{
+  QSqlQuery query(qmain->getDB());
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    query.prepare("INSERT INTO book_files "
+		  "(file, file_digest, file_name, item_oid) "
+		  "VALUES (?, ?, ?, ?)");
+  else
+    query.prepare("INSERT INTO book_files "
+		  "(file, file_digest, file_name, item_oid, myoid) "
+		  "VALUES (?, ?, ?, ?, ?)");
+
+  query.bindValue(0, bytes);
+  query.bindValue(1, digest.toHex().constData());
+  query.bindValue(2, fileName);
+  query.bindValue(3, m_oid);
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      QString errorstr("");
+      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	(qmain->getDB(), errorstr);
+
+      if(errorstr.isEmpty())
+	query.bindValue(4, value);
+      else
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to generate a unique "
+				   "integer.")),
+			errorstr);
+    }
+
+  if(!query.exec())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to create a database transaction.")),
+       query.lastError().text(), __FILE__, __LINE__);
 }
 
 void biblioteq_book::createSRUDialog(void)
@@ -967,6 +1027,74 @@ void biblioteq_book::modify(const int state)
   raise();
 }
 
+void biblioteq_book::populateFiles(void)
+{
+  id.files->setRowCount(0);
+  id.files->setSortingEnabled(false);
+
+  QSqlQuery query(qmain->getDB());
+
+  query.prepare("SELECT COUNT(*) FROM book_files WHERE item_oid = ?");
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      id.files->setRowCount(query.value(0).toInt());
+
+  query.prepare("SELECT file_name, "
+		"file_digest, "
+		"LENGTH(file) AS f_s, "
+		"description, "
+		"myoid FROM book_files "
+                "WHERE item_oid = ? ORDER BY file_name");
+  query.bindValue(0, m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QLocale locale;
+  int row = 0;
+  int totalRows = 0;
+
+  if(query.exec())
+    while(query.next() && totalRows < id.files->rowCount())
+      {
+	totalRows += 1;
+
+	QSqlRecord record(query.record());
+
+	for(int i = 0; i < record.count(); i++)
+	  {
+	    QTableWidgetItem *item = 0;
+
+	    if(record.fieldName(i) == "f_s")
+	      item = new(std::nothrow) biblioteq_filesize_table_item
+		(locale.toString(query.value(i).toLongLong()));
+	    else
+	      item = new(std::nothrow)
+		QTableWidgetItem(query.value(i).toString());
+
+	    if(!item)
+	      continue;
+
+	    item->setData
+	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
+	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+	    if(m_engWindowTitle == "Modify")
+	      if(record.fieldName(i) == "description")
+		item->setToolTip(tr("Double-click to edit."));
+
+	    id.files->setItem(row, i, item);
+	  }
+
+	row += 1;
+      }
+
+  id.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  id.files->setRowCount(totalRows);
+  id.files->setSortingEnabled(true);
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_book::search(const QString &field, const QString &value)
 {
   id.attach_files->setVisible(false);
@@ -1054,6 +1182,81 @@ void biblioteq_book::search(const QString &field, const QString &value)
     }
 }
 
+void biblioteq_book::slotAttachFiles(void)
+{
+  QFileDialog fileDialog(this, tr("BiblioteQ: Book Attachment(s)"));
+
+  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+  fileDialog.setDirectory(QDir::homePath());
+  fileDialog.setFileMode(QFileDialog::ExistingFiles);
+  fileDialog.setOption(QFileDialog::DontUseNativeDialog);
+
+  if(fileDialog.exec() == QDialog::Accepted)
+    {
+      repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QProgressDialog progress(this);
+      QStringList files(fileDialog.selectedFiles());
+      int i = -1;
+
+      progress.setLabelText(tr("Uploading files..."));
+      progress.setMaximum(files.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      while(i++, !files.isEmpty() && !progress.wasCanceled())
+	{
+	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QFile file;
+	  QString fileName(files.takeFirst());
+
+	  file.setFileName(fileName);
+
+	  if(file.open(QIODevice::ReadOnly))
+	    {
+	      QByteArray bytes(4096, 0);
+	      QByteArray total;
+	      qint64 rc = 0;
+
+	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
+		{
+		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
+		  total.append(bytes.mid(0, static_cast<int> (rc)));
+		}
+
+	      if(!total.isEmpty())
+		{
+		  total = qCompress(total, 9);
+		  createFile(digest.result(), total,
+			     QFileInfo(fileName).fileName());
+		}
+	    }
+
+	  file.close();
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+	}
+
+      QApplication::restoreOverrideCursor();
+      populateFiles();
+    }
+}
+
 void biblioteq_book::slotCancel(void)
 {
   close();
@@ -1123,6 +1326,46 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 {
   Q_UNUSED(bytesread);
   Q_UNUSED(totalbytes);
+}
+
+void biblioteq_book::slotDeleteFiles(void)
+{
+  QModelIndexList list(id.files->selectionModel()->
+		       selectedRows(id.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("Please select at least one file to delete."));
+      return;
+    }
+
+  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			   tr("Are you sure that you wish to delete the "
+			      "selected file(s)?"),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    {
+      list.clear();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  while(!list.isEmpty())
+    {
+      QSqlQuery query(qmain->getDB());
+
+      query.prepare("DELETE FROM book_files WHERE "
+		    "item_oid = ? AND myoid = ?");
+      query.bindValue(0, m_oid);
+      query.bindValue(1, list.takeFirst().data());
+      query.exec();
+    }
+
+  QApplication::restoreOverrideCursor();
+  populateFiles();
 }
 
 void biblioteq_book::slotDownloadFinished(bool error)
@@ -2469,6 +2712,25 @@ void biblioteq_book::slotPrintCallDewey(void)
     }
 }
 
+void biblioteq_book::slotProxyAuthenticationRequired
+(const QNetworkProxy &proxy, QAuthenticator *authenticator)
+{
+  if(authenticator)
+    {
+      ui_p.messageLabel->setText
+	(QString(tr("The proxy %1:%2 is requesting "
+		    "credentials.").
+		 arg(proxy.hostName()).
+		 arg(proxy.port())));
+
+      if(m_proxyDialog->exec() == QDialog::Accepted)
+	{
+	  authenticator->setUser(ui_p.usernameLineEdit->text());
+	  authenticator->setPassword(ui_p.passwordLineEdit->text());
+	}
+    }
+}
+
 void biblioteq_book::slotPublicationDateEnabled(bool state)
 {
   id.publication_date->setEnabled(state);
@@ -2771,6 +3033,64 @@ void biblioteq_book::slotSRUCanceled(void)
   m_sruResults.clear();
 }
 
+void biblioteq_book::slotSRUDownloadFinished(bool error)
+{
+  Q_UNUSED(error);
+
+  bool canceled = false;
+
+  if(m_sruWorking)
+    {
+      canceled = m_sruWorking->wasCanceled();
+      m_sruWorking->deleteLater();
+    }
+
+  if(!canceled)
+    QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
+}
+
+void biblioteq_book::slotSRUDownloadFinished(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    reply->deleteLater();
+
+  bool canceled = false;
+
+  if(m_sruWorking)
+    {
+      canceled = m_sruWorking->wasCanceled();
+      m_sruWorking->deleteLater();
+    }
+
+  if(!canceled)
+    QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
+}
+
+void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
+{
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    {
+      QString error(reply->errorString());
+
+      reply->deleteLater();
+
+      QMessageBox::critical
+	(this, tr("BiblioteQ: SRU Query Error"),
+	 tr("A network error (%1) occurred.").arg(error));
+    }
+  else
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("A network error (%1) occurred.").arg(error));
+}
+
 void biblioteq_book::slotSRUQuery(void)
 {
   if(m_sruManager->findChild<QNetworkReply *> ())
@@ -2921,6 +3241,31 @@ void biblioteq_book::slotSRUQuery(void)
       if(m_sruWorking)
 	m_sruWorking->deleteLater();
     }
+}
+
+void biblioteq_book::slotSRUReadyRead(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    m_sruResults.append(reply->readAll());
+}
+
+void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
+{
+  Q_UNUSED(list);
+
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    reply->deleteLater();
+
+  QMessageBox::critical
+    (this, tr("BiblioteQ: SRU Query Error"),
+     tr("One or more SSL errors occurred. Please verify your settings."));
 }
 
 void biblioteq_book::slotSelectImage(void)
@@ -3342,152 +3687,6 @@ void biblioteq_book::slotZ3950Query(void)
     }
 }
 
-void biblioteq_book::updateWindow(const int state)
-{
-  QString str = "";
-
-  if(state == biblioteq::EDITABLE)
-    {
-      id.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.copiesButton->setEnabled(true);
-      id.delete_files->setEnabled(true);
-      id.export_files->setEnabled(true);
-      id.showUserButton->setEnabled(true);
-      id.okButton->setVisible(true);
-      id.sruQueryButton->setVisible(true);
-      id.z3950QueryButton->setVisible(true);
-      id.resetButton->setVisible(true);
-      id.frontButton->setVisible(true);
-      id.backButton->setVisible(true);
-      id.dwnldFront->setVisible(true);
-      id.dwnldBack->setVisible(true);
-      id.isbn10to13->setVisible(true);
-      id.isbn13to10->setVisible(true);
-
-      if(!id.id->text().trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-	  id.id->text().trimmed() + tr(")");
-      else
-	str = tr("BiblioteQ: Modify Book Entry");
-
-      m_engWindowTitle = "Modify";
-    }
-  else
-    {
-      id.attach_files->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.isbnAvailableCheckBox->setCheckable(false);
-      id.copiesButton->setVisible(false);
-      id.delete_files->setVisible(false);
-      id.export_files->setEnabled(true);
-
-      if(qmain->isGuest())
-	id.showUserButton->setVisible(false);
-      else
-	id.showUserButton->setEnabled(true);
-
-      id.okButton->setVisible(false);
-      id.sruQueryButton->setVisible(false);
-      id.z3950QueryButton->setVisible(false);
-      id.resetButton->setVisible(false);
-      id.frontButton->setVisible(false);
-      id.backButton->setVisible(false);
-      id.dwnldFront->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.isbn10to13->setVisible(false);
-      id.isbn13to10->setVisible(false);
-
-      if(!id.id->text().trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: View Book Details (")) +
-	  id.id->text().trimmed() + tr(")");
-      else
-	str = tr("BiblioteQ: View Book Details");
-
-      m_engWindowTitle = "View";
-    }
-
-  id.coverImages->setVisible(true);
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
-}
-
-void biblioteq_book::slotProxyAuthenticationRequired
-(const QNetworkProxy &proxy, QAuthenticator *authenticator)
-{
-  if(authenticator)
-    {
-      ui_p.messageLabel->setText
-	(QString(tr("The proxy %1:%2 is requesting "
-		    "credentials.").
-		 arg(proxy.hostName()).
-		 arg(proxy.port())));
-
-      if(m_proxyDialog->exec() == QDialog::Accepted)
-	{
-	  authenticator->setUser(ui_p.usernameLineEdit->text());
-	  authenticator->setPassword(ui_p.passwordLineEdit->text());
-	}
-    }
-}
-
-void biblioteq_book::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  id.retranslateUi(this);
-	  ui_p.retranslateUi(m_proxyDialog);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QMainWindow::changeEvent(event);
-}
-
-void biblioteq_book::slotSRUDownloadFinished(bool error)
-{
-  Q_UNUSED(error);
-
-  bool canceled = false;
-
-  if(m_sruWorking)
-    {
-      canceled = m_sruWorking->wasCanceled();
-      m_sruWorking->deleteLater();
-    }
-
-  if(!canceled)
-    QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
-}
-
-void biblioteq_book::slotSRUDownloadFinished(void)
-{
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(reply)
-    reply->deleteLater();
-
-  bool canceled = false;
-
-  if(m_sruWorking)
-    {
-      canceled = m_sruWorking->wasCanceled();
-      m_sruWorking->deleteLater();
-    }
-
-  if(!canceled)
-    QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
-}
-
 void biblioteq_book::sruDownloadFinished(void)
 {
   /*
@@ -3699,275 +3898,76 @@ void biblioteq_book::sruDownloadFinished(void)
        tr("The SRU query produced invalid results."));
 }
 
-void biblioteq_book::slotSRUReadyRead(void)
+void biblioteq_book::updateWindow(const int state)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  QString str = "";
 
-  if(reply)
-    m_sruResults.append(reply->readAll());
-}
-
-void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
-{
-  if(m_sruWorking)
-    m_sruWorking->deleteLater();
-
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(reply)
+  if(state == biblioteq::EDITABLE)
     {
-      QString error(reply->errorString());
-
-      reply->deleteLater();
-
-      QMessageBox::critical
-	(this, tr("BiblioteQ: SRU Query Error"),
-	 tr("A network error (%1) occurred.").arg(error));
-    }
-  else
-    QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
-       tr("A network error (%1) occurred.").arg(error));
-}
-
-void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
-{
-  Q_UNUSED(list);
-
-  if(m_sruWorking)
-    m_sruWorking->deleteLater();
-
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(reply)
-    reply->deleteLater();
-
-  QMessageBox::critical
-    (this, tr("BiblioteQ: SRU Query Error"),
-     tr("One or more SSL errors occurred. Please verify your settings."));
-}
-
-void biblioteq_book::slotAttachFiles(void)
-{
-  QFileDialog fileDialog(this, tr("BiblioteQ: Book Attachment(s)"));
-
-  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-  fileDialog.setDirectory(QDir::homePath());
-  fileDialog.setFileMode(QFileDialog::ExistingFiles);
-  fileDialog.setOption(QFileDialog::DontUseNativeDialog);
-
-  if(fileDialog.exec() == QDialog::Accepted)
-    {
-      repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
+      id.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
 #endif
+      id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.export_files->setEnabled(true);
+      id.showUserButton->setEnabled(true);
+      id.okButton->setVisible(true);
+      id.sruQueryButton->setVisible(true);
+      id.z3950QueryButton->setVisible(true);
+      id.resetButton->setVisible(true);
+      id.frontButton->setVisible(true);
+      id.backButton->setVisible(true);
+      id.dwnldFront->setVisible(true);
+      id.dwnldBack->setVisible(true);
+      id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
 
-      QProgressDialog progress(this);
-      QStringList files(fileDialog.selectedFiles());
-      int i = -1;
-
-      progress.setLabelText(tr("Uploading files..."));
-      progress.setMaximum(files.size());
-      progress.setMinimum(0);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-      progress.show();
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      while(i++, !files.isEmpty() && !progress.wasCanceled())
-	{
-	  QCryptographicHash digest(QCryptographicHash::Sha1);
-	  QFile file;
-	  QString fileName(files.takeFirst());
-
-	  file.setFileName(fileName);
-
-	  if(file.open(QIODevice::ReadOnly))
-	    {
-	      QByteArray bytes(4096, 0);
-	      QByteArray total;
-	      qint64 rc = 0;
-
-	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
-		{
-		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
-		  total.append(bytes.mid(0, static_cast<int> (rc)));
-		}
-
-	      if(!total.isEmpty())
-		{
-		  total = qCompress(total, 9);
-		  createFile(digest.result(), total,
-			     QFileInfo(fileName).fileName());
-		}
-	    }
-
-	  file.close();
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-	}
-
-      QApplication::restoreOverrideCursor();
-      populateFiles();
-    }
-}
-
-void biblioteq_book::createFile(const QByteArray &digest,
-				const QByteArray &bytes,
-				const QString &fileName) const
-{
-  QSqlQuery query(qmain->getDB());
-
-  if(qmain->getDB().driverName() != "QSQLITE")
-    query.prepare("INSERT INTO book_files "
-		  "(file, file_digest, file_name, item_oid) "
-		  "VALUES (?, ?, ?, ?)");
-  else
-    query.prepare("INSERT INTO book_files "
-		  "(file, file_digest, file_name, item_oid, myoid) "
-		  "VALUES (?, ?, ?, ?, ?)");
-
-  query.bindValue(0, bytes);
-  query.bindValue(1, digest.toHex().constData());
-  query.bindValue(2, fileName);
-  query.bindValue(3, m_oid);
-
-  if(qmain->getDB().driverName() == "QSQLITE")
-    {
-      QString errorstr("");
-      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	(qmain->getDB(), errorstr);
-
-      if(errorstr.isEmpty())
-	query.bindValue(4, value);
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+	  id.id->text().trimmed() + tr(")");
       else
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique "
-				   "integer.")),
-			errorstr);
+	str = tr("BiblioteQ: Modify Book Entry");
+
+      m_engWindowTitle = "Modify";
     }
-
-  if(!query.exec())
-    qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to create a database transaction.")),
-       query.lastError().text(), __FILE__, __LINE__);
-}
-
-void biblioteq_book::populateFiles(void)
-{
-  id.files->setRowCount(0);
-  id.files->setSortingEnabled(false);
-
-  QSqlQuery query(qmain->getDB());
-
-  query.prepare("SELECT COUNT(*) FROM book_files WHERE item_oid = ?");
-  query.bindValue(0, m_oid);
-
-  if(query.exec())
-    if(query.next())
-      id.files->setRowCount(query.value(0).toInt());
-
-  query.prepare("SELECT file_name, "
-		"file_digest, "
-		"LENGTH(file) AS f_s, "
-		"description, "
-		"myoid FROM book_files "
-                "WHERE item_oid = ? ORDER BY file_name");
-  query.bindValue(0, m_oid);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QLocale locale;
-  int row = 0;
-  int totalRows = 0;
-
-  if(query.exec())
-    while(query.next() && totalRows < id.files->rowCount())
-      {
-	totalRows += 1;
-
-	QSqlRecord record(query.record());
-
-	for(int i = 0; i < record.count(); i++)
-	  {
-	    QTableWidgetItem *item = 0;
-
-	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) biblioteq_filesize_table_item
-		(locale.toString(query.value(i).toLongLong()));
-	    else
-	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString());
-
-	    if(!item)
-	      continue;
-
-	    item->setData
-	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
-	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-
-	    if(m_engWindowTitle == "Modify")
-	      if(record.fieldName(i) == "description")
-		item->setToolTip(tr("Double-click to edit."));
-
-	    id.files->setItem(row, i, item);
-	  }
-
-	row += 1;
-      }
-
-  id.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  id.files->setRowCount(totalRows);
-  id.files->setSortingEnabled(true);
-  QApplication::restoreOverrideCursor();
-}
-
-void biblioteq_book::slotDeleteFiles(void)
-{
-  QModelIndexList list(id.files->selectionModel()->
-		       selectedRows(id.files->columnCount() - 1)); // myoid
-
-  if(list.isEmpty())
+  else
     {
-      QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("Please select at least one file to delete."));
-      return;
+      id.attach_files->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
+      id.isbnAvailableCheckBox->setCheckable(false);
+      id.copiesButton->setVisible(false);
+      id.delete_files->setVisible(false);
+      id.export_files->setEnabled(true);
+
+      if(qmain->isGuest())
+	id.showUserButton->setVisible(false);
+      else
+	id.showUserButton->setEnabled(true);
+
+      id.okButton->setVisible(false);
+      id.sruQueryButton->setVisible(false);
+      id.z3950QueryButton->setVisible(false);
+      id.resetButton->setVisible(false);
+      id.frontButton->setVisible(false);
+      id.backButton->setVisible(false);
+      id.dwnldFront->setVisible(false);
+      id.dwnldBack->setVisible(false);
+      id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
+
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: View Book Details (")) +
+	  id.id->text().trimmed() + tr(")");
+      else
+	str = tr("BiblioteQ: View Book Details");
+
+      m_engWindowTitle = "View";
     }
 
-  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			   tr("Are you sure that you wish to delete the "
-			      "selected file(s)?"),
-			   QMessageBox::Yes | QMessageBox::No,
-			   QMessageBox::No) == QMessageBox::No)
-    {
-      list.clear();
-      return;
-    }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  while(!list.isEmpty())
-    {
-      QSqlQuery query(qmain->getDB());
-
-      query.prepare("DELETE FROM book_files WHERE "
-		    "item_oid = ? AND myoid = ?");
-      query.bindValue(0, m_oid);
-      query.bindValue(1, list.takeFirst().data());
-      query.exec();
-    }
-
-  QApplication::restoreOverrideCursor();
-  populateFiles();
+  id.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
 }
