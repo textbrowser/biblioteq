@@ -482,6 +482,62 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
   qmain->removeBook(this);
 }
 
+void biblioteq_book::downloadFinished(void)
+{
+  if(m_imageBuffer.property("which") == "front")
+    {
+      if(m_imageBuffer.data().size() > 1000)
+	{
+	  id.front_image->clear();
+	  id.front_image->loadFromData(m_imageBuffer.data());
+	}
+
+      if(m_imageBuffer.data().size() < 1000)
+	{
+	  m_imageBuffer.close();
+	  QMessageBox::warning
+	    (this, tr("BiblioteQ: HTTP Warning"),
+	     tr("The front cover image for the specified "
+		"ISBN may not exist."));
+	}
+    }
+  else
+    {
+      if(m_imageBuffer.data().size() > 1000)
+	{
+	  id.back_image->clear();
+	  id.back_image->loadFromData(m_imageBuffer.data());
+	}
+
+      if(m_imageBuffer.data().size() < 1000)
+	{
+	  m_imageBuffer.close();
+	  QMessageBox::warning
+	    (this, tr("BiblioteQ: HTTP Warning"),
+	     tr("The back cover image for the specified ISBN "
+		"may not exist."));
+	}
+    }
+
+  m_imageBuffer.close();
+}
+
+void biblioteq_book::duplicate(const QString &p_oid, const int state)
+{
+  m_duplicate = true;
+  modify(state); // Initial population.
+  id.attach_files->setEnabled(false);
+  id.view_pdf->setEnabled(false);
+  id.copiesButton->setEnabled(false);
+  id.delete_files->setEnabled(false);
+  id.export_files->setEnabled(false);
+  id.showUserButton->setEnabled(false);
+  m_oid = p_oid;
+  setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
+  m_duplicate = false;
+  m_engWindowTitle = "Create";
+}
+
 void biblioteq_book::insert(void)
 {
   slotReset();
@@ -944,6 +1000,16 @@ void biblioteq_book::slotCancel(void)
   close();
 }
 
+void biblioteq_book::slotCancelImageDownload(void)
+{
+  QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
+
+  if(reply)
+    reply->deleteLater();
+
+  m_imageBuffer.close();
+}
+
 void biblioteq_book::slotConvertISBN10to13(void)
 {
   QString numberstr = "";
@@ -991,6 +1057,13 @@ void biblioteq_book::slotConvertISBN13to10(void)
     z = "X";
 
   id.id->setText(isbnnum + z);
+}
+
+void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
+					      qint64 totalbytes)
+{
+  Q_UNUSED(bytesread);
+  Q_UNUSED(totalbytes);
 }
 
 void biblioteq_book::slotDownloadFinished(bool error)
@@ -2128,6 +2201,17 @@ void biblioteq_book::slotPrint(void)
   print(this);
 }
 
+void biblioteq_book::slotReadyRead(void)
+{
+  if(!m_imageBuffer.isOpen())
+    return;
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    m_imageBuffer.write(reply->readAll());
+}
+
 void biblioteq_book::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
@@ -3013,90 +3097,6 @@ void biblioteq_book::updateWindow(const int state)
   id.coverImages->setVisible(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
-}
-
-void biblioteq_book::downloadFinished(void)
-{
-  if(m_imageBuffer.property("which") == "front")
-    {
-      if(m_imageBuffer.data().size() > 1000)
-	{
-	  id.front_image->clear();
-	  id.front_image->loadFromData(m_imageBuffer.data());
-	}
-
-      if(m_imageBuffer.data().size() < 1000)
-	{
-	  m_imageBuffer.close();
-	  QMessageBox::warning
-	    (this, tr("BiblioteQ: HTTP Warning"),
-	     tr("The front cover image for the specified "
-		"ISBN may not exist."));
-	}
-    }
-  else
-    {
-      if(m_imageBuffer.data().size() > 1000)
-	{
-	  id.back_image->clear();
-	  id.back_image->loadFromData(m_imageBuffer.data());
-	}
-
-      if(m_imageBuffer.data().size() < 1000)
-	{
-	  m_imageBuffer.close();
-	  QMessageBox::warning
-	    (this, tr("BiblioteQ: HTTP Warning"),
-	     tr("The back cover image for the specified ISBN "
-		"may not exist."));
-	}
-    }
-
-  m_imageBuffer.close();
-}
-
-void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
-					      qint64 totalbytes)
-{
-  Q_UNUSED(bytesread);
-  Q_UNUSED(totalbytes);
-}
-
-void biblioteq_book::slotCancelImageDownload(void)
-{
-  QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
-
-  if(reply)
-    reply->deleteLater();
-
-  m_imageBuffer.close();
-}
-
-void biblioteq_book::slotReadyRead(void)
-{
-  if(!m_imageBuffer.isOpen())
-    return;
-
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(reply)
-    m_imageBuffer.write(reply->readAll());
-}
-
-void biblioteq_book::duplicate(const QString &p_oid, const int state)
-{
-  m_duplicate = true;
-  modify(state); // Initial population.
-  id.attach_files->setEnabled(false);
-  id.view_pdf->setEnabled(false);
-  id.copiesButton->setEnabled(false);
-  id.delete_files->setEnabled(false);
-  id.export_files->setEnabled(false);
-  id.showUserButton->setEnabled(false);
-  m_oid = p_oid;
-  setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
-  m_duplicate = false;
-  m_engWindowTitle = "Create";
 }
 
 void biblioteq_book::slotProxyAuthenticationRequired
