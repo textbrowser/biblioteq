@@ -25,10 +25,6 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/*
-** -- Qt Includes --
-*/
-
 #include <QClipboard>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -54,15 +50,9 @@
 #endif
 #endif
 
-#include <limits>
-
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 #include <poppler-version.h>
 #endif
-
-/*
-** -- C Includes --
-*/
 
 extern "C"
 {
@@ -74,10 +64,6 @@ extern "C"
 #endif
 #include <yaz/yaz-version.h>
 }
-
-/*
-** -- Local Includes --
-*/
 
 #include "biblioteq.h"
 #include "biblioteq_architecture.h"

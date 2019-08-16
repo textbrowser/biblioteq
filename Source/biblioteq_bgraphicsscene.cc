@@ -1,15 +1,7 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_bgraphicsscene.h"
 
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_bgraphicsscene.h"
 
 biblioteq_bgraphicsscene::biblioteq_bgraphicsscene(QObject *parent):
   QGraphicsScene(parent)
