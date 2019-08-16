@@ -993,6 +993,200 @@ void biblioteq_book::slotConvertISBN13to10(void)
   id.id->setText(isbnnum + z);
 }
 
+void biblioteq_book::slotDownloadFinished(bool error)
+{
+  Q_UNUSED(error);
+  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
+}
+
+void biblioteq_book::slotDownloadFinished(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    reply->deleteLater();
+
+  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
+}
+
+void biblioteq_book::slotDownloadImage(void)
+{
+  if(m_imageManager->findChild<QNetworkReply *> ())
+    return;
+
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  if(id.id->text().trimmed().length() != 10)
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to download a cover image, "
+	    "the ISBN-10 must be provided."));
+      id.id->setFocus();
+      return;
+    }
+
+  QString downloadType(action->property("download_type").toString());
+
+  if(downloadType.contains("back"))
+    m_imageBuffer.setProperty("which", "back");
+  else
+    m_imageBuffer.setProperty("which", "front");
+
+  if(!m_imageBuffer.open(QIODevice::WriteOnly))
+    return;
+
+  QUrl url;
+
+  if(downloadType.contains("amazon"))
+    {
+      if(downloadType.contains("back"))
+	url = QUrl::fromUserInput
+	  (qmain->getAmazonHash().value("back_cover_host") +
+	   QString(qmain->getAmazonHash().value("back_cover_path")).replace
+	   ("%", id.id->text().trimmed()));
+      else
+	url = QUrl::fromUserInput
+	  (qmain->getAmazonHash().value("front_cover_host") +
+	   QString(qmain->getAmazonHash().value("front_cover_path")).replace
+	   ("%", id.id->text().trimmed()));
+
+      QHash<QString, QString> hash(qmain->getAmazonHash());
+      QNetworkProxy proxy;
+      QString type("none");
+
+      if(downloadType.contains("back"))
+	type = hash.value("back_proxy_type").toLower().trimmed();
+      else
+	type = hash.value("front_proxy_type").toLower().trimmed();
+
+      if(type == "none")
+	proxy.setType(QNetworkProxy::NoProxy);
+      else
+	{
+	  if(type == "http" || type == "socks5" || type == "system")
+	    {
+	      /*
+	      ** This is required to resolve an odd error.
+	      */
+
+	      QNetworkReply *reply = m_imageManager->get
+		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+	      if(reply)
+		reply->deleteLater();
+
+	      connect
+		(m_imageManager,
+		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						    QAuthenticator *)),
+		 this,
+		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						      QAuthenticator *)),
+		 Qt::UniqueConnection);
+	    }
+
+	  if(type == "http" || type == "socks5")
+	    {
+	      if(type == "http")
+		proxy.setType(QNetworkProxy::HttpProxy);
+	      else
+		proxy.setType(QNetworkProxy::Socks5Proxy);
+
+	      QString host("");
+	      QString password("");
+	      QString user("");
+	      quint16 port = 0;
+
+	      if(downloadType.contains("back"))
+		{
+		  host = hash.value("back_proxy_host");
+		  port = hash.value("back_proxy_port").toUShort();
+		  user = hash.value("back_proxy_username");
+		  password = hash.value("back_proxy_password");
+		}
+	      else
+		{
+		  host = hash.value("front_proxy_host");
+		  port = hash.value("front_proxy_port").toUShort();
+		  user = hash.value("front_proxy_username");
+		  password = hash.value("front_proxy_password");
+		}
+
+	      proxy.setHostName(host);
+	      proxy.setPort(port);
+
+	      if(!user.isEmpty())
+		proxy.setUser(user);
+
+	      if(!password.isEmpty())
+		proxy.setPassword(password);
+
+	      m_imageManager->setProxy(proxy);
+	    }
+	  else if(type == "system")
+	    {
+	      QList<QNetworkProxy> list;
+	      QNetworkProxyQuery query(url);
+
+	      list = QNetworkProxyFactory::systemProxyForQuery(query);
+
+	      if(!list.isEmpty())
+		proxy = list.at(0);
+
+	      m_imageManager->setProxy(proxy);
+	    }
+	}
+    }
+  else
+    {
+      QString string("");
+
+      if(downloadType.contains("back"))
+	string = qmain->getOpenLibraryHash().value("back_url");
+      else
+	string = qmain->getOpenLibraryHash().value("front_url");
+
+      string.replace("$key", "isbn");
+      string.replace("$value-$size", id.id->text().trimmed() + "-L");
+      url = QUrl::fromUserInput(string);
+    }
+
+  biblioteq_item_working_dialog *dialog = createImageDownloadDialog
+    (downloadType);
+
+  if(!dialog)
+    {
+      m_imageBuffer.close();
+      return;
+    }
+
+  QNetworkReply *reply = m_imageManager->get(QNetworkRequest(url));
+
+  if(!reply)
+    {
+      dialog->deleteLater();
+      m_imageBuffer.close();
+      return;
+    }
+
+  connect(reply, SIGNAL(readyRead(void)),
+	  this, SLOT(slotReadyRead(void)));
+  connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
+	  this, SLOT(slotDataTransferProgress(qint64, qint64)));
+  connect(reply, SIGNAL(finished(void)),
+	  dialog, SLOT(deleteLater(void)));
+  connect(reply, SIGNAL(finished(void)),
+	  this, SLOT(slotDownloadFinished(void)));
+
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+}
+
 void biblioteq_book::slotGo(void)
 {
   QSqlQuery query(qmain->getDB());
@@ -1876,6 +2070,64 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
     copyeditor->populateCopiesEditor();
 }
 
+void biblioteq_book::slotPrint(void)
+{
+  m_html = "<html>";
+  m_html += "<b>" + tr("ISBN-10:") + "</b> " +
+    id.id->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("ISBN-13:") + "</b> " +
+    id.isbn13->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Edition:") + "</b> " +
+    id.edition->currentText() + "<br>";
+  m_html += "<b>" + tr("Authors:") + "</b> " +
+    id.author->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Book Binding Type:") + "</b> " +
+    id.binding->currentText() + "<br>";
+  m_html += "<b>" + tr("LC Control Number:") + "</b> " +
+    id.lcnum->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Call Number:") + "</b> " +
+    id.callnum->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Dewey Class Number:") + "</b> " +
+    id.deweynum->text().trimmed() + "<br>";
+
+  /*
+  ** General information.
+  */
+
+  m_html += "<b>" + tr("Title:") + "</b> " +
+    id.title->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Publication Date:") + "</b> " +
+    id.publication_date->date().toString(Qt::ISODate) + "<br>";
+  m_html += "<b>" + tr("Publisher:") + "</b> " +
+    id.publisher->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Place of Publication:") + "</b> " +
+    id.place->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Categories:") + "</b> " +
+    id.category->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Price:") + "</b> " + id.price->cleanText() + "<br>";
+  m_html += "<b>" + tr("Language:") + "</b> " +
+    id.language->currentText() + "<br>";
+  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
+    id.monetary_units->currentText() + "<br>";
+  m_html += "<b>" + tr("Copies:") + "</b> " + id.quantity->text() + "<br>";
+  m_html += "<b>" + tr("Location:") + "</b> " +
+    id.location->currentText() + "<br>";
+  m_html += "<b>" + tr("Originality:") + "</b> " +
+    id.originality->currentText() + "<br>";
+  m_html += "<b>" + tr("Condition:") + "</b> " +
+    id.condition->currentText() + "<br>";
+  m_html += "<b>" + tr("Abstract:") + "</b> " +
+    id.description->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("MARC Tags:") + "</b> " +
+    id.marc_tags->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Keywords:") + "</b> " +
+    id.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
+    id.accession_number->text().trimmed();
+  m_html += "</html>";
+  print(this);
+}
+
 void biblioteq_book::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
@@ -2301,6 +2553,67 @@ void biblioteq_book::slotSRUQuery(void)
     }
 }
 
+void biblioteq_book::slotSelectImage(void)
+{
+  QFileDialog dialog(this);
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
+
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+
+  if(button == id.frontButton)
+    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
+  else
+    dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
+
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      if(button == id.frontButton)
+	{
+	  id.front_image->clear();
+	  id.front_image->m_image = QImage(dialog.selectedFiles().value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    id.front_image->m_imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
+	  id.front_image->scene()->addPixmap
+	    (QPixmap::fromImage(id.front_image->m_image));
+
+	  if(id.front_image->scene()->items().size() > 0)
+	    id.front_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
+
+	  id.front_image->scene()->setSceneRect
+	    (id.front_image->scene()->itemsBoundingRect());
+	}
+      else
+	{
+	  id.back_image->clear();
+	  id.back_image->m_image = QImage(dialog.selectedFiles().value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    id.back_image->m_imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
+	  id.back_image->scene()->addPixmap
+	    (QPixmap::fromImage(id.back_image->m_image));
+
+	  if(id.back_image->scene()->items().size() > 0)
+	    id.back_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
+
+	  id.back_image->scene()->setSceneRect
+	    (id.back_image->scene()->itemsBoundingRect());
+	}
+    }
+}
+
 void biblioteq_book::slotShowUsers(void)
 {
   biblioteq_borrowers_editor *borrowerseditor = 0;
@@ -2322,80 +2635,6 @@ void biblioteq_book::slotShowUsers(void)
        "Book",
        state)) != 0)
     borrowerseditor->showUsers();
-}
-
-void biblioteq_book::updateWindow(const int state)
-{
-  QString str = "";
-
-  if(state == biblioteq::EDITABLE)
-    {
-      id.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.copiesButton->setEnabled(true);
-      id.delete_files->setEnabled(true);
-      id.export_files->setEnabled(true);
-      id.showUserButton->setEnabled(true);
-      id.okButton->setVisible(true);
-      id.sruQueryButton->setVisible(true);
-      id.z3950QueryButton->setVisible(true);
-      id.resetButton->setVisible(true);
-      id.frontButton->setVisible(true);
-      id.backButton->setVisible(true);
-      id.dwnldFront->setVisible(true);
-      id.dwnldBack->setVisible(true);
-      id.isbn10to13->setVisible(true);
-      id.isbn13to10->setVisible(true);
-
-      if(!id.id->text().trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-	  id.id->text().trimmed() + tr(")");
-      else
-	str = tr("BiblioteQ: Modify Book Entry");
-
-      m_engWindowTitle = "Modify";
-    }
-  else
-    {
-      id.attach_files->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.isbnAvailableCheckBox->setCheckable(false);
-      id.copiesButton->setVisible(false);
-      id.delete_files->setVisible(false);
-      id.export_files->setEnabled(true);
-
-      if(qmain->isGuest())
-	id.showUserButton->setVisible(false);
-      else
-	id.showUserButton->setEnabled(true);
-
-      id.okButton->setVisible(false);
-      id.sruQueryButton->setVisible(false);
-      id.z3950QueryButton->setVisible(false);
-      id.resetButton->setVisible(false);
-      id.frontButton->setVisible(false);
-      id.backButton->setVisible(false);
-      id.dwnldFront->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.isbn10to13->setVisible(false);
-      id.isbn13to10->setVisible(false);
-
-      if(!id.id->text().trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: View Book Details (")) +
-	  id.id->text().trimmed() + tr(")");
-      else
-	str = tr("BiblioteQ: View Book Details");
-
-      m_engWindowTitle = "View";
-    }
-
-  id.coverImages->setVisible(true);
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
 }
 
 void biblioteq_book::slotZ3950Query(void)
@@ -2702,317 +2941,78 @@ void biblioteq_book::slotZ3950Query(void)
     }
 }
 
-void biblioteq_book::slotPrint(void)
+void biblioteq_book::updateWindow(const int state)
 {
-  m_html = "<html>";
-  m_html += "<b>" + tr("ISBN-10:") + "</b> " +
-    id.id->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("ISBN-13:") + "</b> " +
-    id.isbn13->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Edition:") + "</b> " +
-    id.edition->currentText() + "<br>";
-  m_html += "<b>" + tr("Authors:") + "</b> " +
-    id.author->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Book Binding Type:") + "</b> " +
-    id.binding->currentText() + "<br>";
-  m_html += "<b>" + tr("LC Control Number:") + "</b> " +
-    id.lcnum->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Call Number:") + "</b> " +
-    id.callnum->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Dewey Class Number:") + "</b> " +
-    id.deweynum->text().trimmed() + "<br>";
+  QString str = "";
 
-  /*
-  ** General information.
-  */
-
-  m_html += "<b>" + tr("Title:") + "</b> " +
-    id.title->text().trimmed() + "<br>";
-  m_html += "<b>" + tr("Publication Date:") + "</b> " +
-    id.publication_date->date().toString(Qt::ISODate) + "<br>";
-  m_html += "<b>" + tr("Publisher:") + "</b> " +
-    id.publisher->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Place of Publication:") + "</b> " +
-    id.place->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Categories:") + "</b> " +
-    id.category->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Price:") + "</b> " + id.price->cleanText() + "<br>";
-  m_html += "<b>" + tr("Language:") + "</b> " +
-    id.language->currentText() + "<br>";
-  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
-    id.monetary_units->currentText() + "<br>";
-  m_html += "<b>" + tr("Copies:") + "</b> " + id.quantity->text() + "<br>";
-  m_html += "<b>" + tr("Location:") + "</b> " +
-    id.location->currentText() + "<br>";
-  m_html += "<b>" + tr("Originality:") + "</b> " +
-    id.originality->currentText() + "<br>";
-  m_html += "<b>" + tr("Condition:") + "</b> " +
-    id.condition->currentText() + "<br>";
-  m_html += "<b>" + tr("Abstract:") + "</b> " +
-    id.description->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("MARC Tags:") + "</b> " +
-    id.marc_tags->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Keywords:") + "</b> " +
-    id.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b> " +
-    id.accession_number->text().trimmed();
-  m_html += "</html>";
-  print(this);
-}
-
-void biblioteq_book::slotSelectImage(void)
-{
-  QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
-
-  dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-
-  if(button == id.frontButton)
-    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
-  else
-    dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
-
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
+  if(state == biblioteq::EDITABLE)
     {
-      if(button == id.frontButton)
-	{
-	  id.front_image->clear();
-	  id.front_image->m_image = QImage(dialog.selectedFiles().value(0));
-
-	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
-	    id.front_image->m_imageFormat = dialog.selectedFiles().value(0).mid
-	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
-	      toUpper();
-
-	  id.front_image->scene()->addPixmap
-	    (QPixmap::fromImage(id.front_image->m_image));
-
-	  if(id.front_image->scene()->items().size() > 0)
-	    id.front_image->scene()->items().at(0)->setFlags
-	      (QGraphicsItem::ItemIsSelectable);
-
-	  id.front_image->scene()->setSceneRect
-	    (id.front_image->scene()->itemsBoundingRect());
-	}
-      else
-	{
-	  id.back_image->clear();
-	  id.back_image->m_image = QImage(dialog.selectedFiles().value(0));
-
-	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
-	    id.back_image->m_imageFormat = dialog.selectedFiles().value(0).mid
-	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
-	      toUpper();
-
-	  id.back_image->scene()->addPixmap
-	    (QPixmap::fromImage(id.back_image->m_image));
-
-	  if(id.back_image->scene()->items().size() > 0)
-	    id.back_image->scene()->items().at(0)->setFlags
-	      (QGraphicsItem::ItemIsSelectable);
-
-	  id.back_image->scene()->setSceneRect
-	    (id.back_image->scene()->itemsBoundingRect());
-	}
-    }
-}
-
-void biblioteq_book::slotDownloadImage(void)
-{
-  if(m_imageManager->findChild<QNetworkReply *> ())
-    return;
-
-  QAction *action = qobject_cast<QAction *> (sender());
-
-  if(!action)
-    return;
-
-  if(id.id->text().trimmed().length() != 10)
-    {
-      QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to download a cover image, "
-	    "the ISBN-10 must be provided."));
-      id.id->setFocus();
-      return;
-    }
-
-  QString downloadType(action->property("download_type").toString());
-
-  if(downloadType.contains("back"))
-    m_imageBuffer.setProperty("which", "back");
-  else
-    m_imageBuffer.setProperty("which", "front");
-
-  if(!m_imageBuffer.open(QIODevice::WriteOnly))
-    return;
-
-  QUrl url;
-
-  if(downloadType.contains("amazon"))
-    {
-      if(downloadType.contains("back"))
-	url = QUrl::fromUserInput
-	  (qmain->getAmazonHash().value("back_cover_host") +
-	   QString(qmain->getAmazonHash().value("back_cover_path")).replace
-	   ("%", id.id->text().trimmed()));
-      else
-	url = QUrl::fromUserInput
-	  (qmain->getAmazonHash().value("front_cover_host") +
-	   QString(qmain->getAmazonHash().value("front_cover_path")).replace
-	   ("%", id.id->text().trimmed()));
-
-      QHash<QString, QString> hash(qmain->getAmazonHash());
-      QNetworkProxy proxy;
-      QString type("none");
-
-      if(downloadType.contains("back"))
-	type = hash.value("back_proxy_type").toLower().trimmed();
-      else
-	type = hash.value("front_proxy_type").toLower().trimmed();
-
-      if(type == "none")
-	proxy.setType(QNetworkProxy::NoProxy);
-      else
-	{
-	  if(type == "http" || type == "socks5" || type == "system")
-	    {
-	      /*
-	      ** This is required to resolve an odd error.
-	      */
-
-	      QNetworkReply *reply = m_imageManager->get
-		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
-
-	      if(reply)
-		reply->deleteLater();
-
-	      connect
-		(m_imageManager,
-		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						    QAuthenticator *)),
-		 this,
-		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						      QAuthenticator *)),
-		 Qt::UniqueConnection);
-	    }
-
-	  if(type == "http" || type == "socks5")
-	    {
-	      if(type == "http")
-		proxy.setType(QNetworkProxy::HttpProxy);
-	      else
-		proxy.setType(QNetworkProxy::Socks5Proxy);
-
-	      QString host("");
-	      QString password("");
-	      QString user("");
-	      quint16 port = 0;
-
-	      if(downloadType.contains("back"))
-		{
-		  host = hash.value("back_proxy_host");
-		  port = hash.value("back_proxy_port").toUShort();
-		  user = hash.value("back_proxy_username");
-		  password = hash.value("back_proxy_password");
-		}
-	      else
-		{
-		  host = hash.value("front_proxy_host");
-		  port = hash.value("front_proxy_port").toUShort();
-		  user = hash.value("front_proxy_username");
-		  password = hash.value("front_proxy_password");
-		}
-
-	      proxy.setHostName(host);
-	      proxy.setPort(port);
-
-	      if(!user.isEmpty())
-		proxy.setUser(user);
-
-	      if(!password.isEmpty())
-		proxy.setPassword(password);
-
-	      m_imageManager->setProxy(proxy);
-	    }
-	  else if(type == "system")
-	    {
-	      QList<QNetworkProxy> list;
-	      QNetworkProxyQuery query(url);
-
-	      list = QNetworkProxyFactory::systemProxyForQuery(query);
-
-	      if(!list.isEmpty())
-		proxy = list.at(0);
-
-	      m_imageManager->setProxy(proxy);
-	    }
-	}
-    }
-  else
-    {
-      QString string("");
-
-      if(downloadType.contains("back"))
-	string = qmain->getOpenLibraryHash().value("back_url");
-      else
-	string = qmain->getOpenLibraryHash().value("front_url");
-
-      string.replace("$key", "isbn");
-      string.replace("$value-$size", id.id->text().trimmed() + "-L");
-      url = QUrl::fromUserInput(string);
-    }
-
-  biblioteq_item_working_dialog *dialog = createImageDownloadDialog
-    (downloadType);
-
-  if(!dialog)
-    {
-      m_imageBuffer.close();
-      return;
-    }
-
-  QNetworkReply *reply = m_imageManager->get(QNetworkRequest(url));
-
-  if(!reply)
-    {
-      dialog->deleteLater();
-      m_imageBuffer.close();
-      return;
-    }
-
-  connect(reply, SIGNAL(readyRead(void)),
-	  this, SLOT(slotReadyRead(void)));
-  connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
-	  this, SLOT(slotDataTransferProgress(qint64, qint64)));
-  connect(reply, SIGNAL(finished(void)),
-	  dialog, SLOT(deleteLater(void)));
-  connect(reply, SIGNAL(finished(void)),
-	  this, SLOT(slotDownloadFinished(void)));
-
-#ifndef Q_OS_MAC
-  QApplication::processEvents();
+      id.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
 #endif
-}
+      id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.export_files->setEnabled(true);
+      id.showUserButton->setEnabled(true);
+      id.okButton->setVisible(true);
+      id.sruQueryButton->setVisible(true);
+      id.z3950QueryButton->setVisible(true);
+      id.resetButton->setVisible(true);
+      id.frontButton->setVisible(true);
+      id.backButton->setVisible(true);
+      id.dwnldFront->setVisible(true);
+      id.dwnldBack->setVisible(true);
+      id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
 
-void biblioteq_book::slotDownloadFinished(bool error)
-{
-  Q_UNUSED(error);
-  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
-}
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+	  id.id->text().trimmed() + tr(")");
+      else
+	str = tr("BiblioteQ: Modify Book Entry");
 
-void biblioteq_book::slotDownloadFinished(void)
-{
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+      m_engWindowTitle = "Modify";
+    }
+  else
+    {
+      id.attach_files->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
+      id.isbnAvailableCheckBox->setCheckable(false);
+      id.copiesButton->setVisible(false);
+      id.delete_files->setVisible(false);
+      id.export_files->setEnabled(true);
 
-  if(reply)
-    reply->deleteLater();
+      if(qmain->isGuest())
+	id.showUserButton->setVisible(false);
+      else
+	id.showUserButton->setEnabled(true);
 
-  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
+      id.okButton->setVisible(false);
+      id.sruQueryButton->setVisible(false);
+      id.z3950QueryButton->setVisible(false);
+      id.resetButton->setVisible(false);
+      id.frontButton->setVisible(false);
+      id.backButton->setVisible(false);
+      id.dwnldFront->setVisible(false);
+      id.dwnldBack->setVisible(false);
+      id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
+
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: View Book Details (")) +
+	  id.id->text().trimmed() + tr(")");
+      else
+	str = tr("BiblioteQ: View Book Details");
+
+      m_engWindowTitle = "View";
+    }
+
+  id.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
 }
 
 void biblioteq_book::downloadFinished(void)
