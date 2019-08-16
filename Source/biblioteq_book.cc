@@ -462,6 +462,537 @@ biblioteq_book::~biblioteq_book()
 {
 }
 
+void biblioteq_book::closeEvent(QCloseEvent *e)
+{
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue closing?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  if(e)
+	    e->ignore();
+
+	  return;
+	}
+
+  qmain->removeBook(this);
+}
+
+void biblioteq_book::insert(void)
+{
+  slotReset();
+  id.attach_files->setEnabled(false);
+  id.view_pdf->setEnabled(false);
+  id.id->clear();
+  id.isbn13->clear();
+  id.category->setPlainText("N/A");
+  id.author->setPlainText("N/A");
+  id.lcnum->clear();
+  id.callnum->clear();
+  id.deweynum->clear();
+  id.title->clear();
+  id.publisher->setPlainText("N/A");
+  id.place->setPlainText("N/A");
+  id.description->setPlainText("N/A");
+  id.marc_tags->clear();
+  id.keyword->clear();
+  id.copiesButton->setEnabled(false);
+  id.delete_files->setEnabled(false);
+  id.export_files->setEnabled(false);
+  id.sruQueryButton->setVisible(true);
+  id.z3950QueryButton->setVisible(true);
+  id.okButton->setText(tr("&Save"));
+  id.publication_date->setDate(QDate::fromString("01/01/2000",
+						 "MM/dd/yyyy"));
+  id.price->setMinimum(0.00);
+  id.price->setValue(0.00);
+  id.quantity->setMinimum(1);
+  id.quantity->setValue(1);
+  id.showUserButton->setEnabled(false);
+  id.location->setCurrentIndex(0);
+  id.edition->setCurrentIndex(0);
+  id.language->setCurrentIndex(0);
+  id.monetary_units->setCurrentIndex(0);
+  id.binding->setCurrentIndex(0);
+  id.accession_number->clear();
+  biblioteq_misc_functions::highlightWidget
+    (id.id, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.isbn13, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.title, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.publisher->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.place->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.author->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.description->viewport(), QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (id.category->viewport(), QColor(255, 248, 220));
+  m_te_orig_pal = id.id->palette();
+  setWindowTitle(tr("BiblioteQ: Create Book Entry"));
+  m_engWindowTitle = "Create";
+  id.id->setFocus();
+  storeData(this);
+  showNormal();
+  activateWindow();
+  raise();
+}
+
+void biblioteq_book::modify(const int state)
+{
+  QSqlQuery query(qmain->getDB());
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
+
+  if(state == biblioteq::EDITABLE)
+    {
+      setReadOnlyFields(this, false);
+      setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
+      m_engWindowTitle = "Modify";
+      id.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
+      id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.export_files->setEnabled(true);
+      id.showUserButton->setEnabled(true);
+      id.okButton->setVisible(true);
+      id.sruQueryButton->setVisible(true);
+      id.z3950QueryButton->setVisible(true);
+      id.resetButton->setVisible(true);
+      id.frontButton->setVisible(true);
+      id.backButton->setVisible(true);
+      id.dwnldFront->setVisible(true);
+      id.dwnldBack->setVisible(true);
+      id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
+      biblioteq_misc_functions::highlightWidget
+	(id.id, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.isbn13, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.title, QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.publisher->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.place->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.author->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.description->viewport(), QColor(255, 248, 220));
+      biblioteq_misc_functions::highlightWidget
+	(id.category->viewport(), QColor(255, 248, 220));
+      m_te_orig_pal = id.id->palette();
+    }
+  else
+    {
+      setReadOnlyFields(this, true);
+      id.isbnAvailableCheckBox->setCheckable(false);
+      setWindowTitle(tr("BiblioteQ: View Book Details"));
+      m_engWindowTitle = "View";
+      id.attach_files->setVisible(false);
+      id.view_pdf->setVisible(true);
+      id.copiesButton->setVisible(false);
+      id.delete_files->setVisible(false);
+      id.export_files->setVisible(true);
+
+      if(qmain->isGuest())
+	id.showUserButton->setVisible(false);
+      else
+	id.showUserButton->setEnabled(true);
+
+      id.okButton->setVisible(false);
+      id.sruQueryButton->setVisible(false);
+      id.z3950QueryButton->setVisible(false);
+      id.resetButton->setVisible(false);
+      id.frontButton->setVisible(false);
+      id.backButton->setVisible(false);
+      id.dwnldFront->setVisible(false);
+      id.dwnldBack->setVisible(false);
+      id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
+
+      QList<QAction *> actions = id.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+    }
+
+  id.quantity->setMinimum(1);
+  id.price->setMinimum(0.00);
+  id.okButton->setText(tr("&Save"));
+  str = m_oid;
+  query.prepare("SELECT title, "
+		"author, "
+		"publisher, pdate, place, edition, "
+		"category, language, id, "
+		"price, monetary_units, quantity, "
+		"binding_type, "
+		"location, "
+		"isbn13, "
+		"lccontrolnumber, "
+		"callnumber, "
+		"deweynumber, "
+		"description, "
+		"front_cover, "
+		"back_cover, "
+		"marc_tags, "
+		"keyword, "
+		"originality, "
+		"condition, "
+		"accession_number "
+		"FROM book WHERE myoid = ?");
+  query.bindValue(0, str);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec() || !query.next())
+    {
+      QApplication::restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve the selected book's data.")),
+	 query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Database Error"),
+	 tr("Unable to retrieve the selected book's data."));
+      close();
+      return;
+    }
+  else
+    {
+      QApplication::restoreOverrideCursor();
+      showNormal();
+      activateWindow();
+      raise();
+
+      QSqlRecord record(query.record());
+
+      for(i = 0; i < record.count(); i++)
+	{
+	  var = record.field(i).value();
+	  fieldname = record.fieldName(i);
+
+	  if(fieldname == "title")
+	    id.title->setText(var.toString());
+	  else if(fieldname == "author")
+	    id.author->setMultipleLinks("book_search", "author",
+					var.toString());
+	  else if(fieldname == "publisher")
+	    id.publisher->setMultipleLinks("book_search", "publisher",
+					   var.toString());
+	  else if(fieldname == "place")
+	    id.place->setMultipleLinks("book_search", "place",
+				       var.toString());
+	  else if(fieldname == "pdate")
+	    id.publication_date->setDate
+	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "edition")
+	    {
+	      if(id.edition->findText(var.toString()) > -1)
+		id.edition->setCurrentIndex
+		  (id.edition->findText(var.toString()));
+	      else
+		id.edition->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "price")
+	    id.price->setValue(var.toDouble());
+	  else if(fieldname == "category")
+	    id.category->setMultipleLinks("book_search", "category",
+					  var.toString());
+	  else if(fieldname == "language")
+	    {
+	      if(id.language->findText(var.toString()) > -1)
+		id.language->setCurrentIndex
+		  (id.language->findText(var.toString()));
+	      else
+		id.language->setCurrentIndex
+		  (id.language->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "quantity")
+	    id.quantity->setValue(var.toInt());
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(id.monetary_units->findText(var.toString()) > -1)
+		id.monetary_units->setCurrentIndex
+		  (id.monetary_units->findText(var.toString()));
+	      else
+		id.monetary_units->setCurrentIndex
+		  (id.monetary_units->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "binding_type")
+	    {
+	      if(id.binding->findText(var.toString()) > -1)
+		id.binding->setCurrentIndex
+		  (id.binding->findText(var.toString()));
+	      else
+		id.binding->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "location")
+	    {
+	      if(id.location->findText(var.toString()) > -1)
+		id.location->setCurrentIndex
+		  (id.location->findText(var.toString()));
+	      else
+		id.location->setCurrentIndex
+		  (id.location->findText(tr("UNKNOWN")));
+	    }
+	  else if(fieldname == "id")
+	    {
+	      if(state == biblioteq::EDITABLE)
+		{
+		  if(!var.toString().trimmed().isEmpty())
+		    str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		      var.toString() + tr(")");
+		  else
+		    str = tr("BiblioteQ: Modify Book Entry");
+
+		  m_engWindowTitle = "Modify";
+		}
+	      else
+		{
+		  if(!var.toString().trimmed().isEmpty())
+		    str = QString(tr("BiblioteQ: View Book Details (")) +
+		      var.toString() + tr(")");
+		  else
+		    str = tr("BiblioteQ: View Book Details");
+
+		  m_engWindowTitle = "View";
+		}
+
+	      id.id->setText(var.toString());
+	      setWindowTitle(str);
+
+	      if(query.isNull(i))
+		id.isbnAvailableCheckBox->setChecked(false);
+	      else
+		id.isbnAvailableCheckBox->setChecked(true);
+	    }
+	  else if(fieldname == "description")
+	    id.description->setPlainText(var.toString());
+	  else if(fieldname == "marc_tags")
+	    id.marc_tags->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    id.keyword->setMultipleLinks("book_search", "keyword",
+					 var.toString());
+	  else if(fieldname == "isbn13")
+	    id.isbn13->setText(var.toString());
+	  else if(fieldname == "lccontrolnumber")
+	    id.lcnum->setText(var.toString());
+	  else if(fieldname == "callnumber")
+	    id.callnum->setText(var.toString());
+	  else if(fieldname == "deweynumber")
+	    id.deweynum->setText(var.toString());
+	  else if(fieldname == "originality")
+	    {
+	      if(id.originality->findText(var.toString()) > -1)
+		id.originality->setCurrentIndex
+		  (id.originality->findText(var.toString()));
+	      else
+		id.originality->setCurrentIndex(2);
+	    }
+	  else if(fieldname == "condition")
+	    {
+	      if(id.condition->findText(var.toString()) > -1)
+		id.condition->setCurrentIndex
+		  (id.condition->findText(var.toString()));
+	      else
+		id.condition->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  id.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(id.front_image->m_image.isNull())
+		    id.front_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  id.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(id.back_image->m_image.isNull())
+		    id.back_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "accession_number")
+	    id.accession_number->setText(var.toString());
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	textfield->setCursorPosition(0);
+
+      storeData(this);
+
+      if(!m_duplicate)
+	populateFiles();
+    }
+
+  id.id->setFocus();
+  raise();
+}
+
+void biblioteq_book::search(const QString &field, const QString &value)
+{
+  id.attach_files->setVisible(false);
+  id.coverImages->setVisible(false);
+  id.delete_files->setVisible(false);
+  id.export_files->setVisible(false);
+  id.files->setVisible(false);
+  id.files_label->setVisible(false);
+  id.view_pdf->setVisible(false);
+  id.id->clear();
+  id.category->clear();
+  id.isbn13->clear();
+  id.author->clear();
+  id.lcnum->clear();
+  id.callnum->clear();
+  id.deweynum->clear();
+  id.title->clear();
+  id.publisher->clear();
+  id.place->clear();
+  id.description->clear();
+  id.marc_tags->clear();
+  id.keyword->clear();
+  id.copiesButton->setVisible(false);
+  id.showUserButton->setVisible(false);
+  id.sruQueryButton->setVisible(false);
+  id.z3950QueryButton->setVisible(false);
+  id.okButton->setText(tr("&Search"));
+  id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+  id.publication_date->setDisplayFormat("yyyy");
+  id.publication_date_enabled->setVisible(true);
+  id.price->setMinimum(-0.01);
+  id.price->setValue(-0.01);
+  id.quantity->setMinimum(0);
+  id.quantity->setValue(0);
+  id.edition->insertItem(0, tr("Any"));
+  id.language->insertItem(0, tr("Any"));
+  id.monetary_units->insertItem(0, tr("Any"));
+  id.binding->insertItem(0, tr("Any"));
+  id.location->insertItem(0, tr("Any"));
+  id.originality->insertItem(0, tr("Any"));
+  id.condition->insertItem(0, tr("Any"));
+  id.location->setCurrentIndex(0);
+  id.edition->setCurrentIndex(0);
+  id.language->setCurrentIndex(0);
+  id.monetary_units->setCurrentIndex(0);
+  id.binding->setCurrentIndex(0);
+  id.originality->setCurrentIndex(0);
+  id.condition->setCurrentIndex(0);
+  id.accession_number->clear();
+  id.isbnAvailableCheckBox->setCheckable(false);
+  m_engWindowTitle = "Search";
+
+  if(field.isEmpty() && value.isEmpty())
+    {
+      QList<QAction *> actions = id.resetButton->menu()->actions();
+
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
+      actions.clear();
+      setWindowTitle(tr("BiblioteQ: Database Book Search"));
+      id.id->setFocus();
+      biblioteq_misc_functions::center(this, m_parentWid);
+      showNormal();
+      activateWindow();
+      raise();
+    }
+  else
+    {
+      if(field == "publisher")
+	id.publisher->setPlainText(value);
+      else if(field == "author")
+	id.author->setPlainText(value);
+      else if(field == "category")
+	id.category->setPlainText(value);
+      else if(field == "place")
+	id.place->setPlainText(value);
+      else if(field == "keyword")
+	id.keyword->setPlainText(value);
+
+      slotGo();
+    }
+}
+
+void biblioteq_book::slotCancel(void)
+{
+  close();
+}
+
+void biblioteq_book::slotConvertISBN10to13(void)
+{
+  QString numberstr = "";
+  QString str = "";
+  int arr[] = {1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3};
+  int check = 0;
+  int i = 0;
+  int total = 0;
+
+  str = "978" + id.id->text().trimmed().left(9);
+
+  for(i = 0; i < (int) (sizeof(arr) / sizeof(int)); i++)
+    if(i < str.length())
+      total += str[i].digitValue() * arr[i];
+    else
+      break;
+
+  check = 10 - (total % 10);
+
+  if(check == 10)
+    check = 0;
+
+  numberstr.setNum(check);
+  id.isbn13->setText(str + numberstr);
+}
+
+void biblioteq_book::slotConvertISBN13to10(void)
+{
+  if(!id.isbn13->text().trimmed().startsWith("978"))
+    return;
+
+  QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
+  QString z("");
+  int total = 0;
+
+  for(int i = 0; i < 9; i++)
+    if(i < isbnnum.length())
+      total += isbnnum[i].digitValue() * (10 - i);
+    else
+      break;
+
+  z = QString::number((11 - (total % 11)) % 11);
+
+  if(z == "10")
+    z = "X";
+
+  id.id->setText(isbnnum + z);
+}
+
 void biblioteq_book::slotGo(void)
 {
   QSqlQuery query(qmain->getDB());
@@ -1328,535 +1859,21 @@ void biblioteq_book::slotGo(void)
     }
 }
 
-void biblioteq_book::search(const QString &field, const QString &value)
+void biblioteq_book::slotPopulateCopiesEditor(void)
 {
-  id.attach_files->setVisible(false);
-  id.coverImages->setVisible(false);
-  id.delete_files->setVisible(false);
-  id.export_files->setVisible(false);
-  id.files->setVisible(false);
-  id.files_label->setVisible(false);
-  id.view_pdf->setVisible(false);
-  id.id->clear();
-  id.category->clear();
-  id.isbn13->clear();
-  id.author->clear();
-  id.lcnum->clear();
-  id.callnum->clear();
-  id.deweynum->clear();
-  id.title->clear();
-  id.publisher->clear();
-  id.place->clear();
-  id.description->clear();
-  id.marc_tags->clear();
-  id.keyword->clear();
-  id.copiesButton->setVisible(false);
-  id.showUserButton->setVisible(false);
-  id.sruQueryButton->setVisible(false);
-  id.z3950QueryButton->setVisible(false);
-  id.okButton->setText(tr("&Search"));
-  id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
-  id.publication_date->setDisplayFormat("yyyy");
-  id.publication_date_enabled->setVisible(true);
-  id.price->setMinimum(-0.01);
-  id.price->setValue(-0.01);
-  id.quantity->setMinimum(0);
-  id.quantity->setValue(0);
-  id.edition->insertItem(0, tr("Any"));
-  id.language->insertItem(0, tr("Any"));
-  id.monetary_units->insertItem(0, tr("Any"));
-  id.binding->insertItem(0, tr("Any"));
-  id.location->insertItem(0, tr("Any"));
-  id.originality->insertItem(0, tr("Any"));
-  id.condition->insertItem(0, tr("Any"));
-  id.location->setCurrentIndex(0);
-  id.edition->setCurrentIndex(0);
-  id.language->setCurrentIndex(0);
-  id.monetary_units->setCurrentIndex(0);
-  id.binding->setCurrentIndex(0);
-  id.originality->setCurrentIndex(0);
-  id.condition->setCurrentIndex(0);
-  id.accession_number->clear();
-  id.isbnAvailableCheckBox->setCheckable(false);
-  m_engWindowTitle = "Search";
+  biblioteq_copy_editor_book *copyeditor = 0;
 
-  if(field.isEmpty() && value.isEmpty())
-    {
-      QList<QAction *> actions = id.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-      setWindowTitle(tr("BiblioteQ: Database Book Search"));
-      id.id->setFocus();
-      biblioteq_misc_functions::center(this, m_parentWid);
-      showNormal();
-      activateWindow();
-      raise();
-    }
-  else
-    {
-      if(field == "publisher")
-	id.publisher->setPlainText(value);
-      else if(field == "author")
-	id.author->setPlainText(value);
-      else if(field == "category")
-	id.category->setPlainText(value);
-      else if(field == "place")
-	id.place->setPlainText(value);
-      else if(field == "keyword")
-	id.keyword->setPlainText(value);
-
-      slotGo();
-    }
-}
-
-void biblioteq_book::updateWindow(const int state)
-{
-  QString str = "";
-
-  if(state == biblioteq::EDITABLE)
-    {
-      id.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.copiesButton->setEnabled(true);
-      id.delete_files->setEnabled(true);
-      id.export_files->setEnabled(true);
-      id.showUserButton->setEnabled(true);
-      id.okButton->setVisible(true);
-      id.sruQueryButton->setVisible(true);
-      id.z3950QueryButton->setVisible(true);
-      id.resetButton->setVisible(true);
-      id.frontButton->setVisible(true);
-      id.backButton->setVisible(true);
-      id.dwnldFront->setVisible(true);
-      id.dwnldBack->setVisible(true);
-      id.isbn10to13->setVisible(true);
-      id.isbn13to10->setVisible(true);
-
-      if(!id.id->text().trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-	  id.id->text().trimmed() + tr(")");
-      else
-	str = tr("BiblioteQ: Modify Book Entry");
-
-      m_engWindowTitle = "Modify";
-    }
-  else
-    {
-      id.attach_files->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.isbnAvailableCheckBox->setCheckable(false);
-      id.copiesButton->setVisible(false);
-      id.delete_files->setVisible(false);
-      id.export_files->setEnabled(true);
-
-      if(qmain->isGuest())
-	id.showUserButton->setVisible(false);
-      else
-	id.showUserButton->setEnabled(true);
-
-      id.okButton->setVisible(false);
-      id.sruQueryButton->setVisible(false);
-      id.z3950QueryButton->setVisible(false);
-      id.resetButton->setVisible(false);
-      id.frontButton->setVisible(false);
-      id.backButton->setVisible(false);
-      id.dwnldFront->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.isbn10to13->setVisible(false);
-      id.isbn13to10->setVisible(false);
-
-      if(!id.id->text().trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: View Book Details (")) +
-	  id.id->text().trimmed() + tr(")");
-      else
-	str = tr("BiblioteQ: View Book Details");
-
-      m_engWindowTitle = "View";
-    }
-
-  id.coverImages->setVisible(true);
-  setReadOnlyFields(this, state != biblioteq::EDITABLE);
-  setWindowTitle(str);
-}
-
-void biblioteq_book::modify(const int state)
-{
-  QSqlQuery query(qmain->getDB());
-  QString fieldname = "";
-  QString str = "";
-  QVariant var;
-  int i = 0;
-
-  if(state == biblioteq::EDITABLE)
-    {
-      setReadOnlyFields(this, false);
-      setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
-      m_engWindowTitle = "Modify";
-      id.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.copiesButton->setEnabled(true);
-      id.delete_files->setEnabled(true);
-      id.export_files->setEnabled(true);
-      id.showUserButton->setEnabled(true);
-      id.okButton->setVisible(true);
-      id.sruQueryButton->setVisible(true);
-      id.z3950QueryButton->setVisible(true);
-      id.resetButton->setVisible(true);
-      id.frontButton->setVisible(true);
-      id.backButton->setVisible(true);
-      id.dwnldFront->setVisible(true);
-      id.dwnldBack->setVisible(true);
-      id.isbn10to13->setVisible(true);
-      id.isbn13to10->setVisible(true);
-      biblioteq_misc_functions::highlightWidget
-	(id.id, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.isbn13, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.title, QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.publisher->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.place->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.author->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.description->viewport(), QColor(255, 248, 220));
-      biblioteq_misc_functions::highlightWidget
-	(id.category->viewport(), QColor(255, 248, 220));
-      m_te_orig_pal = id.id->palette();
-    }
-  else
-    {
-      setReadOnlyFields(this, true);
-      id.isbnAvailableCheckBox->setCheckable(false);
-      setWindowTitle(tr("BiblioteQ: View Book Details"));
-      m_engWindowTitle = "View";
-      id.attach_files->setVisible(false);
-      id.view_pdf->setVisible(true);
-      id.copiesButton->setVisible(false);
-      id.delete_files->setVisible(false);
-      id.export_files->setVisible(true);
-
-      if(qmain->isGuest())
-	id.showUserButton->setVisible(false);
-      else
-	id.showUserButton->setEnabled(true);
-
-      id.okButton->setVisible(false);
-      id.sruQueryButton->setVisible(false);
-      id.z3950QueryButton->setVisible(false);
-      id.resetButton->setVisible(false);
-      id.frontButton->setVisible(false);
-      id.backButton->setVisible(false);
-      id.dwnldFront->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.isbn10to13->setVisible(false);
-      id.isbn13to10->setVisible(false);
-
-      QList<QAction *> actions = id.resetButton->menu()->actions();
-
-      if(actions.size() >= 2)
-	{
-	  actions[0]->setVisible(false);
-	  actions[1]->setVisible(false);
-	}
-
-      actions.clear();
-    }
-
-  id.quantity->setMinimum(1);
-  id.price->setMinimum(0.00);
-  id.okButton->setText(tr("&Save"));
-  str = m_oid;
-  query.prepare("SELECT title, "
-		"author, "
-		"publisher, pdate, place, edition, "
-		"category, language, id, "
-		"price, monetary_units, quantity, "
-		"binding_type, "
-		"location, "
-		"isbn13, "
-		"lccontrolnumber, "
-		"callnumber, "
-		"deweynumber, "
-		"description, "
-		"front_cover, "
-		"back_cover, "
-		"marc_tags, "
-		"keyword, "
-		"originality, "
-		"condition, "
-		"accession_number "
-		"FROM book WHERE myoid = ?");
-  query.bindValue(0, str);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec() || !query.next())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected book's data.")),
-	 query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical
-	(this, tr("BiblioteQ: Database Error"),
-	 tr("Unable to retrieve the selected book's data."));
-      close();
-      return;
-    }
-  else
-    {
-      QApplication::restoreOverrideCursor();
-      showNormal();
-      activateWindow();
-      raise();
-
-      QSqlRecord record(query.record());
-
-      for(i = 0; i < record.count(); i++)
-	{
-	  var = record.field(i).value();
-	  fieldname = record.fieldName(i);
-
-	  if(fieldname == "title")
-	    id.title->setText(var.toString());
-	  else if(fieldname == "author")
-	    id.author->setMultipleLinks("book_search", "author",
-					var.toString());
-	  else if(fieldname == "publisher")
-	    id.publisher->setMultipleLinks("book_search", "publisher",
-					   var.toString());
-	  else if(fieldname == "place")
-	    id.place->setMultipleLinks("book_search", "place",
-				       var.toString());
-	  else if(fieldname == "pdate")
-	    id.publication_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	  else if(fieldname == "edition")
-	    {
-	      if(id.edition->findText(var.toString()) > -1)
-		id.edition->setCurrentIndex
-		  (id.edition->findText(var.toString()));
-	      else
-		id.edition->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "price")
-	    id.price->setValue(var.toDouble());
-	  else if(fieldname == "category")
-	    id.category->setMultipleLinks("book_search", "category",
-					  var.toString());
-	  else if(fieldname == "language")
-	    {
-	      if(id.language->findText(var.toString()) > -1)
-		id.language->setCurrentIndex
-		  (id.language->findText(var.toString()));
-	      else
-		id.language->setCurrentIndex
-		  (id.language->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "quantity")
-	    id.quantity->setValue(var.toInt());
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(id.monetary_units->findText(var.toString()) > -1)
-		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText(var.toString()));
-	      else
-		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "binding_type")
-	    {
-	      if(id.binding->findText(var.toString()) > -1)
-		id.binding->setCurrentIndex
-		  (id.binding->findText(var.toString()));
-	      else
-		id.binding->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "location")
-	    {
-	      if(id.location->findText(var.toString()) > -1)
-		id.location->setCurrentIndex
-		  (id.location->findText(var.toString()));
-	      else
-		id.location->setCurrentIndex
-		  (id.location->findText(tr("UNKNOWN")));
-	    }
-	  else if(fieldname == "id")
-	    {
-	      if(state == biblioteq::EDITABLE)
-		{
-		  if(!var.toString().trimmed().isEmpty())
-		    str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-		      var.toString() + tr(")");
-		  else
-		    str = tr("BiblioteQ: Modify Book Entry");
-
-		  m_engWindowTitle = "Modify";
-		}
-	      else
-		{
-		  if(!var.toString().trimmed().isEmpty())
-		    str = QString(tr("BiblioteQ: View Book Details (")) +
-		      var.toString() + tr(")");
-		  else
-		    str = tr("BiblioteQ: View Book Details");
-
-		  m_engWindowTitle = "View";
-		}
-
-	      id.id->setText(var.toString());
-	      setWindowTitle(str);
-
-	      if(query.isNull(i))
-		id.isbnAvailableCheckBox->setChecked(false);
-	      else
-		id.isbnAvailableCheckBox->setChecked(true);
-	    }
-	  else if(fieldname == "description")
-	    id.description->setPlainText(var.toString());
-	  else if(fieldname == "marc_tags")
-	    id.marc_tags->setPlainText(var.toString());
-	  else if(fieldname == "keyword")
-	    id.keyword->setMultipleLinks("book_search", "keyword",
-					 var.toString());
-	  else if(fieldname == "isbn13")
-	    id.isbn13->setText(var.toString());
-	  else if(fieldname == "lccontrolnumber")
-	    id.lcnum->setText(var.toString());
-	  else if(fieldname == "callnumber")
-	    id.callnum->setText(var.toString());
-	  else if(fieldname == "deweynumber")
-	    id.deweynum->setText(var.toString());
-	  else if(fieldname == "originality")
-	    {
-	      if(id.originality->findText(var.toString()) > -1)
-		id.originality->setCurrentIndex
-		  (id.originality->findText(var.toString()));
-	      else
-		id.originality->setCurrentIndex(2);
-	    }
-	  else if(fieldname == "condition")
-	    {
-	      if(id.condition->findText(var.toString()) > -1)
-		id.condition->setCurrentIndex
-		  (id.condition->findText(var.toString()));
-	      else
-		id.condition->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  id.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(id.front_image->m_image.isNull())
-		    id.front_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  id.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(id.back_image->m_image.isNull())
-		    id.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    id.accession_number->setText(var.toString());
-	}
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	textfield->setCursorPosition(0);
-
-      storeData(this);
-
-      if(!m_duplicate)
-	populateFiles();
-    }
-
-  id.id->setFocus();
-  raise();
-}
-
-void biblioteq_book::insert(void)
-{
-  slotReset();
-  id.attach_files->setEnabled(false);
-  id.view_pdf->setEnabled(false);
-  id.id->clear();
-  id.isbn13->clear();
-  id.category->setPlainText("N/A");
-  id.author->setPlainText("N/A");
-  id.lcnum->clear();
-  id.callnum->clear();
-  id.deweynum->clear();
-  id.title->clear();
-  id.publisher->setPlainText("N/A");
-  id.place->setPlainText("N/A");
-  id.description->setPlainText("N/A");
-  id.marc_tags->clear();
-  id.keyword->clear();
-  id.copiesButton->setEnabled(false);
-  id.delete_files->setEnabled(false);
-  id.export_files->setEnabled(false);
-  id.sruQueryButton->setVisible(true);
-  id.z3950QueryButton->setVisible(true);
-  id.okButton->setText(tr("&Save"));
-  id.publication_date->setDate(QDate::fromString("01/01/2000",
-						 "MM/dd/yyyy"));
-  id.price->setMinimum(0.00);
-  id.price->setValue(0.00);
-  id.quantity->setMinimum(1);
-  id.quantity->setValue(1);
-  id.showUserButton->setEnabled(false);
-  id.location->setCurrentIndex(0);
-  id.edition->setCurrentIndex(0);
-  id.language->setCurrentIndex(0);
-  id.monetary_units->setCurrentIndex(0);
-  id.binding->setCurrentIndex(0);
-  id.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (id.id, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.isbn13, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.title, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.publisher->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.place->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.author->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.description->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget
-    (id.category->viewport(), QColor(255, 248, 220));
-  m_te_orig_pal = id.id->palette();
-  setWindowTitle(tr("BiblioteQ: Create Book Entry"));
-  m_engWindowTitle = "Create";
-  id.id->setFocus();
-  storeData(this);
-  showNormal();
-  activateWindow();
-  raise();
+  if((copyeditor = new(std::nothrow) biblioteq_copy_editor_book
+      (qobject_cast<QWidget *> (this),
+       qmain,
+       static_cast<biblioteq_item *> (this),
+       false,
+       id.quantity->value(),
+       m_oid,
+       id.quantity,
+       font(),
+       id.id->text().trimmed())) != 0)
+    copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_book::slotReset(void)
@@ -2132,120 +2149,6 @@ void biblioteq_book::slotReset(void)
     }
 }
 
-void biblioteq_book::slotConvertISBN10to13(void)
-{
-  QString numberstr = "";
-  QString str = "";
-  int arr[] = {1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3};
-  int check = 0;
-  int i = 0;
-  int total = 0;
-
-  str = "978" + id.id->text().trimmed().left(9);
-
-  for(i = 0; i < (int) (sizeof(arr) / sizeof(int)); i++)
-    if(i < str.length())
-      total += str[i].digitValue() * arr[i];
-    else
-      break;
-
-  check = 10 - (total % 10);
-
-  if(check == 10)
-    check = 0;
-
-  numberstr.setNum(check);
-  id.isbn13->setText(str + numberstr);
-}
-
-void biblioteq_book::slotConvertISBN13to10(void)
-{
-  if(!id.isbn13->text().trimmed().startsWith("978"))
-    return;
-
-  QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
-  QString z("");
-  int total = 0;
-
-  for(int i = 0; i < 9; i++)
-    if(i < isbnnum.length())
-      total += isbnnum[i].digitValue() * (10 - i);
-    else
-      break;
-
-  z = QString::number((11 - (total % 11)) % 11);
-
-  if(z == "10")
-    z = "X";
-
-  id.id->setText(isbnnum + z);
-}
-
-void biblioteq_book::closeEvent(QCloseEvent *e)
-{
-  if(m_engWindowTitle.contains("Create") ||
-     m_engWindowTitle.contains("Modify"))
-    if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
-
-	  return;
-	}
-
-  qmain->removeBook(this);
-}
-
-void biblioteq_book::slotCancel(void)
-{
-  close();
-}
-
-void biblioteq_book::slotPopulateCopiesEditor(void)
-{
-  biblioteq_copy_editor_book *copyeditor = 0;
-
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor_book
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       false,
-       id.quantity->value(),
-       m_oid,
-       id.quantity,
-       font(),
-       id.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
-}
-
-void biblioteq_book::slotShowUsers(void)
-{
-  biblioteq_borrowers_editor *borrowerseditor = 0;
-  int state = 0;
-
-  if(!id.okButton->isHidden())
-    state = biblioteq::EDITABLE;
-  else
-    state = biblioteq::VIEW_ONLY;
-
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       id.quantity->value(),
-       m_oid,
-       id.id->text().trimmed(),
-       font(),
-       "Book",
-       state)) != 0)
-    borrowerseditor->showUsers();
-}
-
 void biblioteq_book::slotSRUQuery(void)
 {
   if(m_sruManager->findChild<QNetworkReply *> ())
@@ -2396,6 +2299,103 @@ void biblioteq_book::slotSRUQuery(void)
       if(m_sruWorking)
 	m_sruWorking->deleteLater();
     }
+}
+
+void biblioteq_book::slotShowUsers(void)
+{
+  biblioteq_borrowers_editor *borrowerseditor = 0;
+  int state = 0;
+
+  if(!id.okButton->isHidden())
+    state = biblioteq::EDITABLE;
+  else
+    state = biblioteq::VIEW_ONLY;
+
+  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
+      (qobject_cast<QWidget *> (this),
+       qmain,
+       static_cast<biblioteq_item *> (this),
+       id.quantity->value(),
+       m_oid,
+       id.id->text().trimmed(),
+       font(),
+       "Book",
+       state)) != 0)
+    borrowerseditor->showUsers();
+}
+
+void biblioteq_book::updateWindow(const int state)
+{
+  QString str = "";
+
+  if(state == biblioteq::EDITABLE)
+    {
+      id.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
+      id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.export_files->setEnabled(true);
+      id.showUserButton->setEnabled(true);
+      id.okButton->setVisible(true);
+      id.sruQueryButton->setVisible(true);
+      id.z3950QueryButton->setVisible(true);
+      id.resetButton->setVisible(true);
+      id.frontButton->setVisible(true);
+      id.backButton->setVisible(true);
+      id.dwnldFront->setVisible(true);
+      id.dwnldBack->setVisible(true);
+      id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
+
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+	  id.id->text().trimmed() + tr(")");
+      else
+	str = tr("BiblioteQ: Modify Book Entry");
+
+      m_engWindowTitle = "Modify";
+    }
+  else
+    {
+      id.attach_files->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
+      id.isbnAvailableCheckBox->setCheckable(false);
+      id.copiesButton->setVisible(false);
+      id.delete_files->setVisible(false);
+      id.export_files->setEnabled(true);
+
+      if(qmain->isGuest())
+	id.showUserButton->setVisible(false);
+      else
+	id.showUserButton->setEnabled(true);
+
+      id.okButton->setVisible(false);
+      id.sruQueryButton->setVisible(false);
+      id.z3950QueryButton->setVisible(false);
+      id.resetButton->setVisible(false);
+      id.frontButton->setVisible(false);
+      id.backButton->setVisible(false);
+      id.dwnldFront->setVisible(false);
+      id.dwnldBack->setVisible(false);
+      id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
+
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: View Book Details (")) +
+	  id.id->text().trimmed() + tr(")");
+      else
+	str = tr("BiblioteQ: View Book Details");
+
+      m_engWindowTitle = "View";
+    }
+
+  id.coverImages->setVisible(true);
+  setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setWindowTitle(str);
 }
 
 void biblioteq_book::slotZ3950Query(void)
