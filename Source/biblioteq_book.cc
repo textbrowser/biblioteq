@@ -462,6 +462,40 @@ biblioteq_book::~biblioteq_book()
 {
 }
 
+biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
+(const QString &downloadType)
+{
+  biblioteq_item_working_dialog *dialog = 0;
+
+  if((dialog = new(std::nothrow)
+      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  dialog->resize(dialog->sizeHint());
+  dialog->setLabelText(tr("Downloading..."));
+  dialog->setMaximum(0);
+  dialog->setMinimum(0);
+  dialog->setModal(true);
+
+  if(downloadType.contains("back"))
+    dialog->setWindowTitle(tr("BiblioteQ: Back Cover Image Download"));
+  else
+    dialog->setWindowTitle(tr("BiblioteQ: Front Cover Image Download"));
+
+  dialog->show();
+  dialog->update();
+  dialog->repaint();
+  connect(dialog, SIGNAL(canceled(void)), dialog,
+	  SLOT(deleteLater(void)));
+  connect(dialog, SIGNAL(rejected(void)), dialog,
+	  SLOT(deleteLater(void)));
+  connect(dialog, SIGNAL(canceled(void)), this,
+	  SLOT(slotCancelImageDownload(void)));
+  connect(dialog, SIGNAL(rejected(void)), this,
+	  SLOT(slotCancelImageDownload(void)));
+  return dialog;
+}
+
 void biblioteq_book::closeEvent(QCloseEvent *e)
 {
   if(m_engWindowTitle.contains("Create") ||
@@ -480,6 +514,31 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeBook(this);
+}
+
+void biblioteq_book::createSRUDialog(void)
+{
+  if(m_sruWorking)
+    m_sruWorking->deleteLater();
+
+  if((m_sruWorking = new(std::nothrow)
+      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  m_sruWorking->resize(m_sruWorking->sizeHint());
+  m_sruWorking->setLabelText(tr("Downloading..."));
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->setModal(true);
+  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+  connect(m_sruWorking,
+	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
+  connect(m_sruWorking,
+	  SIGNAL(rejected(void)),
+	  this,
+	  SLOT(slotSRUCanceled(void)));
 }
 
 void biblioteq_book::downloadFinished(void)
@@ -2485,6 +2544,16 @@ void biblioteq_book::slotReset(void)
     }
 }
 
+void biblioteq_book::slotSRUCanceled(void)
+{
+  QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
+
+  if(reply)
+    reply->deleteLater();
+
+  m_sruResults.clear();
+}
+
 void biblioteq_book::slotSRUQuery(void)
 {
   if(m_sruManager->findChild<QNetworkReply *> ())
@@ -3901,73 +3970,4 @@ void biblioteq_book::slotPublicationDateEnabled(bool state)
 
   if(!state)
     id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
-}
-
-void biblioteq_book::slotSRUCanceled(void)
-{
-  QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
-
-  if(reply)
-    reply->deleteLater();
-
-  m_sruResults.clear();
-}
-
-void biblioteq_book::createSRUDialog(void)
-{
-  if(m_sruWorking)
-    m_sruWorking->deleteLater();
-
-  if((m_sruWorking = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  m_sruWorking->resize(m_sruWorking->sizeHint());
-  m_sruWorking->setLabelText(tr("Downloading..."));
-  m_sruWorking->setMaximum(0);
-  m_sruWorking->setMinimum(0);
-  m_sruWorking->setModal(true);
-  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  connect(m_sruWorking,
-	  SIGNAL(canceled(void)),
-	  this,
-	  SLOT(slotSRUCanceled(void)));
-  connect(m_sruWorking,
-	  SIGNAL(rejected(void)),
-	  this,
-	  SLOT(slotSRUCanceled(void)));
-}
-
-biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
-(const QString &downloadType)
-{
-  biblioteq_item_working_dialog *dialog = 0;
-
-  if((dialog = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  dialog->resize(dialog->sizeHint());
-  dialog->setLabelText(tr("Downloading..."));
-  dialog->setMaximum(0);
-  dialog->setMinimum(0);
-  dialog->setModal(true);
-
-  if(downloadType.contains("back"))
-    dialog->setWindowTitle(tr("BiblioteQ: Back Cover Image Download"));
-  else
-    dialog->setWindowTitle(tr("BiblioteQ: Front Cover Image Download"));
-
-  dialog->show();
-  dialog->update();
-  dialog->repaint();
-  connect(dialog, SIGNAL(canceled(void)), dialog,
-	  SLOT(deleteLater(void)));
-  connect(dialog, SIGNAL(rejected(void)), dialog,
-	  SLOT(deleteLater(void)));
-  connect(dialog, SIGNAL(canceled(void)), this,
-	  SLOT(slotCancelImageDownload(void)));
-  connect(dialog, SIGNAL(rejected(void)), this,
-	  SLOT(slotCancelImageDownload(void)));
-  return dialog;
 }
