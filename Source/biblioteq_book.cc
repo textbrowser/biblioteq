@@ -1319,6 +1319,162 @@ void biblioteq_book::slotDownloadImage(void)
 #endif
 }
 
+void biblioteq_book::slotExportFiles(void)
+{
+  QModelIndexList list(id.files->selectionModel()->
+		       selectedRows(id.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Book File Export"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      QProgressDialog progress(this);
+
+      progress.setLabelText(tr("Exporting file(s)..."));
+      progress.setMaximum(list.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+      progress.repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
+      int i = -1;
+
+      while(i++, !list.isEmpty() && !progress.wasCanceled())
+	{
+	  QSqlQuery query(qmain->getDB());
+
+	  query.prepare("SELECT file, file_name FROM book_files "
+			"WHERE item_oid = ? AND myoid = ?");
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, list.takeFirst().data());
+
+	  if(query.exec() && query.next())
+	    {
+	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
+			 query.value(1).toString());
+
+	      if(file.open(QIODevice::WriteOnly))
+		file.write(qUncompress(query.value(0).toByteArray()));
+
+	      file.flush();
+	      file.close();
+	    }
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+	  progress.repaint();
+#ifndef Q_OS_MAC
+	  QApplication::processEvents();
+#endif
+	}
+    }
+}
+
+void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
+{
+  if(!item)
+    return;
+
+  if(item->column() != 3 || m_engWindowTitle != "Modify")
+    {
+      QTableWidgetItem *item1 = id.files->item(item->row(), 0); // File
+
+      if(!item1)
+	return;
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      if(item1->text().toLower().trimmed().endsWith(".pdf"))
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	  QByteArray data;
+	  QSqlQuery query(qmain->getDB());
+
+	  query.prepare("SELECT file, file_name FROM book_files "
+			"WHERE item_oid = ? AND myoid = ?");
+	  query.addBindValue(m_oid);
+	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
+
+	  if(query.exec() && query.next())
+	    data = qUncompress(query.value(0).toByteArray());
+
+	  if(!data.isEmpty())
+	    {
+	      biblioteq_pdfreader *reader =
+		new(std::nothrow) biblioteq_pdfreader(this);
+
+	      if(reader)
+		{
+		  reader->load(data, item1->text());
+		  biblioteq_misc_functions::center(reader, this);
+		  reader->show();
+		}
+	    }
+
+	  QApplication::restoreOverrideCursor();
+	}
+#endif
+
+      return;
+    }
+
+  if(m_engWindowTitle != "Modify")
+    return;
+
+  QTableWidgetItem *item1 = id.files->item(item->row(), 3); // Description
+
+  if(!item1)
+    return;
+
+  QString description(item1->text());
+  QTableWidgetItem *item2 =
+    id.files->item(item->row(), id.files->columnCount() - 1); // myoid
+
+  if(!item2)
+    return;
+
+  bool ok = true;
+  QString text
+    (QInputDialog::getText(this,
+			   tr("BiblioteQ: File Description"),
+			   tr("Description"), QLineEdit::Normal,
+			   description, &ok).trimmed());
+
+  if(!ok)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
+
+  query.prepare("UPDATE book_files SET description = ? "
+		"WHERE item_oid = ? AND myoid = ?");
+  query.bindValue(0, text);
+  query.bindValue(1, m_oid);
+  query.bindValue(2, myoid);
+
+  if(query.exec())
+    item1->setText(text);
+}
+
 void biblioteq_book::slotGo(void)
 {
   QSqlQuery query(qmain->getDB());
@@ -2260,6 +2416,67 @@ void biblioteq_book::slotPrint(void)
   print(this);
 }
 
+void biblioteq_book::slotPrintAuthorTitleDewey(void)
+{
+  QString html("");
+
+  html += "<html>";
+  html += id.author->toPlainText().trimmed() + "<br>";
+  html += id.title->text().trimmed() + "<br>";
+  html += id.deweynum->text().trimmed();
+  html += "</html>";
+
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+  QTextDocument document;
+
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setPageSize(QPrinter::Letter);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
+}
+
+void biblioteq_book::slotPrintCallDewey(void)
+{
+  QString html("");
+  QStringList list
+    ((id.callnum->text().trimmed() + " " +
+      id.deweynum->text().trimmed()).split(QRegExp("\\W+"),
+					   QString::SkipEmptyParts));
+
+  html += "<html>";
+
+  for(int i = 0; i < list.size(); i++)
+    html += list.at(i) + "<br>";
+
+  html += "</html>";
+
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+  QTextDocument document;
+
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setPageSize(QPrinter::Letter);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
+}
+
+void biblioteq_book::slotPublicationDateEnabled(bool state)
+{
+  id.publication_date->setEnabled(state);
+
+  if(!state)
+    id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+}
+
 void biblioteq_book::slotReadyRead(void)
 {
   if(!m_imageBuffer.isOpen())
@@ -2765,6 +2982,37 @@ void biblioteq_book::slotSelectImage(void)
 	    (id.back_image->scene()->itemsBoundingRect());
 	}
     }
+}
+
+void biblioteq_book::slotShowPDF(void)
+{
+  QModelIndexList list(id.files->selectionModel()->
+		       selectedRows(id.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
+
+  if(!reader)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QByteArray data;
+  QSqlQuery query(qmain->getDB());
+
+  query.prepare("SELECT file, file_name FROM book_files "
+		"WHERE item_oid = ? AND myoid = ?");
+  query.bindValue(0, m_oid);
+  query.bindValue(1, list.takeFirst().data());
+
+  if(query.exec() && query.next())
+    data = qUncompress(query.value(0).toByteArray());
+
+  reader->load(data, query.value(1).toString());
+  reader->show();
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_book::slotShowUsers(void)
@@ -3722,252 +3970,4 @@ void biblioteq_book::slotDeleteFiles(void)
 
   QApplication::restoreOverrideCursor();
   populateFiles();
-}
-
-void biblioteq_book::slotExportFiles(void)
-{
-  QModelIndexList list(id.files->selectionModel()->
-		       selectedRows(id.files->columnCount() - 1)); // myoid
-
-  if(list.isEmpty())
-    return;
-
-  QFileDialog dialog(this);
-
-  dialog.setFileMode(QFileDialog::Directory);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Book File Export"));
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
-    {
-      repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      QProgressDialog progress(this);
-
-      progress.setLabelText(tr("Exporting file(s)..."));
-      progress.setMaximum(list.size());
-      progress.setMinimum(0);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-      progress.show();
-      progress.repaint();
-#ifndef Q_OS_MAC
-      QApplication::processEvents();
-#endif
-
-      int i = -1;
-
-      while(i++, !list.isEmpty() && !progress.wasCanceled())
-	{
-	  QSqlQuery query(qmain->getDB());
-
-	  query.prepare("SELECT file, file_name FROM book_files "
-			"WHERE item_oid = ? AND myoid = ?");
-	  query.bindValue(0, m_oid);
-	  query.bindValue(1, list.takeFirst().data());
-
-	  if(query.exec() && query.next())
-	    {
-	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
-			 query.value(1).toString());
-
-	      if(file.open(QIODevice::WriteOnly))
-		file.write(qUncompress(query.value(0).toByteArray()));
-
-	      file.flush();
-	      file.close();
-	    }
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
-	  progress.repaint();
-#ifndef Q_OS_MAC
-	  QApplication::processEvents();
-#endif
-	}
-    }
-}
-
-void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
-{
-  if(!item)
-    return;
-
-  if(item->column() != 3 || m_engWindowTitle != "Modify")
-    {
-      QTableWidgetItem *item1 = id.files->item(item->row(), 0); // File
-
-      if(!item1)
-	return;
-
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      if(item1->text().toLower().trimmed().endsWith(".pdf"))
-	{
-	  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-	  QByteArray data;
-	  QSqlQuery query(qmain->getDB());
-
-	  query.prepare("SELECT file, file_name FROM book_files "
-			"WHERE item_oid = ? AND myoid = ?");
-	  query.addBindValue(m_oid);
-	  query.addBindValue(item1->data(Qt::UserRole).toLongLong());
-
-	  if(query.exec() && query.next())
-	    data = qUncompress(query.value(0).toByteArray());
-
-	  if(!data.isEmpty())
-	    {
-	      biblioteq_pdfreader *reader =
-		new(std::nothrow) biblioteq_pdfreader(this);
-
-	      if(reader)
-		{
-		  reader->load(data, item1->text());
-		  biblioteq_misc_functions::center(reader, this);
-		  reader->show();
-		}
-	    }
-
-	  QApplication::restoreOverrideCursor();
-	}
-#endif
-
-      return;
-    }
-
-  if(m_engWindowTitle != "Modify")
-    return;
-
-  QTableWidgetItem *item1 = id.files->item(item->row(), 3); // Description
-
-  if(!item1)
-    return;
-
-  QString description(item1->text());
-  QTableWidgetItem *item2 =
-    id.files->item(item->row(), id.files->columnCount() - 1); // myoid
-
-  if(!item2)
-    return;
-
-  bool ok = true;
-  QString text
-    (QInputDialog::getText(this,
-			   tr("BiblioteQ: File Description"),
-			   tr("Description"), QLineEdit::Normal,
-			   description, &ok).trimmed());
-
-  if(!ok)
-    return;
-
-  QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
-
-  query.prepare("UPDATE book_files SET description = ? "
-		"WHERE item_oid = ? AND myoid = ?");
-  query.bindValue(0, text);
-  query.bindValue(1, m_oid);
-  query.bindValue(2, myoid);
-
-  if(query.exec())
-    item1->setText(text);
-}
-
-void biblioteq_book::slotPrintAuthorTitleDewey(void)
-{
-  QString html("");
-
-  html += "<html>";
-  html += id.author->toPlainText().trimmed() + "<br>";
-  html += id.title->text().trimmed() + "<br>";
-  html += id.deweynum->text().trimmed();
-  html += "</html>";
-
-  QPrinter printer;
-  QPrintDialog dialog(&printer, this);
-  QTextDocument document;
-
-  printer.setColorMode(QPrinter::GrayScale);
-  printer.setPageSize(QPrinter::Letter);
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      document.setHtml(html);
-      document.print(&printer);
-    }
-}
-
-void biblioteq_book::slotPrintCallDewey(void)
-{
-  QString html("");
-  QStringList list
-    ((id.callnum->text().trimmed() + " " +
-      id.deweynum->text().trimmed()).split(QRegExp("\\W+"),
-					   QString::SkipEmptyParts));
-
-  html += "<html>";
-
-  for(int i = 0; i < list.size(); i++)
-    html += list.at(i) + "<br>";
-
-  html += "</html>";
-
-  QPrinter printer;
-  QPrintDialog dialog(&printer, this);
-  QTextDocument document;
-
-  printer.setColorMode(QPrinter::GrayScale);
-  printer.setPageSize(QPrinter::Letter);
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      document.setHtml(html);
-      document.print(&printer);
-    }
-}
-
-void biblioteq_book::slotShowPDF(void)
-{
-  QModelIndexList list(id.files->selectionModel()->
-		       selectedRows(id.files->columnCount() - 1)); // myoid
-
-  if(list.isEmpty())
-    return;
-
-  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
-
-  if(!reader)
-    return;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QByteArray data;
-  QSqlQuery query(qmain->getDB());
-
-  query.prepare("SELECT file, file_name FROM book_files "
-		"WHERE item_oid = ? AND myoid = ?");
-  query.bindValue(0, m_oid);
-  query.bindValue(1, list.takeFirst().data());
-
-  if(query.exec() && query.next())
-    data = qUncompress(query.value(0).toByteArray());
-
-  reader->load(data, query.value(1).toString());
-  reader->show();
-  QApplication::restoreOverrideCursor();
-}
-
-void biblioteq_book::slotPublicationDateEnabled(bool state)
-{
-  id.publication_date->setEnabled(state);
-
-  if(!state)
-    id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
