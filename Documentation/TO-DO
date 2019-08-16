@@ -408,7 +408,7 @@
 225. Query Open Library for journals/magazines cover images. (TBD)
 226. Improve performance of Custom Query's refresh. Not a problem. (Done)
 227. Query Open Library. (TBD)
-228. Format changes (sort methods):
+228. Format changes (sort members and methods):
      	_a (Done)
 	_b (Done)
 	_book (Done)

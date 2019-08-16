@@ -1,24 +1,12 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_borrowers_editor.h"
+#include "biblioteq_copy_editor.h"
+#include "biblioteq_videogame.h"
 
 #include <QFileDialog>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
-
-/*
-** Includes video game-specific methods.
-*/
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_borrowers_editor.h"
-#include "biblioteq_copy_editor.h"
-#include "biblioteq_videogame.h"
 
 biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 					 const QString &oidArg,

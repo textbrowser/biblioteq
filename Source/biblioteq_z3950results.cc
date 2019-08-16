@@ -1,7 +1,3 @@
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_magazine.h"
 #include "biblioteq_z3950results.h"
 

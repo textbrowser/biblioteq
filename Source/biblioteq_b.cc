@@ -1,6 +1,7 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_graphicsitempixmap.h"
+#include "biblioteq_otheroptions.h"
+#include "ui_biblioteq_generalmessagediag.h"
 
 #include <QDir>
 #include <QScrollBar>
@@ -8,21 +9,6 @@
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>
-
-/*
-** -- C++ Includes --
-*/
-
-#include <limits>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_graphicsitempixmap.h"
-#include "biblioteq_otheroptions.h"
-#include "ui_biblioteq_generalmessagediag.h"
 
 QString biblioteq::homePath(void)
 {
