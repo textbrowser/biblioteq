@@ -2,20 +2,10 @@
 ** Jason Perry.
 */
 
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_callnum_table_item.h"
 
 #include <QDebug>
-#include <QRegExp>
-#include <QString>
 #include <QTableWidgetItem>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_callnum_table_item.h"
 
 #undef BIBLIOTEQ_CALLNUM_DEBUG
 

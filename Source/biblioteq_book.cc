@@ -1,6 +1,10 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_book.h"
+#include "biblioteq_borrowers_editor.h"
+#include "biblioteq_copy_editor_book.h"
+#include "biblioteq_filesize_table_item.h"
+#include "biblioteq_marc.h"
+#include "biblioteq_pdfreader.h"
 
 #include <QAuthenticator>
 #include <QCryptographicHash>
@@ -12,22 +16,6 @@
 #include <QSqlRecord>
 #include <QTimer>
 #include <QXmlStreamReader>
-
-/*
-** Includes book-specific methods.
-*/
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_book.h"
-#include "biblioteq_borrowers_editor.h"
-#include "biblioteq_copy_editor_book.h"
-#include "biblioteq_filesize_table_item.h"
-#include "biblioteq_marc.h"
-#include "biblioteq_pdfreader.h"
 
 biblioteq_book::biblioteq_book(biblioteq *parentArg,
 			       const QString &oidArg,

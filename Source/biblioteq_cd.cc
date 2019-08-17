@@ -1,25 +1,13 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_borrowers_editor.h"
+#include "biblioteq_cd.h"
+#include "biblioteq_copy_editor.h"
 
 #include <QFileDialog>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
-
-/*
-** Includes cd-specific methods.
-*/
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_borrowers_editor.h"
-#include "biblioteq_cd.h"
-#include "biblioteq_copy_editor.h"
 
 biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QString &oidArg,

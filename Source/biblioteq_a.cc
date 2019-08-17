@@ -26,23 +26,16 @@
 */
 
 #include <QClipboard>
-#include <QDesktopWidget>
 #include <QFileDialog>
 #include <QFontDialog>
-#include <QLibraryInfo>
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
 #include <QMacStyle>
 #endif
 #endif
-#include <QPointer>
 #include <QScrollBar>
 #include <QSettings>
-#include <QSqlDriver>
-#include <QSqlField>
-#include <QSqlRecord>
 #include <QTranslator>
-#include <QtDebug>
 
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000

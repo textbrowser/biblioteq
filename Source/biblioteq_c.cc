@@ -1,27 +1,15 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_copy_editor.h"
+#include "biblioteq_graphicsitempixmap.h"
+#include "biblioteq_otheroptions.h"
+#include "biblioteq_pdfreader.h"
 
 #include <QFileDialog>
-#include <QSettings>
 #include <QScrollBar>
+#include <QSettings>
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>
-
-#include <limits>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_book.h"
-#include "biblioteq_copy_editor.h"
-#include "biblioteq_graphicsitempixmap.h"
-#include "biblioteq_grey_literature.h"
-#include "biblioteq_otheroptions.h"
-#include "biblioteq_pdfreader.h"
 
 QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
 {
