@@ -3,6 +3,7 @@
 
 #include <QDropEvent>
 #include <QMimeData>
+#include <QUrl>
 
 biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   QGraphicsView(parent)

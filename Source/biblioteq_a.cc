@@ -36,6 +36,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QTranslator>
+#include <QtDebug>
 
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000

@@ -1,6 +1,7 @@
 #ifndef _BIBLIOTEQ_GENERIC_THREAD_H_
 #define _BIBLIOTEQ_GENERIC_THREAD_H_
 
+#include <QStringList>
 #include <QThread>
 
 class biblioteq;
