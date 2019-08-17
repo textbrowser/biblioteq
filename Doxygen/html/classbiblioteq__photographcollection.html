@@ -60,7 +60,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classbiblioteq__photographcollection-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">biblioteq_photographcollection Class Reference</div>  </div>
@@ -85,9 +84,9 @@ Collaboration diagram for biblioteq_photographcollection:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac498eab395a4366771c61796925de6c9"><td class="memItemLeft" align="right" valign="top"><a id="ac498eab395a4366771c61796925de6c9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>biblioteq_photographcollection</b> (QMainWindow *parentArg, const QString &amp;oidArg, const int rowArg)</td></tr>
-<tr class="separator:ac498eab395a4366771c61796925de6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72292d4269a5c2124aa063775e44f639"><td class="memItemLeft" align="right" valign="top"><a id="a72292d4269a5c2124aa063775e44f639"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>biblioteq_photographcollection</b> (<a class="el" href="classbiblioteq.html">biblioteq</a> *parentArg, const QString &amp;oidArg, const int rowArg)</td></tr>
+<tr class="separator:a72292d4269a5c2124aa063775e44f639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a127c663fb85821551cb1fa0a7a14f63e"><td class="memItemLeft" align="right" valign="top"><a id="a127c663fb85821551cb1fa0a7a14f63e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>duplicate</b> (const QString &amp;p_oid, const int state)</td></tr>
 <tr class="separator:a127c663fb85821551cb1fa0a7a14f63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,12 +128,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateFont</b> (const
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updateRow</b> (const int rowArg)</td></tr>
 <tr class="separator:a17b0313788c92a30a5bcd866c1266c54 inherit pub_methods_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9f78f0440562ccbaee24216d49c6e975"><td class="memItemLeft" align="right" valign="top"><a id="a9f78f0440562ccbaee24216d49c6e975"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>photographsPerPage</b> (void)</td></tr>
-<tr class="separator:a9f78f0440562ccbaee24216d49c6e975"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classbiblioteq__item"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classbiblioteq__item')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classbiblioteq__item.html">biblioteq_item</a></td></tr>
@@ -144,6 +137,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasDataChanged</b> (Q
 <tr class="memitem:a378140b7c2184e0efc743aa090780d5b inherit pro_methods_classbiblioteq__item"><td class="memItemLeft" align="right" valign="top"><a id="a378140b7c2184e0efc743aa090780d5b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (QWidget *parent)</td></tr>
 <tr class="separator:a378140b7c2184e0efc743aa090780d5b inherit pro_methods_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e6ae1f790f85d2d5f74f1710f154d4 inherit pro_methods_classbiblioteq__item"><td class="memItemLeft" align="right" valign="top"><a id="ac5e6ae1f790f85d2d5f74f1710f154d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setQMain</b> (QMainWindow *window)</td></tr>
+<tr class="separator:ac5e6ae1f790f85d2d5f74f1710f154d4 inherit pro_methods_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0acfe993fbdcd40a03565510a5196d1a inherit pro_methods_classbiblioteq__item"><td class="memItemLeft" align="right" valign="top"><a id="a0acfe993fbdcd40a03565510a5196d1a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setReadOnlyFields</b> (QMainWindow *window, const bool state)</td></tr>
 <tr class="separator:a0acfe993fbdcd40a03565510a5196d1a inherit pro_methods_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +162,9 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_html</b></td></t
 <tr class="memitem:a154463dc3fe45fe19b055e4361ee3f78 inherit pro_attribs_classbiblioteq__item"><td class="memItemLeft" align="right" valign="top"><a id="a154463dc3fe45fe19b055e4361ee3f78"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_oid</b></td></tr>
 <tr class="separator:a154463dc3fe45fe19b055e4361ee3f78 inherit pro_attribs_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac4e1af61fdce1810ae41eada07e88e4 inherit pro_attribs_classbiblioteq__item"><td class="memItemLeft" align="right" valign="top"><a id="aac4e1af61fdce1810ae41eada07e88e4"></a>
+<a class="el" href="classbiblioteq.html">biblioteq</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>qmain</b></td></tr>
+<tr class="separator:aac4e1af61fdce1810ae41eada07e88e4 inherit pro_attribs_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7e4923f4e6c809f3480dcf3583a00e1 inherit pro_attribs_classbiblioteq__item"><td class="memItemLeft" align="right" valign="top"><a id="ae7e4923f4e6c809f3480dcf3583a00e1"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isQueryEnabled</b></td></tr>
 <tr class="separator:ae7e4923f4e6c809f3480dcf3583a00e1 inherit pro_attribs_classbiblioteq__item"><td class="memSeparator" colspan="2">&#160;</td></tr>

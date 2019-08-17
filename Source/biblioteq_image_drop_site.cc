@@ -1,18 +1,8 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_image_drop_site.h"
+#include "biblioteq_misc_functions.h"
 
 #include <QDropEvent>
 #include <QMimeData>
-#include <QUrl>
-#include <QtDebug>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_image_drop_site.h"
-#include "biblioteq_misc_functions.h"
 
 biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   QGraphicsView(parent)

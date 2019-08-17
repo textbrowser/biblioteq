@@ -419,7 +419,7 @@
         _magazine (Done)
      	_misc_functions (Done)
 229. Review all included files and remove extraneous instances:
-     	*.cc (TBD)
+     	*.cc (Done)
 	*.h (Done)
 230. Remove qmain singleton. (Done)
 231. Review and remove Q_UNUSED. (Done)

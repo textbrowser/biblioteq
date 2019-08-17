@@ -1,7 +1,3 @@
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq.h"
 #include "biblioteq_hyperlinked_text_edit.h"
 
