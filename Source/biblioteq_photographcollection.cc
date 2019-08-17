@@ -78,6 +78,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
 				  photographsPerPage() / 5 * 200 + 15);
 
   pc.thumbnail_item->setReadOnly(true);
+  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_A),
+			      this,
+			      SLOT(slotSelectAll(void)));
   new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 			      this,
 			      SLOT(slotGo(void)));
@@ -2288,6 +2291,17 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 	  }
     }
 
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_photographcollection::slotSelectAll(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QPainterPath painterPath;
+
+  painterPath.addRect(pc.graphicsView->sceneRect());
+  pc.graphicsView->scene()->setSelectionArea(painterPath, QTransform());
   QApplication::restoreOverrideCursor();
 }
 
