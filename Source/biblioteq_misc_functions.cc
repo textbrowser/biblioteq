@@ -1,20 +1,9 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_misc_functions.h"
 
 #include <QDate>
 #include <QDir>
 #include <QProgressDialog>
-#include <QSqlField>
-#include <QSqlIndex>
-#include <QtDebug>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_misc_functions.h"
 
 QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QString &which,

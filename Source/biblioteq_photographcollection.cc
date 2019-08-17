@@ -1,6 +1,8 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_bgraphicsscene.h"
+#include "biblioteq_graphicsitempixmap.h"
+#include "biblioteq_photographcollection.h"
+#include "ui_biblioteq_photographview.h"
 
 #include <QFileDialog>
 #include <QScrollBar>
@@ -9,20 +11,6 @@
 #include <QSqlRecord>
 #include <QUuid>
 #include <QtCore/qmath.h>
-
-/*
-** Includes photograph collection-specific methods.
-*/
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_bgraphicsscene.h"
-#include "biblioteq_graphicsitempixmap.h"
-#include "biblioteq_photographcollection.h"
-#include "ui_biblioteq_photographview.h"
 
 biblioteq_photographcollection::biblioteq_photographcollection
 (biblioteq *parentArg,
@@ -206,8 +194,6 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
 biblioteq_photographcollection::~biblioteq_photographcollection()
 {
-  while(!m_removedItems.isEmpty())
-    delete m_removedItems.takeFirst();
 }
 
 bool biblioteq_photographcollection::verifyItemFields(void)
@@ -758,9 +744,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
   QApplication::processEvents();
 #endif
 
-  while(!m_removedItems.isEmpty())
-    delete m_removedItems.takeFirst();
-
   QSqlQuery query(qmain->getDB());
 
   if(qmain->getDB().driverName() == "QSQLITE")
@@ -998,8 +981,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 	  if(query.exec())
 	    {
-	      m_removedItems.append(item);
 	      pc.graphicsView->scene()->removeItem(item);
+	      delete item;
 	    }
 	}
     }
@@ -2534,13 +2517,15 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 
   if(item)
     {
+      item->setSelected(true);
+
       QAction *action = 0;
       QMenu menu(this);
 
-      item->setSelected(true);
       action = menu.addAction(tr("&Delete Photograph"),
 			      this,
 			      SLOT(slotDeleteItem(void)));
+      action->setData(pos);
 
       if(m_engWindowTitle != "Modify")
 	action->setEnabled(false);
@@ -2548,6 +2533,7 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       action = menu.addAction(tr("&Modify Photograph..."),
 			      this,
 			      SLOT(slotModifyItem(void)));
+      action->setData(pos);
 
       if(m_engWindowTitle != "Modify")
 	action->setEnabled(false);
@@ -2555,13 +2541,8 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       action = menu.addAction(tr("&View Photograph..."),
 			      this,
 			      SLOT(slotViewPhotograph(void)));
-
-      if(action)
-	{
-	  action->setData(pos);
-	  menu.exec(QCursor::pos());
-	  item->setSelected(true);
-	}
+      action->setData(pos);
+      menu.exec(QCursor::pos());
     }
 }
 

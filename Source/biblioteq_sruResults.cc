@@ -1,15 +1,7 @@
-/*
-** -- Qt Includes --
-*/
-
-#include <QXmlStreamReader>
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_magazine.h"
 #include "biblioteq_sruResults.h"
+
+#include <QXmlStreamReader>
 
 biblioteq_sruresults::biblioteq_sruresults
 (QWidget *parent,

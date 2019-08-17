@@ -1,4 +1,3 @@
-#include "biblioteq.h"
 #include "biblioteq_myqstring.h"
 
 biblioteq_myqstring::biblioteq_myqstring(const QString &str):QString(str)

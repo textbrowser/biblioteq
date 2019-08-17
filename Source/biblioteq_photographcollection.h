@@ -30,7 +30,6 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 
  private:
   QDialog *m_photo_diag;
-  QList<QGraphicsItem *> m_removedItems;
   QString m_engWindowTitle;
   QString m_itemOid;
   Ui_pcDialog pc;

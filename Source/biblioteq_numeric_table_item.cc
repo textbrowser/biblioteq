@@ -1,7 +1,3 @@
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_numeric_table_item.h"
 
 biblioteq_numeric_table_item::biblioteq_numeric_table_item

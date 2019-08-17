@@ -1,21 +1,11 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_hyperlinked_text_edit.h"
+#include "biblioteq_image_drop_site.h"
+#include "biblioteq_item.h"
 
 #include <QComboBox>
 #include <QDateEdit>
 #include <QLineEdit>
 #include <QSpinBox>
-#include <QTextEdit>
-#include <QTimeEdit>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_hyperlinked_text_edit.h"
-#include "biblioteq_image_drop_site.h"
-#include "biblioteq_item.h"
 
 biblioteq_item::biblioteq_item(const int rowArg)
 {

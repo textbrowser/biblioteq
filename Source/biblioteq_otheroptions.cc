@@ -1,16 +1,8 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_otheroptions.h"
 
 #include <QColorDialog>
 #include <QSettings>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_otheroptions.h"
 
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 {

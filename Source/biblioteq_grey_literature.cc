@@ -1,6 +1,7 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq.h"
+#include "biblioteq_filesize_table_item.h"
+#include "biblioteq_grey_literature.h"
+#include "biblioteq_pdfreader.h"
 
 #include <QCryptographicHash>
 #include <QFileDialog>
@@ -9,19 +10,6 @@
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QUuid>
-
-/*
-** Includes grey-literature-specific methods.
-*/
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq.h"
-#include "biblioteq_filesize_table_item.h"
-#include "biblioteq_grey_literature.h"
-#include "biblioteq_pdfreader.h"
 
 biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 						     const QString &oidArg,

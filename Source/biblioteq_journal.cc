@@ -1,15 +1,3 @@
-/*
-** Includes journal-specific methods.
-*/
-
-/*
-** Note: The ISSN is not a unique value.
-*/
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq.h"
 #include "biblioteq_magazine.h"
 

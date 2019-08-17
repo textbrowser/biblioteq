@@ -1,15 +1,7 @@
-/*
-** -- Qt Includes --
-*/
-
-#include <QScrollBar>
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq.h"
 #include "biblioteq_main_table.h"
+
+#include <QScrollBar>
 
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)

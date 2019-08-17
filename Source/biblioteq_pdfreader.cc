@@ -1,22 +1,13 @@
-/*
-** -- Qt Includes --
-*/
+#include "biblioteq_misc_functions.h"
+#include "biblioteq_pdfreader.h"
 
 #include <QFileDialog>
-#include <QKeyEvent>
 #include <QPainter>
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QProgressDialog>
 #include <QResizeEvent>
 #include <QScrollBar>
-
-/*
-** -- Local Includes --
-*/
-
-#include "biblioteq_misc_functions.h"
-#include "biblioteq_pdfreader.h"
 
 biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 {

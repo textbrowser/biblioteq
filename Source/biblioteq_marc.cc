@@ -1,5 +1,3 @@
-#include <QObject>
-#include <QStringList>
 #include <QXmlStreamReader>
 
 #include "biblioteq_marc.h"
