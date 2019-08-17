@@ -13,6 +13,7 @@ biblioteq_item::biblioteq_item(const int rowArg)
   m_oldq = -1;
   m_parentWid = 0;
   m_row = rowArg;
+  qmain = 0;
 }
 
 biblioteq_item::biblioteq_item(void)
@@ -21,6 +22,7 @@ biblioteq_item::biblioteq_item(void)
   m_oldq = -1;
   m_parentWid = 0;
   m_row = -1;
+  qmain = 0;
 }
 
 biblioteq_item::~biblioteq_item()

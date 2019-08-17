@@ -3,13 +3,15 @@
 
 #include <QScrollBar>
 
-biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
+biblioteq_copy_editor::biblioteq_copy_editor
+(QWidget *parent, biblioteq *biblioteq):QDialog(parent)
 {
   m_bitem = 0;
   m_parent = parent;
   m_quantity = 1;
   m_showForLending = false;
   m_spinbox = 0;
+  qmain = biblioteq;
 }
 
 biblioteq_copy_editor::biblioteq_copy_editor

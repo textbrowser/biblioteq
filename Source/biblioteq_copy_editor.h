@@ -12,7 +12,7 @@ class biblioteq_copy_editor: public QDialog
   Q_OBJECT
 
  public:
-  biblioteq_copy_editor(QWidget *parent);
+  biblioteq_copy_editor(QWidget *parent, biblioteq *qmain);
   biblioteq_copy_editor(QWidget *parent,
 			biblioteq *qmain,
 			biblioteq_item *bitemArg,

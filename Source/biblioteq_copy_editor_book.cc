@@ -12,7 +12,7 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
  const QString &ioidArg,
  QSpinBox *spinboxArg,
  const QFont &font,
- const QString &uniqueIdArg):biblioteq_copy_editor(parent)
+ const QString &uniqueIdArg):biblioteq_copy_editor(parent, biblioteq)
 {
   qmain = biblioteq;
 
