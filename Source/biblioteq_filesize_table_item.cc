@@ -1,7 +1,3 @@
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq_filesize_table_item.h"
 
 biblioteq_filesize_table_item::biblioteq_filesize_table_item

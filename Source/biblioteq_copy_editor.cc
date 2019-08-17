@@ -1,11 +1,7 @@
-#include <QScrollBar>
-
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq.h"
 #include "biblioteq_copy_editor.h"
+
+#include <QScrollBar>
 
 biblioteq_copy_editor::biblioteq_copy_editor(QWidget *parent):QDialog(parent)
 {

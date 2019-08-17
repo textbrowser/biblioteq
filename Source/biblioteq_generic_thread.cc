@@ -1,11 +1,6 @@
 #include "biblioteq.h"
 #include "biblioteq_generic_thread.h"
 
-#include <QMutex>
-#include <QNetworkAccessManager>
-#include <QNetworkProxy>
-#include <QNetworkReply>
-
 #include <yaz/zoom.h>
 
 biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent,

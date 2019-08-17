@@ -1,7 +1,3 @@
-/*
-** -- Local Includes --
-*/
-
 #include "biblioteq.h"
 #include "biblioteq_dbenumerations.h"
 #include "biblioteq_misc_functions.h"
