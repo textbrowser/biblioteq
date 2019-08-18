@@ -1276,8 +1276,9 @@ void biblioteq::createSqliteMenuActions(void)
 	  continue;
 	}
 
-      if(!dups.contains(str) && QFileInfo(str).isReadable() &&
-	 QFileInfo(str).isWritable())
+      QFileInfo fileInfo(str);
+
+      if(!dups.contains(str) && fileInfo.isReadable() && fileInfo.isWritable())
 	dups.append(str);
       else
 	{
