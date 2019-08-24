@@ -1016,7 +1016,6 @@ void biblioteq_grey_literature::slotExportFiles(void)
     }
 }
 
-
 void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 {
   if(!item)
