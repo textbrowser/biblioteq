@@ -378,7 +378,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -386,6 +386,8 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="action_Online_Documentation"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="tearOffEnabled">
@@ -1190,6 +1192,11 @@
   <action name="actionGrey_Literature">
    <property name="text">
     <string>&amp;Grey Literature...</string>
+   </property>
+  </action>
+  <action name="action_Online_Documentation">
+   <property name="text">
+    <string>&amp;Online Documentation</string>
    </property>
   </action>
  </widget>

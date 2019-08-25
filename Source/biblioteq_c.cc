@@ -4,6 +4,7 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QScrollBar>
 #include <QSettings>
@@ -3260,6 +3261,13 @@ void biblioteq::slotModifyBorrower(void)
     (userinfo_diag->m_userinfo.telephoneNumber->palette());
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
+}
+
+void biblioteq::slotOpenOnlineDocumentation(void)
+{
+  QDesktopServices::openUrl
+    (QUrl("https://github.com/textbrowser/biblioteq/"
+	  "blob/master/Documentation/BiblioteQ.pdf"));
 }
 
 void biblioteq::slotOpenPDFFile(void)

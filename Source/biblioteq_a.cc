@@ -316,6 +316,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertGreyLiterature(void)));
+  connect(ui.action_Online_Documentation,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotOpenOnlineDocumentation(void)));
   connect(ui.action_Open_PDF_File,
 	  SIGNAL(triggered(void)),
 	  this,
