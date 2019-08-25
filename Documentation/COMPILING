@@ -38,6 +38,8 @@ make
 
 OS X
 
+Please verify that the install paths in biblioteq.osx.pro are current.
+
 qmake -o Makefile biblioteq.osx.pro
 make
 sudo make install
