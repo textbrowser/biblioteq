@@ -38,6 +38,8 @@
 #include <QTranslator>
 #include <QtDebug>
 
+#include <limits>
+
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000
 #include "CocoaInitializer.h"

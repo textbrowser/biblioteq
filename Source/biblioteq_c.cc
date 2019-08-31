@@ -12,6 +12,8 @@
 #include <QSqlField>
 #include <QSqlRecord>
 
+#include <limits>
+
 QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
 {
   return m_openLibraryImages;

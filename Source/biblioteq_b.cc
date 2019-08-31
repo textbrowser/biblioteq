@@ -10,6 +10,8 @@
 #include <QSqlField>
 #include <QSqlRecord>
 
+#include <limits>
+
 QString biblioteq::homePath(void)
 {
 #ifdef Q_OS_WIN32
