@@ -3043,6 +3043,10 @@ void biblioteq::slotDisplaySummary(void)
     }
 }
 
+void biblioteq::slotExportMembersAsCSV(void)
+{
+}
+
 void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
 {
   al.publication_date->setEnabled(state);

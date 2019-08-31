@@ -402,6 +402,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(er.copyButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCopyError(void)));
+  connect(bb.action_Export,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportMembersAsCSV(void)));
   connect(bb.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(history.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
