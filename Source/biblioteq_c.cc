@@ -11,6 +11,7 @@
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QTextStream>
 
 #include <limits>
 
