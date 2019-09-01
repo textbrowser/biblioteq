@@ -117,11 +117,20 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>276</height>
+          <height>260</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item>
@@ -378,7 +387,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>39</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -467,6 +476,8 @@
      </property>
     </widget>
     <addaction name="menu_Category"/>
+    <addaction name="separator"/>
+    <addaction name="action_Full_Screen"/>
     <addaction name="separator"/>
     <addaction name="actionMembersBrowser"/>
     <addaction name="actionViewDetails"/>
@@ -1197,6 +1208,14 @@
   <action name="action_Online_Documentation">
    <property name="text">
     <string>&amp;Online Documentation</string>
+   </property>
+  </action>
+  <action name="action_Full_Screen">
+   <property name="text">
+    <string>&amp;Full Screen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>
