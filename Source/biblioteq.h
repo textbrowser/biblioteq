@@ -439,6 +439,7 @@ class biblioteq: public QMainWindow
   void slotUpgradeSqliteScheme(void);
   void slotVideoGameSearch(void);
   void slotViewDetails(void);
+  void slotViewFullOrNormalScreen(void);
 };
 
 #endif

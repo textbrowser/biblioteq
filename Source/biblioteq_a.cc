@@ -338,6 +338,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertDVD(void)));
+  connect(ui.action_Full_Screen,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotViewFullOrNormalScreen(void)));
   connect(ui.action_Journal,
 	  SIGNAL(triggered(void)),
 	  this,

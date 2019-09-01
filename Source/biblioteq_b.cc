@@ -4405,3 +4405,17 @@ void biblioteq::slotVideoGameSearch(void)
       videogame->raise();
     }
 }
+
+void biblioteq::slotViewFullOrNormalScreen(void)
+{
+  if(windowState() == Qt::WindowFullScreen)
+    {
+      showNormal();
+      ui.action_Full_Screen->setText(tr("&Full Screen"));
+    }
+  else if(windowState() == Qt::WindowNoState)
+    {
+      showFullScreen();
+      ui.action_Full_Screen->setText(tr("&Normal Screen"));
+    }
+}
