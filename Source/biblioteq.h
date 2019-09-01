@@ -324,6 +324,7 @@ class biblioteq: public QMainWindow
   void closeEvent(QCloseEvent *event);
   void createSqliteMenuActions(void);
   void deleteItem(const QString &oid, const QString &itemType);
+  void exportAsCSV(QTableWidget *table, const QString &title);
   void initialUpdate(void);
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);

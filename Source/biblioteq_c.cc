@@ -817,6 +817,85 @@ void biblioteq::dvdSearch(const QString &field, const QString &value)
     }
 }
 
+void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
+{
+  if(!table)
+    return;
+
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setDefaultSuffix("csv");
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setNameFilter(tr("CSV (*.csv)"));
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(title);
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QFile file(dialog.selectedFiles().value(0));
+
+      if(file.open(QIODevice::WriteOnly |
+		   QIODevice::Truncate |
+		   QIODevice::Text))
+	{
+	  QString str("");
+	  QTextStream stream(&file);
+
+	  for(int i = 0; i < table->columnCount(); i++)
+	    if(!table->isColumnHidden(i))
+	      {
+		if(table->horizontalHeaderItem(i)->text().contains(","))
+		  str += QString("\"%1\",").arg
+		    (table->horizontalHeaderItem(i)->text());
+		else
+		  str += QString("%1,").arg
+		    (table->horizontalHeaderItem(i)->text());
+	      }
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1);
+
+	  if(!str.isEmpty())
+	    stream << str << endl;
+
+	  for(int i = 0; i < table->rowCount(); i++)
+	    {
+	      str = "";
+
+	      for(int j = 0; j < table->columnCount(); j++)
+		if(!table->isColumnHidden(j))
+		  {
+		    QString cleaned(table->item(i, j)->text());
+
+		    cleaned.replace("\n", " ");
+		    cleaned.replace("\r\n", " ");
+		    cleaned = cleaned.trimmed();
+
+		    if(cleaned.contains(","))
+		      str += QString("\"%1\",").arg(cleaned);
+		    else
+		      str += QString("%1,").arg(cleaned);
+		  }
+
+	      if(str.endsWith(","))
+		str = str.mid(0, str.length() - 1);
+
+	      if(!str.isEmpty())
+		stream << str << endl;
+	    }
+
+	  file.close();
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
+}
+
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
   biblioteq_grey_literature *gl =
@@ -3045,6 +3124,7 @@ void biblioteq::slotDisplaySummary(void)
 
 void biblioteq::slotExportMembersAsCSV(void)
 {
+  exportAsCSV(bb.table, tr("BiblioteQ: Export Table View as CSV"));
 }
 
 void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)

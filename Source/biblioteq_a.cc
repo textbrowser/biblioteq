@@ -2838,77 +2838,7 @@ void biblioteq::slotExit(void)
 
 void biblioteq::slotExportAsCSV(void)
 {
-  QFileDialog dialog(this);
-
-  dialog.setFileMode(QFileDialog::AnyFile);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter(tr("CSV (*.csv)"));
-  dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Export Table View as CSV"));
-  dialog.setDefaultSuffix("csv");
-  dialog.exec();
-
-  if(dialog.result() == QDialog::Accepted)
-    {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-
-      QFile file(dialog.selectedFiles().value(0));
-
-      if(file.open(QIODevice::WriteOnly | QIODevice::Truncate |
-		   QIODevice::Text))
-	{
-	  QString str("");
-	  QTextStream stream(&file);
-
-	  for(int i = 0; i < ui.table->columnCount(); i++)
-	    if(!ui.table->isColumnHidden(i))
-	      {
-		if(ui.table->horizontalHeaderItem(i)->text().contains(","))
-		  str += QString("\"%1\",").arg
-		    (ui.table->horizontalHeaderItem(i)->text());
-		else
-		  str += QString("%1,").arg
-		    (ui.table->horizontalHeaderItem(i)->text());
-	      }
-
-	  if(str.endsWith(","))
-	    str = str.mid(0, str.length() - 1);
-
-	  if(!str.isEmpty())
-	    stream << str << endl;
-
-	  for(int i = 0; i < ui.table->rowCount(); i++)
-	    {
-	      str = "";
-
-	      for(int j = 0; j < ui.table->columnCount(); j++)
-		if(!ui.table->isColumnHidden(j))
-		  {
-		    QString cleaned(ui.table->item(i, j)->text());
-
-		    cleaned.replace("\n", " ");
-		    cleaned.replace("\r\n", " ");
-		    cleaned = cleaned.trimmed();
-
-		    if(cleaned.contains(","))
-		      str += QString("\"%1\",").arg(cleaned);
-		    else
-		      str += QString("%1,").arg(cleaned);
-		  }
-
-	      if(str.endsWith(","))
-		str = str.mid(0, str.length() - 1);
-
-	      if(!str.isEmpty())
-		stream << str << endl;
-	    }
-
-	  file.close();
-	}
-
-      QApplication::restoreOverrideCursor();
-    }
+  exportAsCSV(ui.table, tr("BiblioteQ: Export Table View as CSV"));
 }
 
 void biblioteq::slotGrantPrivileges(void)
