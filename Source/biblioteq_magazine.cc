@@ -2645,8 +2645,11 @@ void biblioteq_magazine::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(names.at(i) == "ISSN" ||
-			 names.at(i) == "ID Number")
+		      if(names.at(i) == "Call Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (ma.callnum->text());
+		      else if(names.at(i) == "ISSN" ||
+			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (ma.id->text());
 		      else if(names.at(i) == "Title")

@@ -20,6 +20,14 @@ QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
   return m_openLibraryImages;
 }
 
+QString biblioteq::dbUserName(void) const
+{
+  if(m_db.driverName() != "QSQLITE")
+    return m_db.userName();
+  else
+    return "SQLITE";
+}
+
 QString biblioteq::publicationDateFormat(const QString &itemType) const
 {
   return m_otheroptions->publicationDateFormat(itemType);
@@ -260,7 +268,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
       ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
-  ui.table->resetTable(m_db.userName(), typefilter, m_roles);
+  ui.table->resetTable(dbUserName(), typefilter, m_roles);
 
   qint64 currentPage = 0;
 
@@ -2384,7 +2392,7 @@ void biblioteq::slotConnectDB(void)
 
       setWindowTitle(tr("BiblioteQ: ") + m_selectedBranch.
 		     value("branch_name") +
-		     QString(" (%1)").arg(m_db.userName()));
+		     QString(" (%1)").arg(dbUserName()));
     }
 
   prepareFilter();
@@ -2649,7 +2657,7 @@ void biblioteq::slotDisconnect(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), m_previousTypeFilter, m_roles);
+  ui.table->resetTable(dbUserName(), m_previousTypeFilter, m_roles);
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
@@ -4142,7 +4150,7 @@ void biblioteq::slotRequest(void)
 	      query.prepare("INSERT INTO item_request (item_oid, memberid, "
 			    "requestdate, type) VALUES (?, ?, ?, ?)");
 	      query.bindValue(0, oid);
-	      query.bindValue(1, m_db.userName());
+	      query.bindValue(1, dbUserName());
 	      query.bindValue(2, now.toString("MM/dd/yyyy"));
 	      query.bindValue(3, itemType);
 	    }
@@ -5143,7 +5151,7 @@ void biblioteq::slotShowHistory(void)
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      bool dnt = biblioteq_misc_functions::dnt(m_db, m_db.userName(),
+      bool dnt = biblioteq_misc_functions::dnt(m_db, dbUserName(),
 					       errorstr);
 
       if(errorstr.isEmpty())
@@ -5194,7 +5202,7 @@ void biblioteq::slotShowHistory(void)
        m_bbColumnHeaderIndexes.
        indexOf("Member ID"));
   else
-    memberid = m_db.userName();
+    memberid = dbUserName();
 
   if(!m_roles.isEmpty())
     for(i = 0; i < list.size(); i++)

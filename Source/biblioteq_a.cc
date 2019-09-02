@@ -679,7 +679,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
-  ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
+  ui.table->resetTable(dbUserName(), m_lastCategory, m_roles);
   ui.table->setIconSize(QSize(64, 94));
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
@@ -902,10 +902,7 @@ QSqlDatabase biblioteq::getDB(void) const
 
 QString biblioteq::getAdminID(void) const
 {
-  if(m_db.driverName() != "QSQLITE")
-    return m_db.userName();
-  else
-    return "SQLITE";
+  return dbUserName();
 }
 
 QString biblioteq::getPreferredSRUSite(void) const
@@ -1235,7 +1232,7 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.pagesLabel->setText("1");
 	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
-	    (m_db.userName(),
+	    (dbUserName(),
 	     ui.menu_Category->defaultAction() ?
 	     ui.menu_Category->defaultAction()->data().toString() :
 	     "All",
@@ -1409,7 +1406,7 @@ void biblioteq::prepareFilter(void)
     }
   else
     {
-      if(m_db.userName() == "xbook_guest" ||
+      if(dbUserName() == "xbook_guest" ||
 	 m_roles == "librarian" ||
 	 m_roles == "membership")
 	{
@@ -1496,7 +1493,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
   if(m_db.driverName() != "QSQLITE")
     if(m_db.isOpen())
       {
-	if(m_db.userName() == "xbook_guest")
+	if(dbUserName() == "xbook_guest")
 	  {
 	    ui.actionRequests->setToolTip(tr("Item Requests"));
 	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
@@ -2157,7 +2154,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
       ui.nextPageButton->setEnabled(false);
       ui.pagesLabel->setText("1");
       ui.previousPageButton->setEnabled(false);
-      ui.table->resetTable(m_db.userName(), typefilter, "");
+      ui.table->resetTable(dbUserName(), typefilter, "");
       ui.itemsCountLabel->setText(tr("0 Results"));
     }
 }
@@ -3032,7 +3029,7 @@ void biblioteq::slotListOverdueItems(void)
       (bb.table, row,
        m_bbColumnHeaderIndexes.indexOf("Member ID"));
   else if(m_roles.isEmpty())
-    memberid = m_db.userName();
+    memberid = dbUserName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
   m_members_diag->showNormal();
@@ -3557,11 +3554,11 @@ void biblioteq::slotRefresh(void)
 		    toString() : "All");
 
       if(data.toString() == "All Overdue" && m_roles.isEmpty())
-	str = m_db.userName();
+	str = dbUserName();
       else if(data.toString() == "All Requested" && m_roles.isEmpty())
-	str = m_db.userName();
+	str = dbUserName();
       else if(data.toString() == "All Reserved" && m_roles.isEmpty())
-	str = m_db.userName();
+	str = dbUserName();
       else if(data.toString() == "All Reserved")
 	str = "%";
 
@@ -4052,7 +4049,7 @@ void biblioteq::slotSetColumns(void)
       ui.table->setColumnHidden
 	(i, !m_configToolMenu->actions().at(i)->isChecked());
       ui.table->recordColumnHidden
-	(m_db.userName(),
+	(dbUserName(),
 	 typefilter, i, !m_configToolMenu->actions().at(i)->
 	 isChecked());
     }
@@ -4090,7 +4087,7 @@ void biblioteq::slotShowAdminDialog(void)
 
 void biblioteq::slotShowChangePassword(void)
 {
-  pass.userid->setText(m_db.userName());
+  pass.userid->setText(dbUserName());
   pass.password->clear();
   pass.passwordAgain->clear();
   pass.password->setFocus();

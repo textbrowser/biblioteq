@@ -2240,8 +2240,11 @@ void biblioteq_book::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(names.at(i) == "ISBN-10" ||
-			 names.at(i) == "ID Number")
+		      if(names.at(i) == "Call Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (id.callnum->text());
+		      else if(names.at(i) == "ISBN-10" ||
+			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.id->text());
 		      else if(names.at(i) == "Title")

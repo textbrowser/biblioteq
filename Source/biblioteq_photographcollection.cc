@@ -1361,8 +1361,11 @@ void biblioteq_photographcollection::slotGo(void)
 
 		  for(int i = 0; i < names.size(); i++)
 		    {
-		      if(names.at(i) == "ID" ||
-			 names.at(i) == "ID Number")
+		      if(names.at(i) == "Call Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (pc.call_number_item->text());
+		      else if(names.at(i) == "ID" ||
+			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.id_collection->text());
 		      else if(names.at(i) == "Title")

@@ -46,7 +46,7 @@ bool biblioteq::isGuest(void) const
 {
   if(m_db.driverName() == "QSQLITE")
     return false;
-  else if(m_db.userName() == "xbook_guest")
+  else if(dbUserName() == "xbook_guest")
     return true;
   else
     return false;
@@ -425,6 +425,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -460,6 +461,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -477,6 +479,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "'' AS callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -512,6 +515,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -529,6 +533,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "'' AS callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -564,6 +569,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -581,6 +587,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -616,6 +623,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -633,6 +641,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -668,6 +677,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -685,6 +695,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "'' AS callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -721,6 +732,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -745,6 +757,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -785,6 +798,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -805,6 +819,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "'' AS callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -845,6 +860,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -865,6 +881,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "'' AS callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -905,6 +922,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -925,6 +943,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -966,6 +985,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -986,6 +1006,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -1027,6 +1048,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -1047,6 +1069,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "'' AS callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -1089,6 +1112,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -1632,6 +1656,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -1661,6 +1686,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -1678,6 +1704,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "'' AS callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -1707,6 +1734,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -1724,6 +1752,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "'' AS callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -1753,6 +1782,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -1770,6 +1800,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -1800,6 +1831,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -1817,6 +1849,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -1847,6 +1880,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -1864,6 +1898,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "'' AS callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -1894,6 +1929,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower_vw.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -1918,6 +1954,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -1953,6 +1990,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "book.title, "
 				 "book.id, "
+				 "book.callnumber, "
 				 "book.publisher, book.pdate, "
 				 "book.category, "
 				 "book.language, "
@@ -1973,6 +2011,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "'' AS callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -2008,6 +2047,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "cd.title, "
 				 "cd.id, "
+				 "callnumber, "
 				 "cd.recording_label, cd.rdate, "
 				 "cd.category, "
 				 "cd.language, "
@@ -2028,6 +2068,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "'' AS callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -2063,6 +2104,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "dvd.title, "
 				 "dvd.id, "
+				 "callnumber, "
 				 "dvd.studio, dvd.rdate, "
 				 "dvd.category, "
 				 "dvd.language, "
@@ -2083,6 +2125,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -2119,6 +2162,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "journal.title, "
 				 "journal.id, "
+				 "journal.callnumber, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.category, "
 				 "journal.language, "
@@ -2139,6 +2183,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -2175,6 +2220,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
+				 "magazine.callnumber, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.category, "
 				 "magazine.language, "
@@ -2195,6 +2241,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "'' AS callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -2231,6 +2278,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "item_borrower.duedate, "
 				 "videogame.title, "
 				 "videogame.id, "
+				 "callnumber, "
 				 "videogame.publisher, videogame.rdate, "
 				 "videogame.genre, "
 				 "videogame.language, "
@@ -2943,9 +2991,9 @@ int biblioteq::populateTable(const int search_type_arg,
     }
 
   if(search_type != CUSTOM_QUERY)
-    ui.table->resetTable(m_db.userName(), typefilter, m_roles);
+    ui.table->resetTable(dbUserName(), typefilter, m_roles);
   else
-    ui.table->resetTable(m_db.userName(), "Custom", m_roles);
+    ui.table->resetTable(dbUserName(), "Custom", m_roles);
 
   qint64 currentPage = 0;
 
@@ -3683,27 +3731,27 @@ void biblioteq::slotSaveDnt(bool state)
 		"(dnt, memberid) "
 		"VALUES (?, ?)");
   query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, m_db.userName());
+  query.bindValue(1, dbUserName());
   query.exec();
 
   if(!(query.lastError().text().toLower().contains("duplicate") ||
        query.lastError().text().toLower().contains("unique")))
     addError(QString(tr("Database Error")),
 	     QString(tr("Unable to insert into member_history_dnt for "
-			"member %1.").arg(m_db.userName())),
+			"member %1.").arg(dbUserName())),
 	     query.lastError().text(), __FILE__, __LINE__);
 
   query.prepare("UPDATE member_history_dnt "
 		"SET dnt = ? "
 		"WHERE memberid = ?");
   query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, m_db.userName());
+  query.bindValue(1, dbUserName());
   query.exec();
 
   if(query.lastError().isValid())
     addError(QString(tr("Database Error")),
 	     QString(tr("Unable to update member_history_dnt for "
-			"member %1.").arg(m_db.userName())),
+			"member %1.").arg(dbUserName())),
 	     query.lastError().text(), __FILE__, __LINE__);
 
 }
