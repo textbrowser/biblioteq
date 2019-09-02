@@ -1946,7 +1946,7 @@ void biblioteq::slotAbout(void)
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
-	"Copyright (c) 2005 - present, Mushroom.<br>"
+	"Copyright (c) 2005 - present, Side Salad.<br>"
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 	"Poppler version %5.<br>"
 #else
