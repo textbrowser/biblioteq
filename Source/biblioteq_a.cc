@@ -905,7 +905,7 @@ QString biblioteq::getAdminID(void) const
   if(m_db.driverName() != "QSQLITE")
     return m_db.userName();
   else
-    return "N/A";
+    return "SQLITE";
 }
 
 QString biblioteq::getPreferredSRUSite(void) const
