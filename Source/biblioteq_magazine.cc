@@ -3049,6 +3049,8 @@ void biblioteq_magazine::slotProxyAuthenticationRequired
 		    "credentials.").
 		 arg(proxy.hostName()).
 		 arg(proxy.port())));
+      m_proxyDialog->resize
+	(QSize(m_proxyDialog->width(), m_proxyDialog->sizeHint().height()));
 
       if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
