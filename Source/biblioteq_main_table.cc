@@ -164,8 +164,10 @@ void biblioteq_main_table::setColumns(const QString &username,
 	    {
 	      list.append(tr("Borrower"));
 	      list.append(tr("Member ID"));
+	      list.append(tr("Contact Information"));
 	      m_columnHeaderIndexes.append("Borrower");
 	      m_columnHeaderIndexes.append("Member ID");
+	      m_columnHeaderIndexes.append("Contact Information");
 	    }
 
 	  list.append(tr("Barcode"));
@@ -181,8 +183,10 @@ void biblioteq_main_table::setColumns(const QString &username,
 	    {
 	      list.append(tr("Borrower"));
 	      list.append(tr("Member ID"));
+	      list.append(tr("Contact Information"));
 	      m_columnHeaderIndexes.append("Borrower");
 	      m_columnHeaderIndexes.append("Member ID");
+	      m_columnHeaderIndexes.append("Contact Information");
 	    }
 
 	  list.append(tr("Request Date"));
