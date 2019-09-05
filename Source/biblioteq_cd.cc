@@ -1179,6 +1179,19 @@ void biblioteq_cd::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
+		      if(i == 0)
+			{
+			  QPixmap pixmap
+			    (QPixmap::fromImage(cd.front_image->m_image));
+
+			  if(!pixmap.isNull())
+			    qmain->getUI().table->item(m_row, i)->setIcon
+			      (pixmap);
+			  else
+			    qmain->getUI().table->item(m_row, i)->setIcon
+			      (QIcon(":/no_image.png"));
+			}
+
 		      if(names.at(i) == "Catalog Number" ||
 			 names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_row, i)->setText

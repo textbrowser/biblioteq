@@ -249,6 +249,7 @@ class biblioteq: public QMainWindow
 				   biblioteq_photographcollection *pc);
   void replaceVideoGame(const QString &id, biblioteq_videogame *videogame);
   void setGlobalFonts(const QFont &font);
+  void setSummaryImages(const QImage &back, const QImage &front);
   void showMain(void);
   void updateItemWindows(void);
   void updateMembersBrowser(const QString &memberid);

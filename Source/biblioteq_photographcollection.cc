@@ -1361,6 +1361,20 @@ void biblioteq_photographcollection::slotGo(void)
 
 		  for(int i = 0; i < names.size(); i++)
 		    {
+		      if(i == 0)
+			{
+			  QPixmap pixmap
+			    (QPixmap::
+			     fromImage(pc.thumbnail_collection->m_image));
+
+			  if(!pixmap.isNull())
+			    qmain->getUI().table->item(m_row, i)->setIcon
+			      (pixmap);
+			  else
+			    qmain->getUI().table->item(m_row, i)->setIcon
+			      (QIcon(":/no_image.png"));
+			}
+
 		      if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.call_number_item->text());

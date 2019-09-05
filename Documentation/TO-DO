@@ -400,7 +400,7 @@
 217. Database import of books. (TBD)
 218. Translation files are not properly generated on OS X. (Done)
 219. Portuguese translation. (TBD)
-220. Update item icon in main table after item update. (TBD)
+220. Update item icon in main table after item update. (Done)
 221. ILIKE, or case-insensitive search. (Done)
 222. UNACCENT(). (Done)
 223. Save custom queries in a favorites system. (TBD)

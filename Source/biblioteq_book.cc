@@ -2240,6 +2240,19 @@ void biblioteq_book::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
+		      if(i == 0)
+			{
+			  QPixmap pixmap
+			    (QPixmap::fromImage(id.front_image->m_image));
+
+			  if(!pixmap.isNull())
+			    qmain->getUI().table->item(m_row, i)->setIcon
+			      (pixmap);
+			  else
+			    qmain->getUI().table->item(m_row, i)->setIcon
+			      (QIcon(":/no_image.png"));
+			}
+
 		      if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.callnum->text());

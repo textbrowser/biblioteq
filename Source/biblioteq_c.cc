@@ -3067,8 +3067,7 @@ void biblioteq::slotDisplaySummary(void)
       if(type != "Grey Literature" &&
 	 type != "Photograph Collection")
 	backImage = biblioteq_misc_functions::getImage
-	  (oid, "back_cover", type,
-	   m_db);
+	  (oid, "back_cover", type, m_db);
 
       QApplication::restoreOverrideCursor();
 
@@ -3122,12 +3121,12 @@ void biblioteq::slotDisplaySummary(void)
       ** Clear the scene.
       */
 
-      ui.summary->setVisible(false);
-      ui.summary->clear();
-      ui.frontImage->setVisible(false);
-      ui.frontImage->clear();
-      ui.backImage->setVisible(false);
       ui.backImage->clear();
+      ui.backImage->setVisible(false);
+      ui.frontImage->clear();
+      ui.frontImage->setVisible(false);
+      ui.summary->clear();
+      ui.summary->setVisible(false);
     }
 }
 

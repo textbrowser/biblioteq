@@ -3541,6 +3541,53 @@ void biblioteq::preparePhotographsPerPageMenu(void)
     }
 }
 
+void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
+{
+  if(ui.itemSummary->width() < 0 || ui.table->currentRow() < 0)
+    {
+      ui.backImage->clear();
+      ui.backImage->setVisible(false);
+      ui.frontImage->clear();
+      ui.frontImage->setVisible(false);
+      return;
+    }
+
+  /*
+  ** The size of no_image.png is 126x187.
+  */
+
+  QImage b(back);
+  QImage f(front);
+
+  if(b.isNull())
+    b = QImage(":/no_image.png");
+
+  if(!b.isNull())
+    b = b.scaled(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+  if(!b.isNull())
+    {
+      ui.backImage->setPixmap(QPixmap::fromImage(b));
+      ui.backImage->setVisible(true);
+    }
+  else
+    ui.backImage->clear();
+
+  if(f.isNull())
+    f = QImage(":/no_image.png");
+
+  if(!f.isNull())
+    f = f.scaled(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+  if(!f.isNull())
+    {
+      ui.frontImage->setPixmap(QPixmap::fromImage(f));
+      ui.frontImage->setVisible(true);
+    }
+  else
+    ui.frontImage->clear();
+}
+
 void biblioteq::slotBookSearch(void)
 {
   biblioteq_book *book = 0;
