@@ -1594,11 +1594,23 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 
 	  if(image.loadFromData(item->data(1).toByteArray()))
 	    {
-	      QSize size(image.size());
+	      QSize size;
 	      int percent = QString(text).remove("%").toInt();
 
-	      size.setHeight((percent * size.height()) / 100);
-	      size.setWidth((percent * size.width()) / 100);
+	      if(percent == 0)
+		{
+		  size = scene->views().value(0)->size();
+
+		  if(size.width() <= 100)
+		    size = scene->property("window_size").toSize() -
+		      QSize(0, 100);
+		}
+	      else
+		{
+		  size = image.size();
+		  size.setHeight((percent * size.height()) / 100);
+		  size.setWidth((percent * size.width()) / 100);
+		}
 
 	      if(!image.isNull())
 		image = image.scaled
