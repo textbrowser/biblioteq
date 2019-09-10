@@ -57,6 +57,11 @@
            </property>
            <item>
             <property name="text">
+             <string>Best Fit</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>100%</string>
             </property>
            </item>

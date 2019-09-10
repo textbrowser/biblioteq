@@ -22,4 +22,4 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/RASPBIAN-QT4 biblioteq-debian/DEBIAN
 cp -r /usr/local/biblioteq-qt4 biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2019.09.09_qt4_armhf.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2019.10.10_qt4_armhf.deb

@@ -398,7 +398,6 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	if(image.isNull())
 	  image = QImage(":/no_image.png");
 
-	QImage originalImage(image);
 	QSize size(image.size());
 
 	size.setHeight((percent * size.height()) / 100);
@@ -478,7 +477,8 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 	    {
 	      ui.view->setScene(scene);
 	      loadPhotographFromItem
-		(scene, item,
+		(scene,
+		 item,
 		 ui.view_size->currentText().remove("%").toInt());
 	      biblioteq_misc_functions::center(mainWindow, this);
 	      mainWindow->show();

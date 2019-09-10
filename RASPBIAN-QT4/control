@@ -4,7 +4,7 @@ Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
 Section: Database
-Version: 2019.09.09
+Version: 2019.10.10
 Description: BiblioteQ
  Welcome to BiblioteQ on ARM!
  BiblioteQ is governed by a BSD license. Enjoy!
