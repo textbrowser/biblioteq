@@ -368,7 +368,7 @@ void biblioteq_photographcollection::insert(void)
 void biblioteq_photographcollection::loadPhotographFromItem
 (QGraphicsScene *scene, QGraphicsPixmapItem *item, const int percent)
 {
-  if(!item || !scene)
+  if(!item || !scene || !scene->views().value(0))
     return;
 
   QSqlQuery query(qmain->getDB());
@@ -398,10 +398,21 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	if(image.isNull())
 	  image = QImage(":/no_image.png");
 
-	QSize size(image.size());
+	QSize size;
 
-	size.setHeight((percent * size.height()) / 100);
-	size.setWidth((percent * size.width()) / 100);
+	if(percent == 0)
+	  {
+	    size = scene->views().value(0)->size();
+
+	    if(size.width() <= 100)
+	      size = scene->property("window_size").toSize() - QSize(0, 100);
+	  }
+	else
+	  {
+	    size = image.size();
+	    size.setHeight((percent * size.height()) / 100);
+	    size.setWidth((percent * size.width()) / 100);
+	  }
 
 	if(!image.isNull())
 	  image = image.scaled
@@ -475,6 +486,7 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 
 	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
 	    {
+	      scene->setProperty("window_size", mainWindow->size());
 	      ui.view->setScene(scene);
 	      loadPhotographFromItem
 		(scene,
