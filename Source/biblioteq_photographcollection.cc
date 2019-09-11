@@ -401,12 +401,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	QSize size;
 
 	if(percent == 0)
-	  {
-	    size = scene->views().value(0)->size();
-
-	    if(size.width() <= 100)
-	      size = scene->property("window_size").toSize() - QSize(0, 100);
-	  }
+	  size = scene->property("view_size").toSize();
 	else
 	  {
 	    size = image.size();
@@ -486,14 +481,14 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 
 	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
 	    {
-	      scene->setProperty("window_size", mainWindow->size());
+	      mainWindow->show();
+	      biblioteq_misc_functions::center(mainWindow, this);
+	      scene->setProperty("view_size", ui.view->viewport()->size());
 	      ui.view->setScene(scene);
 	      loadPhotographFromItem
 		(scene,
 		 item,
 		 ui.view_size->currentText().remove("%").toInt());
-	      biblioteq_misc_functions::center(mainWindow, this);
-	      mainWindow->show();
 	    }
 	  else
 	    mainWindow->show();
@@ -1599,11 +1594,14 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 
 	      if(percent == 0)
 		{
-		  size = scene->views().value(0)->size();
-
-		  if(size.width() <= 100)
-		    size = scene->property("window_size").toSize() -
-		      QSize(0, 100);
+		  if(scene->views().value(0))
+		    {
+		      scene->setProperty
+			("view_size", scene->views().value(0)->size());
+		      size = scene->views().value(0)->size();
+		    }
+		  else
+		    size = scene->property("view_size").toSize();
 		}
 	      else
 		{
