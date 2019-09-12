@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>775</height>
+    <width>650</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,8 +42,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>582</width>
-         <height>671</height>
+         <width>616</width>
+         <height>650</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -417,21 +417,15 @@
       <item>
        <widget class="QCheckBox" name="caseinsensitive">
         <property name="text">
-         <string>Case-Insensitive</string>
+         <string>Case Insensitive</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="okButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -451,7 +445,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -467,7 +461,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>

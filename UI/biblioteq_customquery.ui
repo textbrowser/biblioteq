@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>375</width>
+    <width>640</width>
     <height>640</height>
    </rect>
   </property>
@@ -110,7 +110,7 @@
        <widget class="QPushButton" name="refresh_pb">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -127,7 +127,7 @@
        <widget class="QPushButton" name="execute_pb">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -144,7 +144,7 @@
        <widget class="QPushButton" name="close_pb">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>

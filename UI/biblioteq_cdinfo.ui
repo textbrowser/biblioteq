@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1022</width>
-         <height>1146</height>
+         <width>1031</width>
+         <height>1127</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -86,12 +86,6 @@
               </item>
               <item>
                <widget class="QPushButton" name="frontButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
                 <property name="text">
                  <string>&amp;Select...</string>
                 </property>
@@ -149,12 +143,6 @@
               </item>
               <item>
                <widget class="QPushButton" name="backButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
                 <property name="text">
                  <string>&amp;Select...</string>
                 </property>
@@ -910,15 +898,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="okButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -935,7 +917,7 @@
        <widget class="QPushButton" name="queryButton">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -952,7 +934,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -971,7 +953,7 @@
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -988,7 +970,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>

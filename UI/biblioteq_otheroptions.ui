@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>482</width>
-         <height>346</height>
+         <height>343</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -145,7 +145,7 @@
        <widget class="QPushButton" name="save">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
@@ -165,7 +165,7 @@
        <widget class="QPushButton" name="close">
         <property name="minimumSize">
          <size>
-          <width>105</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>

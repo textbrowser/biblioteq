@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>360</height>
+    <width>500</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -185,7 +185,7 @@
       <widget class="QPushButton" name="saveButton">
        <property name="minimumSize">
         <size>
-         <width>105</width>
+         <width>125</width>
          <height>0</height>
         </size>
        </property>
@@ -202,7 +202,7 @@
       <widget class="QPushButton" name="deleteButton">
        <property name="minimumSize">
         <size>
-         <width>105</width>
+         <width>125</width>
          <height>0</height>
         </size>
        </property>
@@ -219,7 +219,7 @@
       <widget class="QPushButton" name="cancelButton">
        <property name="minimumSize">
         <size>
-         <width>105</width>
+         <width>125</width>
          <height>0</height>
         </size>
        </property>
