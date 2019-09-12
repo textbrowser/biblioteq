@@ -390,8 +390,8 @@ class biblioteq: public QMainWindow
   void slotOpenPDFFile(void);
   void slotOtherOptionsSaved(void);
   void slotPageClicked(const QString &link);
-  void slotPhotographsPerPageChanged(void);
   void slotPhotographSearch(void);
+  void slotPhotographsPerPageChanged(void);
   void slotPopulateMembersBrowser(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotPreviousPage(void);
