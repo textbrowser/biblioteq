@@ -425,3 +425,4 @@
 231. Review and remove Q_UNUSED. (Done)
 232. Propagate qmain to biblioteq_hyperlinked_text_edit. (Done)
 233. Best View in photographs. (Done)
+234. Resize photograph on container resize. (TBD)
