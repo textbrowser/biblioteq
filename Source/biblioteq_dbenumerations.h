@@ -16,8 +16,8 @@ class biblioteq_dbenumerations: public QMainWindow
   void show(QMainWindow *parent, const bool populate);
 
  private:
-  QHash<QWidget *, QStringList> m_listData;
   QHash<QWidget *, QMap<QString, QString> > m_tableData;
+  QHash<QWidget *, QStringList> m_listData;
   Ui_dbEnumerations m_ui;
   biblioteq *qmain;
   void changeEvent(QEvent *event);

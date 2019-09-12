@@ -48,8 +48,8 @@ class biblioteq_copy_editor: public QDialog
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
   Ui_copybrowser m_cb;
-  biblioteq_item *m_bitem;
   biblioteq *qmain;
+  biblioteq_item *m_bitem;
   bool m_showForLending;
   int m_quantity;
   QString saveCopies(void);
