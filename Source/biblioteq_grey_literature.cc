@@ -472,7 +472,7 @@ void biblioteq_grey_literature::insertDatabase(void)
   if(qmain->getDB().driverName() != "QSQLITE")
     {
       query.next();
-      m_oid = query.value(0).toString();
+      m_oid = query.value(0).toString().trimmed();
     }
 
   if(!qmain->getDB().commit())
@@ -603,68 +603,68 @@ void biblioteq_grey_literature::modify(const int state)
 
 	  if(fieldName == "author")
 	    m_ui.author->setMultipleLinks
-	      ("greyliterature_search", "author", variant.toString());
+	      ("greyliterature_search", "author", variant.toString().trimmed());
 	  else if(fieldName == "client")
 	    m_ui.client->setMultipleLinks
-	      ("greyliterature_search", "client", variant.toString());
+	      ("greyliterature_search", "client", variant.toString().trimmed());
 	  else if(fieldName == "document_code_a")
-	    m_ui.code_a->setText(variant.toString());
+	    m_ui.code_a->setText(variant.toString().trimmed());
 	  else if(fieldName == "document_code_b")
-	    m_ui.code_b->setText(variant.toString());
+	    m_ui.code_b->setText(variant.toString().trimmed());
 	  else if(fieldName == "document_date")
 	    m_ui.date->setDate
-	      (QDate::fromString(variant.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(variant.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldName == "document_id")
 	    {
 	      QString string("");
 
 	      if(state == biblioteq::EDITABLE)
 		{
-		  if(!variant.toString().trimmed().isEmpty())
+		  if(!variant.toString().trimmed().trimmed().isEmpty())
 		    string = tr("BiblioteQ: Modify Grey Literature Entry (") +
-		      variant.toString() +
+		      variant.toString().trimmed() +
 		      tr(")");
 		  else
 		    string = tr("BiblioteQ: Modify Grey Literature Entry");
 		}
 	      else
 		{
-		  if(!variant.toString().trimmed().isEmpty())
+		  if(!variant.toString().trimmed().trimmed().isEmpty())
 		    string = tr("BiblioteQ: View Grey Literature Details (") +
-		      variant.toString() +
+		      variant.toString().trimmed() +
 		      tr(")");
 		  else
 		    string = tr("BiblioteQ: View Grey Literature Details");
 		}
 
-	      m_ui.id->setText(variant.toString());
+	      m_ui.id->setText(variant.toString().trimmed());
 	      setWindowTitle(string);
 	    }
 	  else if(fieldName == "document_status")
-	    m_ui.status->setText(variant.toString());
+	    m_ui.status->setText(variant.toString().trimmed());
 	  else if(fieldName == "document_title")
-	    m_ui.title->setText(variant.toString());
+	    m_ui.title->setText(variant.toString().trimmed());
 	  else if(fieldName == "document_type")
 	    {
-	      if(m_ui.type->findText(variant.toString()) > -1)
+	      if(m_ui.type->findText(variant.toString().trimmed()) > -1)
 		m_ui.type->setCurrentIndex
-		  (m_ui.type->findText(variant.toString()));
+		  (m_ui.type->findText(variant.toString().trimmed()));
 	      else
 		m_ui.type->setCurrentIndex(0);
 	    }
 	  else if(fieldName == "job_number")
-	    m_ui.job_number->setText(variant.toString());
+	    m_ui.job_number->setText(variant.toString().trimmed());
 	  else if(fieldName == "location")
 	    {
-	      if(m_ui.location->findText(variant.toString()) > -1)
+	      if(m_ui.location->findText(variant.toString().trimmed()) > -1)
 		m_ui.location->setCurrentIndex
-		  (m_ui.location->findText(variant.toString()));
+		  (m_ui.location->findText(variant.toString().trimmed()));
 	      else
 		m_ui.location->setCurrentIndex(0);
 	    }
 	  else if(fieldName == "notes")
 	    m_ui.notes->setMultipleLinks
-	      ("greyliterature_search", "notes", variant.toString());
+	      ("greyliterature_search", "notes", variant.toString().trimmed());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -727,7 +727,7 @@ void biblioteq_grey_literature::populateFiles(void)
 		(locale.toString(query.value(i).toLongLong()));
 	    else
 	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString());
+		QTableWidgetItem(query.value(i).toString().trimmed());
 
 	    if(!item)
 	      continue;
@@ -997,7 +997,7 @@ void biblioteq_grey_literature::slotExportFiles(void)
 	{
 	  QFile file(dialog.selectedFiles().value(0) +
 		     QDir::separator() +
-		     query.value(1).toString());
+		     query.value(1).toString().trimmed());
 
 	  if(file.open(QIODevice::WriteOnly))
 	    file.write(qUncompress(query.value(0).toByteArray()));
