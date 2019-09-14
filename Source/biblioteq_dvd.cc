@@ -477,24 +477,24 @@ void biblioteq_dvd::modify(const int state)
 	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
-	    dvd.title->setText(var.toString());
+	    dvd.title->setText(var.toString().trimmed());
 	  else if(fieldname == "studio")
 	    dvd.studio->setMultipleLinks
 	      ("dvd_search", "studio",
-	       var.toString());
+	       var.toString().trimmed());
 	  else if(fieldname == "rdate")
 	    dvd.release_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "price")
 	    dvd.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
 	    dvd.category->setMultipleLinks("dvd_search", "category",
-					   var.toString());
+					   var.toString().trimmed());
 	  else if(fieldname == "language")
 	    {
-	      if(dvd.language->findText(var.toString()) > -1)
+	      if(dvd.language->findText(var.toString().trimmed()) > -1)
 		dvd.language->setCurrentIndex
-		  (dvd.language->findText(var.toString()));
+		  (dvd.language->findText(var.toString().trimmed()));
 	      else
 		dvd.language->setCurrentIndex
 		  (dvd.language->findText(tr("UNKNOWN")));
@@ -503,9 +503,9 @@ void biblioteq_dvd::modify(const int state)
 	    dvd.quantity->setValue(var.toInt());
 	  else if(fieldname == "monetary_units")
 	    {
-	      if(dvd.monetary_units->findText(var.toString()) > -1)
+	      if(dvd.monetary_units->findText(var.toString().trimmed()) > -1)
 		dvd.monetary_units->setCurrentIndex
-		  (dvd.monetary_units->findText(var.toString()));
+		  (dvd.monetary_units->findText(var.toString().trimmed()));
 	      else
 		dvd.monetary_units->setCurrentIndex
 		  (dvd.monetary_units->findText(tr("UNKNOWN")));
@@ -513,13 +513,13 @@ void biblioteq_dvd::modify(const int state)
 	  else if(fieldname == "dvddiskcount")
 	    dvd.no_of_discs->setValue(var.toInt());
 	  else if(fieldname == "dvdruntime")
-	    dvd.runtime->setTime(QTime::fromString(var.toString(),
+	    dvd.runtime->setTime(QTime::fromString(var.toString().trimmed(),
 						   "hh:mm:ss"));
 	  else if(fieldname == "location")
 	    {
-	      if(dvd.location->findText(var.toString()) > -1)
+	      if(dvd.location->findText(var.toString().trimmed()) > -1)
 		dvd.location->setCurrentIndex
-		  (dvd.location->findText(var.toString()));
+		  (dvd.location->findText(var.toString().trimmed()));
 	      else
 		dvd.location->setCurrentIndex
 		  (dvd.location->findText(tr("UNKNOWN")));
@@ -529,56 +529,56 @@ void biblioteq_dvd::modify(const int state)
 	      if(state == biblioteq::EDITABLE)
 		{
 		  str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
-		    var.toString() + tr(")");
+		    var.toString().trimmed() + tr(")");
 		  m_engWindowTitle = "Modify";
 		}
 	      else
 		{
 		  str = QString(tr("BiblioteQ: View DVD Details (")) +
-		    var.toString() + tr(")");
+		    var.toString().trimmed() + tr(")");
 		  m_engWindowTitle = "View";
 		}
 
 	      setWindowTitle(str);
-	      dvd.id->setText(var.toString());
+	      dvd.id->setText(var.toString().trimmed());
 	    }
 	  else if(fieldname == "description")
-	    dvd.description->setPlainText(var.toString());
+	    dvd.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    dvd.keyword->setMultipleLinks("dvd_search",
 					  "keyword",
-					  var.toString());
+					  var.toString().trimmed());
 	  else if(fieldname == "dvdformat")
-	    dvd.format->setText(var.toString());
+	    dvd.format->setText(var.toString().trimmed());
 	  else if(fieldname == "dvdactor")
 	    dvd.actors->setMultipleLinks("dvd_search", "actors",
-					 var.toString());
+					 var.toString().trimmed());
 	  else if(fieldname == "dvddirector")
 	    dvd.directors->setMultipleLinks("dvd_search", "directors",
-					    var.toString());
+					    var.toString().trimmed());
 	  else if(fieldname == "dvdrating")
 	    {
-	      if(dvd.rating->findText(var.toString()) > -1)
+	      if(dvd.rating->findText(var.toString().trimmed()) > -1)
 		dvd.rating->setCurrentIndex
-		  (dvd.rating->findText(var.toString()));
+		  (dvd.rating->findText(var.toString().trimmed()));
 	      else
 		dvd.rating->setCurrentIndex
 		  (dvd.rating->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "dvdregion")
 	    {
-	      if(dvd.region->findText(var.toString()) > -1)
+	      if(dvd.region->findText(var.toString().trimmed()) > -1)
 		dvd.region->setCurrentIndex
-		  (dvd.region->findText(var.toString()));
+		  (dvd.region->findText(var.toString().trimmed()));
 	      else
 		dvd.region->setCurrentIndex
 		  (dvd.region->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "dvdaspectratio")
 	    {
-	      if(dvd.aspectratio->findText(var.toString()) > -1)
+	      if(dvd.aspectratio->findText(var.toString().trimmed()) > -1)
 		dvd.aspectratio->setCurrentIndex
-		  (dvd.aspectratio->findText(var.toString()));
+		  (dvd.aspectratio->findText(var.toString().trimmed()));
 	      else
 		dvd.aspectratio->setCurrentIndex
 		  (dvd.aspectratio->findText(tr("UNKNOWN")));
@@ -606,7 +606,7 @@ void biblioteq_dvd::modify(const int state)
 		}
 	    }
 	  else if(fieldname == "accession_number")
-	    dvd.accession_number->setText(var.toString());
+	    dvd.accession_number->setText(var.toString().trimmed());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
