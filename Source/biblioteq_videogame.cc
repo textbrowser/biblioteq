@@ -429,22 +429,22 @@ void biblioteq_videogame::modify(const int state)
 	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
-	    vg.title->setText(var.toString());
+	    vg.title->setText(var.toString().trimmed());
 	  else if(fieldname == "developer")
 	    vg.developer->setMultipleLinks("videogame_search", "developer",
-					   var.toString());
+					   var.toString().trimmed());
 	  else if(fieldname == "publisher")
 	    vg.publisher->setMultipleLinks
 	      ("videogame_search", "publisher",
-	       var.toString());
+	       var.toString().trimmed());
 	  else if(fieldname == "rdate")
 	    vg.release_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "vgrating")
 	    {
-	      if(vg.rating->findText(var.toString()) > -1)
+	      if(vg.rating->findText(var.toString().trimmed()) > -1)
 		vg.rating->setCurrentIndex
-		  (vg.rating->findText(var.toString()));
+		  (vg.rating->findText(var.toString().trimmed()));
 	      else
 		vg.rating->setCurrentIndex
 		  (vg.rating->findText(tr("UNKNOWN")));
@@ -453,15 +453,15 @@ void biblioteq_videogame::modify(const int state)
 	    vg.price->setValue(var.toDouble());
 	  else if(fieldname == "place")
 	    vg.place->setMultipleLinks("videogame_search", "place",
-				       var.toString());
+				       var.toString().trimmed());
 	  else if(fieldname == "genre")
 	    vg.genre->setMultipleLinks("videogame_search", "genre",
-				       var.toString());
+				       var.toString().trimmed());
 	  else if(fieldname == "language")
 	    {
-	      if(vg.language->findText(var.toString()) > -1)
+	      if(vg.language->findText(var.toString().trimmed()) > -1)
 		vg.language->setCurrentIndex
-		  (vg.language->findText(var.toString()));
+		  (vg.language->findText(var.toString().trimmed()));
 	      else
 		vg.language->setCurrentIndex
 		  (vg.language->findText(tr("UNKNOWN")));
@@ -470,27 +470,27 @@ void biblioteq_videogame::modify(const int state)
 	    vg.quantity->setValue(var.toInt());
 	  else if(fieldname == "monetary_units")
 	    {
-	      if(vg.monetary_units->findText(var.toString()) > -1)
+	      if(vg.monetary_units->findText(var.toString().trimmed()) > -1)
 		vg.monetary_units->setCurrentIndex
-		  (vg.monetary_units->findText(var.toString()));
+		  (vg.monetary_units->findText(var.toString().trimmed()));
 	      else
 		vg.monetary_units->setCurrentIndex
 		  (vg.monetary_units->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "vgplatform")
 	    {
-	      if(vg.platform->findText(var.toString()) > -1)
+	      if(vg.platform->findText(var.toString().trimmed()) > -1)
 		vg.platform->setCurrentIndex
-		  (vg.platform->findText(var.toString()));
+		  (vg.platform->findText(var.toString().trimmed()));
 	      else
 		vg.platform->setCurrentIndex
 		  (vg.platform->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "location")
 	    {
-	      if(vg.location->findText(var.toString()) > -1)
+	      if(vg.location->findText(var.toString().trimmed()) > -1)
 		vg.location->setCurrentIndex
-		  (vg.location->findText(var.toString()));
+		  (vg.location->findText(var.toString().trimmed()));
 	      else
 		vg.location->setCurrentIndex
 		  (vg.location->findText(tr("UNKNOWN")));
@@ -500,30 +500,30 @@ void biblioteq_videogame::modify(const int state)
 	      if(state == biblioteq::EDITABLE)
 		{
 		  str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
-		    var.toString() + tr(")");
+		    var.toString().trimmed() + tr(")");
 		  m_engWindowTitle = "Modify";
 		}
 	      else
 		{
 		  str = QString(tr("BiblioteQ: View Video Game Details (")) +
-		    var.toString() + tr(")");
+		    var.toString().trimmed() + tr(")");
 		  m_engWindowTitle = "View";
 		}
 
-	      vg.id->setText(var.toString());
+	      vg.id->setText(var.toString().trimmed());
 	      setWindowTitle(str);
 	    }
 	  else if(fieldname == "description")
-	    vg.description->setPlainText(var.toString());
+	    vg.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    vg.keyword->setMultipleLinks
 	      ("videogame_search", "keyword",
-	       var.toString());
+	       var.toString().trimmed());
 	  else if(fieldname == "vgmode")
 	    {
-	      if(vg.mode->findText(var.toString()) > -1)
+	      if(vg.mode->findText(var.toString().trimmed()) > -1)
 		vg.mode->setCurrentIndex
-		  (vg.mode->findText(var.toString()));
+		  (vg.mode->findText(var.toString().trimmed()));
 	      else
 		vg.mode->setCurrentIndex(0);
 	    }
@@ -550,7 +550,7 @@ void biblioteq_videogame::modify(const int state)
 		}
 	    }
 	  else if(fieldname == "accession_number")
-	    vg.accession_number->setText(var.toString());
+	    vg.accession_number->setText(var.toString().trimmed());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())

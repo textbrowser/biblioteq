@@ -600,7 +600,7 @@ void biblioteq_photographcollection::modify(const int state,
 
 	  if(fieldname == "id")
 	    {
-	      pc.id_collection->setText(var.toString());
+	      pc.id_collection->setText(var.toString().trimmed());
 
 	      if(behavior.isEmpty())
 		{
@@ -609,14 +609,14 @@ void biblioteq_photographcollection::modify(const int state,
 		      str = QString
 			(tr("BiblioteQ: Modify Photograph Collection "
 			    "Entry (")) +
-			var.toString() + tr(")");
+			var.toString().trimmed() + tr(")");
 		      m_engWindowTitle = "Modify";
 		    }
 		  else
 		    {
 		      str = QString(tr("BiblioteQ: View Photograph "
 				       "Collection Details (")) +
-			var.toString() + tr(")");
+			var.toString().trimmed() + tr(")");
 		      m_engWindowTitle = "View";
 		    }
 
@@ -624,20 +624,20 @@ void biblioteq_photographcollection::modify(const int state,
 		}
 	    }
 	  else if(fieldname == "title")
-	    pc.title_collection->setText(var.toString());
+	    pc.title_collection->setText(var.toString().trimmed());
 	  else if(fieldname == "location")
 	    {
-	      if(pc.location->findText(var.toString()) > -1)
+	      if(pc.location->findText(var.toString().trimmed()) > -1)
 		pc.location->setCurrentIndex
-		  (pc.location->findText(var.toString()));
+		  (pc.location->findText(var.toString().trimmed()));
 	      else
 		pc.location->setCurrentIndex
 		  (pc.location->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "about")
-	    pc.about_collection->setPlainText(var.toString());
+	    pc.about_collection->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "notes")
-	    pc.notes_collection->setPlainText(var.toString());
+	    pc.notes_collection->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "image")
 	    {
 	      if(!record.field(i).isNull())
@@ -650,7 +650,7 @@ void biblioteq_photographcollection::modify(const int state,
 		}
 	    }
 	  else if(fieldname == "accession_number")
-	    pc.accession_number->setText(var.toString());
+	    pc.accession_number->setText(var.toString().trimmed());
 	}
 
       int pages = 1;
@@ -2231,25 +2231,27 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
 		if(fieldname == "id")
 		  {
-		    pc.id_item->setText(var.toString());
-		    photo.id_item->setText(var.toString());
+		    pc.id_item->setText(var.toString().trimmed());
+		    photo.id_item->setText(var.toString().trimmed());
 		  }
 		else if(fieldname == "title")
 		  {
-		    pc.title_item->setText(var.toString());
-		    photo.title_item->setText(var.toString());
+		    pc.title_item->setText(var.toString().trimmed());
+		    photo.title_item->setText(var.toString().trimmed());
 		  }
 		else if(fieldname == "creators")
 		  {
-		    pc.creators_item->setPlainText(var.toString());
-		    photo.creators_item->setPlainText(var.toString());
+		    pc.creators_item->setPlainText(var.toString().trimmed());
+		    photo.creators_item->setPlainText(var.toString().trimmed());
 		  }
 		else if(fieldname == "pdate")
 		  {
 		    pc.publication_date->setDate
-		      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+		      (QDate::fromString(var.toString().trimmed(),
+					 "MM/dd/yyyy"));
 		    photo.publication_date->setDate
-		      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+		      (QDate::fromString(var.toString().trimmed(),
+					 "MM/dd/yyyy"));
 		  }
 		else if(fieldname == "quantity")
 		  {
@@ -2258,44 +2260,47 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		  }
 		else if(fieldname == "medium")
 		  {
-		    pc.medium_item->setText(var.toString());
-		    photo.medium_item->setText(var.toString());
+		    pc.medium_item->setText(var.toString().trimmed());
+		    photo.medium_item->setText(var.toString().trimmed());
 		  }
 		else if(fieldname == "reproduction_number")
 		  {
-		    pc.reproduction_number_item->setPlainText(var.toString());
+		    pc.reproduction_number_item->setPlainText
+		      (var.toString().trimmed());
 		    photo.reproduction_number_item->setPlainText
-		      (var.toString());
+		      (var.toString().trimmed());
 		  }
 		else if(fieldname == "copyright")
 		  {
-		    pc.copyright_item->setPlainText(var.toString());
-		    photo.copyright_item->setPlainText(var.toString());
+		    pc.copyright_item->setPlainText(var.toString().trimmed());
+		    photo.copyright_item->setPlainText
+		      (var.toString().trimmed());
 		  }
 		else if(fieldname == "callnumber")
 		  {
-		    pc.call_number_item->setText(var.toString());
-		    photo.call_number_item->setText(var.toString());
+		    pc.call_number_item->setText(var.toString().trimmed());
+		    photo.call_number_item->setText(var.toString().trimmed());
 		  }
 		else if(fieldname == "other_number")
 		  {
-		    pc.other_number_item->setText(var.toString());
-		    photo.other_number_item->setText(var.toString());
+		    pc.other_number_item->setText(var.toString().trimmed());
+		    photo.other_number_item->setText(var.toString().trimmed());
 		  }
 		else if(fieldname == "notes")
 		  {
-		    pc.notes_item->setPlainText(var.toString());
-		    photo.notes_item->setPlainText(var.toString());
+		    pc.notes_item->setPlainText(var.toString().trimmed());
+		    photo.notes_item->setPlainText(var.toString().trimmed());
 		  }
 		else if(fieldname == "subjects")
 		  {
-		    pc.subjects_item->setPlainText(var.toString());
-		    photo.subjects_item->setPlainText(var.toString());
+		    pc.subjects_item->setPlainText(var.toString().trimmed());
+		    photo.subjects_item->setPlainText
+		      (var.toString().trimmed());
 		  }
 		else if(fieldname == "format")
 		  {
-		    pc.format_item->setPlainText(var.toString());
-		    photo.format_item->setPlainText(var.toString());
+		    pc.format_item->setPlainText(var.toString().trimmed());
+		    photo.format_item->setPlainText(var.toString().trimmed());
 		  }
 		else if(fieldname == "image")
 		  {
@@ -2323,8 +2328,9 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		  }
 		else if(fieldname == "accession_number")
 		  {
-		    pc.accession_number_item->setText(var.toString());
-		    photo.accession_number_item->setText(var.toString());
+		    pc.accession_number_item->setText(var.toString().trimmed());
+		    photo.accession_number_item->setText
+		      (var.toString().trimmed());
 		  }
 	      }
 	  }
