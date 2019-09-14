@@ -128,6 +128,21 @@
          </column>
          <column>
           <property name="text">
+           <string>E-Mail Address</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Telephone Number</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Home Address</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Member Since</string>
           </property>
          </column>

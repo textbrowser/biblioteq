@@ -1695,6 +1695,9 @@ void biblioteq::resetMembersBrowser(void)
   list.append(tr("Member ID"));
   list.append(tr("First Name"));
   list.append(tr("Last Name"));
+  list.append(tr("E-Mail Address"));
+  list.append(tr("Telephone Number"));
+  list.append(tr("Home Address"));
   list.append(tr("Member Since"));
   list.append(tr("Expiration Date"));
   list.append(tr("Books Reserved"));
@@ -1706,6 +1709,9 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Member ID");
   m_bbColumnHeaderIndexes.append("First Name");
   m_bbColumnHeaderIndexes.append("Last Name");
+  m_bbColumnHeaderIndexes.append("E-Mail Address");
+  m_bbColumnHeaderIndexes.append("Telephone Number");
+  m_bbColumnHeaderIndexes.append("Home Address");
   m_bbColumnHeaderIndexes.append("Member Since");
   m_bbColumnHeaderIndexes.append("Expiration Date");
   m_bbColumnHeaderIndexes.append("Books Reserved");
@@ -1946,7 +1952,7 @@ void biblioteq::slotAbout(void)
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
-	"Copyright (c) 2005 - present, Side Salad.<br>"
+	"Copyright (c) 2005 - present, Pilot Periwinkle.<br>"
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 	"Poppler version %5.<br>"
 #else

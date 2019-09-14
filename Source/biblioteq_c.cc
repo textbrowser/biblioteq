@@ -3451,6 +3451,12 @@ void biblioteq::slotPopulateMembersBrowser(void)
   str = "SELECT member.memberid, "
     "member.first_name, "
     "member.last_name, "
+    "member.email, "
+    "member.telephone_num, "
+    "member.street || ' ' || "
+    "member.city || ' ' || "
+    "member.state_abbr || ' ' || "
+    "member.zip AS address, "
     "member.membersince, "
     "member.expiration_date, "
     "COUNT(DISTINCT ib1.myoid) AS numbooks, "
@@ -3500,6 +3506,9 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	     "member.memberid, "
 	     "member.first_name, "
 	     "member.last_name, "
+	     "member.email, "
+	     "member.telephone_num, "
+	     "address, "
 	     "member.membersince, "
 	     "member.expiration_date ");
   str.append("ORDER BY member.memberid");
@@ -5047,9 +5056,22 @@ void biblioteq::slotSaveUser(void)
 	      if(!bb.table->item(row, i))
 		continue;
 
-	      if(m_bbColumnHeaderIndexes.at(i) == "First Name")
+	      if(m_bbColumnHeaderIndexes.at(i) == "E-Mail Address")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.email->text());
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Expiration Date")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.expirationdate->
+		   date().toString(Qt::ISODate));
+	      else if(m_bbColumnHeaderIndexes.at(i) == "First Name")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.firstName->text());
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Home Address")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.street->text() + " " +
+		   userinfo_diag->m_userinfo.city->text() + " " +
+		   userinfo_diag->m_userinfo.state->currentText() + " " +
+		   userinfo_diag->m_userinfo.zip->text());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Last Name")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.lastName->text());
@@ -5057,10 +5079,9 @@ void biblioteq::slotSaveUser(void)
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.membersince->date().
 		   toString(Qt::ISODate));
-	      else if(m_bbColumnHeaderIndexes.at(i) == "Expiration Date")
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Telephone Number")
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->m_userinfo.expirationdate->
-		   date().toString(Qt::ISODate));
+		  (userinfo_diag->m_userinfo.telephoneNumber->text());
 	    }
 
 	  bb.table->setSortingEnabled(true);
