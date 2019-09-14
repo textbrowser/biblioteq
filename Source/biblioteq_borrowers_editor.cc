@@ -333,18 +333,18 @@ void biblioteq_borrowers_editor::showUsers(void)
 	      str = QString::number(i + 1);
 	    else if(j == 5 && m_state == biblioteq::EDITABLE)
 	      {
-		date = QDate::fromString(query.value(j).toString(),
+		date = QDate::fromString(query.value(j).toString().trimmed(),
 					 "MM/dd/yyyy");
 		str = date.toString(Qt::ISODate);
 	      }
 	    else if((j == 2 || j == 3) && m_state != biblioteq::EDITABLE)
 	      {
-		date = QDate::fromString(query.value(j).toString(),
+		date = QDate::fromString(query.value(j).toString().trimmed(),
 					 "MM/dd/yyyy");
 		str = date.toString(Qt::ISODate);
 	      }
 	    else
-	      str = query.value(j).toString();
+	      str = query.value(j).toString().trimmed();
 
 	    if(j == 6 && m_state == biblioteq::EDITABLE)
 	      {

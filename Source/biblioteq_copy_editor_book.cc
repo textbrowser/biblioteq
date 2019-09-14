@@ -451,9 +451,9 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
 	    if(m_cb.table->item(row, j) != 0)
 	      {
-		str = query.value(j).toString();
+		str = query.value(j).toString().trimmed();
 
-		if(query.value(2).toString() == "0")
+		if(query.value(2).toString().trimmed() == "0")
 		  m_cb.table->item(row, j)->setFlags(0);
 		else if(m_showForLending)
 		  {
@@ -469,7 +469,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		     Qt::ItemIsEditable);
 
 		if(j == 2)
-		  m_cb.table->item(row, 2)->setText(query.value(2).toString());
+		  m_cb.table->item(row, 2)->setText
+		    (query.value(2).toString().trimmed());
 		else
 		  {
 		    if(i == 0 && j == 0)
@@ -485,7 +486,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 		if(combobox)
 		  {
-		    str = query.value(j).toString();
+		    str = query.value(j).toString().trimmed();
 
 		    if(combobox->findText(str) > -1)
 		      combobox->setCurrentIndex(combobox->findText(str));
