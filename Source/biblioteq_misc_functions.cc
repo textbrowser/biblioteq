@@ -64,8 +64,8 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
 
   if(query.exec(querystr))
     while(query.next())
-      locations.append(qMakePair(query.value(0).toString(),
-				 query.value(1).toString()));
+      locations.append(qMakePair(query.value(0).toString().trimmed(),
+				 query.value(1).toString().trimmed()));
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -113,7 +113,7 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
   if(query.exec())
     while(query.next())
       {
-	str = query.value(0).toString();
+	str = query.value(0).toString().trimmed();
 
 	if(str == "0")
 	  str = "";
@@ -183,7 +183,7 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 
   if(query.exec())
     if(query.next())
-      str = query.value(0).toString();
+      str = query.value(0).toString().trimmed();
 
   return str;
 }
@@ -223,7 +223,7 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 
   if(query.exec())
     if(query.next())
-      str = query.value(0).toString();
+      str = query.value(0).toString().trimmed();
 
   if(query.lastError().isValid())
     {
@@ -298,7 +298,9 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
 
   if(query.exec())
     if(query.next())
-      str = query.value(0).toString() + ", " + query.value(1).toString();
+      str = query.value(0).toString().trimmed() +
+	", " +
+	query.value(1).toString().trimmed();
 
   if(query.lastError().isValid())
     {
@@ -356,7 +358,7 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   if(query.exec())
     if(query.next())
-      oid = query.value(0).toString();
+      oid = query.value(0).toString().trimmed();
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -380,7 +382,7 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
   if(query.exec())
     if(query.next())
       {
-	roles = query.value(0).toString();
+	roles = query.value(0).toString().trimmed();
 
 	if(roles == "none")
 	  roles = "";
@@ -429,7 +431,7 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
 
   if(query.exec(querystr))
     while(query.next())
-      types.append(query.value(0).toString());
+      types.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -451,7 +453,7 @@ QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
 
   if(query.exec(querystr))
     while(query.next())
-      formats.append(query.value(0).toString());
+      formats.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -473,7 +475,7 @@ QStringList biblioteq_misc_functions::getDVDAspectRatios
 
   if(query.exec(querystr))
     while(query.next())
-      aspectratios.append(query.value(0).toString());
+      aspectratios.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -495,7 +497,7 @@ QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
 
   if(query.exec(querystr))
     while(query.next())
-      ratings.append(query.value(0).toString());
+      ratings.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -517,7 +519,7 @@ QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
 
   if(query.exec(querystr))
     while(query.next())
-      regions.append(query.value(0).toString());
+      regions.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -539,7 +541,7 @@ QStringList biblioteq_misc_functions::getGreyLiteratureTypes
 
   if(query.exec(querystr))
     while(query.next())
-      types.append(query.value(0).toString());
+      types.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -561,7 +563,7 @@ QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
 
   if(query.exec(querystr))
     while(query.next())
-      languages.append(query.value(0).toString());
+      languages.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -592,7 +594,7 @@ QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
 
   if(query.exec())
     while(query.next())
-      locations.append(query.value(0).toString());
+      locations.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -616,10 +618,11 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   if(query.exec(querystr))
     while(query.next())
       {
-	if(query.value(0).toString() == "CD")
-	  map["Music CD"] = query.value(1).toString();
+	if(query.value(0).toString().trimmed() == "CD")
+	  map["Music CD"] = query.value(1).toString().trimmed();
 	else
-	  map[query.value(0).toString()] = query.value(1).toString();
+	  map[query.value(0).toString().trimmed()] =
+	    query.value(1).toString().trimmed();
       }
 
   if(!map.contains("Book"))
@@ -661,7 +664,7 @@ QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
 
   if(query.exec(querystr))
     while(query.next())
-      monetary_units.append(query.value(0).toString());
+      monetary_units.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -776,16 +779,18 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
   if(query.exec())
     while(query.next())
       {
-	date = QDate::fromString(query.value(4).toString(),
+	date = QDate::fromString(query.value(4).toString().trimmed(),
 				 "MM/dd/yyyy");
 	str = QString(QObject::tr("#")) +
 	  QString::number(list.size() + 1) + "<br>";
 	str += QObject::tr("Barcode: ") +
-	  query.value(0).toString() + "<br>" +
+	  query.value(0).toString().trimmed() + "<br>" +
 	  QObject::tr(" Location: ") +
-	  query.value(1).toString() + "<br>" +
-	  QObject::tr("Type: ") + query.value(2).toString() + "<br>" +
-	  QObject::tr("Title: ") + query.value(3).toString() + "<br>" +
+	  query.value(1).toString().trimmed() + "<br>" +
+	  QObject::tr("Type: ") + query.value(2).toString().trimmed() +
+	  "<br>" +
+	  QObject::tr("Title: ") + query.value(3).toString().trimmed() +
+	  "<br>" +
 	  QObject::tr("Due Date: ") +
 	  date.toString(Qt::ISODate);
 	list.append(str);
@@ -811,7 +816,7 @@ QStringList biblioteq_misc_functions::getVideoGamePlatforms
 
   if(query.exec(querystr))
     while(query.next())
-      platforms.append(query.value(0).toString());
+      platforms.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -833,7 +838,7 @@ QStringList biblioteq_misc_functions::getVideoGameRatings
 
   if(query.exec(querystr))
     while(query.next())
-      ratings.append(query.value(0).toString());
+      ratings.append(query.value(0).toString().trimmed());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -924,7 +929,7 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
       {
 	if(db.driverName() == "QSQLITE")
 	  {
-	    QDate date(QDate::fromString(query.value(0).toString(),
+	    QDate date(QDate::fromString(query.value(0).toString().trimmed(),
 					 "MM/dd/yyyy"));
 
 	    if(date.daysTo(QDate::currentDate()) > 0)
@@ -956,7 +961,7 @@ bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
 
   if(query.exec("SELECT LOWER(extname) FROM pg_extension WHERE "
 		"LOWER(extname) = 'unaccent'") && query.next())
-    return query.value(0).toString() == "unaccent";
+    return query.value(0).toString().trimmed() == "unaccent";
 
   return false;
 }

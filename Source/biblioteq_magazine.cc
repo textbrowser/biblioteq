@@ -695,46 +695,46 @@ void biblioteq_magazine::modify(const int state)
 	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
-	    ma.title->setText(var.toString());
+	    ma.title->setText(var.toString().trimmed());
 	  else if(fieldname == "publisher")
 	    {
 	      if(m_subType == "Journal")
 		ma.publisher->setMultipleLinks
 		  ("journal_search", "publisher",
-		   var.toString());
+		   var.toString().trimmed());
 	      else
 		ma.publisher->setMultipleLinks
 		  ("magazine_search", "publisher",
-		   var.toString());
+		   var.toString().trimmed());
 	    }
 	  else if(fieldname == "pdate")
 	    ma.publication_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "price")
 	    ma.price->setValue(var.toDouble());
 	  else if(fieldname == "place")
 	    {
 	      if(m_subType == "Journal")
 		ma.place->setMultipleLinks("journal_search", "place",
-					   var.toString());
+					   var.toString().trimmed());
 	      else
 		ma.place->setMultipleLinks("magazine_search", "place",
-					   var.toString());
+					   var.toString().trimmed());
 	    }
 	  else if(fieldname == "category")
 	    {
 	      if(m_subType == "Journal")
 		ma.category->setMultipleLinks("journal_search", "category",
-					      var.toString());
+					      var.toString().trimmed());
 	      else
 		ma.category->setMultipleLinks("magazine_search", "category",
-					      var.toString());
+					      var.toString().trimmed());
 	    }
 	  else if(fieldname == "language")
 	    {
-	      if(ma.language->findText(var.toString()) > -1)
+	      if(ma.language->findText(var.toString().trimmed()) > -1)
 		ma.language->setCurrentIndex
-		  (ma.language->findText(var.toString()));
+		  (ma.language->findText(var.toString().trimmed()));
 	      else
 		ma.language->setCurrentIndex
 		  (ma.language->findText(tr("UNKNOWN")));
@@ -743,9 +743,9 @@ void biblioteq_magazine::modify(const int state)
 	    ma.quantity->setValue(var.toInt());
 	  else if(fieldname == "monetary_units")
 	    {
-	      if(ma.monetary_units->findText(var.toString()) > -1)
+	      if(ma.monetary_units->findText(var.toString().trimmed()) > -1)
 		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText(var.toString()));
+		  (ma.monetary_units->findText(var.toString().trimmed()));
 	      else
 		ma.monetary_units->setCurrentIndex
 		  (ma.monetary_units->findText(tr("UNKNOWN")));
@@ -756,9 +756,9 @@ void biblioteq_magazine::modify(const int state)
 	    ma.issue->setValue(var.toInt());
 	  else if(fieldname == "location")
 	    {
-	      if(ma.location->findText(var.toString()) > -1)
+	      if(ma.location->findText(var.toString().trimmed()) > -1)
 		ma.location->setCurrentIndex
-		  (ma.location->findText(var.toString()));
+		  (ma.location->findText(var.toString().trimmed()));
 	      else
 		ma.location->setCurrentIndex
 		  (ma.location->findText(tr("UNKNOWN")));
@@ -767,16 +767,16 @@ void biblioteq_magazine::modify(const int state)
 	    {
 	      if(state == biblioteq::EDITABLE)
 		{
-		  if(!var.toString().trimmed().isEmpty())
+		  if(!var.toString().trimmed().trimmed().isEmpty())
 		    {
 		      if(m_subType == "Journal")
 			str =
 			  QString(tr("BiblioteQ: Modify Journal Entry (")) +
-			  var.toString() + tr(")");
+			  var.toString().trimmed() + tr(")");
 		      else
 			str =
 			  QString(tr("BiblioteQ: Modify Magazine Entry (")) +
-			  var.toString() + tr(")");
+			  var.toString().trimmed() + tr(")");
 		    }
 		  else
 		    {
@@ -790,16 +790,16 @@ void biblioteq_magazine::modify(const int state)
 		}
 	      else
 		{
-		  if(!var.toString().trimmed().isEmpty())
+		  if(!var.toString().trimmed().trimmed().isEmpty())
 		    {
 		      if(m_subType == "Journal")
 			str =
 			  QString(tr("BiblioteQ: View Journal Details (")) +
-			  var.toString() + tr(")");
+			  var.toString().trimmed() + tr(")");
 		      else
 			str =
 			  QString(tr("BiblioteQ: View Magazine Details (")) +
-			  var.toString() + tr(")");
+			  var.toString().trimmed() + tr(")");
 		    }
 		  else
 		    {
@@ -813,7 +813,7 @@ void biblioteq_magazine::modify(const int state)
 		}
 
 	      setWindowTitle(str);
-	      ma.id->setText(var.toString());
+	      ma.id->setText(var.toString().trimmed());
 
 	      if(query.isNull(i))
 		ma.issnAvailableCheckBox->setChecked(false);
@@ -821,24 +821,24 @@ void biblioteq_magazine::modify(const int state)
 		ma.issnAvailableCheckBox->setChecked(true);
 	    }
 	  else if(fieldname == "description")
-	    ma.description->setPlainText(var.toString());
+	    ma.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "marc_tags")
-	    ma.marc_tags->setPlainText(var.toString());
+	    ma.marc_tags->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    {
 	      if(m_subType == "Journal")
 		ma.keyword->setMultipleLinks("journal_search", "keyword",
-					     var.toString());
+					     var.toString().trimmed());
 	      else
 		ma.keyword->setMultipleLinks("magazine_search", "keyword",
-					     var.toString());
+					     var.toString().trimmed());
 	    }
 	  else if(fieldname == "lccontrolnumber")
-	    ma.lcnum->setText(var.toString());
+	    ma.lcnum->setText(var.toString().trimmed());
 	  else if(fieldname == "callnumber")
-	    ma.callnum->setText(var.toString());
+	    ma.callnum->setText(var.toString().trimmed());
 	  else if(fieldname == "deweynumber")
-	    ma.deweynum->setText(var.toString());
+	    ma.deweynum->setText(var.toString().trimmed());
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!record.field(i).isNull())
@@ -862,7 +862,7 @@ void biblioteq_magazine::modify(const int state)
 		}
 	    }
 	  else if(fieldname == "accession_number")
-	    ma.accession_number->setText(var.toString());
+	    ma.accession_number->setText(var.toString().trimmed());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1722,7 +1722,7 @@ void biblioteq_magazine::populateFiles(void)
 		(locale.toString(query.value(i).toLongLong()));
 	    else
 	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString());
+		QTableWidgetItem(query.value(i).toString().trimmed());
 
 	    if(!item)
 	      continue;
@@ -2017,7 +2017,7 @@ void biblioteq_magazine::slotExportFiles(void)
 	  if(query.exec() && query.next())
 	    {
 	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
-			 query.value(1).toString());
+			 query.value(1).toString().trimmed());
 
 	      if(file.open(QIODevice::WriteOnly))
 		file.write(qUncompress(query.value(0).toByteArray()));
@@ -2512,7 +2512,7 @@ void biblioteq_magazine::slotGo(void)
 	      if(qmain->getDB().driverName() != "QSQLITE")
 		{
 		  query.next();
-		  m_oid = query.value(0).toString();
+		  m_oid = query.value(0).toString().trimmed();
 		}
 
 	      if(ma.id->text().isEmpty())
@@ -3634,7 +3634,7 @@ void biblioteq_magazine::slotShowPDF(void)
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());
 
-  reader->load(data, query.value(1).toString());
+  reader->load(data, query.value(1).toString().trimmed());
   reader->show();
   QApplication::restoreOverrideCursor();
 }
