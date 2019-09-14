@@ -745,6 +745,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
   QProgressDialog progress(this);
 
   progress.setLabelText(tr("Loading image(s)..."));
+  progress.setMaximum(0);
   progress.setMinimum(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -756,34 +757,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   QSqlQuery query(qmain->getDB());
 
-  if(qmain->getDB().driverName() == "QSQLITE")
-    {
-      if(photographsPerPage() == -1) // Unlimited.
-	{
-	  query.prepare("SELECT COUNT(*) FROM photograph "
-			"photograph WHERE "
-			"collection_oid = ? "
-			"ORDER BY id");
-	  query.bindValue(0, m_oid);
-	}
-      else
-	{
-	  query.prepare("SELECT COUNT(*) FROM photograph "
-			"photograph WHERE "
-			"collection_oid = ? "
-			"ORDER BY id "
-			"LIMIT ? "
-			"OFFSET ?");
-	  query.bindValue(0, m_oid);
-	  query.bindValue(1, photographsPerPage());
-	  query.bindValue(2, photographsPerPage() * (page - 1));
-	}
-
-      if(query.exec() && query.next())
-	progress.setMaximum(query.value(0).toInt());
-      else
-	progress.setMaximum(0);
-    }
+  query.setForwardOnly(true);
 
   if(photographsPerPage() == -1) // Unlimited.
     {
@@ -808,9 +782,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   if(query.exec())
     {
-      if(qmain->getDB().driverName() == "QPSQL")
-	progress.setMaximum(query.size());
-
       pc.graphicsView->scene()->clear();
       pc.graphicsView->resetTransform();
       pc.graphicsView->verticalScrollBar()->setValue(0);
@@ -823,10 +794,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
       while(query.next())
 	{
 	  i += 1;
-
-	  if(i + 1 <= progress.maximum())
-	    progress.setValue(i + 1);
-
 	  progress.repaint();
 #ifndef Q_OS_MAC
 	  QApplication::processEvents();
