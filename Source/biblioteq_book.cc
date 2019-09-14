@@ -851,24 +851,24 @@ void biblioteq_book::modify(const int state)
 	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "title")
-	    id.title->setText(var.toString());
+	    id.title->setText(var.toString().trimmed());
 	  else if(fieldname == "author")
 	    id.author->setMultipleLinks("book_search", "author",
-					var.toString());
+					var.toString().trimmed());
 	  else if(fieldname == "publisher")
 	    id.publisher->setMultipleLinks("book_search", "publisher",
-					   var.toString());
+					   var.toString().trimmed());
 	  else if(fieldname == "place")
 	    id.place->setMultipleLinks("book_search", "place",
-				       var.toString());
+				       var.toString().trimmed());
 	  else if(fieldname == "pdate")
 	    id.publication_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "edition")
 	    {
-	      if(id.edition->findText(var.toString()) > -1)
+	      if(id.edition->findText(var.toString().trimmed()) > -1)
 		id.edition->setCurrentIndex
-		  (id.edition->findText(var.toString()));
+		  (id.edition->findText(var.toString().trimmed()));
 	      else
 		id.edition->setCurrentIndex(0);
 	    }
@@ -876,12 +876,12 @@ void biblioteq_book::modify(const int state)
 	    id.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
 	    id.category->setMultipleLinks("book_search", "category",
-					  var.toString());
+					  var.toString().trimmed());
 	  else if(fieldname == "language")
 	    {
-	      if(id.language->findText(var.toString()) > -1)
+	      if(id.language->findText(var.toString().trimmed()) > -1)
 		id.language->setCurrentIndex
-		  (id.language->findText(var.toString()));
+		  (id.language->findText(var.toString().trimmed()));
 	      else
 		id.language->setCurrentIndex
 		  (id.language->findText(tr("UNKNOWN")));
@@ -890,26 +890,26 @@ void biblioteq_book::modify(const int state)
 	    id.quantity->setValue(var.toInt());
 	  else if(fieldname == "monetary_units")
 	    {
-	      if(id.monetary_units->findText(var.toString()) > -1)
+	      if(id.monetary_units->findText(var.toString().trimmed()) > -1)
 		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText(var.toString()));
+		  (id.monetary_units->findText(var.toString().trimmed()));
 	      else
 		id.monetary_units->setCurrentIndex
 		  (id.monetary_units->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "binding_type")
 	    {
-	      if(id.binding->findText(var.toString()) > -1)
+	      if(id.binding->findText(var.toString().trimmed()) > -1)
 		id.binding->setCurrentIndex
-		  (id.binding->findText(var.toString()));
+		  (id.binding->findText(var.toString().trimmed()));
 	      else
 		id.binding->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "location")
 	    {
-	      if(id.location->findText(var.toString()) > -1)
+	      if(id.location->findText(var.toString().trimmed()) > -1)
 		id.location->setCurrentIndex
-		  (id.location->findText(var.toString()));
+		  (id.location->findText(var.toString().trimmed()));
 	      else
 		id.location->setCurrentIndex
 		  (id.location->findText(tr("UNKNOWN")));
@@ -918,9 +918,9 @@ void biblioteq_book::modify(const int state)
 	    {
 	      if(state == biblioteq::EDITABLE)
 		{
-		  if(!var.toString().trimmed().isEmpty())
+		  if(!var.toString().trimmed().trimmed().isEmpty())
 		    str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-		      var.toString() + tr(")");
+		      var.toString().trimmed() + tr(")");
 		  else
 		    str = tr("BiblioteQ: Modify Book Entry");
 
@@ -928,16 +928,16 @@ void biblioteq_book::modify(const int state)
 		}
 	      else
 		{
-		  if(!var.toString().trimmed().isEmpty())
+		  if(!var.toString().trimmed().trimmed().isEmpty())
 		    str = QString(tr("BiblioteQ: View Book Details (")) +
-		      var.toString() + tr(")");
+		      var.toString().trimmed() + tr(")");
 		  else
 		    str = tr("BiblioteQ: View Book Details");
 
 		  m_engWindowTitle = "View";
 		}
 
-	      id.id->setText(var.toString());
+	      id.id->setText(var.toString().trimmed());
 	      setWindowTitle(str);
 
 	      if(query.isNull(i))
@@ -946,33 +946,33 @@ void biblioteq_book::modify(const int state)
 		id.isbnAvailableCheckBox->setChecked(true);
 	    }
 	  else if(fieldname == "description")
-	    id.description->setPlainText(var.toString());
+	    id.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "marc_tags")
-	    id.marc_tags->setPlainText(var.toString());
+	    id.marc_tags->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    id.keyword->setMultipleLinks("book_search", "keyword",
-					 var.toString());
+					 var.toString().trimmed());
 	  else if(fieldname == "isbn13")
-	    id.isbn13->setText(var.toString());
+	    id.isbn13->setText(var.toString().trimmed());
 	  else if(fieldname == "lccontrolnumber")
-	    id.lcnum->setText(var.toString());
+	    id.lcnum->setText(var.toString().trimmed());
 	  else if(fieldname == "callnumber")
-	    id.callnum->setText(var.toString());
+	    id.callnum->setText(var.toString().trimmed());
 	  else if(fieldname == "deweynumber")
-	    id.deweynum->setText(var.toString());
+	    id.deweynum->setText(var.toString().trimmed());
 	  else if(fieldname == "originality")
 	    {
-	      if(id.originality->findText(var.toString()) > -1)
+	      if(id.originality->findText(var.toString().trimmed()) > -1)
 		id.originality->setCurrentIndex
-		  (id.originality->findText(var.toString()));
+		  (id.originality->findText(var.toString().trimmed()));
 	      else
 		id.originality->setCurrentIndex(2);
 	    }
 	  else if(fieldname == "condition")
 	    {
-	      if(id.condition->findText(var.toString()) > -1)
+	      if(id.condition->findText(var.toString().trimmed()) > -1)
 		id.condition->setCurrentIndex
-		  (id.condition->findText(var.toString()));
+		  (id.condition->findText(var.toString().trimmed()));
 	      else
 		id.condition->setCurrentIndex(0);
 	    }
@@ -999,7 +999,7 @@ void biblioteq_book::modify(const int state)
 		}
 	    }
 	  else if(fieldname == "accession_number")
-	    id.accession_number->setText(var.toString());
+	    id.accession_number->setText(var.toString().trimmed());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1058,7 +1058,7 @@ void biblioteq_book::populateFiles(void)
 		(locale.toString(query.value(i).toLongLong()));
 	    else
 	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString());
+		QTableWidgetItem(query.value(i).toString().trimmed());
 
 	    if(!item)
 	      continue;
@@ -1600,7 +1600,7 @@ void biblioteq_book::slotExportFiles(void)
 	  if(query.exec() && query.next())
 	    {
 	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
-			 query.value(1).toString());
+			 query.value(1).toString().trimmed());
 
 	      if(file.open(QIODevice::WriteOnly))
 		file.write(qUncompress(query.value(0).toByteArray()));
@@ -2129,7 +2129,7 @@ void biblioteq_book::slotGo(void)
 	      if(qmain->getDB().driverName() != "QSQLITE")
 		{
 		  query.next();
-		  m_oid = query.value(0).toString();
+		  m_oid = query.value(0).toString().trimmed();
 		}
 
 	      if(id.id->text().isEmpty())
@@ -3361,7 +3361,7 @@ void biblioteq_book::slotShowPDF(void)
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());
 
-  reader->load(data, query.value(1).toString());
+  reader->load(data, query.value(1).toString().trimmed());
   reader->show();
   QApplication::restoreOverrideCursor();
 }

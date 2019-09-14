@@ -452,7 +452,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		     record.fieldName(j).contains("membersince"))
 		    {
 		      QDate date(QDate::fromString(m_searchQuery.value(j).
-						   toString(), "MM/dd/yyyy"));
+						   toString().trimmed(),
+						   "MM/dd/yyyy"));
 
 		      str = date.toString(Qt::ISODate);
 
@@ -460,7 +461,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			str = m_searchQuery.value(j).toString().trimmed();
 		    }
 		  else
-		    str = m_searchQuery.value(j).toString();
+		    str = m_searchQuery.value(j).toString().trimmed();
 		}
 
 	      if(record.fieldName(j).endsWith("availability") ||
@@ -489,7 +490,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
-		  str = m_searchQuery.value(j).toString();
+		  str = m_searchQuery.value(j).toString().trimmed();
 		  item = new(std::nothrow) biblioteq_callnum_table_item(str);
 		}
 	      else if(record.fieldName(j).endsWith("front_cover") ||
@@ -3267,75 +3268,87 @@ void biblioteq::slotModifyBorrower(void)
 
       for(i = 0; i < record.count(); i++)
 	{
-	  str = query.value(i).toString();
+	  str = query.value(i).toString().trimmed();
 	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
 
 	  if(fieldname == "memberid")
-	    userinfo_diag->m_userinfo.memberid->setText(var.toString());
+	    userinfo_diag->m_userinfo.memberid->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "membersince")
 	    userinfo_diag->m_userinfo.membersince->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "dob")
 	    userinfo_diag->m_userinfo.dob->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "sex")
 	    {
-	      if(userinfo_diag->m_userinfo.sex->findText(var.toString()) > -1)
+	      if(userinfo_diag->m_userinfo.sex->
+		 findText(var.toString().trimmed()) > -1)
 		userinfo_diag->m_userinfo.sex->setCurrentIndex
-		  (userinfo_diag->m_userinfo.sex->findText(var.toString()));
+		  (userinfo_diag->m_userinfo.sex->
+		   findText(var.toString().trimmed()));
 	      else
 		userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
 	    }
 	  else if(fieldname == "first_name")
-	    userinfo_diag->m_userinfo.firstName->setText(var.toString());
+	    userinfo_diag->m_userinfo.firstName->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "middle_init")
-	    userinfo_diag->m_userinfo.middle->setText(var.toString());
+	    userinfo_diag->m_userinfo.middle->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "last_name")
-	    userinfo_diag->m_userinfo.lastName->setText(var.toString());
+	    userinfo_diag->m_userinfo.lastName->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "telephone_num")
-	    userinfo_diag->m_userinfo.telephoneNumber->setText(var.toString());
+	    userinfo_diag->m_userinfo.telephoneNumber->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "street")
-	    userinfo_diag->m_userinfo.street->setText(var.toString());
+	    userinfo_diag->m_userinfo.street->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "city")
-	    userinfo_diag->m_userinfo.city->setText(var.toString());
+	    userinfo_diag->m_userinfo.city->setText(var.toString().trimmed());
 	  else if(fieldname == "state_abbr")
 	    {
 	      if(userinfo_diag->m_userinfo.state->
-		 findText(var.toString()) == -1)
+		 findText(var.toString().trimmed()) == -1)
 		userinfo_diag->m_userinfo.state->setCurrentIndex(0);
 	      else
 		userinfo_diag->m_userinfo.state->setCurrentIndex
-		  (userinfo_diag->m_userinfo.state->findText(var.toString()));
+		  (userinfo_diag->m_userinfo.state->
+		   findText(var.toString().trimmed()));
 	    }
 	  else if(fieldname == "zip")
-	    userinfo_diag->m_userinfo.zip->setText(var.toString());
+	    userinfo_diag->m_userinfo.zip->setText(var.toString().trimmed());
 	  else if(fieldname == "email")
-	    userinfo_diag->m_userinfo.email->setText(var.toString());
+	    userinfo_diag->m_userinfo.email->setText(var.toString().trimmed());
 	  else if(fieldname == "expiration_date")
 	    userinfo_diag->m_userinfo.expirationdate->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
 	  else if(fieldname == "comments")
-	    userinfo_diag->m_userinfo.comments->setPlainText(var.toString());
+	    userinfo_diag->m_userinfo.comments->setPlainText
+	      (var.toString().trimmed());
 	  else if(fieldname == "general_registration_number")
 	    userinfo_diag->m_userinfo.generalregistrationnumber->setText
-	      (var.toString());
+	      (var.toString().trimmed());
 	  else if(fieldname == "memberclass")
-	    userinfo_diag->m_userinfo.memberclass->setText(var.toString());
+	    userinfo_diag->m_userinfo.memberclass->setText
+	      (var.toString().trimmed());
 
 	  if(fieldname.contains("dob") ||
 	     fieldname.contains("date") ||
 	     fieldname.contains("membersince"))
 	    userinfo_diag->m_memberProperties[fieldname] =
-	      QDate::fromString(var.toString(), "MM/dd/yyyy").
+	      QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy").
 	      toString(Qt::ISODate);
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.overduefees->text();
 	  else
-	    userinfo_diag->m_memberProperties[fieldname] = var.toString();
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      var.toString().trimmed();
 	}
 
       foreach(QLineEdit *textfield,
@@ -3583,13 +3596,14 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	      if(record.fieldName(j).contains("date") ||
 		 record.fieldName(j).contains("membersince"))
 		{
-		  QDate date(QDate::fromString(query.value(j).toString(),
+		  QDate date(QDate::fromString(query.value(j).toString().
+					       trimmed(),
 					       "MM/dd/yyyy"));
 
 		  str = date.toString(Qt::ISODate);
 		}
 	      else
-		str = query.value(j).toString();
+		str = query.value(j).toString().trimmed();
 
 	      if(str == "0")
 		str = "";
@@ -3696,14 +3710,15 @@ void biblioteq::slotRefreshAdminList(void)
 	{
 	  if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	    {
-	      str = query.value(0).toString();
+	      str = query.value(0).toString().trimmed();
 	      item->setText(str);
 	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      str = query.value(1).toString();
+	      str = query.value(1).toString().trimmed();
 	      ab.table->setItem(i, 0, item);
 
 	      for(j = 1; j < ab.table->columnCount(); j++)
-		if(query.value(0).toString() == getAdminID() && j > 1)
+		if(query.value(0).toString().trimmed() == getAdminID() &&
+		   j > 1)
 		  {
 		    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 		      {
@@ -3727,7 +3742,7 @@ void biblioteq::slotRefreshAdminList(void)
 		    if(str.toLower().contains(columnname))
 		      checkBox->setChecked(true);
 
-		    if(query.value(0).toString() == getAdminID())
+		    if(query.value(0).toString().trimmed() == getAdminID())
 		      checkBox->setEnabled(false);
 		    else
 		      connect(checkBox, SIGNAL(stateChanged(int)), this,
@@ -4075,8 +4090,8 @@ void biblioteq::slotRequest(void)
   if(!m_roles.isEmpty())
     isRequesting = false;
   else if(ui.menu_Category->defaultAction() &&
-	  ui.menu_Category->defaultAction()->data().
-	  toString() == "All Requested")
+	  ui.menu_Category->defaultAction()->data().toString() ==
+	  "All Requested")
     isRequesting = false;
 
   if(isRequesting)
@@ -5068,10 +5083,10 @@ void biblioteq::slotSaveUser(void)
 		  (userinfo_diag->m_userinfo.firstName->text());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Home Address")
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->m_userinfo.street->text() + " " +
-		   userinfo_diag->m_userinfo.city->text() + " " +
-		   userinfo_diag->m_userinfo.state->currentText() + " " +
-		   userinfo_diag->m_userinfo.zip->text());
+		  ((userinfo_diag->m_userinfo.street->text() + " " +
+		    userinfo_diag->m_userinfo.city->text() + " " +
+		    userinfo_diag->m_userinfo.state->currentText() + " " +
+		    userinfo_diag->m_userinfo.zip->text()).trimmed());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Last Name")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.lastName->text());
@@ -5477,13 +5492,14 @@ void biblioteq::slotShowHistory(void)
 	    {
 	      if(record.fieldName(j).contains("date"))
 		{
-		  QDate date(QDate::fromString(query.value(j).toString(),
+		  QDate date(QDate::fromString(query.value(j).toString().
+					       trimmed(),
 					       "MM/dd/yyyy"));
 
 		  str = date.toString(Qt::ISODate);
 		}
 	      else
-		str = query.value(j).toString();
+		str = query.value(j).toString().trimmed();
 
 	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 		{
