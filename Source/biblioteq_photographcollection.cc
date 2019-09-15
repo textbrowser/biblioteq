@@ -374,6 +374,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
   QSqlQuery query(qmain->getDB());
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  query.setForwardOnly(true);
   query.prepare("SELECT image FROM "
 		"photograph WHERE "
 		"collection_oid = ? AND "
@@ -560,6 +561,7 @@ void biblioteq_photographcollection::modify(const int state,
       actions.clear();
     }
 
+  query.setForwardOnly(true);
   query.prepare("SELECT id, "
 		"title, "
 		"location, "
@@ -2165,6 +2167,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
       QSqlQuery query(qmain->getDB());
 
+      query.setForwardOnly(true);
       query.prepare("SELECT id, "
 		    "title, "
 		    "creators, "
