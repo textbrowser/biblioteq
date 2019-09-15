@@ -2004,6 +2004,8 @@ void biblioteq_magazine::slotExportFiles(void)
 	{
 	  QSqlQuery query(qmain->getDB());
 
+	  query.setForwardOnly(true);
+
 	  if(m_subType == "Journal")
 	    query.prepare("SELECT file, file_name FROM journal_files "
 			  "WHERE item_oid = ? AND myoid = ?");
@@ -2056,6 +2058,8 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  QByteArray data;
 	  QSqlQuery query(qmain->getDB());
+
+	  query.setForwardOnly(true);
 
 	  if(m_subType == "Journal")
 	    query.prepare("SELECT file, file_name FROM journal_files "
