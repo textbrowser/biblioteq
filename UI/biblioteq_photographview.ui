@@ -98,7 +98,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QGraphicsView" name="view">
+        <widget class="biblioteq_photograph_view" name="view">
          <property name="renderHints">
           <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
          </property>
@@ -226,6 +226,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>biblioteq_photograph_view</class>
+   <extends>QGraphicsView</extends>
+   <header>biblioteq_photograph_view.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>view_size</tabstop>
   <tabstop>view</tabstop>

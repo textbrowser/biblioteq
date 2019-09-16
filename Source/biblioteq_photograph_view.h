@@ -9,9 +9,13 @@ class biblioteq_photograph_view: public QGraphicsView
 
  public:
   biblioteq_photograph_view(QWidget *parent);
+  void setBestFit(const bool bestFit);
+  void setImage(const QImage &image);
 
  private:
   QImage m_image;
+  bool m_bestFit;
+  void resizeEvent(QResizeEvent *event);
 };
 
 #endif

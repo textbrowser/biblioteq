@@ -433,11 +433,14 @@ void biblioteq_photographcollection::loadPhotographFromItem
 
 	scene->setSceneRect(scene->itemsBoundingRect());
 
-	QGraphicsView *view = scene->views().value(0);
+	biblioteq_photograph_view *view =
+	  qobject_cast<biblioteq_photograph_view *> (scene->views().value(0));
 
 	if(view)
 	  {
 	    view->horizontalScrollBar()->setValue(0);
+	    view->setBestFit(percent == 0);
+	    view->setImage(image);
 	    view->verticalScrollBar()->setValue(0);
 	  }
       }
@@ -1571,6 +1574,12 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 
 	      item->setPixmap(QPixmap::fromImage(image));
 	      scene->setSceneRect(scene->itemsBoundingRect());
+
+	      biblioteq_photograph_view *view = qobject_cast
+		<biblioteq_photograph_view *> (scene->views().value(0));
+
+	      if(view)
+		view->setBestFit(percent == 0);
 	    }
 	}
     }
