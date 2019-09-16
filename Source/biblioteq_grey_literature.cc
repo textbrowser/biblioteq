@@ -836,9 +836,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
   if(fileDialog.exec() == QDialog::Accepted)
     {
       repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
@@ -851,9 +849,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       while(i++, !files.isEmpty() && !progress.wasCanceled())
 	{
@@ -889,9 +885,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 	    progress.setValue(i + 1);
 
 	  progress.repaint();
-#ifndef Q_OS_MAC
 	  QApplication::processEvents();
-#endif
 	}
 
       QApplication::restoreOverrideCursor();
@@ -965,9 +959,7 @@ void biblioteq_grey_literature::slotExportFiles(void)
     return;
 
   repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   QProgressDialog progress(this);
 
@@ -978,9 +970,7 @@ void biblioteq_grey_literature::slotExportFiles(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   int i = -1;
 
@@ -1011,9 +1001,7 @@ void biblioteq_grey_literature::slotExportFiles(void)
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 }
 

@@ -1845,9 +1845,7 @@ void biblioteq_magazine::slotAttachFiles(void)
   if(fileDialog.exec() == QDialog::Accepted)
     {
       repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
@@ -1860,9 +1858,7 @@ void biblioteq_magazine::slotAttachFiles(void)
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       while(i++, !files.isEmpty() && !progress.wasCanceled())
 	{
@@ -1898,9 +1894,7 @@ void biblioteq_magazine::slotAttachFiles(void)
 	    progress.setValue(i + 1);
 
 	  progress.repaint();
-#ifndef Q_OS_MAC
 	  QApplication::processEvents();
-#endif
 	}
 
       QApplication::restoreOverrideCursor();
@@ -1981,9 +1975,7 @@ void biblioteq_magazine::slotExportFiles(void)
   if(dialog.result() == QDialog::Accepted)
     {
       repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       QProgressDialog progress(this);
 
@@ -1994,9 +1986,7 @@ void biblioteq_magazine::slotExportFiles(void)
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       int i = -1;
 
@@ -2032,9 +2022,7 @@ void biblioteq_magazine::slotExportFiles(void)
 	    progress.setValue(i + 1);
 
 	  progress.repaint();
-#ifndef Q_OS_MAC
 	  QApplication::processEvents();
-#endif
 	}
     }
 }
@@ -3400,9 +3388,7 @@ void biblioteq_magazine::slotSRUQuery(void)
       m_sruWorking->show();
       m_sruWorking->update();
       m_sruWorking->repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   bool found = false;
@@ -3702,9 +3688,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       working.show();
       working.update();
       working.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       QString recordSyntax("MARC21");
       bool found = false;
@@ -3735,9 +3719,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 
       while(!m_thread->isFinished())
 	{
-#ifndef Q_OS_MAC
 	  QApplication::processEvents();
-#endif
 	  m_thread->msleep(100);
 	}
 

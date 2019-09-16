@@ -1713,9 +1713,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -1799,9 +1797,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress.close();
@@ -2142,9 +2138,7 @@ void biblioteq_cd::slotSaveTracks(void)
       progress.show();
       progress.update();
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       for(i = 0; i < trd.table->rowCount(); i++)
 	{
@@ -2196,9 +2190,7 @@ void biblioteq_cd::slotSaveTracks(void)
 	    progress.setValue(i + 1);
 
 	  progress.repaint();
-#ifndef Q_OS_MAC
 	  QApplication::processEvents();
-#endif
 	}
 
       progress.close();

@@ -235,9 +235,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 	progress1.setValue(i + 1);
 
       progress1.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress1.close();
@@ -368,9 +366,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 	progress2.setValue(i + 1);
 
       progress2.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       if(terminate)
 	break; // Out of resources?
@@ -534,9 +530,7 @@ void biblioteq_borrowers_editor::slotSave(void)
   progress.setMinimum(0);
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   for(i = 0; i < m_bd.table->rowCount(); i++)
     {
@@ -580,9 +574,7 @@ void biblioteq_borrowers_editor::slotSave(void)
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress.close();

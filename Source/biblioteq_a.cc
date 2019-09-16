@@ -2425,9 +2425,7 @@ void biblioteq::slotDelete(void)
   progress.setMinimum(0);
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   foreach(const QModelIndex &index, list)
     {
@@ -2437,9 +2435,7 @@ void biblioteq::slotDelete(void)
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       if(ui.table->item(i, col) == 0)
 	continue;
@@ -2547,9 +2543,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   if(dialog.result() == QDialog::Accepted)
     {
       repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       int rc = 0;
       sqlite3 *ppDb = 0;
@@ -2863,9 +2857,7 @@ void biblioteq::slotGrantPrivileges(void)
   progress.setMinimum(0);
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   for(int i = 0; i < bb.table->rowCount(); i++)
     {
@@ -2893,9 +2885,7 @@ void biblioteq::slotGrantPrivileges(void)
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress.close();
@@ -3550,9 +3540,7 @@ void biblioteq::slotRefresh(void)
 {
   if(m_db.isOpen())
     {
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       QString str = "";
       QVariant data(ui.menu_Category->defaultAction() ?

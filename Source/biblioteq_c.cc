@@ -202,9 +202,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   if(m_searchQuery.lastError().isValid() || !ok)
     {
       progress.close();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
@@ -358,9 +356,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   progress.show();
   progress.update();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
@@ -613,9 +609,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       if(m_searchQuery.at() != QSql::BeforeFirstRow)
 	if(!m_searchQuery.next())
@@ -3390,9 +3384,7 @@ void biblioteq::slotOpenPDFFile(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(0);
 
@@ -3580,9 +3572,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   progress->show();
   progress->repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
   i = -1;
 
   while(i++, !progress->wasCanceled() && query.next())
@@ -3627,9 +3617,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	progress->setValue(i + 1);
 
       progress->repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress->close();
@@ -3699,9 +3687,7 @@ void biblioteq::slotRefreshAdminList(void)
   progress->setMinimum(0);
   progress->show();
   progress->repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
   i = -1;
 
   while(i++, !progress->wasCanceled() && query.next())
@@ -3767,9 +3753,7 @@ void biblioteq::slotRefreshAdminList(void)
 	progress->setValue(i + 1);
 
       progress->repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress->close();
@@ -4140,9 +4124,7 @@ void biblioteq::slotRequest(void)
   progress.setMinimum(0);
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   foreach(const QModelIndex &index, list)
     {
@@ -4209,10 +4191,7 @@ void biblioteq::slotRequest(void)
 	progress.setValue(ct);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
-
     }
 
   progress.close();
@@ -4364,9 +4343,7 @@ void biblioteq::slotSaveAdministrators(void)
   progress.setMinimum(0);
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   /*
   ** Add or modify administrators.
@@ -4381,9 +4358,7 @@ void biblioteq::slotSaveAdministrators(void)
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       if(adminStr.isEmpty())
 	continue; // Ignore empty administrator ids.
@@ -5477,9 +5452,7 @@ void biblioteq::slotShowHistory(void)
   progress->setMaximum(history.table->rowCount());
   progress->show();
   progress->repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
   i = -1;
 
   while(i++, !progress->wasCanceled() && query.next())
@@ -5519,9 +5492,7 @@ void biblioteq::slotShowHistory(void)
 	progress->setValue(i + 1);
 
       progress->repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   progress->close();

@@ -2986,9 +2986,7 @@ int biblioteq::populateTable(const int search_type_arg,
   if(!query.exec(searchstr))
     {
       progress.close();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
@@ -3154,9 +3152,7 @@ int biblioteq::populateTable(const int search_type_arg,
   progress.show();
   progress.update();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   biblioteq_graphicsitempixmap *pixmapItem = 0;
   int iconTableColumnIdx = 0;
@@ -3415,9 +3411,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	progress.setValue(i + 1);
 
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
     }
 
   if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))
@@ -4224,9 +4218,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
     return;
 
   repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QStringList list;
