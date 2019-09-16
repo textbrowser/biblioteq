@@ -2138,8 +2138,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
   QGraphicsPixmapItem *item = 0;
 
-  if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
-							takeFirst())))
+  if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.takeFirst())))
     {
       m_itemOid = item->data(0).toString();
 
