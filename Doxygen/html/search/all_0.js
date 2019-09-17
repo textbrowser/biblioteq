@@ -27,6 +27,7 @@ var searchData=
   ['biblioteq_5fnumeric_5ftable_5fitem',['biblioteq_numeric_table_item',['../classbiblioteq__numeric__table__item.html',1,'']]],
   ['biblioteq_5fotheroptions',['biblioteq_otheroptions',['../classbiblioteq__otheroptions.html',1,'']]],
   ['biblioteq_5fpdfreader',['biblioteq_pdfreader',['../classbiblioteq__pdfreader.html',1,'']]],
+  ['biblioteq_5fphotograph_5fview',['biblioteq_photograph_view',['../classbiblioteq__photograph__view.html',1,'']]],
   ['biblioteq_5fphotographcollection',['biblioteq_photographcollection',['../classbiblioteq__photographcollection.html',1,'']]],
   ['biblioteq_5fsruresults',['biblioteq_sruresults',['../classbiblioteq__sruresults.html',1,'']]],
   ['biblioteq_5fvideogame',['biblioteq_videogame',['../classbiblioteq__videogame.html',1,'']]],
