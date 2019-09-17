@@ -7,7 +7,7 @@
 biblioteq_photograph_view::biblioteq_photograph_view(QWidget *parent):
   QGraphicsView(parent)
 {
-  m_bestFit = false;
+  m_bestFit = true; // Agrees with default UI setting.
   m_image = QImage();
 }
 
@@ -15,7 +15,7 @@ void biblioteq_photograph_view::resizeEvent(QResizeEvent *event)
 {
   QGraphicsView::resizeEvent(event);
 
-  if(m_bestFit)
+  if(event && m_bestFit)
     {
       QGraphicsPixmapItem *item = 0;
 
