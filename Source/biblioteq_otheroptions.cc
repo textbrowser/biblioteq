@@ -280,6 +280,7 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
       m_ui.main_window_canvas_background_color->setStyleSheet
 	(QString("background-color: %1").arg(dialog.selectedColor().name()));
       m_ui.main_window_canvas_background_color->setText
@@ -287,6 +288,7 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
     }
   else
     {
+      QApplication::processEvents();
       emit mainWindowCanvasBackgroundColorChanged(QColor());
       m_ui.main_window_canvas_background_color->setStyleSheet
 	(QString("background-color: %1").arg(color.name()));

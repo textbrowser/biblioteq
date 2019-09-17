@@ -315,6 +315,8 @@ void biblioteq_pdfreader::slotPrint(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       QProgressDialog progress(this);
 
       progress.setLabelText(tr("Printing PDF..."));
@@ -372,6 +374,8 @@ void biblioteq_pdfreader::slotPrint(void)
 
       painter.end();
     }
+
+  QApplication::processEvents();
 #endif
 }
 
@@ -409,6 +413,8 @@ void biblioteq_pdfreader::slotSaveAs(void)
       delete converter;
       QApplication::restoreOverrideCursor();
     }
+
+  QApplication::processEvents();
 #endif
 }
 

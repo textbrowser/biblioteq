@@ -2241,6 +2241,8 @@ void biblioteq_cd::slotSelectImage(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       if(button == cd.frontButton)
 	{
 	  cd.front_image->clear();
@@ -2282,6 +2284,8 @@ void biblioteq_cd::slotSelectImage(void)
 	    (cd.back_image->scene()->itemsBoundingRect());
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_cd::slotShowUsers(void)

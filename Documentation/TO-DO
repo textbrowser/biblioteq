@@ -429,13 +429,13 @@
 235. Photograph rotations. (TBD)
 236. Display descriptions in photograph views. (TBD)
 237. Display contact information in Members Browser. (Done)
-238. Issue QApplication::processEvents() after dialogs are closed:
+238. Issue QApplication::processEvents() after dialogs are dismissed:
      	Source/biblioteq_a.cc (Done)
 	Source/biblioteq_b.cc (Done)
 	Source/biblioteq_book.cc (Done)
 	Source/biblioteq_borrowers_editor.cc (Done)
 	Source/biblioteq_c.cc (Done)
-	Source/biblioteq_cd.cc
+	Source/biblioteq_cd.cc (Done)
 	Source/biblioteq_copy_editor_book.cc
 	Source/biblioteq_copy_editor.cc
 	Source/biblioteq_dbenumerations.cc
@@ -444,8 +444,8 @@
 	Source/biblioteq_item.cc
 	Source/biblioteq_magazine.cc
 	Source/biblioteq_misc_functions.cc
-	Source/biblioteq_otheroptions.cc
-	Source/biblioteq_pdfreader.cc
+	Source/biblioteq_otheroptions.cc (Done)
+	Source/biblioteq_pdfreader.cc (Done)
 	Source/biblioteq_photographcollection.cc
 	Source/biblioteq_sruResults.cc (Done)
 	Source/biblioteq_videogame.cc
