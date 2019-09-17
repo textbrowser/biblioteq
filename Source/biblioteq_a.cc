@@ -1984,6 +1984,7 @@ void biblioteq::slotAbout(void)
 				  Qt::KeepAspectRatio,
 				  Qt::SmoothTransformation));
   mb.exec();
+  QApplication::processEvents();
 }
 
 void biblioteq::slotAddAdmin(void)
@@ -2658,6 +2659,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	   tr("An error occurred while attempting "
 	      "to create the specified SQLite database."));
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotDuplicate(void)
@@ -3391,9 +3394,12 @@ void biblioteq::slotPrintReservationHistory(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
       document.setHtml(html);
       document.print(&printer);
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotPrintReserved(void)
@@ -3474,9 +3480,12 @@ void biblioteq::slotPrintReserved(void)
 
       if(dialog.exec() == QDialog::Accepted)
 	{
+	  QApplication::processEvents();
 	  document.setHtml(str);
 	  document.print(&printer);
 	}
+
+      QApplication::processEvents();
     }
   else
     {
@@ -3487,6 +3496,7 @@ void biblioteq::slotPrintReserved(void)
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to determine the reserved items for "
 			       "the selected member."));
+      QApplication::processEvents();
     }
 
   itemsList.clear();
@@ -3531,9 +3541,12 @@ void biblioteq::slotPrintView(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
       document.setHtml(html);
       document.print(&printer);
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotRefresh(void)
@@ -4031,6 +4044,8 @@ void biblioteq::slotSelectDatabaseFile(void)
 
   if(dialog.result() == QDialog::Accepted)
     br.filename->setText(dialog.selectedFiles().value(0));
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotSetColumns(void)
@@ -4059,6 +4074,8 @@ void biblioteq::slotSetFonts(void)
 
   if(dialog.exec() == QDialog::Accepted)
     setGlobalFonts(dialog.selectedFont());
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotShowAdminDialog(void)

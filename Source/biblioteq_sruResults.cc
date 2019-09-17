@@ -86,6 +86,7 @@ biblioteq_sruresults::biblioteq_sruresults
 	   qRound(0.85 * parent->size().height()));
 
   exec();
+  QApplication::processEvents();
 }
 
 biblioteq_sruresults::~biblioteq_sruresults()

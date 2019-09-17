@@ -76,6 +76,7 @@ biblioteq_z3950results::biblioteq_z3950results
 	   qRound(0.85 * parent->size().height()));
 
   exec();
+  QApplication::processEvents();
 }
 
 biblioteq_z3950results::~biblioteq_z3950results()

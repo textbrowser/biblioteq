@@ -1237,6 +1237,8 @@ void biblioteq_book::slotAttachFiles(void)
       QApplication::restoreOverrideCursor();
       populateFiles();
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotCancel(void)
@@ -1604,6 +1606,8 @@ void biblioteq_book::slotExportFiles(void)
 	  QApplication::processEvents();
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
@@ -2669,9 +2673,12 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
       document.setHtml(html);
       document.print(&printer);
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotPrintCallDewey(void)
@@ -2698,9 +2705,12 @@ void biblioteq_book::slotPrintCallDewey(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
       document.setHtml(html);
       document.print(&printer);
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotProxyAuthenticationRequired
@@ -2718,9 +2728,12 @@ void biblioteq_book::slotProxyAuthenticationRequired
 
       if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
+	  QApplication::processEvents();
 	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	  authenticator->setPassword(ui_p.passwordLineEdit->text());
 	}
+
+      QApplication::processEvents();
     }
 }
 
@@ -3277,6 +3290,8 @@ void biblioteq_book::slotSelectImage(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       if(button == id.frontButton)
 	{
 	  id.front_image->clear();
@@ -3318,6 +3333,8 @@ void biblioteq_book::slotSelectImage(void)
 	    (id.back_image->scene()->itemsBoundingRect());
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotShowPDF(void)

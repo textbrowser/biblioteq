@@ -4519,6 +4519,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	 tr("The database %1 was upgraded successfully.").
 	 arg(m_db.databaseName()));
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotVideoGameSearch(void)
