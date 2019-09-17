@@ -2,6 +2,7 @@
 #include "biblioteq_image_drop_site.h"
 #include "biblioteq_item.h"
 
+#include <QApplication>
 #include <QComboBox>
 #include <QDateEdit>
 #include <QLineEdit>
@@ -126,9 +127,12 @@ void biblioteq_item::print(QWidget *parent)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
       document.setHtml(m_html);
       document.print(&printer);
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_item::setOldQ(const int q)

@@ -1643,6 +1643,8 @@ void biblioteq_videogame::slotSelectImage(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       if(button == vg.frontButton)
 	{
 	  vg.front_image->clear();
@@ -1684,6 +1686,8 @@ void biblioteq_videogame::slotSelectImage(void)
 	    (vg.back_image->scene()->itemsBoundingRect());
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_videogame::slotShowUsers(void)

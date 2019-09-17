@@ -1900,6 +1900,8 @@ void biblioteq_magazine::slotAttachFiles(void)
       QApplication::restoreOverrideCursor();
       populateFiles();
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotCancel(void)
@@ -2025,6 +2027,8 @@ void biblioteq_magazine::slotExportFiles(void)
 	  QApplication::processEvents();
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
@@ -3059,9 +3063,12 @@ void biblioteq_magazine::slotProxyAuthenticationRequired
 
       if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
+	  QApplication::processEvents();
 	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	  authenticator->setPassword(ui_p.passwordLineEdit->text());
 	}
+
+      QApplication::processEvents();
     }
 }
 
@@ -3548,6 +3555,8 @@ void biblioteq_magazine::slotSelectImage(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       if(button == ma.frontButton)
 	{
 	  ma.front_image->clear();
@@ -3589,6 +3598,8 @@ void biblioteq_magazine::slotSelectImage(void)
 	    (ma.back_image->scene()->itemsBoundingRect());
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotShowPDF(void)

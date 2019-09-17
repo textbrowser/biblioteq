@@ -436,17 +436,17 @@
 	Source/biblioteq_borrowers_editor.cc (Done)
 	Source/biblioteq_c.cc (Done)
 	Source/biblioteq_cd.cc (Done)
-	Source/biblioteq_copy_editor_book.cc
-	Source/biblioteq_copy_editor.cc
-	Source/biblioteq_dbenumerations.cc
-	Source/biblioteq_dvd.cc
-	Source/biblioteq_grey_literature.cc
-	Source/biblioteq_item.cc
-	Source/biblioteq_magazine.cc
-	Source/biblioteq_misc_functions.cc
+	Source/biblioteq_copy_editor_book.cc (Done)
+	Source/biblioteq_copy_editor.cc (Done)
+	Source/biblioteq_dbenumerations.cc (Done)
+	Source/biblioteq_dvd.cc (Done)
+	Source/biblioteq_grey_literature.cc (Done)
+	Source/biblioteq_item.cc (Done)
+	Source/biblioteq_magazine.cc (Done)
+	Source/biblioteq_misc_functions.cc (Done)
 	Source/biblioteq_otheroptions.cc (Done)
 	Source/biblioteq_pdfreader.cc (Done)
-	Source/biblioteq_photographcollection.cc
+	Source/biblioteq_photographcollection.cc (Done)
 	Source/biblioteq_sruResults.cc (Done)
-	Source/biblioteq_videogame.cc
+	Source/biblioteq_videogame.cc (Done)
 	Source/biblioteq_z3950results.cc (Done)

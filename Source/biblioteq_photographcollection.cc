@@ -1046,6 +1046,8 @@ void biblioteq_photographcollection::slotExportItem(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       QFile file(dialog.selectedFiles().value(0));
 
       if(file.open(QIODevice::WriteOnly))
@@ -1055,6 +1057,8 @@ void biblioteq_photographcollection::slotExportItem(void)
 	  file.close();
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_photographcollection::slotExportPhotographs(void)
@@ -1123,6 +1127,8 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 	   pc.graphicsView->scene()->selectedItems(),
 	   this);
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_photographcollection::slotGo(void)
@@ -1600,7 +1606,10 @@ void biblioteq_photographcollection::slotImportItems(void)
   dialog.exec();
 
   if(dialog.result() != QDialog::Accepted)
-    return;
+    {
+      QApplication::processEvents();
+      return;
+    }
 
   repaint();
   QApplication::processEvents();
@@ -2326,6 +2335,8 @@ void biblioteq_photographcollection::slotSelectImage(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
+      QApplication::processEvents();
+
       if(button == pc.select_image_collection)
 	{
 	  pc.thumbnail_collection->clear();
@@ -2371,6 +2382,8 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	    (photo.thumbnail_item->scene()->itemsBoundingRect());
 	}
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_photographcollection::slotUpdateItem(void)

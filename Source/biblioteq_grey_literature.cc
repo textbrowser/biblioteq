@@ -891,6 +891,8 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       QApplication::restoreOverrideCursor();
       populateFiles();
     }
+
+  QApplication::processEvents();
 }
 
 void biblioteq_grey_literature::slotCancel(void)
@@ -956,7 +958,10 @@ void biblioteq_grey_literature::slotExportFiles(void)
   dialog.exec();
 
   if(dialog.result() != QDialog::Accepted)
-    return;
+    {
+      QApplication::processEvents();
+      return;
+    }
 
   repaint();
   QApplication::processEvents();
