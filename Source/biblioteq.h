@@ -160,7 +160,10 @@ class userinfo_diag_class: public QDialog
 		     "closing?\n%1").arg(str),
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::No)
-	return;
+	{
+	  QApplication::processEvents();
+	  return;
+	}
 
     QDialog::done(r);
   }

@@ -1245,6 +1245,7 @@ void biblioteq::changeEvent(QEvent *event)
 	     tr("BiblioteQ: Information"),
 	     tr("You may have selected a new language. Please restart "
 		"BiblioteQ after saving your settings."));
+	  QApplication::processEvents();
 	  break;
 	}
       default:
@@ -1902,11 +1903,14 @@ void biblioteq::showMain(void)
 #endif
 
   if(!fileInfo.isReadable())
-    QMessageBox::warning
-      (this, tr("BiblioteQ: Warning"),
-       tr("BiblioteQ was not able to discover the biblioteq.conf "
-	  "file. Default values will be assumed. The expected absolute "
-	  "path of biblioteq.conf is %1.").arg(fileInfo.absolutePath()));
+    {
+      QMessageBox::warning
+	(this, tr("BiblioteQ: Warning"),
+	 tr("BiblioteQ was not able to discover the biblioteq.conf "
+	    "file. Default values will be assumed. The expected absolute "
+	    "path of biblioteq.conf is %1.").arg(fileInfo.absolutePath()));
+      QApplication::processEvents();
+    }
 
   if(!(QSqlDatabase::isDriverAvailable("QPSQL") ||
        QSqlDatabase::isDriverAvailable("QSQLITE")))
@@ -1925,6 +1929,7 @@ void biblioteq::showMain(void)
 		 "SQLite driver is installed.");
 
       QMessageBox::critical(this, tr("BiblioteQ: Error"), str);
+      QApplication::processEvents();
     }
 }
 
@@ -2275,6 +2280,7 @@ void biblioteq::slotCopyError(void)
 			       "Log into "
 			       "the clipboard buffer, you must first "
 			       "select at least one entry."));
+      QApplication::processEvents();
       return;
     }
 
@@ -2322,6 +2328,7 @@ void biblioteq::slotDelete(void)
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			    tr("Please select an item to delete."));
+      QApplication::processEvents();
       return;
     }
 
@@ -2350,6 +2357,7 @@ void biblioteq::slotDelete(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
 				tr("The main table does not contain enough "
 				   "information for item deletion."));
+	  QApplication::processEvents();
 	  list.clear();
 	  return;
 	}
@@ -2368,6 +2376,7 @@ void biblioteq::slotDelete(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to determine if the item has "
 				   "been reserved."));
+	  QApplication::processEvents();
 	  list.clear();
 	  return;
 	}
@@ -2376,6 +2385,7 @@ void biblioteq::slotDelete(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Reserved items may not be deleted."));
+	  QApplication::processEvents();
 	  list.clear();
 	  return;
 	}
@@ -2394,6 +2404,7 @@ void biblioteq::slotDelete(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to determine if the item has "
 				   "been requested."));
+	  QApplication::processEvents();
 	  list.clear();
 	  return;
 	}
@@ -2402,21 +2413,27 @@ void biblioteq::slotDelete(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Requested items may not be deleted."));
+	  QApplication::processEvents();
 	  list.clear();
 	  return;
 	}
     }
 
   if(list.size() > 0)
-    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to permanently "
-				"delete the selected item(s)?"),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to permanently "
+				  "delete the selected item(s)?"),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  list.clear();
+	  return;
+	}
+      else
+	QApplication::processEvents();
+    }
 
   progress.setCancelButton(0);
   progress.setModal(true);
@@ -2481,9 +2498,12 @@ void biblioteq::slotDelete(void)
   */
 
   if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			  tr("Unable to delete all or some of the selected "
-			     "items."));
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to delete all or some of the selected "
+			       "items."));
+      QApplication::processEvents();
+    }
 
   if(numdeleted > 0)
     slotRefresh();
@@ -2501,6 +2521,7 @@ void biblioteq::slotDeleteAdmin(void)
       QMessageBox::critical
 	(m_admin_diag, tr("BiblioteQ: User Error"),
 	 tr("To delete an entry, you must first select it."));
+      QApplication::processEvents();
       return;
     }
 
@@ -2512,6 +2533,7 @@ void biblioteq::slotDeleteAdmin(void)
       QMessageBox::critical(m_admin_diag, tr("BiblioteQ: User Error"),
 			    tr("As an administrator, you may not delete "
 			       "your account."));
+      QApplication::processEvents();
       return;
     }
   else
@@ -2620,10 +2642,13 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 		      QMessageBox::Yes | QMessageBox::No,
 		      QMessageBox::No) == QMessageBox::Yes)
 		    {
+		      QApplication::processEvents();
 		      slotDisconnect();
 		      br.filename->setText(dialog.selectedFiles().value(0));
 		      slotConnectDB();
 		    }
+		  else
+		    QApplication::processEvents();
 		}
 	    }
 	  else
@@ -2654,10 +2679,13 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	    }
 	}
       else
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: Database Error"),
-	   tr("An error occurred while attempting "
-	      "to create the specified SQLite database."));
+	{
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Database Error"),
+	     tr("An error occurred while attempting "
+		"to create the specified SQLite database."));
+	  QApplication::processEvents();
+	}
     }
 
   QApplication::processEvents();
@@ -2688,22 +2716,28 @@ void biblioteq::slotDuplicate(void)
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			    tr("Please select at least one item to "
 			       "duplicate."));
+      QApplication::processEvents();
       return;
     }
   else if(list.size() >= 5)
-    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to duplicate "
-				"the ") +
-			     QString::number(list.size()) +
-			     tr(" selected items? BiblioteQ will exit if "
-				"it's unable "
-				"to acquire resources."),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to duplicate "
+				  "the ") +
+			       QString::number(list.size()) +
+			       tr(" selected items? BiblioteQ will exit if "
+				  "it's unable "
+				  "to acquire resources."),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  list.clear();
+	  return;
+	}
+
+      QApplication::processEvents();
+    }
 
   QString id("");
 
@@ -2791,9 +2825,12 @@ void biblioteq::slotDuplicate(void)
   QApplication::restoreOverrideCursor();
 
   if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			  tr("Unable to determine the selected item's "
-			     "type."));
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			    tr("Unable to determine the selected item's "
+			       "type."));
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq::slotExecuteCustomQuery(void)
@@ -2806,6 +2843,7 @@ void biblioteq::slotExecuteCustomQuery(void)
     {
       QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid SQL statement."));
+      QApplication::processEvents();
       return;
     }
 
@@ -2824,6 +2862,7 @@ void biblioteq::slotExecuteCustomQuery(void)
       QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a non-destructive SQL "
 			       "statement."));
+      QApplication::processEvents();
       return;
     }
 
@@ -2894,9 +2933,12 @@ void biblioteq::slotGrantPrivileges(void)
   progress.close();
 
   if(error)
-    QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			  tr("Unable to grant privileges to all of "
-			     "the members."));
+    {
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to grant privileges to all of "
+			       "the members."));
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq::slotInsertBook(void)
@@ -3046,6 +3088,7 @@ void biblioteq::slotListReservedItems(void)
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("In order to list a member's reserved items, "
 			       "you must first select the member."));
+      QApplication::processEvents();
       return;
     }
 
@@ -3082,21 +3125,27 @@ void biblioteq::slotModify(void)
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
 	 tr("Please select at least one item to modify."));
+      QApplication::processEvents();
       return;
     }
   else if(list.size() >= 5)
-    if(QMessageBox::question
-       (this, tr("BiblioteQ: Question"),
-	tr("Are you sure that you wish to modify the ") +
-	QString::number(list.size()) +
-	tr(" selected items? BiblioteQ will exit if it's unable "
-	   "to acquire resources."),
-	QMessageBox::Yes | QMessageBox::No,
-	QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
+    {
+      if(QMessageBox::question
+	 (this, tr("BiblioteQ: Question"),
+	  tr("Are you sure that you wish to modify the ") +
+	  QString::number(list.size()) +
+	  tr(" selected items? BiblioteQ will exit if it's unable "
+	     "to acquire resources."),
+	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  list.clear();
+	  return;
+	}
+
+      QApplication::processEvents();
+    }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
@@ -3290,9 +3339,12 @@ void biblioteq::slotModify(void)
   QApplication::restoreOverrideCursor();
 
   if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			  tr("Unable to determine the selected item's "
-			     "type."));
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			    tr("Unable to determine the selected item's "
+			       "type."));
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq::slotNextPage(void)
@@ -3360,6 +3412,7 @@ void biblioteq::slotPrintReservationHistory(void)
 			      tr("You do not yet have a reservation history "
 				 "to print."));
 
+      QApplication::processEvents();
       return;
     }
 
@@ -3421,6 +3474,7 @@ void biblioteq::slotPrintReserved(void)
 	(m_members_diag, tr("BiblioteQ: User Error"),
 	 tr("In order to print a member's reserved items, "
 	    "you must first select the member."));
+      QApplication::processEvents();
       return;
     }
 
@@ -3448,6 +3502,7 @@ void biblioteq::slotPrintReserved(void)
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("The member that you selected does not have "
 			       "any reserved items."));
+      QApplication::processEvents();
       return;
     }
 
@@ -3592,6 +3647,7 @@ void biblioteq::slotReserveCopy(void)
 			      tr("In order to reserve an item, you must "
 				 "first select it."));
 
+      QApplication::processEvents();
       return;
     }
 
@@ -3607,6 +3663,7 @@ void biblioteq::slotReserveCopy(void)
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			      tr("Grey literature may not be reserved."));
 
+      QApplication::processEvents();
       return;
     }
   else if(type == "Photograph Collection")
@@ -3618,6 +3675,7 @@ void biblioteq::slotReserveCopy(void)
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			      tr("Photographs may not be reserved."));
 
+      QApplication::processEvents();
       return;
     }
 
@@ -3644,6 +3702,7 @@ void biblioteq::slotReserveCopy(void)
 			      tr("Unable to determine the availability of "
 				 "the selected item."));
 
+      QApplication::processEvents();
       return;
     }
 
@@ -3658,18 +3717,26 @@ void biblioteq::slotReserveCopy(void)
 			      tr("It appears that the item you selected "
 				 "is not available for reservation."));
 
+      QApplication::processEvents();
       return;
     }
 
   slotShowMembersBrowser();
 
   if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
-    if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
-			     tr("Would you like to retrieve the list of "
-				"members?"),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::Yes)
-      slotPopulateMembersBrowser();
+    {
+      if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
+			       tr("Would you like to retrieve the list of "
+				  "members?"),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::Yes)
+	{
+	  QApplication::processEvents();
+	  slotPopulateMembersBrowser();
+	}
+
+      QApplication::processEvents();
+    }
 
   if(bb.table->currentRow() < 0)
     bb.table->selectRow(0);
@@ -3866,6 +3933,7 @@ void biblioteq::slotSavePassword(void)
 	(m_pass_diag, tr("BiblioteQ: User Error"),
 	 tr("The password must be at least eight characters "
 	    "long."));
+      QApplication::processEvents();
       pass.password->selectAll();
       pass.password->setFocus();
       return;
@@ -3875,6 +3943,7 @@ void biblioteq::slotSavePassword(void)
       QMessageBox::critical
 	(m_pass_diag, tr("BiblioteQ: User Error"),
 	 tr("The passwords do not match. Please try again."));
+      QApplication::processEvents();
       pass.password->selectAll();
       pass.password->setFocus();
       return;
@@ -3900,6 +3969,7 @@ void biblioteq::slotSavePassword(void)
 	       errorstr, __FILE__, __LINE__);
       QMessageBox::critical(m_pass_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to save the new password."));
+      QApplication::processEvents();
     }
   else
     m_pass_diag->close();
@@ -4280,12 +4350,19 @@ void biblioteq::slotShowNext(void)
       QString str("");
 
       if(userinfo_diag->haveMemberChanges(str))
-	if(QMessageBox::question
-	   (userinfo_diag, tr("BiblioteQ: Question"),
-	    tr("Your changes have not been saved. Continue?\n%1").arg(str),
-	    QMessageBox::Yes | QMessageBox::No,
-	    QMessageBox::No) == QMessageBox::No)
-	  return;
+	{
+	  if(QMessageBox::question
+	     (userinfo_diag, tr("BiblioteQ: Question"),
+	      tr("Your changes have not been saved. Continue?\n%1").arg(str),
+	      QMessageBox::Yes | QMessageBox::No,
+	      QMessageBox::No) == QMessageBox::No)
+	    {
+	      QApplication::processEvents();
+	      return;
+	    }
+
+	  QApplication::processEvents();
+	}
 
       table->clearSelection();
       table->selectRow(row);
@@ -4320,12 +4397,19 @@ void biblioteq::slotShowPrev(void)
       QString str("");
 
       if(userinfo_diag->haveMemberChanges(str))
-	if(QMessageBox::question
-	   (userinfo_diag, tr("BiblioteQ: Question"),
-	    tr("Your changes have not been saved. Continue?\n%1").arg(str),
-	    QMessageBox::Yes | QMessageBox::No,
-	    QMessageBox::No) == QMessageBox::No)
-	  return;
+	{
+	  if(QMessageBox::question
+	     (userinfo_diag, tr("BiblioteQ: Question"),
+	      tr("Your changes have not been saved. Continue?\n%1").arg(str),
+	      QMessageBox::Yes | QMessageBox::No,
+	      QMessageBox::No) == QMessageBox::No)
+	    {
+	      QApplication::processEvents();
+	      return;
+	    }
+
+	  QApplication::processEvents();
+	}
 
       table->clearSelection();
       table->selectRow(row);
@@ -4412,21 +4496,27 @@ void biblioteq::slotViewDetails(void)
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			    tr("Please select at least one item to view."));
+      QApplication::processEvents();
       return;
     }
   else if(list.size() >= 5)
-    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to view the ") +
-			     QString::number(list.size()) +
-			     tr(" selected items? BiblioteQ will exit if "
-				"it's unable "
-				"to acquire resources."),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to view the ") +
+			       QString::number(list.size()) +
+			       tr(" selected items? BiblioteQ will exit if "
+				  "it's unable "
+				  "to acquire resources."),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  list.clear();
+	  return;
+	}
+
+      QApplication::processEvents();
+    }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
@@ -4620,9 +4710,12 @@ void biblioteq::slotViewDetails(void)
   QApplication::restoreOverrideCursor();
 
   if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			  tr("Unable to determine the selected item's "
-			     "type."));
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			    tr("Unable to determine the selected item's "
+			       "type."));
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq::updateItemWindows(void)

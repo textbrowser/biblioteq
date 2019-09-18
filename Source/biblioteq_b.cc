@@ -3009,6 +3009,7 @@ int biblioteq::populateTable(const int search_type_arg,
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main views."));
+      QApplication::processEvents();
       return 1;
     }
 
@@ -4215,7 +4216,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 			   arg(m_db.databaseName()),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
-    return;
+    {
+      QApplication::processEvents();
+      return;
+    }
 
   repaint();
   QApplication::processEvents();

@@ -507,17 +507,23 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
+      {
+	if(QMessageBox::
+	   question(this, tr("BiblioteQ: Question"),
+		    tr("Your changes have not been saved. Continue closing?"),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
 
-	  return;
-	}
+	    if(e)
+	      e->ignore();
+
+	    return;
+	  }
+
+	QApplication::processEvents();
+      }
 
   qmain->removeBook(this);
 }
@@ -606,6 +612,7 @@ void biblioteq_book::downloadFinished(void)
 	    (this, tr("BiblioteQ: HTTP Warning"),
 	     tr("The front cover image for the specified "
 		"ISBN may not exist."));
+	  QApplication::processEvents();
 	}
     }
   else
@@ -623,6 +630,7 @@ void biblioteq_book::downloadFinished(void)
 	    (this, tr("BiblioteQ: HTTP Warning"),
 	     tr("The back cover image for the specified ISBN "
 		"may not exist."));
+	  QApplication::processEvents();
 	}
     }
 
@@ -833,6 +841,7 @@ void biblioteq_book::modify(const int state)
       QMessageBox::critical
 	(this, tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve the selected book's data."));
+      QApplication::processEvents();
       close();
       return;
     }
@@ -1322,6 +1331,7 @@ void biblioteq_book::slotDeleteFiles(void)
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
+      QApplication::processEvents();
       return;
     }
 
@@ -1331,10 +1341,12 @@ void biblioteq_book::slotDeleteFiles(void)
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     {
+      QApplication::processEvents();
       list.clear();
       return;
     }
 
+  QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   while(!list.isEmpty())
@@ -1384,6 +1396,7 @@ void biblioteq_book::slotDownloadImage(void)
 	(this, tr("BiblioteQ: User Error"),
 	 tr("In order to download a cover image, "
 	    "the ISBN-10 must be provided."));
+      QApplication::processEvents();
       id.id->setFocus();
       return;
     }
@@ -1729,6 +1742,7 @@ void biblioteq_book::slotGo(void)
 		(this, tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
+	      QApplication::processEvents();
 	      return;
 	    }
 
@@ -1743,17 +1757,25 @@ void biblioteq_book::slotGo(void)
 		    "number of copies while there are "
 		    "copies "
 		    "that have been reserved."));
+	      QApplication::processEvents();
 	      id.quantity->setValue(m_oldq);
 	      return;
 	    }
 	  else if(newq > m_oldq)
-	    if(QMessageBox::question
-	       (this, tr("BiblioteQ: Question"),
-		tr("You have increased the number of copies. "
-		   "Would you like to modify copy information?"),
-		QMessageBox::Yes | QMessageBox::No,
-		QMessageBox::No) == QMessageBox::Yes)
-	      slotPopulateCopiesEditor();
+	    {
+	      if(QMessageBox::question
+		 (this, tr("BiblioteQ: Question"),
+		  tr("You have increased the number of copies. "
+		     "Would you like to modify copy information?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::Yes)
+		{
+		  QApplication::processEvents();
+		  slotPopulateCopiesEditor();
+		}
+
+	      QApplication::processEvents();
+	    }
 	}
 
       str = id.id->text().trimmed();
@@ -1786,6 +1808,7 @@ void biblioteq_book::slotGo(void)
 	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				  tr("Please complete both the "
 				     "ISBN-10 and ISBN-13 fields."));
+	    QApplication::processEvents();
 
 	    if(id.id->text().length() != 10)
 	      id.id->setFocus();
@@ -1802,6 +1825,7 @@ void biblioteq_book::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Authors field."));
+	  QApplication::processEvents();
 	  id.author->setFocus();
 	  return;
 	}
@@ -1813,6 +1837,7 @@ void biblioteq_book::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
+	  QApplication::processEvents();
 	  id.title->setFocus();
 	  return;
 	}
@@ -1824,6 +1849,7 @@ void biblioteq_book::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
+	  QApplication::processEvents();
 	  id.publisher->setFocus();
 	  return;
 	}
@@ -1836,6 +1862,7 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Place of Publication "
 				   "field."));
+	  QApplication::processEvents();
 	  id.place->setFocus();
 	  return;
 	}
@@ -1847,6 +1874,7 @@ void biblioteq_book::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
+	  QApplication::processEvents();
 	  id.category->setFocus();
 	  return;
 	}
@@ -1858,6 +1886,7 @@ void biblioteq_book::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
+	  QApplication::processEvents();
 	  id.description->setFocus();
 	  return;
 	}
@@ -1874,6 +1903,7 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical
 	    (this, tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
+	  QApplication::processEvents();
 	  return;
 	}
 
@@ -2372,6 +2402,7 @@ void biblioteq_book::slotGo(void)
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
 			       "the entry does not already exist."));
+      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {
@@ -3095,6 +3126,8 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("A network error (%1) occurred.").arg(error));
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotSRUQuery(void)
@@ -3109,6 +3142,7 @@ void biblioteq_book::slotSRUQuery(void)
 	(this, tr("BiblioteQ: User Error"),
 	 tr("In order to query an SRU site, either the ISBN-10 "
 	    "or ISBN-13 must be provided."));
+      QApplication::processEvents();
       id.id->setFocus();
       return;
     }
@@ -3270,6 +3304,7 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
+  QApplication::processEvents();
 }
 
 void biblioteq_book::slotSelectImage(void)
@@ -3411,6 +3446,7 @@ void biblioteq_book::slotZ3950Query(void)
 	(this, tr("BiblioteQ: User Error"),
 	 tr("In order to query a Z39.50 site, either the ISBN-10 "
 	    "or ISBN-13 must be provided."));
+      QApplication::processEvents();
       id.id->setFocus();
       return;
     }
@@ -3506,6 +3542,8 @@ void biblioteq_book::slotZ3950Query(void)
 	      QMessageBox::Yes | QMessageBox::No,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
+	      QApplication::processEvents();
+
 	      biblioteq_marc m;
 
 	      if(recordSyntax == "MARC21")
@@ -3663,11 +3701,16 @@ void biblioteq_book::slotZ3950Query(void)
 	      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		textfield->setCursorPosition(0);
 	    }
+
+	  QApplication::processEvents();
 	}
       else if(errorstr.isEmpty() && m_thread->getZ3950Results().isEmpty())
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: Z39.50 Query Error"),
-	   tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
+	{
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Z39.50 Query Error"),
+	     tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
+	  QApplication::processEvents();
+	}
       else
 	etype = m_thread->getEType();
 
@@ -3688,6 +3731,7 @@ void biblioteq_book::slotZ3950Query(void)
 	(this, tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("The Z39.50 entry could not be retrieved. Please view the "
 	    "error log."));
+      QApplication::processEvents();
     }
 }
 
@@ -3720,6 +3764,7 @@ void biblioteq_book::sruDownloadFinished(void)
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::Yes)
 	{
+	  QApplication::processEvents();
 	  id.edition->setCurrentIndex(0);
 	  id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
 	  id.marc_tags->setText(m_sruResults);
@@ -3891,6 +3936,8 @@ void biblioteq_book::sruDownloadFinished(void)
 	  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	    textfield->setCursorPosition(0);
 	}
+
+      QApplication::processEvents();
     }
   else if(records == 0)
     QMessageBox::critical
@@ -3900,6 +3947,8 @@ void biblioteq_book::sruDownloadFinished(void)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("The SRU query produced invalid results."));
+
+  QApplication::processEvents();
 }
 
 void biblioteq_book::updateWindow(const int state)
