@@ -399,6 +399,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
 	 tr("Please select the copy that has been returned."));
+      QApplication::processEvents();
       return;
     }
 
@@ -410,6 +411,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			    tr("It appears that the selected "
 			       "item has not been reserved."));
+      QApplication::processEvents();
       return;
     }
 
@@ -417,8 +419,12 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 			   tr("Are you sure that the copy has been returned?"),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
-    return;
+    {
+      QApplication::processEvents();
+      return;
+    }
 
+  QApplication::processEvents();
   query.prepare("DELETE FROM item_borrower WHERE "
 		"myoid = ? AND type = ?");
   query.bindValue(0, oid);
@@ -435,6 +441,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to modify the reservation status of "
 			       "the selected copy."));
+      QApplication::processEvents();
       return;
     }
   else
@@ -588,4 +595,6 @@ void biblioteq_borrowers_editor::slotSave(void)
     QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			  tr("Some or all of the Due Dates were not updated "
 			     "because of database errors."));
+
+  QApplication::processEvents();
 }
