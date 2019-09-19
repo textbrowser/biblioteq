@@ -158,17 +158,23 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 
   if(listData != m_listData ||
      tableData != m_tableData)
-    if(QMessageBox::
-       question(this, tr("BiblioteQ: Question"),
-		tr("Your changes have not been saved. Continue?"),
-		QMessageBox::Yes | QMessageBox::No,
-		QMessageBox::No) == QMessageBox::No)
-      {
-	if(event)
-	  event->ignore();
+    {
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
 
-	return;
-      }
+	  if(event)
+	    event->ignore();
+
+	  return;
+	}
+
+      QApplication::processEvents();
+    }
 
   QMainWindow::closeEvent(event);
 }
@@ -584,12 +590,19 @@ void biblioteq_dbenumerations::slotReload(void)
 
   if(listData != m_listData ||
      tableData != m_tableData)
-    if(QMessageBox::
-       question(this, tr("BiblioteQ: Question"),
-		tr("Your changes have not been saved. Continue?"),
-		QMessageBox::Yes | QMessageBox::No,
-		QMessageBox::No) == QMessageBox::No)
-      return;
+    {
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+
+      QApplication::processEvents();
+    }
 
   populateWidgets();
 }
@@ -907,9 +920,12 @@ void biblioteq_dbenumerations::slotSave(void)
   QApplication::restoreOverrideCursor();
 
   if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			  tr("An error occurred while attempting to save "
-			     "the database enumerations."));
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("An error occurred while attempting to save "
+			       "the database enumerations."));
+      QApplication::processEvents();
+    }
   else
     populateWidgets();
 }
