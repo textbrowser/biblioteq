@@ -262,17 +262,23 @@ void biblioteq_dvd::closeEvent(QCloseEvent *event)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(event)
-	    event->ignore();
+      {
+	if(QMessageBox::
+	   question(this, tr("BiblioteQ: Question"),
+		    tr("Your changes have not been saved. Continue closing?"),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
 
-	  return;
-	}
+	    if(event)
+	      event->ignore();
+
+	    return;
+	  }
+
+	QApplication::processEvents();
+      }
 
   qmain->removeDVD(this);
 }
@@ -459,6 +465,7 @@ void biblioteq_dvd::modify(const int state)
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected DVD's "
 			       "data."));
+      QApplication::processEvents();
       close();
       return;
     }
@@ -733,6 +740,7 @@ void biblioteq_dvd::slotGo(void)
 		(this, tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
+	      QApplication::processEvents();
 	      return;
 	    }
 
@@ -745,17 +753,25 @@ void biblioteq_dvd::slotGo(void)
 		 tr("It appears that you are attempting to decrease the "
 		    "number of copies while there are copies "
 		    "that have been reserved."));
+	      QApplication::processEvents();
 	      dvd.quantity->setValue(m_oldq);
 	      return;
 	    }
 	  else if(newq > m_oldq)
-	    if(QMessageBox::question
-	       (this, tr("BiblioteQ: Question"),
-		tr("You have increased the number of copies. "
-		   "Would you like to modify copy information?"),
-		QMessageBox::Yes | QMessageBox::No,
-		QMessageBox::No) == QMessageBox::Yes)
-	      slotPopulateCopiesEditor();
+	    {
+	      if(QMessageBox::question
+		 (this, tr("BiblioteQ: Question"),
+		  tr("You have increased the number of copies. "
+		     "Would you like to modify copy information?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::Yes)
+		{
+		  QApplication::processEvents();
+		  slotPopulateCopiesEditor();
+		}
+
+	      QApplication::processEvents();
+	    }
 	}
 
       str = dvd.id->text().trimmed();
@@ -765,6 +781,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the UPC field."));
+	  QApplication::processEvents();
 	  dvd.id->setFocus();
 	  return;
 	}
@@ -776,6 +793,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Actors field."));
+	  QApplication::processEvents();
 	  dvd.actors->setFocus();
 	  return;
 	}
@@ -787,6 +805,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Directors field."));
+	  QApplication::processEvents();
 	  dvd.directors->setFocus();
 	  return;
 	}
@@ -795,6 +814,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please provide a valid Runtime."));
+	  QApplication::processEvents();
 	  dvd.runtime->setFocus();
 	  return;
 	}
@@ -806,6 +826,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Format field."));
+	  QApplication::processEvents();
 	  dvd.format->setFocus();
 	  return;
 	}
@@ -818,6 +839,7 @@ void biblioteq_dvd::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Title "
 				   "field."));
+	  QApplication::processEvents();
 	  dvd.title->setFocus();
 	  return;
 	}
@@ -829,6 +851,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Studio field."));
+	  QApplication::processEvents();
 	  dvd.studio->setFocus();
 	  return;
 	}
@@ -840,6 +863,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
+	  QApplication::processEvents();
 	  dvd.category->setFocus();
 	  return;
 	}
@@ -851,6 +875,7 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
+	  QApplication::processEvents();
 	  dvd.description->setFocus();
 	  return;
 	}
@@ -867,6 +892,7 @@ void biblioteq_dvd::slotGo(void)
 	  QMessageBox::critical
 	    (this, tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
+	  QApplication::processEvents();
 	  return;
 	}
 
@@ -1287,6 +1313,7 @@ void biblioteq_dvd::slotGo(void)
 		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the DVD's "
 					   "OID."));
+		  QApplication::processEvents();
 		}
 	      else
 		qmain->replaceDVD(m_oid, this);
@@ -1322,6 +1349,7 @@ void biblioteq_dvd::slotGo(void)
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
 			       "the entry does not already exist."));
+      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {

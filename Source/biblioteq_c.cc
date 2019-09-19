@@ -4837,7 +4837,7 @@ void biblioteq::slotSaveUser(void)
   QApplication::restoreOverrideCursor();
 
   if(m_engUserinfoTitle.contains("New"))
-    { 
+    {
       query.prepare("INSERT INTO member "
 		    "(memberid, membersince, dob, sex, "
 		    "first_name, middle_init, last_name, "

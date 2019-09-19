@@ -244,6 +244,7 @@ bool biblioteq_grey_literature::validateWidgets(void)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
+      QApplication::processEvents();
       return false;
     }
 
@@ -254,6 +255,7 @@ bool biblioteq_grey_literature::validateWidgets(void)
   if(!error.isEmpty())
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"), error);
+      QApplication::processEvents();
       return false;
     }
 
@@ -282,18 +284,24 @@ void biblioteq_grey_literature::closeEvent(QCloseEvent *e)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this,
-		  tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
+      {
+	if(QMessageBox::
+	   question(this,
+		    tr("BiblioteQ: Question"),
+		    tr("Your changes have not been saved. Continue closing?"),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
 
-	  return;
-	}
+	    if(e)
+	      e->ignore();
+
+	    return;
+	  }
+
+	QApplication::processEvents();
+      }
 
   qmain->removeGreyLiterature(this);
 }
@@ -522,6 +530,7 @@ void biblioteq_grey_literature::insertDatabase(void)
 			tr("BiblioteQ: Database Error"),
 			tr("Unable to create the entry. Please verify that "
 			   "the entry does not already exist."));
+  QApplication::processEvents();
 }
 
 void biblioteq_grey_literature::modify(const int state)
@@ -584,6 +593,7 @@ void biblioteq_grey_literature::modify(const int state)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve the selected grey literature's data."));
+      QApplication::processEvents();
       m_ui.title->setFocus();
       return;
     }
@@ -911,6 +921,7 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
+      QApplication::processEvents();
       return;
     }
 
@@ -920,10 +931,12 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     {
+      QApplication::processEvents();
       list.clear();
       return;
     }
 
+  QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   while(!list.isEmpty())
@@ -1688,6 +1701,7 @@ void biblioteq_grey_literature::updateDatabase(void)
   QMessageBox::critical(this,
 			tr("BiblioteQ: Database Error"),
 			tr("Unable to update the entry."));
+  QApplication::processEvents();
 }
 
 void biblioteq_grey_literature::updateWindow(const int state)
