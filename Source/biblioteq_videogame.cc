@@ -240,17 +240,23 @@ void biblioteq_videogame::closeEvent(QCloseEvent *event)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(event)
-	    event->ignore();
+      {
+	if(QMessageBox::
+	   question(this, tr("BiblioteQ: Question"),
+		    tr("Your changes have not been saved. Continue closing?"),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
 
-	  return;
-	}
+	    if(event)
+	      event->ignore();
+
+	    return;
+	  }
+
+	QApplication::processEvents();
+      }
 
   qmain->removeVideoGame(this);
 }
@@ -411,6 +417,7 @@ void biblioteq_videogame::modify(const int state)
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected video "
 			       "game's data."));
+      QApplication::processEvents();
       close();
       return;
     }
@@ -671,6 +678,7 @@ void biblioteq_videogame::slotGo(void)
 		(this, tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
+	      QApplication::processEvents();
 	      return;
 	    }
 
@@ -684,17 +692,25 @@ void biblioteq_videogame::slotGo(void)
 		    "decrease the "
 		    "number of copies while there are copies "
 		    "that have been reserved."));
+	      QApplication::processEvents();
 	      vg.quantity->setValue(m_oldq);
 	      return;
 	    }
 	  else if(newq > m_oldq)
-	    if(QMessageBox::question
-	       (this, tr("BiblioteQ: Question"),
-		tr("You have increased the number of copies. "
-		   "Would you like to modify copy information?"),
-		QMessageBox::Yes | QMessageBox::No,
-		QMessageBox::No) == QMessageBox::Yes)
-	      slotPopulateCopiesEditor();
+	    {
+	      if(QMessageBox::question
+		 (this, tr("BiblioteQ: Question"),
+		  tr("You have increased the number of copies. "
+		     "Would you like to modify copy information?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::Yes)
+		{
+		  QApplication::processEvents();
+		  slotPopulateCopiesEditor();
+		}
+
+	      QApplication::processEvents();
+	    }
 	}
 
       str = vg.id->text().trimmed();
@@ -704,6 +720,7 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the UPC field."));
+	  QApplication::processEvents();
 	  vg.id->setFocus();
 	  return;
 	}
@@ -715,6 +732,7 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Developers field."));
+	  QApplication::processEvents();
 	  vg.developer->setFocus();
 	  return;
 	}
@@ -726,6 +744,7 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
+	  QApplication::processEvents();
 	  vg.title->setFocus();
 	  return;
 	}
@@ -737,6 +756,7 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
+	  QApplication::processEvents();
 	  vg.publisher->setFocus();
 	  return;
 	}
@@ -749,6 +769,7 @@ void biblioteq_videogame::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Place of Publication "
 				   "field."));
+	  QApplication::processEvents();
 	  vg.place->setFocus();
 	  return;
 	}
@@ -760,6 +781,7 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Genres field."));
+	  QApplication::processEvents();
 	  vg.genre->setFocus();
 	  return;
 	}
@@ -771,6 +793,7 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
+	  QApplication::processEvents();
 	  vg.description->setFocus();
 	  return;
 	}
@@ -787,6 +810,7 @@ void biblioteq_videogame::slotGo(void)
 	  QMessageBox::critical
 	    (this, tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
+	  QApplication::processEvents();
 	  return;
 	}
 
@@ -1161,6 +1185,7 @@ void biblioteq_videogame::slotGo(void)
 		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the "
 					   "video game's OID."));
+		  QApplication::processEvents();
 		}
 	      else
 		qmain->replaceVideoGame(m_oid, this);
@@ -1196,6 +1221,7 @@ void biblioteq_videogame::slotGo(void)
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
 			       "the entry does not already exist."));
+      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {

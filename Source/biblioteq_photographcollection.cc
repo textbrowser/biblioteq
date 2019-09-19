@@ -211,6 +211,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "ID field."));
+      QApplication::processEvents();
       photo.id_item->setFocus();
       return false;
     }
@@ -223,6 +224,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Title field."));
+      QApplication::processEvents();
       photo.title_item->setFocus();
       return false;
     }
@@ -235,6 +237,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Creators field."));
+      QApplication::processEvents();
       photo.creators_item->setFocus();
       return false;
     }
@@ -247,6 +250,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Medium field."));
+      QApplication::processEvents();
       photo.medium_item->setFocus();
       return false;
     }
@@ -259,6 +263,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Reproduction Number field."));
+      QApplication::processEvents();
       photo.reproduction_number_item->setFocus();
       return false;
     }
@@ -271,6 +276,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Copyright field."));
+      QApplication::processEvents();
       photo.copyright_item->setFocus();
       return false;
     }
@@ -313,17 +319,23 @@ void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(event)
-	    event->ignore();
+      {
+	if(QMessageBox::
+	   question(this, tr("BiblioteQ: Question"),
+		    tr("Your changes have not been saved. Continue closing?"),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
 
-	  return;
-	}
+	    if(event)
+	      event->ignore();
+
+	    return;
+	  }
+
+	QApplication::processEvents();
+      }
 
   qmain->removePhotographCollection(this);
 }
@@ -589,6 +601,7 @@ void biblioteq_photographcollection::modify(const int state,
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected photograph "
 			       "collection's data."));
+      QApplication::processEvents();
       close();
       return;
     }
@@ -911,7 +924,12 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 			       arg(items.size()),
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
-	return;
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+
+      QApplication::processEvents();
     }
 
   QProgressDialog progress(this);
@@ -1147,6 +1165,7 @@ void biblioteq_photographcollection::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the collection's "
 				   "ID field."));
+	  QApplication::processEvents();
 	  pc.id_collection->setFocus();
 	  return;
 	}
@@ -1159,6 +1178,7 @@ void biblioteq_photographcollection::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the collection's "
 				   "Title field."));
+	  QApplication::processEvents();
 	  pc.title_collection->setFocus();
 	  return;
 	}
@@ -1181,6 +1201,7 @@ void biblioteq_photographcollection::slotGo(void)
 	  QMessageBox::critical
 	    (this, tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
+	  QApplication::processEvents();
 	  return;
 	}
       else
@@ -1398,6 +1419,7 @@ void biblioteq_photographcollection::slotGo(void)
 		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the "
 					   "photograph collection's OID."));
+		  QApplication::processEvents();
 		}
 	      else
 		qmain->replacePhotographCollection(m_oid, this);
@@ -1434,6 +1456,7 @@ void biblioteq_photographcollection::slotGo(void)
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
 			       "the entry does not already exist."));
+      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {
@@ -1790,6 +1813,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 			      "the directory %2.").
 			   arg(imported).
 			   arg(dialog.directory().absolutePath()));
+  QApplication::processEvents();
 }
 
 void biblioteq_photographcollection::slotInsertItem(void)
@@ -1807,6 +1831,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
+      QApplication::processEvents();
       return;
     }
   else
@@ -1980,6 +2005,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 			tr("Unable to create the item. "
 			   "Please verify that "
 			   "the item does not already exist."));
+  QApplication::processEvents();
 }
 
 void biblioteq_photographcollection::slotModifyItem(void)
@@ -2401,6 +2427,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
+      QApplication::processEvents();
       return;
     }
   else
@@ -2536,6 +2563,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 			tr("Unable to update the item. "
 			   "Please verify that "
 			   "the item does not already exist."));
+  QApplication::processEvents();
 }
 
 void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)

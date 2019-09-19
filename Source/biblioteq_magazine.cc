@@ -374,17 +374,23 @@ void biblioteq_magazine::closeEvent(QCloseEvent *e)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue closing?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(e)
-	    e->ignore();
+      {
+	if(QMessageBox::
+	   question(this, tr("BiblioteQ: Question"),
+		    tr("Your changes have not been saved. Continue closing?"),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
 
-	  return;
-	}
+	    if(e)
+	      e->ignore();
+
+	    return;
+	  }
+
+	QApplication::processEvents();
+      }
 
   qmain->removeMagazine(this);
 }
@@ -664,6 +670,7 @@ void biblioteq_magazine::modify(const int state)
 	    (this, tr("BiblioteQ: Database Error"),
 	     QString(tr("Unable to retrieve the selected journal's "
 			"data.")));
+	  QApplication::processEvents();
 	}
       else
 	{
@@ -675,6 +682,7 @@ void biblioteq_magazine::modify(const int state)
 	    (this, tr("BiblioteQ: Database Error"),
 	     QString(tr("Unable to retrieve the selected magazine's "
 			"data.")));
+	  QApplication::processEvents();
 	}
 
       close();
@@ -1919,6 +1927,7 @@ void biblioteq_magazine::slotDeleteFiles(void)
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
+      QApplication::processEvents();
       return;
     }
 
@@ -1928,10 +1937,12 @@ void biblioteq_magazine::slotDeleteFiles(void)
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     {
+      QApplication::processEvents();
       list.clear();
       return;
     }
 
+  QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   while(!list.isEmpty())
@@ -2161,6 +2172,7 @@ void biblioteq_magazine::slotGo(void)
 		(this, tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
+	      QApplication::processEvents();
 	      return;
 	    }
 
@@ -2173,17 +2185,25 @@ void biblioteq_magazine::slotGo(void)
 		 tr("It appears that you are attempting to decrease the "
 		    "number of copies while there are copies "
 		    "that have been reserved."));
+	      QApplication::processEvents();
 	      ma.quantity->setValue(m_oldq);
 	      return;
 	    }
 	  else if(newq > m_oldq)
-	    if(QMessageBox::question
-	       (this, tr("BiblioteQ: Question"),
-		tr("You have increased the number of copies. "
-		   "Would you like to modify copy information?"),
-		QMessageBox::Yes | QMessageBox::No,
-		QMessageBox::No) == QMessageBox::Yes)
-	      slotPopulateCopiesEditor();
+	    {
+	      if(QMessageBox::question
+		 (this, tr("BiblioteQ: Question"),
+		  tr("You have increased the number of copies. "
+		     "Would you like to modify copy information?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::Yes)
+		{
+		  QApplication::processEvents();
+		  slotPopulateCopiesEditor();
+		}
+
+	      QApplication::processEvents();
+	    }
 	}
 
       str = ma.id->text().trimmed();
@@ -2195,6 +2215,7 @@ void biblioteq_magazine::slotGo(void)
 	    {
 	      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				    tr("Please complete the ISSN field."));
+	      QApplication::processEvents();
 	      ma.id->setFocus();
 	      return;
 	    }
@@ -2209,6 +2230,7 @@ void biblioteq_magazine::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
+	  QApplication::processEvents();
 	  ma.title->setFocus();
 	  return;
 	}
@@ -2220,6 +2242,7 @@ void biblioteq_magazine::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
+	  QApplication::processEvents();
 	  ma.publisher->setFocus();
 	  return;
 	}
@@ -2232,6 +2255,7 @@ void biblioteq_magazine::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Place of Publication "
 				   "field."));
+	  QApplication::processEvents();
 	  ma.place->setFocus();
 	  return;
 	}
@@ -2243,6 +2267,7 @@ void biblioteq_magazine::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
+	  QApplication::processEvents();
 	  ma.category->setFocus();
 	  return;
 	}
@@ -2254,6 +2279,7 @@ void biblioteq_magazine::slotGo(void)
 	{
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
+	  QApplication::processEvents();
 	  ma.description->setFocus();
 	  return;
 	}
@@ -2270,6 +2296,7 @@ void biblioteq_magazine::slotGo(void)
 	  QMessageBox::critical
 	    (this, tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
+	  QApplication::processEvents();
 	  return;
 	}
 
@@ -2783,6 +2810,7 @@ void biblioteq_magazine::slotGo(void)
 	 tr("Unable to create or update the entry. "
 	    "Please verify that "
 	    "the entry does not already exist."));
+      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {
@@ -3371,6 +3399,8 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("A network error (%1) occurred.").arg(error));
+
+  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotSRUQuery(void)
@@ -3384,6 +3414,7 @@ void biblioteq_magazine::slotSRUQuery(void)
 	(this, tr("BiblioteQ: User Error"),
 	 tr("In order to query an SRU site, the "
 	    "ISSN must be provided."));
+      QApplication::processEvents();
       ma.id->setFocus();
       return;
     }
@@ -3535,6 +3566,7 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
   QMessageBox::critical
     (this, tr("BiblioteQ: SRU Query Error"),
      tr("One or more SSL errors occurred. Please verify your settings."));
+  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotSelectImage(void)
@@ -3680,6 +3712,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 	(this, tr("BiblioteQ: User Error"),
 	 tr("In order to query a Z39.50 site, the ISSN "
 	    "must be provided."));
+      QApplication::processEvents();
       ma.id->setFocus();
       return;
     }
@@ -3756,10 +3789,13 @@ void biblioteq_magazine::slotZ3950Query(void)
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
+		  QApplication::processEvents();
 		  list = QString(m_thread->getZ3950Results()[0]).split("\n");
 		  populateDisplayAfterZ3950(list, recordSyntax);
 		  list.clear();
 		}
+
+	      QApplication::processEvents();
 	    }
 	  else if(m_thread->getZ3950Results().size() > 1)
 	    {
@@ -3784,13 +3820,17 @@ void biblioteq_magazine::slotZ3950Query(void)
 		    (this, tr("BiblioteQ: Memory Error"),
 		     tr("Unable to create a \"dialog\" object "
 			"because of insufficient resources."));
+		  QApplication::processEvents();
 		}
 	    }
 	  else
-	    QMessageBox::critical
-	      (this, tr("BiblioteQ: Z39.50 Query Error"),
-	       tr("A Z39.50 entry may not yet exist for ") +
-	       ma.id->text() + tr("."));
+	    {
+	      QMessageBox::critical
+		(this, tr("BiblioteQ: Z39.50 Query Error"),
+		 tr("A Z39.50 entry may not yet exist for ") +
+		 ma.id->text() + tr("."));
+	      QApplication::processEvents();
+	    }
 	}
       else
 	etype = m_thread->getEType();
@@ -3811,6 +3851,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       QMessageBox::critical
 	(this, tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("The Z39.50 entry could not be retrieved."));
+      QApplication::processEvents();
     }
 }
 
@@ -3837,7 +3878,12 @@ void biblioteq_magazine::sruDownloadFinished(void)
 				  "from the SRU site?"),
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::Yes)
-	populateDisplayAfterSRU(list[0]);
+	{
+	  QApplication::processEvents();
+	  populateDisplayAfterSRU(list[0]);
+	}
+
+      QApplication::processEvents();
     }
   else if(list.size() > 1)
     {
@@ -3859,13 +3905,17 @@ void biblioteq_magazine::sruDownloadFinished(void)
 	    (this, tr("BiblioteQ: Memory Error"),
 	     tr("Unable to create a \"dialog\" object "
 		"because of insufficient resources."));
+	  QApplication::processEvents();
 	}
     }
   else
-    QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
-       tr("An SRU entry may not yet exist for ") +
-       ma.id->text() + tr(" or a network error occurred."));
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: SRU Query Error"),
+	 tr("An SRU entry may not yet exist for ") +
+	 ma.id->text() + tr(" or a network error occurred."));
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq_magazine::updateWindow(const int state)
