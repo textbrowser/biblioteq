@@ -2562,6 +2562,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -2687,8 +2688,6 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	  QApplication::processEvents();
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq::slotDuplicate(void)
@@ -4111,11 +4110,10 @@ void biblioteq::slotSelectDatabaseFile(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     br.filename->setText(dialog.selectedFiles().value(0));
-
-  QApplication::processEvents();
 }
 
 void biblioteq::slotSetColumns(void)
@@ -4143,7 +4141,10 @@ void biblioteq::slotSetFonts(void)
   dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
 
   if(dialog.exec() == QDialog::Accepted)
-    setGlobalFonts(dialog.selectedFont());
+    {
+      QApplication::processEvents();
+      setGlobalFonts(dialog.selectedFont());
+    }
 
   QApplication::processEvents();
 }

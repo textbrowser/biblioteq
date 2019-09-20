@@ -837,10 +837,10 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(title);
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::processEvents();
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       QFile file(dialog.selectedFiles().value(0));
@@ -900,8 +900,6 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 
       QApplication::restoreOverrideCursor();
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)

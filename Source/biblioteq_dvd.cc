@@ -1857,11 +1857,10 @@ void biblioteq_dvd::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       if(button == dvd.frontButton)
 	{
 	  dvd.front_image->clear();
@@ -1903,8 +1902,6 @@ void biblioteq_dvd::slotSelectImage(void)
 	    (dvd.back_image->scene()->itemsBoundingRect());
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_dvd::slotShowUsers(void)

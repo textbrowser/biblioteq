@@ -1666,11 +1666,10 @@ void biblioteq_videogame::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       if(button == vg.frontButton)
 	{
 	  vg.front_image->clear();
@@ -1712,8 +1711,6 @@ void biblioteq_videogame::slotSelectImage(void)
 	    (vg.back_image->scene()->itemsBoundingRect());
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_videogame::slotShowUsers(void)

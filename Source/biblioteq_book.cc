@@ -1571,6 +1571,7 @@ void biblioteq_book::slotExportFiles(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Book File Export"));
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -1619,8 +1620,6 @@ void biblioteq_book::slotExportFiles(void)
 	  QApplication::processEvents();
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
@@ -3322,11 +3321,10 @@ void biblioteq_book::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       if(button == id.frontButton)
 	{
 	  id.front_image->clear();
@@ -3368,8 +3366,6 @@ void biblioteq_book::slotSelectImage(void)
 	    (id.back_image->scene()->itemsBoundingRect());
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotShowPDF(void)

@@ -2273,11 +2273,10 @@ void biblioteq_cd::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       if(button == cd.frontButton)
 	{
 	  cd.front_image->clear();
@@ -2319,8 +2318,6 @@ void biblioteq_cd::slotSelectImage(void)
 	    (cd.back_image->scene()->itemsBoundingRect());
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_cd::slotShowUsers(void)

@@ -1984,6 +1984,7 @@ void biblioteq_magazine::slotExportFiles(void)
     dialog.setWindowTitle(tr("BiblioteQ: Magazine File Export"));
 
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -2038,8 +2039,6 @@ void biblioteq_magazine::slotExportFiles(void)
 	  QApplication::processEvents();
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
@@ -3584,11 +3583,10 @@ void biblioteq_magazine::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       if(button == ma.frontButton)
 	{
 	  ma.front_image->clear();
@@ -3630,8 +3628,6 @@ void biblioteq_magazine::slotSelectImage(void)
 	    (ma.back_image->scene()->itemsBoundingRect());
 	}
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_magazine::slotShowPDF(void)

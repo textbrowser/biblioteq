@@ -969,12 +969,10 @@ void biblioteq_grey_literature::slotExportFiles(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Grey Literature File Export"));
   dialog.exec();
+  QApplication::processEvents();
 
   if(dialog.result() != QDialog::Accepted)
-    {
-      QApplication::processEvents();
-      return;
-    }
+    return;
 
   repaint();
   QApplication::processEvents();
