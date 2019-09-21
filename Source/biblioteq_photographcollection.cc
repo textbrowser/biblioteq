@@ -414,7 +414,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	QSize size;
 
 	if(percent == 0)
-	  size = scene->property("view_size").toSize();
+	  size = scene->views().value(0)->size();
 	else
 	  {
 	    size = image.size();
