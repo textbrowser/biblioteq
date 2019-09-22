@@ -190,6 +190,7 @@ void biblioteq_borrowers_editor::showUsers(void)
   progress1.setMinimum(0);
   progress1.show();
   progress1.update();
+  QApplication::processEvents();
 
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     {
@@ -283,10 +284,10 @@ void biblioteq_borrowers_editor::showUsers(void)
 		    query.lastError().text(), __FILE__, __LINE__);
 
   QApplication::restoreOverrideCursor();
-  progress2.setModal(true);
-  progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress2.setLabelText(tr("Retrieving borrower data..."));
   progress2.setMinimum(0);
+  progress2.setModal(true);
+  progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
   /*
   ** SQLite does not support query.size().
@@ -310,6 +311,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 
   progress2.show();
   progress2.update();
+  QApplication::processEvents();
   i = -1;
 
   QDate date;

@@ -1615,9 +1615,7 @@ void biblioteq_misc_functions::exportPhotographs
   progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   QSqlQuery query(db);
 
@@ -1637,9 +1635,7 @@ void biblioteq_misc_functions::exportPhotographs
 
       query.bindValue(1, item->data(0).toString());
       progress.repaint();
-#ifndef Q_OS_MAC
       QApplication::processEvents();
-#endif
 
       if(progress.wasCanceled())
 	break;
@@ -1684,9 +1680,7 @@ void biblioteq_misc_functions::exportPhotographs
   progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
-#ifndef Q_OS_MAC
   QApplication::processEvents();
-#endif
 
   QSqlQuery query(db);
 
@@ -1735,9 +1729,7 @@ void biblioteq_misc_functions::exportPhotographs
 	    }
 
 	  progress.repaint();
-#ifndef Q_OS_MAC
 	  QApplication::processEvents();
-#endif
 
 	  if(progress.wasCanceled())
 	    break;
