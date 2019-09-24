@@ -427,10 +427,19 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	pc.graphicsView->scene()->clearSelection();
-	scene->clear();
 
-	QGraphicsPixmapItem *pixmapItem = scene->addPixmap
-	  (QPixmap::fromImage(image));
+	QGraphicsPixmapItem *pixmapItem = 0;
+
+	if(!scene->items().isEmpty())
+	  {
+	    pixmapItem = qgraphicsitem_cast<QGraphicsPixmapItem *>
+	      (scene->items().at(0));
+
+	    if(pixmapItem)
+	      pixmapItem->setPixmap(QPixmap::fromImage(image));
+	  }
+	else
+	  pixmapItem = scene->addPixmap(QPixmap::fromImage(image));
 
 	if(pixmapItem)
 	  pixmapItem->setData(1, bytes);
