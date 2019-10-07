@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR" sourcelanguage="fr">
+<TS version="2.1" language="fr_FR" sourcelanguage="fr">
 <context>
     <name>QObject</name>
     <message>
@@ -569,15 +569,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Case-Insensitive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+S</source>
         <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Case Insensitive</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1552,14 +1552,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ was not able to discover the biblioteq.conf file. Default values will be assumed. The current working directory is %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Mushroom.&lt;br&gt;Poppler version %5.&lt;br&gt;%5Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;http://biblioteq.sourceforge.net&quot;&gt;http://biblioteq.sourceforge.net&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1849,6 +1841,38 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Please verify that the PostgreSQL driver or the SQLite driver is installed.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>E-Mail Address</source>
+        <translation type="unfinished">Adresse électronique</translation>
+    </message>
+    <message>
+        <source>Telephone Number</source>
+        <translation type="unfinished">Numéro de téléphone</translation>
+    </message>
+    <message>
+        <source>Home Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ was not able to discover the biblioteq.conf file. Default values will be assumed. The expected absolute path of biblioteq.conf is %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Pilot Periwinkle.&lt;br&gt;Poppler version %5.&lt;br&gt;%5Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Normal Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -2122,7 +2146,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
-        <translation type="unfinished">Pour pouvoir télécharger une image de couverture depuis Amazon, il faut indiquer l&apos;ISBN-10.</translation>
+        <translation type="obsolete">Pour pouvoir télécharger une image de couverture depuis Amazon, il faut indiquer l&apos;ISBN-10.</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Download</source>
@@ -2458,6 +2482,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Amazon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Open Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to download a cover image, the ISBN-10 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5296,6 +5332,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Genres</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Contact Information</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_otheroptions</name>
@@ -7963,15 +8003,7 @@ minmal de jours.</translation>
         <translation type="unfinished">MYOID</translation>
     </message>
     <message>
-        <source>Download the book&apos;s front cover image from Amazon.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download the book&apos;s back cover image from Amazon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8092,6 +8124,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download the book&apos;s front cover image.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download the book&apos;s back cover image.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8745,14 +8785,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Case-Insensitive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear the main table and reset the nearby search widgets.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8882,6 +8914,26 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Grey Literature...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Case Insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset the nearby search widgets.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Online Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F11</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9206,6 +9258,26 @@ minmal de jours.</translation>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>E-Mail Address</source>
+        <translation type="unfinished">Adresse électronique</translation>
+    </message>
+    <message>
+        <source>Telephone Number</source>
+        <translation type="unfinished">Numéro de téléphone</translation>
+    </message>
+    <message>
+        <source>Home Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;Fichier</translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>otheroptions</name>
@@ -9510,14 +9582,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Previous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Case Sensitive</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9547,6 +9611,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find &amp;Previous</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9681,6 +9753,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Next Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best Fit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
