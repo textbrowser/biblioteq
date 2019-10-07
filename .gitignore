@@ -1,0 +1,8 @@
+.qmake.cache
+.qmake.stash
+BiblioteQ
+Makefile
+*.o
+moc_*
+qrc_icons.cpp
+temp/
