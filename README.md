@@ -1,1 +1,1 @@
-BiblioteQ is free and open software.
+BiblioteQ is free and open library software.
