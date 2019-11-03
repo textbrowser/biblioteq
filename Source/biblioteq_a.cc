@@ -1894,7 +1894,7 @@ void biblioteq::showMain(void)
 #ifdef Q_OS_MAC
   QFileInfo fileInfo
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
-#elif defined(Q_OS_WIN32)
+#elif defined(Q_OS_OS2) || defined(Q_OS_WIN32)
   QFileInfo fileInfo(QCoreApplication::applicationDirPath() +
 		     QDir::separator() +
 		     "biblioteq.conf");
