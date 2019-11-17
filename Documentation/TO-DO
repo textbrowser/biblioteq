@@ -387,7 +387,7 @@
 206. Include Poppler and YAZ version information in the About dialog. (Done)
 207. biblioteq_misc_functions::getSqliteUniqueId() should return the
      lastInsertId() instead of using an additional query. (Done)
-208. Retranslate the Language menu. (TBD)
+208. Retranslate the Language menu. (Done)
 209. Tab-key navigation. (Done)
 210. Anti-aliasing in scene widgets. (Done)
 211. Redo /undo in large text editors. (Done)
