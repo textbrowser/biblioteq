@@ -6,7 +6,7 @@
      OS X (Done), and Solaris (Done).
 6.   Allow searching of library members. This feature should only be
      available to administrators. (Done)
-7.   Perform the database queries in threads. (TBD)
+7.   Perform the database queries in threads. Not necessary. (Done)
 8.   Create a configuration file to store values for various pull-down menus.
      (Done)
 9.   Create a mechanism for determining the uniqueness of members. (Done)
@@ -51,7 +51,7 @@
      a session's errors. (Done)
 23.  Include the day in the publication date. (Done)
 24.  Record an error, if one occurs, in the getAvailability() method. (Done)
-25.  Separate the application into three tiers. (TBD)
+25.  Separate the application into three tiers. Not necessary. (Done)
 26.  Implement a close() slot for the Copy Editor. (Done)
 27.  Provide a mechanism for displaying items that are overdue. (Done)
 28.  Update the availability column after an item has been reserved and
