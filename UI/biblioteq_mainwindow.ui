@@ -402,6 +402,8 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <addaction name="actionImportCSV"/>
+    <addaction name="separator"/>
     <addaction name="actionResizeColumns"/>
     <addaction name="actionShowErrorDialog"/>
     <addaction name="separator"/>
@@ -1213,6 +1215,11 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionImportCSV">
+   <property name="text">
+    <string>&amp;Import CSV</string>
    </property>
   </action>
  </widget>
