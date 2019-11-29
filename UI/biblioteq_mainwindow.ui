@@ -1219,7 +1219,7 @@
   </action>
   <action name="actionImportCSV">
    <property name="text">
-    <string>&amp;Import CSV</string>
+    <string>&amp;Import CSV...</string>
    </property>
   </action>
  </widget>

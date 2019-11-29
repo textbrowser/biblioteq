@@ -2341,19 +2341,20 @@ void biblioteq::slotConnectDB(void)
       m_connected_bar_label->setToolTip(tr("Connected"));
     }
 
-  ui.printTool->setEnabled(true);
-  ui.detailsTool->setEnabled(true);
-  ui.searchTool->setEnabled(true);
-  ui.customQueryTool->setEnabled(true);
+  ui.actionConnect->setEnabled(false);
   ui.actionDatabaseSearch->setEnabled(true);
-  ui.actionViewDetails->setEnabled(true);
-  ui.refreshTool->setEnabled(true);
-  ui.actionRefreshTable->setEnabled(true);
-  ui.disconnectTool->setEnabled(true);
   ui.actionDisconnect->setEnabled(true);
+  ui.actionImportCSV->setEnabled(true);
+  ui.actionRefreshTable->setEnabled(true);
+  ui.actionViewDetails->setEnabled(true);
   ui.configTool->setEnabled(true);
   ui.connectTool->setEnabled(false);
-  ui.actionConnect->setEnabled(false);
+  ui.customQueryTool->setEnabled(true);
+  ui.detailsTool->setEnabled(true);
+  ui.disconnectTool->setEnabled(true);
+  ui.printTool->setEnabled(true);
+  ui.refreshTool->setEnabled(true);
+  ui.searchTool->setEnabled(true);
 
   if(m_db.driverName() == "QSQLITE")
     {
@@ -2564,38 +2565,39 @@ void biblioteq::slotDisconnect(void)
   db_enumerations->clear();
   resetAdminBrowser();
   resetMembersBrowser();
-  ui.pagesLabel->setText("1");
-  ui.previousPageButton->setEnabled(false);
-  ui.nextPageButton->setEnabled(false);
-  ui.actionReservationHistory->setEnabled(false);
-  ui.printTool->setEnabled(false);
+  ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
-  ui.deleteTool->setEnabled(false);
-  ui.menu_Add_Item->setEnabled(false);
-  ui.actionDeleteEntry->setEnabled(false);
-  ui.actionDuplicateEntry->setEnabled(false);
-  ui.createTool->setEnabled(false);
-  ui.duplicateTool->setEnabled(false);
-  ui.modifyTool->setEnabled(false);
-  ui.actionModifyEntry->setEnabled(false);
-  ui.searchTool->setEnabled(false);
-  ui.customQueryTool->setEnabled(false);
-  ui.detailsTool->setEnabled(false);
+  ui.actionConnect->setEnabled(true);
   ui.actionDatabaseSearch->setEnabled(false);
-  ui.actionViewDetails->setEnabled(false);
-  ui.refreshTool->setEnabled(false);
-  ui.actionRefreshTable->setEnabled(false);
-  ui.disconnectTool->setEnabled(false);
+  ui.actionDeleteEntry->setEnabled(false);
   ui.actionDisconnect->setEnabled(false);
-  ui.userTool->setEnabled(false);
-  ui.reserveTool->setEnabled(false);
+  ui.actionDuplicateEntry->setEnabled(false);
+  ui.actionImportCSV->setEnabled(false);
   ui.actionMembersBrowser->setEnabled(false);
+  ui.actionModifyEntry->setEnabled(false);
+  ui.actionRefreshTable->setEnabled(false);
+  ui.actionReservationHistory->setEnabled(false);
+  ui.actionViewDetails->setEnabled(false);
+  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
   ui.configTool->setEnabled(false);
   ui.connectTool->setEnabled(true);
-  ui.actionConnect->setEnabled(true);
-  ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.createTool->setEnabled(false);
+  ui.customQueryTool->setEnabled(false);
+  ui.deleteTool->setEnabled(false);
+  ui.detailsTool->setEnabled(false);
+  ui.disconnectTool->setEnabled(false);
+  ui.duplicateTool->setEnabled(false);
   ui.menuEntriesPerPage->setEnabled(true);
-  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
+  ui.menu_Add_Item->setEnabled(false);
+  ui.modifyTool->setEnabled(false);
+  ui.nextPageButton->setEnabled(false);
+  ui.pagesLabel->setText("1");
+  ui.previousPageButton->setEnabled(false);
+  ui.printTool->setEnabled(false);
+  ui.refreshTool->setEnabled(false);
+  ui.reserveTool->setEnabled(false);
+  ui.searchTool->setEnabled(false);
+  ui.userTool->setEnabled(false);
 
   if(ui.menuEntriesPerPage->actions().size() > 0)
     ui.menuEntriesPerPage->actions().at
