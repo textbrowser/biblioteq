@@ -42,9 +42,6 @@
            <property name="text">
             <string>&amp;View Size</string>
            </property>
-           <property name="buddy">
-            <cstring>view_size</cstring>
-           </property>
           </widget>
          </item>
          <item>

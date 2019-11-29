@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>532</width>
-         <height>343</height>
+         <width>538</width>
+         <height>344</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -43,9 +43,6 @@
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>&amp;Main Window Canvas Background Color</string>
-            </property>
-            <property name="buddy">
-             <cstring>main_window_canvas_background_color</cstring>
             </property>
            </widget>
           </item>
