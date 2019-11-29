@@ -635,6 +635,7 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
 #endif
 
+  ui.actionImportCSV->setEnabled(false);
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
   ui.actionRequests->setEnabled(false);
