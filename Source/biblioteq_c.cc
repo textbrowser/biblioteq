@@ -5608,6 +5608,11 @@ void biblioteq::slotShowHistory(void)
   m_history_diag->raise();
 }
 
+void biblioteq::slotShowImport(void)
+{
+  m_import->show(this);
+}
+
 void biblioteq::slotShowOtherOptions(void)
 {
   biblioteq_misc_functions::center(m_otheroptions, this);
