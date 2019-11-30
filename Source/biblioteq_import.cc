@@ -58,6 +58,50 @@ void biblioteq_import::show(QMainWindow *parent)
 
 void biblioteq_import::slotAddBookRow(void)
 {
+  m_ui.books->setRowCount(m_ui.books->rowCount() + 1);
+
+  QTableWidgetItem *item = new QTableWidgetItem();
+
+  item->setText(QString::number(m_ui.books->rowCount()));
+  m_ui.books->setItem(m_ui.books->rowCount() - 1, 0, item);
+
+  QWidget *widget = new QWidget();
+  QComboBox *comboBox = new QComboBox();
+
+  comboBox->addItems(QStringList()
+		     << "accession_number"
+		     << "author"
+		     << "binding_type"
+		     << "callnumber"
+		     << "category"
+		     << "condition"
+		     << "description"
+		     << "deweynumber"
+		     << "edition"
+		     << "id"
+		     << "isbn13"
+		     << "keyword"
+		     << "language"
+		     << "lccontrolnumber"
+		     << "marc_tags"
+		     << "monetary_units"
+		     << "originality"
+		     << "pdate"
+		     << "place"
+		     << "price"
+		     << "publisher"
+		     << "quantity"
+		     << "title");
+  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+
+  QHBoxLayout *layout = new QHBoxLayout(widget);
+  QSpacerItem *spacer = new QSpacerItem
+    (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+  layout->addWidget(comboBox);
+  layout->addSpacerItem(spacer);
+  layout->setContentsMargins(0, 0, 0, 0);
+  m_ui.books->setCellWidget(m_ui.books->rowCount() - 1, 1, widget);
 }
 
 void biblioteq_import::slotClose(void)
