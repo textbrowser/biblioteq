@@ -269,6 +269,9 @@ biblioteq::biblioteq(void):QMainWindow()
   if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
     quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_import = new(std::nothrow) biblioteq_import(this)) == 0)
+    quit("Memory allocation failure", __FILE__, __LINE__);
+
   if((menu1 = new(std::nothrow) QMenu(this)) == 0)
     quit("Memory allocation failure", __FILE__, __LINE__);
 
@@ -326,6 +329,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotOpenPDFFile(void)));
+  connect(ui.actionImportCSV,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowImport(void)));
   connect(ui.actionOther_Options,
 	  SIGNAL(triggered(void)),
 	  this,
