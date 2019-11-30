@@ -20,8 +20,8 @@ class biblioteq_import: public QMainWindow
   void changeEvent(QEvent *event);
 
  private slots:
-  void slotAddRow(void);
-  void slotDeleteRow(void);
+  void slotAddBookRow(void);
+  void slotDeleteBookRow(void);
 };
 
 #endif
