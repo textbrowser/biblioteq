@@ -5,6 +5,14 @@
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
   m_ui.setupUi(this);
+  connect(m_ui.add_book_row,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAddBookRow(void)));
+  connect(m_ui.delete_book_row,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteBookRow(void)));
 }
 
 void biblioteq_import::changeEvent(QEvent *event)
@@ -44,10 +52,10 @@ void biblioteq_import::show(QMainWindow *parent)
   raise();
 }
 
-void biblioteq_import::slotAddRow(void)
+void biblioteq_import::slotAddBookRow(void)
 {
 }
 
-void biblioteq_import::slotDeleteRow(void)
+void biblioteq_import::slotDeleteBookRow(void)
 {
 }
