@@ -46,7 +46,7 @@ void biblioteq_import::show(QMainWindow *parent)
   static bool resized = false;
 
   if(parent && !resized)
-    resize(qRound(0.85 * parent->size().width()),
+    resize(qRound(0.80 * parent->size().width()),
 	   parent->size().height());
 
   resized = true;
