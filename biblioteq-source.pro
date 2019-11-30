@@ -43,7 +43,8 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_generic_thread.h \
                   Source/biblioteq_grey_literature.h \
 		  Source/biblioteq_hyperlinked_text_edit.h \
-		  Source/biblioteq_image_drop_site.h \
+                  Source/biblioteq_image_drop_site.h \
+                  Source/biblioteq_import.h \
 		  Source/biblioteq_item.h \
 		  Source/biblioteq_magazine.h \
 		  Source/biblioteq_main_table.h \
@@ -73,6 +74,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_grey_literature.cc \
                   Source/biblioteq_hyperlinked_text_edit.cc \
                   Source/biblioteq_image_drop_site.cc \
+                  Source/biblioteq_import.cc \
                   Source/biblioteq_item.cc \
                   Source/biblioteq_journal.cc \
                   Source/biblioteq_magazine.cc \
