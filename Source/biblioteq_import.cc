@@ -9,6 +9,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAddBookRow(void)));
+  connect(m_ui.close,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotClose(void)));
   connect(m_ui.delete_book_row,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -54,6 +58,11 @@ void biblioteq_import::show(QMainWindow *parent)
 
 void biblioteq_import::slotAddBookRow(void)
 {
+}
+
+void biblioteq_import::slotClose(void)
+{
+  close();
 }
 
 void biblioteq_import::slotDeleteBookRow(void)
