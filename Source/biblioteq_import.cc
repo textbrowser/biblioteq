@@ -58,6 +58,7 @@ void biblioteq_import::show(QMainWindow *parent)
 
 void biblioteq_import::slotAddBookRow(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.books->setRowCount(m_ui.books->rowCount() + 1);
 
   QTableWidgetItem *item = new QTableWidgetItem();
@@ -102,6 +103,7 @@ void biblioteq_import::slotAddBookRow(void)
   layout->addSpacerItem(spacer);
   layout->setContentsMargins(0, 0, 0, 0);
   m_ui.books->setCellWidget(m_ui.books->rowCount() - 1, 1, widget);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_import::slotClose(void)
@@ -111,4 +113,12 @@ void biblioteq_import::slotClose(void)
 
 void biblioteq_import::slotDeleteBookRow(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QModelIndexList list(m_ui.books->selectionModel()->selectedRows(0));
+
+  for(int i = list.size() - 1; i >= 0; i--)
+    m_ui.books->removeRow(list.at(i).row());
+
+  QApplication::restoreOverrideCursor();
 }
