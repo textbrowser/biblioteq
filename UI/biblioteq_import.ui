@@ -144,13 +144,6 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Books</string>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QSplitter" name="splitter">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -169,7 +162,7 @@
                <bool>true</bool>
               </property>
               <property name="selectionMode">
-               <enum>QAbstractItemView::SingleSelection</enum>
+               <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
               <property name="selectionBehavior">
                <enum>QAbstractItemView::SelectRows</enum>
@@ -193,7 +186,7 @@
               </column>
               <column>
                <property name="text">
-                <string>BiblioteQ Database Field Name</string>
+                <string>BiblioteQ Books Table Field Name</string>
                </property>
               </column>
              </widget>
