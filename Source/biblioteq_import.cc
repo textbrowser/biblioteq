@@ -1,3 +1,5 @@
+#include <QFileDialog>
+
 #include "biblioteq.h"
 #include "biblioteq_import.h"
 #include "biblioteq_misc_functions.h"
@@ -21,6 +23,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(m_ui.select_csv_file,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectCSVFile(void)));
 }
 
 void biblioteq_import::changeEvent(QEvent *event)
@@ -132,4 +138,20 @@ void biblioteq_import::slotReset(void)
   m_ui.books->setRowCount(0);
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
+}
+
+void biblioteq_import::slotSelectCSVFile(void)
+{
+  QFileDialog dialog(this);
+
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setNameFilter("CSV (*.csv)");
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Select CSV Import File"));
+  dialog.exec();
+  QApplication::processEvents();
+
+  if(dialog.result() == QDialog::Accepted)
+    m_ui.csv_file->setText(dialog.selectedFiles().value(0));
 }

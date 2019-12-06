@@ -1842,8 +1842,8 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 
 void biblioteq_magazine::slotAttachFiles(void)
 {
-  QFileDialog fileDialog(this, tr("BiblioteQ: %1 Attachment(s)").
-			 arg(m_subType));
+  QFileDialog fileDialog
+    (this, tr("BiblioteQ: %1 Attachment(s)").arg(m_subType));
 
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setDirectory(QDir::homePath());

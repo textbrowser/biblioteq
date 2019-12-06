@@ -3401,7 +3401,7 @@ void biblioteq::slotOpenPDFFile(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setNameFilter("PDF File (*.pdf)");
+  dialog.setNameFilter("PDF (*.pdf)");
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Open PDF File"));
 

@@ -24,6 +24,7 @@ class biblioteq_import: public QMainWindow
   void slotClose(void);
   void slotDeleteBookRow(void);
   void slotReset(void);
+  void slotSelectCSVFile(void);
 };
 
 #endif
