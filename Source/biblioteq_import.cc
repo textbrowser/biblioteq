@@ -17,6 +17,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteBookRow(void)));
+  connect(m_ui.reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
 }
 
 void biblioteq_import::changeEvent(QEvent *event)
@@ -121,4 +125,11 @@ void biblioteq_import::slotDeleteBookRow(void)
     m_ui.books->removeRow(list.at(i).row());
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_import::slotReset(void)
+{
+  m_ui.books->setRowCount(0);
+  m_ui.csv_file->clear();
+  m_ui.delimiter->setText(",");
 }
