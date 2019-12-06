@@ -23,7 +23,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>&amp;Branch Name</string>
+        <string>Branch Name</string>
        </property>
       </widget>
      </item>
@@ -127,7 +127,7 @@
           <item row="0" column="1">
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>&amp;Userid</string>
+             <string>Userid</string>
             </property>
            </widget>
           </item>
@@ -179,7 +179,7 @@
           <item row="1" column="1">
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>&amp;Password</string>
+             <string>Password</string>
             </property>
            </widget>
           </item>

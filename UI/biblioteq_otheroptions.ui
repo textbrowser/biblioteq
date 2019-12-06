@@ -42,7 +42,7 @@
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>&amp;Main Window Canvas Background Color</string>
+             <string>Main Window Canvas Background Color</string>
             </property>
            </widget>
           </item>
