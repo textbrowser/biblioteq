@@ -23,6 +23,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(m_ui.save,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotImport(void)));
   connect(m_ui.select_csv_file,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -131,6 +135,10 @@ void biblioteq_import::slotDeleteBookRow(void)
     m_ui.books->removeRow(list.at(i).row());
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_import::slotImport(void)
+{
 }
 
 void biblioteq_import::slotReset(void)
