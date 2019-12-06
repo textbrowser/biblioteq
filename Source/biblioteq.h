@@ -10,6 +10,7 @@
 #include "biblioteq_dvd.h"
 #include "biblioteq_generic_thread.h"
 #include "biblioteq_grey_literature.h"
+#include "biblioteq_import.h"
 #include "biblioteq_magazine.h"
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_myqstring.h"
@@ -314,6 +315,7 @@ class biblioteq: public QMainWindow
   Ui_membersBrowser bb;
   Ui_passSelect pass;
   biblioteq_dbenumerations *db_enumerations;
+  biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
   int m_lastSearchType;
   qint64 m_pages;
@@ -434,6 +436,7 @@ class biblioteq: public QMainWindow
   void slotShowErrorDialog(void);
   void slotShowGrid(void);
   void slotShowHistory(void);
+  void slotShowImport(void);
   void slotShowMembersBrowser(void);
   void slotShowMenu(void);
   void slotShowNext(void);
