@@ -1975,8 +1975,9 @@ void biblioteq_magazine::slotExportFiles(void)
 
   QFileDialog dialog(this);
 
-  dialog.setFileMode(QFileDialog::Directory);
   dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
 
   if(m_subType.toLower() == "journal")
     dialog.setWindowTitle(tr("BiblioteQ: Journal File Export"));
