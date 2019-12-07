@@ -21,6 +21,7 @@ class biblioteq_import: public QMainWindow
 
  private slots:
   void slotAddBookRow(void);
+  void slotBooksTemplates(int index);
   void slotClose(void);
   void slotDeleteBookRow(void);
   void slotImport(void);

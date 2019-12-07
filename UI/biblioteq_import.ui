@@ -144,6 +144,40 @@
             </widget>
            </item>
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QComboBox" name="books_templates">
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Templates</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Template 1</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
             <widget class="QSplitter" name="splitter">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -181,7 +215,7 @@
               </attribute>
               <column>
                <property name="text">
-                <string>CSV Field Number</string>
+                <string>CSV Column Number</string>
                </property>
               </column>
               <column>
@@ -353,6 +387,7 @@
   <tabstop>select_csv_file</tabstop>
   <tabstop>delimiter</tabstop>
   <tabstop>scrollArea</tabstop>
+  <tabstop>books_templates</tabstop>
   <tabstop>books</tabstop>
   <tabstop>add_book_row</tabstop>
   <tabstop>delete_book_row</tabstop>
