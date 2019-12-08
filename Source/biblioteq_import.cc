@@ -232,6 +232,19 @@ void biblioteq_import::slotImport(void)
 
 void biblioteq_import::slotReset(void)
 {
+  if(m_ui.books->rowCount() > 0 ||
+     !m_ui.csv_file->text().isEmpty() ||
+     m_ui.delimiter->text() != ",")
+    if(QMessageBox::question(this,
+			     tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to reset?"),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	QApplication::processEvents();
+	return;
+      }
+
   m_ui.books->setRowCount(0);
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
