@@ -65,7 +65,7 @@ void biblioteq_import::show(QMainWindow *parent)
 
   if(parent && !resized)
     resize(qRound(0.80 * parent->size().width()),
-	   parent->size().height());
+	   qRound(0.80 * parent->size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(this, parent);
