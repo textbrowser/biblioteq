@@ -1,4 +1,6 @@
 #include <QFileDialog>
+#include <QMessageBox>
+#include <QProgressDialog>
 
 #include "biblioteq.h"
 #include "biblioteq_import.h"
@@ -57,6 +59,12 @@ void biblioteq_import::changeEvent(QEvent *event)
 void biblioteq_import::closeEvent(QCloseEvent *event)
 {
   QMainWindow::closeEvent(event);
+}
+
+void biblioteq_import::importBooks(QProgressDialog *progress)
+{
+  if(!progress)
+    return;
 }
 
 void biblioteq_import::show(QMainWindow *parent)
@@ -228,6 +236,37 @@ void biblioteq_import::slotDeleteBookRow(void)
 
 void biblioteq_import::slotImport(void)
 {
+  /*
+  ** Test if the specified file is readable!
+  */
+
+  QFileInfo fileInfo(m_ui.csv_file->text());
+
+  if(!fileInfo.isReadable())
+    {
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Error"),
+	 tr("The file %1 is not readable.").arg(fileInfo.absolutePath()));
+      return;
+    }
+
+  QScopedPointer<QProgressDialog> progress;
+
+  progress.reset(new(std::nothrow) QProgressDialog(this));
+
+  if(!progress)
+    return;
+
+  progress->setLabelText(tr("Importing the CSV file..."));
+  progress->setMaximum(0);
+  progress->setMinimum(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->show();
+  progress->repaint();
+  QApplication::processEvents();
+  importBooks(progress.data());
 }
 
 void biblioteq_import::slotReset(void)

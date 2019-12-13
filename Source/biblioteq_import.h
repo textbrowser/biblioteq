@@ -3,6 +3,7 @@
 
 #include "ui_biblioteq_import.h"
 
+class QProgressDialog;
 class biblioteq;
 
 class biblioteq_import: public QMainWindow
@@ -18,6 +19,7 @@ class biblioteq_import: public QMainWindow
   Ui_importBrowser m_ui;
   biblioteq *qmain;
   void changeEvent(QEvent *event);
+  void importBooks(QProgressDialog *progress);
 
  private slots:
   void slotAddBookRow(void);
