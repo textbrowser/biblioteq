@@ -2550,6 +2550,7 @@ void biblioteq::slotDisconnect(void)
 
   userinfo_diag->m_memberProperties.clear();
   m_all_diag->close();
+  m_import->close();
   m_members_diag->close();
   m_history_diag->close();
   m_customquery_diag->close();
