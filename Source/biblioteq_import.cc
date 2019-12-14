@@ -317,8 +317,8 @@ void biblioteq_import::slotImport(void)
 	  QMessageBox::critical
 	    (this,
 	     tr("BiblioteQ: Error"),
-	     tr("Duplicate mapping discovered for the Books table. Please "
-		"correct row %1.").arg(item->row()));
+	     tr("Duplicate mapping discovered in the Books table. Please "
+		"review row %1.").arg(item->row()));
 	  return;
 	}
 
