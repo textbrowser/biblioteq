@@ -65,6 +65,40 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 {
   if(!progress)
     return;
+
+  QFile file(m_ui.csv_file->text());
+
+  if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    return;
+
+  qint64 ct = 0;
+
+  while(ct++, !file.atEnd())
+    {
+      QString data(file.readLine().trimmed());
+
+      if(ct == 1 && m_ui.books_templates->currentIndex() == 1)
+	// Ignore the column names.
+
+	continue;
+
+      if(!data.isEmpty())
+	{
+	  /*
+	  ** Separate by the delimiter.
+	  */
+
+	  QStringList list
+	    (data.split(QRegExp(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
+				arg(m_ui.delimiter->text()))));
+
+	  for(int i = 0; i < list.size(); i++)
+	    {
+	    }
+	}
+    }
+
+  file.close();
 }
 
 void biblioteq_import::show(QMainWindow *parent)
@@ -72,7 +106,7 @@ void biblioteq_import::show(QMainWindow *parent)
   static bool resized = false;
 
   if(parent && !resized)
-    resize(qRound(0.80 * parent->size().width()),
+    resize(qRound(0.50 * parent->size().width()),
 	   qRound(0.80 * parent->size().height()));
 
   resized = true;
@@ -237,17 +271,66 @@ void biblioteq_import::slotDeleteBookRow(void)
 void biblioteq_import::slotImport(void)
 {
   /*
-  ** Test if the specified file is readable!
+  ** Test if the specified file is readable.
   */
 
   QFileInfo fileInfo(m_ui.csv_file->text());
 
   if(!fileInfo.isReadable())
     {
+      if(fileInfo.absolutePath().isEmpty())
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Error"),
+	   tr("The specified file is not readable."));
+      else
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Error"),
+	   tr("The file %1 is not readable.").arg(fileInfo.absolutePath()));
+
+      return;
+    }
+
+  /*
+  ** Test the various mappings.
+  */
+
+  QMap<int, QString> map;
+
+  for(int i = 0; i < m_ui.books->rowCount(); i++)
+    {
+      QTableWidgetItem *item = m_ui.books->item(i, 0);
+      QWidget *widget = m_ui.books->cellWidget(i, 1);
+
+      if(!item || !widget)
+	continue;
+
+      QComboBox *comboBox = widget->findChild<QComboBox *> ();
+
+      if(!comboBox)
+	continue;
+
+      if(map.contains(item->text().toInt()))
+	{
+	  m_ui.books->selectRow(i);
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: Error"),
+	     tr("Duplicate mapping discovered for the Books table. Please "
+		"correct row %1.").arg(item->row()));
+	  return;
+	}
+
+      map[item->text().toInt()] = comboBox->currentText();
+    }
+
+  if(map.isEmpty())
+    {
       QMessageBox::critical
 	(this,
 	 tr("BiblioteQ: Error"),
-	 tr("The file %1 is not readable.").arg(fileInfo.absolutePath()));
+	 tr("Please define column mappings."));
       return;
     }
 
