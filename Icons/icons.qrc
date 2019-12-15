@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-    	<file>book.png</file>
+	<file>book.png</file>
 	<file>no_image.png</file>
         <file>16x16/add.png</file>
         <file>16x16/cancel.png</file>
@@ -51,6 +51,7 @@
 	<file>32x32/find.png</file>
 	<file>32x32/history.png</file>
 	<file>32x32/identity.png</file>
+	<file>32x32/import.png</file>
 	<file>32x32/log.png</file>
 	<file>32x32/members.png</file>
 	<file>32x32/next.png</file>
