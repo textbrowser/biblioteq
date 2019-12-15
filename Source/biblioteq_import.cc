@@ -8,6 +8,7 @@
 
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
+  m_qmain = parent;
   m_ui.setupUi(this);
   connect(m_ui.add_book_row,
 	  SIGNAL(clicked(void)),
@@ -92,8 +93,73 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 	    (data.split(QRegExp(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 				arg(m_ui.delimiter->text()))));
 
-	  for(int i = 0; i < list.size(); i++)
+	  if(!list.isEmpty())
 	    {
+	      QSqlQuery query(m_qmain->getDB());
+
+	      if(m_qmain->getDB().driverName() == "QPSQL")
+		{
+		}
+	      else
+		query.prepare
+		  ("INSERT INTO book ("
+		   "accession_number, "
+		   "author, "
+		   "back_cover, "
+		   "binding_type, "
+		   "callnumber, "
+		   "category, "
+		   "condition, "
+		   "description, "
+		   "deweynumber, "
+		   "edition, "
+		   "front_cover, "
+		   "id, "
+		   "isbn13, "
+		   "keyword, "
+		   "language, "
+		   "lccontrolnumber, "
+		   "location, "
+		   "monetary_units, "
+		   "originality, "
+		   "pdate, "
+		   "place, marc_tags, "
+		   "price, "
+		   "publisher, "
+		   "quantity, "
+		   "title "
+		   ") VALUES ("
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?, "
+		   "?"
+		   ") RETURNING myoid");
+
+	      for(int i = 0; i < list.size(); i++)
+		{
+		}
 	    }
 	}
     }
@@ -324,6 +390,8 @@ void biblioteq_import::slotImport(void)
 
       map[item->text().toInt()] = comboBox->currentText();
     }
+
+  m_booksMappings = map;
 
   if(map.isEmpty())
     {
