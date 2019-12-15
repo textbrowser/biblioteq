@@ -19,6 +19,7 @@ class biblioteq_import: public QMainWindow
   QMap<int, QString> m_booksMappings;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
+  int m_booksTemplate;
   void changeEvent(QEvent *event);
   void importBooks(QProgressDialog *progress);
 

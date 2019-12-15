@@ -8,6 +8,7 @@
 
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
+  m_booksTemplate = 0;
   m_qmain = parent;
   m_ui.setupUi(this);
   connect(m_ui.add_book_row,
@@ -72,13 +73,54 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
   if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     return;
 
+  QMapIterator<int, QString> it(m_booksMappings);
+  QString f("");
+  QString q("");
+  QString queryString("");
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(it.value() != "<ignored>")
+	{
+	  f.append(it.value());
+	  q.append("?");
+
+	  if(it.hasNext())
+	    {
+	      f.append(",");
+	      q.append(",");
+	    }
+	}
+    }
+
+  queryString.append("INSERT INTO book(");
+  queryString.append("description,");
+
+  if(m_qmain->getDB().driverName() != "QPSQL")
+    queryString.append("myoid,");
+
+  queryString.append(f);
+  queryString.append(") VALUES (");
+  queryString.append("?,");
+
+  if(m_qmain->getDB().driverName() != "QPSQL")
+    queryString.append("?,");
+
+  queryString.append(q);
+  queryString.append(")");
+
+  if(m_qmain->getDB().driverName() == "QPSQL")
+    queryString.append(" RETURNING myoid");
+
   qint64 ct = 0;
 
   while(ct++, !file.atEnd())
     {
       QString data(file.readLine().trimmed());
 
-      if(ct == 1 && m_ui.books_templates->currentIndex() == 1)
+      if(ct == 1 && m_booksTemplate == 1)
 	// Ignore the column names.
 
 	continue;
@@ -97,118 +139,37 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 	    {
 	      QSqlQuery query(m_qmain->getDB());
 
-	      if(m_qmain->getDB().driverName() == "QPSQL")
-		query.prepare
-		  ("INSERT INTO book ("
-		   "accession_number, "
-		   "author, "
-		   "binding_type, "
-		   "callnumber, "
-		   "category, "
-		   "condition, "
-		   "description, "
-		   "deweynumber, "
-		   "edition, "
-		   "id, "
-		   "isbn13, "
-		   "keyword, "
-		   "language, "
-		   "lccontrolnumber, "
-		   "location, "
-		   "marc_tags, "
-		   "monetary_units, "
-		   "originality, "
-		   "pdate, "
-		   "place, "
-		   "price, "
-		   "publisher, "
-		   "quantity, "
-		   "title"
-		   ") VALUES ("
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?"
-		   ") RETURNING myoid");
-	      else
-		query.prepare
-		  ("INSERT INTO book ("
-		   "accession_number, "
-		   "author, "
-		   "binding_type, "
-		   "callnumber, "
-		   "category, "
-		   "condition, "
-		   "description, "
-		   "deweynumber, "
-		   "edition, "
-		   "id, "
-		   "isbn13, "
-		   "keyword, "
-		   "language, "
-		   "lccontrolnumber, "
-		   "location, "
-		   "marc_tags, "
-		   "monetary_units, "
-		   "myoid, "
-		   "originality, "
-		   "pdate, "
-		   "place, "
-		   "price, "
-		   "publisher, "
-		   "quantity, "
-		   "title"
-		   ") VALUES ("
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?, "
-		   "?"
-		   ")");
+	      query.prepare(queryString);
+	      query.addBindValue("N/A"); // Description.
 
-	      for(int i = 0; i < list.size(); i++)
+	      if(m_qmain->getDB().driverName() != "QPSQL")
 		{
+		  QString errorstr("");
+		  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+		    (m_qmain->getDB(), errorstr);
+
+		  query.addBindValue(value);
 		}
+
+	      for(int i = 1; i <= list.size(); i++)
+		{
+		  if(!m_booksMappings.contains(i))
+		    continue;
+		  else if(m_booksMappings.value(i) == "<ignored>")
+		    continue;
+
+		  QString str(list.at(i - 1).trimmed());
+
+		  str.remove('"');
+		  str = str.trimmed();
+
+		  if(str.isEmpty())
+		    query.addBindValue(QVariant(QVariant::String));
+		  else
+		    query.addBindValue(str);
+		}
+
+	      query.exec();
 	    }
 	}
     }
@@ -307,6 +268,7 @@ void biblioteq_import::slotBooksTemplates(int index)
 	      }
 	  }
 
+	m_booksTemplate = 1;
 	m_ui.books->setRowCount(0);
 
 	QStringList list;
@@ -329,8 +291,8 @@ void biblioteq_import::slotBooksTemplates(int index)
 	     << "lccontrolnumber"
 	     << "callnumber"
 	     << "deweynumber"
-	     << "<ignored>"
-	     << "<ignored>"
+	     << "<ignored>" // Availability
+	     << "<ignored>" // Total Reserved
 	     << "originality"
 	     << "condition"
 	     << "accession_number";
@@ -484,6 +446,8 @@ void biblioteq_import::slotReset(void)
 	return;
       }
 
+  m_booksMappings.clear();
+  m_booksTemplate = 0;
   m_ui.books->setRowCount(0);
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");

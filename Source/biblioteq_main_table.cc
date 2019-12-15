@@ -115,8 +115,6 @@ void biblioteq_main_table::resetTable(const QString &username,
   setColumnCount(0);
   setRowCount(0);
   scrollToTop();
-  horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  horizontalHeader()->setSortIndicatorShown(true);
   horizontalScrollBar()->setValue(0);
   setColumns(username, type, roles);
 
@@ -129,7 +127,10 @@ void biblioteq_main_table::resetTable(const QString &username,
     }
 
   clearSelection();
+  horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  horizontalHeader()->setSortIndicatorShown(true);
   setCurrentItem(0);
+  sortByColumn(0);
 }
 
 void biblioteq_main_table::setColumnNames(const QStringList &list)
