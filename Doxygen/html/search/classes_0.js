@@ -16,6 +16,7 @@ var searchData=
   ['biblioteq_5fgrey_5fliterature',['biblioteq_grey_literature',['../classbiblioteq__grey__literature.html',1,'']]],
   ['biblioteq_5fhyperlinked_5ftext_5fedit',['biblioteq_hyperlinked_text_edit',['../classbiblioteq__hyperlinked__text__edit.html',1,'']]],
   ['biblioteq_5fimage_5fdrop_5fsite',['biblioteq_image_drop_site',['../classbiblioteq__image__drop__site.html',1,'']]],
+  ['biblioteq_5fimport',['biblioteq_import',['../classbiblioteq__import.html',1,'']]],
   ['biblioteq_5fitem',['biblioteq_item',['../classbiblioteq__item.html',1,'']]],
   ['biblioteq_5fitem_5fworking_5fdialog',['biblioteq_item_working_dialog',['../classbiblioteq__item__working__dialog.html',1,'']]],
   ['biblioteq_5fjournal',['biblioteq_journal',['../classbiblioteq__journal.html',1,'']]],
