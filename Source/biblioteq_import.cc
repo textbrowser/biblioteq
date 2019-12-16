@@ -210,21 +210,28 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  if(!errorstr.isEmpty())
 		    // Do not increase notImported.
 
-		    errors << errorstr;
+		    errors << tr("biblioteq_misc_functions::"
+				 "createInitialCopies() "
+				 "error (%1) on row %2.").
+		      arg(errorstr).arg(ct);
 
 		  if(imported)
 		    *imported += 1;
 		}
 	      else
 		{
-		  errors << query.lastError().text();
+		  errors << tr("Database error (%1) on row %2.").
+		    arg(query.lastError().text()).arg(ct);
 
 		  if(notImported)
 		    *notImported += 1;
 		}
 	    }
 	  else if(notImported)
-	    *notImported += 1;
+	    {
+	      errors << tr("Empty row %1.").arg(ct);
+	      *notImported += 1;
+	    }
 	}
     }
 
@@ -345,8 +352,8 @@ void biblioteq_import::slotBooksTemplates(int index)
 	     << "lccontrolnumber"
 	     << "callnumber"
 	     << "deweynumber"
-	     << "<ignored> (Availability)"
-	     << "<ignored> (Total Reserved)"
+	     << "<ignored>" // Availability
+	     << "<ignored>" // Total Reserved
 	     << "originality"
 	     << "condition"
 	     << "accession_number";
@@ -498,6 +505,10 @@ void biblioteq_import::slotImport(void)
       QString errorstr("");
       Ui_generalmessagediag ui;
 
+      errors.prepend(tr("Imported: %1. Not imported: %2.\n").
+		     arg(imported).
+		     arg(notImported));
+
       for(int i = 0; i < errors.size(); i++)
 	{
 	  errorstr.append(errors.at(i));
@@ -515,8 +526,12 @@ void biblioteq_import::slotImport(void)
       dialog.exec();
     }
   else
-    {
-    }
+    QMessageBox::information
+      (this,
+       tr("BiblioteQ: Information"),
+       tr("Imported: %1. Not imported: %2.").arg(imported).arg(notImported));
+
+  QApplication::processEvents();
 }
 
 void biblioteq_import::slotReset(void)

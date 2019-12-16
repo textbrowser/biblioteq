@@ -451,4 +451,5 @@
 	Source/biblioteq_videogame.cc (Done)
 	Source/biblioteq_z3950results.cc (Done)
 239. Google Books API: https://developers.google.com/books/docs/v1/using. (TBD)
-240. Report import results. (TBD)
+240. Report import results. (Done)
+241. Remove std::nothrow.
