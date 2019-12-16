@@ -138,6 +138,9 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 	  if(!list.isEmpty())
 	    {
 	      QSqlQuery query(m_qmain->getDB());
+	      QString id("");
+	      int quantity = 1;
+	      qint64 oid = 0;
 
 	      query.prepare(queryString);
 	      query.addBindValue("N/A"); // Description.
@@ -145,10 +148,12 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 	      if(m_qmain->getDB().driverName() != "QPSQL")
 		{
 		  QString errorstr("");
-		  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+		  
+		  oid = biblioteq_misc_functions::getSqliteUniqueId
 		    (m_qmain->getDB(), errorstr);
 
-		  query.addBindValue(value);
+		  if(errorstr.isEmpty())
+		    query.addBindValue(oid);
 		}
 
 	      for(int i = 1; i <= list.size(); i++)
@@ -166,10 +171,29 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 		  if(str.isEmpty())
 		    query.addBindValue(QVariant(QVariant::String));
 		  else
-		    query.addBindValue(str);
+		    {
+		      if(m_booksMappings.value(i) == "id")
+			id = str;
+		      else if(m_booksMappings.value(i) == "quantity")
+			quantity = str.toInt();
+
+		      query.addBindValue(str);
+		    }
 		}
 
-	      query.exec();
+	      if(query.exec())
+		{
+		  if(m_qmain->getDB().driverName() == "QPSQL")
+		    {
+		      query.next();
+		      oid = query.value(0).toLongLong();
+		    }
+
+		  QString errorstr("");
+
+		  biblioteq_misc_functions::createInitialCopies
+		    (id, quantity, m_qmain->getDB(), "Book", errorstr);
+		}
 	    }
 	}
     }
