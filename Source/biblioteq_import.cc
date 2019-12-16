@@ -5,6 +5,7 @@
 #include "biblioteq.h"
 #include "biblioteq_import.h"
 #include "biblioteq_misc_functions.h"
+#include "ui_biblioteq_generalmessagediag.h"
 
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
@@ -486,6 +487,36 @@ void biblioteq_import::slotImport(void)
   qint64 notImported = 0;
 
   importBooks(progress.data(), errors, &imported, &notImported);
+  progress->close();
+  QApplication::processEvents();
+
+  if(!errors.isEmpty())
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QDialog dialog(this);
+      QString errorstr("");
+      Ui_generalmessagediag ui;
+
+      for(int i = 0; i < errors.size(); i++)
+	{
+	  errorstr.append(errors.at(i));
+	  errorstr.append('\n');
+	}
+
+      ui.setupUi(&dialog);
+      ui.text->setPlainText(errorstr.trimmed());
+      connect(ui.cancelButton,
+	      SIGNAL(clicked(void)),
+	      &dialog,
+	      SLOT(close(void)));
+      dialog.setWindowTitle(tr("BiblioteQ: Import Results"));
+      QApplication::restoreOverrideCursor();
+      dialog.exec();
+    }
+  else
+    {
+    }
 }
 
 void biblioteq_import::slotReset(void)
