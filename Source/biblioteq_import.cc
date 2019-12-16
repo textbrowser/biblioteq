@@ -82,7 +82,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
     {
       it.next();
 
-      if(it.value() != "<ignored>")
+      if(!it.value().contains("<ignored>"))
 	{
 	  f.append(it.value());
 	  q.append("?");
@@ -160,7 +160,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 		{
 		  if(!m_booksMappings.contains(i))
 		    continue;
-		  else if(m_booksMappings.value(i) == "<ignored>")
+		  else if(m_booksMappings.value(i).contains("<ignored>"))
 		    continue;
 
 		  QString str(list.at(i - 1).trimmed());
@@ -315,8 +315,8 @@ void biblioteq_import::slotBooksTemplates(int index)
 	     << "lccontrolnumber"
 	     << "callnumber"
 	     << "deweynumber"
-	     << "<ignored>" // Availability
-	     << "<ignored>" // Total Reserved
+	     << "<ignored> (Availability)"
+	     << "<ignored> (Total Reserved)"
 	     << "originality"
 	     << "condition"
 	     << "accession_number";
@@ -426,8 +426,6 @@ void biblioteq_import::slotImport(void)
       map[item->text().toInt()] = comboBox->currentText();
     }
 
-  m_booksMappings = map;
-
   if(map.isEmpty())
     {
       QMessageBox::critical
@@ -452,6 +450,7 @@ void biblioteq_import::slotImport(void)
   progress->show();
   progress->repaint();
   QApplication::processEvents();
+  m_booksMappings = map;
   importBooks(progress.data());
 }
 
