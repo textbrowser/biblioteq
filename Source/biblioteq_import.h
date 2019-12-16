@@ -21,7 +21,10 @@ class biblioteq_import: public QMainWindow
   biblioteq *m_qmain;
   int m_booksTemplate;
   void changeEvent(QEvent *event);
-  void importBooks(QProgressDialog *progress);
+  void importBooks(QProgressDialog *progress,
+		   QStringList &errors,
+		   qint64 *imported,
+		   qint64 *notImported);
 
  private slots:
   void slotAddBookRow(void);

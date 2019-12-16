@@ -63,7 +63,10 @@ void biblioteq_import::closeEvent(QCloseEvent *event)
   QMainWindow::closeEvent(event);
 }
 
-void biblioteq_import::importBooks(QProgressDialog *progress)
+void biblioteq_import::importBooks(QProgressDialog *progress,
+				   QStringList &errors,
+				   qint64 *imported,
+				   qint64 *notImported)
 {
   if(!progress)
     return;
@@ -114,6 +117,12 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
   if(m_qmain->getDB().driverName() == "QPSQL")
     queryString.append(" RETURNING myoid");
 
+  if(imported)
+    *imported = 0;
+
+  if(notImported)
+    *notImported = 0;
+
   qint64 ct = 0;
 
   while(ct++, !file.atEnd())
@@ -163,22 +172,17 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 		  else if(m_booksMappings.value(i).contains("<ignored>"))
 		    continue;
 
-		  QString str(list.at(i - 1).trimmed());
+		  QString str(QString(list.at(i - 1)).remove('"').trimmed());
 
-		  str.remove('"');
-		  str = str.trimmed();
+		  if(m_booksMappings.value(i) == "id")
+		    id = str;
+		  else if(m_booksMappings.value(i) == "quantity")
+		    quantity = str.toInt();
 
 		  if(str.isEmpty())
 		    query.addBindValue(QVariant(QVariant::String));
 		  else
-		    {
-		      if(m_booksMappings.value(i) == "id")
-			id = str;
-		      else if(m_booksMappings.value(i) == "quantity")
-			quantity = str.toInt();
-
-		      query.addBindValue(str);
-		    }
+		    query.addBindValue(str);
 		}
 
 	      if(query.exec())
@@ -191,10 +195,35 @@ void biblioteq_import::importBooks(QProgressDialog *progress)
 
 		  QString errorstr("");
 
-		  biblioteq_misc_functions::createInitialCopies
-		    (id, quantity, m_qmain->getDB(), "Book", errorstr);
+		  if(id.isEmpty())
+		    biblioteq_misc_functions::createInitialCopies
+		      (QString::number(oid),
+		       quantity,
+		       m_qmain->getDB(),
+		       "Book",
+		       errorstr);
+		  else
+		    biblioteq_misc_functions::createInitialCopies
+		      (id, quantity, m_qmain->getDB(), "Book", errorstr);
+
+		  if(!errorstr.isEmpty())
+		    // Do not increase notImported.
+
+		    errors << errorstr;
+
+		  if(imported)
+		    *imported += 1;
+		}
+	      else
+		{
+		  errors << query.lastError().text();
+
+		  if(notImported)
+		    *notImported += 1;
 		}
 	    }
+	  else if(notImported)
+	    *notImported += 1;
 	}
     }
 
@@ -451,7 +480,12 @@ void biblioteq_import::slotImport(void)
   progress->repaint();
   QApplication::processEvents();
   m_booksMappings = map;
-  importBooks(progress.data());
+
+  QStringList errors;
+  qint64 imported = 0;
+  qint64 notImported = 0;
+
+  importBooks(progress.data(), errors, &imported, &notImported);
 }
 
 void biblioteq_import::slotReset(void)
