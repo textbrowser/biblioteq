@@ -1117,12 +1117,13 @@ void biblioteq::adminSetup(void)
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
-      ui.menu_Add_Item->setEnabled(true);
       ui.actionDeleteEntry->setEnabled(true);
       ui.actionDuplicateEntry->setEnabled(true);
+      ui.actionImportCSV->setEnabled(true);
       ui.createTool->setEnabled(true);
-      ui.modifyTool->setEnabled(true);
       ui.duplicateTool->setEnabled(true);
+      ui.menu_Add_Item->setEnabled(true);
+      ui.modifyTool->setEnabled(true);
     }
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))

@@ -2344,7 +2344,6 @@ void biblioteq::slotConnectDB(void)
   ui.actionConnect->setEnabled(false);
   ui.actionDatabaseSearch->setEnabled(true);
   ui.actionDisconnect->setEnabled(true);
-  ui.actionImportCSV->setEnabled(true);
   ui.actionRefreshTable->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
   ui.configTool->setEnabled(true);
@@ -2359,6 +2358,7 @@ void biblioteq::slotConnectDB(void)
   if(m_db.driverName() == "QSQLITE")
     {
       ui.actionChangePassword->setEnabled(false);
+      ui.actionImportCSV->setEnabled(true);
       ui.action_Upgrade_SQLite_Schema->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 
