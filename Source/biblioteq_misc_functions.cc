@@ -1419,16 +1419,14 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
       objectlist << str;
 
-      while(!objectlist.isEmpty())
+      for(int i = 0; i < objectlist.size(); i++)
 	{
 	  querystr = QString("REVOKE %1 FROM %2").arg
-	    (objectlist.takeFirst()).arg(userid);
+	    (objectlist.at(i)).arg(userid);
 
 	  if(!query.exec(querystr))
 	    break;
 	}
-
-      objectlist.clear();
 
       if(query.lastError().isValid())
 	errorstr = query.lastError().text();
@@ -1897,16 +1895,14 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
 		 << "biblioteq_membership"
 		 << "biblioteq_patron";
 
-      while(!objectlist.isEmpty())
+      for(int i = 0; i < objectlist.size(); i++)
 	{
 	  querystr = QString("REVOKE %1 FROM %2").arg
-	    (objectlist.takeFirst()).arg(userid);
+	    (objectlist.at(i)).arg(userid);
 
 	  if(!query.exec(querystr))
 	    break;
 	}
-
-      objectlist.clear();
 
       if(query.lastError().isValid())
 	errorstr = query.lastError().text();
