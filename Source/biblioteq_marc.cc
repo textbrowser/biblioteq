@@ -499,12 +499,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$z"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  m_lcnum = str;
 	}
@@ -560,12 +557,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  m_callnum = str;
 	}
@@ -595,12 +589,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  m_deweynum = str;
 	}
@@ -655,12 +646,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
@@ -712,12 +700,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -744,12 +729,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.indexOf(" ") > -1)
 	    str = str.mid(0, str.indexOf(" ")).trimmed();
@@ -800,13 +782,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		      << "$6"
 		      << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(tmpstr.contains(subfields.first()))
-	      tmpstr = tmpstr.mid
-		(0, tmpstr.indexOf(subfields.takeFirst())).
-		trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(tmpstr.contains(subfields.at(i)))
+	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
 	  QStringList tmplist(tmpstr.split("$a"));
 
@@ -946,12 +924,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(!str.isEmpty())
 	    {
@@ -1070,12 +1045,9 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		    << "$z"
 		    << "$5";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -1104,12 +1076,9 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		    << "$f"
 		    << "$g";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.indexOf(" ") > -1)
 	    str = str.mid(0, str.indexOf(" ")).trimmed();
@@ -1149,13 +1118,9 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		    << "$g"
 		    << "$h";
 
-	  while(!subfields.isEmpty())
-	    if(tmpstr.contains(subfields.first()))
-	      tmpstr = tmpstr.mid
-		(0, tmpstr.indexOf(subfields.takeFirst())).
-		trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(tmpstr.contains(subfields.at(i)))
+	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
 	  QStringList tmplist(tmpstr.split("$a"));
 
@@ -1255,12 +1220,9 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		    << "$2"
 		    << "$3";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(!str.isEmpty())
 	    {
@@ -1328,12 +1290,9 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 		    << "$z"
 		    << "$5";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -1371,13 +1330,9 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 		    << "$g"
 		    << "$h";
 
-	  while(!subfields.isEmpty())
-	    if(tmpstr.contains(subfields.first()))
-	      tmpstr = tmpstr.mid
-		(0, tmpstr.indexOf(subfields.takeFirst())).
-		trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(tmpstr.contains(subfields.at(i)))
+	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
 	  QStringList tmplist(tmpstr.split("$a"));
 
@@ -1477,12 +1432,9 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 		    << "$2"
 		    << "$3";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(!str.isEmpty())
 	    {
