@@ -118,8 +118,8 @@ class userinfo_diag_class: public QDialog
        m_userinfo.memberclass->text().trimmed())
       list << "memberclass";
 
-    while(!list.isEmpty())
-      str += list.takeFirst() + ", ";
+    for(int i = 0; i < list.size(); i++)
+      str += list.at(i) + ", ";
 
     if(!str.isEmpty())
       {
