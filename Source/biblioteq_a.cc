@@ -5070,44 +5070,34 @@ void biblioteq::updateSceneItem(const QString &oid,
 				const QString &type,
 				const QImage &image)
 {
+  QGraphicsPixmapItem *item = 0;
   QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
 
-  if(!items.isEmpty())
-    {
-      QGraphicsPixmapItem *item = 0;
+  for(int i = 0; i < items.size(); i++)
+    if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
+      if(oid == item->data(0).toString() && type == item->data(1).toString())
+	{
+	  QImage l_image(image);
 
-      while(!items.isEmpty())
-	if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
-							      takeFirst())))
-	  if(oid == item->data(0).toString() &&
-	     type == item->data(1).toString())
+	  if(!l_image.isNull())
+	    l_image = l_image.scaled
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	  QPixmap pixmap(QPixmap::fromImage(l_image));
+
+	  if(!pixmap.isNull())
+	    item->setPixmap(pixmap);
+	  else
 	    {
-	      QImage l_image(image);
+	      QImage l_image(":/no_image.png");
 
 	      if(!l_image.isNull())
 		l_image = l_image.scaled
-		  (126, 187, Qt::KeepAspectRatio,
-		   Qt::SmoothTransformation);
+		  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	      QPixmap pixmap(QPixmap::fromImage(l_image));
-
-	      if(!pixmap.isNull())
-		item->setPixmap(pixmap);
-	      else
-		{
-		  QImage l_image(":/no_image.png");
-
-		  if(!l_image.isNull())
-		    l_image = l_image.scaled
-		      (126, 187, Qt::KeepAspectRatio,
-		       Qt::SmoothTransformation);
-
-		  item->setPixmap(QPixmap::fromImage(l_image));
-		}
-
-	      break;
+	      item->setPixmap(QPixmap::fromImage(l_image));
 	    }
 
-      items.clear();
-    }
+	  break;
+	}
 }

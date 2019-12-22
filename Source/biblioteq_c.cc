@@ -1284,9 +1284,9 @@ void biblioteq::slotAllGo(void)
   types.append("Photograph Collection");
   types.append("Video Game");
 
-  while(!types.isEmpty())
+  for(int i = 0; i < types.size(); i++)
     {
-      type = types.takeFirst();
+      type = types.at(i);
 
       if(type == "Grey Literature")
 	str = "SELECT DISTINCT grey_literature.document_title, "
@@ -1829,8 +1829,8 @@ void biblioteq::slotAllGo(void)
 
   query.prepare(searchstr);
 
-  while(!values.isEmpty())
-    query.addBindValue(values.takeFirst());
+  for(int i = 0; i < values.size(); i++)
+    query.addBindValue(values.at(i));
 
   QApplication::restoreOverrideCursor();
   (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH);
@@ -5179,12 +5179,12 @@ void biblioteq::slotSceneSelectionChanged(void)
 
   if(!items.isEmpty())
     {
+      QGraphicsItem *item = 0;
       QStringList oids;
       QStringList types;
-      QGraphicsItem *item = 0;
 
-      while(!items.isEmpty())
-	if((item = items.takeFirst()))
+      for(int i = 0; i < items.size(); i++)
+	if((item = items.at(i)))
 	  {
 	    oids.append(item->data(0).toString());
 	    types.append(item->data(1).toString());

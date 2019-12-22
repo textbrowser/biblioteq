@@ -82,7 +82,6 @@ int biblioteq::populateTable(const int search_type_arg,
   QString str = "";
   QString type = "";
   QStringList tmplist; // Used for custom queries.
-  QStringList types;
   QTableWidgetItem *item = 0;
   int i = -1;
   int limit = 0;
@@ -3882,9 +3881,9 @@ void biblioteq::slotSearchBasic(void)
   types.append("Photograph Collection");
   types.append("Video Game");
 
-  while(!types.isEmpty())
+  for(int i = 0; i < types.size(); i++)
     {
-      type = types.takeFirst();
+      type = types.at(i);
 
       if(type == "Grey Literature")
 	str = "SELECT DISTINCT grey_literature.document_title, "
@@ -4195,8 +4194,8 @@ void biblioteq::slotSearchBasic(void)
 
   query.prepare(searchstr);
 
-  while(!values.isEmpty())
-    query.addBindValue(values.takeFirst());
+  for(int i = 0; i < values.size(); i++)
+    query.addBindValue(values.at(i));
 
   QApplication::restoreOverrideCursor();
   (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH_BASIC);
