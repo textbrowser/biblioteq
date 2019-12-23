@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>730</height>
+    <height>780</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -598,13 +598,6 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
-        <widget class="QLineEdit" name="email">
-         <property name="maxLength">
-          <number>128</number>
-         </property>
-        </widget>
-       </item>
        <item row="12" column="0">
         <widget class="QLabel" name="label_13">
          <property name="text">
@@ -694,6 +687,27 @@
          </property>
         </widget>
        </item>
+       <item row="11" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLineEdit" name="email">
+           <property name="maxLength">
+            <number>128</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="allow_any_email">
+           <property name="toolTip">
+            <string>Do not validate the e-mail address.</string>
+           </property>
+           <property name="text">
+            <string>Any</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
       <zorder>label_9</zorder>
       <zorder>label</zorder>
@@ -711,7 +725,6 @@
       <zorder>label_3</zorder>
       <zorder>telephoneNumber</zorder>
       <zorder>label_12</zorder>
-      <zorder>email</zorder>
       <zorder>label_13</zorder>
       <zorder>label_14</zorder>
       <zorder>overduefees</zorder>
@@ -719,6 +732,7 @@
       <zorder>comments</zorder>
       <zorder>label_5</zorder>
       <zorder>memberid</zorder>
+      <zorder>horizontalLayoutWidget</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -892,6 +906,7 @@
   <tabstop>zip</tabstop>
   <tabstop>telephoneNumber</tabstop>
   <tabstop>email</tabstop>
+  <tabstop>allow_any_email</tabstop>
   <tabstop>expirationdate</tabstop>
   <tabstop>overduefees</tabstop>
   <tabstop>comments</tabstop>

@@ -306,7 +306,7 @@
 170. Allow prices of 0.00. Search routines require review. (Done)
 171. The UPC should be a 13-digit number. (Done)
 172. Remove "Library of Congress" references. (Done)
-173. The e-mail address format should be abc@def.xyz. (TBD)
+173. The e-mail address format should be abc@def.xyz. (Done)
 174. Investigate the privileges in misc_functions.cc. (Done)
 175. Update the memberProperties container when a member's information
      has been saved. (Done)
