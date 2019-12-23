@@ -1195,7 +1195,6 @@ void biblioteq_book::slotAttachFiles(void)
 
       QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
-      int i = -1;
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
