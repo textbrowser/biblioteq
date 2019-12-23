@@ -5065,8 +5065,7 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {
-		QDate date(QDate::fromString(returnedDate,
-					     "MM/dd/yyyy"));
+		QDate date(QDate::fromString(returnedDate, "MM/dd/yyyy"));
 
 		biblioteq_misc_functions::updateColumn
 		  (history.table, i,

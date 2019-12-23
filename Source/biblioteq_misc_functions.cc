@@ -2016,7 +2016,8 @@ void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
 }
 
 void biblioteq_misc_functions::updateColumn(QTableWidget *table,
-					    const int row, int column,
+					    const int row,
+					    int column,
 					    const QString &value)
 {
   if(column < 0 || row < 0 || !table || !table->item(row, column))
