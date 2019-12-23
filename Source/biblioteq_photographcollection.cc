@@ -953,12 +953,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   progress.repaint();
   QApplication::processEvents();
 
-  int i = -1;
-
-  while(!items.isEmpty())
+  for(int i = 0; i < items.size(); i++)
     {
-      i += 1;
-
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
@@ -967,8 +963,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
       QGraphicsPixmapItem *item = 0;
 
-      if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
-							    takeFirst())))
+      if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
 	{
 	  QSqlQuery query(qmain->getDB());
 	  QString itemOid(item->data(0).toString());
@@ -2188,7 +2183,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
   QGraphicsPixmapItem *item = 0;
 
-  if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.takeFirst())))
+  if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(0))))
     {
       m_itemOid = item->data(0).toString();
 

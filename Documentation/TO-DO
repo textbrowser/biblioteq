@@ -453,4 +453,4 @@
 239. Google Books API: https://developers.google.com/books/docs/v1/using. (TBD)
 240. Report import results. (Done)
 241. Remove std::nothrow. (TBD)
-242. Replace first(). (TBD)
+242. Replace first(). The file biblioteq_c.cc is fine. (Done)

@@ -1206,11 +1206,11 @@ void biblioteq_book::slotAttachFiles(void)
       progress.repaint();
       QApplication::processEvents();
 
-      while(i++, !files.isEmpty() && !progress.wasCanceled())
+      for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-	  QString fileName(files.takeFirst());
+	  QString fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
@@ -1349,14 +1349,13 @@ void biblioteq_book::slotDeleteFiles(void)
   QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  while(!list.isEmpty())
+  for(int i = 0; i < list.size(); i++)
     {
       QSqlQuery query(qmain->getDB());
 
-      query.prepare("DELETE FROM book_files WHERE "
-		    "item_oid = ? AND myoid = ?");
+      query.prepare("DELETE FROM book_files WHERE item_oid = ? AND myoid = ?");
       query.bindValue(0, m_oid);
-      query.bindValue(1, list.takeFirst().data());
+      query.bindValue(1, list.at(i).data());
       query.exec();
     }
 
@@ -1589,9 +1588,7 @@ void biblioteq_book::slotExportFiles(void)
       progress.repaint();
       QApplication::processEvents();
 
-      int i = -1;
-
-      while(i++, !list.isEmpty() && !progress.wasCanceled())
+      for(int i = 0; i < list.size() && !progress.wasCanceled(); i++)
 	{
 	  QSqlQuery query(qmain->getDB());
 
@@ -1599,7 +1596,7 @@ void biblioteq_book::slotExportFiles(void)
 	  query.prepare("SELECT file, file_name FROM book_files "
 			"WHERE item_oid = ? AND myoid = ?");
 	  query.bindValue(0, m_oid);
-	  query.bindValue(1, list.takeFirst().data());
+	  query.bindValue(1, list.at(i).data());
 
 	  if(query.exec() && query.next())
 	    {
@@ -2601,8 +2598,8 @@ void biblioteq_book::slotGo(void)
 	 "book.front_cover");
       query.prepare(searchstr);
 
-      while(!values.isEmpty())
-	query.addBindValue(values.takeFirst());
+      for(int i = 0; i < values.size(); i++)
+	query.addBindValue(values.at(i));
 
       (void) qmain->populateTable
 	(query, "Books", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
@@ -3389,7 +3386,7 @@ void biblioteq_book::slotShowPDF(void)
   query.prepare("SELECT file, file_name FROM book_files "
 		"WHERE item_oid = ? AND myoid = ?");
   query.bindValue(0, m_oid);
-  query.bindValue(1, list.takeFirst().data());
+  query.bindValue(1, list.at(0).data());
 
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());

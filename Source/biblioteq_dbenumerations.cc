@@ -291,11 +291,11 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	   tables.at(i) + tr("."),
 	   errorstr, __FILE__, __LINE__);
       else if(listwidget)
-	while(!list.isEmpty())
+	for(int i = 0; i < list.size(); i++)
 	  {
 	    QListWidgetItem *item = 0;
 
-	    item = new(std::nothrow) QListWidgetItem(list.takeFirst());
+	    item = new(std::nothrow) QListWidgetItem(list.at(i));
 
 	    if(item)
 	      {

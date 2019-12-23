@@ -182,8 +182,10 @@ void biblioteq_copy_editor::changeEvent(QEvent *event)
 
 void biblioteq_copy_editor::clearCopiesList(void)
 {
-  while(!m_copies.isEmpty())
-    delete m_copies.takeFirst();
+  for(int i = 0; i < m_copies.size(); i++)
+    delete m_copies.at(i);
+
+  m_copies.clear();
 }
 
 void biblioteq_copy_editor::closeEvent(QCloseEvent *event)
@@ -808,8 +810,10 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   duplicates.clear();
 
-  while(!m_copies.isEmpty())
-    delete m_copies.takeFirst();
+  for(int i = 0; i < m_copies.size(); i++)
+    delete m_copies.at(i);
+
+  m_copies.clear();
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -864,8 +868,10 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  while(!m_copies.isEmpty())
-    delete m_copies.takeFirst();
+  for(int i = 0; i < m_copies.size(); i++)
+    delete m_copies.at(i);
+
+  m_copies.clear();
 
   if(!qmain->getDB().rollback())
     qmain->addError(QString(tr("Database Error")),
@@ -884,9 +890,10 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   if(!qmain->getDB().commit())
     {
-      while(!m_copies.isEmpty())
-	delete m_copies.takeFirst();
+      for(int i = 0; i < m_copies.size(); i++)
+	delete m_copies.at(i);
 
+      m_copies.clear();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Commit failure.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -927,6 +934,8 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   if(m_bitem)
     m_bitem->setOldQ(m_copies.size());
 
-  while(!m_copies.isEmpty())
-    delete m_copies.takeFirst();
+  for(int i = 0; i < m_copies.size(); i++)
+    delete m_copies.at(i);
+
+  m_copies.clear();
 }

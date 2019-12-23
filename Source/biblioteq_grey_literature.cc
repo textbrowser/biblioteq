@@ -850,7 +850,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
       QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
-      int i = -1;
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
@@ -861,11 +860,11 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       progress.repaint();
       QApplication::processEvents();
 
-      while(i++, !files.isEmpty() && !progress.wasCanceled())
+      for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-	  QString fileName(files.takeFirst());
+	  QString fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
@@ -939,14 +938,14 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
   QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  while(!list.isEmpty())
+  for(int i = 0; i < list.size(); i++)
     {
       QSqlQuery query(qmain->getDB());
 
       query.prepare("DELETE FROM grey_literature_files WHERE "
 		    "item_oid = ? AND myoid = ?");
       query.addBindValue(m_oid);
-      query.addBindValue(list.takeFirst().data());
+      query.addBindValue(list.at(i).data());
       query.exec();
     }
 
@@ -988,9 +987,7 @@ void biblioteq_grey_literature::slotExportFiles(void)
   progress.repaint();
   QApplication::processEvents();
 
-  int i = -1;
-
-  while(i++, !list.isEmpty() && !progress.wasCanceled())
+  for(int i = 0; i < list.size() && !progress.wasCanceled(); i++)
     {
       QSqlQuery query(qmain->getDB());
 
@@ -998,7 +995,7 @@ void biblioteq_grey_literature::slotExportFiles(void)
       query.prepare("SELECT file, file_name FROM grey_literature_files "
 		    "WHERE item_oid = ? AND myoid = ?");
       query.addBindValue(m_oid);
-      query.addBindValue(list.takeFirst().data());
+      query.addBindValue(list.at(i).data());
 
       if(query.exec() && query.next())
 	{

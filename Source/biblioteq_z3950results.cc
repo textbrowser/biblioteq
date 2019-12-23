@@ -189,15 +189,12 @@ void biblioteq_z3950results::slotUpdateQueryText(void)
 		  << "$6"
 		  << "$8";
 
-	while(!subfields.isEmpty())
-	  if(title.contains(subfields.first()))
+	for(int i = 0; i < subfields.size(); i++)
+	  if(title.contains(subfields.at(i)))
 	    {
-	      title = title.mid
-		(0, title.indexOf(subfields.first())).trimmed();
+	      title = title.mid(0, title.indexOf(subfields.at(i))).trimmed();
 	      break;
 	    }
-	  else
-	    subfields.removeFirst();
 
 	if(title.lastIndexOf('/') > -1)
 	  title = title.mid(0, title.lastIndexOf('/')).trimmed();
