@@ -1342,12 +1342,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		    << "$z"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  ma.lcnum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
@@ -1374,12 +1371,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  ma.callnum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
@@ -1409,12 +1403,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  ma.deweynum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
@@ -1455,12 +1446,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -1501,12 +1489,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(tmpstr.contains(subfields.first()))
-	      tmpstr = tmpstr.mid
-		(0, tmpstr.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(tmpstr.contains(subfields.at(i)))
+	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
 	  tmplist = tmpstr.split("$a");
 
@@ -1649,12 +1634,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		    << "$6"
 		    << "$8";
 
-	  while(!subfields.isEmpty())
-	    if(str.contains(subfields.first()))
-	      str = str.mid
-		(0, str.indexOf(subfields.takeFirst())).trimmed();
-	    else
-	      subfields.removeFirst();
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
 	  if(!str.isEmpty())
 	    {
@@ -1857,7 +1839,6 @@ void biblioteq_magazine::slotAttachFiles(void)
 
       QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
-      int i = -1;
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
@@ -1868,11 +1849,11 @@ void biblioteq_magazine::slotAttachFiles(void)
       progress.repaint();
       QApplication::processEvents();
 
-      while(i++, !files.isEmpty() && !progress.wasCanceled())
+      for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-	  QString fileName(files.takeFirst());
+	  QString fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
@@ -1945,7 +1926,7 @@ void biblioteq_magazine::slotDeleteFiles(void)
   QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  while(!list.isEmpty())
+  for(int i = 0; i < list.size(); i++)
     {
       QSqlQuery query(qmain->getDB());
 
@@ -1957,7 +1938,7 @@ void biblioteq_magazine::slotDeleteFiles(void)
 		      "item_oid = ? AND myoid = ?");
 
       query.bindValue(0, m_oid);
-      query.bindValue(1, list.takeFirst().data());
+      query.bindValue(1, list.at(i).data());
       query.exec();
     }
 
@@ -2003,9 +1984,7 @@ void biblioteq_magazine::slotExportFiles(void)
       progress.repaint();
       QApplication::processEvents();
 
-      int i = -1;
-
-      while(i++, !list.isEmpty() && !progress.wasCanceled())
+      for(int i = 0; i < list.size() && !progress.wasCanceled(); i++)
 	{
 	  QSqlQuery query(qmain->getDB());
 
@@ -2019,7 +1998,7 @@ void biblioteq_magazine::slotExportFiles(void)
 			  "WHERE item_oid = ? AND myoid = ?");
 
 	  query.bindValue(0, m_oid);
-	  query.bindValue(1, list.takeFirst().data());
+	  query.bindValue(1, list.at(i).data());
 
 	  if(query.exec() && query.next())
 	    {
@@ -2998,8 +2977,8 @@ void biblioteq_magazine::slotGo(void)
 
       query.prepare(searchstr);
 
-      while(!values.isEmpty())
-	query.addBindValue(values.takeFirst());
+      for(int i = 0; i < values.size(); i++)
+	query.addBindValue(values.at(i));
 
       if(m_subType == "Journal")
 	(void) qmain->populateTable
@@ -3659,7 +3638,7 @@ void biblioteq_magazine::slotShowPDF(void)
        "WHERE item_oid = ? AND myoid = ?");
 
   query.bindValue(0, m_oid);
-  query.bindValue(1, list.takeFirst().data());
+  query.bindValue(1, list.at(0).data());
 
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());
