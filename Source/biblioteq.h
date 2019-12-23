@@ -263,9 +263,7 @@ class biblioteq: public QMainWindow
 				       const QString &copyid,
 				       const QString &itemType,
 				       const QString &returnedDate);
-  void updateRows(const QString &oid,
-		  const int row,
-		  const QString &itemType);
+  void updateRows(const QString &oid, const int row, const QString &it);
   void updateSceneItem(const QString &oid,
 		       const QString &type,
 		       const QImage &image);

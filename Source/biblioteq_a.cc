@@ -4789,10 +4789,10 @@ void biblioteq::updateItemWindows(void)
   QApplication::restoreOverrideCursor();
 }
 
-void biblioteq::updateRows(const QString &oid,
-			   const int row,
-			   const QString &itemType)
+void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 {
+  QString itemType(it.toLower().trimmed());
+
   if(itemType == "book")
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())

@@ -360,7 +360,10 @@
      Create temporary views? (TBD)
 197. After an item has been added, the item's row must be updated. One
      issue with this requirement is that the item may not be listed
-     in the main table and so its row number will not be available. (TBD)
+     in the main table. Thus, its row number will not be available.
+     Item rows are updated on data retrieval. If an item is updated,
+     its table/view representation is changed if the representation has
+     the same OID as the item. (Done)
 198. Bind values in SQL queries:
      biblioteq_a.cc (Done)
      biblioteq_b.cc (Done)
