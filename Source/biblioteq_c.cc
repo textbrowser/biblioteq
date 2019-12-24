@@ -2217,10 +2217,10 @@ void biblioteq::slotConnectDB(void)
 		}
 	      else
 		{
-		  if(br.role->currentIndex() == 0)
+		  if(br.role->currentIndex() == 0) // Administrator
 		    biblioteq_misc_functions::setRole
 		      (m_db, errorstr, m_roles);
-		  else if(br.role->currentIndex() == 1)
+		  else if(br.role->currentIndex() == 1) // Guest
 		    biblioteq_misc_functions::setRole
 		      (m_db, errorstr, "guest");
 		  else
@@ -2247,25 +2247,23 @@ void biblioteq::slotConnectDB(void)
 		    }
 		}
 	    }
-	  else if(br.role->currentIndex() == 0)
+	  else if(br.role->currentIndex() == 0) // Administrator
 	    {
 	      error = true;
 	      addError(QString(tr("Database Error")),
-		       QString(tr("Unable to determine the "
-				  "roles of ")) +
+		       QString(tr("Unable to determine the roles of ")) +
 		       br.userid->text().trimmed() +
 		       tr("."),
 		       errorstr,
 		       __FILE__, __LINE__);
 	      QMessageBox::critical
 		(m_branch_diag, tr("BiblioteQ: Database Error"),
-		 QString(tr("Unable to determine the "
-			    "roles of ")) +
+		 QString(tr("Unable to determine the roles of ")) +
 		 br.userid->text().trimmed() +
 		 tr("."));
 	      QApplication::processEvents();
 	    }
-	  else if(br.role->currentIndex() == 1)
+	  else if(br.role->currentIndex() == 1) // Guest
 	    {
 	      QSqlQuery query(m_db);
 
@@ -2273,8 +2271,7 @@ void biblioteq::slotConnectDB(void)
 		{
 		  error = true;
 		  addError(QString(tr("Database Error")),
-			   tr("Unable to set "
-			      "a guest role."),
+			   tr("Unable to set a guest role."),
 			   errorstr,
 			   __FILE__, __LINE__);
 		  QMessageBox::critical
@@ -2291,16 +2288,14 @@ void biblioteq::slotConnectDB(void)
 		{
 		  error = true;
 		  addError(QString(tr("Database Error")),
-			   QString(tr("Unable to set "
-				      "the role for ")) +
+			   QString(tr("Unable to set the role for ")) +
 			   br.userid->text().trimmed() +
 			   tr("."),
 			   errorstr,
 			   __FILE__, __LINE__);
 		  QMessageBox::critical
 		    (m_branch_diag, tr("BiblioteQ: Database Error"),
-		     QString(tr("Unable to set the role "
-				"for ")) +
+		     QString(tr("Unable to set the role for ")) +
 		     br.userid->text().trimmed() +
 		     tr("."));
 		  QApplication::processEvents();
