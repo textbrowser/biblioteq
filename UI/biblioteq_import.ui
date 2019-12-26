@@ -229,9 +229,9 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
-              <widget class="QCheckBox" name="book_ignore_rows">
+              <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>&amp;Ignore CSV Rows</string>
+                <string>Ignored CSV Row(s)</string>
                </property>
               </widget>
              </item>
@@ -407,7 +407,6 @@
   <tabstop>scrollArea</tabstop>
   <tabstop>books_templates</tabstop>
   <tabstop>books</tabstop>
-  <tabstop>book_ignore_rows</tabstop>
   <tabstop>books_ignored_rows</tabstop>
   <tabstop>add_book_row</tabstop>
   <tabstop>delete_book_row</tabstop>

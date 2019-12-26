@@ -9,7 +9,6 @@
 
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
-  m_booksTemplate = 0;
   m_qmain = parent;
   m_ui.setupUi(this);
   connect(m_ui.add_book_row,
@@ -124,15 +123,15 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   if(notImported)
     *notImported = 0;
 
+  QStringList list(m_ui.books_ignored_rows->text().trimmed().
+		   split(' ', QString::SkipEmptyParts));
   qint64 ct = 0;
 
   while(ct++, !file.atEnd())
     {
       QString data(file.readLine().trimmed());
 
-      if(ct == 1 && m_booksTemplate == 1)
-	// Ignore the column names.
-
+      if(list.contains(QString::number(ct)))
 	continue;
 
       if(!data.isEmpty())
@@ -329,8 +328,8 @@ void biblioteq_import::slotBooksTemplates(int index)
 	      }
 	  }
 
-	m_booksTemplate = 1;
 	m_ui.books->setRowCount(0);
+	m_ui.books_ignored_rows->setText("1");
 
 	QStringList list;
 
@@ -550,8 +549,8 @@ void biblioteq_import::slotReset(void)
       }
 
   m_booksMappings.clear();
-  m_booksTemplate = 0;
   m_ui.books->setRowCount(0);
+  m_ui.books_ignored_rows->clear();
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
 }
