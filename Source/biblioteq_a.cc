@@ -1985,7 +1985,7 @@ void biblioteq::slotAbout(void)
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 	"Poppler version %5.<br>"
 #else
-	"%5"
+	"%5<br>"
 #endif
 	"Qt version %6 (runtime %7).<br>"
 	"YAZ version %8."
