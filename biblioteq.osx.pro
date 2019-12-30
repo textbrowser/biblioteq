@@ -23,6 +23,13 @@ QT              += printsupport widgets
 }
 }
 
+exists(/usr/local/include/poppler/cpp) {
+DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
+INCLUDEPATH += /usr/local/include/poppler/cpp
+} else {
+message("The directory /usr/local/include/poppler/cpp does not exist. Poppler version information will not be available.")
+}
+
 QMAKE_CLEAN	+= BiblioteQ
 
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -80,9 +87,9 @@ doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 install_name_tool1.path      = .
-install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.81.0/lib/libpoppler.91.dylib @executable_path/../Frameworks/libpoppler.91.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.83.0/lib/libpoppler.93.dylib @executable_path/../Frameworks/libpoppler.93.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 install_name_tool2.path      = .
-install_name_tool2.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.81.0/lib/libpoppler.91.dylib @executable_path/../Frameworks/libpoppler.91.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool2.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.83.0/lib/libpoppler.93.dylib @executable_path/../Frameworks/libpoppler.93.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
