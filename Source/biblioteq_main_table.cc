@@ -130,7 +130,7 @@ void biblioteq_main_table::resetTable(const QString &username,
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   setCurrentItem(0);
-  sortByColumn(0);
+  sortByColumn(0, Qt::AscendingOrder);
 }
 
 void biblioteq_main_table::setColumnNames(const QStringList &list)
