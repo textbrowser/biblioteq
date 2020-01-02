@@ -1,0 +1,11 @@
+Architecture: armhf
+Depends: libpoppler-qt5-1 (>= 0.45), libpq5 (>= 5.10), libqt5core5a (>= 5.11.0), libqt5gui5 (>= 5.11.0), libqt5network5 (>= 5.11.0), libqt5printsupport5 (>= 5.11.0), libqt5sql5 (>= 5.11.0), libqt5sql5-psql (>= 5.11.0), libqt5sql5-sqlite (>= 5.11.0), libqt5widgets5 (>= 5.11.0), libsqlite3-0 (>= 3.11), libyaz5 (>= 5.27)
+Maintainer: textbrowser@gmail.com
+Package: BiblioteQ
+Priority: optional
+Section: Database
+Version: 2020.01.01
+Description: BiblioteQ
+ Welcome to BiblioteQ on ARM!
+ BiblioteQ is governed by a BSD license. Enjoy!
+ A biblioteq.qt5.desktop file will also be installed in /usr/share/applications/.
