@@ -1080,7 +1080,10 @@ void biblioteq::readGlobalSetup(void)
   QSettings settings
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf",
      QSettings::IniFormat);
-#elif defined(Q_OS_OS2) || defined(Q_OS_WIN32)
+#elif defined(Q_OS_OS2)
+  QSettings settings
+    (qgetenv("unixroot") + "/usr/local/biblioteq.conf", QSettings::IniFormat);
+#elif defined(Q_OS_WIN32)
   QSettings settings(QCoreApplication::applicationDirPath() +
 		     QDir::separator() +
 		     "biblioteq.conf",
