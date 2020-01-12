@@ -22,6 +22,7 @@ class biblioteq_misc_functions
 			 const QSqlDatabase &);
   static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
 						      QString &);
+  static QList<int> selectedRows(QTableWidget *table);
   static QMap<QString, QString> getItemsReservedCounts(const QSqlDatabase &,
 						       const QString &,
 						       QString &);

@@ -397,10 +397,10 @@ void biblioteq_import::slotDeleteBookRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QModelIndexList list(m_ui.books->selectionModel()->selectedRows(0));
+  QList<int> rows(biblioteq_misc_functions::selectedRows(m_ui.books));
 
-  for(int i = list.size() - 1; i >= 0; i--)
-    m_ui.books->removeRow(list.at(i).row());
+  for(int i = rows.size() - 1; i >= 0; i--)
+    m_ui.books->removeRow(rows.at(i));
 
   QApplication::restoreOverrideCursor();
 }

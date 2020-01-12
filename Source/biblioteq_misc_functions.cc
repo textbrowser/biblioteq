@@ -73,6 +73,22 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
   return locations;
 }
 
+QList<int> biblioteq_misc_functions::selectedRows(QTableWidget *table)
+{
+  QList<int> rows;
+
+  if(!table)
+    return rows;
+
+  QModelIndexList indexes(table->selectionModel()->selectedRows(0));
+
+  for(int i = 0; i < indexes.size(); i++)
+    rows << indexes.at(i).row();
+
+  std::sort(rows.begin(), rows.end());
+  return rows;
+}
+
 QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
 (const QSqlDatabase &db,
  const QString &memberid,
