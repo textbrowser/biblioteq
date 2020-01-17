@@ -3251,6 +3251,7 @@ void biblioteq::slotModifyBorrower(void)
 
   str = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  query.setForwardOnly(true);
   query.prepare("SELECT * FROM member WHERE memberid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
