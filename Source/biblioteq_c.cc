@@ -3372,6 +3372,7 @@ void biblioteq::slotModifyBorrower(void)
 	textfield->setCursorPosition(0);
     }
 
+  userinfo_diag->m_userinfo.allow_any_email->setChecked(false);
   userinfo_diag->m_userinfo.memberid->setReadOnly(true);
   userinfo_diag->m_userinfo.prevTool->setVisible(true);
   userinfo_diag->m_userinfo.nextTool->setVisible(true);
