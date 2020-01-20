@@ -204,8 +204,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
   for(int i = 0; i < tables.size(); i++)
     {
       QListWidget *listwidget = 0;
-      QString str(tables.at(i));
       QTableWidget *tablewidget = 0;
+      const QString &str(tables.at(i));
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 

@@ -1209,7 +1209,7 @@ void biblioteq_book::slotAttachFiles(void)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-	  QString fileName(files.at(i));
+      const QString &fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
@@ -3334,7 +3334,7 @@ void biblioteq_book::slotSelectImage(void)
 	  id.front_image->scene()->addPixmap
 	    (QPixmap::fromImage(id.front_image->m_image));
 
-	  if(id.front_image->scene()->items().size() > 0)
+	  if(!id.front_image->scene()->items().isEmpty())
 	    id.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 
@@ -3354,7 +3354,7 @@ void biblioteq_book::slotSelectImage(void)
 	  id.back_image->scene()->addPixmap
 	    (QPixmap::fromImage(id.back_image->m_image));
 
-	  if(id.back_image->scene()->items().size() > 0)
+	  if(!id.back_image->scene()->items().isEmpty())
 	    id.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 

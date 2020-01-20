@@ -239,8 +239,8 @@ void biblioteq_otheroptions::slotSave(void)
     {
       QComboBox *comboBox = qobject_cast<QComboBox *>
 	(m_ui.publication_date->cellWidget(i, 1));
-      QString key(list.at(i));
       QString value("");
+      const QString &key(list.at(i));
 
       if(comboBox)
 	value = comboBox->currentText();

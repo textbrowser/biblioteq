@@ -1344,7 +1344,7 @@ void biblioteq::createSqliteMenuActions(void)
       connect(action, SIGNAL(triggered(bool)), this,
 	      SLOT(slotClearSqliteMenu(bool)));
 
-      if(ui.menu_Recent_SQLite_Files->actions().size() > 0)
+      if(!ui.menu_Recent_SQLite_Files->actions().isEmpty())
 	ui.menu_Recent_SQLite_Files->addSeparator();
 
       ui.menu_Recent_SQLite_Files->addAction(action);
@@ -2445,7 +2445,7 @@ void biblioteq::slotDelete(void)
 	}
     }
 
-  if(list.size() > 0)
+  if(!list.isEmpty())
     {
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to permanently "

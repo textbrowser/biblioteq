@@ -1683,7 +1683,7 @@ void biblioteq_videogame::slotSelectImage(void)
 	  vg.front_image->scene()->addPixmap
 	    (QPixmap::fromImage(vg.front_image->m_image));
 
-	  if(vg.front_image->scene()->items().size() > 0)
+	  if(!vg.front_image->scene()->items().empty())
 	    vg.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 
@@ -1703,7 +1703,7 @@ void biblioteq_videogame::slotSelectImage(void)
 	  vg.back_image->scene()->addPixmap
 	    (QPixmap::fromImage(vg.back_image->m_image));
 
-	  if(vg.back_image->scene()->items().size() > 0)
+	  if(!vg.back_image->scene()->items().empty())
 	    vg.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 

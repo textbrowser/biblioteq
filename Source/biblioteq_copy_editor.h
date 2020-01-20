@@ -12,9 +12,9 @@ class biblioteq_copy_editor: public QDialog
   Q_OBJECT
 
  public:
-  biblioteq_copy_editor(QWidget *parent, biblioteq *qmain);
+  biblioteq_copy_editor(QWidget *parent, biblioteq *biblioteq);
   biblioteq_copy_editor(QWidget *parent,
-			biblioteq *qmain,
+			biblioteq *biblioteq,
 			biblioteq_item *bitemArg,
 			const bool showForLendingArg,
 			const int quantityArg,

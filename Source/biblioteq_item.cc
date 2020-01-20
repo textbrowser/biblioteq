@@ -163,7 +163,6 @@ void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)
   foreach(QWidget *widget, window->findChildren<QWidget *> ())
     {
       QString classname(widget->metaObject()->className());
-      QString objectname(widget->objectName());
 
       if(classname == "QComboBox")
 	qobject_cast<QComboBox *> (widget)->setEnabled(!state);

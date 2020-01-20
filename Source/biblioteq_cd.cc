@@ -2290,7 +2290,7 @@ void biblioteq_cd::slotSelectImage(void)
 	  cd.front_image->scene()->addPixmap
 	    (QPixmap::fromImage(cd.front_image->m_image));
 
-	  if(cd.front_image->scene()->items().size() > 0)
+	  if(!cd.front_image->scene()->items().empty())
 	    cd.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 
@@ -2310,7 +2310,7 @@ void biblioteq_cd::slotSelectImage(void)
 	  cd.back_image->scene()->addPixmap
 	    (QPixmap::fromImage(cd.back_image->m_image));
 
-	  if(cd.back_image->scene()->items().size() > 0)
+	  if(!cd.back_image->scene()->items().empty())
 	    cd.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 

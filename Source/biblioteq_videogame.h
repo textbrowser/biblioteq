@@ -9,7 +9,7 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_videogame(biblioteq *parengArg,
+  biblioteq_videogame(biblioteq *parentArg,
 		      const QString &oidArg,
 		      const int rowArg);
   ~biblioteq_videogame();

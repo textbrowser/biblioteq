@@ -157,7 +157,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	      if(m_qmain->getDB().driverName() != "QPSQL")
 		{
 		  QString errorstr("");
-		  
+
 		  oid = biblioteq_misc_functions::getSqliteUniqueId
 		    (m_qmain->getDB(), errorstr);
 

@@ -388,9 +388,7 @@ void biblioteq_borrowers_editor::slotCloseCurrentBorrowers(void)
 void biblioteq_borrowers_editor::slotEraseBorrower(void)
 {
   QSqlQuery query(qmain->getDB());
-  QString availability = "";
   QString copyid = "";
-  QString errorstr = "";
   QString memberid = "";
   QString oid = "";
   QString returnedDate = QDateTime::currentDateTime().toString("MM/dd/yyyy");

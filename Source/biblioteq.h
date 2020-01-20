@@ -250,7 +250,7 @@ class biblioteq: public QMainWindow
   void replaceJournal(const QString &id, biblioteq_journal *journal);
   void replaceMagazine(const QString &id, biblioteq_magazine *magazine);
   void replacePhotographCollection(const QString &id,
-				   biblioteq_photographcollection *pc);
+				   biblioteq_photographcollection *photograph);
   void replaceVideoGame(const QString &id, biblioteq_videogame *videogame);
   void setGlobalFonts(const QFont &font);
   void setSummaryImages(const QImage &back, const QImage &front);
