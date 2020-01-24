@@ -497,6 +497,14 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 		  SIGNAL(clicked(void)),
 		  this,
 		  SLOT(slotViewPreviousPhotograph(void)));
+	  connect(ui.rotate_left,
+		  SIGNAL(clicked(void)),
+		  ui.view,
+		  SLOT(slotRotateLeft(void)));
+	  connect(ui.rotate_right,
+		  SIGNAL(clicked(void)),
+		  ui.view,
+		  SLOT(slotRotateRight(void)));
 	  connect(ui.view_size,
 		  SIGNAL(currentIndexChanged(const QString &)),
 		  this,
