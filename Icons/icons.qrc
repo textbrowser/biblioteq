@@ -63,6 +63,8 @@
 	<file>32x32/remove.png</file>
 	<file>32x32/remove_request.png</file>
 	<file>32x32/request.png</file>
+	<file>32x32/rotate_left.png</file>
+	<file>32x32/rotate_right.png</file>
 	<file>32x32/save.png</file>
 	<file>32x32/settings.png</file>
 	<file>32x32/stamp.png</file>

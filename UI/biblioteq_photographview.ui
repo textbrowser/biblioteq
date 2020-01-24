@@ -101,6 +101,82 @@
          </property>
         </widget>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="rotate_left">
+           <property name="toolTip">
+            <string>Rotate Left 90 Degrees</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../Icons/icons.qrc">
+             <normaloff>:/32x32/rotate_left.png</normaloff>:/32x32/rotate_left.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="rotate_right">
+           <property name="toolTip">
+            <string>Rotate Right 90 Degrees</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../Icons/icons.qrc">
+             <normaloff>:/32x32/rotate_right.png</normaloff>:/32x32/rotate_right.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
     </item>
@@ -233,6 +309,8 @@
  <tabstops>
   <tabstop>view_size</tabstop>
   <tabstop>view</tabstop>
+  <tabstop>rotate_left</tabstop>
+  <tabstop>rotate_right</tabstop>
   <tabstop>previous</tabstop>
   <tabstop>exportItem</tabstop>
   <tabstop>closeButton</tabstop>
