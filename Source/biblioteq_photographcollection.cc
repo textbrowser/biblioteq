@@ -509,6 +509,7 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 		  SIGNAL(currentIndexChanged(const QString &)),
 		  this,
 		  SLOT(slotImageViewSizeChanged(const QString &)));
+	  ui.save->setVisible(m_engWindowTitle.contains("Modify"));
 
 	  QGraphicsScene *scene = 0;
 
