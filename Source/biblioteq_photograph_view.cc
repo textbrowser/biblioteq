@@ -72,9 +72,12 @@ void biblioteq_photograph_view::setBestFit(const bool bestFit)
   m_bestFit = bestFit;
 }
 
-void biblioteq_photograph_view::setImage(const QImage &image, const qint64 oid)
+void biblioteq_photograph_view::setImage(const QImage &image,
+					 const QString &format,
+					 const qint64 oid)
 {
   m_degrees = 0.0;
+  m_format = format;
   m_image = image;
   m_oid = oid;
   rotateImage(m_degrees);
@@ -98,5 +101,9 @@ void biblioteq_photograph_view::slotSave(void)
     item = qgraphicsitem_cast<QGraphicsPixmapItem *> (scene()->items().at(0));
 
   if(item)
-    emit save(item->pixmap().toImage(), m_oid);
+    emit save
+      (item->pixmap().toImage().transformed(QMatrix().rotate(m_degrees),
+					    Qt::SmoothTransformation),
+       m_format,
+       m_oid);
 }

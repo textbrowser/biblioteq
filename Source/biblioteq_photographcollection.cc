@@ -399,6 +399,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
       {
 	QByteArray bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
 	QImage image;
+	QString format(biblioteq_misc_functions::imageFormatGuess(bytes));
 
 	image.loadFromData(bytes);
 
@@ -460,13 +461,17 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	if(view)
 	  {
 	    connect(view,
-		    SIGNAL(save(const QImage &, const qint64)),
+		    SIGNAL(save(const QImage &,
+				const QString &,
+				const qint64)),
 		    this,
-		    SLOT(slotSaveRotatedImage(const QImage &, const qint64)),
+		    SLOT(slotSaveRotatedImage(const QImage &,
+					      const QString &,
+					      const qint64)),
 		    Qt::UniqueConnection);
 	    view->horizontalScrollBar()->setValue(0);
 	    view->setBestFit(percent == 0);
-	    view->setImage(image, item->data(0).toLongLong());
+	    view->setImage(image, format, item->data(0).toLongLong());
 	    view->verticalScrollBar()->setValue(0);
 	  }
       }
@@ -1762,7 +1767,8 @@ void biblioteq_photographcollection::slotImportItems(void)
 	image = image.scaled
 	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-      if(image.isNull() || !image.save(&buffer, format.toLatin1().constData(),
+      if(image.isNull() || !image.save(&buffer,
+				       format.toLatin1().constData(),
 				       100))
 	bytes2 = bytes1;
 
@@ -1830,8 +1836,8 @@ void biblioteq_photographcollection::slotImportItems(void)
   showPhotographs(1);
   QMessageBox::information(this,
 			   tr("BiblioteQ: Information"),
-			   tr("A total of %1 image(s) were imported from "
-			      "the directory %2.").
+			   tr("Imported a total of %1 image(s) from the "
+			      "directory %2.").
 			   arg(imported).
 			   arg(dialog.directory().absolutePath()));
   QApplication::processEvents();
@@ -2163,10 +2169,52 @@ void biblioteq_photographcollection::slotReset(void)
 }
 
 void biblioteq_photographcollection::slotSaveRotatedImage
-(const QImage &image, const qint64 oid)
+(const QImage &image, const QString &format, const qint64 oid)
 {
   if(image.isNull() || oid < 0)
     return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QBuffer buffer;
+  QByteArray bytes1;
+
+  buffer.setBuffer(&bytes1);
+
+  if(buffer.open(QIODevice::WriteOnly) &&
+     image.save(&buffer, format.toUpper().toLatin1().constData(), 100))
+    {
+      QSqlQuery query(qmain->getDB());
+
+      query.prepare("UPDATE photograph SET "
+		    "image = ?, "
+		    "image_scaled = ? "
+		    "WHERE myoid = ?");
+      query.addBindValue(bytes1);
+
+      QBuffer buffer;
+      QByteArray bytes2;
+      QImage i(image);
+
+      buffer.setBuffer(&bytes2);
+      buffer.open(QIODevice::WriteOnly);
+      i = i.scaled(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(i.isNull() || !i.save(&buffer,
+			       format.toUpper().toLatin1().constData(),
+			       100))
+	bytes2 = bytes1;
+
+      query.addBindValue(bytes2);
+      query.addBindValue(oid);
+
+      if(!query.exec())
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to update photograph.")),
+			query.lastError().text(), __FILE__, __LINE__);
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_photographcollection::slotSceneSelectionChanged(void)
