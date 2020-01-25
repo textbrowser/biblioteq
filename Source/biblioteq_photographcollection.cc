@@ -721,7 +721,10 @@ void biblioteq_photographcollection::modify(const int state,
 		int i = photographsPerPage();
 
 		if(i == -1) // Unlimited.
-		  pages = 1;
+		  {
+		    pages = 1;
+		    setSceneRect(query.value(0).toInt());
+		  }
 		else
 		  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
 	      }
@@ -788,6 +791,15 @@ void biblioteq_photographcollection::search(const QString &field,
   showNormal();
   activateWindow();
   raise();
+}
+
+void biblioteq_photographcollection::setSceneRect(const int size)
+{
+  if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
+    pc.graphicsView->setSceneRect(0, 0, 5 * 150, size * 250 + 15);
+  else
+    pc.graphicsView->setSceneRect
+      (0, 0, 5 * 150, std::numeric_limits<int>::max());
 }
 
 void biblioteq_photographcollection::showPhotographs(const int page)
@@ -1022,7 +1034,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 	int i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
-	  pages = 1;
+	  {
+	    pages = 1;
+	    setSceneRect(query.value(0).toInt());
+	  }
 	else
 	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
@@ -1819,7 +1834,10 @@ void biblioteq_photographcollection::slotImportItems(void)
 	int i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
-	  pages = 1;
+	  {
+	    pages = 1;
+	    setSceneRect(query.value(0).toInt());
+	  }
 	else
 	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
@@ -1998,7 +2016,10 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	int i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
-	  pages = 1;
+	  {
+	    pages = 1;
+	    setSceneRect(query.value(0).toInt());
+	  }
 	else
 	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }

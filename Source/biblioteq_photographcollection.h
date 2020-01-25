@@ -43,6 +43,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 			      QGraphicsPixmapItem *item,
 			      const int percent);
   void loadPhotographFromItemInNewWindow(QGraphicsPixmapItem *item);
+  void setSceneRect(const int size);
   void showPhotographs(const int page);
   void storeData(void);
   void updateTablePhotographCount(const int count);
