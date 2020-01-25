@@ -11,6 +11,7 @@ biblioteq_photograph_view::biblioteq_photograph_view(QWidget *parent):
   m_bestFit = true; // Agrees with default UI setting.
   m_degrees = 0.0;
   m_image = QImage();
+  m_oid = -1;
 }
 
 void biblioteq_photograph_view::resizeEvent(QResizeEvent *event)
@@ -71,10 +72,11 @@ void biblioteq_photograph_view::setBestFit(const bool bestFit)
   m_bestFit = bestFit;
 }
 
-void biblioteq_photograph_view::setImage(const QImage &image)
+void biblioteq_photograph_view::setImage(const QImage &image, const qint64 oid)
 {
   m_degrees = 0.0;
   m_image = image;
+  m_oid = oid;
   rotateImage(m_degrees);
 }
 

@@ -461,7 +461,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	  {
 	    view->horizontalScrollBar()->setValue(0);
 	    view->setBestFit(percent == 0);
-	    view->setImage(image);
+	    view->setImage(image, item->data(0).toLongLong());
 	    view->verticalScrollBar()->setValue(0);
 	  }
       }

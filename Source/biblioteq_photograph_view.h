@@ -10,11 +10,12 @@ class biblioteq_photograph_view: public QGraphicsView
  public:
   biblioteq_photograph_view(QWidget *parent);
   void setBestFit(const bool bestFit);
-  void setImage(const QImage &image);
+  void setImage(const QImage &image, const qint64 oid);
 
  private:
   QImage m_image;
   bool m_bestFit;
+  qint64 m_oid;
   qreal m_degrees;
   void resizeEvent(QResizeEvent *event);
   void rotateImage(const qreal degrees);
@@ -22,6 +23,9 @@ class biblioteq_photograph_view: public QGraphicsView
  private slots:
   void slotRotateLeft(void);
   void slotRotateRight(void);
+
+ signals:
+  void save(const QImage &image, const qint64 oid);
 };
 
 #endif
