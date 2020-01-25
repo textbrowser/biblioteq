@@ -459,6 +459,11 @@ void biblioteq_photographcollection::loadPhotographFromItem
 
 	if(view)
 	  {
+	    connect(view,
+		    SIGNAL(save(const QImage &, const qint64)),
+		    this,
+		    SLOT(slotSaveRotatedImage(const QImage &, const qint64)),
+		    Qt::UniqueConnection);
 	    view->horizontalScrollBar()->setValue(0);
 	    view->setBestFit(percent == 0);
 	    view->setImage(image, item->data(0).toLongLong());
@@ -505,6 +510,10 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 		  SIGNAL(clicked(void)),
 		  ui.view,
 		  SLOT(slotRotateRight(void)));
+	  connect(ui.save,
+		  SIGNAL(clicked(void)),
+		  ui.view,
+		  SLOT(slotSave(void)));
 	  connect(ui.view_size,
 		  SIGNAL(currentIndexChanged(const QString &)),
 		  this,
@@ -525,7 +534,7 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 		 ui.view_size->currentText().remove("%").toInt());
 	    }
 	  else
-	    mainWindow->show();
+	    mainWindow->deleteLater();
 	}
     }
 }
@@ -2149,6 +2158,13 @@ void biblioteq_photographcollection::slotReset(void)
       pc.accession_number->clear();
       pc.id_collection->setFocus();
     }
+}
+
+void biblioteq_photographcollection::slotSaveRotatedImage
+(const QImage &image, const qint64 oid)
+{
+  if(image.isNull() || oid < 0)
+    return;
 }
 
 void biblioteq_photographcollection::slotSceneSelectionChanged(void)

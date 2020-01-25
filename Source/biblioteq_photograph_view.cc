@@ -89,3 +89,14 @@ void biblioteq_photograph_view::slotRotateRight(void)
 {
   rotateImage(90.0);
 }
+
+void biblioteq_photograph_view::slotSave(void)
+{
+  QGraphicsPixmapItem *item = 0;
+
+  if(scene() && !scene()->items().isEmpty())
+    item = qgraphicsitem_cast<QGraphicsPixmapItem *> (scene()->items().at(0));
+
+  if(item)
+    emit save(item->pixmap().toImage(), m_oid);
+}

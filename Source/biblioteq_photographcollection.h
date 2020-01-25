@@ -63,6 +63,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);
+  void slotSaveRotatedImage(const QImage &image, const qint64 oid);
   void slotSceneSelectionChanged(void);
   void slotSelectAll(void);
   void slotSelectImage(void);

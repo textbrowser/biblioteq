@@ -23,6 +23,7 @@ class biblioteq_photograph_view: public QGraphicsView
  private slots:
   void slotRotateLeft(void);
   void slotRotateRight(void);
+  void slotSave(void);
 
  signals:
   void save(const QImage &image, const qint64 oid);
