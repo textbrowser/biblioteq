@@ -526,12 +526,14 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 	    {
 	      mainWindow->show();
 	      biblioteq_misc_functions::center(mainWindow, this);
+	      mainWindow->hide();
 	      scene->setProperty("view_size", ui.view->viewport()->size());
 	      ui.view->setScene(scene);
 	      loadPhotographFromItem
 		(scene,
 		 item,
 		 ui.view_size->currentText().remove("%").toInt());
+	      mainWindow->show();
 	    }
 	  else
 	    mainWindow->deleteLater();
