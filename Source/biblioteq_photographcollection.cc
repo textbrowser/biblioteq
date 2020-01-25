@@ -2233,6 +2233,28 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to update photograph.")),
 			query.lastError().text(), __FILE__, __LINE__);
+      else
+	{
+	  QList<QGraphicsItem *> list
+	    (pc.graphicsView->scene()->items(Qt::AscendingOrder));
+
+	  for(int i = 0; i < list.size(); i++)
+	    if(list.at(i)->data(0).toLongLong() == oid)
+	      {
+		QGraphicsPixmapItem *item = qgraphicsitem_cast
+		  <QGraphicsPixmapItem *> (list.at(i));
+
+		if(item)
+		  item->setPixmap
+		    (QPixmap::
+		     fromImage(image.scaled(126,
+					    187,
+					    Qt::KeepAspectRatio,
+					    Qt::SmoothTransformation)));
+
+		break;
+	      }
+	}
     }
 
   QApplication::restoreOverrideCursor();
