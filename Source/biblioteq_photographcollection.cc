@@ -2730,6 +2730,8 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 
       if(item)
 	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
 	  QList<QGraphicsItem *> list
 	    (pc.graphicsView->scene()->items(Qt::AscendingOrder));
 	  int idx = -1;
@@ -2746,6 +2748,7 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 	  if(idx >= list.size())
 	    idx = 0;
 
+	  QApplication::restoreOverrideCursor();
 	  loadPhotographFromItem
 	    (scene,
 	     qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
@@ -2805,6 +2808,8 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 
       if(item)
 	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
 	  QList<QGraphicsItem *> list
 	    (pc.graphicsView->scene()->items(Qt::AscendingOrder));
 	  int idx = -1;
@@ -2821,6 +2826,7 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 	  if(idx < 0)
 	    idx = list.size() - 1;
 
+	  QApplication::restoreOverrideCursor();
 	  loadPhotographFromItem
 	    (scene,
 	     qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
