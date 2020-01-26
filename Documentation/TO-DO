@@ -63,7 +63,7 @@
 31.  Complement the toolbar with menus. (Done)
 32.  Add null default icons for pull-down menus and for buttons that
      lack icons. (Done)
-33.  Pressing the Enter button on the Members Borrowers's Filter textfield
+33.  Pressing the Enter key on the Members Borrowers's Filter textfield
      should activate the Refresh slot. (Done)
 34.  Preserve the display status of the main table's columns. (Done)
 35.  Add the line number and the file where the error occurred
@@ -457,3 +457,4 @@
 240. Report import results. (Done)
 241. Remove std::nothrow. (TBD)
 242. Replace first(). The file biblioteq_c.cc is fine. (Done)
+243. Press Enter key on main table to open selected items. (TBD)
