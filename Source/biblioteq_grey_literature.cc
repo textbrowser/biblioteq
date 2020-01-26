@@ -864,7 +864,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-	  QString fileName(files.at(i));
+	  const QString &fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
