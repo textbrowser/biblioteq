@@ -704,10 +704,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Hungarian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;German</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1783,6 +1779,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hebrew</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>H&amp;ungarian</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

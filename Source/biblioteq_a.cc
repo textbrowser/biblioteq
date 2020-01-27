@@ -826,7 +826,10 @@ biblioteq::biblioteq(void):QMainWindow()
   (action = group3->addAction(tr("G&reek")))->setCheckable(true);
   action->setData("el_GR");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Hungarian")))->setCheckable(true);
+  (action = group3->addAction(tr("&Hebrew")))->setCheckable(true);
+  action->setData("he_IL");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("H&ungarian")))->setCheckable(true);
   action->setData("hu_HU");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&Russian")))->setCheckable(true);
