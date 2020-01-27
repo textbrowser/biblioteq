@@ -382,6 +382,14 @@
         <source>WY</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Do not validate the e-mail address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -1864,10 +1872,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Pilot Periwinkle.&lt;br&gt;Poppler version %5.&lt;br&gt;%5Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1877,6 +1881,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4624,6 +4632,82 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_import</name>
+    <message>
+        <source>biblioteq_misc_functions::createInitialCopies() error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">ببليوتيك: السؤال</translation>
+    </message>
+    <message>
+        <source>Populate the Books table with Template 1 values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Error</source>
+        <translation type="unfinished">ببليوتيك: خطأ</translation>
+    </message>
+    <message>
+        <source>The specified file is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file %1 is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate mapping discovered in the Books table. Please review row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please define column mappings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing the CSV file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Import Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to reset?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select CSV Import File</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_journal</name>
     <message>
         <source>BiblioteQ: Question</source>
@@ -5931,7 +6015,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>A total of %1 image(s) were imported from the directory %2.</source>
-        <translation type="unfinished">تم استيراد ما مجموعه %1 من الصور من الدليل %2.</translation>
+        <translation type="obsolete">تم استيراد ما مجموعه %1 من الصور من الدليل %2.</translation>
     </message>
     <message>
         <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
@@ -5976,6 +6060,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>Please complete the item&apos;s Creators field.</source>
         <translation type="unfinished">لطفاً ينبغي إكمال حقل المُنشيء أو المنتج.</translation>
+    </message>
+    <message>
+        <source>Imported a total of %1 image(s) from the directory %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update photograph.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6423,7 +6515,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Due Date</source>
-        <translation type="unfinished">تاريخ الاستحقاق</translation>
+        <translation type="obsolete">تاريخ الاستحقاق</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -6473,6 +6565,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Save new due dates.</source>
         <translation type="unfinished">حفظ تواريخ الاستحقاق الجديدة</translation>
     </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished">تاريخ الاستحقاق</translation>
+    </message>
 </context>
 <context>
     <name>branchSelect</name>
@@ -6482,7 +6578,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Branch Name</source>
-        <translation type="unfinished">اسم الفرع</translation>
+        <translation type="obsolete">اسم الفرع</translation>
     </message>
     <message>
         <source>&amp;Select SQLite Database...</source>
@@ -6490,7 +6586,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Userid</source>
-        <translation type="unfinished">معرف المستخدم</translation>
+        <translation type="obsolete">معرف المستخدم</translation>
     </message>
     <message>
         <source>xbook_guest</source>
@@ -6510,7 +6606,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Password</source>
-        <translation type="unfinished">كلمة المرور</translation>
+        <translation type="obsolete">كلمة المرور</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -6523,6 +6619,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>&amp;Cancel</source>
         <translation type="unfinished">إلغاء</translation>
+    </message>
+    <message>
+        <source>Branch Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6775,7 +6883,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Due Date</source>
-        <translation type="unfinished">تاريخ الاستحقاق</translation>
+        <translation type="obsolete">تاريخ الاستحقاق</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -6812,6 +6920,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">إغلاق</translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished">تاريخ الاستحقاق</translation>
     </message>
 </context>
 <context>
@@ -7381,6 +7493,93 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>importBrowser</name>
+    <message>
+        <source>BiblioteQ: CSV Import Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>CSV File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <source>Delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation type="unfinished">3</translation>
+    </message>
+    <message>
+        <source>Templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 1 (BiblioteQ Books Column Order)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV Column Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ Books Table Field Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please separate with single spaces.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation type="unfinished">4</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished">إعادة تعيين</translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>informationDialog</name>
     <message>
         <source>BiblioteQ</source>
@@ -7898,7 +8097,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">بحث</translation>
+        <translation type="obsolete">بحث</translation>
     </message>
     <message>
         <source>Category</source>
@@ -8384,6 +8583,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>F11</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Import CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -8393,7 +8600,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Filter</source>
-        <translation type="unfinished">التصفية</translation>
+        <translation type="obsolete">التصفية</translation>
     </message>
     <message>
         <source>Member ID</source>
@@ -8511,6 +8718,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Export Table View as CSV...</source>
         <translation type="unfinished">تصدير الجدول  المعروض كـَ ملف CSV </translation>
     </message>
+    <message>
+        <source>Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>otheroptions</name>
@@ -8520,7 +8731,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Main Window Canvas Background Color</source>
-        <translation type="unfinished">لون خلفية نافذة الويندوز الرئيسية زيتية ـ كتاني</translation>
+        <translation type="obsolete">لون خلفية نافذة الويندوز الرئيسية زيتية ـ كتاني</translation>
     </message>
     <message>
         <source>#ffffff</source>
@@ -8558,6 +8769,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Show Main Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -8567,15 +8782,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Userid</source>
-        <translation type="unfinished">مُعرف المُستخدم</translation>
+        <translation type="obsolete">مُعرف المُستخدم</translation>
     </message>
     <message>
         <source>&amp;New Password</source>
-        <translation type="unfinished">كلمة المرور الجديدة</translation>
+        <translation type="obsolete">كلمة المرور الجديدة</translation>
     </message>
     <message>
         <source>&amp;Confirm Password</source>
-        <translation type="unfinished">تأكيد كلمة المرور</translation>
+        <translation type="obsolete">تأكيد كلمة المرور</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -8584,6 +8799,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>&amp;Cancel</source>
         <translation type="unfinished">إلغاء</translation>
+    </message>
+    <message>
+        <source>Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8598,11 +8825,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Username</source>
-        <translation type="unfinished">اسم المستخدم</translation>
+        <translation type="obsolete">اسم المستخدم</translation>
     </message>
     <message>
         <source>&amp;Password</source>
-        <translation type="unfinished">كلمة المرور</translation>
+        <translation type="obsolete">كلمة المرور</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8752,7 +8987,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Page</source>
-        <translation type="unfinished">الصفحة</translation>
+        <translation type="obsolete">الصفحة</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -8808,7 +9043,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">بحث</translation>
+        <translation type="obsolete">بحث</translation>
     </message>
     <message>
         <source>&amp;Next</source>
@@ -8848,6 +9083,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Find &amp;Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished">الصفحة</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8946,7 +9193,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;View Size</source>
-        <translation type="unfinished">قياس العرض</translation>
+        <translation type="obsolete">قياس العرض</translation>
     </message>
     <message>
         <source>100%</source>
@@ -8987,6 +9234,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>Best Fit</source>
         <translation type="unfinished">أفضل ملاءمة</translation>
+    </message>
+    <message>
+        <source>View Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Left 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Right 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">حفظ</translation>
     </message>
 </context>
 <context>

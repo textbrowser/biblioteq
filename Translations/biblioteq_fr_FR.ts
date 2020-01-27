@@ -17,15 +17,15 @@
     </message>
     <message>
         <source>Due Date: </source>
-        <translation type="unfinished">Date limite : </translation>
+        <translation type="unfinished">Date limite&#xa0;: </translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation type="unfinished">Type : </translation>
+        <translation type="unfinished">Type&#xa0;: </translation>
     </message>
     <message>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation type="obsolete">Erreur de l&apos;application : objectlist.size() != privlist.size().</translation>
+        <translation type="obsolete">Erreur de l&apos;application&#xa0;: objectlist.size() != privlist.size().</translation>
     </message>
     <message>
         <source> Location: </source>
@@ -33,11 +33,11 @@
     </message>
     <message>
         <source>Barcode: </source>
-        <translation type="unfinished">Code barre : </translation>
+        <translation type="unfinished">Code barre&#xa0;: </translation>
     </message>
     <message>
         <source>Title: </source>
-        <translation type="unfinished">Titre : </translation>
+        <translation type="unfinished">Titre&#xa0;: </translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -268,7 +268,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished">N / A</translation>
+        <translation type="unfinished">N&#xa0;/&#xa0;A</translation>
     </message>
     <message>
         <source>Sex</source>
@@ -336,7 +336,7 @@
     </message>
     <message>
         <source>BiblioteQ: Borrower Information</source>
-        <translation type="unfinished">BiblioteQ : informations sur l&apos;emprunteur</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: informations sur l&apos;emprunteur</translation>
     </message>
     <message>
         <source>Previous Member</source>
@@ -381,6 +381,14 @@
     <message>
         <source>General Registration Number</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not validate the e-mail address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Quelconque</translation>
     </message>
 </context>
 <context>
@@ -518,7 +526,7 @@
     </message>
     <message>
         <source>BiblioteQ: General Database Search</source>
-        <translation type="unfinished">BiblioteQ : recherche dans la base de données générale</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: recherche dans la base de données générale</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -1858,10 +1866,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Pilot Periwinkle.&lt;br&gt;Poppler version %5.&lt;br&gt;%5Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1871,6 +1875,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2501,7 +2509,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_borrowers_editor</name>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="unfinished">BiblioteQ : état de réservation des articles (</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: état de réservation des articles (</translation>
     </message>
     <message>
         <source>)</source>
@@ -2509,7 +2517,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="unfinished">BiblioteQ : état de réservation de l&apos;article</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: état de réservation de l&apos;article</translation>
     </message>
     <message>
         <source>Copy Number</source>
@@ -2553,7 +2561,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifDate ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+        <translation type="unfinished">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;modifDate&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
@@ -3119,7 +3127,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_copy_editor</name>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -3290,7 +3298,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_copy_editor_book</name>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -3525,7 +3533,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation type="unfinished">Rapport hauteur / largeur de DVD</translation>
+        <translation type="unfinished">Rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
     </message>
     <message>
         <source>DVD Rating</source>
@@ -4481,6 +4489,82 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_import</name>
+    <message>
+        <source>biblioteq_misc_functions::createInitialCopies() error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate the Books table with Template 1 values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Error</source>
+        <translation type="unfinished">BiblioteQ : erreur</translation>
+    </message>
+    <message>
+        <source>The specified file is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file %1 is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate mapping discovered in the Books table. Please review row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please define column mappings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing the CSV file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Import Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished">BiblioteQ : informations</translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to reset?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select CSV Import File</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5746,11 +5830,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A total of %1 image(s) were imported from the directory %2.</source>
+        <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <source>Imported a total of %1 image(s) from the directory %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update photograph.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6159,11 +6247,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>bookcopybrowser</name>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: explorateur de copies</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">Date limite</translation>
+        <translation type="unfinished">Date limite</translation>
     </message>
     <message>
         <source>Title</source>
@@ -6192,10 +6280,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>&amp;Delete</source>
         <translation type="unfinished">&amp;Supprimer</translation>
-    </message>
-    <message>
-        <source>&amp;Due Date</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -6254,7 +6338,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="obsolete">BiblioteQ : boîte de dialogue de progression</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>Constructing objects...</source>
@@ -6290,7 +6374,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation type="obsolete">BiblioteQ : question</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: question</translation>
     </message>
     <message>
         <source>Unable to update the due date.</source>
@@ -6314,7 +6398,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifDate ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;modifDate&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
@@ -6322,11 +6406,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;article&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="obsolete">BiblioteQ : erreur de la base de données</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: erreur de la base de données</translation>
     </message>
     <message>
         <source>Memory Error</source>
@@ -6334,7 +6418,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="obsolete">BiblioteQ : état de réservation des articles (</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: état de réservation des articles (</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -6342,7 +6426,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="obsolete">BiblioteQ : état de réservation de l&apos;article</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: état de réservation de l&apos;article</translation>
     </message>
 </context>
 <context>
@@ -6357,15 +6441,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Userid</source>
-        <translation type="obsolete">ID utilisateur</translation>
+        <translation type="unfinished">ID utilisateur</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Mot de passe</translation>
+        <translation type="unfinished">Mot de passe</translation>
     </message>
     <message>
         <source>Branch Name</source>
-        <translation type="obsolete">Nom de la branche</translation>
+        <translation type="unfinished">Nom de la branche</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -6377,22 +6461,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Branch Selection</source>
-        <translation type="unfinished">BiblioteQ : sélection d&apos;une branche</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: sélection d&apos;une branche</translation>
     </message>
     <message>
         <source>Administrator</source>
         <translation type="unfinished">Administrateur</translation>
     </message>
     <message>
-        <source>&amp;Branch Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Select SQLite Database...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Userid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6405,10 +6481,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Patron</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6698,7 +6770,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation type="obsolete">BiblioteQ : explorateur de copies (</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies (</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -6718,7 +6790,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="obsolete">BiblioteQ : boîte de dialogue de progression</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
@@ -6806,7 +6878,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+        <translation type="obsolete">Impossible d&apos;allouer de la mémoire pour l&apos;objet «&#xa0;article&#xa0;». Il s&apos;agit d&apos;un problème sérieux&#xa0;!</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
@@ -6814,7 +6886,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="obsolete">BiblioteQ : erreur de la base de données</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: erreur de la base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
@@ -6850,14 +6922,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
     </message>
 </context>
 <context>
     <name>copy_editor_book</name>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -7012,15 +7084,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">Date limite</translation>
+        <translation type="unfinished">Date limite</translation>
     </message>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
-    </message>
-    <message>
-        <source>&amp;Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: explorateur de copies</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -7043,7 +7111,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Custom Query</source>
-        <translation type="unfinished">BiblioteQ : requête personnalisée</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: requête personnalisée</translation>
     </message>
     <message>
         <source>Execute</source>
@@ -7118,7 +7186,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation type="unfinished">BiblioteQ : explorateur d&apos;énumérations de la base de données</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: explorateur d&apos;énumérations de la base de données</translation>
     </message>
     <message>
         <source>Video Game Platforms</source>
@@ -7178,7 +7246,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
-        <translation type="obsolete">Ajouter un rapport hauteur / largeur de DVD</translation>
+        <translation type="obsolete">Ajouter un rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -7226,7 +7294,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>DVD Aspect Ratios</source>
-        <translation type="unfinished">Rapports hauteur / largeur de DVD</translation>
+        <translation type="unfinished">Rapports hauteur&#xa0;/&#xa0;largeur de DVD</translation>
     </message>
     <message>
         <source>CD Formats</source>
@@ -7246,7 +7314,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
-        <translation type="obsolete">Supprimer un rapport hauteur / largeur de DVD</translation>
+        <translation type="obsolete">Supprimer un rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
     </message>
     <message>
         <source>Remove Video Game Platform</source>
@@ -7341,7 +7409,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation type="obsolete">Rapport hauteur / largeur de DVD</translation>
+        <translation type="obsolete">Rapport hauteur&#xa0;/&#xa0;largeur de DVD</translation>
     </message>
     <message>
         <source>video game platform</source>
@@ -7374,7 +7442,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur / largeur de DVD.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur&#xa0;/&#xa0;largeur de DVD.</translation>
     </message>
     <message>
         <source>DVD Rating</source>
@@ -7454,7 +7522,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="obsolete">BiblioteQ : erreur de la base de données</translation>
+        <translation type="obsolete">BiblioteQ&#xa0;: erreur de la base de données</translation>
     </message>
     <message>
         <source>Monetary Unit</source>
@@ -7525,7 +7593,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation type="unfinished">Rapport hauteur / largeur</translation>
+        <translation type="unfinished">Rapport hauteur&#xa0;/&#xa0;largeur</translation>
     </message>
     <message>
         <source>Copies</source>
@@ -7704,7 +7772,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Error Log</source>
-        <translation type="unfinished">BiblioteQ : journal des erreurs</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: journal des erreurs</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -7809,7 +7877,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
-        <translation type="unfinished">BiblioteQ : historique de réservation du membre</translation>
+        <translation type="unfinished">BiblioteQ&#xa0;: historique de réservation du membre</translation>
     </message>
     <message>
         <source>&amp;Do not record reservation history.</source>
@@ -7818,6 +7886,93 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>importBrowser</name>
+    <message>
+        <source>BiblioteQ: CSV Import Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>CSV File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <source>Delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation type="unfinished">3</translation>
+    </message>
+    <message>
+        <source>Templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 1 (BiblioteQ Books Column Order)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV Column Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ Books Table Field Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please separate with single spaces.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation type="unfinished">4</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished">Fermer l&apos;explorateur</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -8762,7 +8917,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Chercher</translation>
+        <translation type="obsolete">&amp;Chercher</translation>
     </message>
     <message>
         <source>ID</source>
@@ -8936,6 +9091,14 @@ minmal de jours.</translation>
         <source>F11</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Import CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -8985,7 +9148,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation type="obsolete">Rapport hauteur / largeur</translation>
+        <translation type="obsolete">Rapport hauteur&#xa0;/&#xa0;largeur</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -9180,7 +9343,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="obsolete">Filtre</translation>
+        <translation type="unfinished">Filtre</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
@@ -9247,10 +9410,6 @@ minmal de jours.</translation>
         <translation type="unfinished">Accorder des privilèges</translation>
     </message>
     <message>
-        <source>&amp;Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Apply Filter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9290,10 +9449,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Main Window Canvas Background Color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Item Type</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9321,6 +9476,10 @@ minmal de jours.</translation>
         <source>&amp;Show Main Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -9338,11 +9497,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation type="obsolete">Confirmer le mot de passe</translation>
+        <translation type="unfinished">Confirmer le mot de passe</translation>
     </message>
     <message>
         <source>Userid</source>
-        <translation type="obsolete">ID utilisateur</translation>
+        <translation type="unfinished">ID utilisateur</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -9350,26 +9509,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>New Password</source>
-        <translation type="obsolete">Nouveau mot de passe</translation>
-    </message>
-    <message>
-        <source>&amp;Userid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;New Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Confirm Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nouveau mot de passe</translation>
     </message>
 </context>
 <context>
     <name>passwordDialog</name>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Mot de passe</translation>
+        <translation type="unfinished">Mot de passe</translation>
     </message>
     <message>
         <source>BiblioteQ: Proxy Authentication Required</source>
@@ -9380,11 +9527,7 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Password</source>
+        <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9563,7 +9706,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Chercher</translation>
+        <translation type="obsolete">&amp;Chercher</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -9575,10 +9718,6 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: PDF Reader</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9619,6 +9758,18 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Find &amp;Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9732,10 +9883,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;View Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Previous Photograph</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9758,6 +9905,22 @@ minmal de jours.</translation>
     <message>
         <source>Best Fit</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Left 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Right 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Enregistrer</translation>
     </message>
 </context>
 <context>

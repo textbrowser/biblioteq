@@ -4,3 +4,29 @@ is not consistent, correct columns may not be located.
 
 The Translations directory must reside in the directory where the BiblioteQ
 executable resides.
+
+Creating Translation Files
+
+Translation files consist of all the user-visible text and Ctrl
+key accelerators in an application and translations of that text.
+
+To create translation files:
+
+    Run lupdate to generate the first set of translation source (TS) files
+    with all the user-visible text but no translations.
+
+    Give the TS files to the translator who adds translations using
+    Qt Linguist. Qt Linguist takes care of any changed or deleted source text.
+
+    Run lupdate to incorporate any new text added to the application.
+    lupdate synchronizes the user-visible text from the application with
+    the translations. It does not destroy any data.
+
+    To release the application, run lrelease to read the TS files and
+    produce the QM files used by the application at runtime.
+
+For lupdate to work successfully, it must know which translation files
+to produce. The files are listed in the application's .pro Qt project file.
+
+> lupdate biblioteq.pro
+> lrelease biblioteq.pro

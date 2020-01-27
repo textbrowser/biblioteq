@@ -386,6 +386,14 @@
         <source>Private</source>
         <translation>Privat</translation>
     </message>
+    <message>
+        <source>Do not validate the e-mail address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -1825,7 +1833,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Pilot Periwinkle.&lt;br&gt;Poppler version %5.&lt;br&gt;%5Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architektur %4.&lt;br&gt;Kompiliert am %2, %3.&lt;br&gt;Copyright (c) 2005 - heute, Pilot Periwinkle.&lt;br&gt;Poppler Version %5.&lt;br&gt;%5Qt Version %6 (Laufzeit %7).&lt;br&gt;YAZ Version %8.&lt;hr&gt;F√ºr Projektinformationen bitte &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; besuchen.&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architektur %4.&lt;br&gt;Kompiliert am %2, %3.&lt;br&gt;Copyright (c) 2005 - heute, Pilot Periwinkle.&lt;br&gt;Poppler Version %5.&lt;br&gt;%5Qt Version %6 (Laufzeit %7).&lt;br&gt;YAZ Version %8.&lt;hr&gt;F√ºr Projektinformationen bitte &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; besuchen.&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
@@ -1838,6 +1846,10 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     <message>
         <source>BiblioteQ: %1 (%2)</source>
         <translation>BiblioteQ: %1 (%2)</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4351,6 +4363,82 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
 </context>
 <context>
+    <name>biblioteq_import</name>
+    <message>
+        <source>biblioteq_misc_functions::createInitialCopies() error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate the Books table with Template 1 values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Error</source>
+        <translation type="unfinished">BiblioteQ: Fehler</translation>
+    </message>
+    <message>
+        <source>The specified file is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file %1 is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate mapping discovered in the Books table. Please review row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please define column mappings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing the CSV file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Import Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to reset?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select CSV Import File</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_journal</name>
     <message>
         <source>BiblioteQ: Question</source>
@@ -5569,11 +5657,19 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>A total of %1 image(s) were imported from the directory %2.</source>
-        <translation>Insgesamt %1 Bilder wurden aus dem Verzeichnis %2 importiert.</translation>
+        <translation type="vanished">Insgesamt %1 Bilder wurden aus dem Verzeichnis %2 importiert.</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation>BiblioteQ: Fotoexport aus Fotosammlung</translation>
+    </message>
+    <message>
+        <source>Imported a total of %1 image(s) from the directory %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update photograph.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5965,7 +6061,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">F√§lligkeitsdatum</translation>
+        <translation type="unfinished">F√§lligkeitsdatum</translation>
     </message>
     <message>
         <source>Title</source>
@@ -5993,7 +6089,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&amp;Due Date</source>
-        <translation>&amp;F√§lligkeitsdatum</translation>
+        <translation type="vanished">&amp;F√§lligkeitsdatum</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -6167,7 +6263,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Branch Name</source>
-        <translation type="obsolete">Name des Bereichs</translation>
+        <translation type="unfinished">Name des Bereichs</translation>
     </message>
     <message>
         <source>&amp;Select SQLite Database</source>
@@ -6175,7 +6271,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Userid</source>
-        <translation type="obsolete">ID des Nutzers</translation>
+        <translation type="unfinished">ID des Nutzers</translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -6183,7 +6279,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Passwort</translation>
+        <translation type="unfinished">Passwort</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -6199,7 +6295,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&amp;Branch Name</source>
-        <translation>&amp;Bereichsname</translation>
+        <translation type="vanished">&amp;Bereichsname</translation>
     </message>
     <message>
         <source>&amp;Select SQLite Database...</source>
@@ -6207,7 +6303,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&amp;Userid</source>
-        <translation>Ben&amp;utzer-ID</translation>
+        <translation type="vanished">Ben&amp;utzer-ID</translation>
     </message>
     <message>
         <source>xbook_guest</source>
@@ -6223,7 +6319,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&amp;Password</source>
-        <translation>&amp;Passwort</translation>
+        <translation type="vanished">&amp;Passwort</translation>
     </message>
 </context>
 <context>
@@ -6772,7 +6868,7 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">F√§lligkeitsdatum</translation>
+        <translation type="unfinished">F√§lligkeitsdatum</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -6812,7 +6908,7 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>&amp;Due Date</source>
-        <translation>&amp;F√§lligkeitsdatum</translation>
+        <translation type="vanished">&amp;F√§lligkeitsdatum</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -7525,6 +7621,93 @@ URL</source>
     </message>
 </context>
 <context>
+    <name>importBrowser</name>
+    <message>
+        <source>BiblioteQ: CSV Import Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>CSV File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished">Au&amp;sw√§hlen...</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <source>Delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation type="unfinished">3</translation>
+    </message>
+    <message>
+        <source>Templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 1 (BiblioteQ Books Column Order)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV Column Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ Books Table Field Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please separate with single spaces.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation type="unfinished">4</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished">Zur√ºcksetzen</translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished">Strg+W</translation>
+    </message>
+</context>
+<context>
     <name>informationDialog</name>
     <message>
         <source>BiblioteQ</source>
@@ -8223,7 +8406,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Suche</translation>
+        <translation type="vanished">&amp;Suche</translation>
     </message>
     <message>
         <source>ID</source>
@@ -8837,6 +9020,14 @@ URL</source>
         <source>F11</source>
         <translation>F11</translation>
     </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Suche</translation>
+    </message>
+    <message>
+        <source>&amp;Import CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -9093,7 +9284,7 @@ URL</source>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="obsolete">Filter</translation>
+        <translation type="unfinished">Filter</translation>
     </message>
     <message>
         <source>Member ID</source>
@@ -9189,7 +9380,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Filter</source>
-        <translation>&amp;Filtern</translation>
+        <translation type="vanished">&amp;Filtern</translation>
     </message>
     <message>
         <source>&amp;Apply Filter</source>
@@ -9244,7 +9435,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Main Window Canvas Background Color</source>
-        <translation>Canvas-Hintergrundfarbe des &amp;Hauptfensters</translation>
+        <translation type="vanished">Canvas-Hintergrundfarbe des &amp;Hauptfensters</translation>
     </message>
     <message>
         <source>Publication Date Format</source>
@@ -9266,6 +9457,10 @@ URL</source>
         <source>&amp;Show Main Table Tool Tips</source>
         <translation>Tooltip&amp;s in der Haupttabelle anzeigen</translation>
     </message>
+    <message>
+        <source>Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -9275,15 +9470,15 @@ URL</source>
     </message>
     <message>
         <source>Userid</source>
-        <translation type="obsolete">ID der Nutzerin</translation>
+        <translation type="unfinished">ID der Nutzerin</translation>
     </message>
     <message>
         <source>New Password</source>
-        <translation type="obsolete">Neues Passwort</translation>
+        <translation type="unfinished">Neues Passwort</translation>
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation type="obsolete">Best√§tige das Passwort</translation>
+        <translation type="unfinished">Best√§tige das Passwort</translation>
     </message>
     <message>
         <source>Current Password</source>
@@ -9299,22 +9494,22 @@ URL</source>
     </message>
     <message>
         <source>&amp;Userid</source>
-        <translation>Ben&amp;utzer-ID</translation>
+        <translation type="vanished">Ben&amp;utzer-ID</translation>
     </message>
     <message>
         <source>&amp;New Password</source>
-        <translation>&amp;Neues Passwort</translation>
+        <translation type="vanished">&amp;Neues Passwort</translation>
     </message>
     <message>
         <source>&amp;Confirm Password</source>
-        <translation>Passwort &amp;best√§tigen</translation>
+        <translation type="vanished">Passwort &amp;best√§tigen</translation>
     </message>
 </context>
 <context>
     <name>passwordDialog</name>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Passwort</translation>
+        <translation type="unfinished">Passwort</translation>
     </message>
     <message>
         <source>BiblioteQ: Proxy Authentication Required</source>
@@ -9326,11 +9521,15 @@ URL</source>
     </message>
     <message>
         <source>&amp;Username</source>
-        <translation>&amp;Benutzername</translation>
+        <translation type="vanished">&amp;Benutzername</translation>
     </message>
     <message>
         <source>&amp;Password</source>
-        <translation>&amp;Passwort</translation>
+        <translation type="vanished">&amp;Passwort</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9512,7 +9711,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Suche</translation>
+        <translation type="vanished">&amp;Suche</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -9528,7 +9727,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Page</source>
-        <translation>&amp;Seite</translation>
+        <translation type="vanished">&amp;Seite</translation>
     </message>
     <message>
         <source>&amp;Case Sensitive</source>
@@ -9565,6 +9764,18 @@ URL</source>
     <message>
         <source>Find &amp;Previous</source>
         <translation>&amp;Vorheriges finden</translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished">Seite</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Suche</translation>
     </message>
 </context>
 <context>
@@ -9682,7 +9893,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;View Size</source>
-        <translation>&amp;Anzeigegr√∂√üe</translation>
+        <translation type="vanished">&amp;Anzeigegr√∂√üe</translation>
     </message>
     <message>
         <source>Previous Photograph</source>
@@ -9703,6 +9914,22 @@ URL</source>
     <message>
         <source>Best Fit</source>
         <translation>Best Fit</translation>
+    </message>
+    <message>
+        <source>View Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Left 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Right 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Speichern</translation>
     </message>
 </context>
 <context>

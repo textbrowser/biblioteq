@@ -386,6 +386,14 @@
         <source>General Registration Number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Do not validate the e-mail address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Jakýkoliv</translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -1858,10 +1866,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Pilot Periwinkle.&lt;br&gt;Poppler version %5.&lt;br&gt;%5Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1871,6 +1875,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4561,6 +4569,82 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_import</name>
+    <message>
+        <source>biblioteq_misc_functions::createInitialCopies() error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database error (%1) on row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Dotaz</translation>
+    </message>
+    <message>
+        <source>Populate the Books table with Template 1 values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Error</source>
+        <translation type="unfinished">BiblioteQ: Chyba</translation>
+    </message>
+    <message>
+        <source>The specified file is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file %1 is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate mapping discovered in the Books table. Please review row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please define column mappings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing the CSV file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: indikátor postupu</translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Import Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished">BiblioteQ: Informace</translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to reset?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select CSV Import File</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_journal</name>
     <message>
         <source>BiblioteQ: Question</source>
@@ -5842,11 +5926,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A total of %1 image(s) were imported from the directory %2.</source>
+        <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <source>Imported a total of %1 image(s) from the directory %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update photograph.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6287,7 +6375,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">Zapůjčeno do</translation>
+        <translation type="unfinished">Zapůjčeno do</translation>
     </message>
     <message>
         <source>Title</source>
@@ -6320,10 +6408,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Zavřít</translation>
-    </message>
-    <message>
-        <source>&amp;Due Date</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -6473,7 +6557,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Branch Name</source>
-        <translation type="obsolete">Jméno pobočky</translation>
+        <translation type="unfinished">Jméno pobočky</translation>
     </message>
     <message>
         <source>&amp;Select SQLite Database</source>
@@ -6481,7 +6565,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Userid</source>
-        <translation type="obsolete">Uživatel</translation>
+        <translation type="unfinished">Uživatel</translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -6489,7 +6573,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Heslo</translation>
+        <translation type="unfinished">Heslo</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -6504,15 +6588,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">&amp;Storno</translation>
     </message>
     <message>
-        <source>&amp;Branch Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Select SQLite Database...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Userid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6525,10 +6601,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Patron</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7106,7 +7178,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">Zapůjčeno do</translation>
+        <translation type="unfinished">Zapůjčeno do</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -7143,10 +7215,6 @@ webová adresa</translation>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Zavřít</translation>
-    </message>
-    <message>
-        <source>&amp;Due Date</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -7738,6 +7806,93 @@ webová adresa</translation>
     <message>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>importBrowser</name>
+    <message>
+        <source>BiblioteQ: CSV Import Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>CSV File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <source>Delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation type="unfinished">3</translation>
+    </message>
+    <message>
+        <source>Templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 1 (BiblioteQ Books Column Order)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV Column Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ Books Table Field Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please separate with single spaces.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation type="unfinished">4</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished">Zavřít okno</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -8836,7 +8991,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Hledat</translation>
+        <translation type="obsolete">&amp;Hledat</translation>
     </message>
     <message>
         <source>ID</source>
@@ -9076,6 +9231,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>F11</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Hledat</translation>
+    </message>
+    <message>
+        <source>&amp;Import CSV...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9330,7 +9493,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="obsolete">Filtr</translation>
+        <translation type="unfinished">Filtr</translation>
     </message>
     <message>
         <source>Member ID</source>
@@ -9421,10 +9584,6 @@ webová adresa</translation>
         <translation type="unfinished">Znovu načíst tabulku</translation>
     </message>
     <message>
-        <source>&amp;Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Apply Filter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9480,10 +9639,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Main Window Canvas Background Color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Publication Date Format</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9503,6 +9658,10 @@ webová adresa</translation>
         <source>&amp;Show Main Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -9512,15 +9671,15 @@ webová adresa</translation>
     </message>
     <message>
         <source>Userid</source>
-        <translation type="obsolete">Uživatel</translation>
+        <translation type="unfinished">Uživatel</translation>
     </message>
     <message>
         <source>New Password</source>
-        <translation type="obsolete">Nové heslo</translation>
+        <translation type="unfinished">Nové heslo</translation>
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation type="obsolete">Potvrdit heslo</translation>
+        <translation type="unfinished">Potvrdit heslo</translation>
     </message>
     <message>
         <source>Current Password</source>
@@ -9534,24 +9693,12 @@ webová adresa</translation>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Storno</translation>
     </message>
-    <message>
-        <source>&amp;Userid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;New Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Confirm Password</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>passwordDialog</name>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Heslo</translation>
+        <translation type="unfinished">Heslo</translation>
     </message>
     <message>
         <source>BiblioteQ: Proxy Authentication Required</source>
@@ -9562,11 +9709,7 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Password</source>
+        <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9745,7 +9888,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Hledat</translation>
+        <translation type="obsolete">&amp;Hledat</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -9757,10 +9900,6 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: PDF Reader</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9798,6 +9937,18 @@ webová adresa</translation>
     <message>
         <source>Find &amp;Previous</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Hledat</translation>
     </message>
 </context>
 <context>
@@ -9914,10 +10065,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;View Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Previous Photograph</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9936,6 +10083,22 @@ webová adresa</translation>
     <message>
         <source>Best Fit</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Left 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate Right 90 Degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Uložit</translation>
     </message>
 </context>
 <context>
