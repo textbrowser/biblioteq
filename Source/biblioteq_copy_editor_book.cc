@@ -187,7 +187,6 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QStringList list;
-  QTableWidgetItem *item = 0;
   bool terminate = false;
   int i = 0;
   int j = 0;
@@ -289,43 +288,35 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
       for(j = 0; j < m_cb.table->columnCount(); j++)
 	if(j == 3 || j == 4)
 	  {
-	    QComboBox *combobox = new(std::nothrow) QComboBox();
+	    QComboBox *combobox = new QComboBox();
+	    QStringList list;
 
-	    if(combobox)
-	      {
-		QStringList list;
-
-		if(j == 3)
-		  list << tr("Black & White Copy")
-		       << tr("Color Copy")
-		       << tr("Original");
-		else
-		  list << tr("As New")
-		       << tr("Binding Copy")
-		       << tr("Book Club")
-		       << tr("Ex-Library")
-		       << tr("Fair")
-		       << tr("Fine")
-		       << tr("Good")
-		       << tr("Poor")
-		       << tr("Very Good");
-
-		combobox->addItems(list);
-
-		if(j == 3)
-		  combobox->setCurrentIndex(2);
-
-		m_cb.table->setCellWidget(i, j, combobox);
-	      }
+	    if(j == 3)
+	      list << tr("Black & White Copy")
+		   << tr("Color Copy")
+		   << tr("Original");
 	    else
-	      qmain->addError(QString(tr("Memory Error")),
-			      QString(tr("Unable to allocate memory for the "
-					 "\"combobox\" object. "
-					 "This is a serious problem!")),
-			      QString(""), __FILE__, __LINE__);
+	      list << tr("As New")
+		   << tr("Binding Copy")
+		   << tr("Book Club")
+		   << tr("Ex-Library")
+		   << tr("Fair")
+		   << tr("Fine")
+		   << tr("Good")
+		   << tr("Poor")
+		   << tr("Very Good");
+
+	    combobox->addItems(list);
+
+	    if(j == 3)
+	      combobox->setCurrentIndex(2);
+
+	    m_cb.table->setCellWidget(i, j, combobox);
 	  }
-	else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	else
 	  {
+	    QTableWidgetItem *item = new QTableWidgetItem();
+
 	    if(m_showForLending)
 	      item->setFlags(0);
 	    else if(j == 1)
@@ -350,12 +341,6 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 	    m_cb.table->setItem(i, j, item);
 	  }
-	else
-	  qmain->addError(QString(tr("Memory Error")),
-			  QString(tr("Unable to allocate memory for the "
-				     "\"item\" object. "
-				     "This is a serious problem!")),
-			  QString(""), __FILE__, __LINE__);
 
       if(i + 1 <= progress1.maximum())
 	progress1.setValue(i + 1);
@@ -642,18 +627,12 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       if(combobox1 == 0 || combobox2 == 0 || item1 == 0 || item2 == 0)
 	continue;
 
-      if((copy = new(std::nothrow) copy_class
-	  (combobox2->currentText().trimmed(),
-	   item1->text().trimmed(),
-	   item2->text(),
-	   combobox1->currentText().trimmed())) != 0)
-	m_copies.append(copy);
-      else
-	qmain->addError
-	  (QString(tr("Memory Error")),
-	   QString(tr("Unable to allocate memory for the \"copy\" object. "
-		      "This is a serious problem!")),
-	   QString(""), __FILE__, __LINE__);
+      copy = new copy_class
+	(combobox2->currentText().trimmed(),
+	 item1->text().trimmed(),
+	 item2->text(),
+	 combobox1->currentText().trimmed());
+      m_copies.append(copy);
     }
 
   if(saveCopies().isEmpty())
