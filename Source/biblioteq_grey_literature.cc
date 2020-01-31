@@ -18,10 +18,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  QMenu *menu = 0;
-
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  QMenu *menu = new QMenu(this);
 
   m_duplicate = false;
   m_isQueryEnabled = false;
@@ -111,9 +108,9 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.files->setColumnHidden(m_ui.files->columnCount() - 1, true); // myoid
 
@@ -733,14 +730,10 @@ void biblioteq_grey_literature::populateFiles(void)
 	    QTableWidgetItem *item = 0;
 
 	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) biblioteq_filesize_table_item
+	      item = new biblioteq_filesize_table_item
 		(locale.toString(query.value(i).toLongLong()));
 	    else
-	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString().trimmed());
-
-	    if(!item)
-	      continue;
+	      item = new QTableWidgetItem(query.value(i).toString().trimmed());
 
 	    item->setData
 	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
@@ -1049,15 +1042,11 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader =
-		new(std::nothrow) biblioteq_pdfreader(this);
+	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
-	      if(reader)
-		{
-		  reader->load(data, item1->text());
-		  biblioteq_misc_functions::center(reader, this);
-		  reader->show();
-		}
+	      reader->load(data, item1->text());
+	      biblioteq_misc_functions::center(reader, this);
+	      reader->show();
 	    }
 
 	  QApplication::restoreOverrideCursor();

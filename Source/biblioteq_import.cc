@@ -471,12 +471,7 @@ void biblioteq_import::slotImport(void)
       return;
     }
 
-  QScopedPointer<QProgressDialog> progress;
-
-  progress.reset(new(std::nothrow) QProgressDialog(this));
-
-  if(!progress)
-    return;
+  QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
 
   progress->setLabelText(tr("Importing the CSV file..."));
   progress->setMaximum(0);
