@@ -197,23 +197,16 @@ void biblioteq_borrowers_editor::showUsers(void)
       for(j = 0; j < m_bd.table->columnCount(); j++)
 	if(j == 6 && m_state == biblioteq::EDITABLE)
 	  {
-	    if((dateEdit = new(std::nothrow) QDateEdit()) != 0)
-	      {
-		m_bd.table->setCellWidget(i, j, dateEdit);
-		dateEdit->setDate
-		  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-		dateEdit->setCalendarPopup(true);
-		dateEdit->setEnabled(false);
-	      }
-	    else
-	      qmain->addError(QString(tr("Memory Error")),
-			      QString(tr("Unable to allocate memory for the "
-					 "\"dateEdit\" object. "
-					 "This is a serious problem!")),
-			      QString(""), __FILE__, __LINE__);
+	    dateEdit = new QDateEdit();
+	    m_bd.table->setCellWidget(i, j, dateEdit);
+	    dateEdit->setDate
+	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	    dateEdit->setCalendarPopup(true);
+	    dateEdit->setEnabled(false);
 	  }
-	else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	else
 	  {
+	    item = new QTableWidgetItem();
 	    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 	    if(j == 0)
@@ -224,13 +217,6 @@ void biblioteq_borrowers_editor::showUsers(void)
 
 	    m_bd.table->setItem(i, j, item);
 	  }
-	else
-	  qmain->addError
-	    (QString(tr("Memory Error")),
-	     QString(tr("Unable to allocate memory for the \"item\" "
-			"object. "
-			"This is a serious problem!")),
-	     QString(""), __FILE__, __LINE__);
 
       if(i + 1 <= progress1.maximum())
 	progress1.setValue(i + 1);
