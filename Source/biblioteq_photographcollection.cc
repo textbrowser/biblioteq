@@ -25,34 +25,18 @@ biblioteq_photographcollection::biblioteq_photographcollection
   QMenu *menu1 = 0;
   QMenu *menu2 = 0;
 
-  if((menu1 = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((menu2 = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene3 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_photo_diag = new(std::nothrow) QDialog(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  m_photo_diag = new QDialog(this);
+  menu1 = new QMenu(this);
+  menu2 = new QMenu(this);
+  scene1 = new QGraphicsScene(this);
+  scene2 = new QGraphicsScene(this);
+  scene3 = new QGraphicsScene(this);
   pc.setupUi(this);
   setQMain(this);
   pc.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("photographcollections"));
   pc.thumbnail_item->enableDoubleClickResize(false);
-
-  if((m_scene = new(std::nothrow) biblioteq_bgraphicsscene(pc.
-							   graphicsView)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  m_scene = new biblioteq_bgraphicsscene(pc.graphicsView);
   connect(m_scene,
 	  SIGNAL(selectionChanged(void)),
 	  this,
@@ -78,12 +62,12 @@ biblioteq_photographcollection::biblioteq_photographcollection
 				  photographsPerPage() / 5 * 200 + 15);
 
   pc.thumbnail_item->setReadOnly(true);
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_A),
-			      this,
-			      SLOT(slotSelectAll(void)));
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_A),
+		this,
+		SLOT(slotSelectAll(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_photo_diag->setWindowModality(Qt::WindowModal);
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_photo_diag));
@@ -487,62 +471,53 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
       QMainWindow *mainWindow = 0;
       Ui_photographView ui;
 
-      if((mainWindow = new(std::nothrow) QMainWindow(this)) != 0)
-	{
-	  mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
-	  ui.setupUi(mainWindow);
-	  connect(ui.closeButton,
-		  SIGNAL(clicked(void)),
-		  mainWindow,
-		  SLOT(close(void)));
-	  connect(ui.exportItem,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotExportItem(void)));
-	  connect(ui.next,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotViewNextPhotograph(void)));
-	  connect(ui.previous,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotViewPreviousPhotograph(void)));
-	  connect(ui.rotate_left,
-		  SIGNAL(clicked(void)),
-		  ui.view,
-		  SLOT(slotRotateLeft(void)));
-	  connect(ui.rotate_right,
-		  SIGNAL(clicked(void)),
-		  ui.view,
-		  SLOT(slotRotateRight(void)));
-	  connect(ui.save,
-		  SIGNAL(clicked(void)),
-		  ui.view,
-		  SLOT(slotSave(void)));
-	  connect(ui.view_size,
-		  SIGNAL(currentIndexChanged(const QString &)),
-		  this,
-		  SLOT(slotImageViewSizeChanged(const QString &)));
-	  ui.save->setVisible(m_engWindowTitle.contains("Modify"));
+      mainWindow = new QMainWindow(this);
+      mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
+      ui.setupUi(mainWindow);
+      connect(ui.closeButton,
+	      SIGNAL(clicked(void)),
+	      mainWindow,
+	      SLOT(close(void)));
+      connect(ui.exportItem,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotExportItem(void)));
+      connect(ui.next,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotViewNextPhotograph(void)));
+      connect(ui.previous,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotViewPreviousPhotograph(void)));
+      connect(ui.rotate_left,
+	      SIGNAL(clicked(void)),
+	      ui.view,
+	      SLOT(slotRotateLeft(void)));
+      connect(ui.rotate_right,
+	      SIGNAL(clicked(void)),
+	      ui.view,
+	      SLOT(slotRotateRight(void)));
+      connect(ui.save,
+	      SIGNAL(clicked(void)),
+	      ui.view,
+	      SLOT(slotSave(void)));
+      connect(ui.view_size,
+	      SIGNAL(currentIndexChanged(const QString &)),
+	      this,
+	      SLOT(slotImageViewSizeChanged(const QString &)));
+      ui.save->setVisible(m_engWindowTitle.contains("Modify"));
 
-	  QGraphicsScene *scene = 0;
+      QGraphicsScene *scene = new QGraphicsScene(mainWindow);
 
-	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
-	    {
-	      mainWindow->show();
-	      biblioteq_misc_functions::center(mainWindow, this);
-	      mainWindow->hide();
-	      scene->setProperty("view_size", ui.view->viewport()->size());
-	      ui.view->setScene(scene);
-	      loadPhotographFromItem
-		(scene,
-		 item,
-		 ui.view_size->currentText().remove("%").toInt());
-	      mainWindow->show();
-	    }
-	  else
-	    mainWindow->deleteLater();
-	}
+      mainWindow->show();
+      biblioteq_misc_functions::center(mainWindow, this);
+      mainWindow->hide();
+      scene->setProperty("view_size", ui.view->viewport()->size());
+      ui.view->setScene(scene);
+      loadPhotographFromItem
+	(scene, item, ui.view_size->currentText().remove("%").toInt());
+      mainWindow->show();
     }
 }
 
@@ -881,22 +856,18 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	    image = image.scaled
 	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+	  pixmapItem = new biblioteq_graphicsitempixmap
 	    (QPixmap::fromImage(image), 0);
 
-	  if(pixmapItem)
-	    {
-	      if(rowIdx == 0)
-		pixmapItem->setPos(140 * columnIdx + 15, 15);
-	      else
-		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx);
+	  if(rowIdx == 0)
+	    pixmapItem->setPos(140 * columnIdx + 15, 15);
+	  else
+	    pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx);
 
-	      pixmapItem->setData(0, query.value(1)); // myoid
-	      pixmapItem->setData(2, i); // Next / previous navigation.
-	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
-	      pc.graphicsView->scene()->addItem(pixmapItem);
-	    }
-
+	  pixmapItem->setData(0, query.value(1)); // myoid
+	  pixmapItem->setData(2, i); // Next / previous navigation.
+	  pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+	  pc.graphicsView->scene()->addItem(pixmapItem);
 	  columnIdx += 1;
 
 	  if(columnIdx >= 5)

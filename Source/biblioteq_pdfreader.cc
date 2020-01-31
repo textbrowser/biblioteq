@@ -243,11 +243,7 @@ void biblioteq_pdfreader::prepareContents(void)
 
   for(int i = 1; i <= m_document->numPages(); i++)
     {
-      QListWidgetItem *item = new(std::nothrow) QListWidgetItem
-	(tr("Page %1").arg(i));
-
-      if(!item)
-	continue;
+      QListWidgetItem *item = new QListWidgetItem(tr("Page %1").arg(i));
 
       item->setData(Qt::UserRole, i);
       m_ui.contents->addItem(item);

@@ -132,25 +132,8 @@ void biblioteq_otheroptions::prepareSettings(void)
 	   str == "yyyy/MM/dd"))
 	str = "MM/dd/yyyy";
 
-      QComboBox *comboBox = new(std::nothrow) QComboBox();
-      QTableWidgetItem *item = new(std::nothrow) QTableWidgetItem
-	(list1.at(i));
-
-      if(!comboBox || !item)
-	{
-	  if(comboBox)
-	    comboBox->deleteLater();
-
-	  if(item)
-	    delete item;
-
-	  qmain->addError(QString(tr("Memory Error")),
-			  QString(tr("Unable to allocate memory for "
-				     "\"comboBox\" or \"item\". "
-				     "This is a serious problem!")),
-			  QString(""), __FILE__, __LINE__);
-	  continue;
-	}
+      QComboBox *comboBox = new QComboBox();
+      QTableWidgetItem *item = new QTableWidgetItem(list1.at(i));
 
       comboBox->addItems(QStringList() << "MM/dd/yyyy"
 			               << "MM/dd"
