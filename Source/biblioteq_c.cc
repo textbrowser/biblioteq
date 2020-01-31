@@ -3410,16 +3410,13 @@ void biblioteq::slotOpenPDFFile(void)
     {
       QApplication::processEvents();
 
-      biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(0);
+      biblioteq_pdfreader *reader = new biblioteq_pdfreader(0);
 
-      if(reader)
-	{
-	  QApplication::setOverrideCursor(Qt::WaitCursor);
-	  reader->load(dialog.selectedFiles().value(0));
-	  biblioteq_misc_functions::center(reader, this);
-	  reader->show();
-	  QApplication::restoreOverrideCursor();
-	}
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      reader->load(dialog.selectedFiles().value(0));
+      biblioteq_misc_functions::center(reader, this);
+      reader->show();
+      QApplication::restoreOverrideCursor();
     }
 
   QApplication::processEvents();
@@ -3466,9 +3463,9 @@ void biblioteq::slotPopulateMembersBrowser(void)
   QScopedPointer<QProgressDialog> progress;
 
   if(m_members_diag->isVisible())
-    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
+    progress.reset(new QProgressDialog(m_members_diag));
   else
-    progress.reset(new(std::nothrow) QProgressDialog(this));
+    progress.reset(new QProgressDialog(this));
 
   if(!progress)
     return;
@@ -3670,9 +3667,9 @@ void biblioteq::slotRefreshAdminList(void)
   QScopedPointer<QProgressDialog> progress;
 
   if(m_admin_diag->isVisible())
-    progress.reset(new(std::nothrow) QProgressDialog(m_admin_diag));
+    progress.reset(new QProgressDialog(m_admin_diag));
   else
-    progress.reset(new(std::nothrow) QProgressDialog(this));
+    progress.reset(new QProgressDialog(this));
 
   if(!progress)
     return;
@@ -3896,18 +3893,7 @@ void biblioteq::slotRefreshCustomQuery(void)
 
 	for(j = 0; j < rec.count(); j++)
 	  {
-	    if((item2 = new(std::nothrow) QTreeWidgetItem(item1)) == 0)
-	      {
-		addError(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate "
-				    "memory for the \"item2\" "
-				    "object. "
-				    "This is a serious "
-				    "problem!")), QString(""),
-			 __FILE__, __LINE__);
-		continue;
-	      }
-
+	    item2 = new QTreeWidgetItem(item1);
 	    field = rec.field(rec.fieldName(j));
 	    item2->setText(1, rec.fieldName(j));
 	    item2->setText(2, QVariant::typeToName(field.type()));
@@ -5210,14 +5196,11 @@ void biblioteq::slotShowHistory(void)
   QScopedPointer<QProgressDialog> progress;
 
   if(m_history_diag->isVisible())
-    progress.reset(new(std::nothrow) QProgressDialog(m_history_diag));
+    progress.reset(new QProgressDialog(m_history_diag));
   else if(m_members_diag->isVisible())
-    progress.reset(new(std::nothrow) QProgressDialog(m_members_diag));
+    progress.reset(new QProgressDialog(m_members_diag));
   else
-    progress.reset(new(std::nothrow) QProgressDialog(this));
-
-  if(!progress)
-    return;
+    progress.reset(new QProgressDialog(this));
 
   QSqlQuery query(m_db);
   QString errorstr("");
@@ -5549,17 +5532,9 @@ void biblioteq::slotShowHistory(void)
 	      else
 		str = query.value(j).toString().trimmed();
 
-	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-		{
-		  item->setText(str);
-		  history.table->setItem(i, j, item);
-		}
-	      else
-		addError(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate memory for the "
-				    "\"item\" object. "
-				    "This is a serious problem!")),
-			 QString(""), __FILE__, __LINE__);
+	      item = new QTableWidgetItem();
+	      item->setText(str);
+	      history.table->setItem(i, j, item);
 	    }
 	}
 
@@ -5624,12 +5599,8 @@ void biblioteq::slotShowOtherOptions(void)
 
 void biblioteq::vgSearch(const QString &field, const QString &value)
 {
-  biblioteq_videogame *videogame = new(std::nothrow) biblioteq_videogame
-    (this, "", -1);
+  biblioteq_videogame *videogame = new biblioteq_videogame(this, "", -1);
 
-  if(videogame)
-    {
-      videogame->search(field, value);
-      videogame->deleteLater();
-    }
+  videogame->search(field, value);
+  videogame->deleteLater();
 }
