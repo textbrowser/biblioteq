@@ -301,47 +301,40 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   QApplication::processEvents();
 
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
-    {
-      for(j = 0; j < m_cb.table->columnCount(); j++)
-	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+    for(j = 0; j < m_cb.table->columnCount(); j++)
+      {
+	item = new QTableWidgetItem();
+
+	if(m_showForLending)
+	  item->setFlags(0);
+	else if(j == 1)
+	  item->setFlags
+	    (Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
+	else
+	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+	if(j == 1)
+	  item->setText("");
+	else if(j == 2)
 	  {
 	    if(m_showForLending)
-	      item->setFlags(0);
-	    else if(j == 1)
-	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-			     Qt::ItemIsEditable);
+	      item->setText("0");
 	    else
-	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	    if(j == 1)
-	      item->setText("");
-	    else if(j == 2)
-	      {
-		if(m_showForLending)
-		  item->setText("0");
-		else
-		  item->setText("1");
-	      }
-	    else if(j == 3)
-	      item->setText(m_ioid);
-	    else
-	      item->setText("");
-
-	    m_cb.table->setItem(i, j, item);
+	      item->setText("1");
 	  }
+	else if(j == 3)
+	  item->setText(m_ioid);
 	else
-	  qmain->addError(QString(tr("Memory Error")),
-			  QString(tr("Unable to allocate memory for the "
-				     "\"item\" object. "
-				     "This is a serious problem!")),
-			  QString(""), __FILE__, __LINE__);
+	  item->setText("");
 
-      if(i + 1 <= progress1.maximum())
-	progress1.setValue(i + 1);
+	m_cb.table->setItem(i, j, item);
 
-      progress1.repaint();
-      QApplication::processEvents();
-    }
+	if(i + 1 <= progress1.maximum())
+	  progress1.setValue(i + 1);
+
+	progress1.repaint();
+	QApplication::processEvents();
+      }
 
   progress1.close();
   m_cb.table->setRowCount(i); // Support cancellation.
@@ -839,23 +832,15 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       if(item1 == 0 || item2 == 0)
 	continue;
 
-      if((copy = new(std::nothrow) copy_class(item1->text().trimmed(),
-					      item2->text())) != 0)
-	m_copies.append(copy);
-      else
-	qmain->addError
-	  (QString(tr("Memory Error")),
-	   QString(tr("Unable to allocate memory for the \"copy\" object. "
-		      "This is a serious problem!")),
-	   QString(""), __FILE__, __LINE__);
+      copy = new copy_class(item1->text().trimmed(), item2->text());
+      m_copies.append(copy);
     }
 
   if(saveCopies().isEmpty())
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
       biblioteq_misc_functions::saveQuantity
-	(qmain->getDB(), m_ioid, m_copies.size(),
-	 m_itemType, errorstr);
+	(qmain->getDB(), m_ioid, m_copies.size(), m_itemType, errorstr);
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
