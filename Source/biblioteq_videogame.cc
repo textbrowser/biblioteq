@@ -22,18 +22,10 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = 0;
 
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx, this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  menu = new QMenu(this);
+  scene1 = new QGraphicsScene(this);
+  scene2 = new QGraphicsScene(this);
+  validator1 = new QRegExpValidator(rx, this);
   m_oid = oidArg;
   m_row = rowArg;
   m_isQueryEnabled = false;
@@ -45,9 +37,9 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   setQMain(this);
   vg.publication_date_enabled->setVisible(false);
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(vg.showUserButton, SIGNAL(clicked(void)), this,
@@ -1384,18 +1376,18 @@ void biblioteq_videogame::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       false,
-       vg.quantity->value(),
-       m_oid,
-       vg.quantity,
-       font(),
-       "Video Game",
-       vg.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
+  copyeditor = new biblioteq_copy_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     false,
+     vg.quantity->value(),
+     m_oid,
+     vg.quantity,
+     font(),
+     "Video Game",
+     vg.id->text().trimmed());
+  copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_videogame::slotPrint(void)
@@ -1723,17 +1715,17 @@ void biblioteq_videogame::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       vg.quantity->value(),
-       m_oid,
-       vg.id->text(),
-       font(),
-       "Video Game",
-       state)) != 0)
-    borrowerseditor->showUsers();
+  borrowerseditor = new biblioteq_borrowers_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     vg.quantity->value(),
+     m_oid,
+     vg.id->text(),
+     font(),
+     "Video Game",
+     state);
+  borrowerseditor->showUsers();
 }
 
 void biblioteq_videogame::updateWindow(const int state)
