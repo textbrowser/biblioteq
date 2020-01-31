@@ -295,14 +295,9 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	  {
 	    QListWidgetItem *item = 0;
 
-	    item = new(std::nothrow) QListWidgetItem(list.at(i));
-
-	    if(item)
-	      {
-		item->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
-			       Qt::ItemIsSelectable);
-		listwidget->addItem(item);
-	      }
+	    item = new QListWidgetItem(list.at(i));
+	    item->setFlags
+	      (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	  }
       else if(tablewidget == m_ui.locationsTable)
 	{
@@ -310,54 +305,43 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      QComboBox *item1 = new(std::nothrow) QComboBox();
-	      QTableWidgetItem *item2 = new(std::nothrow) QTableWidgetItem
+	      QComboBox *item1 = new QComboBox();
+	      QStringList list;
+	      QTableWidgetItem *item2 = new QTableWidgetItem
 		(pairList.at(j).second);
 
-	      if(item1 && item2)
-		{
-		  QStringList list;
+	      list << tr("Book")
+		   << tr("DVD")
+		   << tr("Grey Literature")
+		   << tr("Journal")
+		   << tr("Magazine")
+		   << tr("Music CD")
+		   << tr("Photograph Collection")
+		   << tr("Video Game");
+	      item1->addItems(list);
 
-		  list << tr("Book")
-		       << tr("DVD")
-		       << tr("Grey Literature")
-		       << tr("Journal")
-		       << tr("Magazine")
-		       << tr("Music CD")
-		       << tr("Photograph Collection")
-		       << tr("Video Game");
-		  item1->addItems(list);
+	      if(pairList.at(j).first == "Book")
+		item1->setCurrentIndex(0);
+	      else if(pairList.at(j).first == "CD")
+		item1->setCurrentIndex(5);
+	      else if(pairList.at(j).first == "DVD")
+		item1->setCurrentIndex(1);
+	      else if(pairList.at(j).first == "Grey Literature")
+		item1->setCurrentIndex(2);
+	      else if(pairList.at(j).first == "Journal")
+		item1->setCurrentIndex(3);
+	      else if(pairList.at(j).first == "Magazine")
+		item1->setCurrentIndex(4);
+	      else if(pairList.at(j).first == "Photograph Collection")
+		item1->setCurrentIndex(6);
+	      else if(pairList.at(j).first == "Video Game")
+		item1->setCurrentIndex(7);
 
-		  if(pairList.at(j).first == "Book")
-		    item1->setCurrentIndex(0);
-		  else if(pairList.at(j).first == "CD")
-		    item1->setCurrentIndex(5);
-		  else if(pairList.at(j).first == "DVD")
-		    item1->setCurrentIndex(1);
-		  else if(pairList.at(j).first == "Grey Literature")
-		    item1->setCurrentIndex(2);
-		  else if(pairList.at(j).first == "Journal")
-		    item1->setCurrentIndex(3);
-		  else if(pairList.at(j).first == "Magazine")
-		    item1->setCurrentIndex(4);
-		  else if(pairList.at(j).first == "Photograph Collection")
-		    item1->setCurrentIndex(6);
-		  else if(pairList.at(j).first == "Video Game")
-		    item1->setCurrentIndex(7);
-
-		  list.clear();
-		  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
-				  Qt::ItemIsSelectable);
-		  m_ui.locationsTable->setCellWidget(j, 0, item1);
-		  m_ui.locationsTable->setItem(j, 1, item2);
-		}
-	      else
-		{
-		  if(item1)
-		    item1->deleteLater();
-
-		  delete item2;
-		}
+	      list.clear();
+	      item2->setFlags
+		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	      m_ui.locationsTable->setCellWidget(j, 0, item1);
+	      m_ui.locationsTable->setItem(j, 1, item2);
 	    }
 
 	  m_ui.locationsTable->resizeColumnToContents(0);
@@ -474,100 +458,88 @@ void biblioteq_dbenumerations::slotAdd(void)
   if(toolButton == m_ui.addBookBinding)
     {
       list = m_ui.bookBindingsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("Book Binding"));
+      listItem = new QListWidgetItem(tr("Book Binding"));
     }
   else if(toolButton == m_ui.addCdFormat)
     {
       list = m_ui.cdFormatsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("CD Format"));
+      listItem = new QListWidgetItem(tr("CD Format"));
     }
   else if(toolButton == m_ui.addDvdAspectRatio)
     {
       list = m_ui.dvdAspectRatiosList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("DVD Aspect Ratio"));
+      listItem = new QListWidgetItem(tr("DVD Aspect Ratio"));
     }
   else if(toolButton == m_ui.addDvdRating)
     {
       list = m_ui.dvdRatingsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("DVD Rating"));
+      listItem = new QListWidgetItem(tr("DVD Rating"));
     }
   else if(toolButton == m_ui.addDvdRegion)
     {
       list = m_ui.dvdRegionsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("DVD Region"));
+      listItem = new QListWidgetItem(tr("DVD Region"));
     }
   else if(toolButton == m_ui.addGreyLiteratureType)
     {
       list = m_ui.greyLiteratureTypes;
-      listItem = new(std::nothrow) QListWidgetItem(tr("Document Type"));
+      listItem = new QListWidgetItem(tr("Document Type"));
     }
   else if(toolButton == m_ui.addLanguage)
     {
       list = m_ui.languagesList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("Language"));
+      listItem = new QListWidgetItem(tr("Language"));
     }
   else if(toolButton == m_ui.addLocation)
     {
-      QComboBox *item1 = new(std::nothrow) QComboBox();
-      QTableWidgetItem *item2 = new(std::nothrow) QTableWidgetItem();
+      QComboBox *item1 = new QComboBox();
+      QStringList list;
+      QTableWidgetItem *item2 = new QTableWidgetItem();
 
-      if(item1 && item2)
-	{
-	  QStringList list;
-
-	  list << tr("Book")
-	       << tr("DVD")
-	       << tr("Grey Literature")
-	       << tr("Journal")
-	       << tr("Magazine")
-	       << tr("Music CD")
-	       << tr("Photograph Collection")
-	       << tr("Video Game");
-	  item1->addItems(list);
-	  list.clear();
-	  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
-			  Qt::ItemIsSelectable);
-	  m_ui.locationsTable->setRowCount
-	    (m_ui.locationsTable->rowCount() + 1);
-	  m_ui.locationsTable->setCellWidget
-	    (m_ui.locationsTable->rowCount() - 1,
-	     0,
-	     item1);
-	  m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
-				       1,
-				       item2);
-	  m_ui.locationsTable->setCurrentCell
-	    (m_ui.locationsTable->rowCount() - 1,
-	     0);
-	}
-      else
-	{
-	  if(item1)
-	    item1->deleteLater();
-
-	  delete item2;
-	}
+      list << tr("Book")
+	   << tr("DVD")
+	   << tr("Grey Literature")
+	   << tr("Journal")
+	   << tr("Magazine")
+	   << tr("Music CD")
+	   << tr("Photograph Collection")
+	   << tr("Video Game");
+      item1->addItems(list);
+      list.clear();
+      item2->setFlags
+	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
+      m_ui.locationsTable->setCellWidget
+	(m_ui.locationsTable->rowCount() - 1,
+	 0,
+	 item1);
+      m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
+				   1,
+				   item2);
+      m_ui.locationsTable->setCurrentCell
+	(m_ui.locationsTable->rowCount() - 1,
+	 0);
     }
   else if(toolButton == m_ui.addMonetaryUnit)
     {
       list = m_ui.monetaryUnitsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("Monetary Unit"));
+      listItem = new QListWidgetItem(tr("Monetary Unit"));
     }
   else if(toolButton == m_ui.addVideoGamePlatform)
     {
       list = m_ui.videoGamePlatformsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("Video Game Platform"));
+      listItem = new QListWidgetItem(tr("Video Game Platform"));
     }
   else if(toolButton == m_ui.addVideoGameRating)
     {
       list = m_ui.videoGameRatingsList;
-      listItem = new(std::nothrow) QListWidgetItem(tr("Video Game Rating"));
+      listItem = new QListWidgetItem(tr("Video Game Rating"));
     }
 
   if(list && listItem)
     {
-      listItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
-			 Qt::ItemIsSelectable);
+      listItem->setFlags
+	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       list->addItem(listItem);
       list->setCurrentItem(listItem);
       list->editItem(listItem);
