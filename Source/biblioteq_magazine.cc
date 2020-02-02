@@ -36,24 +36,12 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
   QValidator *validator1 = 0;
 
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx, this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_proxyDialog = new(std::nothrow) QDialog(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  menu = new QMenu(this);
+  validator1 = new QRegExpValidator(rx, this);
+  scene1 = new QGraphicsScene(this);
+  scene2 = new QGraphicsScene(this);
+  m_proxyDialog = new QDialog(this);
+  m_sruManager = new QNetworkAccessManager(this);
   m_oid = oidArg;
   m_row = rowArg;
   m_subType = "Magazine";
@@ -89,9 +77,9 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
@@ -245,11 +233,8 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   QActionGroup *actionGroup1 = 0;
   QActionGroup *actionGroup2 = 0;
 
-  if((actionGroup1 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  actionGroup1 = new QActionGroup(this);
+  actionGroup2 = new QActionGroup(this);
 
   QStringList list(qmain->getSRUNames());
   bool found = false;
@@ -442,10 +427,8 @@ void biblioteq_magazine::createSRUDialog(void)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  if((m_sruWorking = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  m_sruWorking = new
+    biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this));
   m_sruWorking->resize(m_sruWorking->sizeHint());
   m_sruWorking->setLabelText(tr("Downloading..."));
   m_sruWorking->setMaximum(0);
@@ -1708,14 +1691,10 @@ void biblioteq_magazine::populateFiles(void)
 	    QTableWidgetItem *item = 0;
 
 	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) biblioteq_filesize_table_item
+	      item = new biblioteq_filesize_table_item
 		(locale.toString(query.value(i).toLongLong()));
 	    else
-	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString().trimmed());
-
-	    if(!item)
-	      continue;
+	      item = new QTableWidgetItem(query.value(i).toString().trimmed());
 
 	    item->setData
 	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
@@ -2058,15 +2037,11 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader =
-		new(std::nothrow) biblioteq_pdfreader(this);
+	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
-	      if(reader)
-		{
-		  reader->load(data, item1->text());
-		  biblioteq_misc_functions::center(reader, this);
-		  reader->show();
-		}
+	      reader->load(data, item1->text());
+	      biblioteq_misc_functions::center(reader, this);
+	      reader->show();
 	    }
 
 	  QApplication::restoreOverrideCursor();
@@ -2993,18 +2968,18 @@ void biblioteq_magazine::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       false,
-       ma.quantity->value(),
-       m_oid,
-       ma.quantity,
-       font(),
-       m_subType,
-       ma.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
+  copyeditor = new biblioteq_copy_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     false,
+     ma.quantity->value(),
+     m_oid,
+     ma.quantity,
+     font(),
+     m_subType,
+     ma.id->text().trimmed());
+  copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_magazine::slotPrint(void)
@@ -3618,10 +3593,7 @@ void biblioteq_magazine::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
-
-  if(!reader)
-    return;
+  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -3658,17 +3630,17 @@ void biblioteq_magazine::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       ma.quantity->value(),
-       m_oid,
-       ma.id->text(),
-       font(),
-       m_subType,
-       state)) != 0)
-    borrowerseditor->showUsers();
+  borrowerseditor = new biblioteq_borrowers_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     ma.quantity->value(),
+     m_oid,
+     ma.id->text(),
+     font(),
+     m_subType,
+     state);
+  borrowerseditor->showUsers();
 }
 
 void biblioteq_magazine::slotZ3950Query(void)
@@ -3693,132 +3665,110 @@ void biblioteq_magazine::slotZ3950Query(void)
       return;
     }
 
-  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this, qmain)) != 0)
+  m_thread = new biblioteq_generic_thread(this, qmain);
+
+  biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
+
+  working.setCancelButton(0);
+  working.setModal(true);
+  working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
+  working.setLabelText(tr("Downloading..."));
+  working.setMaximum(0);
+  working.setMinimum(0);
+  working.resize(working.sizeHint());
+  working.show();
+  working.update();
+  working.repaint();
+  QApplication::processEvents();
+
+  QString recordSyntax("MARC21");
+  bool found = false;
+
+  for(i = 0; i < ma.z3950QueryButton->actions().size(); i++)
+    if(ma.z3950QueryButton->actions().at(i)->isChecked())
+      {
+	found = true;
+	recordSyntax = qmain->getZ3950Hash
+	  (ma.z3950QueryButton->actions().at(i)->text()).
+	  value("RecordSyntax");
+	m_thread->setZ3950Name
+	  (ma.z3950QueryButton->actions().at(i)->text());
+	break;
+      }
+
+  if(!found)
     {
-      biblioteq_item_working_dialog working
-	(qobject_cast<QMainWindow *> (this));
+      recordSyntax = qmain->getZ3950Hash
+	(qmain->getPreferredZ3950Site()).value("RecordSyntax");
+      m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
+    }
 
-      working.setCancelButton(0);
-      working.setModal(true);
-      working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading..."));
-      working.setMaximum(0);
-      working.setMinimum(0);
-      working.resize(working.sizeHint());
-      working.show();
-      working.update();
-      working.repaint();
+  searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
+  m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
+  m_thread->setZ3950SearchString(searchstr);
+  m_thread->start();
+
+  while(!m_thread->isFinished())
+    {
       QApplication::processEvents();
+      m_thread->msleep(100);
+    }
 
-      QString recordSyntax("MARC21");
-      bool found = false;
+  bool canceled = working.wasCanceled(); // QProgressDialog::close()!
 
-      for(i = 0; i < ma.z3950QueryButton->actions().size(); i++)
-	if(ma.z3950QueryButton->actions().at(i)->isChecked())
-	  {
-	    found = true;
-	    recordSyntax = qmain->getZ3950Hash
-	      (ma.z3950QueryButton->actions().at(i)->text()).
-	      value("RecordSyntax");
-	    m_thread->setZ3950Name
-	      (ma.z3950QueryButton->actions().at(i)->text());
-	    break;
-	  }
+  working.close();
+  working.reset(); // Qt 5.5.x adjustment.
 
-      if(!found)
+  if(canceled)
+    {
+      m_thread->deleteLater();
+      return;
+    }
+
+  if((errorstr = m_thread->getErrorStr()).isEmpty())
+    {
+      if(m_thread->getZ3950Results().size() == 1)
 	{
-	  recordSyntax = qmain->getZ3950Hash
-	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
-	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
-	}
+	  if(QMessageBox::question
+	     (this, tr("BiblioteQ: Question"),
+	      tr("Replace existing values with those retrieved "
+		 "from the Z39.50 site?"),
+	      QMessageBox::Yes | QMessageBox::No,
+	      QMessageBox::No) == QMessageBox::Yes)
+	    {
+	      QApplication::processEvents();
+	      list = QString(m_thread->getZ3950Results()[0]).split("\n");
+	      populateDisplayAfterZ3950(list, recordSyntax);
+	      list.clear();
+	    }
 
-      searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
-      m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
-      m_thread->setZ3950SearchString(searchstr);
-      m_thread->start();
-
-      while(!m_thread->isFinished())
-	{
 	  QApplication::processEvents();
-	  m_thread->msleep(100);
 	}
-
-      bool canceled = working.wasCanceled(); // QProgressDialog::close()!
-
-      working.close();
-      working.reset(); // Qt 5.5.x adjustment.
-
-      if(canceled)
+      else if(m_thread->getZ3950Results().size() > 1)
 	{
-	  m_thread->deleteLater();
-	  return;
-	}
+	  for(i = 0; i < m_thread->getZ3950Results().size(); i++)
+	    list.append(m_thread->getZ3950Results()[i]);
 
-      if((errorstr = m_thread->getErrorStr()).isEmpty())
-	{
-	  if(m_thread->getZ3950Results().size() == 1)
-	    {
-	      if(QMessageBox::question
-		 (this, tr("BiblioteQ: Question"),
-		  tr("Replace existing values with those retrieved "
-		     "from the Z39.50 site?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::Yes)
-		{
-		  QApplication::processEvents();
-		  list = QString(m_thread->getZ3950Results()[0]).split("\n");
-		  populateDisplayAfterZ3950(list, recordSyntax);
-		  list.clear();
-		}
+	  /*
+	  ** Display a selection dialog.
+	  */
 
-	      QApplication::processEvents();
-	    }
-	  else if(m_thread->getZ3950Results().size() > 1)
-	    {
-	      for(i = 0; i < m_thread->getZ3950Results().size(); i++)
-		list.append(m_thread->getZ3950Results()[i]);
-
-	      /*
-	      ** Display a selection dialog.
-	      */
-
-	      if((new(std::nothrow)
-		  biblioteq_z3950results(qobject_cast<QWidget *> (this), list,
-					 this, font(), recordSyntax)) == 0)
-		{
-		  qmain->addError
-		    (QString(tr("Memory Error")),
-		     QString(tr("Unable to create a \"dialog\" object "
-				"because of insufficient resources.")),
-		     QString(""),
-		     __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this, tr("BiblioteQ: Memory Error"),
-		     tr("Unable to create a \"dialog\" object "
-			"because of insufficient resources."));
-		  QApplication::processEvents();
-		}
-	    }
-	  else
-	    {
-	      QMessageBox::critical
-		(this, tr("BiblioteQ: Z39.50 Query Error"),
-		 tr("A Z39.50 entry may not yet exist for ") +
-		 ma.id->text() + tr("."));
-	      QApplication::processEvents();
-	    }
+	  new biblioteq_z3950results
+	    (qobject_cast<QWidget *> (this), list, this, font(), recordSyntax);
 	}
       else
-	etype = m_thread->getEType();
-
-      m_thread->deleteLater();
+	{
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Z39.50 Query Error"),
+	     tr("A Z39.50 entry may not yet exist for ") +
+	     ma.id->text() + tr("."));
+	  QApplication::processEvents();
+	}
     }
   else
-    {
-      etype = tr("Memory Error");
-      errorstr = tr("Unable to create a thread because of insufficient "
-		    "resources.");
-    }
+    etype = m_thread->getEType();
+
+  m_thread->deleteLater();
 
   if(!errorstr.isEmpty())
     {
@@ -3867,22 +3817,8 @@ void biblioteq_magazine::sruDownloadFinished(void)
       ** Display a selection dialog. Destroyed on close.
       */
 
-      if((new(std::nothrow) biblioteq_sruresults
-	  (qobject_cast<QWidget *> (this),
-	   list, this, font())) == 0)
-	{
-	  qmain->addError
-	    (QString(tr("Memory Error")),
-	     QString(tr("Unable to create a \"dialog\" object "
-			"because of insufficient resources.")),
-	     QString(""),
-	     __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Memory Error"),
-	     tr("Unable to create a \"dialog\" object "
-		"because of insufficient resources."));
-	  QApplication::processEvents();
-	}
+      new biblioteq_sruresults
+	(qobject_cast<QWidget *> (this), list, this, font());
     }
   else
     {

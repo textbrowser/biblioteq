@@ -22,18 +22,10 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = 0;
 
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  menu = new QMenu(this);
+  validator1 = new QRegExpValidator(rx1, this);
+  scene1 = new QGraphicsScene(this);
+  scene2 = new QGraphicsScene(this);
   m_oid = oidArg;
   m_row = rowArg;
   m_isQueryEnabled = false;
@@ -45,9 +37,9 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   setQMain(this);
   dvd.publication_date_enabled->setVisible(false);
   dvd.release_date->setDisplayFormat(qmain->publicationDateFormat("dvds"));
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,
@@ -1537,18 +1529,18 @@ void biblioteq_dvd::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       false,
-       dvd.quantity->value(),
-       m_oid,
-       dvd.quantity,
-       font(),
-       "DVD",
-       dvd.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
+  copyeditor = new biblioteq_copy_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     false,
+     dvd.quantity->value(),
+     m_oid,
+     dvd.quantity,
+     font(),
+     "DVD",
+     dvd.id->text().trimmed());
+  copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_dvd::slotPrint(void)
@@ -1914,17 +1906,17 @@ void biblioteq_dvd::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       dvd.quantity->value(),
-       m_oid,
-       dvd.id->text(),
-       font(),
-       "DVD",
-       state)) != 0)
-    borrowerseditor->showUsers();
+  borrowerseditor = new biblioteq_borrowers_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     dvd.quantity->value(),
+     m_oid,
+     dvd.id->text(),
+     font(),
+     "DVD",
+     state);
+  borrowerseditor->showUsers();
 }
 
 void biblioteq_dvd::updateWindow(const int state)
