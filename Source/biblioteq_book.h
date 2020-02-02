@@ -87,6 +87,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotSRUDownloadFinished(void);
   void slotSRUError(QNetworkReply::NetworkError error);
   void slotSRUQuery(void);
+  void slotSRUQueryError(const QString &text);
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
   void slotSelectImage(void);
@@ -94,6 +95,9 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotShowUsers(void);
   void slotZ3950Query(void);
   void sruDownloadFinished(void);
+
+ signals:
+  void sruQueryError(const QString &text);
 };
 
 #endif

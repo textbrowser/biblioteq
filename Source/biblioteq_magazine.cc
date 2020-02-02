@@ -153,6 +153,11 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(toggled(bool)),
 	  ma.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
+  connect(this,
+	  SIGNAL(sruQueryError(const QString &)),
+	  this,
+	  SLOT(slotSRUQueryError(const QString &)),
+	  Qt::QueuedConnection);
   ma.id->setCursorPosition(0);
   ma.id->setValidator(validator1);
   ma.resetButton->setMenu(menu);
@@ -3345,16 +3350,10 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
 
       reply->deleteLater();
 
-      QMessageBox::critical
-	(this, tr("BiblioteQ: SRU Query Error"),
-	 tr("A network error (%1) occurred.").arg(error));
+      emit sruQueryError(error);
     }
   else
-    QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
-       tr("A network error (%1) occurred.").arg(error));
-
-  QApplication::processEvents();
+    emit sruQueryError(tr("A network error (%1) occurred.").arg(error));
 }
 
 void biblioteq_magazine::slotSRUQuery(void)
@@ -3497,6 +3496,17 @@ void biblioteq_magazine::slotSRUQuery(void)
     }
 }
 
+void biblioteq_magazine::slotSRUQueryError(const QString &text)
+{
+  if(text.trimmed().isEmpty())
+    return;
+
+  QMessageBox::critical
+    (this, tr("BiblioteQ: SRU Query Error"),
+     tr("A network error (%1) occurred.").arg(text.trimmed()));
+  QApplication::processEvents();
+}
+
 void biblioteq_magazine::slotSRUReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
@@ -3517,10 +3527,8 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
   if(reply)
     reply->deleteLater();
 
-  QMessageBox::critical
-    (this, tr("BiblioteQ: SRU Query Error"),
-     tr("One or more SSL errors occurred. Please verify your settings."));
-  QApplication::processEvents();
+  emit sruQueryError
+    (tr("One or more SSL errors occurred. Please verify your settings."));
 }
 
 void biblioteq_magazine::slotSelectImage(void)
