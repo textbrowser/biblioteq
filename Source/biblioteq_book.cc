@@ -30,24 +30,12 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
 
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_imageManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_proxyDialog = new(std::nothrow) QDialog(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  menu = new QMenu(this);
+  scene1 = new QGraphicsScene(this);
+  scene2 = new QGraphicsScene(this);
+  m_imageManager = new QNetworkAccessManager(this);
+  m_proxyDialog = new QDialog(this);
+  m_sruManager = new QNetworkAccessManager(this);
   ui_p.setupUi(m_proxyDialog);
   m_parentWid = parentArg;
   m_oid = oidArg;
@@ -70,9 +58,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  this,
 	  SLOT(slotShowPDF(void)));
 #endif
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),
@@ -269,11 +257,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   QActionGroup *actionGroup1 = 0;
   QActionGroup *actionGroup2 = 0;
 
-  if((actionGroup1 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  actionGroup1 = new QActionGroup(this);
+  actionGroup2 = new QActionGroup(this);
 
   QStringList list(qmain->getSRUNames());
   bool found = false;
@@ -308,74 +293,55 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   for(int i = 1; i <= 4; i++)
     {
       if(i == 1 || i == 3)
-	action = new(std::nothrow) QAction(tr("&Amazon"), this);
+	action = new QAction(tr("&Amazon"), this);
       else
-	action = new(std::nothrow) QAction(tr("&Open Library"), this);
+	action = new QAction(tr("&Open Library"), this);
 
-      if(action)
+      if(i == 1)
 	{
-	  if(i == 1)
-	    {
-	      action->setProperty("download_type", "amazon_front");
-	      id.dwnldFront->addAction(action);
-	    }
-	  else if(i == 2)
-	    {
-	      action->setProperty("download_type", "open_library_front");
-	      id.dwnldFront->addAction(action);
-	    }
-	  else if(i == 3)
-	    {
-	      action->setProperty("download_type", "amazon_back");
-	      id.dwnldBack->addAction(action);
-	    }
-	  else
-	    {
-	      action->setProperty("download_type", "open_library_back");
-	      id.dwnldBack->addAction(action);
-	    }
-
-	  connect(action,
-		  SIGNAL(triggered(void)),
-		  this,
-		  SLOT(slotDownloadImage(void)));
+	  action->setProperty("download_type", "amazon_front");
+	  id.dwnldFront->addAction(action);
 	}
-    }
+      else if(i == 2)
+	{
+	  action->setProperty("download_type", "open_library_front");
+	  id.dwnldFront->addAction(action);
+	}
+      else if(i == 3)
+	{
+	  action->setProperty("download_type", "amazon_back");
+	  id.dwnldBack->addAction(action);
+	}
+      else
+	{
+	  action->setProperty("download_type", "open_library_back");
+	  id.dwnldBack->addAction(action);
+	}
 
-  action = new(std::nothrow) QAction(tr("All..."), this);
-
-  if(action)
-    {
       connect(action,
 	      SIGNAL(triggered(void)),
 	      this,
-	      SLOT(slotPrint(void)));
-      id.printButton->addAction(action);
+	      SLOT(slotDownloadImage(void)));
     }
 
-  action = new(std::nothrow) QAction
-    (tr("Author, Title, Dewey Class Number..."), this);
-
-  if(action)
-    {
-      connect(action,
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotPrintAuthorTitleDewey(void)));
-      id.printButton->addAction(action);
-    }
-
-  action = new(std::nothrow) QAction
-    (tr("Call Number, Dewey Class Number..."), this);
-
-  if(action)
-    {
-      connect(action,
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotPrintCallDewey(void)));
-      id.printButton->addAction(action);
-    }
+  action = new QAction(tr("All..."), this);
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrint(void)));
+  id.printButton->addAction(action);
+  action = new QAction(tr("Author, Title, Dewey Class Number..."), this);
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrintAuthorTitleDewey(void)));
+  id.printButton->addAction(action);
+  action = new QAction(tr("Call Number, Dewey Class Number..."), this);
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrintCallDewey(void)));
+  id.printButton->addAction(action);
 
   if(id.printButton->actions().isEmpty())
     id.printButton->setPopupMode(QToolButton::MenuButtonPopup);
@@ -460,10 +426,8 @@ biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
 {
   biblioteq_item_working_dialog *dialog = 0;
 
-  if((dialog = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  dialog = new
+    biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this));
   dialog->resize(dialog->sizeHint());
   dialog->setLabelText(tr("Downloading..."));
   dialog->setMaximum(0);
@@ -580,10 +544,8 @@ void biblioteq_book::createSRUDialog(void)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  if((m_sruWorking = new(std::nothrow)
-      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  m_sruWorking = new
+    biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this));
   m_sruWorking->resize(m_sruWorking->sizeHint());
   m_sruWorking->setLabelText(tr("Downloading..."));
   m_sruWorking->setMaximum(0);
@@ -1068,14 +1030,10 @@ void biblioteq_book::populateFiles(void)
 	    QTableWidgetItem *item = 0;
 
 	    if(record.fieldName(i) == "f_s")
-	      item = new(std::nothrow) biblioteq_filesize_table_item
+	      item = new biblioteq_filesize_table_item
 		(locale.toString(query.value(i).toLongLong()));
 	    else
-	      item = new(std::nothrow)
-		QTableWidgetItem(query.value(i).toString().trimmed());
-
-	    if(!item)
-	      continue;
+	      item = new QTableWidgetItem(query.value(i).toString().trimmed());
 
 	    item->setData
 	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
@@ -1654,15 +1612,11 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader =
-		new(std::nothrow) biblioteq_pdfreader(this);
+	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
-	      if(reader)
-		{
-		  reader->load(data, item1->text());
-		  biblioteq_misc_functions::center(reader, this);
-		  reader->show();
-		}
+	      reader->load(data, item1->text());
+	      biblioteq_misc_functions::center(reader, this);
+	      reader->show();
 	    }
 
 	  QApplication::restoreOverrideCursor();
@@ -2614,17 +2568,17 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor_book *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor_book
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       false,
-       id.quantity->value(),
-       m_oid,
-       id.quantity,
-       font(),
-       id.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
+  copyeditor = new biblioteq_copy_editor_book
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     false,
+     id.quantity->value(),
+     m_oid,
+     id.quantity,
+     font(),
+     id.id->text().trimmed());
+  copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_book::slotPrint(void)
@@ -3380,10 +3334,7 @@ void biblioteq_book::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new(std::nothrow) biblioteq_pdfreader(this);
-
-  if(!reader)
-    return;
+  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -3413,17 +3364,17 @@ void biblioteq_book::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       id.quantity->value(),
-       m_oid,
-       id.id->text().trimmed(),
-       font(),
-       "Book",
-       state)) != 0)
-    borrowerseditor->showUsers();
+  borrowerseditor = new biblioteq_borrowers_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     id.quantity->value(),
+     m_oid,
+     id.id->text().trimmed(),
+     font(),
+     "Book",
+     state);
+  borrowerseditor->showUsers();
 }
 
 void biblioteq_book::slotZ3950Query(void)
@@ -3451,277 +3402,269 @@ void biblioteq_book::slotZ3950Query(void)
       return;
     }
 
-  if((m_thread = new(std::nothrow) biblioteq_generic_thread(this, qmain)) != 0)
+  m_thread = new biblioteq_generic_thread(this, qmain);
+
+  biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
+
+  working.setCancelButton(0);
+  working.setModal(true);
+  working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
+  working.setLabelText(tr("Downloading..."));
+  working.setMaximum(0);
+  working.setMinimum(0);
+  working.resize(working.sizeHint());
+  working.show();
+  working.update();
+  working.repaint();
+  QApplication::processEvents();
+
+  QString recordSyntax("MARC21");
+  QStringList isbns;
+  bool isbn10User = false;
+  bool isbn13User = false;
+
+  isbns << id.id->text().trimmed()
+	<< id.isbn13->text().trimmed();
+
+  if(id.id->text().trimmed().length() == 10)
+    isbn10User = true;
+
+  if(id.isbn13->text().trimmed().length() == 13)
+    isbn13User = true;
+
+  if(isbns.at(0).isEmpty())
+    searchstr = QString("@attr 1=7 %1").arg(isbns.at(1));
+  else if(isbns.at(1).isEmpty())
+    searchstr = QString("@attr 1=7 %1").arg(isbns.at(0));
+  else
+    searchstr = QString("@attr 1=7 @or %1 %2").arg(isbns.at(0)).
+      arg(isbns.at(1));
+
+  bool found = false;
+
+  for(i = 0; i < id.z3950QueryButton->actions().size(); i++)
+    if(id.z3950QueryButton->actions().at(i)->isChecked())
+      {
+	found = true;
+	recordSyntax = qmain->getZ3950Hash
+	  (id.z3950QueryButton->actions().at(i)->text()).
+	  value("RecordSyntax");
+	m_thread->setZ3950Name
+	  (id.z3950QueryButton->actions().at(i)->text());
+	break;
+      }
+
+  if(!found)
     {
-      biblioteq_item_working_dialog working
-	(qobject_cast<QMainWindow *> (this));
+      recordSyntax = qmain->getZ3950Hash
+	(qmain->getPreferredZ3950Site()).value("RecordSyntax");
+      m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
+    }
 
-      working.setCancelButton(0);
-      working.setModal(true);
-      working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
-      working.setLabelText(tr("Downloading..."));
-      working.setMaximum(0);
-      working.setMinimum(0);
-      working.resize(working.sizeHint());
-      working.show();
-      working.update();
-      working.repaint();
+  m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
+  m_thread->setZ3950SearchString(searchstr);
+  m_thread->start();
+
+  while(!m_thread->isFinished())
+    {
       QApplication::processEvents();
+      m_thread->msleep(100);
+    }
 
-      QString recordSyntax("MARC21");
-      QStringList isbns;
-      bool isbn10User = false;
-      bool isbn13User = false;
+  bool canceled = working.wasCanceled(); // QProgressDialog::close()!
 
-      isbns << id.id->text().trimmed()
-	    << id.isbn13->text().trimmed();
+  working.close();
+  working.reset(); // Qt 5.5.x adjustment.
 
-      if(id.id->text().trimmed().length() == 10)
-	isbn10User = true;
+  if(canceled)
+    {
+      m_thread->deleteLater();
+      return;
+    }
 
-      if(id.isbn13->text().trimmed().length() == 13)
-	isbn13User = true;
-
-      if(isbns.at(0).isEmpty())
-	searchstr = QString("@attr 1=7 %1").arg(isbns.at(1));
-      else if(isbns.at(1).isEmpty())
-	searchstr = QString("@attr 1=7 %1").arg(isbns.at(0));
-      else
-	searchstr = QString("@attr 1=7 @or %1 %2").arg(isbns.at(0)).
-	  arg(isbns.at(1));
-
-      bool found = false;
-
-      for(i = 0; i < id.z3950QueryButton->actions().size(); i++)
-	if(id.z3950QueryButton->actions().at(i)->isChecked())
-	  {
-	    found = true;
-	    recordSyntax = qmain->getZ3950Hash
-	      (id.z3950QueryButton->actions().at(i)->text()).
-	      value("RecordSyntax");
-	    m_thread->setZ3950Name
-	      (id.z3950QueryButton->actions().at(i)->text());
-	    break;
-	  }
-
-      if(!found)
-	{
-	  recordSyntax = qmain->getZ3950Hash
-	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
-	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
-	}
-
-      m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
-      m_thread->setZ3950SearchString(searchstr);
-      m_thread->start();
-
-      while(!m_thread->isFinished())
+  if((errorstr = m_thread->getErrorStr()).isEmpty() &&
+     !m_thread->getZ3950Results().isEmpty())
+    {
+      if(QMessageBox::question
+	 (this, tr("BiblioteQ: Question"),
+	  tr("Replace existing values with those retrieved "
+	     "from the Z39.50 site?"),
+	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
-	  m_thread->msleep(100);
-	}
 
-      bool canceled = working.wasCanceled(); // QProgressDialog::close()!
+	  biblioteq_marc m;
 
-      working.close();
-      working.reset(); // Qt 5.5.x adjustment.
+	  if(recordSyntax == "MARC21")
+	    m.initialize
+	      (biblioteq_marc::BOOK, biblioteq_marc::Z3950,
+	       biblioteq_marc::MARC21);
+	  else
+	    m.initialize(biblioteq_marc::BOOK, biblioteq_marc::Z3950,
+			 biblioteq_marc::UNIMARC);
 
-      if(canceled)
-	{
-	  m_thread->deleteLater();
-	  return;
-	}
+	  m.setData(m_thread->getZ3950Results()[0]);
+	  list = QString(m_thread->getZ3950Results()[0]).split("\n");
+	  id.edition->setCurrentIndex(0);
+	  id.edition->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
+	  id.marc_tags->setPlainText
+	    (m_thread->getZ3950Results()[0].trimmed());
+	  biblioteq_misc_functions::highlightWidget
+	    (id.marc_tags->viewport(), QColor(162, 205, 90));
 
-      if((errorstr = m_thread->getErrorStr()).isEmpty() &&
-	 !m_thread->getZ3950Results().isEmpty())
-	{
-	  if(QMessageBox::question
-	     (this, tr("BiblioteQ: Question"),
-	      tr("Replace existing values with those retrieved "
-		 "from the Z39.50 site?"),
-	      QMessageBox::Yes | QMessageBox::No,
-	      QMessageBox::No) == QMessageBox::Yes)
+	  for(i = 0; i < list.size(); i++)
+	    if(list[i].startsWith("100 ") ||
+	       list[i].startsWith("700 "))
+	      id.author->clear();
+	    else if(list[i].startsWith("260 ") ||
+		    list[i].startsWith("264 "))
+	      id.place->clear();
+	    else if(list[i].startsWith("650 "))
+	      id.category->clear();
+
+	  str = m.author();
+
+	  if(!str.isEmpty())
 	    {
-	      QApplication::processEvents();
-
-	      biblioteq_marc m;
-
-	      if(recordSyntax == "MARC21")
-		m.initialize
-		  (biblioteq_marc::BOOK, biblioteq_marc::Z3950,
-		   biblioteq_marc::MARC21);
-	      else
-		m.initialize(biblioteq_marc::BOOK, biblioteq_marc::Z3950,
-			     biblioteq_marc::UNIMARC);
-
-	      m.setData(m_thread->getZ3950Results()[0]);
-	      list = QString(m_thread->getZ3950Results()[0]).split("\n");
-	      id.edition->setCurrentIndex(0);
-	      id.edition->setStyleSheet
-		("background-color: rgb(162, 205, 90)");
-	      id.marc_tags->setPlainText
-		(m_thread->getZ3950Results()[0].trimmed());
+	      id.author->setPlainText(str);
 	      biblioteq_misc_functions::highlightWidget
-		(id.marc_tags->viewport(), QColor(162, 205, 90));
-
-	      for(i = 0; i < list.size(); i++)
-		if(list[i].startsWith("100 ") ||
-		   list[i].startsWith("700 "))
-		  id.author->clear();
-		else if(list[i].startsWith("260 ") ||
-			list[i].startsWith("264 "))
-		  id.place->clear();
-		else if(list[i].startsWith("650 "))
-		  id.category->clear();
-
-	      str = m.author();
-
-	      if(!str.isEmpty())
-		{
-		  id.author->setPlainText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.author->viewport(), QColor(162, 205, 90));
-		}
-
-	      str = m.binding();
-
-	      if(id.binding->findText(str, Qt::MatchFixedString) > -1)
-		id.binding->setCurrentIndex
-		  (id.binding->findText(str, Qt::MatchFixedString));
-
-	      id.binding->setStyleSheet
-		("background-color: rgb(162, 205, 90)");
-	      str = m.callnum();
-
-	      if(!str.isEmpty())
-		{
-		  id.callnum->setText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.callnum, QColor(162, 205, 90));
-		}
-
-	      str = m.category();
-
-	      if(!str.isEmpty())
-		{
-		  id.category->setPlainText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.category->viewport(),
-		     QColor(162, 205, 90));
-		}
-
-	      str = m.description();
-
-	      if(!str.isEmpty())
-		{
-		  id.description->setPlainText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.description->viewport(), QColor(162, 205, 90));
-		}
-
-	      str = m.deweynum();
-
-	      if(!str.isEmpty())
-		{
-		  id.deweynum->setText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.deweynum, QColor(162, 205, 90));
-		}
-
-	      str = m.edition();
-
-	      if(id.edition->findText(str) > -1)
-		id.edition->setCurrentIndex
-		  (id.edition->findText(str));
-	      else
-		id.edition->setCurrentIndex(0);
-
-	      str = m.isbn10();
-
-	      if(!isbn10User && !str.isEmpty())
-		{
-		  id.id->setText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.id, QColor(162, 205, 90));
-		}
-
-	      str = m.isbn13();
-
-	      if(!isbn13User && !str.isEmpty())
-		{
-		  id.isbn13->setText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.isbn13, QColor(162, 205, 90));
-		}
-
-	      str = m.lcnum();
-
-	      if(!str.isEmpty())
-		{
-		  id.lcnum->setText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.lcnum, QColor(162, 205, 90));
-		}
-
-	      str = m.place();
-
-	      if(!str.isEmpty())
-		{
-		  id.place->setPlainText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.place->viewport(), QColor(162, 205, 90));
-		}
-
-	      if(!m.publicationDate().isNull())
-		{
-		  id.publication_date->setDate
-		    (m.publicationDate());
-		  id.publication_date->setStyleSheet
-		    ("background-color: rgb(162, 205, 90)");
-		}
-
-	      str = m.publisher();
-
-	      if(!str.isEmpty())
-		{
-		  id.publisher->setPlainText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.publisher->viewport(), QColor(162, 205, 90));
-		}
-
-	      str = m.title();
-
-	      if(!str.isEmpty())
-		{
-		  id.title->setText(str);
-		  biblioteq_misc_functions::highlightWidget
-		    (id.title, QColor(162, 205, 90));
-		}
-
-	      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-		textfield->setCursorPosition(0);
+		(id.author->viewport(), QColor(162, 205, 90));
 	    }
 
-	  QApplication::processEvents();
-	}
-      else if(errorstr.isEmpty() && m_thread->getZ3950Results().isEmpty())
-	{
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Z39.50 Query Error"),
-	     tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
-	  QApplication::processEvents();
-	}
-      else
-	etype = m_thread->getEType();
+	  str = m.binding();
 
-      m_thread->deleteLater();
+	  if(id.binding->findText(str, Qt::MatchFixedString) > -1)
+	    id.binding->setCurrentIndex
+	      (id.binding->findText(str, Qt::MatchFixedString));
+
+	  id.binding->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
+	  str = m.callnum();
+
+	  if(!str.isEmpty())
+	    {
+	      id.callnum->setText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.callnum, QColor(162, 205, 90));
+	    }
+
+	  str = m.category();
+
+	  if(!str.isEmpty())
+	    {
+	      id.category->setPlainText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.category->viewport(),
+		 QColor(162, 205, 90));
+	    }
+
+	  str = m.description();
+
+	  if(!str.isEmpty())
+	    {
+	      id.description->setPlainText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.description->viewport(), QColor(162, 205, 90));
+	    }
+
+	  str = m.deweynum();
+
+	  if(!str.isEmpty())
+	    {
+	      id.deweynum->setText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.deweynum, QColor(162, 205, 90));
+	    }
+
+	  str = m.edition();
+
+	  if(id.edition->findText(str) > -1)
+	    id.edition->setCurrentIndex
+	      (id.edition->findText(str));
+	  else
+	    id.edition->setCurrentIndex(0);
+
+	  str = m.isbn10();
+
+	  if(!isbn10User && !str.isEmpty())
+	    {
+	      id.id->setText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.id, QColor(162, 205, 90));
+	    }
+
+	  str = m.isbn13();
+
+	  if(!isbn13User && !str.isEmpty())
+	    {
+	      id.isbn13->setText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.isbn13, QColor(162, 205, 90));
+	    }
+
+	  str = m.lcnum();
+
+	  if(!str.isEmpty())
+	    {
+	      id.lcnum->setText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.lcnum, QColor(162, 205, 90));
+	    }
+
+	  str = m.place();
+
+	  if(!str.isEmpty())
+	    {
+	      id.place->setPlainText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.place->viewport(), QColor(162, 205, 90));
+	    }
+
+	  if(!m.publicationDate().isNull())
+	    {
+	      id.publication_date->setDate
+		(m.publicationDate());
+	      id.publication_date->setStyleSheet
+		("background-color: rgb(162, 205, 90)");
+	    }
+
+	  str = m.publisher();
+
+	  if(!str.isEmpty())
+	    {
+	      id.publisher->setPlainText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.publisher->viewport(), QColor(162, 205, 90));
+	    }
+
+	  str = m.title();
+
+	  if(!str.isEmpty())
+	    {
+	      id.title->setText(str);
+	      biblioteq_misc_functions::highlightWidget
+		(id.title, QColor(162, 205, 90));
+	    }
+
+	  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+	    textfield->setCursorPosition(0);
+	}
+
+      QApplication::processEvents();
+    }
+  else if(errorstr.isEmpty() && m_thread->getZ3950Results().isEmpty())
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	 tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
+      QApplication::processEvents();
     }
   else
-    {
-      etype = tr("Memory Error");
-      errorstr = tr("Unable to create a thread due to "
-		    "insufficient resources.");
-    }
+    etype = m_thread->getEType();
+
+  m_thread->deleteLater();
 
   if(!errorstr.isEmpty())
     {
