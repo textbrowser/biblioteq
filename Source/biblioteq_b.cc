@@ -3279,18 +3279,18 @@ int biblioteq::populateTable(const int search_type_arg,
 		{
 		  if(record.fieldName(j).endsWith("price"))
 		    {
-		      item = new(std::nothrow) biblioteq_numeric_table_item
+		      item = new biblioteq_numeric_table_item
 			(query.value(j).toDouble());
 		      str = QString::number(query.value(j).toDouble(), 'f', 2);
 		    }
 		  else
-		    item = new(std::nothrow) biblioteq_numeric_table_item
+		    item = new biblioteq_numeric_table_item
 		      (query.value(j).toInt());
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
 		  str = query.value(j).toString();
-		  item = new(std::nothrow) biblioteq_callnum_table_item(str);
+		  item = new biblioteq_callnum_table_item(str);
 		}
 	      else if(record.fieldName(j).endsWith("front_cover") ||
 		      record.fieldName(j).endsWith("image_scaled"))
@@ -3319,22 +3319,18 @@ int biblioteq::populateTable(const int search_type_arg,
 		      (126, 187, Qt::KeepAspectRatio,
 		       Qt::SmoothTransformation);
 
-		  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+		  pixmapItem = new biblioteq_graphicsitempixmap
 		    (QPixmap::fromImage(image), 0);
 
-		  if(pixmapItem)
-		    {
-		      if(iconTableRowIdx == 0)
-			pixmapItem->setPos(140 * iconTableColumnIdx, 15);
-		      else
-			pixmapItem->setPos(140 * iconTableColumnIdx,
-					   200 * iconTableRowIdx + 15);
+		  if(iconTableRowIdx == 0)
+		    pixmapItem->setPos(140 * iconTableColumnIdx, 15);
+		  else
+		    pixmapItem->setPos(140 * iconTableColumnIdx,
+				       200 * iconTableRowIdx + 15);
 
-		      pixmapItem->setFlag
-			(QGraphicsItem::ItemIsSelectable, true);
-		      ui.graphicsView->scene()->addItem(pixmapItem);
-		    }
-
+		  pixmapItem->setFlag
+		    (QGraphicsItem::ItemIsSelectable, true);
+		  ui.graphicsView->scene()->addItem(pixmapItem);
 		  iconTableColumnIdx += 1;
 
 		  if(iconTableColumnIdx >= 5)
@@ -3344,7 +3340,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		    }
 		}
 	      else
-		item = new(std::nothrow) QTableWidgetItem();
+		item = new QTableWidgetItem();
 
 	      if(item != 0)
 		{
@@ -3371,15 +3367,6 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(record.fieldName(j).endsWith("myoid"))
 		    updateRows(str, i, itemType);
 		}
-	      else if(!record.fieldName(j).endsWith("front_cover") &&
-		      !record.fieldName(j).endsWith("image_scaled"))
-		addError(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate "
-				    "memory for the \"item\" "
-				    "object. "
-				    "This is a serious "
-				    "problem!")), QString(""),
-			 __FILE__, __LINE__);
 	    }
 
 	  if(first)
@@ -3491,10 +3478,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 void biblioteq::preparePhotographsPerPageMenu(void)
 {
-  QActionGroup *group = 0;
-
-  if((group = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
+  QActionGroup *group = new QActionGroup(this);
 
   ui.menuPhotographs_per_Page->clear();
 
@@ -3616,18 +3600,13 @@ void biblioteq::slotBookSearch(void)
 
   if(!book)
     {
-      book = new(std::nothrow) biblioteq_book(this, "search", -1);
-
-      if(book)
-	book->search();
+      book = new biblioteq_book(this, "search", -1);
+      book->search();
     }
 
-  if(book)
-    {
-      book->showNormal();
-      book->activateWindow();
-      book->raise();
-    }
+  book->showNormal();
+  book->activateWindow();
+  book->raise();
 }
 
 void biblioteq::slotCDSearch(void)
@@ -3647,18 +3626,13 @@ void biblioteq::slotCDSearch(void)
 
   if(!cd)
     {
-      cd = new(std::nothrow) biblioteq_cd(this, "search", -1);
-
-      if(cd)
-	cd->search();
+      cd = new biblioteq_cd(this, "search", -1);
+      cd->search();
     }
 
-  if(cd)
-    {
-      cd->showNormal();
-      cd->activateWindow();
-      cd->raise();
-    }
+  cd->showNormal();
+  cd->activateWindow();
+  cd->raise();
 }
 
 void biblioteq::slotDVDSearch(void)
@@ -3678,18 +3652,13 @@ void biblioteq::slotDVDSearch(void)
 
   if(!dvd)
     {
-      dvd = new(std::nothrow) biblioteq_dvd(this, "search", -1);
-
-      if(dvd)
-	dvd->search();
+      dvd = new biblioteq_dvd(this, "search", -1);
+      dvd->search();
     }
 
-  if(dvd)
-    {
-      dvd->showNormal();
-      dvd->activateWindow();
-      dvd->raise();
-    }
+  dvd->showNormal();
+  dvd->activateWindow();
+  dvd->raise();
 }
 
 void biblioteq::slotJournSearch(void)
@@ -3709,18 +3678,13 @@ void biblioteq::slotJournSearch(void)
 
   if(!journal)
     {
-      journal = new(std::nothrow) biblioteq_journal(this, "search", -1);
-
-      if(journal)
-	journal->search();
+      journal = new biblioteq_journal(this, "search", -1);
+      journal->search();
     }
 
-  if(journal)
-    {
-      journal->showNormal();
-      journal->activateWindow();
-      journal->raise();
-    }
+  journal->showNormal();
+  journal->activateWindow();
+  journal->raise();
 }
 
 void biblioteq::slotMagSearch(void)
@@ -3745,19 +3709,13 @@ void biblioteq::slotMagSearch(void)
 
   if(!magazine)
     {
-      magazine = new(std::nothrow) biblioteq_magazine
-	(this, "search", -1, "magazine");
-
-      if(magazine)
-	magazine->search();
+      magazine = new biblioteq_magazine(this, "search", -1, "magazine");
+      magazine->search();
     }
 
-  if(magazine)
-    {
-      magazine->showNormal();
-      magazine->activateWindow();
-      magazine->raise();
-    }
+  magazine->showNormal();
+  magazine->activateWindow();
+  magazine->raise();
 }
 
 void biblioteq::slotPhotographSearch(void)
@@ -3778,19 +3736,13 @@ void biblioteq::slotPhotographSearch(void)
 
   if(!photograph)
     {
-      photograph = new(std::nothrow) biblioteq_photographcollection
-	(this, "search", -1);
-
-      if(photograph)
-	photograph->search();
+      photograph = new biblioteq_photographcollection(this, "search", -1);
+      photograph->search();
     }
 
-  if(photograph)
-    {
-      photograph->showNormal();
-      photograph->activateWindow();
-      photograph->raise();
-    }
+  photograph->showNormal();
+  photograph->activateWindow();
+  photograph->raise();
 }
 
 void biblioteq::slotPhotographsPerPageChanged(void)
@@ -4560,19 +4512,13 @@ void biblioteq::slotVideoGameSearch(void)
 
   if(!videogame)
     {
-      videogame = new(std::nothrow) biblioteq_videogame
-	(this, "search", -1);
-
-      if(videogame)
-	videogame->search();
+      videogame = new biblioteq_videogame(this, "search", -1);
+      videogame->search();
     }
 
-  if(videogame)
-    {
-      videogame->showNormal();
-      videogame->activateWindow();
-      videogame->raise();
-    }
+  videogame->showNormal();
+  videogame->activateWindow();
+  videogame->raise();
 }
 
 void biblioteq::slotViewFullOrNormalScreen(void)
