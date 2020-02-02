@@ -22,21 +22,11 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = 0;
 
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_tracks_diag = new(std::nothrow) QDialog(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  menu = new QMenu(this);
+  m_tracks_diag = new QDialog(this);
+  validator1 = new QRegExpValidator(rx1, this);
+  scene1 = new QGraphicsScene(this);
+  scene2 = new QGraphicsScene(this);
   m_oid = oidArg;
   m_row = rowArg;
   m_isQueryEnabled = false;
@@ -56,9 +46,9 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 #else
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
-  new(std::nothrow) QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
-			      this,
-			      SLOT(slotGo(void)));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
@@ -1572,60 +1562,31 @@ void biblioteq_cd::slotInsertTrack(void)
 
       if(i == 0)
 	{
-	  if((comboBox = new(std::nothrow) QComboBox()) != 0)
-	    {
-	      trd.table->setCellWidget(trow, i, comboBox);
-	      comboBox->addItems(list);
-	    }
-	  else
-	    qmain->addError(QString(tr("Memory Error")),
-			    QString(tr("Unable to allocate memory for the "
-				       "\"comboBox\" object. "
-				       "This is a serious problem!")),
-			    QString(""), __FILE__, __LINE__);
+	  comboBox = new QComboBox();
+	  trd.table->setCellWidget(trow, i, comboBox);
+	  comboBox->addItems(list);
 	}
       else if(i == 1)
 	{
-	  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
-	    {
-	      trd.table->setCellWidget(trow, i, trackEdit);
-	      trackEdit->setMinimum(1);
-	      trackEdit->setValue(trd.table->rowCount());
-	    }
-	  else
-	    qmain->addError(QString(tr("Memory Error")),
-			    QString(tr("Unable to allocate memory for the "
-				       "\"trackEdit\" object. "
-				       "This is a serious problem!")),
-			    QString(""), __FILE__, __LINE__);
+	  trackEdit = new QSpinBox();
+	  trd.table->setCellWidget(trow, i, trackEdit);
+	  trackEdit->setMinimum(1);
+	  trackEdit->setValue(trd.table->rowCount());
 	}
       else if(i == 3)
 	{
-	  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
-	    {
-	      trd.table->setCellWidget(trow, i, timeEdit);
-	      timeEdit->setDisplayFormat("hh:mm:ss");
-	    }
-	  else
-	    qmain->addError(QString(tr("Memory Error")),
-			    QString(tr("Unable to allocate memory for the "
-				       "\"timeEdit\" object. "
-				       "This is a serious problem!")),
-			    QString(""), __FILE__, __LINE__);
+	  timeEdit = new QTimeEdit();
+	  trd.table->setCellWidget(trow, i, timeEdit);
+	  timeEdit->setDisplayFormat("hh:mm:ss");
 	}
-      else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+      else
 	{
+	  item = new QTableWidgetItem();
 	  item->setText(str);
 	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 			 Qt::ItemIsEditable);
 	  trd.table->setItem(trow, i, item);
 	}
-      else
-	qmain->addError(QString(tr("Memory Error")),
-			QString(tr("Unable to allocate memory for the "
-				   "\"item\" object. "
-				   "This is a serious problem!")),
-			QString(""), __FILE__, __LINE__);
     }
 
   list.clear();
@@ -1639,18 +1600,18 @@ void biblioteq_cd::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) biblioteq_copy_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       false,
-       cd.quantity->value(),
-       m_oid,
-       cd.quantity,
-       font(),
-       "CD",
-       cd.id->text().trimmed())) != 0)
-    copyeditor->populateCopiesEditor();
+  copyeditor = new biblioteq_copy_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     false,
+     cd.quantity->value(),
+     m_oid,
+     cd.quantity,
+     font(),
+     "CD",
+     cd.id->text().trimmed());
+  copyeditor->populateCopiesEditor();
 }
 
 void biblioteq_cd::slotPopulateTracksBrowser(void)
@@ -1761,65 +1722,33 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
 	      if(j == 0)
 		{
-		  if((comboBox = new(std::nothrow) QComboBox()) != 0)
-		    {
-		      trd.table->setCellWidget(i, j, comboBox);
-		      comboBox->addItems(comboBoxList);
-		      comboBox->setCurrentIndex(comboBox->findText(str));
-		    }
-		  else
-		    qmain->addError
-		      (QString(tr("Memory Error")),
-		       QString(tr("Unable to allocate memory for the "
-				  "\"comboBox\" object. "
-				  "This is a serious problem!")),
-		       QString(""), __FILE__, __LINE__);
+		  comboBox = new QComboBox();
+		  trd.table->setCellWidget(i, j, comboBox);
+		  comboBox->addItems(comboBoxList);
+		  comboBox->setCurrentIndex(comboBox->findText(str));
 		}
 	      else if(j == 1)
 		{
-		  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
-		    {
-		      trd.table->setCellWidget(i, j, trackEdit);
-		      trackEdit->setMinimum(1);
-		      trackEdit->setValue(str.toInt());
-		    }
-		  else
-		    qmain->addError
-		      (QString(tr("Memory Error")),
-		       QString(tr("Unable to allocate memory for the "
-				  "\"trackEdit\" object. "
-				  "This is a serious problem!")),
-		       QString(""), __FILE__, __LINE__);
+		  trackEdit = new QSpinBox();
+		  trd.table->setCellWidget(i, j, trackEdit);
+		  trackEdit->setMinimum(1);
+		  trackEdit->setValue(str.toInt());
 		}
 	      else if(j == 3)
 		{
-		  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
-		    {
-		      trd.table->setCellWidget(i, j, timeEdit);
-		      timeEdit->setDisplayFormat("hh:mm:ss");
-		      timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
-		    }
-		  else
-		    qmain->addError
-		      (QString(tr("Memory Error")),
-		       QString(tr("Unable to allocate memory for the "
-				  "\"timeEdit\" object. "
-				  "This is a serious problem!")),
-		       QString(""), __FILE__, __LINE__);
+		  timeEdit = new QTimeEdit();
+		  trd.table->setCellWidget(i, j, timeEdit);
+		  timeEdit->setDisplayFormat("hh:mm:ss");
+		  timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
 		}
-	      else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	      else
 		{
+		  item = new QTableWidgetItem();
 		  item->setText(str);
 		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 				 Qt::ItemIsEditable);
 		  trd.table->setItem(i, j, item);
 		}
-	      else
-		qmain->addError(QString(tr("Memory Error")),
-				QString(tr("Unable to allocate memory for the "
-					   "\"item\" object. "
-					   "This is a serious problem!")),
-				QString(""), __FILE__, __LINE__);
 	    }
 	}
 
@@ -2330,17 +2259,17 @@ void biblioteq_cd::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  if((borrowerseditor = new(std::nothrow) biblioteq_borrowers_editor
-      (qobject_cast<QWidget *> (this),
-       qmain,
-       static_cast<biblioteq_item *> (this),
-       cd.quantity->value(),
-       m_oid,
-       cd.id->text(),
-       font(),
-       "CD",
-       state)) != 0)
-    borrowerseditor->showUsers();
+  borrowerseditor = new biblioteq_borrowers_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     cd.quantity->value(),
+     m_oid,
+     cd.id->text(),
+     font(),
+     "CD",
+     state);
+  borrowerseditor->showUsers();
 }
 
 void biblioteq_cd::updateWindow(const int state)
