@@ -675,24 +675,18 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 void biblioteq::bookSearch(const QString &field, const QString &value)
 {
-  biblioteq_book *book = new(std::nothrow) biblioteq_book(this, "", -1);
+  biblioteq_book *book = new biblioteq_book(this, "", -1);
 
-  if(book)
-    {
-      book->search(field, value);
-      book->deleteLater();
-    }
+  book->search(field, value);
+  book->deleteLater();
 }
 
 void biblioteq::cdSearch(const QString &field, const QString &value)
 {
-  biblioteq_cd *cd = new(std::nothrow) biblioteq_cd(this, "", -1);
+  biblioteq_cd *cd = new biblioteq_cd(this, "", -1);
 
-  if(cd)
-    {
-      cd->search(field, value);
-      cd->deleteLater();
-    }
+  cd->search(field, value);
+  cd->deleteLater();
 }
 
 void biblioteq::deleteItem(const QString &oid, const QString &itemType)
