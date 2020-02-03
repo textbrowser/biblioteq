@@ -24,10 +24,10 @@ rm -fr pgsql
 
 # SQLite Binaries
 
-sqlite=sqlite-dll-win32-x86-3300100.zip
+sqlite=sqlite-dll-win32-x86-3310100.zip
 
 rm -f $sqlite
-wget --progress=bar https://sqlite.org/2019/$sqlite
+wget --progress=bar https://sqlite.org/2020/$sqlite
 unzip -o $sqlite
 mv sqlite3.def sqlite3.dll Libraries.win32/sqlite3/.
 chmod +r,+w,-x Libraries.win32/sqlite3/*.dll
@@ -35,14 +35,14 @@ rm -f $sqlite
 
 # SQLite Source
 
-sqlite=sqlite-amalgamation-3300100.zip
+sqlite=sqlite-amalgamation-3310100.zip
 
 rm -f $sqlite
-wget --progress=bar https://sqlite.org/2019/$sqlite
+wget --progress=bar https://sqlite.org/2020/$sqlite
 unzip -o $sqlite
 rm -f $sqlite
 
-sqlite=sqlite-amalgamation-3300100
+sqlite=sqlite-amalgamation-3310100
 
 mv $sqlite/*.h Include.win32/sqlite3/.
 rm -fr $sqlite
