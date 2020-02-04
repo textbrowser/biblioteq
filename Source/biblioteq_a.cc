@@ -79,10 +79,9 @@ int main(int argc, char *argv[])
 {
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  QMacStyle *style = new(std::nothrow) QMacStyle();
+  QMacStyle *style = new QMacStyle();
 
-  if(style)
-    QApplication::setStyle(style);
+  QApplication::setStyle(style);
 #endif
 #endif
 
@@ -140,12 +139,8 @@ int main(int argc, char *argv[])
 	  settings.remove(settings.allKeys().at(i));
     }
 
-  if((biblioteq::s_qtTranslator = new(std::nothrow) QTranslator(0)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((biblioteq::s_appTranslator = new(std::nothrow) QTranslator(0)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  biblioteq::s_qtTranslator = new QTranslator(0);
+  biblioteq::s_appTranslator = new QTranslator(0);
   biblioteq::s_locale = settings.value("locale").toString();
 
   if(!(biblioteq::s_locale == "ar_JO" ||
@@ -226,55 +221,22 @@ biblioteq::biblioteq(void):QMainWindow()
   m_lastSearchType = POPULATE_ALL;
   m_previousTypeFilter = "";
   m_status_bar_label = 0;
-
-  if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_menuCategoryActionGroup = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-  else
-    m_menuCategoryActionGroup->setExclusive(true);
-
-  if((m_otheroptions = new(std::nothrow) biblioteq_otheroptions(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_pass_diag = new(std::nothrow) QDialog(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_all_diag = new(std::nothrow) QMainWindow()) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_admin_diag = new(std::nothrow) QMainWindow()) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_members_diag = new(std::nothrow) QMainWindow()) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_history_diag = new(std::nothrow) QMainWindow()) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_customquery_diag = new(std::nothrow) QMainWindow()) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((userinfo_diag =
-      new(std::nothrow) userinfo_diag_class(m_members_diag)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_error_diag = new(std::nothrow) QMainWindow()) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((m_import = new(std::nothrow) biblioteq_import(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((menu1 = new(std::nothrow) QMenu(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
+  m_branch_diag = new QDialog(this);
+  m_menuCategoryActionGroup = new QActionGroup(this);
+  m_menuCategoryActionGroup->setExclusive(true);
+  m_otheroptions = new biblioteq_otheroptions(this);
+  m_pass_diag = new QDialog(this);
+  m_all_diag = new QMainWindow();
+  m_admin_diag = new QMainWindow();
+  m_members_diag = new QMainWindow();
+  m_history_diag = new QMainWindow();
+  m_customquery_diag = new QMainWindow();
+  userinfo_diag = new userinfo_diag_class(m_members_diag);
+  m_error_diag = new QMainWindow();
+  db_enumerations = new biblioteq_dbenumerations(this);
+  m_configToolMenu = new QMenu(this);
+  m_import = new biblioteq_import(this);
+  menu1 = new QMenu(this);
   m_configToolMenu->setTearOffEnabled(true);
   m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
   m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
@@ -374,11 +336,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotResetAllSearch(void)));
 
-  biblioteq_bgraphicsscene *scene = 0;
-
-  if((scene = new(std::nothrow)
-      biblioteq_bgraphicsscene(ui.graphicsView)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
+  biblioteq_bgraphicsscene *scene = new
+    biblioteq_bgraphicsscene(ui.graphicsView);
 
   connect(scene,
 	  SIGNAL(selectionChanged(void)),
@@ -736,8 +695,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QActionGroup *group1 = 0;
   int end = 21;
 
-  if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
+  group1 = new QActionGroup(this);
 
   for(int i = 1; i <= end; i++)
     {
@@ -775,9 +733,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QAction *action = 0;
   QActionGroup *group2 = 0;
 
-  if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
+  group2 = new QActionGroup(this);
   group2->setObjectName("ViewModeMenu");
   group2->setExclusive(true);
   (action = group2->addAction(tr("Icons Mode")))->setCheckable(true);
@@ -796,10 +752,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotChangeView(bool)));
   ui.menu_View->addAction(action);
 
-  QActionGroup *group3 = 0;
-
-  if((group3 = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
+  QActionGroup *group3 = new QActionGroup(this);
 
   group3->setExclusive(true);
   (action = group3->addAction(tr("&Arabic")))->setCheckable(true);
@@ -848,10 +801,7 @@ biblioteq::biblioteq(void):QMainWindow()
     }
 
   QRegExp rx1("\\w+");
-  QValidator *validator1 = 0;
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
+  QValidator *validator1 = new QRegExpValidator(rx1, this);
 
   userinfo_diag->m_userinfo.memberid->setValidator(validator1);
 
@@ -1007,11 +957,8 @@ void biblioteq::addConfigOptions(const QString &typefilter)
 	      ui.table->columnNames().value(i) == "REQUESTOID")
 	continue;
 
-      if((action = new(std::nothrow) QAction(ui.table->
-					     horizontalHeaderItem(i)->text(),
-					     ui.configTool)) == 0)
-	continue;
-
+      action = new QAction
+	(ui.table->horizontalHeaderItem(i)->text(), ui.configTool);
       action->setCheckable(true);
       action->setChecked(!ui.table->isColumnHidden(i));
       m_configToolMenu->addAction(action);
@@ -1044,37 +991,36 @@ void biblioteq::addError(const QString &type,
   er.table->setRowCount(er.table->rowCount() + 1);
 
   for(i = 0; i < 6; i++)
-    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-      {
-	if(i == 0)
-	  item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
-	else if(i == 1)
-	  item->setText(type.trimmed());
-	else if(i == 2)
-	  item->setText(summary.trimmed());
-	else if(i == 3)
-	  {
-	    if(error.simplified().isEmpty())
-	      item->setText(summary);
-	    else
-	      item->setText(error.simplified());
-	  }
-	else if(i == 4)
-	  {
-	    if(file)
-	      item->setText(file);
-	  }
-	else
-	  {
-	    str.setNum(line);
-	    item->setText(str);
-	  }
+    {
+      item = new QTableWidgetItem();
 
-	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-	er.table->setItem(er.table->rowCount() - 1, i, item);
-      }
-    else
-      qDebug() << tr("Memory failure in addError()!");
+      if(i == 0)
+	item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
+      else if(i == 1)
+	item->setText(type.trimmed());
+      else if(i == 2)
+	item->setText(summary.trimmed());
+      else if(i == 3)
+	{
+	  if(error.simplified().isEmpty())
+	    item->setText(summary);
+	  else
+	    item->setText(error.simplified());
+	}
+      else if(i == 4)
+	{
+	  if(file)
+	    item->setText(file);
+	}
+      else
+	{
+	  str.setNum(line);
+	  item->setText(str);
+	}
+
+      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+      er.table->setItem(er.table->rowCount() - 1, i, item);
+    }
 
   for(int i = 0; i < er.table->columnCount() - 1; i++)
     er.table->resizeColumnToContents(i);
@@ -1324,11 +1270,7 @@ void biblioteq::createSqliteMenuActions(void)
 	  continue;
 	}
 
-      QAction *action = new(std::nothrow) QAction
-	(str, ui.menu_Recent_SQLite_Files);
-
-      if(!action)
-	continue;
+      QAction *action = new QAction(str, ui.menu_Recent_SQLite_Files);
 
       action->setData(str);
       connect(action, SIGNAL(triggered(bool)), this,
@@ -1339,19 +1281,16 @@ void biblioteq::createSqliteMenuActions(void)
   dups.clear();
   allKeys.clear();
 
-  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"),
-					      ui.menu_Recent_SQLite_Files);
+  QAction *action = new QAction
+    (tr("&Clear Menu"), ui.menu_Recent_SQLite_Files);
 
-  if(action)
-    {
-      connect(action, SIGNAL(triggered(bool)), this,
-	      SLOT(slotClearSqliteMenu(bool)));
+  connect(action, SIGNAL(triggered(bool)), this,
+	  SLOT(slotClearSqliteMenu(bool)));
 
-      if(!ui.menu_Recent_SQLite_Files->actions().isEmpty())
-	ui.menu_Recent_SQLite_Files->addSeparator();
+  if(!ui.menu_Recent_SQLite_Files->actions().isEmpty())
+    ui.menu_Recent_SQLite_Files->addSeparator();
 
-      ui.menu_Recent_SQLite_Files->addAction(action);
-    }
+  ui.menu_Recent_SQLite_Files->addAction(action);
 }
 
 void biblioteq::initialUpdate(void)
@@ -1801,41 +1740,32 @@ void biblioteq::showMain(void)
   if(m_status_bar_label)
     m_status_bar_label->deleteLater();
 
-  if((m_connected_bar_label = new(std::nothrow) QLabel()) != 0)
-    {
-      m_connected_bar_label->setPixmap
-	(QPixmap(":/16x16/disconnected.png"));
-      m_connected_bar_label->setToolTip(tr("Disconnected"));
-      statusBar()->addPermanentWidget(m_connected_bar_label);
-    }
-
-  if((m_status_bar_label = new(std::nothrow) QLabel()) != 0)
-    {
-      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
-      m_status_bar_label->setToolTip(tr("Standard User Mode"));
-      statusBar()->addPermanentWidget(m_status_bar_label);
-    }
-
-  if((m_error_bar_label = new(std::nothrow) QToolButton()) != 0)
-    {
-      disconnect(m_error_bar_label,
-		 SIGNAL(clicked(void)),
-		 this,
-		 SLOT(slotShowErrorDialog(void)));
-      connect(m_error_bar_label,
-	      SIGNAL(clicked(void)),
-	      this,
-	      SLOT(slotShowErrorDialog(void)));
-      m_error_bar_label->setAutoRaise(true);
-      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
-      m_error_bar_label->setToolTip(tr("Empty Error Log"));
-      statusBar()->addPermanentWidget(m_error_bar_label);
+  m_connected_bar_label = new QLabel();
+  m_connected_bar_label->setPixmap(QPixmap(":/16x16/disconnected.png"));
+  m_connected_bar_label->setToolTip(tr("Disconnected"));
+  statusBar()->addPermanentWidget(m_connected_bar_label);
+  m_status_bar_label = new QLabel();
+  m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
+  m_status_bar_label->setToolTip(tr("Standard User Mode"));
+  statusBar()->addPermanentWidget(m_status_bar_label);
+  m_error_bar_label = new QToolButton();
+  disconnect(m_error_bar_label,
+	     SIGNAL(clicked(void)),
+	     this,
+	     SLOT(slotShowErrorDialog(void)));
+  connect(m_error_bar_label,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowErrorDialog(void)));
+  m_error_bar_label->setAutoRaise(true);
+  m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
+  m_error_bar_label->setToolTip(tr("Empty Error Log"));
+  statusBar()->addPermanentWidget(m_error_bar_label);
 #ifdef Q_OS_MAC
-      m_error_bar_label->setStyleSheet
-	("QToolButton {border: none;}"
-	 "QToolButton::menu-button {border: none;}");
+  m_error_bar_label->setStyleSheet
+    ("QToolButton {border: none;}"
+     "QToolButton::menu-button {border: none;}");
 #endif
-    }
 
   ui.itemsCountLabel->setText(tr("0 Results"));
 
@@ -1850,11 +1780,7 @@ void biblioteq::showMain(void)
   ** Perform additional user interface duties.
   */
 
-  QActionGroup *group1 = 0;
-
-  if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
-
+  QActionGroup *group1 = new QActionGroup(this);
   QStringList list(m_sruMaps.keys());
 
   for(int i = 0; i < list.size(); i++)
@@ -1878,10 +1804,7 @@ void biblioteq::showMain(void)
       ui.menuPreferredSRUSite->addAction(tr("None"));
     }
 
-  QActionGroup *group2 = 0;
-
-  if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
-    quit("Memory allocation failure", __FILE__, __LINE__);
+  QActionGroup *group2 = new QActionGroup(this);
 
   list = m_z3950Maps.keys();
 
@@ -2032,32 +1955,16 @@ void biblioteq::slotAddAdmin(void)
   for(i = 0; i < ab.table->columnCount(); i++)
     if(i == 0)
       {
-	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	  {
-	    item->setFlags(item->flags() | Qt::ItemIsEditable);
-	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
-	  }
-	else
-	  addError(QString(tr("Memory Error")),
-		   QString(tr("Unable to allocate memory for the "
-			      "\"item\" object. "
-			      "This is a serious problem!")),
-		   QString(""), __FILE__, __LINE__);
+	item = new QTableWidgetItem();
+	item->setFlags(item->flags() | Qt::ItemIsEditable);
+	ab.table->setItem(ab.table->rowCount() - 1, 0, item);
       }
     else
       {
-	if((checkBox = new(std::nothrow) QCheckBox()) == 0)
-	  addError(QString(tr("Memory Error")),
-		   QString(tr("Unable to allocate memory for the "
-			      "\"checkBox\" object. "
-			      "This is a serious problem!")),
-		   QString(""), __FILE__, __LINE__);
-	else
-	  {
-	    ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
-	    connect(checkBox, SIGNAL(stateChanged(int)), this,
-		    SLOT(slotAdminCheckBoxClicked(int)));
-	  }
+	checkBox = new QCheckBox();
+	ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
+	connect(checkBox, SIGNAL(stateChanged(int)), this,
+		SLOT(slotAdminCheckBoxClicked(int)));
       }
 }
 
@@ -2784,63 +2691,43 @@ void biblioteq::slotDuplicate(void)
 
       if(type.toLower() == "book")
 	{
-	  book = new(std::nothrow) biblioteq_book(this, oid, i);
-
-	  if(book)
-	    book->duplicate(id, EDITABLE);
+	  book = new biblioteq_book(this, oid, i);
+	  book->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "cd")
 	{
-	  cd = new(std::nothrow) biblioteq_cd(this, oid, i);
-
-	  if(cd)
-	    cd->duplicate(id, EDITABLE);
+	  cd = new biblioteq_cd(this, oid, i);
+	  cd->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "dvd")
 	{
-	  dvd = new(std::nothrow) biblioteq_dvd(this, oid, i);
-
-	  if(dvd)
-	    dvd->duplicate(id, EDITABLE);
+	  dvd = new biblioteq_dvd(this, oid, i);
+	  dvd->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "grey literature")
 	{
-	  gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
-
-	  if(gl)
-	    gl->duplicate(id, EDITABLE);
+	  gl = new biblioteq_grey_literature(this, oid, i);
+	  gl->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "journal")
 	{
-	  journal = new(std::nothrow) biblioteq_journal(this, oid, i);
-
-	  if(journal)
-	    journal->duplicate(id, EDITABLE);
+	  journal = new biblioteq_journal(this, oid, i);
+	  journal->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "magazine")
 	{
-	  magazine = new(std::nothrow) biblioteq_magazine(this,
-							  oid, i,
-							  "magazine");
-
-	  if(magazine)
-	    magazine->duplicate(id, EDITABLE);
+	  magazine = new biblioteq_magazine(this, oid, i, "magazine");
+	  magazine->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "photograph collection")
 	{
-	  photograph = new(std::nothrow) biblioteq_photographcollection
-	    (this, oid, i);
-
-	  if(photograph)
-	    photograph->duplicate(id, EDITABLE);
+	  photograph = new biblioteq_photographcollection(this, oid, i);
+	  photograph->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "video game")
 	{
-	  video_game = new(std::nothrow) biblioteq_videogame(this,
-							     oid, i);
-
-	  if(video_game)
-	    video_game->duplicate(id, EDITABLE);
+	  video_game = new biblioteq_videogame(this, oid, i);
+	  video_game->duplicate(id, EDITABLE);
 	}
       else
 	{
@@ -2976,10 +2863,8 @@ void biblioteq::slotInsertBook(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  book = new(std::nothrow) biblioteq_book(this, id, -1);
-
-  if(book)
-    book->insert();
+  book = new biblioteq_book(this, id, -1);
+  book->insert();
 }
 
 void biblioteq::slotInsertCD(void)
@@ -2989,10 +2874,8 @@ void biblioteq::slotInsertCD(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  cd = new(std::nothrow) biblioteq_cd(this, id, -1);
-
-  if(cd)
-    cd->insert();
+  cd = new biblioteq_cd(this, id, -1);
+  cd->insert();
 }
 
 void biblioteq::slotInsertDVD(void)
@@ -3002,10 +2885,8 @@ void biblioteq::slotInsertDVD(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  dvd = new(std::nothrow) biblioteq_dvd(this, id, -1);
-
-  if(dvd)
-    dvd->insert();
+  dvd = new biblioteq_dvd(this, id, -1);
+  dvd->insert();
 }
 
 void biblioteq::slotInsertJourn(void)
@@ -3015,10 +2896,8 @@ void biblioteq::slotInsertJourn(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  journal = new(std::nothrow) biblioteq_journal(this, id, -1);
-
-  if(journal)
-    journal->insert();
+  journal = new biblioteq_journal(this, id, -1);
+  journal->insert();
 }
 
 void biblioteq::slotInsertMag(void)
@@ -3028,10 +2907,8 @@ void biblioteq::slotInsertMag(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  magazine = new(std::nothrow) biblioteq_magazine(this, id, -1, "magazine");
-
-  if(magazine)
-    magazine->insert();
+  magazine = new biblioteq_magazine(this, id, -1, "magazine");
+  magazine->insert();
 }
 
 void biblioteq::slotInsertPhotograph(void)
@@ -3041,10 +2918,8 @@ void biblioteq::slotInsertPhotograph(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  photograph = new(std::nothrow) biblioteq_photographcollection(this, id, -1);
-
-  if(photograph)
-    photograph->insert();
+  photograph = new biblioteq_photographcollection(this, id, -1);
+  photograph->insert();
 }
 
 void biblioteq::slotInsertVideoGame(void)
@@ -3054,10 +2929,8 @@ void biblioteq::slotInsertVideoGame(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  videogame = new(std::nothrow) biblioteq_videogame(this, id, -1);
-
-  if(videogame)
-    videogame->insert();
+  videogame = new biblioteq_videogame(this, id, -1);
+  videogame->insert();
 }
 
 void biblioteq::slotLanguageChanged(void)
@@ -3208,10 +3081,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!book)
-	    book = new(std::nothrow) biblioteq_book(this, oid, i);
+	    book = new biblioteq_book(this, oid, i);
 
-	  if(book)
-	    book->modify(EDITABLE);
+	  book->modify(EDITABLE);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -3227,10 +3099,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!cd)
-	    cd = new(std::nothrow) biblioteq_cd(this, oid, i);
+	    cd = new biblioteq_cd(this, oid, i);
 
-	  if(cd)
-	    cd->modify(EDITABLE);
+	  cd->modify(EDITABLE);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -3246,10 +3117,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!dvd)
-	    dvd = new(std::nothrow) biblioteq_dvd(this, oid, i);
+	    dvd = new biblioteq_dvd(this, oid, i);
 
-	  if(dvd)
-	    dvd->modify(EDITABLE);
+	  dvd->modify(EDITABLE);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -3266,10 +3136,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!gl)
-	    gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
+	    gl = new biblioteq_grey_literature(this, oid, i);
 
-	  if(gl)
-	    gl->modify(EDITABLE);
+	  gl->modify(EDITABLE);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -3285,10 +3154,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!journal)
-	    journal = new(std::nothrow) biblioteq_journal(this, oid, i);
+	    journal = new biblioteq_journal(this, oid, i);
 
-	  if(journal)
-	    journal->modify(EDITABLE);
+	  journal->modify(EDITABLE);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -3309,12 +3177,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!magazine)
-	    magazine = new(std::nothrow) biblioteq_magazine
-	      (this,
-	       oid, i, "magazine");
+	    magazine = new biblioteq_magazine(this, oid, i, "magazine");
 
-	  if(magazine)
-	    magazine->modify(EDITABLE);
+	  magazine->modify(EDITABLE);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -3331,11 +3196,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!photograph)
-	    photograph = new(std::nothrow) biblioteq_photographcollection
-	      (this, oid, i);
+	    photograph = new biblioteq_photographcollection(this, oid, i);
 
-	  if(photograph)
-	    photograph->modify(EDITABLE);
+	  photograph->modify(EDITABLE);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -3351,10 +3214,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!videogame)
-	    videogame = new(std::nothrow) biblioteq_videogame(this, oid, i);
+	    videogame = new biblioteq_videogame(this, oid, i);
 
-	  if(videogame)
-	    videogame->modify(EDITABLE);
+	  videogame->modify(EDITABLE);
 	}
       else
 	{
@@ -4581,10 +4443,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!book)
-	    book = new(std::nothrow) biblioteq_book(this, oid, i);
+	    book = new biblioteq_book(this, oid, i);
 
-	  if(book)
-	    book->modify(VIEW_ONLY);
+	  book->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -4600,10 +4461,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!cd)
-	    cd = new(std::nothrow) biblioteq_cd(this, oid, i);
+	    cd = new biblioteq_cd(this, oid, i);
 
-	  if(cd)
-	    cd->modify(VIEW_ONLY);
+	  cd->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -4619,10 +4479,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!dvd)
-	    dvd = new(std::nothrow) biblioteq_dvd(this, oid, i);
+	    dvd = new biblioteq_dvd(this, oid, i);
 
-	  if(dvd)
-	    dvd->modify(VIEW_ONLY);
+	  dvd->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -4639,10 +4498,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!gl)
-	    gl = new(std::nothrow) biblioteq_grey_literature(this, oid, i);
+	    gl = new biblioteq_grey_literature(this, oid, i);
 
-	  if(gl)
-	    gl->modify(VIEW_ONLY);
+	  gl->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -4658,10 +4516,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!journal)
-	    journal = new(std::nothrow) biblioteq_journal(this, oid, i);
+	    journal = new biblioteq_journal(this, oid, i);
 
-	  if(journal)
-	    journal->modify(VIEW_ONLY);
+	  journal->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -4682,11 +4539,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!magazine)
-	    magazine = new(std::nothrow) biblioteq_magazine
-	      (this, oid, i, "magazine");
+	    magazine = new biblioteq_magazine(this, oid, i, "magazine");
 
-	  if(magazine)
-	    magazine->modify(VIEW_ONLY);
+	  magazine->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -4703,11 +4558,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!photograph)
-	    photograph = new(std::nothrow) biblioteq_photographcollection
-	      (this, oid, i);
+	    photograph = new biblioteq_photographcollection(this, oid, i);
 
-	  if(photograph)
-	    photograph->modify(VIEW_ONLY);
+	  photograph->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -4723,11 +4576,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!videogame)
-	    videogame = new(std::nothrow) biblioteq_videogame
-	      (this, oid, i);
+	    videogame = new biblioteq_videogame(this, oid, i);
 
-	  if(videogame)
-	    videogame->modify(VIEW_ONLY);
+	  videogame->modify(VIEW_ONLY);
 	}
       else
 	{

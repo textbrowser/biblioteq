@@ -455,6 +455,6 @@
 	Source/biblioteq_z3950results.cc (Done)
 239. Google Books API: https://developers.google.com/books/docs/v1/using. (TBD)
 240. Report import results. (Done)
-241. Remove std::nothrow. (TBD)
+241. Remove std::nothrow. (Done)
 242. Replace first(). The file biblioteq_c.cc is fine. (Done)
 243. Press Enter key on main table to open selected items. (TBD)
