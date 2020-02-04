@@ -476,19 +476,19 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		{
 		  if(record.fieldName(j).endsWith("price"))
 		    {
-		      item = new(std::nothrow) biblioteq_numeric_table_item
+		      item = new biblioteq_numeric_table_item
 			(m_searchQuery.value(j).toDouble());
 		      str = QString::number
 			(m_searchQuery.value(j).toDouble(), 'f', 2);
 		    }
 		  else
-		    item = new(std::nothrow) biblioteq_numeric_table_item
+		    item = new biblioteq_numeric_table_item
 		      (m_searchQuery.value(j).toInt());
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
 		  str = m_searchQuery.value(j).toString().trimmed();
-		  item = new(std::nothrow) biblioteq_callnum_table_item(str);
+		  item = new biblioteq_callnum_table_item(str);
 		}
 	      else if(record.fieldName(j).endsWith("front_cover") ||
 		      record.fieldName(j).endsWith("image_scaled"))
@@ -518,22 +518,18 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		      (126, 187, Qt::KeepAspectRatio,
 		       Qt::SmoothTransformation);
 
-		  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+		  pixmapItem = new biblioteq_graphicsitempixmap
 		    (QPixmap::fromImage(image), 0);
 
-		  if(pixmapItem)
-		    {
-		      if(iconTableRowIdx == 0)
-			pixmapItem->setPos(140 * iconTableColumnIdx, 15);
-		      else
-			pixmapItem->setPos(140 * iconTableColumnIdx,
-					   200 * iconTableRowIdx + 15);
+		  if(iconTableRowIdx == 0)
+		    pixmapItem->setPos(140 * iconTableColumnIdx, 15);
+		  else
+		    pixmapItem->setPos(140 * iconTableColumnIdx,
+				       200 * iconTableRowIdx + 15);
 
-		      pixmapItem->setFlag
-			(QGraphicsItem::ItemIsSelectable, true);
-		      ui.graphicsView->scene()->addItem(pixmapItem);
-		    }
-
+		  pixmapItem->setFlag
+		    (QGraphicsItem::ItemIsSelectable, true);
+		  ui.graphicsView->scene()->addItem(pixmapItem);
 		  iconTableColumnIdx += 1;
 
 		  if(iconTableColumnIdx >= 5)
@@ -543,7 +539,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    }
 		}
 	      else
-		item = new(std::nothrow) QTableWidgetItem();
+		item = new QTableWidgetItem();
 
 	      if(item != 0)
 		{
@@ -570,15 +566,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(record.fieldName(j).endsWith("myoid"))
 		    updateRows(str, i, itemType);
 		}
-	      else if(!record.fieldName(j).endsWith("front_cover") &&
-		      !record.fieldName(j).endsWith("image_scaled"))
-		addError(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate "
-				    "memory for the \"item\" "
-				    "object. "
-				    "This is a serious "
-				    "problem!")), QString(""),
-			 __FILE__, __LINE__);
 	    }
 
 	  if(first)
@@ -807,13 +794,10 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 void biblioteq::dvdSearch(const QString &field, const QString &value)
 {
-  biblioteq_dvd *dvd = new(std::nothrow) biblioteq_dvd(this, "", -1);
+  biblioteq_dvd *dvd = new biblioteq_dvd(this, "", -1);
 
-  if(dvd)
-    {
-      dvd->search(field, value);
-      dvd->deleteLater();
-    }
+  dvd->search(field, value);
+  dvd->deleteLater();
 }
 
 void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
@@ -898,50 +882,36 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
-  biblioteq_grey_literature *gl =
-    new(std::nothrow) biblioteq_grey_literature(this, "", -1);
+  biblioteq_grey_literature *gl = new biblioteq_grey_literature(this, "", -1);
 
-  if(gl)
-    {
-      gl->search(field, value);
-      gl->deleteLater();
-    }
+  gl->search(field, value);
+  gl->deleteLater();
 }
 
 void biblioteq::journSearch(const QString &field, const QString &value)
 {
-  biblioteq_journal *journal = new(std::nothrow) biblioteq_journal
-    (this, "", -1);
+  biblioteq_journal *journal = new biblioteq_journal(this, "", -1);
 
-  if(journal)
-    {
-      journal->search(field, value);
-      journal->deleteLater();
-    }
+  journal->search(field, value);
+  journal->deleteLater();
 }
 
 void biblioteq::magSearch(const QString &field, const QString &value)
 {
-  biblioteq_magazine *magazine = new(std::nothrow) biblioteq_magazine
+  biblioteq_magazine *magazine = new biblioteq_magazine
     (this, "", -1, "magazine");
 
-  if(magazine)
-    {
-      magazine->search(field, value);
-      magazine->deleteLater();
-    }
+  magazine->search(field, value);
+  magazine->deleteLater();
 }
 
 void biblioteq::pcSearch(const QString &field, const QString &value)
 {
-  biblioteq_photographcollection *photograph =
-    new(std::nothrow) biblioteq_photographcollection(this, "", -1);
+  biblioteq_photographcollection *photograph = new
+    biblioteq_photographcollection(this, "", -1);
 
-  if(photograph)
-    {
-      photograph->search(field, value);
-      photograph->deleteLater();
-    }
+  photograph->search(field, value);
+  photograph->deleteLater();
 }
 
 void biblioteq::readConfig(void)
@@ -1937,82 +1907,76 @@ void biblioteq::slotCheckout(void)
     }
   else
     {
-      if((item = new(std::nothrow) biblioteq_item(row2)) != 0)
+      item = new biblioteq_item(row2);
+      quantity = biblioteq_misc_functions::getColumnString
+	(ui.table, row2,
+	 ui.table->columnNumber("Quantity")).toInt();
+
+      if(type.toLower() == "book")
 	{
-	  quantity = biblioteq_misc_functions::getColumnString
+	  itemid = biblioteq_misc_functions::getColumnString
 	    (ui.table, row2,
-	     ui.table->columnNumber("Quantity")).toInt();
-
-	  if(type.toLower() == "book")
-	    {
-	      itemid = biblioteq_misc_functions::getColumnString
-		(ui.table, row2,
-		 ui.table->columnNumber("ISBN-10"));
-
-	      if(itemid.isEmpty())
-		itemid = biblioteq_misc_functions::getColumnString
-		  (ui.table, row2,
-		   ui.table->columnNumber("ISBN-13"));
-	    }
-	  else if(type.toLower() == "dvd")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("UPC"));
-	  else if(type.toLower() == "journal" ||
-		  type.toLower() == "magazine")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("ISSN"));
-	  else if(type.toLower() == "cd")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("Catalog Number"));
-	  else if(type.toLower() == "video game")
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("UPC"));
-	  else
-	    {
-	      QMessageBox::critical
-		(m_members_diag, tr("BiblioteQ: User Error"),
-		 tr("Unable to determine the selected item's type."));
-	      QApplication::processEvents();
-	      delete item;
-	      return;
-	    }
+	     ui.table->columnNumber("ISBN-10"));
 
 	  if(itemid.isEmpty())
 	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2,
-	       ui.table->columnNumber("ID Number"));
-
-	  /*
-	  ** Custom search?
-	  */
-
-	  if(itemid.isEmpty())
-	    itemid = biblioteq_misc_functions::getColumnString
-	      (ui.table, row2, "id");
-
-	  if((copyeditor = new(std::nothrow)
-	      biblioteq_copy_editor(m_members_diag,
-				    this,
-				    item,
-				    true,
-				    quantity,
-				    oid,
-				    0,
-				    font(),
-				    type,
-				    itemid)) != 0)
-	    {
-	      copyeditor->populateCopiesEditor();
-	      copyeditor->exec();
-	      QApplication::processEvents();
-	    }
-
-	  delete item;
+	    (ui.table, row2,
+	     ui.table->columnNumber("ISBN-13"));
 	}
+      else if(type.toLower() == "dvd")
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2,
+	   ui.table->columnNumber("UPC"));
+      else if(type.toLower() == "journal" ||
+	      type.toLower() == "magazine")
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2,
+	   ui.table->columnNumber("ISSN"));
+      else if(type.toLower() == "cd")
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2,
+	   ui.table->columnNumber("Catalog Number"));
+      else if(type.toLower() == "video game")
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2,
+	   ui.table->columnNumber("UPC"));
+      else
+	{
+	  QMessageBox::critical
+	    (m_members_diag, tr("BiblioteQ: User Error"),
+	     tr("Unable to determine the selected item's type."));
+	  QApplication::processEvents();
+	  delete item;
+	  return;
+	}
+
+      if(itemid.isEmpty())
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2,
+	   ui.table->columnNumber("ID Number"));
+
+      /*
+      ** Custom search?
+      */
+
+      if(itemid.isEmpty())
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2, "id");
+
+      copyeditor = new biblioteq_copy_editor(m_members_diag,
+					     this,
+					     item,
+					     true,
+					     quantity,
+					     oid,
+					     0,
+					     font(),
+					     type,
+					     itemid);
+      copyeditor->populateCopiesEditor();
+      copyeditor->exec();
+      QApplication::processEvents();
+      delete item;
     }
 }
 
@@ -3170,18 +3134,13 @@ void biblioteq::slotGreyLiteratureSearch(void)
 
   if(!gl)
     {
-      gl = new(std::nothrow) biblioteq_grey_literature(this, "search", -1);
-
-      if(gl)
-	gl->search();
+      gl = new biblioteq_grey_literature(this, "search", -1);
+      gl->search();
     }
 
-  if(gl)
-    {
-      gl->showNormal();
-      gl->activateWindow();
-      gl->raise();
-    }
+  gl->showNormal();
+  gl->activateWindow();
+  gl->raise();
 }
 
 void biblioteq::slotInsertGreyLiterature(void)
@@ -3191,10 +3150,8 @@ void biblioteq::slotInsertGreyLiterature(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  gl = new(std::nothrow) biblioteq_grey_literature(this, id, -1);
-
-  if(gl)
-    gl->insert();
+  gl = new biblioteq_grey_literature(this, id, -1);
+  gl->insert();
 }
 
 void biblioteq::slotLastWindowClosed(void)
@@ -3616,18 +3573,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	      if(str == "0")
 		str = "";
 
-	      if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-		{
-		  item->setText(str);
-		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		  bb.table->setItem(i, j, item);
-		}
-	      else
-		addError(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate memory for the "
-				    "\"item\" object. "
-				    "This is a serious problem!")),
-			 QString(""), __FILE__, __LINE__);
+	      item = new QTableWidgetItem();
+	      item->setText(str);
+	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	      bb.table->setItem(i, j, item);
 	    }
 	}
 
@@ -3713,59 +3662,36 @@ void biblioteq::slotRefreshAdminList(void)
     {
       if(query.isValid())
 	{
-	  if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	    {
-	      str = query.value(0).toString().trimmed();
-	      item->setText(str);
-	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      str = query.value(1).toString().trimmed();
-	      ab.table->setItem(i, 0, item);
+	  item = new QTableWidgetItem();
+	  str = query.value(0).toString().trimmed();
+	  item->setText(str);
+	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	  str = query.value(1).toString().trimmed();
+	  ab.table->setItem(i, 0, item);
 
-	      for(j = 1; j < ab.table->columnCount(); j++)
-		if(query.value(0).toString().trimmed() == getAdminID() &&
-		   j > 1)
-		  {
-		    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-		      {
-			item->setFlags(Qt::ItemIsEnabled |
-				       Qt::ItemIsSelectable);
-			ab.table->setItem(i, j, item);
-		      }
-		    else
-		      addError
-			(QString(tr("Memory Error")),
-			 QString(tr("Unable to allocate memory for the "
-				    "\"item\" object. "
-				    "This is a serious problem!")),
-			 QString(""), __FILE__, __LINE__);
-		  }
-		else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
-		  {
-		    ab.table->setCellWidget(i, j, checkBox);
-		    columnname = m_abColumnHeaderIndexes.value(j).toLower();
+	  for(j = 1; j < ab.table->columnCount(); j++)
+	    if(query.value(0).toString().trimmed() == getAdminID() &&
+	       j > 1)
+	      {
+		item = new QTableWidgetItem();
+		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+		ab.table->setItem(i, j, item);
+	      }
+	    else
+	      {
+		checkBox = new QCheckBox();
+		ab.table->setCellWidget(i, j, checkBox);
+		columnname = m_abColumnHeaderIndexes.value(j).toLower();
 
-		    if(str.toLower().contains(columnname))
-		      checkBox->setChecked(true);
+		if(str.toLower().contains(columnname))
+		  checkBox->setChecked(true);
 
-		    if(query.value(0).toString().trimmed() == getAdminID())
-		      checkBox->setEnabled(false);
-		    else
-		      connect(checkBox, SIGNAL(stateChanged(int)), this,
-			      SLOT(slotAdminCheckBoxClicked(int)));
-		  }
+		if(query.value(0).toString().trimmed() == getAdminID())
+		  checkBox->setEnabled(false);
 		else
-		  addError(QString(tr("Memory Error")),
-			   QString(tr("Unable to allocate memory for the "
-				      "\"checkBox\" object. "
-				      "This is a serious problem!")),
-			   QString(""), __FILE__, __LINE__);
-	    }
-	  else
-	    addError(QString(tr("Memory Error")),
-		     QString(tr("Unable to allocate memory for the "
-				"\"item\" object. "
-				"This is a serious problem!")),
-		     QString(""), __FILE__, __LINE__);
+		  connect(checkBox, SIGNAL(stateChanged(int)), this,
+			  SLOT(slotAdminCheckBoxClicked(int)));
+	      }
 	}
 
       if(i + 1 <= progress->maximum())
@@ -3880,32 +3806,24 @@ void biblioteq::slotRefreshCustomQuery(void)
 			       << tr("NULL"));
 
   for(i = 0; i < list.size(); i++)
-    if((item1 = new(std::nothrow) QTreeWidgetItem(cq.tables_t)) != 0)
-      {
-	item1->setText(0, list[i]);
-	rec = m_db.record(list[i]);
+    {
+      item1 = new QTreeWidgetItem(cq.tables_t);
+      item1->setText(0, list[i]);
+      rec = m_db.record(list[i]);
 
-	for(j = 0; j < rec.count(); j++)
-	  {
-	    item2 = new QTreeWidgetItem(item1);
-	    field = rec.field(rec.fieldName(j));
-	    item2->setText(1, rec.fieldName(j));
-	    item2->setText(2, QVariant::typeToName(field.type()));
+      for(j = 0; j < rec.count(); j++)
+	{
+	  item2 = new QTreeWidgetItem(item1);
+	  field = rec.field(rec.fieldName(j));
+	  item2->setText(1, rec.fieldName(j));
+	  item2->setText(2, QVariant::typeToName(field.type()));
 
-	    if(field.requiredStatus() == QSqlField::Required)
-	      item2->setText(3, tr("No"));
-	    else
-	      item2->setText(3, "");
-	  }
-      }
-    else
-      addError(QString(tr("Memory Error")),
-	       QString(tr("Unable to allocate "
-			  "memory for the \"item1\" "
-			  "object. "
-			  "This is a serious "
-			  "problem!")), QString(""),
-	       __FILE__, __LINE__);
+	  if(field.requiredStatus() == QSqlField::Required)
+	    item2->setText(3, tr("No"));
+	  else
+	    item2->setText(3, "");
+	}
+    }
 
   for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
     cq.tables_t->resizeColumnToContents(i);
