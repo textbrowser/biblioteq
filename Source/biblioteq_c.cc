@@ -2313,6 +2313,7 @@ void biblioteq::slotConnectDB(void)
 
   if(m_db.driverName() == "QSQLITE")
     {
+      ui.action_VacuumDatabase->setEnabled(true);
       ui.actionChangePassword->setEnabled(false);
       ui.actionImportCSV->setEnabled(true);
       ui.action_Upgrade_SQLite_Schema->setEnabled(true);
@@ -2522,6 +2523,7 @@ void biblioteq::slotDisconnect(void)
   db_enumerations->clear();
   resetAdminBrowser();
   resetMembersBrowser();
+  ui.action_VacuumDatabase->setEnabled(false);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.actionConnect->setEnabled(true);
@@ -5507,6 +5509,28 @@ void biblioteq::slotShowOtherOptions(void)
   m_otheroptions->showNormal();
   m_otheroptions->activateWindow();
   m_otheroptions->raise();
+}
+
+void biblioteq::slotVacuum(void)
+{
+  if(QMessageBox::question(this,
+			   tr("BiblioteQ: Question"),
+			   tr("Vacuuming may require a significant amount "
+			      "of time to complete. Continue?"),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    {
+      QApplication::processEvents();
+      return;
+    }
+
+  QApplication::processEvents();
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSqlQuery query(m_db);
+
+  query.exec("VACUUM");
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::vgSearch(const QString &field, const QString &value)

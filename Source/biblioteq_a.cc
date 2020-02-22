@@ -327,6 +327,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
+  connect(ui.action_VacuumDatabase,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotVacuum(void)));
   connect(ui.action_Video_Game,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -615,6 +619,7 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
 #endif
 
+  ui.action_VacuumDatabase->setEnabled(false);
   ui.actionImportCSV->setEnabled(false);
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
@@ -1045,6 +1050,7 @@ void biblioteq::adminSetup(void)
   else
     ui.actionChangePassword->setEnabled(true);
 
+  ui.action_VacuumDatabase->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
 

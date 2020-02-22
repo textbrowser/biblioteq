@@ -444,6 +444,7 @@ class biblioteq: public QMainWindow
   void slotSqliteFileSelected(bool state);
   void slotUpdateIndicesAfterSort(int column);
   void slotUpgradeSqliteScheme(void);
+  void slotVacuum(void);
   void slotVideoGameSearch(void);
   void slotViewDetails(void);
   void slotViewFullOrNormalScreen(void);

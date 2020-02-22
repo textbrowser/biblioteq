@@ -384,7 +384,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>32</height>
+     <height>39</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -461,6 +461,7 @@
     <addaction name="actionDeleteEntry"/>
     <addaction name="actionDuplicateEntry"/>
     <addaction name="actionModifyEntry"/>
+    <addaction name="action_VacuumDatabase"/>
    </widget>
    <widget class="QMenu" name="menu_View">
     <property name="tearOffEnabled">
@@ -1220,6 +1221,11 @@
   <action name="actionImportCSV">
    <property name="text">
     <string>&amp;Import CSV...</string>
+   </property>
+  </action>
+  <action name="action_VacuumDatabase">
+   <property name="text">
+    <string>&amp;Vacuum Database</string>
    </property>
   </action>
  </widget>
