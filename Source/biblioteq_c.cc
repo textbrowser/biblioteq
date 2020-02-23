@@ -5515,8 +5515,9 @@ void biblioteq::slotVacuum(void)
 {
   if(QMessageBox::question(this,
 			   tr("BiblioteQ: Question"),
-			   tr("Vacuuming may require a significant amount "
-			      "of time to complete. Continue?"),
+			   tr("Vacuuming a database may require a "
+			      "significant amount of time to complete. "
+			      "Continue?"),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     {
@@ -5526,10 +5527,12 @@ void biblioteq::slotVacuum(void)
 
   QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  statusBar()->showMessage(tr("Vacuuming the database. Please be patient."));
 
   QSqlQuery query(m_db);
 
   query.exec("VACUUM");
+  statusBar()->clearMessage();
   QApplication::restoreOverrideCursor();
 }
 
