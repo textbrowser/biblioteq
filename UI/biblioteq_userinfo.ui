@@ -732,7 +732,6 @@
       <zorder>comments</zorder>
       <zorder>label_5</zorder>
       <zorder>memberid</zorder>
-      <zorder>horizontalLayoutWidget</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
