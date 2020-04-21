@@ -378,6 +378,10 @@ biblioteq::biblioteq(void):QMainWindow()
   rx.setPatternSyntax(QRegExp::RegExp);
   userinfo_diag->m_userinfo.email->setValidator(new QRegExpValidator(rx, this));
   m_branch_diag->setModal(true);
+  connect(ui.table,
+	  SIGNAL(enterPressed(void)),
+	  this,
+	  SLOT(slotMainTableEnterPressed(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionPressed(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),

@@ -68,6 +68,26 @@ int biblioteq_main_table::columnNumber(const QString &name) const
   return index;
 }
 
+void biblioteq_main_table::keyPressEvent(QKeyEvent *event)
+{
+  if(event)
+    switch(event->key())
+      {
+      case Qt::Key_Enter:
+      case Qt::Key_Return:
+	{
+	  emit enterPressed();
+	  break;
+	}
+      default:
+	{
+	  break;
+	}
+      }
+
+  QTableWidget::keyPressEvent(event);
+}
+
 void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 {
   m_hiddenColumns.clear();

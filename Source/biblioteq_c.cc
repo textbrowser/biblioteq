@@ -3164,6 +3164,14 @@ void biblioteq::slotLastWindowClosed(void)
   cleanup();
 }
 
+void biblioteq::slotMainTableEnterPressed(void)
+{
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
+    slotModify();
+  else
+    slotViewDetails();
+}
+
 void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 {
   QSettings settings;
