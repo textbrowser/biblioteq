@@ -457,5 +457,6 @@
 240. Report import results. (Done)
 241. Remove std::nothrow. (Done)
 242. Replace first(). The file biblioteq_c.cc is fine. (Done)
-243. Pressing Enter key on main table to access selected items. (Done)
+243. Press Enter key on main table to access selected items. (Done)
 244. Re-introduce MySQL. (TBD)
+245. Press Enter key main scene to access selected items. (TBD)
