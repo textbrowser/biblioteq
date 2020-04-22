@@ -35,7 +35,7 @@ class biblioteq_main_table: public QTableWidget
 		  const QString &roles);
 
  signals:
-  void enterPressed(void);
+  void enterKeyPressed(void);
 };
 
 #endif

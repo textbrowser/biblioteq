@@ -76,7 +76,7 @@ void biblioteq_main_table::keyPressEvent(QKeyEvent *event)
       case Qt::Key_Enter:
       case Qt::Key_Return:
 	{
-	  emit enterPressed();
+	  emit enterKeyPressed();
 	  break;
 	}
       default:

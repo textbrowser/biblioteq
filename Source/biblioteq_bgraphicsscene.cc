@@ -17,8 +17,25 @@ void biblioteq_bgraphicsscene::keyPressEvent(QKeyEvent *event)
   QGraphicsScene::keyPressEvent(event);
 
   if(event)
-    if(event->key() == Qt::Key_Backspace || event->key() == Qt::Key_Delete)
-      emit deleteKeyPressed();
+    switch(event->key())
+      {
+      case Qt::Key_Backspace:
+      case Qt::Key_Delete:
+	{
+	  emit deleteKeyPressed();
+	  break;
+	}
+      case Qt::Key_Enter:
+      case Qt::Key_Return:
+	{
+	  emit enterKeyPressed();
+	  break;
+	}
+      default:
+	{
+	  break;
+	}
+      }
 }
 
 void biblioteq_bgraphicsscene::mouseDoubleClickEvent

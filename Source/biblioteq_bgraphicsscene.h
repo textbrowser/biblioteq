@@ -17,6 +17,7 @@ class biblioteq_bgraphicsscene: public QGraphicsScene
 
  signals:
   void deleteKeyPressed(void);
+  void enterKeyPressed(void);
   void itemDoubleClicked(void);
 };
 

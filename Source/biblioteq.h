@@ -371,6 +371,7 @@ class biblioteq: public QMainWindow
   void slotExportMembersAsCSV(void);
   void slotGeneralSearchPublicationDateEnabled(bool state);
   void slotGrantPrivileges(void);
+  void slotGraphicsSceneEnterKeyPressed(void);
   void slotGreyLiteratureSearch(void);
   void slotInsertBook(void);
   void slotInsertCD(void);
@@ -386,7 +387,7 @@ class biblioteq: public QMainWindow
   void slotListOverdueItems(void);
   void slotListReservedItems(void);
   void slotMagSearch(void);
-  void slotMainTableEnterPressed(void);
+  void slotMainTableEnterKeyPressed(void);
   void slotMainWindowCanvasBackgroundColorChanged(const QColor &color);
   void slotModify(void);
   void slotModifyBorrower(void);
