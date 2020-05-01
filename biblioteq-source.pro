@@ -83,6 +83,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_misc_functions.cc \
                   Source/biblioteq_myqstring.cc \
                   Source/biblioteq_numeric_table_item.cc \
+                  Source/biblioteq_open_library.cc \
                   Source/biblioteq_otheroptions.cc \
                   Source/biblioteq_pdfreader.cc \
                   Source/biblioteq_photographcollection.cc \
