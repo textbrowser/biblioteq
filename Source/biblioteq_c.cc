@@ -20,6 +20,11 @@ QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
   return m_openLibraryImages;
 }
 
+QHash<QString, QString> biblioteq::getOpenLibraryItemsHash(void) const
+{
+  return m_openLibraryItems;
+}
+
 QString biblioteq::dbUserName(void) const
 {
   if(m_db.driverName() != "QSQLITE")
@@ -1122,6 +1127,9 @@ void biblioteq::readGlobalSetup(void)
 			 toString().trimmed()] = hash;
 	    }
 	}
+      else if(settings.group().startsWith("Open Library Books"))
+	m_openLibraryItems["book_url"] =
+	  settings.value("url").toString().trimmed();
       else if(settings.group().startsWith("Open Library Cover Images"))
 	{
 	  m_openLibraryImages["back_url"] =
