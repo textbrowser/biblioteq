@@ -32,15 +32,24 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1112</width>
-         <height>1548</height>
+         <width>1118</width>
+         <height>1551</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -986,10 +995,10 @@
                 <property name="sortingEnabled">
                  <bool>true</bool>
                 </property>
-                <attribute name="horizontalHeaderDefaultSectionSize">
+                <attribute name="horizontalHeaderMinimumSectionSize">
                  <number>150</number>
                 </attribute>
-                <attribute name="horizontalHeaderMinimumSectionSize">
+                <attribute name="horizontalHeaderDefaultSectionSize">
                  <number>150</number>
                 </attribute>
                 <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
@@ -1166,6 +1175,25 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="openLibraryQuery">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Open Library Query</string>
+        </property>
+        <property name="text">
+         <string>&amp;OL Query</string>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="sruQueryButton">
         <property name="minimumSize">
          <size>
@@ -1330,6 +1358,7 @@
   <tabstop>export_files</tabstop>
   <tabstop>view_pdf</tabstop>
   <tabstop>okButton</tabstop>
+  <tabstop>openLibraryQuery</tabstop>
   <tabstop>sruQueryButton</tabstop>
   <tabstop>z3950QueryButton</tabstop>
   <tabstop>resetButton</tabstop>

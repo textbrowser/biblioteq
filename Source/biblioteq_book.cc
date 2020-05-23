@@ -23,6 +23,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
+  m_olWorking = 0;
   m_sruWorking = 0;
   qmain = parentArg;
 
@@ -77,6 +78,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
+  connect(id.openLibraryQuery, SIGNAL(clicked(void)), this,
+	  SLOT(slotOpenLibraryQuery(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
   connect(id.sruQueryButton, SIGNAL(clicked(void)), this,
@@ -100,6 +103,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  id.dwnldBack,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.openLibraryQuery,
 	  SLOT(setEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
@@ -169,6 +176,11 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SLOT(showMenu(void)));
   connect(id.dwnldBack, SIGNAL(clicked(void)), id.dwnldBack,
 	  SLOT(showMenu(void)));
+  connect(this,
+	  SIGNAL(openLibraryQueryError(const QString &)),
+	  this,
+	  SLOT(slotOpenLibraryQueryError(const QString &)),
+	  Qt::QueuedConnection);
   connect(this,
 	  SIGNAL(sruQueryError(const QString &)),
 	  this,
@@ -641,6 +653,7 @@ void biblioteq_book::insert(void)
   id.copiesButton->setEnabled(false);
   id.delete_files->setEnabled(false);
   id.export_files->setEnabled(false);
+  id.openLibraryQuery->setVisible(true);
   id.sruQueryButton->setVisible(true);
   id.z3950QueryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
@@ -705,6 +718,7 @@ void biblioteq_book::modify(const int state)
       id.export_files->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
+      id.openLibraryQuery->setVisible(true);
       id.sruQueryButton->setVisible(true);
       id.z3950QueryButton->setVisible(true);
       id.resetButton->setVisible(true);
@@ -750,6 +764,7 @@ void biblioteq_book::modify(const int state)
 	id.showUserButton->setEnabled(true);
 
       id.okButton->setVisible(false);
+      id.openLibraryQuery->setVisible(false);
       id.sruQueryButton->setVisible(false);
       id.z3950QueryButton->setVisible(false);
       id.resetButton->setVisible(false);
@@ -1079,6 +1094,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.keyword->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
+  id.openLibraryQuery->setVisible(false);
   id.sruQueryButton->setVisible(false);
   id.z3950QueryButton->setVisible(false);
   id.okButton->setText(tr("&Search"));
@@ -2564,6 +2580,21 @@ void biblioteq_book::slotGo(void)
     }
 }
 
+void biblioteq_book::slotOpenLibraryQuery(void)
+{
+}
+
+void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
+{
+  if(text.trimmed().isEmpty())
+    return;
+
+  QMessageBox::critical
+    (this, tr("BiblioteQ: Open Library Query Error"),
+     tr("A network error (%1) occurred.").arg(text.trimmed()));
+  QApplication::processEvents();
+}
+
 void biblioteq_book::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor_book *copyeditor = 0;
@@ -3909,6 +3940,7 @@ void biblioteq_book::updateWindow(const int state)
       id.export_files->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
+      id.openLibraryQuery->setVisible(true);
       id.sruQueryButton->setVisible(true);
       id.z3950QueryButton->setVisible(true);
       id.resetButton->setVisible(true);
@@ -3944,6 +3976,7 @@ void biblioteq_book::updateWindow(const int state)
 	id.showUserButton->setEnabled(true);
 
       id.okButton->setVisible(false);
+      id.openLibraryQuery->setVisible(false);
       id.sruQueryButton->setVisible(false);
       id.z3950QueryButton->setVisible(false);
       id.resetButton->setVisible(false);
