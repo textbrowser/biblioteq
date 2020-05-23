@@ -3410,7 +3410,10 @@ void biblioteq_magazine::slotSRUQuery(void)
     type = hash.value("proxy_type").toLower().trimmed();
 
   if(type == "none")
-    proxy.setType(QNetworkProxy::NoProxy);
+    {
+      proxy.setType(QNetworkProxy::NoProxy);
+      m_sruManager->setProxy(proxy);
+    }
   else
     {
       if(type == "http" || type == "socks5" || type == "system")
@@ -3471,6 +3474,11 @@ void biblioteq_magazine::slotSRUQuery(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
+	  m_sruManager->setProxy(proxy);
+	}
+      else
+	{
+	  proxy.setType(QNetworkProxy::NoProxy);
 	  m_sruManager->setProxy(proxy);
 	}
     }

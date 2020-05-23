@@ -1414,7 +1414,10 @@ void biblioteq_book::slotDownloadImage(void)
 	type = hash.value("front_proxy_type").toLower().trimmed();
 
       if(type == "none")
-	proxy.setType(QNetworkProxy::NoProxy);
+	{
+	  proxy.setType(QNetworkProxy::NoProxy);
+	  m_imageManager->setProxy(proxy);
+	}
       else
 	{
 	  if(type == "http" || type == "socks5" || type == "system")
@@ -1489,6 +1492,11 @@ void biblioteq_book::slotDownloadImage(void)
 
 	      m_imageManager->setProxy(proxy);
 	    }
+	  else
+	    {
+	      proxy.setType(QNetworkProxy::NoProxy);
+	      m_imageManager->setProxy(proxy);
+	    }
 	}
     }
   else
@@ -1496,13 +1504,92 @@ void biblioteq_book::slotDownloadImage(void)
       QString string("");
 
       if(downloadType.contains("back"))
-	string = qmain->getOpenLibraryHash().value("back_url");
+	string = qmain->getOpenLibraryImagesHash().value("back_url");
       else
-	string = qmain->getOpenLibraryHash().value("front_url");
+	string = qmain->getOpenLibraryImagesHash().value("front_url");
 
       string.replace("$key", "isbn");
       string.replace("$value-$size", id.id->text().trimmed() + "-L");
       url = QUrl::fromUserInput(string);
+
+      QHash<QString, QString> hash(qmain->getOpenLibraryImagesHash());
+      QNetworkProxy proxy;
+      QString type(hash.value("proxy_type").toLower().trimmed());
+
+      if(type == "none")
+	{
+	  proxy.setType(QNetworkProxy::NoProxy);
+	  m_imageManager->setProxy(proxy);
+	}
+      else
+	{
+	  if(type == "http" || type == "socks5" || type == "system")
+	    {
+	      /*
+	      ** This is required to resolve an odd error.
+	      */
+
+	      QNetworkReply *reply = m_imageManager->get
+		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+	      if(reply)
+		reply->deleteLater();
+
+	      connect
+		(m_imageManager,
+		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						    QAuthenticator *)),
+		 this,
+		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						      QAuthenticator *)),
+		 Qt::UniqueConnection);
+	    }
+
+	  if(type == "http" || type == "socks5")
+	    {
+	      if(type == "http")
+		proxy.setType(QNetworkProxy::HttpProxy);
+	      else
+		proxy.setType(QNetworkProxy::Socks5Proxy);
+
+	      QString host("");
+	      QString password("");
+	      QString user("");
+	      quint16 port = 0;
+
+	      host = hash.value("proxy_host");
+	      password = hash.value("proxy_password");
+	      port = hash.value("proxy_port").toUShort();
+	      user = hash.value("proxy_username");
+	      proxy.setHostName(host);
+	      proxy.setPort(port);
+
+	      if(!user.isEmpty())
+		proxy.setUser(user);
+
+	      if(!password.isEmpty())
+		proxy.setPassword(password);
+
+	      m_imageManager->setProxy(proxy);
+	    }
+	  else if(type == "system")
+	    {
+	      QList<QNetworkProxy> list;
+	      QNetworkProxyQuery query(url);
+
+	      list = QNetworkProxyFactory::systemProxyForQuery(query);
+
+	      if(!list.isEmpty())
+		proxy = list.at(0);
+
+	      m_imageManager->setProxy(proxy);
+	    }
+	  else
+	    {
+	      proxy.setType(QNetworkProxy::NoProxy);
+	      m_imageManager->setProxy(proxy);
+	    }
+	}
     }
 
   biblioteq_item_working_dialog *dialog = createImageDownloadDialog
@@ -3174,7 +3261,10 @@ void biblioteq_book::slotSRUQuery(void)
     type = hash.value("proxy_type").toLower().trimmed();
 
   if(type == "none")
-    proxy.setType(QNetworkProxy::NoProxy);
+    {
+      proxy.setType(QNetworkProxy::NoProxy);
+      m_sruManager->setProxy(proxy);
+    }
   else
     {
       if(type == "http" || type == "socks5" || type == "system")
@@ -3236,6 +3326,11 @@ void biblioteq_book::slotSRUQuery(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
+	  m_sruManager->setProxy(proxy);
+	}
+      else
+	{
+	  proxy.setType(QNetworkProxy::NoProxy);
 	  m_sruManager->setProxy(proxy);
 	}
     }

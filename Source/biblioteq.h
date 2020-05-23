@@ -192,7 +192,7 @@ class biblioteq: public QMainWindow
   QMenu *m_configToolMenu;
   QString m_unaccent;
   QHash<QString, QString> getAmazonHash(void) const;
-  QHash<QString, QString> getOpenLibraryHash(void) const;
+  QHash<QString, QString> getOpenLibraryImagesHash(void) const;
   QHash<QString, QString> getOpenLibraryItemsHash(void) const;
   QHash<QString, QString> getSRUHash(const QString &name) const;
   QHash<QString, QString> getZ3950Hash(const QString &name) const;

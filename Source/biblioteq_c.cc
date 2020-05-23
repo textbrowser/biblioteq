@@ -15,7 +15,7 @@
 
 #include <limits>
 
-QHash<QString, QString> biblioteq::getOpenLibraryHash(void) const
+QHash<QString, QString> biblioteq::getOpenLibraryImagesHash(void) const
 {
   return m_openLibraryImages;
 }
@@ -1064,6 +1064,7 @@ void biblioteq::readGlobalSetup(void)
   m_amazonImages.clear();
   m_branches.clear();
   m_openLibraryImages.clear();
+  m_openLibraryItems.clear();
   m_sruMaps.clear();
   m_z3950Maps.clear();
 
@@ -1128,24 +1129,29 @@ void biblioteq::readGlobalSetup(void)
 	    }
 	}
       else if(settings.group().startsWith("Open Library"))
-	m_openLibraryItems["url_isbn"] =
-	  settings.value("url_isbn").toString().trimmed();
-      else if(settings.group().startsWith("Open Library Cover Images"))
 	{
-	  m_openLibraryImages["back_url"] =
-	    settings.value("back_url", "").toString().trimmed();
-	  m_openLibraryImages["front_url"] =
-	    settings.value("front_url", "").toString().trimmed();
-	  m_openLibraryImages["proxy_host"] = settings.value("proxy_host", "").
-	    toString().trimmed();
-	  m_openLibraryImages["proxy_port"] = settings.value("proxy_port", "").
-	    toString().trimmed();
-	  m_openLibraryImages["proxy_type"] = settings.value("proxy_type", "").
-	    toString().trimmed();
-	  m_openLibraryImages["proxy_username"] = settings.value
-	    ("proxy_username", "").toString().trimmed();
-	  m_openLibraryImages["proxy_password"] = settings.value
-	    ("proxy_password", "").toString().trimmed();
+	  if(settings.group() == "Open Library")
+	    {
+	      m_openLibraryItems["url_isbn"] =
+		settings.value("url_isbn").toString().trimmed();
+	    }
+	  else
+	    {
+	      m_openLibraryImages["back_url"] =
+		settings.value("back_url", "").toString().trimmed();
+	      m_openLibraryImages["front_url"] =
+		settings.value("front_url", "").toString().trimmed();
+	      m_openLibraryImages["proxy_host"] = settings.value
+		("proxy_host", "").toString().trimmed();
+	      m_openLibraryImages["proxy_port"] = settings.value
+		("proxy_port", "").toString().trimmed();
+	      m_openLibraryImages["proxy_type"] = settings.value
+		("proxy_type", "").toString().trimmed();
+	      m_openLibraryImages["proxy_username"] = settings.value
+		("proxy_username", "").toString().trimmed();
+	      m_openLibraryImages["proxy_password"] = settings.value
+		("proxy_password", "").toString().trimmed();
+	    }
 	}
       else if(settings.group().startsWith("SRU"))
 	{
