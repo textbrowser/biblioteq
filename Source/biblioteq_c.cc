@@ -1127,15 +1127,25 @@ void biblioteq::readGlobalSetup(void)
 			 toString().trimmed()] = hash;
 	    }
 	}
-      else if(settings.group().startsWith("Open Library Books"))
-	m_openLibraryItems["book_url"] =
-	  settings.value("url").toString().trimmed();
+      else if(settings.group().startsWith("Open Library"))
+	m_openLibraryItems["url_isbn"] =
+	  settings.value("url_isbn").toString().trimmed();
       else if(settings.group().startsWith("Open Library Cover Images"))
 	{
 	  m_openLibraryImages["back_url"] =
 	    settings.value("back_url", "").toString().trimmed();
 	  m_openLibraryImages["front_url"] =
 	    settings.value("front_url", "").toString().trimmed();
+	  m_openLibraryImages["proxy_host"] = settings.value("proxy_host", "").
+	    toString().trimmed();
+	  m_openLibraryImages["proxy_port"] = settings.value("proxy_port", "").
+	    toString().trimmed();
+	  m_openLibraryImages["proxy_type"] = settings.value("proxy_type", "").
+	    toString().trimmed();
+	  m_openLibraryImages["proxy_username"] = settings.value
+	    ("proxy_username", "").toString().trimmed();
+	  m_openLibraryImages["proxy_password"] = settings.value
+	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group().startsWith("SRU"))
 	{
@@ -1144,6 +1154,16 @@ void biblioteq::readGlobalSetup(void)
 	      QHash<QString, QString> hash;
 
 	      hash["Name"] = settings.value("name", "").toString().trimmed();
+	      hash["proxy_host"] = settings.value("proxy_host", "").
+		toString().trimmed();
+	      hash["proxy_port"] = settings.value("proxy_port", "").
+		toString().trimmed();
+	      hash["proxy_type"] = settings.value("proxy_type", "").
+		toString().trimmed();
+	      hash["proxy_username"] = settings.value
+		("proxy_username", "").toString().trimmed();
+	      hash["proxy_password"] = settings.value
+		("proxy_password", "").toString().trimmed();
 	      hash["url_isbn"] = settings.value
 		("url_isbn", "").toString().trimmed().remove('"');
 	      hash["url_issn"] = settings.value

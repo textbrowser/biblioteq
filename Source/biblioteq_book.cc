@@ -23,7 +23,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
-  m_olWorking = 0;
+  m_openLibraryWorking = 0;
   m_sruWorking = 0;
   qmain = parentArg;
 
@@ -35,6 +35,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   scene1 = new QGraphicsScene(this);
   scene2 = new QGraphicsScene(this);
   m_imageManager = new QNetworkAccessManager(this);
+  m_openLibraryManager = new QNetworkAccessManager(this);
   m_proxyDialog = new QDialog(this);
   m_sruManager = new QNetworkAccessManager(this);
   ui_p.setupUi(m_proxyDialog);

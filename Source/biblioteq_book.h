@@ -37,11 +37,12 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
   QNetworkAccessManager *m_imageManager;
+  QNetworkAccessManager *m_openLibraryManager;
   QNetworkAccessManager *m_sruManager;
   QPalette m_te_orig_pal;
   QPalette m_white_pal;
   QPointer<biblioteq_generic_thread> m_thread;
-  QPointer<biblioteq_item_working_dialog> m_olWorking;
+  QPointer<biblioteq_item_working_dialog> m_openLibraryWorking;
   QPointer<biblioteq_item_working_dialog> m_sruWorking;
   QString m_cb_orig_ss;
   QString m_dt_orig_ss;
