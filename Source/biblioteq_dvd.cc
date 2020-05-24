@@ -1866,7 +1866,7 @@ void biblioteq_dvd::slotSelectImage(void)
 	  dvd.front_image->scene()->addPixmap
 	    (QPixmap::fromImage(dvd.front_image->m_image));
 
-	  if(!dvd.front_image->scene()->items().empty())
+	  if(!dvd.front_image->scene()->items().isEmpty())
 	    dvd.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 
@@ -1886,7 +1886,7 @@ void biblioteq_dvd::slotSelectImage(void)
 	  dvd.back_image->scene()->addPixmap
 	    (QPixmap::fromImage(dvd.back_image->m_image));
 
-	  if(!dvd.back_image->scene()->items().empty())
+	  if(!dvd.back_image->scene()->items().isEmpty())
 	    dvd.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 

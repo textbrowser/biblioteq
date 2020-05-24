@@ -195,7 +195,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
       scene()->addPixmap(pixmap);
 
       if(acceptDrops())
-	if(!scene()->items().empty())
+	if(!scene()->items().isEmpty())
 	  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 
       scene()->setSceneRect(scene()->itemsBoundingRect());
@@ -245,7 +245,7 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
   scene()->addPixmap(pixmap);
 
   if(acceptDrops())
-    if(!scene()->items().empty())
+    if(!scene()->items().isEmpty())
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 
   scene()->setSceneRect(scene()->itemsBoundingRect());
@@ -287,7 +287,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
   m_doubleclicked = !m_doubleclicked;
 
   if(acceptDrops())
-    if(!scene()->items().empty())
+    if(!scene()->items().isEmpty())
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 
   scene()->setSceneRect(scene()->itemsBoundingRect());
@@ -321,7 +321,7 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
   scene()->addPixmap(pixmap);
 
   if(acceptDrops())
-    if(!scene()->items().empty())
+    if(!scene()->items().isEmpty())
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 

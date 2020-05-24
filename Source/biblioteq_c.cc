@@ -2353,7 +2353,7 @@ void biblioteq::slotConnectDB(void)
       ui.action_Upgrade_SQLite_Schema->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 
-      if(!ui.menuEntriesPerPage->actions().empty())
+      if(!ui.menuEntriesPerPage->actions().isEmpty())
 	ui.menuEntriesPerPage->actions().at
 	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 
@@ -2376,7 +2376,7 @@ void biblioteq::slotConnectDB(void)
     {
       ui.menuEntriesPerPage->setEnabled(true);
 
-      if(!ui.menuEntriesPerPage->actions().empty())
+      if(!ui.menuEntriesPerPage->actions().isEmpty())
 	ui.menuEntriesPerPage->actions().at
 	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(false);
 
@@ -2592,7 +2592,7 @@ void biblioteq::slotDisconnect(void)
   ui.searchTool->setEnabled(false);
   ui.userTool->setEnabled(false);
 
-  if(!ui.menuEntriesPerPage->actions().empty())
+  if(!ui.menuEntriesPerPage->actions().isEmpty())
     ui.menuEntriesPerPage->actions().at
       (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 

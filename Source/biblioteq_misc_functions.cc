@@ -134,7 +134,7 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
 	if(str == "0")
 	  str = "";
 
-	if(counts.empty())
+	if(counts.isEmpty())
 	  counts["numbooks"] = str;
 	else if(counts.size() == 1)
 	  counts["numcds"] = str;

@@ -2467,7 +2467,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	  pc.thumbnail_collection->scene()->addPixmap
 	    (QPixmap::fromImage(pc.thumbnail_collection->m_image));
 
-	  if(!pc.thumbnail_collection->scene()->items().empty())
+	  if(!pc.thumbnail_collection->scene()->items().isEmpty())
 	    pc.thumbnail_collection->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 
@@ -2489,7 +2489,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	  photo.thumbnail_item->scene()->addPixmap
 	    (QPixmap::fromImage(photo.thumbnail_item->m_image));
 
-	  if(!photo.thumbnail_item->scene()->items().empty())
+	  if(!photo.thumbnail_item->scene()->items().isEmpty())
 	    photo.thumbnail_item->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
 
