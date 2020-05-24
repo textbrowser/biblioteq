@@ -69,12 +69,14 @@ sqlite3_context_db_handle
 sqlite3_create_collation
 sqlite3_create_collation16
 sqlite3_create_collation_v2
+sqlite3_create_filename
 sqlite3_create_function
 sqlite3_create_function16
 sqlite3_create_function_v2
 sqlite3_create_module
 sqlite3_create_module_v2
 sqlite3_create_window_function
+sqlite3_database_file_object
 sqlite3_data_count
 sqlite3_db_cacheflush
 sqlite3_db_config
@@ -103,6 +105,7 @@ sqlite3_filename_journal
 sqlite3_filename_wal
 sqlite3_finalize
 sqlite3_free
+sqlite3_free_filename
 sqlite3_free_table
 sqlite3_get_autocommit
 sqlite3_get_auxdata
