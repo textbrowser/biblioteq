@@ -1404,6 +1404,8 @@ void biblioteq_book::slotDownloadImage(void)
 	   QString(qmain->getAmazonHash().value("front_cover_path")).replace
 	   ("%", id.id->text().trimmed()));
 
+      url.setScheme("https");
+
       QHash<QString, QString> hash(qmain->getAmazonHash());
       QNetworkProxy proxy;
       QString type("none");
@@ -1618,6 +1620,7 @@ void biblioteq_book::slotDownloadImage(void)
 	  dialog, SLOT(deleteLater(void)));
   connect(reply, SIGNAL(finished(void)),
 	  this, SLOT(slotDownloadFinished(void)));
+  reply->ignoreSslErrors();
   QApplication::processEvents();
 }
 
