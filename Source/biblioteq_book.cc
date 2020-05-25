@@ -552,6 +552,30 @@ void biblioteq_book::createFile(const QByteArray &digest,
        query.lastError().text(), __FILE__, __LINE__);
 }
 
+void biblioteq_book::createOpenLibraryDialog(void)
+{
+  if(m_openLibraryWorking)
+    m_openLibraryWorking->deleteLater();
+
+  m_openLibraryWorking = new
+    biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this));
+  m_openLibraryWorking->resize(m_openLibraryWorking->sizeHint());
+  m_openLibraryWorking->setLabelText(tr("Downloading..."));
+  m_openLibraryWorking->setMaximum(0);
+  m_openLibraryWorking->setMinimum(0);
+  m_openLibraryWorking->setModal(true);
+  m_openLibraryWorking->setWindowTitle
+    (tr("BiblioteQ: Open Library Data Retrieval"));
+  connect(m_openLibraryWorking,
+	  SIGNAL(canceled(void)),
+	  this,
+	  SLOT(slotOpenLibraryCanceled(void)));
+  connect(m_openLibraryWorking,
+	  SIGNAL(rejected(void)),
+	  this,
+	  SLOT(slotOpenLibraryCanceled(void)));
+}
+
 void biblioteq_book::createSRUDialog(void)
 {
   if(m_sruWorking)

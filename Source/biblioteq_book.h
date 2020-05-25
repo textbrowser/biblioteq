@@ -34,6 +34,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 
  private:
   QBuffer m_imageBuffer;
+  QByteArray m_openLibraryResults;
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
   QNetworkAccessManager *m_imageManager;
@@ -57,6 +58,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void createFile(const QByteArray &digest,
 		  const QByteArray &bytes,
 		  const QString &fileName) const;
+  void createOpenLibraryDialog(void);
   void createSRUDialog(void);
   void populateFiles(void);
 
