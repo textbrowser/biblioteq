@@ -1031,6 +1031,10 @@ void biblioteq_book::modify(const int state)
   raise();
 }
 
+void biblioteq_book::openLibraryDownloadFinished(void)
+{
+}
+
 void biblioteq_book::populateFiles(void)
 {
   id.files->setRowCount(0);
@@ -2695,8 +2699,213 @@ void biblioteq_book::slotGo(void)
     }
 }
 
+void biblioteq_book::slotOpenLibraryCanceled(void)
+{
+  QNetworkReply *reply = m_openLibraryManager->findChild<QNetworkReply *> ();
+
+  if(reply)
+    reply->deleteLater();
+
+  m_openLibraryResults.clear();
+}
+
+void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
+{
+  Q_UNUSED(error);
+
+  bool canceled = false;
+
+  if(m_openLibraryWorking)
+    {
+      canceled = m_openLibraryWorking->wasCanceled();
+      m_openLibraryWorking->deleteLater();
+    }
+
+  if(!canceled)
+    QTimer::singleShot(250, this, SLOT(openLibraryDownloadFinished(void)));
+}
+
+void biblioteq_book::slotOpenLibraryDownloadFinished(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    reply->deleteLater();
+
+  bool canceled = false;
+
+  if(m_openLibraryWorking)
+    {
+      canceled = m_openLibraryWorking->wasCanceled();
+      m_openLibraryWorking->deleteLater();
+    }
+
+  if(!canceled)
+    QTimer::singleShot(250, this, SLOT(openLibraryDownloadFinished(void)));
+}
+
+void biblioteq_book::slotOpenLibraryError(QNetworkReply::NetworkError error)
+{
+  if(m_openLibraryWorking)
+    m_openLibraryWorking->deleteLater();
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    {
+      QString error(reply->errorString());
+
+      reply->deleteLater();
+
+      emit openLibraryQueryError(error);
+    }
+  else
+    emit openLibraryQueryError(tr("A network error (%1) occurred.").arg(error));
+}
+
 void biblioteq_book::slotOpenLibraryQuery(void)
 {
+  if(m_openLibraryManager->findChild<QNetworkReply *> ())
+    return;
+
+  if(!(id.id->text().trimmed().length() == 10 ||
+       id.isbn13->text().trimmed().length() == 13))
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query an OpenLibrary site, either the ISBN-10 "
+	    "or ISBN-13 must be provided."));
+      QApplication::processEvents();
+      id.id->setFocus();
+      return;
+    }
+
+  createOpenLibraryDialog();
+
+  if(m_openLibraryWorking)
+    {
+      m_openLibraryWorking->show();
+      m_openLibraryWorking->update();
+      m_openLibraryWorking->repaint();
+      QApplication::processEvents();
+    }
+
+  QHash<QString, QString> hash(qmain->getOpenLibraryItemsHash());
+  QString searchstr("");
+
+  searchstr = hash.value("url_isbn");
+
+  if(!id.id->text().trimmed().isEmpty())
+    searchstr.replace("%1", id.id->text().trimmed());
+  else
+    searchstr.replace("%1", id.isbn13->text().trimmed());
+
+  if(!id.isbn13->text().trimmed().isEmpty())
+    searchstr.replace("%2", id.isbn13->text().trimmed());
+  else
+    searchstr.replace("%2", id.id->text().trimmed());
+
+  QNetworkProxy proxy;
+  QString type("none");
+  QUrl url(QUrl::fromUserInput(searchstr));
+
+  if(hash.contains("proxy_type"))
+    type = hash.value("proxy_type").toLower().trimmed();
+
+  if(type == "none")
+    {
+      proxy.setType(QNetworkProxy::NoProxy);
+      m_openLibraryManager->setProxy(proxy);
+    }
+  else
+    {
+      if(type == "http" || type == "socks5" || type == "system")
+	{
+	  /*
+	  ** This is required to resolve an odd error.
+	  */
+
+	  QNetworkReply *reply = m_openLibraryManager->get
+	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+	  if(reply)
+	    reply->deleteLater();
+
+	  connect
+	    (m_openLibraryManager,
+	     SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						QAuthenticator *)),
+	     this,
+	     SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						  QAuthenticator *)),
+	     Qt::UniqueConnection);
+	}
+
+      if(type == "http" || type == "socks5")
+	{
+	  if(type == "http")
+	    proxy.setType(QNetworkProxy::HttpProxy);
+	  else
+	    proxy.setType(QNetworkProxy::Socks5Proxy);
+
+	  QString host("");
+	  QString password("");
+	  QString user("");
+	  quint16 port = 0;
+
+	  host = hash.value("proxy_host");
+	  port = hash.value("proxy_port").toUShort();
+	  user = hash.value("proxy_username");
+	  password = hash.value("proxy_password");
+	  proxy.setHostName(host);
+	  proxy.setPort(port);
+
+	  if(!user.isEmpty())
+	    proxy.setUser(user);
+
+	  if(!password.isEmpty())
+	    proxy.setPassword(password);
+
+	  m_openLibraryManager->setProxy(proxy);
+	}
+      else if(type == "system")
+	{
+	  QList<QNetworkProxy> list;
+	  QNetworkProxyQuery query(url);
+
+	  list = QNetworkProxyFactory::systemProxyForQuery(query);
+
+	  if(!list.isEmpty())
+	    proxy = list.at(0);
+
+	  m_openLibraryManager->setProxy(proxy);
+	}
+      else
+	{
+	  proxy.setType(QNetworkProxy::NoProxy);
+	  m_openLibraryManager->setProxy(proxy);
+	}
+    }
+
+  QNetworkReply *reply = m_openLibraryManager->get(QNetworkRequest(url));
+
+  if(reply)
+    {
+      m_openLibraryResults.clear();
+      connect(reply, SIGNAL(readyRead(void)),
+	      this, SLOT(slotOpenLibraryReadyRead(void)));
+      connect(reply, SIGNAL(finished(void)),
+	      this, SLOT(slotOpenLibraryDownloadFinished(void)));
+      connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+	      this, SLOT(slotOpenLibraryError(QNetworkReply::NetworkError)));
+      connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
+	      this, SLOT(slotOpenLibrarySslErrors(const QList<QSslError> &)));
+    }
+  else
+    {
+      if(m_openLibraryWorking)
+	m_openLibraryWorking->deleteLater();
+    }
 }
 
 void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
@@ -2705,9 +2914,33 @@ void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
     return;
 
   QMessageBox::critical
-    (this, tr("BiblioteQ: Open Library Query Error"),
+    (this, tr("BiblioteQ: OpenLibrary Query Error"),
      tr("A network error (%1) occurred.").arg(text.trimmed()));
   QApplication::processEvents();
+}
+
+void biblioteq_book::slotOpenLibraryReadyRead(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    m_openLibraryResults.append(reply->readAll());
+}
+
+void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
+{
+  Q_UNUSED(list);
+
+  if(m_openLibraryWorking)
+    m_openLibraryWorking->deleteLater();
+
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    reply->deleteLater();
+
+  emit openLibraryQueryError
+    (tr("One or more SSL errors occurred. Please verify your settings."));
 }
 
 void biblioteq_book::slotPopulateCopiesEditor(void)

@@ -64,6 +64,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 
  private slots:
   void downloadFinished(void);
+  void openLibraryDownloadFinished(void);
   void slotAttachFiles(void);
   void slotCancel(void);
   void slotCancelImageDownload(void);
@@ -77,8 +78,14 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotExportFiles(void);
   void slotFilesDoubleClicked(QTableWidgetItem *item);
   void slotGo(void);
+  void slotOpenLibraryCanceled(void);
+  void slotOpenLibraryDownloadFinished(bool error);
+  void slotOpenLibraryDownloadFinished(void);
+  void slotOpenLibraryError(QNetworkReply::NetworkError error);
   void slotOpenLibraryQuery(void);
   void slotOpenLibraryQueryError(const QString &text);
+  void slotOpenLibraryReadyRead(void);
+  void slotOpenLibrarySslErrors(const QList<QSslError> &list);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
   void slotPrintAuthorTitleDewey(void);
