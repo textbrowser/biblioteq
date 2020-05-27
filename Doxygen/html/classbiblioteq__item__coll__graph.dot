@@ -1,10 +1,11 @@
 digraph "biblioteq_item"
 {
+ // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node9 [label="biblioteq_item",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node10 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" qmain" ,fontname="Helvetica"];
-  Node10 [label="biblioteq",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classbiblioteq.html"];
-  Node11 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="QMainWindow",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 [label="biblioteq_item",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" qmain" ,fontname="Helvetica"];
+  Node2 [label="biblioteq",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classbiblioteq.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="QMainWindow",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }

@@ -1370,12 +1370,6 @@ void biblioteq_book::slotDeleteFiles(void)
   populateFiles();
 }
 
-void biblioteq_book::slotDownloadFinished(bool error)
-{
-  Q_UNUSED(error);
-  QTimer::singleShot(250, this, SLOT(downloadFinished(void)));
-}
-
 void biblioteq_book::slotDownloadFinished(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
