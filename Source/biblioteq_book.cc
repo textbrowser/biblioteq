@@ -2773,7 +2773,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query an OpenLibrary site, either the ISBN-10 "
+	 tr("In order to query an Open Library site, either the ISBN-10 "
 	    "or ISBN-13 must be provided."));
       QApplication::processEvents();
       id.id->setFocus();
@@ -2914,7 +2914,7 @@ void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
     return;
 
   QMessageBox::critical
-    (this, tr("BiblioteQ: OpenLibrary Query Error"),
+    (this, tr("BiblioteQ: Open Library Query Error"),
      tr("A network error (%1) occurred.").arg(text.trimmed()));
   QApplication::processEvents();
 }
