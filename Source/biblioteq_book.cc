@@ -2711,8 +2711,6 @@ void biblioteq_book::slotOpenLibraryCanceled(void)
 
 void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
 {
-  Q_UNUSED(error);
-
   bool canceled = false;
 
   if(m_openLibraryWorking)
@@ -2721,16 +2719,20 @@ void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
       m_openLibraryWorking->deleteLater();
     }
 
-  if(!canceled)
+  if(!canceled && !error)
     QTimer::singleShot(250, this, SLOT(openLibraryDownloadFinished(void)));
 }
 
 void biblioteq_book::slotOpenLibraryDownloadFinished(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  bool error = false;
 
   if(reply)
-    reply->deleteLater();
+    {
+      error = reply->error() != QNetworkReply::NoError;
+      reply->deleteLater();
+    }
 
   bool canceled = false;
 
@@ -2740,7 +2742,7 @@ void biblioteq_book::slotOpenLibraryDownloadFinished(void)
       m_openLibraryWorking->deleteLater();
     }
 
-  if(!canceled)
+  if(!canceled && !error)
     QTimer::singleShot(250, this, SLOT(openLibraryDownloadFinished(void)));
 }
 
@@ -3405,8 +3407,6 @@ void biblioteq_book::slotSRUCanceled(void)
 
 void biblioteq_book::slotSRUDownloadFinished(bool error)
 {
-  Q_UNUSED(error);
-
   bool canceled = false;
 
   if(m_sruWorking)
@@ -3415,16 +3415,20 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
       m_sruWorking->deleteLater();
     }
 
-  if(!canceled)
+  if(!canceled && !error)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 
 void biblioteq_book::slotSRUDownloadFinished(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  bool error = false;
 
   if(reply)
-    reply->deleteLater();
+    {
+      error = reply->error() != QNetworkReply::NoError;
+      reply->deleteLater();
+    }
 
   bool canceled = false;
 
@@ -3434,7 +3438,7 @@ void biblioteq_book::slotSRUDownloadFinished(void)
       m_sruWorking->deleteLater();
     }
 
-  if(!canceled)
+  if(!canceled && !error)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 

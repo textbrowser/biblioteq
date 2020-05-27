@@ -3304,8 +3304,6 @@ void biblioteq_magazine::slotSRUCanceled(void)
 
 void biblioteq_magazine::slotSRUDownloadFinished(bool error)
 {
-  Q_UNUSED(error);
-
   bool canceled = true;
 
   if(m_sruWorking)
@@ -3314,16 +3312,20 @@ void biblioteq_magazine::slotSRUDownloadFinished(bool error)
       m_sruWorking->deleteLater();
     }
 
-  if(!canceled)
+  if(!canceled && !error)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 
 void biblioteq_magazine::slotSRUDownloadFinished(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  bool error = false;
 
   if(reply)
-    reply->deleteLater();
+    {
+      error = reply->error() != QNetworkReply::NoError;
+      reply->deleteLater();
+    }
 
   bool canceled = true;
 
@@ -3333,7 +3335,7 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
       m_sruWorking->deleteLater();
     }
 
-  if(!canceled)
+  if(!canceled && !error)
     QTimer::singleShot(250, this, SLOT(sruDownloadFinished(void)));
 }
 
@@ -3365,8 +3367,7 @@ void biblioteq_magazine::slotSRUQuery(void)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, the "
-	    "ISSN must be provided."));
+	 tr("In order to query an SRU site, the ISSN must be provided."));
       QApplication::processEvents();
       ma.id->setFocus();
       return;
