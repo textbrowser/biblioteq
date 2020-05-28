@@ -1033,6 +1033,15 @@ void biblioteq_book::modify(const int state)
 
 void biblioteq_book::openLibraryDownloadFinished(void)
 {
+  m_openLibraryResults = m_openLibraryResults.trimmed();
+
+  if(m_openLibraryResults.isEmpty())
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Open Library Query Error"),
+	 tr("The Open Library query produced invalid results."));
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq_book::populateFiles(void)
