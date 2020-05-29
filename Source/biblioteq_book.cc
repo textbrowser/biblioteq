@@ -1042,6 +1042,62 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	 tr("The Open Library query produced invalid results."));
       QApplication::processEvents();
     }
+  else
+    {
+      QString authors("");
+
+      do
+	{
+	  int index = m_openLibraryResults.indexOf("\"authors\":");
+
+	  if(index > -1)
+	    {
+	      index += static_cast<int> (qstrlen("\"authors\":"));
+
+	      while(true)
+		{
+		  index = m_openLibraryResults.indexOf("\"name\":", index);
+
+		  if(index > 0)
+		    {
+		      index += static_cast<int> (qstrlen("\"name\":"));
+
+		      QString name("");
+
+		      for(int i = m_openLibraryResults.indexOf('"', index) + 1;
+			  i < m_openLibraryResults.length();
+			  i++)
+			if(m_openLibraryResults.at(i) == '"')
+			  break;
+			else
+			  name.append(m_openLibraryResults.at(i));
+
+		      if(!name.isEmpty())
+			{
+			  if(!authors.isEmpty())
+			    authors.append("\n");
+
+			  authors.append(name);
+			}
+		    }
+		  else
+		    break;
+		}
+
+	      break;
+	    }
+	  else
+	    break;
+	}
+      while(true);
+
+      if(!authors.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.author->viewport(), QColor(162, 205, 90));
+	  id.author->setPlainText(authors);
+	}
+    }
 }
 
 void biblioteq_book::populateFiles(void)
