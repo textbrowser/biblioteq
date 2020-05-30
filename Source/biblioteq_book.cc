@@ -1048,12 +1048,16 @@ void biblioteq_book::openLibraryDownloadFinished(void)
       QString place("");
       QString publicationDate("");
       QString publishers("");
+      QString subtitle("");
+      QString title("");
       QStringList keys;
 
       keys << "\"authors\":"
 	   << "\"publish_date\":"
 	   << "\"publish_places\":"
-	   << "\"publishers\":";
+	   << "\"publishers\":"
+	   << "\"subtitle\":"
+	   << "\"title\":";
 
       while(!keys.isEmpty())
 	{
@@ -1064,8 +1068,29 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	    {
 	      index += key.length();
 
-	      if(key == "\"publish_date\":")
+	      if(key == "\"publish_date\":" ||
+		 key == "\"subtitle\":" ||
+		 key == "\"title\":")
 		{
+		  int o_index = -1; // Open bracket.
+
+		  for(int i = index - key.length(); i >= 0; i--)
+		    if(m_openLibraryResults.at(i) == ']')
+		      break;
+		    else if(m_openLibraryResults.at(i) == '[')
+		      {
+			o_index = i;
+			break;
+		      }
+
+		  if(o_index != -1)
+		    {
+		      keys << key;
+		      m_openLibraryResults.remove
+			(index - key.length(), key.length());
+		      continue;
+		    }
+
 		  QString value("");
 
 		  for(int i = m_openLibraryResults.indexOf('"', index) + 1;
@@ -1080,6 +1105,10 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 		    {
 		      if(key == "\"publish_date\":")
 			publicationDate = value;
+		      else if(key == "\"subtitle\":")
+			subtitle = value;
+		      else if(key == "\"title\":")
+			title = value;
 		    }
 
 		  continue;
@@ -1165,6 +1194,17 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  biblioteq_misc_functions::highlightWidget
 	    (id.publisher->viewport(), QColor(162, 205, 90));
 	  id.publisher->setPlainText(publishers);
+	}
+
+      if(!title.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.title, QColor(162, 205, 90));
+
+	  if(!subtitle.isEmpty())
+	    title = QString("%1 (%2)").arg(title).arg(subtitle);
+
+	  id.title->setText(title);
 	}
     }
 }
