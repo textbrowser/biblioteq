@@ -1223,6 +1223,10 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	    }
 	}
 
+      biblioteq_misc_functions::highlightWidget
+	(id.marc_tags->viewport(), QColor(162, 205, 90));
+      id.marc_tags->setPlainText(m_openLibraryResults);
+
       if(!authors.isEmpty())
 	{
 	  biblioteq_misc_functions::highlightWidget
