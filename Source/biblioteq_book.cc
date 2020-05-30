@@ -1045,10 +1045,12 @@ void biblioteq_book::openLibraryDownloadFinished(void)
   else
     {
       QString authors("");
+      QString publicationDate("");
       QString publishers("");
       QStringList keys;
 
       keys << "\"authors\":"
+	   << "\"publish_date\":"
 	   << "\"publishers\":";
 
       while(!keys.isEmpty())
@@ -1059,6 +1061,27 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  if(index > -1)
 	    {
 	      index += key.length();
+
+	      if(key == "\"publish_date\":")
+		{
+		  QString value("");
+
+		  for(int i = m_openLibraryResults.indexOf('"', index) + 1;
+		      i < m_openLibraryResults.length();
+		      i++)
+		    if(m_openLibraryResults.at(i) == '"')
+		      break;
+		    else
+		      value.append(m_openLibraryResults.at(i));
+
+		  if(!value.isEmpty())
+		    {
+		      if(key == "\"publish_date\":")
+			publicationDate = value;
+		    }
+
+		  continue;
+		}
 
 	      while(true)
 		{
@@ -1111,6 +1134,14 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  biblioteq_misc_functions::highlightWidget
 	    (id.author->viewport(), QColor(162, 205, 90));
 	  id.author->setPlainText(authors);
+	}
+
+      if(!publicationDate.isEmpty())
+	{
+	  id.publication_date->setDate
+	    (QDate::fromString("01/01/" + publicationDate, "MM/dd/yyyy"));
+	  id.publication_date->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
 	}
 
       if(!publishers.isEmpty())
