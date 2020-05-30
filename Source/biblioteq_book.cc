@@ -1045,11 +1045,13 @@ void biblioteq_book::openLibraryDownloadFinished(void)
   else
     {
       QString authors("");
+      QString publishers("");
       QStringList keys;
 
-      keys << "\"authors\":";
+      keys << "\"authors\":"
+	   << "\"publishers\":";
 
-      do
+      while(!keys.isEmpty())
 	{
 	  QString key(keys.takeFirst());
 	  int index = m_openLibraryResults.indexOf(key);
@@ -1078,10 +1080,20 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 
 		      if(!name.isEmpty())
 			{
-			  if(!authors.isEmpty())
-			    authors.append("\n");
+			  if(key == "\"authors\":")
+			    {
+			      if(!authors.isEmpty())
+				authors.append("\n");
 
-			  authors.append(name);
+			      authors.append(name);
+			    }
+			  else if(key == "\"publishers\":")
+			    {
+			      if(!publishers.isEmpty())
+				publishers.append("\n");
+
+			      publishers.append(name);
+			    }
 			}
 
 		      if(m_openLibraryResults.indexOf("\"name\":", index) >
@@ -1091,19 +1103,21 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 		  else
 		    break;
 		}
-
-	      break;
 	    }
-	  else
-	    break;
 	}
-      while(!keys.isEmpty());
 
       if(!authors.isEmpty())
 	{
 	  biblioteq_misc_functions::highlightWidget
 	    (id.author->viewport(), QColor(162, 205, 90));
 	  id.author->setPlainText(authors);
+	}
+
+      if(!publishers.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.publisher->viewport(), QColor(162, 205, 90));
+	  id.publisher->setPlainText(publishers);
 	}
     }
 }
