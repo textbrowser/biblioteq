@@ -1045,12 +1045,14 @@ void biblioteq_book::openLibraryDownloadFinished(void)
   else
     {
       QString authors("");
+      QString place("");
       QString publicationDate("");
       QString publishers("");
       QStringList keys;
 
       keys << "\"authors\":"
 	   << "\"publish_date\":"
+	   << "\"publish_places\":"
 	   << "\"publishers\":";
 
       while(!keys.isEmpty())
@@ -1110,6 +1112,13 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 
 			      authors.append(name);
 			    }
+			  else if(key == "\"publish_places\":")
+			    {
+			      if(!place.isEmpty())
+				place.append("\n");
+
+			      place.append(name);
+			    }
 			  else if(key == "\"publishers\":")
 			    {
 			      if(!publishers.isEmpty())
@@ -1134,6 +1143,13 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  biblioteq_misc_functions::highlightWidget
 	    (id.author->viewport(), QColor(162, 205, 90));
 	  id.author->setPlainText(authors);
+	}
+
+      if(!place.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.place->viewport(), QColor(162, 205, 90));
+	  id.place->setPlainText(place);
 	}
 
       if(!publicationDate.isEmpty())
