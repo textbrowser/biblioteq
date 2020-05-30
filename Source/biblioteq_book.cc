@@ -1044,18 +1044,38 @@ void biblioteq_book::openLibraryDownloadFinished(void)
     }
   else
     {
+      if(QMessageBox::question
+	 (this, tr("BiblioteQ: Question"),
+	  tr("Replace existing values with those retrieved from Open Library?"),
+	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+
       QString authors("");
+      QString deweyDecimalClass("");
+      QString lcClassifications("");
+      QString lccn("");
+      QString pagination("");
       QString place("");
       QString publicationDate("");
       QString publishers("");
+      QString subjects("");
       QString subtitle("");
       QString title("");
       QStringList keys;
 
       keys << "\"authors\":"
+	   << "\"dewey_decimal_class\":"
+	   << "\"lc_classifications\":"
+	   << "\"lccn\":"
+	   << "\"pagination\":"
 	   << "\"publish_date\":"
 	   << "\"publish_places\":"
 	   << "\"publishers\":"
+	   << "\"subjects\":"
 	   << "\"subtitle\":"
 	   << "\"title\":";
 
@@ -1068,9 +1088,38 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	    {
 	      index += key.length();
 
-	      if(key == "\"publish_date\":" ||
-		 key == "\"subtitle\":" ||
-		 key == "\"title\":")
+	      if(key == "\"dewey_decimal_class\":" ||
+		 key == "\"lc_classifications\":" ||
+		 key == "\"lccn\":" ||
+		 key == "\"pagination\":")
+		{
+		  QString value("");
+
+		  for(int i = m_openLibraryResults.indexOf('"', index) + 1;
+		      i < m_openLibraryResults.length();
+		      i++)
+		    if(m_openLibraryResults.at(i) == '"')
+		      break;
+		    else
+		      value.append(m_openLibraryResults.at(i));
+
+		  if(!value.isEmpty())
+		    {
+		      if(key == "\"dewey_decimal_class\":")
+			deweyDecimalClass = value;
+		      else if(key == "\"lc_classifications\":")
+			lcClassifications = value;
+		      else if(key == "\"lccn\":")
+			lccn = value;
+		      else if(key == "\"pagination\":")
+			pagination = value;
+		    }
+
+		  continue;
+		}
+	      else if(key == "\"publish_date\":" ||
+		      key == "\"subtitle\":" ||
+		      key == "\"title\":")
 		{
 		  int o_index = -1; // Open bracket.
 
@@ -1155,6 +1204,13 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 
 			      publishers.append(name);
 			    }
+			  else if(key == "\"subjects\":")
+			    {
+			      if(!subjects.isEmpty())
+				subjects.append("\n");
+
+			      subjects.append(name);
+			    }
 			}
 
 		      if(m_openLibraryResults.indexOf("\"name\":", index) >
@@ -1172,6 +1228,34 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  biblioteq_misc_functions::highlightWidget
 	    (id.author->viewport(), QColor(162, 205, 90));
 	  id.author->setPlainText(authors);
+	}
+
+      if(!deweyDecimalClass.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.deweynum, QColor(162, 205, 90));
+	  id.deweynum->setText(deweyDecimalClass);
+	}
+
+      if(!lcClassifications.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.callnum, QColor(162, 205, 90));
+	  id.callnum->setText(lcClassifications);
+	}
+
+      if(!lccn.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.lcnum, QColor(162, 205, 90));
+	  id.lcnum->setText(lccn);
+	}
+
+      if(!pagination.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.description->viewport(), QColor(162, 205, 90));
+	  id.description->setPlainText(pagination);
 	}
 
       if(!place.isEmpty())
@@ -1194,6 +1278,13 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  biblioteq_misc_functions::highlightWidget
 	    (id.publisher->viewport(), QColor(162, 205, 90));
 	  id.publisher->setPlainText(publishers);
+	}
+
+      if(!subjects.isEmpty())
+	{
+	  biblioteq_misc_functions::highlightWidget
+	    (id.category->viewport(), QColor(162, 205, 90));
+	  id.category->setPlainText(subjects);
 	}
 
       if(!title.isEmpty())
