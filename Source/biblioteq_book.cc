@@ -1045,14 +1045,18 @@ void biblioteq_book::openLibraryDownloadFinished(void)
   else
     {
       QString authors("");
+      QStringList keys;
+
+      keys << "\"authors\":";
 
       do
 	{
-	  int index = m_openLibraryResults.indexOf("\"authors\":");
+	  QString key(keys.takeFirst());
+	  int index = m_openLibraryResults.indexOf(key);
 
 	  if(index > -1)
 	    {
-	      index += static_cast<int> (qstrlen("\"authors\":"));
+	      index += key.length();
 
 	      while(true)
 		{
@@ -1079,6 +1083,10 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 
 			  authors.append(name);
 			}
+
+		      if(m_openLibraryResults.indexOf("\"name\":", index) >
+			 m_openLibraryResults.indexOf(']', index))
+			break;
 		    }
 		  else
 		    break;
@@ -1089,7 +1097,7 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  else
 	    break;
 	}
-      while(true);
+      while(!keys.isEmpty());
 
       if(!authors.isEmpty())
 	{
