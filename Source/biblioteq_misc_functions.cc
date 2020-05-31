@@ -101,22 +101,22 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
 
   errorstr = "";
   querystr =
-    "SELECT COUNT(myoid) AS numbooks FROM item_borrower_vw WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numbooks FROM item_borrower WHERE memberid = ? "
     "AND type = 'Book' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numcds FROM item_borrower_vw WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numcds FROM item_borrower WHERE memberid = ? "
     "AND type = 'CD' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numdvds FROM item_borrower_vw WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numdvds FROM item_borrower WHERE memberid = ? "
     "AND type = 'DVD' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numjournals FROM item_borrower_vw WHERE "
+    "SELECT COUNT(myoid) AS numjournals FROM item_borrower WHERE "
     "memberid = ? AND type = 'Journal' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower_vw WHERE "
+    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower WHERE "
     "memberid = ? AND type = 'Magazine' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower_vw WHERE "
+    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower WHERE "
     "memberid = ? AND type = 'Video Game'";
   query.prepare(querystr);
   query.bindValue(0, memberid);
@@ -221,11 +221,11 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
      itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
      itemType.toLower() == "magazine" || itemType.toLower() == "video game")
     querystr = QString("SELECT %1.quantity - "
-		       "COUNT(item_borrower_vw.item_oid) "
+		       "COUNT(item_borrower.item_oid) "
 		       "FROM "
-		       "%1 LEFT JOIN item_borrower_vw ON "
-		       "%1.myoid = item_borrower_vw.item_oid AND "
-		       "item_borrower_vw.type = '%2' "
+		       "%1 LEFT JOIN item_borrower ON "
+		       "%1.myoid = item_borrower.item_oid AND "
+		       "item_borrower.type = '%2' "
 		       "WHERE "
 		       "%1.myoid = ? "
 		       "GROUP BY %1.quantity, "
@@ -993,7 +993,7 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw "
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower "
 		"WHERE item_oid = ? AND type = ?)");
   query.bindValue(0, oid);
   query.bindValue(1, itemType);
@@ -1031,7 +1031,7 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
     querystr = QString
       ("SELECT EXISTS(SELECT 1 FROM %1_copy_info "
        "WHERE copyid = ? AND item_oid = ? "
-       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
+       "AND copyid NOT IN (SELECT copyid FROM item_borrower "
        "WHERE item_oid = ? AND type = '%2'))").arg(itemType.
 						   toLower().remove(" ")).
       arg(itemType);
@@ -1068,7 +1068,7 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw WHERE "
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower WHERE "
 		"copyid = ? AND item_oid = ? AND "
 		"type = ?)");
   query.bindValue(0, copyid);
@@ -1201,7 +1201,7 @@ int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  query.prepare("SELECT MAX(copy_number) FROM item_borrower_vw "
+  query.prepare("SELECT MAX(copy_number) FROM item_borrower "
 		"WHERE item_oid = ? AND type = ?");
   query.bindValue(0, oid);
   query.bindValue(1, itemType);

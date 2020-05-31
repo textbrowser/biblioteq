@@ -1335,18 +1335,18 @@ void biblioteq::slotAllGo(void)
 	     "%1.quantity, "
 	     "%1.location, "
 	     "%1.quantity - "
-	     "COUNT(item_borrower_vw.item_oid) AS availability, "
-	     "COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	     "COUNT(item_borrower.item_oid) AS availability, "
+	     "COUNT(item_borrower.item_oid) AS total_reserved, "
 	     "%1.accession_number, "
 	     "%1.type, ").
 	    arg(type.toLower().remove(" "));
 	  str += QString("%1.myoid, "
 			 "%1.front_cover "
 			 "FROM "
-			 "%1 LEFT JOIN item_borrower_vw ON "
+			 "%1 LEFT JOIN item_borrower ON "
 			 "%1.myoid = "
-			 "item_borrower_vw.item_oid "
-			 "AND item_borrower_vw.type = '%2' "
+			 "item_borrower.item_oid "
+			 "AND item_borrower.type = '%2' "
 			 "WHERE ").arg(type.toLower().remove(" ")).
 	    arg(type);
 	}
@@ -1816,7 +1816,7 @@ void biblioteq::slotAllGo(void)
 	  if(al.available->isChecked())
 	    str.append
 	      (QString("HAVING (%1.quantity - "
-		       "COUNT(item_borrower_vw.item_oid)) > 0 ").
+		       "COUNT(item_borrower.item_oid)) > 0 ").
 	       arg(type.toLower().remove(" ")));
 	}
 
@@ -3494,17 +3494,17 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "COUNT(DISTINCT ib5.myoid) AS nummagazines, "
     "COUNT(DISTINCT ib6.myoid) AS numvideogames "
     "FROM member member "
-    "LEFT JOIN item_borrower_vw ib1 ON "
+    "LEFT JOIN item_borrower ib1 ON "
     "member.memberid = ib1.memberid AND ib1.type = 'Book' "
-    "LEFT JOIN item_borrower_vw ib2 ON "
+    "LEFT JOIN item_borrower ib2 ON "
     "member.memberid = ib2.memberid AND ib2.type = 'CD' "
-    "LEFT JOIN item_borrower_vw ib3 ON "
+    "LEFT JOIN item_borrower ib3 ON "
     "member.memberid = ib3.memberid AND ib3.type = 'DVD' "
-    "LEFT JOIN item_borrower_vw ib4 ON "
+    "LEFT JOIN item_borrower ib4 ON "
     "member.memberid = ib4.memberid AND ib4.type = 'Journal' "
-    "LEFT JOIN item_borrower_vw ib5 ON "
+    "LEFT JOIN item_borrower ib5 ON "
     "member.memberid = ib5.memberid AND ib5.type = 'Magazine' "
-    "LEFT JOIN item_borrower_vw ib6 ON "
+    "LEFT JOIN item_borrower ib6 ON "
     "member.memberid = ib6.memberid AND ib6.type = 'Video Game' ";
 
   if(bb.filterBox->isChecked())
@@ -3794,7 +3794,6 @@ void biblioteq::slotRefreshCustomQuery(void)
 	 << "grey_literature"
 	 << "grey_literature_types"
 	 << "item_borrower"
-	 << "item_borrower_vw"
 	 << "journal"
 	 << "journal_copy_info"
 	 << "languages"
@@ -3828,7 +3827,6 @@ void biblioteq::slotRefreshCustomQuery(void)
 	 << "grey_literature"
 	 << "grey_literature_types"
 	 << "item_borrower"
-	 << "item_borrower_vw"
 	 << "item_request"
 	 << "journal"
 	 << "journal_copy_info"

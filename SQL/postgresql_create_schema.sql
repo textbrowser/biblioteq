@@ -560,17 +560,6 @@ CREATE TABLE videogame_ratings
 	videogame_rating	 TEXT NOT NULL PRIMARY KEY
 );
 
-CREATE VIEW item_borrower_vw AS
-SELECT	 copy_number,
-	 copyid,
-	 duedate,
-	 item_oid,
-	 memberid,
-	 myoid,
-	 reserved_date,
-	 type
-FROM	 item_borrower;
-
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
 CREATE ROLE biblioteq_circulation INHERIT;
 CREATE ROLE biblioteq_circulation_librarian INHERIT;
@@ -660,7 +649,7 @@ GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
 GRANT DELETE, SELECT ON member_history_dnt TO biblioteq_administrator;
 GRANT INSERT, SELECT, UPDATE ON member_history TO biblioteq_circulation;
 GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
-GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
+GRANT SELECT (item_oid, type) ON item_borrower TO biblioteq_guest;
 GRANT SELECT ON admin TO biblioteq_circulation;
 GRANT SELECT ON admin TO biblioteq_librarian;
 GRANT SELECT ON admin TO biblioteq_membership;
@@ -764,11 +753,11 @@ GRANT SELECT ON grey_literature_types TO biblioteq_circulation;
 GRANT SELECT ON grey_literature_types TO biblioteq_guest;
 GRANT SELECT ON grey_literature_types TO biblioteq_membership;
 GRANT SELECT ON grey_literature_types TO biblioteq_patron;
-GRANT SELECT ON item_borrower_vw TO biblioteq_administrator;
-GRANT SELECT ON item_borrower_vw TO biblioteq_circulation;
-GRANT SELECT ON item_borrower_vw TO biblioteq_librarian;
-GRANT SELECT ON item_borrower_vw TO biblioteq_membership;
-GRANT SELECT ON item_borrower_vw TO biblioteq_patron;
+GRANT SELECT ON item_borrower TO biblioteq_administrator;
+GRANT SELECT ON item_borrower TO biblioteq_circulation;
+GRANT SELECT ON item_borrower TO biblioteq_librarian;
+GRANT SELECT ON item_borrower TO biblioteq_membership;
+GRANT SELECT ON item_borrower TO biblioteq_patron;
 GRANT SELECT ON item_request TO biblioteq_librarian;
 GRANT SELECT ON journal TO biblioteq_circulation;
 GRANT SELECT ON journal TO biblioteq_guest;

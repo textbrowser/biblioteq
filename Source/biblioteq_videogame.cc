@@ -1228,17 +1228,17 @@ void biblioteq_videogame::slotGo(void)
 	"videogame.price, videogame.monetary_units, "
 	"videogame.quantity, "
 	"videogame.location, "
-	"videogame.quantity - COUNT(item_borrower_vw.item_oid) "
+	"videogame.quantity - COUNT(item_borrower.item_oid) "
 	"AS availability, "
-	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"videogame.accession_number, "
 	"videogame.type, "
 	"videogame.myoid, "
 	"videogame.front_cover "
 	"FROM "
-	"videogame LEFT JOIN item_borrower_vw ON "
-	"videogame.myoid = item_borrower_vw.item_oid "
-	"AND item_borrower_vw.type = 'Video Game' "
+	"videogame LEFT JOIN item_borrower ON "
+	"videogame.myoid = item_borrower.item_oid "
+	"AND item_borrower.type = 'Video Game' "
 	"WHERE ";
       searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 

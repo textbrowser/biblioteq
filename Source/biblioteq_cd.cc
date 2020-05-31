@@ -1365,16 +1365,16 @@ void biblioteq_cd::slotGo(void)
 	"cd.location, "
 	"cd.cdaudio, "
 	"cd.cdrecording, "
-	"cd.quantity - COUNT(item_borrower_vw.item_oid) AS availability, "
-	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"cd.quantity - COUNT(item_borrower.item_oid) AS availability, "
+	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"cd.accession_number, "
 	"cd.type, "
 	"cd.myoid, "
 	"cd.front_cover "
 	"FROM "
-	"cd LEFT JOIN item_borrower_vw ON "
-	"cd.myoid = item_borrower_vw.item_oid "
-	"AND item_borrower_vw.type = 'CD' "
+	"cd LEFT JOIN item_borrower ON "
+	"cd.myoid = item_borrower.item_oid "
+	"AND item_borrower.type = 'CD' "
 	"WHERE ";
       searchstr.append
 	("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");

@@ -1364,17 +1364,17 @@ void biblioteq_dvd::slotGo(void)
 	"dvd.dvdregion, "
 	"dvd.dvdaspectratio, "
 	"dvd.quantity - "
-	"COUNT(item_borrower_vw.item_oid) "
+	"COUNT(item_borrower.item_oid) "
 	"AS availability, "
-	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"dvd.accession_number, "
 	"dvd.type, "
 	"dvd.myoid, "
 	"dvd.front_cover "
 	"FROM "
-	"dvd LEFT JOIN item_borrower_vw ON "
-	"dvd.myoid = item_borrower_vw.item_oid "
-	"AND item_borrower_vw.type = 'DVD' "
+	"dvd LEFT JOIN item_borrower ON "
+	"dvd.myoid = item_borrower.item_oid "
+	"AND item_borrower.type = 'DVD' "
 	"WHERE ";
       searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 

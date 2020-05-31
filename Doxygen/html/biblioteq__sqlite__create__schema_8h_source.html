@@ -531,85 +531,74 @@ $(function() {
 <div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="stringliteral">    DELETE FROM member_history WHERE memberid = old.memberid;       \</span></div>
 <div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="stringliteral">END;                                    \</span></div>
 <div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="stringliteral">CREATE VIEW item_borrower_vw AS                     \</span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="stringliteral">SELECT   copy_number,                           \</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="stringliteral">     copyid,                            \</span></div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="stringliteral">     duedate,                           \</span></div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="stringliteral">     memberid,                          \</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="stringliteral">     myoid,                             \</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="stringliteral">     reserved_date,                         \</span></div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="stringliteral">     type,                              \</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="stringliteral">         item_oid                           \</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="stringliteral">FROM     item_borrower;                             \</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="stringliteral">CREATE TABLE book_binding_types                     \</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="stringliteral">    binding_type     TEXT NOT NULL PRIMARY KEY              \</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="stringliteral">);                                  \</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="stringliteral">CREATE TABLE grey_literature_types                  \</span></div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="stringliteral">    document_type     TEXT NOT NULL PRIMARY KEY             \</span></div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="stringliteral">);                                  \</span></div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="stringliteral">CREATE TABLE locations                                      \</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="stringliteral">    location     TEXT NOT NULL,                     \</span></div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="stringliteral">    type     VARCHAR(32) NOT NULL,                  \</span></div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="stringliteral">    PRIMARY KEY(location, type)                     \</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="stringliteral">);                                      \</span></div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="stringliteral">CREATE TABLE monetary_units                     \</span></div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="stringliteral">    monetary_unit    TEXT NOT NULL PRIMARY KEY                      \</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="stringliteral">CREATE TABLE languages                          \</span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="stringliteral">    language     TEXT NOT NULL PRIMARY KEY              \</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="stringliteral">);                                      \</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="stringliteral">CREATE TABLE cd_formats                         \</span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="stringliteral">    cd_format    TEXT NOT NULL PRIMARY KEY              \</span></div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="stringliteral">CREATE TABLE dvd_ratings                        \</span></div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="stringliteral">    dvd_rating   TEXT NOT NULL PRIMARY KEY              \</span></div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="stringliteral">CREATE TABLE dvd_aspect_ratios                      \</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="stringliteral">    dvd_aspect_ratio     TEXT NOT NULL PRIMARY KEY          \</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="stringliteral">CREATE TABLE book_binding_types                     \</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="stringliteral">    binding_type     TEXT NOT NULL PRIMARY KEY              \</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="stringliteral">);                                  \</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="stringliteral">CREATE TABLE grey_literature_types                  \</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="stringliteral">    document_type     TEXT NOT NULL PRIMARY KEY             \</span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="stringliteral">);                                  \</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="stringliteral">CREATE TABLE locations                                      \</span></div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="stringliteral">    location     TEXT NOT NULL,                     \</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="stringliteral">    type     VARCHAR(32) NOT NULL,                  \</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="stringliteral">    PRIMARY KEY(location, type)                     \</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="stringliteral">);                                      \</span></div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="stringliteral">CREATE TABLE monetary_units                     \</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="stringliteral">    monetary_unit    TEXT NOT NULL PRIMARY KEY                      \</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="stringliteral">CREATE TABLE languages                          \</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="stringliteral">    language     TEXT NOT NULL PRIMARY KEY              \</span></div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="stringliteral">);                                      \</span></div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="stringliteral">CREATE TABLE cd_formats                         \</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="stringliteral">    cd_format    TEXT NOT NULL PRIMARY KEY              \</span></div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="stringliteral">CREATE TABLE dvd_ratings                        \</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="stringliteral">    dvd_rating   TEXT NOT NULL PRIMARY KEY              \</span></div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="stringliteral">CREATE TABLE dvd_aspect_ratios                      \</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="stringliteral">    dvd_aspect_ratio     TEXT NOT NULL PRIMARY KEY          \</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="stringliteral">CREATE TABLE dvd_regions                        \</span></div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="stringliteral">    dvd_region   TEXT NOT NULL PRIMARY KEY              \</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="stringliteral">CREATE TABLE minimum_days                       \</span></div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="stringliteral">    days         INTEGER NOT NULL,                              \</span></div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="stringliteral">    type         VARCHAR(16) NOT NULL PRIMARY KEY               \</span></div>
 <div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="stringliteral">CREATE TABLE dvd_regions                        \</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="stringliteral">CREATE TABLE videogame_ratings                      \</span></div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="stringliteral">    dvd_region   TEXT NOT NULL PRIMARY KEY              \</span></div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="stringliteral">    videogame_rating     TEXT NOT NULL PRIMARY KEY          \</span></div>
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="stringliteral">CREATE TABLE minimum_days                       \</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="stringliteral">CREATE TABLE videogame_platforms                    \</span></div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="stringliteral">    days         INTEGER NOT NULL,                              \</span></div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="stringliteral">    type         VARCHAR(16) NOT NULL PRIMARY KEY               \</span></div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;<span class="stringliteral">CREATE TABLE videogame_ratings                      \</span></div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="stringliteral">    videogame_rating     TEXT NOT NULL PRIMARY KEY          \</span></div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="stringliteral">CREATE TABLE videogame_platforms                    \</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="stringliteral">    videogame_platform   TEXT NOT NULL PRIMARY KEY          \</span></div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="stringliteral">                                    \</span></div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="stringliteral">CREATE TABLE sequence                           \</span></div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="stringliteral">(                                   \</span></div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="stringliteral">    value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT     \</span></div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="stringliteral">);                                  \</span></div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="stringliteral">&quot;</span>;</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="stringliteral">    videogame_platform   TEXT NOT NULL PRIMARY KEY          \</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="stringliteral">);                                                                      \</span></div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="stringliteral">                                    \</span></div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="stringliteral">CREATE TABLE sequence                           \</span></div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;<span class="stringliteral">(                                   \</span></div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;<span class="stringliteral">    value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT     \</span></div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="stringliteral">);                                  \</span></div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="stringliteral">&quot;</span>;</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

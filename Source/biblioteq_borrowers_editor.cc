@@ -255,7 +255,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 		    "borrowers.reserved_date, "
 		    "borrowers.duedate "
 		    "FROM "
-		    "item_borrower_vw borrowers "
+		    "item_borrower borrowers "
 		    "WHERE borrowers.type = ? AND borrowers.item_oid = ? "
 		    "ORDER BY borrowers.copy_number");
       query.bindValue(0, m_itemType);

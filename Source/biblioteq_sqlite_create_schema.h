@@ -460,17 +460,6 @@ BEGIN									\
     DELETE FROM member_history WHERE memberid = old.memberid;		\
 END;									\
 									\
-CREATE VIEW item_borrower_vw AS						\
-SELECT	 copy_number,							\
-	 copyid,							\
-	 duedate,							\
-	 memberid,							\
-	 myoid,								\
-	 reserved_date,							\
-	 type,								\
-         item_oid							\
-FROM	 item_borrower;						        \
-									\
 CREATE TABLE book_binding_types						\
 (									\
     binding_type     TEXT NOT NULL PRIMARY KEY				\

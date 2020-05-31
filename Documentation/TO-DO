@@ -384,7 +384,7 @@
 201. Deleting NULL pointers is redundant, save for deleteLater(). (Done)
 202. SQL injections. See item #198. (Done)
 203. Warn the user if there are stale photograph item data. (Done)
-204. item_borrower and item_request privacy. (TBD)
+204. item_borrower and item_request privacy. (Done)
 205. Can BiblioteQ benefit from EXISTS()? Replaced most COUNT()
      instances. (Done)
 206. Include Poppler and YAZ version information in the About dialog. (Done)

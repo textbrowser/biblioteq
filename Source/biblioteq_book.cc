@@ -2773,9 +2773,9 @@ void biblioteq_book::slotGo(void)
 	"book.lccontrolnumber, "
 	"book.callnumber, "
 	"book.deweynumber, "
-	"book.quantity - COUNT(item_borrower_vw.item_oid) "
+	"book.quantity - COUNT(item_borrower.item_oid) "
 	"AS availability, "
-	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"book.originality, "
 	"book.condition, "
 	"book.accession_number, "
@@ -2783,9 +2783,9 @@ void biblioteq_book::slotGo(void)
 	"book.myoid, "
 	"book.front_cover "
 	"FROM "
-	"book LEFT JOIN item_borrower_vw ON "
-	"book.myoid = item_borrower_vw.item_oid "
-	"AND item_borrower_vw.type = 'Book' "
+	"book LEFT JOIN item_borrower ON "
+	"book.myoid = item_borrower.item_oid "
+	"AND item_borrower.type = 'Book' "
 	"WHERE ";
 
       if(!id.id->text().trimmed().isEmpty())
