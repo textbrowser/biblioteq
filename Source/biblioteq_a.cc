@@ -2260,7 +2260,6 @@ void biblioteq::slotDelete(void)
     return;
 
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
-  QProgressDialog progress(this);
   QSqlQuery query(m_db);
   QString errorstr = "";
   QString itemType = "";
@@ -2384,6 +2383,8 @@ void biblioteq::slotDelete(void)
       else
 	QApplication::processEvents();
     }
+
+  QProgressDialog progress(this);
 
   progress.setCancelButton(0);
   progress.setModal(true);

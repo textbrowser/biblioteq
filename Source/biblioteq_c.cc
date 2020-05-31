@@ -3665,6 +3665,8 @@ void biblioteq::slotRefreshAdminList(void)
 
   if(!progress)
     return;
+  else
+    progress->hide();
 
   QCheckBox *checkBox = 0;
   QSqlQuery query(m_db);
@@ -4046,7 +4048,6 @@ void biblioteq::slotRequest(void)
 
   QDate now = QDate::currentDate();
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
-  QProgressDialog progress(this);
   QSqlQuery query(m_db);
   QString itemType = "";
   QString oid = "";
@@ -4102,6 +4103,8 @@ void biblioteq::slotRequest(void)
 	  QApplication::processEvents();
 	}
     }
+
+  QProgressDialog progress(this);
 
   progress.setCancelButton(0);
   progress.setModal(true);
