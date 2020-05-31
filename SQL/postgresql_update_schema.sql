@@ -1270,7 +1270,9 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 
 /* PostgreSQL 9.5 or newer is required. */
 
+ALTER TABLE item_borrower ENABLE ROW LEVEL SECURITY;
 ALTER TABLE item_request ENABLE ROW LEVEL SECURITY;
-
+CREATE POLICY item_borrower_biblioteq_patron_policy ON item_borrower TO biblioteq_patron USING (memberid = session_user);
+CREATE POLICY item_borrower_policy ON item_borrower TO biblioteq_administrator, biblioteq_circulation USING (true);
 CREATE POLICY item_request_biblioteq_patron_policy ON item_request TO biblioteq_patron USING (memberid = session_user);
-CREATE POLICY item_request_biblioteq_policy ON item_request to biblioteq_administrator, biblioteq_circulation, biblioteq_librarian USING (true);
+CREATE POLICY item_request_policy ON item_request TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian USING (true);
