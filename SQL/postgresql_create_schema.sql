@@ -941,3 +941,9 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE biblioteq_guest;
 INSERT INTO admin (username, roles) VALUES ('xbook_admin', 'administrator');
 GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
+
+/* PostgreSQL 9.5 or newer is required. */
+
+ALTER TABLE item_request ENABLE ROW LEVEL SECURITY;
+CREATE POLICY item_request_biblioteq_patron_policy ON item_request TO biblioteq_patron USING (memberid = session_user);
+CREATE POLICY item_request_biblioteq_policy ON item_request to biblioteq_administrator, biblioteq_circulation, biblioteq_librarian USING (true);

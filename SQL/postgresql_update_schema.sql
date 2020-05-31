@@ -1265,3 +1265,12 @@ GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 /* Release 2018.12.12 */
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
+
+/* Release 2020.07.07 */
+
+/* PostgreSQL 9.5 or newer is required. */
+
+ALTER TABLE item_request ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY item_request_biblioteq_patron_policy ON item_request TO biblioteq_patron USING (memberid = session_user);
+CREATE POLICY item_request_biblioteq_policy ON item_request to biblioteq_administrator, biblioteq_circulation, biblioteq_librarian USING (true);
