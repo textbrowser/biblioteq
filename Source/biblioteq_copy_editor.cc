@@ -63,7 +63,6 @@ biblioteq_copy_editor::~biblioteq_copy_editor()
 
 QString biblioteq_copy_editor::saveCopies(void)
 {
-  QProgressDialog progress(this);
   QSqlQuery query(qmain->getDB());
   QString lastError = "";
   copy_class *copy = 0;
@@ -86,6 +85,9 @@ QString biblioteq_copy_editor::saveCopies(void)
   else
     {
       QApplication::restoreOverrideCursor();
+
+      QProgressDialog progress(this);
+
       progress.setCancelButton(0);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));

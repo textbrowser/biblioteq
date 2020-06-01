@@ -149,6 +149,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.itemsCountLabel->setText(tr("0 Results"));
 
   QProgressDialog progress(this);
+
+  progress.hide();
+
   QTableWidgetItem *item = 0;
   QString itemType("");
   QString str("");
@@ -4238,6 +4241,7 @@ void biblioteq::slotSaveAdministrators(void)
   */
 
   ab.saveButton->setFocus();
+  progress.hide();
 
   for(i = 0; i < ab.table->rowCount(); i++)
     {
