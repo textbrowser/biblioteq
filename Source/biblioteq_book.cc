@@ -1081,7 +1081,7 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 
       while(!keys.isEmpty())
 	{
-	  QString key(keys.takeFirst());
+	  const QString &key(keys.takeFirst());
 	  int index = m_openLibraryResults.indexOf(key);
 
 	  if(index > -1)
@@ -2010,7 +2010,7 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);
@@ -3988,7 +3988,7 @@ void biblioteq_book::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+  biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 

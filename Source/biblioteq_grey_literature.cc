@@ -1042,7 +1042,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);

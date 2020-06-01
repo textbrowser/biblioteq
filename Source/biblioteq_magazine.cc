@@ -2042,7 +2042,7 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);
@@ -3610,7 +3610,7 @@ void biblioteq_magazine::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+  biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 

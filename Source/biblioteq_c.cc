@@ -3410,7 +3410,7 @@ void biblioteq::slotOpenPDFFile(void)
     {
       QApplication::processEvents();
 
-      biblioteq_pdfreader *reader = new biblioteq_pdfreader(0);
+      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       reader->load(dialog.selectedFiles().value(0));
