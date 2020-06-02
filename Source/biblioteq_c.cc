@@ -5580,6 +5580,8 @@ void biblioteq::slotVacuum(void)
   QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
   statusBar()->showMessage(tr("Vacuuming the database. Please be patient."));
+  statusBar()->repaint();
+  statusBar()->update();
 
   QSqlQuery query(m_db);
 
