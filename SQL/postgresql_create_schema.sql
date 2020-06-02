@@ -46,8 +46,8 @@ CREATE TABLE book_copy_info
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
 	originality	 TEXT,
-	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, copyid)
+	FOREIGN KEY (item_oid) REFERENCES book (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, copyid)
 );
 
 CREATE TABLE book_files
@@ -58,8 +58,8 @@ CREATE TABLE book_files
 	file_name	TEXT NOT NULL,
 	item_oid	BIGINT NOT NULL,
 	myoid		BIGSERIAL NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(file_digest, item_oid)
+	FOREIGN KEY (item_oid) REFERENCES book (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (file_digest, item_oid)
 );
 
 CREATE TABLE cd
@@ -95,8 +95,8 @@ CREATE TABLE cd_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, copyid)
+	FOREIGN KEY (item_oid) REFERENCES cd (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, copyid)
 );
 
 CREATE TABLE cd_songs
@@ -108,8 +108,8 @@ CREATE TABLE cd_songs
 	runtime		 VARCHAR(32) NOT NULL,
 	songnum		 INTEGER NOT NULL DEFAULT 1,
 	songtitle	 VARCHAR(256) NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, albumnum, songnum)
+	FOREIGN KEY (item_oid) REFERENCES cd (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, albumnum, songnum)
 );
 
 CREATE TABLE dvd
@@ -147,8 +147,8 @@ CREATE TABLE dvd_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, copyid)
+	FOREIGN KEY (item_oid) REFERENCES dvd (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, copyid)
 );
 
 CREATE TABLE grey_literature
@@ -178,8 +178,9 @@ CREATE TABLE grey_literature_files
 	file_name	TEXT NOT NULL,
 	item_oid	BIGINT NOT NULL,
 	myoid		BIGSERIAL NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES grey_literature(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(file_digest, item_oid)
+	FOREIGN KEY (item_oid) REFERENCES grey_literature (myoid)
+		    	       ON DELETE CASCADE,
+	PRIMARY KEY (file_digest, item_oid)
 );
 
 CREATE TABLE journal
@@ -217,8 +218,8 @@ CREATE TABLE journal_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, copyid)
+	FOREIGN KEY (item_oid) REFERENCES journal (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, copyid)
 );
 
 CREATE TABLE journal_files
@@ -229,8 +230,8 @@ CREATE TABLE journal_files
 	file_name	TEXT NOT NULL,
 	item_oid	BIGINT NOT NULL,
 	myoid		BIGSERIAL NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(file_digest, item_oid)
+	FOREIGN KEY (item_oid) REFERENCES journal (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (file_digest, item_oid)
 );
 
 CREATE TABLE magazine
@@ -268,8 +269,8 @@ CREATE TABLE magazine_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, copyid)
+	FOREIGN KEY (item_oid) REFERENCES magazine (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, copyid)
 );
 
 CREATE TABLE magazine_files
@@ -280,8 +281,8 @@ CREATE TABLE magazine_files
 	file_name	TEXT NOT NULL,
 	item_oid	BIGINT NOT NULL,
 	myoid		BIGSERIAL NOT NULL,
-	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(file_digest, item_oid)
+	FOREIGN KEY (item_oid) REFERENCES magazine (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (file_digest, item_oid)
 );
 
 CREATE TABLE photograph_collection
@@ -318,9 +319,9 @@ CREATE TABLE photograph
 	reproduction_number  	  TEXT NOT NULL,
 	subjects		  TEXT,
 	title			  TEXT NOT NULL,
-	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON
-				    DELETE CASCADE,
-	PRIMARY KEY(id, collection_oid)
+	FOREIGN KEY (collection_oid) REFERENCES photograph_collection (myoid)
+		    		     ON DELETE CASCADE,
+	PRIMARY KEY (id, collection_oid)
 );
 
 CREATE TABLE videogame
@@ -355,8 +356,8 @@ CREATE TABLE videogame_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE,
-	PRIMARY KEY(item_oid, copyid)
+	FOREIGN KEY (item_oid) REFERENCES videogame (myoid) ON DELETE CASCADE,
+	PRIMARY KEY (item_oid, copyid)
 );
 
 CREATE TABLE member
@@ -392,14 +393,14 @@ CREATE TABLE member_history
 	reserved_date	 VARCHAR(32) NOT NULL,
 	returned_date	 VARCHAR(32) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
-	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE member_history_dnt
 (
 	dnt		INTEGER NOT NULL DEFAULT 1,
 	memberid	VARCHAR(16) NOT NULL PRIMARY KEY,
-	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE item_borrower
@@ -413,7 +414,7 @@ CREATE TABLE item_borrower
 	reserved_by	 VARCHAR(128) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
-	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT
+	FOREIGN KEY (memberid) REFERENCES member ON DELETE RESTRICT
 );
 
 CREATE TABLE item_request
@@ -423,8 +424,8 @@ CREATE TABLE item_request
 	myoid		 BIGSERIAL NOT NULL,
 	requestdate	 VARCHAR(32) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
-	PRIMARY KEY(item_oid, memberid, type),
-	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+	PRIMARY KEY (item_oid, memberid, type),
+	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
 
 CREATE OR REPLACE FUNCTION delete_book_history() RETURNS trigger AS '
@@ -536,7 +537,7 @@ CREATE TABLE locations
 (
 	location	 TEXT NOT NULL,
 	type		 VARCHAR(32) NOT NULL,
-	PRIMARY KEY(location, type)
+	PRIMARY KEY (location, type)
 );
 
 CREATE TABLE monetary_units
