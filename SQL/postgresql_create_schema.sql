@@ -428,65 +428,71 @@ CREATE TABLE item_request
 	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
 
-CREATE OR REPLACE FUNCTION delete_book_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_book() RETURNS trigger AS '
 BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 	type = ''Book'';
 	RETURN NULL;
 END;
 ' LANGUAGE plpgsql;
 CREATE TRIGGER book_trigger AFTER DELETE ON book
-FOR EACH row EXECUTE PROCEDURE delete_book_history();
+FOR EACH row EXECUTE PROCEDURE delete_book();
 
-CREATE OR REPLACE FUNCTION delete_cd_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_cd() RETURNS trigger AS '
 BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 	type = ''CD'';
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
 CREATE TRIGGER cd_trigger AFTER DELETE ON cd
-FOR EACH row EXECUTE PROCEDURE delete_cd_history();
+FOR EACH row EXECUTE PROCEDURE delete_cd();
 
-CREATE OR REPLACE FUNCTION delete_dvd_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_dvd() RETURNS trigger AS '
 BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 	type = ''DVD'';
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
 CREATE TRIGGER dvd_trigger AFTER DELETE ON dvd
-FOR EACH row EXECUTE PROCEDURE delete_dvd_history();
+FOR EACH row EXECUTE PROCEDURE delete_dvd();
 
-CREATE OR REPLACE FUNCTION delete_journal_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_journal() RETURNS trigger AS '
 BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 	type = ''Journal'';
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
 CREATE TRIGGER journal_trigger AFTER DELETE ON journal
-FOR EACH row EXECUTE PROCEDURE delete_journal_history();
+FOR EACH row EXECUTE PROCEDURE delete_journal();
 
-CREATE OR REPLACE FUNCTION delete_magazine_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_magazine() RETURNS trigger AS '
 BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 	type = ''Magazine'';
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
 CREATE TRIGGER magazine_trigger AFTER DELETE ON magazine
-FOR EACH row EXECUTE PROCEDURE delete_magazine_history();
+FOR EACH row EXECUTE PROCEDURE delete_magazine();
 
-CREATE OR REPLACE FUNCTION delete_videogame_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_videogame() RETURNS trigger AS '
 BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 	type = ''Video Game'';
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
 CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
-FOR EACH row EXECUTE PROCEDURE delete_videogame_history();
+FOR EACH row EXECUTE PROCEDURE delete_videogame();
 
 CREATE OR REPLACE FUNCTION delete_request() RETURNS trigger AS '
 BEGIN

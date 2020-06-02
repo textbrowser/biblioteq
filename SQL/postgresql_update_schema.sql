@@ -1268,7 +1268,86 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 
 /* Release 2020.07.04 */
 
+DROP TRIGGER book_trigger ON book;
+DROP TRIGGER cd_trigger ON cd;
+DROP TRIGGER dvd_trigger ON dvd;
+DROP TRIGGER journal_trigger on journal;
+DROP TRIGGER magazine_trigger on magazine;
+DROP TRIGGER videogame_trigger on videogame;
+DROP FUNCTION IF EXISTS delete_book_history();
+DROP FUNCTION IF EXISTS delete_cd_history();
+DROP FUNCTION IF EXISTS delete_dvd_history();
+DROP FUNCTION IF EXISTS delete_journal_history();
+DROP FUNCTION IF EXISTS delete_magazine_history();
+DROP FUNCTION IF EXISTS delete_videogame_history();
 DROP VIEW item_borrower_vw;
+
+CREATE OR REPLACE FUNCTION delete_book() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''Book'';
+	RETURN NULL;
+END;
+' LANGUAGE plpgsql;
+CREATE TRIGGER book_trigger AFTER DELETE ON book
+FOR EACH row EXECUTE PROCEDURE delete_book();
+
+CREATE OR REPLACE FUNCTION delete_cd() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''CD'';
+	RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER cd_trigger AFTER DELETE ON cd
+FOR EACH row EXECUTE PROCEDURE delete_cd();
+
+CREATE OR REPLACE FUNCTION delete_dvd() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''DVD'';
+	RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER dvd_trigger AFTER DELETE ON dvd
+FOR EACH row EXECUTE PROCEDURE delete_dvd();
+
+CREATE OR REPLACE FUNCTION delete_journal() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''Journal'';
+	RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER journal_trigger AFTER DELETE ON journal
+FOR EACH row EXECUTE PROCEDURE delete_journal();
+
+CREATE OR REPLACE FUNCTION delete_magazine() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''Magazine'';
+	RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER magazine_trigger AFTER DELETE ON magazine
+FOR EACH row EXECUTE PROCEDURE delete_magazine();
+
+CREATE OR REPLACE FUNCTION delete_videogame() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''Video Game'';
+	RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
+FOR EACH row EXECUTE PROCEDURE delete_videogame();
+
 GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
 GRANT SELECT ON item_borrower_vw TO biblioteq_administrator;
 GRANT SELECT ON item_borrower_vw TO biblioteq_circulation;

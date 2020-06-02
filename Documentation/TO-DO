@@ -329,7 +329,8 @@
 186. Removing an item via the database will not remove corresponding
      entries in the item_borrower table. Should item removal be prevented
      if an item is reserved? This is the current behavior of BiblioteQ,
-     however, the database schema does not enforce this. (TBD)
+     however, the database schema does not enforce this. Deleting an item
+     will now delete reservation histories and statuses. (Done)
 187. Add the Place of Publication to Video Games. (Done)
 188. Video Games should have default values of N/A for some mandatory
      fields. (Done)
