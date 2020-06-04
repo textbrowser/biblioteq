@@ -942,7 +942,13 @@ GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
 
 ALTER TABLE item_borrower ENABLE ROW LEVEL SECURITY;
 ALTER TABLE item_request ENABLE ROW LEVEL SECURITY;
+ALTER TABLE member_history ENABLE ROW LEVEL SECURITY;
+ALTER TABLE member_history_dnt ENABLE ROW LEVEL SECURITY;
 CREATE POLICY item_borrower_biblioteq_patron_policy ON item_borrower TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY item_borrower_policy ON item_borrower TO biblioteq_administrator, biblioteq_circulation USING (true);
 CREATE POLICY item_request_biblioteq_patron_policy ON item_request TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY item_request_policy ON item_request TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian USING (true);
+CREATE POLICY member_history_biblioteq_patron_policy ON member_history TO biblioteq_patron USING (memberid = session_user);
+CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership USING (true);
+CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
+CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);

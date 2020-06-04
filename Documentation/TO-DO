@@ -359,7 +359,7 @@
 195. Dates should not be retrieved from local services.
      PostgreSQL only. (TBD)
 196. Users should only be allowed to view their reservation histories.
-     Create temporary views? (TBD)
+     Create temporary views? No. Row-level privacy. (Done)
 197. After an item has been added, the item's row must be updated. One
      issue with this requirement is that the item may not be listed
      in the main table. Thus, its row number will not be available.
