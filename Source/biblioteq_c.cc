@@ -1264,6 +1264,22 @@ void biblioteq::readGlobalSetup(void)
     }
 }
 
+void biblioteq::slotAdminContextMenu(const QPoint &point)
+{
+  QMenu menu(m_admin_diag);
+
+  menu.addAction(tr("Add Administrator"),
+		 this,
+		 SLOT(slotAddAdmin(void)));
+  menu.addAction(tr("Delete Selected Administrator"),
+		 this,
+		 SLOT(slotDeleteAdmin(void)));
+  menu.addAction(tr("Refresh Table"),
+		 this,
+		 SLOT(slotRefreshAdminList(void)));
+  menu.exec(ab.table->mapToGlobal(point));
+}
+
 void biblioteq::slotAllGo(void)
 {
   if(!m_db.isOpen())

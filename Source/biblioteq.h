@@ -346,6 +346,7 @@ class biblioteq: public QMainWindow
   void slotAddAdmin(void);
   void slotAddBorrower(void);
   void slotAdminCheckBoxClicked(int state);
+  void slotAdminContextMenu(const QPoint &point);
   void slotAllGo(void);
   void slotAllowAnyUserEmail(bool state);
   void slotAutoPopOnFilter(QAction *action);

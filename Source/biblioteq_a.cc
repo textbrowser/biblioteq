@@ -611,6 +611,11 @@ biblioteq::biblioteq(void):QMainWindow()
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
+  ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(ab.table,
+	  SIGNAL(customContextMenuRequested(const QPoint &)),
+	  this,
+	  SLOT(slotAdminContextMenu(const QPoint &)));
   al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu1);
 
