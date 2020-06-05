@@ -612,10 +612,15 @@ biblioteq::biblioteq(void):QMainWindow()
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
   ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
+  bb.table->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(ab.table,
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
 	  this,
 	  SLOT(slotAdminContextMenu(const QPoint &)));
+  connect(bb.table,
+	  SIGNAL(customContextMenuRequested(const QPoint &)),
+	  this,
+	  SLOT(slotMembersContextMenu(const QPoint &)));
   al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu1);
 
@@ -3405,19 +3410,20 @@ void biblioteq::slotPrintReserved(void)
     biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).
     toInt();
+  memberid = biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   QApplication::restoreOverrideCursor();
 
   if(itemsReserved < 1)
     {
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("The member that you selected does not have "
-			       "any reserved items."));
+			    tr("The member (%1) that you selected "
+			       "does not have reserved items.").
+			    arg(memberid));
       QApplication::processEvents();
       return;
     }
 
-  memberid = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   memberinfo["firstname"] = biblioteq_misc_functions::getColumnString
     (bb.table, row,
      m_bbColumnHeaderIndexes.indexOf("First Name"));

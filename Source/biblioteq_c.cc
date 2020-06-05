@@ -3251,6 +3251,34 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
     }
 }
 
+void biblioteq::slotMembersContextMenu(const QPoint &point)
+{
+  QMenu menu(m_members_diag);
+
+  menu.addAction(tr("Delete Selected Member"),
+		 this,
+		 SLOT(slotRemoveMember(void)));
+  menu.addAction(tr("List Selected Member's Reserved Items"),
+		 this,
+		 SLOT(slotListReservedItems(void)));
+  menu.addAction(tr("Modify Selected Member..."),
+		 this,
+		 SLOT(slotModifyBorrower(void)));
+  menu.addAction(tr("Print Selected Member's Reserved Items..."),
+		 this,
+		 SLOT(slotPrintReserved(void)));
+  menu.addAction(tr("Refresh Table"),
+		 this,
+		 SLOT(slotPopulateMembersBrowser(void)));
+  menu.addAction(tr("Reserve Selected Item..."),
+		 this,
+		 SLOT(slotReserveCopy(void)));
+  menu.addAction(tr("Show Selected Member's Reservation History..."),
+		 this,
+		 SLOT(slotShowHistory(void)));
+  menu.exec(bb.table->mapToGlobal(point));
+}
+
 void biblioteq::slotModifyBorrower(void)
 {
   QSqlQuery query(m_db);
@@ -3959,7 +3987,7 @@ void biblioteq::slotRemoveMember(void)
 
   if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
 			   tr("Are you sure that you wish to delete the "
-			      "selected member?"),
+			      "selected member (%1)?").arg(memberid),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     {
