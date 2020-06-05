@@ -3272,7 +3272,7 @@ void biblioteq::slotMembersContextMenu(const QPoint &point)
 		 SLOT(slotPopulateMembersBrowser(void)));
   menu.addAction(tr("Reserve Selected Item..."),
 		 this,
-		 SLOT(slotReserveCopy(void)));
+		 SLOT(slotCheckout(void)));
   menu.addAction(tr("Show Selected Member's Reservation History..."),
 		 this,
 		 SLOT(slotShowHistory(void)));
