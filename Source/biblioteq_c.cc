@@ -2534,6 +2534,8 @@ void biblioteq::slotConnectDB(void)
 
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
+
+  prepareContextMenus();
 }
 
 void biblioteq::slotDisconnect(void)

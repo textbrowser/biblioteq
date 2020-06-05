@@ -3476,6 +3476,10 @@ int biblioteq::populateTable(const int search_type_arg,
   return 0;
 }
 
+void biblioteq::prepareContextMenus()
+{
+}
+
 void biblioteq::preparePhotographsPerPageMenu(void)
 {
   QActionGroup *group = new QActionGroup(this);
