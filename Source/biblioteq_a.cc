@@ -613,6 +613,7 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
   ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
   bb.table->setContextMenuPolicy(Qt::CustomContextMenu);
+  ui.table->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(ab.table,
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
 	  this,
@@ -621,6 +622,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
 	  this,
 	  SLOT(slotMembersContextMenu(const QPoint &)));
+  connect(ui.table,
+	  SIGNAL(customContextMenuRequested(const QPoint &)),
+	  this,
+	  SLOT(slotContextMenu(const QPoint &)));
   al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu1);
 

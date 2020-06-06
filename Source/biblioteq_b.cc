@@ -3478,6 +3478,20 @@ int biblioteq::populateTable(const int search_type_arg,
 
 void biblioteq::prepareContextMenus()
 {
+  if(m_menu)
+    m_menu->clear();
+  else
+    m_menu = new QMenu(this);
+
+  if(m_roles.isEmpty())
+    {
+      m_menu->addAction(tr("View Selected Item(s)..."),
+			this,
+			SLOT(slotViewDetails(void)));
+    }
+  else
+    {
+    }
 }
 
 void biblioteq::preparePhotographsPerPageMenu(void)
@@ -3637,6 +3651,12 @@ void biblioteq::slotCDSearch(void)
   cd->showNormal();
   cd->activateWindow();
   cd->raise();
+}
+
+void biblioteq::slotContextMenu(const QPoint &point)
+{
+  prepareContextMenus();
+  m_menu->exec(ui.table->mapToGlobal(point));
 }
 
 void biblioteq::slotDVDSearch(void)

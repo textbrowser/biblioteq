@@ -293,6 +293,7 @@ class biblioteq: public QMainWindow
   QMap<QString, QHash<QString, QString> > m_branches;
   QMap<QString, QHash<QString, QString> > m_sruMaps;
   QMap<QString, QHash<QString, QString> > m_z3950Maps;
+  QPointer<QMenu> m_menu;
   QSqlDatabase m_db;
   QSqlQuery m_searchQuery;
   QString m_engUserinfoTitle;
@@ -362,6 +363,7 @@ class biblioteq: public QMainWindow
   void slotCloseMembersBrowser(void);
   void slotClosePasswordDialog(void);
   void slotConnectDB(void);
+  void slotContextMenu(const QPoint &point);
   void slotCopyError(void);
   void slotDVDSearch(void);
   void slotDelete(void);
