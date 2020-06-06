@@ -3485,6 +3485,9 @@ void biblioteq::prepareContextMenus()
 
   if(m_roles.isEmpty())
     {
+      m_menu->addAction(tr("Print Current View..."),
+			this,
+			SLOT(slotPrintView(void)));
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
