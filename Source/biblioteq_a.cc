@@ -929,7 +929,7 @@ QString biblioteq::getPreferredZ3950Site(void) const
 QString biblioteq::getRoles(void) const
 {
   /*
-  ** Empty roles suggest that the user is a patron.
+  ** Empty roles suggest that the user is a guest or a patron.
   */
 
   return m_roles;

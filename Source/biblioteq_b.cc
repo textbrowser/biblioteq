@@ -3488,6 +3488,19 @@ void biblioteq::prepareContextMenus()
       m_menu->addAction(tr("Print Current View..."),
 			this,
 			SLOT(slotPrintView(void)));
+
+      if(!isGuest())
+	{
+	  if(getTypeFilterString() == "All Requested")
+	    m_menu->addAction(tr("Cancel Requested Request(s)"),
+			      this,
+			      SLOT(slotRequest(void)));
+	  else
+	    m_menu->addAction(tr("Request Selected Item(s)"),
+			      this,
+			      SLOT(slotRequest(void)));
+	}
+
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
