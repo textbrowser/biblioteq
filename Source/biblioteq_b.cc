@@ -3483,30 +3483,58 @@ void biblioteq::prepareContextMenus()
   else
     m_menu = new QMenu(this);
 
-  if(m_roles.isEmpty())
+  if(m_roles.contains("administrator"))
     {
+      if(getTypeFilterString() == "All Requested")
+	m_menu->addAction(tr("Cancel Requested Request(s)"),
+			  this,
+			  SLOT(slotRequest(void)));
+
+      m_menu->addAction(tr("Delete Selected Item(s)"),
+			this,
+			SLOT(slotDelete(void)));
+      m_menu->addAction(tr("Duplicate Selected Item(s)..."),
+			this,
+			SLOT(slotDuplicate(void)));
+      m_menu->addAction(tr("Modify Selected Item(s)..."),
+			this,
+			SLOT(slotModify(void)));
       m_menu->addAction(tr("Print Current View..."),
 			this,
 			SLOT(slotPrintView(void)));
 
+      if(getTypeFilterString() != "All Requested")
+	m_menu->addAction(tr("Reserve Selected Item(s)..."),
+			  this,
+			  SLOT(slotReserveCopy(void)));
+    }
+  else
+    {
       if(!isGuest())
 	{
 	  if(getTypeFilterString() == "All Requested")
-	    m_menu->addAction(tr("Cancel Requested Request(s)"),
-			      this,
-			      SLOT(slotRequest(void)));
+	    {
+	      m_menu->addAction(tr("Print Current View..."),
+				this,
+				SLOT(slotPrintView(void)));
+	      m_menu->addAction(tr("Cancel Requested Request(s)"),
+				this,
+				SLOT(slotRequest(void)));
+	    }
 	  else
-	    m_menu->addAction(tr("Request Selected Item(s)"),
-			      this,
-			      SLOT(slotRequest(void)));
+	    {
+	      m_menu->addAction(tr("Print Current View..."),
+				this,
+				SLOT(slotPrintView(void)));
+	      m_menu->addAction(tr("Request Selected Item(s)"),
+				this,
+				SLOT(slotRequest(void)));
+	    }
 	}
 
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
-    }
-  else
-    {
     }
 }
 
