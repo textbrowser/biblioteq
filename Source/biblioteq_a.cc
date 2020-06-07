@@ -1186,6 +1186,7 @@ void biblioteq::adminSetup(void)
 
       if(m_roles == "librarian")
 	{
+	  bb.checkoutButton->setEnabled(false);
 	  ui.actionDatabase_Enumerations->setEnabled(true);
 	  ui.actionPopulate_Database_Enumerations_Browser_on_Display->
 	    setEnabled(true);

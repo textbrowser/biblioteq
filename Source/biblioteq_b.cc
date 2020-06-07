@@ -3483,9 +3483,11 @@ void biblioteq::prepareContextMenus()
   else
     m_menu = new QMenu(this);
 
-  if(m_roles.contains("administrator"))
+  if(m_roles.contains("administrator") ||
+     m_roles.contains("librarian"))
     {
-      if(getTypeFilterString() == "All Requested")
+      if(getTypeFilterString() == "All Requested" &&
+	 !m_roles.contains("librarian"))
 	m_menu->addAction(tr("Cancel Requested Request(s)"),
 			  this,
 			  SLOT(slotRequest(void)));
@@ -3503,7 +3505,8 @@ void biblioteq::prepareContextMenus()
 			this,
 			SLOT(slotPrintView(void)));
 
-      if(getTypeFilterString() != "All Requested")
+      if(getTypeFilterString() != "All Requested" &&
+	 !m_roles.contains("librarian"))
 	m_menu->addAction(tr("Reserve Selected Item(s)..."),
 			  this,
 			  SLOT(slotReserveCopy(void)));
@@ -3524,6 +3527,15 @@ void biblioteq::prepareContextMenus()
 			  this,
 			  SLOT(slotReserveCopy(void)));
 
+      m_menu->addAction(tr("View Selected Item(s)..."),
+			this,
+			SLOT(slotViewDetails(void)));
+    }
+  else if(m_roles.contains("membership"))
+    {
+      m_menu->addAction(tr("Print Current View..."),
+			this,
+			SLOT(slotPrintView(void)));
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
