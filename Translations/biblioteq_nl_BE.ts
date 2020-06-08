@@ -885,7 +885,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation type="unfinished">Bent u zeker dat u geselecteerde klant wilt verwijderen?</translation>
+        <translation type="obsolete">Bent u zeker dat u geselecteerde klant wilt verwijderen?</translation>
     </message>
     <message>
         <source>Unable to remove the selected member.</source>
@@ -1021,7 +1021,7 @@
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to determine the number of reserved items for the selected member.</source>
@@ -1069,7 +1069,7 @@
     </message>
     <message>
         <source>Memory failure in addError()!</source>
-        <translation type="unfinished">Geheugen Falen in addError()!</translation>
+        <translation type="obsolete">Geheugen Falen in addError()!</translation>
     </message>
     <message>
         <source>Event Time</source>
@@ -1153,11 +1153,11 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kan niet genoeg geheugen vrijmaken voor&quot; item2&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen vrijmaken voor&quot; item2&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kan niet genoeg geheugen vrijmaken voor&quot; item1&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen vrijmaken voor&quot; item1&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Please provide a valid SQL statement.</source>
@@ -1173,7 +1173,7 @@
     </message>
     <message>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation type="unfinished">De klant die U selecteerde heeft geen items ontleend.</translation>
+        <translation type="obsolete">De klant die U selecteerde heeft geen items ontleend.</translation>
     </message>
     <message>
         <source>Reserved Items for </source>
@@ -1245,7 +1245,7 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kan niet genoeg geheugen toewijzen voor de &quot;checBbox&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen toewijzen voor de &quot;checBbox&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>To delete an entry, you must first select it.</source>
@@ -1570,10 +1570,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Granting privileges...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1862,15 +1858,95 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Hebrew</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>H&amp;ungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Fire Flight.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The member (%1) that you selected does not have reserved items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Requested Request(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Selected Item(s)</source>
+        <translation type="unfinished">Verwijder Geselecteerde Item(s)</translation>
+    </message>
+    <message>
+        <source>Duplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Current View...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserve Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Administrator</source>
+        <translation type="unfinished">Administrator toevoegen</translation>
+    </message>
+    <message>
+        <source>Delete Selected Administrator</source>
+        <translation type="unfinished">Verwijder geselecteerde administrator</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Selected Member</source>
+        <translation type="unfinished">Verwijder Klant</translation>
+    </message>
+    <message>
+        <source>List Selected Member&apos;s Reserved Items</source>
+        <translation type="unfinished">Geleende Item(s) van Klant in Hoofdtabel Weergeven</translation>
+    </message>
+    <message>
+        <source>Modify Selected Member...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Selected Member&apos;s Reserved Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserve Selected Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Selected Member&apos;s Reservation History...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the selected member (%1)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vacuuming a database may require a significant amount of time to complete. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vacuuming the database. Please be patient.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2118,11 +2194,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation type="unfinished">Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
+        <translation type="obsolete">Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -2524,6 +2600,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>In order to download a cover image, the ISBN-10 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Open Library Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Open Library Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Open Library query produced invalid results.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from Open Library?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an Open Library site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -2557,11 +2653,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen voor het &quot;dataEdit&quot; object. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;dataEdit&quot; object. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -2637,10 +2733,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2912,19 +3004,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kan niet genoeg geheugen toewijzen voor de &quot;comboBox&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen toewijzen voor de &quot;comboBox&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kan niet genoeg geheugen toewijzen voor de &quot;trackEdit&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen toewijzen voor de &quot;trackEdit&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen voor het &quot;timeEdit&quot; object. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;timeEdit&quot; object. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Title</source>
@@ -3155,10 +3247,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3227,7 +3315,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
@@ -3283,7 +3371,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
@@ -3341,10 +3429,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Constructing objects...</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>biblioteq_copy_editor_book</name>
@@ -3398,7 +3482,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
@@ -3426,7 +3510,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
@@ -3538,14 +3622,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Very Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4923,11 +4999,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
-        <translation type="unfinished">BiblioteQ: Geheugen Fout</translation>
+        <translation type="obsolete">BiblioteQ: Geheugen Fout</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
@@ -5155,14 +5231,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a thread because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5561,7 +5629,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Grey Literature</source>
@@ -5569,10 +5637,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Photograph Collections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8420,6 +8484,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Download the book&apos;s back cover image.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Open Library</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -9226,6 +9294,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Import CSV...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Vacuum Database</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -9596,11 +9668,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Show Main Table Tool Tips</source>
+        <source>Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Main Window Canvas Background Color</source>
+        <source>Please note that the publication date formats only apply to item details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

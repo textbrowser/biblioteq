@@ -809,7 +809,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation>Soll der ausgewählte Benutzer wirklich gelöscht werden?</translation>
+        <translation type="vanished">Soll der ausgewählte Benutzer wirklich gelöscht werden?</translation>
     </message>
     <message>
         <source>Unable to remove the selected member.</source>
@@ -957,7 +957,7 @@
     </message>
     <message>
         <source>Memory failure in addError()!</source>
-        <translation>Speicher-Fehler in addError()!</translation>
+        <translation type="vanished">Speicher-Fehler in addError()!</translation>
     </message>
     <message>
         <source>Event Time</source>
@@ -1029,11 +1029,11 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item2&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item2&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item1&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item1&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Please provide a valid SQL statement.</source>
@@ -1049,7 +1049,7 @@
     </message>
     <message>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation>Der ausgewählte Benutzer hat keine reservierten Objekte.</translation>
+        <translation type="vanished">Der ausgewählte Benutzer hat keine reservierten Objekte.</translation>
     </message>
     <message>
         <source>Reserved Items for </source>
@@ -1117,7 +1117,7 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;checkBox&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;checkBox&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>To delete an entry, you must first select it.</source>
@@ -1469,11 +1469,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Granting privileges...</source>
@@ -1848,15 +1848,95 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
         <translation>BiblioteQ: %1 (%2)</translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Hebrew</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>H&amp;ungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Fire Flight.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The member (%1) that you selected does not have reserved items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Requested Request(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Selected Item(s)</source>
+        <translation type="unfinished">Ausgewählte Objekte löschen</translation>
+    </message>
+    <message>
+        <source>Duplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Current View...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserve Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Administrator</source>
+        <translation type="unfinished">Administrator hinzufügen</translation>
+    </message>
+    <message>
+        <source>Delete Selected Administrator</source>
+        <translation type="unfinished">Lösche ausgewählten Administrator</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished">Tabelle aktualisieren</translation>
+    </message>
+    <message>
+        <source>Delete Selected Member</source>
+        <translation type="unfinished">Ausgewählten Benutzer löschen</translation>
+    </message>
+    <message>
+        <source>List Selected Member&apos;s Reserved Items</source>
+        <translation type="unfinished">Reservierte Objekte des ausgewählten Benutzers anzeigen</translation>
+    </message>
+    <message>
+        <source>Modify Selected Member...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Selected Member&apos;s Reserved Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserve Selected Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Selected Member&apos;s Reservation History...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the selected member (%1)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vacuuming a database may require a significant amount of time to complete. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vacuuming the database. Please be patient.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2292,11 +2372,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Aufgrund fehlender Ressourcen kann kein Thread erstellt werden.</translation>
+        <translation type="vanished">Aufgrund fehlender Ressourcen kann kein Thread erstellt werden.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -2442,6 +2522,26 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
         <source>In order to download a cover image, the ISBN-10 must be provided.</source>
         <translation>Zum Download eines Titelbildes muss die ISBN-10 angegeben werden.</translation>
     </message>
+    <message>
+        <source>BiblioteQ: Open Library Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Open Library Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Open Library query produced invalid results.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from Open Library?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an Open Library site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -2475,7 +2575,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation>Nicht genügend Speicher für das &quot;dateEdit&quot;-Objekt vorhanden. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Nicht genügend Speicher für das &quot;dateEdit&quot;-Objekt vorhanden. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
@@ -2547,11 +2647,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -2670,15 +2770,15 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;comboBox&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;comboBox&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation>Nicht genügend Speicher für das &quot;trackEdit&quot;-Objekt vorhanden. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Nicht genügend Speicher für das &quot;trackEdit&quot;-Objekt vorhanden. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation>Nicht genügend Speicher für das &quot;timeEdit&quot;-Objekt vorhanden. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Nicht genügend Speicher für das &quot;timeEdit&quot;-Objekt vorhanden. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Title</source>
@@ -2982,11 +3082,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Commit failure.</source>
@@ -3121,7 +3221,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;copy&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;copy&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
@@ -3185,11 +3285,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -3264,7 +3364,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;copy&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;copy&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
@@ -3384,15 +3484,15 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;combobox&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;combobox&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -4561,7 +4661,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
-        <translation>BiblioteQ: Speicherfehler</translation>
+        <translation type="vanished">BiblioteQ: Speicherfehler</translation>
     </message>
     <message>
         <source>.</source>
@@ -4837,11 +4937,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation>Kann das &quot;dialog&quot;-Objekt aufgrund mangelnder Speicherkapazitäten nicht erstellen.</translation>
+        <translation type="vanished">Kann das &quot;dialog&quot;-Objekt aufgrund mangelnder Speicherkapazitäten nicht erstellen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
@@ -4853,7 +4953,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Unable to create a thread because of insufficient resources.</source>
-        <translation>Aufgrund fehlender Ressourcen kann kein Thread erstellt werden.</translation>
+        <translation type="vanished">Aufgrund fehlender Ressourcen kann kein Thread erstellt werden.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -5291,11 +5391,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Speicherfehler</translation>
+        <translation type="vanished">Speicherfehler</translation>
     </message>
     <message>
         <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
-        <translation>Kann nicht genügend Speicher für das &quot;comboBox&quot;- oder &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
+        <translation type="vanished">Kann nicht genügend Speicher für das &quot;comboBox&quot;- oder &quot;item&quot;-Objekt anfordern. Dies ist ein schwerwiegendes Problem!</translation>
     </message>
 </context>
 <context>
@@ -8143,6 +8243,10 @@ URL</source>
         <source>Download the book&apos;s back cover image.</source>
         <translation>Download des Rückcover-Bildes des Buches.</translation>
     </message>
+    <message>
+        <source>&amp;Open Library</source>
+        <translation type="unfinished">&amp;Open Library</translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -9036,6 +9140,10 @@ URL</source>
         <source>&amp;Import CSV...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Vacuum Database</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -9463,10 +9571,26 @@ URL</source>
     </message>
     <message>
         <source>&amp;Show Main Table Tool Tips</source>
-        <translation>Tooltip&amp;s in der Haupttabelle anzeigen</translation>
+        <translation type="vanished">Tooltip&amp;s in der Haupttabelle anzeigen</translation>
     </message>
     <message>
-        <source>Main Window Canvas Background Color</source>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that the publication date formats only apply to item details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

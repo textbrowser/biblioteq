@@ -1010,7 +1010,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation type="unfinished">هل أنت متأكد من أنك تريد حذف المشترك المحدد؟</translation>
+        <translation type="obsolete">هل أنت متأكد من أنك تريد حذف المشترك المحدد؟</translation>
     </message>
     <message>
         <source>Unable to remove the selected member.</source>
@@ -1185,11 +1185,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Granting privileges...</source>
@@ -1253,7 +1253,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory failure in addError()!</source>
-        <translation type="unfinished">فشل الذاكرة في إضافة الخطأ!</translation>
+        <translation type="obsolete">فشل الذاكرة في إضافة الخطأ!</translation>
     </message>
     <message>
         <source>Event Time</source>
@@ -1377,7 +1377,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;item2&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;item2&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>No</source>
@@ -1385,7 +1385,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;item1&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;item1&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Please provide a valid SQL statement.</source>
@@ -1401,7 +1401,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation type="unfinished">المشترك الذي قُمتَ بتحديده ليس لديه أي مصادر معارة.</translation>
+        <translation type="obsolete">المشترك الذي قُمتَ بتحديده ليس لديه أي مصادر معارة.</translation>
     </message>
     <message>
         <source>Reserved Items for </source>
@@ -1501,7 +1501,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">النظام غير قادر على تخصيص الذاكرة من أجل كائن &quot;مربع الخيارات&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">النظام غير قادر على تخصيص الذاكرة من أجل كائن &quot;مربع الخيارات&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>To delete an entry, you must first select it.</source>
@@ -1884,15 +1884,95 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Petya Stormware.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Hebrew</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>H&amp;ungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Fire Flight.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The member (%1) that you selected does not have reserved items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Requested Request(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Selected Item(s)</source>
+        <translation type="unfinished">حذف المصادر المُحددة</translation>
+    </message>
+    <message>
+        <source>Duplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Current View...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserve Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Administrator</source>
+        <translation type="unfinished">إضافة مدير نظام</translation>
+    </message>
+    <message>
+        <source>Delete Selected Administrator</source>
+        <translation type="unfinished">حذف مدير النظام المحدد</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished">إنعاش الجدول</translation>
+    </message>
+    <message>
+        <source>Delete Selected Member</source>
+        <translation type="unfinished">حذف المشترك المُحدد</translation>
+    </message>
+    <message>
+        <source>List Selected Member&apos;s Reserved Items</source>
+        <translation type="unfinished">قائمة المصادر المعارة للمُشترك المُحدد</translation>
+    </message>
+    <message>
+        <source>Modify Selected Member...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Selected Member&apos;s Reserved Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserve Selected Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Selected Member&apos;s Reservation History...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the selected member (%1)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vacuuming a database may require a significant amount of time to complete. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vacuuming the database. Please be patient.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2216,11 +2296,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation type="unfinished">النظام غير قادر على إنشاء تمرير نظراً لعدم كفاية الموارد.</translation>
+        <translation type="obsolete">النظام غير قادر على إنشاء تمرير نظراً لعدم كفاية الموارد.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -2574,6 +2654,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>In order to download a cover image, the ISBN-10 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Open Library Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Open Library Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Open Library query produced invalid results.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from Open Library?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an Open Library site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -2631,15 +2731,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">النظام غير قادر على تخصيص الذاكرة من أجل كائن &quot;تحرير التاريخ&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">النظام غير قادر على تخصيص الذاكرة من أجل كائن &quot;تحرير التاريخ&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -2998,23 +3098,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;مربع السرد&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;مربع السرد&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;تحرير المسار&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;تحرير المسار&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;تحرير الوقت&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;تحرير الوقت&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;القيد&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;القيد&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Title</source>
@@ -3305,11 +3405,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة                                           </translation>
+        <translation type="obsolete">خطأ في الذاكرة                                           </translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;القيد&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;القيد&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
@@ -3365,7 +3465,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;النسخة&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;النسخة&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
@@ -3532,15 +3632,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">النظام غير قادر على تخصيص الذاكرة من أجل كائن &quot;مربع الخيارات&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">النظام غير قادر على تخصيص الذاكرة من أجل كائن &quot;مربع الخيارات&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
@@ -3568,7 +3668,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لكائن &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
@@ -5046,15 +5146,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation type="unfinished">النظام غير قادر على إنشاء مربع حوار نظراً لعدم كفاية الموارد.</translation>
+        <translation type="obsolete">النظام غير قادر على إنشاء مربع حوار نظراً لعدم كفاية الموارد.</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
-        <translation type="unfinished">ببليوتيك: خطأ في الذاكرة</translation>
+        <translation type="obsolete">ببليوتيك: خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
@@ -5070,7 +5170,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to create a thread because of insufficient resources.</source>
-        <translation type="unfinished">النظام غير قادر على إنشاء تمرير نظراً لعدم كفاية الموارد.</translation>
+        <translation type="obsolete">النظام غير قادر على إنشاء تمرير نظراً لعدم كفاية الموارد.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -5644,11 +5744,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">خطأ في الذاكرة</translation>
+        <translation type="obsolete">خطأ في الذاكرة</translation>
     </message>
     <message>
         <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
-        <translation type="unfinished">غير قادر على تخصيص الذاكرة لـِ &quot;مربع التحرير والسرد&quot; أو &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
+        <translation type="obsolete">غير قادر على تخصيص الذاكرة لـِ &quot;مربع التحرير والسرد&quot; أو &quot;المصدر&quot;. وهذه مشكلة خطيرة!</translation>
     </message>
     <message>
         <source>Grey Literature</source>
@@ -7893,6 +7993,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Download the book&apos;s back cover image.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Open Library</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -8599,6 +8703,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Import CSV...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Vacuum Database</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -8774,11 +8882,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Show Main Table Tool Tips</source>
+        <source>Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Main Window Canvas Background Color</source>
+        <source>Please note that the publication date formats only apply to item details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
