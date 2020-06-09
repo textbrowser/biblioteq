@@ -3196,6 +3196,19 @@ int biblioteq::populateTable(const int search_type_arg,
 	  columnNames.append(record.fieldName(ii));
     }
 
+  QString dateFormat("");
+
+  if(typefilter == "Books" ||
+     typefilter == "DVDs" ||
+     typefilter == "Grey Literature" ||
+     typefilter == "Journals" ||
+     typefilter == "Magazines" ||
+     typefilter == "Music CDs" ||
+     typefilter == "Photograph Collections" ||
+     typefilter == "Video Games")
+    dateFormat = publicationDateFormat
+      (QString(typefilter).remove(' ').toLower());
+
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -3248,7 +3261,10 @@ int biblioteq::populateTable(const int search_type_arg,
 		      QDate date(QDate::fromString(query.value(j).toString(),
 						   "MM/dd/yyyy"));
 
-		      str = date.toString(Qt::ISODate);
+		      if(dateFormat.isEmpty())
+			str = date.toString(Qt::ISODate);
+		      else
+			str = date.toString(dateFormat);
 
 		      if(str.isEmpty())
 			str = query.value(j).toString().trimmed();

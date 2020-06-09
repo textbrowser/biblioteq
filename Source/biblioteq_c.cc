@@ -397,8 +397,20 @@ int biblioteq::populateTable(const QSqlQuery &query,
     progress.setMaximum(qMin(limit, m_searchQuery.size()));
 
   QSettings settings;
+  QString dateFormat("");
   QStringList columnNames(ui.table->columnNames());
   bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+
+  if(typefilter == "Books" ||
+     typefilter == "DVDs" ||
+     typefilter == "Grey Literature" ||
+     typefilter == "Journals" ||
+     typefilter == "Magazines" ||
+     typefilter == "Music CDs" ||
+     typefilter == "Photograph Collections" ||
+     typefilter == "Video Games")
+    dateFormat = publicationDateFormat
+      (QString(typefilter).remove(' ').toLower());
 
   i = -1;
 
@@ -460,7 +472,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 						   toString().trimmed(),
 						   "MM/dd/yyyy"));
 
-		      str = date.toString(Qt::ISODate);
+		      if(dateFormat.isEmpty())
+			str = date.toString(Qt::ISODate);
+		      else
+			str = date.toString(dateFormat);
 
 		      if(str.isEmpty())
 			str = m_searchQuery.value(j).toString().trimmed();

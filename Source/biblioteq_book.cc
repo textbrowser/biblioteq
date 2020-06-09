@@ -2643,9 +2643,16 @@ void biblioteq_book::slotGo(void)
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.author->toPlainText());
 		      else if(names.at(i) == "Publication Date")
-			qmain->getUI().table->item(m_row, i)->setText
-			  (id.publication_date->date().toString
-			   (Qt::ISODate));
+			{
+			  if(qmain->getTypeFilterString() == "Books")
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (id.publication_date->date().
+			       toString(qmain->publicationDateFormat("books")));
+			  else
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (id.publication_date->date().
+			       toString(Qt::ISODate));
+			}
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.publisher->toPlainText());
@@ -2726,7 +2733,7 @@ void biblioteq_book::slotGo(void)
 	      updateWindow(biblioteq::EDITABLE);
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
-		qmain->populateTable
+		(void) qmain->populateTable
 		  (biblioteq::POPULATE_ALL, "Books", QString(""));
 
 	      raise();

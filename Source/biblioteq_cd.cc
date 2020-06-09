@@ -1230,9 +1230,16 @@ void biblioteq_cd::slotGo(void)
 			  (cd.runtime->text());
 		      else if(names.at(i) == "Release Date" ||
 			      names.at(i) == "Publication Date")
-			qmain->getUI().table->item(m_row, i)->setText
-			  (cd.release_date->date().toString
-			   (Qt::ISODate));
+			{
+			  if(qmain->getTypeFilterString() == "Music CDs")
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (cd.release_date->date().
+			       toString(qmain->
+					publicationDateFormat("musiccds")));
+			  else
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (cd.release_date->date().toString(Qt::ISODate));
+			}
 		      else if(names.at(i) == "Recording Label" ||
 			      names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_row, i)->setText

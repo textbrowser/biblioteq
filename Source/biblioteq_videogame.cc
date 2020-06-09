@@ -1095,9 +1095,16 @@ void biblioteq_videogame::slotGo(void)
 			  (vg.rating->currentText().trimmed());
 		      else if(names.at(i) == "Release Date" ||
 			      names.at(i) == "Publication Date")
-			qmain->getUI().table->item(m_row, i)->setText
-			  (vg.release_date->date().toString
-			   (Qt::ISODate));
+			{
+			  if(qmain->getTypeFilterString() == "Video Games")
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (vg.release_date->date().
+			       toString(qmain->
+					publicationDateFormat("videogames")));
+			  else
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (vg.release_date->date().toString(Qt::ISODate));
+			}
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (vg.publisher->toPlainText());

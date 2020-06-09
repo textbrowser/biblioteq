@@ -503,7 +503,7 @@ void biblioteq_grey_literature::insertDatabase(void)
   updateWindow(biblioteq::EDITABLE);
 
   if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
-    qmain->populateTable
+    (void) qmain->populateTable
       (biblioteq::POPULATE_ALL, "Grey Literature", QString(""));
 
   raise();
@@ -1614,7 +1614,12 @@ void biblioteq_grey_literature::updateDatabase(void)
 		  names.at(i) == "Publication Date")
 	    {
 	      set = true;
-	      string = m_ui.date->date().toString(Qt::ISODate);
+
+	      if(qmain->getTypeFilterString() == "Grey Literature")
+		string = m_ui.date->date().toString
+		  (qmain->publicationDateFormat("greyliterature"));
+	      else
+		string = m_ui.date->date().toString(Qt::ISODate);
 	    }
 	  else if(names.at(i) == "Document Code A")
 	    {

@@ -2812,7 +2812,7 @@ void biblioteq::slotExecuteCustomQuery(void)
       return;
     }
 
-  populateTable(CUSTOM_QUERY, "Custom", querystr);
+  (void) populateTable(CUSTOM_QUERY, "Custom", querystr);
 }
 
 void biblioteq::slotExit(void)

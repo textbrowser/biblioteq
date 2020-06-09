@@ -2651,9 +2651,22 @@ void biblioteq_magazine::slotGo(void)
 			qmain->getUI().table->item(m_row, i)->setText
 			  (ma.title->text());
 		      else if(names.at(i) == "Publication Date")
-			qmain->getUI().table->item(m_row, i)->setText
-			  (ma.publication_date->date().toString
-			   (Qt::ISODate));
+			{
+			  if(qmain->getTypeFilterString() == "Journals")
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (ma.publication_date->date().
+			       toString(qmain->
+					publicationDateFormat("journals")));
+			  else if(qmain->getTypeFilterString() == "Magazines")
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (ma.publication_date->date().
+			       toString(qmain->
+					publicationDateFormat("magazines")));
+			    else
+			      qmain->getUI().table->item(m_row, i)->setText
+				(ma.publication_date->date().
+				 toString(Qt::ISODate));
+			}
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (ma.publisher->toPlainText());

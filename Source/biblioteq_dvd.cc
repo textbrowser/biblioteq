@@ -1234,9 +1234,15 @@ void biblioteq_dvd::slotGo(void)
 			  (dvd.title->text());
 		      else if(names.at(i) == "Release Date" ||
 			      names.at(i) == "Publication Date")
-			qmain->getUI().table->item(m_row, i)->setText
-			  (dvd.release_date->date().toString
-			   (Qt::ISODate));
+			{
+			  if(qmain->getTypeFilterString() == "DVDs")
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (dvd.release_date->date().
+			       toString(qmain->publicationDateFormat("dvds")));
+			  else
+			    qmain->getUI().table->item(m_row, i)->setText
+			      (dvd.release_date->date().toString(Qt::ISODate));
+			}
 		      else if(names.at(i) == "Studio" ||
 			      names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_row, i)->setText
