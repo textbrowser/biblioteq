@@ -148,14 +148,20 @@ void biblioteq_otheroptions::prepareSettings(void)
       else
 	comboBox->setCurrentIndex(0);
 
-      QFrame *frame = new QFrame();
-      QHBoxLayout *layout = new QHBoxLayout();
+      comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 
-      frame->setLayout(layout);
+      QHBoxLayout *layout = new QHBoxLayout();
+      QSpacerItem *spacer = new QSpacerItem
+	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+      QWidget *widget = new QWidget();
+
+      widget->setLayout(layout);
       layout->addWidget(comboBox);
+      layout->addSpacerItem(spacer);
+      layout->setContentsMargins(0, 0, 0, 0);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setCellWidget(i, 1, frame);
+      m_ui.publication_date->setCellWidget(i, 1, widget);
       m_ui.publication_date->setItem(i, 0, item);
     }
 

@@ -301,6 +301,7 @@ void biblioteq_import::slotAddBookRow(void)
   layout->addSpacerItem(spacer);
   layout->setContentsMargins(0, 0, 0, 0);
   m_ui.books->setCellWidget(m_ui.books->rowCount() - 1, 1, widget);
+  m_ui.books->resizeRowsToContents();
   QApplication::restoreOverrideCursor();
 }
 
