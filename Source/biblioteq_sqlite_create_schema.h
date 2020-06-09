@@ -59,6 +59,7 @@ CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
 FOR EACH row								\
 BEGIN									\
     DELETE FROM book_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
     DELETE FROM member_history WHERE item_oid = old.myoid AND		\
                 type = old.type;					\
 END;									\
@@ -118,6 +119,7 @@ FOR EACH row								\
 BEGIN									\
     DELETE FROM cd_copy_info WHERE item_oid = old.myoid;		\
     DELETE FROM cd_songs WHERE item_oid = old.myoid;			\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
     DELETE FROM member_history WHERE item_oid = old.myoid AND		\
                 type = old.type;					\
 END;									\
@@ -165,6 +167,7 @@ CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd			\
 FOR EACH row								\
 BEGIN									\
     DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
     DELETE FROM member_history WHERE item_oid = old.myoid AND		\
 	        type = old.type;					\
 END;									\
@@ -255,6 +258,7 @@ CREATE TABLE journal_files						\
 CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
 FOR EACH row								\
 BEGIN									\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
     DELETE FROM journal_copy_info WHERE item_oid = old.myoid;		\
     DELETE FROM member_history WHERE item_oid = old.myoid AND		\
                 type = old.type;					\
@@ -314,6 +318,7 @@ CREATE TABLE magazine_files						\
 CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine		\
 FOR EACH row								\
 BEGIN									\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
     DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;		\
     DELETE FROM member_history WHERE item_oid = old.myoid AND		\
 	        type = old.type;					\
@@ -399,9 +404,10 @@ CREATE TABLE videogame_copy_info					\
 CREATE TRIGGER videogame_purge_trigger AFTER DELETE ON videogame	\
 FOR EACH row								\
 BEGIN									\
-    DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
     DELETE FROM member_history WHERE item_oid = old.myoid AND		\
       	        type = old.type;					\
+    DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;		\
 END;									\
 									\
 CREATE TABLE item_borrower						\
