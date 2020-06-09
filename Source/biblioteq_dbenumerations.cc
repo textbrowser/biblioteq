@@ -305,11 +305,18 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      QComboBox *item1 = new QComboBox();
+	      QComboBox *box = new QComboBox();
+	      QHBoxLayout *layout = new QHBoxLayout();
+	      QSpacerItem *spacer = new QSpacerItem
+		(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 	      QStringList list;
-	      QTableWidgetItem *item2 = new QTableWidgetItem
+	      QTableWidgetItem *item = new QTableWidgetItem
 		(pairList.at(j).second);
+	      QWidget *widget = new QWidget();
 
+	      layout->addWidget(box);
+	      layout->addSpacerItem(spacer);
+	      layout->setContentsMargins(0, 0, 0, 0);
 	      list << tr("Book")
 		   << tr("DVD")
 		   << tr("Grey Literature")
@@ -318,33 +325,35 @@ void biblioteq_dbenumerations::populateWidgets(void)
 		   << tr("Music CD")
 		   << tr("Photograph Collection")
 		   << tr("Video Game");
-	      item1->addItems(list);
+	      box->addItems(list);
 
 	      if(pairList.at(j).first == "Book")
-		item1->setCurrentIndex(0);
+		box->setCurrentIndex(0);
 	      else if(pairList.at(j).first == "CD")
-		item1->setCurrentIndex(5);
+		box->setCurrentIndex(5);
 	      else if(pairList.at(j).first == "DVD")
-		item1->setCurrentIndex(1);
+		box->setCurrentIndex(1);
 	      else if(pairList.at(j).first == "Grey Literature")
-		item1->setCurrentIndex(2);
+		box->setCurrentIndex(2);
 	      else if(pairList.at(j).first == "Journal")
-		item1->setCurrentIndex(3);
+		box->setCurrentIndex(3);
 	      else if(pairList.at(j).first == "Magazine")
-		item1->setCurrentIndex(4);
+		box->setCurrentIndex(4);
 	      else if(pairList.at(j).first == "Photograph Collection")
-		item1->setCurrentIndex(6);
+		box->setCurrentIndex(6);
 	      else if(pairList.at(j).first == "Video Game")
-		item1->setCurrentIndex(7);
+		box->setCurrentIndex(7);
 
 	      list.clear();
-	      item2->setFlags
+	      item->setFlags
 		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      m_ui.locationsTable->setCellWidget(j, 0, item1);
-	      m_ui.locationsTable->setItem(j, 1, item2);
+	      widget->setLayout(layout);
+	      m_ui.locationsTable->setCellWidget(j, 0, widget);
+	      m_ui.locationsTable->setItem(j, 1, item);
 	    }
 
 	  m_ui.locationsTable->resizeColumnToContents(0);
+	  m_ui.locationsTable->resizeRowsToContents();
 	}
       else if(tablewidget == m_ui.minimumDaysTable && tablewidget)
 	{
