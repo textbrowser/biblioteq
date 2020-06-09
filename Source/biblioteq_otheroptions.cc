@@ -148,13 +148,19 @@ void biblioteq_otheroptions::prepareSettings(void)
       else
 	comboBox->setCurrentIndex(0);
 
+      QFrame *frame = new QFrame();
+      QHBoxLayout *layout = new QHBoxLayout();
+
+      frame->setLayout(layout);
+      layout->addWidget(comboBox);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.publication_date->setCellWidget(i, 1, frame);
       m_ui.publication_date->setItem(i, 0, item);
-      m_ui.publication_date->setCellWidget(i, 1, comboBox);
     }
 
   m_ui.publication_date->resizeColumnToContents(0);
+  m_ui.publication_date->resizeRowsToContents();
 
   QColor color(settings.value("mainwindow_canvas_background_color").
 	       toString().trimmed());
