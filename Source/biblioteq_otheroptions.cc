@@ -36,8 +36,7 @@ QString biblioteq_otheroptions::publicationDateFormat
        m_ui.publication_date->item(i, 0)->data(Qt::UserRole).toString().
        toLower())
       {
-	QWidget *widget = qobject_cast<QWidget *>
-	  (m_ui.publication_date->cellWidget(i, 1));
+	QWidget *widget = m_ui.publication_date->cellWidget(i, 1);
 
 	if(widget)
 	  {
@@ -238,8 +237,7 @@ void biblioteq_otheroptions::slotSave(void)
   for(int i = 0; i < list.size(); i++)
     {
       QString value("MM/dd/yyyy");
-      QWidget *widget = qobject_cast<QWidget *>
-	(m_ui.publication_date->cellWidget(i, 1));
+      QWidget *widget = m_ui.publication_date->cellWidget(i, 1);
       const QString &key(list.at(i));
 
       if(widget)

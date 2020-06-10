@@ -291,7 +291,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	if(j == 3 || j == 4)
 	  {
 	    QComboBox *combobox = new QComboBox();
+	    QHBoxLayout *layout = new QHBoxLayout();
+	    QSpacerItem *spacer = new QSpacerItem
+	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 	    QStringList list;
+	    QWidget *widget = new QWidget();
 
 	    if(j == 3)
 	      list << tr("Black & White Copy")
@@ -313,7 +317,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    if(j == 3)
 	      combobox->setCurrentIndex(2);
 
-	    m_cb.table->setCellWidget(i, j, combobox);
+	    layout->addWidget(combobox);
+	    layout->addSpacerItem(spacer);
+	    layout->setContentsMargins(0, 0, 0, 0);
+	    widget->setLayout(layout);
+	    m_cb.table->setCellWidget(i, j, widget);
 	  }
 	else
 	  {
@@ -458,15 +466,19 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	      }
 	    else if(m_cb.table->cellWidget(row, j) != 0)
 	      {
-		QComboBox *combobox = qobject_cast<QComboBox *>
-		  (m_cb.table->cellWidget(row, j));
+		QWidget *widget = m_cb.table->cellWidget(row, j);
 
-		if(combobox)
+		if(widget)
 		  {
-		    str = query.value(j).toString().trimmed();
+		    QComboBox *comboBox = widget->findChild<QComboBox *> ();
 
-		    if(combobox->findText(str) > -1)
-		      combobox->setCurrentIndex(combobox->findText(str));
+		    if(comboBox)
+		      {
+			str = query.value(j).toString().trimmed();
+
+			if(comboBox->findText(str) > -1)
+			  comboBox->setCurrentIndex(comboBox->findText(str));
+		      }
 		  }
 	      }
 	    else
@@ -484,9 +496,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     }
 
   progress2.close();
-
-  for(int i = 0; i < m_cb.table->rowCount() - 1; i++)
-    m_cb.table->resizeColumnToContents(i);
+  m_cb.table->resizeColumnsToContents();
+  m_cb.table->resizeRowsToContents();
 }
 
 void biblioteq_copy_editor_book::slotDeleteCopy(void)
@@ -557,8 +568,8 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
 void biblioteq_copy_editor_book::slotSaveCopies(void)
 {
-  QComboBox *combobox1 = 0;
-  QComboBox *combobox2 = 0;
+  QComboBox *comboBox1 = 0;
+  QComboBox *comboBox2 = 0;
   QString availability = "";
   QString errormsg = "";
   QString errorstr = "";
@@ -621,19 +632,25 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
-      combobox1 = qobject_cast<QComboBox *> (m_cb.table->cellWidget(i, 3));
-      combobox2 = qobject_cast<QComboBox *> (m_cb.table->cellWidget(i, 4));
+      QWidget *widget1 = m_cb.table->cellWidget(i, 3);
+      QWidget *widget2 = m_cb.table->cellWidget(i, 4);
+
+      if(!widget1 || !widget2)
+	continue;
+
+      comboBox1 = widget1->findChild<QComboBox *> ();
+      comboBox2 = widget2->findChild<QComboBox *> ();
       item1 = m_cb.table->item(i, 1);
       item2 = m_cb.table->item(i, 5);
 
-      if(combobox1 == 0 || combobox2 == 0 || item1 == 0 || item2 == 0)
+      if(!comboBox1 || !comboBox2 || !item1 || !item2)
 	continue;
 
       copy = new copy_class
-	(combobox2->currentText().trimmed(),
+	(comboBox2->currentText().trimmed(),
 	 item1->text().trimmed(),
 	 item2->text(),
-	 combobox1->currentText().trimmed());
+	 comboBox1->currentText().trimmed());
       m_copies.append(copy);
     }
 
