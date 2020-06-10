@@ -32,15 +32,24 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1031</width>
-         <height>1127</height>
+         <width>1028</width>
+         <height>1146</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -312,6 +321,9 @@
               </item>
               <item>
                <widget class="QPushButton" name="computeButton">
+                <property name="toolTip">
+                 <string>Compute the runtime from the available tracks.</string>
+                </property>
                 <property name="text">
                  <string>&amp;Compute</string>
                 </property>

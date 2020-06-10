@@ -699,6 +699,7 @@ void biblioteq_cd::slotCloseTracksBrowser(void)
 
 void biblioteq_cd::slotComputeRuntime(void)
 {
+  int count = 0;
   int secs = 0;
   QTime sum(0, 0, 0);
   QTime time(0, 0, 0);
@@ -711,6 +712,7 @@ void biblioteq_cd::slotComputeRuntime(void)
   if(query.exec())
     while(query.next())
       {
+	count += 1;
 	time = QTime::fromString(query.value(0).toString(), "hh:mm:ss");
 	secs = time.hour() * 3600 + time.minute() * 60 + time.second();
 	sum = sum.addSecs(secs);
@@ -718,16 +720,23 @@ void biblioteq_cd::slotComputeRuntime(void)
 
   QApplication::restoreOverrideCursor();
 
-  if(sum.toString("hh:mm:ss") == "00:00:00")
+  if(count > 0)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("The total runtime of the available tracks is "
-			       "zero. Please set the individual runtimes."));
-      QApplication::processEvents();
+      if(sum.toString("hh:mm:ss") == "00:00:00")
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("The total runtime of the available tracks is "
+		"zero. Please set the individual runtimes."));
+	  QApplication::processEvents();
+	}
+      else
+	cd.runtime->setTime
+	  (QTime::fromString(sum.toString("hh:mm:ss"), "hh:mm:ss"));
     }
   else
-    cd.runtime->setTime(QTime::fromString(sum.toString("hh:mm:ss"),
-					  "hh:mm:ss"));
+    cd.runtime->setTime(QTime::fromString("00:00:01"));
 }
 
 void biblioteq_cd::slotDeleteTrack(void)
