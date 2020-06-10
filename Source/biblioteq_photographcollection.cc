@@ -119,7 +119,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SLOT(showMenu(void)));
 
   if(menu2->actions().size() >= 3)
-    menu2->actions()[2]->setEnabled(false);
+    menu2->actions().at(2)->setEnabled(false);
 
   QString errorstr("");
 

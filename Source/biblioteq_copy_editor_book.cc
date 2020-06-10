@@ -573,10 +573,8 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 {
   QComboBox *comboBox1 = 0;
   QComboBox *comboBox2 = 0;
-  QString availability = "";
   QString errormsg = "";
   QString errorstr = "";
-  QString str = "";
   QStringList duplicates;
   QTableWidgetItem *item1 = 0;
   QTableWidgetItem *item2 = 0;

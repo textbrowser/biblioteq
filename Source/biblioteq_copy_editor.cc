@@ -476,14 +476,12 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 {
   QDate now = QDate::currentDate();
   QSqlQuery query(qmain->getDB());
-  QString availability = "";
   QString checkedout = now.toString("MM/dd/yyyy");
   QString copyid = "";
   QString copynumber = "";
   QString duedate = m_cb.dueDate->date().toString("MM/dd/yyyy");
   QString errorstr = "";
   QString memberid = "";
-  QString name = "";
   bool available = false;
   bool dnt = true;
   int copyrow = m_cb.table->currentRow();
@@ -765,10 +763,8 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
 void biblioteq_copy_editor::slotSaveCopies(void)
 {
-  QString availability = "";
   QString errormsg = "";
   QString errorstr = "";
-  QString str = "";
   QStringList duplicates;
   QTableWidgetItem *item1 = 0;
   QTableWidgetItem *item2 = 0;

@@ -165,7 +165,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   if(menu->actions().size() >= 3)
     connect(ma.issnAvailableCheckBox,
 	    SIGNAL(toggled(bool)),
-	    menu->actions()[2],
+	    menu->actions().at(2),
 	    SLOT(setEnabled(bool)));
 
   QString errorstr("");
@@ -267,7 +267,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
       ma.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
     }
   else if(!found)
-    ma.sruQueryButton->actions()[0]->setChecked(true);
+    ma.sruQueryButton->actions().at(0)->setChecked(true);
 
   found = false;
   list = qmain->getZ3950Names();
@@ -295,7 +295,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
       ma.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
     }
   else if(!found)
-    ma.z3950QueryButton->actions()[0]->setChecked(true);
+    ma.z3950QueryButton->actions().at(0)->setChecked(true);
 
   /*
   ** Save some palettes and style sheets.

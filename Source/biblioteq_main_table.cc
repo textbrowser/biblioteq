@@ -32,10 +32,12 @@ QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
     {
       QString state("");
 
-      for(int j = 0; j < m_hiddenColumns[m_hiddenColumns.keys().at(i)].size();
+      for(int j = 0;
+	  j < m_hiddenColumns.value(m_hiddenColumns.keys().at(i)).size();
 	  j++)
 	state += QString::number
-	  (m_hiddenColumns[m_hiddenColumns.keys().at(i)].at(j)).append(",");
+	  (m_hiddenColumns.value(m_hiddenColumns.keys().at(i)).at(j)).
+	  append(",");
 
       if(state.endsWith(","))
 	state = state.mid(0, state.length() - 1);

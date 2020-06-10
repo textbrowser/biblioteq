@@ -41,14 +41,26 @@ QT              += printsupport widgets
 }
 
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Wextra \
-			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
-			  -Wstrict-overflow=5 \
-			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mabi=altivec -mpowerpc -mtune=powerpc -pie
+QMAKE_CXXFLAGS_RELEASE += -Wall \
+                          -Wcast-align \
+                          -Wcast-qual \
+                          -Wextra \
+                          -Wformat=2 \
+                          -Woverloaded-virtual \
+                          -Wpointer-arith \
+                          -Wstack-protector \
+                          -Wstrict-overflow=5 \
+                          -fPIE \
+                          -fstack-protector-all \
+                          -fwrapv \
+                          -mabi=altivec \
+                          -mpowerpc \
+                          -mtune=powerpc \
+                          -pie
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
+QMAKE_CXXFLAGS_RELEASE += -std=c++11
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 }
 

@@ -11,8 +11,8 @@ CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
                    QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
-QT		-= webkit
 QT              += network sql
+QT              -= webkit
 
 lessThan(QT_MAJOR_VERSION, 5) {
 exists(/usr/include/poppler/qt4) {
@@ -45,22 +45,38 @@ TEMPLATE	= app
 QMAKE_CLEAN	+= BiblioteQ
 
 openbsd-* {
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-qual -Wextra \
-			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
-			  -Wstrict-overflow=5 \
-			  -Wstack-protector -fPIE -fstack-protector-all \
+QMAKE_CXXFLAGS_RELEASE += -Wall \
+                          -Wcast-qual \
+                          -Wextra \
+                          -Wformat=2 \
+                          -Woverloaded-virtual \
+                          -Wpointer-arith \
+                          -Wstack-protector \
+                          -Wstrict-overflow=5 \
+                          -fPIE \
+                          -fstack-protector-all \
                           -fwrapv -pie
 } else {
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Wextra \
-			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
-			  -Wstrict-overflow=5 \
-			  -Wstack-protector -fPIE -fstack-protector-all \
-                          -fwrapv -mtune=generic -pie
+QMAKE_CXXFLAGS_RELEASE += -Wall \
+                          -Wcast-align \
+                          -Wcast-qual \
+                          -Wextra \
+                          -Wformat=2 \
+                          -Woverloaded-virtual \
+                          -Wpointer-arith \
+                          -Wstack-protector \
+                          -Wstrict-overflow=5 \
+                          -fPIE \
+                          -fstack-protector-all \
+                          -fwrapv \
+                          -mtune=generic \
+                          -pie
 }
 
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
+QMAKE_CXXFLAGS_RELEASE += -std=c++11
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 } else {
 QMAKE_CXXFLAGS_RELEASE += -Wno-class-memaccess

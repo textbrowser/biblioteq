@@ -1000,30 +1000,31 @@ void biblioteq::readConfig(void)
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
     if(QString(settings.value("preferred_sru_site").toString()).
        remove("&").trimmed() ==
-       QString(ui.menuPreferredSRUSite->actions()[i]->text()).remove("&"))
+       QString(ui.menuPreferredSRUSite->actions().at(i)->text()).remove("&"))
       {
 	found = true;
-	ui.menuPreferredSRUSite->actions()[i]->setChecked(true);
+	ui.menuPreferredSRUSite->actions().at(i)->setChecked(true);
 	break;
       }
 
   if(!found && !ui.menuPreferredSRUSite->actions().isEmpty())
-    ui.menuPreferredSRUSite->actions()[0]->setChecked(true);
+    ui.menuPreferredSRUSite->actions().at(0)->setChecked(true);
 
   found = false;
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
     if(QString(settings.value("preferred_z3950_site").toString()).
        remove("&").trimmed() ==
-       QString(ui.menuPreferredZ3950Server->actions()[i]->text()).remove("&"))
+       QString(ui.menuPreferredZ3950Server->actions().at(i)->text()).
+       remove("&"))
       {
 	found = true;
-	ui.menuPreferredZ3950Server->actions()[i]->setChecked(true);
+	ui.menuPreferredZ3950Server->actions().at(i)->setChecked(true);
 	break;
       }
 
   if(!found && !ui.menuPreferredZ3950Server->actions().isEmpty())
-    ui.menuPreferredZ3950Server->actions()[0]->setChecked(true);
+    ui.menuPreferredZ3950Server->actions().at(0)->setChecked(true);
 
   int index = br.branch_name->findText
     (settings.value("previous_branch_name", "").toString());
@@ -2501,28 +2502,28 @@ void biblioteq::slotConnectDB(void)
   if(m_db.driverName() == "QSQLITE")
     {
       for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
+	if(ui.menuEntriesPerPage->actions().at(i)->data().toInt() ==
 	   settings.value("sqlite_entries_per_page").toInt())
 	  {
 	    found = true;
-	    ui.menuEntriesPerPage->actions()[i]->setChecked(true);
+	    ui.menuEntriesPerPage->actions().at(i)->setChecked(true);
 	    break;
 	  }
     }
   else
     {
       for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
+	if(ui.menuEntriesPerPage->actions().at(i)->data().toInt() ==
 	   settings.value("postgresql_entries_per_page").toInt())
 	  {
 	    found = true;
-	    ui.menuEntriesPerPage->actions()[i]->setChecked(true);
+	    ui.menuEntriesPerPage->actions().at(i)->setChecked(true);
 	    break;
 	  }
     }
 
   if(!found && !ui.menuEntriesPerPage->actions().isEmpty())
-    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+    ui.menuEntriesPerPage->actions().at(0)->setChecked(true);
 
   found = false;
 
@@ -2655,29 +2656,29 @@ void biblioteq::slotDisconnect(void)
       if(m_db.driverName() == "QSQLITE")
 	{
 	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	    if(ui.menuEntriesPerPage->actions().at(i)->isChecked())
 	      {
 		settings.setValue
 		  ("sqlite_entries_per_page",
-		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		   ui.menuEntriesPerPage->actions().at(i)->data().toInt());
 		break;
 	      }
 	}
       else
 	{
 	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	    if(ui.menuEntriesPerPage->actions().at(i)->isChecked())
 	      {
 		settings.setValue
 		  ("postgresql_entries_per_page",
-		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		   ui.menuEntriesPerPage->actions().at(i)->data().toInt());
 		break;
 	      }
 	}
     }
 
   if(!ui.menuEntriesPerPage->actions().isEmpty())
-    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+    ui.menuEntriesPerPage->actions().at(0)->setChecked(true);
 
   if(m_connected_bar_label != 0)
     {
@@ -4640,49 +4641,50 @@ void biblioteq::slotSaveConfig(void)
       if(m_db.driverName() == "QSQLITE")
 	{
 	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	    if(ui.menuEntriesPerPage->actions().at(i)->isChecked())
 	      {
 		settings.setValue
 		  ("sqlite_entries_per_page",
-		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		   ui.menuEntriesPerPage->actions().at(i)->data().toInt());
 		break;
 	      }
 	}
       else
 	{
 	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	    if(ui.menuEntriesPerPage->actions().at(i)->isChecked())
 	      {
 		settings.setValue
 		  ("postgresql_entries_per_page",
-		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		   ui.menuEntriesPerPage->actions().at(i)->data().toInt());
 		break;
 	      }
 	}
     }
 
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
-    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
+    if(ui.menuPreferredSRUSite->actions().at(i)->isChecked())
       {
 	settings.setValue
 	  ("preferred_sru_site",
-	   ui.menuPreferredSRUSite->actions()[i]->text().trimmed());
+	   ui.menuPreferredSRUSite->actions().at(i)->text().trimmed());
 	break;
       }
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
-    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
+    if(ui.menuPreferredZ3950Server->actions().at(i)->isChecked())
       {
 	settings.setValue
 	  ("preferred_z3950_site",
-	   ui.menuPreferredZ3950Server->actions()[i]->text().trimmed());
+	   ui.menuPreferredZ3950Server->actions().at(i)->text().trimmed());
 	break;
       }
 
   for(int i = 0; i < ui.table->friendlyStates().keys().size(); i++)
     settings.setValue
       (ui.table->friendlyStates().keys().at(i),
-       ui.table->friendlyStates()[ui.table->friendlyStates().keys().at(i)]);
+       ui.table->
+       friendlyStates().value(ui.table->friendlyStates().keys().at(i)));
 
   settings.sync();
 }

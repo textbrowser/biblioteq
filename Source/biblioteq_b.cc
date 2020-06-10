@@ -57,9 +57,9 @@ int biblioteq::pageLimit(void) const
   int limit = 25;
 
   for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+    if(ui.menuEntriesPerPage->actions().at(i)->isChecked())
       {
-	limit = ui.menuEntriesPerPage->actions()[i]->data().toInt();
+	limit = ui.menuEntriesPerPage->actions().at(i)->data().toInt();
 	break;
       }
 
@@ -89,9 +89,9 @@ int biblioteq::populateTable(const int search_type_arg,
   qint64 offset = m_queryOffset;
 
   for(int ii = 0; ii < ui.menuEntriesPerPage->actions().size(); ii++)
-    if(ui.menuEntriesPerPage->actions()[ii]->isChecked())
+    if(ui.menuEntriesPerPage->actions().at(ii)->isChecked())
       {
-	limit = ui.menuEntriesPerPage->actions()[ii]->data().toInt();
+	limit = ui.menuEntriesPerPage->actions().at(ii)->data().toInt();
 	break;
       }
 

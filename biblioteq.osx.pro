@@ -8,7 +8,6 @@ purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= QT_DEPRECATED_WARNINGS
-
 LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit
@@ -36,11 +35,19 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_CXX       = clang++
 }
 
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Wextra \
-			  -Wformat=2 -Woverloaded-virtual \
-			  -Wpointer-arith -Wstrict-overflow=5 \
-			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=generic
+QMAKE_CXXFLAGS_RELEASE += -Wall \
+                          -Wcast-align \
+                          -Wcast-qual \
+                          -Wextra \
+                          -Wformat=2 \
+                          -Woverloaded-virtual \
+                          -Wpointer-arith \
+                          -Wstack-protector \
+                          -Wstrict-overflow=5 \
+                          -fPIE \
+                          -fstack-protector-all \
+                          -fwrapv \
+                          -mtune=generic
 
 lessThan(QT_MAJOR_VERSION, 5) {
 QMAKE_CXXFLAGS_RELEASE += -pie
@@ -60,13 +67,18 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 }
 
 ICON		= Icons/book.icns
-INCLUDEPATH	+= Source temp /usr/local/include
+INCLUDEPATH	+= /usr/local/include \
+                   Source \
+                   temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 LIBS            += -framework Cocoa
 }
 
-LIBS		+= -lsqlite3 -L/usr/local/lib -lpq -lyaz
+LIBS		+= -L/usr/local/lib \
+                   -lpq \
+                   -lsqlite3 \
+                   -lyaz
 RESOURCES	= Icons/icons.qrc
 
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -78,32 +90,32 @@ PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app
 
-biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
 biblioteq.files		= BiblioteQ.app/*
-conf.path		= /Applications/BiblioteQ.d
+biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
 conf.files		= biblioteq.conf
-doc1.path		= /Applications/BiblioteQ.d/Documentation
+conf.path		= /Applications/BiblioteQ.d
 doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
-doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
+doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
-install_name_tool1.path      = .
+doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
 install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.88.0/lib/libpoppler.99.dylib @executable_path/../Frameworks/libpoppler.99.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
-install_name_tool2.path      = .
+install_name_tool1.path      = .
 install_name_tool2.extra     = install_name_tool -change /usr/local/Cellar/poppler/0.88.0/lib/libpoppler.99.dylib @executable_path/../Frameworks/libpoppler.99.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool2.path      = .
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
 lupdate.path            = .
-macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
-preinstall.path         = /Applications/BiblioteQ.d
-preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
-postinstall.path	= /Applications/BiblioteQ.d
+macdeployqt.path	= BiblioteQ.app
 postinstall.extra	= cp -r BiblioteQ.app /Applications/BiblioteQ.d/.
-sql.path		= /Applications/BiblioteQ.d
+postinstall.path	= /Applications/BiblioteQ.d
+preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
+preinstall.path         = /Applications/BiblioteQ.d
 sql.files		= SQL/*.sql
-translations.path	= /Applications/BiblioteQ.d/Translations
+sql.path		= /Applications/BiblioteQ.d
 translations.files	= Translations/*.qm
+translations.path	= /Applications/BiblioteQ.d/Translations
 
 INSTALLS	= preinstall \
 		  macdeployqt \

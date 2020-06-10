@@ -86,16 +86,16 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
     }
 
   for(i = 0; i < m_imageValues.size(); i++)
-    if(m_imageValues[m_imageValues.keys()[i]] !=
-       newimg[m_imageValues.keys()[i]])
+    if(m_imageValues.value(m_imageValues.keys().at(i)) !=
+       newimg.value(m_imageValues.keys().at(i)))
       {
 	hasChanged = true;
 	break;
       }
 
   for(i = 0; i < m_widgetValues.size(); i++)
-    if(m_widgetValues[m_widgetValues.keys()[i]] !=
-       newdata[m_widgetValues.keys()[i]])
+    if(m_widgetValues.value(m_widgetValues.keys().at(i)) !=
+       newdata.value(m_widgetValues.keys().at(i)))
       {
 	hasChanged = true;
 	break;

@@ -911,8 +911,8 @@ QString biblioteq::getAdminID(void) const
 QString biblioteq::getPreferredSRUSite(void) const
 {
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
-    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
-      return ui.menuPreferredSRUSite->actions()[i]->text();
+    if(ui.menuPreferredSRUSite->actions().at(i)->isChecked())
+      return ui.menuPreferredSRUSite->actions().at(i)->text();
 
   return "";
 }
@@ -920,8 +920,8 @@ QString biblioteq::getPreferredSRUSite(void) const
 QString biblioteq::getPreferredZ3950Site(void) const
 {
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
-    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
-      return ui.menuPreferredZ3950Server->actions()[i]->text();
+    if(ui.menuPreferredZ3950Server->actions().at(i)->isChecked())
+      return ui.menuPreferredZ3950Server->actions().at(i)->text();
 
   return "";
 }
@@ -2281,7 +2281,6 @@ void biblioteq::slotDelete(void)
   QString itemType = "";
   QString oid = "";
   QString str = "";
-  QString title = "";
   bool error = false;
   bool isCheckedOut = false;
   bool isRequested = false;
@@ -2793,21 +2792,24 @@ void biblioteq::slotExecuteCustomQuery(void)
       return;
     }
 
-  if(querystr.toLower().contains("alter ") ||
-     querystr.toLower().contains("cluster ") ||
-     querystr.toLower().contains("create " ) ||
-     querystr.toLower().contains("delete ") ||
-     querystr.toLower().contains("drop ") ||
-     querystr.toLower().contains("grant ") ||
-     querystr.toLower().contains("insert ") ||
-     querystr.toLower().contains("lock ") ||
-     querystr.toLower().contains("revoke ") ||
-     querystr.toLower().contains("truncate ") ||
-     querystr.toLower().contains("update "))
+  const QString &q(querystr.toLower());
+
+  if(q.contains("alter ") ||
+     q.contains("cluster ") ||
+     q.contains("create " ) ||
+     q.contains("delete ") ||
+     q.contains("drop ") ||
+     q.contains("grant ") ||
+     q.contains("insert ") ||
+     q.contains("lock ") ||
+     q.contains("revoke ") ||
+     q.contains("truncate ") ||
+     q.contains("update "))
     {
-      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
-			    tr("Please provide a non-destructive SQL "
-			       "statement."));
+      QMessageBox::critical
+	(m_customquery_diag,
+	 tr("BiblioteQ: User Error"),
+	 tr("Please provide a non-destructive SQL statement."));
       QApplication::processEvents();
       return;
     }

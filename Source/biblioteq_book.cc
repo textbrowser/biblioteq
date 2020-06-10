@@ -193,11 +193,11 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     {
       connect(id.isbnAvailableCheckBox,
 	      SIGNAL(toggled(bool)),
-	      menu->actions()[2],
+	      menu->actions().at(2),
 	      SLOT(setEnabled(bool)));
       connect(id.isbnAvailableCheckBox,
 	      SIGNAL(toggled(bool)),
-	      menu->actions()[3],
+	      menu->actions().at(3),
 	      SLOT(setEnabled(bool)));
     }
 
@@ -299,7 +299,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
       id.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
     }
   else if(!found)
-    id.sruQueryButton->actions()[0]->setChecked(true);
+    id.sruQueryButton->actions().at(0)->setChecked(true);
 
   QAction *action = 0;
 
@@ -389,7 +389,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
       id.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
     }
   else if(!found)
-    id.z3950QueryButton->actions()[0]->setChecked(true);
+    id.z3950QueryButton->actions().at(0)->setChecked(true);
 
   for(int i = 1; i <= 1000; i++)
     id.edition->addItem(QString::number(i));
