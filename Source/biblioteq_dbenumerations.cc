@@ -156,8 +156,7 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 
   saveData(listData, tableData);
 
-  if(listData != m_listData ||
-     tableData != m_tableData)
+  if(listData != m_listData || tableData != m_tableData)
     {
       if(QMessageBox::
 	 question(this, tr("BiblioteQ: Question"),
@@ -305,7 +304,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      QComboBox *box = new QComboBox();
+	      QComboBox *comboBox = new QComboBox();
 	      QHBoxLayout *layout = new QHBoxLayout();
 	      QSpacerItem *spacer = new QSpacerItem
 		(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -314,7 +313,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 		(pairList.at(j).second);
 	      QWidget *widget = new QWidget();
 
-	      layout->addWidget(box);
+	      layout->addWidget(comboBox);
 	      layout->addSpacerItem(spacer);
 	      layout->setContentsMargins(0, 0, 0, 0);
 	      list << tr("Book")
@@ -325,24 +324,24 @@ void biblioteq_dbenumerations::populateWidgets(void)
 		   << tr("Music CD")
 		   << tr("Photograph Collection")
 		   << tr("Video Game");
-	      box->addItems(list);
+	      comboBox->addItems(list);
 
 	      if(pairList.at(j).first == "Book")
-		box->setCurrentIndex(0);
+		comboBox->setCurrentIndex(0);
 	      else if(pairList.at(j).first == "CD")
-		box->setCurrentIndex(5);
+		comboBox->setCurrentIndex(5);
 	      else if(pairList.at(j).first == "DVD")
-		box->setCurrentIndex(1);
+		comboBox->setCurrentIndex(1);
 	      else if(pairList.at(j).first == "Grey Literature")
-		box->setCurrentIndex(2);
+		comboBox->setCurrentIndex(2);
 	      else if(pairList.at(j).first == "Journal")
-		box->setCurrentIndex(3);
+		comboBox->setCurrentIndex(3);
 	      else if(pairList.at(j).first == "Magazine")
-		box->setCurrentIndex(4);
+		comboBox->setCurrentIndex(4);
 	      else if(pairList.at(j).first == "Photograph Collection")
-		box->setCurrentIndex(6);
+		comboBox->setCurrentIndex(6);
 	      else if(pairList.at(j).first == "Video Game")
-		box->setCurrentIndex(7);
+		comboBox->setCurrentIndex(7);
 
 	      list.clear();
 	      item->setFlags
@@ -395,24 +394,32 @@ void biblioteq_dbenumerations::saveData
       listData[widget] = list;
     }
 
-  foreach(QTableWidget *widget, findChildren<QTableWidget *> ())
+  foreach(QTableWidget *table, findChildren<QTableWidget *> ())
     {
       QMap<QString, QString> map;
 
-      for(int i = 0; i < widget->rowCount(); i++)
+      for(int i = 0; i < table->rowCount(); i++)
 	{
 	  QString text("");
-	  QTableWidgetItem *item = widget->item(i, 1);
+	  QTableWidgetItem *item = table->item(i, 1);
 
 	  if(!item)
 	    continue;
 	  else
 	    {
-	      if(qobject_cast<QComboBox *> (widget->cellWidget(i, 0)))
-		text = qobject_cast<QComboBox *> (widget->cellWidget(i, 0))->
-		  currentText();
-	      else if(widget->item(i, 0))
-		text = widget->item(i, 0)->text();
+	      QWidget *widget = table->cellWidget(i, 0);
+
+	      if(widget)
+		{
+		  QComboBox *comboBox = widget->findChild<QComboBox *> ();
+
+		  if(comboBox)
+		    text = comboBox->currentText();
+		  else
+		    continue;
+		}
+	      else if(table->item(i, 0))
+		text = table->item(i, 0)->text();
 	      else
 		continue;
 	    }
@@ -420,7 +427,7 @@ void biblioteq_dbenumerations::saveData
 	  map[text] = item->text();
 	}
 
-      tableData[widget] = map;
+      tableData[table] = map;
     }
 
   QApplication::restoreOverrideCursor();
@@ -501,10 +508,17 @@ void biblioteq_dbenumerations::slotAdd(void)
     }
   else if(toolButton == m_ui.addLocation)
     {
-      QComboBox *item1 = new QComboBox();
+      QComboBox *box = new QComboBox();
+      QHBoxLayout *layout = new QHBoxLayout();
+      QSpacerItem *spacer = new QSpacerItem
+	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
       QStringList list;
-      QTableWidgetItem *item2 = new QTableWidgetItem();
+      QTableWidgetItem *item = new QTableWidgetItem();
+      QWidget *widget = new QWidget();
 
+      layout->addWidget(box);
+      layout->addSpacerItem(spacer);
+      layout->setContentsMargins(0, 0, 0, 0);
       list << tr("Book")
 	   << tr("DVD")
 	   << tr("Grey Literature")
@@ -513,21 +527,23 @@ void biblioteq_dbenumerations::slotAdd(void)
 	   << tr("Music CD")
 	   << tr("Photograph Collection")
 	   << tr("Video Game");
-      item1->addItems(list);
+      box->addItems(list);
       list.clear();
-      item2->setFlags
+      item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      widget->setLayout(layout);
       m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
       m_ui.locationsTable->setCellWidget
 	(m_ui.locationsTable->rowCount() - 1,
 	 0,
-	 item1);
+	 widget);
       m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
 				   1,
-				   item2);
+				   item);
       m_ui.locationsTable->setCurrentCell
 	(m_ui.locationsTable->rowCount() - 1,
 	 0);
+      m_ui.locationsTable->resizeRowsToContents();
     }
   else if(toolButton == m_ui.addMonetaryUnit)
     {
@@ -725,8 +741,10 @@ void biblioteq_dbenumerations::slotSave(void)
 	    if(tablewidget->cellWidget(j, 0) &&
 	       tablewidget->item(j, 1))
 	      {
-		int index = qobject_cast<QComboBox *>
-		  (tablewidget->cellWidget(j, 0))->currentIndex();
+		QComboBox *comboBox = tablewidget->cellWidget(j, 0)->
+		  findChild<QComboBox *> ();
+		QString currentText(comboBox ? comboBox->currentText() : "N/A");
+		int index = comboBox ? comboBox->currentIndex() : -1;
 
 		if(index == 0)
 		  {
@@ -798,8 +816,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the location (")) +
-		       qobject_cast<QComboBox *>
-		       (tablewidget->cellWidget(j, 0))->currentText() +
+		       currentText +
 		       tr(", ") +
 		       tablewidget->item(j, 1)->text().trimmed() +
 		       QString(tr(").")),

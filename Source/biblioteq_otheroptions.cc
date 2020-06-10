@@ -36,11 +36,16 @@ QString biblioteq_otheroptions::publicationDateFormat
        m_ui.publication_date->item(i, 0)->data(Qt::UserRole).toString().
        toLower())
       {
-	QComboBox *comboBox = qobject_cast<QComboBox *>
+	QWidget *widget = qobject_cast<QWidget *>
 	  (m_ui.publication_date->cellWidget(i, 1));
 
-	if(comboBox)
-	  return comboBox->currentText();
+	if(widget)
+	  {
+	    QComboBox *comboBox = widget->findChild<QComboBox *> ();
+
+	    if(comboBox)
+	      return comboBox->currentText();
+	  }
 
 	break;
       }
@@ -232,15 +237,18 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      QComboBox *comboBox = qobject_cast<QComboBox *>
+      QString value("MM/dd/yyyy");
+      QWidget *widget = qobject_cast<QWidget *>
 	(m_ui.publication_date->cellWidget(i, 1));
-      QString value("");
       const QString &key(list.at(i));
 
-      if(comboBox)
-	value = comboBox->currentText();
-      else
-	value = "MM/dd/yyyy";
+      if(widget)
+	{
+	  QComboBox *comboBox = widget->findChild<QComboBox *> ();
+
+	  if(comboBox)
+	    value = comboBox->currentText();
+	}
 
       settings.setValue(key, value);
     }
