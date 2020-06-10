@@ -343,6 +343,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	      else if(pairList.at(j).first == "Video Game")
 		comboBox->setCurrentIndex(7);
 
+	      comboBox->setSizePolicy
+		(QSizePolicy::Preferred, QSizePolicy::Minimum);
 	      list.clear();
 	      item->setFlags
 		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -508,7 +510,7 @@ void biblioteq_dbenumerations::slotAdd(void)
     }
   else if(toolButton == m_ui.addLocation)
     {
-      QComboBox *box = new QComboBox();
+      QComboBox *comboBox = new QComboBox();
       QHBoxLayout *layout = new QHBoxLayout();
       QSpacerItem *spacer = new QSpacerItem
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -516,7 +518,7 @@ void biblioteq_dbenumerations::slotAdd(void)
       QTableWidgetItem *item = new QTableWidgetItem();
       QWidget *widget = new QWidget();
 
-      layout->addWidget(box);
+      layout->addWidget(comboBox);
       layout->addSpacerItem(spacer);
       layout->setContentsMargins(0, 0, 0, 0);
       list << tr("Book")
@@ -527,7 +529,8 @@ void biblioteq_dbenumerations::slotAdd(void)
 	   << tr("Music CD")
 	   << tr("Photograph Collection")
 	   << tr("Video Game");
-      box->addItems(list);
+      comboBox->addItems(list);
+      comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
       list.clear();
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);

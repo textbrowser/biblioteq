@@ -292,6 +292,7 @@ void biblioteq_import::slotAddBookRow(void)
 		     << "quantity"
 		     << "title");
   comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+  comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
   QHBoxLayout *layout = new QHBoxLayout(widget);
   QSpacerItem *spacer = new QSpacerItem

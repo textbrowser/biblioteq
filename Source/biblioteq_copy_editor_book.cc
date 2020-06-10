@@ -290,7 +290,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
       for(j = 0; j < m_cb.table->columnCount(); j++)
 	if(j == 3 || j == 4)
 	  {
-	    QComboBox *combobox = new QComboBox();
+	    QComboBox *comboBox = new QComboBox();
 	    QHBoxLayout *layout = new QHBoxLayout();
 	    QSpacerItem *spacer = new QSpacerItem
 	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -312,12 +312,15 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		   << tr("Poor")
 		   << tr("Very Good");
 
-	    combobox->addItems(list);
+	    comboBox->addItems(list);
 
 	    if(j == 3)
-	      combobox->setCurrentIndex(2);
+	      comboBox->setCurrentIndex(2);
 
-	    layout->addWidget(combobox);
+	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	    comboBox->setSizePolicy
+	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
+	    layout->addWidget(comboBox);
 	    layout->addSpacerItem(spacer);
 	    layout->setContentsMargins(0, 0, 0, 0);
 	    widget->setLayout(layout);

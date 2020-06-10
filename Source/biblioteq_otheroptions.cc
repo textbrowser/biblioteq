@@ -153,6 +153,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 	comboBox->setCurrentIndex(0);
 
       comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+      comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
       QHBoxLayout *layout = new QHBoxLayout();
       QSpacerItem *spacer = new QSpacerItem

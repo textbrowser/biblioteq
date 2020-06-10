@@ -1569,9 +1569,20 @@ void biblioteq_cd::slotInsertTrack(void)
 
       if(i == 0)
 	{
+	  QHBoxLayout *layout = new QHBoxLayout();
+	  QSpacerItem *spacer = new QSpacerItem
+	    (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+	  QWidget *widget = new QWidget();
+
 	  comboBox = new QComboBox();
-	  trd.table->setCellWidget(trow, i, comboBox);
 	  comboBox->addItems(list);
+	  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	  comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+	  layout->addWidget(comboBox);
+	  layout->addSpacerItem(spacer);
+	  layout->setContentsMargins(0, 0, 0, 0);
+	  widget->setLayout(layout);
+	  trd.table->setCellWidget(trow, i, widget);
 	}
       else if(i == 1)
 	{
@@ -1729,10 +1740,22 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
 	      if(j == 0)
 		{
+		  QHBoxLayout *layout = new QHBoxLayout();
+		  QSpacerItem *spacer = new QSpacerItem
+		    (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+		  QWidget *widget = new QWidget();
+
 		  comboBox = new QComboBox();
-		  trd.table->setCellWidget(i, j, comboBox);
 		  comboBox->addItems(comboBoxList);
 		  comboBox->setCurrentIndex(comboBox->findText(str));
+		  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+		  comboBox->setSizePolicy
+		    (QSizePolicy::Preferred, QSizePolicy::Minimum);
+		  layout->addWidget(comboBox);
+		  layout->addSpacerItem(spacer);
+		  layout->setContentsMargins(0, 0, 0, 0);
+		  widget->setLayout(layout);
+		  trd.table->setCellWidget(i, j, widget);
 		}
 	      else if(j == 1)
 		{
@@ -1770,9 +1793,8 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
   trd.table->setRowCount(i); // Support cancellation.
-
-  for(int i = 0; i < trd.table->columnCount() - 1; i++)
-    trd.table->resizeColumnToContents(i);
+  trd.table->resizeColumnsToContents();
+  trd.table->resizeRowsToContents();
 }
 
 void biblioteq_cd::slotPrint(void)
@@ -2124,8 +2146,17 @@ void biblioteq_cd::slotSaveTracks(void)
 	  query.bindValue(0, m_oid);
 
 	  if(trd.table->cellWidget(i, 0) != 0)
-	    query.bindValue(1, qobject_cast<QComboBox *>
-			    (trd.table->cellWidget(i, 0))->currentText());
+	    {
+	      QWidget *widget = trd.table->cellWidget(i, 0);
+
+	      if(widget)
+		{
+		  QComboBox *comboBox = widget->findChild<QComboBox *> ();
+
+		  if(comboBox)
+		    query.bindValue(1, comboBox->currentText());
+		}
+	    }
 
 	  if(trd.table->cellWidget(i, 1) != 0)
 	    query.bindValue(2, qobject_cast<QSpinBox *>
