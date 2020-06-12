@@ -219,7 +219,9 @@ biblioteq::biblioteq(void):QMainWindow()
   m_error_bar_label = 0;
   m_idCt = 0;
   m_lastSearchType = POPULATE_ALL;
+  m_pages = 0;
   m_previousTypeFilter = "";
+  m_queryOffset = 0;
   m_status_bar_label = 0;
   m_branch_diag = new QDialog(this);
   m_menuCategoryActionGroup = new QActionGroup(this);

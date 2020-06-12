@@ -70,6 +70,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fstack-protector-all \
                           -fwrapv \
                           -mtune=generic \
+                          -pedantic \
                           -pie
 }
 
