@@ -152,6 +152,7 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "hu_HU" ||
        biblioteq::s_locale == "nl_BE" ||
        biblioteq::s_locale == "nl_NL" ||
+       biblioteq::s_locale == "pl_PL" ||
        biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
@@ -814,6 +815,9 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("H&ungarian")))->setCheckable(true);
   action->setData("hu_HU");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&Polish")))->setCheckable(true);
+  action->setData("pl_PL");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&Russian")))->setCheckable(true);
   action->setData("ru_RU");
