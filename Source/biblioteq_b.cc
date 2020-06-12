@@ -3182,19 +3182,20 @@ int biblioteq::populateTable(const int search_type_arg,
     progress.setMaximum(query.size());
 
   QSettings settings;
-  QStringList columnNames(ui.table->columnNames());
+  QStringList columnNames;
   bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
   if(search_type == CUSTOM_QUERY)
     {
-      columnNames.clear();
-
       QSqlRecord record(query.record());
 
       for(int ii = 0; ii < record.count(); ii++)
 	if(!columnNames.contains(record.fieldName(ii)))
 	  columnNames.append(record.fieldName(ii));
     }
+  else
+    for(int ii = 0; ii < ui.table->columnCount(); ii++)
+      columnNames.append(ui.table->horizontalHeaderItem(ii)->text());
 
   QString dateFormat("");
 
