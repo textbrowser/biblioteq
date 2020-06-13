@@ -21,9 +21,9 @@ class biblioteq_otheroptions: public QMainWindow
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
-  void setGlobalFonts(const QFont &font);
 
  private slots:
+  void setGlobalFonts(const QFont &font);  
   void slotClose(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotSave(void);

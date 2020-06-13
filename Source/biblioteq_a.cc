@@ -1739,11 +1739,6 @@ void biblioteq::setGlobalFonts(const QFont &font)
   foreach(QWidget *widget, QApplication::allWidgets())
     {
       widget->setFont(font);
-
-      if(!(qobject_cast<QDialog *> (widget) ||
-	   qobject_cast<QMainWindow *> (widget)))
-	widget->adjustSize();
-
       widget->update();
     }
 
@@ -1760,6 +1755,7 @@ void biblioteq::setGlobalFonts(const QFont &font)
       mb->update();
     }
 
+  emit fontChanged(font);
   QApplication::restoreOverrideCursor();
 }
 

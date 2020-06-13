@@ -20,6 +20,13 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSave(void)));
+
+  if(qmain)
+    connect(qmain,
+	    SIGNAL(fontChanged(const QFont &)),
+	    this,
+	    SLOT(setGlobalFonts(const QFont &)));
+
   prepareSettings();
 }
 
@@ -197,6 +204,7 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
       widget->update();
     }
 
+  m_ui.publication_date->resizeRowsToContents();
   update();
 }
 

@@ -457,6 +457,9 @@ class biblioteq: public QMainWindow
   void slotVideoGameSearch(void);
   void slotViewDetails(void);
   void slotViewFullOrNormalScreen(void);
+
+ signals:
+  void fontChanged(const QFont &font);
 };
 
 #endif
