@@ -11,6 +11,13 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+
+  if(m_qmain)
+    connect(m_qmain,
+	    SIGNAL(fontChanged(const QFont &)),
+	    this,
+	    SLOT(setGlobalFonts(const QFont &)));
+
   connect(m_ui.add_book_row,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -235,6 +242,20 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     }
 
   file.close();
+}
+
+void biblioteq_import::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  m_ui.books->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_import::show(QMainWindow *parent)

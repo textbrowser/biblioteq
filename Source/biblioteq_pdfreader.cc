@@ -82,6 +82,13 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(currentIndexChanged(int)),
 	  this,
 	  SLOT(slotChangePageViewSize(int)));
+
+  if(parent)
+    connect(parent,
+	    SIGNAL(fontChanged(const QFont &)),
+	    this,
+	    SLOT(setGlobalFonts(const QFont &)));
+
   biblioteq_misc_functions::center(this, qobject_cast<QMainWindow *> (parent));
   m_ui.contents->setVisible(false);
 }

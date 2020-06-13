@@ -26,6 +26,7 @@ class biblioteq_import: public QMainWindow
 		   qint64 *notImported);
 
  private slots:
+  void setGlobalFonts(const QFont &font);
   void slotAddBookRow(void);
   void slotBooksTemplates(int index);
   void slotClose(void);

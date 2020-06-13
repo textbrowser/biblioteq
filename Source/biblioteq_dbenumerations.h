@@ -27,6 +27,7 @@ class biblioteq_dbenumerations: public QMainWindow
 		QHash<QWidget *, QMap<QString, QString> > &tableData);
 
  private slots:
+  void setGlobalFonts(const QFont &font);
   void slotAdd(void);
   void slotClose(void);
   void slotReload(void);

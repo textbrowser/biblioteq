@@ -107,6 +107,13 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+
+  if(qmain)
+    connect(qmain,
+	    SIGNAL(fontChanged(const QFont &)),
+	    this,
+	    SLOT(setGlobalFonts(const QFont &)));
+
 #if QT_VERSION >= 0x050000
   m_ui.locationsTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
@@ -433,6 +440,21 @@ void biblioteq_dbenumerations::saveData
     }
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_dbenumerations::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  m_ui.locationsTable->resizeRowsToContents();
+  m_ui.minimumDaysTable->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
