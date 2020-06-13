@@ -49,7 +49,6 @@ class biblioteq_item
   int getOldQ(void) const;
   int getRow(void) const;
   void setOldQ(const int q);
-  void updateFont(const QFont &font, QWidget *window);
   void updateRow(const int rowArg);
 
  protected:
@@ -67,6 +66,7 @@ class biblioteq_item
   void setQMain(QMainWindow *window);
   void setReadOnlyFields(QMainWindow *window, const bool state);
   void storeData(QMainWindow *window);
+  void updateFont(const QFont &font, QWidget *window);
 };
 
 #endif
