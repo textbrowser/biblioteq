@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1112</width>
-         <height>1554</height>
+         <width>1118</width>
+         <height>1551</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -996,10 +996,10 @@
                  <bool>true</bool>
                 </property>
                 <attribute name="horizontalHeaderMinimumSectionSize">
-                 <number>150</number>
+                 <number>200</number>
                 </attribute>
                 <attribute name="horizontalHeaderDefaultSectionSize">
-                 <number>150</number>
+                 <number>200</number>
                 </attribute>
                 <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                  <bool>true</bool>
