@@ -36,6 +36,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void closeEvent(QCloseEvent *event);
 
  private slots:
+  void setGlobalFonts(const QFont &font);
   void slotCancel(void);
   void slotCloseTracksBrowser(void);
   void slotComputeRuntime(void);

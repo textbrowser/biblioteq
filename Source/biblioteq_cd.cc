@@ -126,6 +126,13 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(cd.backButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+
+  if(qmain)
+    connect(qmain,
+	    SIGNAL(fontChanged(const QFont &)),
+	    this,
+	    SLOT(setGlobalFonts(const QFont &)));
+
   cd.queryButton->setVisible(m_isQueryEnabled);
   cd.resetButton->setMenu(menu);
   cd.id->setValidator(validator1);
@@ -682,6 +689,20 @@ void biblioteq_cd::search(const QString &field, const QString &value)
 
       slotGo();
     }
+}
+
+void biblioteq_cd::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  trd.table->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_cd::slotCancel(void)
@@ -1621,6 +1642,8 @@ void biblioteq_cd::slotInsertTrack(void)
 
   for(int i = 0; i < trd.table->columnCount() - 1; i++)
     trd.table->resizeColumnToContents(i);
+
+  trd.table->resizeRowsToContents();
 }
 
 void biblioteq_cd::slotPopulateCopiesEditor(void)
@@ -1802,7 +1825,10 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
   trd.table->setRowCount(i); // Support cancellation.
-  trd.table->resizeColumnsToContents();
+
+  for(int i = 0; i < trd.table->columnCount() - 1; i++)
+    trd.table->resizeColumnToContents(i);
+
   trd.table->resizeRowsToContents();
 }
 
