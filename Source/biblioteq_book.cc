@@ -182,6 +182,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SLOT(showMenu(void)));
   connect(id.dwnldBack, SIGNAL(clicked(void)), id.dwnldBack,
 	  SLOT(showMenu(void)));
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
   connect(this,
 	  SIGNAL(openLibraryQueryError(const QString &)),
 	  this,
@@ -1459,6 +1463,20 @@ void biblioteq_book::search(const QString &field, const QString &value)
 
       slotGo();
     }
+}
+
+void biblioteq_book::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  id.files->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_book::slotAttachFiles(void)

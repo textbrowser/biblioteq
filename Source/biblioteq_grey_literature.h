@@ -43,6 +43,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void updateDatabase(void);
 
  private slots:
+  void setGlobalFonts(const QFont &font);
   void slotAttachFiles(void);
   void slotCancel(void);
   void slotDeleteFiles(void);

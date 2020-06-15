@@ -65,6 +65,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
  private slots:
   void downloadFinished(void);
   void openLibraryDownloadFinished(void);
+  void setGlobalFonts(const QFont &font);
   void slotAttachFiles(void);
   void slotCancel(void);
   void slotCancelImageDownload(void);

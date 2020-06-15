@@ -108,6 +108,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
@@ -829,6 +833,20 @@ void biblioteq_grey_literature::search(const QString &field,
 
       slotGo();
     }
+}
+
+void biblioteq_grey_literature::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  m_ui.files->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_grey_literature::slotAttachFiles(void)
