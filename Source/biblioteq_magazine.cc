@@ -52,6 +52,11 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   ma.setupUi(this);
   setQMain(this);
   ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
+#if QT_VERSION >= 0x050000
+  ma.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
+  ma.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("magazines"));
   ma.publication_date_enabled->setVisible(false);

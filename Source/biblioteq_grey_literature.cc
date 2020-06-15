@@ -113,6 +113,11 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 		SLOT(slotGo(void)));
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.files->setColumnHidden(m_ui.files->columnCount() - 1, true); // myoid
+#if QT_VERSION >= 0x050000
+  m_ui.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
+  m_ui.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
 
   QString errorstr("");
 
