@@ -126,13 +126,10 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(cd.backButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
-
-  if(qmain)
-    connect(qmain,
-	    SIGNAL(fontChanged(const QFont &)),
-	    this,
-	    SLOT(setGlobalFonts(const QFont &)));
-
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
   cd.queryButton->setVisible(m_isQueryEnabled);
   cd.resetButton->setMenu(menu);
   cd.id->setValidator(validator1);
