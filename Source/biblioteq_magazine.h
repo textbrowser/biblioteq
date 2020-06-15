@@ -60,6 +60,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void populateFiles(void);
 
  protected slots:
+  void setGlobalFonts(const QFont &font);
   void slotAttachFiles(void);
   void slotCancel(void);
   void slotDeleteFiles(void);

@@ -158,6 +158,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(toggled(bool)),
 	  ma.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
   connect(this,
 	  SIGNAL(sruQueryError(const QString &)),
 	  this,
@@ -1809,6 +1813,20 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 
       slotGo();
     }
+}
+
+void biblioteq_magazine::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(QWidget *widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  ma.files->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_magazine::slotAttachFiles(void)
