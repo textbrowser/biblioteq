@@ -10,17 +10,22 @@ rm -f $postgresql
 wget --output-document=$postgresql \
      --progress=bar \
      "https://get.enterprisedb.com/postgresql/postgresql-9.6.18-1-windows-binaries.zip"
-unzip $postgresql
-mv pgsql/bin/libcrypto-1_1.dll Libraries.win32/postgresql/.
-mv pgsql/bin/libiconv-2.dll Libraries.win32/postgresql/.
-mv pgsql/bin/libintl-8.dll Libraries.win32/postgresql/.
-mv pgsql/bin/libpq.dll Libraries.win32/postgresql/.
-mv pgsql/bin/libssl-1_1.dll Libraries.win32/postgresql/.
-mv pgsql/bin/libxml2.dll Libraries.win32/postgresql/.
-mv pgsql/bin/libxslt.dll Libraries.win32/postgresql/.
-chmod +r,+w,-x Libraries.win32/postgresql/*
-rm -f $postgresql
-rm -fr pgsql
+
+if [ -r $postgresql ]; then
+    unzip $postgresql
+    mv pgsql/bin/libcrypto-1_1.dll Libraries.win32/postgresql/.
+    mv pgsql/bin/libiconv-2.dll Libraries.win32/postgresql/.
+    mv pgsql/bin/libintl-8.dll Libraries.win32/postgresql/.
+    mv pgsql/bin/libpq.dll Libraries.win32/postgresql/.
+    mv pgsql/bin/libssl-1_1.dll Libraries.win32/postgresql/.
+    mv pgsql/bin/libxml2.dll Libraries.win32/postgresql/.
+    mv pgsql/bin/libxslt.dll Libraries.win32/postgresql/.
+    chmod +r,+w,-x Libraries.win32/postgresql/*
+    rm -f $postgresql
+    rm -fr pgsql
+else
+    echo "Cannot read $postgresql."
+fi
 
 # SQLite Binaries
 
@@ -28,10 +33,15 @@ sqlite=sqlite-dll-win32-x86-3320200.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2020/$sqlite
-unzip -o $sqlite
-mv sqlite3.def sqlite3.dll Libraries.win32/sqlite3/.
-chmod +r,+w,-x Libraries.win32/sqlite3/*.dll
-rm -f $sqlite
+
+if [ -r $sqlite ]; then
+    unzip -o $sqlite
+    mv sqlite3.def sqlite3.dll Libraries.win32/sqlite3/.
+    chmod +r,+w,-x Libraries.win32/sqlite3/*.dll
+    rm -f $sqlite
+else
+    echo "Cannot read $sqlite."
+fi
 
 # SQLite Source
 
@@ -39,10 +49,19 @@ sqlite=sqlite-amalgamation-3320200.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2020/$sqlite
-unzip -o $sqlite
-rm -f $sqlite
+
+if [ -r $sqlite ]; then
+    unzip -o $sqlite
+    rm -f $sqlite
+else
+    echo "Cannot read $sqlite."
+fi
 
 sqlite=sqlite-amalgamation-3320200
 
-mv $sqlite/*.h Include.win32/sqlite3/.
-rm -fr $sqlite
+if [ -r $sqlite ]; then
+    mv $sqlite/*.h Include.win32/sqlite3/.
+    rm -fr $sqlite
+else
+    echo "Cannot read $sqlite."
+fi
