@@ -12,7 +12,7 @@ wget --output-document=$postgresql \
      "https://get.enterprisedb.com/postgresql/postgresql-9.6.18-1-windows-binaries.zip"
 
 if [ -r $postgresql ]; then
-    unzip $postgresql
+    unzip -q $postgresql
     mv pgsql/bin/libcrypto-1_1.dll Libraries.win32/postgresql/.
     mv pgsql/bin/libiconv-2.dll Libraries.win32/postgresql/.
     mv pgsql/bin/libintl-8.dll Libraries.win32/postgresql/.
@@ -35,7 +35,7 @@ rm -f $sqlite
 wget --progress=bar https://sqlite.org/2020/$sqlite
 
 if [ -r $sqlite ]; then
-    unzip -o $sqlite
+    unzip -q -o $sqlite
     mv sqlite3.def sqlite3.dll Libraries.win32/sqlite3/.
     chmod +r,+w,-x Libraries.win32/sqlite3/*.dll
     rm -f $sqlite
@@ -51,7 +51,7 @@ rm -f $sqlite
 wget --progress=bar https://sqlite.org/2020/$sqlite
 
 if [ -r $sqlite ]; then
-    unzip -o $sqlite
+    unzip -q -o $sqlite
     rm -f $sqlite
 else
     echo "Cannot read $sqlite."
