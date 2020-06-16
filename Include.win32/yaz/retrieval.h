@@ -121,7 +121,7 @@ int yaz_retrieval_configure_t(yaz_retrieval_t p, const xmlNode *node,
 */
 YAZ_EXPORT
 int yaz_retrieval_request(yaz_retrieval_t p,
-                          const char *schema, Odr_oid *syntax,
+                          const char *schema, const Odr_oid *syntax,
                           const char **match_schema, Odr_oid **match_syntax,
                           yaz_record_conv_t *rc,
                           const char **backend_schema,

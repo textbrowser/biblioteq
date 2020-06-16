@@ -156,6 +156,13 @@ const char *yaz_record_conv_get_error(yaz_record_conv_t p);
 YAZ_EXPORT
 void yaz_record_conv_set_path(yaz_record_conv_t p, const char *path);
 
+/** get output charset for last marc rule
+    \param p record conversion handle
+    \return charset; 0 if none given
+*/
+YAZ_EXPORT
+const char *yaz_record_get_output_charset(yaz_record_conv_t p);
+
 YAZ_END_CDECL
 
 #endif

@@ -49,6 +49,20 @@ YAZ_BEGIN_CDECL
 YAZ_EXPORT
 int yaz_match_glob(const char *glob, const char *text);
 
+/** \brief matches a glob  expression against text
+    \param glob glob expression
+    \param text the text
+    \param case_insensitive 1=case does not matter; 0=case matters
+    \retval 0 no match
+    \retval 1 match
+
+    Operators: c (literal char), ? (any char),
+          * (any number of any char)
+    * (zero or more)
+*/
+YAZ_EXPORT
+int yaz_match_glob2(const char *glob, const char *text, int case_insensitive);
+
 YAZ_END_CDECL
 
 #endif

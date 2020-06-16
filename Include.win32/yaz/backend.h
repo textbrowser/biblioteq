@@ -220,6 +220,7 @@ typedef struct bend_esrequest_rr
     int errcode;               /* 0==success, -1==accepted, >0 = failure */
     char *errstring;           /* system error string or NULL */
     Z_TaskPackage *taskPackage;
+    Z_External *taskPackageExt;
 } bend_esrequest_rr;
 
 /** \brief Information for Z39.50 segment handler */
