@@ -1985,6 +1985,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Vacuuming the database. Please be patient.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Polish</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -6900,6 +6904,10 @@ URL</source>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Compute the runtime from the available tracks.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -10018,10 +10026,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please note that the publication date formats only apply to item details.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Main Window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10031,6 +10035,10 @@ URL</source>
     </message>
     <message>
         <source>&amp;Show Table Tool Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that the publication date formats are applied to item details and the main window.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
