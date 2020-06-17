@@ -504,6 +504,8 @@ END;
 CREATE TRIGGER item_request_trigger AFTER INSERT ON item_borrower
 FOR EACH row EXECUTE PROCEDURE delete_request();
 
+CREATE SEQUENCE book_sequence START 1;
+
 CREATE TABLE book_binding_types
 (
 	binding_type	 TEXT NOT NULL PRIMARY KEY

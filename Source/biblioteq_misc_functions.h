@@ -22,7 +22,7 @@ class biblioteq_misc_functions
 			 const QSqlDatabase &);
   static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
 						      QString &);
-  static QList<int> selectedRows(QTableWidget *table);
+  static QList<int> selectedRows(QTableWidget *);
   static QMap<QString, QString> getItemsReservedCounts(const QSqlDatabase &,
 						       const QString &,
 						       QString &);
@@ -69,10 +69,10 @@ class biblioteq_misc_functions
 			     const QString &,
 			     const QSqlDatabase &,
 			     QString &);
-  static bool hasMemberExpired(const QSqlDatabase &db,
-			       const QString &memberid,
-			       QString &errorstr);
-  static bool hasUnaccentExtension(const QSqlDatabase &db);
+  static bool hasMemberExpired(const QSqlDatabase &,
+			       const QString &,
+			       QString &);
+  static bool hasUnaccentExtension(const QSqlDatabase &);
   static bool isCheckedOut(const QSqlDatabase &,
 			   const QString &,
 			   const QString &,
@@ -110,6 +110,7 @@ class biblioteq_misc_functions
 			     const char *,
 			     const int,
 			     biblioteq *);
+  static qint64 bookAccessionNumber(const QSqlDatabase &);
   static qint64 getSqliteUniqueId(const QSqlDatabase &, QString &);
   static void DBAccount(const QString &,
 			const QSqlDatabase &,
@@ -125,14 +126,14 @@ class biblioteq_misc_functions
   static void exportPhotographs(const QSqlDatabase &,
 				const QString &,
 				const QString &,
-				QList<QGraphicsItem *> items,
-				QWidget *parent);
+				const QList<QGraphicsItem *> &,
+				QWidget *);
   static void exportPhotographs(const QSqlDatabase &,
 				const QString &,
 				const int,
 				const int,
 				const QString &,
-				QWidget *parent);
+				QWidget *);
   static void grantPrivs(const QString &,
 			 const QString &,
 			 const QSqlDatabase &,
