@@ -55,6 +55,11 @@ CREATE TABLE book_files							\
     PRIMARY KEY(file_digest, item_oid)					\
 );									\
 									\
+CREATE TABLE book_sequence						\
+(									\
+    value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT		\
+);									\
+									\
 CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
 FOR EACH row								\
 BEGIN									\
