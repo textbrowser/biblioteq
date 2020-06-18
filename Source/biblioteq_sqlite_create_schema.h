@@ -60,15 +60,6 @@ CREATE TABLE book_sequence						\
     value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT		\
 );									\
 									\
-CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
-FOR EACH row								\
-BEGIN									\
-    DELETE FROM book_copy_info WHERE item_oid = old.myoid;		\
-    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
-    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-                type = old.type;					\
-END;									\
-									\
 CREATE TABLE cd								\
 (									\
     accession_number TEXT,						\
@@ -96,6 +87,16 @@ CREATE TABLE cd								\
     type	 VARCHAR(16) NOT NULL DEFAULT 'CD'			\
 );									\
 									\
+CREATE TABLE cd_copy_info						\
+(									\
+    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    PRIMARY KEY(item_oid, copyid),					\
+    FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
+);									\
+									\
 CREATE TABLE cd_songs							\
 (									\
     albumnum	 INTEGER NOT NULL DEFAULT 1,				\
@@ -108,26 +109,6 @@ CREATE TABLE cd_songs							\
     PRIMARY KEY(item_oid, albumnum, songnum),				\
     FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
 );									\
-									\
-CREATE TABLE cd_copy_info						\
-(									\
-    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
-    copyid	 VARCHAR(64) NOT NULL,					\
-    item_oid	 BIGINT NOT NULL,					\
-    myoid	 BIGINT NOT NULL,					\
-    PRIMARY KEY(item_oid, copyid),					\
-    FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
-);									\
-									\
-CREATE TRIGGER cd_purge_trigger AFTER DELETE ON cd			\
-FOR EACH row								\
-BEGIN									\
-    DELETE FROM cd_copy_info WHERE item_oid = old.myoid;		\
-    DELETE FROM cd_songs WHERE item_oid = old.myoid;			\
-    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
-    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-                type = old.type;					\
-END;									\
 									\
 CREATE TABLE dvd							\
 (									\
@@ -167,15 +148,6 @@ CREATE TABLE dvd_copy_info						\
     PRIMARY KEY(item_oid, copyid),					\
     FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE	\
 );									\
-									\
-CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd			\
-FOR EACH row								\
-BEGIN									\
-    DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;		\
-    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
-    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-	        type = old.type;					\
-END;									\
 									\
 CREATE TABLE grey_literature						\
 (									\
@@ -260,15 +232,6 @@ CREATE TABLE journal_files						\
     PRIMARY KEY(file_digest, item_oid)					\
 );									\
 									\
-CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
-FOR EACH row								\
-BEGIN									\
-    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
-    DELETE FROM journal_copy_info WHERE item_oid = old.myoid;		\
-    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-                type = old.type;					\
-END;									\
-									\
 CREATE TABLE magazine							\
 (									\
     accession_number TEXT,						\
@@ -319,15 +282,6 @@ CREATE TABLE magazine_files						\
     FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,	\
     PRIMARY KEY(file_digest, item_oid)					\
 );									\
-									\
-CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine		\
-FOR EACH row								\
-BEGIN									\
-    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
-    DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;		\
-    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-	        type = old.type;					\
-END;									\
 									\
 CREATE TABLE photograph_collection					\
 (									\
@@ -406,6 +360,52 @@ CREATE TABLE videogame_copy_info					\
                           DELETE CASCADE				\
 );									\
 									\
+CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM book_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
+END;									\
+									\
+CREATE TRIGGER cd_purge_trigger AFTER DELETE ON cd			\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM cd_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM cd_songs WHERE item_oid = old.myoid;			\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
+END;									\
+									\
+CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd			\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+	        type = old.type;					\
+END;									\
+									\
+CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
+    DELETE FROM journal_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
+END;									\
+									\
+CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine		\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
+    DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+	        type = old.type;					\
+END;									\
+									\
 CREATE TRIGGER videogame_purge_trigger AFTER DELETE ON videogame	\
 FOR EACH row								\
 BEGIN									\
@@ -476,10 +476,35 @@ CREATE TABLE book_binding_types						\
     binding_type     TEXT NOT NULL PRIMARY KEY				\
 );									\
 									\
+CREATE TABLE cd_formats							\
+(									\
+    cd_format	 TEXT NOT NULL PRIMARY KEY				\
+);                                                                      \
+									\
+CREATE TABLE dvd_aspect_ratios						\
+(									\
+    dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY			\
+);                                                                      \
+									\
+CREATE TABLE dvd_ratings						\
+(									\
+    dvd_rating	 TEXT NOT NULL PRIMARY KEY				\
+);                                                                      \
+									\
+CREATE TABLE dvd_regions						\
+(									\
+    dvd_region	 TEXT NOT NULL PRIMARY KEY				\
+);                                                                      \
+									\
 CREATE TABLE grey_literature_types					\
 (									\
     document_type     TEXT NOT NULL PRIMARY KEY				\
 );									\
+									\
+CREATE TABLE languages							\
+(									\
+    language	 TEXT NOT NULL PRIMARY KEY				\
+);      								\
 									\
 CREATE TABLE locations				                        \
 (									\
@@ -488,54 +513,29 @@ CREATE TABLE locations				                        \
     PRIMARY KEY(location, type)						\
 );      								\
 									\
-CREATE TABLE monetary_units						\
-(									\
-    monetary_unit	 TEXT NOT NULL PRIMARY KEY                      \
-);                                                                      \
-									\
-CREATE TABLE languages							\
-(									\
-    language	 TEXT NOT NULL PRIMARY KEY				\
-);      								\
-									\
-CREATE TABLE cd_formats							\
-(									\
-    cd_format	 TEXT NOT NULL PRIMARY KEY				\
-);                                                                      \
-									\
-CREATE TABLE dvd_ratings						\
-(									\
-    dvd_rating	 TEXT NOT NULL PRIMARY KEY				\
-);                                                                      \
-									\
-CREATE TABLE dvd_aspect_ratios						\
-(									\
-    dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY			\
-);                                                                      \
-									\
-CREATE TABLE dvd_regions						\
-(									\
-    dvd_region	 TEXT NOT NULL PRIMARY KEY				\
-);                                                                      \
-									\
 CREATE TABLE minimum_days						\
 (									\
     days		 INTEGER NOT NULL,                              \
     type		 VARCHAR(16) NOT NULL PRIMARY KEY               \
 );                                                                      \
 									\
-CREATE TABLE videogame_ratings						\
+CREATE TABLE monetary_units						\
 (									\
-    videogame_rating	 TEXT NOT NULL PRIMARY KEY			\
-);                                                                      \
-									\
-CREATE TABLE videogame_platforms					\
-(									\
-    videogame_platform	 TEXT NOT NULL PRIMARY KEY			\
+    monetary_unit	 TEXT NOT NULL PRIMARY KEY                      \
 );                                                                      \
 									\
 CREATE TABLE sequence							\
 (									\
     value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT		\
 );									\
+									\
+CREATE TABLE videogame_platforms					\
+(									\
+    videogame_platform	 TEXT NOT NULL PRIMARY KEY			\
+);                                                                      \
+									\
+CREATE TABLE videogame_ratings						\
+(									\
+    videogame_rating	 TEXT NOT NULL PRIMARY KEY			\
+);                                                                      \
 ";

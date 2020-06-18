@@ -1269,12 +1269,12 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 
 /* Release 2020.07.04 */
 
-DROP TRIGGER book_trigger ON book;
-DROP TRIGGER cd_trigger ON cd;
-DROP TRIGGER dvd_trigger ON dvd;
-DROP TRIGGER journal_trigger on journal;
-DROP TRIGGER magazine_trigger on magazine;
-DROP TRIGGER videogame_trigger on videogame;
+DROP TRIGGER IF EXISTS book_trigger ON book;
+DROP TRIGGER IF EXISTS cd_trigger ON cd;
+DROP TRIGGER IF EXISTS dvd_trigger ON dvd;
+DROP TRIGGER IF EXISTS journal_trigger on journal;
+DROP TRIGGER IF EXISTS magazine_trigger on magazine;
+DROP TRIGGER IF EXISTS videogame_trigger on videogame;
 DROP FUNCTION IF EXISTS delete_book_history();
 DROP FUNCTION IF EXISTS delete_cd_history();
 DROP FUNCTION IF EXISTS delete_dvd_history();

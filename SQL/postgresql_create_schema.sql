@@ -1,5 +1,7 @@
 CREATE USER xbook_admin ENCRYPTED PASSWORD 'xbook_admin' CREATEROLE;
 
+CREATE SEQUENCE book_sequence START 1;
+
 CREATE TABLE admin
 (
 	roles		 TEXT NOT NULL,
@@ -504,8 +506,6 @@ END;
 CREATE TRIGGER item_request_trigger AFTER INSERT ON item_borrower
 FOR EACH row EXECUTE PROCEDURE delete_request();
 
-CREATE SEQUENCE book_sequence START 1;
-
 CREATE TABLE book_binding_types
 (
 	binding_type	 TEXT NOT NULL PRIMARY KEY
@@ -937,8 +937,8 @@ REVOKE ALL ON admin FROM biblioteq_patron;
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
 CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE biblioteq_guest;
-INSERT INTO admin (username, roles) VALUES ('xbook_admin', 'administrator');
 GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
+INSERT INTO admin (username, roles) VALUES ('xbook_admin', 'administrator');
 
 /* PostgreSQL 9.5 or newer is required. */
 
