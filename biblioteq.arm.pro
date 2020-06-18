@@ -43,6 +43,7 @@ QT              += printsupport widgets
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
@@ -52,6 +53,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv -mtune=native \
+                          -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp
 

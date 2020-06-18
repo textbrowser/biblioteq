@@ -60,6 +60,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
