@@ -1313,7 +1313,12 @@ qint64 biblioteq_misc_functions::bookAccessionNumber(const QSqlDatabase &db)
   if(db.driverName() == "QPSQL")
     query.prepare("SELECT NEXTVAL('book_sequence')");
   else
-    query.prepare("SELECT value FROM book_sequence");
+    {
+      if(query.exec("INSERT INTO book_sequence VALUES (NULL)"))
+	return query.lastInsertId().toLongLong();
+      else
+	query.prepare("SELECT value FROM book_sequence");
+    }
 
   if(query.exec() && query.next())
     return query.value(0).toLongLong();

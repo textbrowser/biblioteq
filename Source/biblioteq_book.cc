@@ -654,6 +654,9 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
 {
   m_duplicate = true;
   modify(state); // Initial population.
+  id.accession_number->setText
+    (QString::number(biblioteq_misc_functions::
+		     bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
   id.view_pdf->setEnabled(false);
   id.copiesButton->setEnabled(false);
@@ -669,6 +672,9 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
 void biblioteq_book::insert(void)
 {
   slotReset();
+  id.accession_number->setText
+    (QString::number(biblioteq_misc_functions::
+		     bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
   id.view_pdf->setEnabled(false);
   id.id->clear();
@@ -703,7 +709,6 @@ void biblioteq_book::insert(void)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
-  id.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (id.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
