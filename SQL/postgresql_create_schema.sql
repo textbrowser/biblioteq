@@ -879,6 +879,8 @@ GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON book_sequence TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON book_sequence TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_administrator;

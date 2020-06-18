@@ -1,4 +1,5 @@
 DROP EXTENSION IF EXISTS unaccent;
+DROP SEQUENCE IF EXISTS book_sequence;
 DROP TABLE IF EXISTS admin;
 DROP TABLE IF EXISTS book_binding_types;
 DROP TABLE IF EXISTS book_copy_info;

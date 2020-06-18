@@ -1269,6 +1269,7 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 
 /* Release 2020.07.04 */
 
+CREATE SEQUENCE book_sequence START 1;
 DROP TRIGGER IF EXISTS book_trigger ON book;
 DROP TRIGGER IF EXISTS cd_trigger ON cd;
 DROP TRIGGER IF EXISTS dvd_trigger ON dvd;
@@ -1350,6 +1351,8 @@ CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
 FOR EACH row EXECUTE PROCEDURE delete_videogame();
 
 GRANT SELECT (item_oid, type) ON item_borrower TO biblioteq_guest;
+GRANT SELECT, UPDATE, USAGE ON book_sequence TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON book_sequence TO biblioteq_librarian;
 GRANT SELECT ON item_borrower TO biblioteq_administrator;
 GRANT SELECT ON item_borrower TO biblioteq_circulation;
 GRANT SELECT ON item_borrower TO biblioteq_librarian;
@@ -1370,4 +1373,3 @@ CREATE POLICY member_history_biblioteq_patron_policy ON member_history TO biblio
 CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership USING (true);
 CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);
-CREATE SEQUENCE book_sequence START 1;
