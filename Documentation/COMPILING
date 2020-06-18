@@ -1,19 +1,8 @@
-Qt 4.8.7 and Qt 5.x are supported. Qt 4.7.4 may function.
-
-Homebrew is required for OS X.
-
-If header (h) or interface (ui) files have changed, please perform
-a distclean before building BiblioteQ.
-
-Absolute Cleaning
-
-gmake distclean or make distclean or mingw32-make distclean
+Qt 5.x is supported. Qt 4.8.x is only supported for PowerPC.
 
 ARM
 
 qmake -o Makefile biblioteq.arm.pro
-or
-qmake-qt4 -o Makefile biblioteq.arm.pro
 or
 qmake-qt5 -o Makefile biblioteq.arm.pro
 make
@@ -22,8 +11,6 @@ FreeBSD
 
 qmake -o Makefile biblioteq.pro
 or
-qmake-qt4 -o Makefile biblioteq.pro
-or
 qmake-qt5 -o Makefile biblioteq.pro
 gmake
 
@@ -31,13 +18,12 @@ Linux
 
 qmake -o Makefile biblioteq.pro
 or
-qmake-qt4 -o Makefile biblioteq.pro
-or
 qmake-qt5 -o Makefile biblioteq.pro
 make
 
 OS X
 
+Homebrew is required.
 Please verify that the install paths in biblioteq.osx.pro are current.
 
 qmake -o Makefile biblioteq.osx.pro
@@ -49,8 +35,6 @@ sudo make distclean
 OpenBSD
 
 qmake -o Makefile biblioteq.pro
-or
-qmake-qt4 -o Makefile biblioteq.pro
 or
 qmake-qt5 -o Makefile biblioteq.pro
 gmake
