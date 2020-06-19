@@ -44,6 +44,7 @@ QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
@@ -56,6 +57,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -mabi=altivec \
                           -mpowerpc \
                           -mtune=powerpc \
+                          -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp
 

@@ -38,6 +38,7 @@ QMAKE_CXX       = clang++
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
@@ -47,7 +48,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-                          -mtune=generic
+                          -mtune=generic \
+                          -pedantic
 
 lessThan(QT_MAJOR_VERSION, 5) {
 QMAKE_CXXFLAGS_RELEASE += -pie

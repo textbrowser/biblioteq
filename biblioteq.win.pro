@@ -21,6 +21,7 @@ QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
@@ -28,6 +29,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wstrict-overflow=5 \
                           -fwrapv \
                           -mtune=generic \
+                          -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp
 

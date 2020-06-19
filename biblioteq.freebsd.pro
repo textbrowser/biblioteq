@@ -48,6 +48,7 @@ QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
@@ -57,7 +58,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-                          -mtune=generic
+                          -mtune=generic \
+                          -pedantic
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
