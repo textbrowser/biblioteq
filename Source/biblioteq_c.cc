@@ -203,7 +203,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   if(pagingType == NEW_PAGE)
     ok = m_searchQuery.exec();
   else if(pagingType == NEXT_PAGE || pagingType == PREVIOUS_PAGE)
-    ok = m_searchQuery.seek(offset);
+    ok = m_searchQuery.seek(static_cast<int> (offset));
   else if(pagingType < 0)
     ok = m_searchQuery.seek(limit * qAbs(pagingType + 1));
 
@@ -390,7 +390,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	ui.graphicsView->setSceneRect
 	  (0, 0, 5 * 150, std::numeric_limits<int>::max());
 
-      m_searchQuery.seek(offset);
+      m_searchQuery.seek(static_cast<int> (offset));
     }
 
   if(limit != -1 && m_db.driver()->hasFeature(QSqlDriver::QuerySize))

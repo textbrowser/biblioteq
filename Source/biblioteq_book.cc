@@ -4157,7 +4157,7 @@ void biblioteq_book::slotZ3950Query(void)
   while(!m_thread->isFinished())
     {
       QApplication::processEvents();
-      m_thread->msleep(100);
+      m_thread->msleep(100UL);
     }
 
   bool canceled = working.wasCanceled(); // QProgressDialog::close()!

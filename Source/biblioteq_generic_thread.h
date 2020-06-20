@@ -20,7 +20,6 @@ class biblioteq_generic_thread: public QThread
   QString getErrorStr(void) const;
   QStringList getList(void) const;
   QStringList getZ3950Results(void) const;
-  void msleep(const int msecs);
   void run(void);
   void setFilename(const QString &filename);
   void setOutputList(const QList<bool> &list);
