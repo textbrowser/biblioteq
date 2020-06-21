@@ -1,5 +1,5 @@
 Architecture: powerpc
-Depends: libpoppler-qt5-1 (>= 0.45), libpq5 (>= 5.10), libqt5core5a (>= 5.5.1), libqt5gui5 (>= 5.5.1), libqt5network5 (>= 5.5.1), libqt5printsupport5 (>= 5.5.1), libqt5sql5 (>= 5.5.1), libqt5sql5-psql (>= 5.5.1), libqt5sql5-sqlite (>= 5.5.1), libqt5widgets5 (>= 5.5.1), libsqlite3-0 (>= 3.10), libyaz5 (>= 5.15)
+Depends: libpoppler-qt5-1 (>= 0.40), libpq5 (>= 5.10), libqt5core5a (>= 5.5.1), libqt5gui5 (>= 5.5.1), libqt5network5 (>= 5.5.1), libqt5printsupport5 (>= 5.5.1), libqt5sql5 (>= 5.5.1), libqt5sql5-psql (>= 5.5.1), libqt5sql5-sqlite (>= 5.5.1), libqt5widgets5 (>= 5.5.1), libsqlite3-0 (>= 3.10), libyaz4 (>= 4.2.30)
 Maintainer: textbrowser@gmail.com
 Package: BiblioteQ
 Priority: optional
