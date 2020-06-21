@@ -32,7 +32,7 @@ Introduction
     b) YAZ 4.2.x, or higher, must be installed. Please download the software from http://www.indexdata.com/yaz.
     c) If you intend to use PostgreSQL, the PostgreSQL database package must be installed. Please download the software from https://www.postgresql.org/download.
     d) If you intend to use SQLite, the SQLite package must be installed. Please download the software from https://www.sqlite.org/download.html.
-    e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make. Some systems provide gmake, qmake-qt4, and qmake-qt5.
+    e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make. Some systems provide gmake and qmake-qt5.
 
 	2.3 Windows Installation
 
@@ -84,3 +84,4 @@ Introduction
 7. SQLite Database Removal
 
 	Delete the desired SQLite database file(s).
+
