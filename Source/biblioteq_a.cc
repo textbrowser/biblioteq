@@ -3321,11 +3321,6 @@ void biblioteq::slotPreviousPage(void)
 
 void biblioteq::slotPrintReservationHistory(void)
 {
-  QPrinter printer;
-  QPrintDialog dialog(&printer, m_history_diag);
-  QString html = "<html>";
-  QTextDocument document;
-
   if(history.table->rowCount() == 0)
     {
       if(m_members_diag->isVisible())
@@ -3340,6 +3335,12 @@ void biblioteq::slotPrintReservationHistory(void)
       QApplication::processEvents();
       return;
     }
+
+  QPrinter printer;
+  QScopedPointer<QPrintDialog> dialog
+    (new QPrintDialog(&printer, m_history_diag));
+  QString html = "<html>";
+  QTextDocument document;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   html = tr("Reservation History") + "<br><br>";
@@ -3367,10 +3368,10 @@ void biblioteq::slotPrintReservationHistory(void)
   html += "</table>";
   html += "</html>";
   QApplication::restoreOverrideCursor();
-  printer.setPageSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
+  printer.setPageSize(QPrinter::Letter);
 
-  if(dialog.exec() == QDialog::Accepted)
+  if(dialog->exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
       document.setHtml(html);
@@ -3382,15 +3383,6 @@ void biblioteq::slotPrintReservationHistory(void)
 
 void biblioteq::slotPrintReserved(void)
 {
-  QMap<QString, QString> memberinfo;
-  QPrinter printer;
-  QPrintDialog dialog(&printer, m_members_diag);
-  QString errorstr = "";
-  QString memberid = "";
-  QString str = "";
-  QStringList itemsList;
-  QTextDocument document;
-  int itemsReserved = 0;
   int row = bb.table->currentRow();
 
   if(row < 0)
@@ -3402,6 +3394,17 @@ void biblioteq::slotPrintReserved(void)
       QApplication::processEvents();
       return;
     }
+
+  QMap<QString, QString> memberinfo;
+  QPrinter printer;
+  QScopedPointer<QPrintDialog> dialog
+    (new QPrintDialog(&printer, m_members_diag));
+  QString errorstr = "";
+  QString memberid = "";
+  QString str = "";
+  QStringList itemsList;
+  QTextDocument document;
+  int itemsReserved = 0;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   itemsReserved = biblioteq_misc_functions::getColumnString
@@ -3456,10 +3459,10 @@ void biblioteq::slotPrintReserved(void)
 
       str = str.mid(0, str.length() - 8);
       str += "</html>";
-      printer.setPageSize(QPrinter::Letter);
       printer.setColorMode(QPrinter::GrayScale);
+      printer.setPageSize(QPrinter::Letter);
 
-      if(dialog.exec() == QDialog::Accepted)
+      if(dialog->exec() == QDialog::Accepted)
 	{
 	  QApplication::processEvents();
 	  document.setHtml(str);
@@ -3487,7 +3490,7 @@ void biblioteq::slotPrintReserved(void)
 void biblioteq::slotPrintView(void)
 {
   QPrinter printer;
-  QPrintDialog dialog(&printer, this);
+  QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
   QString html = "<html>";
   QTextDocument document;
 
@@ -3516,11 +3519,11 @@ void biblioteq::slotPrintView(void)
   html += "</table>";
   html += "</html>";
   QApplication::restoreOverrideCursor();
-  printer.setPaperSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
   printer.setOrientation(QPrinter::Landscape);
+  printer.setPaperSize(QPrinter::Letter);
 
-  if(dialog.exec() == QDialog::Accepted)
+  if(dialog->exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
       document.setHtml(html);

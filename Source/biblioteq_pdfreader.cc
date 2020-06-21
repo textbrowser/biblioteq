@@ -308,15 +308,15 @@ void biblioteq_pdfreader::slotPrint(void)
     return;
 
   QPrinter printer;
-  QPrintDialog dialog(&printer, this);
+  QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
 
-  dialog.setMinMax(1, m_document->numPages());
+  dialog->setMinMax(1, m_document->numPages());
   printer.setColorMode(QPrinter::Color);
   printer.setDuplex(QPrinter::DuplexAuto);
   printer.setFromTo(1, m_document->numPages());
   printer.setPageSize(QPrinter::Letter);
 
-  if(dialog.exec() == QDialog::Accepted)
+  if(dialog->exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
 

@@ -119,13 +119,13 @@ int biblioteq_item::getRow(void) const
 void biblioteq_item::print(QWidget *parent)
 {
   QPrinter printer;
-  QPrintDialog dialog(&printer, parent);
+  QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, parent));
   QTextDocument document;
 
-  printer.setPageSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
+  printer.setPageSize(QPrinter::Letter);
 
-  if(dialog.exec() == QDialog::Accepted)
+  if(dialog->exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
       document.setHtml(m_html);
