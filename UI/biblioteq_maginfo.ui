@@ -195,7 +195,7 @@
                <item>
                 <widget class="QLabel" name="label">
                  <property name="text">
-                  <string>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</string>
+                  <string>ISSN</string>
                  </property>
                 </widget>
                </item>

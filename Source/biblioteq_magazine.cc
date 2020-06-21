@@ -33,11 +33,8 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
-  QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
-  QValidator *validator1 = 0;
 
   menu = new QMenu(this);
-  validator1 = new QRegExpValidator(rx, this);
   scene1 = new QGraphicsScene(this);
   scene2 = new QGraphicsScene(this);
   m_proxyDialog = new QDialog(this);
@@ -168,7 +165,6 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SLOT(slotSRUQueryError(const QString &)),
 	  Qt::QueuedConnection);
   ma.id->setCursorPosition(0);
-  ma.id->setValidator(validator1);
   ma.resetButton->setMenu(menu);
 
   if(menu->actions().size() >= 3)
@@ -2193,9 +2189,10 @@ void biblioteq_magazine::slotGo(void)
 
       if(ma.issnAvailableCheckBox->isChecked())
 	{
-	  if(ma.id->text().length() != 9)
+	  if(ma.id->text().isEmpty())
 	    {
-	      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	      QMessageBox::critical(this,
+				    tr("BiblioteQ: User Error"),
 				    tr("Please complete the ISSN field."));
 	      QApplication::processEvents();
 	      ma.id->setFocus();
@@ -3399,10 +3396,11 @@ void biblioteq_magazine::slotSRUQuery(void)
   if(m_sruManager->findChild<QNetworkReply *> ())
     return;
 
-  if(ma.id->text().trimmed().length() != 9)
+  if(ma.id->text().trimmed().isEmpty())
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
+	(this,
+	 tr("BiblioteQ: User Error"),
 	 tr("In order to query an SRU site, the ISSN must be provided."));
       QApplication::processEvents();
       ma.id->setFocus();
@@ -3707,12 +3705,12 @@ void biblioteq_magazine::slotZ3950Query(void)
   QString searchstr = "";
   QStringList list;
 
-  if(ma.id->text().trimmed().length() != 9)
+  if(ma.id->text().trimmed().isEmpty())
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query a Z39.50 site, the ISSN "
-	    "must be provided."));
+	(this,
+	 tr("BiblioteQ: User Error"),
+	 tr("In order to query a Z39.50 site, the ISSN must be provided."));
       QApplication::processEvents();
       ma.id->setFocus();
       return;
@@ -3812,7 +3810,8 @@ void biblioteq_magazine::slotZ3950Query(void)
       else
 	{
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Z39.50 Query Error"),
+	    (this,
+	     tr("BiblioteQ: Z39.50 Query Error"),
 	     tr("A Z39.50 entry may not yet exist for ") +
 	     ma.id->text() + tr("."));
 	  QApplication::processEvents();
@@ -3876,7 +3875,8 @@ void biblioteq_magazine::sruDownloadFinished(void)
   else
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: SRU Query Error"),
+	(this,
+	 tr("BiblioteQ: SRU Query Error"),
 	 tr("An SRU entry may not yet exist for ") +
 	 ma.id->text() + tr(" or a network error occurred."));
       QApplication::processEvents();
