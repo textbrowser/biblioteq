@@ -1,4 +1,4 @@
-Qt 5.x is supported. Qt 4.8.x is only supported for PowerPC.
+Qt 5.x is supported. Qt 4.8.7 is not officially supported.
 
 ARM
 
@@ -42,8 +42,6 @@ gmake
 PowerPC
 
 qmake -o Makefile biblioteq.powerpc.pro
-or
-qmake-qt4 -o Makefile biblioteq.powerpc.pro
 or
 qmake-qt5 -o Makefile biblioteq.powerpc.pro
 make
