@@ -1049,19 +1049,23 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 {
   m_openLibraryResults = m_openLibraryResults.trimmed();
 
-  if(m_openLibraryResults.isEmpty())
+  if(m_openLibraryResults.isEmpty() ||
+     m_openLibraryResults.length() <= 10)
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: Open Library Query Error"),
-	 tr("The Open Library query produced invalid results."));
+	(this,
+	 tr("BiblioteQ: Open Library Query Error"),
+	 tr("The Open Library query produced invalid results. "
+	    "Perhaps the book is not defined."));
       QApplication::processEvents();
     }
   else
     {
       if(QMessageBox::question
-	 (this, tr("BiblioteQ: Question"),
+	 (this,
+	  tr("BiblioteQ: Question"),
 	  tr("Replace existing values with those retrieved from Open Library?"),
-	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No | QMessageBox::Yes,
 	  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
