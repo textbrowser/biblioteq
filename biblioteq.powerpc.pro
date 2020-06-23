@@ -57,12 +57,12 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -mabi=altivec \
                           -mpowerpc \
                           -mtune=powerpc \
-                          -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-QMAKE_CXXFLAGS_RELEASE += -std=c++11
+QMAKE_CXXFLAGS_RELEASE += -pedantic \
+                          -std=c++11
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 }
 
