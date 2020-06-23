@@ -12,6 +12,8 @@
 #include <QUuid>
 #include <QtCore/qmath.h>
 
+#include <limits>
+
 biblioteq_photographcollection::biblioteq_photographcollection
 (biblioteq *parentArg,
  const QString &oidArg,

@@ -646,9 +646,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		    << "$6"
 		    << "$8";
 
-	  for(int i = 0; i < subfields.size(); i++)
-	    if(str.contains(subfields.at(i)))
-	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+	  for(int j = 0; j < subfields.size(); j++)
+	    if(str.contains(subfields.at(j)))
+	      str = str.mid(0, str.indexOf(subfields.at(j))).trimmed();
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
