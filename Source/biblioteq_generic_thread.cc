@@ -45,6 +45,11 @@ QStringList biblioteq_generic_thread::getZ3950Results(void) const
   return m_z3950Results;
 }
 
+void biblioteq_generic_thread::msleep(const unsigned long msecs)
+{
+  QThread::msleep(msecs);
+}
+
 void biblioteq_generic_thread::run(void)
 {
   /*
