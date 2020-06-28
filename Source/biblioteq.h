@@ -324,6 +324,7 @@ class biblioteq: public QMainWindow
   quint64 m_idCt;
   userinfo_diag_class *userinfo_diag;
   QString dbUserName(void) const;
+  QString viewHtml(void) const;
   QWidget *widgetForAction(QAction *action) const;
   bool emptyContainers(void);
   void addConfigOptions(const QString &typefilter);

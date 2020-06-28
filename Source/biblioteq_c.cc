@@ -38,6 +38,38 @@ QString biblioteq::publicationDateFormat(const QString &itemType) const
   return m_otheroptions->publicationDateFormat(itemType);
 }
 
+QString biblioteq::viewHtml(void) const
+{
+  QString html = "<html>";
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  html += "<table border=1>";
+  html += "<tr>";
+
+  for(int i = 0; i < ui.table->columnCount(); i++)
+    if(!ui.table->isColumnHidden(i))
+      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() +
+	"</th>";
+
+  html += "</tr>";
+
+  for(int i = 0; i < ui.table->rowCount(); i++)
+    {
+      html += "<tr>";
+
+      for(int j = 0; j < ui.table->columnCount(); j++)
+	if(!ui.table->isColumnHidden(j))
+	  html += "<td>" + ui.table->item(i, j)->text() + "</td>";
+
+      html += "</tr>";
+    }
+
+  html += "</table>";
+  html += "</html>";
+  QApplication::restoreOverrideCursor();
+  return html;
+}
+
 QStringList biblioteq::getSRUNames(void) const
 {
   return m_sruMaps.keys();

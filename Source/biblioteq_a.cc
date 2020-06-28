@@ -3491,34 +3491,9 @@ void biblioteq::slotPrintView(void)
 {
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
-  QString html = "<html>";
+  QString html(viewHtml());
   QTextDocument document;
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  html += "<table border=1>";
-  html += "<tr>";
-
-  for(int i = 0; i < ui.table->columnCount(); i++)
-    if(!ui.table->isColumnHidden(i))
-      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() +
-	"</th>";
-
-  html += "</tr>";
-  
-  for(int i = 0; i < ui.table->rowCount(); i++)
-    {
-      html += "<tr>";
-
-      for(int j = 0; j < ui.table->columnCount(); j++)
-	if(!ui.table->isColumnHidden(j))
-	  html += "<td>" + ui.table->item(i, j)->text() + "</td>";
-
-      html += "</tr>";
-    }
-
-  html += "</table>";
-  html += "</html>";
-  QApplication::restoreOverrideCursor();
   printer.setColorMode(QPrinter::GrayScale);
   printer.setOrientation(QPrinter::Landscape);
   printer.setPaperSize(QPrinter::Letter);
