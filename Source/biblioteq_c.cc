@@ -48,6 +48,23 @@ QStringList biblioteq::getZ3950Names(void) const
   return m_z3950Maps.keys();
 }
 
+QWidget *biblioteq::widgetForAction(QAction *action) const
+{
+  if(!action)
+    return 0;
+
+  if(action == ui.configTool)
+    return ui.toolBar_5->widgetForAction(action);
+  else if(action == ui.createTool)
+    return ui.toolBar_2->widgetForAction(action);
+  else if(action == ui.printTool)
+    return ui.toolBar_2->widgetForAction(action);
+  else if(action == ui.searchTool)
+    return ui.toolBar_4->widgetForAction(action);
+
+  return 0;
+}
+
 bool biblioteq::emptyContainers(void)
 {
   foreach(QWidget *w, QApplication::topLevelWidgets())

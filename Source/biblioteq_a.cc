@@ -4200,15 +4200,11 @@ void biblioteq::slotShowMembersBrowser(void)
 
 void biblioteq::slotShowMenu(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
   QPoint point;
-  QWidget *widget = 0;
-
-  if(action)
-    widget = ui.toolBar_2->widgetForAction(action);
+  QWidget *widget = widgetForAction(qobject_cast<QAction *> (sender()));
 
   if(widget)
-    point = widget->rect().bottomRight();
+    point = widget->mapToGlobal(widget->rect().bottomRight() - QPoint(5, 5));
   else
     point = QCursor::pos();
 
