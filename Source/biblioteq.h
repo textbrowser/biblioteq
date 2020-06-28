@@ -411,6 +411,7 @@ class biblioteq: public QMainWindow
   void slotPrintReservationHistory(void);
   void slotPrintReserved(void);
   void slotPrintView(void);
+  void slotPrintViewPreview(void);
   void slotRefresh(void);
   void slotRefreshAdminList(void);
   void slotRefreshCustomQuery(void);

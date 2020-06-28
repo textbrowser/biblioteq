@@ -542,7 +542,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(ui.configTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
   connect(ui.printTool, SIGNAL(triggered(void)), this,
-	  SLOT(slotPrintView(void)));
+	  SLOT(slotShowMenu(void)));
   connect(ui.previousPageButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPreviousPage(void)));
   connect(ui.nextPageButton, SIGNAL(clicked(void)), this,
@@ -3533,6 +3533,10 @@ void biblioteq::slotPrintView(void)
   QApplication::processEvents();
 }
 
+void biblioteq::slotPrintViewPreview(void)
+{
+}
+
 void biblioteq::slotRefresh(void)
 {
   if(m_db.isOpen())
@@ -4196,8 +4200,20 @@ void biblioteq::slotShowMembersBrowser(void)
 
 void biblioteq::slotShowMenu(void)
 {
+  QAction *action = qobject_cast<QAction *> (sender());
+  QPoint point;
+  QWidget *widget = 0;
+
+  if(action)
+    widget = ui.toolBar_2->widgetForAction(action);
+
+  if(widget)
+    point = widget->rect().bottomRight();
+  else
+    point = QCursor::pos();
+
   if(sender() == ui.configTool)
-    m_configToolMenu->exec(QCursor::pos());
+    m_configToolMenu->exec(point);
   else if(sender() == ui.createTool)
     {
       QMenu menu(this);
@@ -4224,7 +4240,21 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
       // menu.addAction(tr("Add &VHS..."));
       // menu.addAction(tr("Add &Vinyl Record..."));
-      menu.exec(QCursor::pos());
+      menu.exec(point);
+    }
+  else if(sender() == ui.printTool)
+    {
+      QMenu menu(this);
+
+      connect(menu.addAction(tr("Print...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPrintView(void)));
+      connect(menu.addAction(tr("Print Preview...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPrintViewPreview(void)));
+      menu.exec(point);
     }
   else if(sender() == ui.searchTool)
     {
@@ -4253,7 +4283,7 @@ void biblioteq::slotShowMenu(void)
       connect
 	(menu.addAction(tr("&Video Game Search...")),
 	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
-      menu.exec(QCursor::pos());
+      menu.exec(point);
     }
 }
 
