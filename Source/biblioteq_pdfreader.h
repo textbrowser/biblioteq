@@ -11,6 +11,8 @@
 #endif
 #endif
 
+class QPrinter;
+
 class biblioteq_pdfreader: public QMainWindow
 {
   Q_OBJECT
@@ -41,6 +43,8 @@ class biblioteq_pdfreader: public QMainWindow
   void slotClose(void);
   void slotContentsDoubleClicked(QListWidgetItem *item);
   void slotPrint(void);
+  void slotPrintPreview(QPrinter *printer);
+  void slotPrintPreview(void);
   void slotSaveAs(void);
   void slotSearchNext(void);
   void slotSearchPrevious(void);

@@ -63,6 +63,9 @@
         <property name="toolTip">
          <string>Please press the Enter key to execute the query.</string>
         </property>
+        <property name="placeholderText">
+         <string>Search</string>
+        </property>
        </widget>
       </item>
       <item>

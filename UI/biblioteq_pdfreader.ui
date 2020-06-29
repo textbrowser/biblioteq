@@ -108,7 +108,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="find"/>
+       <widget class="QLineEdit" name="find">
+        <property name="placeholderText">
+         <string>Search</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QToolButton" name="find_next">
@@ -168,7 +172,7 @@
            <x>0</x>
            <y>0</y>
            <width>651</width>
-           <height>464</height>
+           <height>470</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -221,7 +225,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>32</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -231,6 +235,7 @@
     <addaction name="action_Save_As"/>
     <addaction name="separator"/>
     <addaction name="action_Print"/>
+    <addaction name="action_Print_Preview"/>
     <addaction name="separator"/>
     <addaction name="action_Close"/>
    </widget>
@@ -285,6 +290,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="action_Print_Preview">
+   <property name="text">
+    <string>Print Preview...</string>
    </property>
   </action>
  </widget>

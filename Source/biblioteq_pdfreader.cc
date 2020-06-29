@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QPainter>
 #include <QPrintDialog>
+#include <QPrintPreviewDialog>
 #include <QPrinter>
 #include <QProgressDialog>
 #include <QResizeEvent>
@@ -50,6 +51,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotPrint(void)));
+  connect(m_ui.action_Print_Preview,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrintPreview(void)));
   connect(m_ui.action_Save_As,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -380,6 +385,102 @@ void biblioteq_pdfreader::slotPrint(void)
 
   QApplication::processEvents();
 #endif
+}
+
+void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
+{
+  if(!printer)
+    return;
+
+  QProgressDialog progress(this);
+  QWidget *widget = qobject_cast<QWidget *> (sender());
+  bool preview = !widget || !widget->isVisible();
+
+  if(preview)
+    progress.setLabelText(tr("Preparing preview..."));
+  else
+    progress.setLabelText(tr("Printing PDF..."));
+
+  progress.setMaximum(0);
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+  QApplication::processEvents();
+
+  QPainter painter(printer);
+  int end = printer->toPage();
+  int start = printer->fromPage();
+
+  if(end == 0 && start == 0)
+    {
+      end = m_document->numPages();
+      start = 1;
+    }
+
+  painter.setRenderHints(QPainter::Antialiasing |
+			 QPainter::SmoothPixmapTransform |
+			 QPainter::TextAntialiasing);
+
+  for(int i = start; i <= end; i++)
+    {
+      progress.repaint();
+
+      if(preview)
+	progress.setLabelText(tr("Preparing preview... Page %1...").arg(i));
+      else
+	progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
+
+      QApplication::processEvents();
+
+      Poppler::Page *page = m_document->page(i - 1);
+
+      if(!page)
+	break;
+
+      QImage image
+	(page->renderToImage(printer->resolution(), printer->resolution()));
+      QRect rect(painter.viewport());
+      QSize size(image.size());
+
+      size.scale(rect.size(), Qt::KeepAspectRatio);
+      painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+      painter.setWindow(image.rect());
+      painter.drawImage(QPoint(0, 0), image);
+      delete page;
+
+      if(i == end)
+	break;
+
+      if(progress.wasCanceled())
+	{
+	  printer->abort();
+	  break;
+	}
+
+      printer->newPage();
+    }
+
+  painter.end();
+}
+
+void biblioteq_pdfreader::slotPrintPreview(void)
+{
+  QPrinter printer;
+  QScopedPointer<QPrintPreviewDialog> dialog
+    (new QPrintPreviewDialog(&printer, this));
+
+  connect(dialog.data(),
+	  SIGNAL(paintRequested(QPrinter *)),
+	  this,
+	  SLOT(slotPrintPreview(QPrinter *)));
+  printer.setColorMode(QPrinter::Color);
+  printer.setDuplex(QPrinter::DuplexAuto);
+  printer.setFromTo(1, m_document->numPages());
+  printer.setPageSize(QPrinter::Letter);
+  dialog->exec();
+  QApplication::processEvents();
 }
 
 void biblioteq_pdfreader::slotSaveAs(void)
