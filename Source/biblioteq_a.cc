@@ -33,6 +33,7 @@
 #include <QMacStyle>
 #endif
 #endif
+#include <QPrintPreviewDialog>
 #include <QScrollBar>
 #include <QSettings>
 #include <QTranslator>
@@ -229,6 +230,8 @@ biblioteq::biblioteq(void):QMainWindow()
   m_menuCategoryActionGroup->setExclusive(true);
   m_otheroptions = new biblioteq_otheroptions(this);
   m_pass_diag = new QDialog(this);
+  m_printPreview = new QTextBrowser(this);
+  m_printPreview->setVisible(false);
   m_all_diag = new QMainWindow();
   m_admin_diag = new QMainWindow();
   m_members_diag = new QMainWindow();
@@ -3319,6 +3322,12 @@ void biblioteq::slotPreviousPage(void)
     }
 }
 
+void biblioteq::slotPrintPreview(QPrinter *printer)
+{
+  if(printer)
+    m_printPreview->print(printer);
+}
+
 void biblioteq::slotPrintReservationHistory(void)
 {
   if(history.table->rowCount() == 0)
@@ -3510,6 +3519,30 @@ void biblioteq::slotPrintView(void)
 
 void biblioteq::slotPrintViewPreview(void)
 {
+  QPrinter printer;
+  QScopedPointer<QPrintPreviewDialog> printDialog
+    (new QPrintPreviewDialog(&printer, this));
+
+  printDialog->setWindowModality(Qt::WindowModal);
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setOrientation(QPrinter::Landscape);
+  printer.setPaperSize(QPrinter::Letter);
+  connect(printDialog.data(),
+	  SIGNAL(paintRequested(QPrinter *)),
+	  this,
+	  SLOT(slotPrintPreview(QPrinter *)));
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  m_printPreview->setHtml(viewHtml());
+  printDialog->show();
+  QApplication::restoreOverrideCursor();
+
+  if(printDialog->exec() == QDialog::Accepted)
+    {
+      QApplication::processEvents();
+      m_printPreview->print(&printer);
+    }
+
+  QApplication::processEvents();
 }
 
 void biblioteq::slotRefresh(void)

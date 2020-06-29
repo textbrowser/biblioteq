@@ -302,6 +302,7 @@ class biblioteq: public QMainWindow
   QString m_previousTypeFilter;
   QString m_roles;
   QStringList m_deletedAdmins;
+  QTextBrowser *m_printPreview;
   QToolButton *m_error_bar_label;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
@@ -410,6 +411,7 @@ class biblioteq: public QMainWindow
   void slotPopulateMembersBrowser(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotPreviousPage(void);
+  void slotPrintPreview(QPrinter *printer);
   void slotPrintReservationHistory(void);
   void slotPrintReserved(void);
   void slotPrintView(void);
