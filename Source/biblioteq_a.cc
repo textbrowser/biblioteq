@@ -418,8 +418,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotShowHistory(void)));
   connect(history.reloadButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowHistory(void)));
-  connect(history.printButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotPrintReservationHistory(void)));
+  connect(history.printButton,
+	  SIGNAL(clicked(void)),
+	  history.printButton,
+	  SLOT(showMenu(void)));
   connect(al.okButton, SIGNAL(clicked(void)), this, SLOT(slotAllGo(void)));
   connect(ui.exitTool, SIGNAL(triggered(void)), this, SLOT(slotExit(void)));
   connect(ui.actionExit, SIGNAL(triggered(void)), this,

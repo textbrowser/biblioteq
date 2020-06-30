@@ -341,6 +341,7 @@ class biblioteq: public QMainWindow
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
+  void prepareReservationHistoryMenu(void);
   void readConfig(void);
   void readGlobalSetup(void);
   void resetAdminBrowser(void);

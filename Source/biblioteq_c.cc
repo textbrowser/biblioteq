@@ -986,6 +986,10 @@ void biblioteq::pcSearch(const QString &field, const QString &value)
   photograph->deleteLater();
 }
 
+void biblioteq::prepareReservationHistoryMenu(void)
+{
+}
+
 void biblioteq::readConfig(void)
 {
   QFont font;
