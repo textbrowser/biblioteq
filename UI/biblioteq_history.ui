@@ -188,7 +188,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="printButton">
+       <widget class="QToolButton" name="printButton">
         <property name="minimumSize">
          <size>
           <width>125</width>
@@ -196,11 +196,17 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Print...</string>
+         <string>&amp;Print</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
