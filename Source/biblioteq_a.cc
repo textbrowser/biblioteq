@@ -765,6 +765,7 @@ biblioteq::biblioteq(void):QMainWindow()
     }
 
   preparePhotographsPerPageMenu();
+  prepareReservationHistoryMenu();
 
   QAction *action = 0;
   QActionGroup *group2 = 0;

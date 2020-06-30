@@ -988,6 +988,22 @@ void biblioteq::pcSearch(const QString &field, const QString &value)
 
 void biblioteq::prepareReservationHistoryMenu(void)
 {
+  if(!history.printButton->actions().isEmpty())
+    return;
+
+  QAction *action = new QAction(tr("Print..."), this);
+
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrintReservationHistory(void)));
+  history.printButton->addAction(action);
+  action = new QAction(tr("Print Preview..."), this);
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrintReservationHistoryPreview(void)));
+  history.printButton->addAction(action);
 }
 
 void biblioteq::readConfig(void)
