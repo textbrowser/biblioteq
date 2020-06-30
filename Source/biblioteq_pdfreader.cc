@@ -10,6 +10,8 @@
 #include <QResizeEvent>
 #include <QScrollBar>
 
+#include <limits>
+
 biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 {
   m_ui.setupUi(this);
@@ -31,6 +33,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
   m_ui.page_2->setText(m_ui.page_1->text());
 #endif
+  m_ui.splitter->setSizes
+    (QList<int> () << 100 << std::numeric_limits<int>::max());
+  m_ui.splitter->setStretchFactor(0, 0);
+  m_ui.splitter->setStretchFactor(1, 1);
   connect(m_ui.action_Close,
 	  SIGNAL(triggered(void)),
 	  this,
