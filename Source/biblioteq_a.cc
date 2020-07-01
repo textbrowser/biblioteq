@@ -3336,13 +3336,16 @@ void biblioteq::slotPrintReservationHistory(void)
   if(history.table->rowCount() == 0)
     {
       if(m_members_diag->isVisible())
-	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
-			      tr("The selected member does not yet have a "
-				 "reservation history to print."));
+	QMessageBox::critical
+	  (m_history_diag,
+	   tr("BiblioteQ: User Error"),
+	   tr("The selected member does not yet have a "
+	      "reservation history to print."));
       else
-	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
-			      tr("You do not yet have a reservation history "
-				 "to print."));
+	QMessageBox::critical
+	  (m_history_diag,
+	   tr("BiblioteQ: User Error"),
+	   tr("You do not yet have a reservation history to print."));
 
       QApplication::processEvents();
       return;
@@ -3351,43 +3354,62 @@ void biblioteq::slotPrintReservationHistory(void)
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog
     (new QPrintDialog(&printer, m_history_diag));
-  QString html = "<html>";
   QTextDocument document;
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  html = tr("Reservation History") + "<br><br>";
-  html += "<table border=1>";
-  html += "<tr>";
-
-  for(int i = 0; i < history.table->columnCount(); i++)
-    if(!history.table->isColumnHidden(i))
-      html += "<th>" + history.table->horizontalHeaderItem(i)->text() +
-	"</th>";
-
-  html += "</tr>";
-
-  for(int i = 0; i < history.table->rowCount(); i++)
-    {
-      html += "<tr>";
-
-      for(int j = 0; j < history.table->columnCount(); j++)
-	if(!history.table->isColumnHidden(j))
-	  html += "<td>" + history.table->item(i, j)->text() + "</td>";
-
-      html += "</tr>";
-    }
-
-  html += "</table>";
-  html += "</html>";
-  QApplication::restoreOverrideCursor();
   printer.setColorMode(QPrinter::GrayScale);
   printer.setPageSize(QPrinter::Letter);
 
   if(dialog->exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
-      document.setHtml(html);
+      document.setHtml(reservationHistoryHtml());
       document.print(&printer);
+    }
+
+  QApplication::processEvents();
+}
+
+void biblioteq::slotPrintReservationHistoryPreview(void)
+{
+  if(history.table->rowCount() == 0)
+    {
+      if(m_members_diag->isVisible())
+	QMessageBox::critical
+	  (m_history_diag,
+	   tr("BiblioteQ: User Error"),
+	   tr("The selected member does not yet have a "
+	      "reservation history to print."));
+      else
+	QMessageBox::critical
+	  (m_history_diag,
+	   tr("BiblioteQ: User Error"),
+	   tr("You do not yet have a reservation history to print."));
+
+      QApplication::processEvents();
+      return;
+    }
+
+  QPrinter printer;
+  QScopedPointer<QPrintPreviewDialog> printDialog
+    (new QPrintPreviewDialog(&printer, this));
+
+  printDialog->setWindowModality(Qt::WindowModal);
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setOrientation(QPrinter::Landscape);
+  printer.setPaperSize(QPrinter::Letter);
+  connect(printDialog.data(),
+	  SIGNAL(paintRequested(QPrinter *)),
+	  this,
+	  SLOT(slotPrintPreview(QPrinter *)));
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  m_printPreview->setHtml(reservationHistoryHtml());
+  printDialog->show();
+  QApplication::restoreOverrideCursor();
+
+  if(printDialog->exec() == QDialog::Accepted)
+    {
+      QApplication::processEvents();
+      m_printPreview->print(&printer);
     }
 
   QApplication::processEvents();

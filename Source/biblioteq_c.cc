@@ -38,11 +38,46 @@ QString biblioteq::publicationDateFormat(const QString &itemType) const
   return m_otheroptions->publicationDateFormat(itemType);
 }
 
-QString biblioteq::viewHtml(void) const
+QString biblioteq::reservationHistoryHtml(void) const
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   QString html = "<html>";
 
+  html = tr("Reservation History") + "<br><br>";
+  html += "<table border=1>";
+  html += "<tr>";
+
+  for(int i = 0; i < history.table->columnCount(); i++)
+    if(!history.table->isColumnHidden(i))
+      html += "<th>" + history.table->horizontalHeaderItem(i)->text() +
+	"</th>";
+
+  html += "</tr>";
+
+  for(int i = 0; i < history.table->rowCount(); i++)
+    {
+      html += "<tr>";
+
+      for(int j = 0; j < history.table->columnCount(); j++)
+	if(!history.table->isColumnHidden(j))
+	  html += "<td>" + history.table->item(i, j)->text() + "</td>";
+
+      html += "</tr>";
+    }
+
+  html += "</table>";
+  html += "</html>";
+  QApplication::restoreOverrideCursor();
+  return html;
+}
+
+QString biblioteq::viewHtml(void) const
+{
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QString html = "<html>";
+
   html += "<table border=1>";
   html += "<tr>";
 

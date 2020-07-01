@@ -325,6 +325,7 @@ class biblioteq: public QMainWindow
   quint64 m_idCt;
   userinfo_diag_class *userinfo_diag;
   QString dbUserName(void) const;
+  QString reservationHistoryHtml(void) const;
   QString viewHtml(void) const;
   QWidget *widgetForAction(QAction *action) const;
   bool emptyContainers(void);
@@ -414,6 +415,7 @@ class biblioteq: public QMainWindow
   void slotPreviousPage(void);
   void slotPrintPreview(QPrinter *printer);
   void slotPrintReservationHistory(void);
+  void slotPrintReservationHistoryPreview(void);
   void slotPrintReserved(void);
   void slotPrintView(void);
   void slotPrintViewPreview(void);
