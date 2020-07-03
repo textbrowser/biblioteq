@@ -23,7 +23,7 @@ class biblioteq_otheroptions: public QMainWindow
   void keyPressEvent(QKeyEvent *event);
 
  private slots:
-  void setGlobalFonts(const QFont &font);  
+  void setGlobalFonts(const QFont &font);
   void slotClose(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotSave(void);

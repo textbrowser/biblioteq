@@ -42,31 +42,88 @@ QString biblioteq::reservationHistoryHtml(void) const
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QString html = "<html>";
-
-  html = tr("Reservation History") + "<br><br>";
-  html += "<table border=1>";
-  html += "<tr>";
-
-  for(int i = 0; i < history.table->columnCount(); i++)
-    if(!history.table->isColumnHidden(i))
-      html += "<th>" + history.table->horizontalHeaderItem(i)->text() +
-	"</th>";
-
-  html += "</tr>";
+  QString firstname("");
+  QString information("");
+  QString lastname("");
+  QString memberid("");
+  QString html("<html>");
+  static QString endl("<br>");
 
   for(int i = 0; i < history.table->rowCount(); i++)
+    if(m_roles.isEmpty())
+      {
+	if(i == 0)
+	  memberid = history.table->item(i, 0)->text();
+
+	information += history.table->item(i, 1)->text(); // Title
+	information += endl;
+	information += history.table->item(i, 2)->text(); // ID Number
+	information += endl;
+	information += history.table->item(i, 4)->text(); // Type
+	information += endl;
+	information += tr("Reservation Date: ");
+	information += history.table->item(i, 5)->text(); // Reservation Date
+	information += endl;
+	information += tr("Due Date: ");
+	information += history.table->item(i, 6)->text(); // Due Date
+	information += endl;
+	information += tr("Returned Date: ");
+	information += history.table->item(i, 7)->text(); // Returned Date
+	information += endl;
+	information += endl;
+      }
+    else
+      {
+	if(i == 0)
+	  {
+	    for(int j = 0; j < history.table->columnCount(); j++)
+	      if(j == 0)
+		memberid = history.table->item(i, j)->text();
+	      else if(j == 1)
+		firstname = history.table->item(i, j)->text();
+	      else if(j == 2)
+		lastname = history.table->item(i, j)->text();
+	      else
+		break;
+	  }
+
+	information += history.table->item(i, 3)->text(); // Title
+	information += endl;
+	information += history.table->item(i, 4)->text(); // ID Number
+	information += endl;
+	information += history.table->item(i, 6)->text(); // Type
+	information += endl;
+	information += tr("Reservation Date: ");
+	information += history.table->item(i, 7)->text(); // Reservation Date
+	information += endl;
+	information += tr("Due Date: ");
+	information += history.table->item(i, 8)->text(); // Due Date
+	information += endl;
+	information += tr("Returned Date: ");
+	information += history.table->item(i, 9)->text(); // Returned Date
+	information += endl;
+	information += endl;
+      }
+
+  if(m_roles.isEmpty())
     {
-      html += "<tr>";
-
-      for(int j = 0; j < history.table->columnCount(); j++)
-	if(!history.table->isColumnHidden(j))
-	  html += "<td>" + history.table->item(i, j)->text() + "</td>";
-
-      html += "</tr>";
+      html += memberid;
+      html += endl;
+      html += endl;
+      html += information.trimmed();
+    }
+  else
+    {
+      html += memberid;
+      html += endl;
+      html += lastname;
+      html += ", ";
+      html += firstname;
+      html += endl;
+      html += endl;
+      html += information.trimmed();
     }
 
-  html += "</table>";
   html += "</html>";
   QApplication::restoreOverrideCursor();
   return html;
