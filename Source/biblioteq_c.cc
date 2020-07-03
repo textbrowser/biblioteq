@@ -69,8 +69,12 @@ QString biblioteq::reservationHistoryHtml(void) const
 	information += endl;
 	information += tr("Returned Date: ");
 	information += history.table->item(i, 7)->text(); // Returned Date
-	information += endl;
-	information += endl;
+
+	if(history.table->rowCount() - 1 != i)
+	  {
+	    information += endl;
+	    information += endl;
+	  }
       }
     else
       {
@@ -101,8 +105,12 @@ QString biblioteq::reservationHistoryHtml(void) const
 	information += endl;
 	information += tr("Returned Date: ");
 	information += history.table->item(i, 9)->text(); // Returned Date
-	information += endl;
-	information += endl;
+
+	if(history.table->rowCount() - 1 != i)
+	  {
+	    information += endl;
+	    information += endl;
+	  }
       }
 
   if(m_roles.isEmpty())
