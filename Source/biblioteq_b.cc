@@ -4563,6 +4563,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "document_type     TEXT NOT NULL PRIMARY KEY"
 	      ")");
   list.append("DROP VIEW IF EXISTS item_borrower_vw");
+  list.append("CREATE TABLE book_sequence "
+	      "("
+	      "value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
+	      ")");
 
   QString errors("");
   int ct = 0;
