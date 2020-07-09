@@ -648,10 +648,10 @@
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
-              <attribute name="horizontalHeaderDefaultSectionSize">
+              <attribute name="horizontalHeaderMinimumSectionSize">
                <number>150</number>
               </attribute>
-              <attribute name="horizontalHeaderMinimumSectionSize">
+              <attribute name="horizontalHeaderDefaultSectionSize">
                <number>150</number>
               </attribute>
               <attribute name="horizontalHeaderStretchLastSection">
@@ -842,10 +842,10 @@
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
-              <attribute name="horizontalHeaderDefaultSectionSize">
+              <attribute name="horizontalHeaderMinimumSectionSize">
                <number>150</number>
               </attribute>
-              <attribute name="horizontalHeaderMinimumSectionSize">
+              <attribute name="horizontalHeaderDefaultSectionSize">
                <number>150</number>
               </attribute>
               <attribute name="horizontalHeaderStretchLastSection">
@@ -1250,6 +1250,9 @@
           <width>32</width>
           <height>32</height>
          </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+R</string>
         </property>
         <property name="autoRaise">
          <bool>true</bool>

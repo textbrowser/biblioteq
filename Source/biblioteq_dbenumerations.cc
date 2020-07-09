@@ -304,6 +304,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	    item = new QListWidgetItem(list.at(i));
 	    item->setFlags
 	      (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	    listwidget->addItem(item);
 	  }
       else if(tablewidget == m_ui.locationsTable)
 	{
@@ -568,6 +569,7 @@ void biblioteq_dbenumerations::slotAdd(void)
       m_ui.locationsTable->setCurrentCell
 	(m_ui.locationsTable->rowCount() - 1,
 	 0);
+      m_ui.locationsTable->resizeColumnToContents(0);
       m_ui.locationsTable->resizeRowsToContents();
     }
   else if(toolButton == m_ui.addMonetaryUnit)
