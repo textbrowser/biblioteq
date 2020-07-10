@@ -3228,7 +3228,9 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	      for(int j = 0; j < record.count(); j++)
 		{
-		  if(record.field(j).type() == QVariant::ByteArray)
+		  if(record.field(j).type() == QVariant::ByteArray ||
+		     record.fieldName(j).contains("cover") ||
+		     record.fieldName(j).contains("image"))
 		    continue;
 
 		  QString columnName(columnNames.value(j));
