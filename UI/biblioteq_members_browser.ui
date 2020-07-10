@@ -406,6 +406,9 @@
           <height>32</height>
          </size>
         </property>
+        <property name="shortcut">
+         <string>Ctrl+R</string>
+        </property>
         <property name="autoRaise">
          <bool>true</bool>
         </property>
