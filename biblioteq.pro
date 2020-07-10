@@ -46,7 +46,9 @@ QMAKE_CLEAN	+= BiblioteQ
 
 openbsd-* {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
+                          -Wcast-align \
                           -Wcast-qual \
+                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Woverloaded-virtual \
@@ -55,7 +57,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wstrict-overflow=5 \
                           -fPIE \
                           -fstack-protector-all \
-                          -fwrapv -pie
+                          -fwrapv \
+                          -pedantic
 } else {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
