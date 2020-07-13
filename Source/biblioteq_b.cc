@@ -82,7 +82,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QString str = "";
   QString type = "";
   QStringList tmplist; // Used for custom queries.
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   int i = -1;
   int limit = 0;
   int search_type = search_type_arg;
@@ -127,9 +127,10 @@ int biblioteq::populateTable(const int search_type_arg,
       limitStr = QString(" LIMIT %1 ").arg(limit);
       offsetStr = QString(" OFFSET %1 ").arg(offset);
       ui.graphicsView->setSceneRect
-	(0, 0,
-	 5 * 150,
-	 limit / 5 * 200 + 15);
+	(0.0,
+	 0.0,
+	 5.0 * 150.0,
+	 static_cast<qreal> (limit / 5 * 200) + 15.0);
     }
 
   /*
@@ -3131,7 +3132,7 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
-  ui.table->setCurrentItem(0);
+  ui.table->setCurrentItem(nullptr);
   slotDisplaySummary();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->resetTransform();
@@ -3154,7 +3155,7 @@ int biblioteq::populateTable(const int search_type_arg,
   progress.repaint();
   QApplication::processEvents();
 
-  biblioteq_graphicsitempixmap *pixmapItem = 0;
+  biblioteq_graphicsitempixmap *pixmapItem = nullptr;
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -3214,13 +3215,13 @@ int biblioteq::populateTable(const int search_type_arg,
 
   while(i++, !progress.wasCanceled() && query.next())
     {
-      pixmapItem = 0;
+      pixmapItem = nullptr;
 
       if(query.isValid())
 	{
 	  QSqlRecord record(query.record());
 	  QString tooltip("");
-	  QTableWidgetItem *first = 0;
+	  QTableWidgetItem *first = nullptr;
 
 	  if(showToolTips)
 	    {
@@ -3253,7 +3254,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	  for(int j = 0; j < record.count(); j++)
 	    {
-	      item = 0;
+	      item = nullptr;
 
 	      if(!record.fieldName(j).endsWith("front_cover") &&
 		 !record.fieldName(j).endsWith("image_scaled"))
@@ -3339,7 +3340,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		       Qt::SmoothTransformation);
 
 		  pixmapItem = new biblioteq_graphicsitempixmap
-		    (QPixmap::fromImage(image), 0);
+		    (QPixmap::fromImage(image), nullptr);
 
 		  if(iconTableRowIdx == 0)
 		    pixmapItem->setPos(140 * iconTableColumnIdx, 15);
@@ -3361,7 +3362,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      else
 		item = new QTableWidgetItem();
 
-	      if(item != 0)
+	      if(item != nullptr)
 		{
 		  item->setText(str);
 		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -3591,7 +3592,7 @@ void biblioteq::prepareContextMenus()
 
 void biblioteq::preparePhotographsPerPageMenu(void)
 {
-  QActionGroup *group = new QActionGroup(this);
+  auto *group = new QActionGroup(this);
 
   ui.menuPhotographs_per_Page->clear();
 
@@ -3603,7 +3604,7 @@ void biblioteq::preparePhotographsPerPageMenu(void)
 
   for(int i = 1; i <= 5; i++)
     {
-      QAction *action = 0;
+      QAction *action = nullptr;
 
       if(i == 5)
 	action = group->addAction(tr("&Unlimited"));
@@ -3681,7 +3682,7 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
 
 void biblioteq::slotAllowAnyUserEmail(bool state)
 {
-  userinfo_diag->m_userinfo.email->setValidator(0);
+  userinfo_diag->m_userinfo.email->setValidator(nullptr);
 
   if(!state)
     {
@@ -3702,7 +3703,7 @@ void biblioteq::slotBookSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
+      auto *b = qobject_cast<biblioteq_book *> (w);
 
       if(b && b->getID() == "search")
 	{
@@ -3724,11 +3725,11 @@ void biblioteq::slotBookSearch(void)
 
 void biblioteq::slotCDSearch(void)
 {
-  biblioteq_cd *cd = 0;
+  biblioteq_cd *cd = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_cd *c = qobject_cast<biblioteq_cd *> (w);
+      auto *c = qobject_cast<biblioteq_cd *> (w);
 
       if(c && c->getID() == "search")
 	{
@@ -3756,11 +3757,11 @@ void biblioteq::slotContextMenu(const QPoint &point)
 
 void biblioteq::slotDVDSearch(void)
 {
-  biblioteq_dvd *dvd = 0;
+  biblioteq_dvd *dvd = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_dvd *d = qobject_cast<biblioteq_dvd *> (w);
+      auto *d = qobject_cast<biblioteq_dvd *> (w);
 
       if(d && d->getID() == "search")
 	{
@@ -3782,11 +3783,11 @@ void biblioteq::slotDVDSearch(void)
 
 void biblioteq::slotJournSearch(void)
 {
-  biblioteq_journal *journal = 0;
+  biblioteq_journal *journal = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_journal *j = qobject_cast<biblioteq_journal *> (w);
+      auto *j = qobject_cast<biblioteq_journal *> (w);
 
       if(j && j->getID() == "search")
 	{
@@ -3808,11 +3809,11 @@ void biblioteq::slotJournSearch(void)
 
 void biblioteq::slotMagSearch(void)
 {
-  biblioteq_magazine *magazine = 0;
+  biblioteq_magazine *magazine = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_magazine *m = qobject_cast<biblioteq_magazine *> (w);
+      auto *m = qobject_cast<biblioteq_magazine *> (w);
 
       /*
       ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -3839,12 +3840,11 @@ void biblioteq::slotMagSearch(void)
 
 void biblioteq::slotPhotographSearch(void)
 {
-  biblioteq_photographcollection *photograph = 0;
+  biblioteq_photographcollection *photograph = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_photographcollection *p =
-	qobject_cast<biblioteq_photographcollection *> (w);
+      auto *p = qobject_cast<biblioteq_photographcollection *> (w);
 
       if(p && p->getID() == "search")
 	{
@@ -3866,7 +3866,7 @@ void biblioteq::slotPhotographSearch(void)
 
 void biblioteq::slotPhotographsPerPageChanged(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
   if(!action)
     return;
@@ -4621,11 +4621,11 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
 void biblioteq::slotVideoGameSearch(void)
 {
-  biblioteq_videogame *videogame = 0;
+  biblioteq_videogame *videogame = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_videogame *v = qobject_cast<biblioteq_videogame *> (w);
+      auto *v = qobject_cast<biblioteq_videogame *> (w);
 
       if(v && v->getID() == "search")
 	{
