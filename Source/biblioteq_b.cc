@@ -4462,7 +4462,25 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "comments TEXT,"
 	      "general_registration_number TEXT,"
 	      "memberclass TEXT)");
-  list.append("INSERT INTO member_temporary SELECT * FROM member");
+  list.append("INSERT INTO member_temporary SELECT "
+	      "memberid, "
+	      "membersince, "
+	      "dob, "
+	      "sex, "
+	      "first_name, "
+	      "middle_init, "
+	      "last_name, "
+	      "telephone_num, "
+	      "street, "
+	      "city, "
+	      "state_abbr, "
+	      "zip, "
+	      "email, "
+	      "expiration_date, "
+	      "overdue_fees, "
+	      "comments, "
+	      "general_registration_number, "
+	      "memberclass FROM member");
   list.append("DROP TABLE IF EXISTS member");
   list.append("ALTER TABLE member_temporary RENAME TO member");
   list.append("CREATE TABLE journal_temporary "
