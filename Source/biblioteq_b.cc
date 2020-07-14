@@ -4467,6 +4467,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE member_temporary RENAME TO member");
   list.append("CREATE TABLE journal_temporary "
 	      "("
+	      "accession_number TEXT, "
 	      "id VARCHAR(32),"
 	      "myoid BIGINT NOT NULL,"
 	      "title TEXT NOT NULL,"
@@ -4496,6 +4497,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE journal_temporary RENAME TO journal");
   list.append("CREATE TABLE magazine_temporary"
 	      "("
+	      "accession_number TEXT, "
 	      "id VARCHAR(32),"
 	      "myoid BIGINT NOT NULL,"
 	      "title TEXT NOT NULL,"
@@ -4565,7 +4567,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "document_type     TEXT NOT NULL PRIMARY KEY"
 	      ")");
   list.append("DROP VIEW IF EXISTS item_borrower_vw");
-  list.append("CREATE TABLE book_sequence "
+  list.append("CREATE TABLE IF NOT EXISTS book_sequence "
 	      "("
 	      "value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
 	      ")");
