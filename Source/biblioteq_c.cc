@@ -183,7 +183,7 @@ QStringList biblioteq::getZ3950Names(void) const
 QWidget *biblioteq::widgetForAction(QAction *action) const
 {
   if(!action)
-    return 0;
+    return nullptr;
 
   if(action == ui.configTool)
     return ui.toolBar_5->widgetForAction(action);
@@ -194,23 +194,21 @@ QWidget *biblioteq::widgetForAction(QAction *action) const
   else if(action == ui.searchTool)
     return ui.toolBar_4->widgetForAction(action);
 
-  return 0;
+  return nullptr;
 }
 
 bool biblioteq::emptyContainers(void)
 {
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
-      biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
-      biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
-      biblioteq_grey_literature *gl =
-	qobject_cast<biblioteq_grey_literature *> (w);
-      biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
-      biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
-      biblioteq_photographcollection *photograph =
-	qobject_cast<biblioteq_photographcollection *> (w);
-      biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
+      auto *book = qobject_cast<biblioteq_book *> (w);
+      auto *cd = qobject_cast<biblioteq_cd *> (w);
+      auto *dvd = qobject_cast<biblioteq_dvd *> (w);
+      auto *gl = qobject_cast<biblioteq_grey_literature *> (w);
+      auto *journal = qobject_cast<biblioteq_journal *> (w);
+      auto *magazine = qobject_cast<biblioteq_magazine *> (w);
+      auto *photograph = qobject_cast<biblioteq_photographcollection *> (w);
+      auto *videogame = qobject_cast<biblioteq_videogame *> (w);
 
       if(book)
 	{
@@ -301,7 +299,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   progress.hide();
 
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   QString itemType("");
   QString str("");
   int i = -1;
@@ -493,7 +491,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
-  ui.table->setCurrentItem(0);
+  ui.table->setCurrentItem(nullptr);
   slotDisplaySummary();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->resetTransform();
@@ -572,13 +570,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	if(!m_searchQuery.next())
 	  break;
 
-      biblioteq_graphicsitempixmap *pixmapItem = 0;
+      biblioteq_graphicsitempixmap *pixmapItem = nullptr;
 
       if(m_searchQuery.isValid())
 	{
 	  QSqlRecord record(m_searchQuery.record());
 	  QString tooltip("");
-	  QTableWidgetItem *first = 0;
+	  QTableWidgetItem *first = nullptr;
 
 	  if(showToolTips)
 	    {
@@ -611,7 +609,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	  for(int j = 0; j < record.count(); j++)
 	    {
-	      item = 0;
+	      item = nullptr;
 
 	      if(!record.fieldName(j).endsWith("front_cover") &&
 		 !record.fieldName(j).endsWith("image_scaled"))
@@ -693,7 +691,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		       Qt::SmoothTransformation);
 
 		  pixmapItem = new biblioteq_graphicsitempixmap
-		    (QPixmap::fromImage(image), 0);
+		    (QPixmap::fromImage(image), nullptr);
 
 		  if(iconTableRowIdx == 0)
 		    pixmapItem->setPos(140 * iconTableColumnIdx, 15);
@@ -715,7 +713,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      else
 		item = new QTableWidgetItem();
 
-	      if(item != 0)
+	      if(item != nullptr)
 		{
 		  item->setText(str);
 		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -836,7 +834,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 void biblioteq::bookSearch(const QString &field, const QString &value)
 {
-  biblioteq_book *book = new biblioteq_book(this, "", -1);
+  auto *book = new biblioteq_book(this, "", -1);
 
   book->search(field, value);
   book->deleteLater();
@@ -844,7 +842,7 @@ void biblioteq::bookSearch(const QString &field, const QString &value)
 
 void biblioteq::cdSearch(const QString &field, const QString &value)
 {
-  biblioteq_cd *cd = new biblioteq_cd(this, "", -1);
+  auto *cd = new biblioteq_cd(this, "", -1);
 
   cd->search(field, value);
   cd->deleteLater();
@@ -856,7 +854,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
+	  auto *book = qobject_cast<biblioteq_book *> (w);
 
 	  if(book && book->getID() == oid)
 	    {
@@ -869,7 +867,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
+	  auto *cd = qobject_cast<biblioteq_cd *> (w);
 
 	  if(cd && cd->getID() == oid)
 	    {
@@ -882,7 +880,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
+	  auto *dvd = qobject_cast<biblioteq_dvd *> (w);
 
 	  if(dvd && dvd->getID() == oid)
 	    {
@@ -895,8 +893,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_grey_literature *gl =
-	    qobject_cast<biblioteq_grey_literature *> (w);
+	  auto *gl = qobject_cast<biblioteq_grey_literature *> (w);
 
 	  if(gl && gl->getID() == oid)
 	    {
@@ -909,7 +906,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
+	  auto *journal = qobject_cast<biblioteq_journal *> (w);
 
 	  if(journal && journal->getID() == oid)
 	    {
@@ -922,7 +919,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
+	  auto *magazine = qobject_cast<biblioteq_magazine *> (w);
 
 	  /*
 	  ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -940,8 +937,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_photographcollection *photograph =
-	    qobject_cast<biblioteq_photographcollection *> (w);
+	  auto *photograph = qobject_cast<biblioteq_photographcollection *> (w);
 
 	  if(photograph && photograph->getID() == oid)
 	    {
@@ -954,8 +950,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  biblioteq_videogame *videogame =
-	    qobject_cast<biblioteq_videogame *> (w);
+	  auto *videogame = qobject_cast<biblioteq_videogame *> (w);
 
 	  if(videogame && videogame->getID() == oid)
 	    {
@@ -968,7 +963,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 void biblioteq::dvdSearch(const QString &field, const QString &value)
 {
-  biblioteq_dvd *dvd = new biblioteq_dvd(this, "", -1);
+  auto *dvd = new biblioteq_dvd(this, "", -1);
 
   dvd->search(field, value);
   dvd->deleteLater();
@@ -1056,7 +1051,7 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
-  biblioteq_grey_literature *gl = new biblioteq_grey_literature(this, "", -1);
+  auto *gl = new biblioteq_grey_literature(this, "", -1);
 
   gl->search(field, value);
   gl->deleteLater();
@@ -1064,7 +1059,7 @@ void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 
 void biblioteq::journSearch(const QString &field, const QString &value)
 {
-  biblioteq_journal *journal = new biblioteq_journal(this, "", -1);
+  auto *journal = new biblioteq_journal(this, "", -1);
 
   journal->search(field, value);
   journal->deleteLater();
@@ -1072,8 +1067,7 @@ void biblioteq::journSearch(const QString &field, const QString &value)
 
 void biblioteq::magSearch(const QString &field, const QString &value)
 {
-  biblioteq_magazine *magazine = new biblioteq_magazine
-    (this, "", -1, "magazine");
+  auto *magazine = new biblioteq_magazine(this, "", -1, "magazine");
 
   magazine->search(field, value);
   magazine->deleteLater();
@@ -1081,8 +1075,7 @@ void biblioteq::magSearch(const QString &field, const QString &value)
 
 void biblioteq::pcSearch(const QString &field, const QString &value)
 {
-  biblioteq_photographcollection *photograph = new
-    biblioteq_photographcollection(this, "", -1);
+  auto *photograph = new biblioteq_photographcollection(this, "", -1);
 
   photograph->search(field, value);
   photograph->deleteLater();
@@ -1093,7 +1086,7 @@ void biblioteq::prepareReservationHistoryMenu(void)
   if(!history.printButton->actions().isEmpty())
     return;
 
-  QAction *action = new QAction(tr("Print..."), this);
+  auto *action = new QAction(tr("Print..."), this);
 
   connect(action,
 	  SIGNAL(triggered(void)),
@@ -2049,8 +2042,8 @@ void biblioteq::slotCheckout(void)
   QString itemid = "";
   QString oid = "";
   QString type = "";
-  biblioteq_copy_editor *copyeditor = 0;
-  biblioteq_item *item = 0;
+  biblioteq_copy_editor *copyeditor = nullptr;
+  biblioteq_item *item = nullptr;
   int quantity = 0;
   int row1 = bb.table->currentRow();
   int row2 = ui.table->currentRow();
@@ -2209,7 +2202,7 @@ void biblioteq::slotCheckout(void)
 					     true,
 					     quantity,
 					     oid,
-					     0,
+					     nullptr,
 					     font(),
 					     type,
 					     itemid);
@@ -2531,7 +2524,7 @@ void biblioteq::slotConnectDB(void)
   settings.setValue("previous_branch_name", br.branch_name->currentText());
   m_selectedBranch = m_branches[br.branch_name->currentText()];
 
-  if(m_connected_bar_label != 0)
+  if(m_connected_bar_label != nullptr)
     {
       m_connected_bar_label->setPixmap(QPixmap(":/16x16/connected.png"));
       m_connected_bar_label->setToolTip(tr("Connected"));
@@ -2759,7 +2752,7 @@ void biblioteq::slotDisconnect(void)
   cq.tables_t->scrollToTop();
   cq.tables_t->horizontalScrollBar()->setValue(0);
   cq.tables_t->clearSelection();
-  cq.tables_t->setCurrentItem(0);
+  cq.tables_t->setCurrentItem(nullptr);
   cq.query_te->clear();
   m_admin_diag->close();
   db_enumerations->clear();
@@ -2851,14 +2844,14 @@ void biblioteq::slotDisconnect(void)
   if(!ui.menuEntriesPerPage->actions().isEmpty())
     ui.menuEntriesPerPage->actions().at(0)->setChecked(true);
 
-  if(m_connected_bar_label != 0)
+  if(m_connected_bar_label != nullptr)
     {
       m_connected_bar_label->setPixmap
 	(QPixmap(":/16x16/disconnected.png"));
       m_connected_bar_label->setToolTip(tr("Disconnected"));
     }
 
-  if(m_status_bar_label != 0)
+  if(m_status_bar_label != nullptr)
     {
       m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
       m_status_bar_label->setToolTip(tr("Standard User Mode"));
@@ -3367,12 +3360,11 @@ void biblioteq::slotGraphicsSceneEnterKeyPressed(void)
 
 void biblioteq::slotGreyLiteratureSearch(void)
 {
-  biblioteq_grey_literature *gl = 0;
+  biblioteq_grey_literature *gl = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      biblioteq_grey_literature *g = qobject_cast
-	<biblioteq_grey_literature *> (w);
+      auto *g = qobject_cast<biblioteq_grey_literature *> (w);
 
       if(g && g->getID() == "search")
 	{
@@ -3395,7 +3387,7 @@ void biblioteq::slotGreyLiteratureSearch(void)
 void biblioteq::slotInsertGreyLiterature(void)
 {
   QString id("");
-  biblioteq_grey_literature *gl = 0;
+  biblioteq_grey_literature *gl = nullptr;
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
@@ -3646,7 +3638,7 @@ void biblioteq::slotOpenPDFFile(void)
     {
       QApplication::processEvents();
 
-      biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+      auto *reader = new biblioteq_pdfreader(this);
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       reader->load(dialog.selectedFiles().value(0));
@@ -3708,7 +3700,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   QSqlQuery query(m_db);
   QString str = "";
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   int i = -1;
   int j = 0;
 
@@ -3904,12 +3896,12 @@ void biblioteq::slotRefreshAdminList(void)
   else
     progress->hide();
 
-  QCheckBox *checkBox = 0;
+  QCheckBox *checkBox = nullptr;
   QSqlQuery query(m_db);
   QString columnname = "";
   QString str = "";
   QStringList list;
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   int i = -1;
   int j = 0;
 
@@ -4007,8 +3999,8 @@ void biblioteq::slotRefreshCustomQuery(void)
   QSqlField field;
   QSqlRecord rec;
   QStringList list;
-  QTreeWidgetItem *item1 = 0;
-  QTreeWidgetItem *item2 = 0;
+  QTreeWidgetItem *item1 = nullptr;
+  QTreeWidgetItem *item2 = nullptr;
   int i = 0;
   int j = 0;
 
@@ -4340,7 +4332,7 @@ void biblioteq::slotRequest(void)
 
   QProgressDialog progress(this);
 
-  progress.setCancelButton(0);
+  progress.setCancelButton(nullptr);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
@@ -4450,7 +4442,7 @@ void biblioteq::slotRequest(void)
 
 void biblioteq::slotSaveAdministrators(void)
 {
-  QCheckBox *checkBox = 0;
+  QCheckBox *checkBox = nullptr;
   QProgressDialog progress(m_admin_diag);
   QSqlQuery query(m_db);
   QString adminStr = "";
@@ -4570,7 +4562,7 @@ void biblioteq::slotSaveAdministrators(void)
     }
 
   QApplication::restoreOverrideCursor();
-  progress.setCancelButton(0);
+  progress.setCancelButton(nullptr);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Saving administrator information..."));
@@ -5365,7 +5357,7 @@ void biblioteq::slotSceneSelectionChanged(void)
 
   if(!items.isEmpty())
     {
-      QGraphicsItem *item = 0;
+      QGraphicsItem *item = nullptr;
       QStringList oids;
       QStringList types;
 
@@ -5408,7 +5400,7 @@ void biblioteq::slotShowHistory(void)
   QString querystr = "";
   QString str = "";
   QStringList list;
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   int i = -1;
   int j = 0;
   int row = bb.table->currentRow();
@@ -5653,7 +5645,7 @@ void biblioteq::slotShowHistory(void)
     }
 
   QApplication::restoreOverrideCursor();
-  history.table->setCurrentItem(0);
+  history.table->setCurrentItem(nullptr);
   history.table->setColumnCount(0);
   history.table->setRowCount(0);
   list.clear();
@@ -5826,7 +5818,7 @@ void biblioteq::slotVacuum(void)
 
 void biblioteq::vgSearch(const QString &field, const QString &value)
 {
-  biblioteq_videogame *videogame = new biblioteq_videogame(this, "", -1);
+  auto *videogame = new biblioteq_videogame(this, "", -1);
 
   videogame->search(field, value);
   videogame->deleteLater();
