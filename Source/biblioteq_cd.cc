@@ -16,11 +16,11 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
-  QMenu *menu = 0;
+  QGraphicsScene *scene1 = nullptr;
+  QGraphicsScene *scene2 = nullptr;
+  QMenu *menu = nullptr;
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
-  QValidator *validator1 = 0;
+  QValidator *validator1 = nullptr;
 
   menu = new QMenu(this);
   m_tracks_diag = new QDialog(this);
@@ -709,7 +709,7 @@ void biblioteq_cd::slotCancel(void)
 
 void biblioteq_cd::slotCloseTracksBrowser(void)
 {
-  trd.table->setCurrentItem(0);
+  trd.table->setCurrentItem(nullptr);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
   m_tracks_diag->close();
@@ -1563,12 +1563,12 @@ void biblioteq_cd::slotGo(void)
 
 void biblioteq_cd::slotInsertTrack(void)
 {
-  QComboBox *comboBox = 0;
-  QSpinBox *trackEdit = 0;
+  QComboBox *comboBox = nullptr;
+  QSpinBox *trackEdit = nullptr;
   QString str = "";
   QStringList list;
-  QTableWidgetItem *item = 0;
-  QTimeEdit *timeEdit = 0;
+  QTableWidgetItem *item = nullptr;
+  QTimeEdit *timeEdit = nullptr;
   int i = 0;
   int trow = trd.table->currentRow();
 
@@ -1645,7 +1645,7 @@ void biblioteq_cd::slotInsertTrack(void)
 
 void biblioteq_cd::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor *copyeditor = 0;
+  biblioteq_copy_editor *copyeditor = nullptr;
 
   copyeditor = new biblioteq_copy_editor
     (qobject_cast<QWidget *> (this),
@@ -1663,15 +1663,15 @@ void biblioteq_cd::slotPopulateCopiesEditor(void)
 
 void biblioteq_cd::slotPopulateTracksBrowser(void)
 {
-  QComboBox *comboBox = 0;
+  QComboBox *comboBox = nullptr;
   QProgressDialog progress(m_tracks_diag);
-  QSpinBox *trackEdit = 0;
+  QSpinBox *trackEdit = nullptr;
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QStringList comboBoxList;
   QStringList list;
-  QTableWidgetItem *item = 0;
-  QTimeEdit * timeEdit = 0;
+  QTableWidgetItem *item = nullptr;
+  QTimeEdit * timeEdit = nullptr;
   int i = -1;
   int j = 0;
 
@@ -1703,7 +1703,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   for(i = 1; i <= cd.no_of_discs->value(); i++)
     comboBoxList.append(QString::number(i));
 
-  trd.table->setCurrentItem(0);
+  trd.table->setCurrentItem(nullptr);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
   list.append(tr("Album Number"));
@@ -1890,7 +1890,7 @@ void biblioteq_cd::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
 
-  if(action != 0)
+  if(action != nullptr)
     {
       QList<QAction *> actions = cd.resetButton->menu()->actions();
 
@@ -2102,7 +2102,7 @@ void biblioteq_cd::slotSaveTracks(void)
   int i = 0;
 
   for(i = 0; i < trd.table->rowCount(); i++)
-    if(trd.table->item(i, 2) != 0 &&
+    if(trd.table->item(i, 2) != nullptr &&
        trd.table->item(i, 2)->text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
@@ -2151,7 +2151,7 @@ void biblioteq_cd::slotSaveTracks(void)
   else
     {
       QApplication::restoreOverrideCursor();
-      progress.setCancelButton(0);
+      progress.setCancelButton(nullptr);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the track data..."));
@@ -2177,7 +2177,7 @@ void biblioteq_cd::slotSaveTracks(void)
 			"?, ?, ?, ?, ?, ?)");
 	  query.bindValue(0, m_oid);
 
-	  if(trd.table->cellWidget(i, 0) != 0)
+	  if(trd.table->cellWidget(i, 0) != nullptr)
 	    {
 	      QWidget *widget = trd.table->cellWidget(i, 0);
 
@@ -2190,23 +2190,23 @@ void biblioteq_cd::slotSaveTracks(void)
 		}
 	    }
 
-	  if(trd.table->cellWidget(i, 1) != 0)
+	  if(trd.table->cellWidget(i, 1) != nullptr)
 	    query.bindValue(2, qobject_cast<QSpinBox *>
 			    (trd.table->cellWidget(i, 1))->value());
 
-	  if(trd.table->item(i, 2) != 0)
+	  if(trd.table->item(i, 2) != nullptr)
 	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
 
-	  if(trd.table->cellWidget(i, 3) != 0)
+	  if(trd.table->cellWidget(i, 3) != nullptr)
 	    query.bindValue
 	      (4, qobject_cast<QTimeEdit *> (trd.table->
 					     cellWidget(i, 3))->time().
 	       toString("hh:mm:ss"));
 
-	  if(trd.table->item(i, 4) != 0)
+	  if(trd.table->item(i, 4) != nullptr)
 	    query.bindValue(5, trd.table->item(i, 4)->text().trimmed());
 
-	  if(trd.table->item(i, 2) != 0)
+	  if(trd.table->item(i, 2) != nullptr)
 	    query.bindValue(6, trd.table->item(i, 5)->text().trimmed());
 
 	  if(!query.exec())
@@ -2321,7 +2321,7 @@ void biblioteq_cd::slotSelectImage(void)
 
 void biblioteq_cd::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = 0;
+  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!cd.okButton->isHidden())

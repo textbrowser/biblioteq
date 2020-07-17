@@ -55,6 +55,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wpointer-arith \
                           -Wstack-protector \
                           -Wstrict-overflow=5 \
+                          -Wzero-as-null-pointer-constant \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
@@ -66,6 +67,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
+                          -Wzero-as-null-pointer-constant \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \

@@ -4638,26 +4638,35 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
 	      ")");
 
-  QString errors("");
-  int ct = 0;
+  QString errors("<html>");
+  int ct = 1;
 
-  errors.append(tr("Executing %1 statements.\n\n").arg(list.size()));
+  errors.append(tr("Executing %1 statements.<br><br>").arg(list.size()));
 
   for(int i = 0; i < list.size(); i++)
     {
       QSqlQuery query(m_db);
 
+      errors.append(QString::number(i + 1));
+      errors.append(". ");
       errors.append(list.at(i));
-      errors.append("\n\n");
+      errors.append("<br><br>");
 
       if(!query.exec(list.at(i)))
 	{
-	  errors.append(tr("Error %1: %2. Statement: %3.\n\n").
-			arg(ct).arg(query.lastError().text().toLower()).
-			arg(list.at(i)));
+	  errors.append
+	    (tr("<font color='red'>Error %1: %2. Statement: %3.</font>"
+		"<br><br>").
+	     arg(ct).arg(query.lastError().text().toLower()).
+	     arg(list.at(i)));
 	  ct += 1;
 	}
+      else
+	errors.append
+	  ("<font color='green'>Statement concluded correctly!</font><br><br>");
     }
+
+  errors.append("</html>");
 
   if(!errors.isEmpty())
     {
@@ -4665,7 +4674,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
       Ui_generalmessagediag ui;
 
       ui.setupUi(&dialog);
-      ui.text->setPlainText(errors);
+      ui.text->setText(errors);
       connect(ui.cancelButton,
 	      SIGNAL(clicked(void)),
 	      &dialog,
