@@ -114,20 +114,20 @@ void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
 
 void biblioteq_borrowers_editor::showUsers(void)
 {
-  QDateEdit *dateEdit = 0;
+  QDateEdit *dateEdit = nullptr;
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QString tmpStr = "";
   QStringList list;
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   bool terminate = false;
   int i = 0;
   int j = 0;
   int row = 0;
 
-  m_bd.table->setCurrentItem(0);
+  m_bd.table->setCurrentItem(nullptr);
   m_bd.table->setColumnCount(0);
   m_bd.table->setRowCount(0);
   m_columnHeaderIndexes.clear();
@@ -334,7 +334,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 
 	    if(j == 6 && m_state == biblioteq::EDITABLE)
 	      {
-		QDateEdit *de =
+		auto *de =
 		  qobject_cast<QDateEdit *> (m_bd.table->cellWidget(row, j));
 
 		if(de)
@@ -344,7 +344,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 		    de->setMinimumDate(tomorrow);
 		  }
 	      }
-	    else if(m_bd.table->item(row, j) != 0)
+	    else if(m_bd.table->item(row, j) != nullptr)
 	      m_bd.table->item(row, j)->setText(str);
 	    else
 	      terminate = true;
@@ -508,14 +508,14 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 void biblioteq_borrowers_editor::slotSave(void)
 {
   QDate now = QDate::currentDate();
-  QDateEdit *dueDate = 0;
+  QDateEdit *dueDate = nullptr;
   QProgressDialog progress(this);
   QSqlQuery query(qmain->getDB());
   QString oid = "";
   bool error = false;
   int i = 0;
 
-  progress.setCancelButton(0);
+  progress.setCancelButton(nullptr);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Updating the due dates..."));

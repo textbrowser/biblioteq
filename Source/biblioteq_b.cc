@@ -3699,7 +3699,7 @@ void biblioteq::slotAllowAnyUserEmail(bool state)
 
 void biblioteq::slotBookSearch(void)
 {
-  biblioteq_book *book = 0;
+  biblioteq_book *book = nullptr;
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {

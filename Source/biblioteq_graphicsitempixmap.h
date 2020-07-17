@@ -42,7 +42,7 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
 
   void paint(QPainter *painter,
 	     const QStyleOptionGraphicsItem *option,
-	     QWidget *widget = 0)
+	     QWidget *widget = nullptr)
   {
     Q_UNUSED(widget);
 

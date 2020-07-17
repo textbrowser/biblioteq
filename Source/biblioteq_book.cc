@@ -23,13 +23,13 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
-  m_openLibraryWorking = 0;
-  m_sruWorking = 0;
+  m_openLibraryWorking = nullptr;
+  m_sruWorking = nullptr;
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
-  QMenu *menu = 0;
+  QGraphicsScene *scene1 = nullptr;
+  QGraphicsScene *scene2 = nullptr;
+  QMenu *menu = nullptr;
 
   menu = new QMenu(this);
   scene1 = new QGraphicsScene(this);
@@ -276,8 +276,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   if(id.location->findText(tr("UNKNOWN")) == -1)
     id.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup1 = 0;
-  QActionGroup *actionGroup2 = 0;
+  QActionGroup *actionGroup1 = nullptr;
+  QActionGroup *actionGroup2 = nullptr;
 
   actionGroup1 = new QActionGroup(this);
   actionGroup2 = new QActionGroup(this);
@@ -310,7 +310,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   else if(!found)
     id.sruQueryButton->actions().at(0)->setChecked(true);
 
-  QAction *action = 0;
+  QAction *action = nullptr;
 
   for(int i = 1; i <= 4; i++)
     {
@@ -446,7 +446,7 @@ biblioteq_book::~biblioteq_book()
 biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
 (const QString &downloadType)
 {
-  biblioteq_item_working_dialog *dialog = 0;
+  biblioteq_item_working_dialog *dialog = nullptr;
 
   dialog = new
     biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this));
@@ -1358,7 +1358,7 @@ void biblioteq_book::populateFiles(void)
 
 	for(int i = 0; i < record.count(); i++)
 	  {
-	    QTableWidgetItem *item = 0;
+	    QTableWidgetItem *item = nullptr;
 
 	    if(record.fieldName(i) == "f_s")
 	      item = new biblioteq_filesize_table_item
@@ -1681,7 +1681,7 @@ void biblioteq_book::slotDeleteFiles(void)
 
 void biblioteq_book::slotDownloadFinished(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -1694,7 +1694,7 @@ void biblioteq_book::slotDownloadImage(void)
   if(m_imageManager->findChild<QNetworkReply *> ())
     return;
 
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
   if(!action)
     return;
@@ -2050,7 +2050,7 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
+	      auto *reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);
@@ -3037,7 +3037,7 @@ void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
 
 void biblioteq_book::slotOpenLibraryDownloadFinished(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
   bool error = false;
 
   if(reply)
@@ -3063,7 +3063,7 @@ void biblioteq_book::slotOpenLibraryError(QNetworkReply::NetworkError error)
   if(m_openLibraryWorking)
     m_openLibraryWorking->deleteLater();
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     {
@@ -3235,7 +3235,7 @@ void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
 
 void biblioteq_book::slotOpenLibraryReadyRead(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_openLibraryResults.append(reply->readAll());
@@ -3248,7 +3248,7 @@ void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
   if(m_openLibraryWorking)
     m_openLibraryWorking->deleteLater();
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -3259,7 +3259,7 @@ void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
 
 void biblioteq_book::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor_book *copyeditor = 0;
+  biblioteq_copy_editor_book *copyeditor = nullptr;
 
   copyeditor = new biblioteq_copy_editor_book
     (qobject_cast<QWidget *> (this),
@@ -3428,7 +3428,7 @@ void biblioteq_book::slotReadyRead(void)
   if(!m_imageBuffer.isOpen())
     return;
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_imageBuffer.write(reply->readAll());
@@ -3436,9 +3436,9 @@ void biblioteq_book::slotReadyRead(void)
 
 void biblioteq_book::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
-  if(action != 0)
+  if(action != nullptr)
     {
       QList<QAction *> actions = id.resetButton->menu()->actions();
 
@@ -3733,7 +3733,7 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
 
 void biblioteq_book::slotSRUDownloadFinished(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
   bool error = false;
 
   if(reply)
@@ -3759,7 +3759,7 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     {
@@ -3945,7 +3945,7 @@ void biblioteq_book::slotSRUQueryError(const QString &text)
 
 void biblioteq_book::slotSRUReadyRead(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_sruResults.append(reply->readAll());
@@ -3958,7 +3958,7 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -3970,7 +3970,7 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
 void biblioteq_book::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  auto *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -4037,7 +4037,7 @@ void biblioteq_book::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
+  auto *reader = new biblioteq_pdfreader(qmain);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -4059,7 +4059,7 @@ void biblioteq_book::slotShowPDF(void)
 
 void biblioteq_book::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = 0;
+  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!id.okButton->isHidden())
@@ -4109,7 +4109,7 @@ void biblioteq_book::slotZ3950Query(void)
 
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
-  working.setCancelButton(0);
+  working.setCancelButton(nullptr);
   working.setModal(true);
   working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
   working.setLabelText(tr("Downloading..."));
