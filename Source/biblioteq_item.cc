@@ -12,18 +12,18 @@ biblioteq_item::biblioteq_item(const int rowArg)
 {
   m_isQueryEnabled = false;
   m_oldq = -1;
-  m_parentWid = 0;
+  m_parentWid = nullptr;
   m_row = rowArg;
-  qmain = 0;
+  qmain = nullptr;
 }
 
 biblioteq_item::biblioteq_item(void)
 {
   m_isQueryEnabled = false;
   m_oldq = -1;
-  m_parentWid = 0;
+  m_parentWid = nullptr;
   m_row = -1;
-  qmain = 0;
+  qmain = nullptr;
 }
 
 biblioteq_item::~biblioteq_item()

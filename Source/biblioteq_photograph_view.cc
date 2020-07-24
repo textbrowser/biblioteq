@@ -20,7 +20,7 @@ void biblioteq_photograph_view::resizeEvent(QResizeEvent *event)
 
   if(event && m_bestFit)
     {
-      QGraphicsPixmapItem *item = 0;
+      QGraphicsPixmapItem *item = nullptr;
 
       if(scene() && !scene()->items().isEmpty())
 	item = qgraphicsitem_cast<QGraphicsPixmapItem *>
@@ -46,7 +46,7 @@ void biblioteq_photograph_view::rotateImage(const qreal degrees)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QGraphicsPixmapItem *item = 0;
+  QGraphicsPixmapItem *item = nullptr;
 
   if(scene() && !scene()->items().isEmpty())
     item = qgraphicsitem_cast<QGraphicsPixmapItem *> (scene()->items().at(0));
@@ -95,7 +95,7 @@ void biblioteq_photograph_view::slotRotateRight(void)
 
 void biblioteq_photograph_view::slotSave(void)
 {
-  QGraphicsPixmapItem *item = 0;
+  QGraphicsPixmapItem *item = nullptr;
 
   if(scene() && !scene()->items().isEmpty())
     item = qgraphicsitem_cast<QGraphicsPixmapItem *> (scene()->items().at(0));

@@ -6,7 +6,7 @@
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
-  qmain = 0;
+  qmain = nullptr;
   setAcceptDrops(false);
   setDragEnabled(false);
 #if QT_VERSION >= 0x050000

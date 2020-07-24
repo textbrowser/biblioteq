@@ -89,10 +89,10 @@ void biblioteq_generic_thread::run(void)
       {
 	QHash<QString, QString> hash(qmain->getZ3950Hash(m_z3950Name));
 	QString recordSyntax(hash.value("RecordSyntax").trimmed());
-	ZOOM_connection zoomConnection = 0;
+	ZOOM_connection zoomConnection = nullptr;
 	ZOOM_options options = ZOOM_options_create();
-	ZOOM_resultset zoomResultSet = 0;
-	const char *rec = 0;
+	ZOOM_resultset zoomResultSet = nullptr;
+	const char *rec = nullptr;
 	size_t i = 0;
 
 	ZOOM_options_set

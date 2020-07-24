@@ -6,11 +6,11 @@
 biblioteq_copy_editor::biblioteq_copy_editor
 (QWidget *parent, biblioteq *biblioteq):QDialog(parent)
 {
-  m_bitem = 0;
+  m_bitem = nullptr;
   m_parent = parent;
   m_quantity = 1;
   m_showForLending = false;
-  m_spinbox = 0;
+  m_spinbox = nullptr;
   qmain = biblioteq;
 }
 
@@ -65,7 +65,7 @@ QString biblioteq_copy_editor::saveCopies(void)
 {
   QSqlQuery query(qmain->getDB());
   QString lastError = "";
-  copy_class *copy = 0;
+  copy_class *copy = nullptr;
   int i = 0;
 
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
@@ -209,7 +209,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QStringList list;
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
   bool terminate = false;
   int i = 0;
   int j = 0;
@@ -766,9 +766,9 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   QString errormsg = "";
   QString errorstr = "";
   QStringList duplicates;
-  QTableWidgetItem *item1 = 0;
-  QTableWidgetItem *item2 = 0;
-  copy_class *copy = 0;
+  QTableWidgetItem *item1 = nullptr;
+  QTableWidgetItem *item2 = nullptr;
+  copy_class *copy = nullptr;
   int i = 0;
 
   m_cb.table->setFocus();

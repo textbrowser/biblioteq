@@ -52,7 +52,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 {
   QSqlQuery query(qmain->getDB());
   QString lastError = "";
-  copy_class *copy = 0;
+  copy_class *copy = nullptr;
   int i = 0;
 
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
@@ -290,12 +290,12 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
       for(j = 0; j < m_cb.table->columnCount(); j++)
 	if(j == 3 || j == 4)
 	  {
-	    QComboBox *comboBox = new QComboBox();
-	    QHBoxLayout *layout = new QHBoxLayout();
-	    QSpacerItem *spacer = new QSpacerItem
-	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 	    QStringList list;
-	    QWidget *widget = new QWidget();
+	    auto *comboBox = new QComboBox();
+	    auto *layout = new QHBoxLayout();
+	    auto *spacer = new QSpacerItem
+	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+	    auto *widget = new QWidget();
 
 	    if(j == 3)
 	      list << tr("Black & White Copy")
@@ -328,7 +328,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  }
 	else
 	  {
-	    QTableWidgetItem *item = new QTableWidgetItem();
+	    auto *item = new QTableWidgetItem();
 
 	    if(m_showForLending)
 	      item->setFlags(0);
@@ -571,14 +571,14 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
 void biblioteq_copy_editor_book::slotSaveCopies(void)
 {
-  QComboBox *comboBox1 = 0;
-  QComboBox *comboBox2 = 0;
+  QComboBox *comboBox1 = nullptr;
+  QComboBox *comboBox2 = nullptr;
   QString errormsg = "";
   QString errorstr = "";
   QStringList duplicates;
-  QTableWidgetItem *item1 = 0;
-  QTableWidgetItem *item2 = 0;
-  copy_class *copy = 0;
+  QTableWidgetItem *item1 = nullptr;
+  QTableWidgetItem *item2 = nullptr;
+  copy_class *copy = nullptr;
   int i = 0;
 
   m_cb.table->setFocus();

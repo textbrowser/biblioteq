@@ -209,8 +209,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
   for(int i = 0; i < tables.size(); i++)
     {
-      QListWidget *listwidget = 0;
-      QTableWidget *tablewidget = 0;
+      QListWidget *listwidget = nullptr;
+      QTableWidget *tablewidget = nullptr;
       const QString &str(tables.at(i));
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -299,7 +299,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
       else if(listwidget)
 	for(int i = 0; i < list.size(); i++)
 	  {
-	    QListWidgetItem *item = 0;
+	    QListWidgetItem *item = nullptr;
 
 	    item = new QListWidgetItem(list.at(i));
 	    item->setFlags
@@ -312,14 +312,13 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      QComboBox *comboBox = new QComboBox();
-	      QHBoxLayout *layout = new QHBoxLayout();
-	      QSpacerItem *spacer = new QSpacerItem
-		(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 	      QStringList list;
-	      QTableWidgetItem *item = new QTableWidgetItem
-		(pairList.at(j).second);
-	      QWidget *widget = new QWidget();
+	      auto *comboBox = new QComboBox();
+	      auto *item = new QTableWidgetItem(pairList.at(j).second);
+	      auto *layout = new QHBoxLayout();
+	      auto *spacer = new QSpacerItem
+		(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+	      auto *widget = new QWidget();
 
 	      layout->addWidget(comboBox);
 	      layout->addSpacerItem(spacer);
@@ -492,9 +491,9 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 
 void biblioteq_dbenumerations::slotAdd(void)
 {
-  QListWidget *list = 0;
-  QListWidgetItem *listItem = 0;
-  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
+  QListWidget *list = nullptr;
+  QListWidgetItem *listItem = nullptr;
+  auto *toolButton = qobject_cast<QToolButton *> (sender());
 
   if(toolButton == m_ui.addBookBinding)
     {
@@ -533,13 +532,13 @@ void biblioteq_dbenumerations::slotAdd(void)
     }
   else if(toolButton == m_ui.addLocation)
     {
-      QComboBox *comboBox = new QComboBox();
-      QHBoxLayout *layout = new QHBoxLayout();
-      QSpacerItem *spacer = new QSpacerItem
-	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
       QStringList list;
-      QTableWidgetItem *item = new QTableWidgetItem();
-      QWidget *widget = new QWidget();
+      auto *comboBox = new QComboBox();
+      auto *item = new QTableWidgetItem();
+      auto *layout = new QHBoxLayout();
+      auto *spacer = new QSpacerItem
+	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+      auto *widget = new QWidget();
 
       layout->addWidget(comboBox);
       layout->addSpacerItem(spacer);
@@ -633,8 +632,8 @@ void biblioteq_dbenumerations::slotReload(void)
 
 void biblioteq_dbenumerations::slotRemove(void)
 {
-  QListWidget *list = 0;
-  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
+  QListWidget *list = nullptr;
+  auto *toolButton = qobject_cast<QToolButton *> (sender());
 
   if(toolButton == m_ui.removeBookBinding)
     list = m_ui.bookBindingsList;
@@ -666,11 +665,11 @@ void biblioteq_dbenumerations::slotRemove(void)
 
 void biblioteq_dbenumerations::slotSave(void)
 {
-  QListWidget *listwidget = 0;
+  QListWidget *listwidget = nullptr;
   QSqlQuery query(qmain->getDB());
   QString querystr("");
   QStringList tables;
-  QTableWidget *tablewidget = 0;
+  QTableWidget *tablewidget = nullptr;
   bool error = false;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -689,8 +688,8 @@ void biblioteq_dbenumerations::slotSave(void)
 
   for(int i = 0; i < tables.size(); i++)
     {
-      listwidget = 0;
-      tablewidget = 0;
+      listwidget = nullptr;
+      tablewidget = nullptr;
       querystr = QString("DELETE FROM %1").arg(tables.at(i));
 
       if(!qmain->getDB().transaction())

@@ -8,7 +8,7 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 	  SIGNAL(anchorClicked(const QUrl &)),
 	  this,
 	  SLOT(slotAnchorClicked(const QUrl &)));
-  qmain = 0;
+  qmain = nullptr;
 }
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks

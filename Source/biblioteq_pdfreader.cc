@@ -20,7 +20,7 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
     menuBar()->setNativeMenuBar(true);
 
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-  m_document = 0;
+  m_document = nullptr;
 #else
   m_ui.action_Contents->setEnabled(false);
   m_ui.action_Print->setEnabled(false);
@@ -261,7 +261,7 @@ void biblioteq_pdfreader::prepareContents(void)
 
   for(int i = 1; i <= m_document->numPages(); i++)
     {
-      QListWidgetItem *item = new QListWidgetItem(tr("Page %1").arg(i));
+      auto *item = new QListWidgetItem(tr("Page %1").arg(i));
 
       item->setData(Qt::UserRole, i);
       m_ui.contents->addItem(item);
@@ -399,7 +399,7 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
     return;
 
   QProgressDialog progress(this);
-  QWidget *widget = qobject_cast<QWidget *> (sender());
+  auto *widget = qobject_cast<QWidget *> (sender());
   bool preview = !widget || !widget->isVisible();
 
   if(preview)
