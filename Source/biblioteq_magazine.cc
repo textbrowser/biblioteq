@@ -27,12 +27,12 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   QMainWindow(), biblioteq_item(rowArg)
 {
   m_duplicate = false;
-  m_sruWorking = 0;
+  m_sruWorking = nullptr;
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
-  QMenu *menu = 0;
+  QGraphicsScene *scene1 = nullptr;
+  QGraphicsScene *scene2 = nullptr;
+  QMenu *menu = nullptr;
 
   menu = new QMenu(this);
   scene1 = new QGraphicsScene(this);
@@ -240,8 +240,8 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   if(ma.location->findText(tr("UNKNOWN")) == -1)
     ma.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup1 = 0;
-  QActionGroup *actionGroup2 = 0;
+  QActionGroup *actionGroup1 = nullptr;
+  QActionGroup *actionGroup2 = nullptr;
 
   actionGroup1 = new QActionGroup(this);
   actionGroup2 = new QActionGroup(this);
@@ -1698,7 +1698,7 @@ void biblioteq_magazine::populateFiles(void)
 
 	for(int i = 0; i < record.count(); i++)
 	  {
-	    QTableWidgetItem *item = 0;
+	    QTableWidgetItem *item = nullptr;
 
 	    if(record.fieldName(i) == "f_s")
 	      item = new biblioteq_filesize_table_item
@@ -2061,7 +2061,7 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
+	      auto *reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);
@@ -3004,7 +3004,7 @@ void biblioteq_magazine::slotGo(void)
 
 void biblioteq_magazine::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor *copyeditor = 0;
+  biblioteq_copy_editor *copyeditor = nullptr;
 
   copyeditor = new biblioteq_copy_editor
     (qobject_cast<QWidget *> (this),
@@ -3102,9 +3102,9 @@ void biblioteq_magazine::slotPublicationDateEnabled(bool state)
 
 void biblioteq_magazine::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
-  if(action != 0)
+  if(action != nullptr)
     {
       QList<QAction *> actions = ma.resetButton->menu()->actions();
 
@@ -3351,7 +3351,7 @@ void biblioteq_magazine::slotSRUDownloadFinished(bool error)
 
 void biblioteq_magazine::slotSRUDownloadFinished(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
   bool error = false;
 
   if(reply)
@@ -3377,7 +3377,7 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     {
@@ -3552,7 +3552,7 @@ void biblioteq_magazine::slotSRUQueryError(const QString &text)
 
 void biblioteq_magazine::slotSRUReadyRead(void)
 {
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_sruResults.append(reply->readAll());
@@ -3565,7 +3565,7 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  auto *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -3577,7 +3577,7 @@ void biblioteq_magazine::slotSRUSslErrors(const QList<QSslError> &list)
 void biblioteq_magazine::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  auto *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -3644,7 +3644,7 @@ void biblioteq_magazine::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  biblioteq_pdfreader *reader = new biblioteq_pdfreader(qmain);
+  auto *reader = new biblioteq_pdfreader(qmain);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -3674,7 +3674,7 @@ void biblioteq_magazine::slotShowPDF(void)
 void biblioteq_magazine::slotShowUsers(void)
 {
   int state = 0;
-  biblioteq_borrowers_editor *borrowerseditor = 0;
+  biblioteq_borrowers_editor *borrowerseditor = nullptr;
 
   if(!ma.okButton->isHidden())
     state = biblioteq::EDITABLE;
@@ -3720,7 +3720,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
-  working.setCancelButton(0);
+  working.setCancelButton(nullptr);
   working.setModal(true);
   working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
   working.setLabelText(tr("Downloading..."));

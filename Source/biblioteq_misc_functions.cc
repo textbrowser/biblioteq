@@ -263,7 +263,7 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
     return QString("");
 
   QString str = "";
-  QTableWidgetItem *column = 0;
+  QTableWidgetItem *column = nullptr;
   int i = 0;
 
   if(row >= 0 && row < table->rowCount())
@@ -271,7 +271,7 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
       {
 	column = table->horizontalHeaderItem(i);
 
-	if(column == 0 || table->item(row, i) == 0)
+	if(column == nullptr || table->item(row, i) == nullptr)
 	  continue;
 
 	if(column->text().toLower() == columnName.toLower())
@@ -291,7 +291,7 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
   if(column < 0 || row < 0 || !table)
     return QString("");
 
-  QTableWidgetItem *item = 0;
+  QTableWidgetItem *item = nullptr;
 
   if((item = table->item(row, column)))
     return item->text();
@@ -1169,7 +1169,7 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
   if(columnName.isEmpty() || !table)
     return -1;
 
-  QTableWidgetItem *column = 0;
+  QTableWidgetItem *column = nullptr;
   int i = 0;
   int num = -1;
 
@@ -1177,7 +1177,7 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
     {
       column = table->horizontalHeaderItem(i);
 
-      if(column == 0)
+      if(column == nullptr)
 	continue;
 
       if(column->text().toLower() == columnName.toLower())

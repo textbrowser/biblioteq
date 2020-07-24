@@ -144,7 +144,8 @@ void biblioteq_generic_thread::run(void)
 	  format.prepend("render; charset=");
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
-				     format.toLatin1().constData(), 0)) != 0)
+				     format.toLatin1().constData(), nullptr)) !=
+	      nullptr)
 	  {
 	    i += 1;
 	    m_z3950Results.append(QString::fromUtf8(rec));

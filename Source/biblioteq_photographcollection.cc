@@ -21,11 +21,11 @@ biblioteq_photographcollection::biblioteq_photographcollection
 {
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
-  QGraphicsScene *scene3 = 0;
-  QMenu *menu1 = 0;
-  QMenu *menu2 = 0;
+  QGraphicsScene *scene1 = nullptr;
+  QGraphicsScene *scene2 = nullptr;
+  QGraphicsScene *scene3 = nullptr;
+  QMenu *menu1 = nullptr;
+  QMenu *menu2 = nullptr;
 
   m_photo_diag = new QDialog(this);
   menu1 = new QMenu(this);
@@ -415,7 +415,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 
 	pc.graphicsView->scene()->clearSelection();
 
-	QGraphicsPixmapItem *pixmapItem = 0;
+	QGraphicsPixmapItem *pixmapItem = nullptr;
 
 	if(!scene->items().isEmpty())
 	  {
@@ -441,8 +441,8 @@ void biblioteq_photographcollection::loadPhotographFromItem
 
 	scene->setSceneRect(scene->itemsBoundingRect());
 
-	biblioteq_photograph_view *view =
-	  qobject_cast<biblioteq_photograph_view *> (scene->views().value(0));
+	auto *view = qobject_cast<biblioteq_photograph_view *>
+	  (scene->views().value(0));
 
 	if(view)
 	  {
@@ -470,7 +470,7 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 {
   if(item)
     {
-      QMainWindow *mainWindow = 0;
+      QMainWindow *mainWindow = nullptr;
       Ui_photographView ui;
 
       mainWindow = new QMainWindow(this);
@@ -510,7 +510,7 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 	      SLOT(slotImageViewSizeChanged(const QString &)));
       ui.save->setVisible(m_engWindowTitle.contains("Modify"));
 
-      QGraphicsScene *scene = new QGraphicsScene(mainWindow);
+      auto *scene = new QGraphicsScene(mainWindow);
 
       mainWindow->show();
       biblioteq_misc_functions::center(mainWindow, this);
@@ -838,7 +838,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	    break;
 
 	  QImage image;
-	  biblioteq_graphicsitempixmap *pixmapItem = 0;
+	  biblioteq_graphicsitempixmap *pixmapItem = nullptr;
 
 	  image.loadFromData
 	    (QByteArray::fromBase64(query.value(0).
@@ -859,7 +859,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	  pixmapItem = new biblioteq_graphicsitempixmap
-	    (QPixmap::fromImage(image), 0);
+	    (QPixmap::fromImage(image), nullptr);
 
 	  if(rowIdx == 0)
 	    pixmapItem->setPos(140 * columnIdx + 15, 15);
@@ -953,7 +953,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
   QProgressDialog progress(this);
 
-  progress.setCancelButton(0);
+  progress.setCancelButton(nullptr);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Deleting the selected item(s)..."));
@@ -971,7 +971,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       progress.repaint();
       QApplication::processEvents();
 
-      QGraphicsPixmapItem *item = 0;
+      QGraphicsPixmapItem *item = nullptr;
 
       if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
 	{
@@ -1031,7 +1031,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 void biblioteq_photographcollection::slotExportItem(void)
 {
-  QPushButton *pushButton = qobject_cast<QPushButton *> (sender());
+  auto *pushButton = qobject_cast<QPushButton *> (sender());
 
   if(!pushButton)
     return;
@@ -1123,7 +1123,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
       repaint();
       QApplication::processEvents();
 
-      QAction *action = qobject_cast<QAction *> (sender());
+      auto *action = qobject_cast<QAction *> (sender());
 
       if(!action ||
 	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
@@ -1557,7 +1557,7 @@ void biblioteq_photographcollection::slotGo(void)
 void biblioteq_photographcollection::slotImageViewSizeChanged
 (const QString &text)
 {
-  QComboBox *comboBox = qobject_cast<QComboBox *> (sender());
+  auto *comboBox = qobject_cast<QComboBox *> (sender());
 
   if(!comboBox)
     return;
@@ -1620,8 +1620,8 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 	      item->setPixmap(QPixmap::fromImage(image));
 	      scene->setSceneRect(scene->itemsBoundingRect());
 
-	      biblioteq_photograph_view *view = qobject_cast
-		<biblioteq_photograph_view *> (scene->views().value(0));
+	      auto *view = qobject_cast<biblioteq_photograph_view *>
+		(scene->views().value(0));
 
 	      if(view)
 		view->setBestFit(percent == 0);
@@ -2100,9 +2100,9 @@ void biblioteq_photographcollection::slotQuery(void)
 
 void biblioteq_photographcollection::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
-  if(action != 0)
+  if(action != nullptr)
     {
       QList<QAction *> actions = pc.resetButton->menu()->actions();
 
@@ -2272,7 +2272,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
     pc.exportPhotographsToolButton->menu()->actions()[2]->
       setEnabled(true);
 
-  QGraphicsPixmapItem *item = 0;
+  QGraphicsPixmapItem *item = nullptr;
 
   if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(0))))
     {
@@ -2436,7 +2436,7 @@ void biblioteq_photographcollection::slotSelectAll(void)
 void biblioteq_photographcollection::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  auto *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -2663,7 +2663,7 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
     {
       item->setSelected(true);
 
-      QAction *action = 0;
+      QAction *action = nullptr;
       QMenu menu(this);
 
       action = menu.addAction(tr("&Delete Photograph"),
@@ -2692,7 +2692,7 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 
 void biblioteq_photographcollection::slotViewNextPhotograph(void)
 {
-  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
+  auto *toolButton = qobject_cast<QToolButton *> (sender());
 
   if(!toolButton)
     return;
@@ -2754,7 +2754,7 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 
 void biblioteq_photographcollection::slotViewPhotograph(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
   QPoint pos;
 
   if(action)
@@ -2770,7 +2770,7 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
 
 void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 {
-  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
+  auto *toolButton = qobject_cast<QToolButton *> (sender());
 
   if(!toolButton)
     return;

@@ -15,12 +15,12 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
-  QMenu *menu = 0;
+  QGraphicsScene *scene1 = nullptr;
+  QGraphicsScene *scene2 = nullptr;
+  QMenu *menu = nullptr;
   QRegExp rx
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
-  QValidator *validator1 = 0;
+  QValidator *validator1 = nullptr;
 
   menu = new QMenu(this);
   scene1 = new QGraphicsScene(this);
@@ -1381,7 +1381,7 @@ void biblioteq_videogame::slotGo(void)
 
 void biblioteq_videogame::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor *copyeditor = 0;
+  biblioteq_copy_editor *copyeditor = nullptr;
 
   copyeditor = new biblioteq_copy_editor
     (qobject_cast<QWidget *> (this),
@@ -1456,9 +1456,9 @@ void biblioteq_videogame::slotQuery(void)
 
 void biblioteq_videogame::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
-  if(action != 0)
+  if(action != nullptr)
     {
       QList<QAction *> actions = vg.resetButton->menu()->actions();
 
@@ -1653,7 +1653,7 @@ void biblioteq_videogame::slotReset(void)
 void biblioteq_videogame::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  auto *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -1714,7 +1714,7 @@ void biblioteq_videogame::slotSelectImage(void)
 
 void biblioteq_videogame::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = 0;
+  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!vg.okButton->isHidden())

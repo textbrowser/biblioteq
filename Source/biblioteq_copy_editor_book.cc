@@ -74,7 +74,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
       QProgressDialog progress(this);
 
-      progress.setCancelButton(0);
+      progress.setCancelButton(nullptr);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the copy data..."));
@@ -331,7 +331,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    auto *item = new QTableWidgetItem();
 
 	    if(m_showForLending)
-	      item->setFlags(0);
+	      item->setFlags(Qt::NoItemFlags);
 	    else if(j == 1)
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 			     Qt::ItemIsEditable);
@@ -437,12 +437,12 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  row = query.value(6).toInt() - 1;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
-	    if(m_cb.table->item(row, j) != 0)
+	    if(m_cb.table->item(row, j) != nullptr)
 	      {
 		str = query.value(j).toString().trimmed();
 
 		if(query.value(2).toString().trimmed() == "0")
-		  m_cb.table->item(row, j)->setFlags(0);
+		  m_cb.table->item(row, j)->setFlags(Qt::NoItemFlags);
 		else if(m_showForLending)
 		  {
 		    m_cb.table->item(row, j)->setFlags
@@ -467,7 +467,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		      m_cb.table->item(row, j)->setText(str);
 		  }
 	      }
-	    else if(m_cb.table->cellWidget(row, j) != 0)
+	    else if(m_cb.table->cellWidget(row, j) != nullptr)
 	      {
 		QWidget *widget = m_cb.table->cellWidget(row, j);
 
@@ -538,12 +538,12 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
   if(isCheckedOut)
     {
-      if(m_cb.table->item(row, 1) != 0)
-	m_cb.table->item(row, 1)->setFlags(0);
+      if(m_cb.table->item(row, 1) != nullptr)
+	m_cb.table->item(row, 1)->setFlags(Qt::NoItemFlags);
 
-      if(m_cb.table->item(row, 2) != 0)
+      if(m_cb.table->item(row, 2) != nullptr)
 	{
-	  m_cb.table->item(row, 2)->setFlags(0);
+	  m_cb.table->item(row, 2)->setFlags(Qt::NoItemFlags);
 	  m_cb.table->item(row, 2)->setText("0");
 	}
 
@@ -584,7 +584,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   m_cb.table->setFocus();
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
-    if(m_cb.table->item(i, 1) != 0 &&
+    if(m_cb.table->item(i, 1) != nullptr &&
        m_cb.table->item(i, 1)->text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
@@ -594,7 +594,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 	duplicates.clear();
 	return;
       }
-    else if(m_cb.table->item(i, 1) != 0)
+    else if(m_cb.table->item(i, 1) != nullptr)
       {
 	if(duplicates.contains(m_cb.table->item(i, 1)->text()))
 	  {

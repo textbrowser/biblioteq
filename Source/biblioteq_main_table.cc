@@ -151,7 +151,7 @@ void biblioteq_main_table::resetTable(const QString &username,
   clearSelection();
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
-  setCurrentItem(0);
+  setCurrentItem(nullptr);
   sortByColumn(0, Qt::AscendingOrder);
 }
 

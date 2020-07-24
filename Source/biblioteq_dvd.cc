@@ -15,12 +15,12 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = 0;
-  QGraphicsScene *scene2 = 0;
-  QMenu *menu = 0;
+  QGraphicsScene *scene1 = nullptr;
+  QGraphicsScene *scene2 = nullptr;
+  QMenu *menu = nullptr;
   QRegExp rx1
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
-  QValidator *validator1 = 0;
+  QValidator *validator1 = nullptr;
 
   menu = new QMenu(this);
   validator1 = new QRegExpValidator(rx1, this);
@@ -1533,7 +1533,7 @@ void biblioteq_dvd::slotGo(void)
 
 void biblioteq_dvd::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor *copyeditor = 0;
+  biblioteq_copy_editor *copyeditor = nullptr;
 
   copyeditor = new biblioteq_copy_editor
     (qobject_cast<QWidget *> (this),
@@ -1613,9 +1613,9 @@ void biblioteq_dvd::slotQuery(void)
 
 void biblioteq_dvd::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto *action = qobject_cast<QAction *> (sender());
 
-  if(action != 0)
+  if(action != nullptr)
     {
       QList<QAction *> actions = dvd.resetButton->menu()->actions();
 
@@ -1843,7 +1843,7 @@ void biblioteq_dvd::slotReset(void)
 void biblioteq_dvd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  auto *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -1904,7 +1904,7 @@ void biblioteq_dvd::slotSelectImage(void)
 
 void biblioteq_dvd::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = 0;
+  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!dvd.okButton->isHidden())
