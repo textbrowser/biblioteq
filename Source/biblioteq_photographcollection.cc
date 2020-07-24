@@ -897,8 +897,8 @@ void biblioteq_photographcollection::slotAddItem(void)
 #else
   QDateTime dateTime(QDateTime::currentDateTime());
 
-  photo.id_item->setText(QString::
-                         number(static_cast<qint64> (dateTime.toTime_t())));
+  photo.id_item->setText
+    (QString::number(static_cast<qint64> (dateTime.toTime_t())));
 #endif
   photo.title_item->setText("N/A");
   photo.creators_item->setPlainText("N/A");
@@ -1054,12 +1054,12 @@ void biblioteq_photographcollection::slotExportItem(void)
     return;
 
   QByteArray bytes;
-  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+  auto *scene = parent->findChild<QGraphicsScene *> ();
 
   if(scene)
     {
-      QGraphicsPixmapItem *item = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(0));
+      auto *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+	(scene->items().value(0));
 
       if(item)
 	bytes = item->data(1).toByteArray();
@@ -1579,12 +1579,12 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
   if(!parent)
     return;
 
-  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+  auto *scene = parent->findChild<QGraphicsScene *> ();
 
   if(scene)
     {
-      QGraphicsPixmapItem *item = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(0));
+      auto *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+	(scene->items().value(0));
 
       if(item)
 	{
@@ -2214,8 +2214,8 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 	  for(int i = 0; i < list.size(); i++)
 	    if(list.at(i)->data(0).toLongLong() == oid)
 	      {
-		QGraphicsPixmapItem *item = qgraphicsitem_cast
-		  <QGraphicsPixmapItem *> (list.at(i));
+		auto *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+		  (list.at(i));
 
 		if(item)
 		  item->setPixmap
@@ -2656,7 +2656,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
 void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 {
-  QGraphicsPixmapItem *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+  auto *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
     (pc.graphicsView->itemAt(pos));
 
   if(item)
@@ -2714,14 +2714,14 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
   if(!parent)
     return;
 
-  QComboBox *comboBox = parent->findChild<QComboBox *> ();
-  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+  auto *comboBox = parent->findChild<QComboBox *> ();
+  auto *scene = parent->findChild<QGraphicsScene *> ();
   int percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
 
   if(scene)
     {
-      QGraphicsPixmapItem *item = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(0));
+      auto *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+	(scene->items().value(0));
 
       if(item)
 	{
@@ -2792,14 +2792,14 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
   if(!parent)
     return;
 
-  QComboBox *comboBox = parent->findChild<QComboBox *> ();
-  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+  auto *comboBox = parent->findChild<QComboBox *> ();
+  auto *scene = parent->findChild<QGraphicsScene *> ();
   int percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
 
   if(scene)
     {
-      QGraphicsPixmapItem *item = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(0));
+      auto *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+	(scene->items().value(0));
 
       if(item)
 	{

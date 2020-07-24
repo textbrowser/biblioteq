@@ -1565,7 +1565,7 @@ void biblioteq_book::slotCancel(void)
 
 void biblioteq_book::slotCancelImageDownload(void)
 {
-  QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
+  auto *reply = m_imageManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();
@@ -3013,7 +3013,7 @@ void biblioteq_book::slotGo(void)
 
 void biblioteq_book::slotOpenLibraryCanceled(void)
 {
-  QNetworkReply *reply = m_openLibraryManager->findChild<QNetworkReply *> ();
+  auto *reply = m_openLibraryManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();
@@ -3709,7 +3709,7 @@ void biblioteq_book::slotReset(void)
 
 void biblioteq_book::slotSRUCanceled(void)
 {
-  QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
+  auto *reply = m_sruManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();

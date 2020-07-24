@@ -420,7 +420,7 @@ void biblioteq_dbenumerations::saveData
 
 	      if(widget)
 		{
-		  QComboBox *comboBox = widget->findChild<QComboBox *> ();
+		  auto *comboBox = widget->findChild<QComboBox *> ();
 
 		  if(comboBox)
 		    text = comboBox->currentText();
@@ -767,10 +767,12 @@ void biblioteq_dbenumerations::slotSave(void)
 	    if(tablewidget->cellWidget(j, 0) &&
 	       tablewidget->item(j, 1))
 	      {
-		QComboBox *comboBox = tablewidget->cellWidget(j, 0)->
+		QString currentText("");
+		auto *comboBox = tablewidget->cellWidget(j, 0)->
 		  findChild<QComboBox *> ();
-		QString currentText(comboBox ? comboBox->currentText() : "N/A");
 		int index = comboBox ? comboBox->currentIndex() : -1;
+
+		currentText = comboBox ? comboBox->currentText() : "N/A";
 
 		if(index == 0)
 		  {

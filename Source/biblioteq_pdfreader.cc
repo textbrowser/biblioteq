@@ -115,7 +115,7 @@ bool biblioteq_pdfreader::event(QEvent *event)
 {
   if(event && event->type() == QEvent::KeyRelease)
     {
-      QKeyEvent *keyEvent = dynamic_cast<QKeyEvent *> (event);
+      auto *keyEvent = dynamic_cast<QKeyEvent *> (event);
 
       if(keyEvent)
 	switch(keyEvent->key())

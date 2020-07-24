@@ -1596,10 +1596,10 @@ void biblioteq_cd::slotInsertTrack(void)
 
       if(i == 0)
 	{
-	  QHBoxLayout *layout = new QHBoxLayout();
-	  QSpacerItem *spacer = new QSpacerItem
+	  auto *layout = new QHBoxLayout();
+	  auto *spacer = new QSpacerItem
 	    (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-	  QWidget *widget = new QWidget();
+	  auto *widget = new QWidget();
 
 	  comboBox = new QComboBox();
 	  comboBox->addItems(list);
@@ -1769,10 +1769,10 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
 	      if(j == 0)
 		{
-		  QHBoxLayout *layout = new QHBoxLayout();
-		  QSpacerItem *spacer = new QSpacerItem
+		  auto *layout = new QHBoxLayout();
+		  auto *spacer = new QSpacerItem
 		    (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-		  QWidget *widget = new QWidget();
+		  auto *widget = new QWidget();
 
 		  comboBox = new QComboBox();
 		  comboBox->addItems(comboBoxList);

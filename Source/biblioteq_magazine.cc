@@ -2759,7 +2759,7 @@ void biblioteq_magazine::slotGo(void)
 	    {
 	      if(m_subType == "Journal")
 		qmain->replaceJournal
-		  (m_oid, static_cast<biblioteq_journal *> (this));
+		  (m_oid, dynamic_cast<biblioteq_journal *> (this));
 	      else if(m_subType == "Magazine")
 		qmain->replaceMagazine(m_oid, this);
 
@@ -3327,7 +3327,7 @@ void biblioteq_magazine::slotReset(void)
 
 void biblioteq_magazine::slotSRUCanceled(void)
 {
-  QNetworkReply *reply = m_sruManager->findChild<QNetworkReply *> ();
+  auto *reply = m_sruManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();

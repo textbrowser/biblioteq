@@ -53,7 +53,7 @@ QString biblioteq_otheroptions::publicationDateFormat
 
 	if(widget)
 	  {
-	    QComboBox *comboBox = widget->findChild<QComboBox *> ();
+	    auto *comboBox = widget->findChild<QComboBox *> ();
 
 	    if(comboBox)
 	      return comboBox->currentText();
@@ -149,8 +149,8 @@ void biblioteq_otheroptions::prepareSettings(void)
 	   str == "yyyy/MM/dd"))
 	str = "MM/dd/yyyy";
 
-      QComboBox *comboBox = new QComboBox();
-      QTableWidgetItem *item = new QTableWidgetItem(list1.at(i));
+      auto *comboBox = new QComboBox();
+      auto *item = new QTableWidgetItem(list1.at(i));
 
       comboBox->addItems(QStringList() << "MM/dd/yyyy"
 			               << "MM/dd"
@@ -168,10 +168,10 @@ void biblioteq_otheroptions::prepareSettings(void)
       comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
       comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
-      QHBoxLayout *layout = new QHBoxLayout();
-      QSpacerItem *spacer = new QSpacerItem
+      auto *layout = new QHBoxLayout();
+      auto *spacer = new QSpacerItem
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-      QWidget *widget = new QWidget();
+      auto *widget = new QWidget();
 
       widget->setLayout(layout);
       layout->addWidget(comboBox);
@@ -257,7 +257,7 @@ void biblioteq_otheroptions::slotSave(void)
 
       if(widget)
 	{
-	  QComboBox *comboBox = widget->findChild<QComboBox *> ();
+	  auto *comboBox = widget->findChild<QComboBox *> ();
 
 	  if(comboBox)
 	    value = comboBox->currentText();
