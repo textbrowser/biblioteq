@@ -296,7 +296,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(ui.action_Open_PDF_File,
 	  SIGNAL(triggered(void)),
 	  this,
-	  SLOT(slotOpenPDFFile(void)));
+	  SLOT(slotOpenPDFFiles(void)));
   connect(ui.actionImportCSV,
 	  SIGNAL(triggered(void)),
 	  this,

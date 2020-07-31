@@ -3623,27 +3623,31 @@ void biblioteq::slotOpenOnlineDocumentation(void)
 	  "blob/master/Documentation/BiblioteQ.pdf"));
 }
 
-void biblioteq::slotOpenPDFFile(void)
+void biblioteq::slotOpenPDFFiles(void)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   QFileDialog dialog(this);
 
   dialog.setDirectory(QDir::homePath());
-  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setFileMode(QFileDialog::ExistingFiles);
   dialog.setNameFilter("PDF (*.pdf)");
   dialog.setOption(QFileDialog::DontUseNativeDialog);
-  dialog.setWindowTitle(tr("BiblioteQ: Open PDF File"));
+  dialog.setWindowTitle(tr("BiblioteQ: Open PDF File(s)"));
 
   if(dialog.exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
-
-      auto *reader = new biblioteq_pdfreader(this);
-
       QApplication::setOverrideCursor(Qt::WaitCursor);
-      reader->load(dialog.selectedFiles().value(0));
-      biblioteq_misc_functions::center(reader, this);
-      reader->show();
+
+      for(int i = 0; i < dialog.selectedFiles().size(); i++)
+	{
+	  auto *reader = new biblioteq_pdfreader(this);
+
+	  reader->load(dialog.selectedFiles().at(i));
+	  biblioteq_misc_functions::center(reader, this);
+	  reader->show();
+	}
+
       QApplication::restoreOverrideCursor();
     }
 

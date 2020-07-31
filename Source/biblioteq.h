@@ -405,7 +405,7 @@ class biblioteq: public QMainWindow
   void slotModifyBorrower(void);
   void slotNextPage(void);
   void slotOpenOnlineDocumentation(void);
-  void slotOpenPDFFile(void);
+  void slotOpenPDFFiles(void);
   void slotOtherOptionsSaved(void);
   void slotPageClicked(const QString &link);
   void slotPhotographSearch(void);
