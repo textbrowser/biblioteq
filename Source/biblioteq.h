@@ -180,6 +180,7 @@ class biblioteq: public QMainWindow
   static QTranslator *s_qtTranslator;
   static const int CUSTOM_QUERY = 0;
   static const int EDITABLE = 0;
+  static const int MAXIMUM_DEVICES_CONFIRMATION = 5;
   static const int NEW_PAGE = 0;
   static const int NEXT_PAGE = 1;
   static const int POPULATE_ALL = 1;
