@@ -3637,6 +3637,20 @@ void biblioteq::slotOpenPDFFiles(void)
   if(dialog.exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
+
+      if(dialog.selectedFiles().size() >= MAXIMUM_DEVICES_CONFIRMATION)
+	if(QMessageBox::
+	   question(this,
+		    tr("BiblioteQ: Question"),
+		    tr("Are you sure that you wish to open %1 PDF files?").
+		    arg(dialog.selectedFiles().size()),
+		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
+	    return;
+	  }
+
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       for(int i = 0; i < dialog.selectedFiles().size(); i++)

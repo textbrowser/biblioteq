@@ -2691,7 +2691,7 @@ void biblioteq::slotDuplicate(void)
       QApplication::processEvents();
       return;
     }
-  else if(list.size() >= 5)
+  else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to duplicate "
@@ -3069,7 +3069,7 @@ void biblioteq::slotModify(void)
       QApplication::processEvents();
       return;
     }
-  else if(list.size() >= 5)
+  else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
       if(QMessageBox::question
 	 (this, tr("BiblioteQ: Question"),
@@ -4486,7 +4486,7 @@ void biblioteq::slotViewDetails(void)
       QApplication::processEvents();
       return;
     }
-  else if(list.size() >= 5)
+  else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to view the ") +
