@@ -35,6 +35,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
     setWindowModality(Qt::WindowModal);
 
   m_cb.setupUi(this);
+  m_cb.deleteButton->setVisible(false);
   m_bitem = bitemArg;
   m_ioid = ioidArg;
   m_itemType = itemTypeArg;
@@ -217,6 +218,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   m_cb.dueDateFrame->setVisible(m_showForLending);
   m_cb.deleteButton->setVisible(!m_showForLending);
+  m_cb.deleteButton->setVisible(false);
 
   if(!m_showForLending)
     {
@@ -697,6 +699,10 @@ void biblioteq_copy_editor::slotCloseCopyEditor(void)
 
 void biblioteq_copy_editor::slotDeleteCopy(void)
 {
+  /*
+  ** Method is ignored.
+  */
+
   QString copyid = "";
   QString errorstr = "";
   bool isCheckedOut = false;
