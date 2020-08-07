@@ -1516,6 +1516,10 @@ void biblioteq_book::populateAfterZ3950(const QString &text)
   if(id.isbn13->text().trimmed().length() == 13)
     isbn13User = true;
 
+  /*
+  ** How do we detect MARC21 and UNIMARC?
+  */
+
   if(recordSyntax == "MARC21")
     m.initialize
       (biblioteq_marc::BOOK, biblioteq_marc::Z3950, biblioteq_marc::MARC21);
