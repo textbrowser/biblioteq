@@ -1152,6 +1152,31 @@
                  </spacer>
                 </item>
                 <item>
+                 <widget class="QComboBox" name="marc_tags_format">
+                  <property name="sizeAdjustPolicy">
+                   <enum>QComboBox::AdjustToContents</enum>
+                  </property>
+                  <property name="minimumContentsLength">
+                   <number>25</number>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Automatic (Open Library, SRU)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>MARC21</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>UNIMARC</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QPushButton" name="parse_marc_tags">
                   <property name="text">
                    <string>Parse MARC Tags</string>
@@ -1372,6 +1397,7 @@
   <tabstop>condition</tabstop>
   <tabstop>description</tabstop>
   <tabstop>marc_tags</tabstop>
+  <tabstop>marc_tags_format</tabstop>
   <tabstop>parse_marc_tags</tabstop>
   <tabstop>keyword</tabstop>
   <tabstop>accession_number</tabstop>

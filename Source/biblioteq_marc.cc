@@ -595,8 +595,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 	  m_deweynum = str;
 	}
-      else if(str.startsWith("100 ") ||
-	      str.startsWith("700 "))
+      else if(str.startsWith("100 ") || str.startsWith("700 "))
 	{
 	  str = str.mid(4);
 

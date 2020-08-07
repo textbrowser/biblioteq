@@ -53,6 +53,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 #else
   id.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
+  id.marc_tags_format->setVisible(false);
   id.parse_marc_tags->setVisible(false);
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
   id.publication_date_enabled->setVisible(false);
@@ -679,6 +680,7 @@ void biblioteq_book::insert(void)
     (QString::number(biblioteq_misc_functions::
 		     bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
+  id.marc_tags_format->setVisible(true);
   id.parse_marc_tags->setVisible(true);
   id.view_pdf->setEnabled(false);
   id.id->clear();
@@ -759,6 +761,7 @@ void biblioteq_book::modify(const int state)
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
+      id.marc_tags_format->setVisible(true);
       id.parse_marc_tags->setVisible(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
@@ -1503,7 +1506,6 @@ void biblioteq_book::populateAfterSRU(const QString &text)
 
 void biblioteq_book::populateAfterZ3950(const QString &text)
 {
-  QString recordSyntax("MARC21");
   QString str("");
   QStringList list;
   biblioteq_marc m;
@@ -1520,7 +1522,7 @@ void biblioteq_book::populateAfterZ3950(const QString &text)
   ** How do we detect MARC21 and UNIMARC?
   */
 
-  if(recordSyntax == "MARC21")
+  if(id.marc_tags_format->currentIndex() == 1)
     m.initialize
       (biblioteq_marc::BOOK, biblioteq_marc::Z3950, biblioteq_marc::MARC21);
   else
@@ -4027,6 +4029,7 @@ void biblioteq_book::slotReset(void)
 	id.description->clear();
 
       id.marc_tags->clear();
+      id.marc_tags_format->setCurrentIndex(0);
       id.keyword->clear();
       id.isbn13->clear();
       id.lcnum->clear();
@@ -4637,6 +4640,7 @@ void biblioteq_book::updateWindow(const int state)
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
+      id.marc_tags_format->setVisible(true);
       id.parse_marc_tags->setVisible(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
