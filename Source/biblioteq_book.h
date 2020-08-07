@@ -86,6 +86,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotOpenLibraryQueryError(const QString &text);
   void slotOpenLibraryReadyRead(void);
   void slotOpenLibrarySslErrors(const QList<QSslError> &list);
+  void slotParseMarcTags(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
   void slotPrintAuthorTitleDewey(void);

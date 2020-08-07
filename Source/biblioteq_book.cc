@@ -53,6 +53,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 #else
   id.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
+  id.parse_marc_tags->setVisible(false);
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
   id.publication_date_enabled->setVisible(false);
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
@@ -86,6 +87,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.openLibraryQuery, SIGNAL(clicked(void)), this,
 	  SLOT(slotOpenLibraryQuery(void)));
+  connect(id.parse_marc_tags, SIGNAL(clicked(void)), this,
+	  SLOT(slotParseMarcTags(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
   connect(id.sruQueryButton, SIGNAL(clicked(void)), this,
@@ -676,6 +679,7 @@ void biblioteq_book::insert(void)
     (QString::number(biblioteq_misc_functions::
 		     bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
+  id.parse_marc_tags->setVisible(true);
   id.view_pdf->setEnabled(false);
   id.id->clear();
   id.isbn13->clear();
@@ -755,6 +759,7 @@ void biblioteq_book::modify(const int state)
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
+      id.parse_marc_tags->setVisible(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
       id.openLibraryQuery->setVisible(true);
@@ -3257,6 +3262,10 @@ void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
     (tr("One or more SSL errors occurred. Please verify your settings."));
 }
 
+void biblioteq_book::slotParseMarcTags(void)
+{
+}
+
 void biblioteq_book::slotPopulateCopiesEditor(void)
 {
   biblioteq_copy_editor_book *copyeditor = nullptr;
@@ -4610,6 +4619,7 @@ void biblioteq_book::updateWindow(const int state)
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
+      id.parse_marc_tags->setVisible(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
       id.openLibraryQuery->setVisible(true);
