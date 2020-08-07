@@ -60,6 +60,9 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 		  const QString &fileName) const;
   void createOpenLibraryDialog(void);
   void createSRUDialog(void);
+  void populateAfterOpenLibrary(void);
+  void populateAfterSRU(const QString &text);
+  void populateAfterZ3950(const QString &text);
   void populateFiles(void);
 
  private slots:

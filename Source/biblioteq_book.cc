@@ -1077,46 +1077,130 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 	  return;
 	}
 
-      QString authors("");
-      QString deweyDecimalClass("");
-      QString lcClassifications("");
-      QString lccn("");
-      QString pagination("");
-      QString place("");
-      QString publicationDate("");
-      QString publishers("");
-      QString subjects("");
-      QString subtitle("");
-      QString title("");
-      QStringList keys;
+      populateAfterOpenLibrary();
+    }
+}
 
-      keys << "\"authors\":"
-	   << "\"dewey_decimal_class\":"
-	   << "\"lc_classifications\":"
-	   << "\"lccn\":"
-	   << "\"pagination\":"
-	   << "\"publish_date\":"
-	   << "\"publish_places\":"
-	   << "\"publishers\":"
-	   << "\"subjects\":"
-	   << "\"subtitle\":"
-	   << "\"title\":";
+void biblioteq_book::populateAfterOpenLibrary(void)
+{
+  QString authors("");
+  QString deweyDecimalClass("");
+  QString lcClassifications("");
+  QString lccn("");
+  QString pagination("");
+  QString place("");
+  QString publicationDate("");
+  QString publishers("");
+  QString subjects("");
+  QString subtitle("");
+  QString title("");
+  QStringList keys;
 
-      while(!keys.isEmpty())
+  keys << "\"authors\":"
+       << "\"dewey_decimal_class\":"
+       << "\"lc_classifications\":"
+       << "\"lccn\":"
+       << "\"pagination\":"
+       << "\"publish_date\":"
+       << "\"publish_places\":"
+       << "\"publishers\":"
+       << "\"subjects\":"
+       << "\"subtitle\":"
+       << "\"title\":";
+
+  while(!keys.isEmpty())
+    {
+      const QString &key(keys.takeFirst());
+      int index = m_openLibraryResults.indexOf(key);
+
+      if(index > -1)
 	{
-	  const QString &key(keys.takeFirst());
-	  int index = m_openLibraryResults.indexOf(key);
+	  index += key.length();
 
-	  if(index > -1)
+	  if(key == "\"dewey_decimal_class\":" ||
+	     key == "\"lc_classifications\":" ||
+	     key == "\"lccn\":" ||
+	     key == "\"pagination\":")
 	    {
-	      index += key.length();
+	      QString value("");
 
-	      if(key == "\"dewey_decimal_class\":" ||
-		 key == "\"lc_classifications\":" ||
-		 key == "\"lccn\":" ||
-		 key == "\"pagination\":")
+	      for(int i = m_openLibraryResults.indexOf('"', index) + 1;
+		  i < m_openLibraryResults.length();
+		  i++)
+		if(m_openLibraryResults.at(i) == '"')
+		  break;
+		else
+		  value.append(m_openLibraryResults.at(i));
+
+	      if(!value.isEmpty())
 		{
-		  QString value("");
+		  if(key == "\"dewey_decimal_class\":")
+		    deweyDecimalClass = value;
+		  else if(key == "\"lc_classifications\":")
+		    lcClassifications = value;
+		  else if(key == "\"lccn\":")
+		    lccn = value;
+		  else if(key == "\"pagination\":")
+		    pagination = value;
+		}
+
+	      continue;
+	    }
+	  else if(key == "\"publish_date\":" ||
+		  key == "\"subtitle\":" ||
+		  key == "\"title\":")
+	    {
+	      int o_index = -1; // Open bracket.
+
+	      for(int i = index - key.length(); i >= 0; i--)
+		if(m_openLibraryResults.at(i) == ']')
+		  break;
+		else if(m_openLibraryResults.at(i) == '[')
+		  {
+		    o_index = i;
+		    break;
+		  }
+
+	      if(o_index != -1)
+		{
+		  keys << key;
+		  m_openLibraryResults.remove
+		    (index - key.length(), key.length());
+		  continue;
+		}
+
+	      QString value("");
+
+	      for(int i = m_openLibraryResults.indexOf('"', index) + 1;
+		  i < m_openLibraryResults.length();
+		  i++)
+		if(m_openLibraryResults.at(i) == '"')
+		  break;
+		else
+		  value.append(m_openLibraryResults.at(i));
+
+	      if(!value.isEmpty())
+		{
+		  if(key == "\"publish_date\":")
+		    publicationDate = value;
+		  else if(key == "\"subtitle\":")
+		    subtitle = value;
+		  else if(key == "\"title\":")
+		    title = value;
+		}
+
+	      continue;
+	    }
+
+	  while(true)
+	    {
+	      index = m_openLibraryResults.indexOf("\"name\":", index);
+
+	      if(index > 0)
+		{
+		  index += static_cast<int> (qstrlen("\"name\":"));
+
+		  QString name("");
 
 		  for(int i = m_openLibraryResults.indexOf('"', index) + 1;
 		      i < m_openLibraryResults.length();
@@ -1124,207 +1208,460 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 		    if(m_openLibraryResults.at(i) == '"')
 		      break;
 		    else
-		      value.append(m_openLibraryResults.at(i));
+		      name.append(m_openLibraryResults.at(i));
 
-		  if(!value.isEmpty())
+		  if(!name.isEmpty())
 		    {
-		      if(key == "\"dewey_decimal_class\":")
-			deweyDecimalClass = value;
-		      else if(key == "\"lc_classifications\":")
-			lcClassifications = value;
-		      else if(key == "\"lccn\":")
-			lccn = value;
-		      else if(key == "\"pagination\":")
-			pagination = value;
-		    }
-
-		  continue;
-		}
-	      else if(key == "\"publish_date\":" ||
-		      key == "\"subtitle\":" ||
-		      key == "\"title\":")
-		{
-		  int o_index = -1; // Open bracket.
-
-		  for(int i = index - key.length(); i >= 0; i--)
-		    if(m_openLibraryResults.at(i) == ']')
-		      break;
-		    else if(m_openLibraryResults.at(i) == '[')
-		      {
-			o_index = i;
-			break;
-		      }
-
-		  if(o_index != -1)
-		    {
-		      keys << key;
-		      m_openLibraryResults.remove
-			(index - key.length(), key.length());
-		      continue;
-		    }
-
-		  QString value("");
-
-		  for(int i = m_openLibraryResults.indexOf('"', index) + 1;
-		      i < m_openLibraryResults.length();
-		      i++)
-		    if(m_openLibraryResults.at(i) == '"')
-		      break;
-		    else
-		      value.append(m_openLibraryResults.at(i));
-
-		  if(!value.isEmpty())
-		    {
-		      if(key == "\"publish_date\":")
-			publicationDate = value;
-		      else if(key == "\"subtitle\":")
-			subtitle = value;
-		      else if(key == "\"title\":")
-			title = value;
-		    }
-
-		  continue;
-		}
-
-	      while(true)
-		{
-		  index = m_openLibraryResults.indexOf("\"name\":", index);
-
-		  if(index > 0)
-		    {
-		      index += static_cast<int> (qstrlen("\"name\":"));
-
-		      QString name("");
-
-		      for(int i = m_openLibraryResults.indexOf('"', index) + 1;
-			  i < m_openLibraryResults.length();
-			  i++)
-			if(m_openLibraryResults.at(i) == '"')
-			  break;
-			else
-			  name.append(m_openLibraryResults.at(i));
-
-		      if(!name.isEmpty())
+		      if(key == "\"authors\":")
 			{
-			  if(key == "\"authors\":")
-			    {
-			      if(!authors.isEmpty())
-				authors.append("\n");
+			  if(!authors.isEmpty())
+			    authors.append("\n");
 
-			      authors.append(name);
-			    }
-			  else if(key == "\"publish_places\":")
-			    {
-			      if(!place.isEmpty())
-				place.append("\n");
-
-			      place.append(name);
-			    }
-			  else if(key == "\"publishers\":")
-			    {
-			      if(!publishers.isEmpty())
-				publishers.append("\n");
-
-			      publishers.append(name);
-			    }
-			  else if(key == "\"subjects\":")
-			    {
-			      if(!subjects.isEmpty())
-				subjects.append("\n");
-
-			      subjects.append(name);
-			    }
+			  authors.append(name);
 			}
+		      else if(key == "\"publish_places\":")
+			{
+			  if(!place.isEmpty())
+			    place.append("\n");
 
-		      if(m_openLibraryResults.indexOf("\"name\":", index) >
-			 m_openLibraryResults.indexOf(']', index))
-			break;
+			  place.append(name);
+			}
+		      else if(key == "\"publishers\":")
+			{
+			  if(!publishers.isEmpty())
+			    publishers.append("\n");
+
+			  publishers.append(name);
+			}
+		      else if(key == "\"subjects\":")
+			{
+			  if(!subjects.isEmpty())
+			    subjects.append("\n");
+
+			  subjects.append(name);
+			}
 		    }
-		  else
+
+		  if(m_openLibraryResults.indexOf("\"name\":", index) >
+		     m_openLibraryResults.indexOf(']', index))
 		    break;
 		}
+	      else
+		break;
 	    }
 	}
-
-      biblioteq_misc_functions::highlightWidget
-	(id.marc_tags->viewport(), QColor(162, 205, 90));
-      id.marc_tags->setPlainText(m_openLibraryResults);
-
-      if(!authors.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.author->viewport(), QColor(162, 205, 90));
-	  id.author->setPlainText(authors);
-	}
-
-      if(!deweyDecimalClass.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.deweynum, QColor(162, 205, 90));
-	  id.deweynum->setText(deweyDecimalClass);
-	}
-
-      if(!lcClassifications.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.callnum, QColor(162, 205, 90));
-	  id.callnum->setText(lcClassifications);
-	}
-
-      if(!lccn.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.lcnum, QColor(162, 205, 90));
-	  id.lcnum->setText(lccn);
-	}
-
-      if(!pagination.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.description->viewport(), QColor(162, 205, 90));
-	  id.description->setPlainText(pagination);
-	}
-
-      if(!place.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.place->viewport(), QColor(162, 205, 90));
-	  id.place->setPlainText(place);
-	}
-
-      if(!publicationDate.isEmpty())
-	{
-	  id.publication_date->setDate
-	    (QDate::fromString("01/01/" + publicationDate, "MM/dd/yyyy"));
-	  id.publication_date->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
-	}
-
-      if(!publishers.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.publisher->viewport(), QColor(162, 205, 90));
-	  id.publisher->setPlainText(publishers);
-	}
-
-      if(!subjects.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.category->viewport(), QColor(162, 205, 90));
-	  id.category->setPlainText(subjects);
-	}
-
-      if(!title.isEmpty())
-	{
-	  biblioteq_misc_functions::highlightWidget
-	    (id.title, QColor(162, 205, 90));
-
-	  if(!subtitle.isEmpty())
-	    title = QString("%1 (%2)").arg(title).arg(subtitle);
-
-	  id.title->setText(title);
-	}
     }
+
+  biblioteq_misc_functions::highlightWidget
+    (id.marc_tags->viewport(), QColor(162, 205, 90));
+  id.marc_tags->setPlainText(m_openLibraryResults);
+
+  if(!authors.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.author->viewport(), QColor(162, 205, 90));
+      id.author->setPlainText(authors);
+    }
+
+  if(!deweyDecimalClass.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.deweynum, QColor(162, 205, 90));
+      id.deweynum->setText(deweyDecimalClass);
+    }
+
+  if(!lcClassifications.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.callnum, QColor(162, 205, 90));
+      id.callnum->setText(lcClassifications);
+    }
+
+  if(!lccn.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.lcnum, QColor(162, 205, 90));
+      id.lcnum->setText(lccn);
+    }
+
+  if(!pagination.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.description->viewport(), QColor(162, 205, 90));
+      id.description->setPlainText(pagination);
+    }
+
+  if(!place.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.place->viewport(), QColor(162, 205, 90));
+      id.place->setPlainText(place);
+    }
+
+  if(!publicationDate.isEmpty())
+    {
+      id.publication_date->setDate
+	(QDate::fromString("01/01/" + publicationDate, "MM/dd/yyyy"));
+      id.publication_date->setStyleSheet
+	("background-color: rgb(162, 205, 90)");
+    }
+
+  if(!publishers.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.publisher->viewport(), QColor(162, 205, 90));
+      id.publisher->setPlainText(publishers);
+    }
+
+  if(!subjects.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.category->viewport(), QColor(162, 205, 90));
+      id.category->setPlainText(subjects);
+    }
+
+  if(!title.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.title, QColor(162, 205, 90));
+
+      if(!subtitle.isEmpty())
+	title = QString("%1 (%2)").arg(title).arg(subtitle);
+
+      id.title->setText(title);
+    }
+}
+
+void biblioteq_book::populateAfterSRU(const QString &text)
+{
+  id.edition->setCurrentIndex(0);
+  id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
+  id.marc_tags->setText(text);
+  biblioteq_misc_functions::highlightWidget
+    (id.marc_tags->viewport(), QColor(162, 205, 90));
+
+  QString str("");
+  bool isbn10User = false;
+  bool isbn13User = false;
+
+  if(id.id->text().trimmed().length() == 10)
+    isbn10User = true;
+
+  if(id.isbn13->text().trimmed().length() == 13)
+    isbn13User = true;
+
+  QXmlStreamReader reader(text);
+
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      if(reader.name().toString().toLower().trimmed() == "datafield")
+	{
+	  QString tag
+	    (reader.attributes().value("tag").toString().toLower().trimmed());
+
+	  if(tag == "100" || tag == "700")
+	    id.author->clear();
+	  else if(tag == "260")
+	    id.place->clear();
+	  else if(tag == "650")
+	    id.category->clear();
+	}
+
+  QString recordSyntax("MARC21");
+  biblioteq_marc m;
+
+  if(recordSyntax == "MARC21")
+    m.initialize
+      (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::MARC21);
+  else
+    m.initialize
+      (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::UNIMARC);
+
+  m.setData(text);
+  str = m.author();
+
+  if(!str.isEmpty())
+    {
+      id.author->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.author->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.binding();
+
+  if(id.binding->findText(str, Qt::MatchFixedString) > -1)
+    id.binding->setCurrentIndex
+      (id.binding->findText(str, Qt::MatchFixedString));
+
+  id.binding->setStyleSheet("background-color: rgb(162, 205, 90)");
+  str = m.callnum();
+
+  if(!str.isEmpty())
+    {
+      id.callnum->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.callnum, QColor(162, 205, 90));
+    }
+
+  str = m.category();
+
+  if(!str.isEmpty())
+    {
+      id.category->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.category->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.description();
+
+  if(!str.isEmpty())
+    {
+      id.description->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.description->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.deweynum();
+
+  if(!str.isEmpty())
+    {
+      id.deweynum->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.deweynum, QColor(162, 205, 90));
+    }
+
+  str = m.edition();
+
+  if(id.edition->findText(str) > -1)
+    id.edition->setCurrentIndex(id.edition->findText(str));
+  else
+    id.edition->setCurrentIndex(0);
+
+  str = m.isbn10();
+
+  if(!isbn10User && !str.isEmpty())
+    {
+      id.id->setText(str);
+      biblioteq_misc_functions::highlightWidget(id.id, QColor(162, 205, 90));
+    }
+
+  str = m.isbn13();
+
+  if(!isbn13User && !str.isEmpty())
+    {
+      id.isbn13->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.isbn13, QColor(162, 205, 90));
+    }
+
+  str = m.lcnum();
+
+  if(!str.isEmpty())
+    {
+      id.lcnum->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.lcnum, QColor(162, 205, 90));
+    }
+
+  str = m.place();
+
+  if(!str.isEmpty())
+    {
+      id.place->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.place->viewport(), QColor(162, 205, 90));
+    }
+
+  if(!m.publicationDate().isNull())
+    {
+      id.publication_date->setDate(m.publicationDate());
+      id.publication_date->setStyleSheet
+	("background-color: rgb(162, 205, 90)");
+    }
+
+  str = m.publisher();
+
+  if(!str.isEmpty())
+    {
+      id.publisher->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.publisher->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.title();
+
+  if(!str.isEmpty())
+    {
+      id.title->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.title, QColor(162, 205, 90));
+    }
+
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+    textfield->setCursorPosition(0);
+}
+
+void biblioteq_book::populateAfterZ3950(const QString &text)
+{
+  QString recordSyntax("MARC21");
+  QString str("");
+  QStringList list;
+  biblioteq_marc m;
+  bool isbn10User = false;
+  bool isbn13User = false;
+
+  if(id.id->text().trimmed().length() == 10)
+    isbn10User = true;
+
+  if(id.isbn13->text().trimmed().length() == 13)
+    isbn13User = true;
+
+  if(recordSyntax == "MARC21")
+    m.initialize
+      (biblioteq_marc::BOOK, biblioteq_marc::Z3950, biblioteq_marc::MARC21);
+  else
+    m.initialize
+      (biblioteq_marc::BOOK, biblioteq_marc::Z3950, biblioteq_marc::UNIMARC);
+
+  m.setData(text);
+  list = text.split("\n");
+  id.edition->setCurrentIndex(0);
+  id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
+  id.marc_tags->setPlainText(text.trimmed());
+  biblioteq_misc_functions::highlightWidget
+    (id.marc_tags->viewport(), QColor(162, 205, 90));
+
+  for(int i = 0; i < list.size(); i++)
+    if(list[i].startsWith("100 ") ||
+       list[i].startsWith("700 "))
+      id.author->clear();
+    else if(list[i].startsWith("260 ") ||
+	    list[i].startsWith("264 "))
+      id.place->clear();
+    else if(list[i].startsWith("650 "))
+      id.category->clear();
+
+  str = m.author();
+
+  if(!str.isEmpty())
+    {
+      id.author->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.author->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.binding();
+
+  if(id.binding->findText(str, Qt::MatchFixedString) > -1)
+    id.binding->setCurrentIndex
+      (id.binding->findText(str, Qt::MatchFixedString));
+
+  id.binding->setStyleSheet("background-color: rgb(162, 205, 90)");
+  str = m.callnum();
+
+  if(!str.isEmpty())
+    {
+      id.callnum->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.callnum, QColor(162, 205, 90));
+    }
+
+  str = m.category();
+
+  if(!str.isEmpty())
+    {
+      id.category->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.category->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.description();
+
+  if(!str.isEmpty())
+    {
+      id.description->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.description->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.deweynum();
+
+  if(!str.isEmpty())
+    {
+      id.deweynum->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.deweynum, QColor(162, 205, 90));
+    }
+
+  str = m.edition();
+
+  if(id.edition->findText(str) > -1)
+    id.edition->setCurrentIndex(id.edition->findText(str));
+  else
+    id.edition->setCurrentIndex(0);
+
+  str = m.isbn10();
+
+  if(!isbn10User && !str.isEmpty())
+    {
+      id.id->setText(str);
+      biblioteq_misc_functions::highlightWidget(id.id, QColor(162, 205, 90));
+    }
+
+  str = m.isbn13();
+
+  if(!isbn13User && !str.isEmpty())
+    {
+      id.isbn13->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.isbn13, QColor(162, 205, 90));
+    }
+
+  str = m.lcnum();
+
+  if(!str.isEmpty())
+    {
+      id.lcnum->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.lcnum, QColor(162, 205, 90));
+    }
+
+  str = m.place();
+
+  if(!str.isEmpty())
+    {
+      id.place->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.place->viewport(), QColor(162, 205, 90));
+    }
+
+  if(!m.publicationDate().isNull())
+    {
+      id.publication_date->setDate(m.publicationDate());
+      id.publication_date->setStyleSheet
+	("background-color: rgb(162, 205, 90)");
+    }
+
+  str = m.publisher();
+
+  if(!str.isEmpty())
+    {
+      id.publisher->setPlainText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.publisher->viewport(), QColor(162, 205, 90));
+    }
+
+  str = m.title();
+
+  if(!str.isEmpty())
+    {
+      id.title->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.title, QColor(162, 205, 90));
+    }
+
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+    textfield->setCursorPosition(0);
 }
 
 void biblioteq_book::populateFiles(void)
@@ -3264,6 +3601,17 @@ void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
 
 void biblioteq_book::slotParseMarcTags(void)
 {
+  QString text(id.marc_tags->toPlainText().trimmed());
+
+  if(text.startsWith("{"))
+    {
+      m_openLibraryResults = text.toUtf8();
+      populateAfterOpenLibrary();
+    }
+  else if(text.startsWith("<?xml"))
+    populateAfterSRU(text);
+  else
+    populateAfterZ3950(text);
 }
 
 void biblioteq_book::slotPopulateCopiesEditor(void)
@@ -4132,17 +4480,9 @@ void biblioteq_book::slotZ3950Query(void)
 
   QString recordSyntax("MARC21");
   QStringList isbns;
-  bool isbn10User = false;
-  bool isbn13User = false;
 
   isbns << id.id->text().trimmed()
 	<< id.isbn13->text().trimmed();
-
-  if(id.id->text().trimmed().length() == 10)
-    isbn10User = true;
-
-  if(id.isbn13->text().trimmed().length() == 13)
-    isbn13User = true;
 
   if(isbns.at(0).isEmpty())
     searchstr = QString("@attr 1=7 %1").arg(isbns.at(1));
@@ -4159,8 +4499,7 @@ void biblioteq_book::slotZ3950Query(void)
       {
 	found = true;
 	recordSyntax = qmain->getZ3950Hash
-	  (id.z3950QueryButton->actions().at(i)->text()).
-	  value("RecordSyntax");
+	  (id.z3950QueryButton->actions().at(i)->text()).value("RecordSyntax");
 	m_thread->setZ3950Name
 	  (id.z3950QueryButton->actions().at(i)->text());
 	break;
@@ -4205,163 +4544,7 @@ void biblioteq_book::slotZ3950Query(void)
 	  QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
-
-	  biblioteq_marc m;
-
-	  if(recordSyntax == "MARC21")
-	    m.initialize
-	      (biblioteq_marc::BOOK, biblioteq_marc::Z3950,
-	       biblioteq_marc::MARC21);
-	  else
-	    m.initialize(biblioteq_marc::BOOK, biblioteq_marc::Z3950,
-			 biblioteq_marc::UNIMARC);
-
-	  m.setData(m_thread->getZ3950Results()[0]);
-	  list = QString(m_thread->getZ3950Results()[0]).split("\n");
-	  id.edition->setCurrentIndex(0);
-	  id.edition->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
-	  id.marc_tags->setPlainText
-	    (m_thread->getZ3950Results()[0].trimmed());
-	  biblioteq_misc_functions::highlightWidget
-	    (id.marc_tags->viewport(), QColor(162, 205, 90));
-
-	  for(i = 0; i < list.size(); i++)
-	    if(list[i].startsWith("100 ") ||
-	       list[i].startsWith("700 "))
-	      id.author->clear();
-	    else if(list[i].startsWith("260 ") ||
-		    list[i].startsWith("264 "))
-	      id.place->clear();
-	    else if(list[i].startsWith("650 "))
-	      id.category->clear();
-
-	  str = m.author();
-
-	  if(!str.isEmpty())
-	    {
-	      id.author->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.author->viewport(), QColor(162, 205, 90));
-	    }
-
-	  str = m.binding();
-
-	  if(id.binding->findText(str, Qt::MatchFixedString) > -1)
-	    id.binding->setCurrentIndex
-	      (id.binding->findText(str, Qt::MatchFixedString));
-
-	  id.binding->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
-	  str = m.callnum();
-
-	  if(!str.isEmpty())
-	    {
-	      id.callnum->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.callnum, QColor(162, 205, 90));
-	    }
-
-	  str = m.category();
-
-	  if(!str.isEmpty())
-	    {
-	      id.category->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.category->viewport(),
-		 QColor(162, 205, 90));
-	    }
-
-	  str = m.description();
-
-	  if(!str.isEmpty())
-	    {
-	      id.description->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.description->viewport(), QColor(162, 205, 90));
-	    }
-
-	  str = m.deweynum();
-
-	  if(!str.isEmpty())
-	    {
-	      id.deweynum->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.deweynum, QColor(162, 205, 90));
-	    }
-
-	  str = m.edition();
-
-	  if(id.edition->findText(str) > -1)
-	    id.edition->setCurrentIndex
-	      (id.edition->findText(str));
-	  else
-	    id.edition->setCurrentIndex(0);
-
-	  str = m.isbn10();
-
-	  if(!isbn10User && !str.isEmpty())
-	    {
-	      id.id->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.id, QColor(162, 205, 90));
-	    }
-
-	  str = m.isbn13();
-
-	  if(!isbn13User && !str.isEmpty())
-	    {
-	      id.isbn13->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.isbn13, QColor(162, 205, 90));
-	    }
-
-	  str = m.lcnum();
-
-	  if(!str.isEmpty())
-	    {
-	      id.lcnum->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.lcnum, QColor(162, 205, 90));
-	    }
-
-	  str = m.place();
-
-	  if(!str.isEmpty())
-	    {
-	      id.place->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.place->viewport(), QColor(162, 205, 90));
-	    }
-
-	  if(!m.publicationDate().isNull())
-	    {
-	      id.publication_date->setDate
-		(m.publicationDate());
-	      id.publication_date->setStyleSheet
-		("background-color: rgb(162, 205, 90)");
-	    }
-
-	  str = m.publisher();
-
-	  if(!str.isEmpty())
-	    {
-	      id.publisher->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.publisher->viewport(), QColor(162, 205, 90));
-	    }
-
-	  str = m.title();
-
-	  if(!str.isEmpty())
-	    {
-	      id.title->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.title, QColor(162, 205, 90));
-	    }
-
-	  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	    textfield->setCursorPosition(0);
+	  populateAfterZ3950(m_thread->getZ3950Results()[0]);
 	}
 
       QApplication::processEvents();
@@ -4420,176 +4603,7 @@ void biblioteq_book::sruDownloadFinished(void)
 			       QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
-	  id.edition->setCurrentIndex(0);
-	  id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
-	  id.marc_tags->setText(m_sruResults);
-	  biblioteq_misc_functions::highlightWidget
-	    (id.marc_tags->viewport(), QColor(162, 205, 90));
-
-	  QString str("");
-	  bool isbn10User = false;
-	  bool isbn13User = false;
-
-	  if(id.id->text().trimmed().length() == 10)
-	    isbn10User = true;
-
-	  if(id.isbn13->text().trimmed().length() == 13)
-	    isbn13User = true;
-
-	  QXmlStreamReader reader(m_sruResults);
-
-	  while(!reader.atEnd())
-	    if(reader.readNextStartElement())
-	      if(reader.name().toString().toLower().trimmed() == "datafield")
-		{
-		  QString tag(reader.attributes().value("tag").
-			      toString().toLower().trimmed());
-
-		  if(tag == "100" || tag == "700")
-		    id.author->clear();
-		  else if(tag == "260")
-		    id.place->clear();
-		  else if(tag == "650")
-		    id.category->clear();
-		}
-
-	  QString recordSyntax("MARC21");
-	  biblioteq_marc m;
-
-	  if(recordSyntax == "MARC21")
-	    m.initialize(biblioteq_marc::BOOK, biblioteq_marc::SRU,
-			 biblioteq_marc::MARC21);
-	  else
-	    m.initialize(biblioteq_marc::BOOK, biblioteq_marc::SRU,
-			 biblioteq_marc::UNIMARC);
-
-	  m.setData(m_sruResults);
-	  str = m.author();
-
-	  if(!str.isEmpty())
-	    {
-	      id.author->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.author->viewport(), QColor(162, 205, 90));
-	    }
-
-	  str = m.binding();
-
-	  if(id.binding->findText(str, Qt::MatchFixedString) > -1)
-	    id.binding->setCurrentIndex
-	      (id.binding->findText(str, Qt::MatchFixedString));
-
-	  id.binding->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
-	  str = m.callnum();
-
-	  if(!str.isEmpty())
-	    {
-	      id.callnum->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.callnum, QColor(162, 205, 90));
-	    }
-
-	  str = m.category();
-
-	  if(!str.isEmpty())
-	    {
-	      id.category->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.category->viewport(),
-		 QColor(162, 205, 90));
-	    }
-
-	  str = m.description();
-
-	  if(!str.isEmpty())
-	    {
-	      id.description->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.description->viewport(), QColor(162, 205, 90));
-	    }
-
-	  str = m.deweynum();
-
-	  if(!str.isEmpty())
-	    {
-	      id.deweynum->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.deweynum, QColor(162, 205, 90));
-	    }
-
-	  str = m.edition();
-
-	  if(id.edition->findText(str) > -1)
-	    id.edition->setCurrentIndex
-	      (id.edition->findText(str));
-	  else
-	    id.edition->setCurrentIndex(0);
-
-	  str = m.isbn10();
-
-	  if(!isbn10User && !str.isEmpty())
-	    {
-	      id.id->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.id, QColor(162, 205, 90));
-	    }
-
-	  str = m.isbn13();
-
-	  if(!isbn13User && !str.isEmpty())
-	    {
-	      id.isbn13->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.isbn13, QColor(162, 205, 90));
-	    }
-
-	  str = m.lcnum();
-
-	  if(!str.isEmpty())
-	    {
-	      id.lcnum->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.lcnum, QColor(162, 205, 90));
-	    }
-
-	  str = m.place();
-
-	  if(!str.isEmpty())
-	    {
-	      id.place->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.place->viewport(), QColor(162, 205, 90));
-	    }
-
-	  if(!m.publicationDate().isNull())
-	    {
-	      id.publication_date->setDate
-		(m.publicationDate());
-	      id.publication_date->setStyleSheet
-		("background-color: rgb(162, 205, 90)");
-	    }
-
-	  str = m.publisher();
-
-	  if(!str.isEmpty())
-	    {
-	      id.publisher->setPlainText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.publisher->viewport(), QColor(162, 205, 90));
-	    }
-
-	  str = m.title();
-
-	  if(!str.isEmpty())
-	    {
-	      id.title->setText(str);
-	      biblioteq_misc_functions::highlightWidget
-		(id.title, QColor(162, 205, 90));
-	    }
-
-	  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
-	    textfield->setCursorPosition(0);
+	  populateAfterSRU(m_sruResults);
 	}
 
       QApplication::processEvents();
