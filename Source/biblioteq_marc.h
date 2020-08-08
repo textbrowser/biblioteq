@@ -37,73 +37,73 @@ class biblioteq_marc
 
   QString author(void) const
   {
-    return m_author;
+    return m_author.trimmed();
   }
 
   QString binding(void) const
   {
-    return m_binding;
+    return m_binding.trimmed();
   }
 
   QString callnum(void) const
   {
-    return m_callnum;
+    return m_callnum.trimmed();
   }
 
   QString category(void) const
   {
-    return m_category;
+    return m_category.trimmed();
   }
 
   QString description(void) const
   {
-    return m_description;
+    return m_description.trimmed();
   }
 
   QString deweynum(void) const
   {
-    return m_deweynum;
+    return m_deweynum.trimmed();
   }
 
   QString edition(void) const
   {
-    return m_edition;
+    return m_edition.trimmed();
   }
 
   QString isbn10(void) const
   {
-    return m_isbn10;
+    return m_isbn10.trimmed();
   }
 
   QString isbn13(void) const
   {
-    return m_isbn13;
+    return m_isbn13.trimmed();
   }
 
   QString lcnum(void) const
   {
-    return m_lcnum;
+    return m_lcnum.trimmed();
   }
 
   QString place(void) const
   {
-    return m_place;
+    return m_place.trimmed();
   }
 
   QString publisher(void) const
   {
-    return m_publisher;
+    return m_publisher.trimmed();
   }
 
   QString title(void) const
   {
-    return m_title;
+    return m_title.trimmed();
   }
 
   void initialize(const ITEM_TYPE itemType,
 		  const PROTOCOL protocol,
 		  const RECORD_SYNTAX recordSyntax);
-  void setData(const QString &data);
+  void parse(const QString &data);
 
  private:
   ITEM_TYPE m_itemType;

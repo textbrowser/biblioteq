@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1118</width>
-         <height>1551</height>
+         <width>1112</width>
+         <height>1554</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1156,12 +1156,9 @@
                   <property name="sizeAdjustPolicy">
                    <enum>QComboBox::AdjustToContents</enum>
                   </property>
-                  <property name="minimumContentsLength">
-                   <number>25</number>
-                  </property>
                   <item>
                    <property name="text">
-                    <string>Automatic (Open Library, SRU)</string>
+                    <string>Automatic</string>
                    </property>
                   </item>
                   <item>

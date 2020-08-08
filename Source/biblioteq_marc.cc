@@ -47,6 +47,16 @@ void biblioteq_marc::initialize(const ITEM_TYPE itemType,
   m_recordSyntax = recordSyntax;
 }
 
+void biblioteq_marc::parse(const QString &data)
+{
+  m_data = data;
+
+  if(m_protocol == SRU)
+    parseSRU();
+  else
+    parseZ3950();
+}
+
 void biblioteq_marc::parseBookSRUMarc21(void)
 {
   clear();
@@ -1479,14 +1489,4 @@ void biblioteq_marc::parseZ3950(void)
       else
 	parseMagazineZ3950Unimarc();
     }
-}
-
-void biblioteq_marc::setData(const QString &data)
-{
-  m_data = data;
-
-  if(m_protocol == SRU)
-    parseSRU();
-  else
-    parseZ3950();
 }

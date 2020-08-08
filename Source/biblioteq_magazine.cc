@@ -1253,7 +1253,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
       m.initialize(biblioteq_marc::MAGAZINE, biblioteq_marc::Z3950,
 		   biblioteq_marc::UNIMARC);
-      m.setData(str);
+      m.parse(str);
       str = m.category();
 
       if(!str.isEmpty())

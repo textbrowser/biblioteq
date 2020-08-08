@@ -2,6 +2,7 @@
 #define _BIBLIOTEQ_BOOK_H_
 
 #include "biblioteq_item.h"
+#include "biblioteq_marc.h"
 #include "ui_biblioteq_bookinfo.h"
 #include "ui_biblioteq_passwordPrompt.h"
 
@@ -62,7 +63,8 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void createSRUDialog(void);
   void populateAfterOpenLibrary(void);
   void populateAfterSRU(const QString &text);
-  void populateAfterZ3950(const QString &text);
+  void populateAfterZ3950(const QString &text,
+			  const biblioteq_marc::RECORD_SYNTAX recordSyntax);
   void populateFiles(void);
 
  private slots:

@@ -3,7 +3,6 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_copy_editor_book.h"
 #include "biblioteq_filesize_table_item.h"
-#include "biblioteq_marc.h"
 #include "biblioteq_pdfreader.h"
 
 #include <QAuthenticator>
@@ -1380,7 +1379,7 @@ void biblioteq_book::populateAfterSRU(const QString &text)
     m.initialize
       (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::UNIMARC);
 
-  m.setData(text);
+  m.parse(text);
   str = m.author();
 
   if(!str.isEmpty())
@@ -1504,7 +1503,8 @@ void biblioteq_book::populateAfterSRU(const QString &text)
     textfield->setCursorPosition(0);
 }
 
-void biblioteq_book::populateAfterZ3950(const QString &text)
+void biblioteq_book::populateAfterZ3950
+(const QString &text, const biblioteq_marc::RECORD_SYNTAX recordSyntax)
 {
   QString str("");
   QStringList list;
@@ -1518,18 +1518,8 @@ void biblioteq_book::populateAfterZ3950(const QString &text)
   if(id.isbn13->text().trimmed().length() == 13)
     isbn13User = true;
 
-  /*
-  ** How do we detect MARC21 and UNIMARC?
-  */
-
-  if(id.marc_tags_format->currentIndex() == 1)
-    m.initialize
-      (biblioteq_marc::BOOK, biblioteq_marc::Z3950, biblioteq_marc::MARC21);
-  else
-    m.initialize
-      (biblioteq_marc::BOOK, biblioteq_marc::Z3950, biblioteq_marc::UNIMARC);
-
-  m.setData(text);
+  m.initialize(biblioteq_marc::BOOK, biblioteq_marc::Z3950, recordSyntax);
+  m.parse(text);
   list = text.split("\n");
   id.edition->setCurrentIndex(0);
   id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
@@ -3609,15 +3599,43 @@ void biblioteq_book::slotParseMarcTags(void)
 {
   QString text(id.marc_tags->toPlainText().trimmed());
 
-  if(text.startsWith("{"))
+  if(text.startsWith("<?xml version=\"1.0\"?>"))
+    populateAfterSRU(text);
+  else if(text.startsWith("{") && text.endsWith("}"))
     {
       m_openLibraryResults = text.toUtf8();
       populateAfterOpenLibrary();
     }
-  else if(text.startsWith("<?xml"))
-    populateAfterSRU(text);
   else
-    populateAfterZ3950(text);
+    switch(id.marc_tags_format->currentIndex())
+      {
+      case 0:
+	{
+	  biblioteq_marc m;
+
+	  m.initialize(biblioteq_marc::BOOK,
+		       biblioteq_marc::Z3950,
+		       biblioteq_marc::MARC21);
+	  m.parse(text);
+
+	  if(!m.author().isEmpty())
+	    populateAfterZ3950(text, biblioteq_marc::MARC21);
+	  else
+	    populateAfterZ3950(text, biblioteq_marc::UNIMARC);
+
+	  break;
+	}
+      case 1:
+	{
+	  populateAfterZ3950(text, biblioteq_marc::MARC21);
+	  break;
+	}
+      default:
+	{
+	  populateAfterZ3950(text, biblioteq_marc::UNIMARC);
+	  break;
+	}
+      }
 }
 
 void biblioteq_book::slotPopulateCopiesEditor(void)
@@ -4551,7 +4569,13 @@ void biblioteq_book::slotZ3950Query(void)
 	  QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
-	  populateAfterZ3950(m_thread->getZ3950Results()[0]);
+
+	  if(recordSyntax == "MARC21")
+	    populateAfterZ3950
+	      (m_thread->getZ3950Results()[0], biblioteq_marc::MARC21);
+	  else
+	    populateAfterZ3950
+	      (m_thread->getZ3950Results()[0], biblioteq_marc::UNIMARC);
 	}
 
       QApplication::processEvents();
