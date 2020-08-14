@@ -497,6 +497,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotBranchChanged(void)));
   connect(br.role, SIGNAL(currentIndexChanged(int)), this,
 	  SLOT(slotRoleChanged(int)));
+  connect(br.show_password, SIGNAL(toggled(bool)), this,
+	  SLOT(slotShowPassword(bool)));
   connect(bb.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrintReserved(void)));
   connect(bb.addButton, SIGNAL(clicked(void)), this,
@@ -3833,12 +3835,13 @@ void biblioteq::slotResetErrorLog(void)
 void biblioteq::slotResetLoginDialog(void)
 {
   br.filename->clear();
-  br.role->setCurrentIndex(1);
   br.password->setText("xbook_guest");
+  br.role->setCurrentIndex(1);
+  br.show_password->setChecked(false);
   br.userid->setText("xbook_guest");
 
-  int index = 0;
   QSettings settings;
+  int index = 0;
 
   index = br.branch_name->findText(settings.value("previous_branch_name").
 				   toString());

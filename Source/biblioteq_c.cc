@@ -2733,6 +2733,7 @@ void biblioteq::slotDisconnect(void)
   else
     QApplication::restoreOverrideCursor();
 
+  br.show_password->setChecked(false);
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
@@ -5805,6 +5806,14 @@ void biblioteq::slotShowOtherOptions(void)
   m_otheroptions->showNormal();
   m_otheroptions->activateWindow();
   m_otheroptions->raise();
+}
+
+void biblioteq::slotShowPassword(bool state)
+{
+  if(state)
+    br.password->setEchoMode(QLineEdit::Normal);
+  else
+    br.password->setEchoMode(QLineEdit::Password);
 }
 
 void biblioteq::slotVacuum(void)
