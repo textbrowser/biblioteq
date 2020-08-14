@@ -67,6 +67,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void slotExportFiles(void);
   void slotFilesDoubleClicked(QTableWidgetItem *item);
   void slotGo(void);
+  void slotParseMarcTags(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
   void slotProxyAuthenticationRequired(const QNetworkProxy &proxy,

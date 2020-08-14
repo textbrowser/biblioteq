@@ -81,6 +81,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
+  connect(ma.parse_marc_tags,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotParseMarcTags(void)));
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
@@ -3006,6 +3010,44 @@ void biblioteq_magazine::slotGo(void)
 	(void) qmain->populateTable
 	  (query, "Magazines", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
     }
+}
+
+void biblioteq_magazine::slotParseMarcTags(void)
+{
+  QString text(ma.marc_tags->toPlainText().trimmed());
+
+  if(text.endsWith("</record>") && text.startsWith("<record"))
+    populateDisplayAfterSRU(text.toUtf8());
+  else
+    switch(ma.marc_tags_format->currentIndex())
+      {
+      case 0:
+	{
+	  biblioteq_marc m;
+
+	  m.initialize(biblioteq_marc::MAGAZINE,
+		       biblioteq_marc::Z3950,
+		       biblioteq_marc::UNIMARC);
+	  m.parse(text);
+
+	  if(!m.publisher().isEmpty())
+	    populateDisplayAfterZ3950(QStringList() << text, "UNIMARC");
+	  else
+	    populateDisplayAfterZ3950(QStringList() << text, "MARC21");
+
+	  break;
+	}
+      case 1:
+	{
+	  populateDisplayAfterZ3950(QStringList() << text, "MARC21");
+	  break;
+	}
+      default:
+	{
+	  populateDisplayAfterZ3950(QStringList() << text, "UNIMARC");
+	  break;
+	}
+      }
 }
 
 void biblioteq_magazine::slotPopulateCopiesEditor(void)

@@ -1252,6 +1252,9 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 void biblioteq_marc::parseMagazineZ3950Marc21(void)
 {
+  /*
+  ** Not available.
+  */
 }
 
 void biblioteq_marc::parseMagazineZ3950Unimarc(void)
