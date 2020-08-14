@@ -54,6 +54,8 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 #else
   ma.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
+  ma.marc_tags_format->setVisible(false);
+  ma.parse_marc_tags->setVisible(false);
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("magazines"));
   ma.publication_date_enabled->setVisible(false);
@@ -482,6 +484,8 @@ void biblioteq_magazine::insert(void)
   ma.attach_files->setEnabled(false);
   ma.delete_files->setEnabled(false);
   ma.export_files->setEnabled(false);
+  ma.marc_tags_format->setVisible(true);
+  ma.parse_marc_tags->setVisible(true);
   ma.view_pdf->setEnabled(false);
   ma.id->clear();
   ma.lcnum->clear();
@@ -563,6 +567,8 @@ void biblioteq_magazine::modify(const int state)
 #endif
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
+      ma.marc_tags_format->setVisible(true);
+      ma.parse_marc_tags->setVisible(true);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.sruQueryButton->setVisible(true);
@@ -3896,6 +3902,8 @@ void biblioteq_magazine::updateWindow(const int state)
       ma.copiesButton->setEnabled(true);
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
+      ma.marc_tags_format->setVisible(true);
+      ma.parse_marc_tags->setVisible(true);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.sruQueryButton->setVisible(true);
