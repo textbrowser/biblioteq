@@ -23,6 +23,7 @@ BiblioteQ is free and open library software.
 <li>Open Library queries for select items.</li>
 <li>Optional item reservation histories for patrons.</li>
 <li>PDF reader via Poppler, where available.</li>
+<li>Parse local MARC tags. Books, journals, magazines.</li>
 <li>Patron information.</li>
 <li>PostgreSQL accounts with various privileges.</li>
 <li>PowerPC support.</li>
