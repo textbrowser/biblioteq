@@ -41,7 +41,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-159</y>
+         <y>0</y>
          <width>617</width>
          <height>663</height>
         </rect>
@@ -178,6 +178,9 @@
              <property name="textInteractionFlags">
               <set>Qt::TextEditorInteraction</set>
              </property>
+             <property name="placeholderText">
+              <string>Categories</string>
+             </property>
             </widget>
            </item>
            <item row="5" column="0">
@@ -273,6 +276,9 @@
              </property>
              <property name="acceptRichText">
               <bool>false</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Abstract</string>
              </property>
             </widget>
            </item>
@@ -370,6 +376,9 @@
              </property>
              <property name="acceptRichText">
               <bool>false</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Keywords</string>
              </property>
             </widget>
            </item>
