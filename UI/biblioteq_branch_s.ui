@@ -144,6 +144,9 @@
               <property name="text">
                <string>xbook_guest</string>
               </property>
+              <property name="placeholderText">
+               <string>PostgreSQL Userid</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -198,6 +201,9 @@
               </property>
               <property name="echoMode">
                <enum>QLineEdit::Password</enum>
+              </property>
+              <property name="placeholderText">
+               <string>PostgreSQL Password</string>
               </property>
              </widget>
             </item>

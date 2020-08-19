@@ -40,6 +40,9 @@
          <property name="maxLength">
           <number>16</number>
          </property>
+         <property name="placeholderText">
+          <string>Member ID</string>
+         </property>
         </widget>
        </item>
        <item row="1" column="0">
@@ -106,6 +109,9 @@
          <property name="maxLength">
           <number>128</number>
          </property>
+         <property name="placeholderText">
+          <string>First Name</string>
+         </property>
         </widget>
        </item>
        <item row="3" column="0">
@@ -119,6 +125,9 @@
         <widget class="QLineEdit" name="lastName">
          <property name="maxLength">
           <number>128</number>
+         </property>
+         <property name="placeholderText">
+          <string>Last Name</string>
          </property>
         </widget>
        </item>
@@ -278,6 +287,9 @@
          <property name="maxLength">
           <number>256</number>
          </property>
+         <property name="placeholderText">
+          <string>Street Address</string>
+         </property>
         </widget>
        </item>
        <item row="8" column="0">
@@ -291,6 +303,9 @@
         <widget class="QLineEdit" name="city">
          <property name="maxLength">
           <number>256</number>
+         </property>
+         <property name="placeholderText">
+          <string>City</string>
          </property>
         </widget>
        </item>
@@ -573,6 +588,9 @@
            <property name="maxLength">
             <number>16</number>
            </property>
+           <property name="placeholderText">
+            <string>ZIP Code</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -588,6 +606,9 @@
         <widget class="QLineEdit" name="telephoneNumber">
          <property name="maxLength">
           <number>32</number>
+         </property>
+         <property name="placeholderText">
+          <string>Telephone Number</string>
          </property>
         </widget>
        </item>
@@ -694,6 +715,9 @@
            <property name="maxLength">
             <number>128</number>
            </property>
+           <property name="placeholderText">
+            <string>E-Mail Address</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -746,7 +770,11 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="memberclass"/>
+        <widget class="QLineEdit" name="memberclass">
+         <property name="placeholderText">
+          <string>Class</string>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_16">
@@ -756,7 +784,11 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="generalregistrationnumber"/>
+        <widget class="QLineEdit" name="generalregistrationnumber">
+         <property name="placeholderText">
+          <string>General Registration Number</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
