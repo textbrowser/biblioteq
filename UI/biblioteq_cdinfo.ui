@@ -195,6 +195,9 @@
               <property name="maxLength">
                <number>32</number>
               </property>
+              <property name="placeholderText">
+               <string>Catalog Number</string>
+              </property>
              </widget>
             </item>
             <item row="1" column="0">
@@ -263,6 +266,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Artists</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -496,6 +502,9 @@
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
+              <property name="placeholderText">
+               <string>Composer</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -543,7 +552,11 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="title"/>
+             <widget class="QLineEdit" name="title">
+              <property name="placeholderText">
+               <string>Title</string>
+              </property>
+             </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_13">
@@ -627,6 +640,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Recording Label</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -791,6 +807,9 @@
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
+              <property name="placeholderText">
+               <string>Abstract</string>
+              </property>
              </widget>
             </item>
             <item row="9" column="0">
@@ -813,6 +832,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Categories</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -840,6 +862,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="placeholderText">
+               <string>Keywords</string>
+              </property>
               <property name="openLinks">
                <bool>false</bool>
               </property>
@@ -853,7 +878,11 @@
              </widget>
             </item>
             <item row="11" column="1">
-             <widget class="QLineEdit" name="accession_number"/>
+             <widget class="QLineEdit" name="accession_number">
+              <property name="placeholderText">
+               <string>Accession Number</string>
+              </property>
+             </widget>
             </item>
             <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout">
