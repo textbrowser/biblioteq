@@ -45,10 +45,18 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="code_a"/>
+         <widget class="QLineEdit" name="code_a">
+          <property name="placeholderText">
+           <string>Code-A</string>
+          </property>
+         </widget>
         </item>
         <item row="6" column="1">
-         <widget class="QLineEdit" name="code_b"/>
+         <widget class="QLineEdit" name="code_b">
+          <property name="placeholderText">
+           <string>Code-B</string>
+          </property>
+         </widget>
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_9">
@@ -71,16 +79,27 @@
           <property name="textInteractionFlags">
            <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
+          <property name="placeholderText">
+           <string>Clients</string>
+          </property>
           <property name="openLinks">
            <bool>false</bool>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="id"/>
+         <widget class="QLineEdit" name="id">
+          <property name="placeholderText">
+           <string>ID</string>
+          </property>
+         </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QLineEdit" name="status"/>
+         <widget class="QLineEdit" name="status">
+          <property name="placeholderText">
+           <string>Status</string>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label">
@@ -123,6 +142,9 @@
           </property>
           <property name="textInteractionFlags">
            <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="placeholderText">
+           <string>Authors</string>
           </property>
           <property name="openLinks">
            <bool>false</bool>
@@ -167,7 +189,11 @@
          </layout>
         </item>
         <item row="7" column="1">
-         <widget class="QLineEdit" name="job_number"/>
+         <widget class="QLineEdit" name="job_number">
+          <property name="placeholderText">
+           <string>Job Number</string>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_8">
@@ -228,7 +254,11 @@
          </layout>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="title"/>
+         <widget class="QLineEdit" name="title">
+          <property name="placeholderText">
+           <string>Title</string>
+          </property>
+         </widget>
         </item>
         <item row="8" column="1">
          <widget class="biblioteq_hyperlinked_text_edit" name="notes">
@@ -243,6 +273,9 @@
           </property>
           <property name="textInteractionFlags">
            <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="placeholderText">
+           <string>Notes</string>
           </property>
           <property name="openLinks">
            <bool>false</bool>
