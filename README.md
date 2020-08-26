@@ -9,6 +9,7 @@ BiblioteQ is free and open library software.
 <li>Cover images with drag and drop support.</li>
 <li>Customized displays.</li>
 <li>Customized item data, pricing information, and currencies.</li>
+<li>Documentation.</li>
 <li>Embedded hyperlinks for localized searches of similar items.</li>
 <li>Exporting of views to CSV files.</li>
 <li>Free and Open Source technology.</li>
