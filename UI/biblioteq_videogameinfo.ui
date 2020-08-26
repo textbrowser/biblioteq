@@ -32,15 +32,24 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1017</width>
-         <height>1343</height>
+         <width>1023</width>
+         <height>1346</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -186,6 +195,9 @@
               <property name="maxLength">
                <number>32</number>
               </property>
+              <property name="placeholderText">
+               <string>UPC</string>
+              </property>
              </widget>
             </item>
             <item row="1" column="0">
@@ -327,6 +339,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="placeholderText">
+               <string>Developers</string>
+              </property>
               <property name="openLinks">
                <bool>false</bool>
               </property>
@@ -350,6 +365,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="placeholderText">
+               <string>Place of Publication</string>
+              </property>
               <property name="openLinks">
                <bool>false</bool>
               </property>
@@ -363,7 +381,11 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="title"/>
+             <widget class="QLineEdit" name="title">
+              <property name="placeholderText">
+               <string>Title</string>
+              </property>
+             </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_13">
@@ -447,6 +469,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Publisher</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -641,6 +666,9 @@
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
+              <property name="placeholderText">
+               <string>Abstract</string>
+              </property>
              </widget>
             </item>
             <item row="10" column="0">
@@ -663,6 +691,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Genres</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -697,6 +728,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="placeholderText">
+               <string>Keywords</string>
+              </property>
               <property name="openLinks">
                <bool>false</bool>
               </property>
@@ -710,7 +744,11 @@
              </widget>
             </item>
             <item row="12" column="1">
-             <widget class="QLineEdit" name="accession_number"/>
+             <widget class="QLineEdit" name="accession_number">
+              <property name="placeholderText">
+               <string>Accession Number</string>
+              </property>
+             </widget>
             </item>
             <item row="7" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout">

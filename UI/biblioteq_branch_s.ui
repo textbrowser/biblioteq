@@ -209,6 +209,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="show_password">
+              <property name="toolTip">
+               <string>Hide or show the password.</string>
+              </property>
               <property name="text">
                <string>Show</string>
               </property>

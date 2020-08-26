@@ -204,6 +204,9 @@
                  <property name="maxLength">
                   <number>32</number>
                  </property>
+                 <property name="placeholderText">
+                  <string>ISSN</string>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -222,6 +225,9 @@
                <widget class="QLineEdit" name="callnum">
                 <property name="maxLength">
                  <number>64</number>
+                </property>
+                <property name="placeholderText">
+                 <string>Call Number</string>
                 </property>
                </widget>
               </item>
@@ -243,6 +249,9 @@
                 <property name="maxLength">
                  <number>64</number>
                 </property>
+                <property name="placeholderText">
+                 <string>LC Control Number</string>
+                </property>
                </widget>
               </item>
               <item row="4" column="0">
@@ -263,6 +272,9 @@
                <widget class="QLineEdit" name="deweynum">
                 <property name="maxLength">
                  <number>64</number>
+                </property>
+                <property name="placeholderText">
+                 <string>Dewey Class Number</string>
                 </property>
                </widget>
               </item>
@@ -368,6 +380,9 @@
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
+              <property name="placeholderText">
+               <string>Abstract</string>
+              </property>
              </widget>
             </item>
             <item row="9" column="0">
@@ -401,6 +416,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Place of Publication</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -657,6 +675,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="placeholderText">
+               <string>Categories</string>
+              </property>
               <property name="openLinks">
                <bool>false</bool>
               </property>
@@ -675,6 +696,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="placeholderText">
+               <string>Keywords</string>
               </property>
               <property name="openLinks">
                <bool>false</bool>
@@ -829,6 +853,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="placeholderText">
+               <string>Publisher</string>
+              </property>
               <property name="openLinks">
                <bool>false</bool>
               </property>
@@ -842,7 +869,11 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="title"/>
+             <widget class="QLineEdit" name="title">
+              <property name="placeholderText">
+               <string>Title</string>
+              </property>
+             </widget>
             </item>
             <item row="13" column="0">
              <widget class="QLabel" name="label_21">
@@ -852,7 +883,11 @@
              </widget>
             </item>
             <item row="13" column="1">
-             <widget class="QLineEdit" name="accession_number"/>
+             <widget class="QLineEdit" name="accession_number">
+              <property name="placeholderText">
+               <string>Accession Number</string>
+              </property>
+             </widget>
             </item>
             <item row="7" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -893,6 +928,9 @@
                 </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>MARC Tags</string>
                 </property>
                </widget>
               </item>

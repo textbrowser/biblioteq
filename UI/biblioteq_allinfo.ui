@@ -78,7 +78,7 @@
            <item row="0" column="1">
             <widget class="QLineEdit" name="idnumber">
              <property name="placeholderText">
-              <string>ID</string>
+              <string>ID Number</string>
              </property>
             </widget>
            </item>
