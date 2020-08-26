@@ -31,16 +31,25 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-253</y>
-         <width>1096</width>
-         <height>1121</height>
+         <y>0</y>
+         <width>1097</width>
+         <height>1110</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -120,7 +129,11 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="title_collection"/>
+               <widget class="QLineEdit" name="title_collection">
+                <property name="placeholderText">
+                 <string>Title</string>
+                </property>
+               </widget>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label">
@@ -137,6 +150,9 @@
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
+                <property name="placeholderText">
+                 <string>About</string>
+                </property>
                </widget>
               </item>
               <item row="4" column="0">
@@ -147,7 +163,11 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="id_collection"/>
+               <widget class="QLineEdit" name="id_collection">
+                <property name="placeholderText">
+                 <string>ID</string>
+                </property>
+               </widget>
               </item>
               <item row="4" column="1">
                <widget class="QTextEdit" name="notes_collection">
@@ -156,6 +176,9 @@
                 </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Notes</string>
                 </property>
                </widget>
               </item>
@@ -211,7 +234,11 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QLineEdit" name="accession_number"/>
+               <widget class="QLineEdit" name="accession_number">
+                <property name="placeholderText">
+                 <string>Accession Number</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -312,6 +339,9 @@
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
+                <property name="placeholderText">
+                 <string>ID</string>
+                </property>
                </widget>
               </item>
               <item row="2" column="0">
@@ -372,6 +402,9 @@
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
+                <property name="placeholderText">
+                 <string>Copyright</string>
+                </property>
                </widget>
               </item>
               <item row="8" column="0">
@@ -389,6 +422,9 @@
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
+                <property name="placeholderText">
+                 <string>Call Number</string>
+                </property>
                </widget>
               </item>
               <item row="6" column="1">
@@ -401,6 +437,9 @@
                 </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Reproduction Number</string>
                 </property>
                </widget>
               </item>
@@ -430,6 +469,9 @@
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
+                <property name="placeholderText">
+                 <string>Title</string>
+                </property>
                </widget>
               </item>
               <item row="6" column="0">
@@ -457,12 +499,18 @@
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
+                <property name="placeholderText">
+                 <string>Notes</string>
+                </property>
                </widget>
               </item>
               <item row="5" column="1">
                <widget class="QLineEdit" name="medium_item">
                 <property name="readOnly">
                  <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Medium</string>
                 </property>
                </widget>
               </item>
@@ -494,6 +542,9 @@
                 </property>
                 <property name="readOnly">
                  <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Other Number</string>
                 </property>
                </widget>
               </item>
@@ -545,6 +596,9 @@
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
                 </property>
+                <property name="placeholderText">
+                 <string>Creators</string>
+                </property>
                </widget>
               </item>
               <item row="0" column="0">
@@ -565,6 +619,9 @@
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
                 </property>
+                <property name="placeholderText">
+                 <string>Subject</string>
+                </property>
                </widget>
               </item>
               <item row="12" column="1">
@@ -577,6 +634,9 @@
                 </property>
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
+                </property>
+                <property name="placeholderText">
+                 <string>Format</string>
                 </property>
                </widget>
               </item>
@@ -591,6 +651,9 @@
                <widget class="QLineEdit" name="accession_number_item">
                 <property name="readOnly">
                  <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Accession Number</string>
                 </property>
                </widget>
               </item>

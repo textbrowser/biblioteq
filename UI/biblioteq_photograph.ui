@@ -27,9 +27,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>457</width>
-        <height>1135</height>
+        <y>-85</y>
+        <width>458</width>
+        <height>1122</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -153,6 +153,9 @@
            <property name="acceptRichText">
             <bool>false</bool>
            </property>
+           <property name="placeholderText">
+            <string>Copyright</string>
+           </property>
           </widget>
          </item>
          <item row="8" column="0">
@@ -167,6 +170,9 @@
            <property name="maxLength">
             <number>64</number>
            </property>
+           <property name="placeholderText">
+            <string>Call Number</string>
+           </property>
           </widget>
          </item>
          <item row="6" column="1">
@@ -176,6 +182,9 @@
            </property>
            <property name="acceptRichText">
             <bool>false</bool>
+           </property>
+           <property name="placeholderText">
+            <string>Reproduction Number</string>
            </property>
           </widget>
          </item>
@@ -215,6 +224,9 @@
            <property name="acceptRichText">
             <bool>false</bool>
            </property>
+           <property name="placeholderText">
+            <string>Notes</string>
+           </property>
           </widget>
          </item>
          <item row="1" column="0">
@@ -225,10 +237,18 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="title_item"/>
+          <widget class="QLineEdit" name="title_item">
+           <property name="placeholderText">
+            <string>Title</string>
+           </property>
+          </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="medium_item"/>
+          <widget class="QLineEdit" name="medium_item">
+           <property name="placeholderText">
+            <string>Medium</string>
+           </property>
+          </widget>
          </item>
          <item row="11" column="0">
           <widget class="QLabel" name="label_9">
@@ -256,10 +276,17 @@
            <property name="maxLength">
             <number>64</number>
            </property>
+           <property name="placeholderText">
+            <string>Other Number</string>
+           </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="id_item"/>
+          <widget class="QLineEdit" name="id_item">
+           <property name="placeholderText">
+            <string>ID</string>
+           </property>
+          </widget>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_10">
@@ -306,6 +333,9 @@
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
            </property>
+           <property name="placeholderText">
+            <string>Creators</string>
+           </property>
           </widget>
          </item>
          <item row="0" column="0">
@@ -326,6 +356,9 @@
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
            </property>
+           <property name="placeholderText">
+            <string>Subjects</string>
+           </property>
           </widget>
          </item>
          <item row="12" column="1">
@@ -339,6 +372,9 @@
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
            </property>
+           <property name="placeholderText">
+            <string>Format</string>
+           </property>
           </widget>
          </item>
          <item row="13" column="0">
@@ -349,7 +385,11 @@
           </widget>
          </item>
          <item row="13" column="1">
-          <widget class="QLineEdit" name="accession_number_item"/>
+          <widget class="QLineEdit" name="accession_number_item">
+           <property name="placeholderText">
+            <string>Accession Number</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
