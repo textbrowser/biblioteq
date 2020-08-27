@@ -773,6 +773,7 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
     }
 
   delete page;
+  m_ui.contents->setCurrentRow(value - 1);
   QApplication::restoreOverrideCursor();
 #else
   Q_UNUSED(location);
