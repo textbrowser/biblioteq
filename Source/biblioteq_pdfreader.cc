@@ -24,6 +24,7 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 #else
   m_ui.action_Contents->setEnabled(false);
   m_ui.action_Print->setEnabled(false);
+  m_ui.action_Print_Preview->setEnabled(false);
   m_ui.action_Save_As->setEnabled(false);
   m_ui.case_sensitive->setEnabled(false);
   m_ui.find->setEnabled(false);
@@ -191,6 +192,7 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
   if(!m_document)
     {
       m_ui.action_Print->setEnabled(false);
+      m_ui.action_Print_Preview->setEnabled(false);
       m_ui.action_Save_As->setEnabled(false);
       m_ui.page->setMaximum(1);
       m_ui.page_1->setText(tr("The PDF data could not be processed."));
@@ -226,6 +228,7 @@ void biblioteq_pdfreader::load(const QString &fileName)
   if(!m_document)
     {
       m_ui.action_Print->setEnabled(false);
+      m_ui.action_Print_Preview->setEnabled(false);
       m_ui.action_Save_As->setEnabled(false);
       m_ui.page->setMaximum(1);
       m_ui.page_1->setText(tr("The PDF data could not be processed."));
@@ -398,6 +401,10 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
   if(!printer)
     return;
 
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  if(!m_document)
+    return;
+
   QProgressDialog progress(this);
   auto *widget = qobject_cast<QWidget *> (sender());
   bool preview = !widget || !widget->isVisible();
@@ -469,10 +476,15 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
     }
 
   painter.end();
+#endif
 }
 
 void biblioteq_pdfreader::slotPrintPreview(void)
 {
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  if(!m_document)
+    return;
+
   QPrinter printer;
   QScopedPointer<QPrintPreviewDialog> dialog
     (new QPrintPreviewDialog(&printer, this));
@@ -487,6 +499,7 @@ void biblioteq_pdfreader::slotPrintPreview(void)
   printer.setPageSize(QPrinter::Letter);
   dialog->exec();
   QApplication::processEvents();
+#endif
 }
 
 void biblioteq_pdfreader::slotSaveAs(void)
