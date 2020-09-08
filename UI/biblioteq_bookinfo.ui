@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-113</y>
          <width>1067</width>
          <height>1152</height>
         </rect>
@@ -206,7 +206,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
              <widget class="QGroupBox" name="generalGroup">
@@ -485,42 +485,34 @@
                      </item>
                     </layout>
                    </item>
-                   <item row="6" column="0">
-                    <widget class="QLabel" name="label_10">
-                     <property name="text">
-                      <string>Location</string>
+                   <item row="6" column="1">
+                    <widget class="QDoubleSpinBox" name="price">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimum">
+                      <double>0.010000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>10000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.010000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>0.010000000000000</double>
                      </property>
                     </widget>
                    </item>
-                   <item row="6" column="1">
-                    <layout class="QHBoxLayout" name="_5">
-                     <item>
-                      <widget class="QComboBox" name="location">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="sizeAdjustPolicy">
-                        <enum>QComboBox::AdjustToContents</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                    </layout>
+                   <item row="6" column="0">
+                    <widget class="QLabel" name="label_16">
+                     <property name="text">
+                      <string>Price</string>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -757,35 +749,6 @@
                      </item>
                     </layout>
                    </item>
-                   <item row="4" column="0">
-                    <widget class="QLabel" name="label_16">
-                     <property name="text">
-                      <string>Price</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="4" column="1">
-                    <widget class="QDoubleSpinBox" name="price">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimum">
-                      <double>0.010000000000000</double>
-                     </property>
-                     <property name="maximum">
-                      <double>10000.000000000000000</double>
-                     </property>
-                     <property name="singleStep">
-                      <double>0.010000000000000</double>
-                     </property>
-                     <property name="value">
-                      <double>0.010000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
                    <item row="5" column="0">
                     <widget class="QLabel" name="label_9">
                      <property name="text">
@@ -855,6 +818,43 @@
                      </property>
                      <property name="openLinks">
                       <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <layout class="QHBoxLayout" name="_5">
+                     <item>
+                      <widget class="QComboBox" name="location">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="sizeAdjustPolicy">
+                        <enum>QComboBox::AdjustToContents</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="label_10">
+                     <property name="text">
+                      <string>Location</string>
                      </property>
                     </widget>
                    </item>
@@ -1448,14 +1448,14 @@
   <tabstop>language</tabstop>
   <tabstop>category</tabstop>
   <tabstop>monetary_units</tabstop>
-  <tabstop>location</tabstop>
+  <tabstop>price</tabstop>
   <tabstop>edition</tabstop>
   <tabstop>originality</tabstop>
   <tabstop>condition</tabstop>
   <tabstop>quantity</tabstop>
   <tabstop>copiesButton</tabstop>
   <tabstop>showUserButton</tabstop>
-  <tabstop>price</tabstop>
+  <tabstop>location</tabstop>
   <tabstop>binding</tabstop>
   <tabstop>keyword</tabstop>
   <tabstop>isbnAvailableCheckBox</tabstop>
