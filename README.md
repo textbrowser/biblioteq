@@ -40,4 +40,5 @@ BiblioteQ is free and open library software.
 <li>Transactional database queries.</li>
 <li>True PostgreSQL and SQLite pagination.</li>
 <li>Uniform functionality across various platforms.</li>
+<li>Windows portable.</li>
 </ul>
