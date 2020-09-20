@@ -3194,8 +3194,10 @@ void biblioteq_book::slotGo(void)
 
       if(!m_engWindowTitle.isEmpty())
 	if(!id.isbn13->text().trimmed().isEmpty())
-	  searchstr.append("LOWER(isbn13) LIKE LOWER('%" +
-			   id.isbn13->text().trimmed() + "%') AND ");
+	  {
+	    searchstr.append("LOWER(isbn13) LIKE LOWER('%' || ? || '%') AND ");
+	    values.append(id.isbn13->text().trimmed());
+	  }
 
       searchstr.append
 	(UNACCENT +
@@ -3212,9 +3214,10 @@ void biblioteq_book::slotGo(void)
       values.append(biblioteq_myqstring::escape(id.deweynum->text().trimmed()));
 
       if(id.edition->currentIndex() != 0)
-	searchstr.append("edition = '" +
-			 id.edition->currentText().trimmed() +
-			 "' AND ");
+	{
+	  searchstr.append("edition = ? AND ");
+	  values.append(id.edition->currentText().trimmed());
+	}
 
       searchstr.append
 	(UNACCENT + "(LOWER(author)) LIKE " + UNACCENT +
@@ -3223,9 +3226,10 @@ void biblioteq_book::slotGo(void)
 	(biblioteq_myqstring::escape(id.author->toPlainText().trimmed()));
 
       if(id.publication_date_enabled->isChecked())
-	searchstr.append("SUBSTR(pdate, 7) = '" +
-			 id.publication_date->date().toString("yyyy") +
-			 "' AND ");
+	{
+	  searchstr.append("SUBSTR(pdate, 7) = ? AND ");
+	  values.append(id.publication_date->date().toString("yyyy"));
+	}
 
       searchstr.append
 	(UNACCENT + "(LOWER(publisher)) LIKE " + UNACCENT +
@@ -3279,13 +3283,16 @@ void biblioteq_book::slotGo(void)
 	(biblioteq_myqstring::escape(id.description->toPlainText().trimmed()));
 
       if(id.quantity->value() != 0)
-	searchstr.append("AND quantity = " + id.quantity->text() + " ");
+	searchstr.append
+	  ("AND quantity = " + QString::number(id.quantity->value()) + " ");
 
       if(id.location->currentIndex() != 0)
-	searchstr.append("AND " + UNACCENT + "(location) = " +
-			 UNACCENT + "(" + ESCAPE + "'" +
-			 biblioteq_myqstring::escape
-			 (id.location->currentText().trimmed()) + "') ");
+	{
+	  searchstr.append
+	    ("AND " + UNACCENT + "(location) = " + UNACCENT + "(?) ");
+	  values.append
+	    (biblioteq_myqstring::escape(id.location->currentText().trimmed()));
+	}
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(marc_tags, ''))) LIKE " +
