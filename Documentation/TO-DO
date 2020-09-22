@@ -470,3 +470,4 @@
 251. Parse MARC tags for journals and magazines. (Done)
 252. Synchronize page selection in PDF reader. (Done)
 253. Parameterize all SQL search queries. (TBD)
+254. Qt 5.15.1 LTS warnings. (TBD)

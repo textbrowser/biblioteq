@@ -1014,7 +1014,11 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 	    str = str.mid(0, str.length() - 1);
 
 	  if(!str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+	    stream << str << Qt::endl;
+#else
 	    stream << str << endl;
+#endif
 
 	  for(int i = 0; i < table->rowCount(); i++)
 	    {
@@ -1039,7 +1043,11 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 		str = str.mid(0, str.length() - 1);
 
 	      if(!str.isEmpty())
-		stream << str << endl;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		stream << str << Qt::endl;
+#else
+	        stream << str << endl;
+#endif
 	    }
 
 	  file.close();

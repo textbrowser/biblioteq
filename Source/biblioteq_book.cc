@@ -1113,7 +1113,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
   while(!keys.isEmpty())
     {
       const QString &key(keys.takeFirst());
-      int index = m_openLibraryResults.indexOf(key);
+      int index = m_openLibraryResults.indexOf(key.toUtf8());
 
       if(index > -1)
 	{
