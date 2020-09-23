@@ -131,7 +131,13 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     *notImported = 0;
 
   QStringList list(m_ui.books_ignored_rows->text().trimmed().
-		   split(' ', QString::SkipEmptyParts));
+		   split(' ',
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+			 Qt::SkipEmptyParts
+#else
+			 Qt::SkipEmptyParts
+#endif
+			 ));
   qint64 ct = 0;
 
   while(ct++, !file.atEnd())

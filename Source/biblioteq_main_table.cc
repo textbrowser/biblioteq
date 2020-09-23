@@ -99,7 +99,12 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
       QList<int> intList;
       QStringList strList
 	(states[states.keys().at(i)].split(",",
-					   QString::SkipEmptyParts));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+					   Qt::SkipEmptyParts
+#else
+					   QString::SkipEmptyParts
+#endif
+					   ));
 
       for(int j = 0; j < strList.size(); j++)
 	if(strList.at(j).toInt() >= 0)

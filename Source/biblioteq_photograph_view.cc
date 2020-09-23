@@ -102,8 +102,13 @@ void biblioteq_photograph_view::slotSave(void)
 
   if(item)
     emit save
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+      (item->pixmap().toImage().transformed(QTransform().rotate(m_degrees),
+					    Qt::SmoothTransformation),
+#else
       (item->pixmap().toImage().transformed(QMatrix().rotate(m_degrees),
 					    Qt::SmoothTransformation),
+#endif
        m_format,
        m_oid);
 }

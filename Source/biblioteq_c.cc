@@ -1645,7 +1645,13 @@ void biblioteq::slotAllGo(void)
 	    {
 	      QStringList words
 		(al.category->toPlainText().trimmed().
-		 split(QRegExp("\\s+"), QString::SkipEmptyParts));
+		 split(QRegExp("\\s+"),
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		       Qt::SkipEmptyParts
+#else
+		       QString::SkipEmptyParts
+#endif
+		       ));
 
 	      if(!words.isEmpty())
 		{
@@ -1767,7 +1773,13 @@ void biblioteq::slotAllGo(void)
 	    {
 	      QStringList words
 		(al.description->toPlainText().trimmed().
-		 split(QRegExp("\\s+"), QString::SkipEmptyParts));
+		 split(QRegExp("\\s+"),
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		       Qt::SkipEmptyParts
+#else
+		       QString::SkipEmptyParts
+#endif
+		       ));
 
 	      if(!words.isEmpty())
 		{
@@ -1848,7 +1860,13 @@ void biblioteq::slotAllGo(void)
 	    {
 	      QStringList words
 		(al.keyword->toPlainText().trimmed().
-		 split(QRegExp("\\s+"), QString::SkipEmptyParts));
+		 split(QRegExp("\\s+"),
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		       Qt::SkipEmptyParts
+#else
+		       QString::SkipEmptyParts
+#endif
+		       ));
 
 	      if(!words.isEmpty())
 		{

@@ -3753,7 +3753,12 @@ void biblioteq_book::slotPrintCallDewey(void)
   QStringList list
     ((id.callnum->text().trimmed() + " " +
       id.deweynum->text().trimmed()).split(QRegExp("\\W+"),
-					   QString::SkipEmptyParts));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+					   Qt::SkipEmptyParts
+#else
+					   QString::SkipEmptyParts
+#endif
+					   ));
 
   html += "<html>";
 
