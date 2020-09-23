@@ -135,7 +135,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 			 Qt::SkipEmptyParts
 #else
-			 Qt::SkipEmptyParts
+			 QString::SkipEmptyParts
 #endif
 			 ));
   qint64 ct = 0;
