@@ -3255,26 +3255,28 @@ void biblioteq_book::slotGo(void)
 	}
 
       if(id.language->currentIndex() != 0)
-	searchstr.append(UNACCENT + "(language) = " + UNACCENT +
-			 "(" + ESCAPE + "'" +
-			 biblioteq_myqstring::
-			 escape(id.language->currentText().trimmed()) +
-			 "') AND ");
+	{
+	  searchstr.append(UNACCENT + "(language) = " + UNACCENT + "(?) AND ");
+	  values.append
+	    (biblioteq_myqstring::escape(id.language->currentText().trimmed()));
+	}
 
       if(id.monetary_units->currentIndex() != 0)
-	searchstr.append
-	  (UNACCENT + "(monetary_units) = " + UNACCENT
-	   + "(" + ESCAPE + "'" +
-	   biblioteq_myqstring::escape(id.monetary_units->currentText().
-				       trimmed()) + "') AND ");
+	{
+	  searchstr.append
+	    (UNACCENT + "(monetary_units) = " + UNACCENT + "(?) AND ");
+	  values.append
+	    (biblioteq_myqstring::
+	     escape(id.monetary_units->currentText().trimmed()));
+	}
 
       if(id.binding->currentIndex() != 0)
-	searchstr.append
-	  (UNACCENT + "(binding_type) = " + UNACCENT +
-	   "(" + ESCAPE + "'" +
-	   biblioteq_myqstring::
-	   escape(id.binding->currentText().trimmed()) +
-	   "') AND ");
+	{
+	  searchstr.append
+	    (UNACCENT + "(binding_type) = " + UNACCENT + "(?) AND ");
+	  values.append
+	    (biblioteq_myqstring::escape(id.binding->currentText().trimmed()));
+	}
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
@@ -3306,18 +3308,22 @@ void biblioteq_book::slotGo(void)
 	(biblioteq_myqstring::escape(id.keyword->toPlainText().trimmed()));
 
       if(id.originality->currentIndex() != 0)
-	searchstr.append
-	  ("AND " + UNACCENT + "(originality) = " + UNACCENT + "(" +
-	   ESCAPE + "'" +
-	   biblioteq_myqstring::escape(id.originality->currentText().
-				       trimmed()) + "') ");
+	{
+	  searchstr.append
+	    ("AND " + UNACCENT + "(originality) = " + UNACCENT + "(?) ");
+	  values.append
+	    (biblioteq_myqstring::
+	     escape(id.originality->currentText().trimmed()));
+	}
 
       if(id.condition->currentIndex() != 0)
-	searchstr.append
-	  ("AND " + UNACCENT + "(condition) = " +
-	   UNACCENT + "(" + ESCAPE + "'" +
-	   biblioteq_myqstring::escape(id.condition->currentText().
-				       trimmed()) + "') ");
+	{
+	  searchstr.append
+	    ("AND " + UNACCENT + "(condition) = " + UNACCENT + "(?) ");
+	  values.append
+	    (biblioteq_myqstring::
+	     escape(id.condition->currentText().trimmed()));
+	}
 
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(accession_number, ''))) LIKE " +
