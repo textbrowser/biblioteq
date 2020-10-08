@@ -471,5 +471,6 @@
 252. Synchronize page selection in PDF reader. (Done)
 253. Parameterize all SQL search queries:
      	Source/biblioteq_book.cc (Done)
+	Source/biblioteq_c.cc (Done)
 254. Qt 5.15.1 LTS warnings. (Done)
 255. Display all files in a separate container. (TBD)

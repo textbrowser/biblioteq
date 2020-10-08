@@ -1734,39 +1734,42 @@ void biblioteq::slotAllGo(void)
 	  if(al.language->currentIndex() != 0)
 	    {
 	      if(caseinsensitive)
-		str.append(UNACCENT + "(LOWER(language)) = " +
-			   UNACCENT + "(" + ESCAPE + "'" +
-			   biblioteq_myqstring::escape
-			   (al.language->currentText().trimmed(),
-			    true) +
-			   "') AND ");
+		{
+		  str.append
+		    (UNACCENT + "(LOWER(language)) = " + UNACCENT + "(?) AND ");
+		  values.append
+		    (biblioteq_myqstring::
+		     escape(al.language->currentText().trimmed(), true));
+		}
 	      else
-		str.append(UNACCENT + "(language) = " + UNACCENT +
-			   "(" + ESCAPE + "'" +
-			   biblioteq_myqstring::escape
-			   (al.language->currentText().trimmed()) +
-			   "') AND ");
+		{
+		  str.append
+		    (UNACCENT + "(language) = " + UNACCENT + "(?) AND ");
+		  values.append
+		    (biblioteq_myqstring::
+		     escape(al.language->currentText().trimmed()));
+		}
 	    }
 
 	  if(al.monetary_units->currentIndex() != 0)
 	    {
 	      if(caseinsensitive)
-		str.append
-		  (UNACCENT + "(LOWER(monetary_units)) = " +
-		   UNACCENT + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::
-		   escape(al.monetary_units->
-			  currentText().trimmed(),
-			  true) +
-		   "') AND ");
+		{
+		  str.append
+		    (UNACCENT + "(LOWER(monetary_units)) = " +
+		     UNACCENT + "(?) AND ");
+		  values.append
+		    (biblioteq_myqstring::
+		     escape(al.monetary_units->currentText().trimmed(), true));
+		}
 	      else
-		str.append
-		  (UNACCENT + "(monetary_units) = " + UNACCENT
-		   + "(" + ESCAPE + "'" +
-		   biblioteq_myqstring::
-		   escape(al.monetary_units->
-			  currentText().trimmed()) +
-		   "') AND ");
+		{
+		  str.append
+		    (UNACCENT + "(monetary_units) = " + UNACCENT + "(?) AND ");
+		  values.append
+		    (biblioteq_myqstring::
+		     escape(al.monetary_units->currentText().trimmed()));
+		}
 	    }
 
 	  if(al.abstract_checkbox->isChecked())
