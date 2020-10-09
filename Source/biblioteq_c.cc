@@ -2763,6 +2763,7 @@ void biblioteq::slotDisconnect(void)
     QApplication::restoreOverrideCursor();
 
   br.show_password->setChecked(false);
+  m_allSearchShown = false;
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;

@@ -320,6 +320,7 @@ class biblioteq: public QMainWindow
   biblioteq_dbenumerations *db_enumerations;
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
+  bool m_allSearchShown;
   int m_lastSearchType;
   qint64 m_pages;
   qint64 m_queryOffset;

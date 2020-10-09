@@ -217,6 +217,7 @@ biblioteq::biblioteq(void):QMainWindow()
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
 
+  m_allSearchShown = false;
   m_connected_bar_label = nullptr;
   m_error_bar_label = nullptr;
   m_idCt = 0;
@@ -518,7 +519,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(bb.overdueButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotSearch(void)));
+	  SLOT(slotReset(void)));
   connect(al.cancelButton, SIGNAL(clicked(void)),
 	  m_all_diag, SLOT(close(void)));
   connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
@@ -3798,6 +3799,30 @@ void biblioteq::slotReset(void)
 
 	  actions.clear();
 	}
+      else
+	{
+	  al.abstract_checkbox->setChecked(false);
+	  al.available->setChecked(false);
+	  al.caseinsensitive->setChecked(false);
+	  al.categories_checkbox->setChecked(false);
+	  al.category->clear();
+	  al.description->clear();
+	  al.idnumber->clear();
+	  al.idnumber->setFocus();
+	  al.keyword->clear();
+	  al.keywords_checkbox->setChecked(false);
+	  al.language->setCurrentIndex(0);
+	  al.location->setCurrentIndex(0);
+	  al.monetary_units->clear();
+	  al.price->setMinimum(-0.01);
+	  al.price->setValue(-0.01);
+	  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+	  al.publication_date_enabled->setChecked(false);
+	  al.publisher->clear();
+	  al.quantity->setMinimum(0);
+	  al.quantity->setValue(0);
+	  al.title->clear();
+	}
     }
 }
 
@@ -3957,78 +3982,81 @@ void biblioteq::slotSearch(void)
       return;
     }
 
+  QString errorstr("");
+
+  if(m_allSearchShown)
+    goto done_label;
+
   /*
   ** Hide certain fields if we're a regular user.
   */
 
   biblioteq_misc_functions::hideAdminFields(m_all_diag, m_roles);
-  al.idnumber->clear();
-  al.title->clear();
-  al.publisher->clear();
-  al.categories_checkbox->setChecked(false);
-  al.category->clear();
-  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
-  al.publication_date_enabled->setChecked(false);
-  al.price->setMinimum(-0.01);
-  al.price->setValue(-0.01);
-  al.quantity->setMinimum(0);
-  al.quantity->setValue(0);
   al.abstract_checkbox->setChecked(false);
-  al.description->clear();
-  al.language->clear();
-  al.monetary_units->clear();
-  al.location->clear();
-  al.keyword->clear();
-  al.keywords_checkbox->setChecked(false);
   al.available->setChecked(false);
   al.caseinsensitive->setChecked(false);
+  al.categories_checkbox->setChecked(false);
+  al.category->clear();
+  al.description->clear();
+  al.idnumber->clear();
+  al.keyword->clear();
+  al.keywords_checkbox->setChecked(false);
+  al.language->clear();
+  al.location->clear();
+  al.monetary_units->clear();
   al.photograph_reminder_label->setVisible(true); /*
 						  ** Hidden by
 						  ** hideAdminFields().
 						  */
+  al.price->setMinimum(-0.01);
+  al.price->setValue(-0.01);
+  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+  al.publication_date_enabled->setChecked(false);
+  al.publisher->clear();
+  al.quantity->setMinimum(0);
+  al.quantity->setValue(0);
+  al.title->clear();
 
   /*
   ** Populate combination boxes.
   */
 
-  QString errorstr("");
-
   QApplication::setOverrideCursor(Qt::WaitCursor);
   al.language->addItems
-    (biblioteq_misc_functions::getLanguages(m_db,
-					    errorstr));
+    (biblioteq_misc_functions::getLanguages(m_db, errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the languages.")),
-       errorstr, __FILE__, __LINE__);
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the languages.")),
+	     errorstr,
+	     __FILE__,
+	     __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   al.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(m_db,
-						errorstr));
+    (biblioteq_misc_functions::getMonetaryUnits(m_db, errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the monetary units.")),
-       errorstr, __FILE__, __LINE__);
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the monetary units.")),
+	     errorstr,
+	     __FILE__,
+	     __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   al.location->addItems
-    (biblioteq_misc_functions::getLocations(m_db,
-					    "",
-					    errorstr));
+    (biblioteq_misc_functions::getLocations(m_db, "", errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the locations.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   al.language->insertItem(0, tr("Any"));
   al.monetary_units->insertItem(0, tr("Any"));
@@ -4040,6 +4068,8 @@ void biblioteq::slotSearch(void)
   al.language->setCurrentIndex(0);
   al.monetary_units->setCurrentIndex(0);
   al.idnumber->setFocus();
+ done_label:
+  m_allSearchShown = true;
 
   if(!m_all_diag->isVisible())
     m_all_diag->updateGeometry();
@@ -4047,8 +4077,8 @@ void biblioteq::slotSearch(void)
   static bool resized = false;
 
   if(!resized)
-    m_all_diag->resize(qRound(0.85 * size().width()),
-		       qRound(0.85 * size().height()));
+    m_all_diag->resize
+      (qRound(0.85 * size().width()), qRound(0.85 * size().height()));
 
   resized = true;
 
