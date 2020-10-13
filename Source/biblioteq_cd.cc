@@ -1421,9 +1421,7 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.format->currentIndex() != 0)
 	searchstr.append
-	  (UNACCENT + "(cdformat) = " + UNACCENT + "(" + ESCAPE + "'" +
-	   biblioteq_myqstring::
-	   escape(cd.format->currentText().trimmed()) + "') AND ");
+	  (UNACCENT + "(cdformat) = " + UNACCENT + "(?) AND ");
 
       searchstr.append
 	("(" + UNACCENT + "(LOWER(cd.artist)) LIKE " + UNACCENT +
@@ -1441,21 +1439,16 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.no_of_discs->value() > 0)
 	searchstr.append("cddiskcount = ").append
-	  (cd.no_of_discs->text()).append(" AND ");
+	  (QString::number(cd.no_of_discs->value())).append(" AND ");
 
       if(cd.runtime->text() != "00:00:00")
-	searchstr.append("cdruntime = '" + cd.runtime->text() +
-			 "' AND ");
+	searchstr.append("cdruntime = '" + cd.runtime->text() + "' AND ");
 
       if(cd.audio->currentIndex() != 0)
-	searchstr.append("cdaudio = '" +
-			 cd.audio->currentText().trimmed() +
-			 "' AND ");
+	searchstr.append("cdaudio = " + UNACCENT + "(?) AND ");
 
       if(cd.recording_type->currentIndex() != 0)
-	searchstr.append("cdrecording = '" +
-			 cd.recording_type->currentText().trimmed() +
-			 "' AND ");
+	searchstr.append("cdrecording = " + UNACCENT + "(?) AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
@@ -1501,7 +1494,8 @@ void biblioteq_cd::slotGo(void)
 	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
 
       if(cd.quantity->value() != 0)
-	searchstr.append(" AND quantity = " + cd.quantity->text());
+	searchstr.append
+	  (" AND quantity = " + QString::number(cd.quantity->value()));
 
       if(cd.location->currentIndex() != 0)
 	searchstr.append
@@ -1538,11 +1532,15 @@ void biblioteq_cd::slotGo(void)
       query.prepare(searchstr);
       query.addBindValue(cd.id->text().trimmed());
       query.addBindValue
+	(biblioteq_myqstring::escape(cd.format->currentText().trimmed()));
+      query.addBindValue
 	(biblioteq_myqstring::escape(cd.artist->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.artist->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.composer->toPlainText().trimmed()));
+      query.addBindValue(cd.audio->currentText().trimmed());
+      query.addBindValue(cd.recording_type->currentText().trimmed());
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.title->text().trimmed()));
       query.addBindValue
