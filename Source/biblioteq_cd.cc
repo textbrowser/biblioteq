@@ -1492,10 +1492,7 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.location->currentIndex() != 0)
 	searchstr.append
-	  (" AND " + UNACCENT + "(location) = " + UNACCENT + "(" +
-	   ESCAPE + "'" +
-	   biblioteq_myqstring::escape(cd.location->currentText().
-				       trimmed()) + "') ");
+	  (" AND " + UNACCENT + "(location) = " + UNACCENT + "(?) ");
 
       searchstr.append
 	(" AND " + UNACCENT +
@@ -1524,16 +1521,24 @@ void biblioteq_cd::slotGo(void)
 		       "cd.front_cover");
       query.prepare(searchstr);
       query.addBindValue(cd.id->text().trimmed());
-      query.addBindValue
-	(biblioteq_myqstring::escape(cd.format->currentText().trimmed()));
+
+      if(cd.format->currentIndex() != 0)
+	query.addBindValue
+	  (biblioteq_myqstring::escape(cd.format->currentText().trimmed()));
+
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.artist->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.artist->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.composer->toPlainText().trimmed()));
-      query.addBindValue(cd.audio->currentText().trimmed());
-      query.addBindValue(cd.recording_type->currentText().trimmed());
+
+      if(cd.audio->currentIndex() != 0)
+	query.addBindValue(cd.audio->currentText().trimmed());
+
+      if(cd.recording_type->currentIndex() != 0)
+	query.addBindValue(cd.recording_type->currentText().trimmed());
+
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.title->text().trimmed()));
       query.addBindValue
@@ -1541,15 +1546,25 @@ void biblioteq_cd::slotGo(void)
 	 escape(cd.recording_label->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.category->toPlainText().trimmed()));
-      query.addBindValue
-	(biblioteq_myqstring::escape(cd.language->currentText().trimmed()));
-      query.addBindValue
-	(biblioteq_myqstring::
-	 escape(cd.monetary_units->currentText().trimmed()));
+
+      if(cd.language->currentIndex() != 0)
+	query.addBindValue
+	  (biblioteq_myqstring::escape(cd.language->currentText().trimmed()));
+
+      if(cd.monetary_units->currentIndex() != 0)
+	query.addBindValue
+	  (biblioteq_myqstring::
+	   escape(cd.monetary_units->currentText().trimmed()));
+
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.description->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.keyword->toPlainText().trimmed()));
+
+      if(cd.location->currentIndex() != 0)
+	query.addBindValue
+	  (biblioteq_myqstring::escape(cd.location->currentText().trimmed()));
+
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.accession_number->text().trimmed()));
       (void) qmain->populateTable
