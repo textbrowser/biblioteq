@@ -1473,18 +1473,11 @@ void biblioteq_cd::slotGo(void)
 	}
 
       if(cd.language->currentIndex() != 0)
-	searchstr.append
-	  (UNACCENT + "(language) = " + UNACCENT + "(" + ESCAPE + "'" +
-	   biblioteq_myqstring::
-	   escape(cd.language->currentText().trimmed()) +
-	   "') AND ");
+	searchstr.append(UNACCENT + "(language) = " + UNACCENT + "(?) AND ");
 
       if(cd.monetary_units->currentIndex() != 0)
 	searchstr.append
-	  (UNACCENT + "(monetary_units) = " + UNACCENT + "(" + ESCAPE + "'" +
-	   biblioteq_myqstring::escape(cd.monetary_units->currentText().
-				       trimmed()) +
-	   "') AND ");
+	  (UNACCENT + "(monetary_units) = " + UNACCENT + "(?) AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(description)) LIKE " + UNACCENT +
@@ -1548,6 +1541,11 @@ void biblioteq_cd::slotGo(void)
 	 escape(cd.recording_label->toPlainText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.category->toPlainText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::escape(cd.language->currentText().trimmed()));
+      query.addBindValue
+	(biblioteq_myqstring::
+	 escape(cd.monetary_units->currentText().trimmed()));
       query.addBindValue
 	(biblioteq_myqstring::escape(cd.description->toPlainText().trimmed()));
       query.addBindValue

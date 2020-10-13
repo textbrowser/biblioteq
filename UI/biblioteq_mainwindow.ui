@@ -117,7 +117,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>342</height>
+          <height>340</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -387,7 +387,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -464,6 +464,9 @@
     <addaction name="actionDeleteEntry"/>
     <addaction name="actionDuplicateEntry"/>
     <addaction name="actionModifyEntry"/>
+    <addaction name="separator"/>
+    <addaction name="action_Database_Enumerations"/>
+    <addaction name="separator"/>
     <addaction name="action_VacuumDatabase"/>
    </widget>
    <widget class="QMenu" name="menu_View">
@@ -1229,6 +1232,14 @@
   <action name="action_VacuumDatabase">
    <property name="text">
     <string>&amp;Vacuum Database</string>
+   </property>
+  </action>
+  <action name="action_Database_Enumerations">
+   <property name="text">
+    <string>Database &amp;Enumerations</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>
