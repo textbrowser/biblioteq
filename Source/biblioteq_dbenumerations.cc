@@ -465,7 +465,7 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 
   if(parent && !resized)
     resize(qRound(0.85 * parent->size().width()),
-	   parent->size().height());
+	   qRound(0.85 * parent->size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(this, parent);
