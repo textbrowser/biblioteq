@@ -2838,6 +2838,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionRequests->setEnabled(false);
   ui.actionRequests->setToolTip(tr("Item Requests"));
   ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+  ui.action_Database_Enumerations->setEnabled(false);
   ui.graphicsView->scene()->clear();
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));

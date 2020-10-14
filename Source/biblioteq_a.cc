@@ -610,6 +610,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportAsCSV(void)));
+  connect(ui.action_Database_Enumerations,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowDbEnumerations(void)));
 #if QT_VERSION >= 0x050000
   ab.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   bb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
@@ -685,6 +689,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
+  ui.action_Database_Enumerations->setEnabled(false);
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
     (false);
   ui.action_Upgrade_SQLite_Schema->setEnabled(false);
@@ -1167,6 +1172,8 @@ void biblioteq::adminSetup(void)
 	(m_roles.contains("administrator"));
       ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
 	(m_roles.contains("administrator"));
+      ui.action_Database_Enumerations->setEnabled
+	(ui.actionDatabase_Enumerations->isEnabled());
     }
   else
     {
@@ -1174,6 +1181,7 @@ void biblioteq::adminSetup(void)
       ui.actionDatabase_Enumerations->setEnabled(true);
       ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
 	(true);
+      ui.action_Database_Enumerations->setEnabled(true);
     }
 
   ui.actionRequests->setToolTip(tr("Item Requests"));
@@ -1204,6 +1212,7 @@ void biblioteq::adminSetup(void)
 	  ui.actionDatabase_Enumerations->setEnabled(true);
 	  ui.actionPopulate_Database_Enumerations_Browser_on_Display->
 	    setEnabled(true);
+	  ui.action_Database_Enumerations->setEnabled(true);
 	}
     }
   else
