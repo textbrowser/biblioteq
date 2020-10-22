@@ -1409,11 +1409,10 @@ void biblioteq_dvd::slotGo(void)
 
       if(dvd.no_of_discs->value() > 0)
 	searchstr.append("dvddiskcount = ").append
-	  (dvd.no_of_discs->text()).append(" AND ");
+	  (QString::number(dvd.no_of_discs->value())).append(" AND ");
 
       if(dvd.runtime->text() != "00:00:00")
-	searchstr.append("dvdruntime = '" + dvd.runtime->text() +
-			 "' AND ");
+	searchstr.append("dvdruntime = '" + dvd.runtime->text() + "' AND ");
 
       if(dvd.rating->currentIndex() != 0)
 	searchstr.append
