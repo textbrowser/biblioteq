@@ -518,6 +518,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotListReservedItems(void)));
   connect(bb.overdueButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotListOverdueItems(void)));
+  connect(br.password, SIGNAL(returnPressed(void)), this,
+	  SLOT(slotConnectDB(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(al.cancelButton, SIGNAL(clicked(void)),
@@ -3931,8 +3933,7 @@ void biblioteq::slotSavePassword(void)
     {
       QMessageBox::critical
 	(m_pass_diag, tr("BiblioteQ: User Error"),
-	 tr("The password must be at least eight characters "
-	    "long."));
+	 tr("The password must be at least eight characters long."));
       QApplication::processEvents();
       pass.password->selectAll();
       pass.password->setFocus();
