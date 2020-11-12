@@ -50,27 +50,27 @@ TARGET		= BiblioteQ
 TEMPLATE        = app
 
 biblioteq.files		= BiblioteQ.app/*
-biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
+biblioteq.path		= /Applications/BiblioteQ.Qt5_9.d/BiblioteQ.app
 conf.files		= biblioteq.conf
-conf.path		= /Applications/BiblioteQ.d
+conf.path		= /Applications/BiblioteQ.Qt5_9.d
 doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
-doc1.path		= /Applications/BiblioteQ.d/Documentation
+doc1.path		= /Applications/BiblioteQ.Qt5_9.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
-doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
+doc2.path		= /Applications/BiblioteQ.Qt5_9.d/Documentation/Contributed
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
 lupdate.path            = .
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 macdeployqt.path	= BiblioteQ.app
-postinstall.extra	= cp -r BiblioteQ.app /Applications/BiblioteQ.d/.
-postinstall.path	= /Applications/BiblioteQ.d
-preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
-preinstall.path         = /Applications/BiblioteQ.d
+postinstall.extra	= cp -r BiblioteQ.app /Applications/BiblioteQ.Qt5_9.d/.
+postinstall.path	= /Applications/BiblioteQ.Qt5_9.d
+preinstall.extra        = rm -rf /Applications/BiblioteQ.Qt5_9.d/BiblioteQ.app/*
+preinstall.path         = /Applications/BiblioteQ.Qt5_9.d
 sql.files		= SQL/*.sql
-sql.path		= /Applications/BiblioteQ.d
+sql.path		= /Applications/BiblioteQ.Qt5_9.d
 translations.files	= Translations/*.qm
-translations.path	= /Applications/BiblioteQ.d/Translations
+translations.path	= /Applications/BiblioteQ.Qt5_9.d/Translations
 
 INSTALLS	= preinstall \
 		  macdeployqt \
