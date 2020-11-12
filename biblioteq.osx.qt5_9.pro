@@ -24,7 +24,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -mtune=generic \
                           -pedantic \
                           -std=c++11
-QT		+= network sql
+QT		+= network printsupport sql widgets
 QT		-= webkit
 
 QMAKE_EXTRA_TARGETS = purge
