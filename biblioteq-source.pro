@@ -39,7 +39,8 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_copy_editor.h \
 		  Source/biblioteq_copy_editor_book.h \
                   Source/biblioteq_dbenumerations.h \
-		  Source/biblioteq_dvd.h \
+                  Source/biblioteq_dvd.h \
+                  Source/biblioteq_files.h \
 		  Source/biblioteq_filesize_table_item.h \
                   Source/biblioteq_generic_thread.h \
                   Source/biblioteq_grey_literature.h \
@@ -70,6 +71,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_copy_editor_book.cc \
                   Source/biblioteq_dbenumerations.cc \
                   Source/biblioteq_dvd.cc \
+                  Source/biblioteq_files.cc \
 		  Source/biblioteq_filesize_table_item.cc \
                   Source/biblioteq_generic_thread.cc \
                   Source/biblioteq_grey_literature.cc \
