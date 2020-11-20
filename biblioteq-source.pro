@@ -10,6 +10,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_dbenumerations.ui \
                   UI/biblioteq_dvdinfo.ui \
                   UI/biblioteq_errordiag.ui \
+                  UI/biblioteq_files.ui \
                   UI/biblioteq_generalmessagediag.ui \
 		  UI/biblioteq_greyliteratureinfo.ui \
                   UI/biblioteq_history.ui \
