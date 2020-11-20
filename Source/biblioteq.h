@@ -30,6 +30,7 @@
 
 #include <QMessageBox>
 
+class biblioteq_files;
 class biblioteq_otheroptions;
 
 class userinfo_diag_class: public QDialog
@@ -318,6 +319,7 @@ class biblioteq: public QMainWindow
   Ui_membersBrowser bb;
   Ui_passSelect pass;
   biblioteq_dbenumerations *db_enumerations;
+  biblioteq_files *m_files;
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
   bool m_allSearchShown;
@@ -452,6 +454,7 @@ class biblioteq: public QMainWindow
   void slotShowCustomQuery(void);
   void slotShowDbEnumerations(void);
   void slotShowErrorDialog(void);
+  void slotShowFiles(void);
   void slotShowGrid(void);
   void slotShowHistory(void);
   void slotShowImport(void);

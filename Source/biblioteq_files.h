@@ -8,7 +8,7 @@ class biblioteq_files: public QMainWindow
   Q_OBJECT
 
  public:
-  biblioteq_files(void);
+  biblioteq_files(QWidget *parent);
   ~biblioteq_files();
 
  private:

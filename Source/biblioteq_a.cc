@@ -220,6 +220,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_allSearchShown = false;
   m_connected_bar_label = nullptr;
   m_error_bar_label = nullptr;
+  m_files = nullptr;
   m_idCt = 0;
   m_lastSearchType = POPULATE_ALL;
   m_pages = 0;
@@ -526,6 +527,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  m_all_diag, SLOT(close(void)));
   connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowHistory(void)));
+  connect(ui.filesTool, SIGNAL(triggered(void)), this,
+	  SLOT(slotShowFiles(void)));
   connect(ui.searchTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
   connect(ui.customQueryTool, SIGNAL(triggered(void)), this,
@@ -675,6 +678,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.modifyTool->setEnabled(false);
   ui.detailsTool->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
+  ui.filesTool->setEnabled(false);
   ui.searchTool->setEnabled(false);
   ui.customQueryTool->setEnabled(false);
   ui.actionDatabaseSearch->setEnabled(false);

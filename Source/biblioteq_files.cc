@@ -1,6 +1,6 @@
 #include "biblioteq_files.h"
 
-biblioteq_files::biblioteq_files(void):QMainWindow()
+biblioteq_files::biblioteq_files(QWidget *parent):QMainWindow(parent)
 {
   m_ui.setupUi(this);
 }

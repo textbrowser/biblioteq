@@ -2569,6 +2569,7 @@ void biblioteq::slotConnectDB(void)
   ui.customQueryTool->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.disconnectTool->setEnabled(true);
+  ui.filesTool->setEnabled(true);
   ui.printTool->setEnabled(true);
   ui.refreshTool->setEnabled(true);
   ui.searchTool->setEnabled(true);
@@ -2812,6 +2813,7 @@ void biblioteq::slotDisconnect(void)
   ui.detailsTool->setEnabled(false);
   ui.disconnectTool->setEnabled(false);
   ui.duplicateTool->setEnabled(false);
+  ui.filesTool->setEnabled(false);
   ui.menuEntriesPerPage->setEnabled(true);
   ui.menu_Add_Item->setEnabled(false);
   ui.modifyTool->setEnabled(false);

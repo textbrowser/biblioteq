@@ -70,6 +70,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_copy_editor.cc \
                   Source/biblioteq_copy_editor_book.cc \
                   Source/biblioteq_dbenumerations.cc \
+                  Source/biblioteq_d.cc \
                   Source/biblioteq_dvd.cc \
                   Source/biblioteq_files.cc \
 		  Source/biblioteq_filesize_table_item.cc \
