@@ -3527,7 +3527,7 @@ void biblioteq::prepareContextMenus()
 
       if(getTypeFilterString() != "All Requested" &&
 	 !m_roles.contains("librarian"))
-	m_menu->addAction(tr("Reserve Selected Item(s)..."),
+	m_menu->addAction(tr("Reserve Selected Item..."),
 			  this,
 			  SLOT(slotReserveCopy(void)));
     }
@@ -3543,7 +3543,7 @@ void biblioteq::prepareContextMenus()
 			SLOT(slotPrintView(void)));
 
       if(getTypeFilterString() != "All Requested")
-	m_menu->addAction(tr("Reserve Selected Item(s)..."),
+	m_menu->addAction(tr("Reserve Selected Item..."),
 			  this,
 			  SLOT(slotReserveCopy(void)));
 
