@@ -635,6 +635,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="filesTool"/>
    <addaction name="searchTool"/>
    <addaction name="customQueryTool"/>
    <addaction name="refreshTool"/>
@@ -1240,6 +1241,15 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="filesTool">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/32x32/fileopen.png</normaloff>:/32x32/fileopen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Files</string>
    </property>
   </action>
  </widget>

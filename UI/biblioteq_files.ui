@@ -106,6 +106,23 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="refresh">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;Refresh</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
@@ -141,6 +158,7 @@
  <tabstops>
   <tabstop>files_table</tabstop>
   <tabstop>export_files</tabstop>
+  <tabstop>refresh</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
