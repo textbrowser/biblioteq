@@ -3,16 +3,19 @@
 
 #include "ui_biblioteq_files.h"
 
+class biblioteq;
+
 class biblioteq_files: public QMainWindow
 {
   Q_OBJECT
 
  public:
-  biblioteq_files(QWidget *parent);
+  biblioteq_files(biblioteq *biblioteq);
   ~biblioteq_files();
 
  private:
   Ui_files m_ui;
+  biblioteq *m_biblioteq;
   void changeEvent(QEvent *event);
 
  private slots:
