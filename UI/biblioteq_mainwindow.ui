@@ -1126,7 +1126,7 @@
      <normaloff>:/32x32/duplicate.png</normaloff>:/32x32/duplicate.png</iconset>
    </property>
    <property name="text">
-    <string>Duplicate</string>
+    <string>Duplicate Selected Item(s)</string>
    </property>
    <property name="toolTip">
     <string>Duplicate Selected Item(s)</string>
@@ -1249,7 +1249,7 @@
      <normaloff>:/32x32/fileopen.png</normaloff>:/32x32/fileopen.png</iconset>
    </property>
    <property name="text">
-    <string>Files</string>
+    <string>Files Browser</string>
    </property>
   </action>
  </widget>

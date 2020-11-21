@@ -2451,18 +2451,21 @@ void biblioteq::slotDelete(void)
 
       str = ui.table->item(i, col)->text();
       itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type")).
-	toLower();
+	(ui.table, i, ui.table->columnNumber("Type")).toLower();
 
       if(itemType == "grey literature" || itemType == "photograph collection")
 	itemType = itemType.replace(" ", "_");
       else
 	itemType = itemType.remove(" ");
 
-      if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
+      if(itemType == "book" ||
+	 itemType == "cd" ||
+	 itemType == "dvd" ||
 	 itemType == "grey_literature" ||
-	 itemType == "journal" || itemType == "magazine" ||
-	 itemType == "photograph_collection" || itemType == "videogame")
+	 itemType == "journal" ||
+	 itemType == "magazine" ||
+	 itemType == "photograph_collection" ||
+	 itemType == "videogame")
 	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
 
       query.bindValue(0, str);
@@ -2479,16 +2482,50 @@ void biblioteq::slotDelete(void)
 	  deleteItem(str, itemType);
 	  numdeleted += 1;
 
+	  /*
+	  ** SQL errors are ignored.
+	  */
+
 	  if(itemType == "book" ||
 	     itemType == "grey_literature" ||
 	     itemType == "journal" ||
 	     itemType == "magazine")
 	    {
+	      if(itemType != "grey_literature")
+		{
+		  query.prepare
+		    (QString("DELETE FROM %1_copy_info WHERE item_oid = ?").
+		     arg(itemType));
+		  query.bindValue(0, str);
+		  query.exec();
+		}
+
 	      query.prepare
 		(QString("DELETE FROM %1_files WHERE item_oid = ?").
 		 arg(itemType));
 	      query.bindValue(0, str);
-	      query.exec(); // Ignore errors.
+	      query.exec();
+	    }
+	  else if(itemType == "cd")
+	    {
+	      query.prepare("DELETE FROM cd_copy_info WHERE item_oid = ?");
+	      query.bindValue(0, str);
+	      query.exec();
+	      query.prepare("DELETE FROM cd_songs WHERE item_oid = ?");
+	      query.bindValue(0, str);
+	      query.exec();
+	    }
+	  else if(itemType == "dvd")
+	    {
+	      query.prepare("DELETE FROM dvd_copy_info WHERE item_oid = ?");
+	      query.bindValue(0, str);
+	      query.exec();
+	    }
+	  else if(itemType == "photograph_collection")
+	    {
+	      query.prepare("DELETE FROM photograph WHERE collection_oid = ?");
+	      query.bindValue(0, str);
+	      query.exec();
 	    }
 	}
     }
