@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BiblioteQ: Source/biblioteq_hyperlinked_text_edit.h Source File</title>
+<title>BiblioteQ: Source/biblioteq_files.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,37 +66,37 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">biblioteq_hyperlinked_text_edit.h</div>  </div>
+<div class="title">biblioteq_files.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _BIBLIOTEQ_HYPERLINKED_TEXT_EDIT_H_</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _BIBLIOTEQ_HYPERLINKED_TEXT_EDIT_H_</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _BIBLIOTEQ_FILES_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _BIBLIOTEQ_FILES_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QTextBrowser&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;ui_biblioteq_files.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span><a class="code" href="classbiblioteq.html">biblioteq</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classbiblioteq__hyperlinked__text__edit.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classbiblioteq__hyperlinked__text__edit.html">biblioteq_hyperlinked_text_edit</a>: <span class="keyword">public</span> QTextBrowser</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classbiblioteq__files.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classbiblioteq__files.html">biblioteq_files</a>: <span class="keyword">public</span> QMainWindow</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  Q_OBJECT</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <a class="code" href="classbiblioteq__hyperlinked__text__edit.html">biblioteq_hyperlinked_text_edit</a>(QWidget *parent);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keywordtype">void</span> setMultipleLinks(<span class="keyword">const</span> QString &amp;searchType,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keyword">const</span> QString &amp;searchField,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keyword">const</span> QString &amp;str);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <span class="keywordtype">void</span> setQMain(<a class="code" href="classbiblioteq.html">biblioteq</a> *<a class="code" href="classbiblioteq.html">biblioteq</a>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <a class="code" href="classbiblioteq.html">biblioteq</a> *qmain;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; <span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keywordtype">void</span> slotAnchorClicked(<span class="keyword">const</span> QUrl &amp;url);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <a class="code" href="classbiblioteq__files.html">biblioteq_files</a>(<a class="code" href="classbiblioteq.html">biblioteq</a> *<a class="code" href="classbiblioteq.html">biblioteq</a>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  ~<a class="code" href="classbiblioteq__files.html">biblioteq_files</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  Ui_files m_ui;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <a class="code" href="classbiblioteq.html">biblioteq</a> *m_biblioteq;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keywordtype">void</span> changeEvent(QEvent *event);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; <span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordtype">void</span> slotClose(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keywordtype">void</span> slotRefresh(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassbiblioteq__hyperlinked__text__edit_html"><div class="ttname"><a href="classbiblioteq__hyperlinked__text__edit.html">biblioteq_hyperlinked_text_edit</a></div><div class="ttdef"><b>Definition:</b> biblioteq_hyperlinked_text_edit.h:8</div></div>
+<div class="ttc" id="aclassbiblioteq__files_html"><div class="ttname"><a href="classbiblioteq__files.html">biblioteq_files</a></div><div class="ttdef"><b>Definition:</b> biblioteq_files.h:8</div></div>
 <div class="ttc" id="aclassbiblioteq_html"><div class="ttname"><a href="classbiblioteq.html">biblioteq</a></div><div class="ttdef"><b>Definition:</b> biblioteq.h:174</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,4 +1,5 @@
 #include <QProgressDialog>
+#include <QtMath>
 
 #include "biblioteq.h"
 #include "biblioteq_files.h"
@@ -58,33 +59,62 @@ void biblioteq_files::slotRefresh(void)
   progress.show();
   progress.repaint();
   QApplication::processEvents();
+  m_ui.files_table->setRowCount(0);
+  m_ui.page->clear();
 
   QSqlQuery query(m_biblioteq->getDB());
 
   query.setForwardOnly(true);
   query.prepare
+    ("SELECT (SELECT COUNT(*) FROM book_files) "
+     "+ "
+     "(SELECT COUNT(*) FROM grey_literature_files) "
+     "+ "
+     "(SELECT COUNT(*) FROM journal_files) "
+     "+ "
+     "(SELECT COUNT(*) FROM magazine_files) AS totalCount");
+
+  if(query.exec() && query.next())
+    {
+      int pages = qCeil
+	(query.value(0).toDouble() / static_cast<double> (m_ui.pages->value()));
+
+      for(int i = 0; i < pages; i++)
+	m_ui.page->addItem(QString::number(i + 1));
+
+      m_ui.files_table->setRowCount(query.value(0).toInt());
+    }
+
+  if(m_ui.page->count() == 0)
+    m_ui.page->addItem("1");
+
+  query.prepare
     ("SELECT file_name, description, file_digest, LENGTH(file), 'book', myoid "
      "FROM book_files "
      "UNION "
-     "SELECT file_name, description, file_digest, LENGTH(file), 'book', myoid "
+     "SELECT file_name, description, file_digest, LENGTH(file), "
+     "'grey literature', myoid "
      "FROM grey_literature_files "
      "UNION "
-     "SELECT file_name, description, file_digest, LENGTH(file), 'book', myoid "
+     "SELECT file_name, description, file_digest, LENGTH(file), "
+     "'journal', myoid "
      "FROM journal_files "
      "UNION "
-     "SELECT file_name, description, file_digest, LENGTH(file), 'book', myoid "
+     "SELECT file_name, description, file_digest, LENGTH(file), "
+     "'magazine', myoid "
      "FROM magazine_files ");
 
   if(query.exec())
     {
       QLocale locale;
+      int row = 0;
+      int totalRows = 0;
 
-      m_ui.files_table->setRowCount(0);
       m_ui.files_table->setSortingEnabled(false);
 
-      while(query.next())
+      while(query.next() && totalRows < m_ui.files_table->rowCount())
 	{
-	  m_ui.files_table->setRowCount(m_ui.files_table->rowCount() + 1);
+	  totalRows += 1;
 
 	  for(int i = 0; i < m_ui.files_table->columnCount(); i++)
 	    {
@@ -97,14 +127,15 @@ void biblioteq_files::slotRefresh(void)
 		item = new QTableWidgetItem(query.value(i).toString());
 
 	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      m_ui.files_table->setItem
-		(m_ui.files_table->rowCount() - 1, i, item);
+	      m_ui.files_table->setItem(row, i, item);
 	    }
 
 	  progress.repaint();
+	  row += 1;
 	  QApplication::processEvents();
 	}
 
+      m_ui.files_table->setRowCount(totalRows);
       m_ui.files_table->setSortingEnabled(true);
       m_ui.files_table->sortByColumn(0, Qt::AscendingOrder);
     }

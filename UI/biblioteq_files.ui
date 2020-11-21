@@ -120,7 +120,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Type</string>
+        <string>Item Type</string>
        </property>
       </column>
       <column>
