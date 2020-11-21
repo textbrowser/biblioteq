@@ -59,11 +59,16 @@ void biblioteq_files::slotRefresh(void)
   progress.show();
   progress.repaint();
   QApplication::processEvents();
+  disconnect(m_ui.page,
+	     SIGNAL(currentIndexChanged(int)),
+	     this,
+	     SLOT(slotRefresh(void)));
   m_ui.files_table->setRowCount(0);
-  m_ui.page->clear();
 
   QSqlQuery query(m_biblioteq->getDB());
+  int page = m_ui.page->currentIndex();
 
+  m_ui.page->clear();
   query.setForwardOnly(true);
   query.prepare
     ("SELECT (SELECT COUNT(*) FROM book_files) "
@@ -88,21 +93,27 @@ void biblioteq_files::slotRefresh(void)
   if(m_ui.page->count() == 0)
     m_ui.page->addItem("1");
 
+  page = qBound(0, page, m_ui.page->count() - 1);
+  m_ui.page->setCurrentIndex(page);
   query.prepare
-    ("SELECT file_name, description, file_digest, LENGTH(file), 'book', myoid "
-     "FROM book_files "
-     "UNION "
-     "SELECT file_name, description, file_digest, LENGTH(file), "
-     "'grey literature', myoid "
-     "FROM grey_literature_files "
-     "UNION "
-     "SELECT file_name, description, file_digest, LENGTH(file), "
-     "'journal', myoid "
-     "FROM journal_files "
-     "UNION "
-     "SELECT file_name, description, file_digest, LENGTH(file), "
-     "'magazine', myoid "
-     "FROM magazine_files ");
+    (QString("SELECT file_name, description, file_digest, LENGTH(file), "
+	     "'book', myoid "
+	     "FROM book_files "
+	     "UNION "
+	     "SELECT file_name, description, file_digest, LENGTH(file), "
+	     "'grey literature', myoid "
+	     "FROM grey_literature_files "
+	     "UNION "
+	     "SELECT file_name, description, file_digest, LENGTH(file), "
+	     "'journal', myoid "
+	     "FROM journal_files "
+	     "UNION "
+	     "SELECT file_name, description, file_digest, LENGTH(file), "
+	     "'magazine', myoid "
+	     "FROM magazine_files "
+	     "LIMIT %1 OFFSET %2").
+     arg(m_ui.pages->value()).
+     arg(m_ui.page->currentIndex() * m_ui.pages->value()));
 
   if(query.exec())
     {
@@ -139,4 +150,9 @@ void biblioteq_files::slotRefresh(void)
       m_ui.files_table->setSortingEnabled(true);
       m_ui.files_table->sortByColumn(0, Qt::AscendingOrder);
     }
+
+  connect(m_ui.page,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotRefresh(void)));
 }
