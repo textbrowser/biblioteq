@@ -12,6 +12,7 @@ class biblioteq_files: public QMainWindow
  public:
   biblioteq_files(biblioteq *biblioteq);
   ~biblioteq_files();
+  void reset(void);
 
  private:
   Ui_files m_ui;

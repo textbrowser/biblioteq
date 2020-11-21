@@ -1,5 +1,6 @@
 #include "biblioteq.h"
 #include "biblioteq_copy_editor.h"
+#include "biblioteq_files.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
@@ -2765,6 +2766,10 @@ void biblioteq::slotDisconnect(void)
 
   br.show_password->setChecked(false);
   m_allSearchShown = false;
+
+  if(m_files)
+    m_files->reset();
+
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;

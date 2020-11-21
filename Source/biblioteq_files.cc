@@ -51,6 +51,17 @@ void biblioteq_files::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
+void biblioteq_files::reset(void)
+{
+  disconnect(m_ui.page,
+	     SIGNAL(currentIndexChanged(int)),
+	     this,
+	     SLOT(slotRefresh(void)));
+  m_ui.files_table->setRowCount(0);
+  m_ui.page->clear();
+  m_ui.page->addItem("1");
+}
+
 void biblioteq_files::slotClose(void)
 {
   close();
@@ -65,6 +76,9 @@ void biblioteq_files::slotPagesChanged(int value)
 
 void biblioteq_files::slotRefresh(void)
 {
+  if(!m_biblioteq->getDB().isOpen())
+    return;
+
   QProgressDialog progress(this);
 
   progress.setLabelText(tr("Populating..."));
