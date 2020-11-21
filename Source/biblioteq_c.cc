@@ -4271,6 +4271,11 @@ void biblioteq::slotRemoveMember(void)
     }
   else
     {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      query.prepare("DELETE FROM member_history WHERE memberid = ?");
+      query.addBindValue(memberid);
+      query.exec();
+      QApplication::restoreOverrideCursor();
       biblioteq_misc_functions::DBAccount
 	(memberid, m_db, biblioteq_misc_functions::DELETE_USER,
 	 errorstr);
