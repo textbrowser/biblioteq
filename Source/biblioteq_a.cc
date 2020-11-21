@@ -2463,8 +2463,7 @@ void biblioteq::slotDelete(void)
 	 itemType == "grey_literature" ||
 	 itemType == "journal" || itemType == "magazine" ||
 	 itemType == "photograph_collection" || itemType == "videogame")
-	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").
-		      arg(itemType));
+	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
 
       query.bindValue(0, str);
 
@@ -2479,6 +2478,18 @@ void biblioteq::slotDelete(void)
 	{
 	  deleteItem(str, itemType);
 	  numdeleted += 1;
+
+	  if(itemType == "book" ||
+	     itemType == "grey_literature" ||
+	     itemType == "journal" ||
+	     itemType == "magazine")
+	    {
+	      query.prepare
+		(QString("DELETE FROM %1_files WHERE item_oid = ?").
+		 arg(itemType));
+	      query.bindValue(0, str);
+	      query.exec(); // Ignore errors.
+	    }
 	}
     }
 

@@ -481,3 +481,5 @@
 254. Qt 5.15.1 LTS warnings. (Done)
 255. Display all files in a separate container. (TBD)
 256. Compress attachments. Optional. (Done)
+257. Foreign constraints are not enabled on SQLite. Remove child
+     table entries. (TBD)
