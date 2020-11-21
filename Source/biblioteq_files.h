@@ -17,6 +17,7 @@ class biblioteq_files: public QMainWindow
 
  private slots:
   void slotClose(void);
+  void slotRefresh(void);
 };
 
 #endif
