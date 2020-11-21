@@ -20,6 +20,10 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.export_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotExport(void)));
   connect(m_ui.pages,
 	  SIGNAL(valueChanged(int)),
 	  this,
@@ -65,6 +69,10 @@ void biblioteq_files::reset(void)
 void biblioteq_files::slotClose(void)
 {
   close();
+}
+
+void biblioteq_files::slotExport(void)
+{
 }
 
 void biblioteq_files::slotPagesChanged(int value)
