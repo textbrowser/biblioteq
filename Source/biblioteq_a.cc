@@ -2527,6 +2527,13 @@ void biblioteq::slotDelete(void)
 	      query.bindValue(0, str);
 	      query.exec();
 	    }
+	  else if(itemType == "videogame")
+	    {
+	      query.prepare
+		("DELETE FROM videogame_copy_info WHERE item_oid = ?");
+	      query.bindValue(0, str);
+	      query.exec();
+	    }
 	}
     }
 
