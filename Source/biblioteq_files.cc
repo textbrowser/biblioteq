@@ -1,4 +1,5 @@
 #include <QProgressDialog>
+#include <QSettings>
 #include <QtMath>
 
 #include "biblioteq.h"
@@ -11,10 +12,18 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
   m_ui.setupUi(this);
   m_ui.files_table->setColumnHidden
     (m_ui.files_table->columnCount() - 1, true); // MYOID
+
+  QSettings settings;
+
+  m_ui.pages->setValue(settings.value("filesPerPage", 500).toInt());
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.pages,
+	  SIGNAL(valueChanged(int)),
+	  this,
+	  SLOT(slotPagesChanged(int)));
   connect(m_ui.refresh,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -45,6 +54,13 @@ void biblioteq_files::changeEvent(QEvent *event)
 void biblioteq_files::slotClose(void)
 {
   close();
+}
+
+void biblioteq_files::slotPagesChanged(int value)
+{
+  QSettings settings;
+
+  settings.setValue("filesPerPage", value);
 }
 
 void biblioteq_files::slotRefresh(void)
