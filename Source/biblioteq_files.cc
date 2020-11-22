@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include <QProgressDialog>
 #include <QSettings>
 #include <QtMath>
@@ -73,6 +74,25 @@ void biblioteq_files::slotClose(void)
 
 void biblioteq_files::slotExport(void)
 {
+  QModelIndexList list(m_ui.files_table->selectionModel()->selectedRows());
+
+  if(biblioteq::MAXIMUM_DEVICES_CONFIRMATION <= list.size())
+    {
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to export %1 "
+				  "files?").arg(list.size()),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+
+      QApplication::processEvents();
+    }
+  else if(list.isEmpty())
+    return;
 }
 
 void biblioteq_files::slotPagesChanged(int value)
