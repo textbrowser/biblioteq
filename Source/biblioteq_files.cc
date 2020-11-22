@@ -1,3 +1,4 @@
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QSettings>
@@ -93,6 +94,34 @@ void biblioteq_files::slotExport(void)
     }
   else if(list.isEmpty())
     return;
+
+  QFileDialog dialog(this);
+
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: File Export"));
+
+  if(dialog.exec() != QDialog::Accepted)
+    {
+      QApplication::processEvents();
+      return;
+    }
+
+  QProgressDialog progress(this);
+
+  progress.setLabelText(tr("Exporting file(s)..."));
+  progress.setMaximum(list.size());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+  QApplication::processEvents();
+
+  QSqlQuery query(m_biblioteq->getDB());
+
+  query.setForwardOnly(true);
 }
 
 void biblioteq_files::slotPagesChanged(int value)
