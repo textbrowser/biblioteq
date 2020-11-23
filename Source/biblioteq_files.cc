@@ -120,11 +120,39 @@ void biblioteq_files::slotExport(void)
   QApplication::processEvents();
 
   QSqlQuery query(m_biblioteq->getDB());
+  int i = 0;
 
   query.setForwardOnly(true);
 
-  for(int i = 0; i < list.size() && !progress.wasCanceled(); i++)
+  foreach(const QModelIndex &index, list)
     {
+      i += 1;
+      progress.setValue(i);
+      progress.repaint();
+      QApplication::processEvents();
+
+      if(progress.wasCanceled())
+	break;
+
+      QString fileName(index.data().toString());
+      QString tableName(index.sibling(index.row(), 4).data().toString());
+      qint64 oid = index.sibling(index.row(), 5).data().toLongLong();
+
+      query.prepare
+	(QString("SELECT file FROM %1_files WHERE myoid = ?").
+	 arg(tableName.replace(' ', '_')));
+      query.addBindValue(oid);
+
+      if(query.exec() && query.next())
+	{
+	  QFile file(dialog.directory().absolutePath() +
+		     QDir::separator() +
+		     fileName);
+
+	  file.open(QIODevice::Truncate | QIODevice::WriteOnly);
+	  file.write(qUncompress(query.value(0).toByteArray()));
+	  file.close();
+	}
     }
 }
 
