@@ -12,6 +12,7 @@ BiblioteQ is free and open library software.
 <li>Documentation.</li>
 <li>Embedded hyperlinks for localized searches of similar items.</li>
 <li>Exporting of views to CSV files.</li>
+<li>Files browser.</li>
 <li>Free and Open Source technology.</li>
 <li>FreeBSD, Linux, Mac, OS/2, OpenBSD, Windows, etc.</li>
 <li>Front cover image retrieval via Amazon and Open Library.</li>
