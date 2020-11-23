@@ -122,6 +122,10 @@ void biblioteq_files::slotExport(void)
   QSqlQuery query(m_biblioteq->getDB());
 
   query.setForwardOnly(true);
+
+  for(int i = 0; i < list.size() && !progress.wasCanceled(); i++)
+    {
+    }
 }
 
 void biblioteq_files::slotPagesChanged(int value)
@@ -210,7 +214,9 @@ void biblioteq_files::slotRefresh(void)
 
       m_ui.files_table->setSortingEnabled(false);
 
-      while(query.next() && totalRows < m_ui.files_table->rowCount())
+      while(!progress.wasCanceled() &&
+	    query.next() &&
+	    totalRows < m_ui.files_table->rowCount())
 	{
 	  totalRows += 1;
 
@@ -233,6 +239,7 @@ void biblioteq_files::slotRefresh(void)
 	  QApplication::processEvents();
 	}
 
+      m_ui.files_table->scrollToTop();
       m_ui.files_table->setRowCount(totalRows);
       m_ui.files_table->setSortingEnabled(true);
       m_ui.files_table->sortByColumn(0, Qt::AscendingOrder);
