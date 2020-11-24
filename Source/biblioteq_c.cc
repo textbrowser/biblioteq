@@ -5881,6 +5881,34 @@ void biblioteq::slotVacuum(void)
 
   QSqlQuery query(m_db);
 
+  if(m_db.driverName() == "QSQLITE")
+    {
+      query.exec("DELETE FROM book_copy_info WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM book)");
+      query.exec("DELETE FROM book_files WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM book)");
+      query.exec("DELETE FROM cd_copy_info WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM cd)");
+      query.exec("DELETE FROM cd_songs WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM cd)");
+      query.exec("DELETE FROM dvd_copy_info WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM dvd)");
+      query.exec("DELETE FROM grey_literature_files WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM grey_literature)");
+      query.exec("DELETE FROM journal_copy_info WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM journal)");
+      query.exec("DELETE FROM journal_files WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM journal)");
+      query.exec("DELETE FROM magazine_copy_info WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM magazine)");
+      query.exec("DELETE FROM magazine_files WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM magazine)");
+      query.exec("DELETE FROM photograph WHERE collection_oid NOT IN "
+		 "(SELECT myoid FROM photograph_collection)");
+      query.exec("DELETE FROM videogame_copy_info WHERE item_oid NOT IN "
+		 "(SELECT myoid FROM videogame)");
+    }
+
   query.exec("VACUUM");
   statusBar()->clearMessage();
   QApplication::restoreOverrideCursor();
