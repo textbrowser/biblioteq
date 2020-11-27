@@ -394,6 +394,14 @@
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Street Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ZIP Code</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -492,6 +500,10 @@
     <message>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
     </message>
 </context>
 <context>
@@ -1097,7 +1109,7 @@
     </message>
     <message>
         <source>Reservation History</source>
-        <translation>Reservierungs-Historie</translation>
+        <translation type="vanished">Reservierungs-Historie</translation>
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
@@ -1767,7 +1779,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <source>Executing %1 statements.
 
 </source>
-        <translation>F√ºhre %1 Statement aus.
+        <translation type="vanished">F√ºhre %1 Statement aus.
 
 </translation>
     </message>
@@ -1775,7 +1787,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <source>Error %1: %2. Statement: %3.
 
 </source>
-        <translation>Fehler %1: %2. Statement: %3.
+        <translation type="vanished">Fehler %1: %2. Statement: %3.
 
 </translation>
     </message>
@@ -1793,7 +1805,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>BiblioteQ: Open PDF File</source>
-        <translation>BiblioteQ: PDF-Datei √∂ffnen</translation>
+        <translation type="vanished">BiblioteQ: PDF-Datei √∂ffnen</translation>
     </message>
     <message>
         <source>NULL</source>
@@ -1884,10 +1896,6 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Reserve Selected Item(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>View Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1941,6 +1949,42 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&amp;Polish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Preview...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Executing %1 statements.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due Date: </source>
+        <translation type="unfinished">F√§lligkeitsdatum: </translation>
+    </message>
+    <message>
+        <source>Returned Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Open PDF File(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to open %1 PDF files?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2535,15 +2579,19 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Open Library query produced invalid results.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Replace existing values with those retrieved from Open Library?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In order to query an Open Library site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Open Library query produced invalid results. Perhaps the book is not defined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The ISBN-13 must begin with 978 or 979.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4070,6 +4118,33 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
 </context>
 <context>
+    <name>biblioteq_files</name>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to export %1 files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: File Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exporting file(s)...</source>
+        <translation type="unfinished">Exportiere Datei(en)...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populating...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_generic_thread</name>
     <message>
         <source>. This file is required by BiblioteQ.</source>
@@ -5448,6 +5523,14 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <source>Page %1 of %2.</source>
         <translation>Seite %1 von %2.</translation>
     </message>
+    <message>
+        <source>Preparing preview...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preparing preview... Page %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_photographcollection</name>
@@ -6433,6 +6516,22 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <source>&amp;Password</source>
         <translation type="vanished">&amp;Passwort</translation>
     </message>
+    <message>
+        <source>PostgreSQL Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PostgreSQL Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide or show the password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>cdDialog</name>
@@ -7077,6 +7176,14 @@ Web-Adresse</translation>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
     </message>
+    <message>
+        <source>Please provide a query statement.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
+    </message>
 </context>
 <context>
     <name>dbEnumerations</name>
@@ -7299,6 +7406,10 @@ Web-Adresse</translation>
     <message>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
     </message>
 </context>
 <context>
@@ -7541,7 +7652,7 @@ URL</source>
     </message>
     <message>
         <source>Actors</source>
-        <translation>Schauspieler</translation>
+        <translation type="vanished">Schauspieler</translation>
     </message>
     <message>
         <source>Directors</source>
@@ -7574,6 +7685,10 @@ URL</source>
     <message>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
+    </message>
+    <message>
+        <source>Actors / Actresses</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7621,6 +7736,69 @@ URL</source>
     <message>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
+    </message>
+</context>
+<context>
+    <name>files</name>
+    <message>
+        <source>BiblioteQ: Files Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished">Seite</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source> Files Per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished">Datei</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished">Beschreibung</translation>
+    </message>
+    <message>
+        <source>Digest</source>
+        <translation type="unfinished">Auszug</translation>
+    </message>
+    <message>
+        <source>Compressed Size</source>
+        <translation type="unfinished">Komprimierte Gr√∂√üe</translation>
+    </message>
+    <message>
+        <source>Parent Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">MYOID</translation>
+    </message>
+    <message>
+        <source>&amp;Export...</source>
+        <translation type="unfinished">&amp;Exportieren...</translation>
+    </message>
+    <message>
+        <source>&amp;Refresh</source>
+        <translation type="unfinished">Aktualisie&amp;ren</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished">Strg+W</translation>
     </message>
 </context>
 <context>
@@ -7713,7 +7891,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation type="obsolete">&amp;Drucken</translation>
+        <translation type="unfinished">&amp;Drucken</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -7729,11 +7907,15 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>&amp;Drucken...</translation>
+        <translation type="vanished">&amp;Drucken...</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
     </message>
 </context>
 <context>
@@ -7821,6 +8003,14 @@ URL</source>
     <message>
         <source>Ctrl+W</source>
         <translation type="unfinished">Strg+W</translation>
+    </message>
+    <message>
+        <source>Ignored Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
     </message>
 </context>
 <context>
@@ -8255,6 +8445,22 @@ URL</source>
         <source>&amp;Open Library</source>
         <translation type="unfinished">&amp;Open Library</translation>
     </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC21</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNIMARC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parse MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -8447,7 +8653,7 @@ URL</source>
     </message>
     <message>
         <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
-        <translation>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</translation>
+        <translation type="vanished">ISSN ([0-9]{4}-[0-9]{3}[0-9X])</translation>
     </message>
     <message>
         <source>Issue Number</source>
@@ -8516,6 +8722,22 @@ URL</source>
     <message>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC21</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNIMARC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parse MARC Tags</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8802,7 +9024,7 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation type="obsolete">Ctrl+E</translation>
+        <translation type="unfinished">Ctrl+E</translation>
     </message>
     <message>
         <source>&amp;Delete Selected Item(s)</source>
@@ -9054,7 +9276,7 @@ URL</source>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Duplizieren</translation>
+        <translation type="vanished">Duplizieren</translation>
     </message>
     <message>
         <source>Duplicate Selected Item(s)</source>
@@ -9114,7 +9336,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Open PDF File...</source>
-        <translation>&amp;PDF-Datei √∂ffnen...</translation>
+        <translation type="vanished">&amp;PDF-Datei √∂ffnen...</translation>
     </message>
     <message>
         <source>&amp;Grey Literature...</source>
@@ -9150,6 +9372,18 @@ URL</source>
     </message>
     <message>
         <source>&amp;Vacuum Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Open PDF File(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database &amp;Enumerations...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files Browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9538,6 +9772,10 @@ URL</source>
         <source>&amp;Export Table View as CSV...</source>
         <translation>Tabellenansicht als CSV &amp;exportieren...</translation>
     </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
+    </message>
 </context>
 <context>
     <name>otheroptions</name>
@@ -9644,6 +9882,18 @@ URL</source>
         <source>&amp;Confirm Password</source>
         <translation type="vanished">Passwort &amp;best√§tigen</translation>
     </message>
+    <message>
+        <source>PostgreSQL Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PostgreSQL Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PostgreSQL Password Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passwordDialog</name>
@@ -9669,6 +9919,14 @@ URL</source>
     </message>
     <message>
         <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9814,6 +10072,10 @@ URL</source>
         <source>Ctrl+W</source>
         <translation>Strg+W</translation>
     </message>
+    <message>
+        <source>Subject</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pdfreader</name>
@@ -9916,6 +10178,10 @@ URL</source>
     <message>
         <source>Search</source>
         <translation type="unfinished">Suche</translation>
+    </message>
+    <message>
+        <source>Print Preview...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
