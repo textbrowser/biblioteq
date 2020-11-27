@@ -128,6 +128,11 @@
       </column>
       <column>
        <property name="text">
+        <string>Parent Title</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Item Type</string>
        </property>
       </column>
