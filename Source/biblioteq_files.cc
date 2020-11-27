@@ -135,8 +135,8 @@ void biblioteq_files::slotExport(void)
 	break;
 
       QString fileName(index.data().toString());
-      QString tableName(index.sibling(index.row(), 4).data().toString());
-      qint64 oid = index.sibling(index.row(), 5).data().toLongLong();
+      QString tableName(index.sibling(index.row(), 5).data().toString());
+      qint64 oid = index.sibling(index.row(), 6).data().toLongLong();
 
       query.prepare
 	(QString("SELECT file FROM %1_files WHERE myoid = ?").
