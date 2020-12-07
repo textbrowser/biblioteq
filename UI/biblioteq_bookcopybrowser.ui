@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>360</height>
+    <width>800</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -150,6 +150,11 @@
         <column>
          <property name="text">
           <string>Condition</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Status</string>
          </property>
         </column>
         <column>

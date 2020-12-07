@@ -272,12 +272,14 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   list.append(tr("Title"));
   list.append(tr("Barcode"));
   list.append(tr("Availability"));
+  list.append(tr("Status"));
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
   m_columnHeaderIndexes.append("Title");
   m_columnHeaderIndexes.append("Barcode");
   m_columnHeaderIndexes.append("Availability");
+  m_columnHeaderIndexes.append("Status");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
   m_cb.table->setColumnCount(list.size());
