@@ -328,7 +328,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	    else
 	      item->setText("1");
 	  }
-	else if(j == 3)
+	else if(j == m_cb.table->columnCount() - 2)
 	  item->setText(m_ioid);
 	else
 	  item->setText("");
@@ -347,6 +347,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   query.prepare(QString("SELECT %1.title, "
 			"%1_copy_info.copyid, "
 			"(1 - COUNT(item_borrower.copyid)), "
+			"%1_copy_info.status, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"FROM "
@@ -361,6 +362,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			"%1.myoid = ? "
 			"GROUP BY %1.title, "
 			"%1_copy_info.copyid, "
+			"%1_copy_info.status, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").
