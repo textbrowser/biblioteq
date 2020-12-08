@@ -10,7 +10,7 @@ sudo cp -p ./Icons/book.png /usr/local/biblioteq/.
 sudo cp -p ./SQL/* /usr/local/biblioteq/SQL/.
 sudo cp -p ./Translations/*.qm /usr/local/biblioteq/Translations/.
 sudo cp -p ./biblioteq.conf /usr/local/biblioteq/.
-sudo cp -p ./biblioteq.qt5.sh /usr/local/biblioteq/.
+sudo cp -p ./biblioteq.sh /usr/local/biblioteq/.
 sudo cp -pr ./Documentation/* /usr/local/biblioteq/Documentation/.
 sudo chown -Rh root:staff /usr/local/biblioteq
 
@@ -19,7 +19,7 @@ Preparing BiblioteQ-x.deb:
 cd
 mkdir -p biblioteq-debian/usr/local
 mkdir -p biblioteq-debian/usr/share/applications
-cp -p ./biblioteq.d/biblioteq.qt5.desktop biblioteq-debian/usr/share/applications/.
+cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/DEBIAN biblioteq-debian/.
 cp -r /usr/local/biblioteq biblioteq-debian/usr/local/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2020.11.30_amd64.deb
