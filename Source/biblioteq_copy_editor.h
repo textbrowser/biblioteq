@@ -30,15 +30,19 @@ class biblioteq_copy_editor: public QDialog
   class copy_class
   {
   public:
-    copy_class(const QString &copyid_arg, const QString &itemoid_arg)
+    copy_class(const QString &copyid,
+	       const QString &itemoid,
+	       const QString &status)
     {
-      m_copyid = copyid_arg;
-      m_itemoid = itemoid_arg;
+      m_copyid = copyid;
+      m_itemoid = itemoid;
+      m_status = status;
     };
 
   public:
     QString m_copyid;
     QString m_itemoid;
+    QString m_status;
   };
 
   QList<copy_class *> m_copies;
