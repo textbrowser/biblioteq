@@ -1374,9 +1374,7 @@ CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator
 CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);
 
-/*
-** Release 2021.01.01
-*/
+/* Release 2021.01.01 */
 
 ALTER TABLE book_copy_info ADD status TEXT;
 ALTER TABLE cd_copy_info ADD status TEXT;
