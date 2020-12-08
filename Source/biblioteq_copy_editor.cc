@@ -108,22 +108,26 @@ QString biblioteq_copy_editor::saveCopies(void)
 
 	  if(qmain->getDB().driverName() != "QSQLITE")
 	    query.prepare(QString("INSERT INTO %1_copy_info "
-				  "(item_oid, copy_number, "
-				  "copyid) "
-				  "VALUES (?, "
-				  "?, ?)").arg
+				  "(item_oid, "
+				  "copy_number, "
+				  "copyid, "
+				  "status) "
+				  "VALUES "
+				  "(?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
-				  "(item_oid, copy_number, "
-				  "copyid, myoid) "
-				  "VALUES (?, "
-				  "?, ?, ?)").arg
-			  (m_itemType.toLower().remove(" ")));
+				  "(item_oid, "
+				  "copy_number, "
+				  "copyid, "
+				  "myoid, "
+				  "status) "
+				  "VALUES (?, ?, ?, ?, ?)").
+			  arg(m_itemType.toLower().remove(" ")));
 
-	  query.bindValue(0, copy->m_itemoid);
-	  query.bindValue(1, i + 1);
-	  query.bindValue(2, copy->m_copyid);
+	  query.addBindValue(copy->m_itemoid);
+	  query.addBindValue(i + 1);
+	  query.addBindValue(copy->m_copyid);
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
 	    {
@@ -131,17 +135,18 @@ QString biblioteq_copy_editor::saveCopies(void)
 	      QString errorstr("");
 
 	      value = biblioteq_misc_functions::getSqliteUniqueId
-		(qmain->getDB(),
-		 errorstr);
+		(qmain->getDB(), errorstr);
 
 	      if(errorstr.isEmpty())
-		query.bindValue(3, value);
+		query.addBindValue(value);
 	      else
 		qmain->addError(QString(tr("Database Error")),
 				QString(tr("Unable to generate a unique "
 					   "integer.")),
 				errorstr);
 	    }
+
+	  query.addBindValue(copy->m_status);
 
 	  if(!query.exec())
 	    {
@@ -778,6 +783,7 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   QStringList duplicates;
   QTableWidgetItem *item1 = nullptr;
   QTableWidgetItem *item2 = nullptr;
+  QTableWidgetItem *item3 = nullptr;
   copy_class *copy = nullptr;
   int i = 0;
 
@@ -836,11 +842,14 @@ void biblioteq_copy_editor::slotSaveCopies(void)
     {
       item1 = m_cb.table->item(i, 1);
       item2 = m_cb.table->item(i, 3);
+      item3 = m_cb.table->item(i, 4);
 
-      if(item1 == nullptr || item2 == nullptr)
+      if(item1 == nullptr || item2 == nullptr || item3 == nullptr)
 	continue;
 
-      copy = new copy_class(item1->text().trimmed(), item2->text());
+      copy = new copy_class(item1->text().trimmed(),  // Copy ID
+			    item3->text(),            // Item OID
+			    item2->text().trimmed()); // Status
       m_copies.append(copy);
     }
 
