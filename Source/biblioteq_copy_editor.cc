@@ -412,7 +412,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(4).toInt() - 1;
+	  row = query.value(5).toInt() - 1;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
 	    if(m_cb.table->item(row, j) != nullptr)
