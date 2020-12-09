@@ -2172,37 +2172,30 @@ void biblioteq::slotCheckout(void)
     {
       item = new biblioteq_item(row2);
       quantity = biblioteq_misc_functions::getColumnString
-	(ui.table, row2,
-	 ui.table->columnNumber("Quantity")).toInt();
+	(ui.table, row2, ui.table->columnNumber("Quantity")).toInt();
 
       if(type.toLower() == "book")
 	{
 	  itemid = biblioteq_misc_functions::getColumnString
-	    (ui.table, row2,
-	     ui.table->columnNumber("ISBN-10"));
+	    (ui.table, row2, ui.table->columnNumber("ISBN-10"));
 
 	  if(itemid.isEmpty())
 	    itemid = biblioteq_misc_functions::getColumnString
-	    (ui.table, row2,
-	     ui.table->columnNumber("ISBN-13"));
+	    (ui.table, row2, ui.table->columnNumber("ISBN-13"));
 	}
       else if(type.toLower() == "dvd")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2,
-	   ui.table->columnNumber("UPC"));
+	  (ui.table, row2, ui.table->columnNumber("UPC"));
       else if(type.toLower() == "journal" ||
 	      type.toLower() == "magazine")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2,
-	   ui.table->columnNumber("ISSN"));
+	  (ui.table, row2, ui.table->columnNumber("ISSN"));
       else if(type.toLower() == "cd")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2,
-	   ui.table->columnNumber("Catalog Number"));
+	  (ui.table, row2, ui.table->columnNumber("Catalog Number"));
       else if(type.toLower() == "video game")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2,
-	   ui.table->columnNumber("UPC"));
+	  (ui.table, row2, ui.table->columnNumber("UPC"));
       else
 	{
 	  QMessageBox::critical
@@ -2215,8 +2208,7 @@ void biblioteq::slotCheckout(void)
 
       if(itemid.isEmpty())
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2,
-	   ui.table->columnNumber("ID Number"));
+	  (ui.table, row2, ui.table->columnNumber("ID Number"));
 
       /*
       ** Custom search?
@@ -2970,10 +2962,12 @@ void biblioteq::slotDisplaySummary(void)
 	  for(int ii = 0; ii < tableItems.size(); ii++)
 	    {
 	      QString oid = biblioteq_misc_functions::getColumnString
-		(ui.table, tableItems.at(ii)->row(),
+		(ui.table,
+		 tableItems.at(ii)->row(),
 		 ui.table->columnNumber("MYOID"));
 	      QString type =  biblioteq_misc_functions::getColumnString
-		(ui.table, tableItems.at(ii)->row(),
+		(ui.table,
+		 tableItems.at(ii)->row(),
 		 ui.table->columnNumber("Type"));
 
 	      for(int jj = 0; jj < items.size(); jj++)
@@ -3007,13 +3001,11 @@ void biblioteq::slotDisplaySummary(void)
 	    "</b>";
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("ISBN-10"));
+	    (ui.table, i, ui.table->columnNumber("ISBN-10"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3021,16 +3013,13 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
+	    (ui.table, i, ui.table->columnNumber("Publication Date"));
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
+	    (ui.table, i, ui.table->columnNumber("Publisher"));
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Place of Publication"));
+	    (ui.table, i, ui.table->columnNumber("Place of Publication"));
 	  summary += "<br>";
 	}
       else if(type == "CD")
@@ -3041,13 +3030,11 @@ void biblioteq::slotDisplaySummary(void)
 	    "</b>";
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Catalog Number"));
+	    (ui.table, i, ui.table->columnNumber("Catalog Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3055,13 +3042,11 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
+	    (ui.table, i, ui.table->columnNumber("Publication Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Release Date"));
+	      (ui.table, i, ui.table->columnNumber("Release Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3069,13 +3054,11 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
+	    (ui.table, i, ui.table->columnNumber("Publisher"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Recording Label"));
+	      (ui.table, i, ui.table->columnNumber("Recording Label"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3091,13 +3074,11 @@ void biblioteq::slotDisplaySummary(void)
 	    "</b>";
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("UPC"));
+	    (ui.table, i, ui.table->columnNumber("UPC"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3105,13 +3086,11 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
+	    (ui.table, i, ui.table->columnNumber("Publication Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Release Date"));
+	      (ui.table, i, ui.table->columnNumber("Release Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3119,13 +3098,11 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
+	    (ui.table, i, ui.table->columnNumber("Publisher"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Studio"));
+	      (ui.table, i, ui.table->columnNumber("Studio"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3145,8 +3122,7 @@ void biblioteq::slotDisplaySummary(void)
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3172,19 +3148,18 @@ void biblioteq::slotDisplaySummary(void)
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 	  else
 	    {
 	      tmpstr += QString(" Vol. %1, No. %2").
 		arg(biblioteq_misc_functions::
-		    getColumnString(ui.table, i,
-				    ui.table->
-				    columnNumber("Volume"))).
+		    getColumnString(ui.table,
+				    i,
+				    ui.table->columnNumber("Volume"))).
 		arg(biblioteq_misc_functions::
-		    getColumnString(ui.table, i,
-				    ui.table->
-				    columnNumber("Issue")));
+		    getColumnString(ui.table,
+				    i,
+				    ui.table->columnNumber("Issue")));
 	    }
 
 	  if(tmpstr.isEmpty())
@@ -3193,16 +3168,13 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
+	    (ui.table, i, ui.table->columnNumber("Publication Date"));
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
+	    (ui.table, i, ui.table->columnNumber("Publisher"));
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Place of Publication"));
+	    (ui.table, i, ui.table->columnNumber("Place of Publication"));
 	  summary += "<br>";
 	}
       else if(type == "Photograph Collection")
@@ -3217,8 +3189,7 @@ void biblioteq::slotDisplaySummary(void)
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3240,13 +3211,11 @@ void biblioteq::slotDisplaySummary(void)
 	    "</b>";
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("UPC"));
+	    (ui.table, i, ui.table->columnNumber("UPC"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("ID Number"));
+	      (ui.table, i, ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3254,13 +3223,11 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publication Date"));
+	    (ui.table, i, ui.table->columnNumber("Publication Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = biblioteq_misc_functions::getColumnString
-	      (ui.table, i,
-	       ui.table->columnNumber("Release Date"));
+	      (ui.table, i, ui.table->columnNumber("Release Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -3268,8 +3235,7 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	  summary += biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Publisher"));
+	    (ui.table, i, ui.table->columnNumber("Publisher"));
 	  summary += "<br>";
 	}
 
@@ -3279,8 +3245,7 @@ void biblioteq::slotDisplaySummary(void)
       if(type != "Grey Literature" && type != "Photograph Collection")
 	{
 	  tmpstr = biblioteq_misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Availability"));
+	    (ui.table, i, ui.table->columnNumber("Availability"));
 
 	  if(!tmpstr.isEmpty())
 	    {
@@ -3292,8 +3257,7 @@ void biblioteq::slotDisplaySummary(void)
 	}
 
       summary += biblioteq_misc_functions::getColumnString
-	(ui.table, i,
-	 ui.table->columnNumber("Location"));
+	(ui.table, i, ui.table->columnNumber("Location"));
 
       while(summary.contains("<br><br>"))
 	summary.replace("<br><br>", "<br>");
@@ -4427,8 +4391,7 @@ void biblioteq::slotRequest(void)
 	}
 
       itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i,
-	 ui.table->columnNumber("Type"));
+	(ui.table, i, ui.table->columnNumber("Type"));
 
       if(itemType != "Grey Literature" &&
 	 itemType != "Photograph Collection")

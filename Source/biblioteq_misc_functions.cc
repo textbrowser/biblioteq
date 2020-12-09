@@ -1213,7 +1213,8 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
       if(column == nullptr)
 	continue;
 
-      if(column->text().toLower() == columnName.toLower())
+      if(column->text() == columnName ||
+	 column->text().toLower() == columnName.toLower())
 	{
 	  num = i;
 	  break;

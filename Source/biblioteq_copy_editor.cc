@@ -685,16 +685,14 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     biblioteq_misc_functions::updateColumn
       (qmain->getUI().table,
        m_bitem->getRow(),
-       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
-						 tr("Availability")),
+       qmain->getUI().table->columnNumber("Availability"),
        availability);
 
   if(!reserved.isEmpty())
     biblioteq_misc_functions::updateColumn
       (qmain->getUI().table,
        m_bitem->getRow(),
-       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
-						 tr("Total Reserved")),
+       qmain->getUI().table->columnNumber("Total Reserved"),
        reserved);
 
   slotCloseCopyEditor();
@@ -941,16 +939,14 @@ void biblioteq_copy_editor::slotSaveCopies(void)
     biblioteq_misc_functions::updateColumn
       (qmain->getUI().table,
        m_bitem->getRow(),
-       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
-						 tr("Availability")),
+       qmain->getUI().table->columnNumber("Availability"),
        availability);
 
   if(!reserved.isEmpty())
     biblioteq_misc_functions::updateColumn
       (qmain->getUI().table,
        m_bitem->getRow(),
-       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
-						 tr("Total Reserved")),
+       qmain->getUI().table->columnNumber("Total Reserved"),
        reserved);
 
   if(m_bitem)

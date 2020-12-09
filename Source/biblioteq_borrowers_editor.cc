@@ -474,16 +474,14 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 	biblioteq_misc_functions::updateColumn
 	  (qmain->getUI().table,
 	   m_bitem->getRow(),
-	   biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
-						     tr("Availability")),
+	   qmain->getUI().table->columnNumber("Availability"),
 	   availability);
 
       if(!reserved.isEmpty())
 	biblioteq_misc_functions::updateColumn
 	  (qmain->getUI().table,
 	   m_bitem->getRow(),
-	   biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
-						     tr("Total Reserved")),
+	   qmain->getUI().table->columnNumber("Total Reserved"),
 	   reserved);
 
       /*
@@ -558,15 +556,6 @@ void biblioteq_borrowers_editor::slotSave(void)
 				QString(tr("Unable to update the due date.")),
 				query.lastError().text(), __FILE__,
 				__LINE__);
-	      else
-		{
-		  /*
-		    biblioteq_misc_functions::updateColumn
-		    (qmain->getUI().table,
-		    bitem->getRow(), tr("Due Date"),
-		    dueDate->date().toString(Qt::ISODate));
-		  */
-		}
 	    }
 	}
 
