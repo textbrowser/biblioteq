@@ -69,9 +69,9 @@ QString biblioteq_copy_editor::saveCopies(void)
   copy_class *copy = nullptr;
   int i = 0;
 
-  query.prepare(QString("DELETE FROM %1_copy_info WHERE "
-			"item_oid = ?").arg(m_itemType.
-					    toLower().remove(" ")));
+  query.prepare
+    (QString("DELETE FROM %1_copy_info WHERE "
+	     "item_oid = ?").arg(m_itemType.toLower().remove(" ")));
   query.bindValue(0, m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -212,6 +212,7 @@ void biblioteq_copy_editor::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_copy_editor::populateCopiesEditor(void)
 {
+  QComboBox *comboBox = nullptr;
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QStringList list;
@@ -314,6 +315,17 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     for(j = 0; j < m_cb.table->columnCount(); j++)
       {
+	if(j == 3)
+	  {
+	    comboBox = new QComboBox();
+	    comboBox->addItem(tr("Available"));
+	    comboBox->addItem(tr("Deleted"));
+	    comboBox->setEnabled(!m_showForLending);
+	    goto done_label;
+	  }
+	else
+	  comboBox = nullptr;
+
 	item = new QTableWidgetItem();
 
 	if(m_showForLending)
@@ -339,6 +351,11 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	  item->setText("");
 
 	m_cb.table->setItem(i, j, item);
+
+      done_label:
+
+	if(comboBox)
+	  m_cb.table->setCellWidget(i, j, comboBox);
 
 	if(i + 1 <= progress1.maximum())
 	  progress1.setValue(i + 1);
@@ -420,7 +437,20 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	  row = query.value(5).toInt() - 1;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
-	    if(m_cb.table->item(row, j) != nullptr)
+	    if(m_cb.table->cellWidget(row, j) != nullptr)
+	      {
+		str = query.value(j).toString().trimmed();
+
+		QComboBox *comboBox = qobject_cast<QComboBox *>
+		  (m_cb.table->cellWidget(row, j));
+
+		if(comboBox->findText(str) > 0)
+		  comboBox->setCurrentIndex(comboBox->findText(str));
+		else
+		  comboBox->setCurrentIndex
+		    (comboBox->findText(tr("Available")));
+	      }
+	    else if(m_cb.table->item(row, j) != nullptr)
 	      {
 		str = query.value(j).toString().trimmed();
 
@@ -778,12 +808,12 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
 void biblioteq_copy_editor::slotSaveCopies(void)
 {
+  QComboBox *comboBox = nullptr;
   QString errormsg = "";
   QString errorstr = "";
   QStringList duplicates;
   QTableWidgetItem *item1 = nullptr;
   QTableWidgetItem *item2 = nullptr;
-  QTableWidgetItem *item3 = nullptr;
   copy_class *copy = nullptr;
   int i = 0;
 
@@ -840,16 +870,16 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
+      comboBox = qobject_cast<QComboBox *> (m_cb.table->cellWidget(i, 3));
       item1 = m_cb.table->item(i, 1);
-      item2 = m_cb.table->item(i, 3);
-      item3 = m_cb.table->item(i, 4);
+      item2 = m_cb.table->item(i, 4);
 
-      if(item1 == nullptr || item2 == nullptr || item3 == nullptr)
+      if(comboBox == nullptr || item1 == nullptr || item2 == nullptr)
 	continue;
 
-      copy = new copy_class(item1->text().trimmed(),  // Copy ID
-			    item3->text(),            // Item OID
-			    item2->text().trimmed()); // Status
+      copy = new copy_class(item1->text().trimmed(),            // Copy ID
+			    item2->text(),                      // Item OID
+			    comboBox->currentText().trimmed()); // Status
       m_copies.append(copy);
     }
 
