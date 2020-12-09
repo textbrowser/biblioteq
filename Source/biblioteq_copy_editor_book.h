@@ -25,15 +25,17 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   class copy_class
   {
   public:
-    copy_class(const QString &condition_arg,
-	       const QString &copyid_arg,
-	       const QString &itemoid_arg,
-	       const QString &originality_arg)
+    copy_class(const QString &condition,
+	       const QString &copyid,
+	       const QString &itemoid,
+	       const QString &originality,
+	       const QString &status)
     {
-      m_condition = condition_arg;
-      m_copyid = copyid_arg;
-      m_itemoid = itemoid_arg;
-      m_originality = originality_arg;
+      m_condition = condition;
+      m_copyid = copyid;
+      m_itemoid = itemoid;
+      m_originality = originality;
+      m_status = status;
     };
 
   public:
@@ -41,6 +43,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
     QString m_copyid;
     QString m_itemoid;
     QString m_originality;
+    QString m_status;
   };
 
   QList<copy_class *> m_copies;

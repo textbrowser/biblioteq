@@ -93,24 +93,31 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
 	  if(qmain->getDB().driverName() != "QSQLITE")
 	    query.prepare(QString("INSERT INTO %1_copy_info "
-				  "(item_oid, copy_number, "
-				  "copyid, originality, condition) "
-				  "VALUES (?, ?, ?, "
-				  "?, ?)").arg
+				  "(item_oid, "
+				  "copy_number, "
+				  "copyid, "
+				  "originality, "
+				  "condition, "
+				  "status) "
+				  "VALUES (?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
-				  "(item_oid, copy_number, "
-				  "copyid, originality, condition, myoid) "
-				  "VALUES (?, ?, ?, "
-				  "?, ?, ?)").arg
+				  "(item_oid, "
+				  "copy_number, "
+				  "copyid, "
+				  "originality, "
+				  "condition, "
+				  "myoid, "
+				  "status) "
+				  "VALUES (?, ?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 
-	  query.bindValue(0, copy->m_itemoid);
-	  query.bindValue(1, i + 1);
-	  query.bindValue(2, copy->m_copyid);
-	  query.bindValue(3, copy->m_originality);
-	  query.bindValue(4, copy->m_condition);
+	  query.addBindValue(copy->m_itemoid);
+	  query.addBindValue(i + 1);
+	  query.addBindValue(copy->m_copyid);
+	  query.addBindValue(copy->m_originality);
+	  query.addBindValue(copy->m_condition);
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
 	    {
@@ -118,21 +125,27 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 	      QString errorstr("");
 
 	      value = biblioteq_misc_functions::getSqliteUniqueId
-		(qmain->getDB(),
-		 errorstr);
+		(qmain->getDB(), errorstr);
 
 	      if(errorstr.isEmpty())
-		query.bindValue(5, value);
+		query.addBindValue(value);
 	      else
-		qmain->addError(QString(tr("Database Error")),
-				QString(tr("Unable to generate a unique "
-					   "integer.")),
-				errorstr);
+		{
+		  lastError = errorstr;
+		  qmain->addError(QString(tr("Database Error")),
+				  QString(tr("Unable to generate a unique "
+					     "integer.")),
+				  errorstr);
+		}
 	    }
+
+	  query.addBindValue(copy->m_status);
 
 	  if(!query.exec())
 	    {
-	      lastError = query.lastError().text();
+	      if(lastError.isEmpty())
+		lastError = query.lastError().text();
+
 	      qmain->addError(QString(tr("Database Error")),
 			      QString(tr("Unable to create copy data.")),
 			      query.lastError().text(), __FILE__, __LINE__);
@@ -580,6 +593,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 {
   QComboBox *comboBox1 = nullptr;
   QComboBox *comboBox2 = nullptr;
+  QComboBox *comboBox3 = nullptr;
   QString errormsg = "";
   QString errorstr = "";
   QStringList duplicates;
@@ -651,14 +665,15 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       item1 = m_cb.table->item(i, 1);
       item2 = m_cb.table->item(i, 5);
 
-      if(!comboBox1 || !comboBox2 || !item1 || !item2)
+      if(!comboBox1 || !comboBox2 || !comboBox3 || !item1 || !item2)
 	continue;
 
       copy = new copy_class
 	(comboBox2->currentText().trimmed(),
 	 item1->text().trimmed(),
 	 item2->text(),
-	 comboBox1->currentText().trimmed());
+	 comboBox1->currentText().trimmed(),
+	 comboBox3->currentText().trimmed());
       m_copies.append(copy);
     }
 

@@ -140,17 +140,22 @@ QString biblioteq_copy_editor::saveCopies(void)
 	      if(errorstr.isEmpty())
 		query.addBindValue(value);
 	      else
-		qmain->addError(QString(tr("Database Error")),
-				QString(tr("Unable to generate a unique "
-					   "integer.")),
-				errorstr);
+		{
+		  lastError = errorstr;
+		  qmain->addError(QString(tr("Database Error")),
+				  QString(tr("Unable to generate a unique "
+					     "integer.")),
+				  errorstr);
+		}
 	    }
 
 	  query.addBindValue(copy->m_status);
 
 	  if(!query.exec())
 	    {
-	      lastError = query.lastError().text();
+	      if(lastError.isEmpty())
+		lastError = query.lastError().text();
+
 	      qmain->addError(QString(tr("Database Error")),
 			      QString(tr("Unable to create copy data.")),
 			      query.lastError().text(), __FILE__, __LINE__);
@@ -444,11 +449,14 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		QComboBox *comboBox = qobject_cast<QComboBox *>
 		  (m_cb.table->cellWidget(row, j));
 
-		if(comboBox->findText(str) > 0)
-		  comboBox->setCurrentIndex(comboBox->findText(str));
-		else
-		  comboBox->setCurrentIndex
-		    (comboBox->findText(tr("Available")));
+		if(comboBox)
+		  {
+		    if(comboBox->findText(str) > 0)
+		      comboBox->setCurrentIndex(comboBox->findText(str));
+		    else
+		      comboBox->setCurrentIndex
+			(comboBox->findText(tr("Available")));
+		  }
 	      }
 	    else if(m_cb.table->item(row, j) != nullptr)
 	      {
