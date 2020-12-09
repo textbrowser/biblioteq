@@ -458,26 +458,33 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 
       QApplication::restoreOverrideCursor();
       qmain->updateMembersBrowser(memberid);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      /*
-	QApplication::setOverrideCursor(Qt::WaitCursor);
-	availability = biblioteq_misc_functions::getAvailability
-	(ioid, qmain->getDB(),
-	itemType, errorstr);
-	QApplication::restoreOverrideCursor();
+      QString availability = "";
+      QString errorstr = "";
+      QString reserved = "";
 
-	if(!errorstr.isEmpty())
-	qmain->addError(QString(tr("Database Error")),
-	QString(tr("Retrieving availability.")),
-	errorstr, __FILE__, __LINE__);
+      availability = biblioteq_misc_functions::getAvailability
+	(m_ioid, qmain->getDB(), m_itemType, errorstr);
+      reserved = biblioteq_misc_functions::getTotalReserved
+	(qmain->getDB(), m_itemType, m_ioid);
+      QApplication::restoreOverrideCursor();
 
+      if(!availability.isEmpty())
 	biblioteq_misc_functions::updateColumn
-	(qmain->getUI().table, bitem->getRow(),
-	tr("Availability"), availability);
+	  (qmain->getUI().table,
+	   m_bitem->getRow(),
+	   biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
+						     tr("Availability")),
+	   availability);
+
+      if(!reserved.isEmpty())
 	biblioteq_misc_functions::updateColumn
-	(qmain->getUI().table, bitem->getRow(),
-	tr("Due Date"), "Returned");
-      */
+	  (qmain->getUI().table,
+	   m_bitem->getRow(),
+	   biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
+						     tr("Total Reserved")),
+	   reserved);
 
       /*
       ** Update the Reservation History panel, if necessary.

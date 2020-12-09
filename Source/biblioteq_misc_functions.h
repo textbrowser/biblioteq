@@ -45,6 +45,9 @@ class biblioteq_misc_functions
 			const QSqlDatabase &,
 			QString &);
   static QString getRoles(const QSqlDatabase &, const QString &, QString &);
+  static QString getTotalReserved(const QSqlDatabase &,
+				  const QString &,
+				  const QString &);
   static QString imageFormatGuess(const QByteArray &bytes);
   static QStringList getBookBindingTypes(const QSqlDatabase &, QString &);
   static QStringList getCDFormats(const QSqlDatabase &, QString &);

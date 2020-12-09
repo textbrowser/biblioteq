@@ -239,7 +239,7 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 
   if(query.exec())
     if(query.next())
-      str = query.value(0).toString().trimmed();
+      str = query.value(0).toString();
 
   if(query.lastError().isValid())
     {
@@ -408,6 +408,39 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return roles;
+}
+
+QString biblioteq_misc_functions::getTotalReserved(const QSqlDatabase &db,
+						   const QString &itemTypeArg,
+						   const QString &oid)
+{
+  QSqlQuery query(db);
+  QString itemType = "";
+  QString querystr = "";
+  QString str = "";
+
+  itemType = itemTypeArg.toLower();
+
+  if(itemType == "book" ||
+     itemType == "cd" ||
+     itemType == "dvd" ||
+     itemType == "journal" ||
+     itemType == "magazine" ||
+     itemType == "video game")
+    querystr = QString("SELECT COUNT(item_borrower.item_oid) "
+		       "FROM item_borrower WHERE "
+		       "item_borrower.item_oid = %1 AND "
+		       "item_borrower.type = '%2'").arg(oid).arg(itemTypeArg);
+  else
+    return str;
+
+  query.prepare(querystr);
+
+  if(query.exec())
+    if(query.next())
+      str = query.value(0).toString();
+
+  return str;
 }
 
 QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)

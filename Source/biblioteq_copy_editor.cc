@@ -672,52 +672,30 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   ** Update the availability column.
   */
 
-  /*
-    availability = biblioteq_misc_functions::getColumnString
-    (qmain->getUI().table, bitem->getRow(), tr("Availability"));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    if(availability != "0")
-    availability.setNum(availability.toInt() - 1);
+  QString availability = biblioteq_misc_functions::getAvailability
+    (m_ioid, qmain->getDB(), m_itemType, errorstr);
+  QString reserved = biblioteq_misc_functions::getTotalReserved
+    (qmain->getDB(), m_itemType, m_ioid);
 
+  QApplication::restoreOverrideCursor();
+
+  if(!availability.isEmpty())
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Availability"), availability);
-  */
+      (qmain->getUI().table,
+       m_bitem->getRow(),
+       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
+						 tr("Availability")),
+       availability);
 
-  /*
-  ** Update some additional columns.
-  */
-
-  /*
-    if(biblioteq_misc_functions::
-    getColumnString(qmain->getUI().table, bitem->getRow(),
-    tr("Barcode")) == copyid)
-    {
+  if(!reserved.isEmpty())
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Due Date"),
-    QDate::fromString(duedate, "MM/dd/yyyy").
-    toString(Qt::ISODate));
-    biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Reservation Date"),
-    QDate::fromString(checkedout, "MM/dd/yyyy").toString
-    (Qt::ISODate));
-    biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Member ID"),
-    memberid);
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    name = biblioteq_misc_functions::getMemberName(qmain->getDB(), memberid,
-    errorstr);
-    QApplication::restoreOverrideCursor();
-
-    if(errorstr.length() > 0)
-    qmain->addError(QString(tr("Database Error")),
-    QString(tr("Unable to determine the selected copy's "
-    "availability.")),
-    errorstr, __FILE__, __LINE__);
-
-    biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Borrower"), name);
-    }
-  */
+      (qmain->getUI().table,
+       m_bitem->getRow(),
+       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
+						 tr("Total Reserved")),
+       reserved);
 
   slotCloseCopyEditor();
 
@@ -950,26 +928,30 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   if(m_spinbox)
     m_spinbox->setValue(m_copies.size());
 
-  /*
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    availability = biblioteq_misc_functions::getAvailability
-    (ioid, qmain->getDB(),
-    itemType, errorstr);
-    QApplication::restoreOverrideCursor();
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    if(!errorstr.isEmpty())
-    qmain->addError(QString(tr("Database Error")),
-    QString(tr("Retrieving availability.")),
-    errorstr, __FILE__, __LINE__);
+  QString availability = biblioteq_misc_functions::getAvailability
+    (m_ioid, qmain->getDB(), m_itemType, errorstr);
+  QString reserved = biblioteq_misc_functions::getTotalReserved
+    (qmain->getDB(), m_itemType, m_ioid);
 
+  QApplication::restoreOverrideCursor();
+
+  if(!availability.isEmpty())
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(),
-    tr("Availability"), availability);
-    str.setNum(copies.size());
+      (qmain->getUI().table,
+       m_bitem->getRow(),
+       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
+						 tr("Availability")),
+       availability);
+
+  if(!reserved.isEmpty())
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(),
-    tr("Quantity"), str);
-  */
+      (qmain->getUI().table,
+       m_bitem->getRow(),
+       biblioteq_misc_functions::getColumnNumber(qmain->getUI().table,
+						 tr("Total Reserved")),
+       reserved);
 
   if(m_bitem)
     m_bitem->setOldQ(m_copies.size());
