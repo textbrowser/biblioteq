@@ -4637,6 +4637,12 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "("
 	      "value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
 	      ")");
+  list.append("ALTER TABLE book_copy_info ADD status TEXT");
+  list.append("ALTER TABLE cd_copy_info ADD status TEXT");
+  list.append("ALTER TABLE dvd_copy_info ADD status TEXT");
+  list.append("ALTER TABLE journal_copy_info ADD status TEXT");
+  list.append("ALTER TABLE magazine_copy_info ADD status TEXT");
+  list.append("ALTER TABLE videogame_copy_info ADD status TEXT");
 
   QString errors("<html>");
   int ct = 1;
