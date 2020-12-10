@@ -342,6 +342,26 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    widget->setLayout(layout);
 	    m_cb.table->setCellWidget(i, j, widget);
 	  }
+	else if(j == 5)
+	  {
+	    auto *comboBox = new QComboBox();
+	    auto *layout = new QHBoxLayout();
+	    auto *spacer = new QSpacerItem
+	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+	    auto *widget = new QWidget();
+
+	    comboBox->addItem(tr("Available"));
+	    comboBox->addItem(tr("Deleted"));
+	    comboBox->addItem(tr("Lost"));
+	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	    comboBox->setSizePolicy
+	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
+	    layout->addWidget(comboBox);
+	    layout->addSpacerItem(spacer);
+	    layout->setContentsMargins(0, 0, 0, 0);
+	    widget->setLayout(layout);
+	    m_cb.table->setCellWidget(i, j, widget);
+	  }
 	else
 	  {
 	    auto *item = new QTableWidgetItem();
@@ -363,7 +383,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		else
 		  item->setText("1");
 	      }
-	    else if(j == 5)
+	    else if(j == 6)
 	      item->setText(m_ioid);
 	    else
 	      item->setText("");
@@ -385,6 +405,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"(1 - COUNT(item_borrower.copyid)), "
 			"%1_copy_info.originality, "
 			"%1_copy_info.condition, "
+			"%1_copy_info.status, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"FROM "
@@ -401,6 +422,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.copyid, "
 			"%1_copy_info.originality, "
 			"%1_copy_info.condition, "
+			"%1_copy_info.status, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").arg
@@ -450,7 +472,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(6).toInt() - 1;
+	  row = query.value(7).toInt() - 1;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
 	    if(m_cb.table->item(row, j) != nullptr)
@@ -656,14 +678,16 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
     {
       QWidget *widget1 = m_cb.table->cellWidget(i, 3);
       QWidget *widget2 = m_cb.table->cellWidget(i, 4);
+      QWidget *widget3 = m_cb.table->cellWidget(i, 5);
 
-      if(!widget1 || !widget2)
+      if(!widget1 || !widget2 || !widget3)
 	continue;
 
       comboBox1 = widget1->findChild<QComboBox *> ();
       comboBox2 = widget2->findChild<QComboBox *> ();
+      comboBox3 = widget3->findChild<QComboBox *> ();
       item1 = m_cb.table->item(i, 1);
-      item2 = m_cb.table->item(i, 5);
+      item2 = m_cb.table->item(i, 6);
 
       if(!comboBox1 || !comboBox2 || !comboBox3 || !item1 || !item2)
 	continue;

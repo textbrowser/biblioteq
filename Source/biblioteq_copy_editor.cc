@@ -670,7 +670,7 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   QApplication::restoreOverrideCursor();
 
   /*
-  ** Update the availability column.
+  ** Update the Availability and Total Reserved columns.
   */
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
