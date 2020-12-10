@@ -325,6 +325,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	    comboBox = new QComboBox();
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
+	    comboBox->addItem(tr("Lost"));
 	    comboBox->setEnabled(!m_showForLending);
 	    goto done_label;
 	  }
@@ -921,13 +922,6 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       return;
     }
 
-  QApplication::restoreOverrideCursor();
-
-  if(m_spinbox)
-    m_spinbox->setValue(m_copies.size());
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
   QString availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
   QString reserved = biblioteq_misc_functions::getTotalReserved
@@ -951,6 +945,9 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   if(m_bitem)
     m_bitem->setOldQ(m_copies.size());
+
+  if(m_spinbox)
+    m_spinbox->setValue(m_copies.size());
 
   for(int i = 0; i < m_copies.size(); i++)
     delete m_copies.at(i);

@@ -732,34 +732,32 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       return;
     }
 
+  QString availability = biblioteq_misc_functions::getAvailability
+    (m_ioid, qmain->getDB(), m_itemType, errorstr);
+  QString reserved = biblioteq_misc_functions::getTotalReserved
+    (qmain->getDB(), m_itemType, m_ioid);
+
   QApplication::restoreOverrideCursor();
 
-  if(m_spinbox)
-    m_spinbox->setValue(m_copies.size());
-
-  /*
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    availability = biblioteq_misc_functions::getAvailability
-    (m_ioid, qmain->getDB(),
-    m_itemType, errorstr);
-    QApplication::restoreOverrideCursor();
-
-    if(!errorstr.isEmpty())
-    qmain->addError(QString(tr("Database Error")),
-    QString(tr("Retrieving availability.")),
-    errorstr, __FILE__, __LINE__);
-
+  if(!availability.isEmpty())
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, m_bitem->getRow(),
-    tr("Availability"), availability);
-    str.setNum(m_copies.size());
+      (qmain->getUI().table,
+       m_bitem->getRow(),
+       qmain->getUI().table->columnNumber("Availability"),
+       availability);
+
+  if(!reserved.isEmpty())
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, m_bitem->getRow(),
-    tr("Quantity"), str);
-  */
+      (qmain->getUI().table,
+       m_bitem->getRow(),
+       qmain->getUI().table->columnNumber("Total Reserved"),
+       reserved);
 
   if(m_bitem)
     m_bitem->setOldQ(m_copies.size());
+
+  if(m_spinbox)
+    m_spinbox->setValue(m_copies.size());
 
   for(int i = 0; i < m_copies.size(); i++)
     delete m_copies.at(i);
