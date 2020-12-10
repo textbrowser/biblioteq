@@ -29,7 +29,7 @@ fi
 
 # SQLite Binaries
 
-sqlite=sqlite-dll-win32-x86-3330000.zip
+sqlite=sqlite-dll-win32-x86-3340000.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2020/$sqlite
@@ -45,7 +45,7 @@ fi
 
 # SQLite Source
 
-sqlite=sqlite-amalgamation-3330000.zip
+sqlite=sqlite-amalgamation-3340000.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2020/$sqlite
@@ -57,7 +57,7 @@ else
     echo "Cannot read $sqlite."
 fi
 
-sqlite=sqlite-amalgamation-3330000
+sqlite=sqlite-amalgamation-3340000
 
 if [ -r $sqlite ]; then
     mv $sqlite/*.h Include.win32/sqlite3/.
