@@ -28,11 +28,11 @@ Introduction
 	2.2 Unix Installation
 
 	Installing BiblioteQ on platforms that lack prepared bundles involves several operations. First, please 	resolve the following software prerequisites:
-    a) Qt 4.8.x must be installed. Qt 5.x is also supported. Qt 4.7.4 is loosely supported. Please download Qt from https://www.qt.io/download. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin.
+    a) Qt 5.x must be installed. Qt 4.7.4 and Qt 4.8.x are not supported. Please download Qt from https://www.qt.io/download. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin.
     b) YAZ 4.2.x, or higher, must be installed. Please download the software from http://www.indexdata.com/yaz.
     c) If you intend to use PostgreSQL, the PostgreSQL database package must be installed. Please download the software from https://www.postgresql.org/download.
     d) If you intend to use SQLite, the SQLite package must be installed. Please download the software from https://www.sqlite.org/download.html.
-    e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make. Some systems provide gmake and qmake-qt5.
+    e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make. Some systems provide gmake, qmake-qt5, etc.
 
 	2.3 Windows Installation
 
