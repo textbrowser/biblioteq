@@ -483,3 +483,4 @@
 256. Compress attachments. (Done)
 257. Foreign constraints are not enabled on SQLite. Remove child
      table entries upon item removal. (Done)
+258. Enumerate database fields and table columns. (TBD)
