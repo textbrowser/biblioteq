@@ -57,7 +57,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 			"item_oid = ?").arg(m_itemType.toLower().remove(" ")));
-  query.bindValue(0, m_ioid);
+  query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -304,7 +304,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     {
       for(j = 0; j < m_cb.table->columnCount(); j++)
-	if(j == 3 || j == 4)
+	if(j == CONDITION || j == ORIGINALITY)
 	  {
 	    QStringList list;
 	    auto *comboBox = new QComboBox();
@@ -313,7 +313,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 	    auto *widget = new QWidget();
 
-	    if(j == 3)
+	    if(j == ORIGINALITY)
 	      list << tr("Black & White Copy")
 		   << tr("Color Copy")
 		   << tr("Original");
@@ -330,7 +330,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 	    comboBox->addItems(list);
 
-	    if(j == 3)
+	    if(j == ORIGINALITY)
 	      comboBox->setCurrentIndex(2);
 
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
@@ -342,7 +342,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    widget->setLayout(layout);
 	    m_cb.table->setCellWidget(i, j, widget);
 	  }
-	else if(j == 5)
+	else if(j == STATUS)
 	  {
 	    auto *comboBox = new QComboBox();
 	    auto *layout = new QHBoxLayout();
@@ -368,22 +368,22 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 	    if(m_showForLending)
 	      item->setFlags(Qt::NoItemFlags);
-	    else if(j == 1)
+	    else if(j == BARCODE)
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 			     Qt::ItemIsEditable);
 	    else
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
-	    if(j == 1)
+	    if(j == BARCODE)
 	      item->setText("");
-	    else if(j == 2)
+	    else if(j == AVAILABILITY)
 	      {
 		if(m_showForLending)
 		  item->setText("0");
 		else
 		  item->setText("1");
 	      }
-	    else if(j == 6)
+	    else if(j == MYOID)
 	      item->setText(m_ioid);
 	    else
 	      item->setText("");
@@ -427,9 +427,9 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").arg
 		(m_itemType.toLower().remove(" ")));
-  query.bindValue(0, m_itemType);
-  query.bindValue(1, m_ioid);
-  query.bindValue(2, m_ioid);
+  query.addBindValue(m_itemType);
+  query.addBindValue(m_ioid);
+  query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -472,14 +472,14 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(7).toInt() - 1;
+	  row = query.value(COPY_NUMBER).toInt() - 1;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
 	    if(m_cb.table->item(row, j) != nullptr)
 	      {
 		str = query.value(j).toString().trimmed();
 
-		if(query.value(2).toString().trimmed() == "0")
+		if(query.value(AVAILABILITY).toString().trimmed() == "0")
 		  m_cb.table->item(row, j)->setFlags(Qt::NoItemFlags);
 		else if(m_showForLending)
 		  {
@@ -489,19 +489,19 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		    if(m_cb.table->currentRow() == -1)
 		      m_cb.table->selectRow(row);
 		  }
-		else if(j == 1)
-		  m_cb.table->item(row, 1)->setFlags
+		else if(j == BARCODE)
+		  m_cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 		     Qt::ItemIsEditable);
 
-		if(j == 2)
-		  m_cb.table->item(row, 2)->setText
-		    (query.value(2).toString().trimmed());
+		if(j == AVAILABILITY)
+		  m_cb.table->item(row, j)->setText
+		    (query.value(j).toString().trimmed());
 		else
 		  {
-		    if(i == 0 && j == 0)
+		    if(i == 0 && j == TITLE)
 		      m_cb.table->item(row, j)->setText(str);
-		    else if(j != 0)
+		    else if(j != TITLE)
 		      m_cb.table->item(row, j)->setText(str);
 		  }
 	      }
@@ -580,13 +580,13 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
   if(isCheckedOut)
     {
-      if(m_cb.table->item(row, 1) != nullptr)
-	m_cb.table->item(row, 1)->setFlags(Qt::NoItemFlags);
+      if(m_cb.table->item(row, BARCODE) != nullptr)
+	m_cb.table->item(row, BARCODE)->setFlags(Qt::NoItemFlags);
 
-      if(m_cb.table->item(row, 2) != nullptr)
+      if(m_cb.table->item(row, AVAILABILITY) != nullptr)
 	{
-	  m_cb.table->item(row, 2)->setFlags(Qt::NoItemFlags);
-	  m_cb.table->item(row, 2)->setText("0");
+	  m_cb.table->item(row, AVAILABILITY)->setFlags(Qt::NoItemFlags);
+	  m_cb.table->item(row, AVAILABILITY)->setText("0");
 	}
 
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
@@ -627,8 +627,8 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   m_cb.table->setFocus();
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
-    if(m_cb.table->item(i, 1) != nullptr &&
-       m_cb.table->item(i, 1)->text().trimmed().isEmpty())
+    if(m_cb.table->item(i, BARCODE) != nullptr &&
+       m_cb.table->item(i, BARCODE)->text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	  tr(" contains an empty Barcode.");
@@ -637,9 +637,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 	duplicates.clear();
 	return;
       }
-    else if(m_cb.table->item(i, 1) != nullptr)
+    else if(m_cb.table->item(i, BARCODE) != nullptr)
       {
-	if(duplicates.contains(m_cb.table->item(i, 1)->text()))
+	if(duplicates.contains(m_cb.table->item(i, BARCODE)->text()))
 	  {
 	    errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	      tr(" contains a duplicate Barcode.");
@@ -649,7 +649,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 	    return;
 	  }
 	else
-	  duplicates.append(m_cb.table->item(i, 1)->text());
+	  duplicates.append(m_cb.table->item(i, BARCODE)->text());
       }
 
   duplicates.clear();
@@ -676,9 +676,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
-      QWidget *widget1 = m_cb.table->cellWidget(i, 3);
-      QWidget *widget2 = m_cb.table->cellWidget(i, 4);
-      QWidget *widget3 = m_cb.table->cellWidget(i, 5);
+      QWidget *widget1 = m_cb.table->cellWidget(i, ORIGINALITY);
+      QWidget *widget2 = m_cb.table->cellWidget(i, CONDITION);
+      QWidget *widget3 = m_cb.table->cellWidget(i, STATUS);
 
       if(!widget1 || !widget2 || !widget3)
 	continue;
@@ -686,8 +686,8 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       comboBox1 = widget1->findChild<QComboBox *> ();
       comboBox2 = widget2->findChild<QComboBox *> ();
       comboBox3 = widget3->findChild<QComboBox *> ();
-      item1 = m_cb.table->item(i, 1);
-      item2 = m_cb.table->item(i, 6);
+      item1 = m_cb.table->item(i, BARCODE);
+      item2 = m_cb.table->item(i, MYOID);
 
       if(!comboBox1 || !comboBox2 || !comboBox3 || !item1 || !item2)
 	continue;
