@@ -72,7 +72,7 @@ QString biblioteq_copy_editor::saveCopies(void)
   query.prepare
     (QString("DELETE FROM %1_copy_info WHERE "
 	     "item_oid = ?").arg(m_itemType.toLower().remove(" ")));
-  query.bindValue(0, m_ioid);
+  query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -320,7 +320,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     for(j = 0; j < m_cb.table->columnCount(); j++)
       {
-	if(j == 3)
+	if(j == STATUS)
 	  {
 	    comboBox = new QComboBox();
 	    comboBox->addItem(tr("Available"));
@@ -336,22 +336,22 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
 	if(m_showForLending)
 	  item->setFlags(Qt::NoItemFlags);
-	else if(j == 1)
+	else if(j == BARCODE)
 	  item->setFlags
 	    (Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
 	else
 	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
-	if(j == 1)
+	if(j == BARCODE)
 	  item->setText("");
-	else if(j == 2)
+	else if(j == AVAILABILITY)
 	  {
 	    if(m_showForLending)
 	      item->setText("0");
 	    else
 	      item->setText("1");
 	  }
-	else if(j == m_cb.table->columnCount() - 2)
+	else if(j == MYOID)
 	  item->setText(m_ioid);
 	else
 	  item->setText("");
@@ -395,9 +395,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").
 		arg(m_itemType.toLower().remove(" ")));
-  query.bindValue(0, m_itemType);
-  query.bindValue(1, m_ioid);
-  query.bindValue(2, m_ioid);
+  query.addBindValue(m_itemType);
+  query.addBindValue(m_ioid);
+  query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -440,7 +440,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(5).toInt() - 1;
+	  row = query.value(COPY_NUMBER).toInt() - 1;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
 	    if(m_cb.table->cellWidget(row, j) != nullptr)
@@ -463,7 +463,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	      {
 		str = query.value(j).toString().trimmed();
 
-		if(query.value(2).toString().trimmed() == "0")
+		if(query.value(AVAILABILITY).toString().trimmed() == "0")
 		  m_cb.table->item(row, j)->setFlags(Qt::NoItemFlags);
 		else if(m_showForLending)
 		  {
@@ -473,19 +473,19 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		    if(m_cb.table->currentRow() == -1)
 		      m_cb.table->selectRow(row);
 		  }
-		else if(j == 1)
-		  m_cb.table->item(row, 1)->setFlags
+		else if(j == BARCODE)
+		  m_cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 		     Qt::ItemIsEditable);
 
-		if(j == 2)
-		  m_cb.table->item(row, 2)->setText
-		    (query.value(2).toString().trimmed());
+		if(j == AVAILABILITY)
+		  m_cb.table->item(row, j)->setText
+		    (query.value(j).toString().trimmed());
 		else
 		  {
-		    if(i == 0 && j == 0)
+		    if(i == 0 && j == TITLE)
 		      m_cb.table->item(row, j)->setText(str);
-		    else if(j != 0)
+		    else if(j != TITLE)
 		      m_cb.table->item(row, j)->setText(str);
 		  }
 	      }
@@ -537,14 +537,15 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   int copyrow = m_cb.table->currentRow();
   int memberrow = qmain->getBB().table->currentRow();
 
-  if(copyrow < 0 || m_cb.table->item(copyrow, 1) == nullptr)
+  if(copyrow < 0 || m_cb.table->item(copyrow, BARCODE) == nullptr)
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			    tr("Please select a copy to reserve."));
       QApplication::processEvents();
       return;
     }
-  else if((m_cb.table->item(copyrow, 1)->flags() & Qt::ItemIsEnabled) == 0)
+  else if((m_cb.table->item(copyrow, BARCODE)->flags() &
+	   Qt::ItemIsEnabled) == 0)
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			    tr("It appears that the copy you've selected "
@@ -606,14 +607,14 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 		"reserved_by, "
 		"type) "
 		"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  query.bindValue(0, m_ioid);
-  query.bindValue(1, memberid);
-  query.bindValue(2, checkedout);
-  query.bindValue(3, duedate);
-  query.bindValue(4, copyid);
-  query.bindValue(5, copynumber);
-  query.bindValue(6, qmain->getAdminID());
-  query.bindValue(7, m_itemType);
+  query.addBindValue(m_ioid);
+  query.addBindValue(memberid);
+  query.addBindValue(checkedout);
+  query.addBindValue(duedate);
+  query.addBindValue(copyid);
+  query.addBindValue(copynumber);
+  query.addBindValue(qmain->getAdminID());
+  query.addBindValue(m_itemType);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -647,14 +648,14 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 		    "reserved_by, "
 		    "type) "
 		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-      query.bindValue(0, memberid);
-      query.bindValue(1, m_ioid);
-      query.bindValue(2, copyid);
-      query.bindValue(3, checkedout);
-      query.bindValue(4, duedate);
-      query.bindValue(5, QString("N/A"));
-      query.bindValue(6, qmain->getAdminID());
-      query.bindValue(7, m_itemType);
+      query.addBindValue(memberid);
+      query.addBindValue(m_ioid);
+      query.addBindValue(copyid);
+      query.addBindValue(checkedout);
+      query.addBindValue(duedate);
+      query.addBindValue(QString("N/A"));
+      query.addBindValue(qmain->getAdminID());
+      query.addBindValue(m_itemType);
 
       if(!query.exec())
 	qmain->addError(QString(tr("Database Error")),
@@ -760,13 +761,13 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
   if(isCheckedOut)
     {
-      if(m_cb.table->item(row, 1) != nullptr)
-	m_cb.table->item(row, 1)->setFlags(Qt::NoItemFlags);
+      if(m_cb.table->item(row, BARCODE) != nullptr)
+	m_cb.table->item(row, BARCODE)->setFlags(Qt::NoItemFlags);
 
-      if(m_cb.table->item(row, 2) != nullptr)
+      if(m_cb.table->item(row, AVAILABILITY) != nullptr)
 	{
-	  m_cb.table->item(row, 2)->setFlags(Qt::NoItemFlags);
-	  m_cb.table->item(row, 2)->setText("0");
+	  m_cb.table->item(row, AVAILABILITY)->setFlags(Qt::NoItemFlags);
+	  m_cb.table->item(row, AVAILABILITY)->setText("0");
 	}
 
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
@@ -805,8 +806,8 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   m_cb.table->setFocus();
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
-    if(m_cb.table->item(i, 1) != nullptr &&
-       m_cb.table->item(i, 1)->text().trimmed().isEmpty())
+    if(m_cb.table->item(i, BARCODE) != nullptr &&
+       m_cb.table->item(i, BARCODE)->text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	  tr(" contains an empty Barcode.");
@@ -815,9 +816,9 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	duplicates.clear();
 	return;
       }
-    else if(m_cb.table->item(i, 1) != nullptr)
+    else if(m_cb.table->item(i, BARCODE) != nullptr)
       {
-	if(duplicates.contains(m_cb.table->item(i, 1)->text()))
+	if(duplicates.contains(m_cb.table->item(i, BARCODE)->text()))
 	  {
 	    errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	      tr(" contains a duplicate Barcode.");
@@ -827,7 +828,7 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	    return;
 	  }
 	else
-	  duplicates.append(m_cb.table->item(i, 1)->text());
+	  duplicates.append(m_cb.table->item(i, BARCODE)->text());
       }
 
   duplicates.clear();
@@ -855,9 +856,9 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
-      comboBox = qobject_cast<QComboBox *> (m_cb.table->cellWidget(i, 3));
-      item1 = m_cb.table->item(i, 1);
-      item2 = m_cb.table->item(i, 4);
+      comboBox = qobject_cast<QComboBox *> (m_cb.table->cellWidget(i, STATUS));
+      item1 = m_cb.table->item(i, BARCODE);
+      item2 = m_cb.table->item(i, MYOID);
 
       if(comboBox == nullptr || item1 == nullptr || item2 == nullptr)
 	continue;
