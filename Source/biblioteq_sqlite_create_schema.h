@@ -1,3 +1,8 @@
+/*
+** The sequence table is used for generating unique integers. Please see
+** biblioteq_misc_functions::getSqliteUniqueId().
+*/
+
 const char *sqlite_create_schema_text = "\
 CREATE TABLE book							\
 (									\

@@ -1379,6 +1379,11 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
       if(variant.isValid())
 	{
 	  value = variant.toLongLong();
+
+	  /*
+	  ** Store only one entry in the table.
+	  */
+
 	  query.exec
 	    (QString("DELETE FROM sequence WHERE value < %1").arg(value));
 	}
