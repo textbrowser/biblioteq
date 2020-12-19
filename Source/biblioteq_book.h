@@ -34,6 +34,15 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
+  enum Columns
+    {
+     COMPRESSED_SIZE = 2,
+     DESCRIPTION = 3,
+     DIGEST = 1,
+     FILE = 0,
+     MYOID = 4
+    };
+
   QBuffer m_imageBuffer;
   QByteArray m_openLibraryResults;
   QByteArray m_sruResults;
