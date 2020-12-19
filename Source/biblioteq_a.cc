@@ -2008,11 +2008,11 @@ void biblioteq::slotAddAdmin(void)
   ab.table->setRowCount(ab.table->rowCount() + 1);
 
   for(i = 0; i < ab.table->columnCount(); i++)
-    if(i == 0)
+    if(i == AdminSetupColumns::ID)
       {
 	item = new QTableWidgetItem();
 	item->setFlags(item->flags() | Qt::ItemIsEditable);
-	ab.table->setItem(ab.table->rowCount() - 1, 0, item);
+	ab.table->setItem(ab.table->rowCount() - 1, i, item);
       }
     else
       {
@@ -2096,7 +2096,7 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
   int row = -1;
 
   for(i = 0; i < ab.table->rowCount(); i++)
-    for(j = 1; j < ab.table->columnCount(); j++)
+    for(j = AdminSetupColumns::ADMINISTRATOR; j < ab.table->columnCount(); j++)
       if(ab.table->cellWidget(i, j) == box)
 	{
 	  row = i;
@@ -2106,9 +2106,11 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 
   if(row > -1)
     {
-      if(column == 1)
+      if(column == AdminSetupColumns::ADMINISTRATOR)
 	{
-	  for(i = 2; i < ab.table->columnCount(); i++)
+	  for(i = AdminSetupColumns::CIRCULATION;
+	      i < ab.table->columnCount();
+	      i++)
 	    if(box->isChecked())
 	      (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
 		setChecked(false);
@@ -2571,9 +2573,10 @@ void biblioteq::slotDeleteAdmin(void)
       return;
     }
 
-  str = ab.table->item(row, 0)->text().toLower().trimmed();
+  str = ab.table->item(row, AdminSetupColumns::ID)->text().toLower().trimmed();
 
-  if((ab.table->item(row, 0)->flags() & Qt::ItemIsEditable) == 0 &&
+  if((ab.table->item(row, AdminSetupColumns::ID)->flags() &
+      Qt::ItemIsEditable) == 0 &&
      str == getAdminID())
     {
       QMessageBox::critical(m_admin_diag, tr("BiblioteQ: User Error"),

@@ -277,6 +277,15 @@ class biblioteq: public QMainWindow
   void slotResizeColumns(void);
 
  private:
+  enum AdminSetupColumns
+    {
+     ADMINISTRATOR = 1,
+     CIRCULATION = 2,
+     ID = 0,
+     LIBRARIAN = 3,
+     MEMBERSHIP = 4
+    };
+
   QActionGroup *m_menuCategoryActionGroup;
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;
