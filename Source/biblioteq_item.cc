@@ -123,7 +123,11 @@ void biblioteq_item::print(QWidget *parent)
   QTextDocument document;
 
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setPageSize(QPrinter::Letter);
+#endif
 
   if(dialog->exec() == QDialog::Accepted)
     {

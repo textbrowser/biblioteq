@@ -328,7 +328,11 @@ void biblioteq_pdfreader::slotPrint(void)
   printer.setColorMode(QPrinter::Color);
   printer.setDuplex(QPrinter::DuplexAuto);
   printer.setFromTo(1, m_document->numPages());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setPageSize(QPrinter::Letter);
+#endif
 
   if(dialog->exec() == QDialog::Accepted)
     {
@@ -496,7 +500,11 @@ void biblioteq_pdfreader::slotPrintPreview(void)
   printer.setColorMode(QPrinter::Color);
   printer.setDuplex(QPrinter::DuplexAuto);
   printer.setFromTo(1, m_document->numPages());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setPageSize(QPrinter::Letter);
+#endif
   dialog->exec();
   QApplication::processEvents();
 #endif

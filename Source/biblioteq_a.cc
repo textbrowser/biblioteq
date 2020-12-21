@@ -3430,7 +3430,11 @@ void biblioteq::slotPrintReservationHistory(void)
   QTextDocument document;
 
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setPageSize(QPrinter::Letter);
+#endif
 
   if(dialog->exec() == QDialog::Accepted)
     {
@@ -3468,8 +3472,13 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
 
   printDialog->setWindowModality(Qt::WindowModal);
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageOrientation(QPageLayout::Landscape);
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setOrientation(QPrinter::Landscape);
-  printer.setPaperSize(QPrinter::Letter);
+  printer.setPageSize(QPrinter::Letter);
+#endif
   connect(printDialog.data(),
 	  SIGNAL(paintRequested(QPrinter *)),
 	  this,
@@ -3567,7 +3576,11 @@ void biblioteq::slotPrintReserved(void)
       str = str.mid(0, str.length() - 8);
       str += "</html>";
       printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+      printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
       printer.setPageSize(QPrinter::Letter);
+#endif
 
       if(dialog->exec() == QDialog::Accepted)
 	{
@@ -3602,8 +3615,13 @@ void biblioteq::slotPrintView(void)
   QTextDocument document;
 
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageOrientation(QPageLayout::Landscape);
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setOrientation(QPrinter::Landscape);
-  printer.setPaperSize(QPrinter::Letter);
+  printer.setPageSize(QPrinter::Letter);
+#endif
 
   if(dialog->exec() == QDialog::Accepted)
     {
@@ -3623,8 +3641,13 @@ void biblioteq::slotPrintViewPreview(void)
 
   printDialog->setWindowModality(Qt::WindowModal);
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageOrientation(QPageLayout::Landscape);
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setOrientation(QPrinter::Landscape);
-  printer.setPaperSize(QPrinter::Letter);
+  printer.setPageSize(QPrinter::Letter);
+#endif
   connect(printDialog.data(),
 	  SIGNAL(paintRequested(QPrinter *)),
 	  this,

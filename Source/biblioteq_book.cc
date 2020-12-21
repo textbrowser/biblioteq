@@ -3738,7 +3738,11 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
   QTextDocument document;
 
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setPageSize(QPrinter::Letter);
+#endif
 
   if(dialog->exec() == QDialog::Accepted)
     {
@@ -3775,7 +3779,11 @@ void biblioteq_book::slotPrintCallDewey(void)
   QTextDocument document;
 
   printer.setColorMode(QPrinter::GrayScale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+  printer.setPageSize(QPageSize(QPageSize::Letter));
+#else
   printer.setPageSize(QPrinter::Letter);
+#endif
 
   if(dialog->exec() == QDialog::Accepted)
     {
