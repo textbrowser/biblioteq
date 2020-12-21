@@ -59,12 +59,11 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fstack-protector-all \
                           -fwrapv \
                           -mtune=generic \
-                          -pedantic \
-			  -std=c++17
+                          -pedantic
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-QMAKE_CXXFLAGS_RELEASE += -std=c++11
+QMAKE_CXXFLAGS_RELEASE += -std=c++17
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 }
 
