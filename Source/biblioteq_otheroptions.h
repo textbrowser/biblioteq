@@ -16,6 +16,12 @@ class biblioteq_otheroptions: public QMainWindow
   void prepareSettings(void);
 
  private:
+  enum ItemsColumns
+    {
+     ITEM_TYPE = 0,
+     PUBLICATION_DATE_FORMAT = 1
+    };
+
   Ui_otheroptions m_ui;
   biblioteq *qmain;
   void changeEvent(QEvent *event);

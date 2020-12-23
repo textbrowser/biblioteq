@@ -44,12 +44,13 @@ QString biblioteq_otheroptions::publicationDateFormat
 (const QString &itemType) const
 {
   for(int i = 0; i < m_ui.publication_date->rowCount(); i++)
-    if(m_ui.publication_date->item(i, 0) &&
+    if(m_ui.publication_date->item(i, ITEM_TYPE) &&
        itemType.toLower().trimmed() ==
-       m_ui.publication_date->item(i, 0)->data(Qt::UserRole).toString().
+       m_ui.publication_date->item(i, ITEM_TYPE)->data(Qt::UserRole).toString().
        toLower())
       {
-	QWidget *widget = m_ui.publication_date->cellWidget(i, 1);
+	auto *widget = m_ui.publication_date->cellWidget
+	  (i, PUBLICATION_DATE_FORMAT);
 
 	if(widget)
 	  {
@@ -179,11 +180,11 @@ void biblioteq_otheroptions::prepareSettings(void)
       layout->setContentsMargins(0, 0, 0, 0);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setCellWidget(i, 1, widget);
-      m_ui.publication_date->setItem(i, 0, item);
+      m_ui.publication_date->setCellWidget(i, PUBLICATION_DATE_FORMAT, widget);
+      m_ui.publication_date->setItem(i, ITEM_TYPE, item);
     }
 
-  m_ui.publication_date->resizeColumnToContents(0);
+  m_ui.publication_date->resizeColumnToContents(ITEM_TYPE);
   m_ui.publication_date->resizeRowsToContents();
 
   QColor color(settings.value("mainwindow_canvas_background_color").
@@ -204,7 +205,7 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto *widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -252,7 +253,8 @@ void biblioteq_otheroptions::slotSave(void)
   for(int i = 0; i < list.size(); i++)
     {
       QString value("MM/dd/yyyy");
-      QWidget *widget = m_ui.publication_date->cellWidget(i, 1);
+      auto *widget = m_ui.publication_date->cellWidget
+	(i, PUBLICATION_DATE_FORMAT);
       const QString &key(list.at(i));
 
       if(widget)
