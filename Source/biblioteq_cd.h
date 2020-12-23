@@ -27,6 +27,16 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
+  enum TracksColumns
+    {
+     ALBUM_NUMBER = 0,
+     ARTIST = 4,
+     COMPOSER = 5,
+     TRACK_NUMBER = 1,
+     TRACK_RUNTIME = 3,
+     TRACK_TITLE = 2
+    };
+
   QAction *m_composer_action;
   QDialog *m_tracks_diag;
   QString m_engWindowTitle;

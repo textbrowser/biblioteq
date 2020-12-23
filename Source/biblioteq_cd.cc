@@ -1596,16 +1596,16 @@ void biblioteq_cd::slotInsertTrack(void)
 
   for(i = 0; i < trd.table->columnCount(); i++)
     {
-      if(i == 1)
+      if(i == TRACK_NUMBER)
 	str = "1";
-      else if(i == 2)
+      else if(i == TRACK_TITLE)
 	str = tr("Title");
-      else if(i == 4 || i == 5)
+      else if(i == ARTIST || i == COMPOSER)
 	str = tr("UNKNOWN");
       else
 	str.clear();
 
-      if(i == 0)
+      if(i == ALBUM_NUMBER)
 	{
 	  auto *layout = new QHBoxLayout();
 	  auto *spacer = new QSpacerItem
@@ -1622,14 +1622,14 @@ void biblioteq_cd::slotInsertTrack(void)
 	  widget->setLayout(layout);
 	  trd.table->setCellWidget(trow, i, widget);
 	}
-      else if(i == 1)
+      else if(i == TRACK_NUMBER)
 	{
 	  trackEdit = new QSpinBox();
 	  trd.table->setCellWidget(trow, i, trackEdit);
 	  trackEdit->setMinimum(1);
 	  trackEdit->setValue(trd.table->rowCount());
 	}
-      else if(i == 3)
+      else if(i == TRACK_RUNTIME)
 	{
 	  timeEdit = new QTimeEdit();
 	  trd.table->setCellWidget(trow, i, timeEdit);
@@ -1778,7 +1778,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 	      if(qmain->getDB().driverName() == "QSQLITE")
 		trd.table->setRowCount(i + 1);
 
-	      if(j == 0)
+	      if(j == ALBUM_NUMBER)
 		{
 		  auto *layout = new QHBoxLayout();
 		  auto *spacer = new QSpacerItem
@@ -1797,14 +1797,14 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 		  widget->setLayout(layout);
 		  trd.table->setCellWidget(i, j, widget);
 		}
-	      else if(j == 1)
+	      else if(j == TRACK_NUMBER)
 		{
 		  trackEdit = new QSpinBox();
 		  trd.table->setCellWidget(i, j, trackEdit);
 		  trackEdit->setMinimum(1);
 		  trackEdit->setValue(str.toInt());
 		}
-	      else if(j == 3)
+	      else if(j == TRACK_RUNTIME)
 		{
 		  timeEdit = new QTimeEdit();
 		  trd.table->setCellWidget(i, j, timeEdit);
@@ -2113,8 +2113,8 @@ void biblioteq_cd::slotSaveTracks(void)
   int i = 0;
 
   for(i = 0; i < trd.table->rowCount(); i++)
-    if(trd.table->item(i, 2) != nullptr &&
-       trd.table->item(i, 2)->text().trimmed().isEmpty())
+    if(trd.table->item(i, TRACK_TITLE) != nullptr &&
+       trd.table->item(i, TRACK_TITLE)->text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	  tr(" contains an empty Song Title.");
@@ -2186,39 +2186,41 @@ void biblioteq_cd::slotSaveTracks(void)
 			") "
 			"VALUES (?, "
 			"?, ?, ?, ?, ?, ?)");
-	  query.bindValue(0, m_oid);
+	  query.addBindValue(m_oid);
 
-	  if(trd.table->cellWidget(i, 0) != nullptr)
+	  if(trd.table->cellWidget(i, ALBUM_NUMBER) != nullptr)
 	    {
-	      QWidget *widget = trd.table->cellWidget(i, 0);
+	      QWidget *widget = trd.table->cellWidget(i, ALBUM_NUMBER);
 
 	      if(widget)
 		{
 		  QComboBox *comboBox = widget->findChild<QComboBox *> ();
 
 		  if(comboBox)
-		    query.bindValue(1, comboBox->currentText());
+		    query.addBindValue(comboBox->currentText());
 		}
 	    }
 
-	  if(trd.table->cellWidget(i, 1) != nullptr)
-	    query.bindValue(2, qobject_cast<QSpinBox *>
-			    (trd.table->cellWidget(i, 1))->value());
+	  if(trd.table->cellWidget(i, TRACK_NUMBER) != nullptr)
+	    query.addBindValue
+	      (qobject_cast<QSpinBox *> (trd.table->
+					 cellWidget(i, TRACK_NUMBER))->value());
 
-	  if(trd.table->item(i, 2) != nullptr)
-	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
+	  if(trd.table->item(i, TRACK_TITLE) != nullptr)
+	    query.addBindValue
+	      (trd.table->item(i, TRACK_TITLE)->text().trimmed());
 
-	  if(trd.table->cellWidget(i, 3) != nullptr)
-	    query.bindValue
-	      (4, qobject_cast<QTimeEdit *> (trd.table->
-					     cellWidget(i, 3))->time().
+	  if(trd.table->cellWidget(i, TRACK_RUNTIME) != nullptr)
+	    query.addBindValue
+	      (qobject_cast<QTimeEdit *> (trd.table->
+					  cellWidget(i, TRACK_RUNTIME))->time().
 	       toString("hh:mm:ss"));
 
-	  if(trd.table->item(i, 4) != nullptr)
-	    query.bindValue(5, trd.table->item(i, 4)->text().trimmed());
+	  if(trd.table->item(i, ARTIST) != nullptr)
+	    query.addBindValue(trd.table->item(i, ARTIST)->text().trimmed());
 
-	  if(trd.table->item(i, 2) != nullptr)
-	    query.bindValue(6, trd.table->item(i, 5)->text().trimmed());
+	  if(trd.table->item(i, COMPOSER) != nullptr)
+	    query.addBindValue(trd.table->item(i, COMPOSER)->text().trimmed());
 
 	  if(!query.exec())
 	    {
