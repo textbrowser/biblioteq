@@ -116,7 +116,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 		this,
 		SLOT(slotGo(void)));
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_ui.files->setColumnHidden(m_ui.files->columnCount() - 1, true); // myoid
+  m_ui.files->setColumnHidden(MYOID, true);
 #if QT_VERSION >= 0x050000
   m_ui.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #else
@@ -927,9 +927,7 @@ void biblioteq_grey_literature::slotCancel(void)
 
 void biblioteq_grey_literature::slotDeleteFiles(void)
 {
-  QModelIndexList list
-    (m_ui.files->selectionModel()->
-     selectedRows(m_ui.files->columnCount() - 1)); // myoid
+  QModelIndexList list(m_ui.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     {
@@ -971,8 +969,7 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 
 void biblioteq_grey_literature::slotExportFiles(void)
 {
-  QModelIndexList list(m_ui.files->selectionModel()->
-		       selectedRows(m_ui.files->columnCount() - 1)); // myoid
+  QModelIndexList list(m_ui.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     return;
@@ -1039,9 +1036,9 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() != 3 || m_engWindowTitle != "Modify")
+  if(item->column() != DESCRIPTION || m_engWindowTitle != "Modify")
     {
-      QTableWidgetItem *item1 = m_ui.files->item(item->row(), 0); // File
+      QTableWidgetItem *item1 = m_ui.files->item(item->row(), FILE);
 
       if(!item1)
 	return;
@@ -1082,14 +1079,13 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  QTableWidgetItem *item1 = m_ui.files->item(item->row(), 3); // Description
+  QTableWidgetItem *item1 = m_ui.files->item(item->row(), DESCRIPTION);
 
   if(!item1)
     return;
 
   QString description(item1->text());
-  QTableWidgetItem *item2 =
-    m_ui.files->item(item->row(), m_ui.files->columnCount() - 1); // myoid
+  QTableWidgetItem *item2 = m_ui.files->item(item->row(), MYOID);
 
   if(!item2)
     return;
