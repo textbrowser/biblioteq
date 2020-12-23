@@ -16,6 +16,12 @@ class biblioteq_import: public QMainWindow
   void show(QMainWindow *parent);
 
  private:
+  enum BooksColumns
+    {
+     BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME = 1,
+     CSV_COLUMN_NUMBER = 0
+    };
+
   QMap<int, QString> m_booksMappings;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;

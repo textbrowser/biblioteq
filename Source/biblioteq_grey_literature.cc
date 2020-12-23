@@ -758,7 +758,7 @@ void biblioteq_grey_literature::populateFiles(void)
 	row += 1;
       }
 
-  m_ui.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  m_ui.files->horizontalHeader()->setSortIndicator(FILE, Qt::AscendingOrder);
   m_ui.files->setRowCount(totalRows);
   m_ui.files->setSortingEnabled(true);
 

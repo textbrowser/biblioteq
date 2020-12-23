@@ -37,6 +37,15 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void updateWindow(const int state);
 
  protected:
+  enum Columns
+    {
+     COMPRESSED_SIZE = 2,
+     DESCRIPTION = 3,
+     DIGEST = 1,
+     FILE = 0,
+     MYOID = 4
+    };
+
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
   QNetworkAccessManager *m_sruManager;

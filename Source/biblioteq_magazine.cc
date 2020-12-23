@@ -48,7 +48,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
   setQMain(this);
-  ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
+  ma.files->setColumnHidden(MYOID, true);
 #if QT_VERSION >= 0x050000
   ma.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #else
@@ -1730,7 +1730,7 @@ void biblioteq_magazine::populateFiles(void)
 	row += 1;
       }
 
-  ma.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  ma.files->horizontalHeader()->setSortIndicator(FILE, Qt::AscendingOrder);
   ma.files->setRowCount(totalRows);
   ma.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
@@ -1913,8 +1913,7 @@ void biblioteq_magazine::slotCancel(void)
 
 void biblioteq_magazine::slotDeleteFiles(void)
 {
-  QModelIndexList list(ma.files->selectionModel()->
-		       selectedRows(ma.files->columnCount() - 1)); // myoid
+  QModelIndexList list(ma.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     {
@@ -1961,8 +1960,7 @@ void biblioteq_magazine::slotDeleteFiles(void)
 
 void biblioteq_magazine::slotExportFiles(void)
 {
-  QModelIndexList list(ma.files->selectionModel()->
-		       selectedRows(ma.files->columnCount() - 1)); // myoid
+  QModelIndexList list(ma.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     return;
@@ -2039,9 +2037,9 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() != 3 || m_engWindowTitle != "Modify")
+  if(item->column() != DESCRIPTION || m_engWindowTitle != "Modify")
     {
-      QTableWidgetItem *item1 = ma.files->item(item->row(), 0); // File
+      QTableWidgetItem *item1 = ma.files->item(item->row(), FILE);
 
       if(!item1)
 	return;
@@ -2088,14 +2086,13 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  QTableWidgetItem *item1 = ma.files->item(item->row(), 3); // Description
+  QTableWidgetItem *item1 = ma.files->item(item->row(), DESCRIPTION);
 
   if(!item1)
     return;
 
   QString description(item1->text());
-  QTableWidgetItem *item2 =
-    ma.files->item(item->row(), ma.files->columnCount() - 1); // myoid
+  QTableWidgetItem *item2 = ma.files->item(item->row(), MYOID);
 
   if(!item2)
     return;
@@ -3686,8 +3683,7 @@ void biblioteq_magazine::slotSelectImage(void)
 
 void biblioteq_magazine::slotShowPDF(void)
 {
-  QModelIndexList list(ma.files->selectionModel()->
-		       selectedRows(ma.files->columnCount() - 1)); // myoid
+  QModelIndexList list(ma.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     return;

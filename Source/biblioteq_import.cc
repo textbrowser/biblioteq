@@ -287,7 +287,8 @@ void biblioteq_import::slotAddBookRow(void)
   auto *item = new QTableWidgetItem();
 
   item->setText(QString::number(m_ui.books->rowCount()));
-  m_ui.books->setItem(m_ui.books->rowCount() - 1, 0, item);
+  m_ui.books->setItem
+    (m_ui.books->rowCount() - 1, BooksColumns::CSV_COLUMN_NUMBER, item);
 
   auto *widget = new QWidget();
   auto *comboBox = new QComboBox();
@@ -328,7 +329,10 @@ void biblioteq_import::slotAddBookRow(void)
   layout->addWidget(comboBox);
   layout->addSpacerItem(spacer);
   layout->setContentsMargins(0, 0, 0, 0);
-  m_ui.books->setCellWidget(m_ui.books->rowCount() - 1, 1, widget);
+  m_ui.books->setCellWidget
+    (m_ui.books->rowCount() - 1,
+     BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME,
+     widget);
   m_ui.books->resizeRowsToContents();
   QApplication::restoreOverrideCursor();
 }
@@ -390,7 +394,8 @@ void biblioteq_import::slotBooksTemplates(int index)
 	  {
 	    slotAddBookRow();
 
-	    QWidget *widget = m_ui.books->cellWidget(i, 1);
+	    QWidget *widget = m_ui.books->cellWidget
+	      (i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
 
 	    if(widget)
 	      {
@@ -466,8 +471,10 @@ void biblioteq_import::slotImport(void)
 
   for(int i = 0; i < m_ui.books->rowCount(); i++)
     {
-      QTableWidgetItem *item = m_ui.books->item(i, 0);
-      QWidget *widget = m_ui.books->cellWidget(i, 1);
+      QTableWidgetItem *item = m_ui.books->item
+	(i, BooksColumns::CSV_COLUMN_NUMBER);
+      QWidget *widget = m_ui.books->cellWidget
+	(i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
 
       if(!item || !widget)
 	continue;
