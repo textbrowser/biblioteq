@@ -26,6 +26,15 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void updateWindow(const int state);
 
  private:
+  enum Columns
+    {
+     COMPRESSED_SIZE = 2,
+     DESCRIPTION = 3,
+     DIGEST = 1,
+     FILE = 0,
+     MYOID = 4
+    };
+
   QPalette m_te_orig_pal;
   QString m_dt_orig_ss;
   QString m_engWindowTitle;
