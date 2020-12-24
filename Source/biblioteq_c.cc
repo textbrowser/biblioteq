@@ -82,30 +82,34 @@ QString biblioteq::reservationHistoryHtml(void) const
 	if(i == 0)
 	  {
 	    for(int j = 0; j < history.table->columnCount(); j++)
-	      if(j == 0)
+	      if(j == HistoryColumns::MEMBER_ID)
 		memberid = history.table->item(i, j)->text();
-	      else if(j == 1)
+	      else if(j == HistoryColumns::FIRST_NAME)
 		firstname = history.table->item(i, j)->text();
-	      else if(j == 2)
+	      else if(j == HistoryColumns::LAST_NAME)
 		lastname = history.table->item(i, j)->text();
 	      else
 		break;
 	  }
 
-	information += history.table->item(i, 3)->text(); // Title
+	information += history.table->item(i, HistoryColumns::TITLE)->text();
 	information += endl;
-	information += history.table->item(i, 4)->text(); // ID Number
+	information += history.table->item
+	  (i, HistoryColumns::ID_NUMBER)->text();
 	information += endl;
-	information += history.table->item(i, 6)->text(); // Type
+	information += history.table->item(i, HistoryColumns::TYPE)->text();
 	information += endl;
 	information += tr("Reservation Date: ");
-	information += history.table->item(i, 7)->text(); // Reservation Date
+	information += history.table->item
+	  (i, HistoryColumns::RESERVATION_DATE)->text();
 	information += endl;
 	information += tr("Due Date: ");
-	information += history.table->item(i, 8)->text(); // Due Date
+	information += history.table->item
+	  (i, HistoryColumns::DUE_DATE)->text();
 	information += endl;
 	information += tr("Returned Date: ");
-	information += history.table->item(i, 9)->text(); // Returned Date
+	information += history.table->item
+	  (i, HistoryColumns::RETURNED_DATE)->text();
 
 	if(history.table->rowCount() - 1 != i)
 	  {

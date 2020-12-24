@@ -286,6 +286,22 @@ class biblioteq: public QMainWindow
      MEMBERSHIP = 4
     };
 
+  enum HistoryColumns
+    {
+     BARCODE = 5,
+     DUE_DATE = 8,
+     FIRST_NAME = 1,
+     ID_NUMBER = 4,
+     LAST_NAME = 2,
+     LENDER = 10,
+     MEMBER_ID = 0,
+     MYOID = 11,
+     RESERVATION_DATE = 7,
+     RETURNED_DATE = 9,
+     TITLE = 3,
+     TYPE = 6
+    };
+
   QActionGroup *m_menuCategoryActionGroup;
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;
