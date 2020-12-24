@@ -12,8 +12,7 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 {
   m_biblioteq = biblioteq;
   m_ui.setupUi(this);
-  m_ui.files_table->setColumnHidden
-    (m_ui.files_table->columnCount() - 1, true); // MYOID
+  m_ui.files_table->setColumnHidden(MYOID, true);
 
   QSettings settings;
 
@@ -276,13 +275,14 @@ void biblioteq_files::slotRefresh(void)
 	    {
 	      QTableWidgetItem *item = nullptr;
 
-	      if(i == 3) // File Size
+	      if(i == COMPRESSED_SIZE)
 		item = new biblioteq_filesize_table_item
 		  (locale.toString(query.value(i).toLongLong()));
 	      else
 		item = new QTableWidgetItem(query.value(i).toString());
 
 	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	      item->setToolTip(item->text());
 	      m_ui.files_table->setItem(row, i, item);
 	    }
 
@@ -294,7 +294,7 @@ void biblioteq_files::slotRefresh(void)
       m_ui.files_table->scrollToTop();
       m_ui.files_table->setRowCount(totalRows);
       m_ui.files_table->setSortingEnabled(true);
-      m_ui.files_table->sortByColumn(0, Qt::AscendingOrder);
+      m_ui.files_table->sortByColumn(FILE, Qt::AscendingOrder);
     }
 
   connect(m_ui.page,
