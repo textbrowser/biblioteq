@@ -65,7 +65,10 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wdouble-promotion \
                           -Werror=format-security \
                           -Wextra \
+                          -Wfloat-equal \
                           -Wformat=2 \
+                          -Wformat-overflow=2 \
+                          -Wlogical-op \
                           -Wzero-as-null-pointer-constant \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
