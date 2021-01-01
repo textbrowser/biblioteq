@@ -478,7 +478,7 @@
 	Source/biblioteq_magazine.cc (TBD)
 	Source/biblioteq_photographcollection.cc (TBD)
 	Source/biblioteq_videogame.cc (TBD)
-254. Qt 5.15.1 LTS warnings. (Done)
+254. Qt 5.15 LTS warnings. (Done)
 255. Display all files in a separate container. (Done)
 256. Compress attachments. (Done)
 257. Foreign constraints are not enabled on SQLite. Remove child
