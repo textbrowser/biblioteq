@@ -484,4 +484,4 @@
 257. Foreign constraints are not enabled on SQLite. Remove child
      table entries upon item removal. (Done)
 258. Enumerate database fields and table columns. (TBD)
-259. Backup script for FreeBSD. (TBD)
+259. Backup script for FreeBSD. (Done)
