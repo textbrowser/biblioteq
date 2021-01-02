@@ -11,6 +11,7 @@
      (Done)
 9.   Create a mechanism for determining the uniqueness of members. (Done)
 10.  Provide support for:
+        Books (Done)
 	Cassette Tapes (TBD)
 	DVDs (Done)
 	Grey Literature (Done)
@@ -23,7 +24,6 @@
 	VHS (TBD)
 	Video Games (Done)
 	Vinyl Records (TBD)
-        Books (Done)
 11.  Finish the availability column. (Done)
 12.  Implement a generic search. (Done)
      Fields included:

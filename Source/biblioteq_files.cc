@@ -33,6 +33,7 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRefresh(void)));
+  statusBar()->showMessage(tr("0 Total Files"));
 }
 
 biblioteq_files::~biblioteq_files()
@@ -256,6 +257,8 @@ void biblioteq_files::slotRefresh(void)
 	     "LIMIT %1 OFFSET %2").
      arg(m_ui.pages->value()).
      arg(m_ui.page->currentIndex() * m_ui.pages->value()));
+  statusBar()->showMessage
+    (tr("%1 Total Files").arg(m_ui.files_table->rowCount()));
 
   if(query.exec())
     {
