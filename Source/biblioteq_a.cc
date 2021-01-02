@@ -1043,24 +1043,24 @@ void biblioteq::addError(const QString &type,
   er.table->setSortingEnabled(false);
   er.table->setRowCount(er.table->rowCount() + 1);
 
-  for(i = 0; i < 6; i++)
+  for(i = 0; i < er.table->columnCount(); i++)
     {
       item = new QTableWidgetItem();
 
-      if(i == 0)
+      if(i == EVENT_TIME)
 	item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
-      else if(i == 1)
+      else if(i == EVENT_TYPE)
 	item->setText(type.trimmed());
-      else if(i == 2)
+      else if(i == SUMMARY)
 	item->setText(summary.trimmed());
-      else if(i == 3)
+      else if(i == FULL_DESCRIPTION)
 	{
 	  if(error.simplified().isEmpty())
 	    item->setText(summary);
 	  else
 	    item->setText(error.simplified());
 	}
-      else if(i == 4)
+      else if(i == FILE)
 	{
 	  if(file)
 	    item->setText(file);
@@ -2284,7 +2284,12 @@ void biblioteq::slotCopyError(void)
       i = index.row();
 
       for(j = 0; j < er.table->columnCount(); j++)
-	text += er.table->item(i, j)->text() + ",";
+	{
+	  text += er.table->item(i, j)->text();
+
+	  if(er.table->columnCount() - 1 != j)
+	    text += ",";
+	}
 
       text = text.trimmed();
       text += "\n";
