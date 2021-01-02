@@ -46,7 +46,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   id.setupUi(this);
   setQMain(this);
-  id.files->setColumnHidden(MYOID, true);
+  id.files->setColumnHidden(Columns::MYOID, true);
 #if QT_VERSION >= 0x050000
   id.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #else
@@ -1718,7 +1718,8 @@ void biblioteq_book::populateFiles(void)
 	row += 1;
       }
 
-  id.files->horizontalHeader()->setSortIndicator(FILE, Qt::AscendingOrder);
+  id.files->horizontalHeader()->setSortIndicator
+    (Columns::FILE, Qt::AscendingOrder);
   id.files->setRowCount(totalRows);
   id.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
@@ -1977,7 +1978,8 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 
 void biblioteq_book::slotDeleteFiles(void)
 {
-  QModelIndexList list(id.files->selectionModel()->selectedRows(MYOID));
+  QModelIndexList list
+    (id.files->selectionModel()->selectedRows(Columns::MYOID));
 
   if(list.isEmpty())
     {
@@ -2294,7 +2296,8 @@ void biblioteq_book::slotDownloadImage(void)
 
 void biblioteq_book::slotExportFiles(void)
 {
-  QModelIndexList list(id.files->selectionModel()->selectedRows(MYOID));
+  QModelIndexList list
+    (id.files->selectionModel()->selectedRows(Columns::MYOID));
 
   if(list.isEmpty())
     return;
@@ -2360,9 +2363,9 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() != DESCRIPTION || m_engWindowTitle != "Modify")
+  if(item->column() != Columns::DESCRIPTION || m_engWindowTitle != "Modify")
     {
-      QTableWidgetItem *item1 = id.files->item(item->row(), FILE);
+      QTableWidgetItem *item1 = id.files->item(item->row(), Columns::FILE);
 
       if(!item1)
 	return;
@@ -2403,13 +2406,13 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  QTableWidgetItem *item1 = id.files->item(item->row(), DESCRIPTION);
+  QTableWidgetItem *item1 = id.files->item(item->row(), Columns::DESCRIPTION);
 
   if(!item1)
     return;
 
   QString description(item1->text());
-  QTableWidgetItem *item2 = id.files->item(item->row(), MYOID);
+  QTableWidgetItem *item2 = id.files->item(item->row(), Columns::MYOID);
 
   if(!item2)
     return;
@@ -4436,7 +4439,8 @@ void biblioteq_book::slotSelectImage(void)
 
 void biblioteq_book::slotShowPDF(void)
 {
-  QModelIndexList list(id.files->selectionModel()->selectedRows(MYOID));
+  QModelIndexList list
+    (id.files->selectionModel()->selectedRows(Columns::MYOID));
 
   if(list.isEmpty())
     return;
