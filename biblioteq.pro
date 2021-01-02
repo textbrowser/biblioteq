@@ -66,15 +66,15 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Werror=format-security \
                           -Wextra \
                           -Wfloat-equal \
-                          -Wformat=2 \
                           -Wformat-overflow=2 \
+                          -Wformat=2 \
                           -Wlogical-op \
-                          -Wzero-as-null-pointer-constant \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \
                           -Wstrict-overflow=5 \
                           -Wundef \
+                          -Wzero-as-null-pointer-constant \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
