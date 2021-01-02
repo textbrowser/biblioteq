@@ -286,6 +286,16 @@ class biblioteq: public QMainWindow
      MEMBERSHIP = 4
     };
 
+  enum ErrorDialogColumns
+    {
+     EVENT_TIME = 0,
+     EVENT_TYPE = 1,
+     FILE = 4,
+     FULL_DESCRIPTION = 3,
+     LINE_NUMBER = 5,
+     SUMMARY = 2
+    };
+
   enum HistoryColumns
     {
      BARCODE = 5,
