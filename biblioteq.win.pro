@@ -60,7 +60,7 @@ PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app
 
-biblioteq.files = bilioteq.conf
+biblioteq.files = biblioteq.conf
 biblioteq.path = release\\.
 documentation.files = Documentation\\*.pdf \
                       Documentation\\Contributed \
