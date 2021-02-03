@@ -64,7 +64,7 @@ documentation.files = Documentation\\*.pdf \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
-libraries32.files = Libraries.win32\\*\\.dll
+libraries32.files = Libraries.win32\\*\\*.dll
 libraries32.path = release\\.
 plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins1.path = release\\plugins\\.
@@ -78,14 +78,14 @@ pluginspurge.extra = del /q /s *d.dll
 pluginspurge.path = release\\plugins\\.
 qt.files = Qt\\qt.conf
 qt.path = release\\.
-qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt5Core.dll \
+qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt5Concurrent.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Core.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
-                    $$[QT_INSTALL_BINS]\\Qt5Multimedia.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Network.dll \
                     $$[QT_INSTALL_BINS]\\Qt5PrintSupport.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Sql.dll \
-                    $$[QT_INSTALL_BINS]\\Qt5WebSockets.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Xml.dll \
                     $$[QT_INSTALL_BINS]\\libgcc_s_dw2-1.dll \
                     $$[QT_INSTALL_BINS]\\libstdc++-6.dll \
                     $$[QT_INSTALL_BINS]\\libwinpthread-1.dll
