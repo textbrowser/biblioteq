@@ -64,7 +64,11 @@ documentation.files = Documentation\\*.pdf \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
-libraries32.files = Libraries.win32\\*\\*.dll
+libraries32.files = Libraries.win32\\miscellaneous\\*.dll \
+                    Libraries.win32\\poppler\\*.dll \
+                    Libraries.win32\\postgresql\\*.dll \
+                    Libraries.win32\\sqlite3\\*.dll \
+                    Libraries.win32\\yaz\\*.dll
 libraries32.path = release\\.
 plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins1.path = release\\plugins\\.
