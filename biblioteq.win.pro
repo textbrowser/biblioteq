@@ -59,3 +59,53 @@ RESOURCES	= Icons\\icons.qrc
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app
+
+documentation.files = Documentation\\*.pdf \
+                      Documentation\\Contributed \
+                      Documentation\\TO-DO
+documentation.path = release\\Documentation\\.
+libraries32.files = Libraries.win32\\*\\.dll
+libraries32.path = release\\.
+plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
+plugins1.path = release\\plugins\\.
+plugins2.files = $$[QT_INSTALL_PLUGINS]\\gamepads\\xinputgamepad.dll
+plugins2.path = release\\plugins\\gamepads\\.
+plugins3.files = $$[QT_INSTALL_PLUGINS]\\platforms\\qdirect2d.dll
+plugins3.path = release\\plugins\\platforms\\.
+plugins4.files = $$[QT_INSTALL_PLUGINS]\\renderplugins\\scene2d.dll
+plugins4.path = release\\plugins\\renderplugins\\.
+pluginspurge.extra = del /q /s *d.dll
+pluginspurge.path = release\\plugins\\.
+qt.files = Qt\\qt.conf
+qt.path = release\\.
+qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt5Core.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Multimedia.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Network.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5PrintSupport.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Sql.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5WebSockets.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
+                    $$[QT_INSTALL_BINS]\\libgcc_s_dw2-1.dll \
+                    $$[QT_INSTALL_BINS]\\libstdc++-6.dll \
+                    $$[QT_INSTALL_BINS]\\libwinpthread-1.dll
+qtlibraries.path = release\\.
+sql1.files = SQL\\README*
+sql1.path = release\\SQL\\.
+sql2.files = SQL\\*.sql
+sql2.path = release\\SQL\\.
+translations.files = Translations\\*.qm
+translations.path = release\\Translations\\.
+
+INSTALLS = plugins1 \
+           pluginspurge \
+           libraries32 \
+           documentation \
+           plugins2 \
+           plugins3 \
+           plugins4 \
+           qt \
+           qtlibraries \
+           sql1 \
+           sql2 \
+           translations
