@@ -102,9 +102,9 @@ doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
 install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.02.0/lib/libpoppler.107.dylib @executable_path/../Frameworks/libpoppler.107.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
-install_name_tool1.path      = .
-install_name_tool2.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.02.0/lib/libpoppler.107.dylib @executable_path/../Frameworks/libpoppler.107.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
-install_name_tool2.path      = .
+install_name_tool1.path = .
+install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.02.0/lib/libpoppler.107.dylib @executable_path/../Frameworks/libpoppler.107.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool2.path = .
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
@@ -119,6 +119,8 @@ sql.files		= SQL/*.sql
 sql.path		= /Applications/BiblioteQ.d
 translations.files	= Translations/*.qm
 translations.path	= /Applications/BiblioteQ.d/Translations
+zzz.extra               = chown -Rh root:wheel /Applications/BiblioteQ.d
+zzz.path                = /Applications/BiblioteQ.d
 
 INSTALLS	= preinstall \
 		  macdeployqt \
@@ -130,4 +132,5 @@ INSTALLS	= preinstall \
 		  translations \
                   postinstall \
                   install_name_tool1 \
-                  install_name_tool2
+                  install_name_tool2 \
+                  zzz
