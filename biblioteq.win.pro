@@ -60,16 +60,21 @@ PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app
 
+biblioteq.files = bilioteq.conf
+biblioteq.path = release\\.
 documentation.files = Documentation\\*.pdf \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
-libraries32.files = Libraries.win32\\miscellaneous\\*.dll \
-                    Libraries.win32\\poppler\\*.dll \
-                    Libraries.win32\\postgresql\\*.dll \
-                    Libraries.win32\\sqlite3\\*.dll \
-                    Libraries.win32\\yaz\\*.dll
-libraries32.path = release\\.
+libraries.files = Libraries.win32\\miscellaneous\\*.dll \
+                  Libraries.win32\\poppler\\*.dll \
+                  Libraries.win32\\postgresql\\*.dll \
+                  Libraries.win32\\postgresql\\*.manifest \
+                  Libraries.win32\\sqlite3\\*.dll \
+                  Libraries.win32\\yaz\\*.dll \
+                  Libraries.win32\\yaz\\*.exe \
+                  Libraries.win64\\*.exe
+libraries.path = release\\.
 plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins1.path = release\\plugins\\.
 plugins2.files = $$[QT_INSTALL_PLUGINS]\\gamepads\\xinputgamepad.dll
@@ -101,9 +106,10 @@ sql2.path = release\\SQL\\.
 translations.files = Translations\\*.qm
 translations.path = release\\Translations\\.
 
-INSTALLS = plugins1 \
+INSTALLS = biblioteq \
+           plugins1 \
            pluginspurge \
-           libraries32 \
+           libraries \
            documentation \
            plugins2 \
            plugins3 \
