@@ -206,6 +206,9 @@ void biblioteq_item::storeData(QMainWindow *window)
       classname = widget->metaObject()->className();
       objectname = widget->objectName();
 
+      if(objectname == "qt_spinbox_lineedit")
+	continue;
+
       if(classname == "QComboBox")
 	m_widgetValues[objectname] =
 	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
@@ -230,8 +233,7 @@ void biblioteq_item::storeData(QMainWindow *window)
       else if(classname == "biblioteq_hyperlinked_text_edit")
 	m_widgetValues[objectname] =
 	  (qobject_cast<biblioteq_hyperlinked_text_edit *> (widget))->
-	  toPlainText().
-	  trimmed();
+	  toPlainText().trimmed();
       else if(classname == "biblioteq_image_drop_site")
 	m_imageValues[objectname] =
 	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
@@ -252,6 +254,22 @@ void biblioteq_item::updateFont(const QFont &font, QWidget *window)
     }
 
   window->update();
+}
+
+void biblioteq_item::updateQuantity(const int q)
+{
+  QMutableMapIterator<QString, QString> it(m_widgetValues);
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(it.key().contains("quantity"))
+	{
+	  it.setValue(QString::number(q));
+	  break;
+	}
+    }
 }
 
 void biblioteq_item::updateRow(const int rowArg)

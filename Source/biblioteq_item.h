@@ -49,6 +49,7 @@ class biblioteq_item
   int getOldQ(void) const;
   int getRow(void) const;
   void setOldQ(const int q);
+  void updateQuantity(const int q);
   void updateRow(const int rowArg);
 
  protected:

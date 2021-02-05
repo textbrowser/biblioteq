@@ -207,9 +207,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   int j = 0;
   int row = 0;
 
-  m_cb.dueDateFrame->setVisible(m_showForLending);
   m_cb.deleteButton->setVisible(!m_showForLending);
-  m_cb.deleteButton->setVisible(false);
+  m_cb.dueDateFrame->setVisible(m_showForLending);
 
   if(!m_showForLending)
     {
@@ -778,7 +777,10 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
        reserved);
 
   if(m_bitem)
-    m_bitem->setOldQ(m_copies.size());
+    {
+      m_bitem->setOldQ(m_copies.size());
+      m_bitem->updateQuantity(m_copies.size());
+    }
 
   if(m_spinbox)
     m_spinbox->setValue(m_copies.size());

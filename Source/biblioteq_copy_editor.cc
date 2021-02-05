@@ -945,7 +945,10 @@ void biblioteq_copy_editor::slotSaveCopies(void)
        reserved);
 
   if(m_bitem)
-    m_bitem->setOldQ(m_copies.size());
+    {
+      m_bitem->setOldQ(m_copies.size());
+      m_bitem->updateQuantity(m_copies.size());
+    }
 
   if(m_spinbox)
     m_spinbox->setValue(m_copies.size());

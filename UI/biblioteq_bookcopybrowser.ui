@@ -93,6 +93,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Copies are ordered by copy numbers.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QTableWidget" name="table">
         <property name="focusPolicy">
          <enum>Qt::StrongFocus</enum>
