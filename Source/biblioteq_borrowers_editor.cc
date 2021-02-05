@@ -119,13 +119,11 @@ void biblioteq_borrowers_editor::showUsers(void)
   QProgressDialog progress2(this);
   QSqlQuery query(qmain->getDB());
   QString str = "";
-  QString tmpStr = "";
   QStringList list;
   QTableWidgetItem *item = nullptr;
   bool terminate = false;
   int i = 0;
   int j = 0;
-  int row = 0;
 
   m_bd.table->setCurrentItem(nullptr);
   m_bd.table->setColumnCount(0);
@@ -208,13 +206,6 @@ void biblioteq_borrowers_editor::showUsers(void)
 	  {
 	    item = new QTableWidgetItem();
 	    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-	    if(j == 0)
-	      {
-		tmpStr.setNum(i + 1);
-		item->setText(tmpStr);
-	      }
-
 	    m_bd.table->setItem(i, j, item);
 	  }
 
@@ -310,13 +301,8 @@ void biblioteq_borrowers_editor::showUsers(void)
       if(query.isValid())
 	for(j = 0; j < m_bd.table->columnCount(); j++)
 	  {
-	    if(query.value(0).isNull())
-	      row = i;
-	    else
-	      row = query.value(0).toInt() - 1;
-
-	    if(j == 0 && query.value(0).isNull())
-	      str = QString::number(i + 1);
+	    if(j == 0)
+	      str = query.value(j).toString().trimmed();
 	    else if(j == 5 && m_state == biblioteq::EDITABLE)
 	      {
 		date = QDate::fromString(query.value(j).toString().trimmed(),
@@ -335,7 +321,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 	    if(j == 6 && m_state == biblioteq::EDITABLE)
 	      {
 		auto *de =
-		  qobject_cast<QDateEdit *> (m_bd.table->cellWidget(row, j));
+		  qobject_cast<QDateEdit *> (m_bd.table->cellWidget(i, j));
 
 		if(de)
 		  {
@@ -344,8 +330,8 @@ void biblioteq_borrowers_editor::showUsers(void)
 		    de->setMinimumDate(tomorrow);
 		  }
 	      }
-	    else if(m_bd.table->item(row, j) != nullptr)
-	      m_bd.table->item(row, j)->setText(str);
+	    else if(m_bd.table->item(i, j) != nullptr)
+	      m_bd.table->item(i, j)->setText(str);
 	    else
 	      terminate = true;
 	  }

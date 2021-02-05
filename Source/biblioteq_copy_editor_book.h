@@ -27,12 +27,14 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   public:
     copy_class(const QString &condition,
 	       const QString &copyid,
+	       const QString &copynumber,
 	       const QString &itemoid,
 	       const QString &originality,
 	       const QString &status)
     {
       m_condition = condition;
       m_copyid = copyid;
+      m_copynumber = copynumber;
       m_itemoid = itemoid;
       m_originality = originality;
       m_status = status;
@@ -41,6 +43,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   public:
     QString m_condition;
     QString m_copyid;
+    QString m_copynumber;
     QString m_itemoid;
     QString m_originality;
     QString m_status;

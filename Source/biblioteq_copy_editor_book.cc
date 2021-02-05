@@ -84,6 +84,11 @@ QString biblioteq_copy_editor_book::saveCopies(void)
       progress.repaint();
       QApplication::processEvents();
 
+      int max = 0;
+
+      for(i = 0; i < m_copies.size(); i++)
+	max = qMax(m_copies.at(i)->m_copynumber.toInt(), max);
+
       for(i = 0; i < m_copies.size(); i++)
 	{
 	  copy = m_copies.at(i);
@@ -114,7 +119,12 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 			  (m_itemType.toLower().remove(" ")));
 
 	  query.addBindValue(copy->m_itemoid);
-	  query.addBindValue(i + 1);
+
+	  if(copy->m_copynumber.isEmpty())
+	    query.addBindValue(max + i + 1);
+	  else
+	    query.addBindValue(copy->m_copynumber.toInt());
+
 	  query.addBindValue(copy->m_copyid);
 	  query.addBindValue(copy->m_originality);
 	  query.addBindValue(copy->m_condition);
@@ -471,7 +481,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(COPY_NUMBER).toInt() - 1;
+	  row = i;
 
 	  for(j = 0; j < m_cb.table->columnCount(); j++)
 	    if(m_cb.table->item(row, j) != nullptr)
@@ -620,6 +630,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   QStringList duplicates;
   QTableWidgetItem *item1 = nullptr;
   QTableWidgetItem *item2 = nullptr;
+  QTableWidgetItem *item3 = nullptr;
   copy_class *copy = nullptr;
   int i = 0;
 
@@ -686,15 +697,17 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       comboBox2 = widget2->findChild<QComboBox *> ();
       comboBox3 = widget3->findChild<QComboBox *> ();
       item1 = m_cb.table->item(i, BARCODE);
-      item2 = m_cb.table->item(i, MYOID);
+      item2 = m_cb.table->item(i, COPY_NUMBER);
+      item3 = m_cb.table->item(i, MYOID);
 
-      if(!comboBox1 || !comboBox2 || !comboBox3 || !item1 || !item2)
+      if(!comboBox1 || !comboBox2 || !comboBox3 || !item1 || !item2 || !item3)
 	continue;
 
       copy = new copy_class
 	(comboBox2->currentText().trimmed(),
 	 item1->text().trimmed(),
 	 item2->text(),
+	 item3->text(),
 	 comboBox1->currentText().trimmed(),
 	 comboBox3->currentText().trimmed());
       m_copies.append(copy);

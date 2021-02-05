@@ -31,16 +31,19 @@ class biblioteq_copy_editor: public QDialog
   {
   public:
     copy_class(const QString &copyid,
+	       const QString &copynumber,
 	       const QString &itemoid,
 	       const QString &status)
     {
       m_copyid = copyid;
+      m_copynumber = copynumber;
       m_itemoid = itemoid;
       m_status = status;
     };
 
   public:
     QString m_copyid;
+    QString m_copynumber;
     QString m_itemoid;
     QString m_status;
   };
