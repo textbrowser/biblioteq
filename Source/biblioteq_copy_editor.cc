@@ -104,8 +104,6 @@ QString biblioteq_copy_editor::saveCopies(void)
       for(i = 0; i < m_copies.size(); i++)
 	max = qMax(m_copies.at(i)->m_copynumber.toInt(), max);
 
-      max += 1;
-
       for(i = 0; i < m_copies.size(); i++)
 	{
 	  copy = m_copies.at(i);
@@ -135,7 +133,10 @@ QString biblioteq_copy_editor::saveCopies(void)
 	  query.addBindValue(copy->m_itemoid);
 
 	  if(copy->m_copynumber.isEmpty())
-	    query.addBindValue(i + max);
+	    {
+	      max += 1;
+	      query.addBindValue(max);
+	    }
 	  else
 	    query.addBindValue(copy->m_copynumber.toInt());
 
