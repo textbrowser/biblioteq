@@ -779,6 +779,12 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
        qmain->getUI().table->columnNumber("Availability"),
        availability);
 
+  biblioteq_misc_functions::updateColumn
+    (qmain->getUI().table,
+     m_bitem->getRow(),
+     qmain->getUI().table->columnNumber("Quantity"),
+     QString::number(m_copies.size()));
+
   if(!reserved.isEmpty())
     biblioteq_misc_functions::updateColumn
       (qmain->getUI().table,
