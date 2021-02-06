@@ -22,7 +22,7 @@ BiblioteQ is free and open library software.
 <li>Item reservation.</li>
 <li>Listings of overdue items, requested items, and reserved items.</li>
 <li>MARC21 and UNIMARC record syntaxes.</li>
-<li>MacOS and Windows install targets; make install.</li>
+<li>MacOS and Windows install targets: make install.</li>
 <li>Natively compiled on Alpha, ARM, PowerPC, Sparc64, X86, X86_64.</li>
 <li>Open Library queries for select items.</li>
 <li>Optional item reservation histories for patrons.</li>
