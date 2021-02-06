@@ -1612,7 +1612,7 @@ void biblioteq_dvd::slotQuery(void)
 
 void biblioteq_dvd::slotReset(void)
 {
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action != nullptr)
     {
@@ -1842,7 +1842,7 @@ void biblioteq_dvd::slotReset(void)
 void biblioteq_dvd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  auto *button = qobject_cast<QPushButton *> (sender());
+  auto button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());

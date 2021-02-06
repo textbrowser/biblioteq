@@ -49,12 +49,12 @@ QString biblioteq_otheroptions::publicationDateFormat
        m_ui.publication_date->item(i, ITEM_TYPE)->data(Qt::UserRole).toString().
        toLower())
       {
-	auto *widget = m_ui.publication_date->cellWidget
+	auto widget = m_ui.publication_date->cellWidget
 	  (i, PUBLICATION_DATE_FORMAT);
 
 	if(widget)
 	  {
-	    auto *comboBox = widget->findChild<QComboBox *> ();
+	    auto comboBox = widget->findChild<QComboBox *> ();
 
 	    if(comboBox)
 	      return comboBox->currentText();
@@ -150,8 +150,8 @@ void biblioteq_otheroptions::prepareSettings(void)
 	   str == "yyyy/MM/dd"))
 	str = "MM/dd/yyyy";
 
-      auto *comboBox = new QComboBox();
-      auto *item = new QTableWidgetItem(list1.at(i));
+      auto comboBox = new QComboBox();
+      auto item = new QTableWidgetItem(list1.at(i));
 
       comboBox->addItems(QStringList() << "MM/dd/yyyy"
 			               << "MM/dd"
@@ -169,10 +169,10 @@ void biblioteq_otheroptions::prepareSettings(void)
       comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
       comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
-      auto *layout = new QHBoxLayout();
-      auto *spacer = new QSpacerItem
+      auto layout = new QHBoxLayout();
+      auto spacer = new QSpacerItem
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-      auto *widget = new QWidget();
+      auto widget = new QWidget();
 
       widget->setLayout(layout);
       layout->addWidget(comboBox);
@@ -205,7 +205,7 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(auto *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -253,13 +253,13 @@ void biblioteq_otheroptions::slotSave(void)
   for(int i = 0; i < list.size(); i++)
     {
       QString value("MM/dd/yyyy");
-      auto *widget = m_ui.publication_date->cellWidget
+      auto widget = m_ui.publication_date->cellWidget
 	(i, PUBLICATION_DATE_FORMAT);
       const QString &key(list.at(i));
 
       if(widget)
 	{
-	  auto *comboBox = widget->findChild<QComboBox *> ();
+	  auto comboBox = widget->findChild<QComboBox *> ();
 
 	  if(comboBox)
 	    value = comboBox->currentText();

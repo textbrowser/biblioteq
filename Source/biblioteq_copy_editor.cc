@@ -640,8 +640,7 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     }
 
   /*
-  ** Record the reservation in the member's history
-  ** table.
+  ** Record the reservation in the member's history table.
   */
 
   dnt = biblioteq_misc_functions::dnt(qmain->getDB(), memberid, errorstr);

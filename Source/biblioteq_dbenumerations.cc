@@ -313,12 +313,12 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
 	      QStringList list;
-	      auto *comboBox = new QComboBox();
-	      auto *item = new QTableWidgetItem(pairList.at(j).second);
-	      auto *layout = new QHBoxLayout();
-	      auto *spacer = new QSpacerItem
+	      auto comboBox = new QComboBox();
+	      auto item = new QTableWidgetItem(pairList.at(j).second);
+	      auto layout = new QHBoxLayout();
+	      auto spacer = new QSpacerItem
 		(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-	      auto *widget = new QWidget();
+	      auto widget = new QWidget();
 
 	      layout->addWidget(comboBox);
 	      layout->addSpacerItem(spacer);
@@ -420,7 +420,7 @@ void biblioteq_dbenumerations::saveData
 
 	      if(widget)
 		{
-		  auto *comboBox = widget->findChild<QComboBox *> ();
+		  auto comboBox = widget->findChild<QComboBox *> ();
 
 		  if(comboBox)
 		    text = comboBox->currentText();
@@ -493,7 +493,7 @@ void biblioteq_dbenumerations::slotAdd(void)
 {
   QListWidget *list = nullptr;
   QListWidgetItem *listItem = nullptr;
-  auto *toolButton = qobject_cast<QToolButton *> (sender());
+  auto toolButton = qobject_cast<QToolButton *> (sender());
 
   if(toolButton == m_ui.addBookBinding)
     {
@@ -533,12 +533,12 @@ void biblioteq_dbenumerations::slotAdd(void)
   else if(toolButton == m_ui.addLocation)
     {
       QStringList list;
-      auto *comboBox = new QComboBox();
-      auto *item = new QTableWidgetItem();
-      auto *layout = new QHBoxLayout();
-      auto *spacer = new QSpacerItem
+      auto comboBox = new QComboBox();
+      auto item = new QTableWidgetItem();
+      auto layout = new QHBoxLayout();
+      auto spacer = new QSpacerItem
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-      auto *widget = new QWidget();
+      auto widget = new QWidget();
 
       layout->addWidget(comboBox);
       layout->addSpacerItem(spacer);
@@ -633,7 +633,7 @@ void biblioteq_dbenumerations::slotReload(void)
 void biblioteq_dbenumerations::slotRemove(void)
 {
   QListWidget *list = nullptr;
-  auto *toolButton = qobject_cast<QToolButton *> (sender());
+  auto toolButton = qobject_cast<QToolButton *> (sender());
 
   if(toolButton == m_ui.removeBookBinding)
     list = m_ui.bookBindingsList;
@@ -768,7 +768,7 @@ void biblioteq_dbenumerations::slotSave(void)
 	       tablewidget->item(j, 1))
 	      {
 		QString currentText("");
-		auto *comboBox = tablewidget->cellWidget(j, 0)->
+		auto comboBox = tablewidget->cellWidget(j, 0)->
 		  findChild<QComboBox *> ();
 		int index = comboBox ? comboBox->currentIndex() : -1;
 

@@ -348,7 +348,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotResetAllSearch(void)));
 
-  auto *scene = new biblioteq_bgraphicsscene(ui.graphicsView);
+  auto scene = new biblioteq_bgraphicsscene(ui.graphicsView);
 
   connect(scene,
 	  SIGNAL(selectionChanged(void)),
@@ -802,7 +802,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotChangeView(bool)));
   ui.menu_View->addAction(action);
 
-  auto *group3 = new QActionGroup(this);
+  auto group3 = new QActionGroup(this);
 
   group3->setExclusive(true);
   (action = group3->addAction(tr("&Arabic")))->setCheckable(true);
@@ -1329,7 +1329,7 @@ void biblioteq::createSqliteMenuActions(void)
 	  continue;
 	}
 
-      auto *action = new QAction(str, ui.menu_Recent_SQLite_Files);
+      auto action = new QAction(str, ui.menu_Recent_SQLite_Files);
 
       action->setData(str);
       connect(action, SIGNAL(triggered(bool)), this,
@@ -1836,7 +1836,7 @@ void biblioteq::showMain(void)
   */
 
   QStringList list(m_sruMaps.keys());
-  auto *group1 = new QActionGroup(this);
+  auto group1 = new QActionGroup(this);
 
   for(int i = 0; i < list.size(); i++)
     {
@@ -1859,7 +1859,7 @@ void biblioteq::showMain(void)
       ui.menuPreferredSRUSite->addAction(tr("None"));
     }
 
-  auto *group2 = new QActionGroup(this);
+  auto group2 = new QActionGroup(this);
 
   list = m_z3950Maps.keys();
 
@@ -2089,7 +2089,7 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 {
   Q_UNUSED(state);
 
-  auto *box = qobject_cast<QCheckBox *> (sender());
+  auto box = qobject_cast<QCheckBox *> (sender());
   int column = -1;
   int i = 0;
   int j = 0;
@@ -2198,7 +2198,7 @@ void biblioteq::slotChangeView(bool checked)
 {
   Q_UNUSED(checked);
 
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action)
     {
@@ -3056,7 +3056,7 @@ void biblioteq::slotInsertVideoGame(void)
 
 void biblioteq::slotLanguageChanged(void)
 {
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action && action->isChecked())
     {
@@ -3192,7 +3192,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *b = qobject_cast<biblioteq_book *> (w);
+	      auto b = qobject_cast<biblioteq_book *> (w);
 
 	      if(b && b->getID() == oid)
 		{
@@ -3210,7 +3210,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *c = qobject_cast<biblioteq_cd *> (w);
+	      auto c = qobject_cast<biblioteq_cd *> (w);
 
 	      if(c && c->getID() == oid)
 		{
@@ -3228,7 +3228,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *d = qobject_cast<biblioteq_dvd *> (w);
+	      auto d = qobject_cast<biblioteq_dvd *> (w);
 
 	      if(d && d->getID() == oid)
 		{
@@ -3246,7 +3246,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *g = qobject_cast<biblioteq_grey_literature *> (w);
+	      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
 	      if(g && g->getID() == oid)
 		{
@@ -3264,7 +3264,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *j = qobject_cast<biblioteq_journal *> (w);
+	      auto j = qobject_cast<biblioteq_journal *> (w);
 
 	      if(j && j->getID() == oid)
 		{
@@ -3282,7 +3282,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *m = qobject_cast<biblioteq_magazine *> (w);
+	      auto m = qobject_cast<biblioteq_magazine *> (w);
 
 	      /*
 	      ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -3305,7 +3305,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *p = qobject_cast<biblioteq_photographcollection *> (w);
+	      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
 	      if(p && p->getID() == oid)
 		{
@@ -3323,7 +3323,7 @@ void biblioteq::slotModify(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *v = qobject_cast<biblioteq_videogame *> (w);
+	      auto v = qobject_cast<biblioteq_videogame *> (w);
 
 	      if(v && v->getID() == oid)
 		{
@@ -3813,7 +3813,7 @@ void biblioteq::slotReset(void)
 {
   if(m_all_diag->isVisible())
     {
-      auto *action = qobject_cast<QAction *> (sender());
+      auto action = qobject_cast<QAction *> (sender());
 
       if(action != nullptr)
 	{
@@ -3998,7 +3998,7 @@ void biblioteq::slotResizeColumns(void)
 void biblioteq::slotResizeColumnsAfterSort(void)
 {
   QObject *parent = nullptr;
-  auto *object = qobject_cast<QObject *> (sender());
+  auto object = qobject_cast<QObject *> (sender());
 
   if(object != nullptr && object->parent() != nullptr)
     {
@@ -4541,7 +4541,7 @@ void biblioteq::slotSqliteFileSelected(bool state)
 {
   Q_UNUSED(state);
 
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(!action)
     return;
@@ -4661,7 +4661,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *b = qobject_cast<biblioteq_book *> (w);
+	      auto b = qobject_cast<biblioteq_book *> (w);
 
 	      if(b && b->getID() == oid)
 		{
@@ -4679,7 +4679,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *c = qobject_cast<biblioteq_cd *> (w);
+	      auto c = qobject_cast<biblioteq_cd *> (w);
 
 	      if(c && c->getID() == oid)
 		{
@@ -4697,7 +4697,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *d = qobject_cast<biblioteq_dvd *> (w);
+	      auto d = qobject_cast<biblioteq_dvd *> (w);
 
 	      if(d && d->getID() == oid)
 		{
@@ -4715,7 +4715,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *g = qobject_cast<biblioteq_grey_literature *> (w);
+	      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
 	      if(g && g->getID() == oid)
 		{
@@ -4733,7 +4733,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *j = qobject_cast<biblioteq_journal *> (w);
+	      auto j = qobject_cast<biblioteq_journal *> (w);
 
 	      if(j && j->getID() == oid)
 		{
@@ -4751,7 +4751,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *m = qobject_cast<biblioteq_magazine *> (w);
+	      auto m = qobject_cast<biblioteq_magazine *> (w);
 
 	      /*
 	      ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -4774,7 +4774,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *p = qobject_cast<biblioteq_photographcollection *> (w);
+	      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
 	      if(p && p->getID() == oid)
 		{
@@ -4792,7 +4792,7 @@ void biblioteq::slotViewDetails(void)
 	{
 	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
-	      auto *v = qobject_cast<biblioteq_videogame *> (w);
+	      auto v = qobject_cast<biblioteq_videogame *> (w);
 
 	      if(v && v->getID() == oid)
 		{
@@ -4831,14 +4831,14 @@ void biblioteq::updateItemWindows(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *book = qobject_cast<biblioteq_book *> (w);
-      auto *cd = qobject_cast<biblioteq_cd *> (w);
-      auto *dvd = qobject_cast<biblioteq_dvd *> (w);
-      auto *gl = qobject_cast<biblioteq_grey_literature *> (w);
-      auto *journal = qobject_cast<biblioteq_journal *> (w);
-      auto *magazine = qobject_cast<biblioteq_magazine *> (w);
-      auto *photograph = qobject_cast<biblioteq_photographcollection *> (w);
-      auto *videogame = qobject_cast<biblioteq_videogame *> (w);
+      auto book = qobject_cast<biblioteq_book *> (w);
+      auto cd = qobject_cast<biblioteq_cd *> (w);
+      auto dvd = qobject_cast<biblioteq_dvd *> (w);
+      auto gl = qobject_cast<biblioteq_grey_literature *> (w);
+      auto journal = qobject_cast<biblioteq_journal *> (w);
+      auto magazine = qobject_cast<biblioteq_magazine *> (w);
+      auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
+      auto videogame = qobject_cast<biblioteq_videogame *> (w);
 
       if(book)
 	book->updateWindow(EDITABLE);
@@ -4877,7 +4877,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *book = qobject_cast<biblioteq_book *> (w);
+	  auto book = qobject_cast<biblioteq_book *> (w);
 
 	  if(book && book->getID() == oid)
 	    {
@@ -4890,7 +4890,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *cd = qobject_cast<biblioteq_cd *> (w);
+	  auto cd = qobject_cast<biblioteq_cd *> (w);
 
 	  if(cd && cd->getID() == oid)
 	    {
@@ -4903,7 +4903,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *dvd = qobject_cast<biblioteq_dvd *> (w);
+	  auto dvd = qobject_cast<biblioteq_dvd *> (w);
 
 	  if(dvd && dvd->getID() == oid)
 	    {
@@ -4916,7 +4916,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *gl = qobject_cast<biblioteq_grey_literature *> (w);
+	  auto gl = qobject_cast<biblioteq_grey_literature *> (w);
 
 	  if(gl && gl->getID() == oid)
 	    {
@@ -4929,7 +4929,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *journal = qobject_cast<biblioteq_journal *> (w);
+	  auto journal = qobject_cast<biblioteq_journal *> (w);
 
 	  if(journal && journal->getID() == oid)
 	    {
@@ -4942,7 +4942,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *magazine = qobject_cast<biblioteq_magazine *> (w);
+	  auto magazine = qobject_cast<biblioteq_magazine *> (w);
 
 	  /*
 	  ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -4960,7 +4960,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *photograph = qobject_cast<biblioteq_photographcollection *> (w);
+	  auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
 
 	  if(photograph && photograph->getID() == oid)
 	    {
@@ -4973,7 +4973,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *videogame = qobject_cast<biblioteq_videogame *> (w);
+	  auto videogame = qobject_cast<biblioteq_videogame *> (w);
 
 	  if(videogame && videogame->getID() == oid)
 	    {

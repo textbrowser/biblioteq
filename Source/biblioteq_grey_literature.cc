@@ -18,7 +18,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  auto *menu = new QMenu(this);
+  auto menu = new QMenu(this);
 
   m_duplicate = false;
   m_isQueryEnabled = false;
@@ -1062,7 +1062,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      auto *reader = new biblioteq_pdfreader(qmain);
+	      auto reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);
@@ -1358,7 +1358,7 @@ void biblioteq_grey_literature::slotQuery(void)
 
 void biblioteq_grey_literature::slotReset(void)
 {
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action != nullptr)
     {

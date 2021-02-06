@@ -284,14 +284,14 @@ void biblioteq_import::slotAddBookRow(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.books->setRowCount(m_ui.books->rowCount() + 1);
 
-  auto *item = new QTableWidgetItem();
+  auto item = new QTableWidgetItem();
 
   item->setText(QString::number(m_ui.books->rowCount()));
   m_ui.books->setItem
     (m_ui.books->rowCount() - 1, BooksColumns::CSV_COLUMN_NUMBER, item);
 
-  auto *widget = new QWidget();
-  auto *comboBox = new QComboBox();
+  auto widget = new QWidget();
+  auto comboBox = new QComboBox();
 
   comboBox->addItems(QStringList()
 		     << "<ignored>"
@@ -322,8 +322,8 @@ void biblioteq_import::slotAddBookRow(void)
   comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
   comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
-  auto *layout = new QHBoxLayout(widget);
-  auto *spacer = new QSpacerItem
+  auto layout = new QHBoxLayout(widget);
+  auto spacer = new QSpacerItem
     (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   layout->addWidget(comboBox);
@@ -399,7 +399,7 @@ void biblioteq_import::slotBooksTemplates(int index)
 
 	    if(widget)
 	      {
-		auto *comboBox = widget->findChild<QComboBox *> ();
+		auto comboBox = widget->findChild<QComboBox *> ();
 
 		if(comboBox)
 		  {
@@ -479,7 +479,7 @@ void biblioteq_import::slotImport(void)
       if(!item || !widget)
 	continue;
 
-      auto *comboBox = widget->findChild<QComboBox *> ();
+      auto comboBox = widget->findChild<QComboBox *> ();
 
       if(!comboBox)
 	continue;

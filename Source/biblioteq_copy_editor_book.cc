@@ -316,11 +316,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	if(j == CONDITION || j == ORIGINALITY)
 	  {
 	    QStringList list;
-	    auto *comboBox = new QComboBox();
-	    auto *layout = new QHBoxLayout();
-	    auto *spacer = new QSpacerItem
+	    auto comboBox = new QComboBox();
+	    auto layout = new QHBoxLayout();
+	    auto spacer = new QSpacerItem
 	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-	    auto *widget = new QWidget();
+	    auto widget = new QWidget();
 
 	    if(j == ORIGINALITY)
 	      list << tr("Black & White Copy")
@@ -353,11 +353,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  }
 	else if(j == STATUS)
 	  {
-	    auto *comboBox = new QComboBox();
-	    auto *layout = new QHBoxLayout();
-	    auto *spacer = new QSpacerItem
+	    auto comboBox = new QComboBox();
+	    auto layout = new QHBoxLayout();
+	    auto spacer = new QSpacerItem
 	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-	    auto *widget = new QWidget();
+	    auto widget = new QWidget();
 
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
@@ -373,7 +373,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  }
 	else
 	  {
-	    auto *item = new QTableWidgetItem();
+	    auto item = new QTableWidgetItem();
 
 	    if(m_showForLending)
 	      item->setFlags(Qt::NoItemFlags);

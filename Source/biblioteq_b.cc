@@ -3592,7 +3592,7 @@ void biblioteq::prepareContextMenus()
 
 void biblioteq::preparePhotographsPerPageMenu(void)
 {
-  auto *group = new QActionGroup(this);
+  auto group = new QActionGroup(this);
 
   ui.menuPhotographs_per_Page->clear();
 
@@ -3703,7 +3703,7 @@ void biblioteq::slotBookSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *b = qobject_cast<biblioteq_book *> (w);
+      auto b = qobject_cast<biblioteq_book *> (w);
 
       if(b && b->getID() == "search")
 	{
@@ -3729,7 +3729,7 @@ void biblioteq::slotCDSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *c = qobject_cast<biblioteq_cd *> (w);
+      auto c = qobject_cast<biblioteq_cd *> (w);
 
       if(c && c->getID() == "search")
 	{
@@ -3761,7 +3761,7 @@ void biblioteq::slotDVDSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *d = qobject_cast<biblioteq_dvd *> (w);
+      auto d = qobject_cast<biblioteq_dvd *> (w);
 
       if(d && d->getID() == "search")
 	{
@@ -3787,7 +3787,7 @@ void biblioteq::slotJournSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *j = qobject_cast<biblioteq_journal *> (w);
+      auto j = qobject_cast<biblioteq_journal *> (w);
 
       if(j && j->getID() == "search")
 	{
@@ -3813,7 +3813,7 @@ void biblioteq::slotMagSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *m = qobject_cast<biblioteq_magazine *> (w);
+      auto m = qobject_cast<biblioteq_magazine *> (w);
 
       /*
       ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -3844,7 +3844,7 @@ void biblioteq::slotPhotographSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *p = qobject_cast<biblioteq_photographcollection *> (w);
+      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
       if(p && p->getID() == "search")
 	{
@@ -3866,7 +3866,7 @@ void biblioteq::slotPhotographSearch(void)
 
 void biblioteq::slotPhotographsPerPageChanged(void)
 {
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(!action)
     return;
@@ -4708,7 +4708,7 @@ void biblioteq::slotVideoGameSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *v = qobject_cast<biblioteq_videogame *> (w);
+      auto v = qobject_cast<biblioteq_videogame *> (w);
 
       if(v && v->getID() == "search")
 	{

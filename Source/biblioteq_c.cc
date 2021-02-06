@@ -206,14 +206,14 @@ bool biblioteq::emptyContainers(void)
 {
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *book = qobject_cast<biblioteq_book *> (w);
-      auto *cd = qobject_cast<biblioteq_cd *> (w);
-      auto *dvd = qobject_cast<biblioteq_dvd *> (w);
-      auto *gl = qobject_cast<biblioteq_grey_literature *> (w);
-      auto *journal = qobject_cast<biblioteq_journal *> (w);
-      auto *magazine = qobject_cast<biblioteq_magazine *> (w);
-      auto *photograph = qobject_cast<biblioteq_photographcollection *> (w);
-      auto *videogame = qobject_cast<biblioteq_videogame *> (w);
+      auto book = qobject_cast<biblioteq_book *> (w);
+      auto cd = qobject_cast<biblioteq_cd *> (w);
+      auto dvd = qobject_cast<biblioteq_dvd *> (w);
+      auto gl = qobject_cast<biblioteq_grey_literature *> (w);
+      auto journal = qobject_cast<biblioteq_journal *> (w);
+      auto magazine = qobject_cast<biblioteq_magazine *> (w);
+      auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
+      auto videogame = qobject_cast<biblioteq_videogame *> (w);
 
       if(book)
 	{
@@ -839,7 +839,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 void biblioteq::bookSearch(const QString &field, const QString &value)
 {
-  auto *book = new biblioteq_book(this, "", -1);
+  auto book = new biblioteq_book(this, "", -1);
 
   book->search(field, value);
   book->deleteLater();
@@ -847,7 +847,7 @@ void biblioteq::bookSearch(const QString &field, const QString &value)
 
 void biblioteq::cdSearch(const QString &field, const QString &value)
 {
-  auto *cd = new biblioteq_cd(this, "", -1);
+  auto cd = new biblioteq_cd(this, "", -1);
 
   cd->search(field, value);
   cd->deleteLater();
@@ -859,7 +859,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *book = qobject_cast<biblioteq_book *> (w);
+	  auto book = qobject_cast<biblioteq_book *> (w);
 
 	  if(book && book->getID() == oid)
 	    {
@@ -872,7 +872,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *cd = qobject_cast<biblioteq_cd *> (w);
+	  auto cd = qobject_cast<biblioteq_cd *> (w);
 
 	  if(cd && cd->getID() == oid)
 	    {
@@ -885,7 +885,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *dvd = qobject_cast<biblioteq_dvd *> (w);
+	  auto dvd = qobject_cast<biblioteq_dvd *> (w);
 
 	  if(dvd && dvd->getID() == oid)
 	    {
@@ -898,7 +898,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *gl = qobject_cast<biblioteq_grey_literature *> (w);
+	  auto gl = qobject_cast<biblioteq_grey_literature *> (w);
 
 	  if(gl && gl->getID() == oid)
 	    {
@@ -911,7 +911,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *journal = qobject_cast<biblioteq_journal *> (w);
+	  auto journal = qobject_cast<biblioteq_journal *> (w);
 
 	  if(journal && journal->getID() == oid)
 	    {
@@ -924,7 +924,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *magazine = qobject_cast<biblioteq_magazine *> (w);
+	  auto magazine = qobject_cast<biblioteq_magazine *> (w);
 
 	  /*
 	  ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -942,7 +942,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *photograph = qobject_cast<biblioteq_photographcollection *> (w);
+	  auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
 
 	  if(photograph && photograph->getID() == oid)
 	    {
@@ -955,7 +955,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
-	  auto *videogame = qobject_cast<biblioteq_videogame *> (w);
+	  auto videogame = qobject_cast<biblioteq_videogame *> (w);
 
 	  if(videogame && videogame->getID() == oid)
 	    {
@@ -968,7 +968,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 void biblioteq::dvdSearch(const QString &field, const QString &value)
 {
-  auto *dvd = new biblioteq_dvd(this, "", -1);
+  auto dvd = new biblioteq_dvd(this, "", -1);
 
   dvd->search(field, value);
   dvd->deleteLater();
@@ -1064,7 +1064,7 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
-  auto *gl = new biblioteq_grey_literature(this, "", -1);
+  auto gl = new biblioteq_grey_literature(this, "", -1);
 
   gl->search(field, value);
   gl->deleteLater();
@@ -1072,7 +1072,7 @@ void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 
 void biblioteq::journSearch(const QString &field, const QString &value)
 {
-  auto *journal = new biblioteq_journal(this, "", -1);
+  auto journal = new biblioteq_journal(this, "", -1);
 
   journal->search(field, value);
   journal->deleteLater();
@@ -1080,7 +1080,7 @@ void biblioteq::journSearch(const QString &field, const QString &value)
 
 void biblioteq::magSearch(const QString &field, const QString &value)
 {
-  auto *magazine = new biblioteq_magazine(this, "", -1, "magazine");
+  auto magazine = new biblioteq_magazine(this, "", -1, "magazine");
 
   magazine->search(field, value);
   magazine->deleteLater();
@@ -1088,7 +1088,7 @@ void biblioteq::magSearch(const QString &field, const QString &value)
 
 void biblioteq::pcSearch(const QString &field, const QString &value)
 {
-  auto *photograph = new biblioteq_photographcollection(this, "", -1);
+  auto photograph = new biblioteq_photographcollection(this, "", -1);
 
   photograph->search(field, value);
   photograph->deleteLater();
@@ -1099,7 +1099,7 @@ void biblioteq::prepareReservationHistoryMenu(void)
   if(!history.printButton->actions().isEmpty())
     return;
 
-  auto *action = new QAction(tr("Print..."), this);
+  auto action = new QAction(tr("Print..."), this);
 
   connect(action,
 	  SIGNAL(triggered(void)),
@@ -3371,7 +3371,7 @@ void biblioteq::slotGreyLiteratureSearch(void)
 
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
-      auto *g = qobject_cast<biblioteq_grey_literature *> (w);
+      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
       if(g && g->getID() == "search")
 	{
@@ -3662,7 +3662,7 @@ void biblioteq::slotOpenPDFFiles(void)
 
       for(int i = 0; i < dialog.selectedFiles().size(); i++)
 	{
-	  auto *reader = new biblioteq_pdfreader(this);
+	  auto reader = new biblioteq_pdfreader(this);
 
 	  reader->load(dialog.selectedFiles().at(i));
 	  biblioteq_misc_functions::center(reader, this);
@@ -5895,7 +5895,7 @@ void biblioteq::slotVacuum(void)
 
 void biblioteq::vgSearch(const QString &field, const QString &value)
 {
-  auto *videogame = new biblioteq_videogame(this, "", -1);
+  auto videogame = new biblioteq_videogame(this, "", -1);
 
   videogame->search(field, value);
   videogame->deleteLater();

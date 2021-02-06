@@ -1456,7 +1456,7 @@ void biblioteq_videogame::slotQuery(void)
 
 void biblioteq_videogame::slotReset(void)
 {
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action != nullptr)
     {
@@ -1653,7 +1653,7 @@ void biblioteq_videogame::slotReset(void)
 void biblioteq_videogame::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  auto *button = qobject_cast<QPushButton *> (sender());
+  auto button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());

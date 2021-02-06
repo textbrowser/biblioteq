@@ -116,7 +116,7 @@ bool biblioteq_pdfreader::event(QEvent *event)
 {
   if(event && event->type() == QEvent::KeyRelease)
     {
-      auto *keyEvent = dynamic_cast<QKeyEvent *> (event);
+      auto keyEvent = dynamic_cast<QKeyEvent *> (event);
 
       if(keyEvent)
 	switch(keyEvent->key())
@@ -264,7 +264,7 @@ void biblioteq_pdfreader::prepareContents(void)
 
   for(int i = 1; i <= m_document->numPages(); i++)
     {
-      auto *item = new QListWidgetItem(tr("Page %1").arg(i));
+      auto item = new QListWidgetItem(tr("Page %1").arg(i));
 
       item->setData(Qt::UserRole, i);
       m_ui.contents->addItem(item);
@@ -410,7 +410,7 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
     return;
 
   QProgressDialog progress(this);
-  auto *widget = qobject_cast<QWidget *> (sender());
+  auto widget = qobject_cast<QWidget *> (sender());
   bool preview = !widget || !widget->isVisible();
 
   if(preview)

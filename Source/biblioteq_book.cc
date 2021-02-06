@@ -1904,7 +1904,7 @@ void biblioteq_book::slotCancel(void)
 
 void biblioteq_book::slotCancelImageDownload(void)
 {
-  auto *reply = m_imageManager->findChild<QNetworkReply *> ();
+  auto reply = m_imageManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();
@@ -2020,7 +2020,7 @@ void biblioteq_book::slotDeleteFiles(void)
 
 void biblioteq_book::slotDownloadFinished(void)
 {
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -2033,7 +2033,7 @@ void biblioteq_book::slotDownloadImage(void)
   if(m_imageManager->findChild<QNetworkReply *> ())
     return;
 
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(!action)
     return;
@@ -2389,7 +2389,7 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
-	      auto *reader = new biblioteq_pdfreader(qmain);
+	      auto reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
 	      biblioteq_misc_functions::center(reader, this);
@@ -3364,7 +3364,7 @@ void biblioteq_book::slotGo(void)
 
 void biblioteq_book::slotOpenLibraryCanceled(void)
 {
-  auto *reply = m_openLibraryManager->findChild<QNetworkReply *> ();
+  auto reply = m_openLibraryManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();
@@ -3388,7 +3388,7 @@ void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
 
 void biblioteq_book::slotOpenLibraryDownloadFinished(void)
 {
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
   bool error = false;
 
   if(reply)
@@ -3414,7 +3414,7 @@ void biblioteq_book::slotOpenLibraryError(QNetworkReply::NetworkError error)
   if(m_openLibraryWorking)
     m_openLibraryWorking->deleteLater();
 
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     {
@@ -3586,7 +3586,7 @@ void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
 
 void biblioteq_book::slotOpenLibraryReadyRead(void)
 {
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_openLibraryResults.append(reply->readAll());
@@ -3599,7 +3599,7 @@ void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
   if(m_openLibraryWorking)
     m_openLibraryWorking->deleteLater();
 
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -3835,7 +3835,7 @@ void biblioteq_book::slotReadyRead(void)
   if(!m_imageBuffer.isOpen())
     return;
 
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_imageBuffer.write(reply->readAll());
@@ -3843,7 +3843,7 @@ void biblioteq_book::slotReadyRead(void)
 
 void biblioteq_book::slotReset(void)
 {
-  auto *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action != nullptr)
     {
@@ -4117,7 +4117,7 @@ void biblioteq_book::slotReset(void)
 
 void biblioteq_book::slotSRUCanceled(void)
 {
-  auto *reply = m_sruManager->findChild<QNetworkReply *> ();
+  auto reply = m_sruManager->findChild<QNetworkReply *> ();
 
   if(reply)
     reply->deleteLater();
@@ -4141,7 +4141,7 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
 
 void biblioteq_book::slotSRUDownloadFinished(void)
 {
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
   bool error = false;
 
   if(reply)
@@ -4167,7 +4167,7 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     {
@@ -4353,7 +4353,7 @@ void biblioteq_book::slotSRUQueryError(const QString &text)
 
 void biblioteq_book::slotSRUReadyRead(void)
 {
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_sruResults.append(reply->readAll());
@@ -4366,7 +4366,7 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
   if(m_sruWorking)
     m_sruWorking->deleteLater();
 
-  auto *reply = qobject_cast<QNetworkReply *> (sender());
+  auto reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     reply->deleteLater();
@@ -4378,7 +4378,7 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
 void biblioteq_book::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  auto *button = qobject_cast<QPushButton *> (sender());
+  auto button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -4445,7 +4445,7 @@ void biblioteq_book::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  auto *reader = new biblioteq_pdfreader(qmain);
+  auto reader = new biblioteq_pdfreader(qmain);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 

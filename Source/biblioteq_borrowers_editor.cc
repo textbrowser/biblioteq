@@ -320,8 +320,8 @@ void biblioteq_borrowers_editor::showUsers(void)
 
 	    if(j == 6 && m_state == biblioteq::EDITABLE)
 	      {
-		auto *de =
-		  qobject_cast<QDateEdit *> (m_bd.table->cellWidget(i, j));
+		auto de = qobject_cast<QDateEdit *>
+		  (m_bd.table->cellWidget(i, j));
 
 		if(de)
 		  {
