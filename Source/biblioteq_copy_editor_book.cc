@@ -509,12 +509,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		  m_cb.table->item(row, j)->setText
 		    (query.value(j).toString().trimmed());
 		else
-		  {
-		    if(i == 0 && j == TITLE)
-		      m_cb.table->item(row, j)->setText(str);
-		    else if(j != TITLE)
-		      m_cb.table->item(row, j)->setText(str);
-		  }
+		  m_cb.table->item(row, j)->setText(str);
 	      }
 	    else if(m_cb.table->cellWidget(row, j) != nullptr)
 	      {
