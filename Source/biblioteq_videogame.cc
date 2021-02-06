@@ -955,12 +955,18 @@ void biblioteq_videogame::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      query.prepare(QString("DELETE FROM videogame_copy_info WHERE "
-				    "copy_number > ? AND "
-				    "item_oid = "
-				    "?"));
-	      query.bindValue(0, vg.quantity->text());
-	      query.bindValue(1, m_oid);
+	      /*
+	      ** Retain quantity copies.
+	      */
+
+	      query.prepare("DELETE FROM videogame_copy_info WHERE "
+			    "myoid NOT IN "
+			    "(SELECT myoid FROM videogame_copy_info "
+			    "WHERE item_oid = ? ORDER BY copy_number "
+			    "LIMIT ?) AND item_oid = ?");
+	      query.addBindValue(m_oid);
+	      query.addBindValue(vg.quantity->text());
+	      query.addBindValue(m_oid);
 
 	      if(!query.exec())
 		{

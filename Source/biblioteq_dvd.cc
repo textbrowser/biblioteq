@@ -1083,12 +1083,18 @@ void biblioteq_dvd::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
+	      /*
+	      ** Retain quantity copies.
+	      */
+
 	      query.prepare("DELETE FROM dvd_copy_info WHERE "
-			    "copy_number > ? AND "
-			    "item_oid = "
-			    "?");
-	      query.bindValue(0, dvd.quantity->text());
-	      query.bindValue(1, m_oid);
+			    "myoid NOT IN "
+			    "(SELECT myoid FROM dvd_copy_info "
+			    "WHERE item_oid = ? ORDER BY copy_number "
+			    "LIMIT ?) AND item_oid = ?");
+	      query.addBindValue(m_oid);
+	      query.addBindValue(dvd.quantity->text());
+	      query.addBindValue(m_oid);
 
 	      if(!query.exec())
 		{
