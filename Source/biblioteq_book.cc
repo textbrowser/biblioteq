@@ -2842,12 +2842,18 @@ void biblioteq_book::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
+	      /*
+	      ** Retain quantity copies.
+	      */
+
 	      query.prepare("DELETE FROM book_copy_info WHERE "
-			    "copy_number > ? AND "
-			    "item_oid = "
-			    "?");
-	      query.bindValue(0, id.quantity->text());
-	      query.bindValue(1, m_oid);
+			    "myoid NOT IN "
+			    "(SELECT myoid FROM book_copy_info "
+			    "WHERE item_oid = ? ORDER BY copy_number "
+			    "LIMIT ?) AND item_oid = ?");
+	      query.addBindValue(m_oid);
+	      query.addBindValue(id.quantity->text());
+	      query.addBindValue(m_oid);
 
 	      if(!query.exec())
 		{
