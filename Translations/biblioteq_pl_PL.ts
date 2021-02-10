@@ -165,7 +165,7 @@
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="282"/>
         <source>Street Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulica</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="289"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="583"/>
         <source>ZIP Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod pocztowy</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="592"/>
@@ -628,7 +628,7 @@
     <message>
         <location filename="../UI/biblioteq_adminsetup.ui" line="547"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_adminsetup.ui" line="570"/>
@@ -938,7 +938,7 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="838"/>
         <source>&amp;Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Polski</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="841"/>
@@ -1899,13 +1899,13 @@
         <location filename="../Source/biblioteq_a.cc" line="4377"/>
         <location filename="../Source/biblioteq_c.cc" line="1098"/>
         <source>Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Drukuj...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4381"/>
         <location filename="../Source/biblioteq_c.cc" line="1105"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Podgląd wydruku...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4391"/>
@@ -2080,12 +2080,12 @@
     <message>
         <location filename="../Source/biblioteq_b.cc" line="4644"/>
         <source>Executing %1 statements.&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonywanie %1 instrukcji.&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_b.cc" line="4658"/>
         <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;Błąd %1: %2. Instrukcja: %3.&lt;font&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Reserve Selected Item(s)...</source>
@@ -2371,29 +2371,29 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <location filename="../Source/biblioteq_c.cc" line="65"/>
         <location filename="../Source/biblioteq_c.cc" line="101"/>
         <source>Reservation Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Data rezerwacji: </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="68"/>
         <location filename="../Source/biblioteq_c.cc" line="104"/>
         <source>Due Date: </source>
-        <translation type="unfinished">Data zwrotu: </translation>
+        <translation>Data zwrotu: </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="71"/>
         <location filename="../Source/biblioteq_c.cc" line="107"/>
         <source>Returned Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Data zwrócenia: </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="3674"/>
         <source>BiblioteQ: Open PDF File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Otwórz plik(-i) PDF</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="3684"/>
         <source>Are you sure that you wish to open %1 PDF files?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz otworzyć %1 plików(-ów) PDF?</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="3840"/>
@@ -3131,7 +3131,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../Source/biblioteq_book.cc" line="1065"/>
         <source>The Open Library query produced invalid results. Perhaps the book is not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyszukiwanie w Open Library wygenerowało nieprawidłowe wyniki. Być może książka nie została określona.</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="1074"/>
@@ -3201,7 +3201,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../Source/biblioteq_book.cc" line="1948"/>
         <source>The ISBN-13 must begin with 978 or 979.</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-13 musi zaczynać się od 978 lub 979.</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="1987"/>
@@ -5512,33 +5512,33 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../Source/biblioteq_files.cc" line="83"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished">BiblioteQ: Pytanie</translation>
+        <translation>BiblioteQ: Pytanie</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_files.cc" line="84"/>
         <source>Are you sure that you wish to export %1 files?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz wyeksportować %1 pliki(-ów)?</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_files.cc" line="103"/>
         <source>BiblioteQ: File Export</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Eksportowanie pliku</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_files.cc" line="113"/>
         <source>Exporting file(s)...</source>
-        <translation type="unfinished">Eksportowanie pliku(-ów)...</translation>
+        <translation>Eksportowanie pliku(-ów)...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_files.cc" line="117"/>
         <location filename="../Source/biblioteq_files.cc" line="177"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished">BiblioteQ: Okno dialogowe postępu</translation>
+        <translation>BiblioteQ: Okno dialogowe postępu</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_files.cc" line="173"/>
         <source>Populating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wypełnianie...</translation>
     </message>
 </context>
 <context>
@@ -7422,12 +7422,12 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../Source/biblioteq_pdfreader.cc" line="413"/>
         <source>Preparing preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Przygotowywanie podglądu...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_pdfreader.cc" line="444"/>
         <source>Preparing preview... Page %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Przygotowywanie podglądu... strona %1...</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_pdfreader.cc" line="517"/>
@@ -8512,7 +8512,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_branch_s.ui" line="148"/>
         <source>PostgreSQL Userid</source>
-        <translation type="unfinished"></translation>
+        <translation>ID Użytkownika PostgreSQL</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_branch_s.ui" line="165"/>
@@ -8537,17 +8537,17 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_branch_s.ui" line="206"/>
         <source>PostgreSQL Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło PostgreSQL</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_branch_s.ui" line="213"/>
         <source>Hide or show the password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj lub pokaż hasło.</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_branch_s.ui" line="216"/>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_branch_s.ui" line="266"/>
@@ -8633,7 +8633,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_cdinfo.ui" line="331"/>
         <source>Compute the runtime from the available tracks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oblicz czas trwania na podstawie dostępnych ścieżek.</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_cdinfo.ui" line="334"/>
@@ -8959,7 +8959,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="89"/>
         <source>Please provide a query statement.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę podać instrukcję zapytania.</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="121"/>
@@ -8969,7 +8969,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="128"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="141"/>
@@ -9192,7 +9192,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="1255"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="1278"/>
@@ -9326,7 +9326,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <location filename="../UI/biblioteq_dvdinfo.ui" line="246"/>
         <location filename="../UI/biblioteq_dvdinfo.ui" line="425"/>
         <source>Actors / Actresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktorzy / Aktorki</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dvdinfo.ui" line="569"/>
@@ -9481,77 +9481,77 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_files.ui" line="14"/>
         <source>BiblioteQ: Files Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Przeglądarka plików</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="30"/>
         <source>Page</source>
-        <translation type="unfinished">Strona</translation>
+        <translation>Strona</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="41"/>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="49"/>
         <source> Files Per Page</source>
-        <translation type="unfinished"></translation>
+        <translation> Plików na stronę</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="111"/>
         <source>File</source>
-        <translation type="unfinished">Plik</translation>
+        <translation>Plik</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="116"/>
         <source>Description</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="121"/>
         <source>Digest</source>
-        <translation type="unfinished">Ekstrakt</translation>
+        <translation>Ekstrakt</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="126"/>
         <source>Compressed Size</source>
-        <translation type="unfinished">Skompresowany rozmiar</translation>
+        <translation>Skompresowany rozmiar</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="131"/>
         <source>Parent Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Tytuł nadrzędny</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="136"/>
         <source>Item Type</source>
-        <translation type="unfinished">Typ pozycji</translation>
+        <translation>Typ pozycji</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="141"/>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="170"/>
         <source>&amp;Export...</source>
-        <translation type="unfinished">&amp;Eksportuj...</translation>
+        <translation>&amp;Eksportuj...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="183"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished">&amp;Odśwież</translation>
+        <translation>&amp;Odśwież</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="200"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Zamknij</translation>
+        <translation>&amp;Zamknij</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_files.ui" line="207"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished">Ctrl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
 </context>
 <context>
@@ -9652,12 +9652,12 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_history.ui" line="189"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_history.ui" line="202"/>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drukuj</translation>
+        <translation>&amp;Drukuj</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
@@ -9755,7 +9755,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_import.ui" line="250"/>
         <source>Ignored Row(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zignorowany(-e) wiersz(-e)</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_import.ui" line="261"/>
@@ -9785,7 +9785,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_import.ui" line="367"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_import.ui" line="390"/>
@@ -10139,22 +10139,22 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1204"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczny</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1209"/>
         <source>MARC21</source>
-        <translation type="unfinished"></translation>
+        <translation>MARC21</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1214"/>
         <source>UNIMARC</source>
-        <translation type="unfinished"></translation>
+        <translation>UNIMARC</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1222"/>
         <source>Parse MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizuj tagi MARC</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1291"/>
@@ -10425,22 +10425,22 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="959"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczny</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="964"/>
         <source>MARC21</source>
-        <translation type="unfinished"></translation>
+        <translation>MARC21</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="969"/>
         <source>UNIMARC</source>
-        <translation type="unfinished"></translation>
+        <translation>UNIMARC</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="977"/>
         <source>Parse MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizuj tagi MARC</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="1017"/>
@@ -10934,22 +10934,22 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1207"/>
         <source>&amp;Open PDF File(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Otwórz plik(-i) PDF...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1240"/>
         <source>Database &amp;Enumerations...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Enumeracje bazy danych...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1243"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1252"/>
         <source>Files Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądarka plików</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -11204,7 +11204,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="410"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="433"/>
@@ -11246,7 +11246,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="49"/>
         <source>Please note that the publication date formats are applied to item details and the main window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę pamiętać, że formaty daty publikacji dotyczą szczegółów pozycji i głównego okna.</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="81"/>
@@ -11314,7 +11314,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_password.ui" line="64"/>
         <source>PostgreSQL Userid</source>
-        <translation type="unfinished"></translation>
+        <translation>ID Użytkownika PostgreSQL</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_password.ui" line="71"/>
@@ -11324,7 +11324,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_password.ui" line="81"/>
         <source>PostgreSQL Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło PostgreSQL</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_password.ui" line="88"/>
@@ -11334,7 +11334,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_password.ui" line="98"/>
         <source>PostgreSQL Password Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potwierdzenie hasła PostgreSQL</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_password.ui" line="144"/>
@@ -11367,7 +11367,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_passwordPrompt.ui" line="40"/>
         <source>Proxy Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa Użytkownika proxy</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_passwordPrompt.ui" line="47"/>
@@ -11377,7 +11377,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_passwordPrompt.ui" line="57"/>
         <source>Proxy Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło proxy</translation>
     </message>
 </context>
 <context>
@@ -11526,7 +11526,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="623"/>
         <source>Subject</source>
-        <translation type="unfinished"></translation>
+        <translation>Temat</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="694"/>
@@ -11690,7 +11690,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     <message>
         <location filename="../UI/biblioteq_pdfreader.ui" line="293"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Podgląd wydruku...</translation>
     </message>
 </context>
 <context>
