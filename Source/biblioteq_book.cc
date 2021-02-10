@@ -1124,7 +1124,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 	     key == "\"lccn\":" ||
 	     key == "\"pagination\":")
 	    {
-	      QString value("");
+	      QByteArray bytes;
 
 	      for(int i = m_openLibraryResults.indexOf('"', index) + 1;
 		  i < m_openLibraryResults.length();
@@ -1132,7 +1132,9 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		if(m_openLibraryResults.at(i) == '"')
 		  break;
 		else
-		  value.append(m_openLibraryResults.at(i));
+		  bytes.append(m_openLibraryResults.at(i));
+
+	      QString value(QString::fromUtf8(bytes));
 
 	      if(!value.isEmpty())
 		{
@@ -1171,7 +1173,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		  continue;
 		}
 
-	      QString value("");
+	      QByteArray bytes;
 
 	      for(int i = m_openLibraryResults.indexOf('"', index) + 1;
 		  i < m_openLibraryResults.length();
@@ -1179,7 +1181,9 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		if(m_openLibraryResults.at(i) == '"')
 		  break;
 		else
-		  value.append(m_openLibraryResults.at(i));
+		  bytes.append(m_openLibraryResults.at(i));
+
+	      QString value(QString::fromUtf8(bytes));
 
 	      if(!value.isEmpty())
 		{
@@ -1202,7 +1206,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		{
 		  index += static_cast<int> (qstrlen("\"name\":"));
 
-		  QString name("");
+		  QByteArray bytes;
 
 		  for(int i = m_openLibraryResults.indexOf('"', index) + 1;
 		      i < m_openLibraryResults.length();
@@ -1210,7 +1214,9 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		    if(m_openLibraryResults.at(i) == '"')
 		      break;
 		    else
-		      name.append(m_openLibraryResults.at(i));
+		      bytes.append(m_openLibraryResults.at(i));
+
+		  QString name(QString::fromUtf8(bytes));
 
 		  if(!name.isEmpty())
 		    {
