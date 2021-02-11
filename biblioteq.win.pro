@@ -50,8 +50,8 @@ LIBS		+= -L"." \
                    -L"Libraries.win32\\poppler" \
 		   -L"Libraries.win32\\sqlite3" \
                    -L"Libraries.win32\\yaz" \
-                   -lpoppler \
-                   -lpoppler-qt5 \
+                   -lpoppler-105 \
+                   -lpoppler-qt5-1 \
                    -lsqlite3 \
                    -lyaz5
 RC_FILE		= biblioteq.win.rc

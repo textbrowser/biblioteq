@@ -15,6 +15,10 @@ if [ -r $poppler ]; then
     tar -I zstd -vxf $poppler
     cp mingw32/bin/libpoppler-105.dll Libraries.win32/poppler/.
     cp mingw32/bin/libpoppler-qt5-1.dll Libraries.win32/poppler/.
+    cp mingw32/include/poppler/cpp/* Include.win32/poppler/cpp/.
+    cp mingw32/include/poppler/qt5/* Include.win32/poppler/qt5/.
+    chmod +w Include.win32/poppler/cpp/*.h
+    chmod +w Include.win32/poppler/qt5/*.h
     chmod -x Libraries.win32/poppler/*.dll
     rm -fr .BUILDINFO .MTREE .PKGINFO mingw32
     rm -f $poppler

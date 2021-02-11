@@ -1,5 +1,8 @@
 /*
  * Copyright (C) 2009-2010, Pino Toscano <pino@kde.org>
+ * Copyright (C) 2016 Jakub Alba <jakubalba@gmail.com>
+ * Copyright (C) 2019, Masamichi Hosoda <trueroad@trueroad.jp>
+ * Copyright (C) 2019, Albert Astals Cid <aacid@kde.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +25,11 @@
 #include "poppler-global.h"
 #include "poppler-font.h"
 
-namespace poppler
-{
+#include <map>
 
+namespace poppler {
+
+class destination;
 class document_private;
 class embedded_file;
 class page;
@@ -33,7 +38,8 @@ class toc;
 class POPPLER_CPP_EXPORT document : public poppler::noncopyable
 {
 public:
-    enum page_mode_enum {
+    enum page_mode_enum
+    {
         use_none,
         use_outlines,
         use_thumbs,
@@ -42,7 +48,8 @@ public:
         use_attach
     };
 
-    enum page_layout_enum {
+    enum page_layout_enum
+    {
         no_layout,
         single_page,
         one_column,
@@ -61,8 +68,32 @@ public:
     page_layout_enum page_layout() const;
     void get_pdf_version(int *major, int *minor) const;
     std::vector<std::string> info_keys() const;
+
     ustring info_key(const std::string &key) const;
+    bool set_info_key(const std::string &key, const ustring &val);
+
     time_type info_date(const std::string &key) const;
+    bool set_info_date(const std::string &key, time_type val);
+
+    ustring get_title() const;
+    bool set_title(const ustring &title);
+    ustring get_author() const;
+    bool set_author(const ustring &author);
+    ustring get_subject() const;
+    bool set_subject(const ustring &subject);
+    ustring get_keywords() const;
+    bool set_keywords(const ustring &keywords);
+    ustring get_creator() const;
+    bool set_creator(const ustring &creator);
+    ustring get_producer() const;
+    bool set_producer(const ustring &producer);
+    time_type get_creation_date() const;
+    bool set_creation_date(time_type creation_date);
+    time_type get_modification_date() const;
+    bool set_modification_date(time_type mod_date);
+
+    bool remove_info();
+
     bool is_encrypted() const;
     bool is_linearized() const;
     bool has_permission(permission_enum which) const;
@@ -70,27 +101,27 @@ public:
     bool get_pdf_id(std::string *permanent_id, std::string *update_id) const;
 
     int pages() const;
-    page* create_page(const ustring &label) const;
-    page* create_page(int index) const;
+    page *create_page(const ustring &label) const;
+    page *create_page(int index) const;
 
     std::vector<font_info> fonts() const;
-    font_iterator* create_font_iterator(int start_page = 0) const;
+    font_iterator *create_font_iterator(int start_page = 0) const;
 
-    toc* create_toc() const;
+    toc *create_toc() const;
 
     bool has_embedded_files() const;
     std::vector<embedded_file *> embedded_files() const;
 
-    static document* load_from_file(const std::string &file_name,
-                                    const std::string &owner_password = std::string(),
-                                    const std::string &user_password = std::string());
-    static document* load_from_data(byte_array *file_data,
-                                    const std::string &owner_password = std::string(),
-                                    const std::string &user_password = std::string());
-    static document* load_from_raw_data(const char *file_data,
-                                        int file_data_length,
-                                        const std::string &owner_password = std::string(),
-                                        const std::string &user_password = std::string());
+    // Named destinations are bytestrings, not string.
+    // So we use std::string instead of ustring.
+    std::map<std::string, destination> create_destination_map() const;
+
+    bool save(const std::string &file_name) const;
+    bool save_a_copy(const std::string &file_name) const;
+
+    static document *load_from_file(const std::string &file_name, const std::string &owner_password = std::string(), const std::string &user_password = std::string());
+    static document *load_from_data(byte_array *file_data, const std::string &owner_password = std::string(), const std::string &user_password = std::string());
+    static document *load_from_raw_data(const char *file_data, int file_data_length, const std::string &owner_password = std::string(), const std::string &user_password = std::string());
 
 private:
     document(document_private &dd);

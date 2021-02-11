@@ -23,8 +23,7 @@
 
 #include <vector>
 
-namespace poppler
-{
+namespace poppler {
 
 class embedded_file_private;
 

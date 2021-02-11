@@ -21,53 +21,35 @@
 
 #include "poppler-global.h"
 
-namespace poppler
-{
+namespace poppler {
 
-template <typename T> class rectangle
+template<typename T>
+class rectangle
 {
 public:
-    rectangle()
-        : x1(), y1(), x2(), y2()
-    {}
-    rectangle(T _x, T _y, T w, T h)
-        : x1(_x), y1(_y), x2(x1 + w), y2(y1 + h)
-    {}
-    ~rectangle()
-    {}
+    rectangle() : x1(), y1(), x2(), y2() { }
+    rectangle(T _x, T _y, T w, T h) : x1(_x), y1(_y), x2(x1 + w), y2(y1 + h) { }
+    ~rectangle() { }
 
-    bool is_empty() const
-    { return (x1 == x2) && (y1 == y2); }
+    bool is_empty() const { return (x1 == x2) && (y1 == y2); }
 
-    T x() const
-    { return x1; }
+    T x() const { return x1; }
 
-    T y() const
-    { return y1; }
+    T y() const { return y1; }
 
-    T width() const
-    { return x2 - x1; }
+    T width() const { return x2 - x1; }
 
-    T height() const
-    { return y2 - y1; }
+    T height() const { return y2 - y1; }
 
-    T left() const
-    { return x1; }
-    T top() const
-    { return y1; }
-    T right() const
-    { return x2; }
-    T bottom() const
-    { return y2; }
+    T left() const { return x1; }
+    T top() const { return y1; }
+    T right() const { return x2; }
+    T bottom() const { return y2; }
 
-    void set_left(T value)
-    { x1 = value; }
-    void set_top(T value)
-    { y1 = value; }
-    void set_right(T value)
-    { x2 = value; }
-    void set_bottom(T value)
-    { y2 = value; }
+    void set_left(T value) { x1 = value; }
+    void set_top(T value) { y1 = value; }
+    void set_right(T value) { x2 = value; }
+    void set_bottom(T value) { y2 = value; }
 
 private:
     T x1, y1, x2, y2;
@@ -76,8 +58,8 @@ private:
 typedef rectangle<int> rect;
 typedef rectangle<double> rectf;
 
-POPPLER_CPP_EXPORT std::ostream& operator<<(std::ostream& stream, const rect &r);
-POPPLER_CPP_EXPORT std::ostream& operator<<(std::ostream& stream, const rectf &r);
+POPPLER_CPP_EXPORT std::ostream &operator<<(std::ostream &stream, const rect &r);
+POPPLER_CPP_EXPORT std::ostream &operator<<(std::ostream &stream, const rectf &r);
 
 }
 
