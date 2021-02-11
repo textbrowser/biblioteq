@@ -2,6 +2,28 @@
 
 # Must be executed in the top-level source directory.
 
+# Poppler
+
+poppler=mingw-w64-i686-poppler-20.12.1-2-any.pkg.tar.zst
+
+rm -f $poppler
+wget --output-document=$poppler \
+     --progress=bar \
+     "https://repo.msys2.org/mingw/i686/$poppler"
+
+if [ -r $poppler ]; then
+    tar -I zstd -vxf $poppler
+    cp mingw32/bin/libpoppler-105.dll Libraries.win32/poppler/.
+    cp mingw32/bin/libpoppler-qt5-1.dll Libraries.win32/poppler/.
+    chmod -x Libraries.win32/poppler/*.dll
+    rm -fr .BUILDINFO .MTREE .PKGINFO mingw32
+    rm -f $poppler
+else
+    echo "Cannot read $poppler."
+fi
+
+exit 0
+
 # PostgreSQL
 
 postgresql=postgresql.zip
