@@ -26,8 +26,6 @@ else
     echo "Cannot read $poppler."
 fi
 
-exit 0
-
 # PostgreSQL
 
 postgresql=postgresql.zip
