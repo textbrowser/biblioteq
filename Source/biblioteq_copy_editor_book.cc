@@ -661,12 +661,8 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       }
 
   duplicates.clear();
-
-  for(int i = 0; i < m_copies.size(); i++)
-    delete m_copies.at(i);
-
-  m_copies.clear();
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  clearCopiesList();
 
   if(!qmain->getDB().transaction())
     {
@@ -728,11 +724,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  for(int i = 0; i < m_copies.size(); i++)
-    delete m_copies.at(i);
-
-  m_copies.clear();
+  clearCopiesList();
 
   if(!qmain->getDB().rollback())
     qmain->addError(QString(tr("Database Error")),
@@ -751,10 +743,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 
   if(!qmain->getDB().commit())
     {
-      for(int i = 0; i < m_copies.size(); i++)
-	delete m_copies.at(i);
-
-      m_copies.clear();
+      clearCopiesList();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Commit failure.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -802,8 +791,5 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   if(m_spinbox)
     m_spinbox->setValue(m_copies.size());
 
-  for(int i = 0; i < m_copies.size(); i++)
-    delete m_copies.at(i);
-
-  m_copies.clear();
+  clearCopiesList();
 }
