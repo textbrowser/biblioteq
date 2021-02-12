@@ -485,3 +485,4 @@
      table entries upon item removal. (Done)
 258. Enumerate database fields and table columns. (TBD)
 259. Backup script for FreeBSD. (Done)
+260. Replace Poppler with QtPDF. (TBD)
