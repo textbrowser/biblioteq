@@ -34,9 +34,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-113</y>
+         <y>-275</y>
          <width>1067</width>
-         <height>1152</height>
+         <height>1183</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -518,46 +518,6 @@
                  </item>
                  <item>
                   <layout class="QGridLayout" name="gridLayout_2">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_5">
-                     <property name="text">
-                      <string>Edition</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <layout class="QHBoxLayout" name="_2">
-                     <item>
-                      <widget class="QComboBox" name="edition">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="autoFillBackground">
-                        <bool>false</bool>
-                       </property>
-                       <property name="sizeAdjustPolicy">
-                        <enum>QComboBox::AdjustToContents</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                    </layout>
-                   </item>
                    <item row="1" column="0">
                     <widget class="QLabel" name="label_22">
                      <property name="text">
@@ -565,52 +525,39 @@
                      </property>
                     </widget>
                    </item>
-                   <item row="1" column="1">
-                    <layout class="QHBoxLayout" name="_7">
-                     <item>
-                      <widget class="QComboBox" name="originality">
-                       <property name="sizeAdjustPolicy">
-                        <enum>QComboBox::AdjustToContents</enum>
-                       </property>
-                       <property name="minimumContentsLength">
-                        <number>25</number>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Black &amp; White Copy</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Color Copy</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Original</string>
-                        </property>
-                       </item>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                    </layout>
+                   <item row="6" column="1">
+                    <widget class="biblioteq_hyperlinked_text_edit" name="keyword">
+                     <property name="tabChangesFocus">
+                      <bool>true</bool>
+                     </property>
+                     <property name="undoRedoEnabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="readOnly">
+                      <bool>false</bool>
+                     </property>
+                     <property name="textInteractionFlags">
+                      <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Keywords</string>
+                     </property>
+                     <property name="openLinks">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
                    </item>
-                   <item row="2" column="0">
-                    <widget class="QLabel" name="label_23">
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="label_8">
                      <property name="text">
-                      <string>Condition</string>
+                      <string>Copies</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="0">
+                    <widget class="QLabel" name="label_21">
+                     <property name="text">
+                      <string>Keywords</string>
                      </property>
                     </widget>
                    </item>
@@ -686,12 +633,47 @@
                      </item>
                     </layout>
                    </item>
-                   <item row="3" column="0">
-                    <widget class="QLabel" name="label_8">
-                     <property name="text">
-                      <string>Copies</string>
-                     </property>
-                    </widget>
+                   <item row="1" column="1">
+                    <layout class="QHBoxLayout" name="_7">
+                     <item>
+                      <widget class="QComboBox" name="originality">
+                       <property name="sizeAdjustPolicy">
+                        <enum>QComboBox::AdjustToContents</enum>
+                       </property>
+                       <property name="minimumContentsLength">
+                        <number>25</number>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>Black &amp; White Copy</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Color Copy</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Original</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
                    </item>
                    <item row="3" column="1">
                     <layout class="QHBoxLayout" name="_3">
@@ -756,6 +738,64 @@
                      </property>
                     </widget>
                    </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="label_10">
+                     <property name="text">
+                      <string>Location</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_23">
+                     <property name="text">
+                      <string>Condition</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <layout class="QHBoxLayout" name="_5">
+                     <item>
+                      <widget class="QComboBox" name="location">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="sizeAdjustPolicy">
+                        <enum>QComboBox::AdjustToContents</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item row="7" column="0">
+                    <widget class="QLabel" name="label_24">
+                     <property name="text">
+                      <string>URL</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_5">
+                     <property name="text">
+                      <string>Edition</string>
+                     </property>
+                    </widget>
+                   </item>
                    <item row="5" column="1">
                     <layout class="QHBoxLayout" name="_9">
                      <item>
@@ -792,44 +832,18 @@
                      </item>
                     </layout>
                    </item>
-                   <item row="6" column="0">
-                    <widget class="QLabel" name="label_21">
-                     <property name="text">
-                      <string>Keywords</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="6" column="1">
-                    <widget class="biblioteq_hyperlinked_text_edit" name="keyword">
-                     <property name="tabChangesFocus">
-                      <bool>true</bool>
-                     </property>
-                     <property name="undoRedoEnabled">
-                      <bool>true</bool>
-                     </property>
-                     <property name="readOnly">
-                      <bool>false</bool>
-                     </property>
-                     <property name="textInteractionFlags">
-                      <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                     </property>
-                     <property name="placeholderText">
-                      <string>Keywords</string>
-                     </property>
-                     <property name="openLinks">
-                      <bool>false</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="4" column="1">
-                    <layout class="QHBoxLayout" name="_5">
+                   <item row="0" column="1">
+                    <layout class="QHBoxLayout" name="_2">
                      <item>
-                      <widget class="QComboBox" name="location">
+                      <widget class="QComboBox" name="edition">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                          <horstretch>0</horstretch>
                          <verstretch>0</verstretch>
                         </sizepolicy>
+                       </property>
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
                        </property>
                        <property name="sizeAdjustPolicy">
                         <enum>QComboBox::AdjustToContents</enum>
@@ -851,10 +865,19 @@
                      </item>
                     </layout>
                    </item>
-                   <item row="4" column="0">
-                    <widget class="QLabel" name="label_10">
-                     <property name="text">
-                      <string>Location</string>
+                   <item row="7" column="1">
+                    <widget class="QTextBrowser" name="url">
+                     <property name="tabChangesFocus">
+                      <bool>true</bool>
+                     </property>
+                     <property name="acceptRichText">
+                      <bool>false</bool>
+                     </property>
+                     <property name="placeholderText">
+                      <string>URL</string>
+                     </property>
+                     <property name="openExternalLinks">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -1458,6 +1481,7 @@
   <tabstop>location</tabstop>
   <tabstop>binding</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>url</tabstop>
   <tabstop>isbnAvailableCheckBox</tabstop>
   <tabstop>id</tabstop>
   <tabstop>isbn13to10</tabstop>

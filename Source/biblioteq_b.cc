@@ -4643,6 +4643,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE journal_copy_info ADD status TEXT");
   list.append("ALTER TABLE magazine_copy_info ADD status TEXT");
   list.append("ALTER TABLE videogame_copy_info ADD status TEXT");
+  list.append("ALTER TABLE book ADD url");
 
   QString errors("<html>");
   int ct = 1;
