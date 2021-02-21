@@ -1382,3 +1382,7 @@ ALTER TABLE dvd_copy_info ADD status TEXT;
 ALTER TABLE journal_copy_info ADD status TEXT;
 ALTER TABLE magazine_copy_info ADD status TEXT;
 ALTER TABLE videogame_copy_info ADD status TEXT;
+
+/* Release 2021.03.03 */
+
+ALTER TABLE book ADD url TEXT;

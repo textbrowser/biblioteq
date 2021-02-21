@@ -33,7 +33,8 @@ CREATE TABLE book							\
     publisher	 TEXT NOT NULL,						\
     quantity	 INTEGER NOT NULL DEFAULT 1,				\
     title	 TEXT NOT NULL,						\
-    type	 VARCHAR(16) NOT NULL DEFAULT 'Book'			\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'Book',			\
+    url          TEXT							\
 );									\
 									\
 CREATE TABLE book_copy_info						\
