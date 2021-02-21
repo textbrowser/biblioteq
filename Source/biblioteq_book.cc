@@ -177,6 +177,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset URL")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -714,6 +716,7 @@ void biblioteq_book::insert(void)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.url->clear();
   biblioteq_misc_functions::highlightWidget
     (id.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
@@ -838,9 +841,16 @@ void biblioteq_book::modify(const int state)
   str = m_oid;
   query.prepare("SELECT title, "
 		"author, "
-		"publisher, pdate, place, edition, "
-		"category, language, id, "
-		"price, monetary_units, quantity, "
+		"publisher, "
+		"pdate, "
+		"place, "
+		"edition, "
+		"category, "
+		"language, "
+		"id, "
+		"price, "
+		"monetary_units, "
+		"quantity, "
 		"binding_type, "
 		"location, "
 		"isbn13, "
@@ -854,7 +864,8 @@ void biblioteq_book::modify(const int state)
 		"keyword, "
 		"originality, "
 		"condition, "
-		"accession_number "
+		"accession_number, "
+		"url "
 		"FROM book WHERE myoid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1037,6 +1048,8 @@ void biblioteq_book::modify(const int state)
 	    }
 	  else if(fieldname == "accession_number")
 	    id.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "url")
+	    id.url->setPlainText(var.toString().trimmed());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1753,6 +1766,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.description->clear();
   id.marc_tags->clear();
   id.keyword->clear();
+  id.url->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
   id.openLibraryQuery->setVisible(false);
@@ -2658,6 +2672,7 @@ void biblioteq_book::slotGo(void)
       id.keyword->setPlainText(str);
       str = id.accession_number->text().trimmed();
       id.accession_number->setText(str);
+      id.url->setPlainText(id.url->toPlainText().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
@@ -2683,7 +2698,8 @@ void biblioteq_book::slotGo(void)
 		      "keyword = ?, "
 		      "originality = ?, "
 		      "condition = ?, "
-		      "accession_number = ? "
+		      "accession_number = ?, "
+		      "url = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -2696,8 +2712,8 @@ void biblioteq_book::slotGo(void)
 		      "deweynumber, front_cover, "
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
-		      "accession_number) "
-		      "VALUES (?, ?, ?, ?, ?, ?, "
+		      "accession_number, url) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -2712,8 +2728,8 @@ void biblioteq_book::slotGo(void)
 		      "deweynumber, front_cover, "
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
-		      "accession_number, myoid) "
-		      "VALUES (?, ?, ?, ?, ?, "
+		      "accession_number, url, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
@@ -2809,9 +2825,10 @@ void biblioteq_book::slotGo(void)
       query.bindValue(23, id.originality->currentText().trimmed());
       query.bindValue(24, id.condition->currentText().trimmed());
       query.bindValue(25, id.accession_number->text().trimmed());
+      query.bindValue(26, id.url->toPlainText().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(26, m_oid);
+	query.bindValue(27, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
@@ -2819,7 +2836,7 @@ void biblioteq_book::slotGo(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      query.bindValue(26, value);
+	      query.bindValue(27, value);
 	      m_oid = QString::number(value);
 	    }
 	  else
@@ -3318,6 +3335,11 @@ void biblioteq_book::slotGo(void)
 	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
       values.append
 	(biblioteq_myqstring::escape(id.keyword->toPlainText().trimmed()));
+      searchstr.append
+	("AND " + UNACCENT + "(LOWER(COALESCE(url, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.url->toPlainText().trimmed()));
 
       if(id.originality->currentIndex() != 0)
 	{
@@ -3733,7 +3755,9 @@ void biblioteq_book::slotPrint(void)
   m_html += "<b>" + tr("Keywords:") + "</b> " +
     id.keyword->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Accession Number:") + "</b> " +
-    id.accession_number->text().trimmed();
+    id.accession_number->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("URL:") + "</b> " +
+    id.url->toPlainText().trimmed();
   m_html += "</html>";
   print(this);
 }
@@ -3861,7 +3885,7 @@ void biblioteq_book::slotReset(void)
     {
       QList<QAction *> actions = id.resetButton->menu()->actions();
 
-      if(actions.size() < 26)
+      if(actions.size() < 27)
 	{
 	  // Error.
 	}
@@ -4036,6 +4060,11 @@ void biblioteq_book::slotReset(void)
 	  id.accession_number->clear();
 	  id.accession_number->setFocus();
 	}
+      else if(action == actions[26])
+	{
+	  id.url->clear();
+	  id.url->setFocus();
+	}
 
       actions.clear();
     }
@@ -4087,6 +4116,7 @@ void biblioteq_book::slotReset(void)
       id.marc_tags->clear();
       id.marc_tags_format->setCurrentIndex(0);
       id.keyword->clear();
+      id.url->clear();
       id.isbn13->clear();
       id.lcnum->clear();
       id.callnum->clear();

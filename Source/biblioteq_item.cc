@@ -6,6 +6,7 @@
 #include <QComboBox>
 #include <QDateEdit>
 #include <QLineEdit>
+#include <QPlainTextEdit>
 #include <QSpinBox>
 
 biblioteq_item::biblioteq_item(const int rowArg)
@@ -67,6 +68,10 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
       else if(classname == "QLineEdit")
 	newdata[objectname] =
 	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
+      else if(classname == "QPlainTextEdit" ||
+	      qobject_cast<QPlainTextEdit *> (widget))
+	newdata[objectname] =
+	  (qobject_cast<QPlainTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "QSpinBox")
 	newdata[objectname] =
 	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
@@ -176,6 +181,9 @@ void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)
 	qobject_cast<QDoubleSpinBox *> (widget)->setReadOnly(state);
       else if(classname == "QLineEdit")
 	qobject_cast<QLineEdit *> (widget)->setReadOnly(state);
+      else if(classname == "QPlainTextEdit" ||
+	      qobject_cast<QPlainTextEdit *> (widget))
+	qobject_cast<QPlainTextEdit *> (widget)->setReadOnly(state);
       else if(classname == "QSpinBox")
 	qobject_cast<QSpinBox *> (widget)->setReadOnly(state);
       else if(classname == "QTextEdit")
@@ -221,6 +229,10 @@ void biblioteq_item::storeData(QMainWindow *window)
       else if(classname == "QLineEdit")
 	m_widgetValues[objectname] =
 	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
+      else if(classname == "QPlainTextEdit" ||
+	      qobject_cast<QPlainTextEdit *> (widget))
+	m_widgetValues[objectname] =
+	  (qobject_cast<QPlainTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "QSpinBox")
 	m_widgetValues[objectname] =
 	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();

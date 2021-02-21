@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-275</y>
+         <y>-523</y>
          <width>1067</width>
          <height>1183</height>
         </rect>
@@ -866,18 +866,12 @@
                     </layout>
                    </item>
                    <item row="7" column="1">
-                    <widget class="QTextBrowser" name="url">
+                    <widget class="QPlainTextEdit" name="url">
                      <property name="tabChangesFocus">
                       <bool>true</bool>
                      </property>
-                     <property name="acceptRichText">
-                      <bool>false</bool>
-                     </property>
                      <property name="placeholderText">
                       <string>URL</string>
-                     </property>
-                     <property name="openExternalLinks">
-                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
