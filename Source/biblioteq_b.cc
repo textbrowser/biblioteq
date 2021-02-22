@@ -3399,7 +3399,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      QFontMetrics fontMetrics(ui.table->font());
 
 	      ui.table->setRowHeight
-		(i, qMax(fontMetrics.height(), ui.table->iconSize().height()));
+		(i, qMax(fontMetrics.height() + 10,
+			 ui.table->iconSize().height()));
 	    }
 	}
 
