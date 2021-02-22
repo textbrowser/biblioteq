@@ -132,6 +132,19 @@
             </layout>
            </item>
            <item>
+            <widget class="QCheckBox" name="show_maintable_images">
+             <property name="toolTip">
+              <string>Please reload table on value change.</string>
+             </property>
+             <property name="text">
+              <string>&amp;Show Table Images</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="show_maintable_tooltips">
              <property name="toolTip">
               <string>Please reload table on value change.</string>
@@ -228,6 +241,7 @@
   <tabstop>scrollArea</tabstop>
   <tabstop>publication_date</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
+  <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close</tabstop>

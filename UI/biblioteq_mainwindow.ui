@@ -1201,6 +1201,9 @@
    <property name="text">
     <string>Other &amp;Options...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="action_Open_PDF_File">
    <property name="text">

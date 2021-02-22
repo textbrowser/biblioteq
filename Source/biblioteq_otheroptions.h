@@ -13,6 +13,7 @@ class biblioteq_otheroptions: public QMainWindow
   biblioteq_otheroptions(biblioteq *parent);
   ~biblioteq_otheroptions();
   QString publicationDateFormat(const QString &itemType) const;
+  bool showMainTableImages(void) const;
   void prepareSettings(void);
 
  private:

@@ -710,7 +710,12 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
   ui.table->resetTable(dbUserName(), m_lastCategory, m_roles);
-  ui.table->setIconSize(QSize(64, 94));
+
+  if(m_otheroptions->showMainTableImages())
+    ui.table->setIconSize(QSize(64, 94));
+  else
+    ui.table->setIconSize(QSize(0, 0));
+
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
 

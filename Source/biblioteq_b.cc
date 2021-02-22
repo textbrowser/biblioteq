@@ -3396,7 +3396,10 @@ int biblioteq::populateTable(const int search_type_arg,
 	      else
 		first->setIcon(QIcon(":/no_image.png"));
 
-	      ui.table->setRowHeight(i, ui.table->iconSize().height());
+	      QFontMetrics fontMetrics(ui.table->font());
+
+	      ui.table->setRowHeight
+		(i, qMax(fontMetrics.height(), ui.table->iconSize().height()));
 	    }
 	}
 

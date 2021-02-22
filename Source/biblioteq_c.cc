@@ -752,7 +752,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      else
 		first->setIcon(QIcon(":/no_image.png"));
 
-	      ui.table->setRowHeight(i, ui.table->iconSize().height());
+	      QFontMetrics fontMetrics(ui.table->font());
+
+	      ui.table->setRowHeight
+		(i, qMax(fontMetrics.height(), ui.table->iconSize().height()));
 	    }
 	}
 
@@ -3707,6 +3710,17 @@ void biblioteq::slotOtherOptionsSaved(void)
     else if(qobject_cast<biblioteq_videogame *> (widget))
       qobject_cast<biblioteq_videogame *> (widget)->setPublicationDateFormat
 	(m_otheroptions->publicationDateFormat("videogames"));
+
+  if(m_otheroptions->showMainTableImages())
+    ui.table->setIconSize(QSize(64, 94));
+  else
+    ui.table->setIconSize(QSize(0, 0));
+
+  QFontMetrics fontMetrics(ui.table->font());
+
+  for(int i = 0; i < ui.table->rowCount(); i++)
+    ui.table->setRowHeight
+      (i, qMax(fontMetrics.height(), ui.table->iconSize().height()));
 
   QApplication::restoreOverrideCursor();
 }
