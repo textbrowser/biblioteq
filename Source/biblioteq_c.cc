@@ -755,7 +755,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      QFontMetrics fontMetrics(ui.table->font());
 
 	      ui.table->setRowHeight
-		(i, qMax(fontMetrics.height(), ui.table->iconSize().height()));
+		(i, qMax(fontMetrics.height() + 10,
+			 ui.table->iconSize().height()));
 	    }
 	}
 
@@ -3720,7 +3721,7 @@ void biblioteq::slotOtherOptionsSaved(void)
 
   for(int i = 0; i < ui.table->rowCount(); i++)
     ui.table->setRowHeight
-      (i, qMax(fontMetrics.height(), ui.table->iconSize().height()));
+      (i, qMax(fontMetrics.height() + 10, ui.table->iconSize().height()));
 
   QApplication::restoreOverrideCursor();
 }

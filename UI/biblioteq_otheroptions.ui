@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>538</width>
-         <height>546</height>
+         <width>532</width>
+         <height>548</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -133,9 +133,6 @@
            </item>
            <item>
             <widget class="QCheckBox" name="show_maintable_images">
-             <property name="toolTip">
-              <string>Please reload table on value change.</string>
-             </property>
              <property name="text">
               <string>&amp;Show Table Images</string>
              </property>
