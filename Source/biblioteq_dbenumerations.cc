@@ -114,15 +114,10 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	    this,
 	    SLOT(setGlobalFonts(const QFont &)));
 
-#if QT_VERSION >= 0x050000
   m_ui.locationsTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
   m_ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
-#else
-  m_ui.locationsTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  m_ui.minimumDaysTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
 }
 
 void biblioteq_dbenumerations::changeEvent(QEvent *event)

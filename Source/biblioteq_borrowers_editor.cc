@@ -49,11 +49,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
 
   connect(m_bd.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCurrentBorrowers(void)));
-#if QT_VERSION >= 0x050000
   m_bd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  m_bd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
   setGlobalFonts(font);
 
   if(!uniqueidArg.isEmpty())

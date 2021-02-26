@@ -47,11 +47,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.setupUi(this);
   setQMain(this);
   id.files->setColumnHidden(Columns::MYOID, true);
-#if QT_VERSION >= 0x050000
   id.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  id.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
   id.marc_tags_format->setVisible(false);
   id.parse_marc_tags->setVisible(false);
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));

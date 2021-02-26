@@ -4,11 +4,7 @@
 #include "ui_biblioteq_pdfreader.h"
 
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-#if QT_VERSION < 0x050000
-#include <poppler-qt4.h>
-#else
 #include <poppler-qt5.h>
-#endif
 #endif
 
 class QPrinter;

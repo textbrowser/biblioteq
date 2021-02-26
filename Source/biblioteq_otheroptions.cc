@@ -27,12 +27,8 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	    this,
 	    SLOT(setGlobalFonts(const QFont &)));
 
-#if QT_VERSION >= 0x050000
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
-#else
-  m_ui.publication_date->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
   prepareSettings();
 }
 

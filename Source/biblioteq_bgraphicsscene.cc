@@ -46,10 +46,6 @@ void biblioteq_bgraphicsscene::mouseDoubleClickEvent
   ** scene may temporarily lose a future click.
   */
 
-#if QT_VERSION < 0x050000
-  if(event && itemAt(event->scenePos()))
-#else
   if(event && itemAt(event->scenePos(), QTransform()))
-#endif
     emit itemDoubleClicked();
 }

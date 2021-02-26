@@ -9,19 +9,11 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   qmain = nullptr;
   setAcceptDrops(false);
   setDragEnabled(false);
-#if QT_VERSION >= 0x050000
   horizontalHeader()->setSectionsMovable(true);
-#else
-  horizontalHeader()->setMovable(true);
-#endif
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   horizontalHeader()->setStretchLastSection(true);
-#if QT_VERSION >= 0x050000
   verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
 }
 
 QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const

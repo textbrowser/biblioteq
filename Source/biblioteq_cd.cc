@@ -41,11 +41,7 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(m_tracks_diag);
-#if QT_VERSION >= 0x050000
   trd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));

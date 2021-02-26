@@ -28,11 +28,6 @@
 #include <QClipboard>
 #include <QFileDialog>
 #include <QFontDialog>
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-#include <QMacStyle>
-#endif
-#endif
 #include <QPrintPreviewDialog>
 #include <QScrollBar>
 #include <QSettings>
@@ -42,9 +37,7 @@
 #include <limits>
 
 #ifdef Q_OS_MAC
-#if QT_VERSION >= 0x050000
 #include "CocoaInitializer.h"
-#endif
 #endif
 
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
@@ -78,14 +71,6 @@ QTranslator *biblioteq::s_qtTranslator = nullptr;
 
 int main(int argc, char *argv[])
 {
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  QMacStyle *style = new QMacStyle();
-
-  QApplication::setStyle(style);
-#endif
-#endif
-
   QApplication qapplication(argc, argv);
   QFont font(qapplication.font());
 
@@ -97,13 +82,11 @@ int main(int argc, char *argv[])
   qapplication.setFont(font);
 
 #ifdef Q_OS_MAC
-#if QT_VERSION >= 0x050000
   /*
   ** Eliminate warnings.
   */
 
   CocoaInitializer ci;
-#endif
 #endif
 
   qapplication.setWindowIcon(QIcon(":/book.png"));
@@ -140,9 +123,9 @@ int main(int argc, char *argv[])
 	  settings.remove(settings.allKeys().at(i));
     }
 
-  biblioteq::s_qtTranslator = new QTranslator(nullptr);
   biblioteq::s_appTranslator = new QTranslator(nullptr);
   biblioteq::s_locale = settings.value("locale").toString();
+  biblioteq::s_qtTranslator = new QTranslator(nullptr);
 
   if(!(biblioteq::s_locale == "ar_JO" ||
        biblioteq::s_locale == "cs_CZ" ||
@@ -154,6 +137,7 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "nl_BE" ||
        biblioteq::s_locale == "nl_NL" ||
        biblioteq::s_locale == "pl_PL" ||
+       biblioteq::s_locale == "pt_PT" ||
        biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
@@ -188,27 +172,6 @@ int main(int argc, char *argv[])
 
 biblioteq::biblioteq(void):QMainWindow()
 {
-#if QT_VERSION < 0x050000
-#ifdef Q_OS_MAC
-  if(QSysInfo::MacintoshVersion > QSysInfo::MV_10_6)
-    {
-      QNetworkAccessManager manager;
-      QNetworkReply *reply = 0;
-
-      /*
-      ** We need to perform this before a PostgreSQL database connection is
-      ** established. Otherwise, the connection may be severed later.
-      ** The anomaly occurs on OS X 10.7.4 and Qt 4.8.6.
-      ** It may also occur on OS X 10.7.5 and Qt 4.8.7.
-      */
-
-      reply = manager.get
-	(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
-      reply->deleteLater();
-    }
-#endif
-#endif
-
   QMenu *menu1 = nullptr;
 
   ui.setupUi(this);
@@ -619,17 +582,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowDbEnumerations(void)));
-#if QT_VERSION >= 0x050000
   ab.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   bb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  ab.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
   ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
   bb.table->setContextMenuPolicy(Qt::CustomContextMenu);
   ui.table->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -3069,8 +3025,8 @@ void biblioteq::slotLanguageChanged(void)
   if(action && action->isChecked())
     {
       s_locale = action->data().toString();
-      QApplication::removeTranslator(s_qtTranslator);
       QApplication::removeTranslator(s_appTranslator);
+      QApplication::removeTranslator(s_qtTranslator);
 #ifdef Q_OS_MAC
       s_qtTranslator->load
 	("qt_" + s_locale,

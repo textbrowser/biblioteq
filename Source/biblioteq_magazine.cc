@@ -49,11 +49,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   ma.setupUi(this);
   setQMain(this);
   ma.files->setColumnHidden(MYOID, true);
-#if QT_VERSION >= 0x050000
   ma.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  ma.files->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
   ma.marc_tags_format->setVisible(false);
   ma.parse_marc_tags->setVisible(false);
   ma.publication_date->setDisplayFormat

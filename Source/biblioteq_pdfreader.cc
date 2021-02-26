@@ -568,7 +568,6 @@ void biblioteq_pdfreader::slotSearchNext(void)
 
   while(page < m_document->numPages())
     {
-#if QT_VERSION >= 0x050000
       double bottom = m_searchLocation.bottom();
       double left = m_searchLocation.left();
       double right = m_searchLocation.right();
@@ -583,28 +582,14 @@ void biblioteq_pdfreader::slotSearchNext(void)
 		Poppler::Page::NextResult,
 		m_ui.case_sensitive->isChecked() ?
 		Poppler::Page::SearchFlag(0) : Poppler::Page::IgnoreCase))
-#else
-      if(m_document->page(page)->
-	 search(m_ui.find->text(),
-		m_searchLocation,
-		Poppler::Page::NextResult,
-		m_ui.case_sensitive->isChecked() ?
-		Poppler::Page::CaseSensitive : Poppler::Page::CaseInsensitive))
-#endif
 	{
-#if QT_VERSION >= 0x050000
 	  m_searchLocation = QRectF(left, top, right - left, bottom - top);
-#endif
 
 	  if(!m_searchLocation.isNull())
 	    {
 	      QApplication::restoreOverrideCursor();
 	      slotShowPage(page + 1, m_searchLocation);
-#if QT_VERSION >= 0x050000
 	      m_searchLocation.setX(right);
-#else
-	      m_searchLocation.setX(m_searchLocation.right());
-#endif
 	      m_ui.find->setFocus();
 	      m_ui.page->blockSignals(true);
 	      m_ui.page->setValue(page + 1);
@@ -642,7 +627,6 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
 
   while(page >= 0)
     {
-#if QT_VERSION >= 0x050000
       double bottom = m_searchLocation.bottom();
       double left = m_searchLocation.left();
       double right = m_searchLocation.right();
@@ -657,18 +641,9 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
 		Poppler::Page::PreviousResult,
 		m_ui.case_sensitive->isChecked() ?
 		Poppler::Page::SearchFlag(0) : Poppler::Page::IgnoreCase))
-#else
-      if(m_document->page(page)->
-	 search(m_ui.find->text(),
-		m_searchLocation,
-		Poppler::Page::PreviousResult,
-		m_ui.case_sensitive->isChecked() ?
-		Poppler::Page::CaseSensitive : Poppler::Page::CaseInsensitive))
-#endif
 	{
-#if QT_VERSION >= 0x050000
 	  m_searchLocation = QRectF(left, top, right - left, bottom - top);
-#endif
+
 	  if(!m_searchLocation.isNull())
 	    {
 	      QApplication::restoreOverrideCursor();

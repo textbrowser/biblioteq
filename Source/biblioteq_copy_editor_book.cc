@@ -28,11 +28,7 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
   m_spinbox = spinboxArg;
   m_itemType = "Book";
   m_showForLending = showForLendingArg;
-#if QT_VERSION >= 0x050000
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-  m_cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
 
   if(!uniqueIdArg.trimmed().isEmpty())
     setWindowTitle
