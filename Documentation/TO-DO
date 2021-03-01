@@ -404,7 +404,7 @@
 216. Bar scanner. (TBD)
 217. Database import of books. (Done)
 218. Translation files are not properly generated on OS X. (Done)
-219. Portuguese translation. (TBD)
+219. Portuguese translation. (Done)
 220. Update item icon in main table after item update. (Done)
 221. ILIKE, or case-insensitive search. (Done)
 222. UNACCENT(). (Done)
@@ -486,3 +486,4 @@
 258. Enumerate database fields and table columns. (TBD)
 259. Backup script for FreeBSD. (Done)
 260. Replace Poppler with QtPDF. (TBD)
+261. Read status. (TBD)
