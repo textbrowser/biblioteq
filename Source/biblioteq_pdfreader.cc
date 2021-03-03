@@ -19,8 +19,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   m_document = nullptr;
+#elif defined(BIBLIOTEQ_QTPDF)
+  m_document = new QPdfDocument(this);
 #else
   m_ui.action_Contents->setEnabled(false);
   m_ui.action_Print->setEnabled(false);
@@ -31,7 +33,8 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.find_next->setEnabled(false);
   m_ui.find_previous->setEnabled(false);
   m_ui.page->setEnabled(false);
-  m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
+  m_ui.page_1->setText
+    (tr("BiblioteQ was assembled without Poppler / QtPDF support."));
   m_ui.page_2->setText(m_ui.page_1->text());
 #endif
   m_ui.splitter->setSizes
@@ -185,7 +188,7 @@ void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   delete m_document;
   m_document = Poppler::Document::loadFromData(data);
 
@@ -213,6 +216,7 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
     setWindowTitle(tr("BiblioteQ: PDF Reader (%1)").arg(fileName.trimmed()));
 
   slotShowPage(1);
+#elif defined(BIBLIOTEQ_QTPDF)
 #else
   Q_UNUSED(data);
   Q_UNUSED(fileName);

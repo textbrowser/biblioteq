@@ -1,9 +1,6 @@
 include(biblioteq-source.pro)
 
-greaterThan(QT_MAJOR_VERSION, 4) {
 cache()
-}
-
 doxygen.commands = doxygen biblioteq.doxygen
 purge.commands = rm -f *~ && rm -f */*~
 
@@ -11,38 +8,32 @@ CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
                    QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
-QT              += network sql
+QMAKE_CLEAN	+= BiblioteQ
+QT              += network printsupport sql widgets
 QT              -= webkit
-
-lessThan(QT_MAJOR_VERSION, 5) {
-exists(/usr/include/poppler/qt4) {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt4
-LIBS    +=      -lpoppler-qt4
-QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
-}
-} else {
-exists(/usr/include/poppler/qt5) {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt5
-LIBS    +=      -lpoppler-qt5
-}
-}
-
-exists(/usr/include/poppler/cpp) {
-DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
-INCLUDEPATH += /usr/include/poppler/cpp
-} else {
-message("The directory /usr/include/poppler/cpp does not exist. Poppler version information will not be available.")
-}
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-QT              += printsupport widgets
-}
-
 TEMPLATE	= app
 
-QMAKE_CLEAN	+= BiblioteQ
+exists(/usr/include/poppler/cpp) {
+DEFINES         += BIBLIOTEQ_POPPLER_VERSION_DEFINED
+INCLUDEPATH     += /usr/include/poppler/cpp
+} else {
+message("The directory /usr/include/poppler/cpp does not exist. " \
+        "Poppler version information will not be available.")
+}
+
+exists(/usr/include/poppler/qt5) {
+DEFINES         += BIBLIOTEQ_LINKED_WITH_POPPLER
+INCLUDEPATH     += /usr/include/poppler/qt5
+LIBS            += -lpoppler-qt5
+}
+
+qtHaveModule(pdf) {
+DEFINES         += BIBLIOTEQ_QTPDF
+DEFINES         -= BIBLIOTEQ_LINKED_WITH_POPPLER
+INCLUDEPATH     -= /usr/include/poppler/qt5
+LIBS            -= -lpoppler-qt5
+QT              += pdf
+}
 
 openbsd-* {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
@@ -57,7 +48,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-                          -pedantic
+                          -pedantic \
+                          -std=c++11
 } else {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
@@ -80,18 +72,12 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -mtune=generic \
                           -pedantic \
-                          -pie
+                          -pie \
+                          -std=c++11
 }
 
 QMAKE_DISTCLEAN += -r temp
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-QMAKE_CXXFLAGS_RELEASE += -std=c++11
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
-} else {
-QMAKE_CXXFLAGS_RELEASE += -Wno-class-memaccess
-}
-
 QMAKE_EXTRA_TARGETS = doxygen purge
 
 ICON		= Icons/book.png
