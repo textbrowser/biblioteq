@@ -7,10 +7,6 @@
 #include <poppler-qt5.h>
 #endif
 
-#ifdef BIBLIOTEQ_QTPDF
-#include <QPdfDocument>
-#endif
-
 class QPrinter;
 
 class biblioteq_pdfreader: public QMainWindow
@@ -26,9 +22,6 @@ class biblioteq_pdfreader: public QMainWindow
  private:
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   Poppler::Document *m_document;
-#endif
-#ifdef BIBLIOTEQ_QTPDF
-  QPdfDocument *m_document;
 #endif
   QRectF m_searchLocation;
   QString m_fileName;

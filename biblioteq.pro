@@ -27,14 +27,6 @@ INCLUDEPATH     += /usr/include/poppler/qt5
 LIBS            += -lpoppler-qt5
 }
 
-qtHaveModule(pdf) {
-DEFINES         += BIBLIOTEQ_QTPDF
-DEFINES         -= BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     -= /usr/include/poppler/qt5
-LIBS            -= -lpoppler-qt5
-QT              += pdf
-}
-
 openbsd-* {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
