@@ -1,0 +1,15 @@
+BIBLIOTEQ_CONFIGFILE
+
+Name of BiblioteQ's configuration file.
+
+BIBLIOTEQ_LINKED_WITH_POPPLER
+
+Defined if BiblioteQ is linked with the Poppler library.
+
+BIBLIOTEQ_NON_PORTABLE
+
+Define if BiblioteQ should write data to some application-specific location.
+
+BIBLIOTEQ_POPPLER_VERSION_DEFINED
+
+Poppler's version.
