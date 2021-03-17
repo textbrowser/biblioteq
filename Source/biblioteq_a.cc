@@ -71,6 +71,11 @@ QTranslator *biblioteq::s_qtTranslator = nullptr;
 
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+  QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+  QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+#endif
+
   QApplication qapplication(argc, argv);
   QFont font(qapplication.font());
 
