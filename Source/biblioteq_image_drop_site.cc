@@ -64,7 +64,7 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
   QString filename = "";
 
-#if defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
   if(event)
     for(int i = 0; i < event->mimeData()->formats().size(); i++)
       if(event->mimeData()->formats()[i].toLower().contains("filename"))
@@ -104,7 +104,7 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
   QGraphicsView::dragMoveEvent(event);
 
-#if defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
   if(event)
     for(int i = 0; i < event->mimeData()->formats().size(); i++)
       if(event->mimeData()->formats()[i].toLower().contains("filename"))
@@ -138,7 +138,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
   QString filename("");
   QString imgf("");
 
-#if defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
   if(event)
     for(int i = 0; i < event->mimeData()->formats().size(); i++)
       if(event->mimeData()->formats()[i].toLower().contains("filename"))

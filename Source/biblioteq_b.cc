@@ -14,7 +14,7 @@
 
 QString biblioteq::homePath(void)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
   return QDir::currentPath() + QDir::separator() + ".biblioteq";
 #else
   return QDir::homePath() + QDir::separator() + ".biblioteq";

@@ -47,7 +47,7 @@
 extern "C"
 {
 #include <math.h>
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include <sqlite3/sqlite3.h>
 #else
 #include <sqlite3.h>
@@ -1869,7 +1869,7 @@ void biblioteq::showMain(void)
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_OS2)
   QFileInfo fileInfo(qgetenv("unixroot") + "/usr/local/biblioteq.conf");
-#elif defined(Q_OS_WIN32)
+#elif defined(Q_OS_WIN)
   QFileInfo fileInfo(QCoreApplication::applicationDirPath() +
 		     QDir::separator() +
 		     "biblioteq.conf");
