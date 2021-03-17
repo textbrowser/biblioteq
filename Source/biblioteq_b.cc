@@ -9,12 +9,15 @@
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QStandardPaths>
 
 #include <limits>
 
 QString biblioteq::homePath(void)
 {
-#ifdef Q_OS_WIN
+#ifdef BIBLIOTEQ_NON_PORTABLE
+  return QStandardPaths::writableLocation(QStandardPaths::StandardLocation::AppConfigLocation);
+#elif defined(Q_OS_WIN)
   return QDir::currentPath() + QDir::separator() + ".biblioteq";
 #else
   return QDir::homePath() + QDir::separator() + ".biblioteq";
