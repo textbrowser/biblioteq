@@ -47,7 +47,7 @@
 extern "C"
 {
 #include <math.h>
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include <sqlite3/sqlite3.h>
 #else
 #include <sqlite3.h>
@@ -71,6 +71,11 @@ QTranslator *biblioteq::s_qtTranslator = nullptr;
 
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+  QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+  QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+#endif
+
   QApplication qapplication(argc, argv);
   QFont font(qapplication.font());
 
@@ -787,7 +792,7 @@ biblioteq::biblioteq(void):QMainWindow()
   (action = group3->addAction(tr("&German")))->setCheckable(true);
   action->setData("de_DE");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("G&reek")))->setCheckable(true);
+  (action = group3->addAction(tr("Gree&k")))->setCheckable(true);
   action->setData("el_GR");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&Hebrew")))->setCheckable(true);
@@ -1864,7 +1869,7 @@ void biblioteq::showMain(void)
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_OS2)
   QFileInfo fileInfo(qgetenv("unixroot") + "/usr/local/biblioteq.conf");
-#elif defined(Q_OS_WIN32)
+#elif defined(Q_OS_WIN)
   QFileInfo fileInfo(QCoreApplication::applicationDirPath() +
 		     QDir::separator() +
 		     "biblioteq.conf");
