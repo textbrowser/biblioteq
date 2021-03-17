@@ -29,6 +29,7 @@ BiblioteQ is free and open library software.
 <li>PDF reader via Poppler, where available.</li>
 <li>Parse local MARC tags. Books, journals, magazines.</li>
 <li>Patron information.</li>
+<li>Portable.</li>
 <li>PostgreSQL accounts with various privileges.</li>
 <li>PowerPC support.</li>
 <li>Print support, including previews.</li>
