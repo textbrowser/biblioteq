@@ -69,6 +69,16 @@ bool biblioteq_otheroptions::showMainTableImages(void) const
   return settings.value("show_maintable_images", true).toBool();
 }
 
+int biblioteq_otheroptions::booksAccessionNumberIndex(void) const
+{
+  QSettings settings;
+
+  return
+    qBound(0,
+	   settings.value("otheroptions/books_accession_number_index").toInt(),
+	   m_ui.books_accession_number->count() - 1);
+}
+
 void biblioteq_otheroptions::changeEvent(QEvent *event)
 {
   if(event)
@@ -102,7 +112,6 @@ void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 void biblioteq_otheroptions::prepareSettings(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_ui.publication_date->setRowCount(0);
 
   QSettings settings;
   QStringList list1;
@@ -138,6 +147,10 @@ void biblioteq_otheroptions::prepareSettings(void)
 	<< "musiccds"
 	<< "photographcollections"
 	<< "videogames";
+  m_ui.books_accession_number->setCurrentIndex
+    (qBound(0,
+	    settings.value("otheroptions/books_accession_number_index").toInt(),
+	    m_ui.books_accession_number->count() - 1));
   m_ui.publication_date->setRowCount(list1.size());
 
   for(int i = 0; i < list1.size(); i++)
@@ -276,6 +289,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("mainwindow_canvas_background_color",
      m_ui.main_window_canvas_background_color->text().toLatin1());
+  settings.setValue
+    ("otheroptions/books_accession_number_index",
+     m_ui.books_accession_number->currentIndex());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue

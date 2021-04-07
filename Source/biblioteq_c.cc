@@ -638,18 +638,31 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    str = m_searchQuery.value(j).toString().trimmed();
 		}
 
-	      if(record.fieldName(j).endsWith("availability") ||
-		 record.fieldName(j).endsWith("cddiskcount") ||
-		 record.fieldName(j).endsWith("dvddiskcount") ||
-		 record.fieldName(j).endsWith("file_count") ||
-		 record.fieldName(j).endsWith("issue") ||
-		 record.fieldName(j).endsWith("issueno") ||
-		 record.fieldName(j).endsWith("issuevolume") ||
-		 record.fieldName(j).endsWith("photograph_count") ||
-		 record.fieldName(j).endsWith("price") ||
-		 record.fieldName(j).endsWith("quantity") ||
-		 record.fieldName(j).endsWith("total_reserved") ||
-		 record.fieldName(j).endsWith("volume"))
+	      if(record.fieldName(j).endsWith("accession_number"))
+		{
+		  if(typefilter == "Books")
+		    {
+		      if(m_otheroptions->booksAccessionNumberIndex() == 0)
+			item = new biblioteq_numeric_table_item
+			  (query.value(j).toInt());
+		      else
+			item = new QTableWidgetItem();
+		    }
+		  else
+		    item = new QTableWidgetItem();
+		}
+	      else if(record.fieldName(j).endsWith("availability") ||
+		      record.fieldName(j).endsWith("cddiskcount") ||
+		      record.fieldName(j).endsWith("dvddiskcount") ||
+		      record.fieldName(j).endsWith("file_count") ||
+		      record.fieldName(j).endsWith("issue") ||
+		      record.fieldName(j).endsWith("issueno") ||
+		      record.fieldName(j).endsWith("issuevolume") ||
+		      record.fieldName(j).endsWith("photograph_count") ||
+		      record.fieldName(j).endsWith("price") ||
+		      record.fieldName(j).endsWith("quantity") ||
+		      record.fieldName(j).endsWith("total_reserved") ||
+		      record.fieldName(j).endsWith("volume"))
 		{
 		  if(record.fieldName(j).endsWith("price"))
 		    {
@@ -2545,8 +2558,8 @@ void biblioteq::slotConnectDB(void)
     m_branch_diag->close();
 
   /*
-  ** We've connected successfully. Let's initialize
-  ** other containers and widgets.
+  ** We've connected successfully. Let's initialize other containers and
+  ** widgets.
   */
 
   QSettings settings;

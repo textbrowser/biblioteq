@@ -3288,18 +3288,31 @@ int biblioteq::populateTable(const int search_type_arg,
 		    ui.table->setColumnCount(tmplist.size());
 		  }
 
-	      if(record.fieldName(j).endsWith("availability") ||
-		 record.fieldName(j).endsWith("cddiskcount") ||
-		 record.fieldName(j).endsWith("dvddiskcount") ||
-		 record.fieldName(j).endsWith("file_count") ||
-		 record.fieldName(j).endsWith("issue") ||
-		 record.fieldName(j).endsWith("issueno") ||
-		 record.fieldName(j).endsWith("issuevolume") ||
-		 record.fieldName(j).endsWith("photograph_count") ||
-		 record.fieldName(j).endsWith("price") ||
-		 record.fieldName(j).endsWith("quantity") ||
-		 record.fieldName(j).endsWith("total_reserved") ||
-		 record.fieldName(j).endsWith("volume"))
+	      if(record.fieldName(j).endsWith("accession_number"))
+		{
+		  if(typefilter == "Books")
+		    {
+		      if(m_otheroptions->booksAccessionNumberIndex() == 0)
+			item = new biblioteq_numeric_table_item
+			  (query.value(j).toInt());
+		      else
+			item = new QTableWidgetItem();
+		    }
+		  else
+		    item = new QTableWidgetItem();
+		}
+	      else if(record.fieldName(j).endsWith("availability") ||
+		      record.fieldName(j).endsWith("cddiskcount") ||
+		      record.fieldName(j).endsWith("dvddiskcount") ||
+		      record.fieldName(j).endsWith("file_count") ||
+		      record.fieldName(j).endsWith("issue") ||
+		      record.fieldName(j).endsWith("issueno") ||
+		      record.fieldName(j).endsWith("issuevolume") ||
+		      record.fieldName(j).endsWith("photograph_count") ||
+		      record.fieldName(j).endsWith("price") ||
+		      record.fieldName(j).endsWith("quantity") ||
+		      record.fieldName(j).endsWith("total_reserved") ||
+		      record.fieldName(j).endsWith("volume"))
 		{
 		  if(record.fieldName(j).endsWith("price"))
 		    {
