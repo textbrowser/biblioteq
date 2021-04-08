@@ -48,7 +48,7 @@
         </widget>
         <widget class="QGroupBox" name="recCont">
          <property name="title">
-          <string>Record &amp;Contents</string>
+          <string>Record Contents</string>
          </property>
          <layout class="QVBoxLayout">
           <item>

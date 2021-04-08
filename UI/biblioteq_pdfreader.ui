@@ -103,7 +103,10 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Search</string>
+         <string>&amp;Search</string>
+        </property>
+        <property name="buddy">
+         <cstring>find</cstring>
         </property>
        </widget>
       </item>
@@ -168,8 +171,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>83</width>
-          <height>188</height>
+          <width>68</width>
+          <height>190</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -221,7 +224,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">

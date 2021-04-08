@@ -27,7 +27,10 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Filter</string>
+            <string>&amp;Filter</string>
+           </property>
+           <property name="buddy">
+            <cstring>filtertype</cstring>
            </property>
           </widget>
          </item>
@@ -460,7 +463,7 @@
      <x>0</x>
      <y>0</y>
      <width>550</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">

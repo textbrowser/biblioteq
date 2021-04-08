@@ -24,7 +24,10 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Search</string>
+         <string>&amp;Search</string>
+        </property>
+        <property name="buddy">
+         <cstring>searchType</cstring>
         </property>
        </widget>
       </item>
@@ -87,7 +90,7 @@
          <string>Reset the nearby search widgets.</string>
         </property>
         <property name="text">
-         <string>Reset</string>
+         <string>&amp;Reset</string>
         </property>
        </widget>
       </item>
@@ -117,7 +120,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>340</height>
+          <height>341</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -387,7 +390,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

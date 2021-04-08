@@ -120,7 +120,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>620</width>
+            <width>614</width>
             <height>340</height>
            </rect>
           </property>
@@ -237,7 +237,10 @@
              <item>
               <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>Ignored CSV Row(s)</string>
+                <string>&amp;Ignored CSV Row(s)</string>
+               </property>
+               <property name="buddy">
+                <cstring>books_ignored_rows</cstring>
                </property>
               </widget>
              </item>
