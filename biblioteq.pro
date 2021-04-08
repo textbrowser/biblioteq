@@ -28,7 +28,9 @@ LIBS            += -lpoppler-qt5
 }
 
 openbsd-* {
-QMAKE_CXXFLAGS_RELEASE += -Wall \
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE += -O3 \
+                          -Wall \
                           -Wcast-align \
                           -Wcast-qual \
                           -Wextra \
@@ -43,7 +45,9 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -std=c++11
 } else {
-QMAKE_CXXFLAGS_RELEASE += -Wall \
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE += -O3 \
+                          -Wall \
                           -Wcast-align \
                           -Wcast-qual \
                           -Wdouble-promotion \

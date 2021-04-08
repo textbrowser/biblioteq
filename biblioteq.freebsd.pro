@@ -45,7 +45,9 @@ QT              += printsupport widgets
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXXFLAGS_RELEASE += -Wall \
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE += -O3 \
+                          -Wall \
                           -Wcast-align \
                           -Wcast-qual \
                           -Wdouble-promotion \
