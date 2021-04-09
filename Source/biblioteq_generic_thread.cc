@@ -5,11 +5,7 @@
 
 extern "C"
 {
-#ifdef Q_OS_MAC
-#include <yaz-version.h>
-#else
 #include <yaz/zoom.h>
-#endif
 }
 
 biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent,

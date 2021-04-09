@@ -52,11 +52,7 @@ extern "C"
 #else
 #include <sqlite3.h>
 #endif
-#ifdef Q_OS_MAC
-#include <yaz-version.h>
-#else
 #include <yaz/yaz-version.h>
-#endif
 }
 
 #include "biblioteq.h"
