@@ -72,7 +72,7 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 }
 
 ICON		= Icons/book.icns
-INCLUDEPATH	+= /usr/local/include \
+INCLUDEPATH	+= /usr/local/include/yaz \
                    Source \
                    temp
 
