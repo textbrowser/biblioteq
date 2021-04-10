@@ -2223,6 +2223,7 @@ void biblioteq::slotCloseMembersBrowser(void)
 void biblioteq::slotClosePasswordDialog(void)
 {
   m_pass_diag->setVisible(false);
+  pass.password->setText(QString(1024, '0'));
   pass.password->clear();
   pass.userid->clear();
 }
@@ -4019,7 +4020,9 @@ void biblioteq::slotSavePassword(void)
     biblioteq_misc_functions::setRole(m_db, errorstr, m_roles);
 
   QApplication::restoreOverrideCursor();
+  pass.password->setText(QString(1024, '0'));
   pass.password->clear();
+  pass.passwordAgain->setText(QString(1024, '0'));
   pass.passwordAgain->clear();
 
   if(!errorstr.isEmpty())
@@ -4236,7 +4239,9 @@ void biblioteq::slotShowAdminDialog(void)
 void biblioteq::slotShowChangePassword(void)
 {
   pass.userid->setText(dbUserName());
+  pass.password->setText(QString(1024, '0'));
   pass.password->clear();
+  pass.passwordAgain->setText(QString(1024, '0'));
   pass.passwordAgain->clear();
   pass.password->setFocus();
   m_pass_diag->show();

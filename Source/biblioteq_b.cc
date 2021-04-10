@@ -3924,6 +3924,7 @@ void biblioteq::slotRoleChanged(int index)
     }
   else
     {
+      br.password->setText(QString(1024, '0'));
       br.password->clear();
       br.password->setEnabled(true);
       br.userid->clear();

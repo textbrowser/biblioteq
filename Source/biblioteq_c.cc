@@ -2378,7 +2378,10 @@ void biblioteq::slotConnectDB(void)
       (void) m_db.open(br.userid->text().trimmed(), br.password->text());
 
       if(br.role->currentIndex() != 1)
-	br.password->clear();
+	{
+	  br.password->setText(QString(1024, '0'));
+	  br.password->clear();
+	}
     }
 
   QApplication::restoreOverrideCursor();
