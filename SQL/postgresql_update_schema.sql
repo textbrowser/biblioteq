@@ -1374,7 +1374,7 @@ CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator
 CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);
 
-/* Release 2021.01.01 */
+/* Release 2021.02.02 */
 
 ALTER TABLE book_copy_info ADD status TEXT;
 ALTER TABLE cd_copy_info ADD status TEXT;
@@ -1383,6 +1383,6 @@ ALTER TABLE journal_copy_info ADD status TEXT;
 ALTER TABLE magazine_copy_info ADD status TEXT;
 ALTER TABLE videogame_copy_info ADD status TEXT;
 
-/* Release 2021.03.03 */
+/* Release 2021.04.10 */
 
 ALTER TABLE book ADD url TEXT;
