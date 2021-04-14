@@ -2811,7 +2811,6 @@ void biblioteq::slotDisconnect(void)
   db_enumerations->clear();
   resetAdminBrowser();
   resetMembersBrowser();
-  ui.action_VacuumDatabase->setEnabled(false);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.actionConnect->setEnabled(true);
@@ -2826,6 +2825,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionReservationHistory->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Upgrade_SQLite_Schema->setEnabled(false);
+  ui.action_VacuumDatabase->setEnabled(false);
   ui.configTool->setEnabled(false);
   ui.connectTool->setEnabled(true);
   ui.createTool->setEnabled(false);
@@ -2835,7 +2835,7 @@ void biblioteq::slotDisconnect(void)
   ui.disconnectTool->setEnabled(false);
   ui.duplicateTool->setEnabled(false);
   ui.filesTool->setEnabled(false);
-  ui.menuEntriesPerPage->setEnabled(true);
+  ui.menuEntriesPerPage->setEnabled(false);
   ui.menu_Add_Item->setEnabled(false);
   ui.modifyTool->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
@@ -2851,10 +2851,8 @@ void biblioteq::slotDisconnect(void)
     ui.menuEntriesPerPage->actions().at
       (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 
-  ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
-    (false);
-  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
-    (false);
+  ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
+  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
