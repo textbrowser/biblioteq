@@ -179,7 +179,10 @@
             <item>
              <widget class="QLabel" name="label_4">
               <property name="text">
-               <string>Please refresh the main table if sort settings are modified.</string>
+               <string>Please refresh the main table if sort settings are modified. Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>

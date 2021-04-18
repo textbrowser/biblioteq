@@ -2586,6 +2586,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
   dialog.exec();
+  dialog.close();
   QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
