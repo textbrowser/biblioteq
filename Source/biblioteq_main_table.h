@@ -24,6 +24,7 @@ class biblioteq_main_table: public QTableWidget
 		  const QString &roles);
   void setColumnNames(const QStringList &list);
   void setQMain(biblioteq *biblioteq);
+  void updateToolTips(const int row);
 
  private:
   QHash<QString, QList<int> > m_hiddenColumns;

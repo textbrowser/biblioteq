@@ -786,6 +786,7 @@ void biblioteq_grey_literature::populateFiles(void)
 	  }
 
       qmain->getUI().table->setSortingEnabled(true);
+      qmain->getUI().table->updateToolTips(m_row);
     }
 
   QApplication::restoreOverrideCursor();
@@ -1679,6 +1680,7 @@ void biblioteq_grey_literature::updateDatabase(void)
 	}
 
       qmain->getUI().table->setSortingEnabled(true);
+      qmain->getUI().table->updateToolTips(m_row);
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);

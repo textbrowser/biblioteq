@@ -1405,6 +1405,7 @@ void biblioteq_photographcollection::slotGo(void)
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
+		  qmain->getUI().table->updateToolTips(m_row);
 
 		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
@@ -2896,6 +2897,7 @@ void biblioteq_photographcollection::updateTablePhotographCount
 	  }
 
       qmain->getUI().table->setSortingEnabled(true);
+      qmain->getUI().table->updateToolTips(m_row);
     }
 }
 

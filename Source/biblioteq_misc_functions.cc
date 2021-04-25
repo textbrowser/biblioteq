@@ -2110,6 +2110,9 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 
   if(sortingEnabled)
     table->setSortingEnabled(true);
+
+  if(qobject_cast<biblioteq_main_table *> (table))
+    qobject_cast<biblioteq_main_table *> (table)->updateToolTips(row);
 }
 
 void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)

@@ -3110,8 +3110,7 @@ void biblioteq_book::slotGo(void)
 			{
 			  qmain->getUI().table->item(m_row, i)->setText
 			    (biblioteq_misc_functions::getAvailability
-			     (m_oid, qmain->getDB(), "Book",
-			      errorstr));
+			     (m_oid, qmain->getDB(), "Book", errorstr));
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
@@ -3122,6 +3121,7 @@ void biblioteq_book::slotGo(void)
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
+		  qmain->getUI().table->updateToolTips(m_row);
 
 		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);

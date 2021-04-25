@@ -1289,6 +1289,7 @@ void biblioteq_dvd::slotGo(void)
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
+		  qmain->getUI().table->updateToolTips(m_row);
 
 		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);

@@ -2,6 +2,7 @@
 #include "biblioteq_main_table.h"
 
 #include <QScrollBar>
+#include <QSettings>
 
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
@@ -591,4 +592,51 @@ void biblioteq_main_table::setColumns(const QString &username,
 void biblioteq_main_table::setQMain(biblioteq *biblioteq)
 {
   qmain = biblioteq;
+}
+
+void biblioteq_main_table::updateToolTips(const int row)
+{
+  if(row < 0)
+    return;
+
+  QSettings settings;
+  bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+
+  if(!showToolTips)
+    return;
+
+  QString tooltip("<html>");
+
+  for(int i = 0; i < columnCount(); i++)
+    {
+      QString columnName(columnNames().value(i));
+      QTableWidgetItem *item = this->item(row, i);
+
+      if(columnName.isEmpty())
+	columnName = "N/A";
+
+      tooltip.append("<b>");
+      tooltip.append(columnName);
+      tooltip.append(":</b> ");
+
+      if(item)
+	tooltip.append(item->text().trimmed());
+      else
+	tooltip.append("");
+
+      tooltip.append("<br>");
+    }
+
+  if(tooltip.endsWith("<br>"))
+    tooltip = tooltip.mid(0, tooltip.length() - 4);
+
+  tooltip.append("</html>");
+
+  for(int i = 0; i < columnCount(); i++)
+    {
+      QTableWidgetItem *item = this->item(row, i);
+
+      if(item)
+	item->setToolTip(tooltip);
+    }
 }
