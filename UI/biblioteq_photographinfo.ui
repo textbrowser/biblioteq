@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1097</width>
-         <height>1110</height>
+         <width>1098</width>
+         <height>965</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -74,7 +74,7 @@
                <string>Thumbnail</string>
               </property>
               <property name="renderHints">
-               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+               <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
              </widget>
             </item>
@@ -302,7 +302,7 @@
             <item>
              <widget class="QGraphicsView" name="graphicsView">
               <property name="renderHints">
-               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+               <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
               <property name="viewportUpdateMode">
                <enum>QGraphicsView::FullViewportUpdate</enum>
@@ -328,7 +328,7 @@
                <string>Thumbnail</string>
               </property>
               <property name="renderHints">
-               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+               <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
              </widget>
             </item>

@@ -218,7 +218,7 @@
             <item>
              <widget class="QGraphicsView" name="graphicsView">
               <property name="renderHints">
-               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+               <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
               </property>
               <property name="viewportUpdateMode">
                <enum>QGraphicsView::FullViewportUpdate</enum>
