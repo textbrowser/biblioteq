@@ -89,15 +89,14 @@ QList<int> biblioteq_misc_functions::selectedRows(QTableWidget *table)
   return rows;
 }
 
-QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
+QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
 (const QSqlDatabase &db,
  const QString &memberid,
  QString &errorstr)
 {
-  QMap<QString, QString> counts;
+  QMap<QString, qint64> counts;
   QSqlQuery query(db);
   QString querystr = "";
-  QString str = "";
 
   errorstr = "";
   querystr =
@@ -110,6 +109,9 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
     "SELECT COUNT(myoid) AS numdvds FROM item_borrower WHERE memberid = ? "
     "AND type = 'DVD' "
     "UNION ALL "
+    "SELECT COUNT(myoid) AS numgreyliteratures FROM item_borrower "
+    "WHERE memberid = ? AND type = 'Grey Literature' "
+    "UNION ALL "
     "SELECT COUNT(myoid) AS numjournals FROM item_borrower WHERE "
     "memberid = ? AND type = 'Journal' "
     "UNION ALL "
@@ -119,45 +121,46 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
     "SELECT COUNT(myoid) AS numvideogames FROM item_borrower WHERE "
     "memberid = ? AND type = 'Video Game'";
   query.prepare(querystr);
-  query.bindValue(0, memberid);
-  query.bindValue(1, memberid);
-  query.bindValue(2, memberid);
-  query.bindValue(3, memberid);
-  query.bindValue(4, memberid);
-  query.bindValue(5, memberid);
+  query.addBindValue(memberid);
+  query.addBindValue(memberid);
+  query.addBindValue(memberid);
+  query.addBindValue(memberid);
+  query.addBindValue(memberid);
+  query.addBindValue(memberid);
+  query.addBindValue(memberid);
 
   if(query.exec())
     while(query.next())
       {
-	str = query.value(0).toString().trimmed();
-
-	if(str == "0")
-	  str = "";
+	auto count = query.value(0).toLongLong();
 
 	if(counts.isEmpty())
-	  counts["numbooks"] = str;
+	  counts["numbooks"] = count;
 	else if(counts.size() == 1)
-	  counts["numcds"] = str;
+	  counts["numcds"] = count;
 	else if(counts.size() == 2)
-	  counts["numdvds"] = str;
+	  counts["numdvds"] = count;
 	else if(counts.size() == 3)
-	  counts["numjournals"] = str;
+	  counts["numgreyliteratures"] = count;
 	else if(counts.size() == 4)
-	  counts["nummagazines"] = str;
+	  counts["numjournals"] = count;
+	else if(counts.size() == 5)
+	  counts["nummagazines"] = count;
 	else
-	  counts["numvideogames"] = str;
+	  counts["numvideogames"] = count;
       }
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
   else if(counts.isEmpty())
     {
-      counts["numbooks"] = "";
-      counts["numcds"] = "";
-      counts["numdvds"] = "";
-      counts["numjournals"] = "";
-      counts["nummagazines"] = "";
-      counts["numvideogames"] = "";
+      counts["numbooks"] = 0;
+      counts["numcds"] = 0;
+      counts["numdvds"] = 0;
+      counts["numgreyliteratures"] = 0;
+      counts["numjournals"] = 0;
+      counts["nummagazines"] = 0;
+      counts["numvideogames"] = 0;
     }
 
   return counts;

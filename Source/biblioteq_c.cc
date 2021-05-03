@@ -3772,9 +3772,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "COUNT(DISTINCT ib1.myoid) AS numbooks, "
     "COUNT(DISTINCT ib2.myoid) AS numcds, "
     "COUNT(DISTINCT ib3.myoid) AS numdvds, "
-    "COUNT(DISTINCT ib4.myoid) AS numjournals, "
-    "COUNT(DISTINCT ib5.myoid) AS nummagazines, "
-    "COUNT(DISTINCT ib6.myoid) AS numvideogames "
+    "COUNT(DISTINCT ib4.myoid) AS numgreyliteratures, "
+    "COUNT(DISTINCT ib5.myoid) AS numjournals, "
+    "COUNT(DISTINCT ib6.myoid) AS nummagazines, "
+    "COUNT(DISTINCT ib7.myoid) AS numvideogames "
     "FROM member member "
     "LEFT JOIN item_borrower ib1 ON "
     "member.memberid = ib1.memberid AND ib1.type = 'Book' "
@@ -3783,11 +3784,13 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "LEFT JOIN item_borrower ib3 ON "
     "member.memberid = ib3.memberid AND ib3.type = 'DVD' "
     "LEFT JOIN item_borrower ib4 ON "
-    "member.memberid = ib4.memberid AND ib4.type = 'Journal' "
+    "member.memberid = ib4.memberid AND ib4.type = 'Grey Literature' "
     "LEFT JOIN item_borrower ib5 ON "
-    "member.memberid = ib5.memberid AND ib5.type = 'Magazine' "
+    "member.memberid = ib5.memberid AND ib5.type = 'Journal' "
     "LEFT JOIN item_borrower ib6 ON "
-    "member.memberid = ib6.memberid AND ib6.type = 'Video Game' ";
+    "member.memberid = ib6.memberid AND ib6.type = 'Magazine' "
+    "LEFT JOIN item_borrower ib7 ON "
+    "member.memberid = ib7.memberid AND ib7.type = 'Video Game' ";
 
   if(bb.filterBox->isChecked())
     {
@@ -4167,12 +4170,12 @@ void biblioteq::slotRefreshCustomQuery(void)
 
 void biblioteq::slotRemoveMember(void)
 {
-  QMap<QString, QString> counts;
+  QMap<QString, qint64> counts;
   QSqlQuery query(m_db);
   QString errorstr = "";
   QString memberid = "";
   int row = bb.table->currentRow();
-  int totalReserved;
+  qint64 totalReserved = 0;
 
   if(row < 0)
     {
@@ -4203,12 +4206,13 @@ void biblioteq::slotRemoveMember(void)
       return;
     }
 
-  totalReserved = counts.value("numbooks").toInt() +
-    counts.value("numcds").toInt() +
-    counts.value("numdvds").toInt() +
-    counts.value("numjournals").toInt() +
-    counts.value("nummagazines").toInt() +
-    counts.value("numvideogames").toInt();
+  totalReserved = counts.value("numbooks") +
+    counts.value("numcds") +
+    counts.value("numdvds") +
+    counts.value("numgreyliteratures") +
+    counts.value("numjournals") +
+    counts.value("nummagazines") +
+    counts.value("numvideogames");
   counts.clear();
 
   if(totalReserved != 0)
@@ -5523,7 +5527,13 @@ void biblioteq::slotShowHistory(void)
 	return;
       }
 
-  list << "cd" << "dvd" << "book" << "journal" << "magazine" << "videogame";
+  list << "book"
+       << "cd"
+       << "dvd"
+       << "grey_literature"
+       << "journal"
+       << "magazine"
+       << "videogame";
 
   if(!m_roles.isEmpty())
     memberid = biblioteq_misc_functions::getColumnString

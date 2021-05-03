@@ -1697,6 +1697,7 @@ void biblioteq::resetMembersBrowser(void)
   list.append(tr("Books Reserved"));
   list.append(tr("CDs Reserved"));
   list.append(tr("DVDs Reserved"));
+  list.append(tr("Grey Literatures Reserved"));
   list.append(tr("Journals Reserved"));
   list.append(tr("Magazines Reserved"));
   list.append(tr("Video Games Reserved"));
@@ -1711,6 +1712,7 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Books Reserved");
   m_bbColumnHeaderIndexes.append("CDs Reserved");
   m_bbColumnHeaderIndexes.append("DVDs Reserved");
+  m_bbColumnHeaderIndexes.append("Grey Literatures Reserved");
   m_bbColumnHeaderIndexes.append("Journals Reserved");
   m_bbColumnHeaderIndexes.append("Magazines Reserved");
   m_bbColumnHeaderIndexes.append("Video Games Reserved");
@@ -3507,6 +3509,9 @@ void biblioteq::slotPrintReserved(void)
     biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.
+     indexOf("Grey Literatures Reserved")).toInt() +
+    biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved")).
     toInt() +
     biblioteq_misc_functions::getColumnString
@@ -4961,7 +4966,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 void biblioteq::updateMembersBrowser(const QString &memberid)
 {
-  QMap<QString, QString> counts;
+  QMap<QString, qint64> counts;
   QString errorstr = "";
   QString str = "";
   int i = 0;
@@ -4994,25 +4999,29 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
-		 counts.value("numbooks"));
+		 QString::number(counts.value("numbooks")));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
-		 counts.value("numcds"));
+		 QString::number(counts.value("numcds")));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
-		 counts.value("numdvds"));
+		 QString::number(counts.value("numdvds")));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Grey Literatures Reserved"),
+		 QString::number(counts.value("numgreyliteratures")));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
-		 counts.value("numjournals"));
+		 QString::number(counts.value("numjournals")));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
-		 counts.value("nummagazines"));
+		 QString::number(counts.value("nummagazines")));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
-		 counts.value("numvideogames"));
+		 QString::number(counts.value("numvideogames")));
 	      break;
 	    }
 	}
@@ -5024,7 +5033,7 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 
 void biblioteq::updateMembersBrowser(void)
 {
-  QMap<QString, QString> counts;
+  QMap<QString, qint64> counts;
   QString errorstr = "";
   QString memberid = "";
   int row = 0;
@@ -5052,23 +5061,27 @@ void biblioteq::updateMembersBrowser(void)
     {
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
-	 counts.value("numbooks"));
+	 QString::number(counts.value("numbooks")));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
-	 counts.value("numcds"));
+	 QString::number(counts.value("numcds")));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
-	 counts.value("numdvds"));
+	 QString::number(counts.value("numdvds")));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row,
+	 m_bbColumnHeaderIndexes.indexOf("Grey Literatures Reserved"),
+	 QString::number(counts.value("numgreyliteratures")));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
-	 counts.value("numjournals"));
+	 QString::number(counts.value("numjournals")));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
-	 counts.value("nummagazines"));
+	 QString::number(counts.value("nummagazines")));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row,
 	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
-	 counts.value("numvideogames"));
+	 QString::number(counts.value("numvideogames")));
       counts.clear();
 
       if(m_history_diag->isVisible())
