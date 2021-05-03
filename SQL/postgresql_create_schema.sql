@@ -470,6 +470,17 @@ END;
 CREATE TRIGGER dvd_trigger AFTER DELETE ON dvd
 FOR EACH row EXECUTE PROCEDURE delete_dvd();
 
+CREATE OR REPLACE FUNCTION delete_grey_literature() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''Grey Literature'';
+	RETURN NULL;
+END;
+' LANGUAGE plpgsql;
+CREATE TRIGGER grey_literature_trigger AFTER DELETE ON grey_literature
+FOR EACH row EXECUTE PROCEDURE delete_grey_literature();
+
 CREATE OR REPLACE FUNCTION delete_journal() RETURNS trigger AS '
 BEGIN
 	DELETE FROM item_borrower WHERE item_oid = old.myoid;

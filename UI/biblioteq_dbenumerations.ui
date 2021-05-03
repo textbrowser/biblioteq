@@ -881,6 +881,11 @@
                 <string>6</string>
                </property>
               </row>
+              <row>
+               <property name="text">
+                <string>7</string>
+               </property>
+              </row>
               <column>
                <property name="text">
                 <string>Type</string>
@@ -925,23 +930,17 @@
               </item>
               <item row="2" column="0">
                <property name="text">
-                <string>Journals</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+                <string>Grey Literature</string>
                </property>
               </item>
               <item row="2" column="1">
                <property name="text">
-                <string>21</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                <string>14</string>
                </property>
               </item>
               <item row="3" column="0">
                <property name="text">
-                <string>Magazines</string>
+                <string>Journals</string>
                </property>
                <property name="flags">
                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
@@ -957,7 +956,7 @@
               </item>
               <item row="4" column="0">
                <property name="text">
-                <string>Music CDs</string>
+                <string>Magazines</string>
                </property>
                <property name="flags">
                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
@@ -965,7 +964,7 @@
               </item>
               <item row="4" column="1">
                <property name="text">
-                <string>14</string>
+                <string>21</string>
                </property>
                <property name="flags">
                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -973,13 +972,29 @@
               </item>
               <item row="5" column="0">
                <property name="text">
-                <string>Video Games</string>
+                <string>Music CDs</string>
                </property>
                <property name="flags">
                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
                </property>
               </item>
               <item row="5" column="1">
+               <property name="text">
+                <string>14</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="6" column="0">
+               <property name="text">
+                <string>Video Games</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="6" column="1">
                <property name="text">
                 <string>14</string>
                </property>

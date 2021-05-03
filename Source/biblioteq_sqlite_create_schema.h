@@ -400,6 +400,15 @@ BEGIN									\
 	        type = old.type;					\
 END;									\
 									\
+CREATE TRIGGER grey_literature_purge_trigger AFTER DELETE ON		\
+    grey_literature							\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM item_borrower WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
+END;									\
+									\
 CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
 FOR EACH row								\
 BEGIN									\

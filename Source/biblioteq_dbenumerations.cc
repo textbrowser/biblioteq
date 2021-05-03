@@ -873,7 +873,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
-				  "(?, 'Journal')");
+				  "(?, 'Grey Literature')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());
 		  }
@@ -881,7 +881,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
-				  "(?, 'Magazine')");
+				  "(?, 'Journal')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());
 		  }
@@ -889,11 +889,19 @@ void biblioteq_dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
-				  "(?, 'CD')");
+				  "(?, 'Magazine')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());
 		  }
 		else if(j == 5)
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'CD')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
+		else if(j == 6)
 		  {
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
