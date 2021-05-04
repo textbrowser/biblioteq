@@ -1386,3 +1386,16 @@ ALTER TABLE videogame_copy_info ADD status TEXT;
 /* Release 2021.04.10 */
 
 ALTER TABLE book ADD url TEXT;
+
+/* Release 2021.05.10 */
+
+CREATE OR REPLACE FUNCTION delete_grey_literature() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_borrower WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+	type = ''Grey Literature'';
+	RETURN NULL;
+END;
+' LANGUAGE plpgsql;
+CREATE TRIGGER grey_literature_trigger AFTER DELETE ON grey_literature
+FOR EACH row EXECUTE PROCEDURE delete_grey_literature();

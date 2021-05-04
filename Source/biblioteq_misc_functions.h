@@ -23,9 +23,9 @@ class biblioteq_misc_functions
   static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
 						      QString &);
   static QList<int> selectedRows(QTableWidget *);
-  static QMap<QString, QString> getItemsReservedCounts(const QSqlDatabase &,
-						       const QString &,
-						       QString &);
+  static QMap<QString, qint64> getItemsReservedCounts(const QSqlDatabase &,
+						      const QString &,
+						      QString &);
   static QString getAbstractInfo(const QString &,
 				 const QString &,
 				 const QSqlDatabase &);
