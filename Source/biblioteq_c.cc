@@ -2110,14 +2110,7 @@ void biblioteq::slotCheckout(void)
   type = biblioteq_misc_functions::getColumnString
     (ui.table, row2, ui.table->columnNumber("Type"));
 
-  if(type == "Grey Literature")
-    {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("Grey literature may not be reserved."));
-      QApplication::processEvents();
-      return;
-    }
-  else if(type == "Photograph Collection")
+  if(type == "Photograph Collection")
     {
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Photographs may not be reserved."));
@@ -3272,7 +3265,7 @@ void biblioteq::slotDisplaySummary(void)
       summary += biblioteq_misc_functions::getAbstractInfo(oid, type, m_db);
       summary += "<br>";
 
-      if(type != "Grey Literature" && type != "Photograph Collection")
+      if(type != "Photograph Collection")
 	{
 	  tmpstr = biblioteq_misc_functions::getColumnString
 	    (ui.table, i, ui.table->columnNumber("Availability"));

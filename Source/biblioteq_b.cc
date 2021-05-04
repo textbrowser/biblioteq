@@ -2540,6 +2540,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "grey_literature.type, "
 	      "grey_literature.myoid, "
 	      "grey_literature.front_cover "
+	      "FROM "
 	      "grey_literature LEFT JOIN item_borrower ON "
 	      "grey_literature.myoid = item_borrower.item_oid "
 	      "AND item_borrower.type = 'Grey Literature' "
