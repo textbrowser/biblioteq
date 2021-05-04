@@ -1527,13 +1527,17 @@ void biblioteq::slotAllGo(void)
 	  "0.00, '', "
 	  "1, "
 	  "grey_literature.location, "
-	  "0 AS availability, "
-	  "0 AS total_reserved, "
+	  "1 - COUNT(item_borrower.item_oid) AS availability, "
+	  "COUNT(item_borrower.item_oid) AS total_reserved, "
 	  "grey_literature.job_number, "
 	  "grey_literature.type, "
 	  "grey_literature.myoid, "
 	  "grey_literature.front_cover "
-	  "FROM grey_literature "
+	  "FROM "
+	  "grey_literature LEFT JOIN item_borrower ON "
+	  "grey_literature.myoid = "
+	  "item_borrower.item_oid "
+	  "AND item_borrower.type = 'Grey Literature' "
 	  "WHERE ";
       else if(type == "Photograph Collection")
 	str = "SELECT DISTINCT photograph_collection.title, "
@@ -2060,14 +2064,18 @@ void biblioteq::slotAllGo(void)
 	  str = str.replace("category", "genre");
 	}
 
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
+      if(type != "Photograph Collection")
 	{
 	  if(al.available->isChecked())
-	    str.append
-	      (QString("HAVING (%1.quantity - "
-		       "COUNT(item_borrower.item_oid)) > 0 ").
-	       arg(type.toLower().remove(" ")));
+	    {
+	      if(type == "Grey Literature")
+		str.append("HAVING (1 - COUNT(item_borrower.item_oid)) > 0 ");
+	      else
+		str.append
+		  (QString("HAVING (%1.quantity - "
+			   "COUNT(item_borrower.item_oid)) > 0 ").
+		   arg(type.toLower().remove(" ")));
+	    }
 	}
 
       if(type != "Video Game")
