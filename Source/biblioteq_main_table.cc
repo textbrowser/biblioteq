@@ -381,6 +381,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Location"));
       list.append(tr("File Count"));
       list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Authors");
@@ -396,6 +397,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Location");
       m_columnHeaderIndexes.append("File Count");
       m_columnHeaderIndexes.append("Availability");
+      m_columnHeaderIndexes.append("Total Reserved");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }

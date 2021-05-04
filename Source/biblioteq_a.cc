@@ -3697,19 +3697,7 @@ void biblioteq::slotReserveCopy(void)
   type = biblioteq_misc_functions::getColumnString
     (ui.table, row, ui.table->columnNumber("Type"));
 
-  if(type == "Grey Literature")
-    {
-      if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("Grey literature may not be reserved."));
-      else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("Grey literature may not be reserved."));
-
-      QApplication::processEvents();
-      return;
-    }
-  else if(type == "Photograph Collection")
+  if(type == "Photograph Collection")
     {
       if(m_members_diag->isVisible())
 	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
