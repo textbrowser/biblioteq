@@ -4432,8 +4432,7 @@ void biblioteq::slotRequest(void)
       itemType = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("Type"));
 
-      if(itemType != "Grey Literature" &&
-	 itemType != "Photograph Collection")
+      if(itemType != "Photograph Collection")
 	{
 	  if(isRequesting)
 	    {
