@@ -66,6 +66,7 @@ void biblioteq_files::reset(void)
   m_ui.files_table->setRowCount(0);
   m_ui.page->clear();
   m_ui.page->addItem("1");
+  statusBar()->showMessage(tr("0 Total Files"));
 }
 
 void biblioteq_files::slotClose(void)
