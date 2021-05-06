@@ -293,6 +293,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "grey_literature.type, "
 	       "grey_literature.myoid, "
 	       "grey_literature.front_cover "
+	       "HAVING (1 - COUNT(item_borrower.item_oid)) > 0 "
 	       "UNION "
 	       "SELECT DISTINCT journal.title, "
 	       "journal.id, "
