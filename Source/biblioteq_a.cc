@@ -610,7 +610,7 @@ biblioteq::biblioteq(void):QMainWindow()
   al.resetButton->setMenu(menu1);
 
 #ifdef Q_OS_MAC
-  foreach(QToolButton *tool_button, m_all_diag->findChildren<QToolButton *> ())
+  foreach(auto tool_button, m_all_diag->findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
     ("QToolButton {border: none; padding-right: 10px}"
@@ -680,7 +680,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
 
-  bool found = false;
+  auto found = false;
 
   for(int i = 0; i < ui.menu_Category->actions().size(); i++)
     if(m_lastCategory ==
@@ -811,7 +811,7 @@ biblioteq::biblioteq(void):QMainWindow()
   action->setData("ru_RU");
   ui.menu_Language->addAction(action);
 
-  foreach(QAction *action, ui.menu_Language->actions())
+  foreach(auto action, ui.menu_Language->actions())
     {
       if(s_locale == action->data().toString())
 	action->setChecked(true);
@@ -823,7 +823,7 @@ biblioteq::biblioteq(void):QMainWindow()
     }
 
   QRegExp rx1("\\w+");
-  QValidator *validator1 = new QRegExpValidator(rx1, this);
+  auto validator1 = new QRegExpValidator(rx1, this);
 
   userinfo_diag->m_userinfo.memberid->setValidator(validator1);
 
@@ -998,9 +998,9 @@ void biblioteq::addError(const QString &type,
   if(error.trimmed().isEmpty())
     return;
 
-  QDateTime now = QDateTime::currentDateTime();
   QString str = "";
   QTableWidgetItem *item = nullptr;
+  auto now = QDateTime::currentDateTime();
   int i = 0;
 
   if(m_error_bar_label != nullptr)
@@ -1270,8 +1270,8 @@ void biblioteq::closeEvent(QCloseEvent *e)
 void biblioteq::createSqliteMenuActions(void)
 {
   QSettings settings;
-  QStringList allKeys(settings.allKeys());
   QStringList dups;
+  auto allKeys(settings.allKeys());
 
   ui.menu_Recent_SQLite_Files->clear();
 
@@ -1280,7 +1280,7 @@ void biblioteq::createSqliteMenuActions(void)
       if(!allKeys[i].startsWith("sqlite_db_"))
 	continue;
 
-      QString str(settings.value(allKeys[i], "").toString().trimmed());
+      auto str(settings.value(allKeys[i], "").toString().trimmed());
 
       if(str.isEmpty())
 	{
@@ -1309,8 +1309,7 @@ void biblioteq::createSqliteMenuActions(void)
   dups.clear();
   allKeys.clear();
 
-  QAction *action = new QAction
-    (tr("&Clear Menu"), ui.menu_Recent_SQLite_Files);
+  auto action = new QAction(tr("&Clear Menu"), ui.menu_Recent_SQLite_Files);
 
   connect(action, SIGNAL(triggered(bool)), this,
 	  SLOT(slotClearSqliteMenu(bool)));
@@ -1466,7 +1465,7 @@ void biblioteq::prepareFilter(void)
 
   for(int i = 0; i < tmplist1.size(); i++)
     {
-      QAction *action = ui.menu_Category->addAction(tmplist2[i]);
+      auto action = ui.menu_Category->addAction(tmplist2[i]);
 
       if(action)
 	{
@@ -1730,20 +1729,20 @@ void biblioteq::setGlobalFonts(const QFont &font)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   QApplication::setFont(font);
 
-  foreach(QWidget *widget, QApplication::allWidgets())
+  foreach(auto widget, QApplication::allWidgets())
     {
       widget->setFont(font);
       widget->update();
     }
 
-  QMenuBar *mb = menuBar();
+  auto mb = menuBar();
 
   if(mb)
     {
       mb->setFont(font);
 
-      foreach(QMenu *menu, mb->findChildren<QMenu *> ())
-	foreach(QAction *action, menu->actions())
+      foreach(auto menu, mb->findChildren<QMenu *> ())
+	foreach(auto action, menu->actions())
 	  action->setFont(font);
 
       mb->update();
@@ -1806,12 +1805,12 @@ void biblioteq::showMain(void)
   ** Perform additional user interface duties.
   */
 
-  QStringList list(m_sruMaps.keys());
   auto group1 = new QActionGroup(this);
+  auto list(m_sruMaps.keys());
 
   for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = group1->addAction(list.at(i));
+      auto action = group1->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -1836,7 +1835,7 @@ void biblioteq::showMain(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = group2->addAction(list.at(i));
+      auto action = group2->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -1914,7 +1913,7 @@ void biblioteq::slotAbout(void)
 {
   QMessageBox mb(this);
   QString qversion("");
-  const char *tmp = qVersion();
+  const auto tmp = qVersion();
 
   if(tmp)
     qversion = tmp;
@@ -1996,8 +1995,8 @@ void biblioteq::slotAddAdmin(void)
 
 void biblioteq::slotAddBorrower(void)
 {
-  QDate now = QDate::currentDate();
-  QDateTime nowTime = QDateTime::currentDateTime();
+  auto now = QDate::currentDate();
+  auto nowTime = QDateTime::currentDateTime();
 
   biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.memberid,
 					    QColor(255, 248, 220));
@@ -2193,7 +2192,7 @@ void biblioteq::slotClearSqliteMenu(bool state)
   ui.menu_Recent_SQLite_Files->clear();
 
   QSettings settings;
-  QStringList allKeys(settings.allKeys());
+  auto allKeys(settings.allKeys());
 
   for(int i = 0; i < allKeys.size(); i++)
     if(allKeys[i].startsWith("sqlite_db_"))
@@ -2235,8 +2234,8 @@ void biblioteq::slotCopyError(void)
   int i = 0;
   int j = 0;
   QString text = "";
-  QClipboard *clipboard = QApplication::clipboard();
-  QModelIndexList list = er.table->selectionModel()->selectedRows();
+  auto clipboard = QApplication::clipboard();
+  auto list(er.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
     {
@@ -2251,7 +2250,7 @@ void biblioteq::slotCopyError(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(const QModelIndex &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
 
@@ -2279,15 +2278,15 @@ void biblioteq::slotDelete(void)
   if(!m_db.isOpen())
     return;
 
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QSqlQuery query(m_db);
   QString errorstr = "";
   QString itemType = "";
   QString oid = "";
   QString str = "";
-  bool error = false;
-  bool isCheckedOut = false;
-  bool isRequested = false;
+  auto error = false;
+  auto isCheckedOut = false;
+  auto isRequested = false;
+  auto list(ui.table->selectionModel()->selectedRows());
   int col = -1;
   int i = 0;
   int numdeleted = 0;
@@ -2302,7 +2301,7 @@ void biblioteq::slotDelete(void)
 
   col = ui.table->columnNumber("MYOID");
 
-  foreach(const QModelIndex &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
 
@@ -2415,7 +2414,7 @@ void biblioteq::slotDelete(void)
   progress.repaint();
   QApplication::processEvents();
 
-  foreach(const QModelIndex &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
 
@@ -2539,7 +2538,7 @@ void biblioteq::slotDelete(void)
 void biblioteq::slotDeleteAdmin(void)
 {
   QString str = "";
-  int row = ab.table->currentRow();
+  auto row = ab.table->currentRow();
 
   if(row < 0)
     {
@@ -2578,7 +2577,7 @@ void biblioteq::slotDeleteAdmin(void)
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
   QFileDialog dialog(this);
-  bool error = true;
+  auto error = true;
 
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
@@ -2644,7 +2643,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	      ** Attempt to locate an SQLite branch.
 	      */
 
-	      bool found = false;
+	      auto found = false;
 
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
@@ -2685,7 +2684,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	      ** Attempt to locate an SQLite branch.
 	      */
 
-	      bool found = false;
+	      auto found = false;
 
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
@@ -2722,9 +2721,10 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
+  auto error = false;
+  auto list(ui.table->selectionModel()->selectedRows());
   biblioteq_book *book = nullptr;
   biblioteq_cd *cd = nullptr;
   biblioteq_dvd *dvd = nullptr;
@@ -2734,7 +2734,6 @@ void biblioteq::slotDuplicate(void)
   biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *video_game = nullptr;
-  bool error = false;
   int i = 0;
 
   if(list.isEmpty())
@@ -2770,7 +2769,7 @@ void biblioteq::slotDuplicate(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(const QModelIndex &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -2853,7 +2852,7 @@ void biblioteq::slotExecuteCustomQuery(void)
       return;
     }
 
-  const QString &q(querystr.toLower());
+  const auto &q(querystr.toLower());
 
   if(q.contains("alter ") ||
      q.contains("cluster ") ||
@@ -2898,7 +2897,7 @@ void biblioteq::slotGrantPrivileges(void)
   QProgressDialog progress(m_members_diag);
   QString errorstr("");
   QTableWidgetItem *item = nullptr;
-  bool error = false;
+  auto error = false;
 
   progress.setCancelButton(nullptr);
   progress.setModal(true);
@@ -3058,7 +3057,7 @@ void biblioteq::slotLanguageChanged(void)
 void biblioteq::slotListOverdueItems(void)
 {
   QString memberid = "";
-  int row = bb.table->currentRow();
+  auto row = bb.table->currentRow();
 
   if(m_members_diag->isVisible())
     memberid = biblioteq_misc_functions::getColumnString
@@ -3100,9 +3099,10 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
+  auto error = false;
+  auto list(ui.table->selectionModel()->selectedRows());
   biblioteq_book *book = nullptr;
   biblioteq_cd *cd = nullptr;
   biblioteq_dvd *dvd = nullptr;
@@ -3112,7 +3112,6 @@ void biblioteq::slotModify(void)
   biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
-  bool error = false;
   int i = 0;
 
   if(list.isEmpty())
@@ -3145,7 +3144,7 @@ void biblioteq::slotModify(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(const QModelIndex &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -3163,7 +3162,7 @@ void biblioteq::slotModify(void)
 
       if(type.toLower() == "book")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto b = qobject_cast<biblioteq_book *> (w);
 
@@ -3181,7 +3180,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "cd")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto c = qobject_cast<biblioteq_cd *> (w);
 
@@ -3199,7 +3198,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "dvd")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto d = qobject_cast<biblioteq_dvd *> (w);
 
@@ -3217,7 +3216,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "grey literature")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
@@ -3235,7 +3234,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "journal")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto j = qobject_cast<biblioteq_journal *> (w);
 
@@ -3253,7 +3252,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "magazine")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto m = qobject_cast<biblioteq_magazine *> (w);
 
@@ -3276,7 +3275,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "photograph collection")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
@@ -3294,7 +3293,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "video game")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto v = qobject_cast<biblioteq_videogame *> (w);
 
@@ -3477,7 +3476,7 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
 
 void biblioteq::slotPrintReserved(void)
 {
-  int row = bb.table->currentRow();
+  auto row = bb.table->currentRow();
 
   if(row < 0)
     {
@@ -3676,8 +3675,8 @@ void biblioteq::slotReserveCopy(void)
   QString errorstr = "";
   QString oid = "";
   QString type = "";
+  auto row = ui.table->currentRow();
   int availability = 0;
-  int row = ui.table->currentRow();
 
   if(row < 0)
     {
@@ -3781,7 +3780,7 @@ void biblioteq::slotReset(void)
 
       if(action != nullptr)
 	{
-	  QList<QAction *> actions = al.resetButton->menu()->actions();
+	  auto actions(al.resetButton->menu()->actions());
 
 	  if(actions.size() < 14)
 	    {
@@ -4140,7 +4139,7 @@ void biblioteq::slotSearch(void)
   if(!m_all_diag->isVisible())
     m_all_diag->updateGeometry();
 
-  static bool resized = false;
+  static auto resized = false;
 
   if(!resized)
     m_all_diag->resize
@@ -4181,7 +4180,7 @@ void biblioteq::slotSelectDatabaseFile(void)
 
 void biblioteq::slotSetColumns(void)
 {
-  QString typefilter = ui.menu_Category->defaultAction() ?
+  auto typefilter = ui.menu_Category->defaultAction() ?
     ui.menu_Category->defaultAction()->data().toString() : "All";
 
   for(int i = 0; i < m_configToolMenu->actions().size(); i++)
@@ -4214,7 +4213,7 @@ void biblioteq::slotSetFonts(void)
 
 void biblioteq::slotShowAdminDialog(void)
 {
-  static bool resized = false;
+  static auto resized = false;
 
   if(!resized)
     m_admin_diag->resize(qRound(0.85 * size().width()),
@@ -4254,7 +4253,7 @@ void biblioteq::slotShowCustomQuery(void)
   if(cq.tables_t->columnCount() == 0)
     slotRefreshCustomQuery();
 
-  static bool resized = false;
+  static auto resized = false;
 
   if(!resized)
     m_customquery_diag->resize(qRound(0.85 * size().width()),
@@ -4282,7 +4281,7 @@ void biblioteq::slotShowErrorDialog(void)
   for(int i = 0; i < er.table->columnCount() - 1; i++)
     er.table->resizeColumnToContents(i);
 
-  static bool resized = false;
+  static auto resized = false;
 
   if(!resized)
     m_error_diag->resize(qRound(0.85 * size().width()),
@@ -4313,7 +4312,7 @@ void biblioteq::slotShowMembersBrowser(void)
   for(int i = 0; i < bb.table->columnCount() - 1; i++)
     bb.table->resizeColumnToContents(i);
 
-  static bool resized = false;
+  static auto resized = false;
 
   if(!resized)
     m_members_diag->resize(qRound(0.85 * size().width()),
@@ -4332,7 +4331,7 @@ void biblioteq::slotShowMembersBrowser(void)
 void biblioteq::slotShowMenu(void)
 {
   QPoint point;
-  QWidget *widget = widgetForAction(qobject_cast<QAction *> (sender()));
+  auto widget = widgetForAction(qobject_cast<QAction *> (sender()));
 
   if(widget)
     point = widget->mapToGlobal(widget->rect().bottomRight() - QPoint(5, 5));
@@ -4565,9 +4564,10 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotViewDetails(void)
 {
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
+  auto error = false;
+  auto list(ui.table->selectionModel()->selectedRows());
   biblioteq_book *book = nullptr;
   biblioteq_cd *cd = nullptr;
   biblioteq_dvd *dvd = nullptr;
@@ -4577,7 +4577,6 @@ void biblioteq::slotViewDetails(void)
   biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
-  bool error = false;
   int i = 0;
 
   if(list.isEmpty())
@@ -4609,7 +4608,7 @@ void biblioteq::slotViewDetails(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(const QModelIndex &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -4627,7 +4626,7 @@ void biblioteq::slotViewDetails(void)
 
       if(type.toLower() == "book")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto b = qobject_cast<biblioteq_book *> (w);
 
@@ -4645,7 +4644,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "cd")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto c = qobject_cast<biblioteq_cd *> (w);
 
@@ -4663,7 +4662,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "dvd")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto d = qobject_cast<biblioteq_dvd *> (w);
 
@@ -4681,7 +4680,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "grey literature")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
@@ -4699,7 +4698,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "journal")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto j = qobject_cast<biblioteq_journal *> (w);
 
@@ -4717,7 +4716,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "magazine")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto m = qobject_cast<biblioteq_magazine *> (w);
 
@@ -4740,7 +4739,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "photograph collection")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
@@ -4758,7 +4757,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "video game")
 	{
-	  foreach(QWidget *w, QApplication::topLevelWidgets())
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto v = qobject_cast<biblioteq_videogame *> (w);
 
@@ -4797,7 +4796,7 @@ void biblioteq::updateItemWindows(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto book = qobject_cast<biblioteq_book *> (w);
       auto cd = qobject_cast<biblioteq_cd *> (w);
@@ -4839,11 +4838,11 @@ void biblioteq::updateItemWindows(void)
 
 void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 {
-  QString itemType(it.toLower().trimmed());
+  auto itemType(it.toLower().trimmed());
 
   if(itemType == "book")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto book = qobject_cast<biblioteq_book *> (w);
 
@@ -4856,7 +4855,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "cd")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto cd = qobject_cast<biblioteq_cd *> (w);
 
@@ -4869,7 +4868,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "dvd")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto dvd = qobject_cast<biblioteq_dvd *> (w);
 
@@ -4882,7 +4881,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "greyliterature")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto gl = qobject_cast<biblioteq_grey_literature *> (w);
 
@@ -4895,7 +4894,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "journal")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto journal = qobject_cast<biblioteq_journal *> (w);
 
@@ -4908,7 +4907,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "magazine")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto magazine = qobject_cast<biblioteq_magazine *> (w);
 
@@ -4926,7 +4925,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "photographcollection")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
 
@@ -4939,7 +4938,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
     }
   else if(itemType == "videogame")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto videogame = qobject_cast<biblioteq_videogame *> (w);
 
@@ -5117,7 +5116,7 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {
-		QDate date(QDate::fromString(returnedDate, "MM/dd/yyyy"));
+		auto date(QDate::fromString(returnedDate, "MM/dd/yyyy"));
 
 		biblioteq_misc_functions::updateColumn
 		  (history.table, i,
@@ -5136,7 +5135,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 				const QImage &image)
 {
   QGraphicsPixmapItem *item = nullptr;
-  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
+  auto items(ui.graphicsView->scene()->items());
 
   for(int i = 0; i < items.size(); i++)
     if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
@@ -5148,7 +5147,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 	    l_image = l_image.scaled
 	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	  QPixmap pixmap(QPixmap::fromImage(l_image));
+	  auto pixmap(QPixmap::fromImage(l_image));
 
 	  if(!pixmap.isNull())
 	    item->setPixmap(pixmap);
