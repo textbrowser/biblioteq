@@ -10,9 +10,9 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QString &typeArg,
 					  const QSqlDatabase &db)
 {
-  QImage image = QImage();
   QSqlQuery query(db);
-  QString type(typeArg.toLower());
+  auto image = QImage();
+  auto type(typeArg.toLower());
 
   if(type == "photograph collection")
     type = type.replace(" ", "_");
@@ -80,7 +80,7 @@ QList<int> biblioteq_misc_functions::selectedRows(QTableWidget *table)
   if(!table)
     return rows;
 
-  QModelIndexList indexes(table->selectionModel()->selectedRows(0));
+  auto indexes(table->selectionModel()->selectedRows(0));
 
   for(int i = 0; i < indexes.size(); i++)
     rows << indexes.at(i).row();
@@ -173,7 +173,7 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
   QSqlQuery query(db);
   QString querystr = "";
   QString str = "";
-  QString type(typeArg.toLower());
+  auto type(typeArg.toLower());
 
   if(type == "book" || type == "cd" || type == "dvd" ||
      type == "journal" || type == "magazine" || type == "video game")
@@ -379,7 +379,7 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   if(itemType == "journal" || itemType == "magazine")
     {
-      QStringList list = id.split(",");
+      auto list(id.split(","));
 
       for(i = 0; i < list.size(); i++)
 	query.bindValue(i, list[i]);
@@ -920,7 +920,7 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
   QSqlQuery query(db);
   QString querystr("");
   QStringList types;
-  bool dnt = true;
+  auto dnt = true;
 
   errorstr = "";
   querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
@@ -944,7 +944,7 @@ bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
 {
   QSqlQuery query(db);
   QString querystr = "";
-  bool exists = false;
+  auto exists = false;
 
   errorstr = "";
   querystr = "SELECT EXISTS(SELECT 1 FROM member "
@@ -975,7 +975,7 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
 						QString &errorstr)
 {
   QSqlQuery query(db);
-  bool expired = true;
+  auto expired = true;
 
   errorstr = "";
 
@@ -993,8 +993,9 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
       {
 	if(db.driverName() == "QSQLITE")
 	  {
-	    QDate date(QDate::fromString(query.value(0).toString().trimmed(),
-					 "MM/dd/yyyy"));
+	    auto date
+	      (QDate::
+	       fromString(query.value(0).toString().trimmed(), "MM/dd/yyyy"));
 
 	    if(date.daysTo(QDate::currentDate()) > 0)
 	      expired = true;
@@ -1037,7 +1038,7 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 {
   QSqlQuery query(db);
   QString itemType = "";
-  bool isCheckedOut = false;
+  auto isCheckedOut = false;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -1068,7 +1069,7 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
   QSqlQuery query(db);
   QString itemType = "";
   QString querystr = "";
-  bool isAvailable = false;
+  auto isAvailable = false;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -1112,7 +1113,7 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 {
   QSqlQuery query(db);
   QString itemType = "";
-  bool isCheckedOut = false;
+  auto isCheckedOut = false;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -1138,7 +1139,7 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 
 bool biblioteq_misc_functions::isGnome(void)
 {
-  QByteArray session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
+  auto session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
 
   if(session == "gnome" || session == "ubuntu")
     return true;
@@ -1151,7 +1152,7 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
 					   const QString &itemTypeArg,
 					   QString &errorstr)
 {
-  bool isRequested = false;
+  auto isRequested = false;
 
   errorstr = "";
 
@@ -1185,7 +1186,7 @@ bool biblioteq_misc_functions::userExists(const QString &userid,
 					  QString &errorstr)
 {
   QSqlQuery query(db);
-  bool exists = false;
+  auto exists = false;
 
   errorstr = "";
 
@@ -1304,8 +1305,8 @@ int biblioteq_misc_functions::sqliteQuerySize
   else if(querystr.trimmed().isEmpty())
     return count;
 
-  QList<QVariant> list = boundValues.values();
   QSqlQuery query(db);
+  auto list(boundValues.values());
 
   query.prepare(querystr);
 
@@ -1427,7 +1428,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
   QSqlQuery query(db);
   QString querystr = "";
   QStringList objectlist;
-  bool exists = false;
+  auto exists = false;
 
   if(action == CREATE_USER)
     {
@@ -1497,7 +1498,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
   if(action == UPDATE_USER)
     {
-      QString str(roles);
+      auto str(roles);
 
       if(str.isEmpty() || str == "none")
 	str = "biblioteq_patron";
@@ -1671,7 +1672,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 
 	if(db.driverName() == "QSQLITE")
 	  {
-	    qint64 value = getSqliteUniqueId(db, errorstr);
+	    auto value = getSqliteUniqueId(db, errorstr);
 
 	    if(errorstr.isEmpty())
 	      query.bindValue(3, value);
@@ -1713,7 +1714,7 @@ void biblioteq_misc_functions::exportPhotographs
 
   for(int i = 0; i < items.size(); i++)
     {
-      QGraphicsItem *item = items.at(i);
+      auto item = items.at(i);
 
       if(!item)
 	continue;
@@ -1730,16 +1731,16 @@ void biblioteq_misc_functions::exportPhotographs
 
       if(query.exec() && query.next())
 	{
-#if QT_VERSION >= 0x040700
-	  qint64 id = QDateTime::currentMSecsSinceEpoch();
-#else
-	  QDateTime dateTime(QDateTime::currentDateTime());
-	  qint64 id = static_cast<qint64> (dateTime.toTime_t());
-#endif
-	  QByteArray bytes
-	    (QByteArray::fromBase64(query.value(0).toByteArray()));
 	  QImage image;
-	  QString format(imageFormatGuess(bytes));
+	  auto bytes
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+#if QT_VERSION >= 0x040700
+	  auto id = QDateTime::currentMSecsSinceEpoch();
+#else
+	  auto dateTime(QDateTime::currentDateTime());
+	  auto id = static_cast<qint64> (dateTime.toTime_t());
+#endif
+	  auto format(imageFormatGuess(bytes));
 
 	  image.loadFromData(bytes, format.toLatin1().constData());
 
@@ -1800,10 +1801,10 @@ void biblioteq_misc_functions::exportPhotographs
       int i = 0;
       int j = -1;
 #if QT_VERSION >= 0x040700
-      qint64 id = QDateTime::currentMSecsSinceEpoch();
+      auto id = QDateTime::currentMSecsSinceEpoch();
 #else
-      QDateTime dateTime(QDateTime::currentDateTime());
-      qint64 id = static_cast<qint64> (dateTime.toTime_t());
+      auto dateTime(QDateTime::currentDateTime());
+      auto id = static_cast<qint64> (dateTime.toTime_t());
 #endif
 
       while(query.next())
@@ -1822,10 +1823,10 @@ void biblioteq_misc_functions::exportPhotographs
 	  if(progress.wasCanceled())
 	    break;
 
-	  QByteArray bytes
-	    (QByteArray::fromBase64(query.value(0).toByteArray()));
 	  QImage image;
-	  QString format(imageFormatGuess(bytes));
+	  auto bytes
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+	  auto format(imageFormatGuess(bytes));
 
 	  image.loadFromData(bytes, format.toLatin1().constData());
 
@@ -1853,7 +1854,7 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
 
   QSqlQuery query(db);
   QString querystr = "";
-  QString str(roles);
+  auto str(roles);
 
   if(str.isEmpty() || str == "none")
     str = "biblioteq_patron";
@@ -1909,7 +1910,7 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
     return;
 
   QString str = "";
-  bool showWidgets = true;
+  auto showWidgets = true;
 
   if(roles.isEmpty())
     showWidgets = false;
@@ -1919,7 +1920,7 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
   else
     showWidgets = false;
 
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+  foreach(auto widget, window->findChildren<QWidget *> ())
     {
       str = widget->objectName().toLower();
 
@@ -1927,7 +1928,7 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	widget->setVisible(showWidgets);
     }
 
-  foreach(QLabel *widget, window->findChildren<QLabel *> ())
+  foreach(auto widget, window->findChildren<QLabel *> ())
     {
       str = widget->text().toLower();
 
@@ -1935,10 +1936,10 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	widget->setVisible(showWidgets);
     }
 
-  foreach(QToolButton *button, window->findChildren<QToolButton *> ())
+  foreach(auto button, window->findChildren<QToolButton *> ())
     if(button->menu())
       {
-	foreach(QAction *action, button->menu()->findChildren<QAction *> ())
+	foreach(auto action, button->menu()->findChildren<QAction *> ())
 	  {
 	    str = action->text().toLower();
 
@@ -1973,7 +1974,7 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
   QSqlQuery query(db);
   QString querystr = "";
   QStringList objectlist;
-  bool exists = userExists(userid, db, errorstr);
+  auto exists = userExists(userid, db, errorstr);
 
   if(exists)
     {
@@ -2115,7 +2116,7 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
   if(column < 0 || row < 0 || !table || !table->item(row, column))
     return;
 
-  bool sortingEnabled = false;
+  auto sortingEnabled = false;
 
   if(table->isSortingEnabled())
     sortingEnabled = true;
@@ -2130,10 +2131,4 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 
   if(qobject_cast<biblioteq_main_table *> (table))
     qobject_cast<biblioteq_main_table *> (table)->updateToolTips(row);
-}
-
-void biblioteq_misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
-{
-  if(db.driverName() != "QSQLITE")
-    return;
 }

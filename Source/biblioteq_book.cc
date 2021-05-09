@@ -283,12 +283,12 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   actionGroup1 = new QActionGroup(this);
   actionGroup2 = new QActionGroup(this);
 
-  QStringList list(qmain->getSRUNames());
-  bool found = false;
+  auto found = false;
+  auto list(qmain->getSRUNames());
 
   for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = actionGroup1->addAction(list.at(i));
+      auto action = actionGroup1->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -378,7 +378,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   for(int i = 0; i < list.size(); i++)
     {
-      QAction *action = actionGroup2->addAction(list.at(i));
+      auto action = actionGroup2->addAction(list.at(i));
 
       if(!action)
 	continue;
@@ -421,7 +421,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	   qRound(0.95 * m_parentWid->size().height()));
 
 #ifdef Q_OS_MAC
-  foreach(QToolButton *tool_button, findChildren<QToolButton *> ())
+  foreach(auto tool_button, findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
     ("QToolButton {border: none; padding-right: 10px}"
@@ -543,7 +543,7 @@ void biblioteq_book::createFile(const QByteArray &digest,
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       QString errorstr("");
-      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+      auto value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -887,7 +887,7 @@ void biblioteq_book::modify(const int state)
       activateWindow();
       raise();
 
-      QSqlRecord record(query.record());
+      auto record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -1048,7 +1048,7 @@ void biblioteq_book::modify(const int state)
 	    id.url->setPlainText(var.toString().trimmed());
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+      foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);
@@ -1121,8 +1121,8 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 
   while(!keys.isEmpty())
     {
-      const QString &key(keys.takeFirst());
-      int index = m_openLibraryResults.indexOf(key.toUtf8());
+      auto const &key(keys.takeFirst());
+      auto index = m_openLibraryResults.indexOf(key.toUtf8());
 
       if(index > -1)
 	{
@@ -1143,7 +1143,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		else
 		  bytes.append(m_openLibraryResults.at(i));
 
-	      QString value(QString::fromUtf8(bytes));
+	      auto value(QString::fromUtf8(bytes));
 
 	      if(!value.isEmpty())
 		{
@@ -1192,7 +1192,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		else
 		  bytes.append(m_openLibraryResults.at(i));
 
-	      QString value(QString::fromUtf8(bytes));
+	      auto value(QString::fromUtf8(bytes));
 
 	      if(!value.isEmpty())
 		{
@@ -1225,7 +1225,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		    else
 		      bytes.append(m_openLibraryResults.at(i));
 
-		  QString name(QString::fromUtf8(bytes));
+		  auto name(QString::fromUtf8(bytes));
 
 		  if(!name.isEmpty())
 		    {
@@ -1358,8 +1358,8 @@ void biblioteq_book::populateAfterSRU(const QString &text)
     (id.marc_tags->viewport(), QColor(162, 205, 90));
 
   QString str("");
-  bool isbn10User = false;
-  bool isbn13User = false;
+  auto isbn10User = false;
+  auto isbn13User = false;
 
   if(id.id->text().trimmed().length() == 10)
     isbn10User = true;
@@ -1373,7 +1373,7 @@ void biblioteq_book::populateAfterSRU(const QString &text)
     if(reader.readNextStartElement())
       if(reader.name().toString().toLower().trimmed() == "datafield")
 	{
-	  QString tag
+	  auto tag
 	    (reader.attributes().value("tag").toString().toLower().trimmed());
 
 	  if(tag == "100" || tag == "700")
@@ -1514,7 +1514,7 @@ void biblioteq_book::populateAfterSRU(const QString &text)
 	(id.title, QColor(162, 205, 90));
     }
 
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+  foreach(auto textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }
 
@@ -1524,8 +1524,8 @@ void biblioteq_book::populateAfterZ3950
   QString str("");
   QStringList list;
   biblioteq_marc m;
-  bool isbn10User = false;
-  bool isbn13User = false;
+  auto isbn10User = false;
+  auto isbn13User = false;
 
   if(id.id->text().trimmed().length() == 10)
     isbn10User = true;

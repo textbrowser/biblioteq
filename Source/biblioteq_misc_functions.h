@@ -158,7 +158,6 @@ class biblioteq_misc_functions
 			   const int,
 			   const int,
 			   const QString &);
-  static void updateSQLiteDatabase(const QSqlDatabase &);
 
  private:
   biblioteq_misc_functions(void);
