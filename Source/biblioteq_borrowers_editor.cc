@@ -117,7 +117,7 @@ void biblioteq_borrowers_editor::showUsers(void)
   QString str = "";
   QStringList list;
   QTableWidgetItem *item = nullptr;
-  bool terminate = false;
+  auto terminate = false;
   int i = 0;
   int j = 0;
 
@@ -288,7 +288,7 @@ void biblioteq_borrowers_editor::showUsers(void)
   i = -1;
 
   QDate date;
-  QDate tomorrow(QDate::currentDate());
+  auto tomorrow(QDate::currentDate());
 
   tomorrow = tomorrow.addDays(1);
 
@@ -359,7 +359,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
   QString copyid = "";
   QString memberid = "";
   QString oid = "";
-  QString returnedDate = QDateTime::currentDateTime().toString("MM/dd/yyyy");
+  auto returnedDate = QDateTime::currentDateTime().toString("MM/dd/yyyy");
   int row = m_bd.table->currentRow();
 
   if(row < 0)
@@ -494,12 +494,12 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 
 void biblioteq_borrowers_editor::slotSave(void)
 {
-  QDate now = QDate::currentDate();
   QDateEdit *dueDate = nullptr;
   QProgressDialog progress(this);
   QSqlQuery query(qmain->getDB());
   QString oid = "";
-  bool error = false;
+  auto error = false;
+  auto now = QDate::currentDate();
   int i = 0;
 
   progress.setCancelButton(nullptr);
