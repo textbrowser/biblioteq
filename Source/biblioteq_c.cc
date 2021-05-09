@@ -2208,6 +2208,9 @@ void biblioteq::slotCheckout(void)
       else if(type.toLower() == "dvd")
 	itemid = biblioteq_misc_functions::getColumnString
 	  (ui.table, row2, ui.table->columnNumber("UPC"));
+      else if(type.toLower() == "grey literature")
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2, ui.table->columnNumber("Document ID"));
       else if(type.toLower() == "journal" ||
 	      type.toLower() == "magazine")
 	itemid = biblioteq_misc_functions::getColumnString

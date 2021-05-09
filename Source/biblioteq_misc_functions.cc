@@ -220,9 +220,12 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
   errorstr = "";
   itemType = itemTypeArg;
 
-  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
-     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
-     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
+  if(itemType.toLower() == "book" ||
+     itemType.toLower() == "cd" ||
+     itemType.toLower() == "dvd" ||
+     itemType.toLower() == "journal" ||
+     itemType.toLower() == "magazine" ||
+     itemType.toLower() == "video game")
     querystr = QString("SELECT %1.quantity - "
 		       "COUNT(item_borrower.item_oid) "
 		       "FROM "
@@ -234,6 +237,15 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 		       "GROUP BY %1.quantity, "
 		       "%1.myoid").arg(itemType.toLower().remove(" ")).arg
       (itemType);
+  else if(itemType.toLower() == "grey literature")
+    querystr = "SELECT 1 - COUNT(item_borrower.item_oid) "
+      "FROM "
+      "grey_literature LEFT JOIN item_borrower ON "
+      "grey_literature.myoid = item_borrower.item_oid AND "
+      "item_borrower.type = 'Grey Literature' "
+      "WHERE "
+      "grey_literature.myoid = ? "
+      "GROUP BY grey_literature.myoid";
   else
     return str;
 

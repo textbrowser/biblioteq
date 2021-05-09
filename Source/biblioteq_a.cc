@@ -2831,9 +2831,10 @@ void biblioteq::slotDuplicate(void)
 
   if(error)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			    tr("Unable to determine the selected item's "
-			       "type."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Error"),
+	 tr("Unable to determine the selected item's type."));
       QApplication::processEvents();
     }
 }
@@ -3321,9 +3322,10 @@ void biblioteq::slotModify(void)
 
   if(error)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			    tr("Unable to determine the selected item's "
-			       "type."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Error"),
+	 tr("Unable to determine the selected item's type."));
       QApplication::processEvents();
     }
 }
@@ -4785,9 +4787,10 @@ void biblioteq::slotViewDetails(void)
 
   if(error)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: Error"),
-			    tr("Unable to determine the selected item's "
-			       "type."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Error"),
+	 tr("Unable to determine the selected item's type."));
       QApplication::processEvents();
     }
 }
