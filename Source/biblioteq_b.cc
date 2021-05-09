@@ -36,7 +36,7 @@ QVariant biblioteq::setting(const QString &name) const
     return ui.actionAutomatically_Resize_Column_Widths->isChecked();
   else if(name == "photographs_per_page")
     {
-      foreach(QAction *action, ui.menuPhotographs_per_Page->actions())
+      foreach(auto action, ui.menuPhotographs_per_Page->actions())
 	if(action->isChecked())
 	  return action->data().toInt();
 
@@ -77,7 +77,6 @@ int biblioteq::populateTable(const int search_type_arg,
 {
   ui.itemsCountLabel->setText(tr("0 Results"));
 
-  QDate now(QDate::currentDate());
   QProgressDialog progress(this);
   QString itemType = "";
   QString limitStr("");
@@ -87,10 +86,11 @@ int biblioteq::populateTable(const int search_type_arg,
   QString type = "";
   QStringList tmplist; // Used for custom queries.
   QTableWidgetItem *item = nullptr;
+  auto now(QDate::currentDate());
+  auto offset = m_queryOffset;
+  auto search_type = search_type_arg;
   int i = -1;
   int limit = 0;
-  int search_type = search_type_arg;
-  qint64 offset = m_queryOffset;
 
   for(int ii = 0; ii < ui.menuEntriesPerPage->actions().size(); ii++)
     if(ui.menuEntriesPerPage->actions().at(ii)->isChecked())
@@ -3254,7 +3254,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QApplication::restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
 
-  bool found = false;
+  auto found = false;
 
   for(int ii = 0; ii < ui.menu_Category->actions().size(); ii++)
     if(typefilter ==
@@ -3404,7 +3404,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(limit == -1)
     {
-      int size = biblioteq_misc_functions::sqliteQuerySize
+      auto size = biblioteq_misc_functions::sqliteQuerySize
 	(searchstr, m_db, __FILE__, __LINE__, this);
 
       if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
@@ -3422,11 +3422,11 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QSettings settings;
   QStringList columnNames;
-  bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+  auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
   if(search_type == CUSTOM_QUERY)
     {
-      QSqlRecord record(query.record());
+      auto record(query.record());
 
       for(int ii = 0; ii < record.count(); ii++)
 	if(!columnNames.contains(record.fieldName(ii)))
@@ -3457,9 +3457,9 @@ int biblioteq::populateTable(const int search_type_arg,
 
       if(query.isValid())
 	{
-	  QSqlRecord record(query.record());
 	  QString tooltip("");
 	  QTableWidgetItem *first = nullptr;
+	  auto record(query.record());
 
 	  if(showToolTips)
 	    {
@@ -3472,7 +3472,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		     record.fieldName(j).contains("image"))
 		    continue;
 
-		  QString columnName(columnNames.value(j));
+		  auto columnName(columnNames.value(j));
 
 		  if(columnName.isEmpty())
 		    columnName = "N/A";
@@ -3500,8 +3500,9 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(record.fieldName(j).contains("date") ||
 		     record.fieldName(j).contains("membersince"))
 		    {
-		      QDate date(QDate::fromString(query.value(j).toString(),
-						   "MM/dd/yyyy"));
+		      auto date
+			(QDate::
+			 fromString(query.value(j).toString(), "MM/dd/yyyy"));
 
 		      if(dateFormat.isEmpty())
 			str = date.toString(Qt::ISODate);
@@ -3658,7 +3659,7 @@ int biblioteq::populateTable(const int search_type_arg,
       if(query.isValid())
 	if(pixmapItem)
 	  {
-	    QSqlRecord record(query.record());
+	    auto record(query.record());
 
 	    for(int ii = 0; ii < record.count(); ii++)
 	      {
@@ -3679,7 +3680,7 @@ int biblioteq::populateTable(const int search_type_arg,
   if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))
     progress.setValue(limit);
 
-  bool wasCanceled = progress.wasCanceled(); /*
+  auto wasCanceled = progress.wasCanceled(); /*
 					     ** QProgressDialog::close()!
 					     */
 
@@ -3690,7 +3691,7 @@ int biblioteq::populateTable(const int search_type_arg,
     {
       if(tmplist.isEmpty())
 	{
-	  QSqlRecord record(query.record());
+	  auto record(query.record());
 
 	  for(int ii = 0; ii < record.count(); ii++)
 	    if(!tmplist.contains(record.fieldName(ii)))
@@ -3852,7 +3853,7 @@ void biblioteq::preparePhotographsPerPageMenu(void)
   ui.menuPhotographs_per_Page->clear();
 
   QSettings settings;
-  int integer = settings.value("photographs_per_page", 25).toInt();
+  auto integer = settings.value("photographs_per_page", 25).toInt();
 
   if(!(integer == -1 || (integer >= 25 && integer <= 100)))
     integer = 25;
@@ -3956,7 +3957,7 @@ void biblioteq::slotBookSearch(void)
 {
   biblioteq_book *book = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto b = qobject_cast<biblioteq_book *> (w);
 
@@ -3982,7 +3983,7 @@ void biblioteq::slotCDSearch(void)
 {
   biblioteq_cd *cd = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto c = qobject_cast<biblioteq_cd *> (w);
 
@@ -4014,7 +4015,7 @@ void biblioteq::slotDVDSearch(void)
 {
   biblioteq_dvd *dvd = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto d = qobject_cast<biblioteq_dvd *> (w);
 
@@ -4040,7 +4041,7 @@ void biblioteq::slotJournSearch(void)
 {
   biblioteq_journal *journal = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto j = qobject_cast<biblioteq_journal *> (w);
 
@@ -4066,7 +4067,7 @@ void biblioteq::slotMagSearch(void)
 {
   biblioteq_magazine *magazine = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto m = qobject_cast<biblioteq_magazine *> (w);
 
@@ -4097,7 +4098,7 @@ void biblioteq::slotPhotographSearch(void)
 {
   biblioteq_photographcollection *photograph = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
@@ -4210,11 +4211,11 @@ void biblioteq::slotSearchBasic(void)
 
   QList<QVariant> values;
   QSqlQuery query(m_db);
-  QString str("");
   QString searchstr("");
-  QString text(ui.search->text().trimmed());
+  QString str("");
   QString type("");
   QStringList types;
+  auto text(ui.search->text().trimmed());
 
   types.append("Book");
   types.append("CD");
@@ -4971,7 +4972,7 @@ void biblioteq::slotVideoGameSearch(void)
 {
   biblioteq_videogame *videogame = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto v = qobject_cast<biblioteq_videogame *> (w);
 
