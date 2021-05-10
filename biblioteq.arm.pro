@@ -54,7 +54,8 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wstrict-overflow=5 \
                           -fPIE \
                           -fstack-protector-all \
-                          -fwrapv -mtune=native \
+                          -fwrapv \
+			  -mtune=native \
                           -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp
