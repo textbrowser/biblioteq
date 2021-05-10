@@ -381,32 +381,49 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   progress1.close();
   m_cb.table->setRowCount(i); // Support cancellation.
-  query.prepare(QString("SELECT %1.title, "
-			"%1_copy_info.copyid, "
-			"(1 - COUNT(item_borrower.copyid)), "
-			"%1_copy_info.status, "
-			"%1_copy_info.item_oid, "
-			"%1_copy_info.copy_number "
-			"FROM "
-			"%1, "
-			"%1_copy_info LEFT JOIN item_borrower ON "
-			"%1_copy_info.copyid = "
-			"item_borrower.copyid AND "
-			"%1_copy_info.item_oid = "
-			"item_borrower.item_oid AND "
-			"item_borrower.type = ? "
-			"WHERE %1_copy_info.item_oid = ? AND "
-			"%1.myoid = ? "
-			"GROUP BY %1.title, "
-			"%1_copy_info.copyid, "
-			"%1_copy_info.status, "
-			"%1_copy_info.item_oid, "
-			"%1_copy_info.copy_number "
-			"ORDER BY %1_copy_info.copy_number").
-		arg(m_itemType.toLower().remove(" ")));
-  query.addBindValue(m_itemType);
-  query.addBindValue(m_ioid);
-  query.addBindValue(m_ioid);
+
+  if(m_itemType == "Grey Literature")
+    {
+      query.prepare("SELECT grey_literature.document_title, "
+		    "'1', "
+		    "1, "
+		    "'', "
+		    "0, "
+		    "1 "
+		    "FROM "
+		    "grey_literature WHERE grey_literature.myoid = ?");
+      query.addBindValue(m_ioid);
+    }
+  else
+    {
+      query.prepare(QString("SELECT %1.title, "
+			    "%1_copy_info.copyid, "
+			    "(1 - COUNT(item_borrower.copyid)), "
+			    "%1_copy_info.status, "
+			    "%1_copy_info.item_oid, "
+			    "%1_copy_info.copy_number "
+			    "FROM "
+			    "%1, "
+			    "%1_copy_info LEFT JOIN item_borrower ON "
+			    "%1_copy_info.copyid = "
+			    "item_borrower.copyid AND "
+			    "%1_copy_info.item_oid = "
+			    "item_borrower.item_oid AND "
+			    "item_borrower.type = ? "
+			    "WHERE %1_copy_info.item_oid = ? AND "
+			    "%1.myoid = ? "
+			    "GROUP BY %1.title, "
+			    "%1_copy_info.copyid, "
+			    "%1_copy_info.status, "
+			    "%1_copy_info.item_oid, "
+			    "%1_copy_info.copy_number "
+			    "ORDER BY %1_copy_info.copy_number").
+		    arg(m_itemType.toLower().remove(" ")));
+      query.addBindValue(m_itemType);
+      query.addBindValue(m_ioid);
+      query.addBindValue(m_ioid);
+    }
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
