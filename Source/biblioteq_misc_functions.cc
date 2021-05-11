@@ -1074,9 +1074,12 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
   errorstr = "";
   itemType = itemTypeArg;
 
-  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
-     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
-     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
+  if(itemType.toLower() == "book" ||
+     itemType.toLower() == "cd" ||
+     itemType.toLower() == "dvd" ||
+     itemType.toLower() == "journal" ||
+     itemType.toLower() == "magazine" ||
+     itemType.toLower() == "video game")
     querystr = QString
       ("SELECT EXISTS(SELECT 1 FROM %1_copy_info "
        "WHERE copyid = ? AND item_oid = ? "
@@ -1084,13 +1087,22 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
        "WHERE item_oid = ? AND type = '%2'))").arg(itemType.
 						   toLower().remove(" ")).
       arg(itemType);
+  else if(itemType.toLower() == "grey literature")
+    querystr = "SELECT NOT EXISTS(SELECT 1 FROM item_borrower "
+      "WHERE item_oid = ? AND type = 'Grey Literature')";
   else
     return isAvailable;
 
   query.prepare(querystr);
-  query.bindValue(0, copyid);
-  query.bindValue(1, oid);
-  query.bindValue(2, oid);
+
+  if(itemType.toLower() == "grey literature")
+    query.addBindValue(oid);
+  else
+    {
+      query.addBindValue(copyid);
+      query.addBindValue(oid);
+      query.addBindValue(oid);
+    }
 
   if(query.exec())
     if(query.next())
