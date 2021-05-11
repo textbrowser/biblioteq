@@ -5543,9 +5543,7 @@ void biblioteq::slotShowHistory(void)
 
   if(!m_roles.isEmpty())
     memberid = biblioteq_misc_functions::getColumnString
-      (bb.table, row,
-       m_bbColumnHeaderIndexes.
-       indexOf("Member ID"));
+      (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   else
     memberid = dbUserName();
 
@@ -5553,26 +5551,51 @@ void biblioteq::slotShowHistory(void)
     for(i = 0; i < list.size(); i++)
       {
 	if(list[i] != "book")
-	  querystr += QString("SELECT "
-			      "history.memberid, "
-			      "member.first_name, "
-			      "member.last_name, "
-			      "%1.title, "
-			      "%1.id, "
-			      "history.copyid, "
-			      "%1.type, "
-			      "history.reserved_date, "
-			      "history.duedate, "
-			      "history.returned_date, "
-			      "history.reserved_by, "
-			      "%1.myoid "
-			      "FROM member_history history, "
-			      "%1 %1, "
-			      "member member "
-			      "WHERE history.memberid = member.memberid AND "
-			      "%1.myoid = history.item_oid AND "
-			      "member.memberid = ? AND %1.type = "
-			      "history.type ").arg(list[i]);
+	  {
+	    if(list[i] == "grey_literature")
+	      querystr += "SELECT "
+		"history.memberid, "
+		"member.first_name, "
+		"member.last_name, "
+		"grey_literature.document_title, "
+		"grey_literature.document_id, "
+		"history.copyid, "
+		"grey_literature.type, "
+		"history.reserved_date, "
+		"history.duedate, "
+		"history.returned_date, "
+		"history.reserved_by, "
+		"grey_literature.myoid "
+		"FROM member_history history, "
+		"grey_literature grey_literature, "
+		"member member "
+		"WHERE history.memberid = member.memberid AND "
+		"grey_literature.myoid = history.item_oid AND "
+		"member.memberid = ? AND grey_literature.type = "
+		"history.type ";
+	    else
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "member.first_name, "
+		 "member.last_name, "
+		 "%1.title, "
+		 "%1.id, "
+		 "history.copyid, "
+		 "%1.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "%1.myoid "
+		 "FROM member_history history, "
+		 "%1 %1, "
+		 "member member "
+		 "WHERE history.memberid = member.memberid AND "
+		 "%1.myoid = history.item_oid AND "
+		 "member.memberid = ? AND %1.type = "
+		 "history.type ").arg(list[i]);
+	  }
 	else
 	  {
 	    if(m_db.driverName() != "QSQLITE")
@@ -5628,22 +5651,43 @@ void biblioteq::slotShowHistory(void)
     for(i = 0; i < list.size(); i++)
       {
 	if(list[i] != "book")
-	  querystr += QString("SELECT "
-			      "history.memberid, "
-			      "%1.title, "
-			      "%1.id, "
-			      "history.copyid, "
-			      "%1.type, "
-			      "history.reserved_date, "
-			      "history.duedate, "
-			      "history.returned_date, "
-			      "history.reserved_by, "
-			      "%1.myoid "
-			      "FROM member_history history, "
-			      "%1 %1 "
-			      "WHERE history.memberid = ? AND "
-			      "%1.myoid = history.item_oid AND %1.type = "
-			      "history.type ").arg(list[i]);
+	  {
+	    if(list[i] == "grey_literature")
+	      querystr += "SELECT "
+		"history.memberid, "
+		"grey_literature.document_title, "
+		"grey_literature.document_id, "
+		"history.copyid, "
+		"grey_literature.type, "
+		"history.reserved_date, "
+		"history.duedate, "
+		"history.returned_date, "
+		"history.reserved_by, "
+		"grey_literature.myoid "
+		"FROM member_history history, "
+		"grey_literature grey_literature "
+		"WHERE history.memberid = ? AND "
+		"grey_literature.myoid = history.item_oid AND "
+		"grey_literature.type = history.type ";
+	    else
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "%1.title, "
+		 "%1.id, "
+		 "history.copyid, "
+		 "%1.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "%1.myoid "
+		 "FROM member_history history, "
+		 "%1 %1 "
+		 "WHERE history.memberid = ? AND "
+		 "%1.myoid = history.item_oid AND %1.type = "
+		 "history.type ").arg(list[i]);
+	  }
 	else
 	  {
 	    if(m_db.driverName() != "QSQLITE")
@@ -5695,16 +5739,14 @@ void biblioteq::slotShowHistory(void)
   ** The number of bound values should equal the size of list.
   */
 
-  query.bindValue(0, memberid);
-  query.bindValue(1, memberid);
-  query.bindValue(2, memberid);
-  query.bindValue(3, memberid);
-  query.bindValue(4, memberid);
-  query.bindValue(5, memberid);
+  for(int i = 0; i < list.size(); i++)
+    query.addBindValue(memberid);
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
+      progress->close();
       QApplication::restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
