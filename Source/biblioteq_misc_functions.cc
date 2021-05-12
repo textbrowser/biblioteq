@@ -461,7 +461,7 @@ QString biblioteq_misc_functions::getTotalReserved(const QSqlDatabase &db,
 		       "FROM item_borrower WHERE "
 		       "item_borrower.item_oid = %1 AND "
 		       "item_borrower.type = '%2'").arg(oid).arg(itemTypeArg);
-  else if(itemTypeArg == "grey literature")
+  else if(itemType == "grey literature")
     querystr = QString("SELECT COUNT(item_borrower.item_oid) "
 		       "FROM item_borrower WHERE "
 		       "item_borrower.item_oid = %1 AND "
