@@ -1680,9 +1680,12 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
       {
 	if(db.driverName() != "QSQLITE")
 	  {
-	    if(itemType == "book" || itemType == "cd" ||
-	       itemType == "dvd" || itemType == "journal" ||
-	       itemType == "magazine" || itemType == "videogame")
+	    if(itemType == "book" ||
+	       itemType == "cd" ||
+	       itemType == "dvd" ||
+	       itemType == "journal" ||
+	       itemType == "magazine" ||
+	       itemType == "videogame")
 	      query.prepare(QString("INSERT INTO %1_copy_info "
 				    "(item_oid, copy_number, "
 				    "copyid) "
@@ -1691,9 +1694,12 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 	  }
 	else
 	  {
-	    if(itemType == "book" || itemType == "cd" ||
-	       itemType == "dvd" || itemType == "journal" ||
-	       itemType == "magazine" || itemType == "videogame")
+	    if(itemType == "book" ||
+	       itemType == "cd" ||
+	       itemType == "dvd" ||
+	       itemType == "journal" ||
+	       itemType == "magazine" ||
+	       itemType == "videogame")
 	      query.prepare(QString("INSERT INTO %1_copy_info "
 				    "(item_oid, copy_number, "
 				    "copyid, myoid) "
@@ -2079,8 +2085,11 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
   errorstr = "";
   itemType = itemTypeArg.toLower().remove(" ");
 
-  if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
-     itemType == "journal" || itemType == "magazine" ||
+  if(itemType == "book" ||
+     itemType == "cd" ||
+     itemType == "dvd" ||
+     itemType == "journal" ||
+     itemType == "magazine" ||
      itemType == "videogame")
     querystr = QString("UPDATE %1 SET quantity = ? WHERE "
 		       "myoid = ?").arg(itemType);

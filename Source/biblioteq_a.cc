@@ -4841,7 +4841,7 @@ void biblioteq::updateItemWindows(void)
 
 void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 {
-  auto itemType(it.toLower().trimmed());
+  auto itemType(it.toLower().remove(" ").trimmed());
 
   if(itemType == "book")
     {
