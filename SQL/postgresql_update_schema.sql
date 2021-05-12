@@ -1387,7 +1387,7 @@ ALTER TABLE videogame_copy_info ADD status TEXT;
 
 ALTER TABLE book ADD url TEXT;
 
-/* Release 2021.05.10 */
+/* Release 2021.05.15 */
 
 CREATE OR REPLACE FUNCTION delete_grey_literature() RETURNS trigger AS '
 BEGIN

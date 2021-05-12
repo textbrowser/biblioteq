@@ -1521,11 +1521,13 @@ void biblioteq::slotAllGo(void)
       if(type == "Grey Literature")
 	str = "SELECT DISTINCT grey_literature.document_title, "
 	  "grey_literature.document_id, "
-	  "'', grey_literature.document_date, "
+	  "'', "
+	  "grey_literature.document_date, "
 	  "'', "
 	  "'', "
-	  "0.00, '', "
-	  "1, "
+	  "0.00, "
+	  "'', "
+	  "1 AS quantity, "
 	  "grey_literature.location, "
 	  "1 - COUNT(item_borrower.item_oid) AS availability, "
 	  "COUNT(item_borrower.item_oid) AS total_reserved, "
@@ -1542,11 +1544,13 @@ void biblioteq::slotAllGo(void)
       else if(type == "Photograph Collection")
 	str = "SELECT DISTINCT photograph_collection.title, "
 	  "photograph_collection.id, "
-	  "'', '', "
 	  "'', "
 	  "'', "
-	  "0.00, '', "
-	  "1, "
+	  "'', "
+	  "'', "
+	  "0.00, "
+	  "'', "
+	  "1 AS quantity, "
 	  "photograph_collection.location, "
 	  "0 AS availability, "
 	  "0 AS total_reserved, "
@@ -2069,7 +2073,8 @@ void biblioteq::slotAllGo(void)
 	  if(al.available->isChecked())
 	    {
 	      if(type == "Grey Literature")
-		str.append("HAVING (1 - COUNT(item_borrower.item_oid)) > 0 ");
+		str.append
+		  ("HAVING (quantity - COUNT(item_borrower.item_oid)) > 0 ");
 	      else
 		str.append
 		  (QString("HAVING (%1.quantity - "
