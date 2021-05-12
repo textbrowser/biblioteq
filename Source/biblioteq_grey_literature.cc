@@ -1,4 +1,5 @@
 #include "biblioteq.h"
+#include "biblioteq_borrowers_editor.h"
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_grey_literature.h"
 #include "biblioteq_pdfreader.h"
@@ -150,7 +151,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
     m_ui.type->addItem(tr("UNKNOWN"));
 
 #ifdef Q_OS_MAC
-  foreach(QToolButton *tool_button, findChildren<QToolButton *> ())
+  foreach(auto tool_button, findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
     ("QToolButton {border: none; padding-right: 10px}"
@@ -335,7 +336,7 @@ void biblioteq_grey_literature::createFile(const QByteArray &bytes,
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       QString errorstr("");
-      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+      auto value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -457,7 +458,7 @@ void biblioteq_grey_literature::insertDatabase(void)
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       QString errorstr("");
-      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+      auto value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -618,12 +619,12 @@ void biblioteq_grey_literature::modify(const int state)
       activateWindow();
       raise();
 
-      QSqlRecord record(query.record());
+      auto record(query.record());
 
       for(int i = 0; i < record.count(); i++)
 	{
-	  QString fieldName(record.fieldName(i));
-	  QVariant variant(record.field(i).value());
+	  auto fieldName(record.fieldName(i));
+	  auto variant(record.field(i).value());
 
 	  if(fieldName == "author")
 	    m_ui.author->setMultipleLinks
@@ -691,7 +692,7 @@ void biblioteq_grey_literature::modify(const int state)
 	      ("greyliterature_search", "notes", variant.toString().trimmed());
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+      foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);
@@ -740,7 +741,7 @@ void biblioteq_grey_literature::populateFiles(void)
       {
 	totalRows += 1;
 
-	QSqlRecord record(query.record());
+	auto record(query.record());
 
 	for(int i = 0; i < record.count(); i++)
 	  {
@@ -787,13 +788,13 @@ void biblioteq_grey_literature::populateFiles(void)
     {
       qmain->getUI().table->setSortingEnabled(false);
 
-      QStringList names(qmain->getUI().table->columnNames());
+      auto names(qmain->getUI().table->columnNames());
 
       for(int i = 0; i < names.size(); i++)
 	if(names.at(i) == "File Count")
 	  {
-	    qmain->getUI().table->item(m_row, i)->
-	      setText(QString::number(count));
+	    qmain->getUI().table->item(m_row, i)->setText
+	      (QString::number(count));
 	    break;
 	  }
 
@@ -849,7 +850,7 @@ void biblioteq_grey_literature::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -875,7 +876,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       QApplication::processEvents();
 
       QProgressDialog progress(this);
-      QStringList files(fileDialog.selectedFiles());
+      auto files(fileDialog.selectedFiles());
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
@@ -890,7 +891,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-	  const QString &fileName(files.at(i));
+	  auto const &fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
@@ -937,7 +938,7 @@ void biblioteq_grey_literature::slotCancel(void)
 
 void biblioteq_grey_literature::slotDeleteFiles(void)
 {
-  QModelIndexList list(m_ui.files->selectionModel()->selectedRows(MYOID));
+  auto list(m_ui.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     {
@@ -979,7 +980,7 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 
 void biblioteq_grey_literature::slotExportFiles(void)
 {
-  QModelIndexList list(m_ui.files->selectionModel()->selectedRows(MYOID));
+  auto list(m_ui.files->selectionModel()->selectedRows(MYOID));
 
   if(list.isEmpty())
     return;
@@ -1048,7 +1049,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 
   if(item->column() != DESCRIPTION || m_engWindowTitle != "Modify")
     {
-      QTableWidgetItem *item1 = m_ui.files->item(item->row(), FILE);
+      auto item1 = m_ui.files->item(item->row(), FILE);
 
       if(!item1)
 	return;
@@ -1089,19 +1090,19 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  QTableWidgetItem *item1 = m_ui.files->item(item->row(), DESCRIPTION);
+  auto item1 = m_ui.files->item(item->row(), DESCRIPTION);
 
   if(!item1)
     return;
 
-  QString description(item1->text());
-  QTableWidgetItem *item2 = m_ui.files->item(item->row(), MYOID);
+  auto description(item1->text());
+  auto item2 = m_ui.files->item(item->row(), MYOID);
 
   if(!item2)
     return;
 
   QString text("");
-  bool ok = true;
+  auto ok = true;
 
   text = QInputDialog::getText(this,
 			       tr("BiblioteQ: File Description"),
@@ -1114,7 +1115,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
     return;
 
   QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
+  auto myoid(item2->text());
 
   query.prepare("UPDATE grey_literature_files SET description = ? "
 		"WHERE item_oid = ? AND myoid = ?");
@@ -1163,7 +1164,7 @@ void biblioteq_grey_literature::slotGo(void)
 	"FROM grey_literature WHERE ";
 
       QString ESCAPE("");
-      QString UNACCENT(qmain->unaccent());
+      auto UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -1372,7 +1373,7 @@ void biblioteq_grey_literature::slotReset(void)
 
   if(action != nullptr)
     {
-      QList<QAction *> actions = m_ui.resetButton->menu()->actions();
+      auto actions = m_ui.resetButton->menu()->actions();
 
       if(actions.size() < 12)
 	{
@@ -1514,6 +1515,25 @@ void biblioteq_grey_literature::slotReset(void)
 
 void biblioteq_grey_literature::slotShowUsers(void)
 {
+  biblioteq_borrowers_editor *borrowerseditor = nullptr;
+  int state = 0;
+
+  if(!m_ui.okButton->isHidden())
+    state = biblioteq::EDITABLE;
+  else
+    state = biblioteq::VIEW_ONLY;
+
+  borrowerseditor = new biblioteq_borrowers_editor
+    (qobject_cast<QWidget *> (this),
+     qmain,
+     static_cast<biblioteq_item *> (this),
+     m_ui.copies->value(),
+     m_oid,
+     m_ui.id->text().trimmed(),
+     font(),
+     "Grey Literature",
+     state);
+  borrowerseditor->showUsers();
 }
 
 void biblioteq_grey_literature::updateDatabase(void)
@@ -1618,12 +1638,12 @@ void biblioteq_grey_literature::updateDatabase(void)
     {
       qmain->getUI().table->setSortingEnabled(false);
 
-      QStringList names(qmain->getUI().table->columnNames());
+      auto names(qmain->getUI().table->columnNames());
 
       for(int i = 0; i < names.size(); i++)
 	{
 	  QString string("");
-	  bool set = false;
+	  auto set = false;
 
 	  if(names.at(i) == "Accession Number" || names.at(i) == "Job Number")
 	    {
@@ -1699,7 +1719,7 @@ void biblioteq_grey_literature::updateDatabase(void)
       qmain->getUI().table->setSortingEnabled(true);
       qmain->getUI().table->updateToolTips(m_row);
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+      foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       qmain->slotResizeColumns();
