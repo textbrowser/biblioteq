@@ -14,16 +14,23 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
   auto image = QImage();
   auto type(typeArg.toLower());
 
-  if(type == "photograph collection")
+  if(type == "grey literature" ||
+     type == "photograph collection")
     type = type.replace(" ", "_");
   else
     type = type.remove(" ");
 
-  if(type == "book" || type == "cd" || type == "dvd" || type == "journal" ||
-     type == "magazine" || type == "photograph_collection" ||
+  if(type == "book" ||
+     type == "cd" ||
+     type == "dvd" ||
+     type == "grey_literature" ||
+     type == "journal" ||
+     type == "magazine" ||
+     type == "photograph_collection" ||
      type == "videogame")
     {
-      if(which == "back_cover" || which == "front_cover" ||
+      if(which == "back_cover" ||
+	 which == "front_cover" ||
 	 which == "image_scaled")
 	{
 	  query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
@@ -175,8 +182,12 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
   QString str = "";
   auto type(typeArg.toLower());
 
-  if(type == "book" || type == "cd" || type == "dvd" ||
-     type == "journal" || type == "magazine" || type == "video game")
+  if(type == "book" ||
+     type == "cd" ||
+     type == "dvd" ||
+     type == "journal" ||
+     type == "magazine" ||
+     type == "video game")
     {
       type = type.remove(" ");
       querystr = QString("SELECT description FROM %1 WHERE myoid = ?").arg
@@ -357,21 +368,25 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
   id = idArg;
   itemType = itemTypeArg.toLower();
 
-  if(itemType == "photograph collection")
+  if(itemType == "grey literature" || itemType == "photograph collection")
     itemType = itemType.replace(" ", "_");
   else
     itemType = itemType.remove(" ");
 
-  if(itemType == "journal" || itemType == "magazine")
+  if(itemType == "book")
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
+		       "id IS NOT NULL").arg(itemType);
+  else if(itemType == "cd" ||
+	  itemType == "dvd" ||
+	  itemType == "photograph_collection" ||
+	  itemType == "videogame")
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
+  else if(itemType == "grey_literature")
+    querystr = "SELECT myoid FROM grey_literature WHERE document_id = ?";
+  else if(itemType == "journal" || itemType == "magazine")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
 		       "issuevolume = ? AND issueno = ? AND "
 		       "id IS NOT NULL").arg(itemType);
-  else if(itemType == "book")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "id IS NOT NULL").arg(itemType);
-  else if(itemType == "cd" || itemType == "dvd" ||
-	  itemType == "photograph_collection" || itemType == "videogame")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
   else
     return oid;
 
@@ -446,6 +461,11 @@ QString biblioteq_misc_functions::getTotalReserved(const QSqlDatabase &db,
 		       "FROM item_borrower WHERE "
 		       "item_borrower.item_oid = %1 AND "
 		       "item_borrower.type = '%2'").arg(oid).arg(itemTypeArg);
+  else if(itemTypeArg == "grey literature")
+    querystr = QString("SELECT COUNT(item_borrower.item_oid) "
+		       "FROM item_borrower WHERE "
+		       "item_borrower.item_oid = %1 AND "
+		       "item_borrower.type = 'Grey Literature'").arg(oid);
   else
     return str;
 
@@ -694,6 +714,9 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 
   if(!map.contains("DVD"))
     map["DVD"] = "1";
+
+  if(!map.contains("Grey Literature"))
+    map["Grey Literature"] = "1";
 
   if(!map.contains("Journal"))
     map["Journal"] = "1";
