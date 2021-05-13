@@ -1502,6 +1502,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	  }
 	else if(m_roles.isEmpty() && (typefilter == "All" ||
 				      typefilter == "All Available" ||
+				      typefilter == "Grey Literature" ||
 				      typefilter == "Books" ||
 				      typefilter == "DVDs" ||
 				      typefilter == "Journals" ||
