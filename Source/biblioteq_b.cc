@@ -4909,6 +4909,15 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE magazine_copy_info ADD status TEXT");
   list.append("ALTER TABLE videogame_copy_info ADD status TEXT");
   list.append("ALTER TABLE book ADD url");
+  list.append
+    ("CREATE TRIGGER grey_literature_purge_trigger AFTER DELETE ON "
+     "grey_literature "
+     "FOR EACH row "
+     "BEGIN "
+     "DELETE FROM item_borrower WHERE item_oid = old.myoid; "
+     "DELETE FROM member_history WHERE item_oid = old.myoid AND "
+     "type = old.type; "
+     "END;");
 
   QString errors("<html>");
   int ct = 1;
