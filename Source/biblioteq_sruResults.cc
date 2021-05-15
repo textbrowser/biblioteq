@@ -13,7 +13,7 @@ biblioteq_sruresults::biblioteq_sruresults
 
   m_records = list;
   m_magazine = magazine_arg;
-  setWindowModality(Qt::WindowModal);
+  setWindowModality(Qt::ApplicationModal);
   m_ui.setupUi(this);
 
   for(int i = 0; i < m_records.size(); i++)

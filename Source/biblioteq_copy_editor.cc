@@ -28,12 +28,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
 {
   m_parent = parent;
   qmain = biblioteq;
-
-  if(m_parent == qmain->getMembersBrowser())
-    setWindowModality(Qt::ApplicationModal);
-  else
-    setWindowModality(Qt::WindowModal);
-
+  setWindowModality(Qt::ApplicationModal);
   m_cb.setupUi(this);
   m_cb.deleteButton->setVisible(false);
   m_bitem = bitemArg;

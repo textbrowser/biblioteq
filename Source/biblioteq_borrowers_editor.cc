@@ -15,7 +15,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
  const QString &itemTypeArg,
  const int stateArg):QDialog(parent)
 {
-  setWindowModality(Qt::WindowModal);
+  setWindowModality(Qt::ApplicationModal);
   m_bd.setupUi(this);
   m_ioid = ioidArg;
   m_quantity = quantityArg;

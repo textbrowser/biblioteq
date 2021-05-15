@@ -15,12 +15,7 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
  const QString &uniqueIdArg):biblioteq_copy_editor(parent, biblioteq)
 {
   qmain = biblioteq;
-
-  if(parent == qmain->getMembersBrowser())
-    setWindowModality(Qt::ApplicationModal);
-  else
-    setWindowModality(Qt::WindowModal);
-
+  setWindowModality(Qt::ApplicationModal);
   m_cb.setupUi(this);
   m_bitem = bitemArg;
   m_ioid = ioidArg;

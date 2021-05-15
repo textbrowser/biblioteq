@@ -3450,7 +3450,7 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
   QScopedPointer<QPrintPreviewDialog> printDialog
     (new QPrintPreviewDialog(&printer, this));
 
-  printDialog->setWindowModality(Qt::WindowModal);
+  printDialog->setWindowModality(Qt::ApplicationModal);
   printer.setColorMode(QPrinter::GrayScale);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
   printer.setPageOrientation(QPageLayout::Landscape);
@@ -3622,7 +3622,7 @@ void biblioteq::slotPrintViewPreview(void)
   QScopedPointer<QPrintPreviewDialog> printDialog
     (new QPrintPreviewDialog(&printer, this));
 
-  printDialog->setWindowModality(Qt::WindowModal);
+  printDialog->setWindowModality(Qt::ApplicationModal);
   printer.setColorMode(QPrinter::GrayScale);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
   printer.setPageOrientation(QPageLayout::Landscape);

@@ -13,7 +13,7 @@ biblioteq_z3950results::biblioteq_z3950results
 
   m_magazine = magazine_arg;
   m_recordSyntax = recordSyntax;
-  setWindowModality(Qt::WindowModal);
+  setWindowModality(Qt::ApplicationModal);
   m_ui.setupUi(this);
 
   for(i = 0; i < list.size(); i++)
