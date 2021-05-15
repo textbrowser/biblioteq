@@ -174,6 +174,7 @@ CREATE TABLE grey_literature						\
     location	        TEXT,						\
     myoid		BIGINT UNIQUE,					\
     notes		TEXT,						\
+    quantity            INTEGER NOT NULL DEFAULT 1,			\
     type		VARCHAR(16) NOT NULL DEFAULT 'Grey Literature'	\
 );									\
 									\

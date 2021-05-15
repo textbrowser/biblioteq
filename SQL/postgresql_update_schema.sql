@@ -1389,6 +1389,8 @@ ALTER TABLE book ADD url TEXT;
 
 /* Release 2021.05.15 */
 
+ALTER TABLE grey_literature ADD quantity INTEGER NOT NULL DEFAULT 1;
+
 CREATE OR REPLACE FUNCTION delete_grey_literature() RETURNS trigger AS '
 BEGIN
 	DELETE FROM item_borrower WHERE item_oid = old.myoid;

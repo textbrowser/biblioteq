@@ -1527,7 +1527,7 @@ void biblioteq::slotAllGo(void)
 	  "'', "
 	  "0.00, "
 	  "'', "
-	  "1 AS quantity, "
+	  "grey_literature.quantity, "
 	  "grey_literature.location, "
 	  "1 - COUNT(item_borrower.item_oid) AS availability, "
 	  "COUNT(item_borrower.item_oid) AS total_reserved, "
