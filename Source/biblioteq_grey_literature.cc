@@ -572,7 +572,7 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.resetButton->setVisible(false);
 
       if(qmain->isGuest())
-	m_ui.showUserButton->setVisible(false);
+	m_ui.showUserButton->setEnabled(false);
       else
 	m_ui.showUserButton->setEnabled(true);
     }
@@ -820,7 +820,7 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.location->insertItem(0, tr("Any"));
   m_ui.location->setCurrentIndex(0);
   m_ui.okButton->setText(tr("&Search"));
-  m_ui.showUserButton->setVisible(false);
+  m_ui.showUserButton->setEnabled(false);
   m_ui.type->insertItem(0, tr("Any"));
   m_ui.type->setCurrentIndex(0);
 
@@ -1773,7 +1773,7 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.resetButton->setVisible(false);
 
       if(qmain->isGuest())
-	m_ui.showUserButton->setVisible(false);
+	m_ui.showUserButton->setEnabled(false);
       else
 	m_ui.showUserButton->setEnabled(true);
 
