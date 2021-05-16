@@ -27,30 +27,22 @@ INCLUDEPATH     += /usr/include/poppler/qt5
 LIBS            += -lpoppler-qt5
 }
 
+QMAXE_CXX = clang++
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wall \
                           -Wcast-align \
                           -Wcast-qual \
-                          -Wdouble-promotion \
-                          -Werror=format-security \
                           -Wextra \
-                          -Wfloat-equal \
-                          -Wformat-overflow=2 \
                           -Wformat=2 \
-                          -Wlogical-op \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \
                           -Wstrict-overflow=5 \
-                          -Wundef \
-                          -Wzero-as-null-pointer-constant \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-                          -mtune=generic \
                           -pedantic \
-                          -pie \
                           -std=c++11
 
 QMAKE_DISTCLEAN += -r temp
