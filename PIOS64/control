@@ -6,6 +6,6 @@ Priority: optional
 Section: Database
 Version: 2021.05.15
 Description: BiblioteQ
- Welcome to BiblioteQ on ARM!
+ Welcome to BiblioteQ on ARM64!
  BiblioteQ is governed by a BSD license. Enjoy!
  A biblioteq.desktop file will also be installed in /usr/share/applications/.
