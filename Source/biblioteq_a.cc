@@ -2415,7 +2415,7 @@ void biblioteq::slotDelete(void)
   progress.repaint();
   QApplication::processEvents();
 
-  foreach(auto const &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
 
@@ -2770,7 +2770,7 @@ void biblioteq::slotDuplicate(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(auto const &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -3146,7 +3146,7 @@ void biblioteq::slotModify(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(auto const &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -4611,7 +4611,7 @@ void biblioteq::slotViewDetails(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(auto const &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
