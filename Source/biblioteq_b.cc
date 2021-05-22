@@ -3999,8 +3999,8 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
   ** The size of no_image.png is 126x187.
   */
 
-  QImage b(back);
-  QImage f(front);
+  auto b(back);
+  auto f(front);
 
   if(b.isNull())
     b = QImage(":/no_image.png");

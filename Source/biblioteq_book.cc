@@ -820,7 +820,7 @@ void biblioteq_book::modify(const int state)
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
 
-      QList<QAction *> actions = id.resetButton->menu()->actions();
+      auto actions = id.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -1671,7 +1671,7 @@ void biblioteq_book::populateAfterZ3950
 	(id.title, QColor(162, 205, 90));
     }
 
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+  foreach(auto textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }
 
@@ -1707,7 +1707,7 @@ void biblioteq_book::populateFiles(void)
       {
 	totalRows += 1;
 
-	QSqlRecord record(query.record());
+	auto record(query.record());
 
 	for(int i = 0; i < record.count(); i++)
 	  {
@@ -1796,7 +1796,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      QList<QAction *> actions = id.resetButton->menu()->actions();
+      auto actions = id.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -1833,7 +1833,7 @@ void biblioteq_book::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -1858,7 +1858,7 @@ void biblioteq_book::slotAttachFiles(void)
       QApplication::processEvents();
 
       QProgressDialog progress(this);
-      QStringList files(fileDialog.selectedFiles());
+      auto files(fileDialog.selectedFiles());
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
@@ -1873,7 +1873,7 @@ void biblioteq_book::slotAttachFiles(void)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
-      const QString &fileName(files.at(i));
+	  const auto &fileName(files.at(i));
 
 	  file.setFileName(fileName);
 
@@ -1967,8 +1967,8 @@ void biblioteq_book::slotConvertISBN13to10(void)
       return;
     }
 
-  QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
   QString z("");
+  auto isbnnum(id.isbn13->text().trimmed().mid(3, 9));
   int total = 0;
 
   for(int i = 0; i < 9; i++)
@@ -1994,8 +1994,7 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 
 void biblioteq_book::slotDeleteFiles(void)
 {
-  QModelIndexList list
-    (id.files->selectionModel()->selectedRows(Columns::MYOID));
+  auto list(id.files->selectionModel()->selectedRows(Columns::MYOID));
 
   if(list.isEmpty())
     {
@@ -2065,7 +2064,7 @@ void biblioteq_book::slotDownloadImage(void)
       return;
     }
 
-  QString downloadType(action->property("download_type").toString());
+  auto downloadType(action->property("download_type").toString());
 
   if(downloadType.contains("back"))
     m_imageBuffer.setProperty("which", "back");
@@ -2092,9 +2091,9 @@ void biblioteq_book::slotDownloadImage(void)
 
       url.setScheme("https");
 
-      QHash<QString, QString> hash(qmain->getAmazonHash());
       QNetworkProxy proxy;
       QString type("none");
+      auto hash(qmain->getAmazonHash());
 
       if(downloadType.contains("back"))
 	type = hash.value("back_proxy_type").toLower().trimmed();
@@ -2114,7 +2113,7 @@ void biblioteq_book::slotDownloadImage(void)
 	      ** This is required to resolve an odd error.
 	      */
 
-	      QNetworkReply *reply = m_imageManager->get
+	      auto reply = m_imageManager->get
 		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	      if(reply)
@@ -2200,9 +2199,9 @@ void biblioteq_book::slotDownloadImage(void)
       string.replace("$value-$size", id.id->text().trimmed() + "-L");
       url = QUrl::fromUserInput(string);
 
-      QHash<QString, QString> hash(qmain->getOpenLibraryImagesHash());
       QNetworkProxy proxy;
-      QString type(hash.value("proxy_type").toLower().trimmed());
+      auto hash(qmain->getOpenLibraryImagesHash());
+      auto type(hash.value("proxy_type").toLower().trimmed());
 
       if(type == "none")
 	{
@@ -2217,7 +2216,7 @@ void biblioteq_book::slotDownloadImage(void)
 	      ** This is required to resolve an odd error.
 	      */
 
-	      QNetworkReply *reply = m_imageManager->get
+	      auto reply = m_imageManager->get
 		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	      if(reply)
@@ -2280,8 +2279,7 @@ void biblioteq_book::slotDownloadImage(void)
 	}
     }
 
-  biblioteq_item_working_dialog *dialog = createImageDownloadDialog
-    (downloadType);
+  auto dialog = createImageDownloadDialog(downloadType);
 
   if(!dialog)
     {
@@ -2289,7 +2287,7 @@ void biblioteq_book::slotDownloadImage(void)
       return;
     }
 
-  QNetworkReply *reply = m_imageManager->get(QNetworkRequest(url));
+  auto reply = m_imageManager->get(QNetworkRequest(url));
 
   if(!reply)
     {
@@ -2312,8 +2310,7 @@ void biblioteq_book::slotDownloadImage(void)
 
 void biblioteq_book::slotExportFiles(void)
 {
-  QModelIndexList list
-    (id.files->selectionModel()->selectedRows(Columns::MYOID));
+  auto list(id.files->selectionModel()->selectedRows(Columns::MYOID));
 
   if(list.isEmpty())
     return;
@@ -2381,7 +2378,7 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
   if(item->column() != Columns::DESCRIPTION || m_engWindowTitle != "Modify")
     {
-      QTableWidgetItem *item1 = id.files->item(item->row(), Columns::FILE);
+      auto item1 = id.files->item(item->row(), Columns::FILE);
 
       if(!item1)
 	return;
@@ -2422,19 +2419,19 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  QTableWidgetItem *item1 = id.files->item(item->row(), Columns::DESCRIPTION);
+  auto item1 = id.files->item(item->row(), Columns::DESCRIPTION);
 
   if(!item1)
     return;
 
-  QString description(item1->text());
-  QTableWidgetItem *item2 = id.files->item(item->row(), Columns::MYOID);
+  auto description(item1->text());
+  auto item2 = id.files->item(item->row(), Columns::MYOID);
 
   if(!item2)
     return;
 
-  bool ok = true;
-  QString text
+  auto ok = true;
+  auto text
     (QInputDialog::getText(this,
 			   tr("BiblioteQ: File Description"),
 			   tr("Description"), QLineEdit::Normal,
@@ -2444,7 +2441,7 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
     return;
 
   QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
+  auto myoid(item2->text());
 
   query.prepare("UPDATE book_files SET description = ? "
 		"WHERE item_oid = ? AND myoid = ?");
@@ -2827,7 +2824,7 @@ void biblioteq_book::slotGo(void)
 	query.bindValue(27, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	  auto value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
@@ -3020,7 +3017,7 @@ void biblioteq_book::slotGo(void)
 		    {
 		      if(i == 0)
 			{
-			  QPixmap pixmap
+			  auto pixmap
 			    (QPixmap::fromImage(id.front_image->m_image));
 
 			  if(!pixmap.isNull())
@@ -3123,7 +3120,7 @@ void biblioteq_book::slotGo(void)
 		  qmain->getUI().table->setSortingEnabled(true);
 		  qmain->getUI().table->updateToolTips(m_row);
 
-		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
@@ -3207,7 +3204,7 @@ void biblioteq_book::slotGo(void)
 	}
 
       QString ESCAPE("");
-      QString UNACCENT(qmain->unaccent());
+      auto UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -3404,7 +3401,7 @@ void biblioteq_book::slotOpenLibraryCanceled(void)
 
 void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
 {
-  bool canceled = false;
+  auto canceled = false;
 
   if(m_openLibraryWorking)
     {
@@ -3418,8 +3415,8 @@ void biblioteq_book::slotOpenLibraryDownloadFinished(bool error)
 
 void biblioteq_book::slotOpenLibraryDownloadFinished(void)
 {
+  auto error = false;
   auto reply = qobject_cast<QNetworkReply *> (sender());
-  bool error = false;
 
   if(reply)
     {
@@ -3427,7 +3424,7 @@ void biblioteq_book::slotOpenLibraryDownloadFinished(void)
       reply->deleteLater();
     }
 
-  bool canceled = false;
+  auto canceled = false;
 
   if(m_openLibraryWorking)
     {
@@ -3448,7 +3445,7 @@ void biblioteq_book::slotOpenLibraryError(QNetworkReply::NetworkError error)
 
   if(reply)
     {
-      QString error(reply->errorString());
+      auto error(reply->errorString());
 
       reply->deleteLater();
 
@@ -3485,8 +3482,8 @@ void biblioteq_book::slotOpenLibraryQuery(void)
       QApplication::processEvents();
     }
 
-  QHash<QString, QString> hash(qmain->getOpenLibraryItemsHash());
   QString searchstr("");
+  auto hash(qmain->getOpenLibraryItemsHash());
 
   searchstr = hash.value("url_isbn");
 
@@ -3502,7 +3499,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 
   QNetworkProxy proxy;
   QString type("none");
-  QUrl url(QUrl::fromUserInput(searchstr));
+  auto url(QUrl::fromUserInput(searchstr));
 
   if(hash.contains("proxy_type"))
     type = hash.value("proxy_type").toLower().trimmed();
@@ -3520,7 +3517,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 	  ** This is required to resolve an odd error.
 	  */
 
-	  QNetworkReply *reply = m_openLibraryManager->get
+	  auto reply = m_openLibraryManager->get
 	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	  if(reply)
@@ -3582,7 +3579,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 	}
     }
 
-  QNetworkReply *reply = m_openLibraryManager->get(QNetworkRequest(url));
+  auto reply = m_openLibraryManager->get(QNetworkRequest(url));
 
   if(reply)
     {
@@ -3640,7 +3637,7 @@ void biblioteq_book::slotOpenLibrarySslErrors(const QList<QSslError> &list)
 
 void biblioteq_book::slotParseMarcTags(void)
 {
-  QString text(id.marc_tags->toPlainText().trimmed());
+  auto text(id.marc_tags->toPlainText().trimmed());
 
   if(text.startsWith("<?xml version=\"1.0\"?>"))
     populateAfterSRU(text);
@@ -3792,7 +3789,7 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
 void biblioteq_book::slotPrintCallDewey(void)
 {
   QString html("");
-  QStringList list
+  auto list
     ((id.callnum->text().trimmed() + " " +
       id.deweynum->text().trimmed()).split(QRegExp("\\W+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
@@ -3879,7 +3876,7 @@ void biblioteq_book::slotReset(void)
 
   if(action != nullptr)
     {
-      QList<QAction *> actions = id.resetButton->menu()->actions();
+      auto actions = id.resetButton->menu()->actions();
 
       if(actions.size() < 27)
 	{
@@ -4165,7 +4162,7 @@ void biblioteq_book::slotSRUCanceled(void)
 
 void biblioteq_book::slotSRUDownloadFinished(bool error)
 {
-  bool canceled = false;
+  auto canceled = false;
 
   if(m_sruWorking)
     {
@@ -4188,7 +4185,7 @@ void biblioteq_book::slotSRUDownloadFinished(void)
       reply->deleteLater();
     }
 
-  bool canceled = false;
+  auto canceled = false;
 
   if(m_sruWorking)
     {
@@ -4209,7 +4206,7 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
 
   if(reply)
     {
-      QString error(reply->errorString());
+      auto error(reply->errorString());
 
       reply->deleteLater();
 
@@ -4247,7 +4244,7 @@ void biblioteq_book::slotSRUQuery(void)
     }
 
   QString name("");
-  bool found = false;
+  auto found = false;
 
   for(int i = 0; i < id.sruQueryButton->actions().size(); i++)
     if(id.sruQueryButton->actions().at(i)->isChecked())
@@ -4260,8 +4257,8 @@ void biblioteq_book::slotSRUQuery(void)
   if(!found)
     name = qmain->getPreferredSRUSite();
 
-  QHash<QString, QString> hash(qmain->getSRUHash(name));
   QString searchstr("");
+  auto hash(qmain->getSRUHash(name));
 
   searchstr = hash.value("url_isbn");
 
@@ -4277,7 +4274,7 @@ void biblioteq_book::slotSRUQuery(void)
 
   QNetworkProxy proxy;
   QString type("none");
-  QUrl url(QUrl::fromUserInput(searchstr));
+  auto url(QUrl::fromUserInput(searchstr));
 
   if(hash.contains("proxy_type"))
     type = hash.value("proxy_type").toLower().trimmed();
@@ -4295,7 +4292,7 @@ void biblioteq_book::slotSRUQuery(void)
 	  ** This is required to resolve an odd error.
 	  */
 
-	  QNetworkReply *reply = m_sruManager->get
+	  auto reply = m_sruManager->get
 	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	  if(reply)
@@ -4357,7 +4354,7 @@ void biblioteq_book::slotSRUQuery(void)
 	}
     }
 
-  QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
+  auto reply = m_sruManager->get(QNetworkRequest(url));
 
   if(reply)
     {
@@ -4477,8 +4474,7 @@ void biblioteq_book::slotSelectImage(void)
 
 void biblioteq_book::slotShowPDF(void)
 {
-  QModelIndexList list
-    (id.files->selectionModel()->selectedRows(Columns::MYOID));
+  auto list(id.files->selectionModel()->selectedRows(Columns::MYOID));
 
   if(list.isEmpty())
     return;
@@ -4581,7 +4577,7 @@ void biblioteq_book::slotZ3950Query(void)
     searchstr = QString("@attr 1=7 @or %1 %2").arg(isbns.at(0)).
       arg(isbns.at(1));
 
-  bool found = false;
+  auto found = false;
 
   for(i = 0; i < id.z3950QueryButton->actions().size(); i++)
     if(id.z3950QueryButton->actions().at(i)->isChecked())
@@ -4611,7 +4607,7 @@ void biblioteq_book::slotZ3950Query(void)
       m_thread->msleep(100UL);
     }
 
-  bool canceled = working.wasCanceled(); // QProgressDialog::close()!
+  auto canceled = working.wasCanceled(); // QProgressDialog::close()!
 
   working.close();
   working.reset(); // Qt 5.5.x adjustment.
