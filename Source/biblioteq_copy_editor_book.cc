@@ -187,6 +187,14 @@ void biblioteq_copy_editor_book::changeEvent(QEvent *event)
   QDialog::changeEvent(event);
 }
 
+void biblioteq_copy_editor_book::clearCopiesList(void)
+{
+  for(int i = 0; i < m_copies.size(); i++)
+    delete m_copies.at(i);
+
+  m_copies.clear();
+}
+
 void biblioteq_copy_editor_book::closeEvent(QCloseEvent *event)
 {
   Q_UNUSED(event);
@@ -702,8 +710,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
       biblioteq_misc_functions::saveQuantity
-	(qmain->getDB(), m_ioid, m_copies.size(),
-	 m_itemType, errorstr);
+	(qmain->getDB(), m_ioid, m_copies.size(), m_itemType, errorstr);
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())

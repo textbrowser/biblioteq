@@ -74,6 +74,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   int m_quantity;
   QString saveCopies(void);
   void changeEvent(QEvent *event);
+  void clearCopiesList(void);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
 

@@ -71,11 +71,11 @@ class biblioteq_copy_editor: public QDialog
   int m_quantity;
   QString saveCopies(void);
   void changeEvent(QEvent *event);
+  void clearCopiesList(void);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
 
  protected:
-  void clearCopiesList(void);
   void setGlobalFonts(const QFont &font);
 
  protected slots:
