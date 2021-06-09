@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2021.05.15"
+#define BIBLIOTEQ_VERSION "2021.06.12"
 
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
