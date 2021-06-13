@@ -19,6 +19,7 @@ if [ -r $postgresql ]; then
     mv 'pgsql/pgAdmin 4/venv/DLLs/libcrypto-1_1.dll' \
        Libraries.win32/postgresql/.
     mv 'pgsql/pgAdmin 4/venv/DLLs/libssl-1_1.dll' Libraries.win32/postgresql/.
+    mv pgsql/bin/libx*.dll Libraries.win32/postgresql/.
     chmod +r,+w,-x Libraries.win32/postgresql/*
     rm -f $postgresql
     rm -fr pgsql
