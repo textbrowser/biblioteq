@@ -55,7 +55,6 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-			  -mtune=native \
                           -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp

@@ -51,7 +51,6 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-                          -mtune=generic \
                           -pedantic
 
 lessThan(QT_MAJOR_VERSION, 5) {

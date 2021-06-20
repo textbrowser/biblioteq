@@ -28,7 +28,6 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wpointer-arith \
                           -Wstrict-overflow=5 \
                           -fwrapv \
-                          -mtune=generic \
                           -pedantic \
                           -pie
 QMAKE_DISTCLEAN += -r temp
