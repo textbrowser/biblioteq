@@ -90,11 +90,11 @@ void biblioteq_generic_thread::run(void)
       }
     case Z3950_QUERY:
       {
-	QHash<QString, QString> hash(qmain->getZ3950Hash(m_z3950Name));
-	QString recordSyntax(hash.value("RecordSyntax").trimmed());
 	ZOOM_connection zoomConnection = nullptr;
-	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = nullptr;
+	auto hash(qmain->getZ3950Hash(m_z3950Name));
+	auto options = ZOOM_options_create();
+	auto recordSyntax(hash.value("RecordSyntax").trimmed());
 	const char *rec = nullptr;
 	size_t i = 0;
 
@@ -112,9 +112,9 @@ void biblioteq_generic_thread::run(void)
 	if(!hash.value("proxy_host").isEmpty() &&
 	   !hash.value("proxy_port").isEmpty())
 	  {
-	    QString value(QString("%1:%2").
-			  arg(hash.value("proxy_host")).
-			  arg(hash.value("proxy_port")));
+	    auto value(QString("%1:%2").
+		       arg(hash.value("proxy_host")).
+		       arg(hash.value("proxy_port")));
 
 	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }
@@ -139,7 +139,7 @@ void biblioteq_generic_thread::run(void)
 	  (zoomConnection,
 	   m_z3950SearchStr.toLatin1().constData());
 
-	QString format = hash.value("Format").trimmed().toLower();
+	auto format = hash.value("Format").trimmed().toLower();
 
 	if(format.isEmpty())
 	  format = "render";

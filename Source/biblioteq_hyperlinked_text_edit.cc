@@ -51,11 +51,11 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
   if(!qmain)
     return;
 
-  QString path(url.toString());
   QString searchKey("");
   QString searchType("");
   QString searchValue("");
   QStringList tmplist;
+  auto path(url.toString());
 
   tmplist = path.split("?");
 

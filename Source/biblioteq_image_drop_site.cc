@@ -84,7 +84,7 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 
   if(event)
     {
-      QString imgf = determineFormat(filename);
+      auto imgf = determineFormat(filename);
 
       if(imgf == "BMP" ||
 	 imgf == "JPG" || imgf == "JPEG" ||
@@ -262,7 +262,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 
   if(!m_doubleclicked)
     {
-      QPixmap pixmap(QPixmap::fromImage(m_image));
+      auto pixmap(QPixmap::fromImage(m_image));
 
       if(pixmap.isNull())
 	pixmap = QPixmap(":/no_image.png");
@@ -271,7 +271,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
     }
   else
     {
-      QPixmap pixmap(QPixmap::fromImage(m_image));
+      auto pixmap(QPixmap::fromImage(m_image));
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
