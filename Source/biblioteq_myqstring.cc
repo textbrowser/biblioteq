@@ -11,7 +11,7 @@ biblioteq_myqstring::biblioteq_myqstring(const char *str):QString(str)
 QString biblioteq_myqstring::escape(const QString &str,
 				    const bool caseinsensitive)
 {
-  QString mystr(str);
+  auto mystr(str);
 
   mystr = mystr.replace("'", "''");
 
@@ -24,7 +24,7 @@ QString biblioteq_myqstring::escape(const QString &str,
 QString biblioteq_myqstring::prepConfigString
 (const QString &str, const bool ignore_embedded_comments)
 {
-  QString mystr = str;
+  auto mystr = str;
 
   if(mystr.trimmed().startsWith("#"))
     return mystr.trimmed();
