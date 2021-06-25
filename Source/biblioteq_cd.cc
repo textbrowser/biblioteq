@@ -203,7 +203,7 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 	   qRound(0.95 * m_parentWid->size().height()));
 
 #ifdef Q_OS_MAC
-  foreach(QToolButton *tool_button, findChildren<QToolButton *> ())
+  foreach(auto tool_button, findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
     ("QToolButton {border: none; padding-right: 10px}"
@@ -394,7 +394,7 @@ void biblioteq_cd::modify(const int state)
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
 
-      QList<QAction *> actions = cd.resetButton->menu()->actions();
+      auto actions = cd.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -463,7 +463,7 @@ void biblioteq_cd::modify(const int state)
       activateWindow();
       raise();
 
-      QSqlRecord record(query.record());
+      auto record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -507,8 +507,7 @@ void biblioteq_cd::modify(const int state)
 	  else if(fieldname == "cddiskcount")
 	    cd.no_of_discs->setValue(var.toInt());
 	  else if(fieldname == "cdruntime")
-	    cd.runtime->setTime
-	      (QTime::fromString(var.toString(), "hh:mm:ss"));
+	    cd.runtime->setTime(QTime::fromString(var.toString(), "hh:mm:ss"));
 	  else if(fieldname == "location")
 	    {
 	      if(cd.location->findText(var.toString()) > -1)
@@ -595,7 +594,7 @@ void biblioteq_cd::modify(const int state)
 	    cd.accession_number->setText(var.toString());
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+      foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);
@@ -652,7 +651,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      QList<QAction *> actions = cd.resetButton->menu()->actions();
+      auto actions = cd.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -688,7 +687,7 @@ void biblioteq_cd::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -713,11 +712,11 @@ void biblioteq_cd::slotCloseTracksBrowser(void)
 
 void biblioteq_cd::slotComputeRuntime(void)
 {
-  int count = 0;
-  int secs = 0;
+  QSqlQuery query(qmain->getDB());
   QTime sum(0, 0, 0);
   QTime time(0, 0, 0);
-  QSqlQuery query(qmain->getDB());
+  int count = 0;
+  int secs = 0;
 
   query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, m_oid);
@@ -1078,9 +1077,8 @@ void biblioteq_cd::slotGo(void)
 	query.bindValue(21, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	    (qmain->getDB(),
-	     errorstr);
+	  auto value = biblioteq_misc_functions::getSqliteUniqueId
+	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
 	    query.bindValue(21, value);
@@ -1223,13 +1221,13 @@ void biblioteq_cd::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  QStringList names(qmain->getUI().table->columnNames());
+		  auto names(qmain->getUI().table->columnNames());
 
 		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(i == 0)
 			{
-			  QPixmap pixmap
+			  auto pixmap
 			    (QPixmap::fromImage(cd.front_image->m_image));
 
 			  if(!pixmap.isNull())
@@ -1319,7 +1317,7 @@ void biblioteq_cd::slotGo(void)
 		  qmain->getUI().table->setSortingEnabled(true);
 		  qmain->getUI().table->updateToolTips(m_row);
 
-		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
@@ -1419,7 +1417,7 @@ void biblioteq_cd::slotGo(void)
 	("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
-      QString UNACCENT(qmain->unaccent());
+      auto UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -1585,8 +1583,8 @@ void biblioteq_cd::slotInsertTrack(void)
   QStringList list;
   QTableWidgetItem *item = nullptr;
   QTimeEdit *timeEdit = nullptr;
+  auto trow = trd.table->currentRow();
   int i = 0;
-  int trow = trd.table->currentRow();
 
   if(trow < 0)
     trow = trd.table->rowCount();
@@ -1687,7 +1685,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   QStringList comboBoxList;
   QStringList list;
   QTableWidgetItem *item = nullptr;
-  QTimeEdit * timeEdit = nullptr;
+  QTimeEdit *timeEdit = nullptr;
   int i = -1;
   int j = 0;
 
@@ -1774,7 +1772,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     {
       if(query.isValid())
 	{
-	  QSqlRecord record(query.record());
+	  auto record(query.record());
 
 	  for(j = 0; j < record.count(); j++)
 	    {
@@ -1904,11 +1902,11 @@ void biblioteq_cd::slotQuery(void)
 
 void biblioteq_cd::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action != nullptr)
     {
-      QList<QAction *> actions = cd.resetButton->menu()->actions();
+      auto actions = cd.resetButton->menu()->actions();
 
       if(actions.size() < 22)
 	{
@@ -2195,11 +2193,11 @@ void biblioteq_cd::slotSaveTracks(void)
 
 	  if(trd.table->cellWidget(i, ALBUM_NUMBER) != nullptr)
 	    {
-	      QWidget *widget = trd.table->cellWidget(i, ALBUM_NUMBER);
+	      auto widget = trd.table->cellWidget(i, ALBUM_NUMBER);
 
 	      if(widget)
 		{
-		  QComboBox *comboBox = widget->findChild<QComboBox *> ();
+		  auto comboBox = widget->findChild<QComboBox *> ();
 
 		  if(comboBox)
 		    query.addBindValue(comboBox->currentText());
@@ -2278,7 +2276,7 @@ void biblioteq_cd::slotSaveTracks(void)
 void biblioteq_cd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  auto button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
