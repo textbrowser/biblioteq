@@ -130,14 +130,14 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   if(notImported)
     *notImported = 0;
 
-  QStringList list(m_ui.books_ignored_rows->text().trimmed().
-		   split(' ',
+  auto list(m_ui.books_ignored_rows->text().trimmed().
+	    split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-			 Qt::SkipEmptyParts
+		  Qt::SkipEmptyParts
 #else
-			 QString::SkipEmptyParts
+		  QString::SkipEmptyParts
 #endif
-			 ));
+		  ));
   qint64 ct = 0;
 
   while(ct++, !file.atEnd())
@@ -153,7 +153,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	  ** Separate by the delimiter.
 	  */
 
-	  QStringList list
+	  auto list
 	    (data.split(QRegExp(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 				arg(m_ui.delimiter->text()))));
 
@@ -185,7 +185,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  else if(m_booksMappings.value(i).contains("<ignored>"))
 		    continue;
 
-		  QString str(QString(list.at(i - 1)).remove('"').trimmed());
+		  auto str(QString(list.at(i - 1)).remove('"').trimmed());
 
 		  if(m_booksMappings.value(i) == "id")
 		    id = str;
@@ -254,7 +254,7 @@ void biblioteq_import::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -266,7 +266,7 @@ void biblioteq_import::setGlobalFonts(const QFont &font)
 
 void biblioteq_import::show(QMainWindow *parent)
 {
-  static bool resized = false;
+  static auto resized = false;
 
   if(parent && !resized)
     resize(qRound(0.50 * parent->size().width()),
@@ -394,7 +394,7 @@ void biblioteq_import::slotBooksTemplates(int index)
 	  {
 	    slotAddBookRow();
 
-	    QWidget *widget = m_ui.books->cellWidget
+	    auto widget = m_ui.books->cellWidget
 	      (i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
 
 	    if(widget)
@@ -431,7 +431,7 @@ void biblioteq_import::slotDeleteBookRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QList<int> rows(biblioteq_misc_functions::selectedRows(m_ui.books));
+  auto rows(biblioteq_misc_functions::selectedRows(m_ui.books));
 
   for(int i = rows.size() - 1; i >= 0; i--)
     m_ui.books->removeRow(rows.at(i));
@@ -471,9 +471,8 @@ void biblioteq_import::slotImport(void)
 
   for(int i = 0; i < m_ui.books->rowCount(); i++)
     {
-      QTableWidgetItem *item = m_ui.books->item
-	(i, BooksColumns::CSV_COLUMN_NUMBER);
-      QWidget *widget = m_ui.books->cellWidget
+      auto item = m_ui.books->item(i, BooksColumns::CSV_COLUMN_NUMBER);
+      auto widget = m_ui.books->cellWidget
 	(i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
 
       if(!item || !widget)
