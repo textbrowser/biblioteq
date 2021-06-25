@@ -155,7 +155,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 
   for(int i = 0; i < list1.size(); i++)
     {
-      QString str(list2.at(i).trimmed());
+      auto str(list2.at(i).trimmed());
 
       if(!(str == "MM/dd/yyyy" ||
 	   str == "MM/dd" ||
@@ -203,8 +203,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.publication_date->resizeColumnToContents(ITEM_TYPE);
   m_ui.publication_date->resizeRowsToContents();
 
-  QColor color(settings.value("mainwindow_canvas_background_color").
-	       toString().trimmed());
+  QColor color
+    (settings.value("mainwindow_canvas_background_color").toString().trimmed());
 
   if(!color.isValid())
     color = Qt::white;
