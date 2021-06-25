@@ -90,7 +90,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
   for(int i = 0; i < states.keys().size(); i++)
     {
       QList<int> intList;
-      QStringList strList
+      auto strList
 	(states[states.keys().at(i)].split(",",
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 					   Qt::SkipEmptyParts
@@ -113,7 +113,7 @@ void biblioteq_main_table::recordColumnHidden(const QString &username,
 					      const bool hidden)
 {
   QString indexstr("");
-  QString l_type(type);
+  auto l_type(type);
 
   indexstr.append(username);
   indexstr.append(l_type.replace(" ", "_"));
@@ -165,8 +165,8 @@ void biblioteq_main_table::setColumns(const QString &username,
 				      const QString &t,
 				      const QString &roles)
 {
-  QString type(t.trimmed());
   QStringList list;
+  auto type(t.trimmed());
 
   m_columnHeaderIndexes.clear();
 
@@ -583,7 +583,7 @@ void biblioteq_main_table::setColumns(const QString &username,
   list.clear();
 
   QString indexstr("");
-  QString l_type(type);
+  auto l_type(type);
 
   indexstr.append(username);
   indexstr.append(l_type.replace(" ", "_"));
@@ -604,7 +604,7 @@ void biblioteq_main_table::updateToolTips(const int row)
     return;
 
   QSettings settings;
-  bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+  auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
   if(!showToolTips)
     return;
@@ -613,8 +613,8 @@ void biblioteq_main_table::updateToolTips(const int row)
 
   for(int i = 0; i < columnCount(); i++)
     {
-      QString columnName(columnNames().value(i));
-      QTableWidgetItem *item = this->item(row, i);
+      auto columnName(columnNames().value(i));
+      auto item = this->item(row, i);
 
       if(columnName.isEmpty())
 	columnName = "N/A";
@@ -638,7 +638,7 @@ void biblioteq_main_table::updateToolTips(const int row)
 
   for(int i = 0; i < columnCount(); i++)
     {
-      QTableWidgetItem *item = this->item(row, i);
+      auto item = this->item(row, i);
 
       if(item)
 	item->setToolTip(tooltip);

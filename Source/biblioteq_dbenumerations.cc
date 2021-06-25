@@ -142,7 +142,7 @@ void biblioteq_dbenumerations::clear(void)
   m_listData.clear();
   m_tableData.clear();
 
-  foreach(QListWidget *listwidget, findChildren<QListWidget *> ())
+  foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
 
   while(m_ui.locationsTable->rowCount() > 0)
@@ -206,7 +206,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
     {
       QListWidget *listwidget = nullptr;
       QTableWidget *tablewidget = nullptr;
-      const QString &str(tables.at(i));
+      const auto &str(tables.at(i));
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -383,13 +383,13 @@ void biblioteq_dbenumerations::saveData
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(QListWidget *widget, findChildren<QListWidget *> ())
+  foreach(auto widget, findChildren<QListWidget *> ())
     {
       QStringList list;
 
       for(int i = 0; i < widget->count(); i++)
 	{
-	  QListWidgetItem *item = widget->item(i);
+	  auto item = widget->item(i);
 
 	  if(item)
 	    list << item->text();
@@ -398,20 +398,20 @@ void biblioteq_dbenumerations::saveData
       listData[widget] = list;
     }
 
-  foreach(QTableWidget *table, findChildren<QTableWidget *> ())
+  foreach(auto table, findChildren<QTableWidget *> ())
     {
       QMap<QString, QString> map;
 
       for(int i = 0; i < table->rowCount(); i++)
 	{
 	  QString text("");
-	  QTableWidgetItem *item = table->item(i, 1);
+	  auto item = table->item(i, 1);
 
 	  if(!item)
 	    continue;
 	  else
 	    {
-	      QWidget *widget = table->cellWidget(i, 0);
+	      auto widget = table->cellWidget(i, 0);
 
 	      if(widget)
 		{
@@ -441,7 +441,7 @@ void biblioteq_dbenumerations::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -454,9 +454,9 @@ void biblioteq_dbenumerations::setGlobalFonts(const QFont &font)
 
 void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 {
-  bool wasVisible = isVisible();
+  auto wasVisible = isVisible();
 
-  static bool resized = false;
+  static auto resized = false;
 
   if(parent && !resized)
     resize(qRound(0.85 * parent->size().width()),
@@ -665,7 +665,7 @@ void biblioteq_dbenumerations::slotSave(void)
   QString querystr("");
   QStringList tables;
   QTableWidget *tablewidget = nullptr;
-  bool error = false;
+  auto error = false;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   tables << "book_binding_types"
@@ -765,7 +765,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		QString currentText("");
 		auto comboBox = tablewidget->cellWidget(j, 0)->
 		  findChild<QComboBox *> ();
-		int index = comboBox ? comboBox->currentIndex() : -1;
+		auto index = comboBox ? comboBox->currentIndex() : -1;
 
 		currentText = comboBox ? comboBox->currentText() : "N/A";
 
