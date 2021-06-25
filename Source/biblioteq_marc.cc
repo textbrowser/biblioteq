@@ -68,7 +68,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
       {
 	if(reader.name().toString().toLower().trimmed() == "datafield")
 	  {
-	    QString tag
+	    auto tag
 	      (reader.attributes().value("tag").toString().toLower().trimmed());
 
 	    if(tag == "010")
@@ -357,7 +357,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		      if(reader.attributes().value("code").
 			 toString().toLower().trimmed() == "a")
 			{
-			  QString p(reader.readElementText().trimmed());
+			  auto p(reader.readElementText().trimmed());
 
 			  if(!p.isEmpty())
 			    if(!p.at(p.length() - 1).isLetter())
@@ -483,11 +483,11 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 {
   clear();
 
-  QStringList list(m_data.split("\n"));
+  auto list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
-      QString str = list[i];
+      auto str = list[i];
 
       if(str.startsWith("010 "))
 	{
@@ -795,7 +795,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    if(tmpstr.contains(subfields.at(i)))
 	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
-	  QStringList tmplist(tmpstr.split("$a"));
+	  auto tmplist(tmpstr.split("$a"));
 
 	  for(int j = 0; j < tmplist.size(); j++)
 	    {
@@ -958,11 +958,11 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 {
   clear();
 
-  QStringList list(m_data.split("\n"));
+  auto list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
-      QString str = list[i];
+      auto str = list[i];
 
       if(str.startsWith("010 "))
 	{
@@ -1026,7 +1026,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 	  str = str.remove(" $b").trimmed();
 
-	  QString author(str);
+	  auto author(str);
 
 	  while(author.indexOf("$f") > -1)
 	    {
@@ -1131,7 +1131,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	    if(tmpstr.contains(subfields.at(i)))
 	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
-	  QStringList tmplist(tmpstr.split("$a"));
+	  auto tmplist(tmpstr.split("$a"));
 
 	  for(int j = 0; j < tmplist.size(); j++)
 	    {
@@ -1261,11 +1261,11 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 {
   clear();
 
-  QStringList list(m_data.split("\n"));
+  auto list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
-      QString str = list[i];
+      auto str = list[i];
 
       if(str.startsWith("200 "))
 	{
@@ -1346,7 +1346,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	    if(tmpstr.contains(subfields.at(i)))
 	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
-	  QStringList tmplist(tmpstr.split("$a"));
+	  auto tmplist(tmpstr.split("$a"));
 
 	  for(int j = 0; j < tmplist.size(); j++)
 	    {
