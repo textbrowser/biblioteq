@@ -209,7 +209,7 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 	   qRound(0.95 * m_parentWid->size().height()));
 
 #ifdef Q_OS_MAC
-  foreach(QToolButton *tool_button, findChildren<QToolButton *> ())
+  foreach(auto tool_button, findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
     ("QToolButton {border: none; padding-right: 10px}"
@@ -301,8 +301,7 @@ void biblioteq_dvd::insert(void)
   dvd.showUserButton->setEnabled(false);
   dvd.queryButton->setEnabled(true);
   dvd.okButton->setText(tr("&Save"));
-  dvd.release_date->setDate(QDate::fromString("01/01/2000",
-					      "MM/dd/yyyy"));
+  dvd.release_date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
   dvd.runtime->setTime(QTime(0, 0, 1));
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
   dvd.price->setMinimum(0.00);
@@ -398,7 +397,7 @@ void biblioteq_dvd::modify(const int state)
       dvd.frontButton->setVisible(false);
       dvd.backButton->setVisible(false);
 
-      QList<QAction *> actions = dvd.resetButton->menu()->actions();
+      auto actions = dvd.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -468,7 +467,7 @@ void biblioteq_dvd::modify(const int state)
       activateWindow();
       raise();
 
-      QSqlRecord record(query.record());
+      auto record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -608,7 +607,7 @@ void biblioteq_dvd::modify(const int state)
 	    dvd.accession_number->setText(var.toString().trimmed());
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+      foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);
@@ -662,7 +661,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      QList<QAction *> actions = dvd.resetButton->menu()->actions();
+      auto actions = dvd.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -1051,9 +1050,8 @@ void biblioteq_dvd::slotGo(void)
 	query.bindValue(23, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	    (qmain->getDB(),
-	     errorstr);
+	  auto value = biblioteq_misc_functions::getSqliteUniqueId
+	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
 	    query.bindValue(23, value);
@@ -1196,13 +1194,13 @@ void biblioteq_dvd::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  QStringList names(qmain->getUI().table->columnNames());
+		  auto names(qmain->getUI().table->columnNames());
 
 		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(i == 0)
 			{
-			  QPixmap pixmap
+			  auto pixmap
 			    (QPixmap::fromImage(dvd.front_image->m_image));
 
 			  if(!pixmap.isNull())
@@ -1291,7 +1289,7 @@ void biblioteq_dvd::slotGo(void)
 		  qmain->getUI().table->setSortingEnabled(true);
 		  qmain->getUI().table->updateToolTips(m_row);
 
-		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
@@ -1392,7 +1390,7 @@ void biblioteq_dvd::slotGo(void)
       searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
-      QString UNACCENT(qmain->unaccent());
+      auto UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -1623,7 +1621,7 @@ void biblioteq_dvd::slotReset(void)
 
   if(action != nullptr)
     {
-      QList<QAction *> actions = dvd.resetButton->menu()->actions();
+      auto actions = dvd.resetButton->menu()->actions();
 
       if(actions.size() < 23)
 	{

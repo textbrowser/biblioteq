@@ -29,8 +29,8 @@ static int callnum_lt(const QString &m, const QString &n)
 
   QRegExp match1(lc_regexp);
   QRegExp match2(match1); // Copy constructor should be faster than re-parse.
-  bool res1 = match1.exactMatch(m);
-  bool res2 = match2.exactMatch(n);
+  auto res1 = match1.exactMatch(m);
+  auto res2 = match2.exactMatch(n);
 
 #ifdef BIBLIOTEQ_CALLNUM_DEBUG
   qDebug() << "result: " << res1 << " " << res2 << endl;
