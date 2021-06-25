@@ -28,7 +28,7 @@ void biblioteq_photograph_view::resizeEvent(QResizeEvent *event)
 
       if(item)
 	{
-	  QImage image(m_image);
+	  auto image(m_image);
 
 	  if(!image.isNull())
 	    image = image.scaled

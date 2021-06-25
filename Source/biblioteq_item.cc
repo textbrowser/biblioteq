@@ -47,7 +47,7 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
   QMap<QString, QString> newdata;
   QString classname = "";
   QString objectname = "";
-  bool hasChanged = false;
+  auto hasChanged = false;
   int i = 0;
 
   foreach(QWidget *widget, window->findChildren<QWidget *> ())
@@ -154,9 +154,9 @@ void biblioteq_item::setQMain(QMainWindow *window)
   if(!window)
     return;
 
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+  foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      QString classname(widget->metaObject()->className());
+      auto classname(widget->metaObject()->className());
 
       if(classname == "biblioteq_hyperlinked_text_edit")
 	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
@@ -169,9 +169,9 @@ void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)
   if(!window)
     return;
 
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+  foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      QString classname(widget->metaObject()->className());
+      auto classname(widget->metaObject()->className());
 
       if(classname == "QComboBox")
 	qobject_cast<QComboBox *> (widget)->setEnabled(!state);
@@ -209,7 +209,7 @@ void biblioteq_item::storeData(QMainWindow *window)
   m_imageValues.clear();
   m_widgetValues.clear();
 
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+  foreach(auto widget, window->findChildren<QWidget *> ())
     {
       classname = widget->metaObject()->className();
       objectname = widget->objectName();
@@ -259,7 +259,7 @@ void biblioteq_item::updateFont(const QFont &font, QWidget *window)
 
   window->setFont(font);
 
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+  foreach(auto widget, window->findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();

@@ -351,8 +351,8 @@ void biblioteq_pdfreader::slotPrint(void)
       QApplication::processEvents();
 
       QPainter painter(&printer);
-      int end = printer.toPage();
-      int start = printer.fromPage();
+      auto end = printer.toPage();
+      auto start = printer.fromPage();
 
       if(end == 0 && start == 0)
 	{
@@ -366,15 +366,15 @@ void biblioteq_pdfreader::slotPrint(void)
 	  progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
 	  QApplication::processEvents();
 
-	  Poppler::Page *page = m_document->page(i - 1);
+	  auto page = m_document->page(i - 1);
 
 	  if(!page)
 	    break;
 
-	  QImage image
+	  auto image
 	    (page->renderToImage(printer.resolution(), printer.resolution()));
-	  QRect rect(painter.viewport());
-	  QSize size(image.size());
+	  auto rect(painter.viewport());
+	  auto size(image.size());
 
 	  size.scale(rect.size(), Qt::KeepAspectRatio);
 	  painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
@@ -412,7 +412,7 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
 
   QProgressDialog progress(this);
   auto widget = qobject_cast<QWidget *> (sender());
-  bool preview = !widget || !widget->isVisible();
+  auto preview = !widget || !widget->isVisible();
 
   if(preview)
     progress.setLabelText(tr("Preparing preview..."));
@@ -428,8 +428,8 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
   QApplication::processEvents();
 
   QPainter painter(printer);
-  int end = printer->toPage();
-  int start = printer->fromPage();
+  auto end = printer->toPage();
+  auto start = printer->fromPage();
 
   if(end == 0 && start == 0)
     {
@@ -452,15 +452,15 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
 
       QApplication::processEvents();
 
-      Poppler::Page *page = m_document->page(i - 1);
+      auto page = m_document->page(i - 1);
 
       if(!page)
 	break;
 
-      QImage image
+      auto image
 	(page->renderToImage(printer->resolution(), printer->resolution()));
-      QRect rect(painter.viewport());
-      QSize size(image.size());
+      auto rect(painter.viewport());
+      auto size(image.size());
 
       size.scale(rect.size(), Qt::KeepAspectRatio);
       painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
@@ -532,7 +532,7 @@ void biblioteq_pdfreader::slotSaveAs(void)
       QApplication::processEvents();
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      Poppler::PDFConverter *converter = m_document->pdfConverter();
+      auto converter = m_document->pdfConverter();
 
       if(!converter)
 	{
@@ -565,14 +565,14 @@ void biblioteq_pdfreader::slotSearchNext(void)
   if(!m_searchLocation.isNull())
     m_searchLocation.setX(m_searchLocation.right());
 
-  int page = m_ui.page->value() - 1;
+  auto page = m_ui.page->value() - 1;
 
   while(page < m_document->numPages())
     {
-      double bottom = m_searchLocation.bottom();
-      double left = m_searchLocation.left();
-      double right = m_searchLocation.right();
-      double top = m_searchLocation.top();
+      auto bottom = m_searchLocation.bottom();
+      auto left = m_searchLocation.left();
+      auto right = m_searchLocation.right();
+      auto top = m_searchLocation.top();
 
       if(m_document->page(page)->
 	 search(m_ui.find->text(),
@@ -624,14 +624,14 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
   if(!m_searchLocation.isNull())
     m_searchLocation.setX(m_searchLocation.right() - m_searchLocation.left());
 
-  int page = m_ui.page->value() - 1;
+  auto page = m_ui.page->value() - 1;
 
   while(page >= 0)
     {
-      double bottom = m_searchLocation.bottom();
-      double left = m_searchLocation.left();
-      double right = m_searchLocation.right();
-      double top = m_searchLocation.top();
+      auto bottom = m_searchLocation.bottom();
+      auto left = m_searchLocation.left();
+      auto right = m_searchLocation.right();
+      auto top = m_searchLocation.top();
 
       if(m_document->page(page)->
 	 search(m_ui.find->text(),
@@ -694,7 +694,7 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  Poppler::Page *page = m_document->page(value - 1);
+  auto page = m_document->page(value - 1);
 
   if(!page)
     {
@@ -710,10 +710,9 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 			arg(m_ui.page->maximum()));
 
   QImage image;
-  double scaleFactor =
-    m_ui.view_size->currentText().remove("%").toInt() / 100.0;
-  int pX = qMax(72, m_ui.page_1->physicalDpiX());
-  int pY = qMax(72, m_ui.page_1->physicalDpiY());
+  auto pX = qMax(72, m_ui.page_1->physicalDpiX());
+  auto pY = qMax(72, m_ui.page_1->physicalDpiY());
+  auto scaleFactor = m_ui.view_size->currentText().remove("%").toInt() / 100.0;
 
   if(m_ui.view_size->currentIndex() == 4)
     image = page->renderToImage(pX, pY);
@@ -737,12 +736,12 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 		     physicalDpiY() / 72.0,
 		     0,
 		     0);
-      QRect highlightRect(matrix.mapRect(location).toRect());
+      auto highlightRect(matrix.mapRect(location).toRect());
 
       highlightRect.adjust(-2, -2, 2, 2);
 
-      QImage imageHighlight(image.copy(highlightRect));
       QPainter painter;
+      auto imageHighlight(image.copy(highlightRect));
 
       painter.begin(&image);
       painter.fillRect(image.rect(), QColor(0, 0, 0, 32));
