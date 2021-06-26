@@ -463,7 +463,7 @@
 244. Re-introduce MySQL. (TBD)
 245. Press Enter key main scene to access selected items. (Done)
 246. Do not show progress dialogs unless necessary. (Done)
-247. C++2011. (TBD)
+247. C++2011. (Done)
 248. Print previews. (Done)
 249. Redesign reservation history print layout. (Done)
 250. Parse MARC tags for books. (Done)
