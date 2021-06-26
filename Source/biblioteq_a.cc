@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 #endif
 
   QApplication qapplication(argc, argv);
-  QFont font(qapplication.font());
+  auto font(qapplication.font());
 
 #if QT_VERSION >= 0x050700
   qapplication.setAttribute(Qt::AA_DontUseNativeDialogs);
@@ -2232,11 +2232,11 @@ void biblioteq::slotClosePasswordDialog(void)
 
 void biblioteq::slotCopyError(void)
 {
-  int i = 0;
-  int j = 0;
   QString text = "";
   auto clipboard = QApplication::clipboard();
   auto list(er.table->selectionModel()->selectedRows());
+  int i = 0;
+  int j = 0;
 
   if(list.isEmpty())
     {
@@ -3077,7 +3077,7 @@ void biblioteq::slotListOverdueItems(void)
 void biblioteq::slotListReservedItems(void)
 {
   QString memberid = "";
-  int row = bb.table->currentRow();
+  auto row = bb.table->currentRow();
 
   if(row < 0)
     {
@@ -3105,13 +3105,13 @@ void biblioteq::slotModify(void)
   QString type = "";
   auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
+  auto table = ui.table;
   biblioteq_book *book = nullptr;
   biblioteq_cd *cd = nullptr;
   biblioteq_dvd *dvd = nullptr;
   biblioteq_grey_literature *gl = nullptr;
   biblioteq_journal *journal = nullptr;
   biblioteq_magazine *magazine = nullptr;
-  biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
   int i = 0;
@@ -4538,7 +4538,7 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 {
   QString itemType = "";
   QString oid = "";
-  Qt::SortOrder order;
+  auto order = Qt::AscendingOrder;
   int i = 0;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -4571,13 +4571,13 @@ void biblioteq::slotViewDetails(void)
   QString type = "";
   auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
+  auto table = ui.table;
   biblioteq_book *book = nullptr;
   biblioteq_cd *cd = nullptr;
   biblioteq_dvd *dvd = nullptr;
   biblioteq_grey_literature *gl = nullptr;
   biblioteq_journal *journal = nullptr;
   biblioteq_magazine *magazine = nullptr;
-  biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
   int i = 0;
@@ -5145,7 +5145,7 @@ void biblioteq::updateSceneItem(const QString &oid,
     if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
       if(oid == item->data(0).toString() && type == item->data(1).toString())
 	{
-	  QImage l_image(image);
+	  auto l_image(image);
 
 	  if(!l_image.isNull())
 	    l_image = l_image.scaled

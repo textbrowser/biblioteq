@@ -26,7 +26,7 @@ biblioteq_sruresults::biblioteq_sruresults
 	  {
 	    if(reader.name().toString().toLower().trimmed() == "datafield")
 	      {
-		QString tag
+		auto tag
 		  (reader.attributes().value("tag").toString().trimmed());
 
 		if(tag == "022")
@@ -129,7 +129,7 @@ void biblioteq_sruresults::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -176,7 +176,7 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
     if(reader.readNextStartElement())
       if(reader.name().toString().toLower().trimmed() == "datafield")
 	{
-	  QString tag(reader.attributes().value("tag").toString().trimmed());
+	  auto tag(reader.attributes().value("tag").toString().trimmed());
 
 	  if(tag == "245")
 	    {
