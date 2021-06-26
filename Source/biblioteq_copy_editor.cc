@@ -135,8 +135,8 @@ QString biblioteq_copy_editor::saveCopies(void)
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
 	    {
-	      qint64 value = 0;
 	      QString errorstr("");
+	      qint64 value = 0;
 
 	      value = biblioteq_misc_functions::getSqliteUniqueId
 		(qmain->getDB(), errorstr);
@@ -226,7 +226,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   QString str = "";
   QStringList list;
   QTableWidgetItem *item = nullptr;
-  bool terminate = false;
+  auto terminate = false;
   int i = 0;
   int j = 0;
   int row = 0;
