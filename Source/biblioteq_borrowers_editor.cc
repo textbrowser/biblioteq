@@ -99,7 +99,7 @@ void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -360,7 +360,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
   QString memberid = "";
   QString oid = "";
   auto returnedDate = QDateTime::currentDateTime().toString("MM/dd/yyyy");
-  int row = m_bd.table->currentRow();
+  auto row = m_bd.table->currentRow();
 
   if(row < 0)
     {

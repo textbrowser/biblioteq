@@ -156,7 +156,7 @@ void biblioteq_item::setQMain(QMainWindow *window)
 
   foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      auto classname(widget->metaObject()->className());
+      const QString &classname(widget->metaObject()->className());
 
       if(classname == "biblioteq_hyperlinked_text_edit")
 	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
@@ -171,7 +171,7 @@ void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)
 
   foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      auto classname(widget->metaObject()->className());
+      const QString &classname(widget->metaObject()->className());
 
       if(classname == "QComboBox")
 	qobject_cast<QComboBox *> (widget)->setEnabled(!state);

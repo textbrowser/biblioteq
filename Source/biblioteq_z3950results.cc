@@ -19,7 +19,7 @@ biblioteq_z3950results::biblioteq_z3950results
   for(i = 0; i < list.size(); i++)
     {
       QString issn("");
-      QStringList parsedList(list.at(i).split("\n"));
+      auto parsedList(list.at(i).split("\n"));
 
       for(int j = 0; j < parsedList.size(); j++)
 	if(parsedList.at(j).startsWith("022 "))
@@ -124,7 +124,7 @@ void biblioteq_z3950results::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *> ())
+  foreach(auto widget, findChildren<QWidget *> ())
     {
       widget->setFont(font);
       widget->update();
@@ -149,7 +149,7 @@ void biblioteq_z3950results::slotSelectRecord(void)
 void biblioteq_z3950results::slotUpdateQueryText(void)
 {
   QString title("");
-  QStringList list(m_records.value(m_ui.list->currentRow()).split("\n"));
+  auto list(m_records.value(m_ui.list->currentRow()).split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     if(list.at(i).startsWith("245 "))
