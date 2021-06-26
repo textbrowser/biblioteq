@@ -3448,7 +3448,6 @@ void biblioteq_book::slotOpenLibraryError(QNetworkReply::NetworkError error)
       auto error(reply->errorString());
 
       reply->deleteLater();
-
       emit openLibraryQueryError(error);
     }
   else
@@ -4176,8 +4175,8 @@ void biblioteq_book::slotSRUDownloadFinished(bool error)
 
 void biblioteq_book::slotSRUDownloadFinished(void)
 {
+  auto error = false;
   auto reply = qobject_cast<QNetworkReply *> (sender());
-  bool error = false;
 
   if(reply)
     {
@@ -4209,7 +4208,6 @@ void biblioteq_book::slotSRUError(QNetworkReply::NetworkError error)
       auto error(reply->errorString());
 
       reply->deleteLater();
-
       emit sruQueryError(error);
     }
   else
