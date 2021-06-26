@@ -1425,7 +1425,7 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 
   if(query.exec("INSERT INTO sequence VALUES (NULL)"))
     {
-      QVariant variant(query.lastInsertId());
+      auto variant(query.lastInsertId());
 
       if(variant.isValid())
 	{
@@ -1475,7 +1475,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
       if(!exists)
 	{
-	  QString str(roles);
+	  auto str(roles);
 
 	  if(str.contains("administrator") || str.contains("membership"))
 	    querystr = QString

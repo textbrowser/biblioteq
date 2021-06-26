@@ -204,7 +204,7 @@ QWidget *biblioteq::widgetForAction(QAction *action) const
 
 bool biblioteq::emptyContainers(void)
 {
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto book = qobject_cast<biblioteq_book *> (w);
       auto cd = qobject_cast<biblioteq_cd *> (w);
@@ -307,9 +307,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QTableWidgetItem *item = nullptr;
   QString itemType("");
   QString str("");
+  auto limit = pageLimit();
+  auto offset = m_queryOffset;
   int i = -1;
-  int limit = pageLimit();
-  qint64 offset = m_queryOffset;
 
   if(limit != -1)
     {
@@ -350,7 +350,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
     ui.itemsCountLabel->setText
       (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
 
-  bool ok = true;
+  auto ok = true;
 
   if(pagingType == NEW_PAGE)
     ok = m_searchQuery.exec();
@@ -395,7 +395,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QApplication::restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
 
-  bool found = false;
+  auto found = false;
 
   for(int ii = 0; ii < ui.menu_Category->actions().size(); ii++)
     if(typefilter == ui.menu_Category->actions().at(ii)->data().toString())
@@ -550,8 +550,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   QSettings settings;
   QString dateFormat("");
-  QStringList columnNames(ui.table->columnNames());
-  bool showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+  auto columnNames(ui.table->columnNames());
+  auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
   if(typefilter == "Books" ||
      typefilter == "DVDs" ||
@@ -579,9 +579,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
       if(m_searchQuery.isValid())
 	{
-	  QSqlRecord record(m_searchQuery.record());
 	  QString tooltip("");
 	  QTableWidgetItem *first = nullptr;
+	  auto record(m_searchQuery.record());
 
 	  if(showToolTips)
 	    {
@@ -594,7 +594,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		     record.fieldName(j).contains("image"))
 		    continue;
 
-		  QString columnName(columnNames.value(j));
+		  auto columnName(columnNames.value(j));
 
 		  if(columnName.isEmpty())
 		    columnName = "N/A";
@@ -622,9 +622,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(record.fieldName(j).contains("date") ||
 		     record.fieldName(j).contains("membersince"))
 		    {
-		      QDate date(QDate::fromString(m_searchQuery.value(j).
-						   toString().trimmed(),
-						   "MM/dd/yyyy"));
+		      auto date(QDate::fromString(m_searchQuery.value(j).
+						  toString().trimmed(),
+						  "MM/dd/yyyy"));
 
 		      if(dateFormat.isEmpty())
 			str = date.toString(Qt::ISODate);
@@ -776,7 +776,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(m_searchQuery.isValid())
 	if(pixmapItem)
 	  {
-	    QSqlRecord record(m_searchQuery.record());
+	    auto record(m_searchQuery.record());
 
 	    for(int ii = 0; ii < record.count(); ii++)
 	      {
@@ -801,7 +801,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))
     progress.setValue(limit);
 
-  bool wasCanceled = progress.wasCanceled(); /*
+  auto wasCanceled = progress.wasCanceled(); /*
 					     ** QProgressDialog::close()!
 					     */
 
@@ -874,7 +874,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
   if(itemType == "book")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto book = qobject_cast<biblioteq_book *> (w);
 
@@ -887,7 +887,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "cd")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto cd = qobject_cast<biblioteq_cd *> (w);
 
@@ -900,7 +900,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "dvd")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto dvd = qobject_cast<biblioteq_dvd *> (w);
 
@@ -913,7 +913,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "grey_literature")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto gl = qobject_cast<biblioteq_grey_literature *> (w);
 
@@ -926,7 +926,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "journal")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto journal = qobject_cast<biblioteq_journal *> (w);
 
@@ -939,7 +939,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "magazine")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto magazine = qobject_cast<biblioteq_magazine *> (w);
 
@@ -957,7 +957,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "photograph_collection")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
 
@@ -970,7 +970,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "videogame")
     {
-      foreach(QWidget *w, QApplication::topLevelWidgets())
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
 	  auto videogame = qobject_cast<biblioteq_videogame *> (w);
 
@@ -1049,7 +1049,7 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 	      for(int j = 0; j < table->columnCount(); j++)
 		if(!table->isColumnHidden(j))
 		  {
-		    QString cleaned(table->item(i, j)->text());
+		    auto cleaned(table->item(i, j)->text());
 
 		    cleaned.replace("\n", " ");
 		    cleaned.replace("\r\n", " ");
@@ -1189,7 +1189,7 @@ void biblioteq::readConfig(void)
   ui.table->parseStates(states);
   states.clear();
 
-  bool found = false;
+  auto found = false;
 
   for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
     if(QString(settings.value("preferred_sru_site").toString()).
@@ -1220,7 +1220,7 @@ void biblioteq::readConfig(void)
   if(!found && !ui.menuPreferredZ3950Server->actions().isEmpty())
     ui.menuPreferredZ3950Server->actions().at(0)->setChecked(true);
 
-  int index = br.branch_name->findText
+  auto index = br.branch_name->findText
     (settings.value("previous_branch_name", "").toString());
 
   if(index >= 0)
@@ -1228,12 +1228,12 @@ void biblioteq::readConfig(void)
   else
     br.branch_name->setCurrentIndex(0);
 
-  int viewModeIndex = settings.value("view_mode_index", 1).toInt();
+  auto viewModeIndex = settings.value("view_mode_index", 1).toInt();
 
   if(viewModeIndex < 0 || viewModeIndex > 1)
     viewModeIndex = 1;
 
-  QActionGroup *ag = findChild<QActionGroup *> ("ViewModeMenu");
+  auto ag = findChild<QActionGroup *> ("ViewModeMenu");
 
   if(ag && ag->actions().size() > viewModeIndex)
     ag->actions().at(viewModeIndex)->setChecked(true);
@@ -1425,7 +1425,7 @@ void biblioteq::readGlobalSetup(void)
 
   br.branch_name->clear();
 
-  QStringList list(m_branches.keys());
+  auto list(m_branches.keys());
 
   for(int i = 0; i < list.size(); i++)
     br.branch_name->addItem(list.at(i));
@@ -1503,7 +1503,7 @@ void biblioteq::slotAllGo(void)
   QString str("");
   QString type("");
   QStringList types;
-  bool caseinsensitive = al.caseinsensitive->isChecked();
+  auto caseinsensitive = al.caseinsensitive->isChecked();
 
   types.append("Book");
   types.append("CD");
@@ -1589,7 +1589,7 @@ void biblioteq::slotAllGo(void)
 	}
 
       QString ESCAPE("");
-      QString UNACCENT(unaccent());
+      auto UNACCENT(unaccent());
 
       if(m_db.driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -1673,7 +1673,7 @@ void biblioteq::slotAllGo(void)
 
 	  if(al.categories_checkbox->isChecked())
 	    {
-	      QStringList words
+	      auto words
 		(al.category->toPlainText().trimmed().
 		 split(QRegExp("\\s+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
@@ -1689,7 +1689,7 @@ void biblioteq::slotAllGo(void)
 
 		  while(!words.isEmpty())
 		    {
-		      QString word(words.takeFirst());
+		      auto word(words.takeFirst());
 
 		      if(caseinsensitive)
 			{
@@ -1804,7 +1804,7 @@ void biblioteq::slotAllGo(void)
 
 	  if(al.abstract_checkbox->isChecked())
 	    {
-	      QStringList words
+	      auto words
 		(al.description->toPlainText().trimmed().
 		 split(QRegExp("\\s+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
@@ -1820,7 +1820,7 @@ void biblioteq::slotAllGo(void)
 
 		  while(!words.isEmpty())
 		    {
-		      QString word(words.takeFirst());
+		      auto word(words.takeFirst());
 
 		      if(caseinsensitive)
 			{
@@ -1891,7 +1891,7 @@ void biblioteq::slotAllGo(void)
 
 	  if(al.keywords_checkbox->isChecked())
 	    {
-	      QStringList words
+	      auto words
 		(al.keyword->toPlainText().trimmed().
 		 split(QRegExp("\\s+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
@@ -1907,7 +1907,7 @@ void biblioteq::slotAllGo(void)
 
 		  while(!words.isEmpty())
 		    {
-		      QString word(words.takeFirst());
+		      auto word(words.takeFirst());
 
 		      if(caseinsensitive)
 			{
@@ -2106,11 +2106,11 @@ void biblioteq::slotCheckout(void)
   QString itemid = "";
   QString oid = "";
   QString type = "";
+  auto row1 = bb.table->currentRow();
+  auto row2 = ui.table->currentRow();
   biblioteq_copy_editor *copyeditor = nullptr;
   biblioteq_item *item = nullptr;
   int quantity = 0;
-  int row1 = bb.table->currentRow();
-  int row2 = ui.table->currentRow();
 
   type = biblioteq_misc_functions::getColumnString
     (ui.table, row2, ui.table->columnNumber("Type"));
@@ -2129,9 +2129,8 @@ void biblioteq::slotCheckout(void)
       ** Has the member's membership expired?
       */
 
-      bool expired = true;
-      QString memberid =
-	biblioteq_misc_functions::getColumnString
+      auto expired = true;
+      auto memberid = biblioteq_misc_functions::getColumnString
 	(bb.table, row1, m_bbColumnHeaderIndexes.indexOf("Member ID"));
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -2165,7 +2164,7 @@ void biblioteq::slotCheckout(void)
 	(ui.table, row2, ui.table->columnNumber("MYOID"));
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      int availability = biblioteq_misc_functions::getAvailability
+      auto availability = biblioteq_misc_functions::getAvailability
 	(oid, m_db, type, errorstr).toInt();
 
       QApplication::restoreOverrideCursor();
@@ -2277,7 +2276,7 @@ void biblioteq::slotConnectDB(void)
   if(m_db.isOpen())
     return;
 
-  QHash<QString, QString> tmphash(m_branches[br.branch_name->currentText()]);
+  auto tmphash(m_branches[br.branch_name->currentText()]);
 
   if(tmphash.value("database_type") == "sqlite")
     {
@@ -2303,7 +2302,7 @@ void biblioteq::slotConnectDB(void)
   QString errorstr = "";
   QString plugins = "";
   QString str = "";
-  bool error = false;
+  auto error = false;
 
   /*
   ** Configure some database attributes.
@@ -2316,7 +2315,7 @@ void biblioteq::slotConnectDB(void)
   else if(tmphash.value("database_type") == "sqlite")
     str = "QSQLITE";
 
-  foreach(const QString &driver, QSqlDatabase::drivers())
+  foreach(const auto &driver, QSqlDatabase::drivers())
     drivers += driver + ", ";
 
   if(drivers.endsWith(", "))
@@ -2325,7 +2324,7 @@ void biblioteq::slotConnectDB(void)
   if(drivers.isEmpty())
     drivers = "N/A";
 
-  foreach(const QString &path, QApplication::libraryPaths())
+  foreach(const auto &path, QApplication::libraryPaths())
     if(path.toLower().contains("plugin"))
       {
 	plugins = path;
@@ -2373,7 +2372,7 @@ void biblioteq::slotConnectDB(void)
 
   if(tmphash.value("database_type") != "sqlite")
     {
-      QString str(tmphash.value("connection_options"));
+      auto str(tmphash.value("connection_options"));
 
       if(tmphash.value("ssl_enabled") == "true")
 	str.append(";requiressl=1");
@@ -2669,8 +2668,8 @@ void biblioteq::slotConnectDB(void)
 	  ** Add the database's information to the pulldown menu.
 	  */
 
-	  bool exists = false;
-	  QList<QAction *> actions = ui.menu_Recent_SQLite_Files->actions();
+	  auto actions = ui.menu_Recent_SQLite_Files->actions();
+	  auto exists = false;
 
 	  for(int i = 0; i < actions.size(); i++)
 	    if(actions[i]->data().toString() == br.filename->text())
@@ -2683,9 +2682,9 @@ void biblioteq::slotConnectDB(void)
 
 	  if(!exists)
 	    {
-	      int index = 1;
 	      QSettings settings;
-	      QStringList allKeys(settings.allKeys());
+	      auto allKeys(settings.allKeys());
+	      int index = 1;
 
 	      for(int i = 0; i < allKeys.size(); i++)
 		if(allKeys[i].startsWith("sqlite_db_"))
@@ -2720,7 +2719,7 @@ void biblioteq::slotConnectDB(void)
       ui.actionReservationHistory->setEnabled(true);
     }
 
-  bool found = false;
+  auto found = false;
 
   if(m_db.driverName() == "QSQLITE")
     {
@@ -2990,16 +2989,16 @@ void biblioteq::slotDisplaySummary(void)
 	  */
 
 	  QPainterPath painterPath;
-	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
-	  QList<QTableWidgetItem *> tableItems(ui.table->selectedItems());
+	  auto items(ui.graphicsView->scene()->items());
+	  auto tableItems(ui.table->selectedItems());
 
 	  for(int ii = 0; ii < tableItems.size(); ii++)
 	    {
-	      QString oid = biblioteq_misc_functions::getColumnString
+	      auto oid = biblioteq_misc_functions::getColumnString
 		(ui.table,
 		 tableItems.at(ii)->row(),
 		 ui.table->columnNumber("MYOID"));
-	      QString type =  biblioteq_misc_functions::getColumnString
+	      auto type =  biblioteq_misc_functions::getColumnString
 		(ui.table,
 		 tableItems.at(ii)->row(),
 		 ui.table->columnNumber("Type"));
@@ -3399,7 +3398,7 @@ void biblioteq::slotGreyLiteratureSearch(void)
 {
   biblioteq_grey_literature *gl = nullptr;
 
-  foreach(QWidget *w, QApplication::topLevelWidgets())
+  foreach(auto w, QApplication::topLevelWidgets())
     {
       auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
@@ -3503,8 +3502,8 @@ void biblioteq::slotModifyBorrower(void)
   QString fieldname = "";
   QString str = "";
   QVariant var;
+  auto row = bb.table->currentRow();
   int i = 0;
-  int row = bb.table->currentRow();
 
   if(row < 0)
     {
@@ -3546,7 +3545,7 @@ void biblioteq::slotModifyBorrower(void)
     {
       QApplication::restoreOverrideCursor();
 
-      QSqlRecord record(query.record());
+      auto record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -3633,8 +3632,7 @@ void biblioteq::slotModifyBorrower(void)
 	      var.toString().trimmed();
 	}
 
-      foreach(QLineEdit *textfield,
-	      userinfo_diag->findChildren<QLineEdit *> ())
+      foreach(auto textfield, userinfo_diag->findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
     }
 
@@ -3710,7 +3708,7 @@ void biblioteq::slotOtherOptionsSaved(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(QWidget *widget, QApplication::topLevelWidgets())
+  foreach(auto widget, QApplication::topLevelWidgets())
     if(qobject_cast<biblioteq_book *> (widget))
       qobject_cast<biblioteq_book *> (widget)->setPublicationDateFormat
 	(m_otheroptions->publicationDateFormat("books"));
@@ -3900,14 +3898,14 @@ void biblioteq::slotPopulateMembersBrowser(void)
     {
       if(query.isValid())
 	{
-	  QSqlRecord record(query.record());
+	  auto record(query.record());
 
 	  for(j = 0; j < record.count(); j++)
 	    {
 	      if(record.fieldName(j).contains("date") ||
 		 record.fieldName(j).contains("membersince"))
 		{
-		  QDate date(QDate::fromString(query.value(j).toString().
+		  auto date(QDate::fromString(query.value(j).toString().
 					       trimmed(),
 					       "MM/dd/yyyy"));
 
@@ -4186,7 +4184,7 @@ void biblioteq::slotRemoveMember(void)
   QSqlQuery query(m_db);
   QString errorstr = "";
   QString memberid = "";
-  int row = bb.table->currentRow();
+  auto row = bb.table->currentRow();
   qint64 totalReserved = 0;
 
   if(row < 0)
@@ -4348,13 +4346,13 @@ void biblioteq::slotRequest(void)
   ** This method is used to either request an item or cancel a request.
   */
 
-  QDate now = QDate::currentDate();
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QSqlQuery query(m_db);
   QString itemType = "";
   QString oid = "";
-  bool error = false;
-  bool isRequesting = true;
+  auto error = false;
+  auto isRequesting = true;
+  auto list = ui.table->selectionModel()->selectedRows();
+  auto now = QDate::currentDate();
   int ct = 0;
   int i = 0;
   int numcompleted = 0;
@@ -4423,7 +4421,7 @@ void biblioteq::slotRequest(void)
   progress.repaint();
   QApplication::processEvents();
 
-  foreach(const QModelIndex &index, list)
+  foreach(const auto &index, list)
     {
       i = index.row();
       ct += 1;
@@ -4523,8 +4521,8 @@ void biblioteq::slotSaveAdministrators(void)
   QString errorstr = "";
   QString str = "";
   QStringList tmplist;
-  bool adminCreated = false;
-  bool uexists = false;
+  auto adminCreated = false;
+  auto uexists = false;
   int i = 0;
   int j = 0;
 
@@ -4943,9 +4941,9 @@ void biblioteq::slotSaveUser(void)
   QString checksum = "";
   QString errorstr = "";
   QString str = "";
-  bool exists = false;
+  auto exists = false;
+  auto row = bb.table->currentRow();
   int i = 0;
-  int row = bb.table->currentRow();
 
   str = userinfo_diag->m_userinfo.memberid->text().trimmed();
   userinfo_diag->m_userinfo.memberid->setText(str);
@@ -4980,7 +4978,7 @@ void biblioteq::slotSaveUser(void)
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      bool uexists = biblioteq_misc_functions::userExists
+      auto uexists = biblioteq_misc_functions::userExists
 	(userinfo_diag->m_userinfo.memberid->text(), m_db, errorstr);
 
       QApplication::restoreOverrideCursor();
@@ -5438,7 +5436,7 @@ void biblioteq::slotSceneSelectionChanged(void)
   ui.table->setCurrentCell(-1, -1);
   slotDisplaySummary();
 
-  QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
+  auto items(ui.graphicsView->scene()->selectedItems());
 
   if(!items.isEmpty())
     {
@@ -5453,8 +5451,8 @@ void biblioteq::slotSceneSelectionChanged(void)
 	    types.append(item->data(1).toString());
 	  }
 
-      int column1 = ui.table->columnNumber("MYOID");
-      int column2 = ui.table->columnNumber("Type");
+      auto column1 = ui.table->columnNumber("MYOID");
+      auto column2 = ui.table->columnNumber("Type");
 
       for(int i = 0; i < ui.table->rowCount(); i++)
 	if(ui.table->item(i, column1) &&
@@ -5486,16 +5484,15 @@ void biblioteq::slotShowHistory(void)
   QString str = "";
   QStringList list;
   QTableWidgetItem *item = nullptr;
+  auto row = bb.table->currentRow();
   int i = -1;
   int j = 0;
-  int row = bb.table->currentRow();
 
   if(m_db.driverName() == "QPSQL" && m_roles.isEmpty())
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      bool dnt = biblioteq_misc_functions::dnt(m_db, dbUserName(),
-					       errorstr);
+      auto dnt = biblioteq_misc_functions::dnt(m_db, dbUserName(), errorstr);
 
       if(errorstr.isEmpty())
 	{
@@ -5842,13 +5839,13 @@ void biblioteq::slotShowHistory(void)
     {
       if(query.isValid())
 	{
-	  QSqlRecord record(query.record());
+	  auto record(query.record());
 
 	  for(j = 0; j < record.count(); j++)
 	    {
 	      if(record.fieldName(j).contains("date"))
 		{
-		  QDate date(QDate::fromString(query.value(j).toString().
+		  auto date(QDate::fromString(query.value(j).toString().
 					       trimmed(),
 					       "MM/dd/yyyy"));
 
@@ -5883,7 +5880,7 @@ void biblioteq::slotShowHistory(void)
 
   if(m_members_diag->isVisible())
     {
-      static bool resized = false;
+      static auto resized = false;
 
       if(!resized)
 	m_history_diag->resize(qRound(0.85 * m_members_diag->size().width()),

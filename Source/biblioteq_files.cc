@@ -76,7 +76,7 @@ void biblioteq_files::slotClose(void)
 
 void biblioteq_files::slotExport(void)
 {
-  QModelIndexList list(m_ui.files_table->selectionModel()->selectedRows());
+  auto list(m_ui.files_table->selectionModel()->selectedRows());
 
   if(biblioteq::MAXIMUM_DEVICES_CONFIRMATION <= list.size())
     {
@@ -125,7 +125,7 @@ void biblioteq_files::slotExport(void)
 
   query.setForwardOnly(true);
 
-  foreach(const QModelIndex &index, list)
+  foreach(const auto &index, list)
     {
       i += 1;
       progress.setValue(i);
@@ -135,9 +135,9 @@ void biblioteq_files::slotExport(void)
       if(progress.wasCanceled())
 	break;
 
-      QString fileName(index.data().toString());
-      QString tableName(index.sibling(index.row(), 5).data().toString());
-      qint64 oid = index.sibling(index.row(), 6).data().toLongLong();
+      auto fileName(index.data().toString());
+      auto oid = index.sibling(index.row(), 6).data().toLongLong();
+      auto tableName(index.sibling(index.row(), 5).data().toString());
 
       query.prepare
 	(QString("SELECT file FROM %1_files WHERE myoid = ?").
@@ -186,7 +186,7 @@ void biblioteq_files::slotRefresh(void)
   m_ui.files_table->setRowCount(0);
 
   QSqlQuery query(m_biblioteq->getDB());
-  int page = m_ui.page->currentIndex();
+  auto page = m_ui.page->currentIndex();
 
   m_ui.page->clear();
   query.setForwardOnly(true);
@@ -201,7 +201,7 @@ void biblioteq_files::slotRefresh(void)
 
   if(query.exec() && query.next())
     {
-      int pages = qCeil
+      auto pages = qCeil
 	(query.value(0).toDouble() / static_cast<double> (m_ui.pages->value()));
 
       for(int i = 0; i < pages; i++)
