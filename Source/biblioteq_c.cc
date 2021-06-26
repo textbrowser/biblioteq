@@ -5891,7 +5891,7 @@ void biblioteq::slotShowHistory(void)
     }
   else
     {
-      static bool resized = false;
+      static auto resized = false;
 
       if(!resized)
 	m_history_diag->resize(qRound(0.85 * size().width()),

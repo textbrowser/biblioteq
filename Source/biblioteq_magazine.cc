@@ -1206,7 +1206,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 	  }
       }
 
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
+  foreach(auto textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }
 

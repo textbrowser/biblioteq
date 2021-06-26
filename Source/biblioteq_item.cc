@@ -50,7 +50,7 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
   auto hasChanged = false;
   int i = 0;
 
-  foreach(QWidget *widget, window->findChildren<QWidget *> ())
+  foreach(auto widget, window->findChildren<QWidget *> ())
     {
       classname = widget->metaObject()->className();
       objectname = widget->objectName();
