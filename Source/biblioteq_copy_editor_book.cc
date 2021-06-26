@@ -125,8 +125,8 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
 	    {
-	      qint64 value = 0;
 	      QString errorstr("");
+	      qint64 value = 0;
 
 	      value = biblioteq_misc_functions::getSqliteUniqueId
 		(qmain->getDB(), errorstr);
@@ -214,7 +214,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QStringList list;
-  bool terminate = false;
+  auto terminate = false;
   int i = 0;
   int j = 0;
   int row = 0;
@@ -238,8 +238,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
       ** Set the minimum date to duedate.
       */
 
-      QDate duedate = QDate::currentDate();
       QString errorstr("");
+      auto duedate = QDate::currentDate();
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       duedate = duedate.addDays
@@ -513,11 +513,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	      }
 	    else if(m_cb.table->cellWidget(row, j) != nullptr)
 	      {
-		QWidget *widget = m_cb.table->cellWidget(row, j);
+		auto widget = m_cb.table->cellWidget(row, j);
 
 		if(widget)
 		  {
-		    QComboBox *comboBox = widget->findChild<QComboBox *> ();
+		    auto comboBox = widget->findChild<QComboBox *> ();
 
 		    if(comboBox)
 		      {
@@ -555,8 +555,8 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
   QString copyid = "";
   QString errorstr = "";
-  bool isCheckedOut = false;
-  int row = m_cb.table->currentRow();
+  auto isCheckedOut = false;
+  auto row = m_cb.table->currentRow();
 
   if(row < 0)
     {
@@ -679,9 +679,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
-      QWidget *widget1 = m_cb.table->cellWidget(i, ORIGINALITY);
-      QWidget *widget2 = m_cb.table->cellWidget(i, CONDITION);
-      QWidget *widget3 = m_cb.table->cellWidget(i, STATUS);
+      auto widget1 = m_cb.table->cellWidget(i, ORIGINALITY);
+      auto widget2 = m_cb.table->cellWidget(i, CONDITION);
+      auto widget3 = m_cb.table->cellWidget(i, STATUS);
 
       if(!widget1 || !widget2 || !widget3)
 	continue;
@@ -753,9 +753,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       return;
     }
 
-  QString availability = biblioteq_misc_functions::getAvailability
+  auto availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
-  QString reserved = biblioteq_misc_functions::getTotalReserved
+  auto reserved = biblioteq_misc_functions::getTotalReserved
     (qmain->getDB(), m_itemType, m_ioid);
 
   QApplication::restoreOverrideCursor();
