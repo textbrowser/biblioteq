@@ -20,6 +20,7 @@ class biblioteq_otheroptions: public QMainWindow
  private:
   enum ItemsColumns
     {
+     AVAILABILITY_COLOR = 1,
      ITEM_TYPE = 0,
      PUBLICATION_DATE_FORMAT = 1
     };
@@ -29,6 +30,7 @@ class biblioteq_otheroptions: public QMainWindow
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
+  void prepareAvailability(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);

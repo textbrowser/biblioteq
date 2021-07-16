@@ -109,9 +109,68 @@ void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
   QMainWindow::keyPressEvent(event);
 }
 
+void biblioteq_otheroptions::prepareAvailability(void)
+{
+  QSettings settings;
+  QStringList list1;
+  QStringList list2;
+  QStringList list3;
+
+  list1 << tr("Books")
+	<< tr("DVDs")
+	<< tr("Grey Literature")
+	<< tr("Journals")
+	<< tr("Magazines")
+	<< tr("Music CDs")
+	<< tr("Video Games");
+  list2 << settings.value("otheroptions/book_availability_color").toString()
+	<< settings.value("otheroptions/dvd_availability_color").toString()
+	<< settings.value("otheroptions/grey_availability_color").toString()
+	<< settings.value("otheroptions/journal_availability_color").toString()
+	<< settings.value("otheroptions/magazine_availability_color").toString()
+	<< settings.value("otheroptions/cd_availability_color").toString()
+	<< settings.value("otheroptions/videogame_availability_color").
+           toString();
+  list3 << "books"
+	<< "dvds"
+	<< "greyliterature"
+	<< "journals"
+	<< "magazines"
+	<< "musiccds"
+	<< "videogames";
+  m_ui.availability_color->setRowCount(list1.size());
+
+  for(int i = 0; i < list1.size(); i++)
+    {
+      auto item = new QTableWidgetItem(list1.at(i));
+      auto layout = new QHBoxLayout();
+      auto pushButton = new QPushButton();
+      auto spacer1 = new QSpacerItem
+	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+      auto spacer2 = new QSpacerItem
+	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+      auto widget = new QWidget();
+
+      widget->setLayout(layout);
+      layout->addSpacerItem(spacer1);
+      layout->addWidget(pushButton);
+      layout->addSpacerItem(spacer2);
+      layout->setContentsMargins(0, 0, 0, 0);
+      item->setData(Qt::UserRole, list3.at(i));
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.availability_color->setCellWidget(i, AVAILABILITY_COLOR, widget);
+      m_ui.availability_color->setItem(i, ITEM_TYPE, item);
+    }
+
+  m_ui.availability_color->resizeColumnToContents(ITEM_TYPE);
+  m_ui.availability_color->resizeRowsToContents();
+
+}
+
 void biblioteq_otheroptions::prepareSettings(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  prepareAvailability();
 
   QSettings settings;
   QStringList list1;
@@ -186,13 +245,16 @@ void biblioteq_otheroptions::prepareSettings(void)
       comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
       auto layout = new QHBoxLayout();
-      auto spacer = new QSpacerItem
+      auto spacer1 = new QSpacerItem
+	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+      auto spacer2 = new QSpacerItem
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
       auto widget = new QWidget();
 
       widget->setLayout(layout);
+      layout->addSpacerItem(spacer1);
       layout->addWidget(comboBox);
-      layout->addSpacerItem(spacer);
+      layout->addSpacerItem(spacer2);
       layout->setContentsMargins(0, 0, 0, 0);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
