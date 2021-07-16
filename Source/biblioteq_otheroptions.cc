@@ -332,6 +332,33 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < list.size(); i++)
     {
+      QString value("");
+      auto widget = m_ui.availability_color->cellWidget(i, AVAILABILITY_COLOR);
+      const QString &key(list.at(i));
+
+      if(widget)
+	{
+	  auto pushButton = widget->findChild<QPushButton *> ();
+
+	  if(pushButton)
+	    value = pushButton->text();
+	}
+
+      settings.setValue(key, value);
+    }
+
+  list.clear();
+  list << "otheroptions/book_publication_date_format"
+       << "otheroptions/dvd_publication_date_format"
+       << "otheroptions/grey_literature_date_format"
+       << "otheroptions/journal_publication_date_format"
+       << "otheroptions/magazine_publication_date_format"
+       << "otheroptions/cd_publication_date_format"
+       << "otheroptions/photograph_publication_date_format"
+       << "otheroptions/videogame_publication_date_format";
+
+  for(int i = 0; i < list.size(); i++)
+    {
       QString value("MM/dd/yyyy");
       auto widget = m_ui.publication_date->cellWidget
 	(i, PUBLICATION_DATE_FORMAT);
