@@ -125,7 +125,8 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	<< tr("Video Games");
   list2 << settings.value("otheroptions/book_availability_color").toString()
 	<< settings.value("otheroptions/dvd_availability_color").toString()
-	<< settings.value("otheroptions/grey_availability_color").toString()
+	<< settings.value("otheroptions/grey_literature_availability_color").
+           toString()
 	<< settings.value("otheroptions/journal_availability_color").toString()
 	<< settings.value("otheroptions/magazine_availability_color").toString()
 	<< settings.value("otheroptions/cd_availability_color").toString()
@@ -151,6 +152,10 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
       auto widget = new QWidget();
 
+      connect(pushButton,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotSelectAvailabilityColor(void)));
       widget->setLayout(layout);
       layout->addSpacerItem(spacer1);
       layout->addWidget(pushButton);
@@ -321,14 +326,13 @@ void biblioteq_otheroptions::slotSave(void)
   QSettings settings;
   QStringList list;
 
-  list << "otheroptions/book_publication_date_format"
-       << "otheroptions/dvd_publication_date_format"
-       << "otheroptions/grey_literature_date_format"
-       << "otheroptions/journal_publication_date_format"
-       << "otheroptions/magazine_publication_date_format"
-       << "otheroptions/cd_publication_date_format"
-       << "otheroptions/photograph_publication_date_format"
-       << "otheroptions/videogame_publication_date_format";
+  list << "otheroptions/book_availability_color"
+       << "otheroptions/dvd_availability_color"
+       << "otheroptions/grey_availability_color"
+       << "otheroptions/journal_availability_color"
+       << "otheroptions/magazine_availability_color"
+       << "otheroptions/cd_availability_color"
+       << "otheroptions/videogame_availability_color";
 
   for(int i = 0; i < list.size(); i++)
     {
@@ -392,13 +396,34 @@ void biblioteq_otheroptions::slotSave(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
+{
+  auto pushButton = qobject_cast<QPushButton *> (sender());
+
+  if(!pushButton)
+    return;
+
+  QColorDialog dialog(this);
+
+  dialog.setOption(QColorDialog::DontUseNativeDialog);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      QApplication::processEvents();
+      pushButton->setStyleSheet
+	(QString("background-color: %1").arg(dialog.selectedColor().name()));
+      pushButton->setText(dialog.selectedColor().name());
+    }
+  else
+    QApplication::processEvents();
+}
+
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 {
   QColor color(m_ui.main_window_canvas_background_color->text());
   QColorDialog dialog(this);
 
   dialog.setOption(QColorDialog::DontUseNativeDialog);
-
   connect(&dialog,
 	  SIGNAL(currentColorChanged(const QColor &)),
 	  this,

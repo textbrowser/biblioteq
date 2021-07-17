@@ -37,6 +37,7 @@ class biblioteq_otheroptions: public QMainWindow
   void slotClose(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotSave(void);
+  void slotSelectAvailabilityColor(void);
   void slotSelectMainwindowCanvasBackgroundColor(void);
 
  public slots:
