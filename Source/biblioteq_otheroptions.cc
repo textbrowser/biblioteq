@@ -165,6 +165,9 @@ void biblioteq_otheroptions::prepareAvailability(void)
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.availability_color->setCellWidget(i, AVAILABILITY_COLOR, widget);
       m_ui.availability_color->setItem(i, ITEM_TYPE, item);
+      pushButton->setText(list2.at(i));
+      pushButton->setStyleSheet
+	(QString("background-color: %1").arg(list2.at(i)));
     }
 
   m_ui.availability_color->resizeColumnToContents(ITEM_TYPE);
@@ -328,7 +331,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   list << "otheroptions/book_availability_color"
        << "otheroptions/dvd_availability_color"
-       << "otheroptions/grey_availability_color"
+       << "otheroptions/grey_literature_availability_color"
        << "otheroptions/journal_availability_color"
        << "otheroptions/magazine_availability_color"
        << "otheroptions/cd_availability_color"
