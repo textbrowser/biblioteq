@@ -151,6 +151,10 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
       auto widget = new QWidget();
 
+      connect(pushButton,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotSelectAvailabilityColor(void)));
       widget->setLayout(layout);
       layout->addSpacerItem(spacer1);
       layout->addWidget(pushButton);
@@ -392,13 +396,16 @@ void biblioteq_otheroptions::slotSave(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
+{
+}
+
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 {
   QColor color(m_ui.main_window_canvas_background_color->text());
   QColorDialog dialog(this);
 
   dialog.setOption(QColorDialog::DontUseNativeDialog);
-
   connect(&dialog,
 	  SIGNAL(currentColorChanged(const QColor &)),
 	  this,
