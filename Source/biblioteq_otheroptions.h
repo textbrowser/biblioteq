@@ -12,7 +12,8 @@ class biblioteq_otheroptions: public QMainWindow
  public:
   biblioteq_otheroptions(biblioteq *parent);
   ~biblioteq_otheroptions();
-  QString publicationDateFormat(const QString &itemType) const;
+  QColor availabilityColor(const QString &it) const;
+  QString publicationDateFormat(const QString &it) const;
   bool showMainTableImages(void) const;
   int booksAccessionNumberIndex(void) const;
   void prepareSettings(void);

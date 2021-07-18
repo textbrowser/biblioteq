@@ -36,30 +36,71 @@ biblioteq_otheroptions::~biblioteq_otheroptions()
 {
 }
 
-QString biblioteq_otheroptions::publicationDateFormat
-(const QString &itemType) const
+QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 {
-  for(int i = 0; i < m_ui.publication_date->rowCount(); i++)
-    if(m_ui.publication_date->item(i, ITEM_TYPE) &&
-       itemType.toLower().trimmed() ==
-       m_ui.publication_date->item(i, ITEM_TYPE)->data(Qt::UserRole).toString().
-       toLower())
-      {
-	auto widget = m_ui.publication_date->cellWidget
-	  (i, PUBLICATION_DATE_FORMAT);
+  QSettings settings;
+  QString itemType(it.toLower().trimmed());
+  QString value("");
 
-	if(widget)
-	  {
-	    auto comboBox = widget->findChild<QComboBox *> ();
+  if(itemType == "books")
+    value = settings.value
+      ("otheroptions/book_availability_color").toString();
+  else if(itemType == "dvds")
+    value = settings.value
+      ("otheroptions/dvd_publication_date_format").toString();
+  else if(itemType == "greyliterature")
+    value = settings.value
+      ("otheroptions/grey_literature_date_format").toString();
+  else if(itemType == "journals")
+    value = settings.value
+      ("otheroptions/journal_publication_date_format").toString();
+  else if(itemType == "magazines")
+    value = settings.value
+      ("otheroptions/magazine_publication_date_format").toString();
+  else if(itemType == "musiccds")
+    value = settings.value
+      ("otheroptions/cd_publication_date_format").toString();
+  else if(itemType == "photographcollections")
+    value = settings.value
+      ("otheroptions/photograph_publication_date_format").toString();
+  else if(itemType == "videogames")
+    value = settings.value
+      ("otheroptions/videogame_publication_date_format").toString();
 
-	    if(comboBox)
-	      return comboBox->currentText();
-	  }
+  return QColor(value);
+}
 
-	break;
-      }
+QString biblioteq_otheroptions::publicationDateFormat
+(const QString &it) const
+{
+  QSettings settings;
+  QString itemType(it.toLower().trimmed());
 
-  return "MM/dd/yyyy";
+  if(itemType == "books")
+    return settings.value
+      ("otheroptions/book_publication_date_format").toString();
+  else if(itemType == "dvds")
+    return settings.value
+      ("otheroptions/dvd_publication_date_format").toString();
+  else if(itemType == "greyliterature")
+    return settings.value
+      ("otheroptions/grey_literature_date_format").toString();
+  else if(itemType == "journals")
+    return settings.value
+      ("otheroptions/journal_publication_date_format").toString();
+  else if(itemType == "magazines")
+    return settings.value
+      ("otheroptions/magazine_publication_date_format").toString();
+  else if(itemType == "musiccds")
+    return settings.value("otheroptions/cd_publication_date_format").toString();
+  else if(itemType == "photographcollections")
+    return settings.value
+      ("otheroptions/photograph_publication_date_format").toString();
+  else if(itemType == "videogames")
+    return settings.value
+      ("otheroptions/videogame_publication_date_format").toString();
+  else
+    return "MM/dd/yyyy";
 }
 
 bool biblioteq_otheroptions::showMainTableImages(void) const
