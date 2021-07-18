@@ -39,8 +39,8 @@ biblioteq_otheroptions::~biblioteq_otheroptions()
 QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 {
   QSettings settings;
-  QString itemType(it.toLower().trimmed());
   QString value("");
+  auto itemType(it.toLower().trimmed());
 
   if(itemType == "books")
     value = settings.value
@@ -74,7 +74,7 @@ QString biblioteq_otheroptions::publicationDateFormat
 (const QString &it) const
 {
   QSettings settings;
-  QString itemType(it.toLower().trimmed());
+  auto itemType(it.toLower().trimmed());
 
   if(itemType == "books")
     return settings.value
@@ -382,7 +382,7 @@ void biblioteq_otheroptions::slotSave(void)
     {
       QString value("");
       auto widget = m_ui.availability_color->cellWidget(i, AVAILABILITY_COLOR);
-      const QString &key(list.at(i));
+      const auto &key(list.at(i));
 
       if(widget)
 	{
@@ -410,7 +410,7 @@ void biblioteq_otheroptions::slotSave(void)
       QString value("MM/dd/yyyy");
       auto widget = m_ui.publication_date->cellWidget
 	(i, PUBLICATION_DATE_FORMAT);
-      const QString &key(list.at(i));
+      const auto &key(list.at(i));
 
       if(widget)
 	{
