@@ -39,7 +39,7 @@ biblioteq_otheroptions::~biblioteq_otheroptions()
 QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 {
   QSettings settings;
-  QString value("");
+  QString value("white");
   auto itemType(it.toLower().trimmed());
 
   if(itemType == "books")
@@ -449,6 +449,7 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
 
   QColorDialog dialog(this);
 
+  dialog.setCurrentColor(QColor(pushButton->text()));
   dialog.setOption(QColorDialog::DontUseNativeDialog);
 
   if(dialog.exec() == QDialog::Accepted)
@@ -467,6 +468,7 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
   QColor color(m_ui.main_window_canvas_background_color->text());
   QColorDialog dialog(this);
 
+  dialog.setCurrentColor(color);
   dialog.setOption(QColorDialog::DontUseNativeDialog);
   connect(&dialog,
 	  SIGNAL(currentColorChanged(const QColor &)),

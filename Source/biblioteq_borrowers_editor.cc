@@ -442,6 +442,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
       qmain->updateMembersBrowser(memberid);
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
+      QColor color(Qt::white);
       QString availability = "";
       QString errorstr = "";
       QString reserved = "";
@@ -458,6 +459,15 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 	   m_bitem->getRow(),
 	   qmain->getUI().table->columnNumber("Availability"),
 	   availability);
+
+      if(availability.toInt() > 0)
+	color = qmain->availabilityColor(m_itemType);
+
+      biblioteq_misc_functions::updateColumnColor
+	(qmain->getUI().table,
+	 m_bitem->getRow(),
+	 qmain->getUI().table->columnNumber("Availability"),
+	 color);
 
       if(!reserved.isEmpty())
 	biblioteq_misc_functions::updateColumn

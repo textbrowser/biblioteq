@@ -4201,8 +4201,8 @@ void biblioteq::slotSetFonts(void)
 {
   QFontDialog dialog(this);
 
-  dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setCurrentFont(QApplication::font());
+  dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
 
   if(dialog.exec() == QDialog::Accepted)

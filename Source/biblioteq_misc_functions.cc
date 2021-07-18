@@ -2176,3 +2176,14 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
   if(qobject_cast<biblioteq_main_table *> (table))
     qobject_cast<biblioteq_main_table *> (table)->updateToolTips(row);
 }
+
+void biblioteq_misc_functions::updateColumnColor(QTableWidget *table,
+						 const int row,
+						 int column,
+						 const QColor &color)
+{
+  if(column < 0 || row < 0 || !table || !table->item(row, column))
+    return;
+
+  table->item(row, column)->setBackgroundColor(color);
+}

@@ -193,6 +193,7 @@ class biblioteq: public QMainWindow
   ~biblioteq();
   QMenu *m_configToolMenu;
   QString m_unaccent;
+  QColor availabilityColor(const QString &itemType) const;
   QHash<QString, QString> getAmazonHash(void) const;
   QHash<QString, QString> getOpenLibraryImagesHash(void) const;
   QHash<QString, QString> getOpenLibraryItemsHash(void) const;

@@ -158,6 +158,10 @@ class biblioteq_misc_functions
 			   const int,
 			   const int,
 			   const QString &);
+  static void updateColumnColor(QTableWidget *,
+				const int,
+				const int,
+				const QColor &);
 
  private:
   biblioteq_misc_functions(void);

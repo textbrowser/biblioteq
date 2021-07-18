@@ -753,6 +753,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       return;
     }
 
+  QColor color(Qt::white);
   auto availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
   auto reserved = biblioteq_misc_functions::getTotalReserved
@@ -767,6 +768,14 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
        qmain->getUI().table->columnNumber("Availability"),
        availability);
 
+  if(availability.toInt() > 0)
+    color = qmain->availabilityColor(m_itemType);
+
+  biblioteq_misc_functions::updateColumnColor
+    (qmain->getUI().table,
+     m_bitem->getRow(),
+     qmain->getUI().table->columnNumber("Availability"),
+     color);
   biblioteq_misc_functions::updateColumn
     (qmain->getUI().table,
      m_bitem->getRow(),

@@ -16,6 +16,11 @@
 
 #include <limits>
 
+QColor biblioteq::availabilityColor(const QString &itemType) const
+{
+  return m_otheroptions->availabilityColor(itemType);
+}
+
 QHash<QString, QString> biblioteq::getOpenLibraryImagesHash(void) const
 {
   return m_openLibraryImages;
