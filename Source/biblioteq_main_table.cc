@@ -48,7 +48,7 @@ QStringList biblioteq_main_table::columnNames(void) const
 
 int biblioteq_main_table::columnNumber(const QString &name) const
 {
-  int index = m_columnHeaderIndexes.indexOf(name);
+  auto index = m_columnHeaderIndexes.indexOf(name);
 
   if(index >= 0)
     return index;
