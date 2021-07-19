@@ -40,27 +40,27 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 {
   QSettings settings;
   QString value("white");
-  auto itemType(it.toLower().trimmed());
+  auto itemType(QString(it).remove(" ").toLower().trimmed());
 
-  if(itemType == "book")
+  if(itemType == "book" || itemType == "books")
     value = settings.value
       ("otheroptions/book_availability_color").toString();
-  else if(itemType == "cd")
+  else if(itemType == "cd" || itemType == "musiccds")
     value = settings.value
       ("otheroptions/cd_availability_color").toString();
-  else if(itemType == "dvd")
+  else if(itemType == "dvd" || itemType == "dvds")
     value = settings.value
       ("otheroptions/dvd_availability_color").toString();
   else if(itemType == "greyliterature")
     value = settings.value
       ("otheroptions/grey_literature_availability_color").toString();
-  else if(itemType == "journal")
+  else if(itemType == "journal" || itemType == "journals")
     value = settings.value
       ("otheroptions/journal_availability_color").toString();
-  else if(itemType == "magazine")
+  else if(itemType == "magazine" || itemType == "magazines")
     value = settings.value
       ("otheroptions/magazine_availability_color").toString();
-  else if(itemType == "videogame")
+  else if(itemType == "videogame" || itemType == "videogames")
     value = settings.value
       ("otheroptions/videogame_availability_color").toString();
 

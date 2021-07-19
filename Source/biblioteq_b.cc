@@ -3548,6 +3548,8 @@ int biblioteq::populateTable(const int search_type_arg,
 
   while(i++, !progress.wasCanceled() && query.next())
     {
+      biblioteq_numeric_table_item *availabilityItem = nullptr;
+
       pixmapItem = nullptr;
 
       if(query.isValid())
@@ -3651,8 +3653,15 @@ int biblioteq::populateTable(const int search_type_arg,
 		      str = QString::number(query.value(j).toDouble(), 'f', 2);
 		    }
 		  else
-		    item = new biblioteq_numeric_table_item
-		      (query.value(j).toInt());
+		    {
+		      item = new biblioteq_numeric_table_item
+			(query.value(j).toInt());
+
+		      if(availabilityColors() &&
+			 record.fieldName(j).endsWith("availability"))
+			availabilityItem =
+			  dynamic_cast<biblioteq_numeric_table_item *> (item);
+		    }
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
@@ -3735,6 +3744,9 @@ int biblioteq::populateTable(const int search_type_arg,
 		    updateRows(str, i, itemType);
 		}
 	    }
+
+	  if(availabilityItem && availabilityItem->value() > 0.0)
+	    availabilityItem->setBackgroundColor(availabilityColor(itemType));
 
 	  if(first)
 	    {

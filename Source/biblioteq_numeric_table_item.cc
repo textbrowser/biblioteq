@@ -14,3 +14,8 @@ bool biblioteq_numeric_table_item::operator <
 
   return text().toDouble() < other.text().toDouble();
 }
+
+double biblioteq_numeric_table_item::value(void) const
+{
+  return text().toDouble();
+}

@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2021.06.12"
+#define BIBLIOTEQ_VERSION "2021.08.08"
 
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
@@ -214,6 +214,7 @@ class biblioteq: public QMainWindow
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
+  bool availabilityColors(void) const;
   bool isGuest(void) const;
   int pageLimit(void) const;
   int populateTable(const QSqlQuery &query,

@@ -207,6 +207,11 @@ QWidget *biblioteq::widgetForAction(QAction *action) const
   return nullptr;
 }
 
+bool biblioteq::availabilityColors(void) const
+{
+  return true;
+}
+
 bool biblioteq::emptyContainers(void)
 {
   foreach(auto w, QApplication::topLevelWidgets())
@@ -581,6 +586,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	  break;
 
       biblioteq_graphicsitempixmap *pixmapItem = nullptr;
+      biblioteq_numeric_table_item *availabilityItem = nullptr;
 
       if(m_searchQuery.isValid())
 	{
@@ -677,8 +683,15 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			(m_searchQuery.value(j).toDouble(), 'f', 2);
 		    }
 		  else
-		    item = new biblioteq_numeric_table_item
-		      (m_searchQuery.value(j).toInt());
+		    {
+		      item = new biblioteq_numeric_table_item
+			(m_searchQuery.value(j).toInt());
+
+		      if(availabilityColors() &&
+			 record.fieldName(j).endsWith("availability"))
+			availabilityItem = dynamic_cast
+			  <biblioteq_numeric_table_item *> (item);
+		    }
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
@@ -762,6 +775,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    updateRows(str, i, itemType);
 		}
 	    }
+
+	  if(availabilityItem && availabilityItem->value() > 0.0)
+	    availabilityItem->setBackgroundColor(availabilityColor(itemType));
 
 	  if(first)
 	    {
