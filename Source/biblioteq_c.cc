@@ -209,7 +209,9 @@ QWidget *biblioteq::widgetForAction(QAction *action) const
 
 bool biblioteq::availabilityColors(void) const
 {
-  return true;
+  QSettings settings;
+
+  return settings.value("otheroptions/availability_colors", false).toBool();
 }
 
 bool biblioteq::emptyContainers(void)

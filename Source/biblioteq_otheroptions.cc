@@ -178,6 +178,8 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	<< "musiccds"
 	<< "videogames";
   m_ui.availability_color->setRowCount(list1.size());
+  m_ui.availability_colors->setChecked
+    (settings.value("otheroptions/availability_colors", false).toBool());
 
   for(int i = 0; i < list1.size(); i++)
     {
@@ -365,6 +367,10 @@ void biblioteq_otheroptions::slotSave(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
+
+  settings.setValue
+    ("otheroptions/availability_colors", m_ui.availability_colors->isChecked());
+
   QStringList list;
 
   list << "otheroptions/book_availability_color"
