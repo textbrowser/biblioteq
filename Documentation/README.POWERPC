@@ -1,18 +1,17 @@
-Preparing /usr/local/biblioteq:
+Preparing ./usr/local/biblioteq:
 
-sudo mkdir -p /usr/local/biblioteq/Documentation
-sudo mkdir -p /usr/local/biblioteq/SQL
-sudo mkdir -p /usr/local/biblioteq/Translations
+mkdir -p ./usr/local/biblioteq/Documentation
+mkdir -p ./usr/local/biblioteq/SQL
+mkdir -p ./usr/local/biblioteq/Translations
 cd ~/biblioteq.d
 qmake -o Makefile biblioteq.pro && make -j 4
-sudo cp -p ./BiblioteQ /usr/local/biblioteq/.
-sudo cp -p ./Icons/book.png /usr/local/biblioteq/.
-sudo cp -p ./SQL/* /usr/local/biblioteq/SQL/.
-sudo cp -p ./Translations/*.qm /usr/local/biblioteq/Translations/.
-sudo cp -p ./biblioteq.conf /usr/local/biblioteq/.
-sudo cp -p ./biblioteq.sh /usr/local/biblioteq/.
-sudo cp -pr ./Documentation/* /usr/local/biblioteq/Documentation/.
-sudo chown -Rh root:staff /usr/local/biblioteq
+cp -p ./BiblioteQ ./usr/local/biblioteq/.
+cp -p ./Icons/book.png ./usr/local/biblioteq/.
+cp -p ./SQL/* ./usr/local/biblioteq/SQL/.
+cp -p ./Translations/*.qm ./usr/local/biblioteq/Translations/.
+cp -p ./biblioteq.conf ./usr/local/biblioteq/.
+cp -p ./biblioteq.sh ./usr/local/biblioteq/.
+cp -pr ./Documentation/* ./usr/local/biblioteq/Documentation/.
 
 Preparing BiblioteQ-x.deb:
 
@@ -21,5 +20,8 @@ mkdir -p biblioteq-debian/usr/local
 mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./biblioteq.d/DEBIAN-POWERPC biblioteq-debian/DEBIAN
-cp -r /usr/local/biblioteq biblioteq-debian/usr/local/.
+cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2021.08.08_powerpc.deb
+rm -fr ./usr/local
+rm -fr biblioteq-debian
+make distclean
