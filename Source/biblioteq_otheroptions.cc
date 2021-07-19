@@ -42,30 +42,27 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   QString value("white");
   auto itemType(it.toLower().trimmed());
 
-  if(itemType == "books")
+  if(itemType == "book")
     value = settings.value
       ("otheroptions/book_availability_color").toString();
-  else if(itemType == "dvds")
+  else if(itemType == "cd")
     value = settings.value
-      ("otheroptions/dvd_publication_date_format").toString();
+      ("otheroptions/cd_availability_color").toString();
+  else if(itemType == "dvd")
+    value = settings.value
+      ("otheroptions/dvd_availability_color").toString();
   else if(itemType == "greyliterature")
     value = settings.value
-      ("otheroptions/grey_literature_date_format").toString();
-  else if(itemType == "journals")
+      ("otheroptions/grey_literature_availability_color").toString();
+  else if(itemType == "journal")
     value = settings.value
-      ("otheroptions/journal_publication_date_format").toString();
-  else if(itemType == "magazines")
+      ("otheroptions/journal_availability_color").toString();
+  else if(itemType == "magazine")
     value = settings.value
-      ("otheroptions/magazine_publication_date_format").toString();
-  else if(itemType == "musiccds")
+      ("otheroptions/magazine_availability_color").toString();
+  else if(itemType == "videogame")
     value = settings.value
-      ("otheroptions/cd_publication_date_format").toString();
-  else if(itemType == "photographcollections")
-    value = settings.value
-      ("otheroptions/photograph_publication_date_format").toString();
-  else if(itemType == "videogames")
-    value = settings.value
-      ("otheroptions/videogame_publication_date_format").toString();
+      ("otheroptions/videogame_availability_color").toString();
 
   return QColor(value);
 }
