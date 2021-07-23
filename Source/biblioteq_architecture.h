@@ -38,6 +38,10 @@
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7S__"
 #elif defined(__ARM_ARCH_7__)
 #define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_7__"
+#elif defined(__ARM_ARCH_8A__)
+#define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_8A__"
+#elif defined(__ARM_ARCH_8__)
+#define BIBLIOTEQ_ARCHITECTURE_STR "__ARM_ARCH_8__"
 #elif defined(i386)
 #define BIBLIOTEQ_ARCHITECTURE_STR "i386"
 #elif defined(__i386)
