@@ -1401,3 +1401,7 @@ END;
 ' LANGUAGE plpgsql;
 CREATE TRIGGER grey_literature_trigger AFTER DELETE ON grey_literature
 FOR EACH row EXECUTE PROCEDURE delete_grey_literature();
+
+/* Release 2021.08.08 */
+
+ALTER TABLE book ADD book_read INTEGER DEFAULT 0;

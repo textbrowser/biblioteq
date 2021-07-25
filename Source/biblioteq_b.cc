@@ -5027,6 +5027,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
      "DELETE FROM member_history WHERE item_oid = old.myoid AND "
      "type = old.type; "
      "END;");
+  list.append("ALTER TABLE book ADD book_read INTEGER DEFAULT 0");
 
   QString errors("<html>");
   int ct = 1;
