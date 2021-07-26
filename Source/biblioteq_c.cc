@@ -3350,6 +3350,13 @@ void biblioteq::slotDisplaySummary(void)
       while(summary.contains("<br><br>"))
 	summary.replace("<br><br>", "<br>");
 
+      if(type == "Book")
+	if(biblioteq_misc_functions::isBookRead(m_db, oid.toULongLong()))
+	  {
+	    summary += "<br>";
+	    summary += tr("<b>Read</b>");
+	  }
+
       summary += "</html>";
       ui.summary->setText(summary);
       ui.summary->setVisible(true);
@@ -3488,7 +3495,7 @@ void biblioteq::slotInsertGreyLiterature(void)
 
 void biblioteq::slotItemChanged(QTableWidgetItem *item)
 {
-  if(!item || !(Qt::ItemIsUserCheckable | item->flags()))
+  if(!item || !(Qt::ItemIsUserCheckable & item->flags()))
     return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -3497,6 +3504,7 @@ void biblioteq::slotItemChanged(QTableWidgetItem *item)
      item->checkState() == Qt::Checked,
      item->data(Qt::UserRole).toULongLong());
   QApplication::restoreOverrideCursor();
+  slotDisplaySummary();
 }
 
 void biblioteq::slotLastWindowClosed(void)
