@@ -1054,6 +1054,20 @@ bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
   return false;
 }
 
+bool biblioteq_misc_functions::isBookRead
+(const QSqlDatabase &db, const quint64 myoid)
+{
+  QSqlQuery query(db);
+
+  query.prepare("SELECT book_read FROM book WHERE myoid = ?");
+  query.addBindValue(myoid);
+
+  if(query.exec() && query.next())
+    return query.value(0).toBool();
+
+  return false;
+}
+
 bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 					    const QString &oid,
 					    const QString &itemTypeArg,

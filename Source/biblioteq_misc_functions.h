@@ -76,6 +76,8 @@ class biblioteq_misc_functions
 			       const QString &,
 			       QString &);
   static bool hasUnaccentExtension(const QSqlDatabase &);
+  static bool isBookRead(const QSqlDatabase &,
+			 const quint64);
   static bool isCheckedOut(const QSqlDatabase &,
 			   const QString &,
 			   const QString &,

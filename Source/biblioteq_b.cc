@@ -3562,6 +3562,7 @@ int biblioteq::populateTable(const int search_type_arg,
     {
       QTableWidgetItem *titleItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
+      quint64 myoid = 0;
 
       pixmapItem = nullptr;
 
@@ -3759,7 +3760,10 @@ int biblioteq::populateTable(const int search_type_arg,
 		    }
 
 		  if(record.fieldName(j).endsWith("myoid"))
-		    updateRows(str, i, itemType);
+		    {
+		      myoid = query.value(j).toULongLong();
+		      updateRows(str, i, itemType);
+		    }
 		}
 	    }
 
@@ -3782,6 +3786,9 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	  if(isPatron() && itemType == "book" && titleItem)
 	    {
+	      titleItem->setCheckState
+		(biblioteq_misc_functions::isBookRead(m_db, myoid) ?
+		 Qt::Checked : Qt::Unchecked);
 	      titleItem->setFlags
 		(Qt::ItemIsUserCheckable | titleItem->flags());
 	      titleItem->setToolTip(tr("Read Status"));
