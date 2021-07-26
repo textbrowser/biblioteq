@@ -31,13 +31,13 @@ file /r .\release\plugins
 # The Translations directory contains translation files
 # provided by both BiblioteQ and Qt.
 
-file /r .\release\Translations
-file .\release\*.dll
 file .\Libraries.win32\postgresql.d\*.dll
 file .\Libraries.win32\postgresql.d\Microsoft.VC90.CRT.manifest
 file .\Libraries.win32\sqlite3.d\*.dll
 file .\Libraries.win32\yaz.d\*.dll
+file .\release\*.dll
 file .\release\BiblioteQ.exe
+file /r .\release\Translations
 
 # Add an icon to the Desktop.
 
