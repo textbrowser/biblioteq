@@ -50,7 +50,19 @@ bool biblioteq::isGuest(void) const
 {
   if(m_db.driverName() == "QSQLITE")
     return false;
-  else if(dbUserName() == "xbook_guest")
+  else if(dbUserName() == BIBLIOTEQ_GUEST_ACCOUNT)
+    return true;
+  else
+    return false;
+}
+
+bool biblioteq::isPatron(void) const
+{
+  if(m_db.driverName() == "QSQLITE")
+    return true; // Administrator and patron.
+  else if(dbUserName() == BIBLIOTEQ_GUEST_ACCOUNT)
+    return false;
+  else if(m_roles.isEmpty())
     return true;
   else
     return false;
@@ -3548,6 +3560,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   while(i++, !progress.wasCanceled() && query.next())
     {
+      QTableWidgetItem *titleItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
 
       pixmapItem = nullptr;
@@ -3716,7 +3729,12 @@ int biblioteq::populateTable(const int search_type_arg,
 		    }
 		}
 	      else
-		item = new QTableWidgetItem();
+		{
+		  item = new QTableWidgetItem();
+
+		  if(record.fieldName(j) == "title")
+		    titleItem = item;
+		}
 
 	      if(item != nullptr)
 		{
@@ -3760,6 +3778,13 @@ int biblioteq::populateTable(const int search_type_arg,
 	      ui.table->setRowHeight
 		(i, qMax(fontMetrics.height() + 10,
 			 ui.table->iconSize().height()));
+	    }
+
+	  if(isPatron() && itemType == "book" && titleItem)
+	    {
+	      titleItem->setFlags
+		(Qt::ItemIsUserCheckable | titleItem->flags());
+	      titleItem->setToolTip(tr("Read Status"));
 	    }
 	}
 
@@ -4260,9 +4285,9 @@ void biblioteq::slotRoleChanged(int index)
   if(index == 1)
     {
       br.password->setEnabled(false);
-      br.password->setText("xbook_guest");
+      br.password->setText(BIBLIOTEQ_GUEST_ACCOUNT);
       br.userid->setEnabled(false);
-      br.userid->setText("xbook_guest");
+      br.userid->setText(BIBLIOTEQ_GUEST_ACCOUNT);
     }
   else
     {

@@ -587,6 +587,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	if(!m_searchQuery.next())
 	  break;
 
+      QTableWidgetItem *titleItem = nullptr;
       biblioteq_graphicsitempixmap *pixmapItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
 
@@ -749,7 +750,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    }
 		}
 	      else
-		item = new QTableWidgetItem();
+		{
+		  item = new QTableWidgetItem();
+
+		  if(record.fieldName(j) == "title")
+		    titleItem = item;
+		}
 
 	      if(item != nullptr)
 		{
@@ -793,6 +799,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      ui.table->setRowHeight
 		(i, qMax(fontMetrics.height() + 10,
 			 ui.table->iconSize().height()));
+	    }
+
+	  if(isPatron() && itemType == "book" && titleItem)
+	    {
+	      titleItem->setFlags
+		(Qt::ItemIsUserCheckable | titleItem->flags());
+	      titleItem->setToolTip(tr("Read Status"));
 	    }
 	}
 

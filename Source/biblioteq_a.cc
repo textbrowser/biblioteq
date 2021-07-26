@@ -1399,7 +1399,7 @@ void biblioteq::prepareFilter(void)
     }
   else
     {
-      if(dbUserName() == "xbook_guest" ||
+      if(dbUserName() == BIBLIOTEQ_GUEST_ACCOUNT ||
 	 m_roles == "librarian" ||
 	 m_roles == "membership")
 	{
@@ -1486,7 +1486,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
   if(m_db.driverName() != "QSQLITE")
     if(m_db.isOpen())
       {
-	if(dbUserName() == "xbook_guest")
+	if(dbUserName() == BIBLIOTEQ_GUEST_ACCOUNT)
 	  {
 	    ui.actionRequests->setToolTip(tr("Item Requests"));
 	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
@@ -3927,16 +3927,16 @@ void biblioteq::slotResetErrorLog(void)
 void biblioteq::slotResetLoginDialog(void)
 {
   br.filename->clear();
-  br.password->setText("xbook_guest");
+  br.password->setText(BIBLIOTEQ_GUEST_ACCOUNT);
   br.role->setCurrentIndex(1);
   br.show_password->setChecked(false);
-  br.userid->setText("xbook_guest");
+  br.userid->setText(BIBLIOTEQ_GUEST_ACCOUNT);
 
   QSettings settings;
   int index = 0;
 
-  index = br.branch_name->findText(settings.value("previous_branch_name").
-				   toString());
+  index = br.branch_name->findText
+    (settings.value("previous_branch_name").toString());
 
   if(index >= 0)
     br.branch_name->setCurrentIndex(index);

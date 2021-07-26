@@ -1,6 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
+#define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
 #define BIBLIOTEQ_VERSION "2021.08.08"
 
 #include "biblioteq_book.h"
@@ -216,6 +217,7 @@ class biblioteq: public QMainWindow
   Ui_membersBrowser getBB(void) const;
   bool availabilityColors(void) const;
   bool isGuest(void) const;
+  bool isPatron(void) const;
   int pageLimit(void) const;
   int populateTable(const QSqlQuery &query,
 		    const QString &typefilter,
