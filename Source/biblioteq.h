@@ -435,6 +435,7 @@ class biblioteq: public QMainWindow
   void slotInsertMag(void);
   void slotInsertPhotograph(void);
   void slotInsertVideoGame(void);
+  void slotItemChanged(QTableWidgetItem *item);
   void slotJournSearch(void);
   void slotLanguageChanged(void);
   void slotLastWindowClosed(void);

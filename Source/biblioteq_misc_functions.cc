@@ -2119,6 +2119,21 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 }
 
+void biblioteq_misc_functions::setBookRead(const QSqlDatabase &db,
+					   const bool state,
+					   const quint64 myoid)
+{
+  if(db.driverName() != "QSQLITE")
+    return;
+
+  QSqlQuery query(db);
+
+  query.prepare("UPDATE book SET book_read = ? WHERE myoid = ?");
+  query.addBindValue(state ? 1 : 0);
+  query.addBindValue(myoid);
+  query.exec();
+}
+
 void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
 				       QString &errorstr,
 				       const QString &roles)

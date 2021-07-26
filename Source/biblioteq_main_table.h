@@ -29,7 +29,7 @@ class biblioteq_main_table: public QTableWidget
  private:
   QHash<QString, QList<int> > m_hiddenColumns;
   QVector<QString> m_columnHeaderIndexes;
-  biblioteq *qmain;
+  biblioteq *m_qmain;
   void keyPressEvent(QKeyEvent *event);
   void setColumns(const QString &username,
 		  const QString &type,

@@ -3394,6 +3394,11 @@ int biblioteq::populateTable(const int search_type_arg,
       ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
+  disconnect(ui.table,
+	     SIGNAL(itemChanged(QTableWidgetItem *)),
+	     this,
+	     SLOT(slotItemChanged(QTableWidgetItem *)));
+
   if(search_type != CUSTOM_QUERY)
     ui.table->resetTable(dbUserName(), typefilter, m_roles);
   else
@@ -3784,11 +3789,15 @@ int biblioteq::populateTable(const int search_type_arg,
 			 ui.table->iconSize().height()));
 	    }
 
-	  if(isPatron() && itemType == "book" && titleItem)
+	  if(isPatron() &&
+	     itemType == "book" &&
+	     m_db.driverName() == "QSQLITE" &&
+	     titleItem)
 	    {
 	      titleItem->setCheckState
 		(biblioteq_misc_functions::isBookRead(m_db, myoid) ?
 		 Qt::Checked : Qt::Unchecked);
+	      titleItem->setData(Qt::UserRole, myoid);
 	      titleItem->setFlags
 		(Qt::ItemIsUserCheckable | titleItem->flags());
 	      titleItem->setToolTip(tr("Read Status"));
@@ -3888,6 +3897,10 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.table->hide();
   ui.table->show();
 #endif
+  connect(ui.table,
+	  SIGNAL(itemChanged(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotItemChanged(QTableWidgetItem *)));
   return 0;
 }
 

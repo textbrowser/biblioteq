@@ -14,7 +14,6 @@ CREATE TABLE book
 	author		 TEXT NOT NULL,
 	back_cover	 BYTEA,
 	binding_type	 VARCHAR(32) NOT NULL,
-	book_read	 INTEGER DEFAULT 0,
 	callnumber	 VARCHAR(64),
 	category	 TEXT NOT NULL,
 	condition 	 TEXT,

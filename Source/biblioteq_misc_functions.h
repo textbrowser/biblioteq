@@ -155,6 +155,7 @@ class biblioteq_misc_functions
 			   const int,
 			   const QString &,
 			   QString &);
+  static void setBookRead(const QSqlDatabase &, const bool, const quint64);
   static void setRole(const QSqlDatabase &, QString &, const QString &);
   static void updateColumn(QTableWidget *,
 			   const int,

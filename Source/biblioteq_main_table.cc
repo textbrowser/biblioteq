@@ -7,7 +7,7 @@
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
-  qmain = nullptr;
+  m_qmain = nullptr;
   setAcceptDrops(false);
   setDragEnabled(false);
   horizontalHeader()->setSectionsMovable(true);
@@ -138,7 +138,7 @@ void biblioteq_main_table::resetTable(const QString &username,
   horizontalScrollBar()->setValue(0);
   setColumns(username, type, roles);
 
-  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
+  if(m_qmain && m_qmain->setting("automatically_resize_column_widths").toBool())
     {
       for(int i = 0; i < columnCount() - 1; i++)
 	resizeColumnToContents(i);
@@ -595,7 +595,7 @@ void biblioteq_main_table::setColumns(const QString &username,
 
 void biblioteq_main_table::setQMain(biblioteq *biblioteq)
 {
-  qmain = biblioteq;
+  m_qmain = biblioteq;
 }
 
 void biblioteq_main_table::updateToolTips(const int row)

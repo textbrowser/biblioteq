@@ -439,6 +439,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
       ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
+  disconnect(ui.table,
+	     SIGNAL(itemChanged(QTableWidgetItem *)),
+	     this,
+	     SLOT(slotItemChanged(QTableWidgetItem *)));
   ui.table->resetTable(dbUserName(), typefilter, m_roles);
 
   qint64 currentPage = 0;
@@ -805,11 +809,15 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			 ui.table->iconSize().height()));
 	    }
 
-	  if(isPatron() && itemType == "book" && titleItem)
+	  if(isPatron() &&
+	     itemType == "book" &&
+	     m_db.driverName() == "QSQLITE" &&
+	     titleItem)
 	    {
 	      titleItem->setCheckState
 		(biblioteq_misc_functions::isBookRead(m_db, myoid) ?
 		 Qt::Checked : Qt::Unchecked);
+	      titleItem->setData(Qt::UserRole, myoid);
 	      titleItem->setFlags
 		(Qt::ItemIsUserCheckable | titleItem->flags());
 	      titleItem->setToolTip(tr("Read Status"));
@@ -894,6 +902,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.table->hide();
   ui.table->show();
 #endif
+  connect(ui.table,
+	  SIGNAL(itemChanged(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotItemChanged(QTableWidgetItem *)));
   return 0;
 }
 
@@ -3472,6 +3484,19 @@ void biblioteq::slotInsertGreyLiterature(void)
   id = QString("insert_%1").arg(m_idCt);
   gl = new biblioteq_grey_literature(this, id, -1);
   gl->insert();
+}
+
+void biblioteq::slotItemChanged(QTableWidgetItem *item)
+{
+  if(!item || !(Qt::ItemIsUserCheckable | item->flags()))
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  biblioteq_misc_functions::setBookRead
+    (m_db,
+     item->checkState() == Qt::Checked,
+     item->data(Qt::UserRole).toULongLong());
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::slotLastWindowClosed(void)
