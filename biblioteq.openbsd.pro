@@ -27,7 +27,7 @@ INCLUDEPATH     += /usr/include/poppler/qt5
 LIBS            += -lpoppler-qt5
 }
 
-QMAXE_CXX = clang++
+QMAKE_CXX = clang++
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wall \
