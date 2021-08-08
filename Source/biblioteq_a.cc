@@ -1956,7 +1956,7 @@ void biblioteq::slotAbout(void)
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
      arg(POPPLER_VERSION).
 #else
-     arg("Poppler library is not supported.").
+     arg("Poppler version is not known.").
 #endif
      arg(QT_VERSION_STR).
      arg(qversion).

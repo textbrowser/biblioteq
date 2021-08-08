@@ -8,6 +8,15 @@ LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit
 
+exists(/usr/local/opt/poppler-qt5/include/poppler/cpp) {
+DEFINES         += BIBLIOTEQ_POPPLER_VERSION_DEFINED
+INCLUDEPATH     += /usr/local/opt/poppler-qt5/include/poppler/cpp
+} else {
+message("The directory " \
+        "/usr/local/opt/poppler-qt5/include/poppler/cpp " \
+        "does not exist. Poppler version information will not be available.")
+}
+
 exists(/usr/local/opt/poppler-qt5)
 {
 DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
