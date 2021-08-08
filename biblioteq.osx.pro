@@ -11,7 +11,7 @@ QT		-= webkit
 exists(/usr/local/opt/poppler-qt5)
 {
 DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH += /usr/local/opt/poppler-qt5/include
+INCLUDEPATH += /usr/local/opt/poppler-qt5/include/poppler/qt5
 LIBS        += -lpoppler-qt5
 QT          += printsupport widgets
 }
