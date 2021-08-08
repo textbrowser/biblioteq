@@ -13,11 +13,11 @@ QT		+= network sql
 QT		-= webkit
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-exists(/usr/local/include/poppler/qt5)
+exists(/usr/local/include/poppler/qt6)
 {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/local/include/poppler/qt5
-LIBS    +=      -lpoppler-qt5
+INCLUDEPATH     += /usr/local/include/poppler/qt6
+LIBS    +=      -lpoppler-qt6
 QT              += printsupport widgets
 }
 }
@@ -40,7 +40,6 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wall \
                           -Wcast-align \
                           -Wcast-qual \
-                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Wno-deprecated-declarations \
@@ -56,7 +55,7 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
 lessThan(QT_MAJOR_VERSION, 5) {
 QMAKE_CXXFLAGS_RELEASE += -pie
 } else {
-QMAKE_CXXFLAGS_RELEASE += -std=c++11
+QMAKE_CXXFLAGS_RELEASE += -std=c++17
 }
 
 QMAKE_EXTRA_TARGETS = purge
@@ -102,9 +101,9 @@ doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
-install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.06.1/lib/libpoppler.111.dylib @executable_path/../Frameworks/libpoppler.111.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.06.1/lib/libpoppler.111.dylib @executable_path/../Frameworks/libpoppler.111.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt6.1.dylib
 install_name_tool1.path = .
-install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.06.1/lib/libpoppler.111.dylib @executable_path/../Frameworks/libpoppler.111.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.06.1/lib/libpoppler.111.dylib @executable_path/../Frameworks/libpoppler.111.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt6.1.dylib
 install_name_tool2.path = .
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
