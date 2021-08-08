@@ -1,9 +1,5 @@
 include(biblioteq-source.pro)
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-cache()
-}
-
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
@@ -12,29 +8,16 @@ LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-exists(/usr/local/include/poppler/qt6)
+exists(/usr/local/opt/poppler-qt5)
 {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/local/include/poppler/qt6
-LIBS    +=      -lpoppler-qt6
-QT              += printsupport widgets
-}
-}
-
-exists(/usr/local/include/poppler/cpp) {
-DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
-INCLUDEPATH += /usr/local/include/poppler/cpp
-} else {
-message("The directory /usr/local/include/poppler/cpp does not exist. Poppler version information will not be available.")
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
+INCLUDEPATH += /usr/local/opt/poppler-qt5/include
+LIBS        += -lpoppler-qt5
+QT          += printsupport widgets
 }
 
 QMAKE_CLEAN	+= BiblioteQ
-
-greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_CXX       = clang++
-}
-
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wall \
@@ -50,44 +33,27 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \
-                          -pedantic
-
-lessThan(QT_MAJOR_VERSION, 5) {
-QMAKE_CXXFLAGS_RELEASE += -pie
-} else {
-QMAKE_CXXFLAGS_RELEASE += -std=c++17
-}
+                          -pedantic \
+                          -std=c++17
 
 QMAKE_EXTRA_TARGETS = purge
 QMAKE_DISTCLEAN += -r temp
-
-greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.13
-}
-else {
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
-}
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= /usr/local/include \
                    Source \
                    temp
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-LIBS            += -framework Cocoa
-}
-
 LIBS		+= -L/usr/local/lib \
+                   -framework Cocoa
                    -lpq \
                    -lsqlite3 \
                    -lyaz
 RESOURCES	= Icons/icons.qrc
 
-greaterThan(QT_MAJOR_VERSION, 4) {
 OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
-}
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
@@ -101,9 +67,9 @@ doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
-install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.06.1/lib/libpoppler.111.dylib @executable_path/../Frameworks/libpoppler.111.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt6.1.dylib
+install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.08.0/lib/libpoppler.112.dylib @executable_path/../Frameworks/libpoppler.112.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 install_name_tool1.path = .
-install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.06.1/lib/libpoppler.111.dylib @executable_path/../Frameworks/libpoppler.111.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt6.1.dylib
+install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.08.0/lib/libpoppler.112.dylib @executable_path/../Frameworks/libpoppler.112.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 install_name_tool2.path = .
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
