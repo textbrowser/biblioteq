@@ -12,7 +12,7 @@ exists(/usr/local/opt/poppler-qt5)
 {
 DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
 INCLUDEPATH += /usr/local/opt/poppler-qt5/include/poppler/qt5
-LIBS        += -L/usr/local/opt/poppler/lib -lpoppler-qt5
+LIBS        += -L/usr/local/opt/poppler-qt5/lib -lpoppler-qt5
 QT          += printsupport widgets
 }
 
