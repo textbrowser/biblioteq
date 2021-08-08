@@ -15,7 +15,6 @@ cp -pr ./Documentation/* ./usr/local/biblioteq/Documentation/.
 
 Preparing BiblioteQ-x.deb:
 
-cd
 mkdir -p biblioteq-debian/usr/local
 mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
