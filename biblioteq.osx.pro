@@ -46,7 +46,7 @@ INCLUDEPATH	+= /usr/local/include \
                    Source \
                    temp
 LIBS		+= -L/usr/local/lib \
-                   -framework Cocoa
+                   -framework Cocoa \
                    -lpq \
                    -lsqlite3 \
                    -lyaz
