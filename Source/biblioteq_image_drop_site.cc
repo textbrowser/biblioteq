@@ -74,7 +74,7 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 	    trimmed();
 	  break;
 	}
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
   if(event)
     filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 #else
@@ -114,7 +114,7 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 	    trimmed();
 	  break;
 	}
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
   if(event)
     filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 #else
@@ -148,7 +148,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 	    trimmed();
 	  break;
 	}
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
   if(event)
     filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 #else

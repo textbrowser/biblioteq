@@ -3893,7 +3893,7 @@ int biblioteq::populateTable(const int search_type_arg,
   else
     ui.nextPageButton->setEnabled(true);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   ui.table->hide();
   ui.table->show();
 #endif

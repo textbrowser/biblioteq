@@ -898,7 +898,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   else
     ui.nextPageButton->setEnabled(true);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   ui.table->hide();
   ui.table->show();
 #endif
@@ -1214,7 +1214,7 @@ void biblioteq::readConfig(void)
   else
     ui.actionPreserveGeometry->setChecked(false);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
   font = QApplication::font();
 
   if(settings.contains("global_font"))
@@ -1313,7 +1313,7 @@ void biblioteq::readConfig(void)
 
 void biblioteq::readGlobalSetup(void)
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   QSettings settings
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf",
      QSettings::IniFormat);
@@ -4014,7 +4014,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
   for(int i = 0; i < bb.table->columnCount() - 1; i++)
     bb.table->resizeColumnToContents(i);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   bb.table->hide();
   bb.table->show();
 #endif

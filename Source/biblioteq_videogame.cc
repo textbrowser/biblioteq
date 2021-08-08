@@ -186,7 +186,7 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
     resize(qRound(0.95 * m_parentWid->size().width()),
 	   qRound(0.95 * m_parentWid->size().height()));
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   foreach(auto tool_button, findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet

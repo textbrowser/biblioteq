@@ -36,7 +36,7 @@
 
 #include <limits>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include "CocoaInitializer.h"
 #endif
 
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     (QFont::StyleStrategy(QFont::PreferAntialias | QFont::PreferQuality));
   qapplication.setFont(font);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   /*
   ** Eliminate warnings.
   */
@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   biblioteq::s_qtTranslator->load
     ("qt_" + biblioteq::s_locale,
      QCoreApplication::applicationDirPath() + "/../../../Translations");
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
   biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale, "Translations");
 #endif
   qapplication.installTranslator(biblioteq::s_qtTranslator);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   biblioteq::s_appTranslator->load
     ("biblioteq_" + biblioteq::s_locale,
      QCoreApplication::applicationDirPath() + "/../../../Translations");
@@ -335,7 +335,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ab.setupUi(m_admin_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
   m_pass_diag->setModal(true);
@@ -609,7 +609,7 @@ biblioteq::biblioteq(void):QMainWindow()
   al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu1);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   foreach(auto tool_button, m_all_diag->findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
@@ -1787,7 +1787,7 @@ void biblioteq::showMain(void)
   m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
   m_error_bar_label->setToolTip(tr("Empty Error Log"));
   statusBar()->addPermanentWidget(m_error_bar_label);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   m_error_bar_label->setStyleSheet
     ("QToolButton {border: none;}"
      "QToolButton::menu-button {border: none;}");
@@ -1861,12 +1861,12 @@ void biblioteq::showMain(void)
 
   initialUpdate();
   show();
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
   setGlobalFonts(QApplication::font());
 #endif
   slotResizeColumns();
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   QFileInfo fileInfo
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_OS2)
@@ -1924,7 +1924,7 @@ void biblioteq::slotAbout(void)
   if(qversion.isEmpty())
     qversion = "unknown";
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
   mb.setFont(QApplication::font());
 #endif
   mb.setWindowIcon(windowIcon());
@@ -2568,7 +2568,7 @@ void biblioteq::slotDeleteAdmin(void)
 	m_deletedAdmins.append(str);
 
       ab.table->removeRow(row);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
       ab.table->hide();
       ab.table->show();
 #endif
@@ -3037,7 +3037,7 @@ void biblioteq::slotLanguageChanged(void)
       s_locale = action->data().toString();
       QApplication::removeTranslator(s_appTranslator);
       QApplication::removeTranslator(s_qtTranslator);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
       s_qtTranslator->load
 	("qt_" + s_locale,
 	 QCoreApplication::applicationDirPath() + "/../../../Translations");
@@ -3045,7 +3045,7 @@ void biblioteq::slotLanguageChanged(void)
       s_qtTranslator->load("qt_" + s_locale, "Translations");
 #endif
       QApplication::installTranslator(s_qtTranslator);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
       s_appTranslator->load
 	("biblioteq_" + s_locale,
 	 QCoreApplication::applicationDirPath() + "/../../../Translations");

@@ -4,7 +4,11 @@
 #include "ui_biblioteq_pdfreader.h"
 
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#ifdef Q_OS_MACOS
+#include <poppler-qt6.h>
+#else
 #include <poppler-qt5.h>
+#endif
 #endif
 
 class QPrinter;

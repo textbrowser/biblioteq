@@ -150,7 +150,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
   if(m_ui.type->findText(tr("UNKNOWN")) == -1)
     m_ui.type->addItem(tr("UNKNOWN"));
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   foreach(auto tool_button, findChildren<QToolButton *> ())
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     tool_button->setStyleSheet
