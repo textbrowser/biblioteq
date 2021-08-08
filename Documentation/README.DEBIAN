@@ -12,17 +12,15 @@ cp -p ./Translations/*.qm ./usr/local/biblioteq/Translations/.
 cp -p ./biblioteq.conf ./usr/local/biblioteq/.
 cp -p ./biblioteq.sh ./usr/local/biblioteq/.
 cp -pr ./Documentation/* ./usr/local/biblioteq/Documentation/.
-chown -Rh root:staff ./usr/local/biblioteq
 
 Preparing BiblioteQ-x.deb:
 
-cd
 mkdir -p biblioteq-debian/usr/local
 mkdir -p biblioteq-debian/usr/share/applications
-cp -p ./biblioteq.d/biblioteq.desktop biblioteq-debian/usr/share/applications/.
-cp -pr ./biblioteq.d/DEBIAN biblioteq-debian/.
+cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
+cp -pr ./DEBIAN biblioteq-debian/.
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
 dpkg-deb --build biblioteq-debian BiblioteQ-2021.08.08_amd64.deb
-rm -fr ./usr/local
+rm -fr ./usr
 rm -fr biblioteq-debian
 make distclean
