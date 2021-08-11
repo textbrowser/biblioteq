@@ -3773,7 +3773,11 @@ int biblioteq::populateTable(const int search_type_arg,
 	    }
 
 	  if(availabilityItem && availabilityItem->value() > 0.0)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+	    availabilityItem->setBackground(availabilityColor(itemType));
+#else
 	    availabilityItem->setBackgroundColor(availabilityColor(itemType));
+#endif
 
 	  if(first)
 	    {
