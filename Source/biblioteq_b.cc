@@ -5095,15 +5095,19 @@ void biblioteq::slotUpgradeSqliteScheme(void)
       if(!query.exec(list.at(i)))
 	{
 	  errors.append
-	    (tr("<font color='red'>Error %1: %2. Statement: %3.</font>"
-		"<br><br>").
+	    (tr("<font color='red'>Error %1: %2. Statement: %3.</font>").
 	     arg(ct).arg(query.lastError().text().toLower()).
 	     arg(list.at(i)));
 	  ct += 1;
 	}
       else
 	errors.append
-	  ("<font color='green'>Statement concluded correctly!</font><br><br>");
+	  ("<font color='green'>Statement concluded correctly!</font>");
+
+      if(i < list.size() - 1)
+	errors.append("<br><br>");
+      else
+	errors.append("<br>");
     }
 
   errors.append("</html>");
