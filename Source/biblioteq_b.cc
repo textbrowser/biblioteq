@@ -3808,6 +3808,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      else
 		item->setFlags(Qt::ItemIsSelectable);
 
+	      item->setToolTip(tooltip);
 	      ui.table->setItem(i, 0, item);
 	    }
 	}

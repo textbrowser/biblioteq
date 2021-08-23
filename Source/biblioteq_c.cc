@@ -591,7 +591,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	if(!m_searchQuery.next())
 	  break;
 
-      QTableWidgetItem *titleItem = nullptr;
       biblioteq_graphicsitempixmap *pixmapItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
       quint64 myoid = 0;
@@ -755,12 +754,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    }
 		}
 	      else
-		{
-		  item = new QTableWidgetItem();
-
-		  if(record.fieldName(j) == "title")
-		    titleItem = item;
-		}
+		item = new QTableWidgetItem();
 
 	      if(item != nullptr)
 		{
@@ -776,7 +770,11 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    }
 
 		  item->setToolTip(tooltip);
-		  ui.table->setItem(i, j, item);
+
+		  if(isPatron() && m_db.driverName() == "QSQLITE")
+		    ui.table->setItem(i, j + 1, item);
+		  else
+		    ui.table->setItem(i, j, item);
 
 		  if(record.fieldName(j).endsWith("type"))
 		    {
@@ -809,18 +807,25 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			 ui.table->iconSize().height()));
 	    }
 
-	  if(isPatron() &&
-	     itemType == "book" &&
-	     m_db.driverName() == "QSQLITE" &&
-	     titleItem)
+	  if(isPatron() && m_db.driverName() == "QSQLITE")
 	    {
-	      titleItem->setCheckState
-		(biblioteq_misc_functions::isBookRead(m_db, myoid) ?
-		 Qt::Checked : Qt::Unchecked);
-	      titleItem->setData(Qt::UserRole, myoid);
-	      titleItem->setFlags
-		(Qt::ItemIsUserCheckable | titleItem->flags());
-	      titleItem->setToolTip(tr("Read Status"));
+	      auto item = new QTableWidgetItem();
+
+	      if(itemType == "book")
+		{
+		  item->setCheckState
+		    (biblioteq_misc_functions::isBookRead(m_db, myoid) ?
+		     Qt::Checked : Qt::Unchecked);
+		  item->setData(Qt::UserRole, myoid);
+		  item->setFlags(Qt::ItemIsEnabled |
+				 Qt::ItemIsSelectable |
+				 Qt::ItemIsUserCheckable);
+		}
+	      else
+		item->setFlags(Qt::ItemIsSelectable);
+
+	      item->setToolTip(tooltip);
+	      ui.table->setItem(i, 0, item);
 	    }
 	}
 
