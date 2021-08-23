@@ -552,6 +552,12 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("MYOID");
     }
 
+  if(m_qmain && m_qmain->getDB().driverName() == "QSQLITE")
+    {
+      list.prepend(tr("Read Status"));
+      m_columnHeaderIndexes.prepend("Read Status");
+    }
+
   setColumnCount(list.size());
   setHorizontalHeaderLabels(list);
 
