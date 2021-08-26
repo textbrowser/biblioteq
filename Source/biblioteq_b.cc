@@ -3587,7 +3587,12 @@ int biblioteq::populateTable(const int search_type_arg,
 		     record.fieldName(j).contains("image"))
 		    continue;
 
-		  auto columnName(columnNames.value(j));
+		  QString columnName("");
+
+		  if(isPatron() && m_db.driverName() == "QSQLITE")
+		    columnName = columnNames.value(j + 1);
+		  else
+		    columnName = columnNames.value(j);
 
 		  if(columnName.isEmpty())
 		    columnName = "N/A";
