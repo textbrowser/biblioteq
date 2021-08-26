@@ -614,7 +614,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 		  QString columnName("");
 
-		  if(isPatron() && m_db.driverName() == "QSQLITE")
+		  if(m_db.driverName() == "QSQLITE")
 		    columnName = columnNames.value(j + 1);
 		  else
 		    columnName = columnNames.value(j);
@@ -776,7 +776,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 		  item->setToolTip(tooltip);
 
-		  if(isPatron() && m_db.driverName() == "QSQLITE")
+		  if(m_db.driverName() == "QSQLITE")
 		    ui.table->setItem(i, j + 1, item);
 		  else
 		    ui.table->setItem(i, j, item);
@@ -812,7 +812,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			 ui.table->iconSize().height()));
 	    }
 
-	  if(isPatron() && m_db.driverName() == "QSQLITE")
+	  if(m_db.driverName() == "QSQLITE")
 	    {
 	      auto item = new QTableWidgetItem();
 
