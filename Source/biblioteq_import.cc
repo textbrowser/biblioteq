@@ -83,7 +83,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     return;
 
-  QMapIterator<int, QString> it(m_booksMappings);
+  QMapIterator<int, QPair<QString, QString> > it(m_booksMappings);
   QString f("");
   QString q("");
   QString queryString("");
@@ -92,9 +92,9 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     {
       it.next();
 
-      if(!it.value().contains("<ignored>"))
+      if(!it.value().first.contains("<ignored>"))
 	{
-	  f.append(it.value());
+	  f.append(it.value().first);
 	  q.append("?");
 
 	  if(it.hasNext())
@@ -182,15 +182,23 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		{
 		  if(!m_booksMappings.contains(i))
 		    continue;
-		  else if(m_booksMappings.value(i).contains("<ignored>"))
+		  else if(m_booksMappings.value(i).first.contains("<ignored>"))
 		    continue;
 
 		  auto str(QString(list.at(i - 1)).remove('"').trimmed());
 
-		  if(m_booksMappings.value(i) == "id")
+		  if(m_booksMappings.value(i).first == "id")
 		    id = str;
-		  else if(m_booksMappings.value(i) == "quantity")
+		  else if(m_booksMappings.value(i).first == "quantity")
 		    quantity = str.toInt();
+
+		  if(str.isEmpty())
+		    /*
+		    ** If the value in the CSV file is empty,
+		    ** refer to a substitution.
+		    */
+
+		    str = m_booksMappings.value(i).second;
 
 		  if(str.isEmpty())
 		    query.addBindValue(QVariant(QVariant::String));
@@ -333,6 +341,10 @@ void biblioteq_import::slotAddBookRow(void)
     (m_ui.books->rowCount() - 1,
      BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME,
      widget);
+  item = new QTableWidgetItem();
+  item->setText("N/A");
+  m_ui.books->setItem
+    (m_ui.books->rowCount() - 1, BooksColumns::SUBSTITUTE_VALUE, item);
   m_ui.books->resizeRowsToContents();
   QApplication::restoreOverrideCursor();
 }
@@ -467,15 +479,16 @@ void biblioteq_import::slotImport(void)
   ** Test the various mappings.
   */
 
-  QMap<int, QString> map;
+  QMap<int, QPair<QString, QString> > map;
 
   for(int i = 0; i < m_ui.books->rowCount(); i++)
     {
-      auto item = m_ui.books->item(i, BooksColumns::CSV_COLUMN_NUMBER);
+      auto item1 = m_ui.books->item(i, BooksColumns::CSV_COLUMN_NUMBER);
+      auto item2 = m_ui.books->item(i, BooksColumns::SUBSTITUTE_VALUE);
       auto widget = m_ui.books->cellWidget
 	(i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
 
-      if(!item || !widget)
+      if(!item1 || !item2 || !widget)
 	continue;
 
       auto comboBox = widget->findChild<QComboBox *> ();
@@ -483,18 +496,19 @@ void biblioteq_import::slotImport(void)
       if(!comboBox)
 	continue;
 
-      if(map.contains(item->text().toInt()))
+      if(map.contains(item1->text().toInt()))
 	{
 	  m_ui.books->selectRow(i);
 	  QMessageBox::critical
 	    (this,
 	     tr("BiblioteQ: Error"),
 	     tr("Duplicate mapping discovered in the Books table. Please "
-		"review row %1.").arg(item->row()));
+		"review row %1.").arg(item1->row()));
 	  return;
 	}
 
-      map[item->text().toInt()] = comboBox->currentText();
+      map[item1->text().toInt()] =
+	QPair<QString, QString> (comboBox->currentText(), item2->text());
     }
 
   if(map.isEmpty())

@@ -121,7 +121,7 @@
             <x>0</x>
             <y>0</y>
             <width>614</width>
-            <height>340</height>
+            <height>342</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -227,6 +227,11 @@
               <column>
                <property name="text">
                 <string>BiblioteQ Books Table Field Name</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Substitute Value</string>
                </property>
               </column>
              </widget>

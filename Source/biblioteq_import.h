@@ -19,10 +19,11 @@ class biblioteq_import: public QMainWindow
   enum BooksColumns
     {
      BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME = 1,
-     CSV_COLUMN_NUMBER = 0
+     CSV_COLUMN_NUMBER = 0,
+     SUBSTITUTE_VALUE = 2
     };
 
-  QMap<int, QString> m_booksMappings;
+  QMap<int, QPair<QString, QString> > m_booksMappings;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);
