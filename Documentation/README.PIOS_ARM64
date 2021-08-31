@@ -20,7 +20,7 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./PIOS64 biblioteq-debian/DEBIAN
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
-dpkg-deb --build biblioteq-debian BiblioteQ-2021.08.08_arm64.deb
+dpkg-deb --build biblioteq-debian BiblioteQ-2021.09.09_arm64.deb
 rm -fr ./usr
 rm -fr biblioteq-debian
 make distclean
