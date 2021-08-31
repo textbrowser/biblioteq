@@ -45,10 +45,8 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
-
 QMAKE_EXTRA_TARGETS = purge
-QMAKE_DISTCLEAN += -r temp
-QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
+QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.13
 
 ICON		= Icons/book.icns

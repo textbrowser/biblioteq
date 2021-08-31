@@ -1,19 +1,12 @@
-include(biblioteq-source.pro)
-
-greaterThan(QT_MAJOR_VERSION, 4) {
 cache()
-}
+include(biblioteq-source.pro)
 
 purge.commands = del *~ && del *\\*~
 
 CONFIG		+= qt release thread warn_on windows
 LANGUAGE	= C++
-QT		+= network sql
+QT		+= network sql printsupport widgets
 QT		-= webkit
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-QT              += printsupport widgets
-}
 
 QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CXXFLAGS_RELEASE -= -O2
@@ -29,14 +22,9 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -Wstrict-overflow=5 \
                           -fwrapv \
                           -pedantic \
-                          -pie
-QMAKE_DISTCLEAN += -r temp
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-QMAKE_CXXFLAGS_RELEASE += -std=c++11
-QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
-}
-
+                          -pie \
+                          -std=c++11
+QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png

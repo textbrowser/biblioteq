@@ -1,31 +1,17 @@
-include(biblioteq-source.pro)
-
-greaterThan(QT_MAJOR_VERSION, 4) {
 cache()
-}
-
+include(biblioteq-source.pro)
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
-QT		+= network sql
+QT		+= network printsupport sql widgets
 QT		-= webkit
 
-lessThan(QT_MAJOR_VERSION, 5) {
-exists(/usr/include/poppler/qt4) {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt4
-LIBS    +=      -lpoppler-qt4
-QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
-}
-}
-else {
 exists(/usr/include/poppler/qt5) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
 INCLUDEPATH     += /usr/include/poppler/qt5
 LIBS    +=      -lpoppler-qt5
-}
 }
 
 exists(/usr/include/poppler/cpp) {
@@ -34,10 +20,6 @@ INCLUDEPATH += /usr/include/poppler/cpp
 }
 else {
 message("The directory /usr/include/poppler/cpp does not exist. Poppler version information will not be available.")
-}
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-QT              += printsupport widgets
 }
 
 QMAKE_CLEAN	+= BiblioteQ
@@ -56,14 +38,9 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -fstack-protector-all \
                           -fwrapv \
                           -pedantic \
-                          -pie
-QMAKE_DISTCLEAN += -r temp
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-QMAKE_CXXFLAGS_RELEASE += -std=c++11
-QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
-}
-
+                          -pie \
+                          -std=c++11
+QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons/book.png

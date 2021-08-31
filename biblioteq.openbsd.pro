@@ -44,9 +44,7 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -fwrapv \
                           -pedantic \
                           -std=c++11
-
-QMAKE_DISTCLEAN += -r temp
-QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
+QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = doxygen purge
 
 ICON		= Icons/book.png
