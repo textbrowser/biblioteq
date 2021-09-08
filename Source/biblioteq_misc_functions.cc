@@ -1057,6 +1057,9 @@ bool biblioteq_misc_functions::hasUnaccentExtension(const QSqlDatabase &db)
 bool biblioteq_misc_functions::isBookRead
 (const QSqlDatabase &db, const quint64 myoid)
 {
+  if(db.driverName() != "QSQLITE")
+    return false;
+
   QSqlQuery query(db);
 
   query.prepare("SELECT book_read FROM book WHERE myoid = ?");
