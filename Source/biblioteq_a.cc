@@ -487,8 +487,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotListReservedItems(void)));
   connect(bb.overdueButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotListOverdueItems(void)));
-  connect(br.password, SIGNAL(returnPressed(void)), this,
-	  SLOT(slotConnectDB(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(al.cancelButton, SIGNAL(clicked(void)),
