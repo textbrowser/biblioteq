@@ -67,13 +67,19 @@ void biblioteq_generic_thread::run(void)
 	QTextStream qts;
 	biblioteq_myqstring str = "";
 
-	qf.setFileName(m_filename);
+	if(!m_filename.trimmed().isEmpty())
+	  qf.setFileName(m_filename);
 
-	if(!qf.open(QIODevice::ReadOnly))
+	if(m_filename.trimmed().isEmpty() || !qf.open(QIODevice::ReadOnly))
 	  {
-	    m_errorStr = tr("Unable to read ");
-	    m_errorStr.append(m_filename);
-	    m_errorStr.append(tr(". This file is required by BiblioteQ."));
+	    if(m_filename.trimmed().isEmpty())
+	      m_errorStr = tr("The configuration file "
+			      "(typically biblioteq.conf) cannot be read.");
+	    else
+	      m_errorStr = tr
+		("Unable to read %1. This file is required by BiblioteQ.").
+		arg(m_filename);
+
 	    return;
 	  }
 
@@ -205,11 +211,11 @@ void biblioteq_generic_thread::setType(const int type)
 
 void biblioteq_generic_thread::setZ3950Name(const QString &name)
 {
-  m_z3950Name = name;
+  m_z3950Name = name.trimmed();
 }
 
 void biblioteq_generic_thread::setZ3950SearchString
 (const QString &z3950SearchStr)
 {
-  m_z3950SearchStr = z3950SearchStr;
+  m_z3950SearchStr = z3950SearchStr.trimmed();
 }
