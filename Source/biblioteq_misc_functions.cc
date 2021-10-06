@@ -1792,12 +1792,7 @@ void biblioteq_misc_functions::exportPhotographs
 	  QImage image;
 	  auto bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
-#if QT_VERSION >= 0x040700
 	  auto id = QDateTime::currentMSecsSinceEpoch();
-#else
-	  auto dateTime(QDateTime::currentDateTime());
-	  auto id = static_cast<qint64> (dateTime.toTime_t());
-#endif
 	  auto format(imageFormatGuess(bytes));
 
 	  image.loadFromData(bytes, format.toLatin1().constData());
@@ -1858,12 +1853,7 @@ void biblioteq_misc_functions::exportPhotographs
 
       int i = 0;
       int j = -1;
-#if QT_VERSION >= 0x040700
       auto id = QDateTime::currentMSecsSinceEpoch();
-#else
-      auto dateTime(QDateTime::currentDateTime());
-      auto id = static_cast<qint64> (dateTime.toTime_t());
-#endif
 
       while(query.next())
 	{

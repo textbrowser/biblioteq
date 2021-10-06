@@ -892,14 +892,7 @@ void biblioteq_photographcollection::slotAddItem(void)
 		       qRound(0.95 * size().height()));
   biblioteq_misc_functions::center(m_photo_diag, this);
   photo.thumbnail_item->clear();
-#if QT_VERSION >= 0x040700
   photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
-#else
-  auto dateTime(QDateTime::currentDateTime());
-
-  photo.id_item->setText
-    (QString::number(static_cast<qint64> (dateTime.toTime_t())));
-#endif
   photo.title_item->setText("N/A");
   photo.creators_item->setPlainText("N/A");
   photo.publication_date->setDate(QDate::fromString("01/01/2000",
@@ -1719,16 +1712,8 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       QString id("");
 
-#if QT_VERSION >= 0x040700
       id = QString::number(QDateTime::currentMSecsSinceEpoch() +
 			   static_cast<qint64> (imported));
-#else
-      auto dateTime(QDateTime::currentDateTime());
-
-      id = QString::number(static_cast<qint64> (dateTime.toTime_t()) +
-			   static_cast<qint64> (imported));
-#endif
-
       query.bindValue(0, id);
       query.bindValue(1, m_oid);
       query.bindValue(2, "N/A");
