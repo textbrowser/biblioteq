@@ -1932,7 +1932,7 @@ void biblioteq::slotAbout(void)
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
-	"Copyright (c) 2005 - present, Fire Flight.<br>"
+	"Copyright (c) 2005 - present, X.<br>"
 	"Faenza icons.<br>"
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 	"Poppler version %5.<br>"
