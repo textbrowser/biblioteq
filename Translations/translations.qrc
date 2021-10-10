@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+	<file>biblioteq_ar_JO.qm</file>
+	<file>biblioteq_cs_CZ.qm</file>
+	<file>biblioteq_de_DE.qm</file>
+	<file>biblioteq_el_GR.qm</file>
+	<file>biblioteq_fr_FR.qm</file>
+	<file>biblioteq_he_IL.qm</file>
+	<file>biblioteq_it_IT.qm</file>
+	<file>biblioteq_hu_HU.qm</file>
+	<file>biblioteq_nl_BE.qm</file>
+	<file>biblioteq_nl_NL.qm</file>
+	<file>biblioteq_pl_PL.qm</file>
+	<file>biblioteq_pt_PT.qm</file>
+	<file>biblioteq_ru_RU.qm</file>
+    </qresource>
+</RCC>
