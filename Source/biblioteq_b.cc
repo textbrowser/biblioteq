@@ -3,6 +3,7 @@
 #include "biblioteq_otheroptions.h"
 #include "ui_biblioteq_generalmessagediag.h"
 
+#include <QActionGroup>
 #include <QDir>
 #include <QScrollBar>
 #include <QSettings>
@@ -4108,14 +4109,13 @@ void biblioteq::slotAllowAnyUserEmail(bool state)
 
   if(!state)
     {
-      QRegExp rx
+      QRegularExpression rx
 	("^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*"
 	 "@[a-zA-Z](-?[a-zA-Z0-9])*(\\.[a-zA-Z](-?[a-zA-Z0-9])*)+$",
-	 Qt::CaseInsensitive);
+	 QRegularExpression::CaseInsensitiveOption);
 
-      rx.setPatternSyntax(QRegExp::RegExp);
       userinfo_diag->m_userinfo.email->setValidator
-	(new QRegExpValidator(rx, this));
+	(new QRegularExpressionValidator(rx, this));
     }
 }
 

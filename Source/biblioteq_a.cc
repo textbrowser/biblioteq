@@ -25,6 +25,7 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QActionGroup>
 #include <QClipboard>
 #include <QFileDialog>
 #include <QFontDialog>
@@ -147,22 +148,23 @@ int main(int argc, char *argv[])
     biblioteq::s_locale = QLocale::system().name();
 
 #ifdef Q_OS_MACOS
-  biblioteq::s_qtTranslator->load
-    ("qt_" + biblioteq::s_locale,
-     QCoreApplication::applicationDirPath() + "/../../../Translations");
+  if(biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale,
+				     QCoreApplication::applicationDirPath() +
+				     "/../../../Translations"))
 #else
-  biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale, "Translations");
+  if(biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale,
+				     "Translations"))
 #endif
-  qapplication.installTranslator(biblioteq::s_qtTranslator);
+    qapplication.installTranslator(biblioteq::s_qtTranslator);
 #ifdef Q_OS_MACOS
-  biblioteq::s_appTranslator->load
-    ("biblioteq_" + biblioteq::s_locale,
-     QCoreApplication::applicationDirPath() + "/../../../Translations");
+  if(biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
+				      QCoreApplication::applicationDirPath() +
+				      "/../../../Translations"))
 #else
-  biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
-				   "Translations");
+  if(biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
+				      "Translations"))
 #endif
-  qapplication.installTranslator(biblioteq::s_appTranslator);
+    qapplication.installTranslator(biblioteq::s_appTranslator);
 
   biblioteq biblioteq;
 
@@ -345,13 +347,13 @@ biblioteq::biblioteq(void):QMainWindow()
   ** Please read https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression.
   */
 
-  QRegExp rx
+  QRegularExpression rx
     ("^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*"
      "@[a-zA-Z](-?[a-zA-Z0-9])*(\\.[a-zA-Z](-?[a-zA-Z0-9])*)+$",
-     Qt::CaseInsensitive);
+     QRegularExpression::CaseInsensitiveOption);
 
-  rx.setPatternSyntax(QRegExp::RegExp);
-  userinfo_diag->m_userinfo.email->setValidator(new QRegExpValidator(rx, this));
+  userinfo_diag->m_userinfo.email->setValidator
+    (new QRegularExpressionValidator(rx, this));
   m_branch_diag->setModal(true);
   connect(ui.graphicsView->scene(),
 	  SIGNAL(enterKeyPressed(void)),
@@ -820,8 +822,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	      SLOT(slotLanguageChanged(void)));
     }
 
-  QRegExp rx1("\\w+");
-  auto validator1 = new QRegExpValidator(rx1, this);
+  QRegularExpression rx1("\\w+");
+  auto validator1 = new QRegularExpressionValidator(rx1, this);
 
   userinfo_diag->m_userinfo.memberid->setValidator(validator1);
 
@@ -3036,21 +3038,21 @@ void biblioteq::slotLanguageChanged(void)
       QApplication::removeTranslator(s_appTranslator);
       QApplication::removeTranslator(s_qtTranslator);
 #ifdef Q_OS_MACOS
-      s_qtTranslator->load
-	("qt_" + s_locale,
-	 QCoreApplication::applicationDirPath() + "/../../../Translations");
+      if(s_qtTranslator->load("qt_" + s_locale,
+			      QCoreApplication::applicationDirPath() +
+			      "/../../../Translations"))
 #else
-      s_qtTranslator->load("qt_" + s_locale, "Translations");
+      if(s_qtTranslator->load("qt_" + s_locale, "Translations"))
 #endif
-      QApplication::installTranslator(s_qtTranslator);
+	QApplication::installTranslator(s_qtTranslator);
 #ifdef Q_OS_MACOS
-      s_appTranslator->load
-	("biblioteq_" + s_locale,
-	 QCoreApplication::applicationDirPath() + "/../../../Translations");
+      if(s_appTranslator->load("biblioteq_" + s_locale,
+			       QCoreApplication::applicationDirPath() +
+			       "/../../../Translations"))
 #else
-      s_appTranslator->load("biblioteq_" + s_locale, "Translations");
+      if(s_appTranslator->load("biblioteq_" + s_locale, "Translations"))
 #endif
-      QApplication::installTranslator(s_appTranslator);
+	QApplication::installTranslator(s_appTranslator);
     }
 }
 
