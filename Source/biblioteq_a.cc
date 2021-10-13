@@ -342,18 +342,6 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
   m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
-
-  /*
-  ** Please read https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression.
-  */
-
-  QRegularExpression rx
-    ("^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*"
-     "@[a-zA-Z](-?[a-zA-Z0-9])*(\\.[a-zA-Z](-?[a-zA-Z0-9])*)+$",
-     QRegularExpression::CaseInsensitiveOption);
-
-  userinfo_diag->m_userinfo.email->setValidator
-    (new QRegularExpressionValidator(rx, this));
   m_branch_diag->setModal(true);
   connect(ui.graphicsView->scene(),
 	  SIGNAL(enterKeyPressed(void)),
@@ -433,8 +421,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotReserveCopy(void)));
   connect(ui.actionMembersBrowser, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMembersBrowser(void)));
-  connect(userinfo_diag->m_userinfo.allow_any_email, SIGNAL(toggled(bool)),
-	  this, SLOT(slotAllowAnyUserEmail(bool)));
   connect(userinfo_diag->m_userinfo.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveUser(void)));
   connect(ui.actionChangePassword, SIGNAL(triggered(void)), this,

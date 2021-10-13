@@ -706,21 +706,14 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLineEdit" name="email">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="maxLength">
             <number>128</number>
            </property>
            <property name="placeholderText">
             <string>E-Mail Address</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="allow_any_email">
-           <property name="toolTip">
-            <string>Do not validate the e-mail address.</string>
-           </property>
-           <property name="text">
-            <string>Any</string>
            </property>
           </widget>
          </item>
@@ -931,7 +924,6 @@
   <tabstop>zip</tabstop>
   <tabstop>telephoneNumber</tabstop>
   <tabstop>email</tabstop>
-  <tabstop>allow_any_email</tabstop>
   <tabstop>expirationdate</tabstop>
   <tabstop>overduefees</tabstop>
   <tabstop>comments</tabstop>
