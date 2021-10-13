@@ -105,7 +105,11 @@ class biblioteq_misc_functions
 			      QString &);
   static int getMinimumDays(const QSqlDatabase &, const QString &, QString &);
   static int sqliteQuerySize(const QString &,
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 			     const QMap<QString, QVariant> &,
+#else
+			     const QVariantList &,
+#endif
 			     const QSqlDatabase &,
 			     const char *,
 			     const int,

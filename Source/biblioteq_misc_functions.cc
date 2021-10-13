@@ -1344,7 +1344,11 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 
 int biblioteq_misc_functions::sqliteQuerySize
 (const QString &querystr,
+#if (QT_VERSION < QT_VERSION(6, 0, 0))
  const QMap<QString, QVariant> &boundValues,
+#else
+ const QVariantList &boundValues,
+#endif
  const QSqlDatabase &db,
  const char *file,
  const int line,

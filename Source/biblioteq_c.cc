@@ -5,6 +5,7 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 
+#include <QActionGroup>
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QScrollBar>
@@ -796,7 +797,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	    }
 
 	  if(availabilityItem && availabilityItem->value() > 0.0)
-	    availabilityItem->setBackgroundColor(availabilityColor(itemType));
+	    availabilityItem->setBackground(availabilityColor(itemType));
 
 	  if(first)
 	    {
@@ -1740,7 +1741,7 @@ void biblioteq::slotAllGo(void)
 	    {
 	      auto words
 		(al.category->toPlainText().trimmed().
-		 split(QRegExp("\\s+"),
+		 split(QRegularExpression("\\s+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 		       Qt::SkipEmptyParts
 #else
@@ -1871,7 +1872,7 @@ void biblioteq::slotAllGo(void)
 	    {
 	      auto words
 		(al.description->toPlainText().trimmed().
-		 split(QRegExp("\\s+"),
+		 split(QRegularExpression("\\s+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 		       Qt::SkipEmptyParts
 #else
@@ -1958,7 +1959,7 @@ void biblioteq::slotAllGo(void)
 	    {
 	      auto words
 		(al.keyword->toPlainText().trimmed().
-		 split(QRegExp("\\s+"),
+		 split(QRegularExpression("\\s+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 		       Qt::SkipEmptyParts
 #else

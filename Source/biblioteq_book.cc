@@ -5,6 +5,7 @@
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_pdfreader.h"
 
+#include <QActionGroup>
 #include <QAuthenticator>
 #include <QCryptographicHash>
 #include <QFileDialog>
@@ -62,9 +63,15 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  this,
 	  SLOT(slotShowPDF(void)));
 #endif
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
+#else
+  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
+#endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),
@@ -3790,7 +3797,7 @@ void biblioteq_book::slotPrintCallDewey(void)
   QString html("");
   auto list
     ((id.callnum->text().trimmed() + " " +
-      id.deweynum->text().trimmed()).split(QRegExp("\\W+"),
+      id.deweynum->text().trimmed()).split(QRegularExpression("\\W+"),
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 					   Qt::SkipEmptyParts
 #else
