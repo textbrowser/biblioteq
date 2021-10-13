@@ -2211,9 +2211,5 @@ void biblioteq_misc_functions::updateColumnColor(QTableWidget *table,
   if(column < 0 || row < 0 || !table || !table->item(row, column))
     return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
   table->item(row, column)->setBackground(color);
-#else
-  table->item(row, column)->setBackgroundColor(color);
-#endif
 }

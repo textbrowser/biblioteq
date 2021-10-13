@@ -1,4 +1,4 @@
-Qt 5.x is supported. Qt 4.8.7 is not supported.
+Qt 5.5.x and newer are supported. Qt 4.8.7 is not supported.
 
 ARM
 
@@ -50,3 +50,4 @@ Windows
 
 qmake -o Makefile biblioteq.win.pro
 make or mingw32-make
+make or mingw32-make install
