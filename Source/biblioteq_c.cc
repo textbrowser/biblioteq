@@ -3871,7 +3871,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "COUNT(DISTINCT ib4.myoid) AS number_reserved_greyliteratures, "
     "COUNT(DISTINCT ib5.myoid) AS number_reserved_journals, "
     "COUNT(DISTINCT ib6.myoid) AS number_reserved_magazines, "
-    "COUNT(DISTINCT ib7.myoid) AS number_reserved_videogames "
+    "COUNT(DISTINCT ib7.myoid) AS number_reserved_videogames, "
+    "0 AS number_reserved_total "
     "FROM member member "
     "LEFT JOIN item_borrower ib1 ON "
     "member.memberid = ib1.memberid AND ib1.type = 'Book' "
@@ -3985,7 +3986,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
       if(query.isValid())
 	{
 	  auto record(query.record());
-	  int total = 0;
+	  qint64 total = 0;
 
 	  for(j = 0; j < record.count(); j++)
 	    {
@@ -4003,14 +4004,11 @@ void biblioteq::slotPopulateMembersBrowser(void)
 		  str = query.value(j).toString().trimmed();
 
 		  if(record.fieldName(j).startsWith("number_reserved_"))
-		    total += str.toInt();
+		    total += str.toLongLong();
 		}
 
-	      if(i == record.count() - 1)
+	      if(j == record.count() - 1)
 		str = QString::number(total);
-
-	      if(str == "0")
-		str = "";
 
 	      item = new QTableWidgetItem();
 	      item->setText(str);
@@ -4428,7 +4426,7 @@ void biblioteq::slotRemoveMember(void)
 void biblioteq::slotRequest(void)
 {
   /*
-  ** This method is used to either request an item or cancel a request.
+  ** This method is used to either request an item or to cancel a request.
   */
 
   QSqlQuery query(m_db);
