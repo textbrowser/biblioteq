@@ -4999,6 +4999,10 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 		 QString::number(counts.value("nummagazines")));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Total Reserved"),
+		 QString::number(counts.value("numtotal")));
+	      biblioteq_misc_functions::updateColumn
+		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
 		 QString::number(counts.value("numvideogames")));
 	      break;
@@ -5057,6 +5061,9 @@ void biblioteq::updateMembersBrowser(void)
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
 	 QString::number(counts.value("nummagazines")));
+      biblioteq_misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Total Reserved"),
+	 QString::number(counts.value("numtotal")));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row,
 	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),

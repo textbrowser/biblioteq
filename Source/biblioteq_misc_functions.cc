@@ -167,8 +167,17 @@ QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
       counts["numgreyliteratures"] = 0;
       counts["numjournals"] = 0;
       counts["nummagazines"] = 0;
+      counts["numtotal"] = 0;
       counts["numvideogames"] = 0;
     }
+  else
+    counts["numtotal"] = counts.value("numbooks") +
+      counts.value("numcds") +
+      counts.value("numdvds") +
+      counts.value("numgreyliteratures") +
+      counts.value("numjournals") +
+      counts.value("nummagazines") +
+      counts.value("numvideogames");
 
   return counts;
 }

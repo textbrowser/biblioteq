@@ -4280,7 +4280,6 @@ void biblioteq::slotRemoveMember(void)
   QString errorstr = "";
   QString memberid = "";
   auto row = bb.table->currentRow();
-  qint64 totalReserved = 0;
 
   if(row < 0)
     {
@@ -4311,16 +4310,7 @@ void biblioteq::slotRemoveMember(void)
       return;
     }
 
-  totalReserved = counts.value("numbooks") +
-    counts.value("numcds") +
-    counts.value("numdvds") +
-    counts.value("numgreyliteratures") +
-    counts.value("numjournals") +
-    counts.value("nummagazines") +
-    counts.value("numvideogames");
-  counts.clear();
-
-  if(totalReserved != 0)
+  if(counts.value("numtotal") != 0)
     {
       QMessageBox::critical
 	(m_members_diag, tr("BiblioteQ: User Error"),
