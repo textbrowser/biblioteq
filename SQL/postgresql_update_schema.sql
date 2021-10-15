@@ -1401,3 +1401,7 @@ END;
 ' LANGUAGE plpgsql;
 CREATE TRIGGER grey_literature_trigger AFTER DELETE ON grey_literature
 FOR EACH row EXECUTE PROCEDURE delete_grey_literature();
+
+/* Release 2021 10.30 */
+
+ALTER TABLE member ADD maximum_reserved_books INTEGER NOT NULL DEFAULT 0;

@@ -380,6 +380,7 @@ CREATE TABLE member
 	first_name	 VARCHAR(128) NOT NULL,
 	general_registration_number	 TEXT,
 	last_name	 VARCHAR(128) NOT NULL,
+	maximum_reserved_books INTEGER NOT NULL DEFAULT 0,
 	memberclass	 TEXT,
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
 	membersince	 VARCHAR(32) NOT NULL,

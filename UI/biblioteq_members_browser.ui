@@ -192,6 +192,11 @@
            <string>Video Games Reserved</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>Total Reserved</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>
