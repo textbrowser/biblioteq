@@ -3987,7 +3987,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	  auto record(query.record());
 	  int total = 0;
 
-	  for(j = 0; j < record.count() - 1; j++)
+	  for(j = 0; j < record.count(); j++)
 	    {
 	      if(record.fieldName(j).contains("date") ||
 		 record.fieldName(j).contains("membersince"))
@@ -3999,7 +3999,15 @@ void biblioteq::slotPopulateMembersBrowser(void)
 		  str = date.toString(Qt::ISODate);
 		}
 	      else
-		str = query.value(j).toString().trimmed();
+		{
+		  str = query.value(j).toString().trimmed();
+
+		  if(record.fieldName(j).startsWith("number_reserved_"))
+		    total += str.toInt();
+		}
+
+	      if(i == record.count() - 1)
+		str = QString::number(total);
 
 	      if(str == "0")
 		str = "";

@@ -1687,6 +1687,7 @@ void biblioteq::resetMembersBrowser(void)
   list.append(tr("Journals Reserved"));
   list.append(tr("Magazines Reserved"));
   list.append(tr("Video Games Reserved"));
+  list.append(tr("Total Reserved"));
   m_bbColumnHeaderIndexes.append("Member ID");
   m_bbColumnHeaderIndexes.append("First Name");
   m_bbColumnHeaderIndexes.append("Last Name");
@@ -1702,6 +1703,7 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Journals Reserved");
   m_bbColumnHeaderIndexes.append("Magazines Reserved");
   m_bbColumnHeaderIndexes.append("Video Games Reserved");
+  m_bbColumnHeaderIndexes.append("Total Reserved");
   bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
