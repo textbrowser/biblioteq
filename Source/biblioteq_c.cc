@@ -3865,13 +3865,13 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "member.zip AS address, "
     "member.membersince, "
     "member.expiration_date, "
-    "COUNT(DISTINCT ib1.myoid) AS numbooks, "
-    "COUNT(DISTINCT ib2.myoid) AS numcds, "
-    "COUNT(DISTINCT ib3.myoid) AS numdvds, "
-    "COUNT(DISTINCT ib4.myoid) AS numgreyliteratures, "
-    "COUNT(DISTINCT ib5.myoid) AS numjournals, "
-    "COUNT(DISTINCT ib6.myoid) AS nummagazines, "
-    "COUNT(DISTINCT ib7.myoid) AS numvideogames "
+    "COUNT(DISTINCT ib1.myoid) AS number_reserved_books, "
+    "COUNT(DISTINCT ib2.myoid) AS number_reserved_cds, "
+    "COUNT(DISTINCT ib3.myoid) AS number_reserved_dvds, "
+    "COUNT(DISTINCT ib4.myoid) AS number_reserved_greyliteratures, "
+    "COUNT(DISTINCT ib5.myoid) AS number_reserved_journals, "
+    "COUNT(DISTINCT ib6.myoid) AS number_reserved_magazines, "
+    "COUNT(DISTINCT ib7.myoid) AS number_reserved_videogames "
     "FROM member member "
     "LEFT JOIN item_borrower ib1 ON "
     "member.memberid = ib1.memberid AND ib1.type = 'Book' "
@@ -3985,8 +3985,9 @@ void biblioteq::slotPopulateMembersBrowser(void)
       if(query.isValid())
 	{
 	  auto record(query.record());
+	  int total = 0;
 
-	  for(j = 0; j < record.count(); j++)
+	  for(j = 0; j < record.count() - 1; j++)
 	    {
 	      if(record.fieldName(j).contains("date") ||
 		 record.fieldName(j).contains("membersince"))

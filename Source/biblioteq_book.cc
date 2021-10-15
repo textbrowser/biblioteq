@@ -3019,10 +3019,14 @@ void biblioteq_book::slotGo(void)
 		  qmain->getUI().table->setSortingEnabled(false);
 
 		  QStringList names(qmain->getUI().table->columnNames());
+		  int imageColumn = 0;
+
+		  if(qmain->getDB().driverName() == "QSQLITE")
+		    imageColumn = 1;
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(i == 0)
+		      if(i == imageColumn)
 			{
 			  auto pixmap
 			    (QPixmap::fromImage(id.front_image->m_image));
