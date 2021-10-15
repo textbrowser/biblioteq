@@ -3018,27 +3018,11 @@ void biblioteq_book::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  QStringList names(qmain->getUI().table->columnNames());
-		  int imageColumn = 0;
-
-		  if(qmain->getDB().driverName() == "QSQLITE")
-		    imageColumn = 1;
+		  auto names(qmain->getUI().table->columnNames());
+		  int imageColumn = -1;
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(i == imageColumn)
-			{
-			  auto pixmap
-			    (QPixmap::fromImage(id.front_image->m_image));
-
-			  if(!pixmap.isNull())
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (pixmap);
-			  else
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (QIcon(":/no_image.png"));
-			}
-
 		      if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.callnum->text());
@@ -3047,8 +3031,11 @@ void biblioteq_book::slotGo(void)
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.id->text());
 		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_row, i)->setText
-			  (id.title->text());
+			{
+			  imageColumn = i;
+			  qmain->getUI().table->item(m_row, i)->setText
+			    (id.title->text());
+			}
 		      else if(names.at(i) == "Edition")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (id.edition->currentText().trimmed());
@@ -3127,6 +3114,18 @@ void biblioteq_book::slotGo(void)
 			       errorstr, __FILE__, __LINE__);
 			}
 		    }
+
+		  if(imageColumn == -1)
+		    imageColumn = 0;
+
+		  auto pixmap(QPixmap::fromImage(id.front_image->m_image));
+
+		  if(!pixmap.isNull())
+		    qmain->getUI().table->item(m_row, imageColumn)->setIcon
+		      (pixmap);
+		  else
+		    qmain->getUI().table->item(m_row, imageColumn)->setIcon
+		      (QIcon(":/no_image.png"));
 
 		  qmain->getUI().table->setSortingEnabled(true);
 		  qmain->getUI().table->updateToolTips(m_row);
