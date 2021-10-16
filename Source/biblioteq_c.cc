@@ -3717,6 +3717,9 @@ void biblioteq::slotModifyBorrower(void)
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.overduefees->text();
+	  else if(fieldname == "maximum_reserved_books")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_books->text();
 	  else
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      var.toString().trimmed();
@@ -3732,7 +3735,10 @@ void biblioteq::slotModifyBorrower(void)
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   m_engUserinfoTitle = "Modify Member";
   userinfo_diag->m_userinfo.membersince->setMaximumDate(QDate::currentDate());
-  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
+
+  if(!userinfo_diag->isVisible())
+    userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
+
   userinfo_diag->m_userinfo.membersince->setFocus();
   userinfo_diag->m_userinfo.memberid->setPalette
     (userinfo_diag->m_userinfo.telephoneNumber->palette());
@@ -5459,6 +5465,8 @@ void biblioteq::slotSaveUser(void)
 	userinfo_diag->m_userinfo.generalregistrationnumber->text().trimmed();
       userinfo_diag->m_memberProperties["memberclass"] =
 	userinfo_diag->m_userinfo.memberclass->text().trimmed();
+      userinfo_diag->m_memberProperties["maximum_reserved_books"] =
+	userinfo_diag->m_userinfo.maximum_reserved_books->text();
 
       if(m_engUserinfoTitle.contains("Modify"))
 	{

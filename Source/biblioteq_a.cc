@@ -2032,6 +2032,8 @@ void biblioteq::slotAddBorrower(void)
     (Qt::ISODate);
   userinfo_diag->m_memberProperties["overdue_fees"] =
     userinfo_diag->m_userinfo.overduefees->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_books"] =
+    userinfo_diag->m_userinfo.maximum_reserved_books->text();
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   m_engUserinfoTitle = "Create New Member";
   userinfo_diag->m_userinfo.prevTool->setVisible(false);

@@ -120,6 +120,10 @@ class userinfo_diag_class: public QDialog
        m_userinfo.memberclass->text().trimmed())
       list << "memberclass";
 
+    if(m_memberProperties.value("maximum_reserved_books") !=
+       m_userinfo.maximum_reserved_books->text())
+      list << "maximum_reserved_books";
+
     for(int i = 0; i < list.size(); i++)
       str += list.at(i) + ", ";
 
