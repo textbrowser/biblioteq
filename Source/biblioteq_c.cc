@@ -3704,6 +3704,9 @@ void biblioteq::slotModifyBorrower(void)
 	  else if(fieldname == "memberclass")
 	    userinfo_diag->m_userinfo.memberclass->setText
 	      (var.toString().trimmed());
+	  else if(fieldname == "maximum_reserved_books")
+	    userinfo_diag->m_userinfo.maximum_reserved_books->setValue
+	      (var.toInt());
 
 	  if(fieldname.contains("dob") ||
 	     fieldname.contains("date") ||
@@ -5188,10 +5191,11 @@ void biblioteq::slotSaveUser(void)
 		    "first_name, middle_init, last_name, "
 		    "telephone_num, street, city, "
 		    "state_abbr, zip, email, expiration_date, overdue_fees, "
-		    "comments, general_registration_number, memberclass) "
+		    "comments, general_registration_number, memberclass, "
+		    "maximum_reserved_books) "
 		    "VALUES "
 		    "(?, ?, ?, ?, "
-		    "?, ?, ?, "
+		    "?, ?, ?, ?, "
 		    "?, ?, ?, ?, ?, ?, "
 		    "?, ?, ?, ?, ?)");
       query.bindValue(0, userinfo_diag->m_userinfo.memberid->text().trimmed());
@@ -5219,6 +5223,8 @@ void biblioteq::slotSaveUser(void)
 	 trimmed());
       query.bindValue(17, userinfo_diag->m_userinfo.memberclass->text().
 		      trimmed());
+      query.bindValue
+	(18, userinfo_diag->m_userinfo.maximum_reserved_books->value());
     }
   else
     {
@@ -5239,7 +5245,8 @@ void biblioteq::slotSaveUser(void)
 		    "overdue_fees = ?, "
 		    "comments = ?, "
 		    "general_registration_number = ?, "
-		    "memberclass = ? "
+		    "memberclass = ?, "
+		    "maximum_reserved_books = ? "
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
@@ -5266,7 +5273,9 @@ void biblioteq::slotSaveUser(void)
       query.bindValue(16, userinfo_diag->m_userinfo.memberclass->text().
 		      trimmed());
       query.bindValue
-	(17, userinfo_diag->m_userinfo.memberid->text().trimmed());
+	(17, userinfo_diag->m_userinfo.maximum_reserved_books->value());
+      query.bindValue
+	(18, userinfo_diag->m_userinfo.memberid->text().trimmed());
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
