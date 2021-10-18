@@ -269,8 +269,11 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	 getMinimumDays(qmain->getDB(), m_itemType, errorstr1));
       maximumReserved = biblioteq_misc_functions::maximumReserved
 	(qmain->getDB(), memberid, m_itemType);
-      totalReserved = biblioteq_misc_functions::getItemsReservedCounts
-	(qmain->getDB(), memberid, errorstr2).value("numtotal");
+
+      if(m_itemType == "Book")
+	totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	  (qmain->getDB(), memberid, errorstr2).value("numbooks");
+
       QApplication::restoreOverrideCursor();
 
       if(!errorstr1.isEmpty())
@@ -281,8 +284,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
       m_cb.dueDate->setMinimumDate(duedate);
       m_cb.information->setText
-	(tr("Maximum Reserved %1 | Total Reserved %2").
-	 arg(maximumReserved).arg(totalReserved));
+	(tr("Maximum %1s Reserved %2 | Total %1s Reserved %3").
+	 arg(m_itemType).arg(maximumReserved).arg(totalReserved));
       m_cb.saveButton->setText(tr("&Reserve"));
       disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
       connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
@@ -391,8 +394,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   progress1.close();
   m_cb.table->setRowCount(i); // Support cancellation.
-
-  qDebug() << m_itemType << m_ioid;
 
   if(m_itemType == "Grey Literature")
     {
