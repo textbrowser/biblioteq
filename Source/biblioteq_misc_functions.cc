@@ -97,9 +97,7 @@ QList<int> biblioteq_misc_functions::selectedRows(QTableWidget *table)
 }
 
 QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
-(const QSqlDatabase &db,
- const QString &memberid,
- QString &errorstr)
+(const QSqlDatabase &db, const QString &memberid, QString &errorstr)
 {
   QMap<QString, qint64> counts;
   QSqlQuery query(db);
@@ -157,9 +155,7 @@ QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
 	  counts["numvideogames"] = count;
       }
 
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
-  else if(counts.isEmpty())
+  if(counts.isEmpty() || query.lastError().isValid())
     {
       counts["numbooks"] = 0;
       counts["numcds"] = 0;
@@ -169,6 +165,7 @@ QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
       counts["nummagazines"] = 0;
       counts["numtotal"] = 0;
       counts["numvideogames"] = 0;
+      errorstr = query.lastError().text();
     }
   else
     counts["numtotal"] = counts.value("numbooks") +

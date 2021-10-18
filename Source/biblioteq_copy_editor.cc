@@ -252,7 +252,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
       ** Set the minimum date to duedate.
       */
 
-      QString errorstr("");
+      QString errorstr1("");
+      QString errorstr2("");
       auto duedate = QDate::currentDate();
       auto memberid
 	(biblioteq_misc_functions::
@@ -260,23 +261,23 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			 qmain->getBB().table->currentRow(),
 			 qmain->getBBColumnIndexes().indexOf("Member ID")));
       int maximumReserved = 0;
-      int totalReserved = 0;
+      qint64 totalReserved = 0;
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       duedate = duedate.addDays
-	(biblioteq_misc_functions::getMinimumDays
-	 (qmain->getDB(),
-	  m_itemType,
-	  errorstr));
+	(biblioteq_misc_functions::
+	 getMinimumDays(qmain->getDB(), m_itemType, errorstr1));
       maximumReserved = biblioteq_misc_functions::maximumReserved
 	(qmain->getDB(), memberid, m_itemType);
+      totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	(qmain->getDB(), memberid, errorstr2).value("numtotal");
       QApplication::restoreOverrideCursor();
 
-      if(!errorstr.isEmpty())
+      if(!errorstr1.isEmpty())
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to retrieve "
 				   "the minimum number of days.")),
-			errorstr, __FILE__, __LINE__);
+			errorstr1, __FILE__, __LINE__);
 
       m_cb.dueDate->setMinimumDate(duedate);
       m_cb.information->setText
