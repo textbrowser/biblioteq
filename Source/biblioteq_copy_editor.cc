@@ -31,6 +31,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
   setWindowModality(Qt::ApplicationModal);
   m_cb.setupUi(this);
   m_cb.deleteButton->setVisible(false);
+  m_cb.information->setVisible(showForLendingArg);
   m_bitem = bitemArg;
   m_ioid = ioidArg;
   m_itemType = itemTypeArg;
@@ -253,6 +254,13 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
       QString errorstr("");
       auto duedate = QDate::currentDate();
+      auto memberid
+	(biblioteq_misc_functions::
+	 getColumnString(qmain->getBB().table,
+			 qmain->getBB().table->currentRow(),
+			 qmain->getBBColumnIndexes().indexOf("Member ID")));
+      int maximumReserved = 0;
+      int totalReserved = 0;
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       duedate = duedate.addDays
@@ -260,6 +268,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	 (qmain->getDB(),
 	  m_itemType,
 	  errorstr));
+      maximumReserved = biblioteq_misc_functions::maximumReserved
+	(qmain->getDB(), memberid, m_itemType);
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
@@ -269,6 +279,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			errorstr, __FILE__, __LINE__);
 
       m_cb.dueDate->setMinimumDate(duedate);
+      m_cb.information->setText
+	(tr("Maximum Reserved %1 | Total Reserved %2").
+	 arg(maximumReserved).arg(totalReserved));
       m_cb.saveButton->setText(tr("&Reserve"));
       disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
       connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
@@ -330,6 +343,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
 	    comboBox->addItem(tr("Lost"));
+	    comboBox->addItem(tr("UNKNOWN"));
 	    comboBox->setEnabled(!m_showForLending);
 	    goto done_label;
 	  }
@@ -376,6 +390,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   progress1.close();
   m_cb.table->setRowCount(i); // Support cancellation.
+
+  qDebug() << m_itemType << m_ioid;
 
   if(m_itemType == "Grey Literature")
     {
@@ -477,7 +493,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		      comboBox->setCurrentIndex(comboBox->findText(str));
 		    else
 		      comboBox->setCurrentIndex
-			(comboBox->findText(tr("Available")));
+			(comboBox->findText(tr("UNKNOWN")));
 		  }
 	      }
 	    else if(m_cb.table->item(row, j) != nullptr)

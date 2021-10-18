@@ -1351,6 +1351,25 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   return minimumdays;
 }
 
+int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
+					      const QString &memberid,
+					      const QString &type)
+{
+  QSqlQuery query(db);
+  QString querystr = "";
+
+  if(type.toLower() == "book")
+    querystr = "SELECT maximum_reserved_books FROM member WHERE memberid = ?";
+
+  query.prepare(querystr);
+  query.addBindValue(memberid);
+
+  if(query.exec() && query.next())
+    return query.value(0).toInt();
+
+  return 0;
+}
+
 int biblioteq_misc_functions::sqliteQuerySize
 (const QString &querystr,
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))

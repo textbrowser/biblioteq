@@ -106,6 +106,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="information">
+        <property name="text">
+         <string>Information</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QTableWidget" name="table">
         <property name="focusPolicy">
          <enum>Qt::StrongFocus</enum>
