@@ -1791,6 +1791,10 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 		  comboBox = new QComboBox();
 		  comboBox->addItems(comboBoxList);
 		  comboBox->setCurrentIndex(comboBox->findText(str));
+
+		  if(comboBox->currentIndex() < 0)
+		    comboBox->setCurrentIndex(0);
+
 		  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 		  comboBox->setSizePolicy
 		    (QSizePolicy::Preferred, QSizePolicy::Minimum);
