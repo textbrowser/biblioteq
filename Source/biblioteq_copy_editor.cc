@@ -490,7 +490,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
 		if(comboBox)
 		  {
-		    if(comboBox->findText(str) > 0)
+		    if(comboBox->findText(str) >= 0)
 		      comboBox->setCurrentIndex(comboBox->findText(str));
 		    else
 		      comboBox->setCurrentIndex

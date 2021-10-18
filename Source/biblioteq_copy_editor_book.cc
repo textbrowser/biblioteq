@@ -327,7 +327,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    if(j == ORIGINALITY)
 	      list << tr("Black & White Copy")
 		   << tr("Color Copy")
-		   << tr("Original");
+		   << tr("Original")
+		   << tr("UNKNOWN");
 	    else
 	      list << tr("As New")
 		   << tr("Binding Copy")
@@ -337,6 +338,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		   << tr("Fine")
 		   << tr("Good")
 		   << tr("Poor")
+		   << tr("UNKNOWN")
 		   << tr("Very Good");
 
 	    comboBox->addItems(list);
@@ -364,6 +366,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
 	    comboBox->addItem(tr("Lost"));
+	    comboBox->addItem(tr("UNKNOWN"));
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    comboBox->setSizePolicy
 	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
@@ -523,8 +526,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		      {
 			str = query.value(j).toString().trimmed();
 
-			if(comboBox->findText(str) > -1)
+			if(comboBox->findText(str) >= 0)
 			  comboBox->setCurrentIndex(comboBox->findText(str));
+			else
+			  comboBox->setCurrentIndex
+			    (comboBox->findText(tr("UNKNOWN")));
 		      }
 		  }
 	      }
