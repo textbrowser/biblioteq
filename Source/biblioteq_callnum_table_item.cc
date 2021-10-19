@@ -28,8 +28,8 @@ static int callnum_lt(const QString &m, const QString &n)
   //   6. Year (space is required before it).
   // (http://geography.about.com/library/congress/blhowto.htm)
 
-  QRegularExpression match1(lc_regexp);
-  QRegularExpression match2(match1); // Copy constructor should be faster.
+  QRegExp match1(lc_regexp);
+  QRegExp match2(match1); // Copy constructor should be faster.
   auto res1 = match1.exactMatch(m);
   auto res2 = match2.exactMatch(n);
 
