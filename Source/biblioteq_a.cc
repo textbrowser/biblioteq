@@ -796,6 +796,9 @@ biblioteq::biblioteq(void):QMainWindow()
   (action = group3->addAction(tr("&Russian")))->setCheckable(true);
   action->setData("ru_RU");
   ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&Spanish (Argentina)")))->setCheckable(true);
+  action->setData("es_AR");
+  ui.menu_Language->addAction(action);
 
   foreach(auto action, ui.menu_Language->actions())
     {

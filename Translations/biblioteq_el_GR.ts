@@ -387,12 +387,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Do not validate the e-mail address.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Any</source>
-        <translation type="unfinished">Κάθε</translation>
+        <translation type="obsolete">Κάθε</translation>
     </message>
     <message>
         <source>Street Address</source>
@@ -400,6 +396,18 @@
     </message>
     <message>
         <source>ZIP Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A value of zero disables the maximum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1600,10 +1608,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>G&amp;reek</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Item Requests</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1687,10 +1691,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey literature may not be reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1898,10 +1898,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Fire Flight.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The member (%1) that you selected does not have reserved items.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1994,10 +1990,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reservation Date: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2015,6 +2007,38 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Are you sure that you wish to open %1 PDF files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gree&amp;k</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Por&amp;tuguese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Spanish (Argentina)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literatures Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished">Συνολικά δανεισμένα</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Read&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2670,6 +2694,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The ISBN-13 must begin with 978 or 979.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3477,6 +3509,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Maximum %1s Reserved %2 | Total %1s Reserved %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished">Διαθέσιμο</translation>
+    </message>
+    <message>
+        <source>Deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">Άγνωστο</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_copy_editor_book</name>
@@ -3674,6 +3730,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">Άγνωστο</translation>
+    </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished">Διαθέσιμο</translation>
+    </message>
+    <message>
+        <source>Deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lost</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4305,19 +4381,31 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Populating...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>0 Total Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Total Files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_generic_thread</name>
     <message>
         <source>. This file is required by BiblioteQ.</source>
-        <translation type="unfinished">. Το αρχείο είναι απαραίτητο για το BiblioteQ.</translation>
+        <translation type="obsolete">. Το αρχείο είναι απαραίτητο για το BiblioteQ.</translation>
     </message>
     <message>
         <source>Z39.50 Empty Results Set</source>
         <translation type="unfinished">Z39.50 Χωρίς αποτελέσματα</translation>
     </message>
     <message>
-        <source>Unable to read </source>
+        <source>The configuration file (typically biblioteq.conf) cannot be read.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1. This file is required by BiblioteQ.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4712,6 +4800,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Αντίτυπα</translation>
+    </message>
+    <message>
+        <source>Single copies only, please.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5655,6 +5759,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Contact Information</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Read Status</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_otheroptions</name>
@@ -6510,7 +6618,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="unfinished">Ημερομηνία λήξης δανεισμού</translation>
+        <translation type="obsolete">Ημερομηνία λήξης δανεισμού</translation>
     </message>
     <message>
         <source>Title</source>
@@ -6558,6 +6666,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Save new due dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due &amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies are ordered by copy numbers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6708,7 +6828,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Branch Name</source>
-        <translation type="unfinished">Όνομα τομέα</translation>
+        <translation type="obsolete">Όνομα τομέα</translation>
     </message>
     <message>
         <source>&amp;Select SQLite Database</source>
@@ -6716,7 +6836,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Userid</source>
-        <translation type="unfinished">Ψευδώνυμο</translation>
+        <translation type="obsolete">Ψευδώνυμο</translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -6724,7 +6844,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Κωδικός</translation>
+        <translation type="obsolete">Κωδικός</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -6767,7 +6887,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show</source>
+        <source>Branch &amp;Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7377,7 +7509,7 @@ URL</source>
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="unfinished">Ημερομηνία λήξης δανεισμού</translation>
+        <translation type="obsolete">Ημερομηνία λήξης δανεισμού</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -7417,6 +7549,22 @@ URL</source>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due &amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies are ordered by copy numbers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7700,6 +7848,14 @@ URL</source>
     <message>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+Ω</translation>
+    </message>
+    <message>
+        <source>7</source>
+        <translation type="unfinished">7</translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8360,10 +8516,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignored CSV Row(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please separate with single spaces.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8402,6 +8554,14 @@ URL</source>
     <message>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+Ω</translation>
+    </message>
+    <message>
+        <source>Substitute Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8850,6 +9010,10 @@ URL</source>
     </message>
     <message>
         <source>Parse MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9616,7 +9780,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Αναζήτηση</translation>
+        <translation type="unfinished">&amp;Αναζήτηση</translation>
     </message>
     <message>
         <source>ID</source>
@@ -9636,10 +9800,6 @@ URL</source>
     </message>
     <message>
         <source>Please press the Enter key to execute the query.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9808,6 +9968,14 @@ URL</source>
     </message>
     <message>
         <source>Files Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">Επα&amp;ναφορά</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10196,6 +10364,18 @@ URL</source>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+Ω</translation>
     </message>
+    <message>
+        <source>&amp;Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literatures Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished">Συνολικά δανεισμένα</translation>
+    </message>
 </context>
 <context>
     <name>otheroptions</name>
@@ -10251,6 +10431,46 @@ URL</source>
         <source>Please note that the publication date formats are applied to item details and the main window.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please refresh the main table if availability colors are modified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Availability Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Availability Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Table Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refresh the main table if sort settings are modified. Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Βιβλία</translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numeric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -10260,15 +10480,15 @@ URL</source>
     </message>
     <message>
         <source>Userid</source>
-        <translation type="unfinished">Ψευδώνυμο</translation>
+        <translation type="obsolete">Ψευδώνυμο</translation>
     </message>
     <message>
         <source>New Password</source>
-        <translation type="unfinished">Νέος κωδικός</translation>
+        <translation type="obsolete">Νέος κωδικός</translation>
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation type="unfinished">Επιβεβαίωση κωδικού</translation>
+        <translation type="obsolete">Επιβεβαίωση κωδικού</translation>
     </message>
     <message>
         <source>Current Password</source>
@@ -10294,6 +10514,18 @@ URL</source>
         <source>PostgreSQL Password Confirmation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New &amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm &amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passwordDialog</name>
@@ -10307,11 +10539,11 @@ URL</source>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Όνομα χρήστη</translation>
+        <translation type="obsolete">Όνομα χρήστη</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Κωδικός</translation>
+        <translation type="obsolete">Κωδικός</translation>
     </message>
     <message>
         <source>Proxy Username</source>
@@ -10319,6 +10551,14 @@ URL</source>
     </message>
     <message>
         <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10505,7 +10745,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Αναζήτηση</translation>
+        <translation type="unfinished">&amp;Αναζήτηση</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -10706,10 +10946,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>View Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Rotate Left 90 Degrees</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10720,6 +10956,10 @@ URL</source>
     <message>
         <source>&amp;Save</source>
         <translation type="unfinished">Απ&amp;οθήκευση</translation>
+    </message>
+    <message>
+        <source>View &amp;Size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -14794,7 +15034,7 @@ URL</source>
     <name>sruResultsDialog</name>
     <message>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished">&amp;Περιεχόμενα εγγραφής</translation>
+        <translation type="obsolete">&amp;Περιεχόμενα εγγραφής</translation>
     </message>
     <message>
         <source>Title</source>
@@ -14814,6 +15054,10 @@ URL</source>
     </message>
     <message>
         <source>&amp;Records Retrieved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Record Contents</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -15076,7 +15320,7 @@ URL</source>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished">&amp;Περιεχόμενα εγγραφής</translation>
+        <translation type="obsolete">&amp;Περιεχόμενα εγγραφής</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -15089,6 +15333,10 @@ URL</source>
     <message>
         <source>Title</source>
         <translation type="unfinished">Τίτλος</translation>
+    </message>
+    <message>
+        <source>Record Contents</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

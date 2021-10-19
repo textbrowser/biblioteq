@@ -383,12 +383,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Do not validate the e-mail address.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Any</source>
-        <translation type="unfinished">Quelconque</translation>
+        <translation type="obsolete">Quelconque</translation>
     </message>
     <message>
         <source>Street Address</source>
@@ -396,6 +392,18 @@
     </message>
     <message>
         <source>ZIP Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A value of zero disables the maximum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1556,10 +1564,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>G&amp;reek</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1647,10 +1651,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to set a guest role.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey literature may not be reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1874,10 +1874,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, Fire Flight.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The member (%1) that you selected does not have reserved items.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1970,10 +1966,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reservation Date: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1991,6 +1983,38 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Are you sure that you wish to open %1 PDF files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gree&amp;k</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Por&amp;tuguese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Spanish (Argentina)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literatures Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished">Total réservé</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Read&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2638,6 +2662,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The ISBN-13 must begin with 978 or 979.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3417,6 +3449,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Maximum %1s Reserved %2 | Total %1s Reserved %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">INCONNU</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_copy_editor_book</name>
@@ -3610,6 +3666,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Very Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">INCONNU</translation>
+    </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lost</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4225,20 +4301,36 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Populating...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>0 Total Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Total Files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_generic_thread</name>
     <message>
         <source>Unable to read </source>
-        <translation type="unfinished">Impossible de lire </translation>
+        <translation type="obsolete">Impossible de lire </translation>
     </message>
     <message>
         <source>. This file is required by BiblioteQ.</source>
-        <translation type="unfinished">. Ce fichier est requis par BiblioteQ.</translation>
+        <translation type="obsolete">. Ce fichier est requis par BiblioteQ.</translation>
     </message>
     <message>
         <source>Z39.50 Empty Results Set</source>
         <translation type="unfinished">Ensemble de résultats vides de Z39.50</translation>
+    </message>
+    <message>
+        <source>The configuration file (typically biblioteq.conf) cannot be read.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read %1. This file is required by BiblioteQ.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4632,6 +4724,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Copies</translation>
+    </message>
+    <message>
+        <source>Single copies only, please.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5555,6 +5663,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Contact Information</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Read Status</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_otheroptions</name>
@@ -6390,7 +6502,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="unfinished">Date limite</translation>
+        <translation type="obsolete">Date limite</translation>
     </message>
     <message>
         <source>Title</source>
@@ -6438,6 +6550,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due &amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies are ordered by copy numbers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6580,15 +6704,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Userid</source>
-        <translation type="unfinished">ID utilisateur</translation>
+        <translation type="obsolete">ID utilisateur</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation type="obsolete">Mot de passe</translation>
     </message>
     <message>
         <source>Branch Name</source>
-        <translation type="unfinished">Nom de la branche</translation>
+        <translation type="obsolete">Nom de la branche</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -6635,7 +6759,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show</source>
+        <source>Branch &amp;Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7243,7 +7379,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="unfinished">Date limite</translation>
+        <translation type="obsolete">Date limite</translation>
     </message>
     <message>
         <source>BiblioteQ: Copies Browser</source>
@@ -7251,6 +7387,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due &amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies are ordered by copy numbers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7530,6 +7682,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+R</translation>
+    </message>
+    <message>
+        <source>7</source>
+        <translation type="unfinished">7</translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8177,10 +8337,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignored CSV Row(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please separate with single spaces.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8219,6 +8375,14 @@ minmal de jours.</translation>
     <message>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+R</translation>
+    </message>
+    <message>
+        <source>Substitute Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8549,6 +8713,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Parse MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9195,7 +9363,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Chercher</translation>
+        <translation type="unfinished">&amp;Chercher</translation>
     </message>
     <message>
         <source>ID</source>
@@ -9215,10 +9383,6 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Please press the Enter key to execute the query.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9391,6 +9555,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Files Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">&amp;Réinitialiser</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9735,6 +9907,18 @@ minmal de jours.</translation>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+R</translation>
     </message>
+    <message>
+        <source>&amp;Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literatures Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished">Total réservé</translation>
+    </message>
 </context>
 <context>
     <name>otheroptions</name>
@@ -9790,6 +9974,46 @@ minmal de jours.</translation>
         <source>Please note that the publication date formats are applied to item details and the main window.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please refresh the main table if availability colors are modified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Availability Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Availability Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Table Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refresh the main table if sort settings are modified. Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Livres</translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numeric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -9807,11 +10031,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation type="unfinished">Confirmer le mot de passe</translation>
+        <translation type="obsolete">Confirmer le mot de passe</translation>
     </message>
     <message>
         <source>Userid</source>
-        <translation type="unfinished">ID utilisateur</translation>
+        <translation type="obsolete">ID utilisateur</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -9819,7 +10043,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>New Password</source>
-        <translation type="unfinished">Nouveau mot de passe</translation>
+        <translation type="obsolete">Nouveau mot de passe</translation>
     </message>
     <message>
         <source>PostgreSQL Userid</source>
@@ -9833,12 +10057,24 @@ minmal de jours.</translation>
         <source>PostgreSQL Password Confirmation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New &amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm &amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passwordDialog</name>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation type="obsolete">Mot de passe</translation>
     </message>
     <message>
         <source>BiblioteQ: Proxy Authentication Required</source>
@@ -9849,15 +10085,19 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Proxy Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Proxy Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10040,7 +10280,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Chercher</translation>
+        <translation type="unfinished">&amp;Chercher</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -10245,10 +10485,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>View Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Rotate Left 90 Degrees</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10259,6 +10495,10 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>View &amp;Size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -13746,7 +13986,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished">&amp;Contenu de l&apos;enregistrement</translation>
+        <translation type="obsolete">&amp;Contenu de l&apos;enregistrement</translation>
     </message>
     <message>
         <source>Title</source>
@@ -13762,6 +14002,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: SRU Query Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Record Contents</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -14018,7 +14262,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished">&amp;Contenu de l&apos;enregistrement</translation>
+        <translation type="obsolete">&amp;Contenu de l&apos;enregistrement</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -14027,6 +14271,10 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Select</source>
         <translation type="unfinished">&amp;Sélectionner</translation>
+    </message>
+    <message>
+        <source>Record Contents</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
