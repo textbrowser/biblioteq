@@ -33,7 +33,7 @@ BiblioteQ is free and open library software.
 <li>PostgreSQL accounts with various privileges.</li>
 <li>PowerPC support.</li>
 <li>Print support, including previews.</li>
-<li>Qt 5.x support.</li>
+<li>Qt 5 LTS and Qt 6 LTS support.</li>
 <li>Raspberry Pi!</li>
 <li>Rich search capabilities, including custom SQL queries.</li>
 <li>Row-level security policies for PostgreSQL.</li>
