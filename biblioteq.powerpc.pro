@@ -74,6 +74,5 @@ ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
 LIBS		+= -lsqlite3 -lyaz
 PROJECTNAME	= BiblioteQ
-RESOURCES	= Icons/icons.qrc
 TARGET		= BiblioteQ
 TEMPLATE        = app

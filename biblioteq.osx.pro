@@ -58,7 +58,6 @@ LIBS		+= -L/usr/local/lib \
                    -lpq \
                    -lsqlite3 \
                    -lyaz
-RESOURCES	= Icons/icons.qrc
 
 OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
@@ -91,8 +90,6 @@ preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
 preinstall.path         = /Applications/BiblioteQ.d
 sql.files		= SQL/*.sql
 sql.path		= /Applications/BiblioteQ.d
-translations.files	= Translations/*.qm
-translations.path	= /Applications/BiblioteQ.d/Translations
 zzz.extra               = chown -Rh root:wheel /Applications/BiblioteQ.d
 zzz.path                = /Applications/BiblioteQ.d
 
@@ -103,7 +100,6 @@ INSTALLS	= preinstall \
 		  doc1 \
 		  doc2 \
 		  sql \
-		  translations \
                   postinstall \
                   install_name_tool1 \
                   install_name_tool2 \

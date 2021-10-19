@@ -59,6 +59,9 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_videogame.h \
 		  Source/biblioteq_z3950results.h
 
+RESOURCES	= Icons/icons.qrc \
+                  Translations/translations.qrc
+
 SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_b.cc \
                   Source/biblioteq_bgraphicsscene.cc \

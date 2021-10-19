@@ -37,7 +37,6 @@ LIBS		+= -L"." \
                    -lsqlite3 \
                    -lyaz5
 RC_FILE		= biblioteq.win.rc
-RESOURCES	= Icons\\icons.qrc
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app
@@ -84,8 +83,6 @@ sql1.files = SQL\\README*
 sql1.path = release\\SQL\\.
 sql2.files = SQL\\*.sql
 sql2.path = release\\SQL\\.
-translations.files = Translations\\*.qm
-translations.path = release\\Translations\\.
 
 INSTALLS = biblioteq \
            plugins1 \
@@ -98,5 +95,4 @@ INSTALLS = biblioteq \
            qt \
            qtlibraries \
            sql1 \
-           sql2 \
-           translations
+           sql2

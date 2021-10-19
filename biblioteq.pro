@@ -60,7 +60,5 @@ QMAKE_EXTRA_TARGETS = doxygen purge
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
 LIBS		+= -lsqlite3 -lyaz
-RESOURCES	= Icons/icons.qrc \
-                  Translations/translations.qrc
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ

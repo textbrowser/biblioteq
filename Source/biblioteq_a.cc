@@ -68,7 +68,6 @@ extern "C"
 
 QString biblioteq::s_locale = "";
 QTranslator *biblioteq::s_appTranslator = nullptr;
-QTranslator *biblioteq::s_qtTranslator = nullptr;
 
 int main(int argc, char *argv[])
 {
@@ -131,13 +130,13 @@ int main(int argc, char *argv[])
 
   biblioteq::s_appTranslator = new QTranslator(nullptr);
   biblioteq::s_locale = settings.value("locale").toString();
-  biblioteq::s_qtTranslator = new QTranslator(nullptr);
 
   if(!(biblioteq::s_locale == "ar_JO" ||
        biblioteq::s_locale == "cs_CZ" ||
        biblioteq::s_locale == "de_DE" ||
        biblioteq::s_locale == "el_GR" ||
        biblioteq::s_locale == "en_US" ||
+       biblioteq::s_locale == "es_AR" ||
        biblioteq::s_locale == "fr_FR" ||
        biblioteq::s_locale == "hu_HU" ||
        biblioteq::s_locale == "nl_BE" ||
@@ -147,33 +146,13 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
-#ifdef Q_OS_MACOS
-  if(biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale,
-				     QCoreApplication::applicationDirPath() +
-				     "/../../../Translations"))
-#else
-  if(biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale,
-				     "Translations"))
-#endif
-    qapplication.installTranslator(biblioteq::s_qtTranslator);
-#ifdef Q_OS_MACOS
-  if(biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
-				      QCoreApplication::applicationDirPath() +
-				      "/../../../Translations"))
-#else
-  if(biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
-				      "Translations"))
-#endif
+  if(biblioteq::s_appTranslator->
+     load(":/biblioteq_" + biblioteq::s_locale + ".qm"))
     qapplication.installTranslator(biblioteq::s_appTranslator);
 
   biblioteq biblioteq;
 
   biblioteq.showMain();
-
-  /*
-  ** Enter an endless loop.
-  */
-
   return qapplication.exec();
 }
 
@@ -3027,24 +3006,10 @@ void biblioteq::slotLanguageChanged(void)
 
   if(action && action->isChecked())
     {
-      s_locale = action->data().toString();
       QApplication::removeTranslator(s_appTranslator);
-      QApplication::removeTranslator(s_qtTranslator);
-#ifdef Q_OS_MACOS
-      if(s_qtTranslator->load("qt_" + s_locale,
-			      QCoreApplication::applicationDirPath() +
-			      "/../../../Translations"))
-#else
-      if(s_qtTranslator->load("qt_" + s_locale, "Translations"))
-#endif
-	QApplication::installTranslator(s_qtTranslator);
-#ifdef Q_OS_MACOS
-      if(s_appTranslator->load("biblioteq_" + s_locale,
-			       QCoreApplication::applicationDirPath() +
-			       "/../../../Translations"))
-#else
-      if(s_appTranslator->load("biblioteq_" + s_locale, "Translations"))
-#endif
+      s_locale = action->data().toString();
+
+      if(s_appTranslator->load(":/biblioteq_" + s_locale + ".qm"))
 	QApplication::installTranslator(s_appTranslator);
     }
 }
