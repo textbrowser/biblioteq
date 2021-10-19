@@ -608,7 +608,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	      for(int j = 0; j < record.count(); j++)
 		{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 13, 0))
+		  if(QMetaType::Type(record.field(j).metaType().id()) ==
+		     QMetaType::QByteArray ||
+#else
 		  if(record.field(j).type() == QVariant::ByteArray ||
+#endif
 		     record.fieldName(j).contains("cover") ||
 		     record.fieldName(j).contains("image"))
 		    continue;
