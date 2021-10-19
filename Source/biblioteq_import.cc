@@ -154,8 +154,9 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	  */
 
 	  auto list
-	    (data.split(QRegExp(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
-				arg(m_ui.delimiter->text()))));
+	    (data.split
+	     (QRegularExpression(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
+				 arg(m_ui.delimiter->text()))));
 
 	  if(!list.isEmpty())
 	    {

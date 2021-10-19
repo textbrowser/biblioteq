@@ -2,6 +2,7 @@
 #include "biblioteq_misc_functions.h"
 
 #include <QDropEvent>
+#include <QFile>
 #include <QMimeData>
 #include <QUrl>
 

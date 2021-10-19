@@ -18,14 +18,14 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   QGraphicsScene *scene1 = nullptr;
   QGraphicsScene *scene2 = nullptr;
   QMenu *menu = nullptr;
-  QRegExp rx
+  QRegularExpression rx
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = nullptr;
 
   menu = new QMenu(this);
   scene1 = new QGraphicsScene(this);
   scene2 = new QGraphicsScene(this);
-  validator1 = new QRegExpValidator(rx, this);
+  validator1 = new QRegularExpressionValidator(rx, this);
   m_oid = oidArg;
   m_row = rowArg;
   m_isQueryEnabled = false;
@@ -37,9 +37,15 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   setQMain(this);
   vg.publication_date_enabled->setVisible(false);
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
+#else
+  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
+#endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(vg.showUserButton, SIGNAL(clicked(void)), this,

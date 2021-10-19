@@ -18,12 +18,12 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   QGraphicsScene *scene1 = nullptr;
   QGraphicsScene *scene2 = nullptr;
   QMenu *menu = nullptr;
-  QRegExp rx1
+  QRegularExpression rx1
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = nullptr;
 
   menu = new QMenu(this);
-  validator1 = new QRegExpValidator(rx1, this);
+  validator1 = new QRegularExpressionValidator(rx1, this);
   scene1 = new QGraphicsScene(this);
   scene2 = new QGraphicsScene(this);
   m_oid = oidArg;
@@ -37,9 +37,15 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   setQMain(this);
   dvd.publication_date_enabled->setVisible(false);
   dvd.release_date->setDisplayFormat(qmain->publicationDateFormat("dvds"));
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
+#else
+  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
+#endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,

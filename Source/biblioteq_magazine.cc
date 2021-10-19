@@ -8,6 +8,7 @@
 #include "biblioteq_sruResults.h"
 #include "biblioteq_z3950results.h"
 
+#include <QActionGroup>
 #include <QAuthenticator>
 #include <QCryptographicHash>
 #include <QFileDialog>
@@ -81,9 +82,15 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotParseMarcTags(void)));
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
+#else
+  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
+#endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));

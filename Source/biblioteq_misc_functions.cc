@@ -1387,7 +1387,11 @@ int biblioteq_misc_functions::sqliteQuerySize
     return count;
 
   QSqlQuery query(db);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   auto list(boundValues.values());
+#else
+  auto list(boundValues);
+#endif
 
   query.prepare(querystr);
 

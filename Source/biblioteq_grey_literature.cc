@@ -117,9 +117,15 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
+#else
+  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
+#endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.files->setColumnHidden(MYOID, true);
   m_ui.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);

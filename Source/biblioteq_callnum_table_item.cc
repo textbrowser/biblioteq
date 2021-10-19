@@ -13,6 +13,7 @@ static int callnum_lt(const QString &m, const QString &n)
 {
   // In all of its glory.
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   QString lc_regexp
     ("([A-Za-z]+) *([0-9]+)(?: *\\.([0-9]+))?"
      "(?: *\\.([A-Za-z][0-9]+))?(?: *([A-Za-z][0-9]+))?(?: +([0-9]{4}))? *");
@@ -27,8 +28,8 @@ static int callnum_lt(const QString &m, const QString &n)
   //   6. Year (space is required before it).
   // (http://geography.about.com/library/congress/blhowto.htm)
 
-  QRegExp match1(lc_regexp);
-  QRegExp match2(match1); // Copy constructor should be faster than re-parse.
+  QRegularExpression match1(lc_regexp);
+  QRegularExpression match2(match1); // Copy constructor should be faster.
   auto res1 = match1.exactMatch(m);
   auto res2 = match2.exactMatch(n);
 
@@ -69,6 +70,7 @@ static int callnum_lt(const QString &m, const QString &n)
 
 #ifdef BIBLIOTEQ_CALLNUM_DEBUG
   qDebug() << "Call number regex match failed." << endl;
+#endif
 #endif
   return m < n;
 }

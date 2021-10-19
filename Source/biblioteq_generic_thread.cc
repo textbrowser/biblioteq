@@ -1,6 +1,7 @@
 #include "biblioteq.h"
 #include "biblioteq_generic_thread.h"
 
+#include <QFile>
 #include <QTextStream>
 
 extern "C"

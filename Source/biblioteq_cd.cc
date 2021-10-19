@@ -19,12 +19,12 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   QGraphicsScene *scene1 = nullptr;
   QGraphicsScene *scene2 = nullptr;
   QMenu *menu = nullptr;
-  QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
+  QRegularExpression rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = nullptr;
 
   menu = new QMenu(this);
   m_tracks_diag = new QDialog(this);
-  validator1 = new QRegExpValidator(rx1, this);
+  validator1 = new QRegularExpressionValidator(rx1, this);
   scene1 = new QGraphicsScene(this);
   scene2 = new QGraphicsScene(this);
   m_oid = oidArg;
@@ -42,9 +42,15 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   m_tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(m_tracks_diag);
   trd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
+#else
+  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
+		this,
+		SLOT(slotGo(void)));
+#endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
