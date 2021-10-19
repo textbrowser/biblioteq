@@ -6,6 +6,10 @@ BIBLIOTEQ_LINKED_WITH_POPPLER
 
 Defined if BiblioteQ is linked with the Poppler library.
 
+BIBLIOTEQ_LINKED_WITH_YAZ
+
+Defined if BiblioteQ is linked with the YAZ library.
+
 BIBLIOTEQ_NON_PORTABLE
 
 Define if BiblioteQ should write data to some application-specific location.

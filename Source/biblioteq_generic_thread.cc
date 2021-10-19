@@ -6,7 +6,9 @@
 
 extern "C"
 {
+#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 #include <yaz/zoom.h>
+#endif
 }
 
 biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent,
@@ -97,6 +99,7 @@ void biblioteq_generic_thread::run(void)
       }
     case Z3950_QUERY:
       {
+#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 	ZOOM_connection zoomConnection = nullptr;
 	ZOOM_resultset zoomResultSet = nullptr;
 	auto hash(qmain->getZ3950Hash(m_z3950Name));
@@ -185,6 +188,7 @@ void biblioteq_generic_thread::run(void)
 
 	ZOOM_options_destroy(options);
 	ZOOM_connection_destroy(zoomConnection);
+#endif
 	break;
       }
     default:

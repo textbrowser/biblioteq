@@ -285,6 +285,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 
   found = false;
   list = qmain->getZ3950Names();
+#ifndef BIBLIOTEQ_LINKED_WITH_YAZ
+  ma.z3950QueryButton->setEnabled(false);
+  ma.z3950QueryButton->setToolTip(tr("The YAZ library is not available."));
+#endif
 
   for(int i = 0; i < list.size(); i++)
     {

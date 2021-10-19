@@ -53,7 +53,9 @@ extern "C"
 #else
 #include <sqlite3.h>
 #endif
+#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 #include <yaz/yaz-version.h>
+#endif
 }
 
 #include "biblioteq.h"
@@ -1825,6 +1827,10 @@ void biblioteq::showMain(void)
       ui.menuPreferredZ3950Server->addAction(tr("None"));
     }
 
+#ifndef BIBLIOTEQ_LINKED_WITH_YAZ
+  ui.menuPreferredZ3950Server->setEnabled(false);
+#endif
+
   /*
   ** Initial update.
   */
@@ -1926,11 +1932,16 @@ void biblioteq::slotAbout(void)
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
      arg(POPPLER_VERSION).
 #else
-     arg("Poppler version is not known.").
+     arg(tr("Poppler version is not available.")).
 #endif
      arg(QT_VERSION_STR).
      arg(qversion).
-     arg(YAZ_VERSION));
+#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
+     arg(YAZ_VERSION)
+#else
+     arg(tr("is not available"))
+#endif
+     );
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap
     (QPixmap(":/book.png").scaled(QSize(128, 128),
