@@ -3,17 +3,14 @@ include(biblioteq-source.pro)
 
 purge.commands = rm -f *~ && rm -f */*~
 
-CONFIG		+= copy_dir_files qt release thread warn_on
+CONFIG		+= qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ
 QT              += network printsupport sql widgets
-QT              -= webkit
 TEMPLATE	= app
 
-QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE += -O3 \
-                          -Wall \
+QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
                           -Werror=format-security \
