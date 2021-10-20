@@ -60,7 +60,9 @@ fi
 sqlite=sqlite-amalgamation-3360000
 
 if [ -r $sqlite ]; then
-    mv $sqlite/*.h Include.win32/sqlite3/.
+    cp $sqlite/*.h Android/sqlite3/.
+    cp $sqlite/*.h Include.win32/sqlite3/.
+    cp $sqlite/sqlite3.c Android/sqlite3/.
     rm -fr $sqlite
 else
     echo "Cannot read $sqlite."
