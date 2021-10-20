@@ -12,7 +12,6 @@ class biblioteq_import: public QMainWindow
 
  public:
   biblioteq_import(biblioteq *parent);
-  void closeEvent(QCloseEvent *event);
   void show(QMainWindow *parent);
 
  private:

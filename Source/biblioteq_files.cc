@@ -71,7 +71,11 @@ void biblioteq_files::reset(void)
 
 void biblioteq_files::slotClose(void)
 {
+#ifdef Q_OS_ANDROID
+  hide();
+#else
   close();
+#endif
 }
 
 void biblioteq_files::slotExport(void)

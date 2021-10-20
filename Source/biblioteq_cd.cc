@@ -713,7 +713,11 @@ void biblioteq_cd::slotCloseTracksBrowser(void)
   trd.table->setCurrentItem(nullptr);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
+#ifdef Q_OS_ANDROID
+  m_tracks_diag->hide();
+#else
   m_tracks_diag->close();
+#endif
 }
 
 void biblioteq_cd::slotComputeRuntime(void)

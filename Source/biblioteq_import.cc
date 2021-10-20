@@ -65,11 +65,6 @@ void biblioteq_import::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-void biblioteq_import::closeEvent(QCloseEvent *event)
-{
-  QMainWindow::closeEvent(event);
-}
-
 void biblioteq_import::importBooks(QProgressDialog *progress,
 				   QStringList &errors,
 				   qint64 *imported,
@@ -437,7 +432,11 @@ void biblioteq_import::slotBooksTemplates(int index)
 
 void biblioteq_import::slotClose(void)
 {
+#ifdef Q_OS_ANDROID
+  hide();
+#else
   close();
+#endif
 }
 
 void biblioteq_import::slotDeleteBookRow(void)

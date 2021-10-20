@@ -2642,7 +2642,11 @@ void biblioteq::slotConnectDB(void)
       return;
     }
   else
+#ifdef Q_OS_ANDROID
+    m_branch_diag->hide();
+#else
     m_branch_diag->close();
+#endif
 
   /*
   ** We've connected successfully. Let's initialize other containers and
@@ -2880,11 +2884,21 @@ void biblioteq::slotDisconnect(void)
     m_searchQuery.clear();
 
   userinfo_diag->m_memberProperties.clear();
+#ifdef Q_OS_ANDROID
+  m_admin_diag->hide();
+  m_all_diag->hide();
+  m_customquery_diag->hide();
+  m_history_diag->hide();
+  m_import->hide();
+  m_members_diag->hide();
+#else
+  m_admin_diag->close();
   m_all_diag->close();
+  m_customquery_diag->close();
+  m_history_diag->close();
   m_import->close();
   m_members_diag->close();
-  m_history_diag->close();
-  m_customquery_diag->close();
+#endif
   m_unaccent.clear();
   cq.tables_t->clear();
   cq.tables_t->setColumnCount(0);
@@ -2893,7 +2907,6 @@ void biblioteq::slotDisconnect(void)
   cq.tables_t->clearSelection();
   cq.tables_t->setCurrentItem(nullptr);
   cq.query_te->clear();
-  m_admin_diag->close();
 
   if(db_enumerations)
     db_enumerations->clear();
@@ -5521,7 +5534,11 @@ void biblioteq::slotSaveUser(void)
 	}
       else
 	{
+#ifdef Q_OS_ANDROID
+	  userinfo_diag->hide();
+#else
 	  userinfo_diag->close();
+#endif
 
 	  if(m_db.driverName() != "QSQLITE")
 	    {

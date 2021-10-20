@@ -142,7 +142,11 @@ void biblioteq_otheroptions::closeEvent(QCloseEvent *event)
 void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
+#ifdef Q_OS_ANDROID
+    hide();
+#else
     close();
+#endif
 
   QMainWindow::keyPressEvent(event);
 }
@@ -351,7 +355,11 @@ void biblioteq_otheroptions::showNormal(void)
 
 void biblioteq_otheroptions::slotClose(void)
 {
+#ifdef Q_OS_ANDROID
+  hide();
+#else
   close();
+#endif
 }
 
 void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor

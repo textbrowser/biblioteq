@@ -185,13 +185,37 @@ biblioteq::biblioteq(void):QMainWindow()
   m_pass_diag = new QDialog(this);
   m_printPreview = new QTextBrowser(this);
   m_printPreview->setVisible(false);
+#ifdef Q_OS_ANDROID
+  m_all_diag = new QMainWindow(this);
+#else
   m_all_diag = new QMainWindow();
+#endif
+#ifdef Q_OS_ANDROID
+  m_admin_diag = new QMainWindow(this);
+#else
   m_admin_diag = new QMainWindow();
+#endif
+#ifdef Q_OS_ANDROID
+  m_members_diag = new QMainWindow(this);
+#else
   m_members_diag = new QMainWindow();
+#endif
+#ifdef Q_OS_ANDROID
+  m_history_diag = new QMainWindow(this);
+#else
   m_history_diag = new QMainWindow();
+#endif
+#ifdef Q_OS_ANDROID
+  m_customquery_diag = new QMainWindow(this);
+#else
   m_customquery_diag = new QMainWindow();
+#endif
   userinfo_diag = new userinfo_diag_class(m_members_diag);
+#ifdef Q_OS_ANDROID
+  m_error_diag = new QMainWindow(this);
+#else
   m_error_diag = new QMainWindow();
+#endif
   m_configToolMenu = new QMenu(this);
   m_import = new biblioteq_import(this);
   menu1 = new QMenu(this);
@@ -425,8 +449,13 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotShowNext(void)));
   connect(history.prevTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowPrev(void)));
+#ifdef Q_OS_ANDROID
+  connect(history.cancelButton, SIGNAL(clicked(void)),
+	  m_history_diag, SLOT(hide(void)));
+#else
   connect(history.cancelButton, SIGNAL(clicked(void)),
 	  m_history_diag, SLOT(close(void)));
+#endif
   connect(history.dnt, SIGNAL(toggled(bool)),
 	  this, SLOT(slotSaveDnt(bool)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
@@ -457,8 +486,13 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
+#ifdef Q_OS_ANDROID
+  connect(al.cancelButton, SIGNAL(clicked(void)),
+	  m_all_diag, SLOT(hide(void)));
+#else
   connect(al.cancelButton, SIGNAL(clicked(void)),
 	  m_all_diag, SLOT(close(void)));
+#endif
   connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowHistory(void)));
   connect(ui.filesTool, SIGNAL(triggered(void)), this,
@@ -479,8 +513,13 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotSearchBasic(void)));
   connect(er.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetErrorLog(void)));
+#ifdef Q_OS_ANDROID
+  connect(er.cancelButton, SIGNAL(clicked(void)),
+	  m_error_diag, SLOT(hide(void)));
+#else
   connect(er.cancelButton, SIGNAL(clicked(void)),
 	  m_error_diag, SLOT(close(void)));
+#endif
   connect(bb.filter, SIGNAL(returnPressed(void)), this,
 	  SLOT(slotPopulateMembersBrowser(void)));
   connect(bb.grantButton, SIGNAL(clicked(void)), this,
@@ -523,8 +562,13 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotResetLoginDialog(void)));
   connect(br.fileButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSelectDatabaseFile(void)));
+#ifdef Q_OS_ANDROID
+  connect(br.cancelButton, SIGNAL(clicked(void)),
+	  m_branch_diag, SLOT(hide(void)));
+#else
   connect(br.cancelButton, SIGNAL(clicked(void)),
 	  m_branch_diag, SLOT(close(void)));
+#endif
   connect(ui.actionConfigureAdministratorPrivileges,
 	  SIGNAL(triggered(void)), this, SLOT(slotShowAdminDialog(void)));
   connect(ab.reloadButton, SIGNAL(clicked(void)), this,
@@ -535,8 +579,13 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotDeleteAdmin(void)));
   connect(ab.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveAdministrators(void)));
+#ifdef Q_OS_ANDROID
   connect(ab.cancelButton, SIGNAL(clicked(void)),
 	  m_admin_diag, SLOT(close(void)));
+#else
+  connect(ab.cancelButton, SIGNAL(clicked(void)),
+	  m_admin_diag, SLOT(close(void)));
+#endif
   connect(ui.action_New_SQLite_Database,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -2145,7 +2194,11 @@ void biblioteq::slotBranchChanged(void)
 void biblioteq::slotCancelAddUser(void)
 {
   if(userinfo_diag->isVisible())
+#ifdef Q_OS_ANDROID
+    userinfo_diag->hide();
+#else
     userinfo_diag->close();
+#endif
 }
 
 void biblioteq::slotChangeView(bool checked)
@@ -2188,7 +2241,11 @@ void biblioteq::slotClearSqliteMenu(bool state)
 
 void biblioteq::slotCloseCustomQueryDialog(void)
 {
+#ifdef Q_OS_ANDROID
+  m_customquery_diag->hide();
+#else
   m_customquery_diag->close();
+#endif
 }
 
 void biblioteq::slotCloseMembersBrowser(void)
@@ -2201,8 +2258,13 @@ void biblioteq::slotCloseMembersBrowser(void)
   ** Also closes the Reservation History Browser.
   */
 
+#ifdef Q_OS_ANDROID
+  m_history_diag->hide();
+  m_members_diag->hide();
+#else
   m_history_diag->close();
   m_members_diag->close();
+#endif
 }
 
 void biblioteq::slotClosePasswordDialog(void)
@@ -4000,7 +4062,11 @@ void biblioteq::slotSavePassword(void)
       QApplication::processEvents();
     }
   else
+#ifdef Q_OS_ANDROID
+    m_pass_diag->hide();
+#else
     m_pass_diag->close();
+#endif
 }
 
 void biblioteq::slotSearch(void)

@@ -928,7 +928,11 @@ void biblioteq_photographcollection::slotCancel(void)
 
 void biblioteq_photographcollection::slotClosePhoto(void)
 {
+#ifdef Q_OS_ANDROID
+  m_photo_diag->hide();
+#else
   m_photo_diag->close();
+#endif
 }
 
 void biblioteq_photographcollection::slotDeleteItem(void)
