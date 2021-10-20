@@ -1329,7 +1329,9 @@ void biblioteq::readConfig(void)
 
 void biblioteq::readGlobalSetup(void)
 {
-#ifdef Q_OS_MACOS
+#if defined(Q_OS_ANDROID)
+  QSettings settings("assets:/biblioteq.conf", QSettings::IniFormat);
+#elif defined(Q_OS_MACOS)
   QSettings settings
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf",
      QSettings::IniFormat);
