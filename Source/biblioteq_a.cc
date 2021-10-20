@@ -51,7 +51,9 @@ extern "C"
 #ifdef Q_OS_WIN
 #include <sqlite3/sqlite3.h>
 #else
+#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
 #include <sqlite3.h>
+#endif
 #endif
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 #include <yaz/yaz-version.h>
@@ -286,6 +288,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
+#ifndef BIBLIOTEQ_LINKED_WITH_SQLITE
+  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
+  ui.menu_Recent_SQLite_Files->setEnabled(false);
+#endif
   connect(ui.action_VacuumDatabase,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -542,6 +548,9 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDisplayNewSqliteDialog(void)));
+#ifndef BIBLIOTEQ_LINKED_WITH_SQLITE
+  ui.action_New_SQLite_Database->setEnabled(false);
+#endif
   connect(ui.actionDatabase_Enumerations,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -1918,8 +1927,7 @@ void biblioteq::slotAbout(void)
 	"%5<br>"
 #endif
 	"Qt version %6 (runtime %7).<br>"
-	"YAZ version %8."
-	"<hr>"
+	"YAZ version %8.<br><br>"
 	"Please visit <a href=\"https://biblioteq.sourceforge.io\">"
 	"https://biblioteq.sourceforge.io</a> or "
 	"<a href=\"https://textbrowser.github.io/biblioteq/\">"
@@ -2560,6 +2568,7 @@ void biblioteq::slotDeleteAdmin(void)
 
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
+#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
   QFileDialog dialog(this);
   auto error = true;
 
@@ -2698,6 +2707,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	  QApplication::processEvents();
 	}
     }
+#endif
 }
 
 void biblioteq::slotDuplicate(void)

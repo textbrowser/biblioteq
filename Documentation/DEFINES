@@ -6,6 +6,10 @@ BIBLIOTEQ_LINKED_WITH_POPPLER
 
 Defined if BiblioteQ is linked with the Poppler library.
 
+BIBLIOTEQ_LINKED_WITH_SQLITE
+
+Defined if BiblioteQ is linked with the SQLite library.
+
 BIBLIOTEQ_LINKED_WITH_YAZ
 
 Defined if BiblioteQ is linked with the YAZ library.

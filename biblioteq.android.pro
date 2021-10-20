@@ -35,7 +35,7 @@ QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
-LIBS		+= -lsqlite3
+LIBS		+=
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
