@@ -7,8 +7,7 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
-		   BIBLIOTEQ_LINKED_WITH_SQLITE
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit

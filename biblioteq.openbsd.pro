@@ -6,7 +6,6 @@ purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
-		   BIBLIOTEQ_LINKED_WITH_SQLITE
                    QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ

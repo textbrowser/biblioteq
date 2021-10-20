@@ -48,12 +48,10 @@
 extern "C"
 {
 #include <math.h>
-#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
 #if defined(Q_OS_ANDROID) || defined(Q_OS_WIN)
 #include <sqlite3/sqlite3.h>
 #else
 #include <sqlite3.h>
-#endif
 #endif
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 #include <yaz/yaz-version.h>
@@ -288,10 +286,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
-#ifndef BIBLIOTEQ_LINKED_WITH_SQLITE
-  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
-  ui.menu_Recent_SQLite_Files->setEnabled(false);
-#endif
   connect(ui.action_VacuumDatabase,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -548,9 +542,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDisplayNewSqliteDialog(void)));
-#ifndef BIBLIOTEQ_LINKED_WITH_SQLITE
-  ui.action_New_SQLite_Database->setEnabled(false);
-#endif
   connect(ui.actionDatabase_Enumerations,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -2568,7 +2559,6 @@ void biblioteq::slotDeleteAdmin(void)
 
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
   QFileDialog dialog(this);
   auto error = true;
 
@@ -2707,7 +2697,6 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	  QApplication::processEvents();
 	}
     }
-#endif
 }
 
 void biblioteq::slotDuplicate(void)

@@ -2678,9 +2678,7 @@ void biblioteq::slotConnectDB(void)
       ui.action_VacuumDatabase->setEnabled(true);
       ui.actionChangePassword->setEnabled(false);
       ui.actionImportCSV->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
       ui.action_Upgrade_SQLite_Schema->setEnabled(true);
-#endif
       ui.menuEntriesPerPage->setEnabled(true);
 
       if(!ui.menuEntriesPerPage->actions().isEmpty())
