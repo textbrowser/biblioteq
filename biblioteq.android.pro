@@ -33,10 +33,22 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
 QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
-ICON		= Icons/book.png
 INCLUDEPATH	+= Android Source temp
 LIBS		+=
 SOURCES         += Android/sqlite3/sqlite3.c
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
+
+DISTFILES += android/AndroidManifest.xml \
+             android/build.gradle \
+             android/gradle.properties \
+             android/gradle/wrapper/gradle-wrapper.jar \
+             android/gradle/wrapper/gradle-wrapper.properties \
+             android/gradlew \
+             android/gradlew.bat \
+             android/res/values/libs.xml
+
+contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+}
