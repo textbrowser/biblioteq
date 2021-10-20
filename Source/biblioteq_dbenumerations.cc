@@ -7,10 +7,50 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 {
   m_ui.setupUi(this);
   qmain = parent;
-  connect(m_ui.saveButton,
+  connect(m_ui.addBookBinding,
 	  SIGNAL(clicked(void)),
 	  this,
-	  SLOT(slotSave(void)));
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addCdFormat,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addDvdAspectRatio,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addDvdRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addDvdRegion,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addGreyLiteratureType,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addLanguage,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addLocation,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addMonetaryUnit,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addVideoGamePlatform,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addVideoGameRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
   connect(m_ui.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -19,94 +59,54 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReload(void)));
-  connect(m_ui.addBookBinding,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
   connect(m_ui.removeBookBinding,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(m_ui.addCdFormat,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
   connect(m_ui.removeCdFormat,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(m_ui.addDvdAspectRatio,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
   connect(m_ui.removeDvdAspectRatio,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(m_ui.addDvdRating,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
   connect(m_ui.removeDvdRating,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(m_ui.addDvdRegion,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
   connect(m_ui.removeDvdRegion,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(m_ui.addLanguage,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
-  connect(m_ui.removeLanguage,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRemove(void)));
-  connect(m_ui.addLocation,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
-  connect(m_ui.removeLocation,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRemove(void)));
-  connect(m_ui.addMonetaryUnit,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
-  connect(m_ui.removeMonetaryUnit,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRemove(void)));
-  connect(m_ui.addVideoGamePlatform,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
-  connect(m_ui.removeVideoGamePlatform,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRemove(void)));
-  connect(m_ui.addVideoGameRating,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
-  connect(m_ui.removeVideoGameRating,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRemove(void)));
-  connect(m_ui.addGreyLiteratureType,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAdd(void)));
   connect(m_ui.removeGreyLiteratureType,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(m_ui.removeLanguage,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeLocation,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeMonetaryUnit,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeVideoGamePlatform,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeVideoGameRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.saveButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSave(void)));
 
   if(qmain)
     connect(qmain,
@@ -118,6 +118,7 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
     (QHeaderView::Fixed);
   m_ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
+  setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
 void biblioteq_dbenumerations::changeEvent(QEvent *event)

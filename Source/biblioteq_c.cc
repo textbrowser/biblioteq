@@ -2851,7 +2851,9 @@ void biblioteq::slotConnectDB(void)
 
 void biblioteq::slotDisconnect(void)
 {
-  if(db_enumerations->isVisible() && !db_enumerations->close())
+  if(db_enumerations &&
+     db_enumerations->isVisible() &&
+     !db_enumerations->close())
     return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -2892,7 +2894,10 @@ void biblioteq::slotDisconnect(void)
   cq.tables_t->setCurrentItem(nullptr);
   cq.query_te->clear();
   m_admin_diag->close();
-  db_enumerations->clear();
+
+  if(db_enumerations)
+    db_enumerations->clear();
+
   resetAdminBrowser();
   resetMembersBrowser();
   ui.actionAutoPopulateOnCreation->setEnabled(false);

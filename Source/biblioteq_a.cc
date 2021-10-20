@@ -192,7 +192,6 @@ biblioteq::biblioteq(void):QMainWindow()
   m_customquery_diag = new QMainWindow();
   userinfo_diag = new userinfo_diag_class(m_members_diag);
   m_error_diag = new QMainWindow();
-  db_enumerations = new biblioteq_dbenumerations(this);
   m_configToolMenu = new QMenu(this);
   m_import = new biblioteq_import(this);
   menu1 = new QMenu(this);
@@ -4241,6 +4240,9 @@ void biblioteq::slotShowCustomQuery(void)
 
 void biblioteq::slotShowDbEnumerations(void)
 {
+  if(!db_enumerations)
+    db_enumerations = new biblioteq_dbenumerations(this);
+
   db_enumerations->show
     (this,
      ui.actionPopulate_Database_Enumerations_Browser_on_Display->

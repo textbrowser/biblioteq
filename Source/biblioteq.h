@@ -338,6 +338,7 @@ class biblioteq: public QMainWindow
   QMap<QString, QHash<QString, QString> > m_sruMaps;
   QMap<QString, QHash<QString, QString> > m_z3950Maps;
   QPointer<QMenu> m_menu;
+  QPointer<biblioteq_dbenumerations> db_enumerations;
   QSqlDatabase m_db;
   QSqlQuery m_searchQuery;
   QString m_engUserinfoTitle;
@@ -360,7 +361,6 @@ class biblioteq: public QMainWindow
   Ui_mainWindow ui;
   Ui_membersBrowser bb;
   Ui_passSelect pass;
-  biblioteq_dbenumerations *db_enumerations;
   biblioteq_files *m_files;
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
