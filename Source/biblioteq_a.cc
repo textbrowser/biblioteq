@@ -1842,7 +1842,9 @@ void biblioteq::showMain(void)
 #endif
   slotResizeColumns();
 
-#ifdef Q_OS_MACOS
+#if defined(Q_OS_ANDROID)
+  QFileInfo fileInfo("assets:/biblioteq.conf");
+#elif defined(Q_OS_MACOS)
   QFileInfo fileInfo
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_OS2)

@@ -4,10 +4,9 @@ include(biblioteq-source.pro)
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ
-QT              += network printsupport sql widgets
+QT              += core gui network printsupport sql svg widgets
 TEMPLATE	= app
 
 QMAKE_CXXFLAGS_RELEASE += -Wall \
@@ -46,6 +45,13 @@ DISTFILES += android/AndroidManifest.xml \
              android/gradlew.bat \
              android/res/values/libs.xml
 
+deployment.files = biblioteq.conf
+deployment.path = /assets
+
+INSTALLS += deployment
+
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
+
+android: include(/home/saturn/Android/Sdk/android_openssl/openssl.pri)
