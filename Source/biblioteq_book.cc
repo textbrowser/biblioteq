@@ -3601,8 +3601,17 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 	      this, SLOT(slotOpenLibraryReadyRead(void)));
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotOpenLibraryDownloadFinished(void)));
-      connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-	      this, SLOT(slotOpenLibraryError(QNetworkReply::NetworkError)));
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+      connect(reply,
+	      SIGNAL(error(QNetworkReply::NetworkError)),
+	      this,
+	      SLOT(slotOpenLibraryError(QNetworkReply::NetworkError)));
+#else
+      connect(reply,
+	      SIGNAL(errorOccurred(QNetworkReply::NetworkError)),
+	      this,
+	      SLOT(slotOpenLibraryError(QNetworkReply::NetworkError)));
+#endif
       connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
 	      this, SLOT(slotOpenLibrarySslErrors(const QList<QSslError> &)));
     }
@@ -4375,8 +4384,17 @@ void biblioteq_book::slotSRUQuery(void)
 	      this, SLOT(slotSRUReadyRead(void)));
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotSRUDownloadFinished(void)));
-      connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-	      this, SLOT(slotSRUError(QNetworkReply::NetworkError)));
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+      connect(reply,
+	      SIGNAL(error(QNetworkReply::NetworkError)),
+	      this,
+	      SLOT(slotSRUError(QNetworkReply::NetworkError)));
+#else
+      connect(reply,
+	      SIGNAL(errorOccurred(QNetworkReply::NetworkError)),
+	      this,
+	      SLOT(slotSRUError(QNetworkReply::NetworkError)));
+#endif
       connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
 	      this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
     }
