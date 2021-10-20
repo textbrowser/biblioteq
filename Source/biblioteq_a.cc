@@ -48,10 +48,10 @@
 extern "C"
 {
 #include <math.h>
-#ifdef Q_OS_WIN
+#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
+#if defined(Q_OS_ANDROID) || defined(Q_OS_WIN)
 #include <sqlite3/sqlite3.h>
 #else
-#ifdef BIBLIOTEQ_LINKED_WITH_SQLITE
 #include <sqlite3.h>
 #endif
 #endif

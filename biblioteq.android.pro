@@ -4,7 +4,8 @@ include(biblioteq-source.pro)
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
+                   BIBLIOTEQ_LINKED_WITH_SQLITE
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ
 QT              += network printsupport sql widgets
@@ -34,8 +35,9 @@ QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons/book.png
-INCLUDEPATH	+= Source temp
+INCLUDEPATH	+= Android Source temp
 LIBS		+=
+SOURCES         += Android/sqlite3/sqlite3.c
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
