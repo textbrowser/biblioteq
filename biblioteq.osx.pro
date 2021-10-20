@@ -3,7 +3,8 @@ include(biblioteq-source.pro)
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= QT_DEPRECATED_WARNINGS
+DEFINES		+= BIBLIOTEQ_LINKED_WITH_SQLITE \
+		   QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit
