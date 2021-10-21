@@ -493,7 +493,10 @@
 265. Icons mode and read status. (TBD)
 266. Qt 6.2 LTS:
      QNetworkReply (Done)
+     QSqlQuery (TBD)
 267. Qt 6.2 LTS regular expressions. (TBD)
 268. Prepare Database Enumerations during an import. (TBD)
 269. Embed translation files. (Done)
-270. Android port. (Done)
+270. Android port:
+     Configuration Menu (TBD)
+     Exit (TBD)
