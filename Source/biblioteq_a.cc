@@ -37,6 +37,10 @@
 
 #include <limits>
 
+#ifdef Q_OS_ANDROID
+#include <QJniObject>
+#endif
+
 #ifdef Q_OS_MACOS
 #include "CocoaInitializer.h"
 #endif
@@ -1561,11 +1565,21 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 	     << line << tr(".");
 
   exit(EXIT_FAILURE);
+#ifdef Q_OS_ANDROID
+  auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
+
+  activity.callMethod<void>("finishAndRemoveTask");
+#endif
 }
 
 void biblioteq::quit(void)
 {
   QCoreApplication::quit();
+#ifdef Q_OS_ANDROID
+  auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
+
+  activity.callMethod<void>("finishAndRemoveTask");
+#endif
 }
 
 void biblioteq::removeBook(biblioteq_book *book)
