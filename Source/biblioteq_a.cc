@@ -216,12 +216,8 @@ biblioteq::biblioteq(void):QMainWindow()
 #else
   m_error_diag = new QMainWindow();
 #endif
-  m_configToolMenu = new QMenu(this);
   m_import = new biblioteq_import(this);
   menu1 = new QMenu(this);
-  m_configToolMenu->setTearOffEnabled(true);
-  m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
-  m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
   connect(QCoreApplication::instance(),
 	  SIGNAL(lastWindowClosed(void)),
 	  this,
@@ -982,6 +978,7 @@ void biblioteq::addConfigOptions(const QString &typefilter)
   ** Delete existing actions, if any.
   */
 
+  createConfigToolMenu();
   m_configToolMenu->clear();
 
   for(i = 0; i < ui.table->columnCount(); i++)
@@ -4226,6 +4223,8 @@ void biblioteq::slotSetColumns(void)
   auto typefilter = ui.menu_Category->defaultAction() ?
     ui.menu_Category->defaultAction()->data().toString() : "All";
 
+  createConfigToolMenu();
+
   for(int i = 0; i < m_configToolMenu->actions().size(); i++)
     {
       ui.table->setColumnHidden
@@ -4385,7 +4384,16 @@ void biblioteq::slotShowMenu(void)
     point = QCursor::pos();
 
   if(sender() == ui.configTool)
-    m_configToolMenu->exec(point);
+    {
+      createConfigToolMenu();
+
+      auto typefilter = ui.menu_Category->defaultAction() ?
+	ui.menu_Category->defaultAction()->data().toString() : "All";
+
+      addConfigOptions(typefilter);
+      m_configToolMenu->exec(point);
+      m_configToolMenu->deleteLater();
+    }
   else if(sender() == ui.createTool)
     {
       QMenu menu(this);

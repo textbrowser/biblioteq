@@ -941,6 +941,19 @@ void biblioteq::cdSearch(const QString &field, const QString &value)
   cd->deleteLater();
 }
 
+void biblioteq::createConfigToolMenu(void)
+{
+  if(!m_configToolMenu)
+    {
+      m_configToolMenu = new QMenu(this);
+#ifndef Q_OS_ANDROID
+      m_configToolMenu->setTearOffEnabled(true);
+      m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
+      m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
+#endif
+    }
+}
+
 void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
   if(itemType == "book")
