@@ -833,6 +833,7 @@ void biblioteq_grey_literature::search(const QString &field,
   if(field.isEmpty() && value.isEmpty())
     {
       m_ui.title->setFocus();
+      resize(size().width(), sizeHint().height());
       setWindowTitle(tr("BiblioteQ: Database Grey Literature Search"));
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();

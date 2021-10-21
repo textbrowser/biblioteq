@@ -27,722 +27,721 @@
       <attribute name="title">
        <string>General</string>
       </attribute>
-      <layout class="QFormLayout" name="formLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Member ID</string>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="memberid">
-         <property name="maxLength">
-          <number>16</number>
-         </property>
-         <property name="placeholderText">
-          <string>Member ID</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>Member Since</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QDateEdit" name="membersince">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="displayFormat">
-            <string>yyyy-MM-dd</string>
-           </property>
-           <property name="calendarPopup">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>First Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="firstName">
-         <property name="maxLength">
-          <number>128</number>
-         </property>
-         <property name="placeholderText">
-          <string>First Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Last Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="lastName">
-         <property name="maxLength">
-          <number>128</number>
-         </property>
-         <property name="placeholderText">
-          <string>Last Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Middle Initial</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QLineEdit" name="middle">
-           <property name="maxLength">
-            <number>1</number>
-           </property>
-           <property name="placeholderText">
-            <string>Middle Initial</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>Date of Birth</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QDateEdit" name="dob">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="displayFormat">
-            <string>yyyy-MM-dd</string>
-           </property>
-           <property name="calendarPopup">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_11">
-         <property name="text">
-          <string>Sex</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QComboBox" name="sex">
-           <property name="currentIndex">
-            <number>2</number>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToContents</enum>
-           </property>
-           <property name="minimumContentsLength">
-            <number>15</number>
-           </property>
-           <item>
-            <property name="text">
-             <string>Female</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Male</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Private</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Street</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLineEdit" name="street">
-         <property name="maxLength">
-          <number>256</number>
-         </property>
-         <property name="placeholderText">
-          <string>Street Address</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>City</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QLineEdit" name="city">
-         <property name="maxLength">
-          <number>256</number>
-         </property>
-         <property name="placeholderText">
-          <string>City</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>State &amp; ZIP Code</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QComboBox" name="state">
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToContents</enum>
-           </property>
-           <property name="minimumContentsLength">
-            <number>15</number>
-           </property>
-           <item>
-            <property name="text">
-             <string>N/A</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AK</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AL</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AR</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AZ</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CO</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CT</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>DE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>FL</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>GA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>HI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>IA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ID</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>IL</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>IN</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>KS</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>KY</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>LA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MD</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ME</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MN</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MO</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MS</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>MT</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NC</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ND</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NH</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NJ</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NM</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NV</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NY</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>OH</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>OK</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>OR</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>PA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>RI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SC</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SD</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>TN</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>TX</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>UT</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>VA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>VT</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>WA</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>WI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>WV</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>WY</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="zip">
-           <property name="maxLength">
-            <number>16</number>
-           </property>
-           <property name="placeholderText">
-            <string>ZIP Code</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Telephone Number</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <widget class="QLineEdit" name="telephoneNumber">
-         <property name="maxLength">
-          <number>32</number>
-         </property>
-         <property name="placeholderText">
-          <string>Telephone Number</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="0">
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string>E-Mail Address</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="label_13">
-         <property name="text">
-          <string>Expiration Date</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="1">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QDateEdit" name="expirationdate">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="displayFormat">
-            <string>yyyy-MM-dd</string>
-           </property>
-           <property name="calendarPopup">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="label_14">
-         <property name="text">
-          <string>Overdue Fees</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="1">
-        <widget class="QDoubleSpinBox" name="overduefees">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimum">
-          <double>0.000000000000000</double>
-         </property>
-         <property name="maximum">
-          <double>10000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.010000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="0">
-        <widget class="QLabel" name="label_15">
-         <property name="text">
-          <string>Comments</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="1">
-        <widget class="QTextEdit" name="comments">
-         <property name="tabChangesFocus">
+         <property name="widgetResizable">
           <bool>true</bool>
          </property>
-         <property name="acceptRichText">
-          <bool>false</bool>
-         </property>
-         <property name="placeholderText">
-          <string>Comments</string>
-         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>468</width>
+            <height>669</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Member ID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="memberid">
+             <property name="maxLength">
+              <number>16</number>
+             </property>
+             <property name="placeholderText">
+              <string>Member ID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Member Since</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QDateEdit" name="membersince">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>false</bool>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy-MM-dd</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>First Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="firstName">
+             <property name="maxLength">
+              <number>128</number>
+             </property>
+             <property name="placeholderText">
+              <string>First Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Last Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lastName">
+             <property name="maxLength">
+              <number>128</number>
+             </property>
+             <property name="placeholderText">
+              <string>Last Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Middle Initial</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QLineEdit" name="middle">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="placeholderText">
+                <string>Middle Initial</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Date of Birth</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QDateEdit" name="dob">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>false</bool>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy-MM-dd</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Sex</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QComboBox" name="sex">
+               <property name="currentIndex">
+                <number>2</number>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+               <property name="minimumContentsLength">
+                <number>15</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Private</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Street</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QLineEdit" name="street">
+             <property name="maxLength">
+              <number>256</number>
+             </property>
+             <property name="placeholderText">
+              <string>Street Address</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>City</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLineEdit" name="city">
+             <property name="maxLength">
+              <number>256</number>
+             </property>
+             <property name="placeholderText">
+              <string>City</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>State &amp; ZIP Code</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QComboBox" name="state">
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+               <property name="minimumContentsLength">
+                <number>15</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>N/A</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>AK</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>AL</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>AR</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>AZ</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CO</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>DE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>FL</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>GA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>HI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>IA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ID</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>IL</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>IN</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>KS</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>KY</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>LA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MD</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ME</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MN</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MO</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MS</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>MT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NC</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ND</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NE</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NH</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NJ</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NM</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NV</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>NY</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>OH</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>OK</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>OR</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>PA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>RI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>SC</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>SD</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>TN</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>TX</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>VA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>VT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>WA</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>WI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>WV</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>WY</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="zip">
+               <property name="maxLength">
+                <number>16</number>
+               </property>
+               <property name="placeholderText">
+                <string>ZIP Code</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Telephone Number</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1">
+            <widget class="QLineEdit" name="telephoneNumber">
+             <property name="maxLength">
+              <number>32</number>
+             </property>
+             <property name="placeholderText">
+              <string>Telephone Number</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>E-Mail Address</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLineEdit" name="email">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="maxLength">
+                <number>128</number>
+               </property>
+               <property name="placeholderText">
+                <string>E-Mail Address</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="12" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Expiration Date</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QDateEdit" name="expirationdate">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy-MM-dd</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="13" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>Overdue Fees</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1">
+            <widget class="QDoubleSpinBox" name="overduefees">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>0.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>10000.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Comments</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="1">
+            <widget class="QTextEdit" name="comments">
+             <property name="tabChangesFocus">
+              <bool>true</bool>
+             </property>
+             <property name="acceptRichText">
+              <bool>false</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Comments</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
-       <item row="11" column="1">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLineEdit" name="email">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="maxLength">
-            <number>128</number>
-           </property>
-           <property name="placeholderText">
-            <string>E-Mail Address</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
       </layout>
-      <zorder>label_9</zorder>
-      <zorder>label</zorder>
-      <zorder>firstName</zorder>
-      <zorder>label_4</zorder>
-      <zorder>lastName</zorder>
-      <zorder>label_8</zorder>
-      <zorder>label_10</zorder>
-      <zorder>label_11</zorder>
-      <zorder>label_2</zorder>
-      <zorder>street</zorder>
-      <zorder>label_6</zorder>
-      <zorder>city</zorder>
-      <zorder>label_7</zorder>
-      <zorder>label_3</zorder>
-      <zorder>telephoneNumber</zorder>
-      <zorder>label_12</zorder>
-      <zorder>label_13</zorder>
-      <zorder>label_14</zorder>
-      <zorder>overduefees</zorder>
-      <zorder>label_15</zorder>
-      <zorder>comments</zorder>
-      <zorder>label_5</zorder>
-      <zorder>memberid</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -797,19 +796,6 @@
       </layout>
      </widget>
     </widget>
-   </item>
-   <item>
-    <spacer>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout">
@@ -928,6 +914,7 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>memberid</tabstop>
   <tabstop>membersince</tabstop>
   <tabstop>firstName</tabstop>

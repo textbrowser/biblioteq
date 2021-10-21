@@ -492,8 +492,8 @@
 264. Optional YAZ. (Done)
 265. Icons mode and read status. (TBD)
 266. Qt 6.2 LTS:
-     QNetworkReply (TBD)
+     QNetworkReply (Done)
 267. Qt 6.2 LTS regular expressions. (TBD)
 268. Prepare Database Enumerations during an import. (TBD)
 269. Embed translation files. (Done)
-270. Android port. (TBD)
+270. Android port. (Done)

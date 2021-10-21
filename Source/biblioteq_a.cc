@@ -341,6 +341,9 @@ biblioteq::biblioteq(void):QMainWindow()
   ab.setupUi(m_admin_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
+#ifdef Q_OS_ANDROID
+  ui.action_Full_Screen->setEnabled(false);
+#endif
 #ifdef Q_OS_MACOS
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
@@ -2084,6 +2087,8 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->m_userinfo.memberid->setFocus();
   userinfo_diag->updateGeometry();
+  userinfo_diag->resize(userinfo_diag->width(),
+			userinfo_diag->sizeHint().height());
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
