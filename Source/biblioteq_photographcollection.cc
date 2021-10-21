@@ -367,6 +367,7 @@ void biblioteq_photographcollection::insert(void)
   pc.page->addItem("1");
   pc.page->blockSignals(false);
   storeData();
+  biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
   activateWindow();
   raise();
@@ -731,6 +732,7 @@ void biblioteq_photographcollection::modify(const int state,
 	textfield->setCursorPosition(0);
 
       storeData();
+      biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
       activateWindow();
       raise();

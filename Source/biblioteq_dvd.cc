@@ -343,6 +343,7 @@ void biblioteq_dvd::insert(void)
   m_engWindowTitle = "Create";
   dvd.id->setFocus();
   storeData(this);
+  biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
   activateWindow();
   raise();
@@ -469,6 +470,7 @@ void biblioteq_dvd::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+      biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
       activateWindow();
       raise();

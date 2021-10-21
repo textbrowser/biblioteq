@@ -312,6 +312,7 @@ void biblioteq_videogame::insert(void)
   m_engWindowTitle = "Create";
   vg.id->setFocus();
   storeData(this);
+  biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
   activateWindow();
   raise();
@@ -422,6 +423,7 @@ void biblioteq_videogame::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+      biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
       activateWindow();
       raise();

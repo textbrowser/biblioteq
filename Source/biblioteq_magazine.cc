@@ -551,6 +551,7 @@ void biblioteq_magazine::insert(void)
   m_engWindowTitle = "Create";
   ma.id->setFocus();
   storeData(this);
+  biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
   activateWindow();
   raise();
@@ -701,6 +702,7 @@ void biblioteq_magazine::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+      biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
       activateWindow();
       raise();
