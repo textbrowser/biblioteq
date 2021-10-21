@@ -413,6 +413,8 @@ void biblioteq_grey_literature::insert(void)
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
   storeData(this);
+  resize(size().width(), sizeHint().height());
+  biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
   activateWindow();
   raise();
@@ -621,6 +623,8 @@ void biblioteq_grey_literature::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+      resize(size().width(), sizeHint().height());
+      biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
       activateWindow();
       raise();
