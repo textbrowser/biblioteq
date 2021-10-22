@@ -1990,6 +1990,7 @@ void biblioteq::slotAbout(void)
 	"%5<br>"
 #endif
 	"Qt version %6 (runtime %7).<br>"
+	"SQLite version %9.<br>"
 	"YAZ version %8.<br><br>"
 	"Please visit <a href=\"https://biblioteq.sourceforge.io\">"
 	"https://biblioteq.sourceforge.io</a> or "
@@ -2008,11 +2009,11 @@ void biblioteq::slotAbout(void)
      arg(QT_VERSION_STR).
      arg(qversion).
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
-     arg(YAZ_VERSION)
+     arg(YAZ_VERSION).
 #else
-     arg(tr("is not available"))
+     arg(tr("is not available")).
 #endif
-     );
+     arg(SQLITE_VERSION));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap
     (QPixmap(":/book.png").scaled(QSize(128, 128),
