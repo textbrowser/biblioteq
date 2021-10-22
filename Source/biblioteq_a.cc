@@ -38,7 +38,9 @@
 #include <limits>
 
 #ifdef Q_OS_ANDROID
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
 #include <QJniObject>
+#endif
 #endif
 
 #ifdef Q_OS_MACOS
@@ -1566,9 +1568,11 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
   exit(EXIT_FAILURE);
 #ifdef Q_OS_ANDROID
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
   auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
 
   activity.callMethod<void>("finishAndRemoveTask");
+#endif
 #endif
 }
 
@@ -1576,9 +1580,11 @@ void biblioteq::quit(void)
 {
   QCoreApplication::quit();
 #ifdef Q_OS_ANDROID
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
   auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
 
   activity.callMethod<void>("finishAndRemoveTask");
+#endif
 #endif
 }
 

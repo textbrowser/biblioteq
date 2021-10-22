@@ -608,7 +608,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	      for(int j = 0; j < record.count(); j++)
 		{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 13, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 		  if(QMetaType::Type(record.field(j).metaType().id()) ==
 		     QMetaType::QByteArray ||
 #else
