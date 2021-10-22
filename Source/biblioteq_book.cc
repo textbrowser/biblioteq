@@ -427,9 +427,11 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   ** Prepare the form.
   */
 
+#ifndef Q_OS_ANDROID
   if(m_parentWid)
     resize(qRound(0.95 * m_parentWid->size().width()),
 	   qRound(0.95 * m_parentWid->size().height()));
+#endif
 
 #ifdef Q_OS_MACOS
   foreach(auto tool_button, findChildren<QToolButton *> ())
@@ -745,8 +747,12 @@ void biblioteq_book::insert(void)
   m_engWindowTitle = "Create";
   id.id->setFocus();
   storeData(this);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -895,8 +901,12 @@ void biblioteq_book::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
 
@@ -1820,8 +1830,12 @@ void biblioteq_book::search(const QString &field, const QString &value)
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
       id.id->setFocus();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
     }
