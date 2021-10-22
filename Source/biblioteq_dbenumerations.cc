@@ -457,6 +457,9 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 {
   auto wasVisible = isVisible();
 
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   static auto resized = false;
 
   if(parent && !resized)
@@ -466,6 +469,7 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
   resized = true;
   biblioteq_misc_functions::center(this, parent);
   showNormal();
+#endif
   activateWindow();
   raise();
   m_ui.emptyLabel->setMinimumHeight(m_ui.addCdFormat->height());
