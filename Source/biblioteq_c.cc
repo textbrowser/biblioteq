@@ -3526,7 +3526,11 @@ void biblioteq::slotGreyLiteratureSearch(void)
       gl->search();
     }
 
+#ifdef Q_OS_ANDROID
+  gl->showMaximized();
+#else
   gl->showNormal();
+#endif
   gl->activateWindow();
   gl->raise();
 }

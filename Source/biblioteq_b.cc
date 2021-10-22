@@ -4141,7 +4141,11 @@ void biblioteq::slotBookSearch(void)
       book->search();
     }
 
+#ifdef Q_OS_ANDROID
+  book->showMaximized();
+#else
   book->showNormal();
+#endif
   book->activateWindow();
   book->raise();
 }
@@ -4167,7 +4171,11 @@ void biblioteq::slotCDSearch(void)
       cd->search();
     }
 
+#ifdef Q_OS_ANDROID
+  cd->showMaximized();
+#else
   cd->showNormal();
+#endif
   cd->activateWindow();
   cd->raise();
 }
@@ -4199,7 +4207,11 @@ void biblioteq::slotDVDSearch(void)
       dvd->search();
     }
 
+#ifdef Q_OS_ANDROID
+  dvd->showMaximized();
+#else
   dvd->showNormal();
+#endif
   dvd->activateWindow();
   dvd->raise();
 }
@@ -4225,7 +4237,11 @@ void biblioteq::slotJournSearch(void)
       journal->search();
     }
 
+#ifdef Q_OS_ANDROID
+  journal->showMaximized();
+#else
   journal->showNormal();
+#endif
   journal->activateWindow();
   journal->raise();
 }
@@ -4256,7 +4272,11 @@ void biblioteq::slotMagSearch(void)
       magazine->search();
     }
 
+#ifdef Q_OS_ANDROID
+  magazine->showMaximized();
+#else
   magazine->showNormal();
+#endif
   magazine->activateWindow();
   magazine->raise();
 }
@@ -4282,7 +4302,11 @@ void biblioteq::slotPhotographSearch(void)
       photograph->search();
     }
 
+#ifdef Q_OS_ANDROID
+  photograph->showMaximized();
+#else
   photograph->showNormal();
+#endif
   photograph->activateWindow();
   photograph->raise();
 }
@@ -5174,7 +5198,11 @@ void biblioteq::slotVideoGameSearch(void)
       videogame->search();
     }
 
+#ifdef Q_OS_ANDROID
+  videogame->showMaximized();
+#else
   videogame->showNormal();
+#endif
   videogame->activateWindow();
   videogame->raise();
 }

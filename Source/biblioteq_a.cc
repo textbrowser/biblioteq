@@ -4100,11 +4100,15 @@ void biblioteq::slotSearch(void)
     return;
   else if(!al.resetButton->isEnabled())
     {
+#ifdef Q_OS_ANDROID
+      m_all_diag->showMaximized();
+#else
       if(!m_all_diag->isVisible())
 	m_all_diag->updateGeometry();
 
       biblioteq_misc_functions::center(m_all_diag, this);
       m_all_diag->showNormal();
+#endif
       m_all_diag->activateWindow();
       m_all_diag->raise();
       return;
@@ -4202,6 +4206,9 @@ void biblioteq::slotSearch(void)
   if(!m_all_diag->isVisible())
     m_all_diag->updateGeometry();
 
+#ifdef Q_OS_ANDROID
+  m_all_diag->showMaximized();
+#else
   static auto resized = false;
 
   if(!resized)
@@ -4214,6 +4221,7 @@ void biblioteq::slotSearch(void)
     biblioteq_misc_functions::center(m_all_diag, this);
 
   m_all_diag->showNormal();
+#endif
   m_all_diag->activateWindow();
   m_all_diag->raise();
 }
