@@ -413,9 +413,13 @@ void biblioteq_grey_literature::insert(void)
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
   storeData(this);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   resize(size().width(), sizeHint().height());
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -623,9 +627,13 @@ void biblioteq_grey_literature::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       resize(size().width(), sizeHint().height());
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
 
@@ -837,10 +845,14 @@ void biblioteq_grey_literature::search(const QString &field,
   if(field.isEmpty() && value.isEmpty())
     {
       m_ui.title->setFocus();
-      resize(size().width(), sizeHint().height());
       setWindowTitle(tr("BiblioteQ: Database Grey Literature Search"));
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
+      resize(size().width(), sizeHint().height());
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
     }

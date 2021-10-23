@@ -6089,9 +6089,14 @@ void biblioteq::slotVacuum(void)
 
   QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  statusBar()->showMessage(tr("Vacuuming the database. Please be patient."));
-  statusBar()->repaint();
-  statusBar()->update();
+
+  if(statusBar())
+    {
+      statusBar()->showMessage
+	(tr("Vacuuming the database. Please be patient."));
+      statusBar()->repaint();
+      statusBar()->update();
+    }
 
   QSqlQuery query(m_db);
 
@@ -6124,7 +6129,10 @@ void biblioteq::slotVacuum(void)
     }
 
   query.exec("VACUUM");
-  statusBar()->clearMessage();
+
+  if(statusBar())
+    statusBar()->clearMessage();
+
   QApplication::restoreOverrideCursor();
 }
 

@@ -1797,7 +1797,8 @@ void biblioteq::setGlobalFonts(const QFont &font)
 
 void biblioteq::showMain(void)
 {
-  statusBar()->setStyleSheet("QStatusBar::item{border: 0px;}");
+  if(statusBar())
+    statusBar()->setStyleSheet("QStatusBar::item{border: 0px;}");
 
   if(m_connected_bar_label)
     m_connected_bar_label->deleteLater();
@@ -1808,31 +1809,36 @@ void biblioteq::showMain(void)
   if(m_status_bar_label)
     m_status_bar_label->deleteLater();
 
-  m_connected_bar_label = new QLabel();
-  m_connected_bar_label->setPixmap(QPixmap(":/16x16/disconnected.png"));
-  m_connected_bar_label->setToolTip(tr("Disconnected"));
-  statusBar()->addPermanentWidget(m_connected_bar_label);
-  m_status_bar_label = new QLabel();
-  m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
-  m_status_bar_label->setToolTip(tr("Standard User Mode"));
-  statusBar()->addPermanentWidget(m_status_bar_label);
-  m_error_bar_label = new QToolButton();
-  disconnect(m_error_bar_label,
-	     SIGNAL(clicked(void)),
-	     this,
-	     SLOT(slotShowErrorDialog(void)));
-  connect(m_error_bar_label,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowErrorDialog(void)));
-  m_error_bar_label->setAutoRaise(true);
-  m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
-  m_error_bar_label->setToolTip(tr("Empty Error Log"));
-  statusBar()->addPermanentWidget(m_error_bar_label);
+  if(statusBar())
+    {
+      m_connected_bar_label = new QLabel();
+      m_connected_bar_label->setPixmap(QPixmap(":/16x16/disconnected.png"));
+      m_connected_bar_label->setToolTip(tr("Disconnected"));
+      statusBar()->addPermanentWidget(m_connected_bar_label);
+      m_status_bar_label = new QLabel();
+      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
+      m_status_bar_label->setToolTip(tr("Standard User Mode"));
+      statusBar()->addPermanentWidget(m_status_bar_label);
+      m_error_bar_label = new QToolButton();
+      disconnect(m_error_bar_label,
+		 SIGNAL(clicked(void)),
+		 this,
+		 SLOT(slotShowErrorDialog(void)));
+      connect(m_error_bar_label,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotShowErrorDialog(void)));
+      m_error_bar_label->setAutoRaise(true);
+      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
+      m_error_bar_label->setToolTip(tr("Empty Error Log"));
+      statusBar()->addPermanentWidget(m_error_bar_label);
+    }
+
 #ifdef Q_OS_MACOS
-  m_error_bar_label->setStyleSheet
-    ("QToolButton {border: none;}"
-     "QToolButton::menu-button {border: none;}");
+  if(m_error_bar_label)
+    m_error_bar_label->setStyleSheet
+      ("QToolButton {border: none;}"
+       "QToolButton::menu-button {border: none;}");
 #endif
 
   ui.itemsCountLabel->setText(tr("0 Results"));
