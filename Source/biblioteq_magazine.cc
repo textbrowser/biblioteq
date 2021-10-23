@@ -551,8 +551,12 @@ void biblioteq_magazine::insert(void)
   m_engWindowTitle = "Create";
   ma.id->setFocus();
   storeData(this);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -702,8 +706,12 @@ void biblioteq_magazine::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
 
@@ -1810,8 +1818,12 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 	setWindowTitle(QString(tr("BiblioteQ: Database Magazine Search")));
 
       ma.id->setFocus();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
     }

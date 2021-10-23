@@ -458,6 +458,7 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
   auto wasVisible = isVisible();
 
 #ifdef Q_OS_ANDROID
+  Q_UNUSED(parent);
   showMaximized();
 #else
   static auto resized = false;

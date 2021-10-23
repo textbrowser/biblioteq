@@ -343,8 +343,12 @@ void biblioteq_dvd::insert(void)
   m_engWindowTitle = "Create";
   dvd.id->setFocus();
   storeData(this);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -470,8 +474,12 @@ void biblioteq_dvd::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
 
@@ -680,8 +688,12 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database DVD Search"));
       dvd.id->setFocus();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
     }
