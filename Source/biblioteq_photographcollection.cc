@@ -367,8 +367,12 @@ void biblioteq_photographcollection::insert(void)
   pc.page->addItem("1");
   pc.page->blockSignals(false);
   storeData();
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -732,8 +736,12 @@ void biblioteq_photographcollection::modify(const int state,
 	textfield->setCursorPosition(0);
 
       storeData();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
       repaint();
@@ -775,8 +783,12 @@ void biblioteq_photographcollection::search(const QString &field,
   m_engWindowTitle = "Search";
   pc.okButton->setText(tr("&Search"));
   pc.id_collection->setFocus();
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }

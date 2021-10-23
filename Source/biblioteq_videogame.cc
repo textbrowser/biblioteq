@@ -312,8 +312,12 @@ void biblioteq_videogame::insert(void)
   m_engWindowTitle = "Create";
   vg.id->setFocus();
   storeData(this);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   biblioteq_misc_functions::center(this, m_parentWid);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -423,8 +427,12 @@ void biblioteq_videogame::modify(const int state)
   else
     {
       QApplication::restoreOverrideCursor();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
 
@@ -619,8 +627,12 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
       vg.id->setFocus();
+#ifdef Q_OS_ANDROID
+      showMaximized();
+#else
       biblioteq_misc_functions::center(this, m_parentWid);
       showNormal();
+#endif
       activateWindow();
       raise();
     }
