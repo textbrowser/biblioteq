@@ -2,7 +2,6 @@ Preparing ./usr/local/biblioteq:
 
 mkdir -p ./usr/local/biblioteq/Documentation
 mkdir -p ./usr/local/biblioteq/SQL
-mkdir -p ./usr/local/biblioteq/Translations
 cd ~/biblioteq.d
 qmake -o Makefile biblioteq.pro && make -j 4
 cp -p ./BiblioteQ ./usr/local/biblioteq/.
