@@ -56,8 +56,12 @@ INCLUDEPATH	+= /usr/local/include \
 LIBS		+= -L/usr/local/lib \
                    -framework Cocoa \
                    -lpq \
-                   -lsqlite3 \
-                   -lyaz
+                   -lsqlite3
+
+exists(/usr/local/include/yaz) {
+DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
+LIBS            += -lyaz
+}
 
 OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
@@ -74,9 +78,9 @@ doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
-install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.08.0/lib/libpoppler.112.dylib @executable_path/../Frameworks/libpoppler.112.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool1.extra     = install_name_tool -change /usr/local/Cellar/poppler/21.10.0/lib/libpoppler.114.dylib @executable_path/../Frameworks/libpoppler.114.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 install_name_tool1.path = .
-install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.08.0/lib/libpoppler.112.dylib @executable_path/../Frameworks/libpoppler.112.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
+install_name_tool2.extra= install_name_tool -change /usr/local/Cellar/poppler/21.10.0/lib/libpoppler.114.dylib @executable_path/../Frameworks/libpoppler.114.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 install_name_tool2.path = .
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
