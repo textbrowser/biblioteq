@@ -1573,7 +1573,7 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
   auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
 
-  activity.callMethod<void>("finishAndRemoveTask");
+  activity.callMethod<void> ("finishAndRemoveTask");
 #endif
 #endif
 }
@@ -1585,7 +1585,7 @@ void biblioteq::quit(void)
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
   auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
 
-  activity.callMethod<void>("finishAndRemoveTask");
+  activity.callMethod<void> ("finishAndRemoveTask");
 #endif
 #endif
 }
