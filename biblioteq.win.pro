@@ -1,7 +1,7 @@
 cache()
 include(biblioteq-source.pro)
 
-purge.commands = del *~ && del *\\*~
+purge.commands = del /Q *~ && del /Q *\\*~
 
 CONFIG		+= qt release thread warn_on windows
 DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
@@ -64,7 +64,7 @@ plugins3.files = $$[QT_INSTALL_PLUGINS]\\platforms\\qdirect2d.dll
 plugins3.path = release\\plugins\\platforms\\.
 plugins4.files = $$[QT_INSTALL_PLUGINS]\\renderplugins\\scene2d.dll
 plugins4.path = release\\plugins\\renderplugins\\.
-pluginspurge.extra = del /q /s *d.dll
+pluginspurge.extra = del /Q /S *d.dll
 pluginspurge.path = release\\plugins\\.
 qt.files = Qt\\qt.conf
 qt.path = release\\.

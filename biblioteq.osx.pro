@@ -90,7 +90,7 @@ macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2
 macdeployqt.path	= BiblioteQ.app
 postinstall.extra	= cp -r BiblioteQ.app /Applications/BiblioteQ.d/.
 postinstall.path	= /Applications/BiblioteQ.d
-preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
+preinstall.extra        = rm -fr /Applications/BiblioteQ.d/BiblioteQ.app/*
 preinstall.path         = /Applications/BiblioteQ.d
 sql.files		= SQL/*.sql
 sql.path		= /Applications/BiblioteQ.d
