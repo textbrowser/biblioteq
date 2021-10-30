@@ -18,7 +18,7 @@ BiblioteQ is free and open library software.
 <li>FreeBSD, Linux, Mac, OS/2, OpenBSD, Windows, etc.</li>
 <li>Front cover image retrieval via Amazon and Open Library.</li>
 <li>Importing of books from CSV files.</li>
-<li>Internationalization (translation) support. BiblioteQ currently supports Arabic, Czech, Dutch, English, French, German, Greek, Hungarian, Polish, Portuguese, and Russian.</li>
+<li>Internationalization (translation) support. BiblioteQ currently supports Arabic, Czech, Dutch, English, French, German, Greek, Hungarian, Polish, Portuguese, Russian, and Spanish.</li>
 <li>Item file attachments.</li>
 <li>Item reservation.</li>
 <li>Listings of overdue items, requested items, and reserved items.</li>
