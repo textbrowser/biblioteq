@@ -44,6 +44,8 @@ TEMPLATE        = app
 
 biblioteq.files = biblioteq.conf
 biblioteq.path = release\\.
+data.files = Data\\BiblioteQ.sqlite
+data.path = release\\Data\\.
 documentation.files = Documentation\\*.pdf \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
@@ -86,6 +88,7 @@ sql2.files = SQL\\*.sql
 sql2.path = release\\SQL\\.
 
 INSTALLS = biblioteq \
+           data \
            plugins1 \
            pluginspurge \
            libraries \
