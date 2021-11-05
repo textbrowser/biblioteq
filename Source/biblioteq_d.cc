@@ -15,6 +15,8 @@ void biblioteq::slotShowDocumentation(void)
 
   if(action == ui.action_English)
     url = QUrl("qrc:/BiblioteQ.html");
+  else
+    url = QUrl("qrc:/BiblioteQ-Fr.html");
 
   if(!m_documentation.value(action))
     m_documentation[action] = new biblioteq_documentationwindow(url, this);
