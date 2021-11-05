@@ -1,6 +1,5 @@
 include(biblioteq-source.pro)
-
-purge.commands = rm -f *~ && rm -f */*~
+purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= QT_DEPRECATED_WARNINGS

@@ -1,6 +1,6 @@
 cache()
 include(biblioteq-source.pro)
-purge.commands = rm -f *~ && rm -f */*~
+purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"

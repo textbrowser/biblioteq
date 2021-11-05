@@ -1,8 +1,6 @@
 cache()
 include(biblioteq-source.pro)
 
-purge.commands = rm -f *~ && rm -f */*~
-
 CONFIG		+= qt release thread warn_on
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ
