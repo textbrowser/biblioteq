@@ -265,7 +265,15 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertBook(void)));
-  connect(ui.actionGrey_Literature,
+  connect(ui.action_English,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowDocumentation(void)));
+  connect(ui.action_French,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowDocumentation(void)));
+  connect(ui.action_Grey_Literature,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertGreyLiterature(void)));

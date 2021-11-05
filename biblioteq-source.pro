@@ -8,6 +8,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_copybrowser.ui \
                   UI/biblioteq_customquery.ui \
                   UI/biblioteq_dbenumerations.ui \
+                  UI/biblioteq_documentationwindow.ui \
                   UI/biblioteq_dvdinfo.ui \
                   UI/biblioteq_errordiag.ui \
                   UI/biblioteq_files.ui \
@@ -39,6 +40,7 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_copy_editor.h \
 		  Source/biblioteq_copy_editor_book.h \
                   Source/biblioteq_dbenumerations.h \
+                  Source/biblioteq_documentationwindow.h \
                   Source/biblioteq_dvd.h \
                   Source/biblioteq_files.h \
 		  Source/biblioteq_filesize_table_item.h \
@@ -59,7 +61,8 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_videogame.h \
 		  Source/biblioteq_z3950results.h
 
-RESOURCES	= Icons/icons.qrc \
+RESOURCES	= Documentation/documentation.qrc \
+                  Icons/icons.qrc \
                   Translations/translations.qrc
 
 SOURCES		= Source/biblioteq_a.cc \
@@ -74,6 +77,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_copy_editor_book.cc \
                   Source/biblioteq_dbenumerations.cc \
                   Source/biblioteq_d.cc \
+                  Source/biblioteq_documentationwindow.cc \
                   Source/biblioteq_dvd.cc \
                   Source/biblioteq_files.cc \
 		  Source/biblioteq_filesize_table_item.cc \

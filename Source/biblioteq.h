@@ -31,6 +31,7 @@
 
 #include <QMessageBox>
 
+class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
 
@@ -195,6 +196,7 @@ class biblioteq: public QMainWindow
   static const int VIEW_ONLY = 1;
   biblioteq(void);
   ~biblioteq();
+  QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_documentation;
   QPointer<QMenu> m_configToolMenu;
   QString m_unaccent;
   QColor availabilityColor(const QString &itemType) const;
@@ -497,6 +499,7 @@ class biblioteq: public QMainWindow
   void slotShowConnectionDB(void);
   void slotShowCustomQuery(void);
   void slotShowDbEnumerations(void);
+  void slotShowDocumentation(void);
   void slotShowErrorDialog(void);
   void slotShowFiles(void);
   void slotShowGrid(void);

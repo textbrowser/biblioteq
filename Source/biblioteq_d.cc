@@ -1,5 +1,27 @@
 #include "biblioteq.h"
+#include "biblioteq_documentationwindow.h"
 #include "biblioteq_files.h"
+
+void biblioteq::slotShowDocumentation(void)
+{
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QUrl url;
+
+  if(action == ui.action_English)
+    url = QUrl("qrc:/BiblioteQ.html");
+
+  if(!m_documentation.value(action))
+    m_documentation[action] = new biblioteq_documentationwindow(url, this);
+
+  m_documentation.value(action)->show();
+  QApplication::restoreOverrideCursor();
+}
 
 void biblioteq::slotShowFiles(void)
 {
