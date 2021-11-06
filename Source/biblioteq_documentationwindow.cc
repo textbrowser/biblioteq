@@ -32,11 +32,19 @@ biblioteq_documentationwindow::
 
 void biblioteq_documentationwindow::connectSignals(void)
 {
+#ifdef Q_OS_ANDROID
+  connect(m_ui.action_Close,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(hide(void)),
+          Qt::UniqueConnection);
+#else
   connect(m_ui.action_Close,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(close(void)),
           Qt::UniqueConnection);
+#endif
   connect(m_ui.action_Find,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -87,11 +95,11 @@ void biblioteq_documentationwindow::setHtml(const QString &html)
 
 void biblioteq_documentationwindow::show(void)
 {
-  biblioteq_misc_functions::center
-    (this, static_cast<QMainWindow *> (parentWidget()));
 #ifdef Q_OS_ANDROID
   QMainWindow::showMaximized();
 #else
+  biblioteq_misc_functions::center
+    (this, static_cast<QMainWindow *> (parentWidget()));
   QMainWindow::showNormal();
 #endif
   QMainWindow::activateWindow();

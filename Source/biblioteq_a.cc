@@ -344,6 +344,10 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   ui.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   bb.setupUi(m_members_diag);
+
+  if(bb.menuBar)
+    bb.menuBar->setNativeMenuBar(true);
+
   history.setupUi(m_history_diag);
   br.setupUi(m_branch_diag);
   pass.setupUi(m_pass_diag);
