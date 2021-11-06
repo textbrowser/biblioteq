@@ -855,6 +855,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	      SLOT(slotLanguageChanged(void)));
     }
 
+  ui.menuPreferredSRUSite->setStyleSheet("QMenu {menu-scrollable: 1;}");
+  ui.menuPreferredZ3950Server->setStyleSheet("QMenu {menu-scrollable: 1;}");
   ui.menu_Language->setStyleSheet("QMenu {menu-scrollable: 1;}");
 
   QRegularExpression rx1("\\w+");
