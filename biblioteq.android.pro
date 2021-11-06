@@ -43,7 +43,9 @@ DISTFILES += android/AndroidManifest.xml \
              android/gradlew.bat \
              android/res/values/libs.xml
 
-deployment.files = biblioteq.conf
+deployment.files = Documentation/*.html \
+                   Documentation/Contributed/*.html \
+                   biblioteq.conf
 deployment.path = /assets
 
 INSTALLS += deployment

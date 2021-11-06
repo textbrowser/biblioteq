@@ -1,7 +1,3 @@
-/*
-** Alexis Megas.
-*/
-
 #include <QDesktopServices>
 #include <QPrintDialog>
 #include <QPrinter>
@@ -22,6 +18,10 @@ biblioteq_documentationwindow::biblioteq_documentationwindow
   m_ui.find->setPlaceholderText("Find");
   m_ui.text->setSource(url);
   m_originalFindPalette = m_ui.find->palette();
+
+  if(menuBar())
+    menuBar()->setNativeMenuBar(true);
+
   connectSignals();
 }
 
@@ -89,7 +89,11 @@ void biblioteq_documentationwindow::show(void)
 {
   biblioteq_misc_functions::center
     (this, static_cast<QMainWindow *> (parentWidget()));
+#ifdef Q_OS_ANDROID
+  QMainWindow::showMaximized();
+#else
   QMainWindow::showNormal();
+#endif
   QMainWindow::activateWindow();
   QMainWindow::raise();
 }
@@ -143,7 +147,7 @@ void biblioteq_documentationwindow::slotFindText(void)
 
 void biblioteq_documentationwindow::slotPrint(void)
 {
-  QPrinter printer(QPrinter::HighResolution);
+  QPrinter printer;
   QPrintDialog printDialog(&printer, this);
 
   printDialog.setWindowIcon(windowIcon());

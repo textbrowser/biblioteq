@@ -15,20 +15,34 @@ void biblioteq::slotShowDocumentation(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_documentation.value(action))
-    m_documentation[action] = new biblioteq_documentationwindow(this);
+    {
+      m_documentation[action] = new biblioteq_documentationwindow(this);
 
-  QFile file;
+      QFile file;
 
-  if(action == ui.action_English)
-    file.setFileName
-      (QString("Documentation%1BiblioteQ.html").arg(QDir::separator()));
-  else
-    file.setFileName
-      (QString("Documentation%1Contributed%1BiblioteQ-Fr.html").
-       arg(QDir::separator()));
+      if(action == ui.action_English)
+	{
+#ifdef Q_OS_ANDROID
+	  file.setFileName("assets:/BiblioteQ.html");
+#else
+	  file.setFileName
+	    (QString("Documentation%1BiblioteQ.html").arg(QDir::separator()));
+#endif
+	}
+      else
+	{
+#ifdef Q_OS_ANDROID
+	  file.setFileName("assets:/BiblioteQ-Fr.html");
+#else
+	  file.setFileName
+	    (QString("Documentation%1Contributed%1BiblioteQ-Fr.html").
+	     arg(QDir::separator()));
+#endif
+	}
 
-  if(file.open(QIODevice::ReadOnly))
-    m_documentation.value(action)->setHtml(file.readAll());
+      if(file.open(QIODevice::ReadOnly))
+	m_documentation.value(action)->setHtml(file.readAll());
+    }
 
   m_documentation.value(action)->show();
   QApplication::restoreOverrideCursor();

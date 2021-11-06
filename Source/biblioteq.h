@@ -2,7 +2,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2021.10.30"
+#define BIBLIOTEQ_VERSION "2021.12.25"
 
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
@@ -157,7 +157,7 @@ class userinfo_diag_class: public QDialog
   }
 
  private slots:
-  void done(int r)
+  void done(int result)
   {
     QString str("");
 
@@ -166,14 +166,14 @@ class userinfo_diag_class: public QDialog
 	 question(this, tr("BiblioteQ: Question"),
 		  tr("Your changes have not been saved. Continue "
 		     "closing?\n%1").arg(str),
-		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
 	  return;
 	}
 
-    QDialog::done(r);
+    QDialog::done(result);
   }
 };
 
