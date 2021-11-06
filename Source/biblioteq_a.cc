@@ -855,6 +855,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	      SLOT(slotLanguageChanged(void)));
     }
 
+  ui.menu_Language->setStyleSheet("QMenu {menu-scrollable: 1;}");
+
   QRegularExpression rx1("\\w+");
   auto validator1 = new QRegularExpressionValidator(rx1, this);
 

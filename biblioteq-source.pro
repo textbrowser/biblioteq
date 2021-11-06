@@ -61,8 +61,7 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_videogame.h \
 		  Source/biblioteq_z3950results.h
 
-RESOURCES	= Documentation/documentation.qrc \
-                  Icons/icons.qrc \
+RESOURCES	= Icons/icons.qrc \
                   Translations/translations.qrc
 
 SOURCES		= Source/biblioteq_a.cc \

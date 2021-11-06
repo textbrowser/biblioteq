@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-	<file>BiblioteQ.html</file>
-	<file>Contributed/BiblioteQ-Fr.html</file>
-    </qresource>
-</RCC>

@@ -1,3 +1,5 @@
+#include <QDir>
+
 #include "biblioteq.h"
 #include "biblioteq_documentationwindow.h"
 #include "biblioteq_files.h"
@@ -9,17 +11,24 @@ void biblioteq::slotShowDocumentation(void)
   if(!action)
     return;
 
+  repaint();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QUrl url;
+  if(!m_documentation.value(action))
+    m_documentation[action] = new biblioteq_documentationwindow(this);
+
+  QFile file;
 
   if(action == ui.action_English)
-    url = QUrl("qrc:/BiblioteQ.html");
+    file.setFileName
+      (QString("Documentation%1BiblioteQ.html").arg(QDir::separator()));
   else
-    url = QUrl("qrc:/Contributed/BiblioteQ-Fr.html");
+    file.setFileName
+      (QString("Documentation%1Contributed%1BiblioteQ-Fr.html").
+       arg(QDir::separator()));
 
-  if(!m_documentation.value(action))
-    m_documentation[action] = new biblioteq_documentationwindow(url, this);
+  if(file.open(QIODevice::ReadOnly))
+    m_documentation.value(action)->setHtml(file.readAll());
 
   m_documentation.value(action)->show();
   QApplication::restoreOverrideCursor();
