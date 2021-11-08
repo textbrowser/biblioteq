@@ -347,7 +347,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
 	    comboBox->addItem(tr("Lost"));
-	    comboBox->addItem(tr("UNKNOWN"));
+	    comboBox->addItem(biblioteq::s_unknown);
 	    comboBox->setEnabled(!m_showForLending);
 	    goto done_label;
 	  }
@@ -495,7 +495,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		      comboBox->setCurrentIndex(comboBox->findText(str));
 		    else
 		      comboBox->setCurrentIndex
-			(comboBox->findText(tr("UNKNOWN")));
+			(comboBox->findText(biblioteq::s_unknown));
 		  }
 	      }
 	    else if(m_cb.table->item(row, j) != nullptr)

@@ -173,20 +173,20 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   vg.front_image->setScene(scene1);
   vg.back_image->setScene(scene2);
 
-  if(vg.platform->findText(tr("UNKNOWN")) == -1)
-    vg.platform->addItem(tr("UNKNOWN"));
+  if(vg.platform->findText(biblioteq::s_unknown) == -1)
+    vg.platform->addItem(biblioteq::s_unknown);
 
-  if(vg.rating->findText(tr("UNKNOWN")) == -1)
-    vg.rating->addItem(tr("UNKNOWN"));
+  if(vg.rating->findText(biblioteq::s_unknown) == -1)
+    vg.rating->addItem(biblioteq::s_unknown);
 
-  if(vg.language->findText(tr("UNKNOWN")) == -1)
-    vg.language->addItem(tr("UNKNOWN"));
+  if(vg.language->findText(biblioteq::s_unknown) == -1)
+    vg.language->addItem(biblioteq::s_unknown);
 
-  if(vg.monetary_units->findText(tr("UNKNOWN")) == -1)
-    vg.monetary_units->addItem(tr("UNKNOWN"));
+  if(vg.monetary_units->findText(biblioteq::s_unknown) == -1)
+    vg.monetary_units->addItem(biblioteq::s_unknown);
 
-  if(vg.location->findText(tr("UNKNOWN")) == -1)
-    vg.location->addItem(tr("UNKNOWN"));
+  if(vg.location->findText(biblioteq::s_unknown) == -1)
+    vg.location->addItem(biblioteq::s_unknown);
 
   if(m_parentWid)
     resize(qRound(0.95 * m_parentWid->size().width()),
@@ -462,7 +462,7 @@ void biblioteq_videogame::modify(const int state)
 		  (vg.rating->findText(var.toString().trimmed()));
 	      else
 		vg.rating->setCurrentIndex
-		  (vg.rating->findText(tr("UNKNOWN")));
+		  (vg.rating->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "price")
 	    vg.price->setValue(var.toDouble());
@@ -479,7 +479,7 @@ void biblioteq_videogame::modify(const int state)
 		  (vg.language->findText(var.toString().trimmed()));
 	      else
 		vg.language->setCurrentIndex
-		  (vg.language->findText(tr("UNKNOWN")));
+		  (vg.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
 	    vg.quantity->setValue(var.toInt());
@@ -490,7 +490,7 @@ void biblioteq_videogame::modify(const int state)
 		  (vg.monetary_units->findText(var.toString().trimmed()));
 	      else
 		vg.monetary_units->setCurrentIndex
-		  (vg.monetary_units->findText(tr("UNKNOWN")));
+		  (vg.monetary_units->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "vgplatform")
 	    {
@@ -499,7 +499,7 @@ void biblioteq_videogame::modify(const int state)
 		  (vg.platform->findText(var.toString().trimmed()));
 	      else
 		vg.platform->setCurrentIndex
-		  (vg.platform->findText(tr("UNKNOWN")));
+		  (vg.platform->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "location")
 	    {
@@ -508,7 +508,7 @@ void biblioteq_videogame::modify(const int state)
 		  (vg.location->findText(var.toString().trimmed()));
 	      else
 		vg.location->setCurrentIndex
-		  (vg.location->findText(tr("UNKNOWN")));
+		  (vg.location->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "id")
 	    {

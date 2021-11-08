@@ -75,6 +75,7 @@ extern "C"
 */
 
 QString biblioteq::s_locale = "";
+QString biblioteq::s_unknown = QObject::tr("UNKNOWN");
 QTranslator *biblioteq::s_appTranslator = nullptr;
 
 int main(int argc, char *argv[])
@@ -4215,9 +4216,9 @@ void biblioteq::slotSearch(void)
   al.language->insertItem(0, tr("Any"));
   al.monetary_units->insertItem(0, tr("Any"));
   al.location->insertItem(0, tr("Any"));
-  al.language->addItem(tr("UNKNOWN"));
-  al.monetary_units->addItem(tr("UNKNOWN"));
-  al.location->addItem(tr("UNKNOWN"));
+  al.language->addItem(s_unknown);
+  al.monetary_units->addItem(s_unknown);
+  al.location->addItem(s_unknown);
   al.location->setCurrentIndex(0);
   al.language->setCurrentIndex(0);
   al.monetary_units->setCurrentIndex(0);

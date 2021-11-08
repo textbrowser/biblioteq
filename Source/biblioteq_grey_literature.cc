@@ -150,11 +150,11 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
      QString(tr("Unable to retrieve the grey literature document types.")),
      errorstr, __FILE__, __LINE__);
 
-  if(m_ui.location->findText(tr("UNKNOWN")) == -1)
-    m_ui.location->addItem(tr("UNKNOWN"));
+  if(m_ui.location->findText(biblioteq::s_unknown) == -1)
+    m_ui.location->addItem(biblioteq::s_unknown);
 
-  if(m_ui.type->findText(tr("UNKNOWN")) == -1)
-    m_ui.type->addItem(tr("UNKNOWN"));
+  if(m_ui.type->findText(biblioteq::s_unknown) == -1)
+    m_ui.type->addItem(biblioteq::s_unknown);
 
 #ifdef Q_OS_MACOS
   foreach(auto tool_button, findChildren<QToolButton *> ())

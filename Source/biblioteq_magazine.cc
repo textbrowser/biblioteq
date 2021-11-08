@@ -240,14 +240,14 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   ma.front_image->setScene(scene1);
   ma.back_image->setScene(scene2);
 
-  if(ma.language->findText(tr("UNKNOWN")) == -1)
-    ma.language->addItem(tr("UNKNOWN"));
+  if(ma.language->findText(biblioteq::s_unknown) == -1)
+    ma.language->addItem(biblioteq::s_unknown);
 
-  if(ma.monetary_units->findText(tr("UNKNOWN")) == -1)
-    ma.monetary_units->addItem(tr("UNKNOWN"));
+  if(ma.monetary_units->findText(biblioteq::s_unknown) == -1)
+    ma.monetary_units->addItem(biblioteq::s_unknown);
 
-  if(ma.location->findText(tr("UNKNOWN")) == -1)
-    ma.location->addItem(tr("UNKNOWN"));
+  if(ma.location->findText(biblioteq::s_unknown) == -1)
+    ma.location->addItem(biblioteq::s_unknown);
 
   QActionGroup *actionGroup1 = nullptr;
   QActionGroup *actionGroup2 = nullptr;
@@ -765,7 +765,7 @@ void biblioteq_magazine::modify(const int state)
 		  (ma.language->findText(var.toString().trimmed()));
 	      else
 		ma.language->setCurrentIndex
-		  (ma.language->findText(tr("UNKNOWN")));
+		  (ma.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
 	    ma.quantity->setValue(var.toInt());
@@ -776,7 +776,7 @@ void biblioteq_magazine::modify(const int state)
 		  (ma.monetary_units->findText(var.toString().trimmed()));
 	      else
 		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText(tr("UNKNOWN")));
+		  (ma.monetary_units->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "issuevolume")
 	    ma.volume->setValue(var.toInt());
@@ -789,7 +789,7 @@ void biblioteq_magazine::modify(const int state)
 		  (ma.location->findText(var.toString().trimmed()));
 	      else
 		ma.location->setCurrentIndex
-		  (ma.location->findText(tr("UNKNOWN")));
+		  (ma.location->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "id")
 	    {

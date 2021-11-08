@@ -192,23 +192,23 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   dvd.front_image->setScene(scene1);
   dvd.back_image->setScene(scene2);
 
-  if(dvd.language->findText(tr("UNKNOWN")) == -1)
-    dvd.language->addItem(tr("UNKNOWN"));
+  if(dvd.language->findText(biblioteq::s_unknown) == -1)
+    dvd.language->addItem(biblioteq::s_unknown);
 
-  if(dvd.monetary_units->findText(tr("UNKNOWN")) == -1)
-    dvd.monetary_units->addItem(tr("UNKNOWN"));
+  if(dvd.monetary_units->findText(biblioteq::s_unknown) == -1)
+    dvd.monetary_units->addItem(biblioteq::s_unknown);
 
-  if(dvd.location->findText(tr("UNKNOWN")) == -1)
-    dvd.location->addItem(tr("UNKNOWN"));
+  if(dvd.location->findText(biblioteq::s_unknown) == -1)
+    dvd.location->addItem(biblioteq::s_unknown);
 
-  if(dvd.rating->findText(tr("UNKNOWN")) == -1)
-    dvd.rating->addItem(tr("UNKNOWN"));
+  if(dvd.rating->findText(biblioteq::s_unknown) == -1)
+    dvd.rating->addItem(biblioteq::s_unknown);
 
-  if(dvd.aspectratio->findText(tr("UNKNOWN")) == -1)
-    dvd.aspectratio->addItem(tr("UNKNOWN"));
+  if(dvd.aspectratio->findText(biblioteq::s_unknown) == -1)
+    dvd.aspectratio->addItem(biblioteq::s_unknown);
 
-  if(dvd.region->findText(tr("UNKNOWN")) == -1)
-    dvd.region->addItem(tr("UNKNOWN"));
+  if(dvd.region->findText(biblioteq::s_unknown) == -1)
+    dvd.region->addItem(biblioteq::s_unknown);
 
   if(m_parentWid)
     resize(qRound(0.95 * m_parentWid->size().width()),
@@ -511,7 +511,7 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.language->findText(var.toString().trimmed()));
 	      else
 		dvd.language->setCurrentIndex
-		  (dvd.language->findText(tr("UNKNOWN")));
+		  (dvd.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
 	    dvd.quantity->setValue(var.toInt());
@@ -522,7 +522,7 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.monetary_units->findText(var.toString().trimmed()));
 	      else
 		dvd.monetary_units->setCurrentIndex
-		  (dvd.monetary_units->findText(tr("UNKNOWN")));
+		  (dvd.monetary_units->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "dvddiskcount")
 	    dvd.no_of_discs->setValue(var.toInt());
@@ -536,7 +536,7 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.location->findText(var.toString().trimmed()));
 	      else
 		dvd.location->setCurrentIndex
-		  (dvd.location->findText(tr("UNKNOWN")));
+		  (dvd.location->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "id")
 	    {
@@ -577,7 +577,7 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.rating->findText(var.toString().trimmed()));
 	      else
 		dvd.rating->setCurrentIndex
-		  (dvd.rating->findText(tr("UNKNOWN")));
+		  (dvd.rating->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "dvdregion")
 	    {
@@ -586,7 +586,7 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.region->findText(var.toString().trimmed()));
 	      else
 		dvd.region->setCurrentIndex
-		  (dvd.region->findText(tr("UNKNOWN")));
+		  (dvd.region->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "dvdaspectratio")
 	    {
@@ -595,7 +595,7 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.aspectratio->findText(var.toString().trimmed()));
 	      else
 		dvd.aspectratio->setCurrentIndex
-		  (dvd.aspectratio->findText(tr("UNKNOWN")));
+		  (dvd.aspectratio->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "front_cover")
 	    {

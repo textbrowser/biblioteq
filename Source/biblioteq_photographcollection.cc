@@ -151,8 +151,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.thumbnail_item->setScene(scene2);
   photo.thumbnail_item->setScene(scene3);
 
-  if(pc.location->findText(tr("UNKNOWN")) == -1)
-    pc.location->addItem(tr("UNKNOWN"));
+  if(pc.location->findText(biblioteq::s_unknown) == -1)
+    pc.location->addItem(biblioteq::s_unknown);
 
   if(m_parentWid)
     resize(qRound(0.95 * m_parentWid->size().width()),
@@ -675,7 +675,7 @@ void biblioteq_photographcollection::modify(const int state,
 		  (pc.location->findText(var.toString().trimmed()));
 	      else
 		pc.location->setCurrentIndex
-		  (pc.location->findText(tr("UNKNOWN")));
+		  (pc.location->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "about")
 	    pc.about_collection->setPlainText(var.toString().trimmed());

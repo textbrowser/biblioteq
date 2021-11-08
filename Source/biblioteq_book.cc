@@ -272,17 +272,17 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
 
-  if(id.binding->findText(tr("UNKNOWN")) == -1)
-    id.binding->addItem(tr("UNKNOWN"));
+  if(id.binding->findText(biblioteq::s_unknown) == -1)
+    id.binding->addItem(biblioteq::s_unknown);
 
-  if(id.language->findText(tr("UNKNOWN")) == -1)
-    id.language->addItem(tr("UNKNOWN"));
+  if(id.language->findText(biblioteq::s_unknown) == -1)
+    id.language->addItem(biblioteq::s_unknown);
 
-  if(id.monetary_units->findText(tr("UNKNOWN")) == -1)
-    id.monetary_units->addItem(tr("UNKNOWN"));
+  if(id.monetary_units->findText(biblioteq::s_unknown) == -1)
+    id.monetary_units->addItem(biblioteq::s_unknown);
 
-  if(id.location->findText(tr("UNKNOWN")) == -1)
-    id.location->addItem(tr("UNKNOWN"));
+  if(id.location->findText(biblioteq::s_unknown) == -1)
+    id.location->addItem(biblioteq::s_unknown);
 
   QActionGroup *actionGroup1 = nullptr;
   QActionGroup *actionGroup2 = nullptr;
@@ -951,7 +951,7 @@ void biblioteq_book::modify(const int state)
 		  (id.language->findText(var.toString().trimmed()));
 	      else
 		id.language->setCurrentIndex
-		  (id.language->findText(tr("UNKNOWN")));
+		  (id.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
 	    id.quantity->setValue(var.toInt());
@@ -962,7 +962,7 @@ void biblioteq_book::modify(const int state)
 		  (id.monetary_units->findText(var.toString().trimmed()));
 	      else
 		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText(tr("UNKNOWN")));
+		  (id.monetary_units->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "binding_type")
 	    {
@@ -979,7 +979,7 @@ void biblioteq_book::modify(const int state)
 		  (id.location->findText(var.toString().trimmed()));
 	      else
 		id.location->setCurrentIndex
-		  (id.location->findText(tr("UNKNOWN")));
+		  (id.location->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "id")
 	    {

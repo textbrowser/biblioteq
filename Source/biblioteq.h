@@ -183,6 +183,7 @@ class biblioteq: public QMainWindow
 
  public:
   static QString s_locale;
+  static QString s_unknown;
   static QTranslator *s_appTranslator;
   static const int CUSTOM_QUERY = 0;
   static const int EDITABLE = 0;

@@ -497,7 +497,7 @@
 267. Qt 6.2 LTS regular expressions. (TBD)
 268. Prepare Database Enumerations during an import. (TBD)
 269. Embed translation files. (Done)
-270. Android port:
+270. Android:
      Configuration Menu (Done)
      Exit (Done)
      Menu Icons (Done)
@@ -505,4 +505,4 @@
 271. Export/import patron information. (TBD)
 272. Members Browser pagination. (TBD)
 273. Optional images in the main views. (TBD)
-274. Replace tr("UNKNOWN") with single instance. (TBD)
+274. Replace tr("UNKNOWN") with single instance. (Done)

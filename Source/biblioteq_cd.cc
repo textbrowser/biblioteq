@@ -192,17 +192,17 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   cd.front_image->setScene(scene1);
   cd.back_image->setScene(scene2);
 
-  if(cd.language->findText(tr("UNKNOWN")) == -1)
-    cd.language->addItem(tr("UNKNOWN"));
+  if(cd.language->findText(biblioteq::s_unknown) == -1)
+    cd.language->addItem(biblioteq::s_unknown);
 
-  if(cd.monetary_units->findText(tr("UNKNOWN")) == -1)
-    cd.monetary_units->addItem(tr("UNKNOWN"));
+  if(cd.monetary_units->findText(biblioteq::s_unknown) == -1)
+    cd.monetary_units->addItem(biblioteq::s_unknown);
 
-  if(cd.location->findText(tr("UNKNOWN")) == -1)
-    cd.location->addItem(tr("UNKNOWN"));
+  if(cd.location->findText(biblioteq::s_unknown) == -1)
+    cd.location->addItem(biblioteq::s_unknown);
 
-  if(cd.format->findText(tr("UNKNOWN")) == -1)
-    cd.format->addItem(tr("UNKNOWN"));
+  if(cd.format->findText(biblioteq::s_unknown) == -1)
+    cd.format->addItem(biblioteq::s_unknown);
 
 #ifndef Q_OS_ANDROID
   if(m_parentWid)
@@ -509,7 +509,7 @@ void biblioteq_cd::modify(const int state)
 		  (cd.language->findText(var.toString()));
 	      else
 		cd.language->setCurrentIndex
-		  (cd.language->findText(tr("UNKNOWN")));
+		  (cd.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
 	    cd.quantity->setValue(var.toInt());
@@ -520,7 +520,7 @@ void biblioteq_cd::modify(const int state)
 		  (cd.monetary_units->findText(var.toString()));
 	      else
 		cd.monetary_units->setCurrentIndex
-		  (cd.monetary_units->findText(tr("UNKNOWN")));
+		  (cd.monetary_units->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "cddiskcount")
 	    cd.no_of_discs->setValue(var.toInt());
@@ -533,7 +533,7 @@ void biblioteq_cd::modify(const int state)
 		  (cd.location->findText(var.toString()));
 	      else
 		cd.location->setCurrentIndex
-		  (cd.location->findText(tr("UNKNOWN")));
+		  (cd.location->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "id")
 	    {
@@ -565,7 +565,7 @@ void biblioteq_cd::modify(const int state)
 		  (cd.format->findText(var.toString()));
 	      else
 		cd.format->setCurrentIndex
-		  (cd.format->findText(tr("UNKNOWN")));
+		  (cd.format->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "artist")
 	    cd.artist->setMultipleLinks
@@ -1630,7 +1630,7 @@ void biblioteq_cd::slotInsertTrack(void)
       else if(i == TRACK_TITLE)
 	str = tr("Title");
       else if(i == ARTIST || i == COMPOSER)
-	str = tr("UNKNOWN");
+	str = biblioteq::s_unknown;
       else
 	str.clear();
 

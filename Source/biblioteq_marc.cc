@@ -1,6 +1,7 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 
+#include "biblioteq.h"
 #include "biblioteq_marc.h"
 
 biblioteq_marc::biblioteq_marc(const ITEM_TYPE itemType,
@@ -123,7 +124,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		else if(str.toLower().contains("pbk"))
 		  m_binding = QObject::tr("paperback");
 		else
-		  m_binding = QObject::tr("UNKNOWN");
+		  m_binding = biblioteq::s_unknown;
 
 		if(str.contains(" ") && str.indexOf(" ") == 10)
 		  {
@@ -535,7 +536,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  else if(str.toLower().contains("pbk"))
 	    m_binding = QObject::tr("paperback");
 	  else
-	    m_binding = QObject::tr("UNKNOWN");
+	    m_binding = biblioteq::s_unknown;
 
 	  if(str.contains(" ") && str.indexOf(" ") == 10)
 	    m_isbn10 = str.mid(0, 10).trimmed();
@@ -984,7 +985,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  else if(str.toLower().contains("pbk"))
 	    m_binding = QObject::tr("paperback");
 	  else
-	    m_binding = QObject::tr("UNKNOWN");
+	    m_binding = biblioteq::s_unknown;
 
 	  str = str.remove("#").remove("M-").remove("-");
 
