@@ -804,7 +804,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	  if(availabilityItem && availabilityItem->value() > 0.0)
 	    availabilityItem->setBackground(availabilityColor(itemType));
 
-	  if(first)
+	  if(first && m_otheroptions->showMainTableImages())
 	    {
 	      if(pixmapItem)
 		first->setIcon(pixmapItem->pixmap());

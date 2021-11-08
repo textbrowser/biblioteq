@@ -90,7 +90,7 @@ int biblioteq::populateTable(const int search_type_arg,
 {
   ui.itemsCountLabel->setText(tr("0 Results"));
 
-  QProgressDialog progress(this);
+  QScopedPointer<QProgressDialog> progress;
   QString itemType = "";
   QString limitStr("");
   QString offsetStr("");
@@ -155,6 +155,28 @@ int biblioteq::populateTable(const int search_type_arg,
   ** the original column order.
   */
 
+  QString bookFrontCover("'' AS front_cover ");
+  QString cdFrontCover("'' AS front_cover ");
+  QString dvdFrontCover("'' AS front_cover ");
+  QString greyLiteratureFrontCover("'' AS front_cover ");
+  QString journalFrontCover("'' AS front_cover ");
+  QString magazineFrontCover("'' AS front_cover ");
+  QString photographCollectionFrontCover("'' AS image_scaled ");
+  QString videoGameFrontCover("'' AS front_cover ");
+
+  if(m_otheroptions->showMainTableImages())
+    {
+      bookFrontCover = "book.front_cover ";
+      cdFrontCover = "cd.front_cover ";
+      dvdFrontCover = "dvd.front_cover ";
+      greyLiteratureFrontCover = "grey_literature.front_cover ";
+      journalFrontCover = "journal.front_cover ";
+      magazineFrontCover = "magazine.front_cover ";
+      photographCollectionFrontCover = "photograph_collection.image_scaled ";
+      progress.reset(new QProgressDialog(this));
+      videoGameFrontCover = "videogame.front_cover ";
+    }
+
   switch(search_type)
     {
     case CUSTOM_QUERY:
@@ -192,8 +214,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "book.accession_number, "
 	       "book.type, "
-	       "book.myoid, "
-	       "book.front_cover "
+	       "book.myoid, " +
+	       bookFrontCover +
 	       "FROM "
 	       "book LEFT JOIN item_borrower ON "
 	       "book.myoid = item_borrower.item_oid "
@@ -225,8 +247,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "cd.accession_number, "
 	       "cd.type, "
-	       "cd.myoid, "
-	       "cd.front_cover "
+	       "cd.myoid, " +
+	       cdFrontCover +
 	       "FROM "
 	       "cd LEFT JOIN item_borrower ON "
 	       "cd.myoid = item_borrower.item_oid "
@@ -258,8 +280,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "dvd.accession_number, "
 	       "dvd.type, "
-	       "dvd.myoid, "
-	       "dvd.front_cover "
+	       "dvd.myoid, " +
+	       dvdFrontCover +
 	       "FROM "
 	       "dvd LEFT JOIN item_borrower ON "
 	       "dvd.myoid = item_borrower.item_oid "
@@ -292,8 +314,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "grey_literature.job_number, "
 	       "grey_literature.type, "
-	       "grey_literature.myoid, "
-	       "grey_literature.front_cover "
+	       "grey_literature.myoid, " +
+	       greyLiteratureFrontCover +
 	       "FROM "
 	       "grey_literature LEFT JOIN item_borrower ON "
 	       "grey_literature.myoid = item_borrower.item_oid "
@@ -324,8 +346,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "journal.accession_number, "
 	       "journal.type, "
-	       "journal.myoid, "
-	       "journal.front_cover "
+	       "journal.myoid, " +
+	       journalFrontCover +
 	       "FROM "
 	       "journal LEFT JOIN item_borrower ON "
 	       "journal.myoid = item_borrower.item_oid "
@@ -357,8 +379,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "magazine.accession_number, "
 	       "magazine.type, "
-	       "magazine.myoid, "
-	       "magazine.front_cover "
+	       "magazine.myoid, " +
+	       magazineFrontCover +
 	       "FROM "
 	       "magazine LEFT JOIN item_borrower ON "
 	       "magazine.myoid = item_borrower.item_oid "
@@ -391,8 +413,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "0 AS total_reserved, "
 	       "photograph_collection.accession_number, "
 	       "photograph_collection.type, "
-	       "photograph_collection.myoid, "
-	       "photograph_collection.image_scaled "
+	       "photograph_collection.myoid, " +
+	       photographCollectionFrontCover +
 	       "FROM photograph_collection "
 	       "GROUP BY "
 	       "photograph_collection.title, "
@@ -400,7 +422,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "photograph_collection.location, "
 	       "photograph_collection.accession_number, "
 	       "photograph_collection.type, "
-	       "photograph_collection.myoid, "
+	       "photograph_collection.myoid, " +
 	       "photograph_collection.image_scaled "
 	       "UNION "
 	       "SELECT DISTINCT videogame.title, "
@@ -416,8 +438,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "COUNT(item_borrower.item_oid) AS total_reserved, "
 	       "videogame.accession_number, "
 	       "videogame.type, "
-	       "videogame.myoid, "
-	       "videogame.front_cover "
+	       "videogame.myoid, " +
+	       videoGameFrontCover +
 	       "FROM "
 	       "videogame LEFT JOIN item_borrower ON "
 	       "videogame.myoid = item_borrower.item_oid "
@@ -3331,7 +3353,9 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(!query.exec(searchstr))
     {
-      progress.close();
+      if(progress)
+	progress->close();
+
       QApplication::processEvents();
       QApplication::restoreOverrideCursor();
 
@@ -3490,23 +3514,26 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
-  progress.setLabelText(tr("Populating the views..."));
 
-  if(limit == -1)
-    progress.setMaximum(0);
-  else
-    progress.setMaximum(limit);
+  if(progress)
+    {
+      progress->setLabelText(tr("Populating the views..."));
 
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  raise();
-  progress.show();
-  progress.update();
-  progress.repaint();
-  QApplication::processEvents();
+      if(limit == -1)
+	progress->setMaximum(0);
+      else
+	progress->setMaximum(limit);
 
-  biblioteq_graphicsitempixmap *pixmapItem = nullptr;
+      progress->setMinimum(0);
+      progress->setModal(true);
+      progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      raise();
+      progress->show();
+      progress->update();
+      progress->repaint();
+      QApplication::processEvents();
+    }
+
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -3530,8 +3557,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				      std::numeric_limits<int>::max());
     }
 
-  if(limit != -1 && m_db.driver()->hasFeature(QSqlDriver::QuerySize))
-    progress.setMaximum(query.size());
+  if(limit != -1 &&
+     m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+     progress)
+    progress->setMaximum(query.size());
 
   QSettings settings;
   QStringList columnNames;
@@ -3564,12 +3593,14 @@ int biblioteq::populateTable(const int search_type_arg,
 
   i = -1;
 
-  while(i++, !progress.wasCanceled() && query.next())
+  while(i++, query.next())
     {
+      if(progress && progress->wasCanceled())
+	break;
+
+      biblioteq_graphicsitempixmap *pixmapItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
       quint64 myoid = 0;
-
-      pixmapItem = nullptr;
 
       if(query.isValid())
 	{
@@ -3702,14 +3733,17 @@ int biblioteq::populateTable(const int search_type_arg,
 		{
 		  QImage image;
 
-		  if(!query.isNull(j))
+		  if(m_otheroptions->showMainTableImages())
 		    {
-		      image.loadFromData
-			(QByteArray::fromBase64(query.value(j).
-						toByteArray()));
+		      if(!query.isNull(j))
+			{
+			  image.loadFromData
+			    (QByteArray::fromBase64(query.value(j).
+						    toByteArray()));
 
-		      if(image.isNull())
-			image.loadFromData(query.value(j).toByteArray());
+			  if(image.isNull())
+			    image.loadFromData(query.value(j).toByteArray());
+			}
 		    }
 
 		  if(image.isNull())
@@ -3784,7 +3818,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  if(availabilityItem && availabilityItem->value() > 0.0)
 	    availabilityItem->setBackground(availabilityColor(itemType));
 
-	  if(first)
+	  if(first && m_otheroptions->showMainTableImages())
 	    {
 	      if(pixmapItem)
 		first->setIcon(pixmapItem->pixmap());
@@ -3834,21 +3868,25 @@ int biblioteq::populateTable(const int search_type_arg,
 	      }
 	  }
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-      QApplication::processEvents();
+      if(progress)
+	if(i + 1 <= progress->maximum())
+	  progress->setValue(i + 1);
     }
 
-  if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))
-    progress.setValue(limit);
+  if(limit != -1 &&
+     !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+     progress)
+    progress->setValue(limit);
 
-  auto wasCanceled = progress.wasCanceled(); /*
-					     ** QProgressDialog::close()!
-					     */
+  auto wasCanceled = false;
 
-  progress.close();
+  if(progress)
+    {
+      progress->wasCanceled(); // QProgressDialog::close()!
+
+      progress->close();
+    }
+
   ui.table->setSortingEnabled(true);
 
   if(search_type == CUSTOM_QUERY)
