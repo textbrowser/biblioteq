@@ -486,8 +486,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "book.accession_number, "
 				 "book.type, "
-				 "book.myoid, "
-				 "book.front_cover "
+				 "book.myoid, " +
+				 bookFrontCover +
 				 "FROM "
 				 "book LEFT JOIN item_borrower ON "
 				 "book.myoid = item_borrower.item_oid "
@@ -540,8 +540,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "cd.accession_number, "
 				 "cd.type, "
-				 "cd.myoid, "
-				 "cd.front_cover "
+				 "cd.myoid, " +
+				 cdFrontCover +
 				 "FROM "
 				 "cd LEFT JOIN item_borrower ON "
 				 "cd.myoid = item_borrower.item_oid "
@@ -594,8 +594,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "dvd.accession_number, "
 				 "dvd.type, "
-				 "dvd.myoid, "
-				 "dvd.front_cover "
+				 "dvd.myoid, " +
+				 dvdFrontCover +
 				 "FROM "
 				 "dvd LEFT JOIN item_borrower ON "
 				 "dvd.myoid = item_borrower.item_oid "
@@ -649,8 +649,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
-				 "grey_literature.myoid, "
-				 "grey_literature.front_cover "
+				 "grey_literature.myoid, " +
+				 greyLiteratureFrontCover +
 				 "FROM "
 				 "grey_literature LEFT JOIN item_borrower ON "
 				 "grey_literature.myoid = "
@@ -702,8 +702,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "journal.accession_number, "
 				 "journal.type, "
-				 "journal.myoid, "
-				 "journal.front_cover "
+				 "journal.myoid, " +
+				 journalFrontCover +
 				 "FROM "
 				 "journal LEFT JOIN item_borrower ON "
 				 "journal.myoid = item_borrower.item_oid "
@@ -756,8 +756,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "magazine.accession_number, "
 				 "magazine.type, "
-				 "magazine.myoid, "
-				 "magazine.front_cover "
+				 "magazine.myoid, " +
+				 magazineFrontCover +
 				 "FROM "
 				 "magazine LEFT JOIN item_borrower ON "
 				 "magazine.myoid = item_borrower.item_oid "
@@ -810,8 +810,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "videogame.accession_number, "
 				 "videogame.type, "
-				 "videogame.myoid, "
-				 "videogame.front_cover "
+				 "videogame.myoid, " +
+				 videoGameFrontCover +
 				 "FROM "
 				 "videogame LEFT JOIN item_borrower ON "
 				 "videogame.myoid = "
@@ -873,8 +873,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "book.accession_number, "
 				 "book.type, "
-				 "book.myoid, "
-				 "book.front_cover "
+				 "book.myoid, " +
+				 bookFrontCover +
 				 "FROM "
 				 "member, "
 				 "book LEFT JOIN item_borrower ON "
@@ -937,8 +937,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "cd.accession_number, "
 				 "cd.type, "
-				 "cd.myoid, "
-				 "cd.front_cover "
+				 "cd.myoid, " +
+				 cdFrontCover +
 				 "FROM "
 				 "member, "
 				 "cd LEFT JOIN item_borrower ON "
@@ -1001,8 +1001,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "dvd.accession_number, "
 				 "dvd.type, "
-				 "dvd.myoid, "
-				 "dvd.front_cover "
+				 "dvd.myoid, " +
+				 dvdFrontCover +
 				 "FROM "
 				 "member, "
 				 "dvd LEFT JOIN item_borrower ON "
@@ -1066,8 +1066,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
-				 "grey_literature.myoid, "
-				 "grey_literature.front_cover "
+				 "grey_literature.myoid, " +
+				 greyLiteratureFrontCover +
 				 "FROM "
 				 "member, "
 				 "grey_literature LEFT JOIN item_borrower ON "
@@ -1129,8 +1129,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "journal.accession_number, "
 				 "journal.type, "
-				 "journal.myoid, "
-				 "journal.front_cover "
+				 "journal.myoid, " +
+				 journalFrontCover +
 				 "FROM "
 				 "member, "
 				 "journal LEFT JOIN item_borrower ON "
@@ -1194,8 +1194,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "magazine.accession_number, "
 				 "magazine.type, "
-				 "magazine.myoid, "
-				 "magazine.front_cover "
+				 "magazine.myoid, " +
+				 magazineFrontCover +
 				 "FROM "
 				 "member, "
 				 "magazine LEFT JOIN item_borrower ON "
@@ -1259,8 +1259,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "videogame.accession_number, "
 				 "videogame.type, "
-				 "videogame.myoid, "
-				 "videogame.front_cover "
+				 "videogame.myoid, " +
+				 videoGameFrontCover +
 				 "FROM "
 				 "member, "
 				 "videogame LEFT JOIN item_borrower ON "
@@ -1324,8 +1324,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.accession_number, "
 				 "book.type, "
 				 "book.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "book.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 bookFrontCover +
 				 "FROM "
 				 "book LEFT JOIN item_request ON "
 				 "book.myoid = item_request.item_oid "
@@ -1365,8 +1365,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.accession_number, "
 				 "cd.type, "
 				 "cd.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "cd.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 cdFrontCover +
 				 "FROM "
 				 "cd LEFT JOIN item_request ON "
 				 "cd.myoid = item_request.item_oid "
@@ -1406,8 +1406,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.accession_number, "
 				 "dvd.type, "
 				 "dvd.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "dvd.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 dvdFrontCover +
 				 "FROM "
 				 "dvd LEFT JOIN item_request ON "
 				 "dvd.myoid = item_request.item_oid "
@@ -1449,8 +1449,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
 				 "grey_literature.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "grey_literature.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 greyLiteratureFrontCover +
 				 "FROM "
 				 "grey_literature LEFT JOIN item_request ON "
 				 "grey_literature.myoid = "
@@ -1489,8 +1489,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.accession_number, "
 				 "journal.type, "
 				 "journal.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "journal.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 journalFrontCover +
 				 "FROM "
 				 "journal LEFT JOIN item_request ON "
 				 "journal.myoid = "
@@ -1531,8 +1531,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.accession_number, "
 				 "magazine.type, "
 				 "magazine.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "magazine.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 magazineFrontCover +
 				 "FROM "
 				 "magazine LEFT JOIN item_request ON "
 				 "magazine.myoid = "
@@ -1573,8 +1573,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "videogame.accession_number, "
 				 "videogame.type, "
 				 "videogame.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "videogame.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 videoGameFrontCover +
 				 "FROM "
 				 "videogame LEFT JOIN item_request ON "
 				 "videogame.myoid = "
@@ -1623,8 +1623,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.accession_number, "
 				 "book.type, "
 				 "book.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "book.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 bookFrontCover +
 				 "FROM "
 				 "member, "
 				 "book LEFT JOIN item_request ON "
@@ -1671,8 +1671,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.accession_number, "
 				 "cd.type, "
 				 "cd.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "cd.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 cdFrontCover +
 				 "FROM "
 				 "member, "
 				 "cd LEFT JOIN item_request ON "
@@ -1719,8 +1719,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.accession_number, "
 				 "dvd.type, "
 				 "dvd.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "dvd.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 dvdFrontCover +
 				 "FROM "
 				 "member, "
 				 "dvd LEFT JOIN item_request ON "
@@ -1769,8 +1769,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
 				 "grey_literature.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "grey_literature.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 greyLiteratureFrontCover +
 				 "FROM "
 				 "member, "
 				 "grey_literature LEFT JOIN item_request ON "
@@ -1816,8 +1816,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.accession_number, "
 				 "journal.type, "
 				 "journal.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "journal.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 journalFrontCover +
 				 "FROM "
 				 "member, "
 				 "journal LEFT JOIN item_request ON "
@@ -1865,8 +1865,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.accession_number, "
 				 "magazine.type, "
 				 "magazine.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "magazine.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 magazineFrontCover +
 				 "FROM "
 				 "member, "
 				 "magazine LEFT JOIN item_request ON "
@@ -1914,8 +1914,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "videogame.accession_number, "
 				 "videogame.type, "
 				 "videogame.myoid, "
-				 "item_request.myoid AS requestoid, "
-				 "videogame.front_cover "
+				 "item_request.myoid AS requestoid, " +
+				 videoGameFrontCover +
 				 "FROM "
 				 "member, "
 				 "videogame LEFT JOIN item_request ON "
@@ -1974,8 +1974,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "book.accession_number, "
 				 "book.type, "
-				 "book.myoid, "
-				 "book.front_cover "
+				 "book.myoid, " +
+				 bookFrontCover +
 				 "FROM "
 				 "book LEFT JOIN item_borrower ON "
 				 "book.myoid = item_borrower.item_oid "
@@ -2022,8 +2022,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "cd.accession_number, "
 				 "cd.type, "
-				 "cd.myoid, "
-				 "cd.front_cover "
+				 "cd.myoid, " +
+				 cdFrontCover +
 				 "FROM "
 				 "cd LEFT JOIN item_borrower ON "
 				 "cd.myoid = item_borrower.item_oid "
@@ -2070,8 +2070,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "dvd.accession_number, "
 				 "dvd.type, "
-				 "dvd.myoid, "
-				 "dvd.front_cover "
+				 "dvd.myoid, " +
+				 dvdFrontCover +
 				 "FROM "
 				 "dvd LEFT JOIN item_borrower ON "
 				 "dvd.myoid = item_borrower.item_oid "
@@ -2119,8 +2119,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
-				 "grey_literature.myoid, "
-				 "grey_literature.front_cover "
+				 "grey_literature.myoid, " +
+				 greyLiteratureFrontCover +
 				 "FROM "
 				 "grey_literature LEFT JOIN item_borrower ON "
 				 "grey_literature.myoid = "
@@ -2166,8 +2166,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "journal.accession_number, "
 				 "journal.type, "
-				 "journal.myoid, "
-				 "journal.front_cover "
+				 "journal.myoid, " +
+				 journalFrontCover +
 				 "FROM "
 				 "journal LEFT JOIN item_borrower ON "
 				 "journal.myoid = "
@@ -2215,8 +2215,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "magazine.accession_number, "
 				 "magazine.type, "
-				 "magazine.myoid, "
-				 "magazine.front_cover "
+				 "magazine.myoid, " +
+				 magazineFrontCover +
 				 "FROM "
 				 "magazine LEFT JOIN item_borrower ON "
 				 "magazine.myoid = "
@@ -2264,8 +2264,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "videogame.accession_number, "
 				 "videogame.type, "
-				 "videogame.myoid, "
-				 "videogame.front_cover "
+				 "videogame.myoid, " +
+				 videoGameFrontCover +
 				 "FROM "
 				 "videogame LEFT JOIN item_borrower ON "
 				 "videogame.myoid = "
@@ -2321,8 +2321,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "book.accession_number, "
 				 "book.type, "
-				 "book.myoid, "
-				 "book.front_cover "
+				 "book.myoid, " +
+				 bookFrontCover +
 				 "FROM "
 				 "member, "
 				 "book LEFT JOIN item_borrower ON "
@@ -2380,8 +2380,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "cd.accession_number, "
 				 "cd.type, "
-				 "cd.myoid, "
-				 "cd.front_cover "
+				 "cd.myoid, " +
+				 cdFrontCover +
 				 "FROM "
 				 "member, "
 				 "cd LEFT JOIN item_borrower ON "
@@ -2439,8 +2439,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "dvd.accession_number, "
 				 "dvd.type, "
-				 "dvd.myoid, "
-				 "dvd.front_cover "
+				 "dvd.myoid, " +
+				 dvdFrontCover +
 				 "FROM "
 				 "member, "
 				 "dvd LEFT JOIN item_borrower ON "
@@ -2499,8 +2499,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "grey_literature.job_number, "
 				 "grey_literature.type, "
-				 "grey_literature.myoid, "
-				 "grey_literature.front_cover "
+				 "grey_literature.myoid, " +
+				 greyLiteratureFrontCover +
 				 "FROM "
 				 "member, "
 				 "grey_literature LEFT JOIN item_borrower ON "
@@ -2557,8 +2557,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "journal.accession_number, "
 				 "journal.type, "
-				 "journal.myoid, "
-				 "journal.front_cover "
+				 "journal.myoid, " +
+				 journalFrontCover +
 				 "FROM "
 				 "member, "
 				 "journal LEFT JOIN item_borrower ON "
@@ -2617,8 +2617,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "magazine.accession_number, "
 				 "magazine.type, "
-				 "magazine.myoid, "
-				 "magazine.front_cover "
+				 "magazine.myoid, " +
+				 magazineFrontCover +
 				 "FROM "
 				 "member, "
 				 "magazine LEFT JOIN item_borrower ON "
@@ -2677,8 +2677,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "total_reserved, "
 				 "videogame.accession_number, "
 				 "videogame.type, "
-				 "videogame.myoid, "
-				 "videogame.front_cover "
+				 "videogame.myoid, " +
+				 videoGameFrontCover +
 				 "FROM "
 				 "member, "
 				 "videogame LEFT JOIN item_borrower ON "
@@ -2738,8 +2738,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "COUNT(item_borrower.item_oid) AS total_reserved, "
 	      "videogame.accession_number, "
 	      "videogame.type, "
-	      "videogame.myoid, "
-	      "videogame.front_cover "
+	      "videogame.myoid, " +
+	      videoGameFrontCover +
 	      "FROM "
 	      "videogame LEFT JOIN item_borrower ON "
 	      "videogame.myoid = item_borrower.item_oid "
@@ -2791,8 +2791,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.condition, "
 	      "book.accession_number, "
 	      "book.type, "
-	      "book.myoid, "
-	      "book.front_cover "
+	      "book.myoid, " +
+	      bookFrontCover +
 	      "FROM "
 	      "book LEFT JOIN item_borrower ON "
 	      "book.myoid = item_borrower.item_oid "
@@ -2846,8 +2846,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "COUNT(item_borrower.item_oid) AS total_reserved, "
 	      "dvd.accession_number, "
 	      "dvd.type, "
-	      "dvd.myoid, "
-	      "dvd.front_cover "
+	      "dvd.myoid, " +
+	      dvdFrontCover +
 	      "FROM "
 	      "dvd LEFT JOIN item_borrower ON "
 	      "dvd.myoid = item_borrower.item_oid "
@@ -2896,8 +2896,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "1 - COUNT(item_borrower.item_oid) AS availability, "
 	      "COUNT(item_borrower.item_oid) AS total_reserved, "
 	      "grey_literature.type, "
-	      "grey_literature.myoid, "
-	      "grey_literature.front_cover "
+	      "grey_literature.myoid, " +
+	      greyLiteratureFrontCover +
 	      "FROM "
 	      "grey_literature LEFT JOIN item_borrower ON "
 	      "grey_literature.myoid = item_borrower.item_oid "
@@ -2944,8 +2944,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "COUNT(item_borrower.item_oid) AS total_reserved, "
 	      "cd.accession_number, "
 	      "cd.type, "
-	      "cd.myoid, "
-	      "cd.front_cover "
+	      "cd.myoid, " +
+	      cdFrontCover +
 	      "FROM "
 	      "cd LEFT JOIN item_borrower ON "
 	      "cd.myoid = item_borrower.item_oid "
@@ -2984,8 +2984,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "photograph_collection.about, "
 	      "photograph_collection.accession_number, "
 	      "photograph_collection.type, "
-	      "photograph_collection.myoid, "
-	      "photograph_collection.image_scaled "
+	      "photograph_collection.myoid, " +
+	      photographCollectionFrontCover +
 	      "FROM "
 	      "photograph_collection "
 	      "LEFT JOIN photograph "
@@ -3010,6 +3010,16 @@ int biblioteq::populateTable(const int search_type_arg,
 	    else
 	      type = "Magazine";
 
+	    QString frontCover("'' AS front_cover ");
+
+	    if(m_otheroptions->showMainTableImages())
+	      {
+		if(type == "Journal")
+		  frontCover = "journal.front_cover ";
+		else
+		  frontCover = "magazine.front_cover ";
+	      }
+
 	    searchstr = QString("SELECT DISTINCT %1.title, "
 				"%1.publisher, %1.pdate, "
 				"%1.place, "
@@ -3029,8 +3039,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				"total_reserved, "
 				"%1.accession_number, "
 				"%1.type, "
-				"%1.myoid, "
-				"%1.front_cover "
+				"%1.myoid, " +
+				frontCover +
 				"FROM "
 				"%1 LEFT JOIN item_borrower ON "
 				"%1.myoid = "
@@ -4440,9 +4450,17 @@ void biblioteq::slotSearchBasic(void)
 
   QList<QVariant> values;
   QSqlQuery query(m_db);
+  QString bookFrontCover("'' AS front_cover ");
+  QString cdFrontCover("'' AS front_cover ");
+  QString dvdFrontCover("'' AS front_cover ");
+  QString greyLiteratureFrontCover("'' AS front_cover ");
+  QString journalFrontCover("'' AS front_cover ");
+  QString magazineFrontCover("'' AS front_cover ");
+  QString photographCollectionFrontCover("'' AS image_scaled ");
   QString searchstr("");
   QString str("");
   QString type("");
+  QString videoGameFrontCover("'' AS front_cover ");
   QStringList types;
   auto text(ui.search->text().trimmed());
 
@@ -4454,6 +4472,18 @@ void biblioteq::slotSearchBasic(void)
   types.append("Magazine");
   types.append("Photograph Collection");
   types.append("Video Game");
+
+  if(m_otheroptions->showMainTableImages())
+    {
+      bookFrontCover = "book.front_cover ";
+      cdFrontCover = "cd.front_cover ";
+      dvdFrontCover = "dvd.front_cover ";
+      greyLiteratureFrontCover = "grey_literature.front_cover ";
+      journalFrontCover = "journal.front_cover ";
+      magazineFrontCover = "magazine.front_cover ";
+      photographCollectionFrontCover = "photograph_collection.image_scaled ";
+      videoGameFrontCover = "videogame.front_cover ";
+    }
 
   for(int i = 0; i < types.size(); i++)
     {
@@ -4474,8 +4504,8 @@ void biblioteq::slotSearchBasic(void)
 	  "COUNT(item_borrower.item_oid) AS total_reserved, "
 	  "grey_literature.job_number, "
 	  "grey_literature.type, "
-	  "grey_literature.myoid, "
-	  "grey_literature.front_cover "
+	  "grey_literature.myoid, " +
+	  greyLiteratureFrontCover +
 	  "FROM "
 	  "grey_literature LEFT JOIN item_borrower ON "
 	  "grey_literature.myoid = "
@@ -4497,8 +4527,8 @@ void biblioteq::slotSearchBasic(void)
 	  "0 AS total_reserved, "
 	  "photograph_collection.accession_number, "
 	  "photograph_collection.type, "
-	  "photograph_collection.myoid, "
-	  "photograph_collection.image_scaled "
+	  "photograph_collection.myoid, " +
+	  photographCollectionFrontCover +
 	  "FROM photograph_collection "
 	  "WHERE ";
       else
@@ -4516,17 +4546,28 @@ void biblioteq::slotSearchBasic(void)
 	     "COUNT(item_borrower.item_oid) AS availability, "
 	     "COUNT(item_borrower.item_oid) AS total_reserved, "
 	     "%1.accession_number, "
-	     "%1.type, ").
-	    arg(type.toLower().remove(" "));
-	  str += QString("%1.myoid, "
-			 "%1.front_cover "
-			 "FROM "
+	     "%1.type, "
+	     "%1.myoid, ").arg(type.toLower().remove(" "));
+
+	  if(type == "Book")
+	    str.append(bookFrontCover);
+	  else if(type == "CD")
+	    str.append(cdFrontCover);
+	  else if(type == "DVD")
+	    str.append(dvdFrontCover);
+	  else if(type == "Journal")
+	    str.append(journalFrontCover);
+	  else if(type == "Magazine")
+	    str.append(magazineFrontCover);
+	  else
+	    str.append(videoGameFrontCover);
+
+	  str += QString("FROM "
 			 "%1 LEFT JOIN item_borrower ON "
 			 "%1.myoid = "
 			 "item_borrower.item_oid "
 			 "AND item_borrower.type = '%2' "
-			 "WHERE ").arg(type.toLower().remove(" ")).
-	    arg(type);
+			 "WHERE ").arg(type.toLower().remove(" ")).arg(type);
 	}
 
       QString E("");
