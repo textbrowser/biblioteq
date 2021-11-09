@@ -150,11 +150,6 @@ int biblioteq::populateTable(const int search_type_arg,
 	 static_cast<qreal> (limit / 5 * 200) + 15.0);
     }
 
-  /*
-  ** The order of the fields in the select statements should match
-  ** the original column order.
-  */
-
   QString bookFrontCover("'' AS front_cover ");
   QString cdFrontCover("'' AS front_cover ");
   QString dvdFrontCover("'' AS front_cover ");
@@ -176,6 +171,11 @@ int biblioteq::populateTable(const int search_type_arg,
       progress.reset(new QProgressDialog(this));
       videoGameFrontCover = "videogame.front_cover ";
     }
+
+  /*
+  ** The order of the fields in the select statements should match
+  ** the original column order.
+  */
 
   switch(search_type)
     {
