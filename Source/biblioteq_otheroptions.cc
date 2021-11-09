@@ -107,6 +107,13 @@ bool biblioteq_otheroptions::showMainTableImages(void) const
   return settings.value("show_maintable_images", true).toBool();
 }
 
+bool biblioteq_otheroptions::showMainTableProgressDialogs(void) const
+{
+  QSettings settings;
+
+  return settings.value("show_maintable_progress_dialogs", true).toBool();
+}
+
 int biblioteq_otheroptions::booksAccessionNumberIndex(void) const
 {
   QSettings settings;
@@ -328,6 +335,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.main_window_canvas_background_color->setText(color.name());
   m_ui.show_maintable_images->setChecked
     (settings.value("show_maintable_images", true).toBool());
+  m_ui.show_maintable_progress_dialogs->setChecked
+    (settings.value("show_maintable_progress_dialogs", true).toBool());
   m_ui.show_maintable_tooltips->setChecked
     (settings.value("show_maintable_tooltips", false).toBool());
   QApplication::restoreOverrideCursor();
@@ -442,6 +451,9 @@ void biblioteq_otheroptions::slotSave(void)
      m_ui.books_accession_number->currentIndex());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
+  settings.setValue
+    ("show_maintable_progress_dialogs",
+     m_ui.show_maintable_progress_dialogs->isChecked());
   settings.setValue
     ("show_maintable_tooltips", m_ui.show_maintable_tooltips->isChecked());
   settings.sync();

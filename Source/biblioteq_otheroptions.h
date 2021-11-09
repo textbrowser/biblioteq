@@ -15,6 +15,7 @@ class biblioteq_otheroptions: public QMainWindow
   QColor availabilityColor(const QString &it) const;
   QString publicationDateFormat(const QString &it) const;
   bool showMainTableImages(void) const;
+  bool showMainTableProgressDialogs(void) const;
   int booksAccessionNumberIndex(void) const;
   void prepareSettings(void);
 

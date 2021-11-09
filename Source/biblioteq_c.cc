@@ -315,7 +315,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   QScopedPointer<QProgressDialog> progress;
 
-  if(m_otheroptions->showMainTableImages())
+  if(m_otheroptions->showMainTableProgressDialogs())
     {
       progress.reset(new QProgressDialog(this));
       progress->hide();
@@ -736,15 +736,18 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		{
 		  QImage image;
 
-		  if(!m_searchQuery.isNull(j))
+		  if(m_otheroptions->showMainTableImages())
 		    {
-		      image.loadFromData
-			(QByteArray::fromBase64(m_searchQuery.value(j).
-						toByteArray()));
+		      if(!m_searchQuery.isNull(j))
+			{
+			  image.loadFromData
+			    (QByteArray::fromBase64(m_searchQuery.value(j).
+						    toByteArray()));
 
-		      if(image.isNull())
-			image.loadFromData
-			  (m_searchQuery.value(j).toByteArray());
+			  if(image.isNull())
+			    image.loadFromData
+			      (m_searchQuery.value(j).toByteArray());
+			}
 		    }
 
 		  if(image.isNull())

@@ -168,9 +168,11 @@ int biblioteq::populateTable(const int search_type_arg,
       journalFrontCover = "journal.front_cover ";
       magazineFrontCover = "magazine.front_cover ";
       photographCollectionFrontCover = "photograph_collection.image_scaled ";
-      progress.reset(new QProgressDialog(this));
       videoGameFrontCover = "videogame.front_cover ";
     }
+
+  if(m_otheroptions->showMainTableProgressDialogs())
+    progress.reset(new QProgressDialog(this));
 
   /*
   ** The order of the fields in the select statements should match

@@ -192,9 +192,19 @@
              </layout>
             </item>
             <item>
+             <widget class="QCheckBox" name="show_maintable_progress_dialogs">
+              <property name="text">
+               <string>&amp;Show Progress Dialogs</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="show_maintable_images">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall not be shown during the populating of the main table. Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
                <string>&amp;Show Table Images</string>
@@ -385,6 +395,7 @@
   <tabstop>availability_colors</tabstop>
   <tabstop>availability_color</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
+  <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
   <tabstop>books_accession_number</tabstop>
