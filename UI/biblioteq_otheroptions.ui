@@ -194,7 +194,7 @@
             <item>
              <widget class="QCheckBox" name="show_maintable_images">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall not be shown. Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall not be shown during the populating of the main table. Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
                <string>&amp;Show Table Images</string>

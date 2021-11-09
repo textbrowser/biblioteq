@@ -313,9 +313,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
   m_lastSearchStr = "Item Search Query";
   ui.itemsCountLabel->setText(tr("0 Results"));
 
-  QProgressDialog progress(this);
+  QScopedPointer<QProgressDialog> progress;
 
-  progress.hide();
+  if(m_otheroptions->showMainTableImages())
+    {
+      progress.reset(new QProgressDialog(this));
+      progress->hide();
+    }
 
   QTableWidgetItem *item = nullptr;
   QString itemType("");
@@ -374,7 +378,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   if(m_searchQuery.lastError().isValid() || !ok)
     {
-      progress.close();
+      if(progress)
+	progress->close();
+
       QApplication::processEvents();
       QApplication::restoreOverrideCursor();
 
@@ -520,21 +526,25 @@ int biblioteq::populateTable(const QSqlQuery &query,
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
-  progress.setLabelText(tr("Populating the views..."));
 
-  if(limit == -1)
-    progress.setMaximum(0);
-  else
-    progress.setMaximum(limit);
+  if(progress)
+    {
+      progress->setLabelText(tr("Populating the views..."));
 
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  raise();
-  progress.show();
-  progress.update();
-  progress.repaint();
-  QApplication::processEvents();
+      if(limit == -1)
+	progress->setMaximum(0);
+      else
+	progress->setMaximum(limit);
+
+      progress->setMinimum(0);
+      progress->setModal(true);
+      progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      raise();
+      progress->show();
+      progress->update();
+      progress->repaint();
+      QApplication::processEvents();
+    }
 
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
@@ -562,8 +572,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
       m_searchQuery.seek(static_cast<int> (offset));
     }
 
-  if(limit != -1 && m_db.driver()->hasFeature(QSqlDriver::QuerySize))
-    progress.setMaximum(qMin(limit, m_searchQuery.size()));
+  if(limit != -1 &&
+     m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+     progress)
+    progress->setMaximum(qMin(limit, m_searchQuery.size()));
 
   QSettings settings;
   QString dateFormat("");
@@ -583,9 +595,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   i = -1;
 
-  while(i++, !progress.wasCanceled())
+  while(i++, true)
     {
       if(i == limit)
+	break;
+
+      if(progress && progress->wasCanceled())
 	break;
 
       if(m_searchQuery.at() == QSql::BeforeFirstRow)
@@ -854,25 +869,33 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      }
 	  }
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
+      if(progress)
+	{
+	  if(i + 1 <= progress->maximum())
+	    progress->setValue(i + 1);
 
-      progress.repaint();
-      QApplication::processEvents();
+	  progress->repaint();
+	  QApplication::processEvents();
+	}
 
       if(m_searchQuery.at() != QSql::BeforeFirstRow)
 	if(!m_searchQuery.next())
 	  break;
     }
 
-  if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))
-    progress.setValue(limit);
+  if(limit != -1 &&
+     !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+     progress)
+    progress->setValue(limit);
 
-  auto wasCanceled = progress.wasCanceled(); /*
-					     ** QProgressDialog::close()!
-					     */
+  auto wasCanceled = false;
 
-  progress.close();
+  if(progress)
+    {
+      progress->wasCanceled(); // QProgressDialog::close()!
+      progress->close();
+    }
+
   ui.table->setSortingEnabled(true);
 
   if(searchType == POPULATE_SEARCH_BASIC)
@@ -1585,11 +1608,31 @@ void biblioteq::slotAllGo(void)
 
   QList<QVariant> values;
   QSqlQuery query(m_db);
+  QString bookFrontCover("'' AS front_cover ");
+  QString cdFrontCover("'' AS front_cover ");
+  QString dvdFrontCover("'' AS front_cover ");
+  QString greyLiteratureFrontCover("'' AS front_cover ");
+  QString journalFrontCover("'' AS front_cover ");
+  QString magazineFrontCover("'' AS front_cover ");
+  QString photographCollectionFrontCover("'' AS image_scaled ");
   QString searchstr("");
   QString str("");
   QString type("");
+  QString videoGameFrontCover("'' AS front_cover ");
   QStringList types;
   auto caseinsensitive = al.caseinsensitive->isChecked();
+
+  if(m_otheroptions->showMainTableImages())
+    {
+      bookFrontCover = "book.front_cover ";
+      cdFrontCover = "cd.front_cover ";
+      dvdFrontCover = "dvd.front_cover ";
+      greyLiteratureFrontCover = "grey_literature.front_cover ";
+      journalFrontCover = "journal.front_cover ";
+      magazineFrontCover = "magazine.front_cover ";
+      photographCollectionFrontCover = "photograph_collection.image_scaled ";
+      videoGameFrontCover = "videogame.front_cover ";
+    }
 
   types.append("Book");
   types.append("CD");
@@ -1619,8 +1662,8 @@ void biblioteq::slotAllGo(void)
 	  "COUNT(item_borrower.item_oid) AS total_reserved, "
 	  "grey_literature.job_number, "
 	  "grey_literature.type, "
-	  "grey_literature.myoid, "
-	  "grey_literature.front_cover "
+	  "grey_literature.myoid, " +
+	  greyLiteratureFrontCover +
 	  "FROM "
 	  "grey_literature LEFT JOIN item_borrower ON "
 	  "grey_literature.myoid = "
@@ -1642,8 +1685,8 @@ void biblioteq::slotAllGo(void)
 	  "0 AS total_reserved, "
 	  "photograph_collection.accession_number, "
 	  "photograph_collection.type, "
-	  "photograph_collection.myoid, "
-	  "photograph_collection.image_scaled "
+	  "photograph_collection.myoid, " +
+	  photographCollectionFrontCover +
 	  "FROM photograph_collection "
 	  "WHERE ";
       else
@@ -1661,17 +1704,28 @@ void biblioteq::slotAllGo(void)
 	     "COUNT(item_borrower.item_oid) AS availability, "
 	     "COUNT(item_borrower.item_oid) AS total_reserved, "
 	     "%1.accession_number, "
-	     "%1.type, ").
-	    arg(type.toLower().remove(" "));
-	  str += QString("%1.myoid, "
-			 "%1.front_cover "
-			 "FROM "
+	     "%1.type, "
+	     "%1.myoid, ").arg(type.toLower().remove(" "));
+
+	  if(type == "Book")
+	    str.append(bookFrontCover);
+	  else if(type == "CD")
+	    str.append(cdFrontCover);
+	  else if(type == "DVD")
+	    str.append(dvdFrontCover);
+	  else if(type == "Journal")
+	    str.append(journalFrontCover);
+	  else if(type == "Magazine")
+	    str.append(magazineFrontCover);
+	  else
+	    str.append(videoGameFrontCover);
+
+	  str += QString("FROM "
 			 "%1 LEFT JOIN item_borrower ON "
 			 "%1.myoid = "
 			 "item_borrower.item_oid "
 			 "AND item_borrower.type = '%2' "
-			 "WHERE ").arg(type.toLower().remove(" ")).
-	    arg(type);
+			 "WHERE ").arg(type.toLower().remove(" ")).arg(type);
 	}
 
       QString ESCAPE("");

@@ -3879,8 +3879,13 @@ int biblioteq::populateTable(const int search_type_arg,
 	  }
 
       if(progress)
-	if(i + 1 <= progress->maximum())
-	  progress->setValue(i + 1);
+	{
+	  if(i + 1 <= progress->maximum())
+	    progress->setValue(i + 1);
+
+	  progress->repaint();
+	  QApplication::processEvents();
+	}
     }
 
   if(limit != -1 &&
@@ -3893,7 +3898,6 @@ int biblioteq::populateTable(const int search_type_arg,
   if(progress)
     {
       progress->wasCanceled(); // QProgressDialog::close()!
-
       progress->close();
     }
 
