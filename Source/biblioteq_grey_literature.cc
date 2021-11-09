@@ -1165,7 +1165,11 @@ void biblioteq_grey_literature::slotGo(void)
   else if(m_engWindowTitle.contains("Search"))
     {
       QSqlQuery query(qmain->getDB());
+      QString frontCover("'' AS front_cover ");
       QString searchstr("");
+
+      if(qmain->showMainTableImages())
+	frontCover = "grey_literature.front_cover ";
 
       searchstr = "SELECT DISTINCT grey_literature.author, "
 	"grey_literature.client, "
@@ -1182,8 +1186,8 @@ void biblioteq_grey_literature::slotGo(void)
 	"WHERE grey_literature_files.item_oid = grey_literature.myoid) "
 	"AS file_count, "
 	"grey_literature.type, "
-	"grey_literature.myoid, "
-	"grey_literature.front_cover "
+	"grey_literature.myoid, " +
+	frontCover +
 	"FROM grey_literature WHERE ";
 
       QString ESCAPE("");

@@ -1411,6 +1411,10 @@ void biblioteq_cd::slotGo(void)
   else if(m_engWindowTitle.contains("Search"))
     {
       QSqlQuery query(qmain->getDB());
+      QString frontCover("'' AS front_cover ");
+
+      if(qmain->showMainTableImages())
+	frontCover = "cd.front_cover ";
 
       searchstr = "SELECT DISTINCT cd.title, "
 	"cd.artist, "
@@ -1432,8 +1436,8 @@ void biblioteq_cd::slotGo(void)
 	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"cd.accession_number, "
 	"cd.type, "
-	"cd.myoid, "
-	"cd.front_cover "
+	"cd.myoid, " +
+	frontCover +
 	"FROM "
 	"cd LEFT JOIN item_borrower ON "
 	"cd.myoid = item_borrower.item_oid "

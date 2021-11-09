@@ -1251,6 +1251,10 @@ void biblioteq_videogame::slotGo(void)
   else if(m_engWindowTitle.contains("Search"))
     {
       QSqlQuery query(qmain->getDB());
+      QString frontCover("'' AS front_cover ");
+
+      if(qmain->showMainTableImages())
+	frontCover = "videogame.front_cover ";
 
       searchstr = "SELECT DISTINCT videogame.title, "
 	"videogame.vgrating, "
@@ -1266,8 +1270,8 @@ void biblioteq_videogame::slotGo(void)
 	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"videogame.accession_number, "
 	"videogame.type, "
-	"videogame.myoid, "
-	"videogame.front_cover "
+	"videogame.myoid, " +
+	frontCover +
 	"FROM "
 	"videogame LEFT JOIN item_borrower ON "
 	"videogame.myoid = item_borrower.item_oid "

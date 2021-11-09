@@ -1499,6 +1499,10 @@ void biblioteq_photographcollection::slotGo(void)
     {
       QSqlQuery query(qmain->getDB());
       QString searchstr("");
+      QString frontCover("'' AS image_scaled ");
+
+      if(qmain->showMainTableImages())
+	frontCover = "photograph_collection.image_scaled ";
 
       searchstr = "SELECT DISTINCT photograph_collection.title, "
 	"photograph_collection.id, "
@@ -1507,8 +1511,8 @@ void biblioteq_photographcollection::slotGo(void)
 	"photograph_collection.about, "
 	"photograph_collection.accession_number, "
 	"photograph_collection.type, "
-	"photograph_collection.myoid, "
-	"photograph_collection.image_scaled "
+	"photograph_collection.myoid, " +
+	frontCover +
 	"FROM photograph_collection LEFT JOIN "
 	"photograph "
 	"ON photograph_collection.myoid = photograph.collection_oid "

@@ -2843,6 +2843,15 @@ void biblioteq_magazine::slotGo(void)
     {
       QList<QVariant> values;
       QSqlQuery query(qmain->getDB());
+      QString frontCover("'' AS front_cover ");
+
+      if(qmain->showMainTableImages())
+	{
+	  if(m_subType == "Journal")
+	    frontCover = "journal.front_cover ";
+	  else
+	    frontCover = "magazine.front_cover";
+	}
 
       searchstr = QString("SELECT DISTINCT %1.title, "
 			  "%1.publisher, %1.pdate, %1.place, "
@@ -2863,8 +2872,8 @@ void biblioteq_magazine::slotGo(void)
 			  "total_reserved, "
 			  "%1.accession_number, "
 			  "%1.type, "
-			  "%1.myoid, "
-			  "%1.front_cover "
+			  "%1.myoid, " +
+			  frontCover +
 			  "FROM "
 			  "%1 LEFT JOIN item_borrower ON "
 			  "%1.myoid = item_borrower.item_oid "

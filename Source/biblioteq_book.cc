@@ -3199,6 +3199,10 @@ void biblioteq_book::slotGo(void)
     {
       QList<QVariant> values;
       QSqlQuery query(qmain->getDB());
+      QString frontCover("'' AS front_cover ");
+
+      if(qmain->showMainTableImages())
+	frontCover = "book.front_cover ";
 
       searchstr = "SELECT DISTINCT book.title, "
 	"book.author, "
@@ -3219,8 +3223,8 @@ void biblioteq_book::slotGo(void)
 	"book.condition, "
 	"book.accession_number, "
 	"book.type, "
-	"book.myoid, "
-	"book.front_cover "
+	"book.myoid, " +
+	frontCover +
 	"FROM "
 	"book LEFT JOIN item_borrower ON "
 	"book.myoid = item_borrower.item_oid "

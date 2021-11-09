@@ -3,6 +3,12 @@
 #include "biblioteq.h"
 #include "biblioteq_documentationwindow.h"
 #include "biblioteq_files.h"
+#include "biblioteq_otheroptions.h"
+
+bool biblioteq::showMainTableImages(void) const
+{
+  return m_otheroptions->showMainTableImages();
+}
 
 void biblioteq::slotShowDocumentation(void)
 {

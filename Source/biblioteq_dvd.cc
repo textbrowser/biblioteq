@@ -1377,6 +1377,10 @@ void biblioteq_dvd::slotGo(void)
   else if(m_engWindowTitle.contains("Search"))
     {
       QSqlQuery query(qmain->getDB());
+      QString frontCover("'' AS front_cover ");
+
+      if(qmain->showMainTableImages())
+	frontCover = "dvd.front_cover ";
 
       searchstr = "SELECT DISTINCT dvd.title, "
 	"dvd.dvdformat, "
@@ -1400,8 +1404,8 @@ void biblioteq_dvd::slotGo(void)
 	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"dvd.accession_number, "
 	"dvd.type, "
-	"dvd.myoid, "
-	"dvd.front_cover "
+	"dvd.myoid, " +
+	frontCover +
 	"FROM "
 	"dvd LEFT JOIN item_borrower ON "
 	"dvd.myoid = item_borrower.item_oid "

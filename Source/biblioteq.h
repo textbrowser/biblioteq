@@ -224,6 +224,7 @@ class biblioteq: public QMainWindow
   bool availabilityColors(void) const;
   bool isGuest(void) const;
   bool isPatron(void) const;
+  bool showMainTableImages(void) const;
   int pageLimit(void) const;
   int populateTable(const QSqlQuery &query,
 		    const QString &typefilter,
