@@ -317,8 +317,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   if(m_otheroptions->showMainTableProgressDialogs())
     {
+      auto closeButton = new QPushButton(tr("Interrupt"));
+
+      closeButton->setShortcut(QKeySequence(Qt::Key_F8));
       progress.reset(new QProgressDialog(this));
       progress->hide();
+      progress->setCancelButton(closeButton);
     }
 
   QTableWidgetItem *item = nullptr;

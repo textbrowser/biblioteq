@@ -193,6 +193,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="show_maintable_progress_dialogs">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall be shown during the populating of data on the main table / view. Dialogs may be interrupted by the F8 key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>&amp;Show Progress Dialogs</string>
               </property>

@@ -172,7 +172,14 @@ int biblioteq::populateTable(const int search_type_arg,
     }
 
   if(m_otheroptions->showMainTableProgressDialogs())
-    progress.reset(new QProgressDialog(this));
+    {
+      auto closeButton = new QPushButton(tr("Interrupt"));
+
+      closeButton->setShortcut(QKeySequence(Qt::Key_F8));
+      progress.reset(new QProgressDialog(this));
+      progress->hide();
+      progress->setCancelButton(closeButton);
+    }
 
   /*
   ** The order of the fields in the select statements should match
