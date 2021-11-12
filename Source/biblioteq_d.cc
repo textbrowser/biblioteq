@@ -68,3 +68,7 @@ void biblioteq::slotShowFiles(void)
   m_files->activateWindow();
   m_files->raise();
 }
+
+void biblioteq::slotShowReleaseNotes(void)
+{
+}

@@ -408,6 +408,8 @@
     <addaction name="separator"/>
     <addaction name="menu_Documentation"/>
     <addaction name="action_Online_Documentation"/>
+    <addaction name="separator"/>
+    <addaction name="action_Release_Notes"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="tearOffEnabled">
@@ -1274,6 +1276,11 @@
   <action name="action_French">
    <property name="text">
     <string>&amp;French...</string>
+   </property>
+  </action>
+  <action name="action_Release_Notes">
+   <property name="text">
+    <string>Release Notes...</string>
    </property>
   </action>
  </widget>

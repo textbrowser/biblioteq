@@ -513,6 +513,7 @@ class biblioteq: public QMainWindow
   void slotShowOtherOptions(void);
   void slotShowPassword(bool state);
   void slotShowPrev(void);
+  void slotShowReleaseNotes(void);
   void slotSqliteFileSelected(bool state);
   void slotUpdateIndicesAfterSort(int column);
   void slotUpgradeSqliteScheme(void);
