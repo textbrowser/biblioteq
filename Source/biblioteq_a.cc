@@ -286,6 +286,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotOpenPDFFiles(void)));
+  connect(ui.action_Release_Notes,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowReleaseNotes(void)));
   connect(ui.actionImportCSV,
 	  SIGNAL(triggered(void)),
 	  this,

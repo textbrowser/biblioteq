@@ -76,8 +76,9 @@ void biblioteq::slotShowReleaseNotes(void)
 
   if(!m_releaseNotes)
     {
-      m_releaseNotes = new biblioteq_documentationwindow(this);
-      m_releaseNotes->setUrl("qrc:/Release-Notes.html");
+      m_releaseNotes = new biblioteq_documentationwindow
+	(QUrl("qrc:/Release-Notes.html"), this);
+      m_releaseNotes->setWindowTitle(tr("BiblioteQ: Release Notes"));
     }
 
   m_releaseNotes->show();
