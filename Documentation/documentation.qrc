@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+	<file>Release-Notes.html</file>
+    </qresource>
+</RCC>
