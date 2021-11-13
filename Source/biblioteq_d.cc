@@ -71,4 +71,15 @@ void biblioteq::slotShowFiles(void)
 
 void biblioteq::slotShowReleaseNotes(void)
 {
+  repaint();
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!m_releaseNotes)
+    {
+      m_releaseNotes = new biblioteq_documentationwindow(this);
+      m_releaseNotes->setUrl("qrc:/Release-Notes.html");
+    }
+
+  m_releaseNotes->show();
+  QApplication::restoreOverrideCursor();
 }
