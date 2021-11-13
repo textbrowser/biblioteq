@@ -1280,7 +1280,7 @@
   </action>
   <action name="action_Release_Notes">
    <property name="text">
-    <string>Release Notes...</string>
+    <string>&amp;Release Notes...</string>
    </property>
   </action>
  </widget>
