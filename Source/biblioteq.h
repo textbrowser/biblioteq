@@ -150,7 +150,9 @@ class userinfo_diag_class: public QDialog
 	    break;
 	  }
 	default:
-	  break;
+	  {
+	    break;
+	  }
 	}
 
     QDialog::changeEvent(event);

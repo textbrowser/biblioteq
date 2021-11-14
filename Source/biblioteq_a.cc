@@ -1296,7 +1296,9 @@ void biblioteq::changeEvent(QEvent *event)
 	  break;
 	}
       default:
-	break;
+	{
+	  break;
+	}
       }
 
   QMainWindow::changeEvent(event);

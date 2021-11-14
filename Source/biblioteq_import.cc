@@ -59,7 +59,9 @@ void biblioteq_import::changeEvent(QEvent *event)
 	  break;
 	}
       default:
-	break;
+	{
+	  break;
+	}
       }
 
   QMainWindow::changeEvent(event);
@@ -125,6 +127,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   if(notImported)
     *notImported = 0;
 
+  QTextStream in(&file);
   auto list(m_ui.books_ignored_rows->text().trimmed().
 	    split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
@@ -135,9 +138,17 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  ));
   qint64 ct = 0;
 
-  while(ct++, !file.atEnd())
+  while(ct++, !in.atEnd())
     {
-      QString data(file.readLine().trimmed());
+      if(progress->wasCanceled())
+	break;
+      else
+	{
+	  progress->repaint();
+	  QApplication::processEvents();
+	}
+
+      auto data(in.readLine().trimmed());
 
       if(list.contains(QString::number(ct)))
 	continue;
