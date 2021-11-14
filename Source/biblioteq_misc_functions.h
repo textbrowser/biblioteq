@@ -49,6 +49,7 @@ class biblioteq_misc_functions
 				  const QString &,
 				  const QString &);
   static QString imageFormatGuess(const QByteArray &bytes);
+  static QString isbn10to13(const QString &text);
   static QStringList getBookBindingTypes(const QSqlDatabase &, QString &);
   static QStringList getCDFormats(const QSqlDatabase &, QString &);
   static QStringList getDVDAspectRatios(const QSqlDatabase &, QString &);

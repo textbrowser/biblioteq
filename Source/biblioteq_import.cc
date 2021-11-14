@@ -185,6 +185,11 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		  if(m_booksMappings.value(i).first == "id")
 		    id = str;
+		  else if(m_booksMappings.value(i).first == "isbn13")
+		    {
+		      if(!id.isEmpty() && str.isEmpty())
+			str = biblioteq_misc_functions::isbn10to13(id);
+		    }
 		  else if(m_booksMappings.value(i).first == "quantity")
 		    quantity = str.toInt();
 

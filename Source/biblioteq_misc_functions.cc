@@ -507,6 +507,31 @@ QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
   return format;
 }
 
+QString biblioteq_misc_functions::isbn10to13(const QString &text)
+{
+  QList<int> array;
+  QString numberstr("");
+  QString str("978" + text.trimmed().left(9));
+  int check = 0;
+  int total = 0;
+
+  array << 1 << 3 << 1 << 3 << 1 << 3 << 1 << 3 << 1 << 3 << 1 << 3;
+
+  for(int i = 0; i < array.size(); i++)
+    if(i < str.length())
+      total += array.at(i) * str.at(i).digitValue();
+    else
+      break;
+
+  check = 10 - (total % 10);
+
+  if(check == 10)
+    check = 0;
+
+  numberstr.setNum(check);
+  return str.append(numberstr);
+}
+
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {

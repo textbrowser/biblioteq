@@ -1957,28 +1957,7 @@ void biblioteq_book::slotCancelImageDownload(void)
 
 void biblioteq_book::slotConvertISBN10to13(void)
 {
-  QString numberstr = "";
-  QString str = "";
-  int arr[] = {1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3};
-  int check = 0;
-  int i = 0;
-  int total = 0;
-
-  str = "978" + id.id->text().trimmed().left(9);
-
-  for(i = 0; i < (int) (sizeof(arr) / sizeof(int)); i++)
-    if(i < str.length())
-      total += str[i].digitValue() * arr[i];
-    else
-      break;
-
-  check = 10 - (total % 10);
-
-  if(check == 10)
-    check = 0;
-
-  numberstr.setNum(check);
-  id.isbn13->setText(str + numberstr);
+  id.isbn13->setText(biblioteq_misc_functions::isbn10to13(id.id->text()));
 }
 
 void biblioteq_book::slotConvertISBN13to10(void)
