@@ -4410,9 +4410,9 @@ void biblioteq::slotShowMembersBrowser(void)
     return;
 
   bb.filter->clear();
+  bb.filter->setFocus();
   bb.filterBox->setCheckState(Qt::Checked);
   bb.filtertype->setCurrentIndex(0);
-  bb.filter->setFocus();
 
   for(int i = 0; i < bb.table->columnCount() - 1; i++)
     bb.table->resizeColumnToContents(i);
