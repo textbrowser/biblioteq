@@ -1035,7 +1035,11 @@ void biblioteq_dvd::slotGo(void)
 	      query.bindValue(19, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(19, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(19, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
