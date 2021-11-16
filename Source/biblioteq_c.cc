@@ -2950,6 +2950,7 @@ void biblioteq::slotDisconnect(void)
   if(m_files)
     m_files->reset();
 
+  m_membersWasRefreshed = false;
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
@@ -3957,9 +3958,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
   else
     progress.reset(new QProgressDialog(this));
 
-  if(!progress)
-    return;
-
   QSqlQuery query(m_db);
   QString str = "";
   QTableWidgetItem *item = nullptr;
@@ -4147,6 +4145,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
   bb.table->hide();
   bb.table->show();
 #endif
+  m_membersWasRefreshed = true;
 }
 
 void biblioteq::slotPreviewCanvasBackgroundColor(const QColor &color)

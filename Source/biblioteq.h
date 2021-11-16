@@ -372,6 +372,7 @@ class biblioteq: public QMainWindow
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
   bool m_allSearchShown;
+  bool m_membersWasRefreshed;
   int m_lastSearchType;
   qint64 m_pages;
   qint64 m_queryOffset;

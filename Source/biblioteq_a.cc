@@ -183,6 +183,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_files = nullptr;
   m_idCt = 0;
   m_lastSearchType = POPULATE_ALL;
+  m_membersWasRefreshed = false;
   m_pages = 0;
   m_previousTypeFilter = "";
   m_queryOffset = 0;
@@ -3843,15 +3844,17 @@ void biblioteq::slotReserveCopy(void)
 
   if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
     {
-      if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
-			       tr("Would you like to retrieve the list of "
-				  "members?"),
-			       QMessageBox::Yes | QMessageBox::No,
-			       QMessageBox::No) == QMessageBox::Yes)
-	{
-	  QApplication::processEvents();
-	  slotPopulateMembersBrowser();
-	}
+      if(!m_membersWasRefreshed)
+	if(QMessageBox::question(m_members_diag,
+				 tr("BiblioteQ: Question"),
+				 tr("Would you like to retrieve the list of "
+				    "members?"),
+				 QMessageBox::No | QMessageBox::Yes,
+				 QMessageBox::No) == QMessageBox::Yes)
+	  {
+	    QApplication::processEvents();
+	    slotPopulateMembersBrowser();
+	  }
 
       QApplication::processEvents();
     }
