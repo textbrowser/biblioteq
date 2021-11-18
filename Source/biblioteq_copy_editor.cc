@@ -2,6 +2,7 @@
 #include "biblioteq_copy_editor.h"
 
 #include <QScrollBar>
+#include <QTimer>
 
 biblioteq_copy_editor::biblioteq_copy_editor
 (QWidget *parent, biblioteq *biblioteq):QDialog(parent)
@@ -516,7 +517,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		  }
 		else if(j == BARCODE)
 		  m_cb.table->item(row, j)->setFlags
-		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+		    (Qt::ItemIsSelectable |
+		     Qt::ItemIsEnabled |
 		     Qt::ItemIsEditable);
 
 		if(j == AVAILABILITY)
@@ -550,11 +552,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     m_cb.table->resizeColumnToContents(i);
 
   if(m_speedy)
-    {
-      /*
-      ** Locate an available copy.
-      */
-    }
+    QTimer::singleShot(250, this, SLOT(slotCheckoutCopy(void)));
 }
 
 void biblioteq_copy_editor::setGlobalFonts(const QFont &font)
