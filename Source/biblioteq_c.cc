@@ -1254,6 +1254,14 @@ void biblioteq::readConfig(void)
     (settings.value("automatically_populate_on_create", false).toBool());
   ui.actionAutomatically_Resize_Column_Widths->setChecked
     (settings.value("automatically_resize_column_widths", false).toBool());
+
+  if(biblioteq_misc_functions::isGnome())
+    m_members_diag->setGeometry
+      (settings.value("members_window_geometry").toRect());
+  else
+    m_members_diag->restoreGeometry
+      (settings.value("members_window_geometry").toByteArray());
+
   ui.actionPopulateOnStart->setChecked
     (settings.value("populate_table_on_connect", false).toBool());
   ui.actionResetErrorLogOnDisconnect->setChecked
@@ -5056,6 +5064,17 @@ void biblioteq::slotSaveConfig(void)
   settings.setValue("last_category", getTypeFilterString());
   settings.setValue("locale", s_locale);
   settings.setValue("main_splitter_state", ui.splitter->saveState());
+
+  if(!isFullScreen())
+    {
+      if(biblioteq_misc_functions::isGnome())
+	settings.setValue
+	  ("members_window_geometry", m_members_diag->geometry());
+      else
+	settings.setValue
+	  ("members_window_geometry", m_members_diag->saveGeometry());
+    }
+
   settings.setValue("populate_table_on_connect",
 		    ui.actionPopulateOnStart->isChecked());
   settings.setValue("reset_error_log_on_disconnect",

@@ -1038,6 +1038,9 @@
    <property name="text">
     <string>Change Password</string>
    </property>
+   <property name="toolTip">
+    <string>Change Password (PostgreSQL)</string>
+   </property>
   </action>
   <action name="actionPreserveGeometry">
    <property name="checkable">
@@ -1065,6 +1068,9 @@
    </property>
    <property name="text">
     <string>Configure Administrator Privileges</string>
+   </property>
+   <property name="toolTip">
+    <string>Configure Administrator Privileges (PostgreSQL)</string>
    </property>
   </action>
   <action name="actionRequests">

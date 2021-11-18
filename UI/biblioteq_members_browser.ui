@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>652</height>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -451,7 +451,7 @@
       <item>
        <widget class="QToolButton" name="grantButton">
         <property name="toolTip">
-         <string>Grant Privileges</string>
+         <string>Grant Privileges (PostgreSQL)</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
