@@ -1423,7 +1423,8 @@ void biblioteq_videogame::slotPopulateCopiesEditor(void)
      vg.quantity,
      font(),
      "Video Game",
-     vg.id->text().trimmed());
+     vg.id->text().trimmed(),
+     false);
   copyeditor->populateCopiesEditor();
 }
 

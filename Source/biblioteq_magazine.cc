@@ -3098,7 +3098,8 @@ void biblioteq_magazine::slotPopulateCopiesEditor(void)
      ma.quantity,
      font(),
      m_subType,
-     ma.id->text().trimmed());
+     ma.id->text().trimmed(),
+     false);
   copyeditor->populateCopiesEditor();
 }
 

@@ -24,21 +24,22 @@ biblioteq_copy_editor::biblioteq_copy_editor
  QSpinBox *spinboxArg,
  const QFont &font,
  const QString &itemTypeArg,
- const QString &uniqueIdArg):QDialog(parent)
+ const QString &uniqueIdArg,
+ const bool speedy):QDialog(parent)
 {
-  m_parent = parent;
-  qmain = biblioteq;
-  setWindowModality(Qt::ApplicationModal);
   m_cb.setupUi(this);
+  m_bitem = bitemArg;
   m_cb.deleteButton->setVisible(false);
   m_cb.information->setVisible(showForLendingArg);
-  m_bitem = bitemArg;
+  m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ioid = ioidArg;
   m_itemType = itemTypeArg;
+  m_parent = parent;
   m_quantity = quantityArg;
   m_showForLending = showForLendingArg;
+  m_speedy = speedy;
   m_spinbox = spinboxArg;
-  m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  qmain = biblioteq;
 
   if(!uniqueIdArg.trimmed().isEmpty())
     setWindowTitle
@@ -47,6 +48,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
     setWindowTitle(tr("BiblioteQ: Copy Browser"));
 
   setGlobalFonts(font);
+  setWindowModality(Qt::ApplicationModal);
 }
 
 biblioteq_copy_editor::~biblioteq_copy_editor()
@@ -546,6 +548,13 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   for(int i = 0; i < m_cb.table->columnCount() - 1; i++)
     m_cb.table->resizeColumnToContents(i);
+
+  if(m_speedy)
+    {
+      /*
+      ** Locate an available copy.
+      */
+    }
 }
 
 void biblioteq_copy_editor::setGlobalFonts(const QFont &font)

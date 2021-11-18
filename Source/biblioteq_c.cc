@@ -2406,7 +2406,8 @@ void biblioteq::slotCheckout(void)
 					     nullptr,
 					     font(),
 					     type,
-					     itemid);
+					     itemid,
+					     bb.speedy->isChecked());
       copyeditor->populateCopiesEditor();
       copyeditor->exec();
       QApplication::processEvents();

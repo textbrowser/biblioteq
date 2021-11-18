@@ -1577,7 +1577,8 @@ void biblioteq_dvd::slotPopulateCopiesEditor(void)
      dvd.quantity,
      font(),
      "DVD",
-     dvd.id->text().trimmed());
+     dvd.id->text().trimmed(),
+     false);
   copyeditor->populateCopiesEditor();
 }
 

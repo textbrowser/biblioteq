@@ -22,7 +22,8 @@ class biblioteq_copy_editor: public QDialog
 			QSpinBox *spinboxArg,
 			const QFont &font,
 			const QString &itemTypeArg,
-			const QString &uniqueIdArg);
+			const QString &uniqueIdArg,
+			const bool speedy);
   virtual ~biblioteq_copy_editor();
   void populateCopiesEditor(void);
 
@@ -68,6 +69,7 @@ class biblioteq_copy_editor: public QDialog
   biblioteq *qmain;
   biblioteq_item *m_bitem;
   bool m_showForLending;
+  bool m_speedy;
   int m_quantity;
   QString saveCopies(void);
   void changeEvent(QEvent *event);

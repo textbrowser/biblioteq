@@ -1701,7 +1701,8 @@ void biblioteq_cd::slotPopulateCopiesEditor(void)
      cd.quantity,
      font(),
      "CD",
-     cd.id->text().trimmed());
+     cd.id->text().trimmed(),
+     false);
   copyeditor->populateCopiesEditor();
 }
 
