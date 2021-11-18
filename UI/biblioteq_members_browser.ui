@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>615</height>
+    <height>652</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -419,6 +419,28 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="speedy">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this checkbox is checked, reservations will occur without reservation dialogs. This feature enables speedier reservations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton:checked {background-color: lightgreen;}</string>
+        </property>
+        <property name="text">
+         <string>+</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="Line" name="line_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -569,6 +591,7 @@
   <tabstop>listButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>checkoutButton</tabstop>
+  <tabstop>speedy</tabstop>
   <tabstop>grantButton</tabstop>
   <tabstop>overdueButton</tabstop>
   <tabstop>reloadButton</tabstop>
