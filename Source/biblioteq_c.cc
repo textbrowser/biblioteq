@@ -3043,7 +3043,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
   ui.actionRequests->setEnabled(false);
-  ui.actionRequests->setToolTip(tr("Item Requests"));
+  ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
   ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
   ui.action_Database_Enumerations->setEnabled(false);
   ui.graphicsView->scene()->clear();

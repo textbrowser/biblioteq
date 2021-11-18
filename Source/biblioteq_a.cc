@@ -1209,7 +1209,7 @@ void biblioteq::adminSetup(void)
       ui.action_Database_Enumerations->setEnabled(true);
     }
 
-  ui.actionRequests->setToolTip(tr("Item Requests"));
+  ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
 
   /*
   ** Hide certain fields in the Members Browser.
