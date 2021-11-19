@@ -857,7 +857,7 @@
     <string>&amp;Refresh View</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string>F5</string>
    </property>
   </action>
   <action name="actionViewDetails">

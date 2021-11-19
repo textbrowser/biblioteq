@@ -504,7 +504,7 @@
          </size>
         </property>
         <property name="shortcut">
-         <string>Ctrl+R</string>
+         <string>F5</string>
         </property>
         <property name="autoRaise">
          <bool>true</bool>

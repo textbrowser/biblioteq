@@ -186,6 +186,9 @@
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
         </property>
+        <property name="shortcut">
+         <string>F5</string>
+        </property>
        </widget>
       </item>
       <item>

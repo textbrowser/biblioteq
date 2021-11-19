@@ -125,7 +125,7 @@
           <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
         </property>
         <property name="shortcut">
-         <string>Ctrl+R</string>
+         <string>F5</string>
         </property>
        </widget>
       </item>
