@@ -6109,22 +6109,27 @@ void biblioteq::slotShowHistory(void)
       static auto resized = false;
 
       if(!resized)
-	m_history_diag->resize(qRound(0.85 * m_members_diag->size().width()),
-			       qRound(0.85 * m_members_diag->size().height()));
+	{
+	  m_history_diag->resize
+	    (qRound(0.85 * m_members_diag->size().width()),
+	     qRound(0.85 * m_members_diag->size().height()));
+	  biblioteq_misc_functions::center(m_history_diag, m_members_diag);
+	}
 
       resized = true;
-      biblioteq_misc_functions::center(m_history_diag, m_members_diag);
     }
   else
     {
       static auto resized = false;
 
       if(!resized)
-	m_history_diag->resize(qRound(0.85 * size().width()),
-			       qRound(0.85 * size().height()));
+	{
+	  m_history_diag->resize(qRound(0.85 * size().width()),
+				 qRound(0.85 * size().height()));
+	  biblioteq_misc_functions::center(m_history_diag, this);
+	}
 
       resized = true;
-      biblioteq_misc_functions::center(m_history_diag, this);
     }
 
   m_history_diag->showNormal();
