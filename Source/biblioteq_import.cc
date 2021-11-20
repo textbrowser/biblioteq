@@ -579,7 +579,53 @@ void biblioteq_import::slotSelectCSVFile(void)
   QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
-    m_ui.csv_file->setText(dialog.selectedFiles().value(0));
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+      m_ui.csv_file->setText(dialog.selectedFiles().value(0));
+      m_ui.preview->clear();
+
+      QFile file(m_ui.csv_file->text());
+
+      if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+	  QTextStream in(&file);
+	  int row = 0;
+
+	  while(!in.atEnd() && row < 6)
+	    {
+	      auto data(in.readLine().trimmed());
+	      auto list
+		(data.split
+		 (QRegularExpression
+		  (QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
+		   arg(m_ui.delimiter->text()))));
+
+	      if(row == 0)
+		{
+		  m_ui.preview->setColumnCount(list.size());
+		  m_ui.preview->setHorizontalHeaderLabels(list);
+		}
+	      else
+		{
+		  m_ui.preview->setRowCount(row);
+
+		  for(int i = 0; i < list.size(); i++)
+		    {
+		      auto item = new QTableWidgetItem(list.at(i));
+
+		      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+		      m_ui.preview->setItem(row - 1, i, item);
+		    }
+		}
+
+	      m_ui.preview->resizeColumnsToContents();
+	      row += 1;
+	    }
+	}
+
+      file.close();
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq_import::slotTemplates(int index)
