@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>450</height>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -120,8 +120,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>614</width>
-            <height>342</height>
+            <width>620</width>
+            <height>540</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -148,6 +148,13 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>Books</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <widget class="QComboBox" name="books_templates">
                <property name="sizeAdjustPolicy">
@@ -279,6 +286,166 @@
              </item>
              <item>
               <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>Members</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="patrons_templates">
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Templates</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Template 1 (BiblioteQ Members Column Order)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QSplitter" name="splitter_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="childrenCollapsible">
+              <bool>false</bool>
+             </property>
+             <widget class="QTableWidget" name="patrons">
+              <property name="focusPolicy">
+               <enum>Qt::StrongFocus</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::DoubleClicked</set>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::ExtendedSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="cornerButtonEnabled">
+               <bool>false</bool>
+              </property>
+              <attribute name="horizontalHeaderMinimumSectionSize">
+               <number>275</number>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>275</number>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>CSV Column Number</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>BiblioteQ Members Table Field Name</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Substitute Value</string>
+               </property>
+              </column>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>&amp;Ignored CSV Row(s)</string>
+               </property>
+               <property name="buddy">
+                <cstring>books_ignored_rows</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="patrons_ignored_rows">
+               <property name="toolTip">
+                <string>Please separate with single spaces.</string>
+               </property>
+               <property name="placeholderText">
+                <string>Ignored Row(s)</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QPushButton" name="add_patron_row">
+               <property name="text">
+                <string>&amp;Add Row</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="delete_patron_row">
+               <property name="text">
+                <string>&amp;Delete Row(s)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -430,6 +597,11 @@
   <tabstop>books_ignored_rows</tabstop>
   <tabstop>add_book_row</tabstop>
   <tabstop>delete_book_row</tabstop>
+  <tabstop>patrons_templates</tabstop>
+  <tabstop>patrons</tabstop>
+  <tabstop>patrons_ignored_rows</tabstop>
+  <tabstop>add_patron_row</tabstop>
+  <tabstop>delete_patron_row</tabstop>
   <tabstop>save</tabstop>
   <tabstop>reset</tabstop>
   <tabstop>close</tabstop>

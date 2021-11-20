@@ -22,6 +22,11 @@ class biblioteq_import: public QMainWindow
      SUBSTITUTE_VALUE = 2
     };
 
+  enum PatronsColumns
+    {
+     BIBLIOTEQ_PATRONS_TABLE_FIELD_NAME = 1
+    };
+
   QMap<int, QPair<QString, QString> > m_booksMappings;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
