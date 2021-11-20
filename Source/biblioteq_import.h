@@ -15,16 +15,11 @@ class biblioteq_import: public QMainWindow
   void show(QMainWindow *parent);
 
  private:
-  enum BooksColumns
+  enum Columns
     {
-     BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME = 1,
+     BIBLIOTEQ_TABLE_FIELD_NAME = 1,
      CSV_COLUMN_NUMBER = 0,
      SUBSTITUTE_VALUE = 2
-    };
-
-  enum PatronsColumns
-    {
-     BIBLIOTEQ_PATRONS_TABLE_FIELD_NAME = 1
     };
 
   QMap<int, QPair<QString, QString> > m_booksMappings;
@@ -35,16 +30,20 @@ class biblioteq_import: public QMainWindow
 		   QStringList &errors,
 		   qint64 *imported,
 		   qint64 *notImported);
+  void importPatrons(QProgressDialog *progress,
+		     QStringList &errors,
+		     qint64 *imported,
+		     qint64 *notImported);
 
  private slots:
   void setGlobalFonts(const QFont &font);
-  void slotAddBookRow(void);
-  void slotBooksTemplates(int index);
+  void slotAddRow(void);
   void slotClose(void);
-  void slotDeleteBookRow(void);
+  void slotDeleteRow(void);
   void slotImport(void);
   void slotReset(void);
   void slotSelectCSVFile(void);
+  void slotTemplates(int index);
 };
 
 #endif

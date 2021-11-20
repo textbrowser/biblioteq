@@ -18,22 +18,18 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	    this,
 	    SLOT(setGlobalFonts(const QFont &)));
 
-  connect(m_ui.add_book_row,
+  connect(m_ui.add_row,
 	  SIGNAL(clicked(void)),
 	  this,
-	  SLOT(slotAddBookRow(void)));
-  connect(m_ui.books_templates,
-	  SIGNAL(currentIndexChanged(int)),
-	  this,
-	  SLOT(slotBooksTemplates(int)));
+	  SLOT(slotAddRow(void)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
-  connect(m_ui.delete_book_row,
+  connect(m_ui.delete_row,
 	  SIGNAL(clicked(void)),
 	  this,
-	  SLOT(slotDeleteBookRow(void)));
+	  SLOT(slotDeleteRow(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -46,6 +42,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectCSVFile(void)));
+  connect(m_ui.templates,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotTemplates(int)));
 }
 
 void biblioteq_import::changeEvent(QEvent *event)
@@ -128,7 +128,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     *notImported = 0;
 
   QTextStream in(&file);
-  auto list(m_ui.books_ignored_rows->text().trimmed().
+  auto list(m_ui.ignored_rows->text().trimmed().
 	    split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 		  Qt::SkipEmptyParts
@@ -270,6 +270,19 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   file.close();
 }
 
+void biblioteq_import::importPatrons(QProgressDialog *progress,
+				     QStringList &errors,
+				     qint64 *imported,
+				     qint64 *notImported)
+{
+  if(!progress)
+    return;
+
+  Q_UNUSED(errors);
+  Q_UNUSED(imported);
+  Q_UNUSED(notImported);
+}
+
 void biblioteq_import::setGlobalFonts(const QFont &font)
 {
   setFont(font);
@@ -280,7 +293,7 @@ void biblioteq_import::setGlobalFonts(const QFont &font)
       widget->update();
     }
 
-  m_ui.books->resizeRowsToContents();
+  m_ui.rows->resizeRowsToContents();
   update();
 }
 
@@ -299,46 +312,71 @@ void biblioteq_import::show(QMainWindow *parent)
   raise();
 }
 
-void biblioteq_import::slotAddBookRow(void)
+void biblioteq_import::slotAddRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_ui.books->setRowCount(m_ui.books->rowCount() + 1);
+  m_ui.rows->setRowCount(m_ui.rows->rowCount() + 1);
 
   auto item = new QTableWidgetItem();
 
-  item->setText(QString::number(m_ui.books->rowCount()));
-  m_ui.books->setItem
-    (m_ui.books->rowCount() - 1, BooksColumns::CSV_COLUMN_NUMBER, item);
+  item->setText(QString::number(m_ui.rows->rowCount()));
+  m_ui.rows->setItem
+    (m_ui.rows->rowCount() - 1, Columns::CSV_COLUMN_NUMBER, item);
 
-  auto widget = new QWidget();
   auto comboBox = new QComboBox();
+  auto widget = new QWidget();
 
-  comboBox->addItems(QStringList()
-		     << "<ignored>"
-		     << "accession_number"
-		     << "author"
-		     << "binding_type"
-		     << "callnumber"
-		     << "category"
-		     << "condition"
-		     << "description"
-		     << "deweynumber"
-		     << "edition"
-		     << "id"
-		     << "isbn13"
-		     << "keyword"
-		     << "language"
-		     << "lccontrolnumber"
-		     << "location"
-		     << "marc_tags"
-		     << "monetary_units"
-		     << "originality"
-		     << "pdate"
-		     << "place"
-		     << "price"
-		     << "publisher"
-		     << "quantity"
-		     << "title");
+  if(m_ui.templates->currentIndex() == 1) // Books
+    comboBox->addItems(QStringList()
+		       << "<ignored>"
+		       << "accession_number"
+		       << "author"
+		       << "binding_type"
+		       << "callnumber"
+		       << "category"
+		       << "condition"
+		       << "description"
+		       << "deweynumber"
+		       << "edition"
+		       << "id"
+		       << "isbn13"
+		       << "keyword"
+		       << "language"
+		       << "lccontrolnumber"
+		       << "location"
+		       << "marc_tags"
+		       << "monetary_units"
+		       << "originality"
+		       << "pdate"
+		       << "place"
+		       << "price"
+		       << "publisher"
+		       << "quantity"
+		       << "title"
+		       << "url");
+  else if(m_ui.templates->currentIndex() == 2) // Patrons
+    comboBox->addItems(QStringList()
+		       << "<ignored>"
+		       << "city"
+		       << "comments"
+		       << "dob"
+		       << "email"
+		       << "expiration_date"
+		       << "first_name"
+		       << "general_registration_number"
+		       << "last_name"
+		       << "maximum_reserved_books"
+		       << "memberclass"
+		       << "memberid"
+		       << "membersince"
+		       << "middle_init"
+		       << "overdue_fees"
+		       << "sex"
+		       << "state_abbr"
+		       << "street"
+		       << "telephone_num"
+		       << "zip");
+
   comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
   comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
@@ -349,101 +387,14 @@ void biblioteq_import::slotAddBookRow(void)
   layout->addWidget(comboBox);
   layout->addSpacerItem(spacer);
   layout->setContentsMargins(0, 0, 0, 0);
-  m_ui.books->setCellWidget
-    (m_ui.books->rowCount() - 1,
-     BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME,
-     widget);
+  m_ui.rows->setCellWidget
+    (m_ui.rows->rowCount() - 1, Columns::BIBLIOTEQ_TABLE_FIELD_NAME, widget);
   item = new QTableWidgetItem();
   item->setText("N/A");
-  m_ui.books->setItem
-    (m_ui.books->rowCount() - 1, BooksColumns::SUBSTITUTE_VALUE, item);
-  m_ui.books->resizeRowsToContents();
+  m_ui.rows->setItem
+    (m_ui.rows->rowCount() - 1, Columns::SUBSTITUTE_VALUE, item);
+  m_ui.rows->resizeRowsToContents();
   QApplication::restoreOverrideCursor();
-}
-
-void biblioteq_import::slotBooksTemplates(int index)
-{
-  switch(index)
-    {
-    case 0:
-      {
-	break;
-      }
-    case 1:
-      {
-	if(m_ui.books->rowCount() > 0)
-	  {
-	    if(QMessageBox::question(this,
-				     tr("BiblioteQ: Question"),
-				     tr("Populate the Books table with "
-					"Template 1 values?"),
-				     QMessageBox::Yes | QMessageBox::No,
-				     QMessageBox::No) == QMessageBox::No)
-	      {
-		QApplication::processEvents();
-		break;
-	      }
-	  }
-
-	m_ui.books->setRowCount(0);
-	m_ui.books_ignored_rows->setText("1");
-
-	QStringList list;
-
-	list << "title"
-	     << "author"
-	     << "publisher"
-	     << "pdate"
-	     << "place"
-	     << "edition"
-	     << "category"
-	     << "language"
-	     << "id"
-	     << "price"
-	     << "monetary_units"
-	     << "quantity"
-	     << "binding_type"
-	     << "location"
-	     << "isbn13"
-	     << "lccontrolnumber"
-	     << "callnumber"
-	     << "deweynumber"
-	     << "<ignored>" // Availability
-	     << "<ignored>" // Total Reserved
-	     << "originality"
-	     << "condition"
-	     << "accession_number";
-
-	for(int i = 0; i < list.size(); i++)
-	  {
-	    slotAddBookRow();
-
-	    auto widget = m_ui.books->cellWidget
-	      (i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
-
-	    if(widget)
-	      {
-		auto comboBox = widget->findChild<QComboBox *> ();
-
-		if(comboBox)
-		  {
-		    comboBox->setCurrentIndex(comboBox->findText(list.at(i)));
-
-		    if(comboBox->currentIndex() < 0)
-		      comboBox->setCurrentIndex(0);
-		  }
-	      }
-	  }
-
-	break;
-      }
-    default:
-      {
-	break;
-      }
-    }
-
-  m_ui.books_templates->setCurrentIndex(0);
 }
 
 void biblioteq_import::slotClose(void)
@@ -455,14 +406,14 @@ void biblioteq_import::slotClose(void)
 #endif
 }
 
-void biblioteq_import::slotDeleteBookRow(void)
+void biblioteq_import::slotDeleteRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  auto rows(biblioteq_misc_functions::selectedRows(m_ui.books));
+  auto rows(biblioteq_misc_functions::selectedRows(m_ui.rows));
 
   for(int i = rows.size() - 1; i >= 0; i--)
-    m_ui.books->removeRow(rows.at(i));
+    m_ui.rows->removeRow(rows.at(i));
 
   QApplication::restoreOverrideCursor();
 }
@@ -497,12 +448,12 @@ void biblioteq_import::slotImport(void)
 
   QMap<int, QPair<QString, QString> > map;
 
-  for(int i = 0; i < m_ui.books->rowCount(); i++)
+  for(int i = 0; i < m_ui.rows->rowCount(); i++)
     {
-      auto item1 = m_ui.books->item(i, BooksColumns::CSV_COLUMN_NUMBER);
-      auto item2 = m_ui.books->item(i, BooksColumns::SUBSTITUTE_VALUE);
-      auto widget = m_ui.books->cellWidget
-	(i, BooksColumns::BIBLIOTEQ_BOOKS_TABLE_FIELD_NAME);
+      auto item1 = m_ui.rows->item(i, Columns::CSV_COLUMN_NUMBER);
+      auto item2 = m_ui.rows->item(i, Columns::SUBSTITUTE_VALUE);
+      auto widget = m_ui.rows->cellWidget
+	(i, Columns::BIBLIOTEQ_TABLE_FIELD_NAME);
 
       if(!item1 || !item2 || !widget)
 	continue;
@@ -514,11 +465,11 @@ void biblioteq_import::slotImport(void)
 
       if(map.contains(item1->text().toInt()))
 	{
-	  m_ui.books->selectRow(i);
+	  m_ui.rows->selectRow(i);
 	  QMessageBox::critical
 	    (this,
 	     tr("BiblioteQ: Error"),
-	     tr("Duplicate mapping discovered in the Books table. Please "
+	     tr("Duplicate mapping discovered in the table. Please "
 		"review row %1.").arg(item1->row()));
 	  return;
 	}
@@ -595,7 +546,7 @@ void biblioteq_import::slotImport(void)
 
 void biblioteq_import::slotReset(void)
 {
-  if(m_ui.books->rowCount() > 0 ||
+  if(m_ui.rows->rowCount() > 0 ||
      !m_ui.csv_file->text().isEmpty() ||
      m_ui.delimiter->text() != ",")
     if(QMessageBox::question(this,
@@ -609,10 +560,10 @@ void biblioteq_import::slotReset(void)
       }
 
   m_booksMappings.clear();
-  m_ui.books->setRowCount(0);
-  m_ui.books_ignored_rows->clear();
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
+  m_ui.ignored_rows->clear();
+  m_ui.rows->setRowCount(0);
 }
 
 void biblioteq_import::slotSelectCSVFile(void)
@@ -629,4 +580,89 @@ void biblioteq_import::slotSelectCSVFile(void)
 
   if(dialog.result() == QDialog::Accepted)
     m_ui.csv_file->setText(dialog.selectedFiles().value(0));
+}
+
+void biblioteq_import::slotTemplates(int index)
+{
+  switch(index)
+    {
+    case 0:
+      {
+	break;
+      }
+    case 1:
+    case 2:
+      {
+	if(m_ui.rows->rowCount() > 0)
+	  {
+	    if(QMessageBox::question(this,
+				     tr("BiblioteQ: Question"),
+				     tr("Populate the table with "
+					"Template %1 values?").arg(index),
+				     QMessageBox::Yes | QMessageBox::No,
+				     QMessageBox::No) == QMessageBox::No)
+	      {
+		QApplication::processEvents();
+		break;
+	      }
+	  }
+
+	m_ui.ignored_rows->setText("1");
+	m_ui.rows->setRowCount(0);
+
+	QStringList list;
+
+	if(index == 1) // Books
+	  list << "title"
+	       << "author"
+	       << "publisher"
+	       << "pdate"
+	       << "place"
+	       << "edition"
+	       << "category"
+	       << "language"
+	       << "id"
+	       << "price"
+	       << "monetary_units"
+	       << "quantity"
+	       << "binding_type"
+	       << "location"
+	       << "isbn13"
+	       << "lccontrolnumber"
+	       << "callnumber"
+	       << "deweynumber"
+	       << "<ignored>" // Availability
+	       << "<ignored>" // Total Reserved
+	       << "originality"
+	       << "condition"
+	       << "accession_number";
+
+	for(int i = 0; i < list.size(); i++)
+	  {
+	    slotAddRow();
+
+	    auto widget = m_ui.rows->cellWidget
+	      (i, Columns::BIBLIOTEQ_TABLE_FIELD_NAME);
+
+	    if(widget)
+	      {
+		auto comboBox = widget->findChild<QComboBox *> ();
+
+		if(comboBox)
+		  {
+		    comboBox->setCurrentIndex(comboBox->findText(list.at(i)));
+
+		    if(comboBox->currentIndex() < 0)
+		      comboBox->setCurrentIndex(0);
+		  }
+	      }
+	  }
+
+	break;
+      }
+    default:
+      {
+	break;
+      }
+    }
 }
