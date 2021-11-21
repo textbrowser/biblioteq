@@ -574,7 +574,7 @@
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export Table View as CSV...</string>
+    <string>&amp;Export All Member Information as CSV...</string>
    </property>
   </action>
  </widget>
