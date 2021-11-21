@@ -1128,9 +1128,9 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 
       QFile file(dialog.selectedFiles().value(0));
 
-      if(file.open(QIODevice::WriteOnly |
+      if(file.open(QIODevice::Text |
 		   QIODevice::Truncate |
-		   QIODevice::Text))
+		   QIODevice::WriteOnly))
 	{
 	  QString str("");
 	  QTextStream stream(&file);
@@ -3560,7 +3560,118 @@ void biblioteq::slotDisplaySummary(void)
 
 void biblioteq::slotExportMembersAsCSV(void)
 {
-  exportAsCSV(bb.table, tr("BiblioteQ: Export Table View as CSV"));
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setDefaultSuffix("csv");
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setNameFilter(tr("CSV (*.csv)"));
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Export Patrons As CSV"));
+  dialog.exec();
+  QApplication::processEvents();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QFile file(dialog.selectedFiles().value(0));
+
+      if(file.open(QIODevice::Text |
+		   QIODevice::Truncate |
+		   QIODevice::WriteOnly))
+	{
+	  QString str("");
+	  QTextStream stream(&file);
+
+	  foreach(const auto &f, QStringList() << "City"
+		                               << "Comments"
+		                               << "DOB"
+		                               << "EMail"
+		                               << "Expiration Date"
+		                               << "First Name"
+		                               << "General Registration Number"
+		                               << "Last Name"
+		                               << "Maximum Reserved Books"
+		                               << "Member Class"
+		                               << "Member ID"
+		                               << "Member Since"
+		                               << "Middle Initial"
+		                               << "Overdue Fees"
+		                               << "Sex"
+		                               << "State"
+		                               << "Street"
+		                               << "Telephone Number"
+		                               << "ZIP")
+	    str += QString("%1,").arg(f);
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1);
+
+	  if(!str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+	    stream << str << Qt::endl;
+#else
+	    stream << str << endl;
+#endif
+
+	  QSqlQuery query(m_db);
+
+	  if(query.exec("SELECT city, "
+			"comments, "
+			"dob, "
+			"email, "
+			"expiration_date, "
+			"first_name, "
+			"general_registration_number, "
+			"last_name, "
+			"maximum_reserved_books, "
+			"memberclass, "
+			"memberid, "
+			"membersince, "
+			"middle_init, "
+			"overdue_fees, "
+			"sex, "
+			"state_abbr, "
+			"street, "
+			"telephone_num, "
+			"zip "
+			"FROM member"))
+	    while(query.next())
+	      {
+		str = "";
+
+		for(int i = 0; i < query.record().count(); i++)
+		  {
+		    auto cleaned(query.value(i).toString());
+
+		    cleaned.replace("\n", " ");
+		    cleaned.replace("\r\n", " ");
+		    cleaned = cleaned.trimmed();
+
+		    if(cleaned.contains(","))
+		      str += QString("\"%1\",").arg(cleaned);
+		    else
+		      str += QString("%1,").arg(cleaned);
+		  }
+
+		if(str.endsWith(","))
+		  str = str.mid(0, str.length() - 1);
+
+		if(!str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		  stream << str << Qt::endl;
+#else
+	          stream << str << endl;
+#endif
+	      }
+
+	  file.close();
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)

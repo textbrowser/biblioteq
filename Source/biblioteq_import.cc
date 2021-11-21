@@ -563,6 +563,7 @@ void biblioteq_import::slotReset(void)
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
+  m_ui.preview->clear();
   m_ui.rows->setRowCount(0);
 }
 
