@@ -564,6 +564,8 @@ void biblioteq_import::slotReset(void)
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
   m_ui.preview->clear();
+  m_ui.preview->setColumnCount(0);
+  m_ui.preview->setRowCount(0);
   m_ui.rows->setRowCount(0);
 }
 
@@ -584,6 +586,8 @@ void biblioteq_import::slotSelectCSVFile(void)
       QApplication::setOverrideCursor(Qt::WaitCursor);
       m_ui.csv_file->setText(dialog.selectedFiles().value(0));
       m_ui.preview->clear();
+      m_ui.preview->setColumnCount(0);
+      m_ui.preview->setRowCount(0);
 
       QFile file(m_ui.csv_file->text());
 
