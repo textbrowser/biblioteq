@@ -22,7 +22,7 @@ class biblioteq_import: public QMainWindow
      SUBSTITUTE_VALUE = 2
     };
 
-  QMap<int, QPair<QString, QString> > m_booksMappings;
+  QMap<int, QPair<QString, QString> > m_mappings;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);

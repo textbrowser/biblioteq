@@ -80,7 +80,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     return;
 
-  QMapIterator<int, QPair<QString, QString> > it(m_booksMappings);
+  QMapIterator<int, QPair<QString, QString> > it(m_mappings);
   QString f("");
   QString q("");
   QString queryString("");
@@ -187,21 +187,21 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 	      for(int i = 1; i <= list.size(); i++)
 		{
-		  if(!m_booksMappings.contains(i))
+		  if(!m_mappings.contains(i))
 		    continue;
-		  else if(m_booksMappings.value(i).first.contains("<ignored>"))
+		  else if(m_mappings.value(i).first.contains("<ignored>"))
 		    continue;
 
 		  auto str(QString(list.at(i - 1)).remove('"').trimmed());
 
-		  if(m_booksMappings.value(i).first == "id")
+		  if(m_mappings.value(i).first == "id")
 		    id = str;
-		  else if(m_booksMappings.value(i).first == "isbn13")
+		  else if(m_mappings.value(i).first == "isbn13")
 		    {
 		      if(!id.isEmpty() && str.isEmpty())
 			str = biblioteq_misc_functions::isbn10to13(id);
 		    }
-		  else if(m_booksMappings.value(i).first == "quantity")
+		  else if(m_mappings.value(i).first == "quantity")
 		    quantity = str.toInt();
 
 		  if(str.isEmpty())
@@ -210,7 +210,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    ** refer to a substitution.
 		    */
 
-		    str = m_booksMappings.value(i).second;
+		    str = m_mappings.value(i).second;
 
 		  if(str.isEmpty())
 		    query.addBindValue(QVariant(QVariant::String));
@@ -497,7 +497,7 @@ void biblioteq_import::slotImport(void)
   progress->show();
   progress->repaint();
   QApplication::processEvents();
-  m_booksMappings = map;
+  m_mappings = map;
 
   QStringList errors;
   qint64 imported = 0;
@@ -559,7 +559,7 @@ void biblioteq_import::slotReset(void)
 	return;
       }
 
-  m_booksMappings.clear();
+  m_mappings.clear();
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
