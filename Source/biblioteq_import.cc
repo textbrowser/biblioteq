@@ -683,6 +683,26 @@ void biblioteq_import::slotTemplates(int index)
 	       << "originality"
 	       << "condition"
 	       << "accession_number";
+	else if(index == 2) // Patrons
+	  list << "city"
+	       << "comments"
+	       << "dob"
+	       << "email"
+	       << "expiration_date"
+	       << "first_name"
+	       << "general_registration_number"
+	       << "last_name"
+	       << "maximum_reserved_books"
+	       << "memberclass"
+	       << "memberid"
+	       << "membersince"
+	       << "middle_init"
+	       << "overdue_fees"
+	       << "sex"
+	       << "state_abbr"
+	       << "street"
+	       << "telephone_num"
+	       << "zip";
 
 	for(int i = 0; i < list.size(); i++)
 	  {
