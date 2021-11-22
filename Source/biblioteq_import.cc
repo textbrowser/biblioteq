@@ -500,10 +500,15 @@ void biblioteq_import::slotImport(void)
   m_mappings = map;
 
   QStringList errors;
+  auto index = m_ui.templates->currentIndex();
   qint64 imported = 0;
   qint64 notImported = 0;
 
-  importBooks(progress.data(), errors, &imported, &notImported);
+  if(index == 1)
+    importBooks(progress.data(), errors, &imported, &notImported);
+  else if(index == 2)
+    importPatrons(progress.data(), errors, &imported, &notImported);
+
   progress->close();
   QApplication::processEvents();
 
@@ -567,6 +572,7 @@ void biblioteq_import::slotReset(void)
   m_ui.preview->setColumnCount(0);
   m_ui.preview->setRowCount(0);
   m_ui.rows->setRowCount(0);
+  m_ui.templates->setCurrentIndex(0);
 }
 
 void biblioteq_import::slotSelectCSVFile(void)
