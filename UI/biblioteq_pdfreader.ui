@@ -155,6 +155,12 @@
        <property name="tabKeyNavigation">
         <bool>true</bool>
        </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="horizontalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
       </widget>
       <widget class="QScrollArea" name="scrollArea">
        <property name="frameShape">
@@ -171,8 +177,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>68</width>
-          <height>190</height>
+          <width>83</width>
+          <height>188</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -224,7 +230,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">

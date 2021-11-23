@@ -48,6 +48,12 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -132,6 +138,12 @@
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
              </widget>
             </item>
@@ -218,6 +230,12 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -302,6 +320,12 @@
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
              </widget>
             </item>
@@ -393,6 +417,12 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -477,6 +507,12 @@
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
              </widget>
             </item>
@@ -563,6 +599,12 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -644,6 +686,9 @@
              <widget class="QTableWidget" name="locationsTable">
               <property name="alternatingRowColors">
                <bool>true</bool>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
@@ -757,6 +802,12 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -838,6 +889,9 @@
              <widget class="QTableWidget" name="minimumDaysTable">
               <property name="alternatingRowColors">
                <bool>true</bool>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
@@ -1060,6 +1114,12 @@
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
              </widget>
             </item>
             <item>
@@ -1144,6 +1204,12 @@
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
              </widget>
             </item>

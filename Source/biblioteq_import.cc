@@ -462,7 +462,16 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
 void biblioteq_import::loadPreview(void)
 {
-  QApplication::setOverrideCursor(Qt::WaitCursor);
+  QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
+
+  progress->setLabelText(tr("Reading the CSV file..."));
+  progress->setMaximum(0);
+  progress->setMinimum(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->show();
+  progress->repaint();
+  QApplication::processEvents();
   m_ui.preview->clear();
   m_ui.preview->setColumnCount(0);
   m_ui.preview->setRowCount(0);
@@ -474,8 +483,11 @@ void biblioteq_import::loadPreview(void)
       QTextStream in(&file);
       int row = 0;
 
-      while(!in.atEnd())
+      while(!in.atEnd() && !progress->wasCanceled())
 	{
+	  progress->repaint();
+	  QApplication::processEvents();
+
 	  auto data(in.readLine().trimmed());
 	  auto list
 	    (data.split
@@ -487,6 +499,7 @@ void biblioteq_import::loadPreview(void)
 	    {
 	      m_ui.preview->setColumnCount(list.size());
 	      m_ui.preview->setHorizontalHeaderLabels(list);
+	      m_ui.preview->resizeColumnsToContents();
 	    }
 	  else
 	    {
@@ -501,13 +514,13 @@ void biblioteq_import::loadPreview(void)
 		}
 	    }
 
-	  m_ui.preview->resizeColumnsToContents();
 	  row += 1;
 	}
     }
 
   file.close();
-  QApplication::restoreOverrideCursor();
+  progress->close();
+  QApplication::processEvents();
 }
 
 void biblioteq_import::setGlobalFonts(const QFont &font)

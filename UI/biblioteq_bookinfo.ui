@@ -34,9 +34,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-525</y>
-         <width>1068</width>
-         <height>1060</height>
+         <y>-660</y>
+         <width>1067</width>
+         <height>1183</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1066,6 +1066,9 @@
                        </property>
                        <property name="selectionBehavior">
                         <enum>QAbstractItemView::SelectRows</enum>
+                       </property>
+                       <property name="verticalScrollMode">
+                        <enum>QAbstractItemView::ScrollPerPixel</enum>
                        </property>
                        <property name="horizontalScrollMode">
                         <enum>QAbstractItemView::ScrollPerPixel</enum>
