@@ -3560,7 +3560,7 @@ void biblioteq::slotDisplaySummary(void)
 
 void biblioteq::slotExportMembersAsCSV(void)
 {
-  QFileDialog dialog(this);
+  QFileDialog dialog(m_members_diag);
 
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setDefaultSuffix("csv");
@@ -3585,25 +3585,26 @@ void biblioteq::slotExportMembersAsCSV(void)
 	  QString str("");
 	  QTextStream stream(&file);
 
-	  foreach(const auto &f, QStringList() << "City"
-		                               << "Comments"
-		                               << "DOB"
-		                               << "EMail"
-		                               << "Expiration Date"
-		                               << "First Name"
-		                               << "General Registration Number"
-		                               << "Last Name"
-		                               << "Maximum Reserved Books"
-		                               << "Member Class"
-		                               << "Member ID"
-		                               << "Member Since"
-		                               << "Middle Initial"
-		                               << "Overdue Fees"
-		                               << "Sex"
-		                               << "State"
-		                               << "Street"
-		                               << "Telephone Number"
-		                               << "ZIP")
+	  foreach(const auto &f, QStringList()
+		  << tr("City")
+		  << tr("Comments")
+		  << tr("Date of Birth")
+		  << tr("EMail")
+		  << tr("Expiration Date")
+		  << tr("First Name")
+		  << tr("General Registration Number")
+		  << tr("Last Name")
+		  << tr("Maximum Reserved Books")
+		  << tr("Member Class")
+		  << tr("Member ID")
+		  << tr("Member Since")
+		  << tr("Middle Initial")
+		  << tr("Overdue Fees")
+		  << tr("Sex")
+		  << tr("State")
+		  << tr("Street")
+		  << tr("Telephone Number")
+		  << tr("ZIP"))
 	    str += QString("%1,").arg(f);
 
 	  if(str.endsWith(","))
