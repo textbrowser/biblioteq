@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>666</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -326,6 +326,13 @@
        </widget>
       </item>
       <item>
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="historyButton">
         <property name="toolTip">
          <string>Show Selected Member's Reservation History</string>
@@ -379,6 +386,26 @@
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/print.png</normaloff>:/32x32/print.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="overdueButton">
+        <property name="toolTip">
+         <string>List All Overdue Items</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/32x32/date.png</normaloff>:/32x32/date.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -469,22 +496,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="overdueButton">
-        <property name="toolTip">
-         <string>List All Overdue Items</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../Icons/icons.qrc">
-          <normaloff>:/32x32/date.png</normaloff>:/32x32/date.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
+       <widget class="Line" name="line_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -591,10 +605,10 @@
   <tabstop>historyButton</tabstop>
   <tabstop>listButton</tabstop>
   <tabstop>printButton</tabstop>
+  <tabstop>overdueButton</tabstop>
   <tabstop>checkoutButton</tabstop>
   <tabstop>speedy</tabstop>
   <tabstop>grantButton</tabstop>
-  <tabstop>overdueButton</tabstop>
   <tabstop>reloadButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
