@@ -422,7 +422,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 		  else
 		    {
 		      if(imported)
-			imported += 1;
+			*imported += 1;
 
 		      ok = true;
 		    }
@@ -593,6 +593,9 @@ void biblioteq_import::slotDeleteRow(void)
 
 void biblioteq_import::slotImport(void)
 {
+  if(m_ui.templates->currentIndex() == 0)
+    return;
+
   /*
   ** Test if the specified file is readable.
   */
