@@ -3017,7 +3017,8 @@ void biblioteq::slotGrantPrivileges(void)
 	{
 	  biblioteq_misc_functions::DBAccount
 	    (item->text(),
-	     m_db, biblioteq_misc_functions::UPDATE_USER,
+	     m_db,
+	     biblioteq_misc_functions::UPDATE_USER,
 	     errorstr);
 
 	  if(!errorstr.isEmpty())

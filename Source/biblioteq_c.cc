@@ -4603,8 +4603,7 @@ void biblioteq::slotRemoveMember(void)
       query.exec();
       QApplication::restoreOverrideCursor();
       biblioteq_misc_functions::DBAccount
-	(memberid, m_db, biblioteq_misc_functions::DELETE_USER,
-	 errorstr);
+	(memberid, m_db, biblioteq_misc_functions::DELETE_USER, errorstr);
 
       if(!errorstr.isEmpty())
 	{
@@ -4937,8 +4936,10 @@ void biblioteq::slotSaveAdministrators(void)
 	}
 
       biblioteq_misc_functions::DBAccount
-	(m_deletedAdmins[i].toLower(), m_db,
-	 biblioteq_misc_functions::DELETE_USER, errorstr);
+	(m_deletedAdmins[i].toLower(),
+	 m_db,
+	 biblioteq_misc_functions::DELETE_USER,
+	 errorstr);
 
       if(!errorstr.isEmpty())
 	{
@@ -5052,9 +5053,11 @@ void biblioteq::slotSaveAdministrators(void)
       if(!uexists)
 	{
 	  biblioteq_misc_functions::DBAccount
-	    (adminStr, m_db,
+	    (adminStr,
+	     m_db,
 	     biblioteq_misc_functions::CREATE_USER,
-	     errorstr, str);
+	     errorstr,
+	     str);
 
 	  if(!errorstr.isEmpty())
 	    {
@@ -5544,7 +5547,8 @@ void biblioteq::slotSaveUser(void)
 
 	  biblioteq_misc_functions::DBAccount
 	    (userinfo_diag->m_userinfo.memberid->text(),
-	     m_db, biblioteq_misc_functions::CREATE_USER,
+	     m_db,
+	     biblioteq_misc_functions::CREATE_USER,
 	     errorstr);
 
 	  if(!errorstr.isEmpty())
@@ -5600,7 +5604,8 @@ void biblioteq::slotSaveUser(void)
 
 	  biblioteq_misc_functions::DBAccount
 	    (userinfo_diag->m_userinfo.memberid->text(),
-	     m_db, biblioteq_misc_functions::UPDATE_USER,
+	     m_db,
+	     biblioteq_misc_functions::UPDATE_USER,
 	     errorstr);
 
 	  if(errorstr.trimmed().contains("not exist"))
@@ -5610,7 +5615,8 @@ void biblioteq::slotSaveUser(void)
 
 	    biblioteq_misc_functions::DBAccount
 	      (userinfo_diag->m_userinfo.memberid->text(),
-	       m_db, biblioteq_misc_functions::CREATE_USER,
+	       m_db,
+	       biblioteq_misc_functions::CREATE_USER,
 	       errorstr);
 
 	  if(!errorstr.isEmpty())

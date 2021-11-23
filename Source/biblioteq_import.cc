@@ -11,13 +11,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
   m_qmain = parent;
   m_ui.setupUi(this);
-
-  if(m_qmain)
-    connect(m_qmain,
-	    SIGNAL(fontChanged(const QFont &)),
-	    this,
-	    SLOT(setGlobalFonts(const QFont &)));
-
+  connect(m_qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
   connect(m_ui.add_row,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -102,7 +99,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	}
     }
 
-  queryString.append("INSERT INTO book(");
+  queryString.append("INSERT INTO book (");
   queryString.append("description,");
 
   if(m_qmain->getDB().driverName() != "QPSQL")
@@ -128,14 +125,13 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     *notImported = 0;
 
   QTextStream in(&file);
-  auto list(m_ui.ignored_rows->text().trimmed().
-	    split(' ',
+  auto list(m_ui.ignored_rows->text().trimmed().split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-		  Qt::SkipEmptyParts
+						      Qt::SkipEmptyParts
 #else
-		  QString::SkipEmptyParts
+						      QString::SkipEmptyParts
 #endif
-		  ));
+						      ));
   qint64 ct = 0;
 
   while(ct++, !in.atEnd())
@@ -278,9 +274,154 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
   if(!progress)
     return;
 
-  Q_UNUSED(errors);
-  Q_UNUSED(imported);
-  Q_UNUSED(notImported);
+  QFile file(m_ui.csv_file->text());
+
+  if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    return;
+
+  if(!m_qmain->getDB().transaction())
+    {
+      errors << tr("Unable to create a database transaction.");
+      return;
+    }
+
+  QMapIterator<int, QPair<QString, QString> > it(m_mappings);
+  QString f("");
+  QString q("");
+  QString queryString("");
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(!it.value().first.contains("<ignored>"))
+	{
+	  f.append(it.value().first);
+	  q.append("?");
+
+	  if(it.hasNext())
+	    {
+	      f.append(",");
+	      q.append(",");
+	    }
+	}
+    }
+
+  queryString.append("INSERT INTO member (");
+  queryString.append(f);
+  queryString.append(") VALUES (");
+  queryString.append(q);
+  queryString.append(")");
+
+  if(imported)
+    *imported = 0;
+
+  if(notImported)
+    *notImported = 0;
+
+  QTextStream in(&file);
+  auto list(m_ui.ignored_rows->text().trimmed().split(' ',
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+						      Qt::SkipEmptyParts
+#else
+						      QString::SkipEmptyParts
+#endif
+						      ));
+  qint64 ct = 0;
+
+  while(ct++, !in.atEnd())
+    {
+      if(progress->wasCanceled())
+	break;
+      else
+	{
+	  progress->repaint();
+	  QApplication::processEvents();
+	}
+
+      auto data(in.readLine().trimmed());
+
+      if(list.contains(QString::number(ct)))
+	continue;
+
+      if(!data.isEmpty())
+	{
+	  /*
+	  ** Separate by the delimiter.
+	  */
+
+	  auto list
+	    (data.split
+	     (QRegularExpression(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
+				 arg(m_ui.delimiter->text()))));
+
+	  if(!list.isEmpty())
+	    {
+	      QSqlQuery query(m_qmain->getDB());
+	      QString memberid("");
+
+	      query.prepare(queryString);
+
+	      for(int i = 1; i <= list.size(); i++)
+		{
+		  if(!m_mappings.contains(i))
+		    continue;
+		  else if(m_mappings.value(i).first.contains("<ignored>"))
+		    continue;
+
+		  auto str(QString(list.at(i - 1)).remove('"').trimmed());
+
+		  if(m_mappings.value(i).first == "memberid")
+		    memberid = str;
+
+		  if(str.isEmpty())
+		    /*
+		    ** If the value in the CSV file is empty,
+		    ** refer to a substitution.
+		    */
+
+		    str = m_mappings.value(i).second;
+
+		  if(str.isEmpty())
+		    query.addBindValue(QVariant(QVariant::String));
+		  else
+		    query.addBindValue(str);
+		}
+
+	      if(query.exec())
+		{
+		  QString error("");
+
+		  biblioteq_misc_functions::DBAccount
+		    (memberid,
+		     m_qmain->getDB(),
+		     biblioteq_misc_functions::CREATE_USER,
+		     error);
+
+		  if(imported)
+		    *imported += 1;
+		}
+	      else
+		{
+		  errors << tr("Database error (%1) on row %2.").
+		    arg(query.lastError().text()).arg(ct);
+
+		  if(notImported)
+		    *notImported += 1;
+		}
+	    }
+	  else if(notImported)
+	    {
+	      errors << tr("Empty row %1.").arg(ct);
+	      *notImported += 1;
+	    }
+	}
+    }
+
+  file.close();
+
+  if(!m_qmain->getDB().commit())
+    errors << tr("Unable to commit the current database transaction.");
 }
 
 void biblioteq_import::setGlobalFonts(const QFont &font)
