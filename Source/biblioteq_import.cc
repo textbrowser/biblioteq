@@ -27,6 +27,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteRow(void)));
+  connect(m_ui.refresh_preview,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRefreshPreview(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -456,6 +460,56 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
   file.close();
 }
 
+void biblioteq_import::loadPreview(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.preview->clear();
+  m_ui.preview->setColumnCount(0);
+  m_ui.preview->setRowCount(0);
+
+  QFile file(m_ui.csv_file->text());
+
+  if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+      QTextStream in(&file);
+      int row = 0;
+
+      while(!in.atEnd())
+	{
+	  auto data(in.readLine().trimmed());
+	  auto list
+	    (data.split
+	     (QRegularExpression
+	      (QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
+	       arg(m_ui.delimiter->text()))));
+
+	  if(row == 0)
+	    {
+	      m_ui.preview->setColumnCount(list.size());
+	      m_ui.preview->setHorizontalHeaderLabels(list);
+	    }
+	  else
+	    {
+	      m_ui.preview->setRowCount(row);
+
+	      for(int i = 0; i < list.size(); i++)
+		{
+		  auto item = new QTableWidgetItem(list.at(i));
+
+		  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+		  m_ui.preview->setItem(row - 1, i, item);
+		}
+	    }
+
+	  m_ui.preview->resizeColumnsToContents();
+	  row += 1;
+	}
+    }
+
+  file.close();
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_import::setGlobalFonts(const QFont &font)
 {
   setFont(font);
@@ -725,6 +779,11 @@ void biblioteq_import::slotImport(void)
   QApplication::processEvents();
 }
 
+void biblioteq_import::slotRefreshPreview(void)
+{
+  loadPreview();
+}
+
 void biblioteq_import::slotReset(void)
 {
   if(m_ui.rows->rowCount() > 0 ||
@@ -765,53 +824,8 @@ void biblioteq_import::slotSelectCSVFile(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
       m_ui.csv_file->setText(dialog.selectedFiles().value(0));
-      m_ui.preview->clear();
-      m_ui.preview->setColumnCount(0);
-      m_ui.preview->setRowCount(0);
-
-      QFile file(m_ui.csv_file->text());
-
-      if(file.open(QIODevice::ReadOnly | QIODevice::Text))
-	{
-	  QTextStream in(&file);
-	  int row = 0;
-
-	  while(!in.atEnd() && row < 6)
-	    {
-	      auto data(in.readLine().trimmed());
-	      auto list
-		(data.split
-		 (QRegularExpression
-		  (QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
-		   arg(m_ui.delimiter->text()))));
-
-	      if(row == 0)
-		{
-		  m_ui.preview->setColumnCount(list.size());
-		  m_ui.preview->setHorizontalHeaderLabels(list);
-		}
-	      else
-		{
-		  m_ui.preview->setRowCount(row);
-
-		  for(int i = 0; i < list.size(); i++)
-		    {
-		      auto item = new QTableWidgetItem(list.at(i));
-
-		      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-		      m_ui.preview->setItem(row - 1, i, item);
-		    }
-		}
-
-	      m_ui.preview->resizeColumnsToContents();
-	      row += 1;
-	    }
-	}
-
-      file.close();
-      QApplication::restoreOverrideCursor();
+      loadPreview();
     }
 }
 

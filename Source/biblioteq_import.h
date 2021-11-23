@@ -34,6 +34,7 @@ class biblioteq_import: public QMainWindow
 		     QStringList &errors,
 		     qint64 *imported,
 		     qint64 *notImported);
+  void loadPreview(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);
@@ -41,6 +42,7 @@ class biblioteq_import: public QMainWindow
   void slotClose(void);
   void slotDeleteRow(void);
   void slotImport(void);
+  void slotRefreshPreview(void);
   void slotReset(void);
   void slotSelectCSVFile(void);
   void slotTemplates(int index);
