@@ -240,7 +240,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		    errors << tr("biblioteq_misc_functions::"
 				 "createInitialCopies() "
-				 "error (%1) on row %2.").
+				 "error (%1) at row %2.").
 		      arg(errorstr).arg(ct);
 
 		  if(imported)
@@ -248,7 +248,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		}
 	      else
 		{
-		  errors << tr("Database error (%1) on row %2.").
+		  errors << tr("Database error (%1) at row %2.").
 		    arg(query.lastError().text()).arg(ct);
 
 		  if(notImported)
@@ -278,12 +278,6 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
   if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     return;
-
-  if(!m_qmain->getDB().transaction())
-    {
-      errors << tr("Unable to create a database transaction.");
-      return;
-    }
 
   QMapIterator<int, QPair<QString, QString> > it(m_mappings);
   QString f("");
@@ -357,6 +351,13 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
 	  if(!list.isEmpty())
 	    {
+	      if(!m_qmain->getDB().transaction())
+		{
+		  errors << tr("Unable to create a database transaction at "
+			       "row %1").arg(ct);
+		  continue;
+		}
+
 	      QSqlQuery query(m_qmain->getDB());
 	      QString memberid("");
 
@@ -388,27 +389,61 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 		    query.addBindValue(str);
 		}
 
+	      auto ok = false;
+
 	      if(query.exec())
 		{
-		  QString error("");
+		  if(m_qmain->getDB().driverName() == "QPSQL")
+		    {
+		      QString error("");
 
-		  biblioteq_misc_functions::DBAccount
-		    (memberid,
-		     m_qmain->getDB(),
-		     biblioteq_misc_functions::CREATE_USER,
-		     error);
+		      biblioteq_misc_functions::DBAccount
+			(memberid,
+			 m_qmain->getDB(),
+			 biblioteq_misc_functions::CREATE_USER,
+			 error);
 
-		  if(imported)
-		    *imported += 1;
+		      if(!error.isEmpty())
+			errors << tr("Error (%1) in "
+				     "biblioteq_misc_functions::DBAccount() "
+				     "at row %2.").
+			  arg(error).arg(ct);
+
+		      if(error.isEmpty())
+			{
+			  if(imported)
+			    *imported += 1;
+
+			  ok = true;
+			}
+		      else if(notImported)
+			*notImported += 1;
+		    }
+		  else
+		    {
+		      if(imported)
+			imported += 1;
+
+		      ok = true;
+		    }
 		}
 	      else
 		{
-		  errors << tr("Database error (%1) on row %2.").
+		  errors << tr("Database error (%1) at row %2.").
 		    arg(query.lastError().text()).arg(ct);
 
 		  if(notImported)
 		    *notImported += 1;
 		}
+
+	      if(ok)
+		{
+		  if(!m_qmain->getDB().commit())
+		    errors << tr("Unable to commit the current database "
+				 "transaction at row.").arg(ct);
+		}
+	      else
+		m_qmain->getDB().rollback();
 	    }
 	  else if(notImported)
 	    {
@@ -419,9 +454,6 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
     }
 
   file.close();
-
-  if(!m_qmain->getDB().commit())
-    errors << tr("Unable to commit the current database transaction.");
 }
 
 void biblioteq_import::setGlobalFonts(const QFont &font)
