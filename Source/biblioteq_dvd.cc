@@ -1044,7 +1044,11 @@ void biblioteq_dvd::slotGo(void)
       else
 	{
 	  dvd.front_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(19, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(19, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       if(!dvd.back_image->m_image.isNull())
@@ -1059,12 +1063,20 @@ void biblioteq_dvd::slotGo(void)
 	      query.bindValue(20, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(20, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(20, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  dvd.back_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(20, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(20, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       query.bindValue(21, dvd.keyword->toPlainText().trimmed());
