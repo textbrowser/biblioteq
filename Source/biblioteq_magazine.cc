@@ -2385,7 +2385,11 @@ void biblioteq_magazine::slotGo(void)
       if(ma.issnAvailableCheckBox->isChecked() && !ma.id->text().isEmpty())
 	query.bindValue(0, ma.id->text());
       else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(0, QVariant(QMetaType(QMetaType::QString)));
+#else
 	query.bindValue(0, QVariant::String);
+#endif
 
       query.bindValue(1, ma.title->text());
       query.bindValue(2, ma.publication_date->date().toString("MM/dd/yyyy"));
@@ -2403,17 +2407,29 @@ void biblioteq_magazine::slotGo(void)
       if(!ma.lcnum->text().isEmpty())
 	query.bindValue(13, ma.lcnum->text());
       else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(13, QVariant(QMetaType(QMetaType::QString)));
+#else
 	query.bindValue(13, QVariant(QVariant::String));
+#endif
 
       if(!ma.callnum->text().isEmpty())
 	query.bindValue(14, ma.callnum->text());
       else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(14, QVariant(QMetaType(QMetaType::QString)));
+#else
 	query.bindValue(14, QVariant(QVariant::String));
+#endif
 
       if(!ma.deweynum->text().isEmpty())
 	query.bindValue(15, ma.deweynum->text());
       else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(15, QVariant(QMetaType(QMetaType::QString)));
+#else
 	query.bindValue(15, QVariant(QVariant::String));
+#endif
 
       if(!ma.front_image->m_image.isNull())
 	{
@@ -2427,12 +2443,20 @@ void biblioteq_magazine::slotGo(void)
 	      query.bindValue(16, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(16, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(16, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  ma.front_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(16, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(16, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       if(!ma.back_image->m_image.isNull())
@@ -2447,12 +2471,20 @@ void biblioteq_magazine::slotGo(void)
 	      query.bindValue(17, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(17, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(17, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  ma.back_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(17, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(17, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       query.bindValue(18, ma.place->toPlainText().trimmed());

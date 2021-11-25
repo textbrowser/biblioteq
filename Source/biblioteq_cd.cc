@@ -1068,12 +1068,20 @@ void biblioteq_cd::slotGo(void)
 	      query.bindValue(17, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(17, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(17, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  cd.front_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(17, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(17, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       if(!cd.back_image->m_image.isNull())
@@ -1088,12 +1096,20 @@ void biblioteq_cd::slotGo(void)
 	      query.bindValue(18, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(18, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(18, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  cd.back_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(18, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(18, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       query.bindValue(19, cd.keyword->toPlainText().trimmed());
