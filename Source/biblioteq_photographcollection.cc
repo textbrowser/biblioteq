@@ -1290,7 +1290,11 @@ void biblioteq_photographcollection::slotGo(void)
 	      query.bindValue(5, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(5, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(5, QVariant(QVariant::ByteArray));
+#endif
 
 	  buffer.close();
 	  bytes.clear();
@@ -1308,13 +1312,22 @@ void biblioteq_photographcollection::slotGo(void)
 	      query.bindValue(6, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(6, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(6, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  pc.thumbnail_collection->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(5, QVariant(QMetaType(QMetaType::QByteArray)));
+	  query.bindValue(6, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(5, QVariant(QVariant::ByteArray));
 	  query.bindValue(6, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       query.bindValue(7, pc.accession_number->text().trimmed());
@@ -1922,7 +1935,11 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	  query.bindValue(14, bytes.toBase64());
 	}
       else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(14, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	query.bindValue(14, QVariant(QVariant::ByteArray));
+#endif
 
       buffer.close();
       bytes.clear();
@@ -1939,13 +1956,22 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	  query.bindValue(15, bytes.toBase64());
 	}
       else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(15, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	query.bindValue(15, QVariant(QVariant::ByteArray));
+#endif
     }
   else
     {
       photo.thumbnail_item->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+      query.bindValue(14, QVariant(QMetaType(QMetaType::QByteArray)));
+      query.bindValue(15, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
       query.bindValue(14, QVariant(QVariant::ByteArray));
       query.bindValue(15, QVariant(QVariant::ByteArray));
+#endif
     }
 
   query.bindValue(16, photo.accession_number_item->text().trimmed());
@@ -2577,7 +2603,11 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 	  query.bindValue(13, bytes.toBase64());
 	}
       else
-	query.bindValue(13, QVariant(QVariant::ByteArray));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(13, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
+        query.bindValue(13, QVariant(QVariant::ByteArray));
+#endif
 
       buffer.close();
       bytes.clear();
@@ -2594,13 +2624,22 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 	  query.bindValue(14, bytes.toBase64());
 	}
       else
-	query.bindValue(14, QVariant(QVariant::ByteArray));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(14, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
+        query.bindValue(14, QVariant(QVariant::ByteArray));
+#endif
     }
   else
     {
       photo.thumbnail_item->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+      query.bindValue(13, QVariant(QMetaType(QMetaType::QByteArray)));
+      query.bindValue(14, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
       query.bindValue(13, QVariant(QVariant::ByteArray));
       query.bindValue(14, QVariant(QVariant::ByteArray));
+#endif
     }
 
   query.bindValue(15, photo.accession_number_item->text().trimmed());

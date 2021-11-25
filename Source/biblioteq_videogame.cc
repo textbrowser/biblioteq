@@ -908,12 +908,20 @@ void biblioteq_videogame::slotGo(void)
 	      query.bindValue(15, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(15, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(15, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  vg.front_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(15, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(15, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       if(!vg.back_image->m_image.isNull())
@@ -928,12 +936,20 @@ void biblioteq_videogame::slotGo(void)
 	      query.bindValue(16, bytes.toBase64());
 	    }
 	  else
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	    query.bindValue(16, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	    query.bindValue(16, QVariant(QVariant::ByteArray));
+#endif
 	}
       else
 	{
 	  vg.back_image->m_imageFormat = "";
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(16, QVariant(QMetaType(QMetaType::QByteArray)));
+#else
 	  query.bindValue(16, QVariant(QVariant::ByteArray));
+#endif
 	}
 
       query.bindValue(17, vg.place->toPlainText().trimmed());

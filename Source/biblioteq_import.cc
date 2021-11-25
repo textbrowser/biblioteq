@@ -213,7 +213,11 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    str = m_mappings.value(i).second;
 
 		  if(str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+		    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
+#else
 		    query.addBindValue(QVariant(QVariant::String));
+#endif
 		  else
 		    query.addBindValue(str);
 		}
@@ -388,7 +392,11 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 		    str = m_mappings.value(i).second;
 
 		  if(str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+		    query.addBindValue(QVariant(QMetaType(QMetaType::String)));
+#else
 		    query.addBindValue(QVariant(QVariant::String));
+#endif
 		  else
 		    query.addBindValue(str);
 		}
