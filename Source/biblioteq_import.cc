@@ -393,7 +393,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
 		  if(str.isEmpty())
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-		    query.addBindValue(QVariant(QMetaType(QMetaType::String)));
+		    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
 #else
 		    query.addBindValue(QVariant(QVariant::String));
 #endif

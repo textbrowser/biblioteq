@@ -307,7 +307,11 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(m_searchQuery.isActive())
 	m_searchQuery.clear();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+      m_searchQuery = std::move(query);
+#else
       m_searchQuery = query;
+#endif
     }
 
   m_lastSearchStr = "Item Search Query";
@@ -4486,7 +4490,11 @@ void biblioteq::slotRefreshCustomQuery(void)
 	  item2 = new QTreeWidgetItem(item1);
 	  field = rec.field(rec.fieldName(j));
 	  item2->setText(1, rec.fieldName(j));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  item2->setText(2, QMetaType(rec.field(j).metaType().id()).name());
+#else
 	  item2->setText(2, QVariant::typeToName(field.type()));
+#endif
 
 	  if(field.requiredStatus() == QSqlField::Required)
 	    item2->setText(3, tr("No"));
