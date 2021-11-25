@@ -448,7 +448,11 @@ void biblioteq_grey_literature::insertDatabase(void)
   query.addBindValue(m_ui.author->toPlainText());
 
   if(m_ui.client->toPlainText().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
+#else
     query.addBindValue(QVariant::String);
+#endif
   else
     query.addBindValue(m_ui.client->toPlainText());
 
@@ -463,7 +467,11 @@ void biblioteq_grey_literature::insertDatabase(void)
   query.addBindValue(m_ui.location->currentText());
 
   if(m_ui.notes->toPlainText().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
+#else
     query.addBindValue(QVariant::String);
+#endif
   else
     query.addBindValue(m_ui.notes->toPlainText());
 
@@ -1586,7 +1594,11 @@ void biblioteq_grey_literature::updateDatabase(void)
   query.addBindValue(m_ui.author->toPlainText());
 
   if(m_ui.client->toPlainText().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
+#else
     query.addBindValue(QVariant::String);
+#endif
   else
     query.addBindValue(m_ui.client->toPlainText());
 
@@ -1601,7 +1613,11 @@ void biblioteq_grey_literature::updateDatabase(void)
   query.addBindValue(m_ui.location->currentText());
 
   if(m_ui.notes->toPlainText().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
+#else
     query.addBindValue(QVariant::String);
+#endif
   else
     query.addBindValue(m_ui.notes->toPlainText());
 
