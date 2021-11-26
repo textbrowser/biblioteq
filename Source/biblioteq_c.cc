@@ -308,7 +308,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	m_searchQuery.clear();
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-      m_searchQuery = std::move(query);
+      m_searchQuery = query;
 #else
       m_searchQuery = query;
 #endif
