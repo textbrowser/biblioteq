@@ -3427,7 +3427,8 @@ void biblioteq_book::slotGo(void)
 	 "book.accession_number, "
 	 "book.type, "
 	 "book.myoid, "
-	 "book.front_cover");
+	 "book.front_cover "
+	 "ORDER BY book.title");
       query.prepare(searchstr);
 
       for(int i = 0; i < values.size(); i++)
