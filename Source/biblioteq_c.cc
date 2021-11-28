@@ -2768,10 +2768,11 @@ void biblioteq::slotConnectDB(void)
 
   if(m_db.driverName() == "QSQLITE")
     {
-      ui.action_VacuumDatabase->setEnabled(true);
       ui.actionChangePassword->setEnabled(false);
       ui.actionImportCSV->setEnabled(true);
+      ui.action_Merge_SQLite_Databases->setEnabled(true);
       ui.action_Upgrade_SQLite_Schema->setEnabled(true);
+      ui.action_VacuumDatabase->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 
       if(!ui.menuEntriesPerPage->actions().isEmpty())
@@ -3014,6 +3015,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionRefreshTable->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
+  ui.action_Merge_SQLite_Databases->setEnabled(false);
   ui.action_Upgrade_SQLite_Schema->setEnabled(false);
   ui.action_VacuumDatabase->setEnabled(false);
   ui.configTool->setEnabled(false);

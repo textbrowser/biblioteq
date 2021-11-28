@@ -319,6 +319,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertMag(void)));
+  connect(ui.action_Merge_SQLite_Databases,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotMergeSQLiteDatabases(void)));
   connect(ui.action_Photograph_Collection,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -680,6 +684,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionReservationHistory->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Database_Enumerations->setEnabled(false);
+  ui.action_Merge_SQLite_Databases->setEnabled(false);
   ui.action_Upgrade_SQLite_Schema->setEnabled(false);
   ui.action_VacuumDatabase->setEnabled(false);
   ui.configTool->setEnabled(false);

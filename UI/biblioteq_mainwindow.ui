@@ -426,6 +426,7 @@
     <addaction name="actionDatabaseSearch"/>
     <addaction name="actionRefreshTable"/>
     <addaction name="separator"/>
+    <addaction name="action_Merge_SQLite_Databases"/>
     <addaction name="action_Upgrade_SQLite_Schema"/>
     <addaction name="separator"/>
     <addaction name="action_Open_PDF_File"/>
@@ -1287,6 +1288,11 @@
   <action name="action_Release_Notes">
    <property name="text">
     <string>&amp;Release Notes...</string>
+   </property>
+  </action>
+  <action name="action_Merge_SQLite_Databases">
+   <property name="text">
+    <string>&amp;Merge SQLite Databases...</string>
    </property>
   </action>
  </widget>
