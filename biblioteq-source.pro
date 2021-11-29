@@ -52,12 +52,13 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_import.h \
 		  Source/biblioteq_item.h \
 		  Source/biblioteq_magazine.h \
-		  Source/biblioteq_main_table.h \
+                  Source/biblioteq_main_table.h \
                   Source/biblioteq_myqstring.h \
                   Source/biblioteq_otheroptions.h \
                   Source/biblioteq_pdfreader.h \
 		  Source/biblioteq_photographcollection.h \
                   Source/biblioteq_photograph_view.h \
+                  Source/biblioteq_sqlite_merge_databases.h \
 		  Source/biblioteq_sruResults.h \
 		  Source/biblioteq_videogame.h \
 		  Source/biblioteq_z3950results.h
@@ -100,6 +101,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_pdfreader.cc \
                   Source/biblioteq_photographcollection.cc \
                   Source/biblioteq_photograph_view.cc \
+                  Source/biblioteq_sqlite_merge_databases.cc \
                   Source/biblioteq_sruResults.cc \
                   Source/biblioteq_videogame.cc \
                   Source/biblioteq_z3950results.cc
