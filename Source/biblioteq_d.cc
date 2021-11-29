@@ -10,6 +10,10 @@ bool biblioteq::showMainTableImages(void) const
   return m_otheroptions->showMainTableImages();
 }
 
+void biblioteq::slotMergeSQLiteDatabases(void)
+{
+}
+
 void biblioteq::slotShowDocumentation(void)
 {
   auto action = qobject_cast<QAction *> (sender());
