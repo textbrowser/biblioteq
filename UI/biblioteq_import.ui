@@ -418,7 +418,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QToolButton" name="save">
+       <widget class="QToolButton" name="import_csv">
         <property name="toolTip">
          <string>Import</string>
         </property>
@@ -523,7 +523,7 @@
   <tabstop>add_row</tabstop>
   <tabstop>delete_row</tabstop>
   <tabstop>ignored_rows</tabstop>
-  <tabstop>save</tabstop>
+  <tabstop>import_csv</tabstop>
   <tabstop>reset</tabstop>
   <tabstop>close</tabstop>
  </tabstops>

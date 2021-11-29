@@ -19,6 +19,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_maginfo.ui \
                   UI/biblioteq_mainwindow.ui \
                   UI/biblioteq_members_browser.ui \
+                  UI/biblioteq_merge_sqlite_databases.ui \
                   UI/biblioteq_otheroptions.ui \
                   UI/biblioteq_pdfreader.ui \
                   UI/biblioteq_password.ui \

@@ -27,6 +27,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteRow(void)));
+  connect(m_ui.import_csv,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotImport(void)));
   connect(m_ui.refresh_preview,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -35,10 +39,6 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(m_ui.save,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotImport(void)));
   connect(m_ui.select_csv_file,
 	  SIGNAL(clicked(void)),
 	  this,
