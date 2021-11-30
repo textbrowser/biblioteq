@@ -4,6 +4,7 @@
 #include "biblioteq_documentationwindow.h"
 #include "biblioteq_files.h"
 #include "biblioteq_otheroptions.h"
+#include "biblioteq_sqlite_merge_databases.h"
 
 bool biblioteq::showMainTableImages(void) const
 {
@@ -12,6 +13,13 @@ bool biblioteq::showMainTableImages(void) const
 
 void biblioteq::slotMergeSQLiteDatabases(void)
 {
+  if(!m_sqliteMergeDatabases)
+    m_sqliteMergeDatabases = new biblioteq_sqlite_merge_databases(this);
+
+  biblioteq_misc_functions::center(m_sqliteMergeDatabases, this);
+  m_sqliteMergeDatabases->showNormal();
+  m_sqliteMergeDatabases->activateWindow();
+  m_sqliteMergeDatabases->raise();
 }
 
 void biblioteq::slotShowDocumentation(void)

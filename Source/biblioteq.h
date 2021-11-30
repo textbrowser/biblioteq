@@ -34,6 +34,7 @@
 class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
+class biblioteq_sqlite_merge_databases;
 
 class userinfo_diag_class: public QDialog
 {
@@ -346,6 +347,7 @@ class biblioteq: public QMainWindow
   QMap<QString, QHash<QString, QString> > m_z3950Maps;
   QPointer<QMenu> m_menu;
   QPointer<biblioteq_dbenumerations> db_enumerations;
+  QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
   QSqlDatabase m_db;
   QSqlQuery m_searchQuery;
   QString m_engUserinfoTitle;

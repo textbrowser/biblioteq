@@ -86,11 +86,47 @@
               </column>
               <column>
                <property name="text">
+                <string>Progress</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>Select</string>
                </property>
               </column>
              </widget>
             </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QPushButton" name="add_row">
+               <property name="text">
+                <string>&amp;Add Row</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="delete_row">
+               <property name="text">
+                <string>&amp;Delete Row(s)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -104,7 +140,7 @@
       <item>
        <widget class="QToolButton" name="merge">
         <property name="toolTip">
-         <string>Import</string>
+         <string>Merge</string>
         </property>
         <property name="text">
          <string/>
@@ -128,6 +164,29 @@
        <widget class="Line" name="line">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="reset">
+        <property name="toolTip">
+         <string>Reset</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+R</string>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -175,7 +234,10 @@
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>rows</tabstop>
+  <tabstop>add_row</tabstop>
+  <tabstop>delete_row</tabstop>
   <tabstop>merge</tabstop>
+  <tabstop>reset</tabstop>
   <tabstop>close</tabstop>
  </tabstops>
  <resources>
