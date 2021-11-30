@@ -13,7 +13,9 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
   biblioteq_sqlite_merge_databases(biblioteq *parent);
 
  private:
-  Ui_mergeSQLiteDatabases m_db;
+  Ui_mergeSQLiteDatabases m_ui;
+  biblioteq *m_qmain;
+  void changeEvent(QEvent *event);
 
  private slots:
   void setGlobalFonts(const QFont &font);
