@@ -42,9 +42,6 @@
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
-             <property name="childrenCollapsible">
-              <bool>false</bool>
-             </property>
              <widget class="QTableWidget" name="rows">
               <property name="focusPolicy">
                <enum>Qt::StrongFocus</enum>
@@ -94,6 +91,11 @@
                 <string>Select</string>
                </property>
               </column>
+             </widget>
+             <widget class="QTextBrowser" name="textBrowser">
+              <property name="placeholderText">
+               <string>Results</string>
+              </property>
              </widget>
             </widget>
            </item>
@@ -232,8 +234,9 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>scrollArea</tabstop>
   <tabstop>rows</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>textBrowser</tabstop>
   <tabstop>add_row</tabstop>
   <tabstop>delete_row</tabstop>
   <tabstop>merge</tabstop>

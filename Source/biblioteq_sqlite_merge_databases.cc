@@ -6,10 +6,16 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+  m_ui.splitter->setStretchFactor(0, 1);
+  m_ui.splitter->setStretchFactor(1, 0);
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
+  connect(m_ui.close,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(close(void)));
 }
 
 void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
