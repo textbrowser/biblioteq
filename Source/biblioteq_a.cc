@@ -2991,7 +2991,6 @@ void biblioteq::slotExecuteCustomQuery(void)
   if(q.contains("alter ") ||
      q.contains("cluster ") ||
      q.contains("create " ) ||
-     q.contains("delete ") ||
      q.contains("drop ") ||
      q.contains("grant ") ||
      q.contains("insert ") ||
@@ -3006,6 +3005,21 @@ void biblioteq::slotExecuteCustomQuery(void)
 	 tr("Please provide a non-destructive SQL statement."));
       QApplication::processEvents();
       return;
+    }
+  else if(q.contains("delete"))
+    {
+      if(QMessageBox::
+	 question(m_customquery_diag,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to execute the statement?"),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+      else
+	QApplication::processEvents();
     }
 
   (void) populateTable(CUSTOM_QUERY, "Custom", querystr);
