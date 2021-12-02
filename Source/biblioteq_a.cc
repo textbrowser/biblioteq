@@ -3006,7 +3006,7 @@ void biblioteq::slotExecuteCustomQuery(void)
       QApplication::processEvents();
       return;
     }
-  else if(q.contains("delete"))
+  else if(q.contains("delete "))
     {
       if(QMessageBox::
 	 question(m_customquery_diag,
@@ -3020,6 +3020,13 @@ void biblioteq::slotExecuteCustomQuery(void)
 	}
       else
 	QApplication::processEvents();
+
+      QSqlQuery query(m_db);
+
+      if(query.exec(querystr))
+	slotRefresh();
+
+      return;
     }
 
   (void) populateTable(CUSTOM_QUERY, "Custom", querystr);

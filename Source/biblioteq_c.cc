@@ -1142,6 +1142,9 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 	  for(int i = 0; i < table->columnCount(); i++)
 	    if(!table->isColumnHidden(i))
 	      {
+		if(!table->horizontalHeaderItem(i))
+		  continue;
+
 		if(table->horizontalHeaderItem(i)->text().contains(","))
 		  str += QString("\"%1\",").arg
 		    (table->horizontalHeaderItem(i)->text());
@@ -1167,6 +1170,12 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 	      for(int j = 0; j < table->columnCount(); j++)
 		if(!table->isColumnHidden(j))
 		  {
+		    if(!table->item(i, j))
+		      {
+			str += ",";
+			continue;
+		      }
+
 		    auto cleaned(table->item(i, j)->text());
 
 		    cleaned.replace("\n", " ");
