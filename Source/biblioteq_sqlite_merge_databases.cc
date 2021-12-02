@@ -11,11 +11,15 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
-	  SLOT(setGlobalFonts(const QFont &)));
+	  SLOT(slotSetGlobalFonts(const QFont &)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(close(void)));
+  connect(m_ui.reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
 }
 
 void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
@@ -37,7 +41,13 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-void biblioteq_sqlite_merge_databases::setGlobalFonts(const QFont &font)
+void biblioteq_sqlite_merge_databases::slotReset(void)
+{
+  m_ui.databases->clearContents();
+  m_ui.results->clear();
+}
+
+void biblioteq_sqlite_merge_databases::slotSetGlobalFonts(const QFont &font)
 {
   setFont(font);
 

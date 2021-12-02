@@ -14,7 +14,7 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
-	  SLOT(setGlobalFonts(const QFont &)));
+	  SLOT(slotSetGlobalFonts(const QFont &)));
   connect(m_ui.add_row,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -531,20 +531,6 @@ void biblioteq_import::loadPreview(void)
   QApplication::processEvents();
 }
 
-void biblioteq_import::setGlobalFonts(const QFont &font)
-{
-  setFont(font);
-
-  foreach(auto widget, findChildren<QWidget *> ())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
-
-  m_ui.rows->resizeRowsToContents();
-  update();
-}
-
 void biblioteq_import::show(QMainWindow *parent)
 {
   static auto resized = false;
@@ -848,6 +834,20 @@ void biblioteq_import::slotSelectCSVFile(void)
       m_ui.csv_file->setText(dialog.selectedFiles().value(0));
       loadPreview();
     }
+}
+
+void biblioteq_import::slotSetGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(auto widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  m_ui.rows->resizeRowsToContents();
+  update();
 }
 
 void biblioteq_import::slotTemplates(int index)

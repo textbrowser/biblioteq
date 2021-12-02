@@ -18,7 +18,8 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
   void changeEvent(QEvent *event);
 
  private slots:
-  void setGlobalFonts(const QFont &font);
+  void slotReset(void);
+  void slotSetGlobalFonts(const QFont &font);
 };
 
 #endif

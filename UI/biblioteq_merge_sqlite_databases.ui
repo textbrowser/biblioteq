@@ -42,7 +42,7 @@
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
-             <widget class="QTableWidget" name="rows">
+             <widget class="QTableWidget" name="databases">
               <property name="focusPolicy">
                <enum>Qt::StrongFocus</enum>
               </property>
@@ -92,7 +92,7 @@
                </property>
               </column>
              </widget>
-             <widget class="QTextBrowser" name="textBrowser">
+             <widget class="QTextBrowser" name="results">
               <property name="placeholderText">
                <string>Results</string>
               </property>
@@ -234,9 +234,9 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>rows</tabstop>
+  <tabstop>databases</tabstop>
   <tabstop>scrollArea</tabstop>
-  <tabstop>textBrowser</tabstop>
+  <tabstop>results</tabstop>
   <tabstop>add_row</tabstop>
   <tabstop>delete_row</tabstop>
   <tabstop>merge</tabstop>

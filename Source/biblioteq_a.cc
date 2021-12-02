@@ -1991,6 +1991,33 @@ void biblioteq::showMain(void)
       QMessageBox::critical(this, tr("BiblioteQ: Error"), str);
       QApplication::processEvents();
     }
+  else
+    {
+      auto list(QApplication::arguments());
+
+      for(int i = 0; i < list.size(); i++)
+	if(list.at(i) == "--open-sqlite-database")
+	  {
+	    i += 1;
+
+	    if(i >= list.size())
+	      continue;
+
+	    br.filename->setText(QFileInfo(list.at(i)).absoluteFilePath());
+
+	    for(int j = 0; j < br.branch_name->count(); j++)
+	      if(m_branches.contains(br.branch_name->itemText(j)))
+		if(m_branches[br.branch_name->itemText(j)].
+		   value("database_type") == "sqlite")
+		  {
+		    br.branch_name->setCurrentIndex(j);
+		    slotConnectDB();
+		    break;
+		  }
+
+	    break;
+	  }
+    }
 }
 
 void biblioteq::slotAbout(void)

@@ -37,7 +37,6 @@ class biblioteq_import: public QMainWindow
   void loadPreview(void);
 
  private slots:
-  void setGlobalFonts(const QFont &font);
   void slotAddRow(void);
   void slotClose(void);
   void slotDeleteRow(void);
@@ -45,6 +44,7 @@ class biblioteq_import: public QMainWindow
   void slotRefreshPreview(void);
   void slotReset(void);
   void slotSelectCSVFile(void);
+  void slotSetGlobalFonts(const QFont &font);
   void slotTemplates(int index);
 };
 
