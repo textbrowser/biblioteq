@@ -3,17 +3,18 @@
     <u>Release Notes</u>
     <p>December 25, 2021.</p>
     <ul>
+      <li>Allow for the SQL delete statement to be issued for custom queries.</li>
       <li>Automatically convert ISBN-10 to ISBN-13 during imports.</li>
       <li>Corrected book read-status and custom queries for SQLite.</li>
       <li>Corrected generation of CSV files from custom queries. Thank you meteos77.</li>
       <li>Embedded documentation and release notes.</li>
-      <li>Inspect the font created from the global_font setting.</li>
+      <li>Inspect the font created from the global_font setting. If the font cannot be recreated, assign a default font.</li>
       <li>New open-sqlite-database terminal option.</li>
       <li>Optional main window images and progress dialogs. Please see Other Options.</li>
       <li>Patron export and import.</li>
       <li>PostgreSQL 10.19; Windows.</li>
       <li>Qt 6.2 LTS.</li>
-      <li>Restore and retain Members Browser's geometry.</li>
+      <li>Restore and retain Members Browser&#39;s geometry.</li>
       <li>SQLite 3.37; Windows.</li>
       <li>Speedy reservations. New option in Members Browser.</li>
     </ul>
@@ -74,7 +75,7 @@
       <li>Copies management enhancements. Please report errors.</li>
       <li>Corrected UTF-8 conversions of Open Library data. Thank you jferby.</li>
       <li>New Polish translation. Thank you jerzyPL.</li>
-      <li>Poppler has been removed from the Windows build as it's outdated. Will be replacing the library with QtPDF.</li>
+      <li>Poppler has been removed from the Windows build as it&#39;s outdated. Will be replacing the library with QtPDF.</li>
     </ul>
     <p>February 2, 2021.</p>
     <ul>
@@ -171,17 +172,17 @@
     </ul>
     <p>September 9, 2019.</p>
     <ul>
-      <li>Allow exporting of Members Browser's visible items as CSV.</li>
+      <li>Allow exporting of Members Browser&#39;s visible items as CSV.</li>
       <li>Corrected Viewable Columns. Thank you sidheban.</li>
       <li>Corrected removal of photographs via context menus; abnormal termination.</li>
       <li>Denote SQLite database usernames as SQLITE where applicable.</li>
       <li>Disabled hyperlink searches on SQLite. Editable text-edit fields do not support interactive hyperlinks.</li>
       <li>Display Call Number for All Overdue, All Requested, and All Reserved categories.</li>
-      <li>Display database role in main window's title.</li>
+      <li>Display database role in main window&#39;s title.</li>
       <li>Drop extensions in postgresql_destroy_schema.sql.</li>
       <li>Full screen mode.</li>
       <li>Intuitive radio button appearance.</li>
-      <li>Larger image previews in main window's table.</li>
+      <li>Larger image previews in main window&#39;s table.</li>
       <li>Patron contact information now available in All Overdue, All Requested, and All Reserved categories.</li>
       <li>PostgreSQL 9.6.15 on W32.</li>
       <li>Qt 5.13.0 on OS X.</li>
@@ -279,7 +280,7 @@
       <li>Purge scene items whenever item images are replaced. Otherwise, phantom memory objects remain.</li>
       <li>Raspbian armhf package with Qt 4.8.7.</li>
       <li>Replaced static SRU and Z39.50 query dialogs with dynamic instances.</li>
-      <li>Replaced the PDF reader's View contents with a list of scale factors.</li>
+      <li>Replaced the PDF reader&#39;s View contents with a list of scale factors.</li>
       <li>Report SRU network errors.</li>
       <li>Reset Case-Insensitive state on Reset activation.</li>
       <li>SQLite at version 3.23.0 on Win32.</li>
@@ -445,7 +446,7 @@
       <li>Version 2015.10.16 is ready.</li>
       <li>Allow item image zoom via double-click.</li>
       <li>Corrected HTTP dialog title.</li>
-      <li>Minor correction on the status bar's stylesheet.</li>
+      <li>Minor correction on the status bar&#39;s stylesheet.</li>
       <li>Upgraded Qt products to version 5.5.0 on Windows.</li>
       <li>Upgraded SQLite products to version 3.9.1 on Windows.</li>
       <li>Upgraded YAZ products to version 5.14.10 on Windows.</li>
@@ -453,7 +454,7 @@
     <p>July 4, 2015.</p>
     <ul>
       <li>Version 2015.07.04 is now available.</li>
-      <li>A patron's gender is now optional. PostgreSQL administrators, please update the database schema(s) via postgresql_update_schema.sql.</li>
+      <li>A patron&#39;s gender is now optional. PostgreSQL administrators, please update the database schema(s) via postgresql_update_schema.sql.</li>
     </ul>
     <p>June 27, 2015.</p>
     <ul>
@@ -481,7 +482,7 @@
       <li>Corrected selections of requested items.</li>
       <li>Corrected variable assignment in marc::parseBookZ3950Marc21() with respect to fields 100 and 700.</li>
       <li>Disable general search widgets after a search is performed. Widgets may be enabled via the interface.</li>
-      <li>Introduced a basic search that's integrated into the main window.</li>
+      <li>Introduced a basic search that&#39;s integrated into the main window.</li>
       <li>Layout changes.</li>
       <li>Moved the category option into the View menu.</li>
       <li>New PostgreSQL guest account! Please see postgresql_update_schema.sql.</li>
@@ -558,7 +559,7 @@
       <li>Corrected the OS X Qt 5 project file with respect to a missing Cocoa library.</li>
       <li>Corrected the PostgreSQL loader paths in the OS X bundle.</li>
       <li>Corrected the SRU and Z39.50 mechanisms with respect to books. BiblioteQ should not replace ISBN fields if the fields were completed by the user. Ten-character or thirteen-character ISBNs are considered as user-provided.</li>
-      <li>Corrected the scene's parent in qtbook_photographcollection::slotViewPhotograph().</li>
+      <li>Corrected the scene&#39;s parent in qtbook_photographcollection::slotViewPhotograph().</li>
       <li>Corrected use of qgetenv(). The function returns a byte array.</li>
       <li>Corrected widget highlighting with respect to SRU and Z39.50 query results.</li>
       <li>Do not access members of invalid pointers.</li>
@@ -609,7 +610,7 @@
     <ul>
       <li>Version 6.64 is now available.</li>
       <li>Added missing privileges to the biblioteq_librarian role. PostgreSQL administrators, please see postgresql_update_schema.sql.</li>
-      <li>Corrected a problem that occurs when a new administrator is defined. The administrator's roles are not properly recorded. Thanks to numibesi for discovering the issue.</li>
+      <li>Corrected a problem that occurs when a new administrator is defined. The administrator&#39;s roles are not properly recorded. Thanks to numibesi for discovering the issue.</li>
       <li>Corrected some deep privileges problems. Again, thanks numibesi.</li>
       <li>Fixed an incorrect comparison related to minimum patron id lengths.</li>
       <li>Updated postgresql_destroy_schema.sql.</li>
@@ -648,7 +649,7 @@
     <ul>
       <li>Happy New Year! Version 6.59 is now available. Please report issues at <a href="https://sourceforge.net/tracker?group_id=129976" target="_blank">https://sourceforge.net/tracker?group_id=129976</a>.</li>
       <li>Added documents contributed by Olivia Novak. Please see doc.d/contributors.d.</li>
-      <li>Added issue and volume numbers to the main window's summary for journals and magazines.</li>
+      <li>Added issue and volume numbers to the main window&#39;s summary for journals and magazines.</li>
       <li>Corrected C++ object casts.</li>
       <li>Display formats of dates have been changed to ISO 8601.</li>
       <li>Eliminated QGraphicsView warnings regarding drag leave events.</li>
@@ -660,7 +661,7 @@
       <li>Removed ISBN input validators in support of hyphens.</li>
       <li>Replaced the OS X application installer with a simple disk image file.</li>
       <li>SRU support for books, journals, and magazines.</li>
-      <li>The Copy Browser did not display the correct item's ID in the title.</li>
+      <li>The Copy Browser did not display the correct item&#39;s ID in the title.</li>
       <li>Updated biblioteq.conf in support of QSettings. Please update your configuration files accordingly.</li>
     </ul>
     <p>November 19, 2012.</p>
@@ -715,7 +716,7 @@
     <p>May 13, 2012.</p>
     <ul>
       <li>Version 6.55 is now available.</li>
-      <li>Happy Mother's Day!</li>
+      <li>Happy Mother&#39;s Day!</li>
       <li>A critical flaw was discovered by a user. Because of the current PostgreSQL database design, the number of users that may exist is limited. The new approach introduces the roles biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership, and biblioteq_patron. Accounts will now be assigned roles. To update your PostgreSQL schema, please execute the following suggestions:</li>
       <ol>
 	<li>Modify your PostgreSQL schema by executing the SQL statements under version 6.55 of the postgresql_schema_update.sql file.</li>
@@ -726,7 +727,7 @@
       <li>Corrected uses of QProgressBars. BiblioteQ must avoid assigning values outside of defined ranges.</li>
       <li>Fixed while-loops responsible for parsing Z39.50 data.</li>
       <li>Modified the biblioteq.pro file, changing the location of the biblioteq.conf file to /usr/local/biblioteq.</li>
-      <li>Per cbush06, the member_history table's item_id field has been removed. The field was incorrectly populated. It was also redundant. Please update your PostgreSQL schemas.</li>
+      <li>Per cbush06, the member_history table&#39;s item_id field has been removed. The field was incorrectly populated. It was also redundant. Please update your PostgreSQL schemas.</li>
       <li>Received a donation from an anonymous user. Thank you.</li>
       <li>Received a donation from luismontilla. Thank you.</li>
       <li>Updated Qt products to version 4.8.1 for Windows systems.</li>
@@ -741,7 +742,7 @@
       <li>Added the Format specifier to biblioteq.conf. This new field will allow users to specify Z39.50 character conversions.</li>
       <li>Added the Total Reserved column to various table views.</li>
       <li>After many years, BiblioteQ will showcase a new icon set.</li>
-      <li>BiblioteQ will now use the system's fonts on the OS X platform. Allowing the user to set the fonts may result in distorted widgets.</li>
+      <li>BiblioteQ will now use the system&#39;s fonts on the OS X platform. Allowing the user to set the fonts may result in distorted widgets.</li>
       <li>Corrected issues with SQLite files. Thanks to yasbean for reporting the problems.</li>
       <li>Fixed some state issues with respect to item duplication. Some buttons (Copies, Reservation Status, Show Tracks) must be initially disabled.</li>
       <li>Generic searches now support item availability.</li>
@@ -770,7 +771,7 @@
       <li>Modified queries so that special characters are properly escaped.</li>
       <li>Removed redundant containers.</li>
       <li>Resolved several segmentation faults.</li>
-      <li>Ubuntu's Unity interface overrides menu settings. Modified BiblioteQ so that it prevents certain actions.</li>
+      <li>Ubuntu&#39;s Unity interface overrides menu settings. Modified BiblioteQ so that it prevents certain actions.</li>
     </ul>
     <p>November 3, 2011.</p>
     <ul>
@@ -784,17 +785,17 @@
       <li>Added a Dutch translation per editor3d7.</li>
       <li>BiblioteQ will retain the previously-opened database branch.</li>
       <li>Dates will now be displayed in their native formats. Date data will retain the usual MM/dd/yyyy format.</li>
-      <li>Due to corruption, the main table's column widths will not be retained. The feature will return in a future release.</li>
+      <li>Due to corruption, the main table&#39;s column widths will not be retained. The feature will return in a future release.</li>
       <li>Faulty search queries have been fixed.</li>
       <li>Fixed incorrect background colors of non-essential fields.</li>
-      <li>Fixed issues related to Qt's table-sorting behavior. Problems may only be apparent with Qt 4.6.x. Qt versions 4.6.x are discouraged.</li>
+      <li>Fixed issues related to Qt&#39;s table-sorting behavior. Problems may only be apparent with Qt 4.6.x. Qt versions 4.6.x are discouraged.</li>
       <li>Improved Z39.50 parsing.</li>
       <li>Multiple Z39.50 results will be enumerated by ISSNs for journals and magazines.</li>
       <li>Qt products have been upgraded to version 4.7.4 on OS X and Windows platforms.</li>
       <li>Removed the Automatically Resize Table to Contents option.</li>
       <li>Some UNION queries lacked ALL keywords.</li>
       <li>Some containers were not cleared after a database disconnect. Fixed.</li>
-      <li>Thanks for everyone's participation.</li>
+      <li>Thanks for everyone&#39;s participation.</li>
       <li>The ISBN fields are now optional. PostgreSQL users are required to update their schemas.</li>
       <li>The Windows installer will now install a Desktop icon.</li>
       <li>When reserving items, the Copy Browser will now automatically select the next available copy.</li>
@@ -807,12 +808,12 @@
       <li>Added various protections against NULL objects.</li>
       <li>Force selection of a Z39.50 site if one is not selected (books, journals, magazines).</li>
       <li>Protect misc_functions::updateSQLiteDatabase() against BiblioteQ version changes.</li>
-      <li>Retain the main window's toolbar states.</li>
+      <li>Retain the main window&#39;s toolbar states.</li>
     </ul>
     <p>May 23, 2011.</p>
     <ul>
       <li>Version 6.46 is in the process of being released.</li>
-      <li>This version is dedicated to Mr. R.'s father.</li>
+      <li>This version is dedicated to Mr. R.&#39;s father.</li>
     </ul>
     <p>May 15, 2011.</p>
     <ul>
@@ -822,7 +823,7 @@
       <li>Added the Unlimited Entries per Page for SQLite databases.</li>
       <li>Patrons will now have expiration dates. Expired members will not be allowed to reserve items. Please note that for SQLite databases, the software should automatically adjust the member table in order to support the new expiration_date field. Please submit a trouble report if you experience problems.</li>
       <li>Qt products have been upgraded to version 4.7.3 on OS X and Windows platforms.</li>
-      <li>The main table's states will now be restored and retained.</li>
+      <li>The main table&#39;s states will now be restored and retained.</li>
       <li>Updated the Administrator Guide documents.</li>
       <li>Was incorrectly retrieving the userid from the UI instead of the database object.</li>
     </ul>
@@ -918,7 +919,7 @@
       <li>Version 6.39 is now available.</li>
       <li>Fixed an OS X Font Selection crash.</li>
       <li>New feature: File-&gt;New SQLite Database.</li>
-      <li>The main window's title now references the currently-opened SQLite database.</li>
+      <li>The main window&#39;s title now references the currently-opened SQLite database.</li>
       <li>Updated PostgreSQL sections in order to eliminate warnings.</li>
     </ul>
     <p>January 10, 2010.</p>
@@ -1011,7 +1012,7 @@
       <li>Added support for Czech and German translations. I'm thankful to those who provided the translation files.</li>
       <li>Additional changes in support of internationalization, including bug fixes.</li>
       <li>Fixed an issue with the Administrator Browser. Also implemented a feature that prevents the creation of administrators without privileges.</li>
-      <li>Fixed an issue with the Reservation Browser. Non-privileged accounts were unable to view an item's reservations.</li>
+      <li>Fixed an issue with the Reservation Browser. Non-privileged accounts were unable to view an item&#39;s reservations.</li>
     </ul>
     <p>February 23, 2009.</p>
     <ul>
@@ -1042,7 +1043,7 @@
     <p>January 16, 2009.</p>
     <ul>
       <li>Version 6.18 is now available.</li>
-      <li>Fixed a size issue with the Book dialog's ISBN-13 textfield.</li>
+      <li>Fixed a size issue with the Book dialog&#39;s ISBN-13 textfield.</li>
       <li>Introduced some comments in the various SQL scripts.</li>
       <li>Modified the initial size of the Branch Selection dialog.</li>
     </ul>
@@ -1092,7 +1093,7 @@
     <ul>
       <li>Version 6.13 is available.</li>
       <li>Resolved an incorrect question dialog associated with unsaved data.</li>
-      <li>Standard members do not require access to the admin table. Please "Save" each member's data through the Members Browser.</li>
+      <li>Standard members do not require access to the admin table. Please "Save" each member&#39;s data through the Members Browser.</li>
       <li>The Windows XP installer requires redistribution as it lacks certain PostgreSQL libraries.</li>
     </ul>
     <p>October 3, 2008.</p>
@@ -1180,7 +1181,7 @@
     <p>June 2, 2008.</p>
     <ul>
       <li>Released version 6.04 for OS X Intel.</li>
-      <li>Improved the parsing routine for the Library of Congress query results for book items. Will most likely re-release this version as it's still too primitive.</li>
+      <li>Improved the parsing routine for the Library of Congress query results for book items. Will most likely re-release this version as it&#39;s still too primitive.</li>
     </ul>
     <p>May 30, 2008.</p>
     <ul>
@@ -1334,7 +1335,7 @@
     <p>March 22, 2008.</p>
     <ul>
       <li>Version 3.23.1 is now available.</li>
-      <li>Completed the Member's Reservation History panel.</li>
+      <li>Completed the Member&#39;s Reservation History panel.</li>
       <li>Fixed the various SQL scripts.</li>
       <li>Improved the appearance of the main form.</li>
       <li>Minor bug fixes.</li>
@@ -1359,13 +1360,13 @@
     <p>March 12, 2008.</p>
     <ul>
       <li>Version 3.21 is now available.</li>
-      <li>Preserve the visibility of the main table's columns after a Type Filter change.</li>
+      <li>Preserve the visibility of the main table&#39;s columns after a Type Filter change.</li>
     </ul>
     <p>March 9, 2008.</p>
     <ul>
       <li>Released version 3.20.</li>
       <li>Implemented a means to copy the contents of the Error Dialog to the clipboard buffer.</li>
-      <li>Modified the backup.csh script in support of FreeBSD's Qt4 port.</li>
+      <li>Modified the backup.csh script in support of FreeBSD&#39;s Qt4 port.</li>
     </ul>
     <p>March 7, 2008.</p>
     <ul>
@@ -1377,7 +1378,7 @@
     <p>February 28, 2008.</p>
     <ul>
       <li>Version 3.18 is now available.</li>
-      <li>Corrected the constructor's signature in numeric_table_item.cc.</li>
+      <li>Corrected the constructor&#39;s signature in numeric_table_item.cc.</li>
       <li>Program is fully functional on Solaris 10 systems.</li>
     </ul>
     <p>February 14, 2008.</p>
@@ -1408,7 +1409,7 @@
     <p>January 13, 2008.</p>
     <ul>
       <li>Version 3.13 is now available.</li>
-      <li>Created a mechanism for printing a member's reserved items.</li>
+      <li>Created a mechanism for printing a member&#39;s reserved items.</li>
       <li>Fixed an incorrect query statement in the Members Browser.</li>
     </ul>
     <p>January 8, 2008.</p>
@@ -1427,7 +1428,7 @@
       <li>Released version 3.10.</li>
       <li>Several user interface modifications.</li>
       <li>The database searches are now case-insensitive.</li>
-      <li>The main window's geometry is now stored in the user's configuration file whenever the file is saved.</li>
+      <li>The main window&#39;s geometry is now stored in the user&#39;s configuration file whenever the file is saved.</li>
     </ul>
     <p>December 23, 2007.</p>
     <ul>
@@ -1669,7 +1670,7 @@
     <p>April 16, 2007.</p>
     <ul>
       <li>Completed several items from the TO-DO list.</li>
-      <li>Improved the user interface's functionality.</li>
+      <li>Improved the user interface&#39;s functionality.</li>
     </ul>
     <p>April 2, 2007.</p>
     <ul>
@@ -1684,7 +1685,7 @@
     </ul>
     <p>March 27, 2007.</p>
     <ul>
-      <li>Another small release. Allow normal users to view an item's details.</li>
+      <li>Another small release. Allow normal users to view an item&#39;s details.</li>
       <li>Bug fixes and code cleanup.</li>
     </ul>
     <p>March 21, 2007.</p>
@@ -1722,7 +1723,7 @@
     <p>March 3, 2007.</p>
     <ul>
       <li>Completed the CD search mechanism.</li>
-      <li>Miscellaneous bug fixes. The application's release status remains Pre-Alpha.</li>
+      <li>Miscellaneous bug fixes. The application&#39;s release status remains Pre-Alpha.</li>
       <li>The installation document for PostgreSQL on FreeBSD will be included as soon as I find it.</li>
     </ul>
     <p>March 2, 2007.</p>
