@@ -96,7 +96,14 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 
 void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
 {
-  m_ui.databases->removeRow(m_ui.databases->currentRow());
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto rows(biblioteq_misc_functions::selectedRows(m_ui.databases));
+
+  for(auto i = rows.size() - 1; i >= 0; i--)
+    m_ui.databases->removeRow(rows.at(i));
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_sqlite_merge_databases::slotReset(void)
