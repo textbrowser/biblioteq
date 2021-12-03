@@ -400,7 +400,7 @@
     </message>
     <message>
         <source>Maximum Reserved Books</source>
-        <translation>Nombre d&apos;emrpunts de livres maximum</translation>
+        <translation>Nombre maximum de livre pouvant être emprunté</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A value of zero disables the maximum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -439,7 +439,7 @@
     </message>
     <message>
         <source>Item Reservations</source>
-        <translation>Réservations d&apos;articles</translation>
+        <translation>Articles empruntés</translation>
     </message>
     <message>
         <source>Item Updates</source>
@@ -479,7 +479,7 @@
     </message>
     <message>
         <source>Reservation Histories</source>
-        <translation>Historiques des réservations</translation>
+        <translation>Historiques des emprunts</translation>
     </message>
     <message>
         <source>Add Administrator</source>
@@ -503,7 +503,11 @@
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -594,7 +598,6 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, an OR-query is generated from the provided tokens. Please separate the tokens using space characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translatorcomment>a revoir : Si cette case est cochée, une requête OR est générée à partir des tokens fournis. Veuillez séparer les jetons à l&apos;aide de caractères d&apos;espacement</translatorcomment>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si cette case est cochée, une requête OR est générée à partir des tokens fournis. Veuillez séparer les jetons à l&apos;aide de caractères d&apos;espacement.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -734,7 +737,7 @@
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -778,11 +781,11 @@
     </message>
     <message>
         <source>Unable to determine if the item has been reserved.</source>
-        <translation>Impossible de déterminer si l&apos;article a été réservé.</translation>
+        <translation>Impossible de déterminer si l&apos;article a été emprunté.</translation>
     </message>
     <message>
         <source>Reserved items may not be deleted.</source>
-        <translation>Il est impossible de supprimer des articles réservés.</translation>
+        <translation>Il est impossible de supprimer des articles emrpuntés.</translation>
     </message>
     <message>
         <source>Unable to determine if the item has been requested.</source>
@@ -814,7 +817,6 @@
     </message>
     <message>
         <source>The Member ID </source>
-        <translatorcomment>a vérifier</translatorcomment>
         <translation>L&apos;ID du membre </translation>
     </message>
     <message>
@@ -879,11 +881,11 @@
     </message>
     <message>
         <source>Unable to determine the number of items that are reserved by the selected member.</source>
-        <translation>Impossible de déterminer le nombre d&apos;articles réservés par le membre sélectionné.</translation>
+        <translation>Impossible de déterminer le nombre d&apos;articles empruntés par le membre sélectionné.</translation>
     </message>
     <message>
         <source>You may not remove a member that has reserved items.</source>
-        <translation>Il est impossible de supprimer un membre ayant des articles réservés.</translation>
+        <translation>Il est impossible de supprimer un membre ayant des articles empruntés.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
@@ -995,27 +997,27 @@
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation>Livres réservés</translation>
+        <translation>Livres empruntés</translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation>CD réservés</translation>
+        <translation>CD empruntés</translation>
     </message>
     <message>
         <source>DVDs Reserved</source>
-        <translation>DVD réservés</translation>
+        <translation>DVD empruntés</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation>Journaux réservés</translation>
+        <translation>Journaux empruntés</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation>Magazines réservés</translation>
+        <translation>Magazines empruntés</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation>Jeux vidéo réservés</translation>
+        <translation>Jeux vidéo empruntés</translation>
     </message>
     <message>
         <source>Unable to retrieve member data for table populating.</source>
@@ -1039,11 +1041,11 @@
     </message>
     <message>
         <source>Unable to determine the number of reserved items for the selected member.</source>
-        <translation>Impossible de déterminer le nombre d&apos;articles réservés pour le membre sélectionné.</translation>
+        <translation>Impossible de déterminer le nombre d&apos;articles empruntés pour le membre sélectionné.</translation>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items of the selected member.</source>
-        <translation>Impossible d&apos;extraire le nombre d&apos;articles réservés du membre sélectionné.</translation>
+        <translation>Impossible d&apos;extraire le nombre d&apos;articles empruntés du membre sélectionné.</translation>
     </message>
     <message>
         <source>Please select a member to modify.</source>
@@ -1075,7 +1077,7 @@
     </message>
     <message>
         <source>Please select a member and an item to continue with the reservation process.</source>
-        <translation>Veuillez sélectionner un membre et un article pour poursuivre le processus de réservation.</translation>
+        <translation>Veuillez sélectionner un membre et un article pour poursuivre le processus d&apos;emprunt.</translation>
     </message>
     <message>
         <source>Cancel Selected Request(s)</source>
@@ -1083,7 +1085,6 @@
     </message>
     <message>
         <source>Error Log Active</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Journal des erreurs actif</translation>
     </message>
     <message>
@@ -1112,7 +1113,7 @@
     </message>
     <message>
         <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Pour pouvoir lister les articles réservés d&apos;un membre, il faut d&apos;abord sélectionner le membre..</translation>
+        <translation>Pour pouvoir lister les articles empruntés d&apos;un membre, il faut d&apos;abord sélectionner le membre..</translation>
     </message>
     <message>
         <source>In order to reserve an item, you must first select it.</source>
@@ -1120,7 +1121,7 @@
     </message>
     <message>
         <source>It appears that the item you selected is not available for reservation.</source>
-        <translation>Il apparaît que l&apos;article sélectionné n&apos;est pas disponible à la réservation.</translation>
+        <translation>Il apparaît que l&apos;article sélectionné n&apos;est pas disponible pour l&apos;emprunt.</translation>
     </message>
     <message>
         <source>Would you like to retrieve the list of members?</source>
@@ -1212,7 +1213,7 @@
     </message>
     <message>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Pour pouvoir imprimer les articles réservés d&apos;un membre, il faut d&apos;abord sélectionner le membre.</translation>
+        <translation>Pour pouvoir imprimer les articles empruntés d&apos;un membre, il faut d&apos;abord sélectionner le membre.</translation>
     </message>
     <message>
         <source>The member that you selected does not have any reserved items.</source>
@@ -1220,11 +1221,11 @@
     </message>
     <message>
         <source>Reserved Items for </source>
-        <translation>Articles réservés pour </translation>
+        <translation>Articles emrpunté par </translation>
     </message>
     <message>
         <source>Unable to determine the reserved items for the selected member.</source>
-        <translation>Impossible de déterminer les articles réservés pour le membre sélectionné.</translation>
+        <translation>Impossible de déterminer les articles empruntés par le membre sélectionné.</translation>
     </message>
     <message>
         <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
@@ -1232,11 +1233,11 @@
     </message>
     <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
-        <translation>Pour pouvoir afficher l&apos;historique de réservation d&apos;un membre, il faut d&apos;abord sélectionner le membre.</translation>
+        <translation>Pour pouvoir afficher l&apos;historique des emprunts d&apos;un membre, il faut d&apos;abord sélectionner le membre.</translation>
     </message>
     <message>
         <source>Unable to retrieve reservation history data for table populating.</source>
-        <translation>Impossible d&apos;extraire les données d&apos;historique de réservation pour le remplissage de la table.</translation>
+        <translation>Impossible d&apos;extraire les données d&apos;historique des emprunts pour le remplissage de la table.</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1256,7 +1257,7 @@
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Date de réservation</translation>
+        <translation>Date d&apos;emprunt</translation>
     </message>
     <message>
         <source>Original Due Date</source>
@@ -1276,7 +1277,7 @@
     </message>
     <message>
         <source>You do not yet have a reservation history to print.</source>
-        <translation>Vous n&apos;avez pas encore d&apos;historique de réservation à imprimer.</translation>
+        <translation>Vous n&apos;avez pas encore d&apos;historique d&apos;emprunt à imprimer.</translation>
     </message>
     <message>
         <source>Reservation History</source>
@@ -1408,7 +1409,7 @@
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>CDs de musique</translation>
+        <translation>CD de musique</translation>
     </message>
     <message>
         <source>Video Games</source>
@@ -1416,7 +1417,7 @@
     </message>
     <message>
         <source>&amp;Clear Menu</source>
-        <translation>&amp;Effacer un menu</translation>
+        <translation>&amp;Effacer le menu</translation>
     </message>
     <message>
         <source>BiblioteQ: New SQLite Database</source>
@@ -1552,7 +1553,7 @@
     </message>
     <message>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation>allemand(&amp;Pays-Bas)</translation>
+        <translation>Allemand(&amp;Pays-Bas)</translation>
     </message>
     <message>
         <source>&amp;English</source>
@@ -1776,11 +1777,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Photograph Collections</source>
-        <translation>Construction photographique</translation>
+        <translation>Collections photographiques</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Toutes les requêtes</translation>
     </message>
     <message>
@@ -1877,11 +1877,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>H&amp;ungarian</source>
-        <translation>H&amp;ungrois</translation>
+        <translation>H&amp;ongrois</translation>
     </message>
     <message>
         <source>The member (%1) that you selected does not have reserved items.</source>
-        <translation>Le membre (%1) que vous avez sélectionné n&apos;a pas d&apos;articles réservés.</translation>
+        <translation>Le membre (%1) que vous avez sélectionné n&apos;a pas d&apos;articles empruntés.</translation>
     </message>
     <message>
         <source>Cancel Requested Request(s)</source>
@@ -1925,7 +1925,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>List Selected Member&apos;s Reserved Items</source>
-        <translation>Lister les articles réservés du membre sélectionné</translation>
+        <translation>Lister les articles empruntés du membre sélectionné</translation>
     </message>
     <message>
         <source>Modify Selected Member...</source>
@@ -1933,15 +1933,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Print Selected Member&apos;s Reserved Items...</source>
-        <translation>Imprimer les articles réservés du membre sélectionné...</translation>
+        <translation>Imprimer les articles empruntés du membre sélectionné...</translation>
     </message>
     <message>
         <source>Reserve Selected Item...</source>
-        <translation>Réserver l&apos;article sélectionné...</translation>
+        <translation>Emprunter l&apos;article sélectionné...</translation>
     </message>
     <message>
         <source>Show Selected Member&apos;s Reservation History...</source>
-        <translation>Afficher l&apos;historique de réservation du membre sélectionné...</translation>
+        <translation>Afficher l&apos;historique des emprunts du membre sélectionné...</translation>
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member (%1)?</source>
@@ -1949,7 +1949,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Vacuuming a database may require a significant amount of time to complete. Continue?</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Vacuuming d&apos;une base de données peut prendre beaucoup de temps. Continuer ?</translation>
     </message>
     <message>
@@ -1974,7 +1973,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reservation Date: </source>
-        <translation>Date de réservation : </translation>
+        <translation>Date d&apos;emprunt : </translation>
     </message>
     <message>
         <source>Due Date: </source>
@@ -2006,15 +2005,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Grey Literatures Reserved</source>
-        <translation>Litérature grise réservées</translation>
+        <translation>Litérature grise empruntées</translation>
     </message>
     <message>
         <source>Total Reserved</source>
         <translation>Total réservé</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compilé sur %2, %3.&lt;br&gt;Copyright (c) 2005 - présent, X.&lt;br&gt;Icônes de Faenza.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8. &lt;hr&gt;Venez visiter &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; ou &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; pour des informations sur le projet.&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
@@ -2023,6 +2018,86 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>&lt;b&gt;Read&lt;/b&gt;</source>
         <translation>&lt;b&gt;Lire&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Item Requests (PostgreSQL)</source>
+        <translation>Requêtes d&apos;articles (PostgreSQL)</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;SQLite version %9.&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;SQLite version %9.&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; pour des informations sur le projet information.&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Poppler version is not available.</source>
+        <translation>version Poppler n&apos;est pas disponible.</translation>
+    </message>
+    <message>
+        <source>is not available</source>
+        <translation>n&apos;est pas disponible</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to execute the statement?</source>
+        <translation>Êtes-vous sûr de vouloir exécuter la commande ?</translation>
+    </message>
+    <message>
+        <source>Interrupt</source>
+        <translation>Interrompre</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Patrons As CSV</source>
+        <translation>biblioteQ : Exportation des membres en format CSV</translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation>Ville</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Commentaires</translation>
+    </message>
+    <message>
+        <source>Date of Birth</source>
+        <translation>Date de naissance</translation>
+    </message>
+    <message>
+        <source>General Registration Number</source>
+        <translation>Numéro général d&apos;enregistrement</translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Books</source>
+        <translation>Nombre maximum de livre pouvant être emprunté</translation>
+    </message>
+    <message>
+        <source>Member Class</source>
+        <translation>Classe de membre</translation>
+    </message>
+    <message>
+        <source>Middle Initial</source>
+        <translation>Initiale du deuxième prénom</translation>
+    </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation>Amandes pour retard</translation>
+    </message>
+    <message>
+        <source>Sex</source>
+        <translation>Sexe</translation>
+    </message>
+    <message>
+        <source>State</source>
+        <translation>État</translation>
+    </message>
+    <message>
+        <source>Street</source>
+        <translation>Rue</translation>
+    </message>
+    <message>
+        <source>ZIP</source>
+        <translation>ZIP</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Release Notes</source>
+        <translation>BiblioteQ :  notes de publication</translation>
     </message>
 </context>
 <context>
@@ -2097,7 +2172,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
@@ -2109,7 +2184,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies empruntées.</translation>
     </message>
     <message>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
@@ -2481,7 +2556,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the Authors field.</source>
-        <translation>Veuillez remplir le champ « Auteur(s) ».</translation>
+        <translation>Veuillez remplir le champ Auteur(s).</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
@@ -2537,7 +2612,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Authors:</source>
-        <translation>Auteur(s) :</translation>
+        <translation>Auteurs :</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -2593,7 +2668,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Book Attachment(s)</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>BiblioteQ : Attachement(s) de livre(s)</translation>
     </message>
     <message>
@@ -2680,6 +2754,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
+    <message>
+        <source>The YAZ library is not available.</source>
+        <translation>La librairie YAZ n&apos;est pas disponible.</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -2717,7 +2795,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Date de réservation</translation>
+        <translation>Date d&apos;emprunt</translation>
     </message>
     <message>
         <source>Copy Due Date</source>
@@ -2757,7 +2835,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation>Il apparaît que l&apos;article sélectionné n&apos;a pas été réservé.</translation>
+        <translation>Il apparaît que l&apos;article sélectionné n&apos;a pas été emprunté.</translation>
     </message>
     <message>
         <source>Are you sure that the copy has been returned?</source>
@@ -2765,7 +2843,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation>Impossible de modifier l&apos;état de réservation de la copie sélectionnée.</translation>
+        <translation>Impossible de modifier l&apos;état d&apos;emprunt de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>Unable to modify the returned date of the selected copy.</source>
@@ -2860,15 +2938,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the cd locations.</source>
-        <translation type="unfinished">Impossible d&apos;extraire les emplacements des CD.</translation>
+        <translation>Impossible d&apos;extraire les emplacements des CD.</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd formats.</source>
-        <translation type="unfinished">Impossible d&apos;extraire les formats de CD.</translation>
+        <translation>Impossible d&apos;extraire les formats de CD.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
@@ -2880,15 +2958,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies empruntées.</translation>
     </message>
     <message>
         <source>Please complete the Catalog Number field.</source>
-        <translation type="unfinished">Veuillez remplir le champ « Numéro de catalogue ».</translation>
+        <translation>Veuillez remplir le champ « Numéro de catalogue ».</translation>
     </message>
     <message>
         <source>Please complete the Artist field.</source>
-        <translation type="unfinished">Veuillez remplir le champ « Artiste ».</translation>
+        <translation>Veuillez remplir le champ « Artiste ».</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
@@ -2900,7 +2978,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the Recording Label field.</source>
-        <translation type="unfinished">Veuillez remplir le champ « Label d&apos;enregistrement ».</translation>
+        <translation>Veuillez remplir le champ « Label d&apos;enregistrement ».</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
@@ -2924,7 +3002,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation type="unfinished">BiblioteQ : modifier l&apos;article « CD de musique » (</translation>
+        <translation>BiblioteQ : modifier l&apos;article « CD de musique » (</translation>
     </message>
     <message>
         <source>)</source>
@@ -2932,7 +3010,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the CD&apos;s OID.</source>
-        <translation type="unfinished">Impossible d&apos;extraire l&apos;OID du CD.</translation>
+        <translation>Impossible d&apos;extraire l&apos;OID du CD.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -2948,19 +3026,19 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Database Music CD Search</source>
-        <translation type="unfinished">BiblioteQ : recherche de CD de musique dans la base de données</translation>
+        <translation>BiblioteQ : recherche de CD de musique dans la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details (</source>
-        <translation type="unfinished">BiblioteQ : afficher les détails du CD de musique (</translation>
+        <translation>BiblioteQ : afficher les détails du CD de musique (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation type="unfinished">BiblioteQ :  modifier l&apos;article « CD de musique »</translation>
+        <translation>BiblioteQ :  modifier l&apos;article « CD de musique »</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details</source>
-        <translation type="unfinished">BiblioteQ : afficher les détails du CD de musique</translation>
+        <translation>BiblioteQ : afficher les détails du CD de musique</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -2968,15 +3046,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
-        <translation type="unfinished">Impossible d&apos;extraire les données du CD sélectionné.</translation>
+        <translation>Impossible d&apos;extraire les données du CD sélectionné.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Music CD Entry</source>
-        <translation type="unfinished">BiblioteQ : créer un article « CD de musique »</translation>
+        <translation>BiblioteQ : créer un article « CD de musique »</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
-        <translation type="unfinished">Impossible d&apos;extraire les données d&apos;une piste pour le remplissage de la table..</translation>
+        <translation>Impossible d&apos;extraire les données d&apos;une piste pour le remplissage de la table..</translation>
     </message>
     <message>
         <source>Album Number</source>
@@ -3000,7 +3078,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Album Tracks Browser (</source>
-        <translation type="unfinished">BiblioteQ : explorateur de pistes d&apos;albums (</translation>
+        <translation>BiblioteQ : explorateur de pistes d&apos;albums (</translation>
     </message>
     <message>
         <source>Populating the table...</source>
@@ -3032,19 +3110,19 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source> contains an empty Song Title.</source>
-        <translation type="unfinished"> contient un titre de morceau de musique vide.</translation>
+        <translation> contient un titre de morceau de musique vide.</translation>
     </message>
     <message>
         <source>Unable to purge track data.</source>
-        <translation type="unfinished">Impossible de purger les données d&apos;une piste.</translation>
+        <translation>Impossible de purger les données d&apos;une piste.</translation>
     </message>
     <message>
         <source>Saving the track data...</source>
-        <translation type="unfinished">Enregistrement des données de la piste en cours...</translation>
+        <translation>Enregistrement des données de la piste en cours...</translation>
     </message>
     <message>
         <source>Unable to create track data.</source>
-        <translation type="unfinished">Impossible de créer les données d&apos;une piste.</translation>
+        <translation>Impossible de créer les données d&apos;une piste.</translation>
     </message>
     <message>
         <source>Commit failure.</source>
@@ -3052,15 +3130,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Some or all of the track data has not been saved.</source>
-        <translation type="unfinished">Certaines ou l&apos;ensemble des données de la piste n&apos;ont pas été enregistrées.</translation>
+        <translation>Certaines ou l&apos;ensemble des données de la piste n&apos;ont pas été enregistrées.</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
-        <translation type="unfinished">La durée d&apos;exécution totale des pistes disponibles est nulle. Veuillez définir les durées d&apos;exécution individuelles.</translation>
+        <translation>La durée d&apos;exécution totale des pistes disponibles est nulle. Veuillez définir les durées d&apos;exécution individuelles.</translation>
     </message>
     <message>
         <source>Catalog Number:</source>
-        <translation type="unfinished">Numéro de catalogue :</translation>
+        <translation>Numéro de catalogue :</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -3068,7 +3146,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished">Artiste :</translation>
+        <translation>Artiste :</translation>
     </message>
     <message>
         <source>Number of Discs:</source>
@@ -3080,11 +3158,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Audio:</source>
-        <translation type="unfinished">Audio :</translation>
+        <translation>Audio :</translation>
     </message>
     <message>
         <source>Recording Type:</source>
-        <translation type="unfinished">Type d&apos;enregistrement :</translation>
+        <translation>Type d&apos;enregistrement :</translation>
     </message>
     <message>
         <source>Release Date:</source>
@@ -3092,7 +3170,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Recording Label:</source>
-        <translation type="unfinished">Label d&apos;enregistrement :</translation>
+        <translation>Label d&apos;enregistrement :</translation>
     </message>
     <message>
         <source>Categories:</source>
@@ -3132,7 +3210,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
-        <translation type="unfinished">BiblioteQ : dupliquer l&apos;article « CD de musique »</translation>
+        <translation>BiblioteQ : dupliquer l&apos;article « CD de musique »</translation>
     </message>
     <message>
         <source>Reset Front Cover Image</source>
@@ -3144,7 +3222,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le numéro du catalogue</translation>
     </message>
     <message>
         <source>Reset Format</source>
@@ -3156,7 +3234,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Composer</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser compositeur</translation>
     </message>
     <message>
         <source>Reset Number of Discs</source>
@@ -3168,11 +3246,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser l&apos;audio</translation>
     </message>
     <message>
         <source>Reset Recording Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le type d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Reset Title</source>
@@ -3184,7 +3262,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le label d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Reset Categories</source>
@@ -3311,11 +3389,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation>Il apparaît que la copie sélectionnée pour suppression est réservée.</translation>
+        <translation>Il apparaît que la copie sélectionnée pour suppression est empruntée.</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation>Impossible de déterminer l&apos;état de réservation de la copie sélectionnée.</translation>
+        <translation>Impossible de déterminer l&apos;état d&apos;emprunt de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -3359,7 +3437,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please select a copy to reserve.</source>
-        <translation>Veuillez sélectionner une copie à réserver.</translation>
+        <translation>Veuillez sélectionner une copie à empruntés.</translation>
     </message>
     <message>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
@@ -3375,7 +3453,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation>La copie sélectionnée est soit indisponible, soit réservée.</translation>
+        <translation>La copie sélectionnée est soit indisponible, soit empruntée.</translation>
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
@@ -3459,8 +3537,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Maximum %1s Reserved %2 | Total %1s Reserved %3</source>
-        <translatorcomment>a voir</translatorcomment>
-        <translation>Maximum %1s Reserved %2 | Total %1s Reserved %3</translation>
+        <translation>Maximum %1s Eempruntés %2 | Total %1s Empruntés %3</translation>
     </message>
     <message>
         <source>Status</source>
@@ -3480,7 +3557,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
 </context>
 <context>
@@ -3503,11 +3580,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation>Il apparaît que la copie sélectionnée pour suppression est réservée.</translation>
+        <translation>Il apparaît que la copie sélectionnée pour suppression est empruntée.</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation>Impossible de déterminer l&apos;état de réservation de la copie sélectionnée.</translation>
+        <translation>Impossible de déterminer l&apos;état d&apos;emprunt de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -3683,7 +3760,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Available</source>
@@ -3798,7 +3875,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Photograph Collection</source>
-        <translation>Collection  photographique</translation>
+        <translation>Collection photographiques</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
@@ -3839,6 +3916,53 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ&#xa0;: erreur de la base de données</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_documentationwindow</name>
+    <message>
+        <source>BiblioteQ: Documentation</source>
+        <translation>BiblioteQ : Documentation</translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation>Trouver</translation>
+    </message>
+    <message>
+        <source>&amp;Next</source>
+        <translation>&amp;Suivant</translation>
+    </message>
+    <message>
+        <source>&amp;Previous</source>
+        <translation>&amp;Précédente</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;Fichier</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Édition</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Fermer</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Crtl+W</translation>
+    </message>
+    <message>
+        <source>&amp;Find</source>
+        <translation>&amp;Trouver</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <translation>Ctrl+F</translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation>&amp;Imprimer...</translation>
     </message>
 </context>
 <context>
@@ -3917,7 +4041,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
@@ -3929,7 +4053,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies empruntées.</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
@@ -4346,7 +4470,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <name>biblioteq_grey_literature</name>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -4418,11 +4542,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Job Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser Jon Number</translation>
     </message>
     <message>
         <source>Reset Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser Notes</translation>
     </message>
     <message>
         <source>Reset Location</source>
@@ -4442,31 +4566,31 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the grey literature locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;extraire les emplacements de la littérature grise.</translation>
     </message>
     <message>
         <source>Unable to retrieve the grey literature document types.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de récupérer les types de documents de littérature grise.</translation>
     </message>
     <message>
         <source>Please complete the ID field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ ID.</translation>
     </message>
     <message>
         <source>Please complete the Authors field.</source>
-        <translation>Veuillez remplir le champ « Auteur(s) ».</translation>
+        <translation>Veuillez remplir le champ Auteur(s).</translation>
     </message>
     <message>
         <source>Please complete the Code-A field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ Code-A.</translation>
     </message>
     <message>
         <source>Please complete the Code-B field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ Code-B.</translation>
     </message>
     <message>
         <source>Please complete the Job Number field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ nombre Job.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -4482,15 +4606,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Duplicate Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer une entrée de littérature grise</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : créer une entrée de litératrures grises</translation>
     </message>
     <message>
         <source>Unable to create the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer les données.</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
@@ -4498,27 +4622,27 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to create the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer l&apos;entrée. Veuillez vérifier que l&apos;entrée n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Grey Literature Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : modifier l&apos;article de littérature grise</translation>
     </message>
     <message>
         <source>BiblioteQ: View Grey Literature Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : afficher les détails de la litératrures grises</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected grey literature&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;extraire les données de la littérature grise.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Grey Literature Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : modifier l&apos;article de littérature grise (</translation>
     </message>
     <message>
         <source>BiblioteQ: View Grey Literature Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : afficher les détails de la litératrures grises (</translation>
     </message>
     <message>
         <source>Double-click to edit.</source>
@@ -4526,11 +4650,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Database Grey Literature Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : recherche dans la base de données de la littérature grise</translation>
     </message>
     <message>
         <source>BiblioteQ: Grey Literature File Attachment(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : littérature grise fichier(s) jiont(s)</translation>
     </message>
     <message>
         <source>Uploading files...</source>
@@ -4550,7 +4674,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Grey Literature File Export</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Exportation de fichiers de littérature grise</translation>
     </message>
     <message>
         <source>Exporting file(s)...</source>
@@ -4578,7 +4702,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Authors:</source>
-        <translation>Auteur(s) :</translation>
+        <translation>Auteurs :</translation>
     </message>
     <message>
         <source>Clients:</source>
@@ -4594,11 +4718,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Job Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro d&apos;emploi :</translation>
     </message>
     <message>
         <source>Notes:</source>
-        <translation>Notes</translation>
+        <translation>Notes :</translation>
     </message>
     <message>
         <source>Status:</source>
@@ -4610,7 +4734,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de mettre à jour l&apos;entrés.</translation>
     </message>
 </context>
 <context>
@@ -4661,7 +4785,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Authors</source>
-        <translation>Auteur(s)</translation>
+        <translation>Auteurs</translation>
     </message>
     <message>
         <source>Code-A</source>
@@ -4737,11 +4861,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reservation Status</source>
-        <translation>Statut des réservations</translation>
+        <translation>Statut des emprunts</translation>
     </message>
     <message>
         <source>&amp;Reservation Status...</source>
-        <translation>Statut des &amp;réservations...</translation>
+        <translation>Statut des &amp;emprunts...</translation>
     </message>
     <message>
         <source>Copies</source>
@@ -4755,24 +4879,12 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
 <context>
     <name>biblioteq_import</name>
     <message>
-        <source>biblioteq_misc_functions::createInitialCopies() error (%1) on row %2.</source>
-        <translation>biblioteq_misc_functions::createInitialCopies() erreur (%1) sur la ligne %2.</translation>
-    </message>
-    <message>
-        <source>Database error (%1) on row %2.</source>
-        <translation>Erreur de la base de données (%1) sur ligne %2.</translation>
-    </message>
-    <message>
         <source>Empty row %1.</source>
         <translation>Ligne vide %1.</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
         <translation>BiblioteQ : question</translation>
-    </message>
-    <message>
-        <source>Populate the Books table with Template 1 values?</source>
-        <translation>Remplir la table Books avec les valeurs du modèle 1 ?</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -4785,11 +4897,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>The file %1 is not readable.</source>
         <translation>Le fichier %1 n&apos;est pas lisible.</translation>
-    </message>
-    <message>
-        <source>Duplicate mapping discovered in the Books table. Please review row %1.</source>
-        <translatorcomment>a revoir</translatorcomment>
-        <translation>Duplicate mapping découvert dans la table Books. Veuillez revoir la ligne %1.</translation>
     </message>
     <message>
         <source>Please define column mappings.</source>
@@ -4806,7 +4913,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>Imported: %1. Not imported: %2.
 </source>
-        <translation>Importé : %1 . Nom importé %2.
+        <translation>Importé : %1 . Non importé %2.
 </translation>
     </message>
     <message>
@@ -4819,7 +4926,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Imported: %1. Not imported: %2.</source>
-        <translation>Importé : %1 . Nom importé %2.</translation>
+        <translation>Importé : %1 . Non importé %2.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to reset?</source>
@@ -4828,6 +4935,38 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>BiblioteQ: Select CSV Import File</source>
         <translation>BiblioteQ : Selectionner le fichier CSV a importer</translation>
+    </message>
+    <message>
+        <source>biblioteq_misc_functions::createInitialCopies() error (%1) at row %2.</source>
+        <translation>biblioteq_misc_functions::createInitialCopies() erreur (%1) à la ligne %2.</translation>
+    </message>
+    <message>
+        <source>Database error (%1) at row %2.</source>
+        <translation>Erreur de la base de données (%1) à la ligne  %2.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction at row %1</source>
+        <translation>Impossible de créer une transaction de base de données à la ligne %1</translation>
+    </message>
+    <message>
+        <source>Error (%1) in biblioteq_misc_functions::DBAccount() at row %2.</source>
+        <translation>Erreur (%1) dans  biblioteq_misc_functions::DBAccount() à la ligne %2.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction at row.</source>
+        <translation>Impossible de valider la transaction de base de données actuelle avec la ligne.</translation>
+    </message>
+    <message>
+        <source>Reading the CSV file...</source>
+        <translation>Lecture du fichier CSV...</translation>
+    </message>
+    <message>
+        <source>Duplicate mapping discovered in the table. Please review row %1.</source>
+        <translation>Un doublon a été découvert dans la table. Veuillez revoir la ligne %1.</translation>
+    </message>
+    <message>
+        <source>Populate the table with Template %1 values?</source>
+        <translation>Remplir le tableau avec les valeurs du modèle %1 ?</translation>
     </message>
 </context>
 <context>
@@ -4909,7 +5048,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
@@ -4921,7 +5060,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies empruntées.</translation>
     </message>
     <message>
         <source>Please complete the ISSN field.</source>
@@ -5173,7 +5312,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Dewey Number</source>
-        <translation>Réinitialiser Numéro Dewey</translation>
+        <translation>Réinitialiser numéro Dewey</translation>
     </message>
     <message>
         <source>Reset Title</source>
@@ -5403,6 +5542,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation>BiblioteQ : Recherche de données SRU</translation>
     </message>
+    <message>
+        <source>The YAZ library is not available.</source>
+        <translation>La librairie YAZ n&apos;est pas disponible.</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_main_table</name>
@@ -5420,7 +5563,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Date de réservation</translation>
+        <translation>Date d&apos;emprunt</translation>
     </message>
     <message>
         <source>Due Date</source>
@@ -5600,7 +5743,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Authors</source>
-        <translation>Auteur(s)</translation>
+        <translation>Auteurs</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -5636,7 +5779,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Document ID</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>numéro du document</translation>
     </message>
     <message>
@@ -5649,7 +5791,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Job Number</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Numéro d&apos;emploi</translation>
     </message>
     <message>
@@ -5701,7 +5842,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>CDs de musique</translation>
+        <translation>CD de musique</translation>
     </message>
     <message>
         <source>Video Games</source>
@@ -5717,7 +5858,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Photograph Collections</source>
-        <translation>Construction photographique</translation>
+        <translation>Collections photographiques</translation>
     </message>
 </context>
 <context>
@@ -5779,7 +5920,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <name>biblioteq_photographcollection</name>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -5827,27 +5968,27 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Collection Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser l&apos;image de la collection</translation>
     </message>
     <message>
         <source>Reset Collection ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser l&apos;ID de la collection</translation>
     </message>
     <message>
         <source>Reset Collection Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le titre de la collection</translation>
     </message>
     <message>
         <source>Reset Collection Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser l&apos;emplacement de la collection</translation>
     </message>
     <message>
         <source>Reset Collection About</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser la collection À propos de</translation>
     </message>
     <message>
         <source>Reset Collection Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialisation des notes de la collection</translation>
     </message>
     <message>
         <source>Reset Accession Number</source>
@@ -5855,15 +5996,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>&amp;All...</source>
-        <translation type="unfinished">&amp;Tous...</translation>
+        <translation>&amp;Tous...</translation>
     </message>
     <message>
         <source>&amp;Current Page...</source>
-        <translation type="unfinished">&amp;page actuelle</translation>
+        <translation>&amp;Page actuelle...</translation>
     </message>
     <message>
         <source>&amp;Selected...</source>
-        <translation type="unfinished">&amp;Sélectionnée...</translation>
+        <translation>&amp;Sélectionner...</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -5871,7 +6012,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the photograph collection locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;extraire les emplacements de la collection de photographies.</translation>
     </message>
     <message>
         <source>Please complete the collection&apos;s ID field.</source>
@@ -5879,7 +6020,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the collection&apos;s Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ Titre de la collection.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -5903,19 +6044,19 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Database Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Recherche dans la base de données de collection de photographies</translation>
     </message>
     <message>
         <source>BiblioteQ: View Photograph Collection Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : afficher les détails des collections de photographies (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : modifier l&apos;article de la collection de photographies</translation>
     </message>
     <message>
         <source>BiblioteQ: View Photograph Collection Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : afficher les détails des collections de photographies</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
@@ -6003,7 +6144,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Item Format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de l&apos;article :</translation>
     </message>
     <message>
         <source>Accession Number:</source>
@@ -6023,7 +6164,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Loading image(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement de(s) image(s)...</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
@@ -6035,15 +6176,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the item&apos;s Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ Titre.</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Creators field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ Créateur(s).</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Medium field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ support.</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Reproduction Number field.</source>
@@ -6055,55 +6196,55 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to create the item. Please verify that the item does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer ou de mettre à jour l&apos;entrée. Veuillez vérifier que l&apos;entrée n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source>Unable to update the item. Please verify that the item does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de mettre à jour l&apos;article. Veuillez vérifier que l&apos;article n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to permanently delete the selected %1 item(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment supprimer définitivement l(es)article(s) sélectionné(s) %1 ?</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Collection de photographies Exportation de photographies</translation>
     </message>
     <message>
         <source>&amp;Delete Photograph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Effacer Photographie</translation>
     </message>
     <message>
         <source>&amp;Modify Photograph...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modifier Photographie...</translation>
     </message>
     <message>
         <source>&amp;View Photograph...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Voir Photographie...</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Import</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Importation de la collection de photographies</translation>
     </message>
     <message>
         <source>Importing image(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importation de(s) image(s)...</translation>
     </message>
     <message>
         <source>Unable to import photograph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;importer la photographie.</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Collection de photographies Exportation de la photographie</translation>
     </message>
     <message>
         <source>Imported a total of %1 image(s) from the directory %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Importation d&apos;un total de %1 image(s) depuis le répertoire %2.</translation>
     </message>
     <message>
         <source>Unable to update photograph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de mettre à jour la photographie.</translation>
     </message>
 </context>
 <context>
@@ -6173,7 +6314,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation type="obsolete">INCONNU</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
@@ -6185,7 +6326,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies empruntées.</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
@@ -6481,7 +6622,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Developers:</source>
-        <translation>Développeur(s) :</translation>
+        <translation>Développeurs:</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -6737,7 +6878,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Branch Selection</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>BiblioteQ&#xa0;: sélection d&apos;une branche</translation>
     </message>
     <message>
@@ -6774,7 +6914,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Branch &amp;Name</source>
-        <translatorcomment>a voir</translatorcomment>
         <translation>Branch &amp;Name</translation>
     </message>
     <message>
@@ -6982,7 +7121,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>&amp;Reservation Status...</source>
-        <translation>Statut des &amp;réservations...</translation>
+        <translation>Statut des &amp;emprunts...</translation>
     </message>
     <message>
         <source>Accession Number</source>
@@ -7041,7 +7180,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Date de réservation</translation>
+        <translation>Date d&apos;emprunt</translation>
     </message>
     <message>
         <source>Due Date</source>
@@ -7465,12 +7604,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please provide a query statement.</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Veuillez fournir une déclaration de requête.</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -7617,7 +7759,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>CDs de musique</translation>
+        <translation>CD de musique</translation>
     </message>
     <message>
         <source>Save Changes</source>
@@ -7645,7 +7787,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reservations Minimum Days</source>
-        <translation>Nombre de jours minimal de réservations</translation>
+        <translation>Nombre de jours minimal d&apos;emprunt</translation>
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
@@ -7685,8 +7827,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Grey Literature Document Types</source>
-        <translatorcomment>a revoir</translatorcomment>
-        <translation>Typde de document Litérature grise</translation>
+        <translation>Type de document Litérature grise</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -7698,7 +7839,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
     </message>
     <message>
         <source>7</source>
@@ -7707,6 +7848,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>Grey Literature</source>
         <translation>Litérature grise</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -8061,7 +8206,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status...</source>
-        <translation>Statut des &amp;réservations...</translation>
+        <translation>Statut des &amp;emprunts...</translation>
     </message>
     <message>
         <source>Accession Number</source>
@@ -8189,12 +8334,15 @@ minmal de jours.</translation>
         <source>Ctrl+W</source>
         <translation>Crtl+W</translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
+    </message>
 </context>
 <context>
     <name>generalmessagediag</name>
     <message>
         <source>BiblioteQ: General Message Dialog</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>BiblioteQ : dialogue méssage générale</translation>
     </message>
     <message>
@@ -8277,7 +8425,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Date de réservation</translation>
+        <translation>Date d&apos;emprunt</translation>
     </message>
     <message>
         <source>Due Date</source>
@@ -8301,7 +8449,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
     </message>
 </context>
 <context>
@@ -8351,10 +8503,6 @@ minmal de jours.</translation>
         <translation>Numéro de la colonne CSV</translation>
     </message>
     <message>
-        <source>BiblioteQ Books Table Field Name</source>
-        <translation>BiblioteQ Nom des champs de la table livres</translation>
-    </message>
-    <message>
         <source>Please separate with single spaces.</source>
         <translation>Veuillez les séparer par des espaces simples.</translation>
     </message>
@@ -8401,6 +8549,26 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Ignored CSV Row(s)</source>
         <translation>&amp;Ignored ligne(s) du CSV</translation>
+    </message>
+    <message>
+        <source>CSV Preview</source>
+        <translation>Prévisualisation du CSV</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Rafraîchir</translation>
+    </message>
+    <message>
+        <source>Template 2 (BiblioteQ Patrons Column Order)</source>
+        <translation>Modèle 2 (BibloteQ Utilisateurs ordre des colonnes)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ Table Field Name</source>
+        <translation>BiblioteQ nom des champs de la table</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation>5</translation>
     </message>
 </context>
 <context>
@@ -8591,7 +8759,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation>Auteur(s)</translation>
+        <translation>Auteurs</translation>
     </message>
     <message>
         <source>Black &amp; White Copy</source>
@@ -8619,7 +8787,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status...</source>
-        <translation>Statut des &amp;réservations...</translation>
+        <translation>Statut des &amp;emprunts...</translation>
     </message>
     <message>
         <source>Originality</source>
@@ -8635,7 +8803,6 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Binding Copy</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Copie de reliure</translation>
     </message>
     <message>
@@ -8903,7 +9070,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status...</source>
-        <translation>Statut des &amp;réservations...</translation>
+        <translation>Statut des &amp;emprunts...</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Publication Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -9074,7 +9241,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Exit Bibliote&amp;Q</source>
-        <translation>Quitter Bibliote&amp;Q</translation>
+        <translation>&amp;Quitter BiblioteQ</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -9146,7 +9313,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -9266,7 +9433,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
-        <translation>Réserver l&apos;article sélectionné</translation>
+        <translation>Emprunter l&apos;article sélectionné</translation>
     </message>
     <message>
         <source>Item Requests</source>
@@ -9282,7 +9449,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Reservations Toolbar</source>
-        <translation>Barre de réservations</translation>
+        <translation>Barre des emprunts</translation>
     </message>
     <message>
         <source>Configurations Toolbar</source>
@@ -9330,7 +9497,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Refresh View</source>
-        <translation>&amp;Rafraîchiir l&apos;affichage</translation>
+        <translation>&amp;Rafraîchir l&apos;affichage</translation>
     </message>
     <message>
         <source>&amp;Export Table View as CSV</source>
@@ -9458,7 +9625,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History (Patrons Only)</source>
-        <translation>Voir l&apos;historique des réservations d&apos;un membre (Patrons seulement)</translation>
+        <translation>Voir l&apos;historique des emprunts d&apos;un membre (Patrons seulement)</translation>
     </message>
     <message>
         <source>Populate &amp;Members Browser on Display</source>
@@ -9534,7 +9701,6 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Reset the nearby search widgets.</source>
-        <translatorcomment>a revoir</translatorcomment>
         <translation>Réinitialiser les widgets de recherche de proximité.</translation>
     </message>
     <message>
@@ -9584,6 +9750,38 @@ minmal de jours.</translation>
     <message>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation>&amp;Documentation</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
+    </message>
+    <message>
+        <source>Change Password (PostgreSQL)</source>
+        <translation>Changer de mot de passe (PostgresSQL)</translation>
+    </message>
+    <message>
+        <source>Configure Administrator Privileges (PostgreSQL)</source>
+        <translation>Configurer les privilèges de l&apos;administrateur (PostgreSQL)</translation>
+    </message>
+    <message>
+        <source>&amp;English...</source>
+        <translation>&amp;Anglais...</translation>
+    </message>
+    <message>
+        <source>&amp;French...</source>
+        <translation>&amp;Français...</translation>
+    </message>
+    <message>
+        <source>&amp;Release Notes...</source>
+        <translation>&amp;Notes de publication...</translation>
+    </message>
+    <message>
+        <source>&amp;Merge SQLite Databases...</source>
+        <translation>&amp;Fusionner base de données SQLite...</translation>
     </message>
 </context>
 <context>
@@ -9809,7 +10007,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Show Selected Member&apos;s Reservation History</source>
-        <translation>Afficher l&apos;historique de réservation du membre sélectionné</translation>
+        <translation>Afficher l&apos;historique des emprunts du membre sélectionné</translation>
     </message>
     <message>
         <source>Expiration Date</source>
@@ -9825,7 +10023,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Print Selected Member&apos;s Reserved Items</source>
-        <translation>Imprimer les articles réservés du membre sélectionné</translation>
+        <translation>Imprimer les articles empruntés du membre sélectionné</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -9833,11 +10031,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation>Jeux vidéo réservés</translation>
+        <translation>Jeux vidéo empruntés</translation>
     </message>
     <message>
         <source>DVDs Reserved</source>
-        <translation>DVD réservés</translation>
+        <translation>DVD empruntés</translation>
     </message>
     <message>
         <source>Add Member</source>
@@ -9849,19 +10047,19 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation>Magazines réservés</translation>
+        <translation>Magazines empruntés</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation>Journaux réservés</translation>
+        <translation>Journaux empruntés</translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation>CD réservés</translation>
+        <translation>CD empruntés</translation>
     </message>
     <message>
         <source>List Selected Member&apos;s Reserved Items</source>
-        <translation>Lister les articles réservés du membre sélectionné</translation>
+        <translation>Lister les articles empruntés du membre sélectionné</translation>
     </message>
     <message>
         <source>Modify Selected Member</source>
@@ -9877,7 +10075,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation>Livres réservés</translation>
+        <translation>Livres empruntés</translation>
     </message>
     <message>
         <source>Delete Selected Member</source>
@@ -9885,7 +10083,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
-        <translation>Réserver l&apos;article sélectionné</translation>
+        <translation>Emprunter l&apos;article sélectionné</translation>
     </message>
     <message>
         <source>BiblioteQ: Members Browser</source>
@@ -9893,7 +10091,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Grant Privileges</source>
-        <translation>Accorder des privilèges</translation>
+        <translation type="obsolete">Accorder des privilèges</translation>
     </message>
     <message>
         <source>&amp;Apply Filter</source>
@@ -9920,12 +10118,8 @@ minmal de jours.</translation>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <source>&amp;Export Table View as CSV...</source>
-        <translation>&amp;Exporter la vue tableau en CSV...</translation>
-    </message>
-    <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="obsolete">Ctrl+R</translation>
     </message>
     <message>
         <source>&amp;Filter</source>
@@ -9933,11 +10127,90 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Grey Literatures Reserved</source>
-        <translation>Litérature grise réservées</translation>
+        <translation>Litérature grise empruntées</translation>
     </message>
     <message>
         <source>Total Reserved</source>
         <translation>Total réservé</translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation>Page</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source> Members Per Page</source>
+        <translation> Membres par page</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable speedy reservations. The first available copy will be reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Activez les réservations rapides. La première copie disponible sera réservée.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Grant Privileges (PostgreSQL)</source>
+        <translation>Accorder des privilèges (PostgreSQL)</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
+    </message>
+    <message>
+        <source>&amp;Export All Member Information as CSV...</source>
+        <translation>&amp;Exporter toutes les informations sur les membres au format CSV...</translation>
+    </message>
+</context>
+<context>
+    <name>mergeSQLiteDatabases</name>
+    <message>
+        <source>BiblioteQ: Merge SQLite Databases</source>
+        <translation>BiblioteQ : Fusionner base de données SQLite</translation>
+    </message>
+    <message>
+        <source>SQLite Database</source>
+        <translation>Base de données SQLite</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Sélectionner</translation>
+    </message>
+    <message>
+        <source>&amp;Add Row</source>
+        <translation>&amp;Ajouter Ligne</translation>
+    </message>
+    <message>
+        <source>&amp;Delete Row(s)</source>
+        <translation>&amp;Effacer ligne(s)</translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation>Résultats</translation>
+    </message>
+    <message>
+        <source>Merge</source>
+        <translation>Fusionner</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Réinitialiser</translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation>Ctrl+R</translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation>Fermer l&apos;explorateur</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Crtl+W</translation>
     </message>
 </context>
 <context>
@@ -9971,10 +10244,6 @@ minmal de jours.</translation>
         <translation>Crtl+W</translation>
     </message>
     <message>
-        <source>Please reload table on value change.</source>
-        <translation>Veuillez recharger le tableau en cas de changement de valeur.</translation>
-    </message>
-    <message>
         <source>Items</source>
         <translation>Articles</translation>
     </message>
@@ -10000,15 +10269,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Availability Colors</source>
-        <translation>Couleur &amp;disponible</translation>
+        <translation>Couleur pour la &amp;disponibilité</translation>
     </message>
     <message>
         <source>Availability Color</source>
         <translation>Couleur disponible</translation>
-    </message>
-    <message>
-        <source>&amp;Show Table Images</source>
-        <translation>&amp;Montrer le tableau avec les images</translation>
     </message>
     <message>
         <source>Sort</source>
@@ -10033,6 +10298,22 @@ minmal de jours.</translation>
     <message>
         <source>Text</source>
         <translation>Texte</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall be shown during the populating of data on the main table / view. Dialogs may be interrupted by the F8 key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Les dialogues de progression doivent être affichés pendant le remplissage des données sur la table / vue principale. Les dialogues peuvent être interrompus par la touche F8.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Show Progress Dialogs</source>
+        <translation>&amp;Afficher les dialogues de progression</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Veuillez recharger le tableau principal en cas de changement de valeur.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Show Table / View Images</source>
+        <translation>&amp;Afficher le tableau / Voir les images</translation>
     </message>
 </context>
 <context>
@@ -14252,7 +14533,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status...</source>
-        <translation>Statut des &amp;réservations...</translation>
+        <translation>Statut des &amp;emprunts...</translation>
     </message>
     <message>
         <source>Accession Number</source>
