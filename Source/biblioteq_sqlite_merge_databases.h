@@ -28,6 +28,7 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
   void slotAddRow(void);
   void slotDeleteRow(void);
   void slotReset(void);
+  void slotSelect(void);
   void slotSetGlobalFonts(const QFont &font);
 };
 

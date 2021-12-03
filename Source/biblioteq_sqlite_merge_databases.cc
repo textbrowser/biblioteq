@@ -1,3 +1,4 @@
+#include <QFileDialog>
 #include <QProgressBar>
 #include <QPushButton>
 
@@ -70,8 +71,12 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 	}
       case SELECT_COLUMN:
 	{
-	  auto pushButton = new QPushButton();
+	  auto pushButton = new QPushButton(tr("Select SQLite Database"));
 
+	  connect(pushButton,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotSelect(void)));
 	  m_ui.databases->setCellWidget(row, i, pushButton);
 	  break;
 	}
@@ -97,7 +102,44 @@ void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
 void biblioteq_sqlite_merge_databases::slotReset(void)
 {
   m_ui.databases->clearContents();
+  m_ui.databases->setRowCount(0);
   m_ui.results->clear();
+}
+
+void biblioteq_sqlite_merge_databases::slotSelect(void)
+{
+  auto pushButton = qobject_cast<QPushButton *> (sender());
+
+  if(!pushButton)
+    return;
+
+  QFileDialog dialog(this);
+
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setNameFilter("SQLite Database (*.sqlite)");
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
+  dialog.exec();
+  QApplication::processEvents();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      for(int i = 0; i < m_ui.databases->rowCount(); i++)
+	if(m_ui.databases->cellWidget(i, SELECT_COLUMN) == pushButton)
+	  if(m_ui.databases->item(i, SQLITE_DATABASE_COLUMN))
+	    {
+	      m_ui.databases->item(i, SQLITE_DATABASE_COLUMN)->
+		setText(dialog.selectedFiles().value(0));
+	      m_ui.databases->item(i, SQLITE_DATABASE_COLUMN)->setToolTip
+		(dialog.selectedFiles().value(0));
+	      break;
+	    }
+
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq_sqlite_merge_databases::slotSetGlobalFonts(const QFont &font)
