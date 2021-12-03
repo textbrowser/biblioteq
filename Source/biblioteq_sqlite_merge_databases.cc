@@ -1,4 +1,5 @@
 #include <QProgressBar>
+#include <QPushButton>
 
 #include "biblioteq.h"
 #include "biblioteq_sqlite_merge_databases.h"
@@ -22,6 +23,10 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(close(void)));
+  connect(m_ui.delete_row,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteRow(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -63,6 +68,13 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 	  m_ui.databases->setCellWidget(row, i, progress);
 	  break;
 	}
+      case SELECT_COLUMN:
+	{
+	  auto pushButton = new QPushButton();
+
+	  m_ui.databases->setCellWidget(row, i, pushButton);
+	  break;
+	}
       case SQLITE_DATABASE_COLUMN:
 	{
 	  auto item = new QTableWidgetItem();
@@ -75,6 +87,11 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 	  break;
 	}
       }
+}
+
+void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
+{
+  m_ui.databases->removeRow(m_ui.databases->currentRow());
 }
 
 void biblioteq_sqlite_merge_databases::slotReset(void)

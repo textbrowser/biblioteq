@@ -86,12 +86,12 @@
                  </column>
                  <column>
                   <property name="text">
-                   <string>Progress</string>
+                   <string>Select</string>
                   </property>
                  </column>
                  <column>
                   <property name="text">
-                   <string>Select</string>
+                   <string>Progress</string>
                   </property>
                  </column>
                 </widget>

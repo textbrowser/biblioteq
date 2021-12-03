@@ -15,8 +15,8 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
  private:
   enum Columns
     {
-     PROGRESS_COLUMN = 1,
-     SELECT_COLUMN = 2,
+     PROGRESS_COLUMN = 2,
+     SELECT_COLUMN = 1,
      SQLITE_DATABASE_COLUMN = 0
     };
 
@@ -26,6 +26,7 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
 
  private slots:
   void slotAddRow(void);
+  void slotDeleteRow(void);
   void slotReset(void);
   void slotSetGlobalFonts(const QFont &font);
 };
