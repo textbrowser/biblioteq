@@ -1,3 +1,5 @@
+#include <QProgressBar>
+
 #include "biblioteq.h"
 #include "biblioteq_sqlite_merge_databases.h"
 
@@ -12,6 +14,10 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(slotSetGlobalFonts(const QFont &)));
+  connect(m_ui.add_row,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAddRow(void)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -39,6 +45,36 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+void biblioteq_sqlite_merge_databases::slotAddRow(void)
+{
+  m_ui.databases->setRowCount(m_ui.databases->rowCount() + 1);
+
+  auto row = m_ui.databases->rowCount() - 1;
+
+  for(int i = 0; i < m_ui.databases->columnCount(); i++)
+    switch(i)
+      {
+      case PROGRESS_COLUMN:
+	{
+	  auto progress = new QProgressBar();
+
+	  m_ui.databases->setCellWidget(row, i, progress);
+	  break;
+	}
+      case SQLITE_DATABASE_COLUMN:
+	{
+	  auto item = new QTableWidgetItem();
+
+	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	  m_ui.databases->setItem(row, i, item);
+	}
+      default:
+	{
+	  break;
+	}
+      }
 }
 
 void biblioteq_sqlite_merge_databases::slotReset(void)

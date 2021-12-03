@@ -42,7 +42,7 @@
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
                 <widget class="QTableWidget" name="databases">
@@ -71,10 +71,10 @@
                   <bool>false</bool>
                  </property>
                  <attribute name="horizontalHeaderMinimumSectionSize">
-                  <number>275</number>
+                  <number>175</number>
                  </attribute>
                  <attribute name="horizontalHeaderDefaultSectionSize">
-                  <number>275</number>
+                  <number>175</number>
                  </attribute>
                  <attribute name="horizontalHeaderStretchLastSection">
                   <bool>true</bool>

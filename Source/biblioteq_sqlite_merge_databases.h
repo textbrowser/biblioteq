@@ -13,11 +13,19 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
   biblioteq_sqlite_merge_databases(biblioteq *parent);
 
  private:
+  enum Columns
+    {
+     PROGRESS_COLUMN = 1,
+     SELECT_COLUMN = 2,
+     SQLITE_DATABASE_COLUMN = 0
+    };
+
   Ui_mergeSQLiteDatabases m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);
 
  private slots:
+  void slotAddRow(void);
   void slotReset(void);
   void slotSetGlobalFonts(const QFont &font);
 };
