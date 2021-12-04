@@ -113,7 +113,7 @@ void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
 
 void biblioteq_sqlite_merge_databases::slotMerge(void)
 {
-  if(m_ui.databases->rowCount() == 0)
+  if(!m_qmain || m_ui.databases->rowCount() == 0)
     return;
 
   QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
@@ -178,6 +178,38 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
 
       if(!item || !progressBar)
 	continue;
+
+      progressBar->setMaximum(tables.size());
+      progressBar->setMinimum(0);
+
+      auto dbName(item->text());
+
+      {
+	auto db = QSqlDatabase::addDatabase("QSQLITE", dbName);
+
+	db.setDatabaseName(dbName);
+
+	if(db.open())
+	  {
+	    for(int j = 0; j < tables.size(); j++)
+	      {
+		progressBar->setValue(j + 1);
+		progressBar->repaint();
+		QApplication::processEvents();
+
+		QSqlQuery query(db);
+
+		if(query.exec(QString("SELECT * FROM %1").arg(tables.at(j))))
+		  while(query.next())
+		    {
+		    }
+	      }
+	  }
+
+	db.close();
+      }
+
+      QSqlDatabase::removeDatabase(dbName);
     }
 
   progress->close();
