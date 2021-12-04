@@ -33,7 +33,8 @@ var searchData=
   ['biblioteq_5fpdfreader_30',['biblioteq_pdfreader',['../classbiblioteq__pdfreader.html',1,'']]],
   ['biblioteq_5fphotograph_5fview_31',['biblioteq_photograph_view',['../classbiblioteq__photograph__view.html',1,'']]],
   ['biblioteq_5fphotographcollection_32',['biblioteq_photographcollection',['../classbiblioteq__photographcollection.html',1,'']]],
-  ['biblioteq_5fsruresults_33',['biblioteq_sruresults',['../classbiblioteq__sruresults.html',1,'']]],
-  ['biblioteq_5fvideogame_34',['biblioteq_videogame',['../classbiblioteq__videogame.html',1,'']]],
-  ['biblioteq_5fz3950results_35',['biblioteq_z3950results',['../classbiblioteq__z3950results.html',1,'']]]
+  ['biblioteq_5fsqlite_5fmerge_5fdatabases_33',['biblioteq_sqlite_merge_databases',['../classbiblioteq__sqlite__merge__databases.html',1,'']]],
+  ['biblioteq_5fsruresults_34',['biblioteq_sruresults',['../classbiblioteq__sruresults.html',1,'']]],
+  ['biblioteq_5fvideogame_35',['biblioteq_videogame',['../classbiblioteq__videogame.html',1,'']]],
+  ['biblioteq_5fz3950results_36',['biblioteq_z3950results',['../classbiblioteq__z3950results.html',1,'']]]
 ];
