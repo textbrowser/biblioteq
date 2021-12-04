@@ -179,7 +179,7 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
       auto progressBar = qobject_cast<QProgressBar *>
 	(m_ui.databases->cellWidget(i, PROGRESS_COLUMN));
 
-      if(!item || !progressBar)
+      if(!QFileInfo(item->text()).isReadable() || !item || !progressBar)
 	continue;
 
       progressBar->setMaximum(tables.size());
