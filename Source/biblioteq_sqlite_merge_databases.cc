@@ -2,6 +2,7 @@
 #include <QProgressBar>
 #include <QProgressDialog>
 #include <QPushButton>
+#include <QSqlRecord>
 
 #include "biblioteq.h"
 #include "biblioteq_sqlite_merge_databases.h"
@@ -127,6 +128,7 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
   progress->repaint();
   QApplication::processEvents();
 
+  QString errors("<html>");
   auto tables(QStringList()
 	      << "book"
 	      << "book_binding_types"
@@ -163,6 +165,7 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
 	      << "videogame_copy_info"
 	      << "videogame_platforms"
 	      << "videogame_ratings");
+  int ct = 0;
 
   for(int i = 0; i < m_ui.databases->rowCount(); i++)
     {
@@ -202,6 +205,50 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
 		if(query.exec(QString("SELECT * FROM %1").arg(tables.at(j))))
 		  while(query.next())
 		    {
+		      QList<QVariant> values;
+		      QString str1("");
+		      QString str2("");
+		      QVariant myoid;
+
+		      auto record(query.record());
+
+		      for(int k = 0; k < record.count(); k++)
+			{
+			  str1 += record.fieldName(k) + ",";
+			  str2 += "?,";
+			  values << record.value(k);
+
+			  if(record.fieldName(k) == "myoid")
+			    myoid = record.value(k);
+			}
+
+		      if(str1.endsWith(','))
+			str1 = str1.mid(0, str1.length() - 1);
+
+		      if(str2.endsWith(','))
+			str2 = str2.mid(0, str2.length() - 1);
+
+		      QSqlQuery q(m_qmain->getDB());
+
+		      q.prepare
+			(QString("INSERT INTO %1 (%2) VALUES (%3)").
+			 arg(tables.at(j)).arg(str1).arg(str2));
+
+		      for(int k = 0; k < values.size(); k++)
+			q.addBindValue(values.at(k));
+
+		      if(!q.exec())
+			{
+			  ct += 1;
+			  errors.append
+			    (tr("<font color='red'>Error %1: %2. "
+				"Statement: %3, myoid %4.</font>").
+			     arg(ct).
+			     arg(q.lastError().text().toLower()).
+			     arg(q.lastQuery()).
+			     arg(myoid.toString()));
+			  errors.append("<br><br>");
+			}
 		    }
 	      }
 	  }
@@ -212,6 +259,8 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
       QSqlDatabase::removeDatabase(dbName);
     }
 
+  errors.append("</html>");
+  m_ui.results->setHtml(errors);
   progress->close();
   QApplication::processEvents();
 }
