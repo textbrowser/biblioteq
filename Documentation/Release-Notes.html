@@ -9,13 +9,16 @@
       <li>Corrected generation of CSV files from custom queries. Thank you meteos77.</li>
       <li>Embedded documentation and release notes.</li>
       <li>Inspect the font created from the global_font setting. If the font cannot be recreated, assign a default font.</li>
+      <li>More complete lists of available database tables in Custom Query.</li>
       <li>New open-sqlite-database terminal option.</li>
       <li>Optional main window images and progress dialogs. Please see Other Options.</li>
       <li>Patron export and import.</li>
       <li>PostgreSQL 10.19; Windows.</li>
-      <li>Qt 6.2 LTS.</li>
+      <li>Qt 5.12.12 LTS; Windows.</li>
+      <li>Qt 6.2 LTS. One item remaining.</li>
       <li>Restore and retain Members Browser&#39;s geometry.</li>
       <li>SQLite 3.37; Windows.</li>
+      <li>SQLite database merge.</li>
       <li>Speedy reservations. New option in Members Browser.</li>
     </ul>
     <p>October 30, 2021.</p>
@@ -355,7 +358,7 @@
       <li>Corrected a grant statement in postgresql_create_schema.sql with respect to grey_literature_myoid_seq. PostgreSQL administrators, please read postgresql_update_schema.sql.</li>
       <li>Corrected member query. Problem caused by translation-based logic. Thanks to Jeepee for the report.</li>
       <li>Corrected the sole INSERT statement in postgresql_create_schema.sql. Explicitly mention column names. Thanks to Arti for reporting the problem.</li>
-      <li>If you're having Z39.50 problems on Windows, please remove the Windows registry My Computer\HKEY_CURRENT_USER\Software\BiblioteQ via regedit.</li>
+      <li>If you&#39;re having Z39.50 problems on Windows, please remove the Windows registry My Computer\HKEY_CURRENT_USER\Software\BiblioteQ via regedit.</li>
       <li>Modified postgresql_destroy_schema.sql so that it produces a single notice during an ideal execution.</li>
       <li>Replaced CREATEUSER with CREATEROLE in postgresql_create_schema.sql. PostgreSQL 9.6 has deprecated CREATEUSER. Please see <a href="https://www.postgresql.org/docs/9.6/static/release-9-6.html" target="_blank">https://www.postgresql.org/docs/9.6/static/release-9-6.html</a>. Thanks to Arti for the report.</li>
       <li>SQLite at version 3.15.1 on OS X and Windows.</li>
@@ -1009,7 +1012,7 @@
     <p>March 3, 2009.</p>
     <ul>
       <li>Version 6.21 has been released!</li>
-      <li>Added support for Czech and German translations. I'm thankful to those who provided the translation files.</li>
+      <li>Added support for Czech and German translations. I&#39;m thankful to those who provided the translation files.</li>
       <li>Additional changes in support of internationalization, including bug fixes.</li>
       <li>Fixed an issue with the Administrator Browser. Also implemented a feature that prevents the creation of administrators without privileges.</li>
       <li>Fixed an issue with the Reservation Browser. Non-privileged accounts were unable to view an item&#39;s reservations.</li>
@@ -1778,7 +1781,7 @@
     <p>February 2, 2007.</p>
     <ul>
       <li>Implemented a sleep mechanism via QMutex and QWaitCondition.</li>
-      <li>Must not reference objects after they've been deleted.</li>
+      <li>Must not reference objects after they&#39;ve been deleted.</li>
       <li>Other general goodies included with this release.</li>
     </ul>
     <p>January 29, 2007.</p>

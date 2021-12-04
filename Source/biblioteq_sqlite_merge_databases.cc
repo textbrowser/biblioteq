@@ -1,5 +1,6 @@
 #include <QFileDialog>
 #include <QProgressBar>
+#include <QProgressDialog>
 #include <QPushButton>
 
 #include "biblioteq.h"
@@ -28,6 +29,10 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteRow(void)));
+  connect(m_ui.merge,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotMerge(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -104,6 +109,79 @@ void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
     m_ui.databases->removeRow(rows.at(i));
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_sqlite_merge_databases::slotMerge(void)
+{
+  if(m_ui.databases->rowCount() == 0)
+    return;
+
+  QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
+
+  progress->setLabelText(tr("Merging databases..."));
+  progress->setMaximum(0);
+  progress->setMinimum(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->show();
+  progress->repaint();
+  QApplication::processEvents();
+
+  auto tables(QStringList()
+	      << "book"
+	      << "book_binding_types"
+	      << "book_copy_info"
+	      << "book_files"
+	      << "cd"
+	      << "cd_copy_info"
+	      << "cd_formats"
+	      << "cd_songs"
+	      << "dvd"
+	      << "dvd_aspect_ratios"
+	      << "dvd_copy_info"
+	      << "dvd_ratings"
+	      << "dvd_regions"
+	      << "grey_literature"
+	      << "grey_literature_files"
+	      << "grey_literature_types"
+	      << "item_borrower"
+	      << "journal"
+	      << "journal_copy_info"
+	      << "journal_files"
+	      << "languages"
+	      << "locations"
+	      << "magazine"
+	      << "magazine_copy_info"
+	      << "magazine_files"
+	      << "member"
+	      << "member_history"
+	      << "minimum_days"
+	      << "monetary_units"
+	      << "photograph"
+	      << "photograph_collection"
+	      << "videogame"
+	      << "videogame_copy_info"
+	      << "videogame_platforms"
+	      << "videogame_ratings");
+
+  for(int i = 0; i < m_ui.databases->rowCount(); i++)
+    {
+      if(progress->wasCanceled())
+	break;
+
+      progress->repaint();
+      QApplication::processEvents();
+
+      auto item = m_ui.databases->item(i, SQLITE_DATABASE_COLUMN);
+      auto progressBar = qobject_cast<QProgressBar *>
+	(m_ui.databases->cellWidget(i, PROGRESS_COLUMN));
+
+      if(!item || !progressBar)
+	continue;
+    }
+
+  progress->close();
+  QApplication::processEvents();
 }
 
 void biblioteq_sqlite_merge_databases::slotReset(void)
