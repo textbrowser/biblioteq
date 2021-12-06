@@ -41,6 +41,11 @@
         </property>
         <item>
          <property name="text">
+          <string>Accession Number</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Category</string>
          </property>
         </item>

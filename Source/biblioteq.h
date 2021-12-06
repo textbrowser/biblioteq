@@ -311,6 +311,15 @@ class biblioteq: public QMainWindow
      SUMMARY = 2
     };
 
+  enum GenericSearchTypes
+    {
+     ACCESSION_NUMBER_GENERIC_SEARCH_TYPE = 0,
+     CATEGORY_GENERIC_SEARCH_TYPE = 1,
+     ID_GENERIC_SEARCH_TYPE = 2,
+     KEYWORD_GENERIC_SEARCH_TYPE = 3,
+     TITLE_GENERIC_SEARCH_TYPE = 4
+    };
+
   enum HistoryColumns
     {
      BARCODE = 5,

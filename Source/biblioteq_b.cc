@@ -4590,183 +4590,224 @@ void biblioteq::slotSearchBasic(void)
       if(m_db.driverName() != "QSQLITE")
 	E = "E";
 
-      if(ui.searchType->currentIndex() == 0) // Category
+      switch(ui.searchType->currentIndex())
 	{
-	  if(type != "Grey Literature" &&
-	     type != "Photograph Collection")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("LOWER(category) LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append("category LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	  else if(type == "Grey Literature")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("COALESCE(LOWER(notes), '') LIKE " + E
-			     + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append
-		    ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	  else if(type == "Photograph Collection")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("COALESCE(LOWER(about), '') LIKE " +
-			     E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append
-		    ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	}
-      else if(ui.searchType->currentIndex() == 1) // ID
-	{
-	  if(type == "Grey Literature")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append
-		    ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append("(document_id LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	  else if(ui.case_insensitive->isChecked())
-	    {
-	      str.append("(LOWER(id) LIKE " + E + "'%' || ? || '%' ");
-	      values.append
-		(biblioteq_myqstring::escape(text.toLower().trimmed()));
-	    }
-	  else
-	    {
-	      str.append("(id LIKE " + E + "'%' || ? || '%' ");
-	      values.append(biblioteq_myqstring::escape(text.trimmed()));
-	    }
+	case ACCESSION_NUMBER_GENERIC_SEARCH_TYPE:
+	  {
+	    if(type != "Grey Literature")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("COALESCE(LOWER(accession_number), '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append("COALESCE(accession_number, '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(ui.case_insensitive->isChecked())
+	      {
+		str.append
+		  ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
+		values.append
+		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
+	      }
+	    else
+	      {
+		str.append("(document_id LIKE " + E + "'%' || ? || '%' ");
+		values.append(biblioteq_myqstring::escape(text.trimmed()));
+	      }
 
-	  if(type == "Book")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("OR LOWER(isbn13) LIKE " + E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append("OR isbn13 LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
+	    break;
+	  }
+	case CATEGORY_GENERIC_SEARCH_TYPE:
+	  {
+	    if(type != "Grey Literature" && type != "Photograph Collection")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append
+		      ("LOWER(category) LIKE " + E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append("category LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(type == "Grey Literature")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("COALESCE(LOWER(notes), '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append
+		      ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(type == "Photograph Collection")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("COALESCE(LOWER(about), '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append
+		      ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
 
-	  str.append(") ");
-	}
-      else if(ui.searchType->currentIndex() == 2) // Keyword
-	{
-	  if(type != "Grey Literature" &&
-	     type != "Photograph Collection")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("COALESCE(LOWER(keyword), '') LIKE " +
-			     E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append("COALESCE(keyword, '') LIKE " +
-			     E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	  else if(type == "Grey Literature")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("COALESCE(LOWER(notes), '') LIKE " +
-			     E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append
-		    ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	  else if(type == "Photograph Collection")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("COALESCE(LOWER(about), '') LIKE " +
-			     E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append
-		    ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	}
-      else // Title
-	{
-	  if(type == "Grey Literature")
-	    {
-	      if(ui.case_insensitive->isChecked())
-		{
-		  str.append("LOWER(document_title) LIKE " +
-			     E + "'%' || ? || '%' ");
-		  values.append
-		    (biblioteq_myqstring::escape(text.toLower().trimmed()));
-		}
-	      else
-		{
-		  str.append("document_title LIKE " + E + "'%' || ? || '%' ");
-		  values.append(biblioteq_myqstring::escape(text.trimmed()));
-		}
-	    }
-	  else if(ui.case_insensitive->isChecked())
-	    {
-	      str.append("LOWER(title) LIKE " + E + "'%' || ? || '%' ");
-	      values.append
-		(biblioteq_myqstring::escape(text.toLower().trimmed()));
-	    }
-	  else
-	    {
-	      str.append("title LIKE " + E + "'%' || ? || '%' ");
-	      values.append(biblioteq_myqstring::escape(text.trimmed()));
-	    }
+	    break;
+	  }
+	case ID_GENERIC_SEARCH_TYPE:
+	  {
+	    if(type == "Grey Literature")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append
+		      ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append("(document_id LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(ui.case_insensitive->isChecked())
+	      {
+		str.append("(LOWER(id) LIKE " + E + "'%' || ? || '%' ");
+		values.append
+		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
+	      }
+	    else
+	      {
+		str.append("(id LIKE " + E + "'%' || ? || '%' ");
+		values.append(biblioteq_myqstring::escape(text.trimmed()));
+	      }
+
+	    if(type == "Book")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append
+		      ("OR LOWER(isbn13) LIKE " + E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append("OR isbn13 LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+
+	    str.append(") ");
+	    break;
+	  }
+	case KEYWORD_GENERIC_SEARCH_TYPE:
+	  {
+	    if(type != "Grey Literature" && type != "Photograph Collection")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("COALESCE(LOWER(keyword), '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append("COALESCE(keyword, '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(type == "Grey Literature")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("COALESCE(LOWER(notes), '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append
+		      ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(type == "Photograph Collection")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("COALESCE(LOWER(about), '') LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append
+		      ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+
+	    break;
+	  }
+	default:
+	  {
+	    if(type == "Grey Literature")
+	      {
+		if(ui.case_insensitive->isChecked())
+		  {
+		    str.append("LOWER(document_title) LIKE " +
+			       E + "'%' || ? || '%' ");
+		    values.append
+		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  }
+		else
+		  {
+		    str.append("document_title LIKE " + E + "'%' || ? || '%' ");
+		    values.append(biblioteq_myqstring::escape(text.trimmed()));
+		  }
+	      }
+	    else if(ui.case_insensitive->isChecked())
+	      {
+		str.append("LOWER(title) LIKE " + E + "'%' || ? || '%' ");
+		values.append
+		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
+	      }
+	    else
+	      {
+		str.append("title LIKE " + E + "'%' || ? || '%' ");
+		values.append(biblioteq_myqstring::escape(text.trimmed()));
+	      }
+	  }
 	}
 
       if(type != "Grey Literature" &&
