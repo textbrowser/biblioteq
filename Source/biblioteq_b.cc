@@ -4613,13 +4613,13 @@ void biblioteq::slotSearchBasic(void)
 	    else if(ui.case_insensitive->isChecked())
 	      {
 		str.append
-		  ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
+		  ("LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
 		values.append
 		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
 	      }
 	    else
 	      {
-		str.append("(document_id LIKE " + E + "'%' || ? || '%' ");
+		str.append("document_id LIKE " + E + "'%' || ? || '%' ");
 		values.append(biblioteq_myqstring::escape(text.trimmed()));
 	      }
 
