@@ -126,6 +126,7 @@ int main(int argc, char *argv[])
 
   QSettings settings;
 
+  settings.remove("SQLITECustom_header_state");
   settings.remove("automatically_resize_columns");
   settings.remove("column_settings_cleared_v6_51");
   settings.remove("entries_per_page");

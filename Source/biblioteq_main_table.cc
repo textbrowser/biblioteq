@@ -117,7 +117,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 					   ));
 
       for(int j = 0; j < strList.size(); j++)
-	intList.append(qBound(0, strList.at(j).toInt(), strList.size() - 1));
+	intList.append(qBound(0, strList.at(j).toInt(), strList.size()));
 
       m_hiddenColumns[states.keys().at(i)] = intList;
     }

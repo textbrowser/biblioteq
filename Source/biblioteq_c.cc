@@ -314,7 +314,25 @@ int biblioteq::populateTable(const QSqlQuery &query,
 #endif
     }
 
+  if(m_configToolMenu)
+    m_configToolMenu->close();
+
   m_lastSearchStr = "Item Search Query";
+
+  if(searchType == CUSTOM_QUERY)
+    {
+      if(m_configToolMenu)
+	m_configToolMenu->deleteLater();
+
+      ui.configTool->setEnabled(false);
+      ui.configTool->setToolTip(tr("Disabled for custom queries."));
+    }
+  else
+    {
+      ui.configTool->setEnabled(true);
+      ui.configTool->setToolTip("");
+    }
+
   ui.itemsCountLabel->setText(tr("0 Results"));
 
   QScopedPointer<QProgressDialog> progress;

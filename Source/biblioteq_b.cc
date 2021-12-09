@@ -186,10 +186,18 @@ int biblioteq::populateTable(const int search_type_arg,
   ** the original column order.
   */
 
+  ui.configTool->setEnabled(true);
+  ui.configTool->setToolTip("");
+
   switch(search_type)
     {
     case CUSTOM_QUERY:
       {
+	if(m_configToolMenu)
+	  m_configToolMenu->deleteLater();
+
+	ui.configTool->setEnabled(false);
+	ui.configTool->setToolTip(tr("Disabled for custom queries."));
 	searchstr = searchstrArg;
 
 	if(searchstr.lastIndexOf("LIMIT") != -1)
