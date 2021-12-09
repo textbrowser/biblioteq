@@ -353,7 +353,7 @@ class biblioteq: public QMainWindow
   QMainWindow *m_members_diag;
   QMap<QString, QHash<QString, QString> > m_branches;
   QMap<QString, QHash<QString, QString> > m_sruMaps;
-  QMap<QString, QHash<QString, QString> > m_z3950Maps;
+  QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
   QPointer<QMenu> m_menu;
   QPointer<biblioteq_dbenumerations> db_enumerations;
   QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
