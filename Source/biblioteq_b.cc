@@ -3926,8 +3926,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	}
 
       ui.table->setColumnCount(tmplist.size());
-      ui.table->setHorizontalHeaderLabels(tmplist);
       ui.table->setColumnNames(tmplist);
+      ui.table->setHorizontalHeaderLabels(tmplist);
       tmplist.clear();
       addConfigOptions("Custom");
     }

@@ -1221,7 +1221,7 @@
                        </property>
                        <item>
                         <property name="text">
-                         <string>Automatic</string>
+                         <string>Guess</string>
                         </property>
                        </item>
                        <item>
