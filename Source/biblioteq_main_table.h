@@ -13,6 +13,10 @@ class biblioteq_main_table: public QTableWidget
   biblioteq_main_table(QWidget *parent);
   QHash<QString, QString> friendlyStates(void) const;
   QStringList columnNames(void) const;
+  bool isColumnHidden(const int index,
+		      const QString &type,
+		      const QString &username) const;
+  bool isColumnHidden(int index) const;
   int columnNumber(const QString &name) const;
   void parseStates(const QHash<QString, QString> &states);
   void recordColumnHidden(const QString &username,

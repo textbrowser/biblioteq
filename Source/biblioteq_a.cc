@@ -998,38 +998,41 @@ QVector<QString> biblioteq::getBBColumnIndexes(void) const
 
 void biblioteq::addConfigOptions(const QString &typefilter)
 {
-  int i = 0;
   QAction *action = nullptr;
-
-  /*
-  ** Delete existing actions, if any.
-  */
+  int i = 0;
 
   createConfigToolMenu();
   m_configToolMenu->clear();
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
-      if(typefilter != "All" &&
-	 typefilter != "All Available" &&
-	 typefilter != "All Overdue" &&
-	 typefilter != "All Requested" &&
-	 typefilter != "All Reserved")
+      if(typefilter != "Custom")
 	{
-	  if(ui.table->columnNames().value(i) == "MYOID" ||
-	     ui.table->columnNames().value(i) == "Type")
+	  if(typefilter != "All" &&
+	     typefilter != "All Available" &&
+	     typefilter != "All Overdue" &&
+	     typefilter != "All Requested" &&
+	     typefilter != "All Reserved")
+	    {
+	      if(ui.table->columnNames().value(i) == "MYOID" ||
+		 ui.table->columnNames().value(i) == "Type")
+		continue;
+	    }
+	  else if(ui.table->columnNames().value(i) == "MYOID" ||
+		  ui.table->columnNames().value(i) == "REQUESTOID")
 	    continue;
 	}
-      else if(ui.table->columnNames().value(i) == "MYOID" ||
-	      ui.table->columnNames().value(i) == "REQUESTOID")
-	continue;
 
       action = new QAction
 	(ui.table->horizontalHeaderItem(i)->text(), ui.configTool);
       action->setCheckable(true);
-      action->setChecked(!ui.table->isColumnHidden(i));
+      action->setChecked
+	(!ui.table->isColumnHidden(i, typefilter, dbUserName()));
+      action->setData(typefilter);
       m_configToolMenu->addAction(action);
-      connect(action, SIGNAL(triggered(void)), this,
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
 	      SLOT(slotSetColumns(void)));
     }
 }
@@ -4329,9 +4332,6 @@ void biblioteq::slotSelectDatabaseFile(void)
 
 void biblioteq::slotSetColumns(void)
 {
-  auto typefilter = ui.menu_Category->defaultAction() ?
-    ui.menu_Category->defaultAction()->data().toString() : "All";
-
   createConfigToolMenu();
 
   for(int i = 0; i < m_configToolMenu->actions().size(); i++)
@@ -4340,8 +4340,9 @@ void biblioteq::slotSetColumns(void)
 	(i, !m_configToolMenu->actions().at(i)->isChecked());
       ui.table->recordColumnHidden
 	(dbUserName(),
-	 typefilter, i, !m_configToolMenu->actions().at(i)->
-	 isChecked());
+	 m_configToolMenu->actions().at(i)->data().toString(),
+	 i,
+	 !m_configToolMenu->actions().at(i)->isChecked());
     }
 }
 

@@ -46,6 +46,23 @@ QStringList biblioteq_main_table::columnNames(void) const
   return m_columnHeaderIndexes.toList();
 }
 
+bool biblioteq_main_table::isColumnHidden
+(const int index, const QString &type, const QString &username) const
+{
+  QString indexstr("");
+  auto l_type(type);
+
+  indexstr.append(username);
+  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append("_header_state");
+  return m_hiddenColumns.value(indexstr).contains(index);
+}
+
+bool biblioteq_main_table::isColumnHidden(int index) const
+{
+  return QTableWidget::isColumnHidden(index);
+}
+
 int biblioteq_main_table::columnNumber(const QString &name) const
 {
   auto index = m_columnHeaderIndexes.indexOf(name);
@@ -100,8 +117,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 					   ));
 
       for(int j = 0; j < strList.size(); j++)
-	if(strList.at(j).toInt() >= 0)
-	  intList.append(strList.at(j).toInt());
+	intList.append(qBound(0, strList.at(j).toInt(), strList.size() - 1));
 
       m_hiddenColumns[states.keys().at(i)] = intList;
     }
