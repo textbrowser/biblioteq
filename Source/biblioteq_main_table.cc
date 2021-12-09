@@ -553,10 +553,11 @@ void biblioteq_main_table::setColumns(const QString &username,
     }
 
   if(m_qmain && m_qmain->getDB().driverName() == "QSQLITE")
-    {
-      list.prepend(tr("Read Status"));
-      m_columnHeaderIndexes.prepend("Read Status");
-    }
+    if(type != "Custom")
+      {
+	list.prepend(tr("Read Status"));
+	m_columnHeaderIndexes.prepend("Read Status");
+      }
 
   setColumnCount(list.size());
   setHorizontalHeaderLabels(list);
@@ -565,7 +566,8 @@ void biblioteq_main_table::setColumns(const QString &username,
      type != "All Available" &&
      type != "All Overdue" &&
      type != "All Requested" &&
-     type != "All Reserved")
+     type != "All Reserved" &&
+     type != "Custom")
     {
       /*
       ** Hide the Type and MYOID columns.
@@ -574,7 +576,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       setColumnHidden(list.size() - 1, true);
       setColumnHidden(list.size() - 2, true);
     }
-  else
+  else if(type != "Custom")
     {
       /*
       ** Hide the MYOID and REQUESTOID columns.
