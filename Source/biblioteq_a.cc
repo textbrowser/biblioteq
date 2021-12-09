@@ -4502,7 +4502,6 @@ void biblioteq::slotShowMenu(void)
 
       addConfigOptions(typefilter);
       m_configToolMenu->exec(point);
-      m_configToolMenu->deleteLater();
     }
   else if(sender() == ui.createTool)
     {
