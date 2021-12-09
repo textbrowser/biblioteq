@@ -1418,6 +1418,7 @@ void biblioteq::readGlobalSetup(void)
   m_openLibraryItems.clear();
   m_sruMaps.clear();
   m_z3950Maps.clear();
+  settings.setIniCodec("UTF-8");
 
   for(int i = 0; i < settings.childGroups().size(); i++)
     {
