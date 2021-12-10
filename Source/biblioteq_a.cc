@@ -77,6 +77,7 @@ extern "C"
 QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = QObject::tr("UNKNOWN");
 QTranslator *biblioteq::s_appTranslator = nullptr;
+QTranslator *biblioteq::s_qtTranslator = nullptr;
 
 int main(int argc, char *argv[])
 {
@@ -134,6 +135,7 @@ int main(int argc, char *argv[])
 
   biblioteq::s_appTranslator = new QTranslator(nullptr);
   biblioteq::s_locale = settings.value("locale").toString();
+  biblioteq::s_qtTranslator = new QTranslator(nullptr);
 
   if(!(biblioteq::s_locale == "ar_JO" ||
        biblioteq::s_locale == "cs_CZ" ||
@@ -153,6 +155,10 @@ int main(int argc, char *argv[])
   if(biblioteq::s_appTranslator->
      load(":/biblioteq_" + biblioteq::s_locale + ".qm"))
     qapplication.installTranslator(biblioteq::s_appTranslator);
+
+  if(biblioteq::s_qtTranslator->
+     load(":/qtbase_" + biblioteq::s_locale + ".qm"))
+    qapplication.installTranslator(biblioteq::s_qtTranslator);
 
   biblioteq biblioteq;
 
@@ -3185,10 +3191,14 @@ void biblioteq::slotLanguageChanged(void)
   if(action && action->isChecked())
     {
       QApplication::removeTranslator(s_appTranslator);
+      QApplication::removeTranslator(s_qtTranslator);
       s_locale = action->data().toString();
 
       if(s_appTranslator->load(":/biblioteq_" + s_locale + ".qm"))
 	QApplication::installTranslator(s_appTranslator);
+
+      if(s_qtTranslator->load(":/qtbase_" + s_locale + ".qm"))
+	QApplication::installTranslator(s_qtTranslator);
     }
 }
 
