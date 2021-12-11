@@ -1219,6 +1219,9 @@
                        <property name="sizeAdjustPolicy">
                         <enum>QComboBox::AdjustToContents</enum>
                        </property>
+                       <property name="minimumContentsLength">
+                        <number>10</number>
+                       </property>
                        <item>
                         <property name="text">
                          <string>Guess</string>
@@ -1239,7 +1242,7 @@
                      <item>
                       <widget class="QPushButton" name="parse_marc_tags">
                        <property name="text">
-                        <string>Parse MARC Tags</string>
+                        <string>Parse</string>
                        </property>
                       </widget>
                      </item>

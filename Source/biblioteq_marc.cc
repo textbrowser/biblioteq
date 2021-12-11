@@ -478,6 +478,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 void biblioteq_marc::parseBookSRUUnimarc(void)
 {
+  parseBookSRUMarc21();
 }
 
 void biblioteq_marc::parseBookZ3950Marc21(void)

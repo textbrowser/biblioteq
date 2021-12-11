@@ -1372,7 +1372,8 @@ void biblioteq_book::populateAfterOpenLibrary(void)
     }
 }
 
-void biblioteq_book::populateAfterSRU(const QString &text)
+void biblioteq_book::populateAfterSRU
+(const QString &recordSyntax, const QString &text)
 {
   id.edition->setCurrentIndex(0);
   id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
@@ -1407,15 +1408,27 @@ void biblioteq_book::populateAfterSRU(const QString &text)
 	    id.category->clear();
 	}
 
-  QString recordSyntax("MARC21");
   biblioteq_marc m;
 
   if(recordSyntax == "MARC21")
     m.initialize
       (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::MARC21);
-  else
+  else if(recordSyntax == "UNIMARC")
     m.initialize
       (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::UNIMARC);
+  else
+    {
+      /*
+      ** Guess?
+      */
+
+      if(text.toLower().contains("marc21"))
+	m.initialize
+	  (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::MARC21);
+      else
+	m.initialize
+	  (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::UNIMARC);
+    }
 
   m.parse(text);
   str = m.author();
@@ -3697,8 +3710,15 @@ void biblioteq_book::slotParseMarcTags(void)
 {
   auto text(id.marc_tags->toPlainText().trimmed());
 
-  if(text.startsWith("<?xml version=\"1.0\"?>"))
-    populateAfterSRU(text);
+  if(text.startsWith("<?xml version=\"1.0\""))
+    {
+      if(id.marc_tags_format->currentIndex() == 0)
+	populateAfterSRU("", text);
+      else if(id.marc_tags_format->currentIndex() == 1)
+	populateAfterSRU("MARC21", text);
+      else
+	populateAfterSRU("UNIMARC", text);
+    }
   else if(text.startsWith("{") && text.endsWith("}"))
     {
       m_openLibraryResults = text.toUtf8();
@@ -4760,7 +4780,7 @@ void biblioteq_book::sruDownloadFinished(void)
 			       QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
-	  populateAfterSRU(m_sruResults);
+	  populateAfterSRU("MARC21", m_sruResults);
 	}
 
       QApplication::processEvents();

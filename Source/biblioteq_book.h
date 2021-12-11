@@ -71,7 +71,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void createOpenLibraryDialog(void);
   void createSRUDialog(void);
   void populateAfterOpenLibrary(void);
-  void populateAfterSRU(const QString &text);
+  void populateAfterSRU(const QString &recordSyntax, const QString &text);
   void populateAfterZ3950(const QString &text,
 			  const biblioteq_marc::RECORD_SYNTAX recordSyntax);
   void populateFiles(void);
