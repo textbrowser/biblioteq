@@ -115,7 +115,7 @@ void biblioteq_generic_thread::run(void)
 	ZOOM_options_set
 	  (options,
 	   "timeout",
-	   hash.value("timeout", "30").toLatin1().
+	   hash.value("timeout", "30").toLatin1());
 
 	if(recordSyntax.isEmpty())
 	  ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
