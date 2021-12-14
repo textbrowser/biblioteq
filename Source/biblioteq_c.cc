@@ -1574,6 +1574,8 @@ void biblioteq::readGlobalSetup(void)
 		toString().trimmed();
 	      hash["proxy_port"] = settings.value("proxy_port", "").
 		toString().trimmed();
+	      hash["timeout"] = settings.value("timeout", "30").
+		toString().trimmed();
 	      m_z3950Maps.insert
 		(settings.value("name", "Z39.50 Site").toString().trimmed(),
 		 hash);
@@ -1630,6 +1632,7 @@ void biblioteq::readGlobalSetup(void)
       hash["Database"] = "LCDB";
       hash["Format"] = "marc8,utf-8";
       hash["RecordSyntax"] = "MARC21";
+      hash["timeout"] = "30";
       m_z3950Maps.insert("Library of Congress", hash);
     }
 }
