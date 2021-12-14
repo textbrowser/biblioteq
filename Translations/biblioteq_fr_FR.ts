@@ -2099,6 +2099,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <source>BiblioteQ: Release Notes</source>
         <translation>BiblioteQ :  notes de publication</translation>
     </message>
+    <message>
+        <source>Disabled for custom queries.</source>
+        <translation>Désactivé pour les requêtes personnalisées.</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -6016,7 +6020,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the collection&apos;s ID field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ ID de la collection.</translation>
     </message>
     <message>
         <source>Please complete the collection&apos;s Title field.</source>
@@ -6032,11 +6036,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Modify Photograph Collection Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : modifier l&apos;entrée de la collection de photographies</translation>
     </message>
     <message>
         <source>Unable to retrieve the photograph collection&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;extraire l&apos;OID de la collection de photographies.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
@@ -6060,11 +6064,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;extraire les données de la selection photographiques.</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Création de la collection de photographies</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
@@ -6076,71 +6080,71 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Collection ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>ID de la collection :</translation>
     </message>
     <message>
         <source>Collection Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre de la collection :</translation>
     </message>
     <message>
         <source>Collection Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Emplacement de la collection :</translation>
     </message>
     <message>
         <source>Collection About:</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos de la collection :</translation>
     </message>
     <message>
         <source>Collection Notes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Notes de la collection :</translation>
     </message>
     <message>
         <source>Item ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>ID de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Creators:</source>
-        <translation type="unfinished"></translation>
+        <translation>Créateur(s) de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Publication Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de publication de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Copies:</source>
-        <translation type="unfinished"></translation>
+        <translation>Copies de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Medium:</source>
-        <translation type="unfinished"></translation>
+        <translation>Support de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Reproduction Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro de reproductions de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Copyright:</source>
-        <translation type="unfinished"></translation>
+        <translation>Droit d&apos;auteur de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Call Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>numéro d&apos;accès a l&apos;article :</translation>
     </message>
     <message>
         <source>Item Other Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autre numéro de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Notes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Notes de l&apos;article :</translation>
     </message>
     <message>
         <source>Item Subjects:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sujets del&apos;article :</translation>
     </message>
     <message>
         <source>Item Format:</source>
@@ -6152,15 +6156,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Sélection de la collection de photographies</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Item Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Sélection de l&apos;article de la collection de photographies</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : Duplication de l&apos;entrée de la collection de photographies</translation>
     </message>
     <message>
         <source>Loading image(s)...</source>
@@ -6172,7 +6176,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the item&apos;s ID field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ ID.</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Title field.</source>
@@ -6188,11 +6192,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Please complete the item&apos;s Reproduction Number field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ numéro de reproduction.</translation>
     </message>
     <message>
         <source>Please complete the item&apos;s Copyright field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez remplir le champ droit d&apos;auteur.</translation>
     </message>
     <message>
         <source>Unable to create the item. Please verify that the item does not already exist.</source>
@@ -6245,6 +6249,29 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>Unable to update photograph.</source>
         <translation>Impossible de mettre à jour la photographie.</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_sqlite_merge_databases</name>
+    <message>
+        <source>Select SQLite Database</source>
+        <translation>Sélectionner base de données SQLite</translation>
+    </message>
+    <message>
+        <source>Merging databases...</source>
+        <translation>Fusion des bases de données...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation>BiblioteQ : dialogue de progression</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3, myoid %4.&lt;/font&gt;</source>
+        <translation>&lt;font color=&apos;red&apos;&gt;Erreur(s) %1: %2.État : %3, myoid %4.&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SQLite Database Selection</source>
+        <translation>BiblioteQ : sélection d&apos;une base de données SQLite</translation>
     </message>
 </context>
 <context>
@@ -7568,7 +7595,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
-        <translation>Le tableau de bord est destiné aux utilisateurs avancés ayant une connaissance approfondie de SQL et de la disposition de la base de données de BiblioteQ. Veuillez noter que l&apos;extraction des informations d&apos;images (couverture, quatrième de couverture) alourdira la requête.</translation>
+        <translation type="vanished">Le tableau de bord est destiné aux utilisateurs avancés ayant une connaissance approfondie de SQL et de la disposition de la base de données de BiblioteQ. Veuillez noter que l&apos;extraction des informations d&apos;images (couverture, quatrième de couverture) alourdira la requête.</translation>
     </message>
     <message>
         <source>Query Statement</source>
@@ -7613,6 +7640,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>F5</source>
         <translation>F5</translation>
+    </message>
+    <message>
+        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query. Please include myoid and type fields as these fields are required by BiblioteQ for editing of items.</source>
+        <translation>Le tableau de bord est destiné aux utilisateurs avancés ayant une connaissance approfondie de SQL et de la disposition de la base de données de BiblioteQ. Veuillez noter que l&apos;extraction des informations d&apos;images (couverture, quatrième de couverture) alourdira la requête. Veuillez inclure les champs myoid et type car ces champs sont requis par BiblioteQ pour l&apos;édition des articles.</translation>
     </message>
 </context>
 <context>
@@ -8887,7 +8918,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation>Automatique</translation>
+        <translation type="vanished">Automatique</translation>
     </message>
     <message>
         <source>MARC21</source>
@@ -8899,11 +8930,19 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Parse MARC Tags</source>
-        <translation>Analyse des étiquettes MARC</translation>
+        <translation type="vanished">Analyse des étiquettes MARC</translation>
     </message>
     <message>
         <source>URL</source>
         <translation>URL</translation>
+    </message>
+    <message>
+        <source>Guess</source>
+        <translation>Guess</translation>
+    </message>
+    <message>
+        <source>Parse</source>
+        <translation>Analyse</translation>
     </message>
 </context>
 <context>
@@ -9126,7 +9165,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation>Automatique</translation>
+        <translation type="vanished">Automatique</translation>
     </message>
     <message>
         <source>MARC21</source>
@@ -9138,7 +9177,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Parse MARC Tags</source>
-        <translation>Analyse des étiquettes MARC</translation>
+        <translation type="vanished">Analyse des étiquettes MARC</translation>
+    </message>
+    <message>
+        <source>Guess</source>
+        <translation>Guess</translation>
+    </message>
+    <message>
+        <source>Parse</source>
+        <translation>Analyse</translation>
     </message>
 </context>
 <context>
@@ -9782,6 +9829,10 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Merge SQLite Databases...</source>
         <translation>&amp;Fusionner base de données SQLite...</translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
+        <translation>Numéro d&apos;accès</translation>
     </message>
 </context>
 <context>
