@@ -3526,7 +3526,8 @@ void biblioteq_book::slotOpenLibraryQuery(void)
        id.isbn13->text().trimmed().length() == 13))
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
+	(this,
+	 tr("BiblioteQ: User Error"),
 	 tr("In order to query an Open Library site, either the ISBN-10 "
 	    "or ISBN-13 must be provided."));
       QApplication::processEvents();
