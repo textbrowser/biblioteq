@@ -73,6 +73,8 @@ biblioteq.files		= BiblioteQ.app/*
 biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
 conf.files		= biblioteq.conf
 conf.path		= /Applications/BiblioteQ.d
+data.files		= Data/*
+data.path		= /Applications/BiblioteQ.d/Data
 doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
@@ -99,7 +101,8 @@ zzz.path                = /Applications/BiblioteQ.d
 INSTALLS	= preinstall \
 		  macdeployqt \
 		  biblioteq \
-		  conf \
+                  conf \
+                  data \
 		  doc1 \
 		  doc2 \
 		  sql \
