@@ -5,11 +5,11 @@ mkdir -p ./usr/local/biblioteq/SQL
 cd ~/biblioteq.d
 qmake -o Makefile biblioteq.arm.pro && make -j $(nproc)
 cp -p ./BiblioteQ ./usr/local/biblioteq/.
-cp -p ./Data ./usr/local/biblioteq/.
 cp -p ./Icons/book.png ./usr/local/biblioteq/.
 cp -p ./SQL/* ./usr/local/biblioteq/SQL/.
 cp -p ./biblioteq.conf ./usr/local/biblioteq/.
 cp -p ./biblioteq.sh ./usr/local/biblioteq/.
+cp -pr ./Data ./usr/local/biblioteq/.
 cp -pr ./Documentation/* ./usr/local/biblioteq/Documentation/.
 
 Preparing BiblioteQ-x.deb:
