@@ -44,9 +44,10 @@ TEMPLATE        = app
 
 biblioteq.files = biblioteq.conf
 biblioteq.path = release\\.
-data.files = Data\\BiblioteQ.sqlite
+data.files = Data\\*
 data.path = release\\Data\\.
-documentation.files = Documentation\\*.pdf \
+documentation.files = Documentation\\*.html \
+                      Documentation\\*.pdf \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
