@@ -925,7 +925,11 @@ QHash<QString, QString> biblioteq::getSRUHash(const QString &name) const
 
 QHash<QString, QString> biblioteq::getZ3950Hash(const QString &name) const
 {
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   QMapIterator<QString, QHash<QString, QString> > it(m_z3950Maps);
+#else
+  QMultiMapIterator<QString, QHash<QString, QString> > it(m_z3950Maps);
+#endif
 
   while(it.hasNext())
     {

@@ -13,6 +13,9 @@
 #include <QSqlDriver>
 #include <QSqlField>
 #include <QSqlRecord>
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#include <QTextCodec>
+#endif
 #include <QTextStream>
 
 #include <limits>
@@ -1438,7 +1441,9 @@ void biblioteq::readGlobalSetup(void)
   m_openLibraryItems.clear();
   m_sruMaps.clear();
   m_z3950Maps.clear();
-  settings.setIniCodec("UTF-8");
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+  settings.setIniCodec(QTextCodec::codeForName("UTF-8"));
+#endif
 
   for(int i = 0; i < settings.childGroups().size(); i++)
     {

@@ -43,10 +43,10 @@ DISTFILES += android/AndroidManifest.xml \
              android/gradlew.bat \
              android/res/values/libs.xml
 
-deployment.files = Documentation/*.html \
+deployment.files = Data/*.csv \
+                   Data/*.sqlite \
+                   Documentation/*.html \
                    Documentation/Contributed/*.html \
-                   Documentation/Data/*.csv \
-                   Documentation/Data/*.sqlite \
                    biblioteq.conf
 deployment.path = /assets
 
