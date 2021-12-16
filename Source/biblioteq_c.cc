@@ -1442,7 +1442,7 @@ void biblioteq::readGlobalSetup(void)
   m_sruMaps.clear();
   m_z3950Maps.clear();
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-  settings.setIniCodec(QTextCodec::codeForName("UTF-8"));
+  settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 #endif
 
   for(int i = 0; i < settings.childGroups().size(); i++)
