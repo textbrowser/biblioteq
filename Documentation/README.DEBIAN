@@ -3,7 +3,7 @@ Preparing ./usr/local/biblioteq:
 mkdir -p ./usr/local/biblioteq/Documentation
 mkdir -p ./usr/local/biblioteq/SQL
 cd ~/biblioteq.d
-qmake -o Makefile biblioteq.pro && make -j 4
+qmake -o Makefile biblioteq.pro && make -j $(nproc)
 cp -p ./BiblioteQ ./usr/local/biblioteq/.
 cp -p ./Data ./usr/local/biblioteq/.
 cp -p ./Icons/book.png ./usr/local/biblioteq/.
