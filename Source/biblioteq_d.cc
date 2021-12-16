@@ -42,6 +42,10 @@ void biblioteq::slotShowDocumentation(void)
 	{
 #ifdef Q_OS_ANDROID
 	  file.setFileName("assets:/BiblioteQ.html");
+#elif defined(Q_OS_MACOS)
+	  file.setFileName
+	    (QCoreApplication::applicationDirPath() +
+	     "/../../../Documentation/BiblioteQ.html");
 #else
 	  file.setFileName
 	    (QString("Documentation%1BiblioteQ.html").arg(QDir::separator()));
@@ -51,6 +55,10 @@ void biblioteq::slotShowDocumentation(void)
 	{
 #ifdef Q_OS_ANDROID
 	  file.setFileName("assets:/BiblioteQ-Fr.html");
+#elif defined(Q_OS_MACOS)
+	  file.setFileName
+	    (QCoreApplication::applicationDirPath() +
+	     "/../../../Documentation/Contributed/BiblioteQ-Fr.html");
 #else
 	  file.setFileName
 	    (QString("Documentation%1Contributed%1BiblioteQ-Fr.html").
