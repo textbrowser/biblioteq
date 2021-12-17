@@ -11,6 +11,57 @@ bool biblioteq::showMainTableImages(void) const
   return m_otheroptions->showMainTableImages();
 }
 
+void biblioteq::slotContributors(void)
+{
+  if(!m_contributors)
+    {
+      m_contributors = new biblioteq_documentationwindow(this);
+      m_contributors->setHtml
+	(tr("<html>"
+	    "The following people have made BiblioteQ beautiful. "
+	    "Thank You!<br><br>"
+	    "Ana Monteiro<br>"
+	    "Arti<br>"
+	    "Bill Burns<br>"
+	    "Ceres<br>"
+	    "Csanád Baksay<br>"
+	    "Fares Othman<br>"
+	    "Fátima Dias<br>"
+	    "Frans<br>"
+	    "J. Cornavin<br>"
+	    "Jeepee<br>"
+	    "Lazaros S.<br>"
+	    "Leif-W<br>"
+	    "Marty<br>"
+	    "Nick<br>"
+	    "Nicola<br>"
+	    "ResetFlag<br>"
+	    "Safranil<br>"
+	    "SigmaX<br>"
+	    "a12554<br>"
+	    "caalma<br>"
+	    "coldacid<br>"
+	    "fmra357<br>"
+	    "jerzyPL<br>"
+	    "jferby<br>"
+	    "luismontilla<br>"
+	    "meteos77<br>"
+	    "numibesi<br>"
+	    "ozgurcan<br>"
+	    "robindegen<br>"
+	    "sidheban<br>"
+	    "sit42<br>"
+	    "sunyuyangg555<br>"
+	    "tamascz<br>"
+	    "wohali<br>"
+	    "yasbean"
+	    "</html>"));
+      m_contributors->setWindowTitle(tr("BiblioteQ: Contributors"));
+    }
+
+  m_contributors->show();
+}
+
 void biblioteq::slotMergeSQLiteDatabases(void)
 {
   if(!m_sqliteMergeDatabases)

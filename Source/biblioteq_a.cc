@@ -266,6 +266,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertBook(void)));
+  connect(ui.action_Contributors,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotContributors(void)));
   connect(ui.action_English,
 	  SIGNAL(triggered(void)),
 	  this,

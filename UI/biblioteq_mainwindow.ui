@@ -411,6 +411,8 @@
     </widget>
     <addaction name="actionAbout"/>
     <addaction name="separator"/>
+    <addaction name="action_Contributors"/>
+    <addaction name="separator"/>
     <addaction name="menu_Documentation"/>
     <addaction name="action_Online_Documentation"/>
     <addaction name="separator"/>
@@ -1298,6 +1300,11 @@
   <action name="action_Merge_SQLite_Databases">
    <property name="text">
     <string>&amp;Merge SQLite Databases...</string>
+   </property>
+  </action>
+  <action name="action_Contributors">
+   <property name="text">
+    <string>Contributors...</string>
    </property>
   </action>
  </widget>

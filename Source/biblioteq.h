@@ -203,6 +203,7 @@ class biblioteq: public QMainWindow
   ~biblioteq();
   QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_documentation;
   QPointer<QMenu> m_configToolMenu;
+  QPointer<biblioteq_documentationwindow> m_contributors;
   QPointer<biblioteq_documentationwindow> m_releaseNotes;
   QString m_unaccent;
   QColor availabilityColor(const QString &itemType) const;
@@ -436,6 +437,7 @@ class biblioteq: public QMainWindow
   void slotClosePasswordDialog(void);
   void slotConnectDB(void);
   void slotContextMenu(const QPoint &point);
+  void slotContributors(void);
   void slotCopyError(void);
   void slotDVDSearch(void);
   void slotDelete(void);
