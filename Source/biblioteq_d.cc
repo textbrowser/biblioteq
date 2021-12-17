@@ -18,8 +18,8 @@ void biblioteq::slotContributors(void)
       m_contributors = new biblioteq_documentationwindow(this);
       m_contributors->setHtml
 	(tr("<html>"
-	    "The following people have made BiblioteQ beautiful. "
-	    "Thank You!<br><br>"
+	    "<b>The following people have made BiblioteQ beautiful. "
+	    "Thank You!</b><br><br>"
 	    "Ana Monteiro<br>"
 	    "Arti<br>"
 	    "Bill Burns<br>"
@@ -90,18 +90,7 @@ void biblioteq::slotShowDocumentation(void)
       QFile file;
 
       if(action == ui.action_English)
-	{
-#ifdef Q_OS_ANDROID
-	  file.setFileName("assets:/BiblioteQ.html");
-#elif defined(Q_OS_MACOS)
-	  file.setFileName
-	    (QCoreApplication::applicationDirPath() +
-	     "/../../../Documentation/BiblioteQ.html");
-#else
-	  file.setFileName
-	    (QString("Documentation%1BiblioteQ.html").arg(QDir::separator()));
-#endif
-	}
+	file.setFileName(":/BiblioteQ.html");
       else
 	{
 #ifdef Q_OS_ANDROID
