@@ -504,7 +504,7 @@
      Menu Icons (Done)
      PostgreSQL (TBD)
 271. Export/import patron information. (Done)
-272. Members Browser pagination. (TBD)
+272. Members Browser pagination. (Done)
 273. Optional images in the main views. (Done)
 274. Replace tr("UNKNOWN") with single instance. (Done)
 275. Special Unimarc import. (TBD)
