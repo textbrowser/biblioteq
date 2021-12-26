@@ -4133,6 +4133,69 @@ void biblioteq::slotPopulateMembersBrowser(void)
   int i = -1;
   int j = 0;
 
+  {
+    /*
+    ** Retrieve the number of members.
+    */
+
+    QSqlQuery query(m_db);
+
+    disconnect(bb.page,
+	       SIGNAL(currentIndexChanged(int)),
+	       this,
+	       SLOT(slotPopulateMembersBrowser(void)));
+    bb.page->clear();
+    query.setForwardOnly(true);
+    str = "SELECT COUNT(*) FROM member ";
+
+    if(bb.filterBox->isChecked())
+      {
+	str.append("WHERE ");
+
+	QString E("");
+
+	if(m_db.driverName() != "QSQLITE")
+	  E = "E";
+
+	if(bb.filtertype->currentIndex() == 0) // Member ID
+	  {
+	    str.append("LOWER(memberid) LIKE " + E + "'%' || ");
+	    str.append("LOWER(?)");
+	  }
+	else
+	  {
+	    str.append("LOWER(last_name) LIKE " + E + "'%' || ");
+	    str.append("LOWER(?)");
+	  }
+
+	str.append("|| '%' ");
+	query.prepare(str);
+	query.bindValue
+	  (0, biblioteq_myqstring::escape(bb.filter->text().trimmed()));
+      }
+    else
+      query.prepare(str);
+
+    if(query.exec() && query.next())
+      {
+	auto pages = qCeil
+	  (query.value(0).toDouble() / static_cast<double> (bb.pages->value()));
+
+	for(int i = 0; i < pages; i++)
+	  bb.page->addItem(QString::number(i + 1));
+      }
+
+    if(bb.page->count() == 0)
+      bb.page->addItem("1");
+
+    page = qBound(0, page, bb.page->count() - 1);
+    bb.page->setCurrentIndex(page);
+    connect(bb.page,
+	    SIGNAL(currentIndexChanged(int)),
+	    this,
+	    SLOT(slotPopulateMembersBrowser(void)));
+  }
+
   str = "SELECT member.memberid, "
     "member.first_name, "
     "member.last_name, "
@@ -4200,7 +4263,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	     "address, "
 	     "member.membersince, "
 	     "member.expiration_date ");
-  str.append("ORDER BY member.memberid");
+  str.append("ORDER BY member.memberid ");
+  str.append(QString("LIMIT %1 OFFSET %2").
+	     arg(bb.pages->value()).
+	     arg(bb.page->currentIndex() * bb.pages->value()));
   query.prepare(str);
 
   if(bb.filterBox->isChecked())
@@ -4226,7 +4292,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   QApplication::restoreOverrideCursor();
   resetMembersBrowser();
-  bb.page->clear();
   bb.table->setSortingEnabled(false);
 
   if(m_db.driverName() != "QSQLITE")
@@ -4258,22 +4323,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   progress->show();
   progress->repaint();
-  disconnect(bb.page,
-	     SIGNAL(currentIndexChanged(int)),
-	     this,
-	     SLOT(slotPopulateMembersBrowser(void)));
-
-  auto pages = qCeil
-    (bb.table->rowCount() / static_cast<double> (bb.pages->value()));
-
-  for(int i = 0; i < pages; i++)
-    bb.page->addItem(QString::number(i + 1));
-
-  if(bb.page->count() == 0)
-    bb.page->addItem("1");
-
-  page = qBound(0, page, bb.page->count() - 1);
-  bb.page->setCurrentIndex(page);
   QApplication::processEvents();
   i = -1;
 
@@ -4320,10 +4369,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
       QApplication::processEvents();
     }
 
-  connect(bb.page,
-	  SIGNAL(currentIndexChanged(int)),
-	  this,
-	  SLOT(slotPopulateMembersBrowser(void)));
   progress->close();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i); // Support cancellation.
