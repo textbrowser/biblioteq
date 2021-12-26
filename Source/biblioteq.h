@@ -471,6 +471,7 @@ class biblioteq: public QMainWindow
   void slotMainTableEnterKeyPressed(void);
   void slotMainWindowCanvasBackgroundColorChanged(const QColor &color);
   void slotMembersContextMenu(const QPoint &point);
+  void slotMembersPagesChanged(int value);
   void slotMergeSQLiteDatabases(void);
   void slotModify(void);
   void slotModifyBorrower(void);

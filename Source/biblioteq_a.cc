@@ -401,6 +401,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportMembersAsCSV(void)));
+  connect(bb.pages,
+	  SIGNAL(valueChanged(int)),
+	  this,
+	  SLOT(slotMembersPagesChanged(int)));
   connect(bb.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(history.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
@@ -1883,6 +1887,8 @@ void biblioteq::showMain(void)
   ui.itemsCountLabel->setText(tr("0 Results"));
 
   QSettings settings;
+
+  bb.pages->setValue(settings.value("membersPerPage", 500).toInt());
 
   if(settings.contains("mainwindowState"))
     restoreState(settings.value("mainwindowState").toByteArray());

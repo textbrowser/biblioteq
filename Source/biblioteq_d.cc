@@ -1,4 +1,5 @@
 #include <QDir>
+#include <QSettings>
 
 #include "biblioteq.h"
 #include "biblioteq_documentationwindow.h"
@@ -60,6 +61,13 @@ void biblioteq::slotContributors(void)
     }
 
   m_contributors->show();
+}
+
+void biblioteq::slotMembersPagesChanged(int value)
+{
+  QSettings settings;
+
+  settings.setValue("membersPerPage", value);
 }
 
 void biblioteq::slotMergeSQLiteDatabases(void)

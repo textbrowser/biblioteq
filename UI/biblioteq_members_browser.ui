@@ -213,9 +213,6 @@
          </item>
          <item>
           <widget class="QComboBox" name="page">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
            <property name="sizeAdjustPolicy">
             <enum>QComboBox::AdjustToContents</enum>
            </property>
@@ -228,9 +225,6 @@
          </item>
          <item>
           <widget class="QSpinBox" name="pages">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
            <property name="suffix">
             <string> Members Per Page</string>
            </property>

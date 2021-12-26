@@ -17,6 +17,7 @@
 #include <QTextCodec>
 #endif
 #include <QTextStream>
+#include <QtMath>
 
 #include <limits>
 
@@ -4128,6 +4129,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
   QSqlQuery query(m_db);
   QString str = "";
   QTableWidgetItem *item = nullptr;
+  auto page = bb.page->currentIndex();
   int i = -1;
   int j = 0;
 
@@ -4224,6 +4226,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   QApplication::restoreOverrideCursor();
   resetMembersBrowser();
+  bb.page->clear();
   bb.table->setSortingEnabled(false);
 
   if(m_db.driverName() != "QSQLITE")
@@ -4237,10 +4240,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
 						 __LINE__,
 						 this));
 
-  progress->setModal(true);
-  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->setLabelText(tr("Populating the table..."));
   progress->setMinimum(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
   if(m_db.driverName() == "QSQLITE")
     progress->setMaximum
@@ -4255,6 +4258,22 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   progress->show();
   progress->repaint();
+  disconnect(bb.page,
+	     SIGNAL(currentIndexChanged(int)),
+	     this,
+	     SLOT(slotPopulateMembersBrowser(void)));
+
+  auto pages = qCeil
+    (bb.table->rowCount() / static_cast<double> (bb.pages->value()));
+
+  for(int i = 0; i < pages; i++)
+    bb.page->addItem(QString::number(i + 1));
+
+  if(bb.page->count() == 0)
+    bb.page->addItem("1");
+
+  page = qBound(0, page, bb.page->count() - 1);
+  bb.page->setCurrentIndex(page);
   QApplication::processEvents();
   i = -1;
 
@@ -4301,6 +4320,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
       QApplication::processEvents();
     }
 
+  connect(bb.page,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotPopulateMembersBrowser(void)));
   progress->close();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i); // Support cancellation.
