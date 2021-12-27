@@ -194,12 +194,61 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		  auto str(QString(list.at(i - 1)).remove('"').trimmed());
 
-		  if(m_mappings.value(i).first == "id")
+		  if(m_mappings.value(i).first == "binding_type")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare("INSERT INTO book_binding_types "
+					"(binding_type) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
+		    }
+		  else if(m_mappings.value(i).first == "id")
 		    id = str;
 		  else if(m_mappings.value(i).first == "isbn13")
 		    {
 		      if(!id.isEmpty() && str.isEmpty())
 			str = biblioteq_misc_functions::isbn10to13(id);
+		    }
+		  else if(m_mappings.value(i).first == "language")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare("INSERT INTO languages "
+					"(language) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
+		    }
+		  else if(m_mappings.value(i).first == "location")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare("INSERT INTO locations "
+					"(location, type) VALUES(?, ?)");
+			  query.addBindValue(str);
+			  query.addBindValue("Book");
+			  query.exec();
+			}
+		    }
+		  else if(m_mappings.value(i).first == "monetary_units")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare("INSERT INTO monetary_units "
+					"(monetary_unit) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
 		    }
 		  else if(m_mappings.value(i).first == "quantity")
 		    quantity = str.toInt();
