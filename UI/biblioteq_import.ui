@@ -202,6 +202,13 @@
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Please do not ignore unique fields!</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
               <widget class="QLabel" name="label_4">

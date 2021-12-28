@@ -1986,22 +1986,7 @@ void biblioteq_book::slotConvertISBN13to10(void)
       return;
     }
 
-  QString z("");
-  auto isbnnum(id.isbn13->text().trimmed().mid(3, 9));
-  int total = 0;
-
-  for(int i = 0; i < 9; i++)
-    if(i < isbnnum.length())
-      total += isbnnum[i].digitValue() * (10 - i);
-    else
-      break;
-
-  z = QString::number((11 - (total % 11)) % 11);
-
-  if(z == "10")
-    z = "X";
-
-  id.id->setText(isbnnum + z);
+  id.id->setText(biblioteq_misc_functions::isbn13to10(id.isbn13->text()));
 }
 
 void biblioteq_book::slotDataTransferProgress(qint64 bytesread,

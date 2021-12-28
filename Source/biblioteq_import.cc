@@ -185,6 +185,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    query.addBindValue(oid);
 		}
 
+	      QMap<int, QString> values;
+
 	      for(int i = 1; i <= list.size(); i++)
 		{
 		  if(!m_mappings.contains(i))
@@ -200,18 +202,42 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			{
 			  QSqlQuery query(m_qmain->getDB());
 
-			  query.prepare("INSERT INTO book_binding_types "
-					"(binding_type) VALUES(?)");
+			  query.prepare
+			    ("INSERT INTO book_binding_types "
+			     "(binding_type) VALUES(?)");
 			  query.addBindValue(str);
 			  query.exec();
 			}
 		    }
 		  else if(m_mappings.value(i).first == "id")
-		    id = str;
+		    {
+		      str = str.remove('-');
+
+		      if(str.length() == 10)
+			id = str;
+		    }
 		  else if(m_mappings.value(i).first == "isbn13")
 		    {
+		      str = str.remove('-');
+
 		      if(!id.isEmpty() && str.isEmpty())
 			str = biblioteq_misc_functions::isbn10to13(id);
+		      else
+			{
+			  if(str.length() == 10)
+			    {
+			      if(id.isEmpty())
+				id = str;
+
+			      str = biblioteq_misc_functions::isbn10to13(id);
+			    }
+			  else if(str.length() > 0)
+			    {
+			      id = biblioteq_misc_functions::isbn13to10
+				(str.mid(0, 13));
+			      str = str.mid(0, 13);
+			    }
+			}
 		    }
 		  else if(m_mappings.value(i).first == "language")
 		    {
@@ -219,8 +245,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			{
 			  QSqlQuery query(m_qmain->getDB());
 
-			  query.prepare("INSERT INTO languages "
-					"(language) VALUES(?)");
+			  query.prepare
+			    ("INSERT INTO languages (language) VALUES(?)");
 			  query.addBindValue(str);
 			  query.exec();
 			}
@@ -231,8 +257,9 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			{
 			  QSqlQuery query(m_qmain->getDB());
 
-			  query.prepare("INSERT INTO locations "
-					"(location, type) VALUES(?, ?)");
+			  query.prepare
+			    ("INSERT INTO locations "
+			     "(location, type) VALUES(?, ?)");
 			  query.addBindValue(str);
 			  query.addBindValue("Book");
 			  query.exec();
@@ -244,8 +271,9 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			{
 			  QSqlQuery query(m_qmain->getDB());
 
-			  query.prepare("INSERT INTO monetary_units "
-					"(monetary_unit) VALUES(?)");
+			  query.prepare
+			    ("INSERT INTO monetary_units "
+			     "(monetary_unit) VALUES(?)");
 			  query.addBindValue(str);
 			  query.exec();
 			}
@@ -261,14 +289,25 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		    str = m_mappings.value(i).second;
 
-		  if(str.isEmpty())
+		  values[i] = str;
+		}
+
+	      values[9] = id; // ISBN-10?
+
+	      QMapIterator<int, QString> it(values);
+
+	      while(it.hasNext())
+		{
+		  it.next();
+
+		  if(it.value().isEmpty())
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 		    query.addBindValue(QVariant(QMetaType(QMetaType::QString)));
 #else
 		    query.addBindValue(QVariant(QVariant::String));
 #endif
 		  else
-		    query.addBindValue(str);
+		    query.addBindValue(it.value());
 		}
 
 	      if(query.exec())

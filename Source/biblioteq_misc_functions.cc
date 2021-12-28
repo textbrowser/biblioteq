@@ -532,6 +532,26 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
   return str.append(numberstr);
 }
 
+QString biblioteq_misc_functions::isbn13to10(const QString &text)
+{
+  QString z("");
+  auto isbn(text.trimmed().mid(3, 9));
+  int total = 0;
+
+  for(int i = 0; i < 9; i++)
+    if(i < isbn.length())
+      total += isbn[i].digitValue() * (10 - i);
+    else
+      break;
+
+  z = QString::number((11 - (total % 11)) % 11);
+
+  if(z == "10")
+    z = "X";
+
+  return isbn + z;
+}
+
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {
