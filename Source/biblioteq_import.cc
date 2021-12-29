@@ -104,14 +104,12 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     }
 
   queryString.append("INSERT INTO book (");
-  queryString.append("description,");
 
   if(m_qmain->getDB().driverName() != "QPSQL")
     queryString.append("myoid,");
 
   queryString.append(f);
   queryString.append(") VALUES (");
-  queryString.append("?,");
 
   if(m_qmain->getDB().driverName() != "QPSQL")
     queryString.append("?,");
@@ -166,13 +164,13 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 	  if(!list.isEmpty())
 	    {
+	      QMap<int, QString> values;
 	      QSqlQuery query(m_qmain->getDB());
 	      QString id("");
 	      int quantity = 1;
 	      qint64 oid = 0;
 
 	      query.prepare(queryString);
-	      query.addBindValue("N/A"); // Description.
 
 	      if(m_qmain->getDB().driverName() != "QPSQL")
 		{
@@ -184,8 +182,6 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  if(errorstr.isEmpty())
 		    query.addBindValue(oid);
 		}
-
-	      QMap<int, QString> values;
 
 	      for(int i = 1; i <= list.size(); i++)
 		{
@@ -991,7 +987,8 @@ void biblioteq_import::slotTemplates(int index)
 	       << "<ignored>" // Total Reserved
 	       << "originality"
 	       << "condition"
-	       << "accession_number";
+	       << "accession_number"
+	       << "description";
 	else if(index == 2) // Patrons
 	  list << "city"
 	       << "comments"
