@@ -22,6 +22,15 @@ class biblioteq_import: public QMainWindow
      SUBSTITUTE_VALUE = 2
     };
 
+  enum Templates
+    {
+     // Zero is the text Templates.
+
+     TEMPLATE_1 = 1,
+     TEMPLATE_2,
+     TEMPLATE_3
+    };
+
   QMap<int, QPair<QString, QString> > m_mappings;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;

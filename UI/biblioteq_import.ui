@@ -176,7 +176,7 @@
             <x>0</x>
             <y>0</y>
             <width>620</width>
-            <height>309</height>
+            <height>321</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -229,12 +229,17 @@
                </item>
                <item>
                 <property name="text">
-                 <string>Template 1 (BiblioteQ Books Column Order)</string>
+                 <string>Template 1 (BiblioteQ Books (All Fields))</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>Template 2 (BiblioteQ Patrons Column Order)</string>
+                 <string>Template 2 (BiblioteQ Books Column Order (Required Fields))</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Template 3 (BiblioteQ Patrons)</string>
                 </property>
                </item>
               </widget>

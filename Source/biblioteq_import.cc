@@ -644,56 +644,70 @@ void biblioteq_import::slotAddRow(void)
   auto comboBox = new QComboBox();
   auto widget = new QWidget();
 
-  if(m_ui.templates->currentIndex() == 1) // Books
-    comboBox->addItems(QStringList()
-		       << "<ignored>"
-		       << "accession_number"
-		       << "author"
-		       << "binding_type"
-		       << "callnumber"
-		       << "category"
-		       << "condition"
-		       << "description"
-		       << "deweynumber"
-		       << "edition"
-		       << "id"
-		       << "isbn13"
-		       << "keyword"
-		       << "language"
-		       << "lccontrolnumber"
-		       << "location"
-		       << "marc_tags"
-		       << "monetary_units"
-		       << "originality"
-		       << "pdate"
-		       << "place"
-		       << "price"
-		       << "publisher"
-		       << "quantity"
-		       << "title"
-		       << "url");
-  else if(m_ui.templates->currentIndex() == 2) // Patrons
-    comboBox->addItems(QStringList()
-		       << "<ignored>"
-		       << "city"
-		       << "comments"
-		       << "dob"
-		       << "email"
-		       << "expiration_date"
-		       << "first_name"
-		       << "general_registration_number"
-		       << "last_name"
-		       << "maximum_reserved_books"
-		       << "memberclass"
-		       << "memberid"
-		       << "membersince"
-		       << "middle_init"
-		       << "overdue_fees"
-		       << "sex"
-		       << "state_abbr"
-		       << "street"
-		       << "telephone_num"
-		       << "zip");
+  switch(m_ui.templates->currentIndex())
+    {
+    case TEMPLATE_1:
+    case TEMPLATE_2:
+      {
+	comboBox->addItems(QStringList()
+			   << "<ignored>"
+			   << "accession_number"
+			   << "author"
+			   << "binding_type"
+			   << "callnumber"
+			   << "category"
+			   << "condition"
+			   << "description"
+			   << "deweynumber"
+			   << "edition"
+			   << "id"
+			   << "isbn13"
+			   << "keyword"
+			   << "language"
+			   << "lccontrolnumber"
+			   << "location"
+			   << "marc_tags"
+			   << "monetary_units"
+			   << "originality"
+			   << "pdate"
+			   << "place"
+			   << "price"
+			   << "publisher"
+			   << "quantity"
+			   << "title"
+			   << "url");
+	break;
+      }
+    case TEMPLATE_3:
+      {
+	comboBox->addItems(QStringList()
+			   << "<ignored>"
+			   << "city"
+			   << "comments"
+			   << "dob"
+			   << "email"
+			   << "expiration_date"
+			   << "first_name"
+			   << "general_registration_number"
+			   << "last_name"
+			   << "maximum_reserved_books"
+			   << "memberclass"
+			   << "memberid"
+			   << "membersince"
+			   << "middle_init"
+			   << "overdue_fees"
+			   << "sex"
+			   << "state_abbr"
+			   << "street"
+			   << "telephone_num"
+			   << "zip");
+	break;
+      }
+    default:
+      {
+	break;
+      }
+    }
 
   comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
   comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
@@ -739,6 +753,10 @@ void biblioteq_import::slotDeleteRow(void)
 void biblioteq_import::slotImport(void)
 {
   if(m_ui.templates->currentIndex() == 0)
+    /*
+    ** A template has not been selected!
+    */
+
     return;
 
   /*
@@ -825,9 +843,9 @@ void biblioteq_import::slotImport(void)
   qint64 imported = 0;
   qint64 notImported = 0;
 
-  if(index == 1)
+  if(index == TEMPLATE_2)
     importBooks(progress.data(), errors, &imported, &notImported);
-  else if(index == 2)
+  else if(index == TEMPLATE_3)
     importPatrons(progress.data(), errors, &imported, &notImported);
 
   progress->close();
@@ -942,8 +960,7 @@ void biblioteq_import::slotTemplates(int index)
       {
 	break;
       }
-    case 1:
-    case 2:
+    default:
       {
 	if(m_ui.rows->rowCount() > 0)
 	  {
@@ -964,7 +981,7 @@ void biblioteq_import::slotTemplates(int index)
 
 	QStringList list;
 
-	if(index == 1) // Books
+	if(index == TEMPLATE_2)
 	  list << "title"
 	       << "author"
 	       << "publisher"
@@ -989,7 +1006,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "condition"
 	       << "accession_number"
 	       << "description";
-	else if(index == 2) // Patrons
+	else if(index == TEMPLATE_3)
 	  list << "city"
 	       << "comments"
 	       << "dob"
@@ -1031,10 +1048,6 @@ void biblioteq_import::slotTemplates(int index)
 	      }
 	  }
 
-	break;
-      }
-    default:
-      {
 	break;
       }
     }
