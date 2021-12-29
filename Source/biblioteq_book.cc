@@ -1385,10 +1385,10 @@ void biblioteq_book::populateAfterSRU
   auto isbn10User = false;
   auto isbn13User = false;
 
-  if(id.id->text().trimmed().length() == 10)
+  if(id.id->text().remove('-').trimmed().length() == 10)
     isbn10User = true;
 
-  if(id.isbn13->text().trimmed().length() == 13)
+  if(id.isbn13->text().remove('-').trimmed().length() == 13)
     isbn13User = true;
 
   QXmlStreamReader reader(text);
@@ -1563,10 +1563,10 @@ void biblioteq_book::populateAfterZ3950
   auto isbn10User = false;
   auto isbn13User = false;
 
-  if(id.id->text().trimmed().length() == 10)
+  if(id.id->text().remove('-').trimmed().length() == 10)
     isbn10User = true;
 
-  if(id.isbn13->text().trimmed().length() == 13)
+  if(id.isbn13->text().remove('-').trimmed().length() == 13)
     isbn13User = true;
 
   m.initialize(biblioteq_marc::BOOK, biblioteq_marc::Z3950, recordSyntax);
@@ -2057,7 +2057,7 @@ void biblioteq_book::slotDownloadImage(void)
   if(!action)
     return;
 
-  if(id.id->text().trimmed().length() != 10)
+  if(id.id->text().remove('-').trimmed().length() != 10)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
@@ -2532,7 +2532,7 @@ void biblioteq_book::slotGo(void)
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{
-	  if(id.id->text().length() == 10)
+	  if(id.id->text().remove('-').length() == 10)
 	    if(!(id.isbn13->text().startsWith("978") ||
 		 id.isbn13->text().startsWith("979")))
 	      slotConvertISBN10to13();
@@ -2542,7 +2542,7 @@ void biblioteq_book::slotGo(void)
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{
-	  if(id.isbn13->text().length() == 13 &&
+	  if(id.isbn13->text().remove('-').length() == 13 &&
 	     (id.isbn13->text().startsWith("978") ||
 	      id.isbn13->text().startsWith("979")))
 	    slotConvertISBN13to10();
@@ -2551,15 +2551,15 @@ void biblioteq_book::slotGo(void)
 	id.isbn13->clear();
 
       if(id.isbnAvailableCheckBox->isChecked())
-	if(id.id->text().length() != 10 ||
-	   id.isbn13->text().length() != 13)
+	if(id.id->text().remove('-').length() != 10 ||
+	   id.isbn13->text().remove('-').length() != 13)
 	  {
 	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				  tr("Please complete both the "
 				     "ISBN-10 and ISBN-13 fields."));
 	    QApplication::processEvents();
 
-	    if(id.id->text().length() != 10)
+	    if(id.id->text().remove('-').length() != 10)
 	      id.id->setFocus();
 	    else
 	      id.isbn13->setFocus();
@@ -2734,7 +2734,7 @@ void biblioteq_book::slotGo(void)
 		      "?, ?, ?)");
 
       if(id.isbnAvailableCheckBox->isChecked() &&
-	 !id.id->text().isEmpty())
+	 !id.id->text().remove('-').isEmpty())
 	query.bindValue(0, id.id->text());
       else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -2758,7 +2758,7 @@ void biblioteq_book::slotGo(void)
       query.bindValue(13, id.location->currentText().trimmed());
 
       if(id.isbnAvailableCheckBox->isChecked() &&
-	 !id.isbn13->text().isEmpty())
+	 !id.isbn13->text().remove('-').isEmpty())
 	query.bindValue(14, id.isbn13->text());
       else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -2947,7 +2947,7 @@ void biblioteq_book::slotGo(void)
 		  m_oid = query.value(0).toString().trimmed();
 		}
 
-	      if(id.id->text().isEmpty())
+	      if(id.id->text().remove('-').isEmpty())
 		biblioteq_misc_functions::
 		  createInitialCopies(m_oid,
 				      id.quantity->value(),
@@ -3027,7 +3027,7 @@ void biblioteq_book::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      if(!id.id->text().isEmpty())
+	      if(!id.id->text().remove('-').isEmpty())
 		str = QString(tr("BiblioteQ: Modify Book Entry (")) +
 		  id.id->text() + tr(")");
 	      else
@@ -3244,7 +3244,7 @@ void biblioteq_book::slotGo(void)
 	"AND item_borrower.type = 'Book' "
 	"WHERE ";
 
-      if(!id.id->text().trimmed().isEmpty())
+      if(!id.id->text().remove('-').trimmed().isEmpty())
 	{
 	  searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 	  values.append(id.id->text().trimmed());
@@ -3262,7 +3262,7 @@ void biblioteq_book::slotGo(void)
       values.append(biblioteq_myqstring::escape(id.title->text().trimmed()));
 
       if(!m_engWindowTitle.isEmpty())
-	if(!id.isbn13->text().trimmed().isEmpty())
+	if(!id.isbn13->text().remove('-').trimmed().isEmpty())
 	  {
 	    searchstr.append("LOWER(isbn13) LIKE LOWER('%' || ? || '%') AND ");
 	    values.append(id.isbn13->text().trimmed());
@@ -3507,8 +3507,8 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   if(m_openLibraryManager->findChild<QNetworkReply *> ())
     return;
 
-  if(!(id.id->text().trimmed().length() == 10 ||
-       id.isbn13->text().trimmed().length() == 13))
+  if(!(id.id->text().remove('-').trimmed().length() == 10 ||
+       id.isbn13->text().remove('-').trimmed().length() == 13))
     {
       QMessageBox::critical
 	(this,
@@ -3535,12 +3535,12 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 
   searchstr = hash.value("url_isbn");
 
-  if(!id.id->text().trimmed().isEmpty())
+  if(!id.id->text().remove('-').trimmed().isEmpty())
     searchstr.replace("%1", id.id->text().trimmed());
   else
     searchstr.replace("%1", id.isbn13->text().trimmed());
 
-  if(!id.isbn13->text().trimmed().isEmpty())
+  if(!id.isbn13->text().remove('-').trimmed().isEmpty())
     searchstr.replace("%2", id.isbn13->text().trimmed());
   else
     searchstr.replace("%2", id.id->text().trimmed());
@@ -4284,8 +4284,8 @@ void biblioteq_book::slotSRUQuery(void)
   if(m_sruManager->findChild<QNetworkReply *> ())
     return;
 
-  if(!(id.id->text().trimmed().length() == 10 ||
-       id.isbn13->text().trimmed().length() == 13))
+  if(!(id.id->text().remove('-').trimmed().length() == 10 ||
+       id.isbn13->text().remove('-').trimmed().length() == 13))
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
@@ -4325,12 +4325,12 @@ void biblioteq_book::slotSRUQuery(void)
 
   searchstr = hash.value("url_isbn");
 
-  if(!id.id->text().trimmed().isEmpty())
+  if(!id.id->text().remove('-').trimmed().isEmpty())
     searchstr.replace("%1", id.id->text().trimmed());
   else
     searchstr.replace("%1", id.isbn13->text().trimmed());
 
-  if(!id.isbn13->text().trimmed().isEmpty())
+  if(!id.isbn13->text().remove('-').trimmed().isEmpty())
     searchstr.replace("%2", id.isbn13->text().trimmed());
   else
     searchstr.replace("%2", id.id->text().trimmed());
@@ -4607,8 +4607,8 @@ void biblioteq_book::slotZ3950Query(void)
   QStringList tmplist;
   int i = 0;
 
-  if(!(id.id->text().trimmed().length() == 10 ||
-       id.isbn13->text().trimmed().length() == 13))
+  if(!(id.id->text().remove('-').trimmed().length() == 10 ||
+       id.isbn13->text().remove('-').trimmed().length() == 13))
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
@@ -4811,7 +4811,7 @@ void biblioteq_book::updateWindow(const int state)
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
 
-      if(!id.id->text().trimmed().isEmpty())
+      if(!id.id->text().remove('-').trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
 	  id.id->text().trimmed() + tr(")");
       else
@@ -4847,7 +4847,7 @@ void biblioteq_book::updateWindow(const int state)
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
 
-      if(!id.id->text().trimmed().isEmpty())
+      if(!id.id->text().remove('-').trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: View Book Details (")) +
 	  id.id->text().trimmed() + tr(")");
       else
