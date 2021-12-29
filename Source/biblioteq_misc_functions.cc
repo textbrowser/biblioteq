@@ -511,7 +511,7 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
 {
   QList<int> array;
   QString numberstr("");
-  QString str("978" + text.trimmed().left(9));
+  QString str("978" + QString(text).remove('-').trimmed().left(9));
   int check = 0;
   int total = 0;
 
@@ -535,12 +535,12 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
 QString biblioteq_misc_functions::isbn13to10(const QString &text)
 {
   QString z("");
-  auto isbn(text.trimmed().mid(3, 9));
+  auto str(QString(text).remove('-').trimmed().mid(3, 9));
   int total = 0;
 
   for(int i = 0; i < 9; i++)
-    if(i < isbn.length())
-      total += isbn[i].digitValue() * (10 - i);
+    if(i < str.length())
+      total += str[i].digitValue() * (10 - i);
     else
       break;
 
@@ -549,7 +549,7 @@ QString biblioteq_misc_functions::isbn13to10(const QString &text)
   if(z == "10")
     z = "X";
 
-  return isbn + z;
+  return str + z;
 }
 
 QStringList biblioteq_misc_functions::getBookBindingTypes
