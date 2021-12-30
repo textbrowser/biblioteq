@@ -334,6 +334,16 @@
               </widget>
              </item>
              <item>
+              <widget class="QCheckBox" name="bottom_scroll_on_add">
+               <property name="text">
+                <string>Bottom Scroll On Add</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="delete_row">
                <property name="text">
                 <string>&amp;Delete Row(s)</string>
@@ -538,6 +548,7 @@
   <tabstop>templates</tabstop>
   <tabstop>rows</tabstop>
   <tabstop>add_row</tabstop>
+  <tabstop>bottom_scroll_on_add</tabstop>
   <tabstop>delete_row</tabstop>
   <tabstop>ignored_rows</tabstop>
   <tabstop>import_csv</tabstop>

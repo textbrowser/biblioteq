@@ -741,6 +741,10 @@ void biblioteq_import::slotAddRow(void)
   m_ui.rows->setItem
     (m_ui.rows->rowCount() - 1, Columns::SUBSTITUTE_VALUE, item);
   m_ui.rows->resizeRowsToContents();
+
+  if(m_ui.bottom_scroll_on_add->isChecked())
+    m_ui.rows->scrollToBottom();
+
   QApplication::restoreOverrideCursor();
 }
 
@@ -927,6 +931,7 @@ void biblioteq_import::slotReset(void)
       }
 
   m_mappings.clear();
+  m_previewHeaders.clear();
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
