@@ -308,6 +308,11 @@
               </column>
               <column>
                <property name="text">
+                <string>CSV Preview</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>BiblioteQ Table Field Name</string>
                </property>
               </column>

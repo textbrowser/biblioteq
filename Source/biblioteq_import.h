@@ -17,9 +17,10 @@ class biblioteq_import: public QMainWindow
  private:
   enum Columns
     {
-     BIBLIOTEQ_TABLE_FIELD_NAME = 1,
+     BIBLIOTEQ_TABLE_FIELD_NAME = 2,
      CSV_COLUMN_NUMBER = 0,
-     SUBSTITUTE_VALUE = 2
+     CSV_PREVIEW = 1,
+     SUBSTITUTE_VALUE = 3
     };
 
   enum Templates
@@ -32,6 +33,7 @@ class biblioteq_import: public QMainWindow
     };
 
   QMap<int, QPair<QString, QString> > m_mappings;
+  QStringList m_previewHeaders; // Ignore QTableWidget.
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);

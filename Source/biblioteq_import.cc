@@ -591,6 +591,15 @@ void biblioteq_import::loadPreview(void)
 
 	  if(row == 0)
 	    {
+	      for(int i = 0; i < m_ui.rows->rowCount(); i++)
+		{
+		  auto item = m_ui.rows->item(i, CSV_PREVIEW);
+
+		  if(item)
+		    item->setText(list.value(i));
+		}
+
+	      m_previewHeaders = list;
 	      m_ui.preview->setColumnCount(list.size());
 	      m_ui.preview->setHorizontalHeaderLabels(list);
 	      m_ui.preview->resizeColumnsToContents();
@@ -642,6 +651,10 @@ void biblioteq_import::slotAddRow(void)
   item->setText(QString::number(m_ui.rows->rowCount()));
   m_ui.rows->setItem
     (m_ui.rows->rowCount() - 1, Columns::CSV_COLUMN_NUMBER, item);
+  item = new QTableWidgetItem
+    (m_previewHeaders.value(m_ui.rows->rowCount() - 1));
+  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  m_ui.rows->setItem(m_ui.rows->rowCount() - 1, Columns::CSV_PREVIEW, item);
 
   auto comboBox = new QComboBox();
   auto widget = new QWidget();
