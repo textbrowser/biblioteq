@@ -37,6 +37,7 @@ class biblioteq_import: public QMainWindow
   void changeEvent(QEvent *event);
   void importBooks(QProgressDialog *progress,
 		   QStringList &errors,
+		   const int idIndex, // ISBN-10
 		   qint64 *imported,
 		   qint64 *notImported);
   void importPatrons(QProgressDialog *progress,

@@ -70,6 +70,7 @@ void biblioteq_import::changeEvent(QEvent *event)
 
 void biblioteq_import::importBooks(QProgressDialog *progress,
 				   QStringList &errors,
+				   const int idIndex,
 				   qint64 *imported,
 				   qint64 *notImported)
 {
@@ -288,7 +289,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  values[i] = str;
 		}
 
-	      values[9] = id; // ISBN-10?
+	      values[idIndex] = id; // ISBN-10?
 
 	      QMapIterator<int, QString> it(values);
 
@@ -560,6 +561,7 @@ void biblioteq_import::loadPreview(void)
   progress->setMaximum(0);
   progress->setMinimum(0);
   progress->setModal(true);
+  progress->setValue(0);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();
   progress->repaint();
@@ -832,6 +834,7 @@ void biblioteq_import::slotImport(void)
   progress->setMaximum(0);
   progress->setMinimum(0);
   progress->setModal(true);
+  progress->setValue(0);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();
   progress->repaint();
@@ -843,8 +846,10 @@ void biblioteq_import::slotImport(void)
   qint64 imported = 0;
   qint64 notImported = 0;
 
-  if(index == TEMPLATE_2)
-    importBooks(progress.data(), errors, &imported, &notImported);
+  if(index == TEMPLATE_1)
+    importBooks(progress.data(), errors, 10, &imported, &notImported);
+  else if(index == TEMPLATE_2)
+    importBooks(progress.data(), errors, 9, &imported, &notImported);
   else if(index == TEMPLATE_3)
     importPatrons(progress.data(), errors, &imported, &notImported);
 
@@ -981,7 +986,33 @@ void biblioteq_import::slotTemplates(int index)
 
 	QStringList list;
 
-	if(index == TEMPLATE_2)
+	if(index == TEMPLATE_1)
+	  list << "accession_number"
+	       << "author"
+	       << "binding_type"
+	       << "callnumber"
+	       << "category"
+	       << "condition"
+	       << "description"
+	       << "deweynumber"
+	       << "edition"
+	       << "id"
+	       << "isbn13"
+	       << "keyword"
+	       << "language"
+	       << "lccontrolnumber"
+	       << "location"
+	       << "marc_tags"
+	       << "monetary_units"
+	       << "originality"
+	       << "pdate"
+	       << "place"
+	       << "price"
+	       << "publisher"
+	       << "quantity"
+	       << "title"
+	       << "url";
+	else if(index == TEMPLATE_2)
 	  list << "title"
 	       << "author"
 	       << "publisher"
