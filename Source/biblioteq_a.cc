@@ -2012,7 +2012,14 @@ void biblioteq::showMain(void)
       auto list(QApplication::arguments());
 
       for(int i = 0; i < list.size(); i++)
-	if(list.at(i) == "--open-sqlite-database")
+	if(list.at(i) == "--open-postgresql-database")
+	  {
+	    i += 1;
+
+	    if(i >= list.size())
+	      continue;
+	  }
+	else if(list.at(i) == "--open-sqlite-database")
 	  {
 	    i += 1;
 

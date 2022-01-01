@@ -2091,12 +2091,12 @@ void biblioteq_book::slotDownloadImage(void)
 	url = QUrl::fromUserInput
 	  (qmain->getAmazonHash().value("back_cover_host") +
 	   QString(qmain->getAmazonHash().value("back_cover_path")).replace
-	   ("%", id.id->text().trimmed()));
+	   ("%", id.id->text().remove('-').trimmed()));
       else
 	url = QUrl::fromUserInput
 	  (qmain->getAmazonHash().value("front_cover_host") +
 	   QString(qmain->getAmazonHash().value("front_cover_path")).replace
-	   ("%", id.id->text().trimmed()));
+	   ("%", id.id->text().remove('-').trimmed()));
 
       url.setScheme("https");
 
@@ -2205,7 +2205,8 @@ void biblioteq_book::slotDownloadImage(void)
 	string = qmain->getOpenLibraryImagesHash().value("front_url");
 
       string.replace("$key", "isbn");
-      string.replace("$value-$size", id.id->text().trimmed() + "-L");
+      string.replace
+	("$value-$size", id.id->text().remove('-').trimmed() + "-L");
       url = QUrl::fromUserInput(string);
 
       QNetworkProxy proxy;
@@ -2740,7 +2741,7 @@ void biblioteq_book::slotGo(void)
 
       if(id.isbnAvailableCheckBox->isChecked() &&
 	 !id.id->text().remove('-').isEmpty())
-	query.bindValue(0, id.id->text());
+	query.bindValue(0, id.id->text().remove('-'));
       else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 	query.bindValue(0, QVariant(QMetaType(QMetaType::QString)));
@@ -2764,7 +2765,7 @@ void biblioteq_book::slotGo(void)
 
       if(id.isbnAvailableCheckBox->isChecked() &&
 	 !id.isbn13->text().remove('-').isEmpty())
-	query.bindValue(14, id.isbn13->text());
+	query.bindValue(14, id.isbn13->text().remove('-'));
       else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 	query.bindValue(14, QVariant(QMetaType(QMetaType::QString)));
@@ -2960,7 +2961,7 @@ void biblioteq_book::slotGo(void)
 				      "Book", errorstr);
 	      else
 		biblioteq_misc_functions::
-		  createInitialCopies(id.id->text(),
+		  createInitialCopies(id.id->text().remove('-'),
 				      id.quantity->value(),
 				      qmain->getDB(),
 				      "Book", errorstr);
@@ -3252,7 +3253,7 @@ void biblioteq_book::slotGo(void)
       if(!id.id->text().remove('-').trimmed().isEmpty())
 	{
 	  searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
-	  values.append(id.id->text().trimmed());
+	  values.append(id.id->text().remove('-').trimmed());
 	}
 
       QString ESCAPE("");
@@ -3270,7 +3271,7 @@ void biblioteq_book::slotGo(void)
 	if(!id.isbn13->text().remove('-').trimmed().isEmpty())
 	  {
 	    searchstr.append("LOWER(isbn13) LIKE LOWER('%' || ? || '%') AND ");
-	    values.append(id.isbn13->text().trimmed());
+	    values.append(id.isbn13->text().remove('-').trimmed());
 	  }
 
       searchstr.append
@@ -3541,14 +3542,14 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   searchstr = hash.value("url_isbn");
 
   if(!id.id->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%1", id.id->text().trimmed());
+    searchstr.replace("%1", id.id->text().remove('-').trimmed());
   else
-    searchstr.replace("%1", id.isbn13->text().trimmed());
+    searchstr.replace("%1", id.isbn13->text().remove('-').trimmed());
 
   if(!id.isbn13->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%2", id.isbn13->text().trimmed());
+    searchstr.replace("%2", id.isbn13->text().remove('-').trimmed());
   else
-    searchstr.replace("%2", id.id->text().trimmed());
+    searchstr.replace("%2", id.id->text().remove('-').trimmed());
 
   QNetworkProxy proxy;
   QString type("none");
@@ -3760,7 +3761,7 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
      m_oid,
      id.quantity,
      font(),
-     id.id->text().trimmed());
+     id.id->text().remove('-').trimmed());
   copyeditor->populateCopiesEditor();
 }
 
@@ -4331,14 +4332,14 @@ void biblioteq_book::slotSRUQuery(void)
   searchstr = hash.value("url_isbn");
 
   if(!id.id->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%1", id.id->text().trimmed());
+    searchstr.replace("%1", id.id->text().remove('-').trimmed());
   else
-    searchstr.replace("%1", id.isbn13->text().trimmed());
+    searchstr.replace("%1", id.isbn13->text().remove('-').trimmed());
 
   if(!id.isbn13->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%2", id.isbn13->text().trimmed());
+    searchstr.replace("%2", id.isbn13->text().remove('-').trimmed());
   else
-    searchstr.replace("%2", id.id->text().trimmed());
+    searchstr.replace("%2", id.id->text().remove('-').trimmed());
 
   QNetworkProxy proxy;
   QString type("none");
@@ -4592,7 +4593,7 @@ void biblioteq_book::slotShowUsers(void)
      static_cast<biblioteq_item *> (this),
      id.quantity->value(),
      m_oid,
-     id.id->text().trimmed(),
+     id.id->text().remove('-').trimmed(),
      font(),
      "Book",
      state);
@@ -4643,8 +4644,8 @@ void biblioteq_book::slotZ3950Query(void)
   QString recordSyntax("MARC21");
   QStringList isbns;
 
-  isbns << id.id->text().trimmed()
-	<< id.isbn13->text().trimmed();
+  isbns << id.id->text().remove('-').trimmed()
+	<< id.isbn13->text().remove('-').trimmed();
 
   if(isbns.at(0).isEmpty())
     searchstr = QString("@attr 1=7 %1").arg(isbns.at(1));
