@@ -3665,7 +3665,23 @@ int biblioteq::populateTable(const int search_type_arg,
 		  tooltip.append("<b>");
 		  tooltip.append(columnName);
 		  tooltip.append(":</b> ");
-		  tooltip.append(query.value(j).toString().trimmed());
+
+		  if(record.field(j).tableName() == "book" &&
+		     (record.fieldName(j) == "id" ||
+		      record.fieldName(j) == "isbn13"))
+		    {
+		      QString str(query.value(j).toString().trimmed());
+
+		      if(record.fieldName(j) == "id")
+			str = m_otheroptions->isbn10DisplayFormat(str);
+		      else
+			str = m_otheroptions->isbn13DisplayFormat(str);
+
+		      tooltip.append(str);
+		    }
+		  else
+		    tooltip.append(query.value(j).toString().trimmed());
+
 		  tooltip.append("<br>");
 		}
 
