@@ -55,17 +55,18 @@ class biblioteq_otheroptions: public QMainWindow
   Ui_otheroptions m_ui;
   biblioteq *qmain;
 
-  QString isbnDisplayFormat(const QString &format, const QString &str) const
+  QString isbnDisplayFormat(const QString &format, const QString &s) const
   {
     QString text("");
     auto list(format.split('-'));
+    auto str(QString(s).remove('-'));
 
     for(int i = 0, j = 0; i < list.size(); i++)
       {
 	text.append(str.mid(j, list.at(i).length()));
 
 	if(i != list.size() - 1)
-	  text.append("-");
+	  text.append('-');
 
 	j += list.at(i).length();
       }
