@@ -67,6 +67,28 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   return QColor(value);
 }
 
+QString biblioteq_otheroptions::isbn10DisplayFormat(void) const
+{
+  QSettings settings;
+  auto index = qBound
+    (0,
+     settings.value("otheroptions/isbn10_display_format_index").toInt(),
+     m_ui.isbn10_display_format->count() - 1);
+
+  return m_ui.isbn10_display_format->itemText(index);
+}
+
+QString biblioteq_otheroptions::isbn13DisplayFormat(void) const
+{
+  QSettings settings;
+  auto index = qBound
+    (0,
+     settings.value("otheroptions/isbn13_display_format_index").toInt(),
+     m_ui.isbn13_display_format->count() - 1);
+
+  return m_ui.isbn13_display_format->itemText(index);
+}
+
 QString biblioteq_otheroptions::publicationDateFormat
 (const QString &it) const
 {
@@ -269,6 +291,14 @@ void biblioteq_otheroptions::prepareSettings(void)
     (qBound(0,
 	    settings.value("otheroptions/books_accession_number_index").toInt(),
 	    m_ui.books_accession_number->count() - 1));
+  m_ui.isbn10_display_format->setCurrentIndex
+    (qBound(0,
+	    settings.value("otheroptions/isbn10_display_format_index").toInt(),
+	    m_ui.isbn10_display_format->count() - 1));
+  m_ui.isbn13_display_format->setCurrentIndex
+    (qBound(0,
+	    settings.value("otheroptions/isbn13_display_format_index").toInt(),
+	    m_ui.isbn13_display_format->count() - 1));
   m_ui.publication_date->setRowCount(list1.size());
 
   for(int i = 0; i < list1.size(); i++)
@@ -449,6 +479,12 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/books_accession_number_index",
      m_ui.books_accession_number->currentIndex());
+  settings.setValue
+    ("otheroptions/isbn10_display_format_index",
+     m_ui.isbn10_display_format->currentIndex());
+  settings.setValue
+    ("otheroptions/isbn13_display_format_index",
+     m_ui.isbn13_display_format->currentIndex());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue

@@ -13,6 +13,8 @@ class biblioteq_otheroptions: public QMainWindow
   biblioteq_otheroptions(biblioteq *parent);
   ~biblioteq_otheroptions();
   QColor availabilityColor(const QString &it) const;
+  QString isbn10DisplayFormat(void) const;
+  QString isbn13DisplayFormat(void) const;
   QString publicationDateFormat(const QString &it) const;
   bool showMainTableImages(void) const;
   bool showMainTableProgressDialogs(void) const;

@@ -48,6 +48,87 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="title">
+               <string>ISBN Display Formats</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>ISBN-10</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="isbn10_display_format">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>A-BCDE-FGHI-J</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <widget class="QLabel" name="label_7">
+                   <property name="text">
+                    <string>ISBN-13</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="isbn13_display_format">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>97X-ABCD-EFGH-IJ</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QLabel" name="label">
               <property name="text">
                <string>Please note that the publication date formats are applied to item details and the main window.</string>
@@ -400,6 +481,8 @@
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>tabWidget</tabstop>
+  <tabstop>isbn10_display_format</tabstop>
+  <tabstop>isbn13_display_format</tabstop>
   <tabstop>publication_date</tabstop>
   <tabstop>availability_colors</tabstop>
   <tabstop>availability_color</tabstop>
