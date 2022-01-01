@@ -214,6 +214,8 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> getZ3950Hash(const QString &name) const;
   QMainWindow *getMembersBrowser(void) const;
   QSqlDatabase getDB(void) const;
+  QString formattedISBN10(const QString &str) const;
+  QString formattedISBN13(const QString &str) const;
   QString getAdminID(void) const;
   QString getPreferredSRUSite(void) const;
   QString getPreferredZ3950Site(void) const;

@@ -1004,7 +1004,7 @@ void biblioteq_book::modify(const int state)
 		  m_engWindowTitle = "View";
 		}
 
-	      id.id->setText(var.toString().trimmed());
+	      id.id->setText(qmain->formattedISBN10(var.toString().trimmed()));
 	      setWindowTitle(str);
 
 	      if(query.isNull(i))
@@ -1020,7 +1020,8 @@ void biblioteq_book::modify(const int state)
 	    id.keyword->setMultipleLinks("book_search", "keyword",
 					 var.toString().trimmed());
 	  else if(fieldname == "isbn13")
-	    id.isbn13->setText(var.toString().trimmed());
+	    id.isbn13->setText
+	      (qmain->formattedISBN13(var.toString().trimmed()));
 	  else if(fieldname == "lccontrolnumber")
 	    id.lcnum->setText(var.toString().trimmed());
 	  else if(fieldname == "callnumber")
@@ -1494,7 +1495,7 @@ void biblioteq_book::populateAfterSRU
 
   if(!isbn10User && !str.isEmpty())
     {
-      id.id->setText(str);
+      id.id->setText(qmain->formattedISBN10(str));
       biblioteq_misc_functions::highlightWidget(id.id, QColor(162, 205, 90));
     }
 
@@ -1502,7 +1503,7 @@ void biblioteq_book::populateAfterSRU
 
   if(!isbn13User && !str.isEmpty())
     {
-      id.isbn13->setText(str);
+      id.isbn13->setText(qmain->formattedISBN13(str));
       biblioteq_misc_functions::highlightWidget
 	(id.isbn13, QColor(162, 205, 90));
     }
@@ -1651,7 +1652,7 @@ void biblioteq_book::populateAfterZ3950
 
   if(!isbn10User && !str.isEmpty())
     {
-      id.id->setText(str);
+      id.id->setText(qmain->formattedISBN10(str));
       biblioteq_misc_functions::highlightWidget(id.id, QColor(162, 205, 90));
     }
 
@@ -1659,7 +1660,7 @@ void biblioteq_book::populateAfterZ3950
 
   if(!isbn13User && !str.isEmpty())
     {
-      id.isbn13->setText(str);
+      id.isbn13->setText(qmain->formattedISBN13(str));
       biblioteq_misc_functions::highlightWidget
 	(id.isbn13, QColor(162, 205, 90));
     }
@@ -1970,7 +1971,9 @@ void biblioteq_book::slotCancelImageDownload(void)
 
 void biblioteq_book::slotConvertISBN10to13(void)
 {
-  id.isbn13->setText(biblioteq_misc_functions::isbn10to13(id.id->text()));
+  id.isbn13->setText
+    (qmain->
+     formattedISBN13(biblioteq_misc_functions::isbn10to13(id.id->text())));
 }
 
 void biblioteq_book::slotConvertISBN13to10(void)
@@ -1986,7 +1989,9 @@ void biblioteq_book::slotConvertISBN13to10(void)
       return;
     }
 
-  id.id->setText(biblioteq_misc_functions::isbn13to10(id.isbn13->text()));
+  id.id->setText
+    (qmain->
+     formattedISBN10(biblioteq_misc_functions::isbn13to10(id.isbn13->text())));
 }
 
 void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
@@ -2526,9 +2531,9 @@ void biblioteq_book::slotGo(void)
 	}
 
       str = id.id->text().trimmed();
-      id.id->setText(str);
+      id.id->setText(qmain->formattedISBN10(str));
       str = id.isbn13->text().trimmed();
-      id.isbn13->setText(str);
+      id.isbn13->setText(qmain->formattedISBN13(str));
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{

@@ -7,6 +7,16 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_merge_databases.h"
 
+QString biblioteq::formattedISBN10(const QString &str) const
+{
+  return m_otheroptions->isbn10DisplayFormat(str);
+}
+
+QString biblioteq::formattedISBN13(const QString &str) const
+{
+  return m_otheroptions->isbn13DisplayFormat(str);
+}
+
 bool biblioteq::showMainTableImages(void) const
 {
   return m_otheroptions->showMainTableImages();
