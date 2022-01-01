@@ -3698,7 +3698,7 @@ int biblioteq::populateTable(const int search_type_arg,
 			str = query.value(j).toString().trimmed();
 		    }
 		  else
-		    str = query.value(j).toString();
+		    str = query.value(j).toString().trimmed();
 		}
 
 	      if(search_type == CUSTOM_QUERY)
@@ -3708,7 +3708,18 @@ int biblioteq::populateTable(const int search_type_arg,
 		    ui.table->setColumnCount(tmplist.size());
 		  }
 
-	      if(record.fieldName(j).endsWith("accession_number"))
+	      if(record.field(j).tableName() == "book" &&
+		 (record.fieldName(j) == "id" ||
+		  record.fieldName(j) == "isbn13"))
+		{
+		  if(record.fieldName(j) == "id")
+		    str = m_otheroptions->isbn10DisplayFormat(str);
+		  else
+		    str = m_otheroptions->isbn13DisplayFormat(str);
+
+		  item = new QTableWidgetItem(str);
+		}
+	      else if(record.fieldName(j).endsWith("accession_number"))
 		{
 		  if(typefilter == "Books")
 		    {
@@ -3753,7 +3764,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		}
 	      else if(record.fieldName(j).endsWith("callnumber"))
 		{
-		  str = query.value(j).toString();
+		  str = query.value(j).toString().trimmed();
 		  item = new biblioteq_callnum_table_item(str);
 		}
 	      else if(record.fieldName(j).endsWith("front_cover") ||
@@ -3812,7 +3823,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      if(item != nullptr)
 		{
 		  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-		  item->setText(str);
+		  item->setText(str.trimmed());
 
 		  if(j == 0)
 		    {
@@ -3863,6 +3874,10 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	  if(m_db.driverName() == "QSQLITE" && search_type != CUSTOM_QUERY)
 	    {
+	      /*
+	      ** Was the book read?
+	      */
+
 	      auto item = new QTableWidgetItem();
 
 	      if(itemType == "book")

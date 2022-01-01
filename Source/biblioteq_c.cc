@@ -713,7 +713,18 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    str = m_searchQuery.value(j).toString().trimmed();
 		}
 
-	      if(record.fieldName(j).endsWith("accession_number"))
+	      if(record.field(j).tableName() == "book" &&
+		 (record.fieldName(j) == "id" ||
+		  record.fieldName(j) == "isbn13"))
+		{
+		  if(record.fieldName(j) == "id")
+		    str = m_otheroptions->isbn10DisplayFormat(str);
+		  else
+		    str = m_otheroptions->isbn13DisplayFormat(str);
+
+		  item = new QTableWidgetItem(str);
+		}
+	      else if(record.fieldName(j).endsWith("accession_number"))
 		{
 		  if(typefilter == "Books")
 		    {
@@ -818,7 +829,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	      if(item != nullptr)
 		{
-		  item->setText(str);
+		  item->setText(str.trimmed());
 		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 		  if(j == 0)
@@ -870,6 +881,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	  if(m_db.driverName() == "QSQLITE" && searchType != CUSTOM_QUERY)
 	    {
+	      /*
+	      ** Was the book read?
+	      */
+
 	      auto item = new QTableWidgetItem();
 
 	      if(itemType == "book")

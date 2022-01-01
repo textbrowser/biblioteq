@@ -1,6 +1,8 @@
 #ifndef _BIBLIOTEQ_OTHEROPTIONS_H_
 #define _BIBLIOTEQ_OTHEROPTIONS_H_
 
+#include <QSettings>
+
 #include "ui_biblioteq_otheroptions.h"
 
 class biblioteq;
@@ -13,8 +15,29 @@ class biblioteq_otheroptions: public QMainWindow
   biblioteq_otheroptions(biblioteq *parent);
   ~biblioteq_otheroptions();
   QColor availabilityColor(const QString &it) const;
-  QString isbn10DisplayFormat(void) const;
-  QString isbn13DisplayFormat(void) const;
+
+  QString isbn10DisplayFormat(const QString &str) const
+  {
+    QSettings settings;
+    auto index = qBound
+      (0,
+       settings.value("otheroptions/isbn10_display_format_index").toInt(),
+       m_ui.isbn10_display_format->count() - 1);
+
+    return isbnDisplayFormat(m_ui.isbn10_display_format->itemText(index), str);
+  }
+
+  QString isbn13DisplayFormat(const QString &str) const
+  {
+    QSettings settings;
+    auto index = qBound
+      (0,
+       settings.value("otheroptions/isbn13_display_format_index").toInt(),
+       m_ui.isbn13_display_format->count() - 1);
+
+    return isbnDisplayFormat(m_ui.isbn13_display_format->itemText(index), str);
+  }
+
   QString publicationDateFormat(const QString &it) const;
   bool showMainTableImages(void) const;
   bool showMainTableProgressDialogs(void) const;
@@ -31,6 +54,25 @@ class biblioteq_otheroptions: public QMainWindow
 
   Ui_otheroptions m_ui;
   biblioteq *qmain;
+
+  QString isbnDisplayFormat(const QString &format, const QString &str) const
+  {
+    QString text("");
+    auto list(format.split('-'));
+
+    for(int i = 0, j = 0; i < list.size(); i++)
+      {
+	text.append(str.mid(j, list.at(i).length()));
+
+	if(i != list.size() - 1)
+	  text.append("-");
+
+	j += list.at(i).length();
+      }
+
+    return text;
+  }
+
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);

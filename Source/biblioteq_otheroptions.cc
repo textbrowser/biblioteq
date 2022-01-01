@@ -2,7 +2,6 @@
 #include "biblioteq_otheroptions.h"
 
 #include <QColorDialog>
-#include <QSettings>
 
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 {
@@ -65,28 +64,6 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
       ("otheroptions/videogame_availability_color").toString();
 
   return QColor(value);
-}
-
-QString biblioteq_otheroptions::isbn10DisplayFormat(void) const
-{
-  QSettings settings;
-  auto index = qBound
-    (0,
-     settings.value("otheroptions/isbn10_display_format_index").toInt(),
-     m_ui.isbn10_display_format->count() - 1);
-
-  return m_ui.isbn10_display_format->itemText(index);
-}
-
-QString biblioteq_otheroptions::isbn13DisplayFormat(void) const
-{
-  QSettings settings;
-  auto index = qBound
-    (0,
-     settings.value("otheroptions/isbn13_display_format_index").toInt(),
-     m_ui.isbn13_display_format->count() - 1);
-
-  return m_ui.isbn13_display_format->itemText(index);
 }
 
 QString biblioteq_otheroptions::publicationDateFormat

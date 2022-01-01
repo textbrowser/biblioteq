@@ -38,6 +38,16 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Please refresh the main table / view if options are modified!</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
            <number>0</number>
@@ -106,6 +116,11 @@
                    <item>
                     <property name="text">
                      <string>97X-ABCD-EFGH-IJ</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>A-BCDEFG-HIJKLM</string>
                     </property>
                    </item>
                   </widget>
@@ -186,16 +201,6 @@
             <string>Main Window</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_6">
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>Please refresh the main table if availability colors are modified.</string>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
             <item>
              <widget class="QCheckBox" name="availability_colors">
               <property name="text">
@@ -324,7 +329,7 @@
             <item>
              <widget class="QLabel" name="label_4">
               <property name="text">
-               <string>Please refresh the main table if sort settings are modified. Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</string>
+               <string>Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
