@@ -3670,7 +3670,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		     (record.fieldName(j) == "id" ||
 		      record.fieldName(j) == "isbn13"))
 		    {
-		      QString str(query.value(j).toString().trimmed());
+		      auto str(query.value(j).toString().trimmed());
 
 		      if(record.fieldName(j) == "id")
 			str = m_otheroptions->isbn10DisplayFormat(str);

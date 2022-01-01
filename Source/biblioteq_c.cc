@@ -677,7 +677,23 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  tooltip.append("<b>");
 		  tooltip.append(columnName);
 		  tooltip.append(":</b> ");
-		  tooltip.append(m_searchQuery.value(j).toString().trimmed());
+
+		  if(record.field(j).tableName() == "book" &&
+		     (record.fieldName(j) == "id" ||
+		      record.fieldName(j) == "isbn13"))
+		    {
+		      auto str(m_searchQuery.value(j).toString().trimmed());
+
+		      if(record.fieldName(j) == "id")
+			str = m_otheroptions->isbn10DisplayFormat(str);
+		      else
+			str = m_otheroptions->isbn13DisplayFormat(str);
+
+		      tooltip.append(str);
+		    }
+		  else
+		    tooltip.append(m_searchQuery.value(j).toString().trimmed());
+
 		  tooltip.append("<br>");
 		}
 
