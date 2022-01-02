@@ -418,7 +418,7 @@
     <addaction name="separator"/>
     <addaction name="action_Release_Notes"/>
    </widget>
-   <widget class="QMenu" name="menuTools">
+   <widget class="QMenu" name="menu_Tools">
     <property name="tearOffEnabled">
      <bool>true</bool>
     </property>
@@ -510,7 +510,7 @@
     <addaction name="actionViewDetails"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuOptions">
+   <widget class="QMenu" name="menu_Options">
     <property name="tearOffEnabled">
      <bool>true</bool>
     </property>
@@ -569,8 +569,8 @@
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
-   <addaction name="menuTools"/>
-   <addaction name="menuOptions"/>
+   <addaction name="menu_Tools"/>
+   <addaction name="menu_Options"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

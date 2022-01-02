@@ -6448,7 +6448,17 @@ void biblioteq::slotVacuum(void)
     }
 
   QApplication::processEvents();
-  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QProgressDialog progress(this);
+
+  progress.setCancelButton(nullptr);
+  progress.setMaximum(0);
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Vacuuming Database"));
+  progress.show();
+  progress.repaint();
+  QApplication::processEvents();
 
   if(statusBar())
     {
@@ -6464,35 +6474,49 @@ void biblioteq::slotVacuum(void)
     {
       query.exec("DELETE FROM book_copy_info WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM book)");
+      progress.setValue(0);
       query.exec("DELETE FROM book_files WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM book)");
+      progress.setValue(0);
       query.exec("DELETE FROM cd_copy_info WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM cd)");
+      progress.setValue(0);
       query.exec("DELETE FROM cd_songs WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM cd)");
+      progress.setValue(0);
       query.exec("DELETE FROM dvd_copy_info WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM dvd)");
+      progress.setValue(0);
       query.exec("DELETE FROM grey_literature_files WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM grey_literature)");
+      progress.setValue(0);
       query.exec("DELETE FROM journal_copy_info WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM journal)");
+      progress.setValue(0);
       query.exec("DELETE FROM journal_files WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM journal)");
+      progress.setValue(0);
       query.exec("DELETE FROM magazine_copy_info WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM magazine)");
+      progress.setValue(0);
       query.exec("DELETE FROM magazine_files WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM magazine)");
+      progress.setValue(0);
       query.exec("DELETE FROM photograph WHERE collection_oid NOT IN "
 		 "(SELECT myoid FROM photograph_collection)");
+      progress.setValue(0);
       query.exec("DELETE FROM videogame_copy_info WHERE item_oid NOT IN "
 		 "(SELECT myoid FROM videogame)");
+      progress.setValue(0);
     }
 
   query.exec("VACUUM");
+  progress.setValue(0);
 
   if(statusBar())
     statusBar()->clearMessage();
 
+  progress.close();
   QApplication::restoreOverrideCursor();
 }
 
