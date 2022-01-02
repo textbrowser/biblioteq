@@ -2018,6 +2018,15 @@ void biblioteq::showMain(void)
 
 	    if(i >= list.size())
 	      continue;
+
+	    auto index = br.branch_name->findText(list.at(i));
+
+	    if(index >= 0)
+	      {
+		br.branch_name->setCurrentIndex(index);
+		slotConnectDB();
+		break;
+	      }
 	  }
 	else if(list.at(i) == "--open-sqlite-database")
 	  {
