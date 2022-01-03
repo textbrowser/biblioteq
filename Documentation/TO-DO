@@ -513,3 +513,5 @@
 278. Preserve order of columns in the main table. (TBD)
 279. MARC parsing (books). (TBD)
 280. See release notes and add names of contributors. (Done)
+281. Remove special characters from text which is sent to the main table
+     whenever an item's information is saved via its details. (TBD)
