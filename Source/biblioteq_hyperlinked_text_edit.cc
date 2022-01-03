@@ -23,7 +23,7 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
   QStringList tmplist;
   int i = 0;
 
-  tmplist = str.split("\n");
+  tmplist = str.trimmed().split("\n");
 
   for(i = 0; i < tmplist.size(); i++)
     {

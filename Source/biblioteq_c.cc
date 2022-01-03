@@ -694,7 +694,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  else
 		    tooltip.append
 		      (m_searchQuery.value(j).
-		       toString().simplified().trimmed());
+		       toString().simplified().replace("<br>", " ").
+		       simplified().trimmed());
 
 		  tooltip.append("<br>");
 		}
@@ -847,7 +848,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	      if(item != nullptr)
 		{
-		  item->setText(str.simplified().trimmed());
+		  item->setText
+		    (str.simplified().replace("<br>", " ").
+		     simplified().trimmed());
 		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 		  if(j == 0)

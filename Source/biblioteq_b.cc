@@ -3681,7 +3681,9 @@ int biblioteq::populateTable(const int search_type_arg,
 		    }
 		  else
 		    tooltip.append
-		      (query.value(j).toString().simplified().trimmed());
+		      (query.value(j).
+		       toString().simplified().replace("<br>", " ").
+		       simplified().trimmed());
 
 		  tooltip.append("<br>");
 		}
@@ -3840,7 +3842,9 @@ int biblioteq::populateTable(const int search_type_arg,
 	      if(item != nullptr)
 		{
 		  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-		  item->setText(str.simplified().trimmed());
+		  item->setText
+		    (str.simplified().replace("<br>", " ").simplified().
+		     trimmed());
 
 		  if(j == 0)
 		    {
