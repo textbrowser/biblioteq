@@ -552,6 +552,11 @@ QString biblioteq_misc_functions::isbn13to10(const QString &text)
   return str + z;
 }
 
+QString biblioteq_misc_functions::linearizeString(const QString &text)
+{
+  return text.simplified().replace("<br>", " ").simplified().trimmed();
+}
+
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {
