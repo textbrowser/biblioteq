@@ -176,7 +176,7 @@
             <x>0</x>
             <y>0</y>
             <width>620</width>
-            <height>321</height>
+            <height>306</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -537,6 +537,28 @@
     </item>
    </layout>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>700</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_Documentation"/>
+   </widget>
+   <addaction name="menu_Help"/>
+  </widget>
+  <action name="action_Documentation">
+   <property name="text">
+    <string>&amp;Documentation...</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>csv_file</tabstop>
