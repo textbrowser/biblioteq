@@ -57,9 +57,13 @@ class biblioteq_otheroptions: public QMainWindow
 
   QString isbnDisplayFormat(const QString &format, const QString &s) const
   {
+    auto str(QString(s).remove('-'));
+
+    if(!(str.length() == 10 || str.length() == 13))
+      return s;
+
     QString text("");
     auto list(format.split('-'));
-    auto str(QString(s).remove('-'));
 
     for(int i = 0, j = 0; i < list.size(); i++)
       {

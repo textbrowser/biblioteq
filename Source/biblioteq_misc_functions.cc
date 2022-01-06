@@ -509,6 +509,9 @@ QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 
 QString biblioteq_misc_functions::isbn10to13(const QString &text)
 {
+  if(QString(text).remove('-').length() != 10)
+    return text;
+
   QList<int> array;
   QString numberstr("");
   QString str("978" + QString(text).remove('-').trimmed().left(9));
@@ -534,6 +537,9 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
 
 QString biblioteq_misc_functions::isbn13to10(const QString &text)
 {
+  if(QString(text).remove('-').length() != 13)
+    return text;
+
   QString z("");
   auto str(QString(text).remove('-').trimmed().mid(3, 9));
   int total = 0;
