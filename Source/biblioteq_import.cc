@@ -105,15 +105,21 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     }
 
   queryString.append("INSERT INTO book (");
+  queryString.append("description,"); /*
+				      ** The description field is not exported
+				      ** because it is not a column in the
+				      ** Books category.
+				      */
 
   if(m_qmain->getDB().driverName() != "QPSQL")
     queryString.append("myoid,");
 
   queryString.append(f);
   queryString.append(") VALUES (");
+  queryString.append("?,"); // The description field!
 
   if(m_qmain->getDB().driverName() != "QPSQL")
-    queryString.append("?,");
+    queryString.append("?,"); // The myoid field!
 
   queryString.append(q);
   queryString.append(")");
@@ -172,6 +178,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	      qint64 oid = 0;
 
 	      query.prepare(queryString);
+	      query.addBindValue("N/A"); // The description field.
 
 	      if(m_qmain->getDB().driverName() != "QPSQL")
 		{
@@ -183,6 +190,10 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  if(errorstr.isEmpty())
 		    query.addBindValue(oid);
 		}
+
+	      /*
+	      ** i = 1? Ignore the myoid field.
+	      */
 
 	      for(int i = 1; i <= list.size(); i++)
 		{
@@ -208,33 +219,17 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    }
 		  else if(m_mappings.value(i).first == "id")
 		    {
-		      str = str.remove('-');
+		      str.remove('-');
 
 		      if(str.length() == 10)
 			id = str;
 		    }
 		  else if(m_mappings.value(i).first == "isbn13")
 		    {
-		      str = str.remove('-');
+		      str.remove('-');
 
-		      if(!id.isEmpty() && str.isEmpty())
+		      if(id.length() == 10 && str.isEmpty())
 			str = biblioteq_misc_functions::isbn10to13(id);
-		      else
-			{
-			  if(str.length() == 10)
-			    {
-			      if(id.isEmpty())
-				id = str;
-
-			      str = biblioteq_misc_functions::isbn10to13(id);
-			    }
-			  else if(str.length() > 0)
-			    {
-			      id = biblioteq_misc_functions::isbn13to10
-				(str.mid(0, 13));
-			      str = str.mid(0, 13);
-			    }
-			}
 		    }
 		  else if(m_mappings.value(i).first == "language")
 		    {
@@ -583,11 +578,16 @@ void biblioteq_import::loadPreview(void)
 	  QApplication::processEvents();
 
 	  auto data(in.readLine().trimmed());
-	  auto list
+	  auto headers
 	    (data.split
 	     (QRegularExpression
 	      (QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 	       arg(m_ui.delimiter->text()))));
+	  auto list(headers);
+
+	  for(int i = 0; i < headers.size(); i++)
+	    headers.replace
+	      (i, QString("(%1) %2").arg(i + 1).arg(headers.at(i)));
 
 	  if(row == 0)
 	    {
@@ -600,8 +600,8 @@ void biblioteq_import::loadPreview(void)
 		}
 
 	      m_previewHeaders = list;
-	      m_ui.preview->setColumnCount(list.size());
-	      m_ui.preview->setHorizontalHeaderLabels(list);
+	      m_ui.preview->setColumnCount(headers.size());
+	      m_ui.preview->setHorizontalHeaderLabels(headers);
 	      m_ui.preview->resizeColumnsToContents();
 	    }
 	  else
@@ -1053,8 +1053,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "<ignored>" // Total Reserved
 	       << "originality"
 	       << "condition"
-	       << "accession_number"
-	       << "description";
+	       << "accession_number";
 	else if(index == TEMPLATE_3)
 	  list << "city"
 	       << "comments"

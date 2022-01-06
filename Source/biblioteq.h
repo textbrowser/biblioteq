@@ -406,7 +406,7 @@ class biblioteq: public QMainWindow
   void createConfigToolMenu(void);
   void createSqliteMenuActions(void);
   void deleteItem(const QString &oid, const QString &itemType);
-  void exportAsCSV(QTableWidget *table, const QString &title);
+  void exportAsCSV(biblioteq_main_table *table, const QString &title);
   void initialUpdate(void);
   void prepareContextMenus(void);
   void prepareFilter(void);

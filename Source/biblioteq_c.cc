@@ -1169,7 +1169,7 @@ void biblioteq::dvdSearch(const QString &field, const QString &value)
   dvd->deleteLater();
 }
 
-void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
+void biblioteq::exportAsCSV(biblioteq_main_table *table, const QString &title)
 {
   if(!table)
     return;
@@ -1205,6 +1205,14 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 		if(!table->horizontalHeaderItem(i))
 		  continue;
 
+		if(table->columnNames().value(i) == "Read Status")
+		  /*
+		  ** We cannot export the Read Status column because
+		  ** it is not supported by PostgreSQL.
+		  */
+
+		  continue;
+
 		if(table->horizontalHeaderItem(i)->text().contains(","))
 		  str += QString("\"%1\",").arg
 		    (table->horizontalHeaderItem(i)->text());
@@ -1230,11 +1238,24 @@ void biblioteq::exportAsCSV(QTableWidget *table, const QString &title)
 	      for(int j = 0; j < table->columnCount(); j++)
 		if(!table->isColumnHidden(j))
 		  {
+		    /*
+		    ** A lot of awful things will occur if
+		    ** !table->item(i, j) is true!
+		    */
+
 		    if(!table->item(i, j))
 		      {
 			str += ",";
 			continue;
 		      }
+
+		    if(table->columnNames().value(j) == "Read Status")
+		      /*
+		      ** We cannot export the Read Status column because
+		      ** it is not supported by PostgreSQL.
+		      */
+
+		      continue;
 
 		    auto cleaned(table->item(i, j)->text());
 
