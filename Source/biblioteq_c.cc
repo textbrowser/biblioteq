@@ -386,7 +386,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
       else
 	offset = 0;
 
-      ui.graphicsView->setSceneRect(0, 0, 5 * 150, limit / 5 * 200 + 15);
+      ui.graphicsView->setSceneRect(0.0,
+				    0.0,
+				    5.0 * 130.0,
+				    limit / 5.0 * 200.0 + 200.0);
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -593,11 +596,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
       while(m_searchQuery.next())
 	size += 1;
 
-      if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
-	ui.graphicsView->setSceneRect(0, 0, 5 * 150, size * 250 + 15);
-      else
+      if(size >= 0)
 	ui.graphicsView->setSceneRect
-	  (0, 0, 5 * 150, std::numeric_limits<int>::max());
+	  (0.0, 0.0, 5.0 * 150.0, (size / 5.0) * 200.0 + 200.0);
 
       m_searchQuery.seek(static_cast<int> (offset));
     }

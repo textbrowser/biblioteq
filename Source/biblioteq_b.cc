@@ -146,8 +146,8 @@ int biblioteq::populateTable(const int search_type_arg,
       ui.graphicsView->setSceneRect
 	(0.0,
 	 0.0,
-	 5.0 * 150.0,
-	 static_cast<qreal> (limit / 5 * 200) + 15.0);
+	 5.0 * 130.0,
+	 static_cast<qreal> (limit / 5.0 * 200.0) + 200.0);
     }
 
   QString bookFrontCover("'' AS front_cover ");
@@ -3378,9 +3378,16 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QSqlQuery query(m_db);
 
+  if(limit == -1)
+    query.setForwardOnly(true);
+
   if(!query.exec(searchstr))
     {
       if(progress)
+	/*
+	** The progress dialog should be invisible as we have not shown it.
+	*/
+
 	progress->close();
 
       QApplication::processEvents();
@@ -3410,7 +3417,6 @@ int biblioteq::populateTable(const int search_type_arg,
       return 1;
     }
 
-  QApplication::restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
 
   auto found = false;
@@ -3544,6 +3550,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(progress)
     {
+      QApplication::restoreOverrideCursor();
       progress->setLabelText(tr("Populating the views..."));
 
       if(limit == -1)
@@ -3561,6 +3568,7 @@ int biblioteq::populateTable(const int search_type_arg,
       QApplication::processEvents();
     }
 
+  auto setRowCount = true;
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -3574,14 +3582,17 @@ int biblioteq::populateTable(const int search_type_arg,
       auto size = biblioteq_misc_functions::sqliteQuerySize
 	(searchstr, m_db, __FILE__, __LINE__, this);
 
-      if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
-	ui.graphicsView->setSceneRect(0, 0,
-				      5 * 150,
-				      size * 250 + 15);
-      else
-	ui.graphicsView->setSceneRect(0, 0,
-				      5 * 150,
-				      std::numeric_limits<int>::max());
+      if(size > 0)
+	ui.graphicsView->setSceneRect(0.0,
+				      0.0,
+				      5.0 * 130.0,
+				      (size / 5.0) * 200.0 + 200.0);
+
+      if(size >= 0)
+	{
+	  setRowCount = false;
+	  ui.table->setRowCount(size);
+	}
     }
 
   if(limit != -1 &&
@@ -3606,6 +3617,7 @@ int biblioteq::populateTable(const int search_type_arg,
       columnNames.append(ui.table->horizontalHeaderItem(ii)->text());
 
   QString dateFormat("");
+  int totalRows = 0;
 
   if(typefilter == "Books" ||
      typefilter == "DVDs" ||
@@ -3618,7 +3630,16 @@ int biblioteq::populateTable(const int search_type_arg,
     dateFormat = publicationDateFormat
       (QString(typefilter).remove(' ').toLower());
 
+  if(m_db.driverName() == "QPSQL")
+    {
+      setRowCount = false;
+      ui.table->setRowCount(query.size());
+    }
+
   i = -1;
+
+  auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
+  auto showMainTableImages = m_otheroptions->showMainTableImages();
 
   while(i++, query.next())
     {
@@ -3742,7 +3763,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		{
 		  if(typefilter == "Books")
 		    {
-		      if(m_otheroptions->booksAccessionNumberIndex() == 0)
+		      if(booksAccessionNumberIndex == 0)
 			item = new biblioteq_numeric_table_item
 			  (query.value(j).toInt());
 		      else
@@ -3791,7 +3812,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		{
 		  QImage image;
 
-		  if(m_otheroptions->showMainTableImages())
+		  if(showMainTableImages)
 		    {
 		      if(!query.isNull(j))
 			{
@@ -3849,12 +3870,13 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(j == 0)
 		    {
 		      first = item;
-		      ui.table->setRowCount(ui.table->rowCount() + 1);
-		      ui.itemsCountLabel->setText
-			(QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
+
+		      if(setRowCount)
+			ui.table->setRowCount(ui.table->rowCount() + 1);
 		    }
 
-		  item->setToolTip(tooltip);
+		  if(!tooltip.isEmpty())
+		    item->setToolTip(tooltip);
 
 		  if(m_db.driverName() == "QSQLITE" &&
 		     search_type != CUSTOM_QUERY)
@@ -3917,6 +3939,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      item->setToolTip(tooltip);
 	      ui.table->setItem(i, 0, item);
 	    }
+
+	  totalRows += 1;
 	}
 
       if(query.isValid())
@@ -3942,6 +3966,10 @@ int biblioteq::populateTable(const int search_type_arg,
 	  QApplication::processEvents();
 	}
     }
+
+  ui.table->setRowCount(totalRows);
+  ui.itemsCountLabel->setText
+    (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
 
   if(limit != -1 &&
      !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
@@ -4024,6 +4052,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  SIGNAL(itemChanged(QTableWidgetItem *)),
 	  this,
 	  SLOT(slotItemChanged(QTableWidgetItem *)));
+  QApplication::restoreOverrideCursor();
   return 0;
 }
 

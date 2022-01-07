@@ -1124,6 +1124,7 @@ bool biblioteq_misc_functions::isBookRead
 
   QSqlQuery query(db);
 
+  query.setForwardOnly(true);
   query.prepare("SELECT book_read FROM book WHERE myoid = ?");
   query.addBindValue(myoid);
 
