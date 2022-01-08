@@ -79,8 +79,24 @@ class biblioteq_misc_functions
 			       const QString &,
 			       QString &);
   static bool hasUnaccentExtension(const QSqlDatabase &);
-  static bool isBookRead(const QSqlDatabase &,
-			 const quint64);
+
+  static bool isBookRead(const QSqlDatabase &db, const quint64 myoid)
+  {
+    if(db.driverName() != "QSQLITE")
+      return false;
+
+    QSqlQuery query(db);
+
+    query.setForwardOnly(true);
+    query.prepare("SELECT book_read FROM book WHERE myoid = ?");
+    query.addBindValue(myoid);
+
+    if(query.exec() && query.next())
+      return query.value(0).toBool();
+
+    return false;
+  }
+
   static bool isCheckedOut(const QSqlDatabase &,
 			   const QString &,
 			   const QString &,
