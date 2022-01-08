@@ -1296,7 +1296,7 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.graphicsView->horizontalScrollBar()->setValue(0);
 	  ui.graphicsView->verticalScrollBar()->setValue(0);
 	  ui.nextPageButton->setEnabled(false);
-	  ui.pagesLabel->setText("1");
+	  ui.pagesLabel->setText(tr("1"));
 	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
 	    (dbUserName(),
@@ -2279,7 +2279,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
       ui.graphicsView->verticalScrollBar()->setValue(0);
       ui.graphicsView->horizontalScrollBar()->setValue(0);
       ui.nextPageButton->setEnabled(false);
-      ui.pagesLabel->setText("1");
+      ui.pagesLabel->setText(tr("1"));
       ui.previousPageButton->setEnabled(false);
       ui.table->resetTable(dbUserName(), typefilter, "");
       ui.itemsCountLabel->setText(tr("0 Results"));

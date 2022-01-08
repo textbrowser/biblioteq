@@ -503,7 +503,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
     m_pages = 1;
 
   if(m_pages == 1)
-    ui.pagesLabel->setText("1");
+    ui.pagesLabel->setText(tr("1"));
   else if(m_pages >= 2 && m_pages <= 10)
     {
       QString str("");
@@ -3124,7 +3124,7 @@ void biblioteq::slotDisconnect(void)
   ui.menu_Add_Item->setEnabled(false);
   ui.modifyTool->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
-  ui.pagesLabel->setText("1");
+  ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.refreshTool->setEnabled(false);
@@ -3203,7 +3203,7 @@ void biblioteq::slotDisconnect(void)
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.nextPageButton->setEnabled(false);
-  ui.pagesLabel->setText("1");
+  ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
   ui.table->resetTable(dbUserName(), m_previousTypeFilter, m_roles);
   ui.itemsCountLabel->setText(tr("0 Results"));

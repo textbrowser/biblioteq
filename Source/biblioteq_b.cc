@@ -127,8 +127,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  else
 	    {
 	      /*
-	      ** A specific page was selected from
-	      ** ui.pagesLabel.
+	      ** A specific page was selected from ui.pagesLabel.
 	      */
 
 	      offset = 0;
@@ -3480,7 +3479,7 @@ int biblioteq::populateTable(const int search_type_arg,
     m_pages = 1;
 
   if(m_pages == 1)
-    ui.pagesLabel->setText("1");
+    ui.pagesLabel->setText(tr("1"));
   else if(m_pages >= 2 && m_pages <= 10)
     {
       QString str("");
