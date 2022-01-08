@@ -51,7 +51,7 @@ class biblioteq_item
   int getRow(void) const;
   void setOldQ(const int q);
   void updateQuantity(const int q);
-  void updateRow(const int rowArg);
+  void updateRow(const QModelIndex &index);
 
  protected:
   QMainWindow *m_parentWid;

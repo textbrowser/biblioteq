@@ -3895,7 +3895,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(fieldName.endsWith("myoid"))
 		    {
 		      myoid = query.value(j).toULongLong();
-		      updateRows(str, i, itemType);
+		      updateRows(str, item, itemType);
 		    }
 		}
 	    }

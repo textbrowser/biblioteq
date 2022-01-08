@@ -289,7 +289,8 @@ void biblioteq_item::updateQuantity(const int q)
     }
 }
 
-void biblioteq_item::updateRow(const int rowArg)
+void biblioteq_item::updateRow(const QModelIndex &index)
 {
-  Q_UNUSED(rowArg);
+  delete m_index;
+  m_index = new QPersistentModelIndex(index);
 }

@@ -5019,8 +5019,10 @@ void biblioteq::updateItemWindows(void)
   QApplication::restoreOverrideCursor();
 }
 
-void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
+void biblioteq::updateRows
+(const QString &oid, const QTableWidgetItem *item, const QString &it)
 {
+  auto index = ui.table->indexFromItem(item);
   auto itemType(it.toLower().remove(" ").trimmed());
 
   if(itemType == "book")
@@ -5031,7 +5033,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(book && book->getID() == oid)
 	    {
-	      book->updateRow(row);
+	      book->updateRow(index);
 	      break;
 	    }
 	}
@@ -5044,7 +5046,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(cd && cd->getID() == oid)
 	    {
-	      cd->updateRow(row);
+	      cd->updateRow(index);
 	      break;
 	    }
 	}
@@ -5057,7 +5059,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(dvd && dvd->getID() == oid)
 	    {
-	      dvd->updateRow(row);
+	      dvd->updateRow(index);
 	      break;
 	    }
 	}
@@ -5070,7 +5072,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(gl && gl->getID() == oid)
 	    {
-	      gl->updateRow(row);
+	      gl->updateRow(index);
 	      break;
 	    }
 	}
@@ -5083,7 +5085,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(journal && journal->getID() == oid)
 	    {
-	      journal->updateRow(row);
+	      journal->updateRow(index);
 	      break;
 	    }
 	}
@@ -5101,7 +5103,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 	  if(!qobject_cast<biblioteq_journal *> (w))
 	    if(magazine && magazine->getID() == oid)
 	      {
-		magazine->updateRow(row);
+		magazine->updateRow(index);
 		break;
 	      }
 	}
@@ -5114,7 +5116,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(photograph && photograph->getID() == oid)
 	    {
-	      photograph->updateRow(row);
+	      photograph->updateRow(index);
 	      break;
 	    }
 	}
@@ -5127,7 +5129,7 @@ void biblioteq::updateRows(const QString &oid, const int row, const QString &it)
 
 	  if(videogame && videogame->getID() == oid)
 	    {
-	      videogame->updateRow(row);
+	      videogame->updateRow(index);
 	      break;
 	    }
 	}

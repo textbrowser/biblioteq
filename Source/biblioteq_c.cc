@@ -879,7 +879,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(record.fieldName(j).endsWith("myoid"))
 		    {
 		      myoid = query.value(j).toULongLong();
-		      updateRows(str, i, itemType);
+		      updateRows(str, item, itemType);
 		    }
 		}
 	    }

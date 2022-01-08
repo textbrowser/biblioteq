@@ -12,6 +12,12 @@ class biblioteq_main_table: public QTableWidget
  public:
   biblioteq_main_table(QWidget *parent);
   QHash<QString, QString> friendlyStates(void) const;
+
+  QModelIndex indexFromItem(const QTableWidgetItem *item) const
+  {
+    return QTableWidget::indexFromItem(item);
+  }
+
   QStringList columnNames(void) const;
   bool isColumnHidden(const int index,
 		      const QString &type,
