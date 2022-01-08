@@ -4730,32 +4730,17 @@ void biblioteq::slotSqliteFileSelected(bool state)
 
 void biblioteq::slotUpdateIndicesAfterSort(int column)
 {
-  QString itemType = "";
-  QString oid = "";
   auto order = Qt::AscendingOrder;
-  int i = 0;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  if(ui.table->horizontalHeader()->sortIndicatorOrder() !=
-     Qt::AscendingOrder)
+  if(ui.table->horizontalHeader()->sortIndicatorOrder() != Qt::AscendingOrder)
     order = Qt::DescendingOrder;
   else
     order = Qt::AscendingOrder;
 
   ui.table->horizontalHeader()->setSortIndicator(column, order);
   ui.table->sortByColumn(column, order);
-
-  for(i = 0; i < ui.table->rowCount(); i++)
-    {
-      oid = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("MYOID"));
-      itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type"));
-      itemType = itemType.toLower().remove(" ");
-      updateRows(oid, i, itemType);
-    }
-
   QApplication::restoreOverrideCursor();
 }
 
