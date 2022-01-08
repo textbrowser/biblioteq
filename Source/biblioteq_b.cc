@@ -3638,6 +3638,7 @@ int biblioteq::populateTable(const int search_type_arg,
   i = -1;
 
   QFontMetrics fontMetrics(ui.table->font());
+  auto availabilityColors = this->availabilityColors();
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto showMainTableImages = m_otheroptions->showMainTableImages();
 
@@ -3799,7 +3800,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		      item = new biblioteq_numeric_table_item
 			(query.value(j).toInt());
 
-		      if(availabilityColors() &&
+		      if(availabilityColors &&
 			 fieldName.endsWith("availability"))
 			availabilityItem =
 			  dynamic_cast<biblioteq_numeric_table_item *> (item);
