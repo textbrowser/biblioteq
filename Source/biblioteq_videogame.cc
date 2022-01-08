@@ -10,8 +10,8 @@
 
 biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 					 const QString &oidArg,
-					 const int rowArg):
-  QMainWindow(), biblioteq_item(rowArg)
+					 const QModelIndex &index):
+  QMainWindow(), biblioteq_item(index)
 {
   qmain = parentArg;
 
@@ -27,11 +27,11 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   scene2 = new QGraphicsScene(this);
   validator1 = new QRegularExpressionValidator(rx, this);
   m_oid = oidArg;
-  m_row = rowArg;
   m_isQueryEnabled = false;
   m_parentWid = parentArg;
   m_oldq = biblioteq_misc_functions::getColumnString
-    (qmain->getUI().table, m_row,
+    (qmain->getUI().table,
+     m_index->row(),
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
   setQMain(this);
@@ -671,7 +671,7 @@ void biblioteq_videogame::slotGo(void)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     {
-      if(m_engWindowTitle.contains("Modify") && m_row > -1)
+      if(m_engWindowTitle.contains("Modify") && m_index->isValid())
 	{
 	  newq = vg.quantity->value();
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1091,19 +1091,13 @@ void biblioteq_videogame::slotGo(void)
 	      setWindowTitle(str);
 	      m_engWindowTitle = "Modify";
 
-	      if((qmain->getTypeFilterString() == "All" ||
+	      if(m_index->isValid() &&
+		 (qmain->getTypeFilterString() == "All" ||
 		  qmain->getTypeFilterString() == "All Available" ||
 		  qmain->getTypeFilterString() == "All Overdue" ||
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
-		  qmain->getTypeFilterString() == "Video Games") &&
-		 m_oid == biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("MYOID")) &&
-		 biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("Type")) ==
-		 "Video Game")
+		  qmain->getTypeFilterString() == "Video Games"))
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
@@ -1117,69 +1111,71 @@ void biblioteq_videogame::slotGo(void)
 			    (QPixmap::fromImage(vg.front_image->m_image));
 
 			  if(!pixmap.isNull())
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (pixmap);
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(pixmap);
 			  else
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (QIcon(":/no_image.png"));
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(QIcon(":/no_image.png"));
 			}
 
 		      if(names.at(i) == "UPC" ||
 			 names.at(i) == "ID Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.id->text());
 		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.title->text());
 		      else if(names.at(i) == "Game Rating")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.rating->currentText().trimmed());
 		      else if(names.at(i) == "Release Date" ||
 			      names.at(i) == "Publication Date")
 			{
 			  if(qmain->getTypeFilterString() == "Video Games")
-			    qmain->getUI().table->item(m_row, i)->setText
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
 			      (vg.release_date->date().
 			       toString(qmain->
 					publicationDateFormat("videogames")));
 			  else
-			    qmain->getUI().table->item(m_row, i)->setText
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
 			      (vg.release_date->date().toString(Qt::ISODate));
 			}
 		      else if(names.at(i) == "Publisher")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.publisher->toPlainText());
 		      else if(names.at(i) == "Place of Publication")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.place->toPlainText());
 		      else if(names.at(i) == "Genres" ||
 			      names.at(i) == "Categories")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.genre->toPlainText().trimmed());
 		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.price->cleanText());
 		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.language->currentText().trimmed());
 		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.monetary_units->currentText().trimmed());
 		      else if(names.at(i) == "Quantity")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.quantity->text());
 		      else if(names.at(i) == "Platform")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.platform->currentText().trimmed());
 		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.location->currentText().trimmed());
 		      else if(names.at(i) == "Mode")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.mode->currentText().trimmed());
 		      else if(names.at(i) == "Availability")
 			{
-			  qmain->getUI().table->item(m_row, i)->setText
+			  qmain->getUI().table->item(m_index->row(), i)->setText
 			    (biblioteq_misc_functions::getAvailability
 			     (m_oid, qmain->getDB(), "Video Game",
 			      errorstr));
@@ -1191,12 +1187,12 @@ void biblioteq_videogame::slotGo(void)
 			       errorstr, __FILE__, __LINE__);
 			}
 		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
-		  qmain->getUI().table->updateToolTips(m_row);
+		  qmain->getUI().table->updateToolTips(m_index->row());
 
 		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);

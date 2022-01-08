@@ -4268,7 +4268,7 @@ void biblioteq::slotBookSearch(void)
 
   if(!book)
     {
-      book = new biblioteq_book(this, "search", -1);
+      book = new biblioteq_book(this, "search", QModelIndex());
       book->search();
     }
 
@@ -4298,7 +4298,7 @@ void biblioteq::slotCDSearch(void)
 
   if(!cd)
     {
-      cd = new biblioteq_cd(this, "search", -1);
+      cd = new biblioteq_cd(this, "search", QModelIndex());
       cd->search();
     }
 
@@ -4334,7 +4334,7 @@ void biblioteq::slotDVDSearch(void)
 
   if(!dvd)
     {
-      dvd = new biblioteq_dvd(this, "search", -1);
+      dvd = new biblioteq_dvd(this, "search", QModelIndex());
       dvd->search();
     }
 
@@ -4364,7 +4364,7 @@ void biblioteq::slotJournSearch(void)
 
   if(!journal)
     {
-      journal = new biblioteq_journal(this, "search", -1);
+      journal = new biblioteq_journal(this, "search", QModelIndex());
       journal->search();
     }
 
@@ -4399,7 +4399,8 @@ void biblioteq::slotMagSearch(void)
 
   if(!magazine)
     {
-      magazine = new biblioteq_magazine(this, "search", -1, "magazine");
+      magazine = new biblioteq_magazine
+	(this, "search", QModelIndex(), "magazine");
       magazine->search();
     }
 
@@ -4429,7 +4430,8 @@ void biblioteq::slotPhotographSearch(void)
 
   if(!photograph)
     {
-      photograph = new biblioteq_photographcollection(this, "search", -1);
+      photograph = new biblioteq_photographcollection
+	(this, "search", QModelIndex());
       photograph->search();
     }
 
@@ -5397,7 +5399,7 @@ void biblioteq::slotVideoGameSearch(void)
 
   if(!videogame)
     {
-      videogame = new biblioteq_videogame(this, "search", -1);
+      videogame = new biblioteq_videogame(this, "search", QModelIndex());
       videogame->search();
     }
 

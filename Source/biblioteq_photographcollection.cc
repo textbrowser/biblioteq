@@ -17,7 +17,7 @@
 biblioteq_photographcollection::biblioteq_photographcollection
 (biblioteq *parentArg,
  const QString &oidArg,
- const int rowArg):QMainWindow(), biblioteq_item(rowArg)
+ const QModelIndex &index):QMainWindow(), biblioteq_item(index)
 {
   qmain = parentArg;
 
@@ -44,7 +44,6 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
   m_oid = oidArg;
-  m_row = rowArg;
   m_isQueryEnabled = false;
   m_parentWid = parentArg;
   photo.setupUi(m_photo_diag);
@@ -1382,19 +1381,13 @@ void biblioteq_photographcollection::slotGo(void)
 	      setWindowTitle(str);
 	      m_engWindowTitle = "Modify";
 
-	      if((qmain->getTypeFilterString() == "All" ||
+	      if(m_index->isValid() &&
+		 (qmain->getTypeFilterString() == "All" ||
 		  qmain->getTypeFilterString() == "All Available" ||
 		  qmain->getTypeFilterString() == "All Overdue" ||
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
-		  qmain->getTypeFilterString() == "Photograph Collections") &&
-		 m_oid == biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("MYOID")) &&
-		 biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("Type")) ==
-		 "Photograph Collection")
+		  qmain->getTypeFilterString() == "Photograph Collections"))
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
@@ -1409,36 +1402,36 @@ void biblioteq_photographcollection::slotGo(void)
 			     fromImage(pc.thumbnail_collection->m_image));
 
 			  if(!pixmap.isNull())
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (pixmap);
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(pixmap);
 			  else
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (QIcon(":/no_image.png"));
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(QIcon(":/no_image.png"));
 			}
 
 		      if(names.at(i) == "Call Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.call_number_item->text());
 		      else if(names.at(i) == "ID" ||
 			      names.at(i) == "ID Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.id_collection->text());
 		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.title_collection->text());
 		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.location->currentText().trimmed());
 		      else if(names.at(i) == "About")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.about_collection->toPlainText().trimmed());
 		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
-		  qmain->getUI().table->updateToolTips(m_row);
+		  qmain->getUI().table->updateToolTips(m_index->row());
 
 		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
@@ -2920,19 +2913,13 @@ void biblioteq_photographcollection::storeData(void)
 void biblioteq_photographcollection::updateTablePhotographCount
 (const int count)
 {
-  if((qmain->getTypeFilterString() == "All" ||
+  if(m_index->isValid() &&
+     (qmain->getTypeFilterString() == "All" ||
       qmain->getTypeFilterString() == "All Available" ||
       qmain->getTypeFilterString() == "All Overdue" ||
       qmain->getTypeFilterString() == "All Requested" ||
       qmain->getTypeFilterString() == "All Reserved" ||
-      qmain->getTypeFilterString() == "Photograph Collections") &&
-     m_oid == biblioteq_misc_functions::getColumnString
-     (qmain->getUI().table,
-      m_row, qmain->getUI().table->columnNumber("MYOID")) &&
-     biblioteq_misc_functions::getColumnString
-     (qmain->getUI().table,
-      m_row, qmain->getUI().table->columnNumber("Type")) ==
-     "Photograph Collection")
+      qmain->getTypeFilterString() == "Photograph Collections"))
     {
       qmain->getUI().table->setSortingEnabled(false);
 
@@ -2941,14 +2928,14 @@ void biblioteq_photographcollection::updateTablePhotographCount
       for(int i = 0; i < names.size(); i++)
 	if(names.at(i) == "Photograph Count")
 	  {
-	    qmain->getUI().table->item(m_row, i)->
+	    qmain->getUI().table->item(m_index->row(), i)->
 	      setText(QString::number(count));
 	    qmain->slotDisplaySummary();
 	    break;
 	  }
 
       qmain->getUI().table->setSortingEnabled(true);
-      qmain->getUI().table->updateToolTips(m_row);
+      qmain->getUI().table->updateToolTips(m_index->row());
     }
 }
 

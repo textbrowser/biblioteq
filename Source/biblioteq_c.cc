@@ -1016,7 +1016,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 void biblioteq::bookSearch(const QString &field, const QString &value)
 {
-  auto book = new biblioteq_book(this, "", -1);
+  auto book = new biblioteq_book(this, "", QModelIndex());
 
   book->search(field, value);
   book->deleteLater();
@@ -1024,7 +1024,7 @@ void biblioteq::bookSearch(const QString &field, const QString &value)
 
 void biblioteq::cdSearch(const QString &field, const QString &value)
 {
-  auto cd = new biblioteq_cd(this, "", -1);
+  auto cd = new biblioteq_cd(this, "", QModelIndex());
 
   cd->search(field, value);
   cd->deleteLater();
@@ -1158,7 +1158,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 void biblioteq::dvdSearch(const QString &field, const QString &value)
 {
-  auto dvd = new biblioteq_dvd(this, "", -1);
+  auto dvd = new biblioteq_dvd(this, "", QModelIndex());
 
   dvd->search(field, value);
   dvd->deleteLater();
@@ -1284,7 +1284,7 @@ void biblioteq::exportAsCSV(biblioteq_main_table *table, const QString &title)
 
 void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 {
-  auto gl = new biblioteq_grey_literature(this, "", -1);
+  auto gl = new biblioteq_grey_literature(this, "", QModelIndex());
 
   gl->search(field, value);
   gl->deleteLater();
@@ -1292,7 +1292,7 @@ void biblioteq::greyLiteratureSearch(const QString &field, const QString &value)
 
 void biblioteq::journSearch(const QString &field, const QString &value)
 {
-  auto journal = new biblioteq_journal(this, "", -1);
+  auto journal = new biblioteq_journal(this, "", QModelIndex());
 
   journal->search(field, value);
   journal->deleteLater();
@@ -1300,7 +1300,7 @@ void biblioteq::journSearch(const QString &field, const QString &value)
 
 void biblioteq::magSearch(const QString &field, const QString &value)
 {
-  auto magazine = new biblioteq_magazine(this, "", -1, "magazine");
+  auto magazine = new biblioteq_magazine(this, "", QModelIndex(), "magazine");
 
   magazine->search(field, value);
   magazine->deleteLater();
@@ -1308,7 +1308,7 @@ void biblioteq::magSearch(const QString &field, const QString &value)
 
 void biblioteq::pcSearch(const QString &field, const QString &value)
 {
-  auto photograph = new biblioteq_photographcollection(this, "", -1);
+  auto photograph = new biblioteq_photographcollection(this, "", QModelIndex());
 
   photograph->search(field, value);
   photograph->deleteLater();
@@ -2359,13 +2359,13 @@ void biblioteq::slotCheckout(void)
   QString oid = "";
   QString type = "";
   auto row1 = bb.table->currentRow();
-  auto row2 = ui.table->currentRow();
+  auto row2 = ui.table->currentIndex();
   biblioteq_copy_editor *copyeditor = nullptr;
   biblioteq_item *item = nullptr;
   int quantity = 0;
 
   type = biblioteq_misc_functions::getColumnString
-    (ui.table, row2, ui.table->columnNumber("Type"));
+    (ui.table, row2.row(), ui.table->columnNumber("Type"));
 
   if(type == "Photograph Collection")
     {
@@ -2406,14 +2406,14 @@ void biblioteq::slotCheckout(void)
 	}
     }
 
-  if(row2 > -1)
+  if(row2.isValid())
     {
       /*
       ** Is the item available?
       */
 
       oid = biblioteq_misc_functions::getColumnString
-	(ui.table, row2, ui.table->columnNumber("MYOID"));
+	(ui.table, row2.row(), ui.table->columnNumber("MYOID"));
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       auto availability = biblioteq_misc_functions::getAvailability
@@ -2438,7 +2438,7 @@ void biblioteq::slotCheckout(void)
 	}
     }
 
-  if(row1 < 0 || row2 < 0)
+  if(row1 < 0 || !row2.isValid())
     {
       QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Please select a member and an item "
@@ -2450,36 +2450,36 @@ void biblioteq::slotCheckout(void)
     {
       item = new biblioteq_item(row2);
       quantity = biblioteq_misc_functions::getColumnString
-	(ui.table, row2, ui.table->columnNumber("Quantity")).toInt();
+	(ui.table, row2.row(), ui.table->columnNumber("Quantity")).toInt();
 
       if(type.toLower() == "book")
 	{
 	  itemid = biblioteq_misc_functions::getColumnString
-	    (ui.table, row2, ui.table->columnNumber("ISBN-10"));
+	    (ui.table, row2.row(), ui.table->columnNumber("ISBN-10"));
 
 	  if(itemid.isEmpty())
 	    itemid = biblioteq_misc_functions::getColumnString
-	    (ui.table, row2, ui.table->columnNumber("ISBN-13"));
+	      (ui.table, row2.row(), ui.table->columnNumber("ISBN-13"));
 	}
       else if(type.toLower() == "dvd")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2, ui.table->columnNumber("UPC"));
+	  (ui.table, row2.row(), ui.table->columnNumber("UPC"));
       else if(type.toLower() == "grey literature")
 	{
 	  itemid = biblioteq_misc_functions::getColumnString
-	    (ui.table, row2, ui.table->columnNumber("Document ID"));
+	    (ui.table, row2.row(), ui.table->columnNumber("Document ID"));
 	  quantity = 1;
 	}
       else if(type.toLower() == "journal" ||
 	      type.toLower() == "magazine")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2, ui.table->columnNumber("ISSN"));
+	  (ui.table, row2.row(), ui.table->columnNumber("ISSN"));
       else if(type.toLower() == "cd")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2, ui.table->columnNumber("Catalog Number"));
+	  (ui.table, row2.row(), ui.table->columnNumber("Catalog Number"));
       else if(type.toLower() == "video game")
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2, ui.table->columnNumber("UPC"));
+	  (ui.table, row2.row(), ui.table->columnNumber("UPC"));
       else
 	{
 	  QMessageBox::critical
@@ -2492,7 +2492,7 @@ void biblioteq::slotCheckout(void)
 
       if(itemid.isEmpty())
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2, ui.table->columnNumber("ID Number"));
+	  (ui.table, row2.row(), ui.table->columnNumber("ID Number"));
 
       /*
       ** Custom search?
@@ -2500,7 +2500,7 @@ void biblioteq::slotCheckout(void)
 
       if(itemid.isEmpty())
 	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2, "id");
+	  (ui.table, row2.row(), "id");
 
       copyeditor = new biblioteq_copy_editor(m_members_diag,
 					     this,
@@ -3804,7 +3804,7 @@ void biblioteq::slotGreyLiteratureSearch(void)
 
   if(!gl)
     {
-      gl = new biblioteq_grey_literature(this, "search", -1);
+      gl = new biblioteq_grey_literature(this, "search", QModelIndex());
       gl->search();
     }
 
@@ -3824,7 +3824,7 @@ void biblioteq::slotInsertGreyLiterature(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  gl = new biblioteq_grey_literature(this, id, -1);
+  gl = new biblioteq_grey_literature(this, id, QModelIndex());
   gl->insert();
 }
 
@@ -6544,7 +6544,7 @@ void biblioteq::slotVacuum(void)
 
 void biblioteq::vgSearch(const QString &field, const QString &value)
 {
-  auto videogame = new biblioteq_videogame(this, "", -1);
+  auto videogame = new biblioteq_videogame(this, "", QModelIndex());
 
   videogame->search(field, value);
   videogame->deleteLater();

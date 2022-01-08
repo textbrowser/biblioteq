@@ -11,7 +11,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
  public:
   biblioteq_grey_literature(biblioteq *parentArg,
 			    const QString &oidArg,
-			    const int rowArg);
+			    const QModelIndex &index);
   ~biblioteq_grey_literature();
   void duplicate(const QString &p_oid, const int state);
   void insert(void);

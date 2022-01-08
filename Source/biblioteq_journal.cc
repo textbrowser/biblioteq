@@ -3,8 +3,8 @@
 
 biblioteq_journal::biblioteq_journal(biblioteq *parent,
 				     const QString &oidArg,
-				     const int rowArg):
-  biblioteq_magazine(parent, oidArg, rowArg, "journal")
+				     const QModelIndex &index):
+  biblioteq_magazine(parent, oidArg, index, "journal")
 {
   m_subType = "Journal";
   ma.publication_date->setDisplayFormat

@@ -11,7 +11,7 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
  public:
   biblioteq_dvd(biblioteq *parentArg,
 		const QString &oidArg,
-		const int rowArg);
+		const QModelIndex &index);
   ~biblioteq_dvd();
   void duplicate(const QString &p_oid, const int state);
   void insert(void);

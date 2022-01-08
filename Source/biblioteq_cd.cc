@@ -11,8 +11,8 @@
 
 biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QString &oidArg,
-			   const int rowArg):
-  QMainWindow(), biblioteq_item(rowArg)
+			   const QModelIndex &index):
+  QMainWindow(), biblioteq_item(index)
 {
   qmain = parentArg;
 
@@ -28,11 +28,11 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   scene1 = new QGraphicsScene(this);
   scene2 = new QGraphicsScene(this);
   m_oid = oidArg;
-  m_row = rowArg;
   m_isQueryEnabled = false;
   m_parentWid = parentArg;
   m_oldq = biblioteq_misc_functions::getColumnString
-    (qmain->getUI().table, m_row,
+    (qmain->getUI().table,
+     m_index->row(),
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   cd.setupUi(this);
   setQMain(this);
@@ -796,7 +796,7 @@ void biblioteq_cd::slotGo(void)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     {
-      if(m_engWindowTitle.contains("Modify") && m_row > -1)
+      if(m_engWindowTitle.contains("Modify") && m_index->isValid())
 	{
 	  newq = cd.quantity->value();
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1248,18 +1248,13 @@ void biblioteq_cd::slotGo(void)
 	      m_engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
-	      if((qmain->getTypeFilterString() == "All" ||
+	      if(m_index->isValid() &&
+		 (qmain->getTypeFilterString() == "All" ||
 		  qmain->getTypeFilterString() == "All Available" ||
 		  qmain->getTypeFilterString() == "All Overdue" ||
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
-		  qmain->getTypeFilterString() == "Music CDs") &&
-		 m_oid == biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("MYOID")) &&
-		 biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("Type")) == "CD")
+		  qmain->getTypeFilterString() == "Music CDs"))
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
@@ -1273,75 +1268,77 @@ void biblioteq_cd::slotGo(void)
 			    (QPixmap::fromImage(cd.front_image->m_image));
 
 			  if(!pixmap.isNull())
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (pixmap);
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(pixmap);
 			  else
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (QIcon(":/no_image.png"));
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(QIcon(":/no_image.png"));
 			}
 
 		      if(names.at(i) == "Catalog Number" ||
 			 names.at(i) == "ID Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.id->text());
 		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.title->text());
 		      else if(names.at(i) == "Format")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.format->currentText().trimmed());
 		      else if(names.at(i) == "Artist")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.artist->toPlainText());
 		      else if(names.at(i) == "Number of Discs")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.no_of_discs->text());
 		      else if(names.at(i) == "Runtime")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.runtime->text());
 		      else if(names.at(i) == "Release Date" ||
 			      names.at(i) == "Publication Date")
 			{
 			  if(qmain->getTypeFilterString() == "Music CDs")
-			    qmain->getUI().table->item(m_row, i)->setText
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
 			      (cd.release_date->date().
 			       toString(qmain->
 					publicationDateFormat("musiccds")));
 			  else
-			    qmain->getUI().table->item(m_row, i)->setText
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
 			      (cd.release_date->date().toString(Qt::ISODate));
 			}
 		      else if(names.at(i) == "Recording Label" ||
 			      names.at(i) == "Publisher")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.recording_label->toPlainText());
 		      else if(names.at(i) == "Categories")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.category->toPlainText());
 		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.price->cleanText());
 		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.language->currentText().trimmed());
 		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.monetary_units->currentText().trimmed());
 		      else if(names.at(i) == "Quantity")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.quantity->text());
 		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.location->currentText().trimmed());
 		      else if(names.at(i) == "Recording Type")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.recording_type->currentText().trimmed());
 		      else if(names.at(i) == "Audio")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.audio->currentText().trimmed());
 		      else if(names.at(i) == "Availability")
 			{
-			  qmain->getUI().table->item(m_row, i)->setText
+			  qmain->getUI().table->item(m_index->row(), i)->setText
 			    (biblioteq_misc_functions::getAvailability
 			     (m_oid, qmain->getDB(), "CD", errorstr));
 
@@ -1352,12 +1349,12 @@ void biblioteq_cd::slotGo(void)
 			       errorstr, __FILE__, __LINE__);
 			}
 		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
-		  qmain->getUI().table->updateToolTips(m_row);
+		  qmain->getUI().table->updateToolTips(m_index->row());
 
 		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);

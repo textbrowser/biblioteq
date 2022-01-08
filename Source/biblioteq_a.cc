@@ -2946,42 +2946,42 @@ void biblioteq::slotDuplicate(void)
 
       if(type.toLower() == "book")
 	{
-	  book = new biblioteq_book(this, oid, i);
+	  book = new biblioteq_book(this, oid, index);
 	  book->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "cd")
 	{
-	  cd = new biblioteq_cd(this, oid, i);
+	  cd = new biblioteq_cd(this, oid, index);
 	  cd->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "dvd")
 	{
-	  dvd = new biblioteq_dvd(this, oid, i);
+	  dvd = new biblioteq_dvd(this, oid, index);
 	  dvd->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "grey literature")
 	{
-	  gl = new biblioteq_grey_literature(this, oid, i);
+	  gl = new biblioteq_grey_literature(this, oid, index);
 	  gl->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "journal")
 	{
-	  journal = new biblioteq_journal(this, oid, i);
+	  journal = new biblioteq_journal(this, oid, index);
 	  journal->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "magazine")
 	{
-	  magazine = new biblioteq_magazine(this, oid, i, "magazine");
+	  magazine = new biblioteq_magazine(this, oid, index, "magazine");
 	  magazine->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "photograph collection")
 	{
-	  photograph = new biblioteq_photographcollection(this, oid, i);
+	  photograph = new biblioteq_photographcollection(this, oid, index);
 	  photograph->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "video game")
 	{
-	  video_game = new biblioteq_videogame(this, oid, i);
+	  video_game = new biblioteq_videogame(this, oid, index);
 	  video_game->duplicate(id, EDITABLE);
 	}
       else
@@ -3144,7 +3144,7 @@ void biblioteq::slotInsertBook(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  book = new biblioteq_book(this, id, -1);
+  book = new biblioteq_book(this, id, QModelIndex());
   book->insert();
 }
 
@@ -3155,7 +3155,7 @@ void biblioteq::slotInsertCD(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  cd = new biblioteq_cd(this, id, -1);
+  cd = new biblioteq_cd(this, id, QModelIndex());
   cd->insert();
 }
 
@@ -3166,7 +3166,7 @@ void biblioteq::slotInsertDVD(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  dvd = new biblioteq_dvd(this, id, -1);
+  dvd = new biblioteq_dvd(this, id, QModelIndex());
   dvd->insert();
 }
 
@@ -3177,7 +3177,7 @@ void biblioteq::slotInsertJourn(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  journal = new biblioteq_journal(this, id, -1);
+  journal = new biblioteq_journal(this, id, QModelIndex());
   journal->insert();
 }
 
@@ -3188,7 +3188,7 @@ void biblioteq::slotInsertMag(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  magazine = new biblioteq_magazine(this, id, -1, "magazine");
+  magazine = new biblioteq_magazine(this, id, QModelIndex(), "magazine");
   magazine->insert();
 }
 
@@ -3199,7 +3199,7 @@ void biblioteq::slotInsertPhotograph(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  photograph = new biblioteq_photographcollection(this, id, -1);
+  photograph = new biblioteq_photographcollection(this, id, QModelIndex());
   photograph->insert();
 }
 
@@ -3210,7 +3210,7 @@ void biblioteq::slotInsertVideoGame(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  videogame = new biblioteq_videogame(this, id, -1);
+  videogame = new biblioteq_videogame(this, id, QModelIndex());
   videogame->insert();
 }
 
@@ -3352,7 +3352,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!book)
-	    book = new biblioteq_book(this, oid, i);
+	    book = new biblioteq_book(this, oid, index);
 
 	  book->modify(EDITABLE);
 	}
@@ -3370,7 +3370,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!cd)
-	    cd = new biblioteq_cd(this, oid, i);
+	    cd = new biblioteq_cd(this, oid, index);
 
 	  cd->modify(EDITABLE);
 	}
@@ -3388,7 +3388,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!dvd)
-	    dvd = new biblioteq_dvd(this, oid, i);
+	    dvd = new biblioteq_dvd(this, oid, index);
 
 	  dvd->modify(EDITABLE);
 	}
@@ -3406,7 +3406,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!gl)
-	    gl = new biblioteq_grey_literature(this, oid, i);
+	    gl = new biblioteq_grey_literature(this, oid, index);
 
 	  gl->modify(EDITABLE);
 	}
@@ -3424,7 +3424,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!journal)
-	    journal = new biblioteq_journal(this, oid, i);
+	    journal = new biblioteq_journal(this, oid, index);
 
 	  journal->modify(EDITABLE);
 	}
@@ -3447,7 +3447,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!magazine)
-	    magazine = new biblioteq_magazine(this, oid, i, "magazine");
+	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
 	  magazine->modify(EDITABLE);
 	}
@@ -3465,7 +3465,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!photograph)
-	    photograph = new biblioteq_photographcollection(this, oid, i);
+	    photograph = new biblioteq_photographcollection(this, oid, index);
 
 	  photograph->modify(EDITABLE);
 	}
@@ -3483,7 +3483,7 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!videogame)
-	    videogame = new biblioteq_videogame(this, oid, i);
+	    videogame = new biblioteq_videogame(this, oid, index);
 
 	  videogame->modify(EDITABLE);
 	}
@@ -4835,7 +4835,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!book)
-	    book = new biblioteq_book(this, oid, i);
+	    book = new biblioteq_book(this, oid, index);
 
 	  book->modify(VIEW_ONLY);
 	}
@@ -4853,7 +4853,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!cd)
-	    cd = new biblioteq_cd(this, oid, i);
+	    cd = new biblioteq_cd(this, oid, index);
 
 	  cd->modify(VIEW_ONLY);
 	}
@@ -4871,7 +4871,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!dvd)
-	    dvd = new biblioteq_dvd(this, oid, i);
+	    dvd = new biblioteq_dvd(this, oid, index);
 
 	  dvd->modify(VIEW_ONLY);
 	}
@@ -4889,7 +4889,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!gl)
-	    gl = new biblioteq_grey_literature(this, oid, i);
+	    gl = new biblioteq_grey_literature(this, oid, index);
 
 	  gl->modify(VIEW_ONLY);
 	}
@@ -4907,7 +4907,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!journal)
-	    journal = new biblioteq_journal(this, oid, i);
+	    journal = new biblioteq_journal(this, oid, index);
 
 	  journal->modify(VIEW_ONLY);
 	}
@@ -4930,7 +4930,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!magazine)
-	    magazine = new biblioteq_magazine(this, oid, i, "magazine");
+	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
 	  magazine->modify(VIEW_ONLY);
 	}
@@ -4948,7 +4948,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!photograph)
-	    photograph = new biblioteq_photographcollection(this, oid, i);
+	    photograph = new biblioteq_photographcollection(this, oid, index);
 
 	  photograph->modify(VIEW_ONLY);
 	}
@@ -4966,7 +4966,7 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!videogame)
-	    videogame = new biblioteq_videogame(this, oid, i);
+	    videogame = new biblioteq_videogame(this, oid, index);
 
 	  videogame->modify(VIEW_ONLY);
 	}

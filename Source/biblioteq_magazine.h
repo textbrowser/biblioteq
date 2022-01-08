@@ -17,7 +17,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
  public:
   biblioteq_magazine(biblioteq *parentArg,
 		     const QString &oidArg,
-		     const int rowArg,
+		     const QModelIndex &index,
 		     const QString &subTypeArg);
   virtual ~biblioteq_magazine();
   Ui_magDialog dialog(void) const;
@@ -108,7 +108,7 @@ class biblioteq_journal: public biblioteq_magazine
  public:
   biblioteq_journal(biblioteq *parentArg,
 		    const QString &oidArg,
-		    const int rowArg);
+		    const QModelIndex &index);
   ~biblioteq_journal();
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);

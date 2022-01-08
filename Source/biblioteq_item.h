@@ -8,6 +8,7 @@
 #include <QPrinter>
 #include <QProgressDialog>
 
+class QPersistentModelIndex;
 class biblioteq;
 
 class biblioteq_item_working_dialog: public QProgressDialog
@@ -42,7 +43,7 @@ class biblioteq_item_working_dialog: public QProgressDialog
 class biblioteq_item
 {
  public:
-  biblioteq_item(const int rowArg);
+  biblioteq_item(const QModelIndex &index);
   biblioteq_item(void);
   virtual ~biblioteq_item();
   QString getID(void) const;
@@ -56,12 +57,12 @@ class biblioteq_item
   QMainWindow *m_parentWid;
   QMap<QString, QImage> m_imageValues;
   QMap<QString, QString> m_widgetValues;
+  QPersistentModelIndex *m_index;
   QString m_html;
   QString m_oid;
   biblioteq *qmain;
   bool m_isQueryEnabled;
   int m_oldq;
-  int m_row;
   bool hasDataChanged(QMainWindow *window) const;
   void print(QWidget *parent);
   void setQMain(QMainWindow *window);

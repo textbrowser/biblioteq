@@ -14,8 +14,8 @@
 
 biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 						     const QString &oidArg,
-						     const int rowArg):
-  QMainWindow(), biblioteq_item(rowArg)
+						     const QModelIndex &index):
+  QMainWindow(), biblioteq_item(index)
 {
   qmain = parentArg;
 
@@ -25,7 +25,6 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
   m_isQueryEnabled = false;
   m_oid = oidArg;
   m_parentWid = parentArg;
-  m_row = rowArg;
   m_ui.setupUi(this);
   setQMain(this);
   m_ui.resetButton->setMenu(menu);
@@ -797,20 +796,13 @@ void biblioteq_grey_literature::populateFiles(void)
   m_ui.files->setRowCount(totalRows);
   m_ui.files->setSortingEnabled(true);
 
-  if((qmain->getTypeFilterString() == "All" ||
+  if(m_index->isValid() &&
+     (qmain->getTypeFilterString() == "All" ||
       qmain->getTypeFilterString() == "All Available" ||
       qmain->getTypeFilterString() == "All Overdue" ||
       qmain->getTypeFilterString() == "All Requested" ||
       qmain->getTypeFilterString() == "All Reserved" ||
-      qmain->getTypeFilterString() == "Grey Literature") &&
-     m_oid == biblioteq_misc_functions::getColumnString
-     (qmain->getUI().table,
-      m_row,
-      qmain->getUI().table->columnNumber("MYOID")) &&
-     biblioteq_misc_functions::getColumnString
-     (qmain->getUI().table,
-      m_row,
-      qmain->getUI().table->columnNumber("Type")) == "Grey Literature")
+      qmain->getTypeFilterString() == "Grey Literature"))
     {
       qmain->getUI().table->setSortingEnabled(false);
 
@@ -819,13 +811,13 @@ void biblioteq_grey_literature::populateFiles(void)
       for(int i = 0; i < names.size(); i++)
 	if(names.at(i) == "File Count")
 	  {
-	    qmain->getUI().table->item(m_row, i)->setText
+	    qmain->getUI().table->item(m_index->row(), i)->setText
 	      (QString::number(count));
 	    break;
 	  }
 
       qmain->getUI().table->setSortingEnabled(true);
-      qmain->getUI().table->updateToolTips(m_row);
+      qmain->getUI().table->updateToolTips(m_index->row());
     }
 
   QApplication::restoreOverrideCursor();
@@ -1664,20 +1656,13 @@ void biblioteq_grey_literature::updateDatabase(void)
 
   setWindowTitle(string);
 
-  if((qmain->getTypeFilterString() == "All" ||
+  if(m_index->isValid() &&
+     (qmain->getTypeFilterString() == "All" ||
       qmain->getTypeFilterString() == "All Available" ||
       qmain->getTypeFilterString() == "All Overdue" ||
       qmain->getTypeFilterString() == "All Requested" ||
       qmain->getTypeFilterString() == "All Reserved" ||
-      qmain->getTypeFilterString() == "Grey Literature") &&
-     m_oid == biblioteq_misc_functions::
-     getColumnString(qmain->getUI().table,
-		     m_row,
-		     qmain->getUI().table->columnNumber("MYOID")) &&
-     biblioteq_misc_functions::getColumnString
-     (qmain->getUI().table,
-      m_row,
-      qmain->getUI().table->columnNumber("Type")) == "Grey Literature")
+      qmain->getTypeFilterString() == "Grey Literature"))
     {
       qmain->getUI().table->setSortingEnabled(false);
 
@@ -1756,11 +1741,11 @@ void biblioteq_grey_literature::updateDatabase(void)
 	    }
 
 	  if(set)
-	    qmain->getUI().table->item(m_row, i)->setText(string);
+	    qmain->getUI().table->item(m_index->row(), i)->setText(string);
 	}
 
       qmain->getUI().table->setSortingEnabled(true);
-      qmain->getUI().table->updateToolTips(m_row);
+      qmain->getUI().table->updateToolTips(m_index->row());
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);

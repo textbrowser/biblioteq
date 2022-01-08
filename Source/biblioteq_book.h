@@ -19,7 +19,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
  public:
   biblioteq_book(biblioteq *parentArg,
 		 const QString &oidArg,
-		 const int rowArg);
+		 const QModelIndex &index);
   ~biblioteq_book();
   void duplicate(const QString &p_oid, const int state);
   void insert(void);

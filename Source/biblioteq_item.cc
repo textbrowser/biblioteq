@@ -6,29 +6,31 @@
 #include <QComboBox>
 #include <QDateEdit>
 #include <QLineEdit>
+#include <QPersistentModelIndex>
 #include <QPlainTextEdit>
 #include <QSpinBox>
 
-biblioteq_item::biblioteq_item(const int rowArg)
+biblioteq_item::biblioteq_item(const QModelIndex &index)
 {
+  m_index = new QPersistentModelIndex(index);
   m_isQueryEnabled = false;
   m_oldq = -1;
   m_parentWid = nullptr;
-  m_row = rowArg;
   qmain = nullptr;
 }
 
 biblioteq_item::biblioteq_item(void)
 {
+  m_index = new QPersistentModelIndex(QModelIndex());
   m_isQueryEnabled = false;
   m_oldq = -1;
   m_parentWid = nullptr;
-  m_row = -1;
   qmain = nullptr;
 }
 
 biblioteq_item::~biblioteq_item()
 {
+  delete m_index;
   m_imageValues.clear();
   m_widgetValues.clear();
 }
@@ -118,7 +120,10 @@ int biblioteq_item::getOldQ(void) const
 
 int biblioteq_item::getRow(void) const
 {
-  return m_row;
+  if(m_index->isValid())
+    return m_index->row();
+  else
+    return -1;
 }
 
 void biblioteq_item::print(QWidget *parent)
@@ -286,5 +291,5 @@ void biblioteq_item::updateQuantity(const int q)
 
 void biblioteq_item::updateRow(const int rowArg)
 {
-  m_row = rowArg;
+  Q_UNUSED(rowArg);
 }

@@ -23,9 +23,9 @@
 
 biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 				       const QString &oidArg,
-				       const int rowArg,
+				       const QModelIndex &index,
 				       const QString &subTypeArg):
-  QMainWindow(), biblioteq_item(rowArg)
+  QMainWindow(), biblioteq_item(index)
 {
   m_duplicate = false;
   m_sruWorking = nullptr;
@@ -41,11 +41,11 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   m_proxyDialog = new QDialog(this);
   m_sruManager = new QNetworkAccessManager(this);
   m_oid = oidArg;
-  m_row = rowArg;
   m_subType = "Magazine";
   m_parentWid = parentArg;
   m_oldq = biblioteq_misc_functions::getColumnString
-    (qmain->getUI().table, m_row,
+    (qmain->getUI().table,
+     m_index->row(),
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
   setQMain(this);
@@ -2159,7 +2159,7 @@ void biblioteq_magazine::slotGo(void)
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     {
-      if(m_engWindowTitle.contains("Modify") && m_row > -1)
+      if(m_engWindowTitle.contains("Modify") && m_index->isValid())
 	{
 	  newq = ma.quantity->value();
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -2692,20 +2692,14 @@ void biblioteq_magazine::slotGo(void)
 	      setWindowTitle(str);
 	      m_engWindowTitle = "Modify";
 
-	      if((qmain->getTypeFilterString() == "All" ||
+	      if(m_index->isValid() &&
+		 (qmain->getTypeFilterString() == "All" ||
 		  qmain->getTypeFilterString() == "All Available" ||
 		  qmain->getTypeFilterString() == "All Overdue" ||
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
 		  qmain->getTypeFilterString() == "Journals" ||
-		  qmain->getTypeFilterString() == "Magazines") &&
-		 m_oid == biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("MYOID")) &&
-		 biblioteq_misc_functions::getColumnString
-		 (qmain->getUI().table,
-		  m_row, qmain->getUI().table->columnNumber("Type")) ==
-		 m_subType)
+		  qmain->getTypeFilterString() == "Magazines"))
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
@@ -2719,82 +2713,85 @@ void biblioteq_magazine::slotGo(void)
 			    (QPixmap::fromImage(ma.front_image->m_image));
 
 			  if(!pixmap.isNull())
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (pixmap);
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(pixmap);
 			  else
-			    qmain->getUI().table->item(m_row, i)->setIcon
-			      (QIcon(":/no_image.png"));
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setIcon(QIcon(":/no_image.png"));
 			}
 
 		      if(names.at(i) == "Call Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.callnum->text());
 		      else if(names.at(i) == "ISSN" ||
 			      names.at(i) == "ID Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.id->text());
 		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.title->text());
 		      else if(names.at(i) == "Publication Date")
 			{
 			  if(qmain->getTypeFilterString() == "Journals")
-			    qmain->getUI().table->item(m_row, i)->setText
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
 			      (ma.publication_date->date().
 			       toString(qmain->
 					publicationDateFormat("journals")));
 			  else if(qmain->getTypeFilterString() == "Magazines")
-			    qmain->getUI().table->item(m_row, i)->setText
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
 			      (ma.publication_date->date().
 			       toString(qmain->
 					publicationDateFormat("magazines")));
 			    else
-			      qmain->getUI().table->item(m_row, i)->setText
-				(ma.publication_date->date().
-				 toString(Qt::ISODate));
+			      qmain->getUI().table->item(m_index->row(), i)->
+				setText(ma.publication_date->date().
+					toString(Qt::ISODate));
 			}
 		      else if(names.at(i) == "Publisher")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.publisher->toPlainText());
 		      else if(names.at(i) == "Place of Publication")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.place->toPlainText());
 		      else if(names.at(i) == "Categories")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.category->toPlainText().trimmed());
 		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.price->cleanText());
 		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.language->currentText().trimmed());
 		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.monetary_units->currentText().trimmed());
 		      else if(names.at(i) == "Quantity")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.quantity->text());
 		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.location->currentText().trimmed());
 		      else if(names.at(i) == "Volume")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.volume->text());
 		      else if(names.at(i) == "Issue")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.issue->text());
 		      else if(names.at(i) == "LC Control Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.lcnum->text());
 		      else if(names.at(i) == "Call Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.callnum->text());
 		      else if(names.at(i) == "Dewey Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.deweynum->text());
 		      else if(names.at(i) == "Availability")
 			{
-			  qmain->getUI().table->item(m_row, i)->setText
+			  qmain->getUI().table->item(m_index->row(), i)->
+			    setText
 			    (biblioteq_misc_functions::getAvailability
 			     (m_oid, qmain->getDB(), m_subType,
 			      errorstr));
@@ -2806,12 +2803,12 @@ void biblioteq_magazine::slotGo(void)
 			       errorstr, __FILE__, __LINE__);
 			}
 		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_row, i)->setText
+			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
-		  qmain->getUI().table->updateToolTips(m_row);
+		  qmain->getUI().table->updateToolTips(m_index->row());
 
 		  foreach(auto textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
