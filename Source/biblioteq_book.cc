@@ -3157,14 +3157,17 @@ void biblioteq_book::slotGo(void)
 		  if(imageColumn == -1)
 		    imageColumn = 0;
 
-		  auto pixmap(QPixmap::fromImage(id.front_image->m_image));
+		  if(qmain->showMainTableImages())
+		    {
+		      auto pixmap(QPixmap::fromImage(id.front_image->m_image));
 
-		  if(!pixmap.isNull())
-		    qmain->getUI().table->item(m_row, imageColumn)->setIcon
-		      (pixmap);
-		  else
-		    qmain->getUI().table->item(m_row, imageColumn)->setIcon
-		      (QIcon(":/no_image.png"));
+		      if(!pixmap.isNull())
+			qmain->getUI().table->item(m_row, imageColumn)->setIcon
+			  (pixmap);
+		      else
+			qmain->getUI().table->item(m_row, imageColumn)->setIcon
+			  (QIcon(":/no_image.png"));
+		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
 		  qmain->getUI().table->updateToolTips(m_row);

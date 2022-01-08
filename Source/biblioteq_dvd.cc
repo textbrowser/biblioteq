@@ -1234,7 +1234,7 @@ void biblioteq_dvd::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(i == 0)
+		      if(i == 0 && qmain->showMainTableImages())
 			{
 			  auto pixmap
 			    (QPixmap::fromImage(dvd.front_image->m_image));

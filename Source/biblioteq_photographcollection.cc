@@ -1402,7 +1402,7 @@ void biblioteq_photographcollection::slotGo(void)
 
 		  for(int i = 0; i < names.size(); i++)
 		    {
-		      if(i == 0)
+		      if(i == 0 && qmain->showMainTableImages())
 			{
 			  auto pixmap
 			    (QPixmap::
