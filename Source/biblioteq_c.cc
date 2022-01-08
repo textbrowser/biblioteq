@@ -444,7 +444,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
       return 1;
     }
 
-  QApplication::restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
 
   auto found = false;
@@ -562,6 +561,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   if(progress)
     {
+      QApplication::restoreOverrideCursor();
       progress->setLabelText(tr("Populating the views..."));
 
       if(limit == -1)
@@ -930,15 +930,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(m_searchQuery.isValid())
 	if(pixmapItem)
 	  {
-	    auto record(m_searchQuery.record());
-
-	    for(int ii = 0; ii < record.count(); ii++)
-	      {
-		if(record.fieldName(ii).endsWith("myoid"))
-		  pixmapItem->setData(0, m_searchQuery.value(ii));
-		else if(record.fieldName(ii).endsWith("type"))
-		  pixmapItem->setData(1, m_searchQuery.value(ii));
-	      }
+	    pixmapItem->setData(0, myoid);
+	    pixmapItem->setData(1, itemType);
 	  }
 
       if(progress)
@@ -1017,6 +1010,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	  SIGNAL(itemChanged(QTableWidgetItem *)),
 	  this,
 	  SLOT(slotItemChanged(QTableWidgetItem *)));
+  QApplication::restoreOverrideCursor();
   return 0;
 }
 
@@ -3281,7 +3275,7 @@ void biblioteq::slotDisplaySummary(void)
 	      auto type =  biblioteq_misc_functions::getColumnString
 		(ui.table,
 		 tableItems.at(ii)->row(),
-		 ui.table->columnNumber("Type"));
+		 ui.table->columnNumber("Type")).remove(' ').toLower();
 
 	      for(int jj = 0; jj < items.size(); jj++)
 		if(oid == items.at(jj)->data(0).toString() &&
@@ -5986,7 +5980,8 @@ void biblioteq::slotSceneSelectionChanged(void)
 	if(ui.table->item(i, column1) &&
 	   oids.contains(ui.table->item(i, column1)->text()) &&
 	   ui.table->item(i, column2) &&
-	   types.contains(ui.table->item(i, column2)->text()))
+	   types.contains(ui.table->
+			  item(i, column2)->text().remove(' ').toLower()))
 	  ui.table->selectRow(i);
 
       oids.clear();

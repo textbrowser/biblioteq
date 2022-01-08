@@ -91,7 +91,6 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.itemsCountLabel->setText(tr("0 Results"));
 
   QScopedPointer<QProgressDialog> progress;
-  QString itemType = "";
   QString limitStr("");
   QString offsetStr("");
   QString searchstr = "";
@@ -3638,6 +3637,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   i = -1;
 
+  QFontMetrics fontMetrics(ui.table->font());
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto showMainTableImages = m_otheroptions->showMainTableImages();
 
@@ -3646,6 +3646,7 @@ int biblioteq::populateTable(const int search_type_arg,
       if(progress && progress->wasCanceled())
 	break;
 
+      QString itemType = "";
       biblioteq_graphicsitempixmap *pixmapItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
       quint64 myoid = 0;
@@ -3719,11 +3720,13 @@ int biblioteq::populateTable(const int search_type_arg,
 	    {
 	      item = nullptr;
 
-	      if(!record.fieldName(j).endsWith("front_cover") &&
-		 !record.fieldName(j).endsWith("image_scaled"))
+	      auto fieldName(record.fieldName(j));
+
+	      if(!fieldName.endsWith("front_cover") &&
+		 !fieldName.endsWith("image_scaled"))
 		{
-		  if(record.fieldName(j).contains("date") ||
-		     record.fieldName(j).contains("membersince"))
+		  if(fieldName.contains("date") ||
+		     fieldName.contains("membersince"))
 		    {
 		      auto date
 			(QDate::
@@ -3742,24 +3745,24 @@ int biblioteq::populateTable(const int search_type_arg,
 		}
 
 	      if(search_type == CUSTOM_QUERY)
-		if(!tmplist.contains(record.fieldName(j)))
+		if(!tmplist.contains(fieldName))
 		  {
-		    tmplist.append(record.fieldName(j));
+		    tmplist.append(fieldName);
 		    ui.table->setColumnCount(tmplist.size());
 		  }
 
 	      if(record.field(j).tableName() == "book" &&
-		 (record.fieldName(j) == "id" ||
-		  record.fieldName(j) == "isbn13"))
+		 (fieldName == "id" ||
+		  fieldName == "isbn13"))
 		{
-		  if(record.fieldName(j) == "id")
+		  if(fieldName == "id")
 		    str = m_otheroptions->isbn10DisplayFormat(str);
 		  else
 		    str = m_otheroptions->isbn13DisplayFormat(str);
 
 		  item = new QTableWidgetItem(str);
 		}
-	      else if(record.fieldName(j).endsWith("accession_number"))
+	      else if(fieldName.endsWith("accession_number"))
 		{
 		  if(typefilter == "Books")
 		    {
@@ -3772,20 +3775,20 @@ int biblioteq::populateTable(const int search_type_arg,
 		  else
 		    item = new QTableWidgetItem();
 		}
-	      else if(record.fieldName(j).endsWith("availability") ||
-		      record.fieldName(j).endsWith("cddiskcount") ||
-		      record.fieldName(j).endsWith("dvddiskcount") ||
-		      record.fieldName(j).endsWith("file_count") ||
-		      record.fieldName(j).endsWith("issue") ||
-		      record.fieldName(j).endsWith("issueno") ||
-		      record.fieldName(j).endsWith("issuevolume") ||
-		      record.fieldName(j).endsWith("photograph_count") ||
-		      record.fieldName(j).endsWith("price") ||
-		      record.fieldName(j).endsWith("quantity") ||
-		      record.fieldName(j).endsWith("total_reserved") ||
-		      record.fieldName(j).endsWith("volume"))
+	      else if(fieldName.endsWith("availability") ||
+		      fieldName.endsWith("cddiskcount") ||
+		      fieldName.endsWith("dvddiskcount") ||
+		      fieldName.endsWith("file_count") ||
+		      fieldName.endsWith("issue") ||
+		      fieldName.endsWith("issueno") ||
+		      fieldName.endsWith("issuevolume") ||
+		      fieldName.endsWith("photograph_count") ||
+		      fieldName.endsWith("price") ||
+		      fieldName.endsWith("quantity") ||
+		      fieldName.endsWith("total_reserved") ||
+		      fieldName.endsWith("volume"))
 		{
-		  if(record.fieldName(j).endsWith("price"))
+		  if(fieldName.endsWith("price"))
 		    {
 		      item = new biblioteq_numeric_table_item
 			(query.value(j).toDouble());
@@ -3797,18 +3800,18 @@ int biblioteq::populateTable(const int search_type_arg,
 			(query.value(j).toInt());
 
 		      if(availabilityColors() &&
-			 record.fieldName(j).endsWith("availability"))
+			 fieldName.endsWith("availability"))
 			availabilityItem =
 			  dynamic_cast<biblioteq_numeric_table_item *> (item);
 		    }
 		}
-	      else if(record.fieldName(j).endsWith("callnumber"))
+	      else if(fieldName.endsWith("callnumber"))
 		{
 		  str = query.value(j).toString().trimmed();
 		  item = new biblioteq_callnum_table_item(str);
 		}
-	      else if(record.fieldName(j).endsWith("front_cover") ||
-		      record.fieldName(j).endsWith("image_scaled"))
+	      else if(fieldName.endsWith("front_cover") ||
+		      fieldName.endsWith("image_scaled"))
 		{
 		  QImage image;
 
@@ -3834,8 +3837,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		  if(!image.isNull())
 		    image = image.scaled
-		      (126, 187, Qt::KeepAspectRatio,
-		       Qt::SmoothTransformation);
+		      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 		  pixmapItem = new biblioteq_graphicsitempixmap
 		    (QPixmap::fromImage(image), nullptr);
@@ -3884,13 +3886,13 @@ int biblioteq::populateTable(const int search_type_arg,
 		  else
 		    ui.table->setItem(i, j, item);
 
-		  if(record.fieldName(j).endsWith("type"))
+		  if(fieldName.endsWith("type"))
 		    {
 		      itemType = str;
 		      itemType = itemType.toLower().remove(" ");
 		    }
 
-		  if(record.fieldName(j).endsWith("myoid"))
+		  if(fieldName.endsWith("myoid"))
 		    {
 		      myoid = query.value(j).toULongLong();
 		      updateRows(str, i, itemType);
@@ -3901,14 +3903,12 @@ int biblioteq::populateTable(const int search_type_arg,
 	  if(availabilityItem && availabilityItem->value() > 0.0)
 	    availabilityItem->setBackground(availabilityColor(itemType));
 
-	  if(first && m_otheroptions->showMainTableImages())
+	  if(first && showMainTableImages)
 	    {
 	      if(pixmapItem)
 		first->setIcon(pixmapItem->pixmap());
 	      else
 		first->setIcon(QIcon(":/no_image.png"));
-
-	      QFontMetrics fontMetrics(ui.table->font());
 
 	      ui.table->setRowHeight
 		(i, qMax(fontMetrics.height() + 10,
@@ -3936,7 +3936,9 @@ int biblioteq::populateTable(const int search_type_arg,
 	      else
 		item->setFlags(Qt::ItemIsSelectable);
 
-	      item->setToolTip(tooltip);
+	      if(!tooltip.isEmpty())
+		item->setToolTip(tooltip);
+
 	      ui.table->setItem(i, 0, item);
 	    }
 
@@ -3946,15 +3948,8 @@ int biblioteq::populateTable(const int search_type_arg,
       if(query.isValid())
 	if(pixmapItem)
 	  {
-	    auto record(query.record());
-
-	    for(int ii = 0; ii < record.count(); ii++)
-	      {
-		if(record.fieldName(ii).endsWith("myoid"))
-		  pixmapItem->setData(0, query.value(ii));
-		else if(record.fieldName(ii).endsWith("type"))
-		  pixmapItem->setData(1, query.value(ii));
-	      }
+	    pixmapItem->setData(0, myoid);
+	    pixmapItem->setData(1, itemType);
 	  }
 
       if(progress)
