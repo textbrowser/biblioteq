@@ -618,6 +618,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QFontMetrics fontMetrics(ui.table->font());
   QSettings settings;
   QString dateFormat("");
+  auto availabilityColors = this->availabilityColors();
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto columnNames(ui.table->columnNames());
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
@@ -803,7 +804,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		      item = new biblioteq_numeric_table_item
 			(m_searchQuery.value(j).toInt());
 
-		      if(availabilityColors() &&
+		      if(availabilityColors &&
 			 fieldName.endsWith("availability"))
 			availabilityItem = dynamic_cast
 			  <biblioteq_numeric_table_item *> (item);

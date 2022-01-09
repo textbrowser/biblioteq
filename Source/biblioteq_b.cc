@@ -3756,8 +3756,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  }
 
 	      if(record.field(j).tableName() == "book" &&
-		 (fieldName == "id" ||
-		  fieldName == "isbn13"))
+		 (fieldName == "id" || fieldName == "isbn13"))
 		{
 		  if(fieldName == "id")
 		    str = m_otheroptions->isbn10DisplayFormat(str);
