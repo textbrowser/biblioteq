@@ -18,24 +18,40 @@ class biblioteq_otheroptions: public QMainWindow
 
   QString isbn10DisplayFormat(const QString &str) const
   {
-    QSettings settings;
-    auto index = qBound
-      (0,
-       settings.value("otheroptions/isbn10_display_format_index").toInt(),
-       m_ui.isbn10_display_format->count() - 1);
+    if(QString(str).remove('-').length() != 10)
+      return str;
 
-    return isbnDisplayFormat(m_ui.isbn10_display_format->itemText(index), str);
+    if(m_isbn10Format.isEmpty())
+      {
+	QSettings settings;
+	auto index = qBound
+	  (0,
+	   settings.value("otheroptions/isbn10_display_format_index").toInt(),
+	   m_ui.isbn10_display_format->count() - 1);
+
+	m_isbn10Format = m_ui.isbn10_display_format->itemText(index);
+      }
+
+    return isbnDisplayFormat(m_isbn10Format, str);
   }
 
   QString isbn13DisplayFormat(const QString &str) const
   {
-    QSettings settings;
-    auto index = qBound
-      (0,
-       settings.value("otheroptions/isbn13_display_format_index").toInt(),
-       m_ui.isbn13_display_format->count() - 1);
+    if(QString(str).remove('-').length() != 13)
+      return str;
 
-    return isbnDisplayFormat(m_ui.isbn13_display_format->itemText(index), str);
+    if(m_isbn13Format.isEmpty())
+      {
+	QSettings settings;
+	auto index = qBound
+	  (0,
+	   settings.value("otheroptions/isbn13_display_format_index").toInt(),
+	   m_ui.isbn13_display_format->count() - 1);
+
+	m_isbn13Format = m_ui.isbn13_display_format->itemText(index);
+      }
+
+    return isbnDisplayFormat(m_isbn13Format, str);
   }
 
   QString publicationDateFormat(const QString &it) const;
@@ -55,6 +71,8 @@ class biblioteq_otheroptions: public QMainWindow
 
   Ui_otheroptions m_ui;
   biblioteq *qmain;
+  mutable QString m_isbn10Format;
+  mutable QString m_isbn13Format;
 
   QString isbnDisplayFormat(const QString &format, const QString &s) const
   {

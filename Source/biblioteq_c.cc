@@ -618,6 +618,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QFontMetrics fontMetrics(ui.table->font());
   QSettings settings;
   QString dateFormat("");
+  auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto columnNames(ui.table->columnNames());
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
     m_otheroptions->showBookReadStatus() &&
@@ -768,7 +769,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		{
 		  if(typefilter == "Books")
 		    {
-		      if(m_otheroptions->booksAccessionNumberIndex() == 0)
+		      if(booksAccessionNumberIndex == 0)
 			item = new biblioteq_numeric_table_item
 			  (query.value(j).toInt());
 		      else
