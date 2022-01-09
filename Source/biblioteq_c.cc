@@ -579,6 +579,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
       QApplication::processEvents();
     }
 
+  auto setRowCount = true;
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -596,9 +597,15 @@ int biblioteq::populateTable(const QSqlQuery &query,
       while(m_searchQuery.next())
 	size += 1;
 
-      if(size >= 0)
+      if(size > 0)
 	ui.graphicsView->setSceneRect
 	  (0.0, 0.0, 5.0 * 150.0, (size / 5.0) * 200.0 + 200.0);
+
+      if(size >= 0)
+	{
+	  setRowCount = false;
+	  ui.table->setRowCount(size);
+	}
 
       m_searchQuery.seek(static_cast<int> (offset));
     }
@@ -608,13 +615,22 @@ int biblioteq::populateTable(const QSqlQuery &query,
      progress)
     progress->setMaximum(qMin(limit, m_searchQuery.size()));
 
+  QFontMetrics fontMetrics(ui.table->font());
   QSettings settings;
   QString dateFormat("");
   auto columnNames(ui.table->columnNames());
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
     m_otheroptions->showBookReadStatus() &&
     searchType != CUSTOM_QUERY;
+  auto showMainTableImages = m_otheroptions->showMainTableImages();
   auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+  int totalRows = 0;
+
+  if(m_db.driverName() == "QPSQL")
+    {
+      setRowCount = false;
+      ui.table->setRowCount(query.size());
+    }
 
   if(typefilter == "Books" ||
      typefilter == "DVDs" ||
@@ -657,14 +673,16 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	      for(int j = 0; j < record.count(); j++)
 		{
+		  auto fieldName(record.fieldName(j));
+
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 		  if(QMetaType::Type(record.field(j).metaType().id()) ==
 		     QMetaType::QByteArray ||
 #else
 		  if(record.field(j).type() == QVariant::ByteArray ||
 #endif
-		     record.fieldName(j).contains("cover") ||
-		     record.fieldName(j).contains("image"))
+		     fieldName.contains("cover") ||
+		     fieldName.contains("image"))
 		    continue;
 
 		  QString columnName("");
@@ -682,12 +700,11 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  tooltip.append(":</b> ");
 
 		  if(record.field(j).tableName() == "book" &&
-		     (record.fieldName(j) == "id" ||
-		      record.fieldName(j) == "isbn13"))
+		     (fieldName == "id" || fieldName == "isbn13"))
 		    {
 		      auto str(m_searchQuery.value(j).toString().trimmed());
 
-		      if(record.fieldName(j) == "id")
+		      if(fieldName == "id")
 			str = m_otheroptions->isbn10DisplayFormat(str);
 		      else
 			str = m_otheroptions->isbn13DisplayFormat(str);
@@ -713,11 +730,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	    {
 	      item = nullptr;
 
-	      if(!record.fieldName(j).endsWith("front_cover") &&
-		 !record.fieldName(j).endsWith("image_scaled"))
+	      auto fieldName(record.fieldName(j));
+
+	      if(!fieldName.endsWith("front_cover") &&
+		 !fieldName.endsWith("image_scaled"))
 		{
-		  if(record.fieldName(j).contains("date") ||
-		     record.fieldName(j).contains("membersince"))
+		  if(fieldName.contains("date") ||
+		     fieldName.contains("membersince"))
 		    {
 		      auto date(QDate::fromString(m_searchQuery.value(j).
 						  toString().trimmed(),
@@ -736,17 +755,16 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		}
 
 	      if(record.field(j).tableName() == "book" &&
-		 (record.fieldName(j) == "id" ||
-		  record.fieldName(j) == "isbn13"))
+		 (fieldName == "id" || fieldName == "isbn13"))
 		{
-		  if(record.fieldName(j) == "id")
+		  if(fieldName == "id")
 		    str = m_otheroptions->isbn10DisplayFormat(str);
 		  else
 		    str = m_otheroptions->isbn13DisplayFormat(str);
 
 		  item = new QTableWidgetItem(str);
 		}
-	      else if(record.fieldName(j).endsWith("accession_number"))
+	      else if(fieldName.endsWith("accession_number"))
 		{
 		  if(typefilter == "Books")
 		    {
@@ -759,20 +777,20 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  else
 		    item = new QTableWidgetItem();
 		}
-	      else if(record.fieldName(j).endsWith("availability") ||
-		      record.fieldName(j).endsWith("cddiskcount") ||
-		      record.fieldName(j).endsWith("dvddiskcount") ||
-		      record.fieldName(j).endsWith("file_count") ||
-		      record.fieldName(j).endsWith("issue") ||
-		      record.fieldName(j).endsWith("issueno") ||
-		      record.fieldName(j).endsWith("issuevolume") ||
-		      record.fieldName(j).endsWith("photograph_count") ||
-		      record.fieldName(j).endsWith("price") ||
-		      record.fieldName(j).endsWith("quantity") ||
-		      record.fieldName(j).endsWith("total_reserved") ||
-		      record.fieldName(j).endsWith("volume"))
+	      else if(fieldName.endsWith("availability") ||
+		      fieldName.endsWith("cddiskcount") ||
+		      fieldName.endsWith("dvddiskcount") ||
+		      fieldName.endsWith("file_count") ||
+		      fieldName.endsWith("issue") ||
+		      fieldName.endsWith("issueno") ||
+		      fieldName.endsWith("issuevolume") ||
+		      fieldName.endsWith("photograph_count") ||
+		      fieldName.endsWith("price") ||
+		      fieldName.endsWith("quantity") ||
+		      fieldName.endsWith("total_reserved") ||
+		      fieldName.endsWith("volume"))
 		{
-		  if(record.fieldName(j).endsWith("price"))
+		  if(fieldName.endsWith("price"))
 		    {
 		      item = new biblioteq_numeric_table_item
 			(m_searchQuery.value(j).toDouble());
@@ -785,22 +803,22 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			(m_searchQuery.value(j).toInt());
 
 		      if(availabilityColors() &&
-			 record.fieldName(j).endsWith("availability"))
+			 fieldName.endsWith("availability"))
 			availabilityItem = dynamic_cast
 			  <biblioteq_numeric_table_item *> (item);
 		    }
 		}
-	      else if(record.fieldName(j).endsWith("callnumber"))
+	      else if(fieldName.endsWith("callnumber"))
 		{
 		  str = m_searchQuery.value(j).toString().trimmed();
 		  item = new biblioteq_callnum_table_item(str);
 		}
-	      else if(record.fieldName(j).endsWith("front_cover") ||
-		      record.fieldName(j).endsWith("image_scaled"))
+	      else if(fieldName.endsWith("front_cover") ||
+		      fieldName.endsWith("image_scaled"))
 		{
 		  QImage image;
 
-		  if(m_otheroptions->showMainTableImages())
+		  if(showMainTableImages)
 		    {
 		      if(!m_searchQuery.isNull(j))
 			{
@@ -859,25 +877,26 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(j == 0)
 		    {
 		      first = item;
-		      ui.table->setRowCount(ui.table->rowCount() + 1);
-		      ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-						  arg(ui.table->rowCount()));
+
+		      if(setRowCount)
+			ui.table->setRowCount(ui.table->rowCount() + 1);
 		    }
 
-		  item->setToolTip(tooltip);
+		  if(!tooltip.isEmpty())
+		    item->setToolTip(tooltip);
 
 		  if(showBookReadStatus)
 		    ui.table->setItem(i, j + 1, item);
 		  else
 		    ui.table->setItem(i, j, item);
 
-		  if(record.fieldName(j).endsWith("type"))
+		  if(fieldName.endsWith("type"))
 		    {
 		      itemType = str;
 		      itemType = itemType.toLower().remove(" ");
 		    }
 
-		  if(record.fieldName(j).endsWith("myoid"))
+		  if(fieldName.endsWith("myoid"))
 		    {
 		      myoid = query.value(j).toULongLong();
 		      updateRows(str, item, itemType);
@@ -888,14 +907,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	  if(availabilityItem && availabilityItem->value() > 0.0)
 	    availabilityItem->setBackground(availabilityColor(itemType));
 
-	  if(first && m_otheroptions->showMainTableImages())
+	  if(first && showMainTableImages)
 	    {
 	      if(pixmapItem)
 		first->setIcon(pixmapItem->pixmap());
 	      else
 		first->setIcon(QIcon(":/no_image.png"));
-
-	      QFontMetrics fontMetrics(ui.table->font());
 
 	      ui.table->setRowHeight
 		(i, qMax(fontMetrics.height() + 10,
@@ -923,9 +940,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      else
 		item->setFlags(Qt::ItemIsSelectable);
 
-	      item->setToolTip(tooltip);
+	      if(!tooltip.isEmpty())
+		item->setToolTip(tooltip);
+
 	      ui.table->setItem(i, 0, item);
 	    }
+
+	  totalRows += 1;
 	}
 
       if(m_searchQuery.isValid())
@@ -948,6 +969,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	if(!m_searchQuery.next())
 	  break;
     }
+
+  ui.table->setRowCount(totalRows);
+  ui.itemsCountLabel->setText
+    (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
 
   if(limit != -1 &&
      !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&

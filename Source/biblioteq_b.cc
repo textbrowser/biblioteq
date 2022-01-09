@@ -3666,14 +3666,16 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	      for(int j = 0; j < record.count(); j++)
 		{
+		  auto fieldName(record.fieldName(j));
+
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 		  if(QMetaType::Type(record.field(j).metaType().id()) ==
 		     QMetaType::QByteArray ||
 #else
 		  if(record.field(j).type() == QVariant::ByteArray ||
 #endif
-		     record.fieldName(j).contains("cover") ||
-		     record.fieldName(j).contains("image"))
+		     fieldName.contains("cover") ||
+		     fieldName.contains("image"))
 		    continue;
 
 		  QString columnName("");
@@ -3691,12 +3693,12 @@ int biblioteq::populateTable(const int search_type_arg,
 		  tooltip.append(":</b> ");
 
 		  if(record.field(j).tableName() == "book" &&
-		     (record.fieldName(j) == "id" ||
-		      record.fieldName(j) == "isbn13"))
+		     (fieldName == "id" ||
+		      fieldName == "isbn13"))
 		    {
 		      auto str(query.value(j).toString().trimmed());
 
-		      if(record.fieldName(j) == "id")
+		      if(fieldName == "id")
 			str = m_otheroptions->isbn10DisplayFormat(str);
 		      else
 			str = m_otheroptions->isbn13DisplayFormat(str);
