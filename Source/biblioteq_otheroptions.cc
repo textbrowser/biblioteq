@@ -99,6 +99,13 @@ QString biblioteq_otheroptions::publicationDateFormat
     return "MM/dd/yyyy";
 }
 
+bool biblioteq_otheroptions::showBookReadStatus(void) const
+{
+  QSettings settings;
+
+  return settings.value("otheroptions/book_read_status", false).toBool();
+}
+
 bool biblioteq_otheroptions::showMainTableImages(void) const
 {
   QSettings settings;
@@ -264,6 +271,8 @@ void biblioteq_otheroptions::prepareSettings(void)
 	<< "musiccds"
 	<< "photographcollections"
 	<< "videogames";
+  m_ui.book_read_status->setChecked
+    (settings.value("otheroptions/book_read_status", false).toBool());
   m_ui.books_accession_number->setCurrentIndex
     (qBound(0,
 	    settings.value("otheroptions/books_accession_number_index").toInt(),
@@ -453,6 +462,8 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("mainwindow_canvas_background_color",
      m_ui.main_window_canvas_background_color->text().toLatin1());
+  settings.setValue
+    ("otheroptions/book_read_status", m_ui.book_read_status->isChecked());
   settings.setValue
     ("otheroptions/books_accession_number_index",
      m_ui.books_accession_number->currentIndex());

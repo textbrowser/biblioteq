@@ -611,6 +611,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QSettings settings;
   QString dateFormat("");
   auto columnNames(ui.table->columnNames());
+  auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
+    m_otheroptions->showBookReadStatus() &&
+    searchType != CUSTOM_QUERY;
   auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
   if(typefilter == "Books" ||
@@ -666,8 +669,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 		  QString columnName("");
 
-		  if(m_db.driverName() == "QSQLITE" &&
-		     searchType != CUSTOM_QUERY)
+		  if(showBookReadStatus)
 		    columnName = columnNames.value(j + 1);
 		  else
 		    columnName = columnNames.value(j);
@@ -864,8 +866,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 		  item->setToolTip(tooltip);
 
-		  if(m_db.driverName() == "QSQLITE" &&
-		     searchType != CUSTOM_QUERY)
+		  if(showBookReadStatus)
 		    ui.table->setItem(i, j + 1, item);
 		  else
 		    ui.table->setItem(i, j, item);
@@ -901,7 +902,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			 ui.table->iconSize().height()));
 	    }
 
-	  if(m_db.driverName() == "QSQLITE" && searchType != CUSTOM_QUERY)
+	  if(showBookReadStatus)
 	    {
 	      /*
 	      ** Was the book read?

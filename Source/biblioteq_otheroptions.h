@@ -39,6 +39,7 @@ class biblioteq_otheroptions: public QMainWindow
   }
 
   QString publicationDateFormat(const QString &it) const;
+  bool showBookReadStatus(void) const;
   bool showMainTableImages(void) const;
   bool showMainTableProgressDialogs(void) const;
   int booksAccessionNumberIndex(void) const;

@@ -3639,6 +3639,9 @@ int biblioteq::populateTable(const int search_type_arg,
   QFontMetrics fontMetrics(ui.table->font());
   auto availabilityColors = this->availabilityColors();
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
+  auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
+    m_otheroptions->showBookReadStatus() &&
+    search_type != CUSTOM_QUERY;
   auto showMainTableImages = m_otheroptions->showMainTableImages();
 
   while(i++, query.next())
@@ -3675,8 +3678,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		  QString columnName("");
 
-		  if(m_db.driverName() == "QSQLITE" &&
-		     search_type != CUSTOM_QUERY)
+		  if(showBookReadStatus)
 		    columnName = columnNames.value(j + 1);
 		  else
 		    columnName = columnNames.value(j);
@@ -3879,8 +3881,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(!tooltip.isEmpty())
 		    item->setToolTip(tooltip);
 
-		  if(m_db.driverName() == "QSQLITE" &&
-		     search_type != CUSTOM_QUERY)
+		  if(showBookReadStatus)
 		    ui.table->setItem(i, j + 1, item);
 		  else
 		    ui.table->setItem(i, j, item);
@@ -3914,7 +3915,7 @@ int biblioteq::populateTable(const int search_type_arg,
 			 ui.table->iconSize().height()));
 	    }
 
-	  if(m_db.driverName() == "QSQLITE" && search_type != CUSTOM_QUERY)
+	  if(showBookReadStatus)
 	    {
 	      /*
 	      ** Was the book read?

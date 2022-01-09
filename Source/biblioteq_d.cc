@@ -17,6 +17,11 @@ QString biblioteq::formattedISBN13(const QString &str) const
   return m_otheroptions->isbn13DisplayFormat(str);
 }
 
+bool biblioteq::showBookReadStatus(void) const
+{
+  return m_otheroptions->showBookReadStatus();
+}
+
 bool biblioteq::showMainTableImages(void) const
 {
   return m_otheroptions->showMainTableImages();
