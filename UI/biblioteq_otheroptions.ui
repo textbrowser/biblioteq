@@ -250,6 +250,16 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="book_read_status">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display the Read Status column for books housed in an SQLite database. Please note that enabling this option may degrade performance for views containing numerous items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>Book Read Status</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
                <widget class="QLabel" name="label_2">
@@ -491,6 +501,7 @@
   <tabstop>publication_date</tabstop>
   <tabstop>availability_colors</tabstop>
   <tabstop>availability_color</tabstop>
+  <tabstop>book_read_status</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
   <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
