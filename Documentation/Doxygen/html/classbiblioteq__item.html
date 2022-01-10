@@ -99,9 +99,9 @@ Collaboration diagram for biblioteq_item:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afe49e830ffa3c588e0f86f408ed09583"><td class="memItemLeft" align="right" valign="top"><a id="afe49e830ffa3c588e0f86f408ed09583"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>biblioteq_item</b> (const int rowArg)</td></tr>
-<tr class="separator:afe49e830ffa3c588e0f86f408ed09583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3076dd309e97e0fdcffe18bc1e487c45"><td class="memItemLeft" align="right" valign="top"><a id="a3076dd309e97e0fdcffe18bc1e487c45"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>biblioteq_item</b> (const QModelIndex &amp;index)</td></tr>
+<tr class="separator:a3076dd309e97e0fdcffe18bc1e487c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acea78c16500b8810cffda58f6538e927"><td class="memItemLeft" align="right" valign="top"><a id="acea78c16500b8810cffda58f6538e927"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>getID</b> (void) const</td></tr>
 <tr class="separator:acea78c16500b8810cffda58f6538e927"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,9 +117,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setOldQ</b> (const in
 <tr class="memitem:a4d555bbc1c3af4a1e61e78f7a54b85d3"><td class="memItemLeft" align="right" valign="top"><a id="a4d555bbc1c3af4a1e61e78f7a54b85d3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updateQuantity</b> (const int q)</td></tr>
 <tr class="separator:a4d555bbc1c3af4a1e61e78f7a54b85d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17b0313788c92a30a5bcd866c1266c54"><td class="memItemLeft" align="right" valign="top"><a id="a17b0313788c92a30a5bcd866c1266c54"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateRow</b> (const int rowArg)</td></tr>
-<tr class="separator:a17b0313788c92a30a5bcd866c1266c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a25906d6b68b48e1c6c81c63edf814"><td class="memItemLeft" align="right" valign="top"><a id="aa5a25906d6b68b48e1c6c81c63edf814"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateRow</b> (const QModelIndex &amp;index)</td></tr>
+<tr class="separator:aa5a25906d6b68b48e1c6c81c63edf814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -153,6 +153,9 @@ QMap&lt; QString, QImage &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="memitem:a1fc18aef2f077ba7b6e872a50ba34b24"><td class="memItemLeft" align="right" valign="top"><a id="a1fc18aef2f077ba7b6e872a50ba34b24"></a>
 QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_widgetValues</b></td></tr>
 <tr class="separator:a1fc18aef2f077ba7b6e872a50ba34b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9872a9e952998e6f8af6a9284a4d641"><td class="memItemLeft" align="right" valign="top"><a id="ae9872a9e952998e6f8af6a9284a4d641"></a>
+QPersistentModelIndex *&#160;</td><td class="memItemRight" valign="bottom"><b>m_index</b></td></tr>
+<tr class="separator:ae9872a9e952998e6f8af6a9284a4d641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c79543a0d8070ff5e143791275d332c"><td class="memItemLeft" align="right" valign="top"><a id="a1c79543a0d8070ff5e143791275d332c"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_html</b></td></tr>
 <tr class="separator:a1c79543a0d8070ff5e143791275d332c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,9 +171,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isQueryEnabled</b><
 <tr class="memitem:a1e969ab09e319001a6d8d709e8f80d0c"><td class="memItemLeft" align="right" valign="top"><a id="a1e969ab09e319001a6d8d709e8f80d0c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>m_oldq</b></td></tr>
 <tr class="separator:a1e969ab09e319001a6d8d709e8f80d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a638cf673c669e8f11e219289917617bd"><td class="memItemLeft" align="right" valign="top"><a id="a638cf673c669e8f11e219289917617bd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_row</b></td></tr>
-<tr class="separator:a638cf673c669e8f11e219289917617bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/<a class="el" href="biblioteq__item_8h_source.html">biblioteq_item.h</a></li>
