@@ -603,6 +603,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
       if(size >= 0)
 	{
+	  if(progress)
+	    progress->setMaximum(size);
+
 	  setRowCount = false;
 	  ui.table->setRowCount(size);
 	}
