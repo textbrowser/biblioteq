@@ -3376,7 +3376,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QSqlQuery query(m_db);
 
-  if(limit == -1)
+  if(limit == -1 && m_db.driverName() == "QSQLITE")
     query.setForwardOnly(true);
 
   if(!query.exec(searchstr))
@@ -3588,6 +3588,9 @@ int biblioteq::populateTable(const int search_type_arg,
 
       if(size >= 0)
 	{
+	  if(progress)
+	    progress->setMaximum(size);
+
 	  setRowCount = false;
 	  ui.table->setRowCount(size);
 	}
@@ -3675,6 +3678,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(record.field(j).type() == QVariant::ByteArray ||
 #endif
 		     fieldName.contains("cover") ||
+		     fieldName.contains("file") ||
 		     fieldName.contains("image"))
 		    continue;
 
