@@ -950,8 +950,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 	      ui.table->setItem(i, 0, item);
 	    }
-
-	  totalRows += 1;
 	}
 
       if(m_searchQuery.isValid())
@@ -973,6 +971,9 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(m_searchQuery.at() != QSql::BeforeFirstRow)
 	if(!m_searchQuery.next())
 	  break;
+
+      if(m_searchQuery.isValid())
+	totalRows += 1;
     }
 
   ui.table->setRowCount(totalRows);
