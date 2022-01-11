@@ -96,6 +96,35 @@ void biblioteq::slotMergeSQLiteDatabases(void)
   m_sqliteMergeDatabases->raise();
 }
 
+void biblioteq::slotPrintIconsView(void)
+{
+  if(menuBar())
+    menuBar()->repaint();
+
+  QApplication::processEvents();
+
+  QPrinter printer;
+
+  printer.setColorMode(QPrinter::Color);
+  printer.setOutputFormat(QPrinter::PdfFormat);
+
+  QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
+
+  if(dialog->exec() == QDialog::Accepted)
+    {
+      QApplication::processEvents();
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QPainter painter(&printer);
+
+      painter.setRenderHint(QPainter::Antialiasing);
+      ui.graphicsView->scene()->render(&painter);
+      QApplication::restoreOverrideCursor();
+    }
+
+  QApplication::processEvents();
+}
+
 void biblioteq::slotShowDocumentation(void)
 {
   auto action = qobject_cast<QAction *> (sender());

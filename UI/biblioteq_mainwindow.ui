@@ -455,6 +455,8 @@
     <addaction name="separator"/>
     <addaction name="actionExport_Current_View"/>
     <addaction name="separator"/>
+    <addaction name="action_Print_Icons_View"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
@@ -1305,6 +1307,15 @@
   <action name="action_Contributors">
    <property name="text">
     <string>Contributors...</string>
+   </property>
+  </action>
+  <action name="action_Print_Icons_View">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Print Icons View...</string>
    </property>
   </action>
  </widget>

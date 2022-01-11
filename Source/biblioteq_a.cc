@@ -290,6 +290,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotOpenPDFFiles(void)));
+  connect(ui.action_Print_Icons_View,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrintIconsView(void)));
   connect(ui.action_Release_Notes,
 	  SIGNAL(triggered(void)),
 	  this,

@@ -489,6 +489,7 @@ class biblioteq: public QMainWindow
   void slotPopulateMembersBrowser(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotPreviousPage(void);
+  void slotPrintIconsView(void);
   void slotPrintPreview(QPrinter *printer);
   void slotPrintReservationHistory(void);
   void slotPrintReservationHistoryPreview(void);
