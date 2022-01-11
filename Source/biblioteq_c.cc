@@ -579,7 +579,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
       QApplication::processEvents();
     }
 
-  auto setRowCount = true;
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -601,14 +600,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	ui.graphicsView->setSceneRect
 	  (0.0, 0.0, 5.0 * 150.0, (size / 5.0) * 200.0 + 200.0);
 
-      if(size >= 0)
-	{
-	  if(progress)
-	    progress->setMaximum(size);
-
-	  setRowCount = false;
-	  ui.table->setRowCount(size);
-	}
+      if(progress && size >= 0)
+	progress->setMaximum(size);
 
       m_searchQuery.seek(static_cast<int> (offset));
     }
@@ -629,13 +622,6 @@ int biblioteq::populateTable(const QSqlQuery &query,
     searchType != CUSTOM_QUERY;
   auto showMainTableImages = m_otheroptions->showMainTableImages();
   auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
-  int totalRows = 0;
-
-  if(m_db.driverName() == "QPSQL")
-    {
-      setRowCount = false;
-      ui.table->setRowCount(query.size());
-    }
 
   if(typefilter == "Books" ||
      typefilter == "DVDs" ||
@@ -882,9 +868,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(j == 0)
 		    {
 		      first = item;
-
-		      if(setRowCount)
-			ui.table->setRowCount(ui.table->rowCount() + 1);
+		      ui.table->setRowCount(ui.table->rowCount() + 1);
 		    }
 
 		  if(!tooltip.isEmpty())
@@ -971,12 +955,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(m_searchQuery.at() != QSql::BeforeFirstRow)
 	if(!m_searchQuery.next())
 	  break;
-
-      if(m_searchQuery.isValid())
-	totalRows += 1;
     }
 
-  ui.table->setRowCount(totalRows);
   ui.itemsCountLabel->setText
     (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
 

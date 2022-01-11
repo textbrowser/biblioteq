@@ -3566,7 +3566,6 @@ int biblioteq::populateTable(const int search_type_arg,
       QApplication::processEvents();
     }
 
-  auto setRowCount = true;
   int iconTableColumnIdx = 0;
   int iconTableRowIdx = 0;
 
@@ -3586,20 +3585,14 @@ int biblioteq::populateTable(const int search_type_arg,
 				      5.0 * 130.0,
 				      (size / 5.0) * 200.0 + 200.0);
 
-      if(size >= 0)
-	{
-	  if(progress)
-	    progress->setMaximum(size);
-
-	  setRowCount = false;
-	  ui.table->setRowCount(size);
-	}
+      if(progress && size >= 0)
+	progress->setMaximum(size);
     }
 
   if(limit != -1 &&
      m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
      progress)
-    progress->setMaximum(query.size());
+    progress->setMaximum(qMin(limit, query.size()));
 
   QSettings settings;
   QStringList columnNames;
@@ -3618,7 +3611,6 @@ int biblioteq::populateTable(const int search_type_arg,
       columnNames.append(ui.table->horizontalHeaderItem(ii)->text());
 
   QString dateFormat("");
-  int totalRows = 0;
 
   if(typefilter == "Books" ||
      typefilter == "DVDs" ||
@@ -3630,12 +3622,6 @@ int biblioteq::populateTable(const int search_type_arg,
      typefilter == "Video Games")
     dateFormat = publicationDateFormat
       (QString(typefilter).remove(' ').toLower());
-
-  if(m_db.driverName() == "QPSQL")
-    {
-      setRowCount = false;
-      ui.table->setRowCount(query.size());
-    }
 
   i = -1;
 
@@ -3878,9 +3864,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(j == 0)
 		    {
 		      first = item;
-
-		      if(setRowCount)
-			ui.table->setRowCount(ui.table->rowCount() + 1);
+		      ui.table->setRowCount(ui.table->rowCount() + 1);
 		    }
 
 		  if(!tooltip.isEmpty())
@@ -3946,8 +3930,6 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	      ui.table->setItem(i, 0, item);
 	    }
-
-	  totalRows += 1;
 	}
 
       if(query.isValid())
@@ -3967,7 +3949,6 @@ int biblioteq::populateTable(const int search_type_arg,
 	}
     }
 
-  ui.table->setRowCount(totalRows);
   ui.itemsCountLabel->setText
     (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
 
