@@ -4657,7 +4657,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("COALESCE(LOWER(accession_number), '') LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4671,7 +4672,8 @@ void biblioteq::slotSearchBasic(void)
 		str.append
 		  ("LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
 		values.append
-		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  (biblioteq_myqstring::
+		   escape(text.toLower().trimmed(), true));
 	      }
 	    else
 	      {
@@ -4690,7 +4692,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append
 		      ("LOWER(category) LIKE " + E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4705,7 +4708,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("COALESCE(LOWER(notes), '') LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4722,7 +4726,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("COALESCE(LOWER(about), '') LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4743,7 +4748,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append
 		      ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4755,7 +4761,8 @@ void biblioteq::slotSearchBasic(void)
 	      {
 		str.append("(LOWER(id) LIKE " + E + "'%' || ? || '%' ");
 		values.append
-		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  (biblioteq_myqstring::
+		   escape(text.toLower().trimmed(), true));
 	      }
 	    else
 	      {
@@ -4770,7 +4777,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append
 		      ("OR LOWER(isbn13) LIKE " + E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4791,7 +4799,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("COALESCE(LOWER(keyword), '') LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4807,7 +4816,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("COALESCE(LOWER(notes), '') LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4823,7 +4833,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("COALESCE(LOWER(about), '') LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4844,7 +4855,8 @@ void biblioteq::slotSearchBasic(void)
 		    str.append("LOWER(document_title) LIKE " +
 			       E + "'%' || ? || '%' ");
 		    values.append
-		      (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		      (biblioteq_myqstring::
+		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
@@ -4856,7 +4868,8 @@ void biblioteq::slotSearchBasic(void)
 	      {
 		str.append("LOWER(title) LIKE " + E + "'%' || ? || '%' ");
 		values.append
-		  (biblioteq_myqstring::escape(text.toLower().trimmed()));
+		  (biblioteq_myqstring::
+		   escape(text.toLower().trimmed(), true));
 	      }
 	    else
 	      {
