@@ -425,6 +425,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  history.printButton,
 	  SLOT(showMenu(void)));
+  connect(al.caseinsensitive,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveGeneralSearchCaseSensitivity(bool)));
   connect(al.okButton, SIGNAL(clicked(void)), this, SLOT(slotAllGo(void)));
   connect(ui.exitTool, SIGNAL(triggered(void)), this, SLOT(slotExit(void)));
   connect(ui.actionExit, SIGNAL(triggered(void)), this,
@@ -4252,7 +4256,6 @@ void biblioteq::slotSearch(void)
   biblioteq_misc_functions::hideAdminFields(m_all_diag, m_roles);
   al.abstract_checkbox->setChecked(false);
   al.available->setChecked(false);
-  al.caseinsensitive->setChecked(false);
   al.categories_checkbox->setChecked(false);
   al.category->clear();
   al.description->clear();

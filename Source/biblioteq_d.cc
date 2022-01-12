@@ -125,6 +125,13 @@ void biblioteq::slotPrintIconsView(void)
   QApplication::processEvents();
 }
 
+void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
+{
+  QSettings settings;
+
+  settings.setValue("generalSearchCaseSensitivity", state);
+}
+
 void biblioteq::slotShowDocumentation(void)
 {
   auto action = qobject_cast<QAction *> (sender());

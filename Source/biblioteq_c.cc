@@ -1351,6 +1351,8 @@ void biblioteq::readConfig(void)
   QFont font;
   QSettings settings;
 
+  al.caseinsensitive->setChecked
+    (settings.value("generalSearchCaseSensitivity", false).toBool());
   ui.actionAutoPopulateOnCreation->setChecked
     (settings.value("automatically_populate_on_create", false).toBool());
   ui.actionAutomatically_Resize_Column_Widths->setChecked

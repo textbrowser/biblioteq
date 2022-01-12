@@ -446,6 +446,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="caseinsensitive">
+        <property name="toolTip">
+         <string>Setting is retained for future sessions.</string>
+        </property>
         <property name="text">
          <string>Case Insensitive</string>
         </property>
