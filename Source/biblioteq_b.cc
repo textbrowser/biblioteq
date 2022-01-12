@@ -4940,6 +4940,9 @@ void biblioteq::slotSearchBasic(void)
       searchstr += str;
     }
 
+  if(m_db.driverName() == "QSQLITE")
+    query.exec("PRAGMA case_sensitive_like = TRUE");
+
   query.prepare(searchstr);
 
   for(int i = 0; i < values.size(); i++)
