@@ -1234,6 +1234,7 @@ void biblioteq::adminSetup(void)
       ui.action_Database_Enumerations->setEnabled(true);
     }
 
+  ui.actionRequests->setData(RequestActionItems::NOTHING);
   ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
 
   /*
@@ -1560,51 +1561,83 @@ void biblioteq::prepareFilter(void)
 
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
 {
-  if(m_db.driverName() != "QSQLITE")
-    if(m_db.isOpen())
-      {
-	if(dbUserName() == BIBLIOTEQ_GUEST_ACCOUNT)
-	  {
-	    ui.actionRequests->setToolTip(tr("Item Requests"));
-	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-	    ui.actionRequests->setEnabled(false);
+  ui.actionRequests->setData(RequestActionItems::NOTHING);
+
+  if(m_db.driverName() == "QPSQL" && m_db.isOpen())
+    {
+      if(dbUserName() == BIBLIOTEQ_GUEST_ACCOUNT)
+	{
+	  ui.actionRequests->setEnabled(false);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	  ui.actionRequests->setToolTip(tr("Item Requests"));
+	}
+      else if((m_roles == "administrator" ||
+	       m_roles == "circulation") &&
+	      typefilter == "All Requested")
+	{
+	  ui.actionRequests->setData(RequestActionItems::CANCEL_REQUESTED);
+	  ui.actionRequests->setEnabled(true);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
+	  ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	  }
-	else if((m_roles == "administrator" || m_roles == "circulation") &&
-		typefilter == "All Requested")
-	  {
-	    ui.actionRequests->setEnabled(true);
-	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
-	    ui.actionRequests->setIcon
-	      (QIcon(":/32x32/remove_request.png"));
-	  }
-	else if(m_roles.isEmpty() && (typefilter == "All" ||
-				      typefilter == "All Available" ||
-				      typefilter == "Grey Literature" ||
-				      typefilter == "Books" ||
-				      typefilter == "DVDs" ||
-				      typefilter == "Journals" ||
-				      typefilter == "Magazines" ||
-				      typefilter == "Music CDs" ||
-				      typefilter == "Video Games"))
-	  {
-	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
-	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-	    ui.actionRequests->setEnabled(true);
-	  }
-	else if(m_roles.isEmpty() && typefilter == "All Requested")
-	  {
-	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
-	    ui.actionRequests->setIcon
-	      (QIcon(":/32x32/remove_request.png"));
-	    ui.actionRequests->setEnabled(true);
-	  }
-	else
-	  {
-	    ui.actionRequests->setToolTip(tr("Item Requests"));
-	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-	    ui.actionRequests->setEnabled(false);
-	  }
-      }
+      else if(m_roles.isEmpty() &&
+	      (typefilter == "All" ||
+	       typefilter == "All Available" ||
+	       typefilter == "Grey Literature" ||
+	       typefilter == "Books" ||
+	       typefilter == "DVDs" ||
+	       typefilter == "Journals" ||
+	       typefilter == "Magazines" ||
+	       typefilter == "Music CDs" ||
+	       typefilter == "Video Games"))
+	{
+	  ui.actionRequests->setData(RequestActionItems::REQUEST_SELECTED);
+	  ui.actionRequests->setEnabled(true);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	  ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
+	}
+      else if(m_roles.isEmpty() && typefilter == "All Requested")
+	{
+	  ui.actionRequests->setData(RequestActionItems::CANCEL_REQUESTED);
+	  ui.actionRequests->setEnabled(true);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
+	  ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
+	}
+      else if((m_roles == "administrator" ||
+	       m_roles == "circulation") &&
+	      typefilter == "All Reserved")
+	{
+	  ui.actionRequests->setData(RequestActionItems::RETURN_RESERVED);
+	  ui.actionRequests->setEnabled(true);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
+	  ui.actionRequests->setToolTip(tr("Return Selected Item(s)"));
+	}
+      else
+	{
+	  ui.actionRequests->setEnabled(false);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	  ui.actionRequests->setToolTip(tr("Item Requests"));
+	}
+    }
+
+  if(m_db.driverName() == "QSQLITE")
+    {
+      if((m_roles == "administrator" ||
+	  m_roles == "circulation") &&
+	 typefilter == "All Reserved")
+	{
+	  ui.actionRequests->setData(RequestActionItems::RETURN_RESERVED);
+	  ui.actionRequests->setEnabled(true);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
+	  ui.actionRequests->setToolTip(tr("Return Selected Item(s)"));
+	}
+      else
+	{
+	  ui.actionRequests->setEnabled(false);
+	  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	  ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
+	}
+    }
 }
 
 void biblioteq::quit(const char *msg, const char *file, const int line)

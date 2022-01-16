@@ -1091,6 +1091,9 @@
    <property name="text">
     <string>Item Requests</string>
    </property>
+   <property name="toolTip">
+    <string>Item Requests (PostgreSQL)</string>
+   </property>
   </action>
   <action name="actionPopulate_Members_Browser_Table_on_Display">
    <property name="checkable">

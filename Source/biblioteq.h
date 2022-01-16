@@ -342,6 +342,14 @@ class biblioteq: public QMainWindow
      TYPE = 6
     };
 
+  enum RequestActionItems
+    {
+     CANCEL_REQUESTED = 0,
+     NOTHING,
+     REQUEST_SELECTED,
+     RETURN_RESERVED
+    };
+
   QActionGroup *m_menuCategoryActionGroup;
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;

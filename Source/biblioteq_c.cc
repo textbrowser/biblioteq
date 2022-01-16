@@ -2989,8 +2989,9 @@ void biblioteq::slotConnectDB(void)
       */
 
       ui.actionChangePassword->setEnabled(true);
-      ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
+      ui.actionRequests->setData(RequestActionItems::REQUEST_SELECTED);
       ui.actionRequests->setEnabled(true);
+      ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
       ui.actionReservationHistory->setEnabled(true);
     }
 
@@ -4852,7 +4853,8 @@ void biblioteq::slotRemoveMember(void)
 void biblioteq::slotRequest(void)
 {
   /*
-  ** This method is used to either request an item or to cancel a request.
+  ** This method is used to cancel a request, request an item,
+  ** or to return the selected item(s).
   */
 
   QSqlQuery query(m_db);
@@ -4878,9 +4880,9 @@ void biblioteq::slotRequest(void)
       if(list.isEmpty())
 	{
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: User Error"),
-	     tr("Please select at least one item to place "
-		"on request."));
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("Please select at least one item to place on request."));
 	  QApplication::processEvents();
 	  return;
 	}
@@ -4889,19 +4891,21 @@ void biblioteq::slotRequest(void)
     {
       if(list.isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please select at least one request to "
-				   "cancel."));
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("Please select at least one request to cancel."));
 	  QApplication::processEvents();
 	  return;
 	}
 
       if(list.size() > 0)
 	{
-	  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+	  if(QMessageBox::question(this,
+				   tr("BiblioteQ: Question"),
 				   tr("Are you sure that you wish to "
 				      "cancel the selected request(s)?"),
-				   QMessageBox::Yes | QMessageBox::No,
+				   QMessageBox::No | QMessageBox::Yes,
 				   QMessageBox::No) == QMessageBox::No)
 	    {
 	      QApplication::processEvents();
