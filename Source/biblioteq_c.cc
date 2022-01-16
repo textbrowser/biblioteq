@@ -3159,9 +3159,10 @@ void biblioteq::slotDisconnect(void)
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
+  ui.actionRequests->setData(RequestActionItems::INACTIVE);
   ui.actionRequests->setEnabled(false);
-  ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
   ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+  ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
   ui.action_Database_Enumerations->setEnabled(false);
   ui.graphicsView->scene()->clear();
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
@@ -4853,8 +4854,8 @@ void biblioteq::slotRemoveMember(void)
 void biblioteq::slotRequest(void)
 {
   /*
-  ** This method is used to cancel a request, request an item,
-  ** or to return the selected item(s).
+  ** This method is used to cancel a request, request an item, or
+  ** to return the selected item(s).
   */
 
   QSqlQuery query(m_db);

@@ -345,7 +345,7 @@ class biblioteq: public QMainWindow
   enum RequestActionItems
     {
      CANCEL_REQUESTED = 0,
-     NOTHING,
+     INACTIVE,
      REQUEST_SELECTED,
      RETURN_RESERVED
     };

@@ -1234,7 +1234,7 @@ void biblioteq::adminSetup(void)
       ui.action_Database_Enumerations->setEnabled(true);
     }
 
-  ui.actionRequests->setData(RequestActionItems::NOTHING);
+  ui.actionRequests->setData(RequestActionItems::INACTIVE);
   ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
 
   /*
@@ -1561,7 +1561,7 @@ void biblioteq::prepareFilter(void)
 
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
 {
-  ui.actionRequests->setData(RequestActionItems::NOTHING);
+  ui.actionRequests->setData(RequestActionItems::INACTIVE);
 
   if(m_db.driverName() == "QPSQL" && m_db.isOpen())
     {
