@@ -3910,9 +3910,7 @@ void biblioteq::slotMembersContextMenu(const QPoint &point)
 		 SLOT(slotModifyBorrower(void)));
   menu.addAction(tr("Reserve Selected Item..."),
 		 this,
-		 SLOT(slotCheckout(void)))->setEnabled
-    (!(getTypeFilterString() == "All Overdue" ||
-       getTypeFilterString() == "All Reserved"));
+		 SLOT(slotCheckout(void)));
   menu.addSeparator();
   menu.addAction(tr("List Selected Member's Reserved Items"),
 		 this,

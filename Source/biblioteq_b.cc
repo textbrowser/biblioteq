@@ -4044,8 +4044,7 @@ void biblioteq::prepareContextMenus()
   else
     m_menu = new QMenu(this);
 
-  if(m_roles.contains("administrator") ||
-     m_roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
       if(getTypeFilterString() == "All Requested" &&
 	 !m_roles.contains("librarian"))
