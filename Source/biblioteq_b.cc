@@ -4048,9 +4048,12 @@ void biblioteq::prepareContextMenus()
     {
       if(getTypeFilterString() == "All Requested" &&
 	 !m_roles.contains("librarian"))
-	m_menu->addAction(tr("Cancel Requested Request(s)"),
-			  this,
-			  SLOT(slotRequest(void)));
+	{
+	  m_menu->addAction(tr("Cancel Selected Request(s)"),
+			    this,
+			    SLOT(slotRequest(void)));
+	  m_menu->addSeparator();
+	}
 
       m_menu->addAction(tr("Delete Selected Item(s)"),
 			this,
@@ -4061,32 +4064,37 @@ void biblioteq::prepareContextMenus()
       m_menu->addAction(tr("Modify Selected Item(s)..."),
 			this,
 			SLOT(slotModify(void)));
+      m_menu->addSeparator();
       m_menu->addAction(tr("Print Current View..."),
 			this,
 			SLOT(slotPrintView(void)));
 
-      if(getTypeFilterString() != "All Requested" &&
-	 !m_roles.contains("librarian"))
-	m_menu->addAction(tr("Reserve Selected Item..."),
-			  this,
-			  SLOT(slotReserveCopy(void)));
+      if(!m_roles.contains("librarian"))
+	{
+	  m_menu->addSeparator();
+	  m_menu->addAction(tr("Reserve Selected Item..."),
+			    this,
+			    SLOT(slotReserveCopy(void)));
+	}
     }
   else if(m_roles.contains("circulation"))
     {
       if(getTypeFilterString() == "All Requested")
-	m_menu->addAction(tr("Cancel Requested Request(s)"),
-			  this,
-			  SLOT(slotRequest(void)));
+	{
+	  m_menu->addAction(tr("Cancel Selected Request(s)"),
+			    this,
+			    SLOT(slotRequest(void)));
+	  m_menu->addSeparator();
+	}
 
       m_menu->addAction(tr("Print Current View..."),
 			this,
 			SLOT(slotPrintView(void)));
-
-      if(getTypeFilterString() != "All Requested")
-	m_menu->addAction(tr("Reserve Selected Item..."),
-			  this,
-			  SLOT(slotReserveCopy(void)));
-
+      m_menu->addSeparator();
+      m_menu->addAction(tr("Reserve Selected Item..."),
+			this,
+			SLOT(slotReserveCopy(void)));
+      m_menu->addSeparator();
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
@@ -4096,6 +4104,7 @@ void biblioteq::prepareContextMenus()
       m_menu->addAction(tr("Print Current View..."),
 			this,
 			SLOT(slotPrintView(void)));
+      m_menu->addSeparator();
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
@@ -4105,25 +4114,20 @@ void biblioteq::prepareContextMenus()
       if(!isGuest())
 	{
 	  if(getTypeFilterString() == "All Requested")
-	    {
-	      m_menu->addAction(tr("Print Current View..."),
-				this,
-				SLOT(slotPrintView(void)));
-	      m_menu->addAction(tr("Cancel Requested Request(s)"),
-				this,
-				SLOT(slotRequest(void)));
-	    }
+	    m_menu->addAction(tr("Cancel Selected Request(s)"),
+			      this,
+			      SLOT(slotRequest(void)));
 	  else
-	    {
-	      m_menu->addAction(tr("Print Current View..."),
-				this,
-				SLOT(slotPrintView(void)));
-	      m_menu->addAction(tr("Request Selected Item(s)"),
-				this,
-				SLOT(slotRequest(void)));
-	    }
+	    m_menu->addAction(tr("Request Selected Item(s)"),
+			      this,
+			      SLOT(slotRequest(void)));
 	}
 
+      m_menu->addSeparator();
+      m_menu->addAction(tr("Print Current View..."),
+			this,
+			SLOT(slotPrintView(void)));
+      m_menu->addSeparator();
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
 			SLOT(slotViewDetails(void)));
