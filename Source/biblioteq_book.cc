@@ -1978,8 +1978,8 @@ void biblioteq_book::slotConvertISBN10to13(void)
 
 void biblioteq_book::slotConvertISBN13to10(void)
 {
-  if(!(id.isbn13->text().trimmed().startsWith("978") ||
-       id.isbn13->text().trimmed().startsWith("979")))
+  if(!(id.isbn13->text().remove('-').trimmed().startsWith("978") ||
+       id.isbn13->text().remove('-').trimmed().startsWith("979")))
     {
       QMessageBox::critical
 	(this,
