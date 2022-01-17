@@ -3905,24 +3905,26 @@ void biblioteq::slotMembersContextMenu(const QPoint &point)
   menu.addAction(tr("Delete Selected Member"),
 		 this,
 		 SLOT(slotRemoveMember(void)));
-  menu.addAction(tr("List Selected Member's Reserved Items"),
-		 this,
-		 SLOT(slotListReservedItems(void)));
   menu.addAction(tr("Modify Selected Member..."),
 		 this,
 		 SLOT(slotModifyBorrower(void)));
-  menu.addAction(tr("Print Selected Member's Reserved Items..."),
-		 this,
-		 SLOT(slotPrintReserved(void)));
-  menu.addAction(tr("Refresh Table"),
-		 this,
-		 SLOT(slotPopulateMembersBrowser(void)));
   menu.addAction(tr("Reserve Selected Item..."),
 		 this,
 		 SLOT(slotCheckout(void)));
+  menu.addSeparator();
+  menu.addAction(tr("List Selected Member's Reserved Items"),
+		 this,
+		 SLOT(slotListReservedItems(void)));
+  menu.addAction(tr("Print Selected Member's Reserved Items..."),
+		 this,
+		 SLOT(slotPrintReserved(void)));
   menu.addAction(tr("Show Selected Member's Reservation History..."),
 		 this,
 		 SLOT(slotShowHistory(void)));
+  menu.addSeparator();
+  menu.addAction(tr("Refresh Table"),
+		 this,
+		 SLOT(slotPopulateMembersBrowser(void)));
   menu.exec(bb.table->mapToGlobal(point));
 }
 
@@ -4862,9 +4864,10 @@ void biblioteq::slotRequest(void)
   QString itemType = "";
   QString oid = "";
   auto error = false;
-  auto isRequesting = true;
+  auto isRequesting = false;
   auto list = ui.table->selectionModel()->selectedRows();
   auto now = QDate::currentDate();
+  auto task = RequestActionItems(ui.actionRequests->data().toInt());
   int ct = 0;
   int i = 0;
   int numcompleted = 0;
