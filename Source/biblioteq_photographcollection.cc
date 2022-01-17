@@ -2729,6 +2729,7 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       if(m_engWindowTitle != "Modify")
 	action->setEnabled(false);
 
+      menu.addSeparator();
       action = menu.addAction(tr("&View Photograph..."),
 			      this,
 			      SLOT(slotViewPhotograph(void)));

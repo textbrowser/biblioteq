@@ -281,20 +281,20 @@ bool biblioteq::emptyContainers(void)
 	      magazine->deleteLater();
 	  }
 
-      if(videogame)
-	{
-	  if(videogame->isVisible() && !videogame->close())
-	    return false;
-	  else
-	    videogame->deleteLater();
-	}
-
       if(photograph)
 	{
 	  if(photograph->isVisible() && !photograph->close())
 	    return false;
 	  else
 	    photograph->deleteLater();
+	}
+
+      if(videogame)
+	{
+	  if(videogame->isVisible() && !videogame->close())
+	    return false;
+	  else
+	    videogame->deleteLater();
 	}
     }
 
@@ -583,8 +583,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   int iconTableRowIdx = 0;
 
   /*
-  ** Adjust the dimensions of the graphics scene if pagination
-  ** is effectively disabled.
+  ** Adjust the dimensions of the graphics scene if pagination is disabled.
   */
 
   if(limit == -1)
@@ -1719,6 +1718,7 @@ void biblioteq::slotAdminContextMenu(const QPoint &point)
   menu.addAction(tr("Delete Selected Administrator"),
 		 this,
 		 SLOT(slotDeleteAdmin(void)));
+  menu.addSeparator();
   menu.addAction(tr("Refresh Table"),
 		 this,
 		 SLOT(slotRefreshAdminList(void)));
@@ -5039,6 +5039,11 @@ void biblioteq::slotRequest(void)
 	   tr("Unable to request some or all of the selected items. "
 	      "Please verify that you are not attempting to request "
 	      "duplicate items."));
+      else
+      	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Database Error"),
+	   tr("Unable to return some or all of the selected items."));
     }
 
   QApplication::processEvents();
