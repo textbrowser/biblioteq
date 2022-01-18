@@ -2876,7 +2876,6 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 		      QMessageBox::No) == QMessageBox::Yes)
 		    {
 		      QApplication::processEvents();
-		      slotDisconnect();
 		      br.filename->setText(dialog.selectedFiles().value(0));
 		      slotConnectDB();
 		    }
@@ -4475,9 +4474,6 @@ void biblioteq::slotShowChangePassword(void)
 
 void biblioteq::slotShowConnectionDB(void)
 {
-  if(m_db.isOpen())
-    return;
-
   slotBranchChanged();
 }
 
@@ -4750,7 +4746,6 @@ void biblioteq::slotSqliteFileSelected(bool state)
   if(!action)
     return;
 
-  slotDisconnect();
   br.filename->setText(action->data().toString());
   br.filename->setCursorPosition(0);
 

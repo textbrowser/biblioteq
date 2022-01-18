@@ -2539,12 +2539,7 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::slotConnectDB(void)
 {
-  /*
-  ** Prevent duplicate connections.
-  */
-
-  if(m_db.isOpen())
-    return;
+  slotDisconnect();
 
   auto tmphash(m_branches[br.branch_name->currentText()]);
 
@@ -2861,13 +2856,11 @@ void biblioteq::slotConnectDB(void)
       m_connected_bar_label->setToolTip(tr("Connected"));
     }
 
-  ui.actionConnect->setEnabled(false);
   ui.actionDatabaseSearch->setEnabled(true);
   ui.actionDisconnect->setEnabled(true);
   ui.actionRefreshTable->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
   ui.configTool->setEnabled(true);
-  ui.connectTool->setEnabled(false);
   ui.customQueryTool->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.disconnectTool->setEnabled(true);
@@ -3115,7 +3108,6 @@ void biblioteq::slotDisconnect(void)
   resetMembersBrowser();
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
-  ui.actionConnect->setEnabled(true);
   ui.actionDatabaseSearch->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
   ui.actionDisconnect->setEnabled(false);
@@ -3130,7 +3122,6 @@ void biblioteq::slotDisconnect(void)
   ui.action_Upgrade_SQLite_Schema->setEnabled(false);
   ui.action_VacuumDatabase->setEnabled(false);
   ui.configTool->setEnabled(false);
-  ui.connectTool->setEnabled(true);
   ui.createTool->setEnabled(false);
   ui.customQueryTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
