@@ -3925,7 +3925,8 @@ void biblioteq::slotMembersContextMenu(const QPoint &point)
   menu.addSeparator();
   menu.addAction(tr("Reserve Selected Item..."),
 		 this,
-		 SLOT(slotCheckout(void)));
+		 SLOT(slotCheckout(void)))->setEnabled
+    (!isCurrentItemAPhotograph());
   menu.exec(bb.table->mapToGlobal(point));
 }
 

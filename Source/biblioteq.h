@@ -408,6 +408,7 @@ class biblioteq: public QMainWindow
   QString viewHtml(void) const;
   QWidget *widgetForAction(QAction *action) const;
   bool emptyContainers(void);
+  bool isCurrentItemAPhotograph(void) const;
   void addConfigOptions(const QString &typefilter);
   void adminSetup(void);
   void changeEvent(QEvent *event);

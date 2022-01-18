@@ -17,6 +17,13 @@ QString biblioteq::formattedISBN13(const QString &str) const
   return m_otheroptions->isbn13DisplayFormat(str);
 }
 
+bool biblioteq::isCurrentItemAPhotograph(void) const
+{
+  return biblioteq_misc_functions::getColumnString
+    (ui.table, ui.table->currentRow(), ui.table->columnNumber("Type")) ==
+    "Photograph Collection";
+}
+
 bool biblioteq::showBookReadStatus(void) const
 {
   return m_otheroptions->showBookReadStatus();

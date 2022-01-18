@@ -4044,9 +4044,11 @@ void biblioteq::prepareContextMenus()
   else
     m_menu = new QMenu(this);
 
+  auto getTypeFilterString = this->getTypeFilterString();
+
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
-      if(getTypeFilterString() == "All Requested" &&
+      if(getTypeFilterString == "All Requested" &&
 	 !m_roles.contains("librarian"))
 	{
 	  m_menu->addAction(tr("Cancel Selected Request(s)"),
@@ -4074,12 +4076,13 @@ void biblioteq::prepareContextMenus()
 	  m_menu->addSeparator();
 	  m_menu->addAction(tr("Reserve Selected Item..."),
 			    this,
-			    SLOT(slotReserveCopy(void)));
+			    SLOT(slotReserveCopy(void)))->setEnabled
+	    (!isCurrentItemAPhotograph());
 	}
     }
   else if(m_roles.contains("circulation"))
     {
-      if(getTypeFilterString() == "All Requested")
+      if(getTypeFilterString == "All Requested")
 	{
 	  m_menu->addAction(tr("Cancel Selected Request(s)"),
 			    this,
@@ -4093,7 +4096,8 @@ void biblioteq::prepareContextMenus()
       m_menu->addSeparator();
       m_menu->addAction(tr("Reserve Selected Item..."),
 			this,
-			SLOT(slotReserveCopy(void)));
+			SLOT(slotReserveCopy(void)))->
+	setEnabled(isCurrentItemAPhotograph());
       m_menu->addSeparator();
       m_menu->addAction(tr("View Selected Item(s)..."),
 			this,
@@ -4113,7 +4117,7 @@ void biblioteq::prepareContextMenus()
     {
       if(!isGuest())
 	{
-	  if(getTypeFilterString() == "All Requested")
+	  if(getTypeFilterString == "All Requested")
 	    m_menu->addAction(tr("Cancel Selected Request(s)"),
 			      this,
 			      SLOT(slotRequest(void)));
