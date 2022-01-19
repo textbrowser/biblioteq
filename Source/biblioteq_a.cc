@@ -642,6 +642,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportAsCSV(void)));
+  connect(ui.actionExport_View_as_PNG,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportAsPNG(void)));
   connect(ui.action_Database_Enumerations,
 	  SIGNAL(triggered(void)),
 	  this,

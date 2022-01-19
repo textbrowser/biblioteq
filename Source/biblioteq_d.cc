@@ -1,4 +1,5 @@
 #include <QDir>
+#include <QFileDialog>
 #include <QSettings>
 
 #include "biblioteq.h"
@@ -83,6 +84,38 @@ void biblioteq::slotContributors(void)
     }
 
   m_contributors->show();
+}
+
+void biblioteq::slotExportAsPNG(void)
+{
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setDefaultSuffix("png");
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setNameFilter(tr("PNG (*.png)"));
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Export Icons View As PNG"));
+  dialog.exec();
+  QApplication::processEvents();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QImage image
+	(ui.graphicsView->scene()->itemsBoundingRect().size().toSize(),
+	 QImage::Format_RGB32);
+      QPainter painter;
+
+      image.fill(Qt::white);
+      painter.begin(&image);
+      ui.graphicsView->scene()->render(&painter);
+      painter.end();
+      image.save(dialog.selectedFiles().value(0), "PNG", 100);
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq::slotMembersPagesChanged(int value)

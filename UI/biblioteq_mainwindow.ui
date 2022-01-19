@@ -453,6 +453,7 @@
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
+    <addaction name="actionExport_View_as_PNG"/>
     <addaction name="actionExport_Current_View"/>
     <addaction name="separator"/>
     <addaction name="action_Print_Icons_View"/>
@@ -1319,6 +1320,15 @@
    </property>
    <property name="text">
     <string>&amp;Print Icons View...</string>
+   </property>
+  </action>
+  <action name="actionExport_View_as_PNG">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export Icons View as PNG...</string>
    </property>
   </action>
  </widget>
