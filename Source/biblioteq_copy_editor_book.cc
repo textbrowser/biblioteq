@@ -14,24 +14,23 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
  const QFont &font,
  const QString &uniqueIdArg):biblioteq_copy_editor(parent, biblioteq)
 {
-  qmain = biblioteq;
-  setWindowModality(Qt::ApplicationModal);
-  m_cb.setupUi(this);
   m_bitem = bitemArg;
-  m_ioid = ioidArg;
-  m_quantity = quantityArg;
-  m_spinbox = spinboxArg;
-  m_itemType = "Book";
-  m_showForLending = showForLendingArg;
+  m_cb.setupUi(this);
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  m_ioid = ioidArg;
+  m_itemType = "Book";
+  m_quantity = quantityArg;
+  m_showForLending = showForLendingArg;
+  m_spinbox = spinboxArg;
+  m_uniqueIdArg = uniqueIdArg.trimmed();
+  qmain = biblioteq;
+  setGlobalFonts(font);
+  setWindowModality(Qt::ApplicationModal);
 
-  if(!uniqueIdArg.trimmed().isEmpty())
-    setWindowTitle
-      (tr("BiblioteQ: Copy Browser (%1)").arg(uniqueIdArg));
+  if(!m_uniqueIdArg.trimmed().isEmpty())
+    setWindowTitle(tr("BiblioteQ: Copy Browser (%1)").arg(m_uniqueIdArg));
   else
     setWindowTitle(tr("BiblioteQ: Copy Browser"));
-
-  setGlobalFonts(font);
 }
 
 biblioteq_copy_editor_book::~biblioteq_copy_editor_book()
@@ -56,7 +55,9 @@ QString biblioteq_copy_editor_book::saveCopies(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to purge copy data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
       return query.lastError().text();
     }
   else
@@ -66,11 +67,11 @@ QString biblioteq_copy_editor_book::saveCopies(void)
       QProgressDialog progress(this);
 
       progress.setCancelButton(nullptr);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the copy data..."));
       progress.setMaximum(m_copies.size());
       progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
       progress.repaint();
       QApplication::processEvents();
@@ -152,7 +153,9 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
 	      qmain->addError(QString(tr("Database Error")),
 			      QString(tr("Unable to create copy data.")),
-			      query.lastError().text(), __FILE__, __LINE__);
+			      query.lastError().text(),
+			      __FILE__,
+			      __LINE__);
 	    }
 
 	continue_label:
@@ -224,13 +227,17 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
   if(!m_showForLending)
     {
-      m_cb.saveButton->setText(tr("&Save"));
-      disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
       disconnect(m_cb.deleteButton, SIGNAL(clicked(void)));
-      connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
-	      SLOT(slotSaveCopies(void)));
-      connect(m_cb.deleteButton, SIGNAL(clicked(void)), this,
+      disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
+      connect(m_cb.deleteButton,
+	      SIGNAL(clicked(void)),
+	      this,
 	      SLOT(slotDeleteCopy(void)));
+      connect(m_cb.saveButton,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotSaveCopies(void)));
+      m_cb.saveButton->setText(tr("&Save"));
     }
   else
     {
@@ -243,27 +250,32 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       duedate = duedate.addDays
-	(biblioteq_misc_functions::getMinimumDays
-	 (qmain->getDB(),
-	  m_itemType,
-	  errorstr));
+	(biblioteq_misc_functions::getMinimumDays(qmain->getDB(),
+						  m_itemType,
+						  errorstr));
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to retrieve "
 				   "the minimum number of days.")),
-			errorstr, __FILE__, __LINE__);
+			errorstr,
+			__FILE__,
+			__LINE__);
 
       m_cb.dueDate->setMinimumDate(duedate);
       m_cb.saveButton->setText(tr("&Reserve"));
       disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
-      connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
+      connect(m_cb.saveButton,
+	      SIGNAL(clicked(void)),
+	      this,
 	      SLOT(slotCheckoutCopy(void)));
     }
 
   disconnect(m_cb.cancelButton, SIGNAL(clicked(void)));
-  connect(m_cb.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_cb.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotCloseCopyEditor(void)));
 
   QProgressDialog progress1(this);
@@ -303,11 +315,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 2, true);
   updateGeometry();
   show();
-  progress1.setModal(true);
-  progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
+  progress1.setModal(true);
+  progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.show();
   progress1.repaint();
   QApplication::processEvents();
@@ -383,13 +395,19 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    if(m_showForLending)
 	      item->setFlags(Qt::NoItemFlags);
 	    else if(j == BARCODE)
-	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-			     Qt::ItemIsEditable);
+	      item->setFlags(Qt::ItemIsEditable |
+			     Qt::ItemIsEnabled |
+			     Qt::ItemIsSelectable);
 	    else
-	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	    if(j == BARCODE)
-	      item->setText("");
+	      {
+		if(!m_uniqueIdArg.isEmpty())
+		  item->setText(m_uniqueIdArg + "-" + QString::number(i + 1));
+		else
+		  item->setText("");
+	      }
 	    else if(j == AVAILABILITY)
 	      {
 		if(m_showForLending)
@@ -498,15 +516,16 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		else if(m_showForLending)
 		  {
 		    m_cb.table->item(row, j)->setFlags
-		      (Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		      (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 		    if(m_cb.table->currentRow() == -1)
 		      m_cb.table->selectRow(row);
 		  }
 		else if(j == BARCODE)
 		  m_cb.table->item(row, j)->setFlags
-		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-		     Qt::ItemIsEditable);
+		    (Qt::ItemIsEditable |
+		     Qt::ItemIsEnabled |
+		     Qt::ItemIsSelectable);
 
 		if(j == AVAILABILITY)
 		  m_cb.table->item(row, j)->setText
@@ -674,7 +693,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       QApplication::processEvents();
@@ -722,7 +743,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       if(!errorstr.isEmpty())
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to save the item's quantity.")),
-			errorstr, __FILE__, __LINE__);
+			errorstr,
+			__FILE__,
+			__LINE__);
       else
 	goto success_label;
     }
@@ -733,7 +756,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   if(!qmain->getDB().rollback())
     qmain->addError(QString(tr("Database Error")),
 		    QString(tr("Rollback failure.")),
-		    qmain->getDB().lastError().text(), __FILE__, __LINE__);
+		    qmain->getDB().lastError().text(),
+		    __FILE__,
+		    __LINE__);
 
   QApplication::restoreOverrideCursor();
   QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
@@ -750,7 +775,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       clearCopiesList();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Commit failure.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
       qmain->getDB().rollback();
       QApplication::restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),

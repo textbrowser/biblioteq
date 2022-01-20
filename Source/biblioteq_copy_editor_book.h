@@ -65,6 +65,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   QSpinBox *m_spinbox;
   QString m_ioid;
   QString m_itemType;
+  QString m_uniqueIdArg;
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
   Ui_bookcopybrowser m_cb;
