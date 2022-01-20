@@ -4849,8 +4849,8 @@ void biblioteq::slotRemoveMember(void)
 void biblioteq::slotRequest(void)
 {
   /*
-  ** This method is used to cancel a request, request an item, or
-  ** to return the selected item(s).
+  ** This method is used for canceling request(s), requesting item(s), or
+  ** returning selected item(s).
   */
 
   auto list(ui.table->selectionModel()->selectedRows());
