@@ -63,6 +63,7 @@ class biblioteq_copy_editor: public QDialog
   QSpinBox *m_spinbox;
   QString m_ioid;
   QString m_itemType;
+  QString m_uniqueIdArg;
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
   Ui_copybrowser m_cb;

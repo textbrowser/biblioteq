@@ -40,11 +40,11 @@ biblioteq_copy_editor::biblioteq_copy_editor
   m_showForLending = showForLendingArg;
   m_speedy = speedy;
   m_spinbox = spinboxArg;
+  m_uniqueIdArg = uniqueIdArg;
   qmain = biblioteq;
 
   if(!uniqueIdArg.trimmed().isEmpty())
-    setWindowTitle
-      (tr("BiblioteQ: Copy Browser (%1)").arg(uniqueIdArg));
+    setWindowTitle(tr("BiblioteQ: Copy Browser (%1)").arg(uniqueIdArg));
   else
     setWindowTitle(tr("BiblioteQ: Copy Browser"));
 
@@ -73,9 +73,11 @@ QString biblioteq_copy_editor::saveCopies(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to purge copy data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to purge copy data."),
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
       return query.lastError().text();
     }
   else
@@ -85,11 +87,11 @@ QString biblioteq_copy_editor::saveCopies(void)
       QProgressDialog progress(this);
 
       progress.setCancelButton(nullptr);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the copy data..."));
       progress.setMaximum(m_copies.size());
       progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
       progress.repaint();
       QApplication::processEvents();
@@ -150,9 +152,8 @@ QString biblioteq_copy_editor::saveCopies(void)
 	      else
 		{
 		  lastError = errorstr;
-		  qmain->addError(QString(tr("Database Error")),
-				  QString(tr("Unable to generate a unique "
-					     "integer.")),
+		  qmain->addError(tr("Database Error"),
+				  tr("Unable to generate a unique integer."),
 				  errorstr);
 		}
 	    }
@@ -164,9 +165,11 @@ QString biblioteq_copy_editor::saveCopies(void)
 	      if(lastError.isEmpty())
 		lastError = query.lastError().text();
 
-	      qmain->addError(QString(tr("Database Error")),
-			      QString(tr("Unable to create copy data.")),
-			      query.lastError().text(), __FILE__, __LINE__);
+	      qmain->addError(tr("Database Error"),
+			      tr("Unable to create copy data."),
+			      query.lastError().text(),
+			      __FILE__,
+			      __LINE__);
 	    }
 
 	continue_label:
@@ -235,19 +238,23 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   int j = 0;
   int row = 0;
 
-  m_cb.dueDateFrame->setVisible(m_showForLending);
   m_cb.deleteButton->setVisible(!m_showForLending);
   m_cb.deleteButton->setVisible(false);
+  m_cb.dueDateFrame->setVisible(m_showForLending);
 
   if(!m_showForLending)
     {
       m_cb.saveButton->setText(tr("&Save"));
-      disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
       disconnect(m_cb.deleteButton, SIGNAL(clicked(void)));
-      connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
-	      SLOT(slotSaveCopies(void)));
-      connect(m_cb.deleteButton, SIGNAL(clicked(void)), this,
+      disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
+      connect(m_cb.deleteButton,
+	      SIGNAL(clicked(void)),
+	      this,
 	      SLOT(slotDeleteCopy(void)));
+      connect(m_cb.saveButton,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotSaveCopies(void)));
     }
   else
     {
@@ -280,10 +287,11 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
       QApplication::restoreOverrideCursor();
 
       if(!errorstr1.isEmpty())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to retrieve "
-				   "the minimum number of days.")),
-			errorstr1, __FILE__, __LINE__);
+	qmain->addError(tr("Database Error"),
+			tr("Unable to retrieve the minimum number of days."),
+			errorstr1,
+			__FILE__,
+			__LINE__);
 
       m_cb.dueDate->setMinimumDate(duedate);
       m_cb.information->setText
@@ -291,7 +299,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	 arg(m_itemType).arg(maximumReserved).arg(totalReserved));
       m_cb.saveButton->setText(tr("&Reserve"));
       disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
-      connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
+      connect(m_cb.saveButton,
+	      SIGNAL(clicked(void)),
+	      this,
 	      SLOT(slotCheckoutCopy(void)));
     }
 
@@ -332,11 +342,11 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 2, true);
   updateGeometry();
   show();
-  progress1.setModal(true);
-  progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
+  progress1.setModal(true);
+  progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.show();
   progress1.repaint();
   QApplication::processEvents();
@@ -363,12 +373,17 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	  item->setFlags(Qt::NoItemFlags);
 	else if(j == BARCODE)
 	  item->setFlags
-	    (Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
+	    (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else
-	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	if(j == BARCODE)
-	  item->setText("");
+	  {
+	    if(!m_uniqueIdArg.isEmpty())
+	      item->setText(m_uniqueIdArg + "-" + QString::number(i + 1));
+	    else
+	      item->setText("");
+	  }
 	else if(j == AVAILABILITY)
 	  {
 	    if(m_showForLending)
@@ -443,15 +458,17 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Unable to retrieve copy data.")),
-		    query.lastError().text(), __FILE__, __LINE__);
+    qmain->addError(tr("Database Error"),
+		    tr("Unable to retrieve copy data."),
+		    query.lastError().text(),
+		    __FILE__,
+		    __LINE__);
 
   QApplication::restoreOverrideCursor();
-  progress2.setModal(true);
-  progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress2.setLabelText(tr("Retrieving copy information..."));
   progress2.setMinimum(0);
+  progress2.setModal(true);
+  progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
   /*
   ** SQLite does not support query.size().
@@ -510,16 +527,16 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		else if(m_showForLending)
 		  {
 		    m_cb.table->item(row, j)->setFlags
-		      (Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		      (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 		    if(m_cb.table->currentRow() == -1)
 		      m_cb.table->selectRow(row);
 		  }
 		else if(j == BARCODE)
 		  m_cb.table->item(row, j)->setFlags
-		    (Qt::ItemIsSelectable |
+		    (Qt::ItemIsEditable |
 		     Qt::ItemIsEnabled |
-		     Qt::ItemIsEditable);
+		     Qt::ItemIsSelectable);
 
 		if(j == AVAILABILITY)
 		  m_cb.table->item(row, j)->setText
@@ -585,7 +602,8 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 
   if(copyrow < 0 || m_cb.table->item(copyrow, BARCODE) == nullptr)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select a copy to reserve."));
       QApplication::processEvents();
       return;
@@ -593,7 +611,8 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   else if((m_cb.table->item(copyrow, BARCODE)->flags() &
 	   Qt::ItemIsEnabled) == 0)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("It appears that the copy you've selected "
 			       "is either unavailable or does not exist."));
       QApplication::processEvents();
@@ -601,7 +620,8 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     }
   else if(m_cb.dueDate->date() <= now)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select a future Due Date."));
       QApplication::processEvents();
       return;
@@ -624,11 +644,14 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 
   if(!available && errorstr.length() > 0)
     {
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to determine the selected copy's "
-				 "availability.")),
-		      errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to determine the selected copy's "
+			 "availability."),
+		      errorstr,
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to determine the selected copy's "
 			       "availability."));
       QApplication::processEvents();
@@ -636,7 +659,8 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     }
   else if(!available)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("The copy that you have selected is either "
 			       "unavailable or is reserved."));
       QApplication::processEvents();
@@ -666,10 +690,13 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a reserve record.")),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create a reserve record."),
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a reserve record."));
       QApplication::processEvents();
       return;
@@ -703,9 +730,11 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
       query.addBindValue(m_itemType);
 
       if(!query.exec())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to create a history record.")),
-			query.lastError().text(), __FILE__, __LINE__);
+	qmain->addError(tr("Database Error"),
+			tr("Unable to create a history record."),
+			query.lastError().text(),
+			__FILE__,
+			__LINE__);
     }
 
   /*
@@ -794,7 +823,8 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select the copy that you intend to "
 			       "delete."));
       QApplication::processEvents();
@@ -802,7 +832,8 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
     }
   else if(m_cb.table->rowCount() == 1)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("You must have at least one copy."));
       QApplication::processEvents();
       return;
@@ -829,7 +860,8 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 	  m_cb.table->item(row, AVAILABILITY)->setText("0");
 	}
 
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("It appears that the copy you selected to "
 			       "delete is reserved."));
       QApplication::processEvents();
@@ -837,11 +869,14 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
     }
   else if(errorstr.length() > 0)
     {
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to determine the reservation "
-				 "status of the selected copy.")),
-		      errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to determine the reservation "
+			 "status of the selected copy."),
+		      errorstr,
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to determine the reservation status "
 			       "of the selected copy."));
       QApplication::processEvents();
@@ -898,10 +933,13 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   if(!qmain->getDB().transaction())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create a database transaction."),
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       QApplication::processEvents();
       return;
@@ -937,9 +975,11 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to save the item's quantity.")),
-			errorstr, __FILE__, __LINE__);
+	qmain->addError(tr("Database Error"),
+			tr("Unable to save the item's quantity."),
+			errorstr,
+			__FILE__,
+			__LINE__);
       else
 	goto success_label;
     }
@@ -948,12 +988,15 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   clearCopiesList();
 
   if(!qmain->getDB().rollback())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Rollback failure.")),
-		    qmain->getDB().lastError().text(), __FILE__, __LINE__);
+    qmain->addError(tr("Database Error"),
+		    tr("Rollback failure."),
+		    qmain->getDB().lastError().text(),
+		    __FILE__,
+		    __LINE__);
 
   QApplication::restoreOverrideCursor();
-  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+  QMessageBox::critical(this,
+			tr("BiblioteQ: Database Error"),
 			tr("Unable to save the copy data."));
   QApplication::processEvents();
   return;
@@ -965,12 +1008,15 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   if(!qmain->getDB().commit())
     {
       clearCopiesList();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Commit failure.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
+      qmain->addError(tr("Database Error"),
+		      tr("Commit failure."),
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
       qmain->getDB().rollback();
       QApplication::restoreOverrideCursor();
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to commit the copy data."));
       QApplication::processEvents();
       return;
