@@ -4913,7 +4913,6 @@ void biblioteq::slotRequest(void)
     return;
 
   QProgressDialog progress(this);
-  QSqlQuery query(m_db);
   QString itemType("");
   QString oid("");
   auto error = false;
@@ -4942,6 +4941,8 @@ void biblioteq::slotRequest(void)
 
   foreach(const auto &index, list)
     {
+      QSqlQuery query(m_db);
+
       ct += 1;
       i = index.row();
       itemType = biblioteq_misc_functions::getColumnString
@@ -4978,6 +4979,47 @@ void biblioteq::slotRequest(void)
 	    }
 	  else
 	    {
+	      QString copyid("");
+
+	      copyid = biblioteq_misc_functions::getColumnString
+		(ui.table, i, ui.table->columnNumber("Barcode"));
+	      query.prepare
+		("DELETE FROM item_borrower WHERE "
+		 "copyid = ? AND item_oid = ? AND type = ?");
+	      query.addBindValue(copyid);
+	      query.addBindValue(oid);
+	      query.addBindValue(itemType);
+
+	      if(query.exec())
+		{
+		  QString memberid("");
+
+		  memberid = biblioteq_misc_functions::getColumnString
+		    (ui.table, i, ui.table->columnNumber("Member ID"));
+		  query.prepare("UPDATE member_history SET returned_date = ? "
+				"WHERE copyid = ? AND "
+				"item_oid = ? AND "
+				"memberid = ?");
+		  query.addBindValue(now.toString("MM/dd/yyyy"));
+		  query.addBindValue(copyid);
+		  query.addBindValue(oid);
+		  query.addBindValue(memberid);
+		  query.exec();
+		}
+
+	      if(query.lastError().isValid())
+		{
+		  addError(tr("Database Error"),
+			   tr("Unable to return the item."),
+			   query.lastError().text(),
+			   __FILE__,
+			   __LINE__);
+		  error = true;
+		}
+	      else
+		numcompleted += 1;
+
+	      goto progress_label;
 	    }
 
 	  if(!query.exec())
@@ -4996,16 +5038,12 @@ void biblioteq::slotRequest(void)
 			 query.lastError().text(),
 			 __FILE__,
 			 __LINE__);
-	      else
-		addError(tr("Database Error"),
-			 tr("Unable to return the item."),
-			 query.lastError().text(),
-			 __FILE__,
-			 __LINE__);
 	    }
 	  else
 	    numcompleted += 1;
 	}
+
+    progress_label:
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(ct);
