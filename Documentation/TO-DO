@@ -517,4 +517,4 @@
      whenever an item's information is saved via its details. (TBD)
 282. The artificial read-status column has broken the recording of
      visible columns. The status should not be a separate column.
-     Not a problem.
+     Not a problem. (Done)
