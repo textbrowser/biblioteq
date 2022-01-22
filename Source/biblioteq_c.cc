@@ -618,7 +618,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   auto columnNames(ui.table->columnNames());
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
     m_otheroptions->showBookReadStatus() &&
-    searchType != CUSTOM_QUERY;
+    typefilter == "Books";
   auto showMainTableImages = m_otheroptions->showMainTableImages();
   auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 

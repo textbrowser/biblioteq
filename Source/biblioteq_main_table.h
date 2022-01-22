@@ -1,6 +1,7 @@
 #ifndef _BIBLIOTEQ_MAIN_TABLE_H_
 #define _BIBLIOTEQ_MAIN_TABLE_H_
 
+#include <QPointer>
 #include <QTableWidget>
 
 class biblioteq;
@@ -38,8 +39,8 @@ class biblioteq_main_table: public QTableWidget
 
  private:
   QHash<QString, QList<int> > m_hiddenColumns;
+  QPointer<biblioteq> m_qmain;
   QVector<QString> m_columnHeaderIndexes;
-  biblioteq *m_qmain;
   void keyPressEvent(QKeyEvent *event);
   void setColumns(const QString &username,
 		  const QString &type,

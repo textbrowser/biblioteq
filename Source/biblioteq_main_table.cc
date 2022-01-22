@@ -571,7 +571,7 @@ void biblioteq_main_table::setColumns(const QString &username,
   if(m_qmain &&
      m_qmain->getDB().driverName() == "QSQLITE" &&
      m_qmain->showBookReadStatus() &&
-     type != "Custom")
+     type == "Books")
     {
       list.prepend(tr("Read Status"));
       m_columnHeaderIndexes.prepend("Read Status");

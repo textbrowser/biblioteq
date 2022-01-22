@@ -3630,7 +3630,7 @@ int biblioteq::populateTable(const int search_type_arg,
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
     m_otheroptions->showBookReadStatus() &&
-    search_type != CUSTOM_QUERY;
+    typefilter == "Books";
   auto showMainTableImages = m_otheroptions->showMainTableImages();
 
   while(i++, query.next())
