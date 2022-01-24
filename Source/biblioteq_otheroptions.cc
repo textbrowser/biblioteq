@@ -277,6 +277,8 @@ void biblioteq_otheroptions::prepareSettings(void)
     (qBound(0,
 	    settings.value("otheroptions/books_accession_number_index").toInt(),
 	    m_ui.books_accession_number->count() - 1));
+  m_ui.icons_view_column_count->setValue
+    (settings.value("otheroptions/icons_view_column_count").toInt());
   m_ui.isbn10_display_format->setCurrentIndex
     (qBound(0,
 	    settings.value("otheroptions/isbn10_display_format_index").toInt(),
@@ -467,6 +469,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/books_accession_number_index",
      m_ui.books_accession_number->currentIndex());
+  settings.setValue
+    ("otheroptions/icons_view_column_count",
+     m_ui.icons_view_column_count->value());
   settings.setValue
     ("otheroptions/isbn10_display_format_index",
      m_ui.isbn10_display_format->currentIndex());
