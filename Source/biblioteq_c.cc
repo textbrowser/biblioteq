@@ -354,6 +354,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
   QTableWidgetItem *item = nullptr;
   QString itemType("");
   QString str("");
+  auto columns = m_otheroptions->iconsViewColumnCount();
   auto limit = pageLimit();
   auto offset = m_queryOffset;
   int i = -1;
@@ -386,10 +387,11 @@ int biblioteq::populateTable(const QSqlQuery &query,
       else
 	offset = 0;
 
-      ui.graphicsView->setSceneRect(0.0,
-				    0.0,
-				    5.0 * 130.0,
-				    limit / 5.0 * 200.0 + 200.0);
+      ui.graphicsView->setSceneRect
+	(0.0,
+	 0.0,
+	 150.0 * static_cast<qreal> (columns),
+	 limit / (static_cast<qreal> (columns)) * 200.0 + 200.0);
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -597,7 +599,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
       if(size > 0)
 	ui.graphicsView->setSceneRect
-	  (0.0, 0.0, 5.0 * 150.0, (size / 5.0) * 200.0 + 200.0);
+	  (0.0,
+	   0.0,
+	   150.0 * static_cast<qreal> (columns),
+	   (size / static_cast<qreal> (columns)) * 200.0 + 200.0);
 
       if(progress && size >= 0)
 	progress->setMaximum(size);
@@ -838,17 +843,17 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    (QPixmap::fromImage(image), nullptr);
 
 		  if(iconTableRowIdx == 0)
-		    pixmapItem->setPos(140 * iconTableColumnIdx, 15);
+		    pixmapItem->setPos(140.0 * iconTableColumnIdx, 15.0);
 		  else
-		    pixmapItem->setPos(140 * iconTableColumnIdx,
-				       200 * iconTableRowIdx + 15);
+		    pixmapItem->setPos(140.0 * iconTableColumnIdx,
+				       200.0 * iconTableRowIdx + 15.0);
 
 		  pixmapItem->setFlag
 		    (QGraphicsItem::ItemIsSelectable, true);
 		  ui.graphicsView->scene()->addItem(pixmapItem);
 		  iconTableColumnIdx += 1;
 
-		  if(iconTableColumnIdx >= 5)
+		  if(columns <= iconTableColumnIdx)
 		    {
 		      iconTableRowIdx += 1;
 		      iconTableColumnIdx = 0;
