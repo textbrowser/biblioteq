@@ -59,6 +59,7 @@ class biblioteq_otheroptions: public QMainWindow
   bool showMainTableImages(void) const;
   bool showMainTableProgressDialogs(void) const;
   int booksAccessionNumberIndex(void) const;
+  int iconsViewColumnCount(void) const;
   void prepareSettings(void);
 
  private:

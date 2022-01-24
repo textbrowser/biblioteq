@@ -1,6 +1,7 @@
 #ifndef _BIBLIOTEQ_GENERIC_THREAD_H_
 #define _BIBLIOTEQ_GENERIC_THREAD_H_
 
+#include <QPointer>
 #include <QStringList>
 #include <QThread>
 
@@ -30,6 +31,7 @@ class biblioteq_generic_thread: public QThread
 
  private:
   QList<bool> m_outputListBool;
+  QPointer<biblioteq> qmain;
   QString m_eType;
   QString m_errorStr;
   QString m_filename;
@@ -37,7 +39,6 @@ class biblioteq_generic_thread: public QThread
   QString m_z3950SearchStr;
   QStringList m_list;
   QStringList m_z3950Results;
-  biblioteq *qmain;
   int m_type;
 };
 

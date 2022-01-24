@@ -120,8 +120,10 @@ void biblioteq_generic_thread::run(void)
 	if(recordSyntax.isEmpty())
 	  ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 	else
-	  ZOOM_options_set(options, "preferredRecordSyntax", recordSyntax.
-			   toLatin1().constData());
+	  ZOOM_options_set
+	    (options,
+	     "preferredRecordSyntax",
+	     recordSyntax.toLatin1().constData());
 
 	if(!hash.value("proxy_host").isEmpty() &&
 	   !hash.value("proxy_port").isEmpty())
@@ -147,11 +149,13 @@ void biblioteq_generic_thread::run(void)
 
 	zoomConnection = ZOOM_connection_create(options);
 	ZOOM_connection_connect
-	  (zoomConnection, (hash.value("Address") + ":" +
-			    hash.value("Port")).toLatin1().constData(), 0);
- 	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
-	   m_z3950SearchStr.toLatin1().constData());
+	   (hash.value("Address") +
+	    ":" +
+	    hash.value("Port")).toLatin1().constData(),
+	   0);
+ 	zoomResultSet = ZOOM_connection_search_pqf
+	  (zoomConnection, m_z3950SearchStr.toLatin1().constData());
 
 	auto format = hash.value("Format").trimmed().toLower();
 
@@ -161,7 +165,8 @@ void biblioteq_generic_thread::run(void)
 	  format.prepend("render; charset=");
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
-				     format.toLatin1().constData(), nullptr)) !=
+				     format.toLatin1().constData(),
+				     nullptr)) !=
 	      nullptr)
 	  {
 	    i += 1;

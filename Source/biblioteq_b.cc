@@ -98,6 +98,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QString type = "";
   QStringList tmplist; // Used for custom queries.
   QTableWidgetItem *item = nullptr;
+  auto columns = m_otheroptions->iconsViewColumnCount();
   auto now(QDate::currentDate());
   auto offset = m_queryOffset;
   auto search_type = search_type_arg;
@@ -144,8 +145,9 @@ int biblioteq::populateTable(const int search_type_arg,
       ui.graphicsView->setSceneRect
 	(0.0,
 	 0.0,
-	 5.0 * 130.0,
-	 static_cast<qreal> (limit / 5.0 * 200.0) + 200.0);
+	 150.0 * static_cast<qreal> (columns),
+	 static_cast<qreal> (limit / static_cast<qreal> (columns) * 200.0) +
+	 200.0);
     }
 
   QString bookFrontCover("'' AS front_cover ");
@@ -3580,10 +3582,11 @@ int biblioteq::populateTable(const int search_type_arg,
 	(searchstr, m_db, __FILE__, __LINE__, this);
 
       if(size > 0)
-	ui.graphicsView->setSceneRect(0.0,
-				      0.0,
-				      5.0 * 130.0,
-				      (size / 5.0) * 200.0 + 200.0);
+	ui.graphicsView->setSceneRect
+	  (0.0,
+	   0.0,
+	   150.0 * static_cast<qreal> (columns),
+	   (size / static_cast<qreal> (columns)) * 200.0 + 200.0);
 
       if(progress && size >= 0)
 	progress->setMaximum(size);
@@ -3836,16 +3839,16 @@ int biblioteq::populateTable(const int search_type_arg,
 		    (QPixmap::fromImage(image), nullptr);
 
 		  if(iconTableRowIdx == 0)
-		    pixmapItem->setPos(140 * iconTableColumnIdx, 15);
+		    pixmapItem->setPos(140.0 * iconTableColumnIdx + 15.0, 15.0);
 		  else
-		    pixmapItem->setPos(140 * iconTableColumnIdx,
-				       200 * iconTableRowIdx + 15);
+		    pixmapItem->setPos(140.0 * iconTableColumnIdx + 15.0,
+				       200.0 * iconTableRowIdx + 15.0);
 
 		  pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 		  ui.graphicsView->scene()->addItem(pixmapItem);
 		  iconTableColumnIdx += 1;
 
-		  if(iconTableColumnIdx >= 5)
+		  if(columns <= iconTableColumnIdx)
 		    {
 		      iconTableRowIdx += 1;
 		      iconTableColumnIdx = 0;
