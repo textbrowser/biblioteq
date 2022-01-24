@@ -294,6 +294,43 @@
              </layout>
             </item>
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>Icons View Column Count</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="icons_view_column_count">
+                <property name="toolTip">
+                 <string>[5, 100]</string>
+                </property>
+                <property name="minimum">
+                 <number>5</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
              <widget class="QCheckBox" name="show_maintable_progress_dialogs">
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall be shown during the populating of data on the main table / view. Dialogs may be interrupted by the F8 key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -503,6 +540,7 @@
   <tabstop>availability_color</tabstop>
   <tabstop>book_read_status</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
+  <tabstop>icons_view_column_count</tabstop>
   <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
