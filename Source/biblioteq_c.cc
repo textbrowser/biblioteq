@@ -1528,14 +1528,14 @@ void biblioteq::readGlobalSetup(void)
 	    toString().trimmed().remove('"');
 	  m_amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
 	    toString().trimmed();
+	  m_amazonImages["back_proxy_password"] = settings.value
+	    ("proxy_password", "").toString().trimmed();
 	  m_amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
 	    toString().trimmed();
 	  m_amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
 	    toString().trimmed();
 	  m_amazonImages["back_proxy_username"] = settings.value
 	    ("proxy_username", "").toString().trimmed();
-	  m_amazonImages["back_proxy_password"] = settings.value
-	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group() == "Amazon Front Cover Images")
 	{
@@ -1545,14 +1545,14 @@ void biblioteq::readGlobalSetup(void)
 	    toString().trimmed().remove('"');
 	  m_amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
 	    toString().trimmed();
+	  m_amazonImages["front_proxy_password"] = settings.value
+	    ("proxy_password", "").toString().trimmed();
 	  m_amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
 	    toString().trimmed();
 	  m_amazonImages["front_proxy_type"] = settings.value("proxy_type", "").
 	    toString().trimmed();
 	  m_amazonImages["front_proxy_username"] = settings.value
 	    ("proxy_username", "").toString().trimmed();
-	  m_amazonImages["front_proxy_password"] = settings.value
-	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group().startsWith("Branch"))
 	{
@@ -1565,9 +1565,9 @@ void biblioteq::readGlobalSetup(void)
 		toString().trimmed();
 	      hash["connection_options"] = settings.value
 		("connection_options", "").toString().trimmed();
-	      hash["hostname"] = settings.value("hostname", "").
-		toString().trimmed();
 	      hash["database_type"] = settings.value("database_type", "").
+		toString().trimmed();
+	      hash["hostname"] = settings.value("hostname", "").
 		toString().trimmed();
 	      hash["port"] = settings.value("port", "").toString().trimmed();
 	      hash["ssl_enabled"] = settings.value("ssl_enabled", "").
@@ -1579,10 +1579,8 @@ void biblioteq::readGlobalSetup(void)
       else if(settings.group().startsWith("Open Library"))
 	{
 	  if(settings.group() == "Open Library")
-	    {
-	      m_openLibraryItems["url_isbn"] =
-		settings.value("url_isbn").toString().trimmed();
-	    }
+	    m_openLibraryItems["url_isbn"] =
+	      settings.value("url_isbn").toString().trimmed();
 	  else
 	    {
 	      m_openLibraryImages["back_url"] =
@@ -1591,14 +1589,14 @@ void biblioteq::readGlobalSetup(void)
 		settings.value("front_url", "").toString().trimmed();
 	      m_openLibraryImages["proxy_host"] = settings.value
 		("proxy_host", "").toString().trimmed();
+	      m_openLibraryImages["proxy_password"] = settings.value
+		("proxy_password", "").toString().trimmed();
 	      m_openLibraryImages["proxy_port"] = settings.value
 		("proxy_port", "").toString().trimmed();
 	      m_openLibraryImages["proxy_type"] = settings.value
 		("proxy_type", "").toString().trimmed();
 	      m_openLibraryImages["proxy_username"] = settings.value
 		("proxy_username", "").toString().trimmed();
-	      m_openLibraryImages["proxy_password"] = settings.value
-		("proxy_password", "").toString().trimmed();
 	    }
 	}
       else if(settings.group().startsWith("SRU"))
@@ -1610,14 +1608,14 @@ void biblioteq::readGlobalSetup(void)
 	      hash["Name"] = settings.value("name", "").toString().trimmed();
 	      hash["proxy_host"] = settings.value("proxy_host", "").
 		toString().trimmed();
+	      hash["proxy_password"] = settings.value
+		("proxy_password", "").toString().trimmed();
 	      hash["proxy_port"] = settings.value("proxy_port", "").
 		toString().trimmed();
 	      hash["proxy_type"] = settings.value("proxy_type", "").
 		toString().trimmed();
 	      hash["proxy_username"] = settings.value
 		("proxy_username", "").toString().trimmed();
-	      hash["proxy_password"] = settings.value
-		("proxy_password", "").toString().trimmed();
 	      hash["url_isbn"] = settings.value
 		("url_isbn", "").toString().trimmed().remove('"');
 	      hash["url_issn"] = settings.value
@@ -1635,16 +1633,16 @@ void biblioteq::readGlobalSetup(void)
 		toString().trimmed();
 	      hash["Address"] = settings.value("hostname", "").
 		toString().trimmed();
-	      hash["Port"] = settings.value("port", "").toString().trimmed();
 	      hash["Database"] = settings.value("database_name", "").
 		toString().trimmed();
 	      hash["Format"] = settings.value("format", "marc8,utf-8").
 		toString().trimmed().remove('"');
+	      hash["Password"] = settings.value("password", "").
+		toString().trimmed();
+	      hash["Port"] = settings.value("port", "").toString().trimmed();
 	      hash["RecordSyntax"] = settings.value
 		("record_syntax", "MARC21").toString().trimmed();
 	      hash["Userid"] = settings.value("username", "").
-		toString().trimmed();
-	      hash["Password"] = settings.value("password", "").
 		toString().trimmed();
 	      hash["proxy_host"] = settings.value("proxy_host", "").
 		toString().trimmed();
@@ -1652,6 +1650,13 @@ void biblioteq::readGlobalSetup(void)
 		toString().trimmed();
 	      hash["timeout"] = settings.value("timeout", "30").
 		toString().trimmed();
+
+	      for(int j = 0; j < settings.allKeys().size(); j++)
+		if(settings.allKeys().at(j).length() > 4 &&
+		   settings.allKeys().at(j).startsWith("yaz_"))
+		  hash[settings.allKeys().at(j)] = settings.value
+		    (settings.allKeys().at(j)).toString().trimmed();
+
 	      m_z3950Maps.insert
 		(settings.value("name", "Z39.50 Site").toString().trimmed(),
 		 hash);

@@ -102,6 +102,7 @@ void biblioteq_generic_thread::run(void)
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 	ZOOM_connection zoomConnection = nullptr;
 	ZOOM_resultset zoomResultSet = nullptr;
+	QHashIterator<QString, QString> it(qmain->getZ3950Hash(m_z3950Name));
 	auto hash(qmain->getZ3950Hash(m_z3950Name));
 	auto options = ZOOM_options_create();
 	auto recordSyntax(hash.value("RecordSyntax").trimmed());
@@ -112,10 +113,12 @@ void biblioteq_generic_thread::run(void)
 	  (options,
 	   "databaseName",
 	   hash.value("Database").toLatin1().constData());
-	ZOOM_options_set
-	  (options,
-	   "timeout",
-	   hash.value("timeout", "30").toLatin1());
+
+	if(!hash.value("Password").isEmpty())
+	  ZOOM_options_set
+	    (options,
+	     "password",
+	     hash.value("Password").toLatin1().constData());
 
 	if(recordSyntax.isEmpty())
 	  ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
@@ -135,17 +138,31 @@ void biblioteq_generic_thread::run(void)
 	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }
 
+	ZOOM_options_set
+	  (options, "timeout", hash.value("timeout", "30").toLatin1());
+
 	if(!hash.value("Userid").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "user",
 	     hash.value("Userid").toLatin1().constData());
 
-	if(!hash.value("Password").isEmpty())
-	  ZOOM_options_set
-	    (options,
-	     "password",
-	     hash.value("Password").toLatin1().constData());
+	while(it.hasNext())
+	  {
+	    it.next();
+
+	    if(it.key().startsWith("yaz_"))
+	      {
+		auto option(it.key().mid(4));
+		auto value(it.value());
+
+		if(!option.isEmpty() && !value.isEmpty())
+		  ZOOM_options_set
+		    (options,
+		     option.toUtf8().constData(),
+		     value.toUtf8().constData());
+	      }
+	  }
 
 	zoomConnection = ZOOM_connection_create(options);
 	ZOOM_connection_connect
