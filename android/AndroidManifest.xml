@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.purple.biblioteq" android:installLocation="auto" android:versionCode="20211225" android:versionName="2021.12.25">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.purple.biblioteq" android:installLocation="auto" android:versionCode="20220130" android:versionName="2022.01.30">
     <!-- The comment below will be replaced with dependencies permissions upon deployment.
              Remove the comment if you do not require these default permissions. -->
     <!-- %%INSERT_PERMISSIONS -->
