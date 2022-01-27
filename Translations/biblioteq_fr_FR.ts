@@ -612,6 +612,10 @@
         <source>Case Insensitive</source>
         <translation>Insensible à la casse</translation>
     </message>
+    <message>
+        <source>Setting is retained for future sessions.</source>
+        <translation>Les paramètres sont conservés pour les sessions futures.</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq</name>
@@ -1365,11 +1369,11 @@
     </message>
     <message>
         <source>Please select at least one request to cancel.</source>
-        <translation>Veuillez sélectionner au moins une requête à annuler.</translation>
+        <translation type="vanished">Veuillez sélectionner au moins une requête à annuler.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation>Voulez-vous vraiment annuler la ou les requêtes sélectionnées ?</translation>
+        <translation type="vanished">Voulez-vous vraiment annuler la ou les requêtes sélectionnées ?</translation>
     </message>
     <message>
         <source>Requesting the selected item(s)...</source>
@@ -1381,7 +1385,7 @@
     </message>
     <message>
         <source>Unable to cancel the request.</source>
-        <translation>Impossible d&apos;annuler la requête.</translation>
+        <translation type="vanished">Impossible d&apos;annuler la requête.</translation>
     </message>
     <message>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
@@ -1389,7 +1393,7 @@
     </message>
     <message>
         <source>Unable to cancel some or all of the selected requests.</source>
-        <translation>Impossible d&apos;annuler certaines ou l&apos;ensemble des requêtes sélectionnées.</translation>
+        <translation type="vanished">Impossible d&apos;annuler certaines ou l&apos;ensemble des requêtes sélectionnées.</translation>
     </message>
     <message>
         <source>Books</source>
@@ -1757,7 +1761,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Canceling the selected request(s)...</source>
-        <translation>Annulation de la ou des requêtes sélectionnées...</translation>
+        <translation type="vanished">Annulation de la ou des requêtes sélectionnées...</translation>
     </message>
     <message>
         <source>All Available</source>
@@ -1769,7 +1773,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Tous les réservés</translation>
+        <translation>Tous les empruntés</translation>
     </message>
     <message>
         <source>Grey Literature</source>
@@ -1885,7 +1889,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Cancel Requested Request(s)</source>
-        <translation>Annuler la ou les demandes demandées</translation>
+        <translation type="vanished">Annuler la ou les demandes demandées</translation>
     </message>
     <message>
         <source>Delete Selected Item(s)</source>
@@ -1965,7 +1969,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Print Preview...</source>
-        <translation>imprimer apperçu...</translation>
+        <translation>Aperçu de l&apos;impression...</translation>
     </message>
     <message>
         <source>Executing %1 statements.&lt;br&gt;&lt;br&gt;</source>
@@ -2009,7 +2013,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Total Reserved</source>
-        <translation>Total réservé</translation>
+        <translation>Total emprunté</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
@@ -2102,6 +2106,66 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>Disabled for custom queries.</source>
         <translation>Désactivé pour les requêtes personnalisées.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Vacuuming Database</source>
+        <translation>BiblioteQ : Netoyage de la base de données</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;b&gt;Les personnes suivantes ont rendu BiblioteQ magnifique. Merci !&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Contributors</source>
+        <translation>BiblioteQ: Contributeurs</translation>
+    </message>
+    <message>
+        <source>Return Selected Item(s)</source>
+        <translation>Retourner le ou les articles sélectionnés</translation>
+    </message>
+    <message>
+        <source>Please select at least one reservation request to cancel.</source>
+        <translation>Veuillez sélectionner au moins une demande de réservation à annuler.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to cancel the selected reservation request(s)?</source>
+        <translation>Êtes-vous sûr de vouloir annuler la ou les demandes de réservation sélectionnées ?</translation>
+    </message>
+    <message>
+        <source>Please select at least one item to return.</source>
+        <translation>Veuillez sélectionner au moins un article à retourner.</translation>
+    </message>
+    <message>
+        <source>Canceling the selected reservation request(s)...</source>
+        <translation>Annuler la ou les demandes de réservation sélectionnées...</translation>
+    </message>
+    <message>
+        <source>Returning the selected item(s)...</source>
+        <translation>Annuler la ou les demandes de réservation sélectionnées...</translation>
+    </message>
+    <message>
+        <source>Unable to cancel the reservation request.</source>
+        <translation>Impossible d&apos;annuler la demande de réservation.</translation>
+    </message>
+    <message>
+        <source>Unable to return the item.</source>
+        <translation>Impossible de retourner l&apos;article.</translation>
+    </message>
+    <message>
+        <source>Unable to cancel some or all of the selected reservation requests.</source>
+        <translation>Impossible d&apos;annuler une partie ou la totalité des demandes de réservation sélectionnées.</translation>
+    </message>
+    <message>
+        <source>Unable to return some or all of the selected items.</source>
+        <translation>Impossible de renvoyer une partie ou la totalité des éléments sélectionnés.</translation>
+    </message>
+    <message>
+        <source>PNG (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Icons View As PNG</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3409,7 +3473,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation>&amp;Réserver</translation>
+        <translation>&amp;Emprunter</translation>
     </message>
     <message>
         <source>Title</source>
@@ -3541,7 +3605,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Maximum %1s Reserved %2 | Total %1s Reserved %3</source>
-        <translation>Maximum %1s Eempruntés %2 | Total %1s Empruntés %3</translation>
+        <translation>Maximum de %1s pouvant être empruntés : %2 | Total de %1s Empruntés : %3</translation>
     </message>
     <message>
         <source>Status</source>
@@ -3600,7 +3664,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation>&amp;Réserver</translation>
+        <translation>&amp;Emprunter</translation>
     </message>
     <message>
         <source>Title</source>
@@ -5623,7 +5687,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Total Reserved</source>
-        <translation>Total réservé</translation>
+        <translation>Total emprunté</translation>
     </message>
     <message>
         <source>Type</source>
@@ -5913,7 +5977,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Preparing preview...</source>
-        <translation>imprimer aperçu...</translation>
+        <translation>Préparation de l&apos;aperçu...</translation>
     </message>
     <message>
         <source>Preparing preview... Page %1...</source>
@@ -8527,7 +8591,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Template 1 (BiblioteQ Books Column Order)</source>
-        <translation>Modèle 1 (Ordre des colonnes des livres BiblioteQ)</translation>
+        <translation type="vanished">Modèle 1 (Ordre des colonnes des livres BiblioteQ)</translation>
     </message>
     <message>
         <source>CSV Column Number</source>
@@ -8591,7 +8655,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Template 2 (BiblioteQ Patrons Column Order)</source>
-        <translation>Modèle 2 (BibloteQ Utilisateurs ordre des colonnes)</translation>
+        <translation type="vanished">Modèle 2 (BibloteQ Utilisateurs ordre des colonnes)</translation>
     </message>
     <message>
         <source>BiblioteQ Table Field Name</source>
@@ -8600,6 +8664,34 @@ minmal de jours.</translation>
     <message>
         <source>5</source>
         <translation>5</translation>
+    </message>
+    <message>
+        <source>Please do not ignore unique fields!</source>
+        <translation>N&apos;ignorez pas les champs de type uniques !</translation>
+    </message>
+    <message>
+        <source>Template 1 (BiblioteQ Books (All Fields))</source>
+        <translation>Modèle 1 (Livres BiblioteQ (tous les champs))</translation>
+    </message>
+    <message>
+        <source>Template 2 (BiblioteQ Books Column Order (Some Fields))</source>
+        <translation>Modèle 2 (Ordre des colonnes des livres BiblioteQ (certains champs))</translation>
+    </message>
+    <message>
+        <source>Template 3 (BiblioteQ Patrons)</source>
+        <translation>Modèle 3 (Membres de BiblioteQ)</translation>
+    </message>
+    <message>
+        <source>Bottom Scroll On Add</source>
+        <translation>Défilement bas de page sur l&apos;ajout</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Aide</translation>
+    </message>
+    <message>
+        <source>&amp;Documentation...</source>
+        <translation>&amp;Documentation...</translation>
     </message>
 </context>
 <context>
@@ -8718,7 +8810,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Sommaire</translation>
+        <translation type="vanished">Sommaire</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
@@ -8943,6 +9035,10 @@ minmal de jours.</translation>
     <message>
         <source>Parse</source>
         <translation>Analyse</translation>
+    </message>
+    <message>
+        <source>Abstract / Description</source>
+        <translation>Résumé / Description</translation>
     </message>
 </context>
 <context>
@@ -9834,6 +9930,22 @@ minmal de jours.</translation>
         <source>Accession Number</source>
         <translation>Numéro d&apos;accès</translation>
     </message>
+    <message>
+        <source>Contributors...</source>
+        <translation>Contributeurs...</translation>
+    </message>
+    <message>
+        <source>&amp;Print Icons View...</source>
+        <translation>&amp;Impression de la vue par image...</translation>
+    </message>
+    <message>
+        <source>Item Requests (PostgreSQL)</source>
+        <translation>Requêtes d&apos;articles (PostgreSQL)</translation>
+    </message>
+    <message>
+        <source>Export Icons View as PNG...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -10182,7 +10294,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Total Reserved</source>
-        <translation>Total réservé</translation>
+        <translation>Total emprunté</translation>
     </message>
     <message>
         <source>Page</source>
@@ -10316,7 +10428,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Please refresh the main table if availability colors are modified.</source>
-        <translation>Veuillez rafraîchir le tableau principal si les couleurs de disponibilité sont modifiées.</translation>
+        <translation type="vanished">Veuillez rafraîchir le tableau principal si les couleurs de disponibilité sont modifiées.</translation>
     </message>
     <message>
         <source>&amp;Availability Colors</source>
@@ -10332,7 +10444,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Please refresh the main table if sort settings are modified. Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
-        <translation>Veuillez rafraîchir le tableau principal si les paramètres de tri sont modifiés. Les options de tri sont prises en compte par catégorie. Par exemple, BiblioteQ doit être dans l&apos;état Livres pour que l&apos;algorithme de tri par numéro d&apos;accession soit appliqué.</translation>
+        <translation type="vanished">Veuillez rafraîchir le tableau principal si les paramètres de tri sont modifiés. Les options de tri sont prises en compte par catégorie. Par exemple, BiblioteQ doit être dans l&apos;état Livres pour que l&apos;algorithme de tri par numéro d&apos;accession soit appliqué.</translation>
     </message>
     <message>
         <source>Books</source>
@@ -10365,6 +10477,58 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Show Table / View Images</source>
         <translation>&amp;Afficher le tableau / Voir les images</translation>
+    </message>
+    <message>
+        <source>Please refresh the main table / view if options are modified!</source>
+        <translation>Veuillez rafraîchir le tableau principal / la vue si les options sont modifiées !</translation>
+    </message>
+    <message>
+        <source>ISBN Display Formats</source>
+        <translation>Formats d&apos;affichage de l&apos;ISBN</translation>
+    </message>
+    <message>
+        <source>ISBN-10</source>
+        <translation>ISBN-10</translation>
+    </message>
+    <message>
+        <source>A-BCDE-FGHI-J</source>
+        <translation>A-BCDE-FGHI-J</translation>
+    </message>
+    <message>
+        <source>ISBN-13</source>
+        <translation>ISBN-13</translation>
+    </message>
+    <message>
+        <source>97X-ABCD-EFGH-IJ</source>
+        <translation>97X-ABCD-EFGH-IJ</translation>
+    </message>
+    <message>
+        <source>A-BCDEFG-HIJKLM</source>
+        <translation>A-BCDEFG-HIJKLM</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display the Read Status column for books housed in an SQLite database. Please note that enabling this option may degrade performance for views containing numerous items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Affiche la colonne État de lecture pour les livres hébergés dans une base de données SQLite. Veuillez noter que l&apos;activation de cette option peut dégrader les performances des vues contenant de nombreux éléments.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Book Read Status</source>
+        <translation>Status de lecture  du livre</translation>
+    </message>
+    <message>
+        <source>Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
+        <translation>Les options de tri sont prises en compte par catégorie. Par exemple, BiblioteQ doit être dans l&apos;état Livres pour que l&apos;algorithme de tri par numéro d&apos;accession soit appliqué.</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display the Read Status column for the Books category. Please note that enabling this option may degrade performance for views containing numerous items. SQLite databases only.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons View Column Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[5, 100]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -10700,7 +10864,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Print Preview...</source>
-        <translation>imprimer apperçu...</translation>
+        <translation>Aperçu de l&apos;impression...</translation>
     </message>
 </context>
 <context>

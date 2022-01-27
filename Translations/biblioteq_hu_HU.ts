@@ -500,7 +500,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+R</source>
+        <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -604,6 +604,10 @@
     </message>
     <message>
         <source>Case Insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setting is retained for future sessions.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -763,7 +767,7 @@
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -1253,11 +1257,11 @@
     </message>
     <message>
         <source>Please select at least one request to cancel.</source>
-        <translation type="unfinished">Jelöljön ki legalább egy törlendő lefoglalást.</translation>
+        <translation type="obsolete">Jelöljön ki legalább egy törlendő lefoglalást.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation type="unfinished">Biztosan szeretné törölni a kijelölt lefoglalásokat?</translation>
+        <translation type="obsolete">Biztosan szeretné törölni a kijelölt lefoglalásokat?</translation>
     </message>
     <message>
         <source>Requesting the selected item(s)...</source>
@@ -1265,7 +1269,7 @@
     </message>
     <message>
         <source>Canceling the selected request(s)...</source>
-        <translation type="unfinished">Kijelölt lefoglalások törlése...</translation>
+        <translation type="obsolete">Kijelölt lefoglalások törlése...</translation>
     </message>
     <message>
         <source>All Available</source>
@@ -1741,15 +1745,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to cancel the request.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to cancel some or all of the selected requests.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1893,10 +1889,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cancel Requested Request(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete Selected Item(s)</source>
         <translation type="unfinished">Kijelölt Cikk(ek) Törlése</translation>
     </message>
@@ -2021,15 +2013,155 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Összes Kölcsönzött</translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;hr&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;b&gt;Read&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Requests (PostgreSQL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Return Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;SQLite version %9.&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poppler version is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to execute the statement?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interrupt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled for custom queries.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Patrons As CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation type="unfinished">Város</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Hozzászólások</translation>
+    </message>
+    <message>
+        <source>Date of Birth</source>
+        <translation type="unfinished">Születésnap</translation>
+    </message>
+    <message>
+        <source>General Registration Number</source>
+        <translation type="unfinished">Áltlános Regisztrációs Szám</translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Member Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Middle Initial</source>
+        <translation type="unfinished">2 Utónév 1 Betű</translation>
+    </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation type="unfinished">Késedelmi Díjak</translation>
+    </message>
+    <message>
+        <source>Sex</source>
+        <translation type="unfinished">Nem</translation>
+    </message>
+    <message>
+        <source>State</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Street</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <source>ZIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select at least one reservation request to cancel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to cancel the selected reservation request(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select at least one item to return.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canceling the selected reservation request(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Returning the selected item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to return the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to cancel the reservation request.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to cancel some or all of the selected reservation requests.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to return some or all of the selected items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Vacuuming Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Icons View As PNG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Release Notes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2145,7 +2277,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -2727,6 +2859,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>URL:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The YAZ library is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -2939,7 +3075,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -3542,7 +3678,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
 </context>
 <context>
@@ -3741,7 +3877,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>Available</source>
@@ -3900,6 +4036,53 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_documentationwindow</name>
+    <message>
+        <source>BiblioteQ: Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">Fájl</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">Szerkesztés</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">Bezárás</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_dvd</name>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -3991,7 +4174,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -4428,7 +4611,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_grey_literature</name>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -4837,24 +5020,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_import</name>
     <message>
-        <source>biblioteq_misc_functions::createInitialCopies() error (%1) on row %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Database error (%1) on row %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Empty row %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
-    </message>
-    <message>
-        <source>Populate the Books table with Template 1 values?</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -4866,10 +5037,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The file %1 is not readable.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Duplicate mapping discovered in the Books table. Please review row %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4907,6 +5074,38 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Select CSV Import File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>biblioteq_misc_functions::createInitialCopies() error (%1) at row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database error (%1) at row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction at row %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error (%1) in biblioteq_misc_functions::DBAccount() at row %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction at row.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reading the CSV file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate mapping discovered in the table. Please review row %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate the table with Template %1 values?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5017,7 +5216,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -5515,6 +5714,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>One or more SSL errors occurred. Please verify your settings.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The YAZ library is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_main_table</name>
@@ -5921,7 +6124,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -6261,6 +6464,29 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_sqlite_merge_databases</name>
+    <message>
+        <source>Select SQLite Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Merging databases...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3, myoid %4.&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SQLite Database Selection</source>
+        <translation type="unfinished">BiblioteQ: SQLite Adatbázis Kiválasztása</translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_sruresults</name>
     <message>
         <source>Record #</source>
@@ -6347,7 +6573,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -7500,10 +7726,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Database Tables</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7528,7 +7750,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+R</source>
+        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query. Please include myoid and type fields as these fields are required by BiblioteQ for editing of items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7755,15 +7981,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8142,6 +8368,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>generalmessagediag</name>
@@ -8237,7 +8467,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+R</source>
+        <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8280,15 +8510,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Template 1 (BiblioteQ Books Column Order)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>CSV Column Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ Books Table Field Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8337,6 +8559,50 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Ignored CSV Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Frissítése*</translation>
+    </message>
+    <message>
+        <source>Please do not ignore unique fields!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 1 (BiblioteQ Books (All Fields))</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 2 (BiblioteQ Books Column Order (Some Fields))</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template 3 (BiblioteQ Patrons)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ Table Field Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom Scroll On Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation type="unfinished">Segítség</translation>
+    </message>
+    <message>
+        <source>&amp;Documentation...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8448,7 +8714,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Abstract</source>
-        <translation type="unfinished">Összefoglalás</translation>
+        <translation type="obsolete">Összefoglalás</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -8647,10 +8913,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>MARC21</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8659,11 +8921,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Parse MARC Tags</source>
+        <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>URL</source>
+        <source>Guess</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abstract / Description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8878,10 +9148,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>MARC21</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8890,7 +9156,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Parse MARC Tags</source>
+        <source>Guess</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parse</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9341,10 +9611,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9490,6 +9756,58 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Password (PostgreSQL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure Administrator Privileges (PostgreSQL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Requests (PostgreSQL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;English...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;French...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Release Notes...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Merge SQLite Databases...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contributors...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print Icons View...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Icons View as PNG...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9792,7 +10110,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Grant Privileges</source>
-        <translation type="unfinished">Jogosultságok Megadása</translation>
+        <translation type="obsolete">Jogosultságok Megadása</translation>
     </message>
     <message>
         <source>List All Overdue Items</source>
@@ -9831,14 +10149,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Fájl</translation>
     </message>
     <message>
-        <source>&amp;Export Table View as CSV...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Filter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9849,6 +10159,85 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>Total Reserved</source>
         <translation type="unfinished">Összes Kölcsönzött</translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished">Oldal</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Members Per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable speedy reservations. The first available copy will be reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grant Privileges (PostgreSQL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export All Member Information as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mergeSQLiteDatabases</name>
+    <message>
+        <source>BiblioteQ: Merge SQLite Databases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQLite Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Merge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9882,10 +10271,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please reload table on value change.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Items</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9906,10 +10291,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please refresh the main table if availability colors are modified.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Availability Colors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9918,15 +10299,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Show Table Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please refresh the main table if sort settings are modified. Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9943,6 +10316,70 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refresh the main table / view if options are modified!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISBN Display Formats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISBN-10</source>
+        <translation type="unfinished">ISBN-13: {10?}</translation>
+    </message>
+    <message>
+        <source>A-BCDE-FGHI-J</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISBN-13</source>
+        <translation type="unfinished">ISBN-13: {13?}</translation>
+    </message>
+    <message>
+        <source>97X-ABCD-EFGH-IJ</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A-BCDEFG-HIJKLM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display the Read Status column for the Books category. Please note that enabling this option may degrade performance for views containing numerous items. SQLite databases only.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Read Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons View Column Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[5, 100]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall be shown during the populating of data on the main table / view. Dialogs may be interrupted by the F8 key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Progress Dialogs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Table / View Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
