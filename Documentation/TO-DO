@@ -518,3 +518,4 @@
 282. The artificial read-status column has broken the recording of
      visible columns. The status should not be a separate column.
      Not a problem. (Done)
+283. QSqlField::tableName() and Qt 5.5.1. (TBD)
