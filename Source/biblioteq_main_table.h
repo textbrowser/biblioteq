@@ -14,13 +14,13 @@ class biblioteq_main_table: public QTableWidget
   biblioteq_main_table(QWidget *parent);
   QHash<QString, QString> friendlyStates(void) const;
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
-  QModelIndex indexFromItem(QTableWidgetItem *item) const
-#else
   QModelIndex indexFromItem(const QTableWidgetItem *item) const
-#endif
   {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    return QTableWidget::indexFromItem(const_cast<QTableWidgetItem *> (item));
+#else
     return QTableWidget::indexFromItem(item);
+#endif
   }
 
   QStringList columnNames(void) const;
