@@ -25,7 +25,7 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -pedantic \
                           -pie \
                           -std=c++11
-QMAKE_DISTCLEAN += /Q debug temp .qmake.cache .qmake.stash
+QMAKE_DISTCLEAN += \/Q debug temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
