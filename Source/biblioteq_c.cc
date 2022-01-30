@@ -694,8 +694,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  tooltip.append(columnName);
 		  tooltip.append(":</b> ");
 
+#if QT_VERSION > 0x050501
 		  if(record.field(j).tableName() == "book" &&
 		     (fieldName == "id" || fieldName == "isbn13"))
+#else
+		  if(fieldName == "id" || fieldName == "isbn13")
+#endif
 		    {
 		      auto str(m_searchQuery.value(j).toString().trimmed());
 
@@ -749,8 +753,12 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    str = m_searchQuery.value(j).toString().trimmed();
 		}
 
+#if QT_VERSION > 0x050501
 	      if(record.field(j).tableName() == "book" &&
 		 (fieldName == "id" || fieldName == "isbn13"))
+#else
+	      if(fieldName == "id" || fieldName == "isbn13")
+#endif
 		{
 		  if(fieldName == "id")
 		    str = m_otheroptions->isbn10DisplayFormat(str);
