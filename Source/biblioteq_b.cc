@@ -5338,6 +5338,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD book_read INTEGER DEFAULT 0");
   list.append("ALTER TABLE member ADD maximum_reserved_books "
 	      "INTEGER NOT NULL DEFAULT 0");
+  list.append("ALTER TABLE book ADD alternate_id_1 TEXT");
 
   QString errors("<html>");
   int ct = 1;

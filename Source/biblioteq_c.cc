@@ -2404,7 +2404,8 @@ void biblioteq::slotCheckout(void)
 
   if(type == "Photograph Collection")
     {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag,
+			    tr("BiblioteQ: User Error"),
 			    tr("Photographs may not be reserved."));
       QApplication::processEvents();
       return;
@@ -2433,7 +2434,8 @@ void biblioteq::slotCheckout(void)
 
       if(expired || !errorstr.isEmpty())
 	{
-	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(m_members_diag,
+				tr("BiblioteQ: User Error"),
 				tr("It appears that the selected member's "
 				   "membership has expired."));
 	  QApplication::processEvents();
@@ -4755,9 +4757,9 @@ void biblioteq::slotRemoveMember(void)
   if(counts.value("numtotal") != 0)
     {
       QMessageBox::critical
-	(m_members_diag, tr("BiblioteQ: User Error"),
-	 tr("You may not remove a member that has reserved "
-	    "items."));
+	(m_members_diag,
+	 tr("BiblioteQ: User Error"),
+	 tr("You may not remove a member that has reserved items."));
       QApplication::processEvents();
       return;
     }

@@ -2451,10 +2451,10 @@ void biblioteq::slotCopyError(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(m_error_diag, tr("BiblioteQ: User Error"),
-			    tr("To copy the contents of the Error "
-			       "Log into "
-			       "the clipboard buffer, you must first "
+      QMessageBox::critical(m_error_diag,
+			    tr("BiblioteQ: User Error"),
+			    tr("To copy the contents of the Error Log "
+			       "into the clipboard buffer, you must first "
 			       "select at least one entry."));
       QApplication::processEvents();
       return;
@@ -2600,7 +2600,8 @@ void biblioteq::slotDelete(void)
 
   if(!list.isEmpty())
     {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to permanently "
 				  "delete the selected item(s)?"),
 			       QMessageBox::Yes | QMessageBox::No,

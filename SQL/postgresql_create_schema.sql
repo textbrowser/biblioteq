@@ -11,6 +11,7 @@ CREATE TABLE admin
 CREATE TABLE book
 (
 	accession_number TEXT,
+	alternate_id_1	 TEXT,
 	author		 TEXT NOT NULL,
 	back_cover	 BYTEA,
 	binding_type	 VARCHAR(32) NOT NULL,
