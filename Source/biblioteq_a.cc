@@ -1822,6 +1822,7 @@ void biblioteq::resetMembersBrowser(void)
   list.append(tr("Home Address"));
   list.append(tr("Member Since"));
   list.append(tr("Expiration Date"));
+  list.append(tr("Overdue Fees"));
   list.append(tr("Books Reserved"));
   list.append(tr("CDs Reserved"));
   list.append(tr("DVDs Reserved"));
@@ -1838,6 +1839,7 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Home Address");
   m_bbColumnHeaderIndexes.append("Member Since");
   m_bbColumnHeaderIndexes.append("Expiration Date");
+  m_bbColumnHeaderIndexes.append("Overdue Fees");
   m_bbColumnHeaderIndexes.append("Books Reserved");
   m_bbColumnHeaderIndexes.append("CDs Reserved");
   m_bbColumnHeaderIndexes.append("DVDs Reserved");
@@ -3283,8 +3285,7 @@ void biblioteq::slotListOverdueItems(void)
 
   if(m_members_diag->isVisible())
     memberid = biblioteq_misc_functions::getColumnString
-      (bb.table, row,
-       m_bbColumnHeaderIndexes.indexOf("Member ID"));
+      (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   else if(m_roles.isEmpty())
     memberid = dbUserName();
 

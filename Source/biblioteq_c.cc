@@ -4291,6 +4291,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "member.zip AS address, "
     "member.membersince, "
     "member.expiration_date, "
+    "member.overdue_fees, "
     "COUNT(DISTINCT ib1.myoid) AS number_reserved_books, "
     "COUNT(DISTINCT ib2.myoid) AS number_reserved_cds, "
     "COUNT(DISTINCT ib3.myoid) AS number_reserved_dvds, "
@@ -4346,7 +4347,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	     "member.telephone_num, "
 	     "address, "
 	     "member.membersince, "
-	     "member.expiration_date ");
+	     "member.expiration_date, "
+	     "member.overdue_fees ");
   str.append("ORDER BY member.memberid ");
   str.append(QString("LIMIT %1 OFFSET %2").
 	     arg(bb.pages->value()).
@@ -6016,6 +6018,9 @@ void biblioteq::slotSaveUser(void)
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.membersince->date().
 		   toString(Qt::ISODate));
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Overdue Fees")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.overduefees->text());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Telephone Number")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.telephoneNumber->text());

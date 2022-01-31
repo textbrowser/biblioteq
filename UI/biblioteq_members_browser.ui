@@ -159,6 +159,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Overdue Fees</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Books Reserved</string>
           </property>
          </column>
