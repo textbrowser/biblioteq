@@ -118,10 +118,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SLOT(setEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
-	  id.openLibraryQuery,
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
 	  id.sruQueryButton,
 	  SLOT(setEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
