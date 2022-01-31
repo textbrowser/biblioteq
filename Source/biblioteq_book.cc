@@ -875,7 +875,8 @@ void biblioteq_book::modify(const int state)
 		"originality, "
 		"condition, "
 		"accession_number, "
-		"url "
+		"url, "
+		"alternate_id_1 "
 		"FROM book WHERE myoid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1066,6 +1067,8 @@ void biblioteq_book::modify(const int state)
 	    id.accession_number->setText(var.toString().trimmed());
 	  else if(fieldname == "url")
 	    id.url->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "alternate_id_1")
+	    id.alternate_id_1->setText(var.toString().trimmed());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -2061,9 +2064,9 @@ void biblioteq_book::slotDownloadImage(void)
   if(id.id->text().remove('-').trimmed().length() != 10)
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to download a cover image, "
-	    "the ISBN-10 must be provided."));
+	(this,
+	 tr("BiblioteQ: User Error"),
+	 tr("In order to download a cover image, ISBN-10 must be provided."));
       QApplication::processEvents();
       id.id->setFocus();
       return;
@@ -2672,6 +2675,7 @@ void biblioteq_book::slotGo(void)
       str = id.accession_number->text().trimmed();
       id.accession_number->setText(str);
       id.url->setPlainText(id.url->toPlainText().trimmed());
+      id.alternate_id_1->setText(id.alternate_id_1->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
@@ -2698,7 +2702,8 @@ void biblioteq_book::slotGo(void)
 		      "originality = ?, "
 		      "condition = ?, "
 		      "accession_number = ?, "
-		      "url = ? "
+		      "url = ?, "
+		      "alternate_id_1 = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -2711,12 +2716,12 @@ void biblioteq_book::slotGo(void)
 		      "deweynumber, front_cover, "
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
-		      "accession_number, url) "
+		      "accession_number, url, alternate_id_1) "
 		      "VALUES (?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
-		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING myoid");
+		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING myoid");
       else
 	query.prepare("INSERT INTO book (id, title, "
 		      "edition, author, pdate, publisher, "
@@ -2727,13 +2732,13 @@ void biblioteq_book::slotGo(void)
 		      "deweynumber, front_cover, "
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
-		      "accession_number, url, myoid) "
+		      "accession_number, url, alternate_id_1, myoid) "
 		      "VALUES (?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?)");
+		      "?, ?, ?, ?)");
 
       if(id.isbnAvailableCheckBox->isChecked() &&
 	 !id.id->text().remove('-').isEmpty())
@@ -2861,9 +2866,10 @@ void biblioteq_book::slotGo(void)
       query.bindValue(24, id.condition->currentText().trimmed());
       query.bindValue(25, id.accession_number->text().trimmed());
       query.bindValue(26, id.url->toPlainText().trimmed());
+      query.bindValue(27, id.alternate_id_1->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(27, m_oid);
+	query.bindValue(28, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  auto value = biblioteq_misc_functions::getSqliteUniqueId
@@ -2871,7 +2877,7 @@ void biblioteq_book::slotGo(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      query.bindValue(27, value);
+	      query.bindValue(28, value);
 	      m_oid = QString::number(value);
 	    }
 	  else
@@ -3509,14 +3515,23 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   if(m_openLibraryManager->findChild<QNetworkReply *> ())
     return;
 
-  if(!(id.id->text().remove('-').trimmed().length() == 10 ||
-       id.isbn13->text().remove('-').trimmed().length() == 13))
+  bool ok = false;
+
+  if(!id.alternate_id_1->text().trimmed().isEmpty())
+    ok = true;
+
+  if(id.isbnAvailableCheckBox->isChecked())
+    if(id.id->text().remove('-').trimmed().length() == 10 ||
+       id.isbn13->text().remove('-').trimmed().length() == 13)
+      ok = true;
+
+  if(!ok)
     {
       QMessageBox::critical
 	(this,
 	 tr("BiblioteQ: User Error"),
-	 tr("In order to query an Open Library site, either the ISBN-10 "
-	    "or ISBN-13 must be provided."));
+	 tr("In order to query an Open Library site, "
+	    "Alternate Identifier, ISBN-10, or ISBN-13 must be provided."));
       QApplication::processEvents();
       id.id->setFocus();
       return;
@@ -3537,15 +3552,25 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 
   searchstr = hash.value("url_isbn");
 
-  if(!id.id->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%1", id.id->text().remove('-').trimmed());
+  if(!id.alternate_id_1->text().trimmed().isEmpty())
+    searchstr.replace("%3", id.alternate_id_1->text().trimmed());
   else
-    searchstr.replace("%1", id.isbn13->text().remove('-').trimmed());
+    searchstr.remove(",OLID:%3");
 
-  if(!id.isbn13->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%2", id.isbn13->text().remove('-').trimmed());
+  if(id.isbnAvailableCheckBox->isChecked())
+    {
+      if(!id.id->text().remove('-').trimmed().isEmpty())
+	searchstr.replace("%1", id.id->text().remove('-').trimmed());
+      else
+	searchstr.replace("%1", id.isbn13->text().remove('-').trimmed());
+
+      if(!id.isbn13->text().remove('-').trimmed().isEmpty())
+	searchstr.replace("%2", id.isbn13->text().remove('-').trimmed());
+      else
+	searchstr.replace("%2", id.id->text().remove('-').trimmed());
+    }
   else
-    searchstr.replace("%2", id.id->text().remove('-').trimmed());
+    searchstr.remove("ISBN:%1,ISBN:%2,");
 
   QNetworkProxy proxy;
   QString type("none");
@@ -4290,9 +4315,10 @@ void biblioteq_book::slotSRUQuery(void)
        id.isbn13->text().remove('-').trimmed().length() == 13))
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, either the ISBN-10 "
-	    "or ISBN-13 must be provided."));
+	(this,
+	 tr("BiblioteQ: User Error"),
+	 tr("In order to query an SRU site, "
+	    "ISBN-10 or ISBN-13 must be provided."));
       QApplication::processEvents();
       id.id->setFocus();
       return;
@@ -4613,9 +4639,10 @@ void biblioteq_book::slotZ3950Query(void)
        id.isbn13->text().remove('-').trimmed().length() == 13))
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query a Z39.50 site, either the ISBN-10 "
-	    "or ISBN-13 must be provided."));
+	(this,
+	 tr("BiblioteQ: User Error"),
+	 tr("In order to query a Z39.50 site, "
+	    "ISBN-10 or ISBN-13 must be provided."));
       QApplication::processEvents();
       id.id->setFocus();
       return;
