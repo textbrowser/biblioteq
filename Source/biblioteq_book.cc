@@ -110,14 +110,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SLOT(slotConvertISBN13to10(void)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
-	  id.dwnldFront,
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  id.dwnldBack,
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
 	  id.sruQueryButton,
 	  SLOT(setEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
@@ -2061,12 +2053,22 @@ void biblioteq_book::slotDownloadImage(void)
   if(!action)
     return;
 
-  if(id.id->text().remove('-').trimmed().length() != 10)
+  bool ok = false;
+
+  if(!id.alternate_id_1->text().trimmed().isEmpty())
+    ok = true;
+
+  if(id.isbnAvailableCheckBox->isChecked() &&
+     id.id->text().remove('-').trimmed().length() == 10)
+    ok = true;
+
+  if(!ok)
     {
       QMessageBox::critical
 	(this,
 	 tr("BiblioteQ: User Error"),
-	 tr("In order to download a cover image, ISBN-10 must be provided."));
+	 tr("In order to download a cover image, "
+	    "Alternate Identifier or ISBN-10 must be provided."));
       QApplication::processEvents();
       id.id->setFocus();
       return;
@@ -2203,9 +2205,20 @@ void biblioteq_book::slotDownloadImage(void)
       else
 	string = qmain->getOpenLibraryImagesHash().value("front_url");
 
-      string.replace("$key", "isbn");
-      string.replace
-	("$value-$size", id.id->text().remove('-').trimmed() + "-L");
+      if(id.isbnAvailableCheckBox->isChecked() &&
+	 id.id->text().remove('-').trimmed().length() == 10)
+	{
+	  string.replace("$key", "isbn");
+	  string.replace
+	    ("$value-$size", id.id->text().remove('-').trimmed() + "-L");
+	}
+      else
+	{
+	  string.replace("$key", "olid");
+	  string.replace
+	    ("$value-$size", id.alternate_id_1->text().trimmed() + "-L");
+	}
+
       url = QUrl::fromUserInput(string);
 
       QNetworkProxy proxy;

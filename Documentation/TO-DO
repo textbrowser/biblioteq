@@ -519,4 +519,4 @@
      visible columns. The status should not be a separate column.
      Not a problem. (Done)
 283. QSqlField::tableName() and Qt 5.5.1. (TBD)
-284. Alternate identifier and Open Library image query. (TBD)
+284. Alternate identifier and Open Library image query. (Done)
