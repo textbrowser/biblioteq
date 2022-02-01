@@ -3426,6 +3426,11 @@ void biblioteq_book::slotGo(void)
       values.append
 	(biblioteq_myqstring::escape(id.accession_number->text().trimmed()));
       searchstr.append
+	("AND " + UNACCENT + "(LOWER(COALESCE(alternate_id_1, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.alternate_id_1->text().trimmed()));
+      searchstr.append
 	("GROUP BY book.title, "
 	 "book.author, "
 	 "book.publisher, book.pdate, book.place, "
