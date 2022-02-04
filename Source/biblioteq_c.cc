@@ -5776,7 +5776,7 @@ void biblioteq::slotSaveUser(void)
 		    "general_registration_number = ?, "
 		    "memberclass = ?, "
 		    "maximum_reserved_books = ?, "
-		    "membership_fees "
+		    "membership_fees = ? "
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
