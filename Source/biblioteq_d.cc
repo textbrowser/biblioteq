@@ -1,3 +1,4 @@
+#include <QClipboard>
 #include <QDir>
 #include <QFileDialog>
 #include <QSettings>
@@ -116,6 +117,26 @@ void biblioteq::slotExportAsPNG(void)
       image.save(dialog.selectedFiles().value(0), "PNG", 100);
       QApplication::restoreOverrideCursor();
     }
+}
+
+void biblioteq::slotGenerateAndCopyMemberLetter(void)
+{
+  auto clipboard = QApplication::clipboard();
+
+  if(!clipboard)
+    return;
+
+  QSettings settings;
+  QString str
+    (QString::
+     fromUtf8(QByteArray::
+	      fromBase64(settings.value("otheroptions/generated_letter").
+			 toByteArray()).constData()));
+
+  str.replace("%1", userinfo_diag->m_userinfo.lastName->text().trimmed());
+  str.replace("%2", userinfo_diag->m_userinfo.firstName->text().trimmed());
+  str.replace("%3", userinfo_diag->m_userinfo.membershipfees->text());
+  clipboard->setText(str);
 }
 
 void biblioteq::slotMembersPagesChanged(int value)

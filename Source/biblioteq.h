@@ -464,6 +464,7 @@ class biblioteq: public QMainWindow
   void slotExportAsPNG(void);
   void slotExportMembersAsCSV(void);
   void slotGeneralSearchPublicationDateEnabled(bool state);
+  void slotGenerateAndCopyMemberLetter(void);
   void slotGrantPrivileges(void);
   void slotGraphicsSceneEnterKeyPressed(void);
   void slotGreyLiteratureSearch(void);

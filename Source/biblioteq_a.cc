@@ -485,6 +485,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotDisconnect(void)));
   connect(ui.actionDisconnect, SIGNAL(triggered(void)), this,
 	  SLOT(slotDisconnect(void)));
+  connect(userinfo_diag->m_userinfo.generateletter,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGenerateAndCopyMemberLetter(void)));
   connect(userinfo_diag->m_userinfo.nextTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowNext(void)));
   connect(userinfo_diag->m_userinfo.prevTool, SIGNAL(clicked(void)), this,
