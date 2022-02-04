@@ -3727,6 +3727,7 @@ void biblioteq::slotExportMembersAsCSV(void)
 		  << tr("Member Class")
 		  << tr("Member ID")
 		  << tr("Member Since")
+		  << tr("Membership Fees")
 		  << tr("Middle Initial")
 		  << tr("Overdue Fees")
 		  << tr("Sex")
@@ -3760,6 +3761,7 @@ void biblioteq::slotExportMembersAsCSV(void)
 			"memberclass, "
 			"memberid, "
 			"membersince, "
+			"membership_fees, "
 			"middle_init, "
 			"overdue_fees, "
 			"sex, "
@@ -4065,6 +4067,8 @@ void biblioteq::slotModifyBorrower(void)
 	  else if(fieldname == "maximum_reserved_books")
 	    userinfo_diag->m_userinfo.maximum_reserved_books->setValue
 	      (var.toInt());
+	  else if(fieldname == "membership_fees")
+	    userinfo_diag->m_userinfo.membershipfees->setValue(var.toDouble());
 
 	  if(fieldname.contains("dob") ||
 	     fieldname.contains("date") ||
@@ -5715,12 +5719,12 @@ void biblioteq::slotSaveUser(void)
 		    "telephone_num, street, city, "
 		    "state_abbr, zip, email, expiration_date, overdue_fees, "
 		    "comments, general_registration_number, memberclass, "
-		    "maximum_reserved_books) "
+		    "maximum_reserved_books, membership_fees) "
 		    "VALUES "
 		    "(?, ?, ?, ?, "
 		    "?, ?, ?, ?, "
 		    "?, ?, ?, ?, ?, ?, "
-		    "?, ?, ?, ?, ?)");
+		    "?, ?, ?, ?, ?, ?)");
       query.bindValue(0, userinfo_diag->m_userinfo.memberid->text().trimmed());
       query.bindValue(1, userinfo_diag->m_userinfo.membersince->
 		      date().toString("MM/dd/yyyy"));
@@ -5748,6 +5752,8 @@ void biblioteq::slotSaveUser(void)
 		      trimmed());
       query.bindValue
 	(18, userinfo_diag->m_userinfo.maximum_reserved_books->value());
+      query.bindValue
+	(19, userinfo_diag->m_userinfo.membershipfees->value());
     }
   else
     {
@@ -5769,7 +5775,8 @@ void biblioteq::slotSaveUser(void)
 		    "comments = ?, "
 		    "general_registration_number = ?, "
 		    "memberclass = ?, "
-		    "maximum_reserved_books = ? "
+		    "maximum_reserved_books = ?, "
+		    "membership_fees "
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
@@ -5798,7 +5805,9 @@ void biblioteq::slotSaveUser(void)
       query.bindValue
 	(17, userinfo_diag->m_userinfo.maximum_reserved_books->value());
       query.bindValue
-	(18, userinfo_diag->m_userinfo.memberid->text().trimmed());
+	(18, userinfo_diag->m_userinfo.membershipfees->value());
+      query.bindValue
+	(19, userinfo_diag->m_userinfo.memberid->text().trimmed());
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
