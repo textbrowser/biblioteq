@@ -1402,10 +1402,11 @@ END;
 CREATE TRIGGER grey_literature_trigger AFTER DELETE ON grey_literature
 FOR EACH row EXECUTE PROCEDURE delete_grey_literature();
 
-/* Release 2021 10.30 */
+/* Release 2021.10.30 */
 
 ALTER TABLE member ADD maximum_reserved_books INTEGER NOT NULL DEFAULT 0;
 
 /* Release 2022.02.25 */
 
 ALTER TABLE book ADD alternate_id_1 TEXT;
+ALTER TABLE member ADD membership_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;

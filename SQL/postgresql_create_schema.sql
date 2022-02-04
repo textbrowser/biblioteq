@@ -384,6 +384,7 @@ CREATE TABLE member
 	maximum_reserved_books INTEGER NOT NULL DEFAULT 0,
 	memberclass	 TEXT,
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
+	membership_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
 	membersince	 VARCHAR(32) NOT NULL,
 	middle_init	 VARCHAR(1),
 	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,

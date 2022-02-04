@@ -41,15 +41,43 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>468</width>
-            <height>669</height>
+            <width>447</width>
+            <height>699</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout">
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Last Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Sex</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Date of Birth</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label_5">
              <property name="text">
               <string>Member ID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Middle Initial</string>
              </property>
             </widget>
            </item>
@@ -60,13 +88,6 @@
              </property>
              <property name="placeholderText">
               <string>Member ID</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_9">
-             <property name="text">
-              <string>Member Since</string>
              </property>
             </widget>
            </item>
@@ -115,179 +136,62 @@
              </item>
             </layout>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>First Name</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="firstName">
-             <property name="maxLength">
-              <number>128</number>
-             </property>
-             <property name="placeholderText">
-              <string>First Name</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Last Name</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLineEdit" name="lastName">
-             <property name="maxLength">
-              <number>128</number>
-             </property>
-             <property name="placeholderText">
-              <string>Last Name</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_8">
-             <property name="text">
-              <string>Middle Initial</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <layout class="QHBoxLayout">
+           <item row="11" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLineEdit" name="middle">
+              <widget class="QLineEdit" name="email">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="maxLength">
-                <number>1</number>
+                <number>128</number>
                </property>
                <property name="placeholderText">
-                <string>Middle Initial</string>
+                <string>E-Mail Address</string>
                </property>
               </widget>
              </item>
              <item>
-              <spacer>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <widget class="QToolButton" name="generateletter">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate a reminder letter and place the contents in the clipboard buffer. &lt;span style=&quot; background-color:transparent;&quot;&gt;The current contents of this panel will influence the generated letter.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
-               <property name="sizeHint" stdset="0">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/32x32/duplicate.png</normaloff>:/32x32/duplicate.png</iconset>
+               </property>
+               <property name="iconSize">
                 <size>
-                 <width>40</width>
-                 <height>20</height>
+                 <width>32</width>
+                 <height>32</height>
                 </size>
                </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_10">
-             <property name="text">
-              <string>Date of Birth</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <layout class="QHBoxLayout">
-             <item>
-              <widget class="QDateEdit" name="dob">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>false</bool>
-               </property>
-               <property name="displayFormat">
-                <string>yyyy-MM-dd</string>
-               </property>
-               <property name="calendarPopup">
+               <property name="autoRaise">
                 <bool>true</bool>
                </property>
               </widget>
              </item>
-             <item>
-              <spacer>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
             </layout>
            </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="label_11">
-             <property name="text">
-              <string>Sex</string>
+           <item row="14" column="1">
+            <widget class="QDoubleSpinBox" name="overduefees">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <layout class="QHBoxLayout">
-             <item>
-              <widget class="QComboBox" name="sex">
-               <property name="currentIndex">
-                <number>2</number>
-               </property>
-               <property name="sizeAdjustPolicy">
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-               <property name="minimumContentsLength">
-                <number>15</number>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Male</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Private</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Street</string>
+             <property name="minimum">
+              <double>0.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>10000.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
              </property>
             </widget>
            </item>
@@ -301,27 +205,20 @@
              </property>
             </widget>
            </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="label_6">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>City</string>
+              <string>Member Since</string>
              </property>
             </widget>
            </item>
-           <item row="8" column="1">
-            <widget class="QLineEdit" name="city">
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lastName">
              <property name="maxLength">
-              <number>256</number>
+              <number>128</number>
              </property>
              <property name="placeholderText">
-              <string>City</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>State &amp; ZIP Code</string>
+              <string>Last Name</string>
              </property>
             </widget>
            </item>
@@ -604,10 +501,123 @@
              </item>
             </layout>
            </item>
-           <item row="10" column="0">
-            <widget class="QLabel" name="label_3">
+           <item row="11" column="0">
+            <widget class="QLabel" name="label_12">
              <property name="text">
-              <string>Telephone Number</string>
+              <string>E-Mail Address</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="firstName">
+             <property name="maxLength">
+              <number>128</number>
+             </property>
+             <property name="placeholderText">
+              <string>First Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Expiration Date</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>City</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QComboBox" name="sex">
+               <property name="currentIndex">
+                <number>2</number>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+               <property name="minimumContentsLength">
+                <number>15</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Private</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>First Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLineEdit" name="city">
+             <property name="maxLength">
+              <number>256</number>
+             </property>
+             <property name="placeholderText">
+              <string>City</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Street</string>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Comments</string>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="1">
+            <widget class="QTextEdit" name="comments">
+             <property name="tabChangesFocus">
+              <bool>true</bool>
+             </property>
+             <property name="acceptRichText">
+              <bool>false</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Comments</string>
              </property>
             </widget>
            </item>
@@ -621,34 +631,86 @@
              </property>
             </widget>
            </item>
-           <item row="11" column="0">
-            <widget class="QLabel" name="label_12">
-             <property name="text">
-              <string>E-Mail Address</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="1">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item row="5" column="1">
+            <layout class="QHBoxLayout">
              <item>
-              <widget class="QLineEdit" name="email">
-               <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The E-Mail Address is not validated. Please be sure that it is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <widget class="QDateEdit" name="dob">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="maxLength">
-                <number>128</number>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
                </property>
-               <property name="placeholderText">
-                <string>E-Mail Address</string>
+               <property name="readOnly">
+                <bool>false</bool>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy-MM-dd</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
             </layout>
            </item>
-           <item row="12" column="0">
-            <widget class="QLabel" name="label_13">
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>Expiration Date</string>
+              <string>State &amp; ZIP Code</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QLineEdit" name="middle">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="placeholderText">
+                <string>Middle Initial</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Telephone Number</string>
              </property>
             </widget>
            </item>
@@ -691,15 +753,22 @@
              </item>
             </layout>
            </item>
-           <item row="13" column="0">
+           <item row="14" column="0">
             <widget class="QLabel" name="label_14">
              <property name="text">
               <string>Overdue Fees</string>
              </property>
             </widget>
            </item>
+           <item row="13" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>Membership Fees</string>
+             </property>
+            </widget>
+           </item>
            <item row="13" column="1">
-            <widget class="QDoubleSpinBox" name="overduefees">
+            <widget class="QDoubleSpinBox" name="membershipfees">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -714,26 +783,6 @@
              </property>
              <property name="singleStep">
               <double>0.010000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="14" column="0">
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>Comments</string>
-             </property>
-            </widget>
-           </item>
-           <item row="14" column="1">
-            <widget class="QTextEdit" name="comments">
-             <property name="tabChangesFocus">
-              <bool>true</bool>
-             </property>
-             <property name="acceptRichText">
-              <bool>false</bool>
-             </property>
-             <property name="placeholderText">
-              <string>Comments</string>
              </property>
             </widget>
            </item>
@@ -928,7 +977,9 @@
   <tabstop>zip</tabstop>
   <tabstop>telephoneNumber</tabstop>
   <tabstop>email</tabstop>
+  <tabstop>generateletter</tabstop>
   <tabstop>expirationdate</tabstop>
+  <tabstop>membershipfees</tabstop>
   <tabstop>overduefees</tabstop>
   <tabstop>comments</tabstop>
   <tabstop>memberclass</tabstop>
