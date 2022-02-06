@@ -161,7 +161,7 @@
                </property>
                <property name="icon">
                 <iconset resource="../Icons/icons.qrc">
-                 <normaloff>:/32x32/duplicate.png</normaloff>:/32x32/duplicate.png</iconset>
+                 <normaloff>:/32x32/mail.png</normaloff>:/32x32/mail.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
