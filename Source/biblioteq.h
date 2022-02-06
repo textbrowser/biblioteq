@@ -480,6 +480,7 @@ class biblioteq: public QMainWindow
   void slotJournSearch(void);
   void slotLanguageChanged(void);
   void slotLastWindowClosed(void);
+  void slotLaunchEmailSoftware(void);
   void slotListOverdueItems(void);
   void slotListReservedItems(void);
   void slotMagSearch(void);

@@ -139,6 +139,10 @@ void biblioteq::slotGenerateAndCopyMemberLetter(void)
   clipboard->setText(str);
 }
 
+void biblioteq::slotLaunchEmailSoftware(void)
+{
+}
+
 void biblioteq::slotMembersPagesChanged(int value)
 {
   QSettings settings;

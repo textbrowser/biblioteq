@@ -485,10 +485,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotDisconnect(void)));
   connect(ui.actionDisconnect, SIGNAL(triggered(void)), this,
 	  SLOT(slotDisconnect(void)));
-  connect(userinfo_diag->m_userinfo.generateletter,
+  connect(userinfo_diag->m_userinfo.menu,
 	  SIGNAL(clicked(void)),
 	  this,
-	  SLOT(slotGenerateAndCopyMemberLetter(void)));
+	  SLOT(slotShowMenu(void)));
   connect(userinfo_diag->m_userinfo.nextTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowNext(void)));
   connect(userinfo_diag->m_userinfo.prevTool, SIGNAL(clicked(void)), this,
@@ -4652,6 +4652,20 @@ void biblioteq::slotShowMenu(void)
       connect
 	(menu.addAction(tr("&Video Game Search...")),
 	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
+      menu.exec(point);
+    }
+  else if(sender() == userinfo_diag->m_userinfo.menu)
+    {
+      QMenu menu(this);
+
+      connect(menu.addAction(tr("Generate Letter")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotGenerateAndCopyMemberLetter(void)));
+      connect(menu.addAction(tr("Launch E-Mail Software...")),
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotLaunchEmailSoftware(void)));
       menu.exec(point);
     }
 }

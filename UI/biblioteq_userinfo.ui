@@ -42,7 +42,7 @@
             <x>0</x>
             <y>0</y>
             <width>447</width>
-            <height>699</height>
+            <height>695</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout">
@@ -152,9 +152,9 @@
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="generateletter">
+              <widget class="QToolButton" name="menu">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate a reminder letter and place the contents in the clipboard buffer. &lt;span style=&quot; background-color:transparent;&quot;&gt;The current contents of this panel will influence the generated letter.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate a reminder letter and place its contents in the clipboard buffer. &lt;span style=&quot; background-color:transparent;&quot;&gt;The current contents of this panel will influence the generated letter.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Launch the preferred e-mail software.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
                 <string/>
@@ -977,7 +977,7 @@
   <tabstop>zip</tabstop>
   <tabstop>telephoneNumber</tabstop>
   <tabstop>email</tabstop>
-  <tabstop>generateletter</tabstop>
+  <tabstop>menu</tabstop>
   <tabstop>expirationdate</tabstop>
   <tabstop>membershipfees</tabstop>
   <tabstop>overduefees</tabstop>
