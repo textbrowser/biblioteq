@@ -1,4 +1,5 @@
 #include <QClipboard>
+#include <QDesktopServices>
 #include <QDir>
 #include <QFileDialog>
 #include <QSettings>
@@ -141,6 +142,20 @@ void biblioteq::slotGenerateAndCopyMemberLetter(void)
 
 void biblioteq::slotLaunchEmailSoftware(void)
 {
+  QSettings settings;
+  QString str
+    (QString::
+     fromUtf8(QByteArray::
+	      fromBase64(settings.value("otheroptions/generated_letter").
+			 toByteArray()).constData()));
+
+  str.replace("%1", userinfo_diag->m_userinfo.lastName->text().trimmed());
+  str.replace("%2", userinfo_diag->m_userinfo.firstName->text().trimmed());
+  str.replace("%3", userinfo_diag->m_userinfo.membershipfees->text());
+  QDesktopServices::openUrl
+    (QUrl::fromUserInput(QString("mailto:%1?body=%2&subject=BiblioteQ Notice").
+			 arg(userinfo_diag->m_userinfo.email->text().trimmed()).
+			 arg(str)));
 }
 
 void biblioteq::slotMembersPagesChanged(int value)
