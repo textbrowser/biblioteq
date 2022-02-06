@@ -153,7 +153,7 @@ void biblioteq::slotLaunchEmailSoftware(void)
   str.replace("%2", userinfo_diag->m_userinfo.firstName->text().trimmed());
   str.replace("%3", userinfo_diag->m_userinfo.membershipfees->text());
   QDesktopServices::openUrl
-    (QUrl::fromUserInput(QString("mailto:%1?body=%2&subject=BiblioteQ Notice").
+    (QUrl::fromUserInput(QString("mailto:%1?body=%2&subject=BiblioteQ").
 			 arg(userinfo_diag->m_userinfo.email->text().trimmed()).
 			 arg(str)));
 }
