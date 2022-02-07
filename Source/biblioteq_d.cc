@@ -2,6 +2,7 @@
 #include <QDesktopServices>
 #include <QDir>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QSettings>
 
 #include "biblioteq.h"
@@ -210,6 +211,48 @@ void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
   QSettings settings;
 
   settings.setValue("generalSearchCaseSensitivity", state);
+}
+
+void biblioteq::slotSetMembershipFees(void)
+{
+  auto ok = true;
+  double value = 0.0;
+
+  value = QInputDialog::getDouble(this,
+				  tr("BiblioteQ: Set Membership Dues"),
+				  tr("Membership Dues"),
+				  0.0,
+				  0.0,
+				  std::numeric_limits<double>::max(),
+				  2,
+				  &ok);
+
+  if(!ok)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSqlQuery query(m_db);
+
+  query.prepare("UPDATE member SET membership_fees = ?");
+  query.addBindValue(value);
+
+  if(!query.exec())
+    {
+      QApplication::restoreOverrideCursor();
+      addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to update the entries.")),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to update the entries."));
+    }
+  else
+    QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::slotShowDocumentation(void)

@@ -579,7 +579,14 @@
     </property>
     <addaction name="action_Export"/>
    </widget>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="action_Set_Membership_Fees"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_Tools"/>
   </widget>
   <action name="action_Export">
    <property name="icon">
@@ -588,6 +595,11 @@
    </property>
    <property name="text">
     <string>&amp;Export All Member Information as CSV...</string>
+   </property>
+  </action>
+  <action name="action_Set_Membership_Fees">
+   <property name="text">
+    <string>&amp;Set Membership Fees...</string>
    </property>
   </action>
  </widget>

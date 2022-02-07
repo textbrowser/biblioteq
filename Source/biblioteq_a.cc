@@ -383,6 +383,10 @@ biblioteq::biblioteq(void):QMainWindow()
   m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   m_branch_diag->setModal(true);
+  connect(bb.action_Set_Membership_Fees,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotSetMembershipFees(void)));
   connect(ui.graphicsView->scene(),
 	  SIGNAL(enterKeyPressed(void)),
 	  this,

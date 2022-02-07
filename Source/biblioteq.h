@@ -534,6 +534,7 @@ class biblioteq: public QMainWindow
   void slotSelectDatabaseFile(void);
   void slotSetColumns(void);
   void slotSetFonts(void);
+  void slotSetMembershipFees(void);
   void slotShowAdminDialog(void);
   void slotShowChangePassword(void);
   void slotShowConnectionDB(void);
