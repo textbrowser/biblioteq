@@ -250,6 +250,7 @@ void biblioteq::slotSetMembershipFees(void)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to update the entries."));
+      QApplication::processEvents();
     }
   else
     QApplication::restoreOverrideCursor();
