@@ -233,27 +233,53 @@ void biblioteq::slotSetMembershipFees(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSqlQuery query(m_db);
+  auto list(bb.table->selectionModel()->selectedRows(0));
 
-  query.prepare("UPDATE member SET membership_fees = ?");
-  query.addBindValue(value);
-
-  if(!query.exec())
+  if(list.isEmpty())
     {
-      QApplication::restoreOverrideCursor();
-      addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to update the entries.")),
-	 query.lastError().text(),
-	 __FILE__,
-	 __LINE__);
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: Database Error"),
-	 tr("Unable to update the entries."));
-      QApplication::processEvents();
+      query.prepare("UPDATE member SET membership_fees = ?");
+      query.addBindValue(value);
+
+      if(!query.exec())
+	{
+	  QApplication::restoreOverrideCursor();
+	  addError
+	    (tr("Database Error"),
+	     tr("Unable to update the entries."),
+	     query.lastError().text(),
+	     __FILE__,
+	     __LINE__);
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: Database Error"),
+	     tr("Unable to update the entries."));
+	  QApplication::processEvents();
+	}
+      else
+	QApplication::restoreOverrideCursor();
     }
   else
-    QApplication::restoreOverrideCursor();
+    {
+      foreach(const auto &index, list)
+	{
+	  auto str(index.data().toString());
+
+	  query.prepare
+	    ("UPDATE member SET membership_fees = ? WHERE memberid = ?");
+	  query.addBindValue(value);
+	  query.addBindValue(str);
+
+	  if(!query.exec())
+	    addError
+	      (tr("Database Error"),
+	       tr("Unable to update the entry %1.").arg(str),
+	       query.lastError().text(),
+	       __FILE__,
+	       __LINE__);
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq::slotShowDocumentation(void)
