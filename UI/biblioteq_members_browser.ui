@@ -108,9 +108,6 @@
          <property name="cornerButtonEnabled">
           <bool>false</bool>
          </property>
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>225</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>225</number>
          </attribute>
@@ -155,6 +152,11 @@
          <column>
           <property name="text">
            <string>Expiration Date</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Membership Fees</string>
           </property>
          </column>
          <column>

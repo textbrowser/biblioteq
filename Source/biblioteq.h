@@ -126,6 +126,12 @@ class userinfo_diag_class: public QDialog
        m_userinfo.maximum_reserved_books->text())
       list << "maximum_reserved_books";
 
+    if(m_memberProperties.value("membership_fees") !=
+       m_userinfo.membershipfees->text())
+      list << "membership_fees";
+
+    std::sort(list.begin(), list.end());
+
     for(int i = 0; i < list.size(); i++)
       str += list.at(i) + ", ";
 

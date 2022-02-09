@@ -4076,6 +4076,9 @@ void biblioteq::slotModifyBorrower(void)
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy").
 	      toString(Qt::ISODate);
+	  else if(fieldname == "membership_fees")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.membershipfees->text();
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.overduefees->text();
@@ -4297,6 +4300,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
     "member.zip AS address, "
     "member.membersince, "
     "member.expiration_date, "
+    "member.membership_fees, "
     "member.overdue_fees, "
     "COUNT(DISTINCT ib1.myoid) AS number_reserved_books, "
     "COUNT(DISTINCT ib2.myoid) AS number_reserved_cds, "
@@ -4354,6 +4358,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	     "address, "
 	     "member.membersince, "
 	     "member.expiration_date, "
+	     "member.membership_fees, "
 	     "member.overdue_fees ");
   str.append("ORDER BY member.memberid ");
   str.append(QString("LIMIT %1 OFFSET %2").
@@ -5996,6 +6001,8 @@ void biblioteq::slotSaveUser(void)
 	userinfo_diag->m_userinfo.memberclass->text().trimmed();
       userinfo_diag->m_memberProperties["maximum_reserved_books"] =
 	userinfo_diag->m_userinfo.maximum_reserved_books->text();
+      userinfo_diag->m_memberProperties["membership_fees"] =
+	userinfo_diag->m_userinfo.membershipfees->text();
 
       if(m_engUserinfoTitle.contains("Modify"))
 	{
@@ -6029,6 +6036,9 @@ void biblioteq::slotSaveUser(void)
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.membersince->date().
 		   toString(Qt::ISODate));
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Membership Fees")
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->m_userinfo.membershipfees->text());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Overdue Fees")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->m_userinfo.overduefees->text());

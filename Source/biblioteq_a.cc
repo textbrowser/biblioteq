@@ -1830,6 +1830,7 @@ void biblioteq::resetMembersBrowser(void)
   list.append(tr("Home Address"));
   list.append(tr("Member Since"));
   list.append(tr("Expiration Date"));
+  list.append(tr("Membership Fees"));
   list.append(tr("Overdue Fees"));
   list.append(tr("Books Reserved"));
   list.append(tr("CDs Reserved"));
@@ -1847,6 +1848,7 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Home Address");
   m_bbColumnHeaderIndexes.append("Member Since");
   m_bbColumnHeaderIndexes.append("Expiration Date");
+  m_bbColumnHeaderIndexes.append("Membership Fees");
   m_bbColumnHeaderIndexes.append("Overdue Fees");
   m_bbColumnHeaderIndexes.append("Books Reserved");
   m_bbColumnHeaderIndexes.append("CDs Reserved");
@@ -2223,6 +2225,7 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.email->clear();
   userinfo_diag->m_userinfo.expirationdate->setDate
     (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
+  userinfo_diag->m_userinfo.membershipfees->setValue(0.00);
   userinfo_diag->m_userinfo.overduefees->setValue(0.00);
   userinfo_diag->m_userinfo.comments->clear();
   userinfo_diag->m_userinfo.memberclass->clear();
@@ -2244,6 +2247,8 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_memberProperties["expiration_date"] =
     userinfo_diag->m_userinfo.expirationdate->date().toString
     (Qt::ISODate);
+  userinfo_diag->m_memberProperties["membership_fees"] =
+    userinfo_diag->m_userinfo.membershipfees->text();
   userinfo_diag->m_memberProperties["overdue_fees"] =
     userinfo_diag->m_userinfo.overduefees->text();
   userinfo_diag->m_memberProperties["maximum_reserved_books"] =
