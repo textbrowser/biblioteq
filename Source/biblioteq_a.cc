@@ -3919,13 +3919,15 @@ void biblioteq::slotReserveCopy(void)
   if(row < 0)
     {
       if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("In order to reserve an item, you must "
-				 "first select it."));
+	QMessageBox::critical
+	  (m_members_diag,
+	   tr("BiblioteQ: User Error"),
+	   tr("In order to reserve an item, you must first select it."));
       else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("In order to reserve an item, you must "
-				 "first select it."));
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: User Error"),
+	   tr("In order to reserve an item, you must first select it."));
 
       QApplication::processEvents();
       return;
@@ -3937,10 +3939,12 @@ void biblioteq::slotReserveCopy(void)
   if(type == "Photograph Collection")
     {
       if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+	QMessageBox::critical(m_members_diag,
+			      tr("BiblioteQ: User Error"),
 			      tr("Photographs may not be reserved."));
       else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	QMessageBox::critical(this,
+			      tr("BiblioteQ: User Error"),
 			      tr("Photographs may not be reserved."));
 
       QApplication::processEvents();
@@ -3956,19 +3960,23 @@ void biblioteq::slotReserveCopy(void)
 
   if(!errorstr.isEmpty())
     {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to determine the availability of "
-			  "the selected item.")),
-	       errorstr, __FILE__, __LINE__);
+      addError
+	(tr("Database Error"),
+	 tr("Unable to determine the availability of the selected item."),
+	errorstr,
+	__FILE__,
+	__LINE__);
 
       if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
-			      tr("Unable to determine the availability of "
-				 "the selected item."));
+	QMessageBox::critical
+	  (m_members_diag,
+	   tr("BiblioteQ: Database Error"),
+	   tr("Unable to determine the availability of the selected item."));
       else
-	QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			      tr("Unable to determine the availability of "
-				 "the selected item."));
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Database Error"),
+	   tr("Unable to determine the availability of the selected item."));
 
       QApplication::processEvents();
       return;
@@ -3977,13 +3985,17 @@ void biblioteq::slotReserveCopy(void)
   if(availability < 1)
     {
       if(m_members_diag->isVisible())
-	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			      tr("It appears that the item you selected "
-				 "is not available for reservation."));
+	QMessageBox::critical
+	  (m_members_diag,
+	   tr("BiblioteQ: User Error"),
+	   tr("It appears that the item you selected "
+	      "is not available for reservation."));
       else
-	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			      tr("It appears that the item you selected "
-				 "is not available for reservation."));
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: User Error"),
+	   tr("It appears that the item you selected "
+	      "is not available for reservation."));
 
       QApplication::processEvents();
       return;
