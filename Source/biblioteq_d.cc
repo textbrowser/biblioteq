@@ -218,7 +218,7 @@ void biblioteq::slotSetMembershipFees(void)
   auto ok = true;
   double value = 0.0;
 
-  value = QInputDialog::getDouble(this,
+  value = QInputDialog::getDouble(m_members_diag,
 				  tr("BiblioteQ: Set Membership Dues"),
 				  tr("Membership Dues"),
 				  0.0,
