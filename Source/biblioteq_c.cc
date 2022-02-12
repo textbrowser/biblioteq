@@ -2427,17 +2427,20 @@ void biblioteq::slotCheckout(void)
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
-	addError(QString(tr("Database Error")),
-		 QString(tr("Unable to determine if the membership of "
-			    "the selected member has expired.")),
-		 errorstr, __FILE__, __LINE__);
+	addError(tr("Database Error"),
+		 tr("Unable to determine if the membership of "
+		    "the selected member has expired."),
+		 errorstr,
+		 __FILE__,
+		 __LINE__);
 
       if(expired || !errorstr.isEmpty())
 	{
-	  QMessageBox::critical(m_members_diag,
-				tr("BiblioteQ: User Error"),
-				tr("It appears that the selected member's "
-				   "membership has expired."));
+	  QMessageBox::critical
+	    (m_members_diag,
+	     tr("BiblioteQ: User Error"),
+	     tr("It appears that the selected member's "
+		"membership has expired."));
 	  QApplication::processEvents();
 	  return;
 	}
@@ -2459,17 +2462,20 @@ void biblioteq::slotCheckout(void)
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
-	addError(QString(tr("Database Error")),
-		 QString(tr("Unable to determine the availability of "
-			    "the selected item.")),
-		 errorstr, __FILE__, __LINE__);
+	addError(tr("Database Error"),
+		 tr("Unable to determine the availability of "
+		    "the selected item."),
+		 errorstr,
+		 __FILE__,
+		 __LINE__);
 
       if(availability < 1 || !errorstr.isEmpty())
 	{
-	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-				tr("It appears that the item that you "
-				   "selected "
-				   "is not available for reservation."));
+	  QMessageBox::critical
+	    (m_members_diag,
+	     tr("BiblioteQ: User Error"),
+	     tr("It appears that the item that you selected "
+		"is not available for reservation."));
 	  QApplication::processEvents();
 	  return;
 	}
@@ -2477,7 +2483,8 @@ void biblioteq::slotCheckout(void)
 
   if(row1 < 0 || !row2.isValid())
     {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select a member and an item "
 			       "to continue with the reservation process."));
       QApplication::processEvents();
@@ -2520,7 +2527,8 @@ void biblioteq::slotCheckout(void)
       else
 	{
 	  QMessageBox::critical
-	    (m_members_diag, tr("BiblioteQ: User Error"),
+	    (m_members_diag,
+	     tr("BiblioteQ: User Error"),
 	     tr("Unable to determine the selected item's type."));
 	  QApplication::processEvents();
 	  delete item;
