@@ -4957,6 +4957,8 @@ void biblioteq::slotSearchBasic(void)
       searchstr += str;
     }
 
+  searchstr.append("ORDER BY 1");
+
   if(m_db.driverName() == "QSQLITE")
     query.exec("PRAGMA case_sensitive_like = TRUE");
 
