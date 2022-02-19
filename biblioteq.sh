@@ -8,14 +8,14 @@ export QT_X11_NO_MITSHM=1
 
 if [ -r ./BiblioteQ ] && [ -x ./BiblioteQ ]
 then
-    exec ./BiblioteQ
+    exec ./BiblioteQ "$@"
     exit $?
 fi
 
 if [ -r /usr/local/biblioteq/BiblioteQ ] &&
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
-    cd /usr/local/biblioteq && exec ./BiblioteQ
+    cd /usr/local/biblioteq && exec ./BiblioteQ "$@"
     exit $?
 else
     exit 1
