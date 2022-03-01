@@ -1406,7 +1406,7 @@ FOR EACH row EXECUTE PROCEDURE delete_grey_literature();
 
 ALTER TABLE member ADD maximum_reserved_books INTEGER NOT NULL DEFAULT 0;
 
-/* Release 2022.02.25 */
+/* Release 2022.02.30 */
 
 ALTER TABLE book ADD alternate_id_1 TEXT;
 ALTER TABLE member ADD membership_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
