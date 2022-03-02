@@ -4977,7 +4977,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
     return;
 
   if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			   tr("You are about to upgrade the legacy "
+			   tr("You are about to upgrade the "
 			      "SQLite database %1. "
 			      "Please verify that you have made a "
 			      "copy of this database. "
@@ -5329,7 +5329,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append
     ("ALTER TABLE grey_literature ADD quantity INTEGER NOT NULL DEFAULT 1");
   list.append
-    ("CREATE TRIGGER grey_literature_purge_trigger AFTER DELETE ON "
+    ("CREATE TRIGGER IF NOT EXISTS "
+     "grey_literature_purge_trigger AFTER DELETE ON "
      "grey_literature "
      "FOR EACH row "
      "BEGIN "
