@@ -4996,6 +4996,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
   QStringList list;
 
+#ifdef BIBLIOTEQ_RETAIN_SQLITE_UPGRADE_STATEMENTS
   list.append("CREATE TABLE IF NOT EXISTS book_files"
 	      "("
 	      "description	TEXT,"
@@ -5341,6 +5342,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD book_read INTEGER DEFAULT 0");
   list.append("ALTER TABLE member ADD maximum_reserved_books "
 	      "INTEGER NOT NULL DEFAULT 0");
+#endif
   list.append("ALTER TABLE book ADD alternate_id_1 TEXT");
   list.append("ALTER TABLE member ADD membership_fees NUMERIC(10, 2) "
 	      "NOT NULL DEFAULT 0.00");
