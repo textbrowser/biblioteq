@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QSettings>
+#include <QSqlRecord>
 
 #include "biblioteq.h"
 #include "biblioteq_documentationwindow.h"
@@ -36,6 +37,38 @@ bool biblioteq::showBookReadStatus(void) const
 bool biblioteq::showMainTableImages(void) const
 {
   return m_otheroptions->showMainTableImages();
+}
+
+void biblioteq::prepareUpgradeNotification(void)
+{
+  if(!m_db.isOpen())
+    return;
+
+  /*
+  ** Display a warning if the current database's schema is not current.
+  ** Must keep the following conditions current.
+  */
+
+  auto record1(m_db.record("book"));
+  auto record2(m_db.record("member"));
+
+  if(!(record1.indexOf("alternate_id_1") >= 0 &&
+       record2.indexOf("membership_fees") >= 0))
+    {
+      if(m_db.driverName() == "QPSQL")
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Database Error"),
+	   tr("The current database schema must be updated."));
+      else
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Database Error"),
+	   tr("The current database schema must be updated. "
+	      "Tools -> Upgrade SQLite Schema."));
+
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq::slotContributors(void)

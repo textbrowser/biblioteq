@@ -2,7 +2,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2022.02.30"
+#define BIBLIOTEQ_VERSION "2022.03.30"
 
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
@@ -430,6 +430,7 @@ class biblioteq: public QMainWindow
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
   void prepareReservationHistoryMenu(void);
+  void prepareUpgradeNotification(void);
   void readConfig(void);
   void readGlobalSetup(void);
   void resetAdminBrowser(void);

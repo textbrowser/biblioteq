@@ -3071,6 +3071,7 @@ void biblioteq::slotConnectDB(void)
     slotRefresh();
 
   prepareContextMenus();
+  prepareUpgradeNotification();
 }
 
 void biblioteq::slotDisconnect(void)
