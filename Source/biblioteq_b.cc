@@ -5344,6 +5344,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "INTEGER NOT NULL DEFAULT 0");
 #endif
   list.append("ALTER TABLE book ADD alternate_id_1 TEXT");
+  list.append("ALTER TABLE book ADD multivolume_isbn VARCHAR(32)");
   list.append("ALTER TABLE member ADD membership_fees NUMERIC(10, 2) "
 	      "NOT NULL DEFAULT 0.00");
 

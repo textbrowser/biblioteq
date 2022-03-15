@@ -53,6 +53,7 @@ void biblioteq::prepareUpgradeNotification(void)
   auto record2(m_db.record("member"));
 
   if(!(record1.indexOf("alternate_id_1") >= 0 &&
+       record1.indexOf("multivolume_isbn") >= 0 &&
        record2.indexOf("membership_fees") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
