@@ -170,6 +170,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset URL")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Multi-Volume Set ISBN")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -3991,7 +3993,7 @@ void biblioteq_book::slotReset(void)
     {
       auto actions = id.resetButton->menu()->actions();
 
-      if(actions.size() < 27)
+      if(actions.size() < 28)
 	{
 	  // Error.
 	}
@@ -4171,6 +4173,11 @@ void biblioteq_book::slotReset(void)
 	  id.url->clear();
 	  id.url->setFocus();
 	}
+      else if(action == actions[27])
+	{
+	  id.multivolume_set_isbn->clear();
+	  id.multivolume_set_isbn->setFocus();
+	}
 
       actions.clear();
     }
@@ -4259,6 +4266,7 @@ void biblioteq_book::slotReset(void)
       id.publisher->viewport()->setPalette(m_te_orig_pal);
       id.place->viewport()->setPalette(m_te_orig_pal);
       id.accession_number->clear();
+      id.multivolume_set_isbn->clear();
       id.id->setFocus();
     }
 }
