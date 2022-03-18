@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-523</y>
+         <y>-657</y>
          <width>1067</width>
          <height>1221</height>
         </rect>
@@ -899,6 +899,13 @@
                     <bool>true</bool>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_4">
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_11">
+                      <property name="text">
+                       <string>ISBN-13</string>
+                      </property>
+                     </widget>
+                    </item>
                     <item row="0" column="0">
                      <widget class="QLabel" name="label">
                       <property name="text">
@@ -934,13 +941,6 @@
                       </item>
                      </layout>
                     </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_11">
-                      <property name="text">
-                       <string>ISBN-13</string>
-                      </property>
-                     </widget>
-                    </item>
                     <item row="1" column="1">
                      <layout class="QHBoxLayout" name="horizontalLayout_6">
                       <item>
@@ -965,6 +965,23 @@
                        </widget>
                       </item>
                      </layout>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_27">
+                      <property name="text">
+                       <string>Multi-Volume Set ISBN</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="multivolume_set_isbn">
+                      <property name="maxLength">
+                       <number>32</number>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Multi-Volume Set ISBN</string>
+                      </property>
+                     </widget>
                     </item>
                    </layout>
                   </widget>
@@ -1507,6 +1524,7 @@
   <tabstop>isbn13to10</tabstop>
   <tabstop>isbn13</tabstop>
   <tabstop>isbn10to13</tabstop>
+  <tabstop>multivolume_set_isbn</tabstop>
   <tabstop>accession_number</tabstop>
   <tabstop>alternate_id_1</tabstop>
   <tabstop>callnum</tabstop>
