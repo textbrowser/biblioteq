@@ -868,7 +868,8 @@ void biblioteq_book::modify(const int state)
 		"condition, "
 		"accession_number, "
 		"url, "
-		"alternate_id_1 "
+		"alternate_id_1, "
+		"multivolume_set_isbn "
 		"FROM book WHERE myoid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1061,6 +1062,9 @@ void biblioteq_book::modify(const int state)
 	    id.url->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "alternate_id_1")
 	    id.alternate_id_1->setText(var.toString().trimmed());
+	  else if(fieldname == "multivolume_set_isbn")
+	    id.multivolume_set_isbn->setText
+	      (qmain->formattedISBN13(var.toString().trimmed()));
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
