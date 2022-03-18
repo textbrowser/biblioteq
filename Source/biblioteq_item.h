@@ -4,6 +4,7 @@
 #include <QFont>
 #include <QKeyEvent>
 #include <QMainWindow>
+#include <QPointer>
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QProgressDialog>
@@ -54,10 +55,10 @@ class biblioteq_item
   void updateRow(const QModelIndex &index);
 
  protected:
-  QMainWindow *m_parentWid;
   QMap<QString, QImage> m_imageValues;
   QMap<QString, QString> m_widgetValues;
   QPersistentModelIndex *m_index;
+  QPointer<QMainWindow> m_parentWid;
   QString m_html;
   QString m_oid;
   biblioteq *qmain;
