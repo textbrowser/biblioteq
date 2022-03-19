@@ -2704,6 +2704,8 @@ void biblioteq_book::slotGo(void)
       id.accession_number->setText(str);
       id.url->setPlainText(id.url->toPlainText().trimmed());
       id.alternate_id_1->setText(id.alternate_id_1->text().trimmed());
+      id.multivolume_set_isbn->setText
+	(id.multivolume_set_isbn->text().remove('-').trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
@@ -2898,8 +2900,15 @@ void biblioteq_book::slotGo(void)
       query.bindValue(25, id.accession_number->text().trimmed());
       query.bindValue(26, id.url->toPlainText().trimmed());
       query.bindValue(27, id.alternate_id_1->text().trimmed());
-      query.bindValue
-	(28, id.multivolume_set_isbn->text().remove('-').trimmed());
+
+      if(id.multivolume_set_isbn->text().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	query.bindValue(28, QVariant(QMetaType(QMetaType::QString)));
+#else
+	query.bindValue(28, QVariant(QVariant::String));
+#endif
+      else
+	query.bindValue(28, id.multivolume_set_isbn->text());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.bindValue(29, m_oid);
