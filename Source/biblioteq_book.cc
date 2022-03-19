@@ -1065,8 +1065,14 @@ void biblioteq_book::modify(const int state)
 	  else if(fieldname == "alternate_id_1")
 	    id.alternate_id_1->setText(var.toString().trimmed());
 	  else if(fieldname == "multivolume_set_isbn")
-	    id.multivolume_set_isbn->setText
-	      (qmain->formattedISBN13(var.toString().trimmed()));
+	    {
+	      auto str(var.toString().remove('-').trimmed());
+
+	      if(str.length() <= 10)
+		id.multivolume_set_isbn->setText(qmain->formattedISBN10(str));
+	      else
+		id.multivolume_set_isbn->setText(qmain->formattedISBN13(str));
+	    }
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -2562,7 +2568,10 @@ void biblioteq_book::slotGo(void)
 	      slotConvertISBN10to13();
 	}
       else
-	id.id->clear();
+	{
+	  id.id->clear();
+	  id.multivolume_set_isbn->clear();
+	}
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{
