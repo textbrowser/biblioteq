@@ -2707,6 +2707,13 @@ void biblioteq_book::slotGo(void)
       id.multivolume_set_isbn->setText
 	(id.multivolume_set_isbn->text().remove('-').trimmed());
 
+      if(id.multivolume_set_isbn->text().length() == 10)
+	id.multivolume_set_isbn->setText
+	  (qmain->formattedISBN10(id.multivolume_set_isbn->text()));
+      else if(id.multivolume_set_isbn->text().length() == 13)
+	id.multivolume_set_isbn->setText
+	  (qmain->formattedISBN13(id.multivolume_set_isbn->text()));
+
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
 		      "title = ?, "
