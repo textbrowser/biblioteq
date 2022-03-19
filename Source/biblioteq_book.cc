@@ -2722,7 +2722,8 @@ void biblioteq_book::slotGo(void)
 		      "condition = ?, "
 		      "accession_number = ?, "
 		      "url = ?, "
-		      "alternate_id_1 = ? "
+		      "alternate_id_1 = ?, "
+		      "multivolume_set_isbn = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -2735,8 +2736,9 @@ void biblioteq_book::slotGo(void)
 		      "deweynumber, front_cover, "
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
-		      "accession_number, url, alternate_id_1) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, "
+		      "accession_number, url, alternate_id_1, "
+		      "multivolume_set_isbn) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -2751,13 +2753,14 @@ void biblioteq_book::slotGo(void)
 		      "deweynumber, front_cover, "
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
-		      "accession_number, url, alternate_id_1, myoid) "
+		      "accession_number, url, alternate_id_1, "
+		      "multivolume_set_isbn, myoid) "
 		      "VALUES (?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, ?)");
+		      "?, ?, ?, ?, ?)");
 
       if(id.isbnAvailableCheckBox->isChecked() &&
 	 !id.id->text().remove('-').isEmpty())
@@ -2886,9 +2889,11 @@ void biblioteq_book::slotGo(void)
       query.bindValue(25, id.accession_number->text().trimmed());
       query.bindValue(26, id.url->toPlainText().trimmed());
       query.bindValue(27, id.alternate_id_1->text().trimmed());
+      query.bindValue
+	(28, id.multivolume_set_isbn->text().remove('-').trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(28, m_oid);
+	query.bindValue(29, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  auto value = biblioteq_misc_functions::getSqliteUniqueId
@@ -2896,7 +2901,7 @@ void biblioteq_book::slotGo(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      query.bindValue(28, value);
+	      query.bindValue(29, value);
 	      m_oid = QString::number(value);
 	    }
 	  else
@@ -3433,9 +3438,13 @@ void biblioteq_book::slotGo(void)
 	(biblioteq_myqstring::escape(id.accession_number->text().trimmed()));
       searchstr.append
 	("AND " + UNACCENT + "(LOWER(COALESCE(alternate_id_1, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       values.append
 	(biblioteq_myqstring::escape(id.alternate_id_1->text().trimmed()));
+      searchstr.append
+	("LOWER(COALESCE(multivolume_set_isbn, '')) "
+	 "LIKE LOWER('%' || ? || '%') ");
+      values.append(id.multivolume_set_isbn->text().remove('-').trimmed());
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.author, "
