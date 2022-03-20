@@ -124,10 +124,10 @@ int biblioteq_otheroptions::booksAccessionNumberIndex(void) const
 {
   QSettings settings;
 
-  return
-    qBound(0,
-	   settings.value("otheroptions/books_accession_number_index").toInt(),
-	   m_ui.books_accession_number->count() - 1);
+  return qBound
+    (0,
+     settings.value("otheroptions/books_accession_number_index").toInt(),
+     m_ui.books_accession_number->count() - 1);
 }
 
 int biblioteq_otheroptions::iconsViewColumnCount(void) const
