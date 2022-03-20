@@ -134,10 +134,10 @@ int biblioteq_otheroptions::iconsViewColumnCount(void) const
 {
   QSettings settings;
 
-  return
-    qBound(m_ui.icons_view_column_count->minimum(),
-	   settings.value("otheroptions/icons_view_column_count").toInt(),
-	   m_ui.icons_view_column_count->maximum());
+  return qBound
+    (m_ui.icons_view_column_count->minimum(),
+     settings.value("otheroptions/icons_view_column_count").toInt(),
+     m_ui.icons_view_column_count->maximum());
 }
 
 void biblioteq_otheroptions::changeEvent(QEvent *event)
