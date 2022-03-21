@@ -65,8 +65,8 @@ QString biblioteq_copy_editor::saveCopies(void)
   int i = 0;
 
   query.prepare
-    (QString("DELETE FROM %1_copy_info WHERE "
-	     "item_oid = ?").arg(m_itemType.toLower().remove(" ")));
+    (QString("DELETE FROM %1_copy_info WHERE item_oid = ?").
+     arg(m_itemType.toLower().remove(" ")));
   query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -306,7 +306,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     }
 
   disconnect(m_cb.cancelButton, SIGNAL(clicked(void)));
-  connect(m_cb.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_cb.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotCloseCopyEditor(void)));
 
   QProgressDialog progress1(this);
@@ -628,18 +630,16 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     }
 
   memberid = biblioteq_misc_functions::getColumnString
-    (qmain->getBB().table, memberrow,
+    (qmain->getBB().table,
+     memberrow,
      qmain->getBBColumnIndexes().indexOf("Member ID"));
-  copynumber = biblioteq_misc_functions::getColumnString
-    (m_cb.table, copyrow,
-     m_columnHeaderIndexes.indexOf("Copy Number"));
   copyid = biblioteq_misc_functions::getColumnString
-    (m_cb.table, copyrow,
-     m_columnHeaderIndexes.indexOf("Barcode"));
+    (m_cb.table, copyrow, m_columnHeaderIndexes.indexOf("Barcode"));
+  copynumber = biblioteq_misc_functions::getColumnString
+    (m_cb.table, copyrow, m_columnHeaderIndexes.indexOf("Copy Number"));
   QApplication::setOverrideCursor(Qt::WaitCursor);
   available = biblioteq_misc_functions::isCopyAvailable
-    (qmain->getDB(), m_ioid, copyid,
-     m_itemType, errorstr);
+    (qmain->getDB(), m_ioid, copyid, m_itemType, errorstr);
   QApplication::restoreOverrideCursor();
 
   if(!available && errorstr.length() > 0)
@@ -904,7 +904,8 @@ void biblioteq_copy_editor::slotSaveCopies(void)
     if(m_cb.table->item(i, BARCODE) != nullptr &&
        m_cb.table->item(i, BARCODE)->text().trimmed().isEmpty())
       {
-	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
+	errormsg = QString(tr("Row number ")) +
+	  QString::number(i + 1) +
 	  tr(" contains an empty Barcode.");
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"), errormsg);
 	QApplication::processEvents();
@@ -915,7 +916,8 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       {
 	if(duplicates.contains(m_cb.table->item(i, BARCODE)->text()))
 	  {
-	    errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
+	    errormsg = QString(tr("Row number ")) +
+	      QString::number(i + 1) +
 	      tr(" contains a duplicate Barcode.");
 	    QMessageBox::critical(this, tr("BiblioteQ: User Error"), errormsg);
 	    QApplication::processEvents();
