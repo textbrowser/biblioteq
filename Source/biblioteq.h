@@ -172,7 +172,8 @@ class userinfo_diag_class: public QDialog
 
     if(haveMemberChanges(str))
       if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
+	 question(this,
+		  tr("BiblioteQ: Question"),
 		  tr("Your changes have not been saved. Continue "
 		     "closing?\n%1").arg(str),
 		  QMessageBox::No | QMessageBox::Yes,

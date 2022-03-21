@@ -1,6 +1,8 @@
 #ifndef _BIBLIOTEQ_BORROWERS_EDITOR_H_
 #define _BIBLIOTEQ_BORROWERS_EDITOR_H_
 
+#include <QPointer>
+
 #include "ui_biblioteq_borrowers.h"
 
 class biblioteq;
@@ -24,11 +26,11 @@ class biblioteq_borrowers_editor: public QDialog
   void showUsers(void);
 
  private:
+  QPointer<biblioteq> qmain;
   QString m_ioid;
   QString m_itemType;
   QVector<QString> m_columnHeaderIndexes;
   Ui_checkedOutDialog m_bd;
-  biblioteq *qmain;
   biblioteq_item *m_bitem;
   int m_quantity;
   int m_state;

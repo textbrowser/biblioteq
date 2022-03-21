@@ -198,8 +198,8 @@ void biblioteq_borrowers_editor::showUsers(void)
 	  {
 	    dateEdit = new QDateEdit();
 	    m_bd.table->setCellWidget(i, j, dateEdit);
-	    dateEdit->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 	    dateEdit->setCalendarPopup(true);
+	    dateEdit->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 	    dateEdit->setEnabled(false);
 	  }
 	else
@@ -307,14 +307,14 @@ void biblioteq_borrowers_editor::showUsers(void)
 	      str = query.value(j).toString().trimmed();
 	    else if(j == 5 && m_state == biblioteq::EDITABLE)
 	      {
-		date = QDate::fromString(query.value(j).toString().trimmed(),
-					 "MM/dd/yyyy");
+		date = QDate::fromString
+		  (query.value(j).toString().trimmed(), "MM/dd/yyyy");
 		str = date.toString(Qt::ISODate);
 	      }
 	    else if((j == 2 || j == 3) && m_state != biblioteq::EDITABLE)
 	      {
-		date = QDate::fromString(query.value(j).toString().trimmed(),
-					 "MM/dd/yyyy");
+		date = QDate::fromString
+		  (query.value(j).toString().trimmed(), "MM/dd/yyyy");
 		str = date.toString(Qt::ISODate);
 	      }
 	    else
@@ -430,11 +430,9 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
       */
 
       copyid = biblioteq_misc_functions::getColumnString
-	(m_bd.table, row,
-	 m_columnHeaderIndexes.indexOf("Barcode"));
+	(m_bd.table, row, m_columnHeaderIndexes.indexOf("Barcode"));
       memberid = biblioteq_misc_functions::getColumnString
-	(m_bd.table, row,
-	 m_columnHeaderIndexes.indexOf("Member ID"));
+	(m_bd.table, row, m_columnHeaderIndexes.indexOf("Member ID"));
       query.prepare("UPDATE member_history SET returned_date = ? "
 		    "WHERE item_oid = ? AND copyid = ? AND "
 		    "memberid = ?");
