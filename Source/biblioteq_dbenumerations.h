@@ -1,6 +1,8 @@
 #ifndef _BIBLIOTEQ_DBENUMERATIONS_H_
 #define _BIBLIOTEQ_DBENUMERATIONS_H_
 
+#include <QPointer>
+
 #include "ui_biblioteq_dbenumerations.h"
 
 class biblioteq;
@@ -18,8 +20,8 @@ class biblioteq_dbenumerations: public QMainWindow
  private:
   QHash<QWidget *, QMap<QString, QString> > m_tableData;
   QHash<QWidget *, QStringList> m_listData;
+  QPointer<biblioteq> qmain;
   Ui_dbEnumerations m_ui;
-  biblioteq *qmain;
   void changeEvent(QEvent *event);
   void populateWidgets(void);
   void saveData(QHash<QWidget *,
