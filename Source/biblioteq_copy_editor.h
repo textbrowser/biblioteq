@@ -1,6 +1,8 @@
 #ifndef _BIBLIOTEQ_COPY_EDITOR_H_
 #define _BIBLIOTEQ_COPY_EDITOR_H_
 
+#include <QPointer>
+
 #include "ui_biblioteq_copybrowser.h"
 
 class QSpinBox;
@@ -60,14 +62,14 @@ class biblioteq_copy_editor: public QDialog
     };
 
   QList<copy_class *> m_copies;
+  QPointer<QWidget> m_parent;
+  QPointer<biblioteq> qmain;
   QSpinBox *m_spinbox;
   QString m_ioid;
   QString m_itemType;
   QString m_uniqueIdArg;
   QVector<QString> m_columnHeaderIndexes;
-  QWidget *m_parent;
   Ui_copybrowser m_cb;
-  biblioteq *qmain;
   biblioteq_item *m_bitem;
   bool m_showForLending;
   bool m_speedy;

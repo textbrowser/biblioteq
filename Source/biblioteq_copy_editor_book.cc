@@ -45,8 +45,8 @@ QString biblioteq_copy_editor_book::saveCopies(void)
   copy_class *copy = nullptr;
   int i = 0;
 
-  query.prepare(QString("DELETE FROM %1_copy_info WHERE "
-			"item_oid = ?").arg(m_itemType.toLower().remove(" ")));
+  query.prepare(QString("DELETE FROM %1_copy_info WHERE item_oid = ?").
+		arg(m_itemType.toLower().remove(" ")));
   query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
