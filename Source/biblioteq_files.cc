@@ -66,6 +66,10 @@ void biblioteq_files::reset(void)
   m_ui.files_table->setRowCount(0);
   m_ui.page->clear();
   m_ui.page->addItem("1");
+  connect(m_ui.page,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotRefresh(void)));
   statusBar()->showMessage(tr("0 Total Files"));
 }
 
@@ -88,7 +92,7 @@ void biblioteq_files::slotExport(void)
 			       tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to export %1 "
 				  "files?").arg(list.size()),
-			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
