@@ -274,10 +274,18 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowDocumentation(void)));
+  connect(ui.action_English_Release_Notes,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowReleaseNotes(void)));
   connect(ui.action_French,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowDocumentation(void)));
+  connect(ui.action_French_Release_Notes,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowReleaseNotes(void)));
   connect(ui.action_Grey_Literature,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -294,10 +302,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotPrintIconsView(void)));
-  connect(ui.action_Release_Notes,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowReleaseNotes(void)));
   connect(ui.actionImportCSV,
 	  SIGNAL(triggered(void)),
 	  this,

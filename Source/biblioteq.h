@@ -209,9 +209,9 @@ class biblioteq: public QMainWindow
   biblioteq(void);
   ~biblioteq();
   QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_documentation;
+  QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_releaseNotes;
   QPointer<QMenu> m_configToolMenu;
   QPointer<biblioteq_documentationwindow> m_contributors;
-  QPointer<biblioteq_documentationwindow> m_releaseNotes;
   QString m_unaccent;
   QColor availabilityColor(const QString &itemType) const;
   QHash<QString, QString> getAmazonHash(void) const;

@@ -377,16 +377,27 @@ void biblioteq::slotShowFiles(void)
 
 void biblioteq::slotShowReleaseNotes(void)
 {
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
   repaint();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  if(!m_releaseNotes)
+  if(!m_releaseNotes.value(action))
     {
-      m_releaseNotes = new biblioteq_documentationwindow
-	(QUrl("qrc:/Release-Notes.html"), this);
-      m_releaseNotes->setWindowTitle(tr("BiblioteQ: Release Notes"));
+      if(action == ui.action_French_Release_Notes)
+	m_releaseNotes[action] = new biblioteq_documentationwindow
+	  (QUrl("qrc:/Release-Notes-French.html"), this);
+      else
+	m_releaseNotes[action] = new biblioteq_documentationwindow
+	  (QUrl("qrc:/Release-Notes.html"), this);
+
+      m_releaseNotes.value(action)->setWindowTitle
+	(tr("BiblioteQ: Release Notes"));
     }
 
-  m_releaseNotes->show();
+  m_releaseNotes.value(action)->show();
   QApplication::restoreOverrideCursor();
 }

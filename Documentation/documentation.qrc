@@ -2,5 +2,6 @@
     <qresource prefix="/">
     	<file>BiblioteQ.html</file>
 	<file>Release-Notes.html</file>
+	<file>Release-Notes-French.html</file>
     </qresource>
 </RCC>

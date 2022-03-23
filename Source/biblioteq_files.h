@@ -1,6 +1,8 @@
 #ifndef _BIBLIOTEQ_FILES_H_
 #define _BIBLIOTEQ_FILES_H_
 
+#include <QPointer>
+
 #include "ui_biblioteq_files.h"
 
 class biblioteq;
@@ -26,8 +28,8 @@ class biblioteq_files: public QMainWindow
      PARENT_TITLE = 4
     };
 
+  QPointer<biblioteq> m_biblioteq;
   Ui_files m_ui;
-  biblioteq *m_biblioteq;
   void changeEvent(QEvent *event);
 
  private slots:
