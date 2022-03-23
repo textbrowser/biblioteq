@@ -1,1864 +1,1862 @@
 <html>
-  <body>
-Notes de publication
-
-30 mars 2022.
-
-    Copie du contenu des tables book_sequence et sequence pendant la fusion des bases de donnÃ©es SQLite.
-    Affiche un avertissement si le schÃ©ma de base de donnÃ©es actuel n'est pas Ã  jour.
-    Limitez les fichiers par page (navigateur de fichiers) et les membres par page (navigateur de membres) Ã  2500.
-    Nouveau champ de base de donnÃ©es multivolume_set_isbn. Pour les bases de donnÃ©es SQLite, le champ ne peut pas Ãªtre ajoutÃ© avec une contrainte UNIQUE par https://www.sqlite.org/lang_altertable.html. Envisagez de fusionner la base de donnÃ©es existante avec une base de donnÃ©es nouvellement crÃ©Ã©e. Voir https://github.com/textbrowser/biblioteq/discussions/191.
-        1. CrÃ©er une nouvelle base de donnÃ©es SQLite avec : Fichier -> Nouvelle base de donnÃ©es SQLite...
-        2. Ouvrir la fusion de bases de donnÃ©es SQLite : Outils -> Fusionner base de donnÃ©es SQLite...
-        3. Ajouter Ligne.
-        4. SÃ©lectionnez le fichier de la base de donnÃ©es SQLite existante.
-        5. Appuyez sur le bouton Fusionner.
-    PostgreSQL 10.20.1; Windows.
-    Conservez uniquement les dÃ©clarations de mise Ã  niveau SQLite de la version prÃ©cÃ©dente (2022.02.30). Toutes les autres dÃ©clarations ont Ã©tÃ© archivÃ©es dans la source.
-    BiblioteQ.odt rÃ©visÃ© : nouvelles informations, nouvelles sections, images remplacÃ©es, corrections orthographiques.
-    SQLite 3.38.1; Windows.
-
-30 fÃ©vrier 2022.
-
-    GÃ©nÃ©rer des rappels par e-mail aux clients.
-    Nouvelles informations sur la Mokka. Merci Ã  tamascz.
-    Nouveaux champs de base de donnÃ©es alternate_id_1 et membership_fees. Veuillez mettre Ã  jour les schÃ©mas de base de donnÃ©es. Pour SQLite, ouvrez la base de donnÃ©es souhaitÃ©e et allez dans Outils -> Mettre Ã  niveau le schÃ©ma SQLite.
-    RequÃªtes vers OpenLibrary via des identifiants alternatifs.
-    Frais de retard dans le navigateur des membres.
-    Trier les rÃ©sultats de la recherche de base (fenÃªtre principale) par titres. Merci Ã  tamascz.
-
-30 janvier 2022.
-
-    BiblioteQ @ 20! Bonne annÃ©e !
-    Options YAZ configurables.
-    Correction des recherches insensibles Ã  la casse. Merci Ã  meteos77.
-    Correction des rÃ©visions de la vue principale via les dÃ©tails de l'Ã©lÃ©ment ; indices persistants.
-    Les Ã©numÃ©rations des bases de donnÃ©es (types de reliure, langues, lieux, unitÃ©s monÃ©taires) sont dÃ©sormais incluses dans l'importation des livres.
-    DÃ©sactive l'action du menu contextuel RÃ©server l'Ã©lÃ©ment sÃ©lectionnÃ© si l'Ã©lÃ©ment actuel est une photographie.
-    Affiche les chaÃ®nes d'en-tÃªte de l'aperÃ§u de l'importation dans la table du modÃ¨le d'importation. Par exemple, le texte de la colonne 1 de la table de prÃ©visualisation peut Ãªtre dÃ©fini comme "Titre" et l'Ã©lÃ©ment Ã  (0, 1) dans la table de modÃ¨le aura son texte Ã©galement dÃ©fini comme "Titre". Merci Meteos77.
-    Optimisation de l'affichage des contenus volumineux.
-    Ne pas dÃ©sactiver les widgets de connexion Ã  la base de donnÃ©es si une connexion est dÃ©jÃ  prÃ©sente.
-    Activer le respect de la casse pour les recherches SQLite gÃ©nÃ©rales.
-    Exportation de la vue des icÃ´nes en PNG.
-    Retour groupÃ© d'articles sÃ©lectionnÃ©s via la catÃ©gorie "Tous rÃ©servÃ©s".
-    Options de format d'affichage de l'ISBN. Veuillez consulter la section Autres options.
-    Initialiser les codes-barres vides dans les Ã©diteurs de copie.
-    Pagination du navigateur des membres.
-    Nouvelles autres options pour dÃ©finir le nombre de colonnes du mode IcÃ´nes.
-    Nouveau modÃ¨le d'importation. Merci meteos77.
-    Nouvelle option de terminal open-postgresql-database.
-    Imprimer la vue des icÃ´nes.
-    Suppression des tirets des champs ISBN dans les conditionnels.
-    SQLite 3.37.2; Windows.
-    Simplifier le texte avant de l'afficher dans le tableau principal et les infobulles associÃ©es. Merci meteos77.
-
-15 dÃ©cembre 2021.
-
-    Recherche par numÃ©ro d'accession ; disponible Ã  partir de la fenÃªtre principale.
-    Permettre l'Ã©mission de l'instruction de suppression SQL pour les requÃªtes personnalisÃ©es.
-    Conversion automatique des ISBN-10 en ISBN-13 lors des importations.
-    L'option de configuration des colonnes sera dÃ©sactivÃ©e pour les requÃªtes personnalisÃ©es car les requÃªtes    dÃ©crivent les colonnes souhaitÃ©es.
-    Correction de l'Ã©tat de lecture des livres et des requÃªtes personnalisÃ©es pour SQLite.
-    Correction du menu de configuration des colonnes. Merci Ã  meteos77.
-    Correction de la gÃ©nÃ©ration de fichiers CSV Ã  partir de requÃªtes personnalisÃ©es. Merci Ã  meteos77.
-    Traductions corrigÃ©es. Nouveaux fichiers de traduction.
-    Documentation et notes de mise Ã  jour intÃ©grÃ©es.
-    Inspectez la police crÃ©Ã©e Ã  partir du paramÃ¨tre global_font. Si la police ne peut pas Ãªtre recrÃ©Ã©e, attribuez   une police par dÃ©faut.
-    Introduction de l'option de dÃ©lai d'attente pour YAZ. Le dÃ©lai d'attente rÃ©el varie.
-    Des listes plus complÃ¨tes des tables de la base de donnÃ©es disponibles dans Custom Query.
-    Nouvelle option de terminal open-sqlite-database.
-    Images de la fenÃªtre principale et boÃ®tes de dialogue de progression facultatives. Veuillez consulter la section  Autres options.
-    Patron de l'exportation et de l'importation.
-    PostgreSQL 10.19; Windows.
-    Qt 5.12.12 LTS; Windows.
-    Qt 6.2 LTS. Un Ã©lÃ©ment restant
-    Restaurer et conserver la gÃ©omÃ©trie de Members Browser.
-    SQLite 3.37; Windows.
-    SQLite : fusion de bases de donnÃ©es.
-    RÃ©servations rapides. Nouvelle option dans le navigateur des membres
-
-30 octobre 2021.
-
-    Version Android. SQLite uniquement.
-    Ã‰viter les signaux dupliquÃ©s dans la sÃ©lection de branche.
-    Correction du rÃ©glage des images des livres par rapport Ã  la colonne en lecture seule.
-    Fichiers de traduction incorporÃ©s.
-    Maximum de livres rÃ©servÃ©s. Veuillez mettre Ã  jour les schÃ©mas de la base de donnÃ©es. Les limites ne sont pas respectÃ©es.
-    Nouvelle colonne Total rÃ©servÃ© dans l'explorateur de membres.
-    PostgreSQL 10.18.2, Windows.
-    Qt 6.2 LTS. Incomplet.
-    Suppression de la validation des e-mails. Qt 6.2 LTS.
-    Exemple de base de donnÃ©es SQLite. Merci Ã  sunyuyangg555.
-    Traduction en espagnol. Merci Ã  caalma.
-    YAZ est maintenant optionnel.
-
-10 septembre 2021.
-
-    Une nouvelle colonne a Ã©tÃ© ajoutÃ©e au navigateur d'importation CSV.
-    Une nouvelle colonne a Ã©tÃ© ajoutÃ©e Ã  la table principale indiquant l'Ã©tat de lecture. SQLite seulement.
-    PostgreSQL 10.18, Windows.
-
-8 AoÃ»t 2021.
-
-    Couleurs de disponibilitÃ©. Veuillez consulter la section Autres options.
-    C++ 2011.
-    Statut de lecture pour les livres. SQLite uniquement.
-    SQLite 3.36, Windows.
-
-12 juin 2021.
-
-    Correction du navigateur de l'Ã©diteur de copie causÃ© par une mÃ©thode protÃ©gÃ©e C++ incorrecte. Merci Ã  tamascz.
-    PostgreSQL 10.17 pour Windows.
-    Qt 5.12.11 pour Windows.
-
-15 mai 2021.
-
-    DÃ©tails : https://github.com/textbrowser/biblioteq/compare/2021.04/10...master.
-    RÃ©servations de littÃ©rature grise. Veuillez mettre Ã  jour vos schÃ©mas de base de donnÃ©es.
-    PostgreSQL 10.16 pour Windows.
-    SQLite 3.35.5 pour Windows.
-    YAZ 5.31 pour Windows.
-
-10 avril 2021.
-
-    Algorithme de tri configurable pour les numÃ©ros d'accession des livres. Voir les autres options.
-    Support des DPI Ã©levÃ©s.
-    Nouveau champ URL pour les articles de livres. Veuillez mettre Ã  jour vos schÃ©mas de base de donnÃ©es.
-    Images d'articles facultatives. Voir les autres options.
-    Traduction en portugais. Merci a12554.
-    PostgreSQL 9.6.21 ; Windows.
-    SQLite 3.35.04 ; Windows.
-
-12 fÃ©vrier 2021.
-
-    AmÃ©liorations de la gestion des copies. Veuillez signaler les erreurs.
-    Correction des conversions UTF-8 des donnÃ©es de Open Library. Merci Ã  jferby.
-    Nouvelle traduction en polonais. Merci Ã  jerzyPL.
-    Poppler a Ã©tÃ© supprimÃ© de la version Windows car il est obsolÃ¨te. La bibliothÃ¨que sera remplacÃ©e par QtPDF.
-
-
-Le 2 fÃ©vrier 2021.
-
-    Bonne annÃ©e !
-    Poursuite du paramÃ©trage des requÃªtes de recherche SQL.
-    Correction des avertissements de Qt 5.15.
-    Nouveau navigateur de fichiers.
-    Nouveaux Ã©numÃ©rateurs ; objets internes. Veuillez rapporter toutes les erreurs.
-    Nouveaux champs de base de donnÃ©es d'Ã©tat. Veuillez mettre Ã  jour vos bases de donnÃ©es !
-    Purge des entrÃ©es de la base de donnÃ©es SQLite lors de la suppression des entrÃ©es parentales.
-    Qt 5.12.10 sur Windows.
-    Qt 5.15.2 sur OS X.
-    SQLite 3.34.1.
-
-9 septembre 2020.
-
-    Permettre l'ouverture de plusieurs fichiers PDF.
-    Masquage du bouton Supprimer dans Copy Browser. Le widget n'est pas nÃ©cessaire et sa fonction non plus. Le nombre de copies est contrÃ´lÃ© par la fenÃªtre parent.
-    Nouvelle mise en page du livre, selon la demande.
-    Nouveaux mÃ©canismes d'analyse des balises MARC pour les livres, les revues et les magazines.
-    Corrections OpenBSD.
-    PostgreSQL 9.6.19 pour W32.
-    Synchronisation de la page actuelle avec l'index des pages dans le lecteur PDF.
-    Diverses astuces pour le texte.
-
-25 juillet 2020.
-
-    C++2011.
-    Messages colorÃ©s dans le processus de mise Ã  niveau de SQLite.
-    Correction des dÃ©clarations de mise Ã  niveau de SQLite. Merci Ã  tamascz.
-
-11 Juillet 2020.
-
-    Correction de la fourniture d'Ã©numÃ©rations de base de donnÃ©es. Merci jerzyPL.
-    Correction des conseils de l'outil de la table principale en ce qui concerne les donnÃ©es binaires. Merci Ã  jerzyPL.
-    Introduction de divers raccourcis.
-
-4 juillet 2020.
-
-    AccÃ¨s aux Ã©lÃ©ments de la fenÃªtre principale par la touche EntrÃ©e.
-    Autoriser les proxies pour les tÃ©lÃ©chargements d'images de l'Open Library.
-    Autoriser les proxies pour les requÃªtes SRU.
-    Les emprunteurs ne peuvent envoyer que des requÃªtes SQL.
-    Les fenÃªtres PDF enfant seront liÃ©es Ã  la fenÃªtre principale.
-    Optimisations des conteneurs : isEmpty() versus size() > 0.
-    Correction de la suppression des lignes sÃ©lectionnÃ©es dans le mÃ©canisme d'importation.
-    Les dates dans le tableau principal seront affichÃ©es selon les formats dans les autres options. Pour les catÃ©gories gÃ©nÃ©rales, par exemple Tout, les dates seront affichÃ©es en utilisant le format ISO-8601. Merci Ã  jerzyPL.
-    Support dÃ©prÃ©ciÃ© de Qt 4.8.7.
-    Affichage d'un dialogue d'erreur de conversion si un ISBN Ã  13 chiffres n'est pas prÃ©fixÃ© par 978 ou 979.
-    AperÃ§u avant impression de la fenÃªtre principale.
-    Nouveau serveur SRU de la Library of Congress. Veuillez mettre Ã  jour biblioteq.conf !
-    Nouveaux menus contextuels maintenant disponibles sur divers widgets.
-    Nouvelle disposition d'impression de l'historique des rÃ©servations.
-    RequÃªtes Open Library.
-    AperÃ§u avant impression du PDF.
-    Sur demande, incrÃ©mentation automatique des numÃ©ros d'accession des livres.
-    Rotation des images des photographies.
-    Traduction en polonais. Merci Ã  jerzyPL.
-    PostgreSQL 9.6.18 sur Windows.
-    Histoires de membres privÃ©s pour PostgreSQL >= 9.5.
-    Qt 5.12.9 sur Windows.
-    Refonte de plusieurs triggers PostgreSQL, liant les articles avec leurs informations de rÃ©servation.
-    Assouplissement de la validation de l'ISSN. Merci Ã  robindegen.
-    Suppression de la vue de la base de donnÃ©es item_borrower_vw. Veuillez mettre Ã  jour les bases de donnÃ©es PostgreSQL et SQLite.
-    Suppression de std::nothrow.
-    AperÃ§u avant impression de l'historique des rÃ©servations.
-    Politiques de sÃ©curitÃ© item_borrower et item_request au niveau de la ligne pour PostgreSQL >= 9.5.
-    SQLite 3.32.3 sur Windows.
-    SSL / TLS pour la rÃ©cupÃ©ration des images Amazon. Ignorer les erreurs SSL / TLS lors de la rÃ©cupÃ©ration d'images.
-    Outil de base de donnÃ©es Vacuum.
-    YAZ 5.30.3 sur Windows.
-
-1er janvier 2020.
-
-    Optimisation des conteneurs ; remplacement de first().
-    Paquet Debian ARM Qt 5. Construction native.
-    Quinze annÃ©es splendides de BiblioteQ !
-    Bonne annÃ©e !
-    L'importation de livres Ã  partir de fichiers CSV est maintenant supportÃ©e. ModÃ¨le de cartographie BiblioteQ inclus.
-    Support de OS/2 Qt 5.
-    Validation optionnelle des e-mails.
-    PostgreSQL 9.6.16 sur Windows.
-    Qt 5.9.9 sur Windows.
-    SQLite 3.30.1 sur Windows.
-
-10 octobre 2019.
-
-    Option de vue photographique Best Fit.
-    RequÃªtes de base de donnÃ©es en avant, le cas Ã©chÃ©ant.
-    Nouvelles informations de contact dans le navigateur des membres.
-    Traitement des Ã©vÃ©nements de l'interface. Douceur.
-    SQLite 3.30 sur W32.
-    DÃ©coupage des valeurs des chaÃ®nes de la base de donnÃ©es pendant le traitement.
-
-9 septembre 2019.
-
-    Permet d'exporter les Ã©lÃ©ments visibles du navigateur de membres en tant que CSV.
-    Correction des colonnes visibles. Merci sidheban.
-    Correction de la suppression des photos via les menus contextuels ; terminaison anormale.
-    DÃ©signer les noms d'utilisateur de la base de donnÃ©es SQLite par SQLITE lorsque c'est applicable.
-    DÃ©sactivation des recherches par hyperlien sur SQLite. Les champs de texte Ã©ditable ne supportent pas les hyperliens interactifs.
-    Affichage du numÃ©ro d'appel pour les catÃ©gories All Overdue, All Requested et All Reserved.
-    Affichage du rÃ´le de la base de donnÃ©es dans le titre de la fenÃªtre principale.
-    Suppression des extensions dans postgresql_destroy_schema.sql.
-    Mode plein Ã©cran.
-    Apparence intuitive des boutons radio.
-    AperÃ§u d'images plus grandes dans le tableau de la fenÃªtre principale.
-    Les informations de contact des utilisateurs sont maintenant disponibles dans les catÃ©gories Tous en retard, Tous demandÃ©s et Tous rÃ©servÃ©s.
-    PostgreSQL 9.6.15 sur W32.
-    Qt 5.13.0 sur OS X.
-    Suppression du singleton C++.
-    SQLite 3.29 sur W32.
-    Changement du format de la source.
-    Mise Ã  jour de l'image de l'Ã©lÃ©ment dans la table principale lors du changement d'image.
-
-6 juin 2019.
-
-    Date de publication de la littÃ©rature grise Correction du format fournie par coldacid.
-    Modification de l'emplacement attendu de biblioteq.conf sous Windows. Merci Ã  coldacid.
-    Images de couverture de Open Library.
-    RequÃªtes de recherche basÃ©es sur des paramÃ¨tres. Injections SQL.
-    PostgreSQL 9.6.13 sur W32.
-    Qt 5.9.8 sur W32.
-    SQLite 3.28 sur W32.
-
-Le 15 mars 2019.
-
-    Menus Mac Ã©lÃ©gants.
-    Bonne annÃ©e !
-    Nouveau paramÃ¨tre Autres options. S'il est activÃ©, de jolies info-bulles seront affichÃ©es sur la table principale.
-    PostgreSQL 9.6.12 sur W32.
-    Qt 5.12.1 sur OS X.
-    Suppression de Qt::WA_MacMetalStyle.
-    Conservation des Ã©tats du widget General Search aprÃ¨s une requÃªte.
-    Traduction russe de Viacheslav Ptsarev. Merci !
-    SQLite 3.27.2 sur W32.
-    Le paquet Debian a Ã©tÃ© crÃ©Ã© sur Kubuntu 18.10. La bibliothÃ¨que YAZ5 est attendue.
-
-12 dÃ©cembre 2018.
-
-    OpÃ©rations LIKE insensibles Ã  la casse. Merci Ã  ozgurcan.
-    Correction de l'emplacement du rÃ©pertoire Translations sur Mac. Merci Marty.
-    Correction du paramÃ¨tre mainwindow_canvas_backgound_color. Devrait Ãªtre mainwindow_canvas_background_color.
-    Correction de l'analyse des sous-champs dans le XML. Certains champs doivent Ãªtre supprimÃ©s. Merci Ã  sit42.
-    Option unaccent() pour PostgreSQL. Merci Ã  ozgurcan.
-    PrÃ©vention d'une terminaison anormale pendant le tÃ©lÃ©chargement d'une image. Merci sit42.
-    Qt 9.6.7 sur W32.
-    Corrections orthographiques.
-    Le paramÃ¨tre de sauvegarde automatique est dÃ©sormais activÃ© pour les nouvelles installations.
-
-1er octobre 2018 .
-
-    Autoriser le rechargement des Ã©lÃ©ments dans le dialogue de requÃªte personnalisÃ©e.
-    Fermer la boÃ®te de dialogue des rÃ©sultats du schÃ©ma de mise Ã  niveau de SQLite lors d'un clic de fermeture.
-    Raccourcis Control + S et Control + W. Merci wohali.
-    Correction des implÃ©mentations de l'opÃ©rateur less-than dans les Ã©lÃ©ments des tableaux dÃ©rivÃ©s. Le logiciel actuel suppose que les valeurs des cellules sont statiques.
-    PQ Ã  la version 9.6.10 sur W32.
-    SQLite Ã  la version 3.25.2 sur W32.
-    Prise en charge du prÃ©fixe ISBN 979. Merci Safranil.
-
-4 juillet 2018 .
-
-    Activation du tri de la table principale aprÃ¨s l'acquisition du nombre de fichiers de littÃ©rature grise et du nombre de photographies.
-    Nouvelle cible grecque Z39.50. Veuillez consulter biblioteq.conf.
-    Qt 5.9.6 sur W32.
-    Qt 5.11.1 sur OS X.
-    Suppression des requÃªtes de base de donnÃ©es forward-only car certaines causent des problÃ¨mes avec PQ et Qt 5.11.
-    SQLite 3.24.0 sur W32.
-    RÃ©glage de l'icÃ´ne par dÃ©faut de l'application.
-    Connexions uniques de signaux Qt.
-    YAZ 5.25.0 sur W32.
-
-5 mai 2018.
-
-    Permettre l'annulation des requÃªtes SRU.
-    Permettre la recherche de fichiers PDF.
-    PossibilitÃ© de trier les fichiers par taille dans les livres, les journaux et les magazines.
-    Support du processeur Alpha 21264.
-    Ã‰viter la journalisation des erreurs de duplication et d'unicitÃ© sur INSERT Ã  member_history_dnt.
-    Correction des astuces de l'outil Browser Database Enumerations.
-    Correction de l'instruction ALTER membre pour le processus de mise Ã  jour de SQLite.
-    Correction des dialogues de progression des parents.
-    Suppression correcte des fenÃªtres d'Ã©lÃ©ments photographiques lors de la suppression des entrÃ©es de base de donnÃ©es correspondantes.
-    Conservation correcte du paramÃ¨tre CatÃ©gorie pendant une session BiblioteQ, quelle que soit la connectivitÃ© de la base de donnÃ©es.
-    Paquet Debian AMD64 construit avec Qt 5.5.1.
-    Paquet Debian PowerPC avec Qt 4.8.x.
-    ReprÃ©sentation de widgets en lecture seule dans diverses fenÃªtres d'Ã©lÃ©ments. L'implÃ©mentation actuelle est incomplÃ¨te.
-    DÃ©truire les objets fantÃ´mes. Ces objets sont crÃ©Ã©s si les mÃ©thodes de recherche d'Ã©lÃ©ments Ã©chouent.
-    DÃ©sactiver l'extension MIT-SHM sur X11.
-    Ne pas supprimer la fenÃªtre de requÃªte personnalisÃ©e aprÃ¨s l'exÃ©cution d'une requÃªte.
-    Incorporation d'icÃ´nes d'Ã©lÃ©ments dans la table principale.
-    Inspecter les pointeurs zÃ©ro potentiels.
-    Lancement de visionneuses PDF via des Ã©vÃ©nements de double-clic pour les livres, les journaux et les magazines. Poppler requis.
-    Maintien des valeurs des champs aprÃ¨s la fin d'une recherche gÃ©nÃ©rale.
-    Recherches gÃ©nÃ©riques Ã  mots multiples.
-    Widgets natifs de la barre de menu.
-    Nouveau dialogue de message de mise Ã  niveau de SQLite.
-    Nouveaux formats de date dans les autres options. Merci coldacid.
-    Nouveau document utilisateur.
-    Support OpenBSD.
-    Suppression correcte des Ã©lÃ©ments de scÃ¨ne photographique aprÃ¨s que leurs reprÃ©sentations correspondantes dans la base de donnÃ©es aient Ã©tÃ© correctement supprimÃ©es. La logique incorrecte provoque une terminaison anormale.
-    Purger les Ã©lÃ©ments de scÃ¨ne chaque fois que les images des Ã©lÃ©ments sont remplacÃ©es. Sinon, des objets mÃ©moire fantÃ´mes restent.
-    Paquet Raspbian armhf avec Qt 4.8.7.
-    Remplacement des dialogues statiques des requÃªtes SRU et Z39.50 par des instances dynamiques.
-    Remplacement du contenu de la vue du lecteur PDF par une liste de facteurs d'Ã©chelle.
-    Signalement des erreurs de rÃ©seau SRU.
-    RÃ©initialisation de l'Ã©tat Case-Insensitive lors de l'activation de Reset.
-    SQLite Ã  la version 3.23.0 sur Win32.
-    Certains widgets devraient Ãªtre cachÃ©s dans diverses fenÃªtres de recherche d'Ã©lÃ©ments. Par exemple, Fichiers.
-    Support de Sparc64.
-    Support de la littÃ©rature grise. Administrateurs PostgreSQL, veuillez mettre Ã  jour votre ou vos schÃ©mas de base de donnÃ©es via postgresql_update_schema.sql.
-    La version OS X est gÃ©nÃ©rÃ©e avec Qt 5.10.1 sur OS X 10.12.6. La prise en charge des versions antÃ©rieures d'OS X est inconnue.
-    Mise Ã  jour des produits Qt Ã  la version 5.9.5 sur Win32.
-    Mise Ã  jour des produits PostgreSQL Ã  la version 9.6.8 sur Win32.
-    YAZ Ã  la version 5.23.1 sur Win32.
-
-19 aoÃ»t 2017 .
-
-    Correction de la visibilitÃ© des dialogues de mot de passe sur les bases de donnÃ©es SQLite. Ces boÃ®tes de dialogue ne devraient pas Ãªtre accessibles. Merci Ã  Fares Othman.
-    Dates optionnelles dans diverses recherches.
-    Mise Ã  niveau des produits Qt vers la version 5.9.1 sur Windows.
-    Mise Ã  niveau des produits PostgreSQL vers la version 9.6.4 sur OS X.
-    Mise Ã  niveau des produits SQLite vers la version 3.20.0 sur OS X et Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.22.0 sur OS X et Windows.
-
-4 juillet 2017 .
-
-    Menu contextuel pour la suppression des photographies.
-    Nouvelles informations sur la bibliothÃ¨que Windows. Merci Leif-W.
-
-5 mai 2017 .
-
-    Correction de l'Ã©lÃ©ment de menu en langue arabe. Merci Ã  Fares Othman d'avoir signalÃ© le problÃ¨me.
-    Nouveau format de date des autres options : yyyy.
-    Purge des objets.
-
-30 avril 2017 .
-
-    Traduction en arabe fournie par Fares Othman.
-    Augmentation du niveau d'optimisation sur toutes les plateformes.
-    Visionneuse PDF Poppler sur W32.
-    Produits PostgreSQL Ã  la version 9.6.2 sur W32.
-    Qt Ã  la version 5.8.0 sur W32.
-    SQLite a Ã©tÃ© mis Ã  niveau vers la version 3.18.0 sur W32.
-    Les produits YAZ ont Ã©tÃ© mis Ã  niveau vers la version 5.20.1 sur W32.
-
-20 janvier 2017 .
-
-    Permettre l'exportation de la ou des photographies sÃ©lectionnÃ©es.
-    Permettre la pagination aprÃ¨s une requÃªte interrompue.
-    Visionneuse PDF pour les livres, les journaux et les magazines. Poppler requis. Disponible sur FreeBSD et Linux.
-    Les bases de donnÃ©es PostgreSQL offrent des tailles de requÃªtes. Modification de certaines boÃ®tes de dialogue de progression.
-    Mise Ã  niveau de SQLite vers la version 3.16.2 sous Windows.
-    Mise Ã  jour de YAZ vers la version 5.20.0 sur OS X.
-
-16 dÃ©cembre 2016 .
-
-    La version 2016.12.16 est dÃ©sormais disponible.
-    Permettre le tri des Ã©lÃ©ments de requÃªte de base de donnÃ©es personnalisÃ©e.
-    Correction d'un problÃ¨me de sÃ©lection avec les collections de photographies. Le problÃ¨me empÃªchait la modification des Ã©lÃ©ments sÃ©lectionnÃ©s dans les collections de photographies.
-    Correction de la requÃªte de recherche de CD de musique.
-    Nouveau champ de base de donnÃ©es accession_number. Administrateurs PostgreSQL, veuillez mettre Ã  jour votre/vos schÃ©ma(s) de base de donnÃ©es via postgresql_update_schema.sql. Utilisateurs de SQLite, veuillez consulter l'option Mise Ã  jour du schÃ©ma SQLite dans le menu Outils.
-    Mise Ã  niveau de Qt vers la version 5.7.1 sur Windows.
-
-6 dÃ©cembre 2016 .
-
-    La nouvelle version est prÃªte ! Version 2016.12.06.
-    Correction de la documentation.
-    Nouvelles autres options. Veuillez consulter le menu Options.
-    Mise Ã  jour de SQLite Ã  la version 3.15.2 sur OS X et Windows.
-    Utilisateurs de Windows XP, veuillez envisager d'installer le fichier vc_redist.x86.exe fourni.
-
-5 novembre 2016 .
-
-    La version 2016.11.05 est prÃªte !
-    Permettre le rechargement de biblioteq.conf via les options.
-    Correction d'une dÃ©claration de subvention dans postgresql_create_schema.sql en ce qui concerne grey_literature_myoid_seq. Administrateurs PostgreSQL, veuillez lire postgresql_update_schema.sql.
-    Correction de la requÃªte du membre. ProblÃ¨me causÃ© par la logique basÃ©e sur la traduction. Merci Ã  Jeepee pour le rapport.
-    Correction de la seule instruction INSERT dans postgresql_create_schema.sql. Mentionner explicitement les noms de colonnes. Merci Ã  Arti d'avoir signalÃ© le problÃ¨me.
-    Si vous avez des problÃ¨mes de Z39.50 sous Windows, veuillez supprimer le registre Windows Mon ordinateur\HKEY_CURRENT_USER\Software\BiblioteQ via regedit.
-    Modification de postgresql_destroy_schema.sql pour qu'il produise un seul avis lors d'une exÃ©cution idÃ©ale.
-    Remplacement de CREATEUSER par CREATEROLE dans postgresql_create_schema.sql. PostgreSQL 9.6 a dÃ©prÃ©ciÃ© CREATEUSER. Veuillez consulter https://www.postgresql.org/docs/9.6/static/release-9-6.html. Merci Ã  Arti pour le rapport.
-    SQLite Ã  la version 3.15.1 sur OS X et Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.18.0 sur OS X et la version 5.17.0 sur Windows.
-    VÃ©rifier l'accessibilitÃ© des fichiers SQLite.
-
-4 septembre 2016 .
-
-    La version 2016.09.04 est disponible.
-    Interdire l'annulation des requÃªtes Z39.50.
-    EXISTS() au lieu de COUNT(), le cas Ã©chÃ©ant.
-    Mise Ã  niveau des produits Qt vers la version 5.7.0 sous Windows.
-    Mise Ã  jour des produits SQLite vers la version 3.14.1 sur Windows.
-
-4 juillet 2016 .
-
-    La version 2016.07.04 est disponible.
-    Correction du rappel des frais en retard.
-    Diminution des permissions biblioteq_guest sur item_borrower_vw. Voir postgresql_update_schema.sql.
-    Ellipses.
-    Introduction de connection_options dans biblioteq.conf.
-    Introduction des fichiers joints pour les livres, les journaux et les magazines. Les administrateurs de PostgreSQL doivent exÃ©cuter les derniÃ¨res instructions dans postgresql_update_schema.sql.
-    Nouvelle option pour un nombre illimitÃ© de photos par page.
-    Par bouleau, impression d'Ã©tiquettes de couverture intÃ©rieure de livre. Veuillez consulter https://sourceforge.net/p/biblioteq/feature-requests/48.
-    Par paolofrancioso, ajout d'un rappel des donnÃ©es pÃ©rimÃ©es dans les Ã©numÃ©rations de bases de donnÃ©es.
-    Remplacement de l'opÃ©rateur QHash, QMap [] par value() ; performance.
-    Le destructeur de biblioteq_magazine doit Ãªtre virtuel.
-    Mise Ã  jour de Qt Ã  la version 5.6.1 sur Windows.
-    Mise Ã  niveau de SQLite vers la version 3.13.0 sous Windows.
-
-15 mars 2016 .
-
-    Une nouvelle version est disponible, 2016.03.15.
-    Plus de requÃªtes SQL en avant-premiÃ¨re.
-    Portable BiblioteQ. Les paramÃ¨tres de configuration des utilisateurs prÃ©cÃ©dents seront perdus.
-
-8 mars 2016 .
-
-    Mise en ligne d'un nouvel installateur W32, ajoutant api-ms-win-crt-runtime-l1-1-0.dll. Merci Ã  Bill Burns d'avoir signalÃ© le problÃ¨me.
-
-7 mars 2016 .
-
-    Mise en ligne d'un nouvel installateur W32, ajoutant vcruntime140.dll. Merci Ã  Lazaros S. d'avoir signalÃ© le problÃ¨me.
-
-3 mars 2016 .
-
-    La version 2016.03.03 est disponible.
-    Correction de la sÃ©lection de la langue. Merci Ã  Lazaros S. d'avoir signalÃ© le problÃ¨me.
-    Nouvelle option sous Options, par Lazaros S.
-    Suppression des directives INI dupliquÃ©es de la source.
-    Mise Ã  niveau de SQLite vers la version 3.11.1 sous Windows.
-
-17 fÃ©vrier 2016 .
-
-    La version 2016.02.17 est disponible.
-    Ajout d'une fonctionnalitÃ© de mise Ã  jour des anciens schÃ©mas SQLite BiblioteQ. Veuillez consulter le menu Outils.
-    Ajout du support de l'architecture ARM.
-    PossibilitÃ© d'annuler les requÃªtes Z39.50.
-    BiblioteQ ne doit pas crÃ©er d'identifiants de copie artificiels.
-    Correction de biblioteq_image_drop_site::clear(). La mÃ©thode ne supprimait pas les Ã©lÃ©ments graphiques supprimÃ©s.
-    Correction de la dÃ©couverte des noms de champs de base de donnÃ©es des rÃ©sultats de requÃªtes personnalisÃ©es.
-    Correction d'un message d'erreur incomplet pour les photographies.
-    Correction des vignettes des photographies sur Qt 5.
-    CorrigÃ© les fichiers du projet Qt de FreeBSD ; clang.
-    CorrigÃ© le mÃ©canisme de recherche de jeux vidÃ©o.
-    AmÃ©lioration des styles de bordure des images sÃ©lectionnÃ©es.
-    AmÃ©lioration des mnÃ©moniques des widgets.
-    MÃ©canisme d'importation de photos.
-    Les connexions PostgreSQL requiÃ¨rent dÃ©sormais SSL/TLS par dÃ©faut. Veuillez consulter biblioteq.conf.
-    Corrections du dialogue de progression de Qt 5.5.1. Veuillez consulter https://bugreports.qt.io/browse/QTBUG-47042.
-    Fichiers SQL prÃ©parÃ©s pour la littÃ©rature grise. Incomplet.
-    EmpÃªcher l'exÃ©cution de requÃªtes SQL vides.
-    RenommÃ© les fichiers du projet. Comme cela peut avoir introduit des problÃ¨mes, veuillez signaler les divergences.
-    Les bases de donnÃ©es SQLite doivent supporter les historiques des clients.
-    Mise Ã  niveau des produits PostgreSQL vers la version 9.5.1.1 sur Windows.
-    Mise Ã  niveau des produits SQLite vers la version 3.10.2 sous Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.15.2 sous Windows.
-
-28 octobre 2015 .
-
-    La version 2015.10.28 est disponible.
-    Correction du problÃ¨me de QProgressDialog pour Qt 5.5.x.
-    Veuillez signaler les erreurs Ã  https://github.com/textbrowser/biblioteq/issues.
-    Mise Ã  jour de Qt Ã  la version 5.5.1 sur Windows.
-
-16 octobre 2015 .
-
-    La version 2015.10.16 est prÃªte.
-    Permettre le zoom de l'image de l'Ã©lÃ©ment via un double-clic.
-    Correction du titre de la boÃ®te de dialogue HTTP.
-    Correction mineure sur la feuille de style de la barre d'Ã©tat.
-    Mise Ã  niveau des produits Qt vers la version 5.5.0 sous Windows.
-    Mise Ã  niveau des produits SQLite vers la version 3.9.1 sous Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.14.10 sous Windows.
-
-4 juillet 2015 .
-
-    La version 2015.07.04 est maintenant disponible.
-    Le sexe d'un mÃ©cÃ¨ne est dÃ©sormais facultatif. Administrateurs PostgreSQL, veuillez mettre Ã  jour le(s) schÃ©ma(s) de la base de donnÃ©es via postgresql_update_schema.sql.
-
-27 juin 2015 .
-
-    La version 2015.06.27 est disponible.
-    Modification de la requÃªte Z39.50 pour les livres. N'inclure l'opÃ©rateur OR que si les deux valeurs ISBN-10 et ISBN-13 sont fournies.
-
-10 Juin 2015.
-
-    La version 2015.06.10 est disponible.
-    Protections supplÃ©mentaires pour les pointeurs.
-    Nouveau systÃ¨me de version.
-    RÃ©initialisation des champs sensibles chaque fois que le dialogue de connexion est rejetÃ©.
-    Mise Ã  jour des produits Qt vers la version 4.8.7 sur OS X et 5.4.2 sur Windows.
-    Mise Ã  niveau de SQLite vers la version 3.8.10.2 sous Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.13.0 sous Windows.
-    Utilisez DROP USER IF EXISTS au lieu de DROP USER. PostgreSQL uniquement.
-
-19 avril 2015 .
-
-    La version 10.01 est disponible.
-    Ajout du support de l'authentification par proxy aux requÃªtes du magazine SRU.
-    Toutes les requÃªtes d'extraction de la base de donnÃ©es sont maintenant forward-only. Veuillez consulter https://doc.qt.io/qt-4.8/qsqlquery.html#setForwardOnly.
-    Permet l'utilisation de QHttp Ã  la place de QNetworkAccessManager. Source uniquement.
-    Correction de postgresql_destroy_schema.sql.
-    Correction des sÃ©lections d'Ã©lÃ©ments demandÃ©s.
-    Correction de l'affectation des variables dans marc::parseBookZ3950Marc21() en ce qui concerne les champs 100 et 700.
-    DÃ©sactivation des widgets de recherche gÃ©nÃ©rale aprÃ¨s l'exÃ©cution d'une recherche. Les widgets peuvent Ãªtre activÃ©s via l'interface.
-    Introduction d'une recherche de base intÃ©grÃ©e dans la fenÃªtre principale.
-    Modifications de la mise en page.
-    DÃ©placement de l'option catÃ©gorie dans le menu Affichage.
-    Nouveau compte invitÃ© PostgreSQL ! Veuillez consulter postgresql_update_schema.sql.
-    Les clients peuvent maintenant refuser l'historique des rÃ©servations. ActivÃ© par dÃ©faut.
-    Suppression des permissions biblioteq_patron de biblioteq_membership. Administrateurs PostgreSQL, veuillez consulter postgresql_update_schema.sql. Le rÃ´le biblioteq_membership ne doit pas avoir accÃ¨s Ã  l'activitÃ© des patrons.
-    Support OS X 10.6.8 et Qt 4.8.6. Merci Ã  Ceres d'avoir signalÃ© les erreurs.
-    Mise Ã  jour des produits Qt Ã  la version 5.4.1 sur Windows.
-
-27 janvier 2015 .
-
-    La version 10.00 est maintenant disponible.
-    BiblioteQ fÃªte ses dix ans d'existence !
-    Bonne annÃ©e !
-    Support expÃ©rimental de l'UNIMARC pour le protocole Z39.50.
-    Introduction d'une recherche gÃ©nÃ©rale insensible Ã  la casse.
-    Les donnÃ©es MARC des revues et magazines sont abrÃ©gÃ©es. CorrigÃ©.
-    Suppression correcte des objets QNetworkReply.
-    Mise Ã  jour des bibliothÃ¨ques SQLite Ã  la version 3.8.8.1 sur Windows.
-    Mise Ã  jour des produits Qt Ã  la version 5.4.0 sur Windows.
-
-18 dÃ©cembre 2014 .
-
-    La version 6.74 est disponible.
-    Correction de l'utilisation de ZOOM_connection_error().
-    QSqlRecord::fieldName() peut inclure un alias. Par exemple, la mÃ©thode peut retourner journal.type au lieu de type. Par consÃ©quent, certaines requÃªtes donneront lieu Ã  des donnÃ©es mal reprÃ©sentÃ©es. CorrigÃ©.
-
-9 dÃ©cembre 2014 .
-
-    La version 6.73 est dÃ©sormais disponible.
-    Une nouvelle traduction en hongrois. Merci Ã  CsanÃ¡d Baksay.
-    AmÃ©lioration de l'enregistrement des erreurs Z39.50.
-    Interdiction des noms d'administrateurs PostgreSQL sensibles Ã  la casse. Merci Nicola.
-    Mise Ã  jour des produits YAZ Ã  la version 5.7.1 sous Windows.
-
-13 octobre 2014 .
-
-    La version 6.72 est maintenant disponible.
-    Tous les chiens vont au paradis.
-    EmpÃªcher l'annulation des processus qui ne sont pas interruptibles.
-    Corrections orthographiques.
-    Mise Ã  jour des produits Qt Ã  la version 5.3.2 sous Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.4.3 sous OS X et 5.4.1 sous Windows.
-
-9 aoÃ»t 2014 .
-
-    La version 6.71 est dÃ©sormais disponible.
-    Correction de la prise en charge des ISBN optionnels en ce qui concerne les titres manquants dans le navigateur de copies.
-    Les ISSNs sont maintenant optionnels. Administrateurs PostgreSQL, veuillez consulter le fichier postgresql_update_schema.sql.
-
-2 aoÃ»t 2014 .
-
-    La version 6.70 est disponible.
-    Extension du champ sexe dans la table des membres. Administrateurs PostgreSQL, veuillez consulter le fichier postgresql_update_schema.sql. Merci Ã  Frans.
-    Par Frans, suppression des masques de saisie pour les numÃ©ros de tÃ©lÃ©phone et les codes postaux.
-    Rappeler Ã  l'utilisateur de sauvegarder ses paramÃ¨tres aprÃ¨s un changement de locale.
-    Mise Ã  jour de Qt Ã  la version 5.3.1 sur Windows.
-    Mise Ã  jour des produits YAZ Ã  la version 5.3.0 sur les plateformes OS X et Windows.
-
-6 juin 2014 .
-
-    La version 6.69 a Ã©tÃ© mise en ligne.
-    AprÃ¨s avoir ajoutÃ© une collection de photographies, les Ã©lÃ©ments de la collection devraient Ãªtre modifiables sans nÃ©cessiter le rechargement de la collection. CorrigÃ©.
-    Ã‰viter d'accÃ©der Ã  des Ã©lÃ©ments de tableau invalides.
-    Correction des constructeurs C++.
-    CrÃ©ation d'un fichier de ressources d'icÃ´nes et mise Ã  jour de toutes les sources pertinentes. Merci Ã  Nick d'avoir signalÃ© le problÃ¨me OS X.
-    Inspecter les rÃ©sultats de indexOf() et les rÃ©sultats des mÃ©thodes similaires.
-    Mise Ã  niveau des bibliothÃ¨ques SQLite vers la version 3.8.5 sous Windows.
-
-21 Mai 2014.
-
-    La version 6.68 est disponible.
-    Ajout de la prise en charge des entiers 64 bits pour limiter et dÃ©caler les clauses SQL.
-    Evite les divisions par zÃ©ro.
-    Correction du fichier de projet OS X Qt 5 en ce qui concerne une bibliothÃ¨que Cocoa manquante.
-    Correction des chemins du chargeur PostgreSQL dans le bundle OS X.
-    Correction des mÃ©canismes SRU et Z39.50 en ce qui concerne les livres. BiblioteQ ne doit pas remplacer les champs ISBN si ceux-ci ont Ã©tÃ© remplis par l'utilisateur. Les ISBN Ã  dix ou treize caractÃ¨res sont considÃ©rÃ©s comme fournis par l'utilisateur.
-    Correction du parent de la scÃ¨ne dans qtbook_photographcollection::slotViewPhotograph().
-    Correction de l'utilisation de qgetenv(). La fonction retourne un tableau d'octets.
-    Correction de la mise en Ã©vidence des widgets en ce qui concerne les rÃ©sultats des requÃªtes SRU et Z39.50.
-    Ne pas accÃ©der aux membres des pointeurs invalides.
-    Ne pas stocker les informations d'identification de la base de donnÃ©es dans les objets de la base de donnÃ©es et les widgets d'affichage.
-    Augmentation des valeurs maximales de numÃ©ro et de volume pour les revues et les magazines.
-    PrÃ©vention de la mauvaise gestion de la mÃ©moire des objets qtbook_item pendant le processus de rÃ©servation.
-    DÃ©finition correcte des parents des widgets d'action.
-    Rappeler Ã  l'utilisateur les limites de ressources.
-    Respecter les limites des tableaux.
-    Mise Ã  jour des objets photographie dans qtbook::updateItemWindows().
-    Mise Ã  jour de Qt Ã  la version 4.8.6 sur OS X.
-    Mise Ã  jour des produits YAZ Ã  la version 5.1.1 sur les plateformes OS X et Windows.
-    Utilisez des instructions SQL paramÃ©trÃ©es afin d'Ã©viter les erreurs d'injection. Veuillez noter que ce point a nÃ©cessitÃ© des modifications importantes. Veuillez signaler les problÃ¨mes.
-
-27 mars 2014 .
-
-    La version 6.67 est maintenant disponible.
-    Notifier l'utilisateur si une base de donnÃ©es SQLite ne peut pas Ãªtre crÃ©Ã©e.
-    Lier correctement les valeurs SQL NULL dans QSqlQuery.
-    Suppression des variables obsolÃ¨tes.
-    RÃ©solution de deux problÃ¨mes SRU. Merci Ã  SigmaX d'avoir signalÃ© les erreurs.
-    Revoir les rÃ©sultats de lecture et d'Ã©criture de QDataStream.
-    Revoir les rÃ©sultats de indexOf().
-    Le champ type dans la table des lieux ne doit pas Ãªtre nul. Utilisateurs de PostgreSQL, veuillez mettre Ã  jour votre (vos) schÃ©ma(s) via le fichier postgresql_update_schema.sql.
-    Mise Ã  jour des produits Qt vers la version 5.2.1 sur Windows.
-    Mise Ã  jour des produits SQLite vers la version 3.8.3.1 sur Windows.
-    Mise Ã  niveau des produits YAZ vers la version 5.0.18 sur OS X et Windows.
-
-17 septembre 2013 .
-
-    La version 6.66 est prÃªte !
-    Ajout des champs condition et originalitÃ© aux tables de base de donnÃ©es book et book_copy_info. Les Ã©lÃ©ments de l'interface utilisateur reflÃ¨tent les nouveaux ajouts.
-    J'ai besoin d'une licence pour Windows 7. Merci de faire un don !
-    Comme toujours, les administrateurs PostgreSQL sont priÃ©s de mettre Ã  jour leurs schÃ©mas de base de donnÃ©es. Veuillez consulter postgresql_update_schema.sql.
-    Types de reliure personnalisÃ©s. Veuillez consulter le navigateur d'Ã©numÃ©rations de bases de donnÃ©es. Veuillez noter que vous devez alimenter la table book_binding_types afin que les cases de combinaison Book Binding Type contiennent les nouvelles donnÃ©es. PostgreSQL : INSERT INTO book_binding_types (binding_type) (SELECT DISTINCT binding_type FROM book).
-    Mise Ã  jour des produits Qt vers la version 4.8.5 sous OS X et la version 5.1.1 sous Windows.
-    Mise Ã  jour des produits YAZ vers la version 4.2.66 sur OS X et la version 4.2.65 sur Windows.
-
-3 juin 2013 .
-
-    La version 6.65 a Ã©tÃ© publiÃ©e.
-    Ajout de la documentation dans doc.d/contributors.d. Document fourni par Ana Monteiro et FÃ¡tima Dias.
-    Ajout de contraintes de clÃ© Ã©trangÃ¨re Ã  diverses tables de base de donnÃ©es SQLite. Malheureusement, les changements ne seront visibles que dans les nouvelles bases de donnÃ©es.
-    Correction d'une faille dans les clÃ©s Ã©trangÃ¨res SQLite. Merci Ã  Ana Monteiro d'avoir signalÃ© le problÃ¨me. Le problÃ¨me a Ã©tÃ© introduit dans la version 6.56.
-    Mise Ã  jour de la bibliothÃ¨que SQLite sous Windows Ã  la version 3.7.17.
-
-27 Mai 2013 .
-
-    La version 6.64 est maintenant disponible.
-    Ajout des privilÃ¨ges manquants au rÃ´le biblioteq_librarian. Administrateurs PostgreSQL, veuillez consulter postgresql_update_schema.sql.
-    Correction d'un problÃ¨me qui se produit lorsqu'un nouvel administrateur est dÃ©fini. Les rÃ´les de l'administrateur ne sont pas correctement enregistrÃ©s. Merci Ã  numibesi d'avoir dÃ©couvert le problÃ¨me.
-    Correction de quelques problÃ¨mes de privilÃ¨ges profonds. Encore une fois, merci Ã  numibesi.
-    Correction d'une comparaison incorrecte liÃ©e Ã  la longueur minimale des identifiants des clients.
-    Mise Ã  jour de postgresql_destroy_schema.sql.
-
-29 avril 2013 .
-
-    La version 6.63 est maintenant disponible.
-    Ajout des champs artiste et compositeur Ã  la table cd_songs. Les administrateurs PostgreSQL sont priÃ©s de revoir le fichier postgresql_update_schema.sql. Veuillez consulter le ticket 3598802 pour plus d'informations.
-    Purge des fichiers SQLite sql. Le fichier include.d/sqlite_create_schema.h est suffisant.
-    Mise Ã  jour des produits YAZ Ã  la version 4.2.54 pour OS X et Windows.
-
-15 avril 2013.
-
-    Nouveau site !
-
-7 mars 2013.
-
-    La version 6.62 est maintenant disponible.
-    Garde les limites des tableaux.
-
-28 fÃ©vrier 2013 .
-
-    La version 6.61 sera publiÃ©e aujourd'hui.
-    Comme les collections de photographies ne peuvent pas Ãªtre rÃ©servÃ©es par les usagers, le processus de rÃ©servation de ces Ã©lÃ©ments ne devrait pas soulever d'exceptions dans la base de donnÃ©es.
-    Centrez la vue dÃ©taillÃ©e d'une photographie par rapport Ã  son parent.
-    Le champ de base de donnÃ©es MYOID est garanti comme Ã©tant unique par table. Correction des routines (qtbook::slotDisplaySummary(), qtbook::slotSceneSelectionChanged(), qtbook::updateSceneItem()) qui ne reconnaissaient pas les types d'Ã©lÃ©ments en plus des valeurs MYOID.
-
-27 FÃ©vrier 2013 .
-
-    La version 6.60 est dÃ©sormais disponible.
-    Ajout de menus contextuels aux vues de la collection de photographies. L'activation des menus permettra aux utilisateurs de visualiser les photographies individuelles de maniÃ¨re plus dÃ©taillÃ©e.
-    Mise Ã  jour des produits Qt Ã  la version 4.8.4 sur OS X.
-    Mise Ã  jour des produits YAZ Ã  la version 4.2.50 sur les plateformes OS X et Windows.
-
-4 janvier 2013.
-
-    Bonne annÃ©e ! La version 6.59 est maintenant disponible. Veuillez signaler les problÃ¨mes Ã  https://sourceforge.net/tracker?group_id=129976.
-    Ajout de documents fournis par Olivia Novak. Veuillez voir doc.d/contributors.d.
-    Ajout des numÃ©ros d'Ã©dition et de volume dans le rÃ©sumÃ© de la fenÃªtre principale pour les revues et les magazines.
-    Correction des castings d'objets C++.
-    Les formats d'affichage des dates ont Ã©tÃ© modifiÃ©s en ISO 8601.
-    Ã‰limination des avertissements de QGraphicsView concernant les Ã©vÃ©nements de type glisser-dÃ©poser.
-    Correction de l'Ã©tat de la case Ã  cocher ISBNs pour les livres.
-    Modification d'une grande partie de BiblioteQ afin d'Ã©viter les problÃ¨mes crÃ©Ã©s par des traductions incohÃ©rentes. Commentaires ?
-    Selon Myshkin, la touche Tab devrait changer le focus pour les champs de saisie de texte.
-    Collections de photographies !
-    Les administrateurs PostgreSQL doivent mettre Ã  jour leurs schÃ©mas. Veuillez consulter le fichier postgresql_update_schema.sql.
-    Suppression des validateurs de saisie de l'ISBN pour la prise en charge des tirets.
-    Remplacement du programme d'installation de l'application OS X par un simple fichier image disque.
-    Support SRU pour les livres, revues et magazines.
-    Le navigateur de copie n'affichait pas l'ID correct de l'article dans le titre.
-    Mise Ã  jour de biblioteq.conf pour le support de QSettings. Veuillez mettre Ã  jour vos fichiers de configuration en consÃ©quence.
-
-19 Novembre 2012.
-
-    La version 6.59 offrira un support pour les collections de photographies et le protocole SRU.
-    La nouvelle version devrait Ãªtre livrÃ©e avant 2013.
-
-15 Octobre 2012.
-
-    Un utilisateur a signalÃ© un fichier iconv.dll manquant. Nous avons tÃ©lÃ©chargÃ© un nouvel installateur Windows pour corriger le problÃ¨me. La version reste Ã  6.58.
-
-3 octobre 2012 .
-
-    Une version en ligne de BiblioteQ a Ã©tÃ© mise Ã  disposition par Clint Bush. Le logiciel se trouve Ã  https://code.google.com/p/biblioteqonline.
-
-Le 18 aoÃ»t 2012.
-
-    La version 6.58 a Ã©tÃ© publiÃ©e.
-    Ajout de l'option de catÃ©gorie Tous disponibles.
-    Ajout du sous-menu Langue dans le menu Options.
-    Initialisation des membres de la classe.
-    EmpÃªche BiblioteQ de mettre Ã  l'Ã©chelle les images nulles.
-    Mise Ã  jour des produits YAZ Ã  la version 4.2.34 sur les plateformes OS X et Windows.
-
-3 juillet 2012.
-
-    La version 6.57 est disponible en tÃ©lÃ©chargement.
-    Ajout de plusieurs nouveaux rÃ´les PostgreSQL en support de diverses configurations.
-    Les administrateurs ne pouvaient pas modifier leurs mots de passe.
-    AmÃ©lioration des recherches de livres. Les champs ISBN sont pris en compte dans les requÃªtes uniquement s'ils sont fournis.
-    La requÃªte Z39.50 peut retourner une Ã©dition qui n'est pas dans le format attendu. Le logiciel a Ã©tÃ© adaptÃ© pour prendre en charge diffÃ©rents formats.
-    Le rÃ´le biblioteq_patron n'Ã©tait pas correctement appliquÃ© aux comptes d'utilisateurs.
-    La version 6.57 inclut des changements au schÃ©ma PostgreSQL. Veuillez mettre Ã  jour vos schÃ©mas.
-
-17 juin 2012.
-
-    La version 6.56 est maintenant disponible.
-    Ajout du support des proxy Amazon et Z39.50.
-    Ajout de la documentation franÃ§aise et des fichiers de traduction. Merci Ã  J. Cornavin.
-    Ajout de grilles Ã  divers rapports.
-    Ajout de champs dans la base de donnÃ©es des utilisateurs : commentaires, numÃ©ro d'enregistrement gÃ©nÃ©ral, et classe de membre.
-    Application des correctifs fournis par Jason Perry. La cible d'installation Unix ne fonctionnait pas correctement. Le tri par le numÃ©ro d'appel a Ã©galement Ã©tÃ© amÃ©liorÃ©.
-    BiblioteQ tente dÃ©sormais d'utiliser les deux ISBN (10, 13) lors d'une requÃªte sur le site Z39.50. La premiÃ¨re dÃ©couverte conclut le processus d'interrogation.
-    La longueur minimale de l'identifiant du membre a Ã©tÃ© modifiÃ©e de sept Ã  cinq caractÃ¨res.
-    Correction des options d'authentification Z39.50.
-    Correction des images vides dans la vue IcÃ´nes.
-    Activation explicite de la prise en charge des clÃ©s Ã©trangÃ¨res pour les bases de donnÃ©es SQLite. Veuillez vous rÃ©fÃ©rer Ã  https://sqlite.org/foreignkeys.html#fk_enable.
-    Augmentation des intervalles msleep() Z39.50 de 10 millisecondes Ã  100.
-    Il faut se souvenir de purger les objets obsolÃ¨tes.
-    Merci Ã  tous pour leur soutien.
-
-13 mai 2012.
-
-    La version 6.55 est maintenant disponible.
-    Bonne fÃªte des mÃ¨res !
-    Une faille critique a Ã©tÃ© dÃ©couverte par un utilisateur. En raison de la conception actuelle de la base de donnÃ©es PostgreSQL, le nombre d'utilisateurs pouvant exister est limitÃ©. La nouvelle approche introduit les rÃ´les biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership, et biblioteq_patron. Les rÃ´les seront dÃ©sormais attribuÃ©s aux comptes. Pour mettre Ã  jour votre schÃ©ma PostgreSQL, veuillez exÃ©cuter les suggestions suivantes :
-        Modifiez votre schÃ©ma PostgreSQL en exÃ©cutant les instructions SQL sous la version 6.55 du fichier postgresql_schema_update.sql.
-        Lancez BiblioteQ et connectez-vous Ã  votre instance PostgreSQL. Vous devez vous connecter avec le compte administrateur que vous avez utilisÃ© pour crÃ©er la base de donnÃ©es BiblioteQ.
-        Ouvrez le navigateur Administrateur et effectuez une sauvegarde.
-        Ouvrez le navigateur des membres et effectuez une mise Ã  jour par lot des privilÃ¨ges.
-    Corrections des utilisations de QProgressBars. BiblioteQ doit Ã©viter d'attribuer des valeurs en dehors des plages dÃ©finies.
-    Correction des boucles while responsables de l'analyse des donnÃ©es Z39.50.
-    Modification du fichier biblioteq.pro, en changeant l'emplacement du fichier biblioteq.conf Ã  /usr/local/biblioteq.
-    Par cbush06, le champ item_id de la table member_history a Ã©tÃ© supprimÃ©. Ce champ Ã©tait mal renseignÃ©. Il Ã©tait Ã©galement redondant. Veuillez mettre Ã  jour vos schÃ©mas PostgreSQL.
-    Nous avons reÃ§u un don d'un utilisateur anonyme. Merci.
-    Nous avons reÃ§u un don de luismontilla. Merci.
-    Mise Ã  jour des produits Qt Ã  la version 4.8.1 pour les systÃ¨mes Windows.
-    Mise Ã  jour des produits YAZ (Z39.50) Ã  la version 4.2.31 sur les systÃ¨mes OS X et Windows.
-    Chaque fois qu'un Ã©lÃ©ment est mis Ã  jour, son image Icons Mode doit Ã©galement Ãªtre mise Ã  jour.
-
-
-Le 9 mars 2012.
-
-    La version 6.54 est maintenant disponible.
-    Un guide d'utilisation en grec a Ã©tÃ© fourni par Dimitris Kanas.
-    Ajout du sous-menu Ajouter un Ã©lÃ©ment au menu Ã‰dition.
-    Ajout du spÃ©cificateur de format dans biblioteq.conf. Ce nouveau champ permettra aux utilisateurs de spÃ©cifier les conversions de caractÃ¨res Z39.50.
-    Ajout de la colonne Total rÃ©servÃ© Ã  divers tableaux.
-    AprÃ¨s de nombreuses annÃ©es, BiblioteQ prÃ©sentera un nouveau jeu d'icÃ´nes.
-    Sur la plate-forme OS X, BiblioteQ utilisera dÃ©sormais les polices de caractÃ¨res du systÃ¨me. Le fait de permettre Ã  l'utilisateur de dÃ©finir les polices peut entraÃ®ner une distorsion des widgets.
-    Correction de problÃ¨mes avec les fichiers SQLite. Merci Ã  yasbean d'avoir signalÃ© ces problÃ¨mes.
-    Correction de certains problÃ¨mes d'Ã©tat concernant la duplication d'Ã©lÃ©ments. Certains boutons (Copies, Ã‰tat de la rÃ©servation, Afficher les traces) doivent Ãªtre initialement dÃ©sactivÃ©s.
-    Les recherches gÃ©nÃ©riques supportent maintenant la disponibilitÃ© des articles.
-    Nous avons reÃ§u le premier don en argent. Merci Ã  yasbean.
-    Le navigateur des membres permet maintenant aux administrateurs de mettre Ã  jour les privilÃ¨ges pour tous les clients listÃ©s.
-
-Le 7 janvier 2012.
-
-    Bonne annÃ©e !
-    La version 6.53 est maintenant disponible. Profitez-en !
-    Ajout d'un support de base pour les frais de retard. Les utilisateurs de PostgreSQL sont priÃ©s d'exÃ©cuter la section appropriÃ©e du fichier postgresql_update_schema.sql.
-    AmÃ©lioration de la reprÃ©sentation des donnÃ©es numÃ©riques.
-    Introduction du mode IcÃ´nes dans le menu Affichage. Si vous remarquez que le processus de rÃ©cupÃ©ration est lent, veuillez diminuer la valeur des entrÃ©es par page. Diminuer la taille des images aidera Ã©galement.
-    Modification de biblioteq.conf pour que les images de taille moyenne soient rÃ©cupÃ©rÃ©es sur Amazon.
-    Les produits Qt ont Ã©tÃ© mis Ã  jour Ã  la version 4.8.0 sur les plateformes Windows.
-    Remplacement de turbine par localhost dans biblioteq.conf.
-    Les fichiers de base de donnÃ©es SQLite auront dÃ©sormais l'extension sqlite automatiquement ajoutÃ©e.
-    La premiÃ¨re Ã©cole primaire de Nea Erythraia, Attique, GrÃ¨ce a choisi BiblioteQ.
-
-20 novembre 2011.
-
-    La version 6.52 est maintenant disponible.
-    Ajout d'un support pour la duplication des entrÃ©es.
-    PossibilitÃ© de crÃ©er plusieurs fenÃªtres.
-    AmÃ©lioration de la taille des fenÃªtres.
-    Modification des requÃªtes pour que les caractÃ¨res spÃ©ciaux soient correctement Ã©chappÃ©s.
-    Suppression des conteneurs redondants.
-    RÃ©solution de plusieurs dÃ©fauts de segmentation.
-    L'interface Unity d'Ubuntu passe outre les paramÃ¨tres du menu. Modification de BiblioteQ pour qu'il empÃªche certaines actions.
-
-3 novembre 2011.
-
-    Sortie de la version 6.51.1.
-    En raison des caractÃ¨res internationaux, les recherches dans la base de donnÃ©es ont Ã©tÃ© rendues sensibles Ã  la casse.
-
-29 septembre 2011.
-
-    La version 6.51 est disponible en tÃ©lÃ©chargement.
-    Un nouveau champ de mots-clÃ©s a Ã©tÃ© ajoutÃ© aux diffÃ©rents types d'articles. Les utilisateurs de PostgreSQL sont priÃ©s d'exÃ©cuter la section appropriÃ©e du fichier postgresql_update_schema.sql.
-    Ajout d'une traduction en nÃ©erlandais par editor3d7.
-    BiblioteQ conservera la branche de la base de donnÃ©es prÃ©cÃ©demment ouverte.
-    Les dates seront dÃ©sormais affichÃ©es dans leur format natif. Les donnÃ©es de date conserveront le format habituel MM/jj/aaaa.
-    En raison d'une corruption, la largeur des colonnes de la table principale ne sera pas conservÃ©e. Cette fonctionnalitÃ© sera rÃ©tablie dans une prochaine version.
-    Les requÃªtes de recherche erronÃ©es ont Ã©tÃ© corrigÃ©es.
-    Correction des couleurs d'arriÃ¨re-plan incorrectes des champs non essentiels.
-    Correction de problÃ¨mes liÃ©s au comportement de triage des tableaux de Qt. Les problÃ¨mes peuvent n'Ãªtre apparents qu'avec Qt 4.6.x. Les versions 4.6.x de Qt sont dÃ©conseillÃ©es.
-    AmÃ©lioration de l'analyse des donnÃ©es Z39.50.
-    Les rÃ©sultats Z39.50 multiples seront Ã©numÃ©rÃ©s par ISSN pour les journaux et les magazines.
-    Les produits Qt ont Ã©tÃ© mis Ã  jour Ã  la version 4.7.4 sur les plateformes OS X et Windows.
-    Suppression de l'option Redimensionner automatiquement la table des matiÃ¨res.
-    Certaines requÃªtes UNION n'avaient pas de mots-clÃ©s ALL.
-    Certains conteneurs n'Ã©taient pas effacÃ©s aprÃ¨s une dÃ©connexion de la base de donnÃ©es. CorrigÃ©.
-    Merci pour la participation de tous.
-    Les champs ISBN sont maintenant optionnels. Les utilisateurs de PostgreSQL doivent mettre Ã  jour leurs schÃ©mas.
-    Le programme d'installation Windows installe dÃ©sormais une icÃ´ne de bureau.
-    Lors de la rÃ©servation d'articles, le navigateur de copie sÃ©lectionne dÃ©sormais automatiquement la prochaine copie disponible.
-    Les notices Z39.50 sont dÃ©sormais rÃ©cupÃ©rÃ©es au format MARC21.
-
-
-Le 18 aoÃ»t 2011.
-
-    La version 6.50 est maintenant disponible.
-    Ajout d'un appel Ã  QMainWindow::closeEvent() dans qtbook_journal::closeEvent().
-    Ajout de diverses protections contre les objets NULL.
-    Force la sÃ©lection d'un site Z39.50 s'il n'y en a pas (livres, journaux, magazines).
-    Protection de misc_functions::updateSQLiteDatabase() contre les changements de version de BiblioteQ.
-    Conservation des Ã©tats de la barre d'outils de la fenÃªtre principale.
-
-23 mai 2011.
-
-    La version 6.46 est sur le point d'Ãªtre publiÃ©e.
-    Cette version est dÃ©diÃ©e au pÃ¨re de M. R.
-
-15 mai 2011.
-
-    La version 6.46 sera bientÃ´t disponible.
-    PossibilitÃ© d'enregistrer la vue actuelle comme un fichier CSV.
-    Ajout d'une cible d'installation pour biblioteq.pro.
-    Ajout de l'option EntrÃ©es illimitÃ©es par page pour les bases de donnÃ©es SQLite.
-    Les membres auront dÃ©sormais des dates d'expiration. Les membres expirÃ©s ne seront pas autorisÃ©s Ã  rÃ©server des articles. Veuillez noter que pour les bases de donnÃ©es SQLite, le logiciel devrait automatiquement ajuster la table des membres afin de supporter le nouveau champ expiration_date. Veuillez soumettre un rapport d'incident si vous rencontrez des problÃ¨mes.
-    Les produits Qt ont Ã©tÃ© mis Ã  jour Ã  la version 4.7.3 sur les plateformes OS X et Windows.
-    Les Ã©tats de la table principale sont maintenant restaurÃ©s et conservÃ©s.
-    Mise Ã  jour des documents du Guide de l'Administrateur.
-    RÃ©cupÃ©rait incorrectement l'userid de l'interface utilisateur au lieu de l'objet de la base de donnÃ©es.
-
-Le 20 mars 2011.
-
-    La version 6.45 a Ã©tÃ© publiÃ©e.
-    Une traduction en espagnol a Ã©tÃ© reportÃ©e jusqu'Ã  ce qu'une traduction soit disponible.
-
-18 mars 2011.
-
-    La version 6.45 sera bientÃ´t disponible. Les nouvelles fonctionnalitÃ©s et les corrections sont listÃ©es ci-dessous.
-    Toutes les entrÃ©es de recherche seront coupÃ©es.
-    Les en-tÃªtes de colonne sont maintenant conservÃ©s et restaurÃ©s.
-    Traduction grecque.
-    Les clients ne pouvaient pas se connecter aux instances PostgreSQL en raison d'une gestion incorrecte des erreurs.
-    L'impression Ã  partir de la fenÃªtre principale gÃ©nÃ©rera des rapports tabulaires.
-    Suppression de l'option EntrÃ©es illimitÃ©es par page.
-    Vraie pagination PostgreSQL et SQLite.
-
-25 FÃ©vrier 2011.
-
-    Sortie de la version 6.44.3.
-    Correction des erreurs de recherche de livres, journaux et magazines.
-
-7 Janvier 2011.
-
-    Bonne annÃ©e !
-    La version 6.44.2 est disponible en tÃ©lÃ©chargement.
-    Correction d'une faille fatale avec les bases de donnÃ©es SQLite en introduisant une sÃ©quence artificielle. Les utilisateurs doivent exÃ©cuter l'instruction sous la version 6.44.2 du fichier sqlite_update_schema.sql depuis sqlite3 afin de crÃ©er la sÃ©quence requise. Merci Ã  ResetFlag d'avoir signalÃ© le problÃ¨me.
-    AmÃ©lioration du look-and-feel sur les systÃ¨mes OS X.
-    Introduction de certains mÃ©canismes de sÃ©curitÃ© pour la requÃªte Z39.50.
-    Modification du navigateur d'Ã©numÃ©rations de bases de donnÃ©es par l'introduction de transactions sÃ©parÃ©es. Encore une fois, merci Ã  ResetFlag d'avoir signalÃ© ce problÃ¨me.
-    Remplacement de QHttp par QNetworkReply et QNetworkAccessManager.
-
-31 dÃ©cembre 2010.
-
-    RecrÃ©Ã© le programme d'installation de Windows. Le nouveau paquet inclut un fichier manifeste potentiellement important.
-
-27 dÃ©cembre 2010.
-
-    La version 6.44.1 a Ã©tÃ© publiÃ©e.
-    Cette version corrige un problÃ¨me concernant QApplication::processEvents() sur OS X (10.6.5) et Qt 4.7.1.
-
-19 dÃ©cembre 2010.
-
-    La version 6.44 est maintenant disponible ! Les modifications sont rÃ©sumÃ©es ci-dessous.
-    Une traduction de base en espagnol sera disponible dans la version 6.45.
-    Ajout de champs MARC Tags aux livres, revues et magazines.
-    Les informations Amazon sont maintenant dÃ©finies au moment de l'exÃ©cution si le fichier biblioteq.conf est endommagÃ© ou manquant.
-    Les durÃ©es d'exÃ©cution des disques compacts sont maintenant calculÃ©es lorsque les informations sur les pistes sont enregistrÃ©es.
-    Correction d'un problÃ¨me d'OID concernant les revues et les magazines sur les bases de donnÃ©es SQLite. Les ISSN se terminant par X Ã©taient concernÃ©s.
-    Correction des valeurs par dÃ©faut incorrectes des boÃ®tes de combinaison Ã  divers endroits.
-    AmÃ©lioration de l'analyse des donnÃ©es Z39.50 pour les livres.
-    AmÃ©lioration des Ã©lÃ©ments de l'interface utilisateur.
-    DÃ©placement de la plupart des listes de configuration de biblioteq.conf vers les tables de la base de donnÃ©es. Veuillez mettre Ã  jour les instances PostgreSQL et SQLite via postgresql_update_schema.sql et sqlite_update_schema.sql.
-    Qt a Ã©tÃ© mis Ã  jour Ã  la version 4.7.1 pour les plateformes OS X et Windows.
-    Le dialogue Custom Query contient maintenant des objets de donnÃ©es supplÃ©mentaires.
-    Le menu EntrÃ©es par page a Ã©tÃ© Ã©tendu.
-
-14 Novembre 2010.
-
-    La version 6.43 a Ã©tÃ© publiÃ©e.
-    Ajout de constantes Ã  diverses mÃ©thodes.
-    Les valeurs des boÃ®tes de combinaison sont maintenant dans l'ordre alphabÃ©tique.
-    Les jours d'Ã©chÃ©ance minimum sont maintenant configurables via le fichier biblioteq.conf.
-
-29 octobre 2010.
-
-    La version 6.42 est maintenant disponible.
-    Corrections mineures.
-    Nouveau bundle OS X.
-    Mise Ã  jour des bibliothÃ¨ques Qt pour Windows vers 4.7.0.
-
-5 septembre 2010.
-
-    RecrÃ©Ã© BiblioteQ-6.41.pkg.zip pour Mac OS X.
-
-18 avril 2010.
-
-    La version 6.41 est prÃªte Ã  Ãªtre utilisÃ©e immÃ©diatement.
-    Introduction d'un mÃ©canisme de conversion des ISBN Ã  13 chiffres en ISBN Ã  10 chiffres.
-    RÃ©solution d'un problÃ¨me potentiel d'ordonnancement des branches en cas d'installation d'un biblioteq.conf mal configurÃ©.
-
-10 avril 2010.
-
-    Sortie de la version 6.40.
-    Affichage des informations de connexion.
-    RÃ©solution d'un titre de fenÃªtre incorrect.
-
-Le 20 fÃ©vrier 2010.
-
-    La version 6.39 est maintenant disponible.
-    Correction d'un crash liÃ© Ã  la sÃ©lection des polices sous OS X.
-    Nouvelle fonctionnalitÃ© : Fichier->Nouvelle base de donnÃ©es SQLite.
-    Le titre de la fenÃªtre principale fait maintenant rÃ©fÃ©rence Ã  la base de donnÃ©es SQLite actuellement ouverte.
-    Mise Ã  jour des sections PostgreSQL afin d'Ã©liminer les avertissements.
-
-10 Janvier 2010.
-
-    La version 6.38 est disponible.
-    Ajout d'une icÃ´ne Ã  l'exÃ©cutable Windows, par David Bolton.
-    En train de simplifier le support des traductions.
-    La version Windows a Ã©tÃ© mise Ã  jour pour utiliser Qt 4.6.
-    La catÃ©gorie actuelle est maintenant conservÃ©e.
-    Mise Ã  jour du document Guide de l'administrateur.
-
-Le 26 octobre 2009.
-
-    En cours de re-livraison des paquets de logiciels.
-    Modification des fichiers de documentation.
-    Suppression des fichiers de traduction obsolÃ¨tes.
-
-23 Octobre 2009.
-
-    La version 6.37 est en cours de publication.
-    Ã‰liminÃ© le mÃ©canisme de pagination pour les bases de donnÃ©es SQLite sur Windows Ã  cause des restrictions du plugin.
-    Les versions OS X et Windows ont Ã©tÃ© mises Ã  jour pour utiliser Qt 4.5.3.
-    Veuillez mettre Ã  jour les schÃ©mas de vos bases de donnÃ©es en exÃ©cutant les instructions sous la version 6.37 des fichiers postgresql_update_schema.sql et sqlite_update_schema.sql.
-    Ã‰ditions simplifiÃ©es du livre.
-    Merci Ã  Robert (fmra357) d'avoir dÃ©couvert le problÃ¨me de SQLite sous Windows.
-
-Le 2 octobre 2009.
-
-    La version 6.36 sera disponible sous peu.
-    Correction d'un dialogue d'erreur incorrect.
-    AmÃ©lioration du mÃ©canisme de tÃ©lÃ©chargement des images.
-    Modification du format dans lequel les images sont stockÃ©es. Cette mise Ã  jour Ã©limine certains avertissements de la base de donnÃ©es.
-    Nouvelle icÃ´ne BiblioteQ.
-    Autres amÃ©liorations diverses.
-
-19 aoÃ»t 2009.
-
-    La version 6.35 est maintenant disponible.
-    Prise en charge de plusieurs sites Z39.50.
-    Mise Ã  jour des paramÃ¨tres de biblioteq.conf.
-    La version 6.22.4 est la derniÃ¨re version de la branche 6.22.
-
-13 juillet 2009.
-
-    Les versions 6.34 et 6.22.4 sont disponibles.
-    Dialogues de vÃ©rification supplÃ©mentaires.
-    Correction de l'installateur OS X 6.22.
-    AmÃ©lioration des boÃ®tes de dialogue de progression.
-    RÃ©solution de problÃ¨mes de traduction.
-
-12 Juin 2009.
-
-    Les versions 6.33 et 6.22.3 seront disponibles prochainement.
-    ImplÃ©mentation d'un mÃ©canisme de pagination. Ce nouvel ajout devrait simplifier la navigation dans les grandes bases de donnÃ©es. Par dÃ©faut, les pages contiennent au maximum 25 entrÃ©es.
-    AmÃ©liorations diverses.
-    Nouveau menu. (Options->EntrÃ©es par page)
-
-2 mai 2009.
-
-    Les versions 6.32 et 6.22.2 sont maintenant disponibles.
-    Nouveau menu. (Fichier->Fichiers SQLite rÃ©cents) 
-
-16 Avril 2009.
-
-    Les versions 6.31 et 6.22.1 seront bientÃ´t disponibles.
-    Correction d'un problÃ¨me d'ordre dans le fichier postgresql_create_schema.sql.
-    Mise Ã  jour de biblioteq.conf. Veuillez modifier la section [Amazon Front Cover Images] en consÃ©quence et insÃ©rer la section [Amazon Back Cover Images].
-
-10 avril 2009.
-
-    La version 6.30 est en cours de publication.
-    ArrÃªt de la prise en charge de OFFSYSTEM.
-    Les corrections futures seront Ã©galement appliquÃ©es Ã  la branche 6.22.
-
-5 Avril 2009.
-
-    La version 6.22 a Ã©tÃ© publiÃ©e.
-    Changements mineurs.
-    Mise Ã  jour du fichier qt.conf.
-
-21 mars 2009.
-
-    La version 6.21.1 est maintenant disponible.
-    Mise Ã  jour de la documentation.
-    Mise Ã  jour du rÃ©pertoire translations.d.
-
-3 mars 2009.
-
-    La version 6.21 a Ã©tÃ© publiÃ©e !
-    Ajout du support pour les traductions en tchÃ¨que et en allemand. Je suis reconnaissant Ã  ceux qui ont fourni les fichiers de traduction.
-    Modifications supplÃ©mentaires pour la prise en charge de l'internationalisation, y compris des corrections de bogues.
-    Correction d'un problÃ¨me avec le navigateur de l'administrateur. Nous avons Ã©galement implÃ©mentÃ© une fonctionnalitÃ© qui empÃªche la crÃ©ation d'administrateurs sans privilÃ¨ges.
-    Correction d'un problÃ¨me avec le navigateur de rÃ©servation. Les comptes non privilÃ©giÃ©s ne pouvaient pas afficher les rÃ©servations d'un Ã©lÃ©ment.
-
-23 fÃ©vrier 2009.
-
-    La version 6.20.2 sera disponible aujourd'hui.
-    RÃ©solution de plusieurs problÃ¨mes concernant la fonction de glisser-dÃ©poser.
-
-22 fÃ©vrier 2009.
-
-    La version 6.20.1 a Ã©tÃ© publiÃ©e.
-    AmÃ©lioration de la fonction de glisser-dÃ©poser d'images.
-    RÃ©solution de certains problÃ¨mes liÃ©s Ã  la prise en charge des traductions.
-    La version Windows XP sera disponible le 23 fÃ©vrier 2009.
-
-22 fÃ©vrier 2009.
-
-    La version 6.20 est dÃ©sormais disponible.
-    Ajout d'icÃ´nes Ã  divers widgets.
-    Le format des dates de recherche a Ã©tÃ© modifiÃ© en MM/yyyy.
-
-Le 7 fÃ©vrier 2009.
-
-    La version 6.19 a Ã©tÃ© publiÃ©e.
-    Ajout du champ "Lieu de publication" pour les livres, revues, magazines et jeux vidÃ©o.
-    Correction de plusieurs problÃ¨mes concernant les hyperliens incorporÃ©s.
-    ImplÃ©mentation de valeurs par dÃ©faut pour plusieurs champs obligatoires.
-    Veuillez mettre Ã  jour les schÃ©mas de vos bases de donnÃ©es en exÃ©cutant les instructions sous la version 6.19 des fichiers postgresql_update_schema.sql et sqlite_update_schema.sql.
-
-16 janvier 2009.
-
-    La version 6.18 est maintenant disponible.
-    Correction d'un problÃ¨me de taille avec le champ texte ISBN-13 de la boÃ®te de dialogue Livre.
-    Introduction de quelques commentaires dans les diffÃ©rents scripts SQL.
-    Modification de la taille initiale de la boÃ®te de dialogue SÃ©lection de branche.
-
-4 Janvier 2009.
-
-    Bonne annÃ©e !
-    La version 6.17 est disponible.
-    Ajout d'une clÃ© d'unicitÃ© supplÃ©mentaire Ã  la table item_request. Les utilisateurs de PostgreSQL sont priÃ©s d'exÃ©cuter les instructions sous la version 6.17 du fichier postgresql_update_schema.sql. La nouvelle contrainte permet aux clients de demander des articles similaires.
-    AmÃ©liorations gÃ©nÃ©rales.
-    Refonte mineure de la boÃ®te de dialogue de sÃ©lection des branches.
-    RÃ©solution d'un problÃ¨me SQLite concernant les bases de donnÃ©es vides et les requÃªtes personnalisÃ©es.
-    Le logiciel est en cours de prÃ©paration pour l'internationalisation.
-
-
-Le 7 dÃ©cembre 2008.
-
-    Sortie de la version 6.16.
-    Activation de certaines options uniquement si elles sont applicables.
-    AmÃ©liorÃ© le dialogue de sÃ©lection des branches.
-
-27 Novembre 2008.
-
-    La version 6.15 est maintenant disponible.
-    AmÃ©lioration des messages d'erreur.
-    Les identifiants des membres peuvent Ãªtre modifiÃ©s pendant la crÃ©ation du compte de l'usager.
-    Les utilisateurs doivent rÃ©enregistrer les donnÃ©es de prÃ©fÃ©rences.
-
-18 novembre 2008.
-
-    La version 6.14.1 sera disponible aujourd'hui.
-    Ajout de l'icÃ´ne BiblioteQ dans les diffÃ©rentes fenÃªtres.
-    Tous les utilisateurs sont priÃ©s de faire la mise Ã  jour !
-    Les bases de donnÃ©es SQLite existantes doivent Ãªtre mises Ã  jour. Veuillez exÃ©cuter les commandes de la version 6.14.1 du fichier sqlite_update_schema.sql.
-    Correction d'un dÃ©faut de segmentation qui avait Ã©tÃ© introduit par la version prÃ©cÃ©dente.
-    Correction d'une requÃªte incorrecte dans la boÃ®te de dialogue Statut de rÃ©servation des Ã©lÃ©ments.
-    Correction d'une requÃªte incorrecte dans l'explorateur de membres.
-    RÃ©solution d'un problÃ¨me bien dissimulÃ© concernant la suppression des comptes d'administrateur et de mÃ©cÃ¨ne.
-    RÃ©solution de plusieurs problÃ¨mes critiques concernant les privilÃ¨ges des administrateurs.
-
-15 novembre 2008.
-
-    La version 6.14 est disponible.
-    AmÃ©liorations gÃ©nÃ©rales.
-    Nouvelles options dans le menu Options.
-    Le navigateur de l'administrateur inclut maintenant des dÃ©tails concernant les capacitÃ©s de l'administrateur.
-
-13 novembre 2008.
-
-    La version 6.13 est disponible.
-    RÃ©solution d'un dialogue de question incorrect associÃ© Ã  des donnÃ©es non sauvegardÃ©es.
-    Les membres standards n'ont pas besoin d'accÃ©der Ã  la table d'administration. Veuillez "Sauvegarder" les donnÃ©es de chaque membre via le navigateur des membres.
-    L'installateur Windows XP nÃ©cessite une redistribution car il manque certaines bibliothÃ¨ques PostgreSQL.
-
-3 Octobre 2008.
-
-    Sortie de la version 6.12.2.
-    Correction d'un problÃ¨me avec le menu dÃ©roulant du filtre.
-    La table principale est maintenant remplie quand le filtre de type change.
-
-2 Octobre 2008.
-
-    La version 6.12.1 sera publiÃ©e aujourd'hui.
-    Correction des divergences entre les raccourcis du menu.
-    Mise Ã  jour de plusieurs icÃ´nes.
-
-30 septembre 2008.
-
-    La version 6.12 est disponible !
-    Ajout d'informations sur les adresses e-mail dans les comptes des utilisateurs.
-    AmÃ©lioration des interfaces pour la requÃªte Z39.50 et le tÃ©lÃ©chargement d'images.
-    Les utilisateurs peuvent maintenant annuler leurs articles demandÃ©s.
-    Les prix de 0.00 sont maintenant supportÃ©s.
-    RÃ©solution de problÃ¨mes mineurs.
-    Les champs CUP permettent maintenant 13 chiffres.
-    Mise Ã  jour du jeu d'icÃ´nes.
-
-19 septembre 2008.
-
-    La version 6.11 a Ã©tÃ© publiÃ©e.
-    AmÃ©lioration de la fonctionnalitÃ© de l'explorateur de membres.
-    Le panneau rÃ©capitulatif de la fenÃªtre principale affiche dÃ©sormais la disponibilitÃ© de l'article sÃ©lectionnÃ©.
-
-29 aoÃ»t 2008.
-
-    Publication de la version 6.10.
-    Correction d'un problÃ¨me d'Ã©tat de visibilitÃ© des widgets.
-    Le document ROLES est inclus dans cette version. Ce document dÃ©taille les privilÃ¨ges de l'administrateur.
-
-27 AoÃ»t 2008.
-
-    La version 6.09 est maintenant disponible.
-    DÃ©finit le focus du widget quand c'est appropriÃ©.
-    Mise Ã  jour de certains textes informatifs.
-    VÃ©rification que BiblioteQ est fonctionnel sur Debian Sparc64 et CentOS 5.2.
-
-24 aoÃ»t 2008.
-
-    La version 6.08 sera disponible aujourd'hui.
-    Les crashs potentiels dus Ã  une utilisation inappropriÃ©e des threads et des gestionnaires d'Ã©vÃ©nements ont Ã©tÃ© rÃ©solus.
-    PrÃ©paration de l'application pour le tÃ©lÃ©chargement des images de quatriÃ¨me de couverture depuis Amazon. Le fichier biblioteq.conf doit Ãªtre correctement configurÃ©.
-
-15 aoÃ»t 2008.
-
-    Sortie de la version 6.07.
-    Le tÃ©lÃ©chargement des images de la couverture avant des livres est maintenant supportÃ©. Veuillez mettre Ã  jour biblioteq.conf en consÃ©quence. (Les images sont tÃ©lÃ©chargÃ©es depuis Amazon).
-    Correction d'un bogue avec la mÃ©thode misc_functions::grantPrivs(). Ce problÃ¨me a Ã©tÃ© introduit aprÃ¨s l'ajout de la table de base de donnÃ©es journal. Le bogue a un impact sur les bases de donnÃ©es PostgreSQL et les fonctions de l'administrateur (crÃ©ation, modification).
-
-27 Juin 2008.
-
-    RecrÃ©Ã© le paquet OS X Intel car certains utilisateurs avaient des problÃ¨mes de connectivitÃ© avec les bases de donnÃ©es SQLite.
-
-Le 20 juin 2008.
-
-    La version 6.06 a Ã©tÃ© publiÃ©e.
-    AmÃ©lioration de l'affichage des images de couverture. Les images sont maintenant mises Ã  l'Ã©chelle pour s'adapter Ã  leurs conteneurs.
-    Les articles possÃ¨dent maintenant plusieurs catÃ©gories (genres pour les jeux vidÃ©o). Veuillez mettre Ã  jour vos schÃ©mas de base de donnÃ©es.
-    Les utilisateurs sont dÃ©sormais avertis des modifications non sauvegardÃ©es.
-
-15 juin 2008.
-
-    La version 6.05 est maintenant disponible.
-    Autres amÃ©liorations mineures.
-    Suppression du "N/A" aprÃ¨s une requÃªte Z39.50 rÃ©ussie pour les livres.
-
-8 Juin 2008.
-
-    Publication de la version 6.04 pour OS X Intel, encore une fois.
-    Inclusion de dÃ©pendances supplÃ©mentaires dans le bundle.
-
-4 juin 2008.
-
-    La version 6.04 a Ã©tÃ© publiÃ©e une fois de plus.
-    Veuillez signaler tout problÃ¨me, car il y a eu beaucoup de mises Ã  jour rÃ©cemment !
-    Solidification des algorithmes d'analyse pour les requÃªtes Z39.50. Les algorithmes tentent Ã©galement de dÃ©finir les catÃ©gories.
-
-2 Juin 2008.
-
-    Publication de la version 6.04 pour OS X Intel.
-    AmÃ©lioration de la routine d'analyse des rÃ©sultats des requÃªtes de la Library of Congress pour les articles de livres. Je vais trÃ¨s probablement rÃ©Ã©diter cette version car elle est encore trop primitive.
-
-30 mai 2008.
-
-    La version 6.03 sera publiÃ©e aujourd'hui.
-    Tous les utilisateurs sont priÃ©s de la mettre Ã  jour !
-    CrÃ©ation d'une table de journal.
-    Suppression des informations sur le format de l'image dans les tables d'Ã©lÃ©ments.
-    RÃ©solution de problÃ¨mes critiques avec l'implÃ©mentation des tables journal et magazine.
-
-26 mai 2008.
-
-    La version 6.02 a Ã©tÃ© publiÃ©e !
-    Permet aux membres de visualiser leurs articles en retard, leurs articles demandÃ©s et leurs articles rÃ©servÃ©s.
-    Les ISBNs peuvent dÃ©sormais Ãªtre gÃ©nÃ©rÃ©s pour les bases de donnÃ©es PostgreSQL.
-    Les membres sont dÃ©sormais autorisÃ©s Ã  placer des articles sur demande.
-    Autres amÃ©liorations gÃ©nÃ©rales.
-
-21 mai 2008.
-
-    La version 6.01 est dÃ©sormais disponible pour Windows XP.
-
-20 mai 2008.
-
-    Sortie de la version 6.01.
-    Il faut penser Ã  mettre Ã  jour certaines variables internes aprÃ¨s l'enregistrement des informations de copie.
-    Le navigateur de copie affiche maintenant le titre de l'Ã©lÃ©ment respectif.
-
-11 mai 2008.
-
-    Les versions 5.03.3 et 6.00 ont Ã©tÃ© publiÃ©es.
-    La version 5.03.3 rÃ©sout plusieurs problÃ¨mes de sensibilitÃ© des widgets. (Ces problÃ¨mes ont Ã©galement Ã©tÃ© traitÃ©s par la version 6.00).
-
-10 mai 2008.
-
-    La version 6.00 pourrait Ãªtre publiÃ©e aujourd'hui !
-    Les informations sur les prix sont maintenant prÃ©sentÃ©es uniquement Ã  certains rÃ´les d'administrateur.
-    RÃ©solution de plusieurs problÃ¨mes de sensibilitÃ© des widgets.
-    Conception plus fine de la base de donnÃ©es. Les tableaux contenant les informations de rÃ©servation ont Ã©tÃ© condensÃ©s.
-
-Le 7 mai 2008.
-
-    La version 5.03.2 est maintenant disponible.
-    Cette version rÃ©sout un dysfonctionnement de l'implÃ©mentation du glisser-dÃ©poser sous OS X.
-
-6 mai 2008.
-
-    La version 5.03.1 a Ã©tÃ© publiÃ©e.
-    Cette version corrige une rÃ©fÃ©rence incorrecte Ã  la colonne ISBN dans la table principale. La colonne est en fait ISBN-10.
-
-5 mai 2008.
-
-    Publication de la version 5.03.
-    Valeurs par dÃ©faut pour les champs obligatoires. Ceci s'applique uniquement Ã  la catÃ©gorie Livre.
-    ImplÃ©mentation d'un mÃ©canisme pour gÃ©nÃ©rer des ISBN uniques pour les bases de donnÃ©es SQLite.
-    RÃ©solution d'un problÃ¨me avec myqstring::escape().
-
-3 Mai 2008.
-
-    La version 5.02 est maintenant disponible.
-    TerminÃ© les Ã©lÃ©ments du document TO-DO.
-    Conception d'un algorithme de centrage des widgets.
-    Corrections diverses.
-    RÃ©solution de plusieurs problÃ¨mes avec les catÃ©gories Journal et Magazine.
-    RÃ©solution de quelques problÃ¨mes avec SQLite.
-
-2 mai 2008.
-
-    Publication de la version 5.01.
-    Le navigateur de l'administrateur est terminÃ©. Ce navigateur est seulement disponible pour les bases de donnÃ©es PostgreSQL.
-    AmÃ©lioration du document INSTALL.
-    AmÃ©liorations mineures, mais charmantes.
-    Les champs obligatoires sont maintenant mis en Ã©vidence.
-    RÃ©solution des points de la liste TO-DO.
-
-23 Avril 2008.
-
-    La version 5.00 est maintenant disponible au tÃ©lÃ©chargement.
-    AmÃ©lioration du support SQLite.
-    AmÃ©liorations diverses.
-    Suppression du support MySQL.
-    RÃ©solution de quelques problÃ¨mes de CASCADE DELETE.
-
-21 Avril 2008.
-
-    La version 4.05 est disponible.
-    Correction de plusieurs requÃªtes SQL liÃ©es aux champs NULL dans les clauses WHERE.
-    Notification Ã  l'administrateur de rappeler Ã  un nouveau membre son mot de passe par dÃ©faut lors de la crÃ©ation du membre.
-    Mise Ã  jour des scripts MySQL. Il y a quelques problÃ¨mes en suspens en ce qui concerne la crÃ©ation des membres.
-
-Le 20 avril 2008.
-
-    Sortie de la version 4.04.
-    ImplÃ©mentation de la fonctionnalitÃ© OFFSYSTEM URL.
-
-19 Avril 2008.
-
-    TÃ©lÃ©chargement d'un nouveau pack Windows XP pour rÃ©soudre plusieurs problÃ¨mes de dÃ©pendance.
-
-19 Avril 2008.
-
-    La version 4.03 est disponible en tÃ©lÃ©chargement.
-    PossibilitÃ© de faire glisser des images (BMP, JPG, PNG) sur les toiles d'images de couverture.
-    PremiÃ¨re version officielle pour Windows XP.
-    Les champs clÃ©s (tels que Auteur(s), RÃ©alisateur(s), etc.) sont maintenant reprÃ©sentÃ©s par des hyperliens. Cela simplifiera la recherche d'Ã©lÃ©ments similaires.
-    Correction de bugs mineurs.
-
-14 avril 2008.
-
-    La version 4.02.2 est maintenant disponible.
-    ModifiÃ© le script sqlite_create_tables.sql pour supporter les cascades de suppression.
-    Suppression de certains titres de l'interface utilisateur.
-    TestÃ© avec succÃ¨s l'application sous Windows XP via une connexion SQLite.
-    Mise Ã  jour de plusieurs instructions INSERT pour supporter les limitations de SQLite sur les contraintes uniques.
-
-13 avril 2008.
-
-    Sortie de la version 4.02.1.
-    CrÃ©ation d'une enveloppe superficielle autour de QSqlQuery::size() en support de SQLite.
-    Correction d'une requÃªte SQL avec le panneau Historique des rÃ©servations.
-    AmÃ©liorations gÃ©nÃ©rales.
-    Nouvelles options dans le menu Options.
-
-12 Avril 2008.
-
-    Sortie de la version 4.02.
-    SQLite 3.x est maintenant supportÃ©.
-
-11 Avril 2008.
-
-    La version 4.01 est maintenant disponible.
-    Embelli de nombreux aspects de l'interface utilisateur.
-    Support des images de couverture.
-    Correction de certains scripts SQL.
-    AmÃ©liorations gÃ©nÃ©rales.
-
-31 mars 2008.
-
-    La version 4.00.1 est disponible.
-    CorrigÃ© les scripts MySQL.
-    Mise Ã  jour de plusieurs messages d'erreur.
-    Mise Ã  jour du document INSTALL.freebsd.
-
-30 Mars 2008.
-
-    La version 4.00 est disponible.
-    Permettre aux membres de voir leurs articles rÃ©servÃ©s.
-    AmÃ©liorÃ© l'interface utilisateur.
-    ImplÃ©mentation de l'authentification des utilisateurs basÃ©e sur MySQL et PostgreSQL.
-    Suppression des informations de compte du fichier biblioteq.conf.
-
-22 mars 2008.
-
-    La version 3.23.1 est maintenant disponible.
-    ComplÃ©tÃ© le panneau de l'historique des rÃ©servations des membres.
-    Correction des diffÃ©rents scripts SQL.
-    AmÃ©lioration de l'apparence du formulaire principal.
-    Correction de bogues mineurs.
-
-19 mars 2008.
-
-    Sortie de la version 3.23.
-    En cas de mise Ã  jour, veuillez exÃ©cuter les instructions SQL 3.23 Ã  partir des scripts mysql_update.sql ou postgresql_update.sql Ã  l'invite de la base de donnÃ©es appropriÃ©e.
-    Version initiale de la prise en charge de l'historique des rÃ©servations.
-    AmÃ©liorations diverses.
-    Mise Ã  jour de plusieurs icÃ´nes.
-    Mise Ã  jour des fichiers SQL qui sont responsables de la crÃ©ation des diffÃ©rentes tables de la base de donnÃ©es.
-
-15 mars 2008.
-
-    Sortie de la version 3.22.
-    Si vous effectuez une mise Ã  jour, veuillez exÃ©cuter les instructions SQL 3.22 Ã  partir des scripts mysql_update.sql ou postgresql_update.sql Ã  l'invite de la base de donnÃ©es appropriÃ©e.
-    ImplÃ©mentation d'un mÃ©canisme d'impression d'informations Ã  partir de la fenÃªtre principale.
-    Modification des tables d'Ã©lÃ©ments de la base de donnÃ©es pour inclure des informations sur le type.
-    Remplacement de plusieurs appels hide() par raise().
-
-12 Mars 2008.
-
-    La version 3.21 est maintenant disponible.
-    PrÃ©servation de la visibilitÃ© des colonnes de la table principale aprÃ¨s un changement de filtre de type.
-
-9 Mars 2008.
-
-    Sortie de la version 3.20.
-    ImplÃ©mentation d'un moyen de copier le contenu du dialogue d'erreur dans le tampon du presse-papiers.
-    Modification du script backup.csh pour le support du port Qt4 de FreeBSD.
-
-7 Mars 2008.
-
-    Sortie de la version 3.19.
-    Correction d'un problÃ¨me de focus.
-    Modification des attributs de dÃ©filement pour plusieurs des widgets de table.
-    VÃ©rification du bon fonctionnement de l'application sur les systÃ¨mes FreeBSD 7.0.
-
-28 FÃ©vrier 2008.
-
-    La version 3.18 est maintenant disponible.
-    Correction de la signature du constructeur dans numeric_table_item.cc.
-    Le programme fonctionne correctement sur les systÃ¨mes Solaris 10.
-
-14 fÃ©vrier 2008.
-
-    Sortie de la version 3.17.
-    AmÃ©lioration de plusieurs Ã©lÃ©ments de l'interface utilisateur.
-    Modification des fichiers SQL, suppression de TOUS les privilÃ¨ges.
-    Suppression des appels redondants QApplication::restoreOverrideCursor().
-
-9 FÃ©vrier 2008.
-
-    Sortie de la version 3.16.
-    ImplÃ©mentation d'algorithmes de traitement des donnÃ©es plus puissants sur les rÃ©sultats des requÃªtes de la BibliothÃ¨que du CongrÃ¨s.
-    AmÃ©liorations mineures de l'interface utilisateur.
-
-18 Janvier 2008.
-
-    La version 3.15 est maintenant disponible.
-    Correction de quelques problÃ¨mes d'affichage mineurs.
-
-15 janvier 2008.
-
-    Sortie de la version 3.14.
-    AmÃ©lioration de l'apparence de l'explorateur de membres.
-    RÃ©solution d'une instruction SELECT incorrecte dans misc_functions::getReservedItems().
-    Les utilisateurs standard peuvent maintenant voir la date d'Ã©chÃ©ance des articles rÃ©servÃ©s.
-
-13 Janvier 2008.
-
-    La version 3.13 est maintenant disponible.
-    CrÃ©ation d'un mÃ©canisme pour imprimer les articles rÃ©servÃ©s d'un membre.
-    Correction d'une dÃ©claration de requÃªte incorrecte dans le navigateur des membres.
-
-8 janvier 2008.
-
-    Publication de la version 3.12.
-    RÃ©solution d'un problÃ¨me de rÃ©initialisation du journal des erreurs lors d'une dÃ©connexion de la base de donnÃ©es.
-
-28 dÃ©cembre 2007.
-
-    La version 3.11 est maintenant disponible.
-    Correction d'un problÃ¨me mineur avec les quantitÃ©s d'articles.
-    Mise Ã  jour du jeu d'icÃ´nes.
-
-25 dÃ©cembre 2007.
-
-    Sortie de la version 3.10.
-    Plusieurs modifications de l'interface utilisateur.
-    Les recherches dans la base de donnÃ©es sont maintenant insensibles Ã  la casse.
-    La gÃ©omÃ©trie de la fenÃªtre principale est maintenant stockÃ©e dans le fichier de configuration de l'utilisateur Ã  chaque fois que le fichier est enregistrÃ©.
-
-23 DÃ©cembre 2007.
-
-    TÃ©lÃ©chargement du paquet TAR sur SourceForge.net.
-
-22 DÃ©cembre 2007.
-
-    La version 3.09 est maintenant disponible.
-    Ajout d'une fonctionnalitÃ© pour les requÃªtes personnalisÃ©es.
-    AmÃ©liorations diverses.
-    RÃ©solution d'un problÃ¨me de privilÃ¨ge.
-
-30 Novembre 2007.
-
-    CrÃ©ation de biblioteq.sh.
-    Mise Ã  jour de backup.csh, biblioteq.conf, et biblioteq.win.pro.
-
-29 Novembre 2007.
-
-    Sortie de la version 3.08.
-    Permettre les connexions anonymes. Les informations nÃ©cessaires pour Ã©tablir de telles connexions sont disponibles dans le fichier biblioteq.conf.
-
-22 Novembre 2007.
-
-    La version 3.07 est maintenant disponible.
-    Introduction de la catÃ©gorie "Journal".
-    RÃ©solution d'un problÃ¨me de base de donnÃ©es avec les copies d'articles.
-    Le paquet YAZ++ n'est plus nÃ©cessaire.
-
-14 novembre 2007.
-
-    Publication de la version 3.06.
-    Mise Ã  jour de la requÃªte de la Library of Congress pour les revues (magazines).
-
-12 novembre 2007.
-
-    La version 3.05 est disponible.
-    Ajout d'une icÃ´ne d'application pour la plateforme OS X.
-
-2 novembre 2007.
-
-    La version 3.04 est disponible.
-    Modification de certaines propriÃ©tÃ©s de taille minimale pour plusieurs panneaux.
-    RÃ©solution d'une jointure de table de base de donnÃ©es incorrecte.
-
-27 Octobre 2007.
-
-    La version 3.03 a Ã©tÃ© publiÃ©e.
-    Permettre Ã  l'administrateur de modifier les informations de copie pendant la crÃ©ation de l'Ã©lÃ©ment.
-    Petites amÃ©liorations.
-
-Le 20 octobre 2007.
-
-    Sortie de la version 3.02.
-    Suppression de certains codes inutiles.
-    SimplifiÃ© le dialogue de sÃ©lection de branche.
-
-12 Octobre 2007.
-
-    Publication de la version 3.01.
-    RÃ©solu un problÃ¨me causÃ© par un guillemet simple non encodÃ©.
-
-11 Octobre 2007.
-
-    La version 3.00 est maintenant disponible !
-    Beaucoup de petites, mais merveilleuses, amÃ©liorations.
-
-5 Octobre 2007.
-
-    La version 3.00 sera disponible sous peu.
-    Des erreurs supplÃ©mentaires ont Ã©tÃ© rÃ©solues.
-    Le tableau des articles a Ã©tÃ© sÃ©parÃ© en plusieurs tableaux afin de mieux reprÃ©senter les donnÃ©es.
-
-26 septembre 2007.
-
-    Sortie de la version 2.09.
-    Correction de postgresql_create_tables.sql.
-    Correction de quelques dÃ©fauts majeurs avec les sections liÃ©es Ã  PostgreSQL.
-    Correction de certains problÃ¨mes causÃ©s par l'utilisation incorrecte de hide().
-    Introduction d'une nouvelle option dans le menu Options.
-
-24 Septembre 2007.
-
-    La version 2.08 est maintenant disponible.
-    Mise Ã  jour de plusieurs conseils d'outils.
-    Mis Ã  jour le script postgresql_create_tables.sql.
-
-21 septembre 2007.
-
-    La version 2.07 est disponible.
-    DÃ©sintoxication du code.
-    Mise Ã  jour du contenu du fichier biblioteq.conf.
-
-19 septembre 2007.
-
-    Sortie de la version 2.06.
-    Correction d'une erreur avec la classe DVD.
-    RÃ©solution d'un problÃ¨me critique avec les indices.
-
-17 septembre 2007.
-
-    La version 2.05 est maintenant disponible.
-    ImplÃ©mentation d'une journalisation supplÃ©mentaire des erreurs.
-    Plusieurs problÃ¨mes d'administrateur ont Ã©tÃ© rÃ©solus.
-
-Le 12 septembre 2007.
-
-    La version 2.04 est disponible.
-    CrÃ©ation d'une table "admin".
-    Correction de quelques problÃ¨mes avec l'authentification de l'administrateur.
-
-10 septembre 2007.
-
-    La version 2.03 est disponible.
-    Mise Ã  jour de la routine d'analyse pour la requÃªte de livres de la Library of Congress.
-
-Le 9 septembre 2007.
-
-    La version 2.02 est disponible.
-    RÃ©solution d'un problÃ¨me avec le champ ISSN pour les magazines. Le chiffre de contrÃ´le peut Ãªtre un X.
-
-Le 6 septembre 2007.
-
-    La version 2.01 est disponible.
-    RÃ©solution de quelques problÃ¨mes mineurs avec Z39.50 pour les livres.
-
-5 septembre 2007.
-
-    La version 2.00 est enfin disponible !
-    Cette version inclut un support complet pour les livres, cds, dvds, magazines et jeux vidÃ©o.
-
-22 Juillet 2007.
-
-    Correction de deux Ã©tiquettes incorrectes avec le panneau CD.
-    Mises Ã  jour diverses.
-    RÃ©solution d'un problÃ¨me d'indexation avec la requÃªte de la Library of Congress pour les livres.
-
-14 Juillet 2007.
-
-    Ajout d'une option permettant Ã  l'utilisateur de dÃ©finir la police globale.
-    ComplÃ©tÃ© plusieurs Ã©lÃ©ments de la liste TO-DO.
-    RÃ©solution de divers problÃ¨mes.
-
-9 juillet 2007.
-
-    Changement de la police par dÃ©faut en Times.
-    Changements divers.
-    Refonte de la prÃ©sentation des informations sur les articles pour s'adapter aux petites rÃ©solutions d'affichage.
-    Mise Ã  jour de la requÃªte de la BibliothÃ¨que du CongrÃ¨s pour les livres.
-
-1er juillet 2007.
-
-    AchÃ¨vement des Ã©lÃ©ments de la liste des tÃ¢ches Ã  accomplir.
-
-24 juin 2007.
-
-    Ajout d'un champ CatÃ©gorie dans le panneau de recherche gÃ©nÃ©rique.
-    Correction d'un problÃ¨me d'unicitÃ© des numÃ©ros ISSN.
-    RÃ©solution de plusieurs problÃ¨mes potentiels avec des transactions incomplÃ¨tes.
-
-21 juin 2007.
-
-    TerminÃ© la requÃªte Z39.50 de la BibliothÃ¨que du CongrÃ¨s pour les magazines.
-    Insertion d'une virgule manquante dans le fichier postgresql_create_tables.sql.
-
-17 juin 2007.
-
-    CrÃ©ation d'une copie initiale dans le cadre du processus de crÃ©ation d'articles.
-    ImplÃ©mentation des tÃ¢ches de la liste TO-DO.
-    Les informations de connexion Ã  la Library of Congress sont maintenant rÃ©cupÃ©rÃ©es dans le fichier biblioteq.conf.
-    Traitement des requÃªtes de la BibliothÃ¨que du CongrÃ¨s Ã  partir des fils.
-    RenommÃ© .qtbook.dat en .biblioteq.dat.
-    RenommÃ© qtbook.conf en biblioteq.conf.
-
-15 juin 2007.
-
-    Utilisation initiale du protocole Z39.50 pour les livres. Vous devez installer la boÃ®te Ã  outils YAZ.
-    Refonte du navigateur des membres.
-    RÃ©solution de quelques problÃ¨mes potentiels.
-
-10 juin 2007.
-
-    AchÃ¨vement des Ã©lÃ©ments de la liste TO-DO.
-    RÃ©solution de plusieurs problÃ¨mes sans nom.
-
-Le 3 juin 2007.
-
-    ComplÃ©tÃ© plusieurs Ã©lÃ©ments de la liste TO-DO.
-    Ã‰limination de certains problÃ¨mes potentiels avec les indices de ligne.
-    AmÃ©lioration de l'interface utilisateur.
-
-1 Juin 2007.
-
-    RÃ©solution d'un problÃ¨me liÃ© Ã  PostgreSQL avec le navigateur des membres.
-
-31 Mai 2007.
-
-    Ajout de nouveaux champs dans la catÃ©gorie Magazine.
-    TerminÃ© plusieurs Ã©lÃ©ments de la liste TO-DO.
-
-24 Mai 2007.
-
-    RÃ©solution de quelques problÃ¨mes avec les titres des fenÃªtres.
-    Les dialogues de crÃ©ation et de recherche sont maintenant non-modaux.
-
-16 Mai 2007.
-
-    Ajout d'un mÃ©canisme permettant de convertir les ISBN-10 en ISBN-13.
-    D'autres amÃ©liorations importantes ont Ã©tÃ© apportÃ©es.
-
-13 Mai 2007.
-
-    Ajout de plusieurs nouveaux champs dans la catÃ©gorie Livre.
-    AmÃ©liorations gÃ©nÃ©rales.
-    RÃ©solution d'une erreur causÃ©e par le passage d'une catÃ©gorie Ã  une autre.
-
-12 mai 2007.
-
-    AmÃ©liorations gÃ©nÃ©rales.
-
-11 mai 2007.
-
-    Correction de bugs.
-    ComplÃ©tÃ© la catÃ©gorie Jeux vidÃ©o.
-
-5 Mai 2007.
-
-    RÃ©solution d'un problÃ¨me avec le Track Browser.
-
-4 Mai 2007.
-
-    ImplÃ©mentation de la catÃ©gorie CD.
-
-2 Mai 2007.
-
-    Ajout de quelques validateurs de texte dans les diffÃ©rents champs d'identification.
-    Remplacement d'une ou deux icÃ´nes.
-
-16 Avril 2007.
-
-    ComplÃ©tÃ© plusieurs Ã©lÃ©ments de la liste TO-DO.
-    AmÃ©liorÃ© la fonctionnalitÃ© de l'interface utilisateur.
-
-2 Avril 2007.
-
-    Correction de quelques problÃ¨mes de modalitÃ©.
-    Introduction du type VHS. Oui, VHS.
-    D'autres changements merveilleux.
-
-1er avril 2007.
-
-    Beaucoup de problÃ¨mes rÃ©solus.
-    Refonte massive du code. Les utilisateurs peuvent dÃ©sormais parcourir plusieurs articles simultanÃ©ment.
-
-27 mars 2007.
-
-    Une autre petite version. Permet aux utilisateurs normaux de voir les dÃ©tails d'un article.
-    Correction de bugs et nettoyage du code.
-
-21 mars 2007.
-
-    Comme d'habitude, corrections de bugs. TerminÃ© plusieurs Ã©lÃ©ments de la liste des choses Ã  faire.
-
-18 Mars 2007.
-
-    TerminÃ© plusieurs Ã©lÃ©ments de la liste TO-DO.
-    RenommÃ© le projet en BiblioteQ.
-
-11 mars 2007.
-
-    Quelques amÃ©liorations mineures.
-
-9 mars 2007.
-
-    Plusieurs corrections de bogues. Presque terminÃ© la catÃ©gorie CD.
-
-7 mars 2007.
-
-    Correction de bugs. AmÃ©liorations supplÃ©mentaires au navigateur de pistes.
-
-5 Mars 2007.
-
-    Publication de INSTALL.freebsd.
-    Quelques travaux mineurs sur le Tracks Browser.
-
-4 Mars 2007.
-
-    Correction de bogues.
-    RÃ©solution de quelques problÃ¨mes avec les chemins de fichiers.
-    Compilation et exÃ©cution rÃ©ussies du programme sous Windows XP !
-
-3 Mars 2007.
-
-    ComplÃ©tÃ© le mÃ©canisme de recherche de CD.
-    Diverses corrections de bogues. Le statut de l'application reste Pre-Alpha.
-    Le document d'installation pour PostgreSQL sur FreeBSD sera inclus dÃ¨s que je le trouverai.
-
-2 Mars 2007.
-
-    Correction de bugs.
-    Les menus sont opÃ©rationnels.
-    Refonte de l'interface utilisateur.
-
-28 FÃ©vrier 2007.
-
-    Introduction d'un document d'installation pour PostgreSQL sur FreeBSD.
-    RÃ©solution de certains problÃ¨mes qui ont Ã©tÃ© introduits dans les versions prÃ©cÃ©dentes.
-    Certains des nouveaux menus ne sont pas encore opÃ©rationnels.
-
-27 FÃ©vrier 2007.
-
-    Plusieurs corrections de bogues.
-
-24 FÃ©vrier 2007.
-
-    Nettoyage supplÃ©mentaire du code et correction de bugs.
-    ImplÃ©mentation de la rÃ©servation d'articles.
-
-21 FÃ©vrier 2007.
-
-    Correction de bogues.
-    Nettoyage du code.
-    AmÃ©liorations diverses.
-
-18 FÃ©vrier 2007.
-
-    Proche de l'achÃ¨vement du support CD.
-    SÃ©paration du gros fichier qtbook.cc en petits morceaux.
-
-9 FÃ©vrier 2007.
-
-    Plus d'amÃ©liorations de l'interface utilisateur.
-
-5 FÃ©vrier 2007.
-
-    AmÃ©liorations de l'interface utilisateur.
-
-4 FÃ©vrier 2007.
-
-    Des Ã©lÃ©ments supplÃ©mentaires de la liste TO-DO ont Ã©tÃ© complÃ©tÃ©s.
-    Nettoyage du code.
-
-3 fÃ©vrier 2007.
-
-    Version prÃ©liminaire en support de PostgreSQL.
-
-2 FÃ©vrier 2007.
-
-    ImplÃ©mentation d'un mÃ©canisme de sommeil via QMutex et QWaitCondition.
-    Ne doit pas rÃ©fÃ©rencer des objets aprÃ¨s qu'ils aient Ã©tÃ© supprimÃ©s.
-    Autres amÃ©liorations gÃ©nÃ©rales incluses dans cette version.
-
-29 Janvier 2007.
-
-    Encore une autre version prÃ©-alpha.
-
-28 janvier 2007.
-
-    Une nouvelle version ! Veuillez lire le fichier TO-DO pour les Ã©lÃ©ments restants.
-
-15 Janvier 2007.
-
-    La version 2.00 (Pre-Alpha) a Ã©tÃ© publiÃ©e. Veuillez lire la documentation incluse pour les informations sur la version.
-
-4 novembre 2006.
-
-    La version 2.00 est en cours de rÃ©alisation ! De nombreuses fonctionnalitÃ©s merveilleuses seront incluses. La version prÃ©cÃ©dente a Ã©tÃ© supprimÃ©e.
-
-1er janvier 2002.
-
-BiblioteQ, ou XBook, est introduit.
+ <body>
+<u>Notes de publication</u>
+<p>30 mars 2022.</p>
+<ul>
+<li>    Copie du contenu des tables book_sequence et sequence pendant la fusion des bases de données SQLite.</li>
+<li>    Affiche un avertissement si le schéma de base de données actuel n'est pas à jour.</li>
+<li>    Limitez les fichiers par page (navigateur de fichiers) et les membres par page (navigateur de membres) à 2500.</li>
+<li>    Nouveau champ de base de données multivolume_set_isbn. Pour les bases de données SQLite, le champ ne peut pas être ajouté avec une contrainte UNIQUE par https://www.sqlite.org/lang_altertable.html. Envisagez de fusionner la base de données existante avec une base de données nouvellement créée. Voir https://github.com/textbrowser/biblioteq/discussions/191.</li>
+<ol>
+<li>        Créer une nouvelle base de données SQLite avec : Fichier -> Nouvelle base de données SQLite...</li>
+<li>        Ouvrir la fusion de bases de données SQLite : Outils -> Fusionner base de données SQLite...</li>
+<li>        Ajouter Ligne.</li>
+<li>        Sélectionnez le fichier de la base de données SQLite existante.</li>
+<li>        Appuyez sur le bouton Fusionner.</li>
+</ol>
+<li>    PostgreSQL 10.20.1; Windows.</li>
+<li>    Conservez uniquement les déclarations de mise à niveau SQLite de la version précédente (2022.02.30). Toutes les autres déclarations ont été archivées dans la source.</li>
+<li>    BiblioteQ.odt révisé : nouvelles informations, nouvelles sections, images remplacées, corrections orthographiques.</li>
+<li>    SQLite 3.38.1; Windows.</li>
+</ul>
+<p>30 février 2022.</p>
+<ul>
+<li>    Générer des rappels par e-mail aux clients.</li>
+<li>    Nouvelles informations sur la Mokka. Merci à tamascz.</li>
+<li>    Nouveaux champs de base de données alternate_id_1 et membership_fees. Veuillez mettre à jour les schémas de base de données. Pour SQLite, ouvrez la base de données souhaitée et allez dans Outils -> Mettre à niveau le schéma SQLite.</li>
+<li>    Requêtes vers OpenLibrary via des identifiants alternatifs.</li>
+<li>    Frais de retard dans le navigateur des membres.</li>
+<li>    Trier les résultats de la recherche de base (fenêtre principale) par titres. Merci à tamascz.</li>
+</ul>
+<p>30 janvier 2022.</p>
+<ul>
+<li>    BiblioteQ @ 20! Bonne année !</li>
+<li>    Options YAZ configurables.</li>
+<li>    Correction des recherches insensibles à la casse. Merci à meteos77.</li>
+<li>    Correction des révisions de la vue principale via les détails de l'élément ; indices persistants.</li>
+<li>    Les énumérations des bases de données (types de reliure, langues, lieux, unités monétaires) sont désormais incluses dans l'importation des livres.</li>
+<li>    Désactive l'action du menu contextuel Réserver l'élément sélectionné si l'élément actuel est une photographie.</li>
+<li>    Affiche les chaînes d'en-tête de l'aperçu de l'importation dans la table du modèle d'importation. Par exemple, le texte de la colonne 1 de la table de prévisualisation peut être défini comme "Titre" et l'élément à (0, 1) dans la table de modèle aura son texte également défini comme "Titre". Merci Meteos77.</li>
+<li>    Optimisation de l'affichage des contenus volumineux.</li>
+<li>    Ne pas désactiver les widgets de connexion à la base de données si une connexion est déjà présente.</li>
+<li>    Activer le respect de la casse pour les recherches SQLite générales.</li>
+<li>    Exportation de la vue des icônes en PNG.</li>
+<li>    Retour groupé d'articles sélectionnés via la catégorie "Tous réservés".</li>
+<li>    Options de format d'affichage de l'ISBN. Veuillez consulter la section Autres options.</li>
+<li>    Initialiser les codes-barres vides dans les éditeurs de copie.</li>
+<li>    Pagination du navigateur des membres.</li>
+<li>    Nouvelles autres options pour définir le nombre de colonnes du mode Icônes.</li>
+<li>    Nouveau modèle d'importation. Merci meteos77.</li>
+<li>    Nouvelle option de terminal open-postgresql-database.</li>
+<li>    Imprimer la vue des icônes.</li>
+<li>    Suppression des tirets des champs ISBN dans les conditionnels.</li>
+<li>    SQLite 3.37.2; Windows.</li>
+<li>    Simplifier le texte avant de l'afficher dans le tableau principal et les infobulles associées. Merci meteos77.</li>
+</ul>
+<p>15 décembre 2021.</p>
+<ul>
+<li>    Recherche par numéro d'accession ; disponible à partir de la fenêtre principale.</li>
+<li>    Permettre l'émission de l'instruction de suppression SQL pour les requêtes personnalisées.</li>
+<li>    Conversion automatique des ISBN-10 en ISBN-13 lors des importations.</li>
+<li>    L'option de configuration des colonnes sera désactivée pour les requêtes personnalisées car les requêtes    décrivent les colonnes souhaitées.</li>
+<li>    Correction de l'état de lecture des livres et des requêtes personnalisées pour SQLite.</li>
+<li>    Correction du menu de configuration des colonnes. Merci à meteos77.</li>
+<li>    Correction de la génération de fichiers CSV à partir de requêtes personnalisées. Merci à meteos77.</li>
+<li>    Traductions corrigées. Nouveaux fichiers de traduction.</li>
+<li>    Documentation et notes de mise à jour intégrées.</li>
+<li>    Inspectez la police créée à partir du paramètre global_font. Si la police ne peut pas être recréée, attribuez   une police par défaut.</li>
+<li>    Introduction de l'option de délai d'attente pour YAZ. Le délai d'attente réel varie.</li>
+<li>    Des listes plus complètes des tables de la base de données disponibles dans Custom Query.</li>
+<li>    Nouvelle option de terminal open-sqlite-database.</li>
+<li>    Images de la fenêtre principale et boîtes de dialogue de progression facultatives. Veuillez consulter la section  Autres options.</li>
+<li>    Patron de l'exportation et de l'importation.</li>
+<li>    PostgreSQL 10.19; Windows.</li>
+<li>    Qt 5.12.12 LTS; Windows.</li>
+<li>    Qt 6.2 LTS. Un élément restant</li>
+<li>    Restaurer et conserver la géométrie de Members Browser.</li>
+<li>    SQLite 3.37; Windows.</li>
+<li>    SQLite : fusion de bases de données.</li>
+<li>    Réservations rapides. Nouvelle option dans le navigateur des membres</li>
+</ul>
+<p>30 octobre 2021.</p>
+<ul>
+<li>    Version Android. SQLite uniquement.</li>
+<li>    Éviter les signaux dupliqués dans la sélection de branche.</li>
+<li>    Correction du réglage des images des livres par rapport à la colonne en lecture seule.</li>
+<li>    Fichiers de traduction incorporés.</li>
+<li>    Maximum de livres réservés. Veuillez mettre à jour les schémas de la base de données. Les limites ne sont pas respectées.</li>
+<li>    Nouvelle colonne Total réservé dans l'explorateur de membres.</li>
+<li>    PostgreSQL 10.18.2, Windows.</li>
+<li>    Qt 6.2 LTS. Incomplet.</li>
+<li>    Suppression de la validation des e-mails. Qt 6.2 LTS.</li>
+<li>    Exemple de base de données SQLite. Merci à sunyuyangg555.</li>
+<li>    Traduction en espagnol. Merci à caalma.</li>
+<li>    YAZ est maintenant optionnel.</li>
+</ul>
+<p>10 septembre 2021.</p>
+<ul>
+<li>    Une nouvelle colonne a été ajoutée au navigateur d'importation CSV.</li>
+<li>    Une nouvelle colonne a été ajoutée à la table principale indiquant l'état de lecture. SQLite seulement.</li>
+<li>    PostgreSQL 10.18, Windows.</li>
+</ul>
+<p>8 Août 2021.</p>
+<ul>
+<li>    Couleurs de disponibilité. Veuillez consulter la section Autres options.</li>
+<li>    C++ 2011.</li>
+<li>    Statut de lecture pour les livres. SQLite uniquement.</li>
+<li>    SQLite 3.36, Windows.</li>
+</ul>
+<p>12 juin 2021.</p>
+<ul>
+<li>    Correction du navigateur de l'éditeur de copie causé par une méthode protégée C++ incorrecte. Merci à tamascz.</li>
+<li>    PostgreSQL 10.17 pour Windows.</li>
+<li>    Qt 5.12.11 pour Windows.</li>
+</ul>
+<p>15 mai 2021.</p>
+<ul>
+<li>    Détails : https://github.com/textbrowser/biblioteq/compare/2021.04/10...master.</li>
+<li>    Réservations de littérature grise. Veuillez mettre à jour vos schémas de base de données.</li>
+<li>    PostgreSQL 10.16 pour Windows.</li>
+<li>    SQLite 3.35.5 pour Windows.</li>
+<li>    YAZ 5.31 pour Windows.</li>
+</ul>
+<p>10 avril 2021.</p>
+<ul>
+<li>    Algorithme de tri configurable pour les numéros d'accession des livres. Voir les autres options.</li>
+<li>    Support des DPI élevés.</li>
+<li>    Nouveau champ URL pour les articles de livres. Veuillez mettre à jour vos schémas de base de données.</li>
+<li>    Images d'articles facultatives. Voir les autres options.</li>
+<li>    Traduction en portugais. Merci a12554.</li>
+<li>    PostgreSQL 9.6.21 ; Windows.</li>
+<li>    SQLite 3.35.04 ; Windows.</li>
+</ul>
+<p>12 février 2021.</p>
+<ul>
+<li>    Améliorations de la gestion des copies. Veuillez signaler les erreurs.</li>
+<li>    Correction des conversions UTF-8 des données de Open Library. Merci à jferby.</li>
+<li>    Nouvelle traduction en polonais. Merci à jerzyPL.</li>
+<li>    Poppler a été supprimé de la version Windows car il est obsolète. La bibliothèque sera remplacée par QtPDF.</li>
+</ul>
+<p>Le 2 février 2021.</p>
+<ul>
+<li>    Bonne année !</li>
+<li>    Poursuite du paramétrage des requêtes de recherche SQL.</li>
+<li>    Correction des avertissements de Qt 5.15.</li>
+<li>    Nouveau navigateur de fichiers.</li>
+<li>    Nouveaux énumérateurs ; objets internes. Veuillez rapporter toutes les erreurs.</li>
+<li>    Nouveaux champs de base de données d'état. Veuillez mettre à jour vos bases de données !</li>
+<li>    Purge des entrées de la base de données SQLite lors de la suppression des entrées parentales.</li>
+<li>    Qt 5.12.10 sur Windows.</li>
+<li>    Qt 5.15.2 sur OS X.</li>
+<li>    SQLite 3.34.1.</li>
+</ul>
+<p>9 septembre 2020.</p>
+<ul>
+<li>    Permettre l'ouverture de plusieurs fichiers PDF.</li>
+<li>    Masquage du bouton Supprimer dans Copy Browser. Le widget n'est pas nécessaire et sa fonction non plus. Le nombre de copies est contrôlé par la fenêtre parent.</li>
+<li>    Nouvelle mise en page du livre, selon la demande.</li>
+<li>    Nouveaux mécanismes d'analyse des balises MARC pour les livres, les revues et les magazines.</li>
+<li>    Corrections OpenBSD.</li>
+<li>    PostgreSQL 9.6.19 pour W32.</li>
+<li>    Synchronisation de la page actuelle avec l'index des pages dans le lecteur PDF.</li>
+<li>    Diverses astuces pour le texte.</li>
+</ul>
+<p>25 juillet 2020.</p>
+<ul>
+<li>    C++2011.</li>
+<li>    Messages colorés dans le processus de mise à niveau de SQLite.</li>
+<li>    Correction des déclarations de mise à niveau de SQLite. Merci à tamascz.</li>
+</ul>
+<p>11 Juillet 2020.</p>
+<ul>
+<li>    Correction de la fourniture d'énumérations de base de données. Merci jerzyPL.</li>
+<li>    Correction des conseils de l'outil de la table principale en ce qui concerne les données binaires. Merci à jerzyPL.</li>
+<li>    Introduction de divers raccourcis.</li>
+</ul>
+<p>4 juillet 2020.</p>
+<ul>
+<li>    Accès aux éléments de la fenêtre principale par la touche Entrée.</li>
+<li>    Autoriser les proxies pour les téléchargements d'images de l'Open Library.</li>
+<li>    Autoriser les proxies pour les requêtes SRU.</li>
+<li>    Les emprunteurs ne peuvent envoyer que des requêtes SQL.</li>
+<li>    Les fenêtres PDF enfant seront liées à la fenêtre principale.</li>
+<li>    Optimisations des conteneurs : isEmpty() versus size() > 0.</li>
+<li>    Correction de la suppression des lignes sélectionnées dans le mécanisme d'importation.</li>
+<li>    Les dates dans le tableau principal seront affichées selon les formats dans les autres options. Pour les catégories générales, par exemple Tout, les dates seront affichées en utilisant le format ISO-8601. Merci à jerzyPL.</li>
+<li>    Support déprécié de Qt 4.8.7.</li>
+<li>    Affichage d'un dialogue d'erreur de conversion si un ISBN à 13 chiffres n'est pas préfixé par 978 ou 979.</li>
+<li>    Aperçu avant impression de la fenêtre principale.</li>
+<li>    Nouveau serveur SRU de la Library of Congress. Veuillez mettre à jour biblioteq.conf !</li>
+<li>    Nouveaux menus contextuels maintenant disponibles sur divers widgets.</li>
+<li>    Nouvelle disposition d'impression de l'historique des réservations.</li>
+<li>    Requêtes Open Library.</li>
+<li>    Aperçu avant impression du PDF.</li>
+<li>    Sur demande, incrémentation automatique des numéros d'accession des livres.</li>
+<li>    Rotation des images des photographies.</li>
+<li>    Traduction en polonais. Merci à jerzyPL.</li>
+<li>    PostgreSQL 9.6.18 sur Windows.</li>
+<li>    Histoires de membres privés pour PostgreSQL >= 9.5.</li>
+<li>    Qt 5.12.9 sur Windows.</li>
+<li>    Refonte de plusieurs triggers PostgreSQL, liant les articles avec leurs informations de réservation.</li>
+<li>    Assouplissement de la validation de l'ISSN. Merci à robindegen.</li>
+<li>    Suppression de la vue de la base de données item_borrower_vw. Veuillez mettre à jour les bases de données PostgreSQL et SQLite.</li>
+<li>    Suppression de std::nothrow.</li>
+<li>    Aperçu avant impression de l'historique des réservations.</li>
+<li>    Politiques de sécurité item_borrower et item_request au niveau de la ligne pour PostgreSQL >= 9.5.</li>
+<li>    SQLite 3.32.3 sur Windows.</li>
+<li>    SSL / TLS pour la récupération des images Amazon. Ignorer les erreurs SSL / TLS lors de la récupération d'images.</li>
+<li>    Outil de base de données Vacuum.</li>
+<li>    YAZ 5.30.3 sur Windows.</li>
+</ul>
+<p>1er janvier 2020.</p>
+<ul>
+<li>    Optimisation des conteneurs ; remplacement de first().</li>
+<li>    Paquet Debian ARM Qt 5. Construction native.</li>
+<li>    Quinze années splendides de BiblioteQ !</li>
+<li>    Bonne année !</li>
+<li>    L'importation de livres à partir de fichiers CSV est maintenant supportée. Modèle de cartographie BiblioteQ inclus.</li>
+<li>    Support de OS/2 Qt 5.</li>
+<li>    Validation optionnelle des e-mails.</li>
+<li>    PostgreSQL 9.6.16 sur Windows.</li>
+<li>    Qt 5.9.9 sur Windows.</li>
+<li>    SQLite 3.30.1 sur Windows.</li>
+</ul>
+<p>10 octobre 2019.</p>
+<ul>
+<li>    Option de vue photographique Best Fit.</li>
+<li>    Requêtes de base de données en avant, le cas échéant.</li>
+<li>    Nouvelles informations de contact dans le navigateur des membres.</li>
+<li>    Traitement des événements de l'interface. Douceur.</li>
+<li>    SQLite 3.30 sur W32.</li>
+<li>    Découpage des valeurs des chaînes de la base de données pendant le traitement.</li>
+</ul>
+<p>9 septembre 2019.</p>
+<ul>
+<li>    Permet d'exporter les éléments visibles du navigateur de membres en tant que CSV.</li>
+<li>    Correction des colonnes visibles. Merci sidheban.</li>
+<li>    Correction de la suppression des photos via les menus contextuels ; terminaison anormale.</li>
+<li>    Désigner les noms d'utilisateur de la base de données SQLite par SQLITE lorsque c'est applicable.</li>
+<li>    Désactivation des recherches par hyperlien sur SQLite. Les champs de texte éditable ne supportent pas les hyperliens interactifs.</li>
+<li>    Affichage du numéro d'appel pour les catégories All Overdue, All Requested et All Reserved.</li>
+<li>    Affichage du rôle de la base de données dans le titre de la fenêtre principale.</li>
+<li>    Suppression des extensions dans postgresql_destroy_schema.sql.</li>
+<li>    Mode plein écran.</li>
+<li>    Apparence intuitive des boutons radio.</li>
+<li>    Aperçu d'images plus grandes dans le tableau de la fenêtre principale.</li>
+<li>    Les informations de contact des utilisateurs sont maintenant disponibles dans les catégories Tous en retard, Tous demandés et Tous réservés.</li>
+<li>    PostgreSQL 9.6.15 sur W32.</li>
+<li>    Qt 5.13.0 sur OS X.</li>
+<li>    Suppression du singleton C++.</li>
+<li>    SQLite 3.29 sur W32.</li>
+<li>    Changement du format de la source.</li>
+<li>    Mise à jour de l'image de l'élément dans la table principale lors du changement d'image.</li>
+</ul>
+<p>6 juin 2019.</p>
+<ul>
+<li>    Date de publication de la littérature grise Correction du format fournie par coldacid.</li>
+<li>    Modification de l'emplacement attendu de biblioteq.conf sous Windows. Merci à coldacid.</li>
+<li>    Images de couverture de Open Library.</li>
+<li>    Requêtes de recherche basées sur des paramètres. Injections SQL.</li>
+<li>    PostgreSQL 9.6.13 sur W32.</li>
+<li>    Qt 5.9.8 sur W32.</li>
+<li>    SQLite 3.28 sur W32.</li>
+</ul>
+<p>Le 15 mars 2019.</p>
+<ul>
+<li>    Menus Mac élégants.</li>
+<li>    Bonne année !</li>
+<li>    Nouveau paramètre Autres options. S'il est activé, de jolies info-bulles seront affichées sur la table principale.</li>
+<li>    PostgreSQL 9.6.12 sur W32.</li>
+<li>    Qt 5.12.1 sur OS X.</li>
+<li>    Suppression de Qt::WA_MacMetalStyle.</li>
+<li>    Conservation des états du widget General Search après une requête.</li>
+<li>    Traduction russe de Viacheslav Ptsarev. Merci !</li>
+<li>    SQLite 3.27.2 sur W32.</li>
+<li>    Le paquet Debian a été créé sur Kubuntu 18.10. La bibliothèque YAZ5 est attendue.</li>
+</ul>
+<p>12 décembre 2018.</p>
+<ul>
+<li>    Opérations LIKE insensibles à la casse. Merci à ozgurcan.</li>
+<li>    Correction de l'emplacement du répertoire Translations sur Mac. Merci Marty.</li>
+<li>    Correction du paramètre mainwindow_canvas_backgound_color. Devrait être mainwindow_canvas_background_color.</li>
+<li>    Correction de l'analyse des sous-champs dans le XML. Certains champs doivent être supprimés. Merci à sit42.</li>
+<li>    Option unaccent() pour PostgreSQL. Merci à ozgurcan.</li>
+<li>    Prévention d'une terminaison anormale pendant le téléchargement d'une image. Merci sit42.</li>
+<li>    Qt 9.6.7 sur W32.</li>
+<li>    Corrections orthographiques.</li>
+<li>    Le paramètre de sauvegarde automatique est désormais activé pour les nouvelles installations.</li>
+</ul>
+<p>1er octobre 2018 .</p>
+<ul>
+<li>    Autoriser le rechargement des éléments dans le dialogue de requête personnalisée.</li>
+<li>    Fermer la boîte de dialogue des résultats du schéma de mise à niveau de SQLite lors d'un clic de fermeture.</li>
+<li>    Raccourcis Control + S et Control + W. Merci wohali.</li>
+<li>    Correction des implémentations de l'opérateur less-than dans les éléments des tableaux dérivés. Le logiciel actuel suppose que les valeurs des cellules sont statiques.</li>
+<li>    PQ à la version 9.6.10 sur W32.</li>
+<li>    SQLite à la version 3.25.2 sur W32.</li>
+<li>    Prise en charge du préfixe ISBN 979. Merci Safranil.</li>
+</ul>
+<p>4 juillet 2018 .</p>
+<ul>
+<li>    Activation du tri de la table principale après l'acquisition du nombre de fichiers de littérature grise et du nombre de photographies.</li>
+<li>    Nouvelle cible grecque Z39.50. Veuillez consulter biblioteq.conf.</li>
+<li>    Qt 5.9.6 sur W32.</li>
+<li>    Qt 5.11.1 sur OS X.</li>
+<li>    Suppression des requêtes de base de données forward-only car certaines causent des problèmes avec PQ et Qt 5.11.</li>
+<li>    SQLite 3.24.0 sur W32.</li>
+<li>    Réglage de l'icône par défaut de l'application.</li>
+<li>    Connexions uniques de signaux Qt.</li>
+<li>    YAZ 5.25.0 sur W32.</li>
+</ul>
+<p>5 mai 2018.</p>
+<ul>
+<li>    Permettre l'annulation des requêtes SRU.</li>
+<li>    Permettre la recherche de fichiers PDF.</li>
+<li>    Possibilité de trier les fichiers par taille dans les livres, les journaux et les magazines.</li>
+<li>    Support du processeur Alpha 21264.</li>
+<li>    Éviter la journalisation des erreurs de duplication et d'unicité sur INSERT à member_history_dnt.</li>
+<li>    Correction des astuces de l'outil Browser Database Enumerations.</li>
+<li>    Correction de l'instruction ALTER membre pour le processus de mise à jour de SQLite.</li>
+<li>    Correction des dialogues de progression des parents.</li>
+<li>    Suppression correcte des fenêtres d'éléments photographiques lors de la suppression des entrées de base de données correspondantes.</li>
+<li>    Conservation correcte du paramètre Catégorie pendant une session BiblioteQ, quelle que soit la connectivité de la base de données.</li>
+<li>    Paquet Debian AMD64 construit avec Qt 5.5.1.</li>
+<li>    Paquet Debian PowerPC avec Qt 4.8.x.</li>
+<li>    Représentation de widgets en lecture seule dans diverses fenêtres d'éléments. L'implémentation actuelle est incomplète.</li>
+<li>    Détruire les objets fantômes. Ces objets sont créés si les méthodes de recherche d'éléments échouent.</li>
+<li>    Désactiver l'extension MIT-SHM sur X11.</li>
+<li>    Ne pas supprimer la fenêtre de requête personnalisée après l'exécution d'une requête.</li>
+<li>    Incorporation d'icônes d'éléments dans la table principale.</li>
+<li>    Inspecter les pointeurs zéro potentiels.</li>
+<li>    Lancement de visionneuses PDF via des événements de double-clic pour les livres, les journaux et les magazines. Poppler requis.</li>
+<li>    Maintien des valeurs des champs après la fin d'une recherche générale.</li>
+<li>    Recherches génériques à mots multiples.</li>
+<li>    Widgets natifs de la barre de menu.</li>
+<li>    Nouveau dialogue de message de mise à niveau de SQLite.</li>
+<li>    Nouveaux formats de date dans les autres options. Merci coldacid.</li>
+<li>    Nouveau document utilisateur.</li>
+<li>    Support OpenBSD.</li>
+<li>    Suppression correcte des éléments de scène photographique après que leurs représentations correspondantes dans la base de données aient été correctement supprimées. La logique incorrecte provoque une terminaison anormale.</li>
+<li>    Purger les éléments de scène chaque fois que les images des éléments sont remplacées. Sinon, des objets mémoire fantômes restent.</li>
+<li>    Paquet Raspbian armhf avec Qt 4.8.7.</li>
+<li>    Remplacement des dialogues statiques des requêtes SRU et Z39.50 par des instances dynamiques.</li>
+<li>    Remplacement du contenu de la vue du lecteur PDF par une liste de facteurs d'échelle.</li>
+<li>    Signalement des erreurs de réseau SRU.</li>
+<li>    Réinitialisation de l'état Case-Insensitive lors de l'activation de Reset.</li>
+<li>    SQLite à la version 3.23.0 sur Win32.</li>
+<li>    Certains widgets devraient être cachés dans diverses fenêtres de recherche d'éléments. Par exemple, Fichiers.</li>
+<li>    Support de Sparc64.</li>
+<li>    Support de la littérature grise. Administrateurs PostgreSQL, veuillez mettre à jour votre ou vos schémas de base de données via postgresql_update_schema.sql.</li>
+<li>    La version OS X est générée avec Qt 5.10.1 sur OS X 10.12.6. La prise en charge des versions antérieures d'OS X est inconnue.</li>
+<li>    Mise à jour des produits Qt à la version 5.9.5 sur Win32.</li>
+<li>    Mise à jour des produits PostgreSQL à la version 9.6.8 sur Win32.</li>
+<li>    YAZ à la version 5.23.1 sur Win32.</li>
+</ul>
+<p>19 août 2017 .</p>
+<ul>
+<li>    Correction de la visibilité des dialogues de mot de passe sur les bases de données SQLite. Ces boîtes de dialogue ne devraient pas être accessibles. Merci à Fares Othman.</li>
+<li>    Dates optionnelles dans diverses recherches.</li>
+<li>    Mise à niveau des produits Qt vers la version 5.9.1 sur Windows.</li>
+<li>    Mise à niveau des produits PostgreSQL vers la version 9.6.4 sur OS X.</li>
+<li>    Mise à niveau des produits SQLite vers la version 3.20.0 sur OS X et Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.22.0 sur OS X et Windows.</li>
+</ul>
+<p>4 juillet 2017 .</p>
+<ul>
+<li>    Menu contextuel pour la suppression des photographies.</li>
+<li>    Nouvelles informations sur la bibliothèque Windows. Merci Leif-W.</li>
+</ul>
+<p>5 mai 2017 .</p>
+<ul>
+<li>    Correction de l'élément de menu en langue arabe. Merci à Fares Othman d'avoir signalé le problème.</li>
+<li>    Nouveau format de date des autres options : yyyy.</li>
+<li>    Purge des objets.</li>
+</ul>
+<p>30 avril 2017 .</p>
+<ul>
+<li>    Traduction en arabe fournie par Fares Othman.</li>
+<li>    Augmentation du niveau d'optimisation sur toutes les plateformes.</li>
+<li>    Visionneuse PDF Poppler sur W32.</li>
+<li>    Produits PostgreSQL à la version 9.6.2 sur W32.</li>
+<li>    Qt à la version 5.8.0 sur W32.</li>
+<li>    SQLite a été mis à niveau vers la version 3.18.0 sur W32.</li>
+<li>    Les produits YAZ ont été mis à niveau vers la version 5.20.1 sur W32.</li>
+</ul>
+<p>20 janvier 2017 .</p>
+<ul>
+<li>    Permettre l'exportation de la ou des photographies sélectionnées.</li>
+<li>    Permettre la pagination après une requête interrompue.</li>
+<li>    Visionneuse PDF pour les livres, les journaux et les magazines. Poppler requis. Disponible sur FreeBSD et Linux.</li>
+<li>    Les bases de données PostgreSQL offrent des tailles de requêtes. Modification de certaines boîtes de dialogue de progression.</li>
+<li>    Mise à niveau de SQLite vers la version 3.16.2 sous Windows.</li>
+<li>    Mise à jour de YAZ vers la version 5.20.0 sur OS X.</li>
+</ul>
+<p>16 décembre 2016 .</p>
+<ul>
+<li>    La version 2016.12.16 est désormais disponible.</li>
+<li>    Permettre le tri des éléments de requête de base de données personnalisée.</li>
+<li>    Correction d'un problème de sélection avec les collections de photographies. Le problème empêchait la modification des éléments sélectionnés dans les collections de photographies.</li>
+<li>    Correction de la requête de recherche de CD de musique.</li>
+<li>    Nouveau champ de base de données accession_number. Administrateurs PostgreSQL, veuillez mettre à jour votre/vos schéma(s) de base de données via postgresql_update_schema.sql. Utilisateurs de SQLite, veuillez consulter l'option Mise à jour du schéma SQLite dans le menu Outils.</li>
+<li>    Mise à niveau de Qt vers la version 5.7.1 sur Windows.</li>
+</ul>
+<p>6 décembre 2016 .</p>
+<ul>
+<li>    La nouvelle version est prête ! Version 2016.12.06.</li>
+<li>    Correction de la documentation.</li>
+<li>    Nouvelles autres options. Veuillez consulter le menu Options.</li>
+<li>    Mise à jour de SQLite à la version 3.15.2 sur OS X et Windows.</li>
+<li>    Utilisateurs de Windows XP, veuillez envisager d'installer le fichier vc_redist.x86.exe fourni.</li>
+</ul>
+<p>5 novembre 2016 .</p>
+<ul>
+<li>    La version 2016.11.05 est prête !</li>
+<li>    Permettre le rechargement de biblioteq.conf via les options.</li>
+<li>    Correction d'une déclaration de subvention dans postgresql_create_schema.sql en ce qui concerne grey_literature_myoid_seq. Administrateurs PostgreSQL, veuillez lire postgresql_update_schema.sql.</li>
+<li>    Correction de la requête du membre. Problème causé par la logique basée sur la traduction. Merci à Jeepee pour le rapport.</li>
+<li>    Correction de la seule instruction INSERT dans postgresql_create_schema.sql. Mentionner explicitement les noms de colonnes. Merci à Arti d'avoir signalé le problème.</li>
+<li>    Si vous avez des problèmes de Z39.50 sous Windows, veuillez supprimer le registre Windows Mon ordinateur\HKEY_CURRENT_USER\Software\BiblioteQ via regedit.</li>
+<li>    Modification de postgresql_destroy_schema.sql pour qu'il produise un seul avis lors d'une exécution idéale.</li>
+<li>    Remplacement de CREATEUSER par CREATEROLE dans postgresql_create_schema.sql. PostgreSQL 9.6 a déprécié CREATEUSER. Veuillez consulter https://www.postgresql.org/docs/9.6/static/release-9-6.html. Merci à Arti pour le rapport.</li>
+<li>    SQLite à la version 3.15.1 sur OS X et Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.18.0 sur OS X et la version 5.17.0 sur Windows.</li>
+<li>    Vérifier l'accessibilité des fichiers SQLite.</li>
+</ul>
+<p>4 septembre 2016 .</p>
+<ul>
+<li>    La version 2016.09.04 est disponible.</li>
+<li>    Interdire l'annulation des requêtes Z39.50.</li>
+<li>    EXISTS() au lieu de COUNT(), le cas échéant.</li>
+<li>    Mise à niveau des produits Qt vers la version 5.7.0 sous Windows.</li>
+<li>    Mise à jour des produits SQLite vers la version 3.14.1 sur Windows.</li>
+</ul>
+<p>4 juillet 2016 .</p>
+<ul>
+<li>    La version 2016.07.04 est disponible.</li>
+<li>    Correction du rappel des frais en retard.</li>
+<li>    Diminution des permissions biblioteq_guest sur item_borrower_vw. Voir postgresql_update_schema.sql.</li>
+<li>    Ellipses.</li>
+<li>    Introduction de connection_options dans biblioteq.conf.</li>
+<li>    Introduction des fichiers joints pour les livres, les journaux et les magazines. Les administrateurs de PostgreSQL doivent exécuter les dernières instructions dans postgresql_update_schema.sql.</li>
+<li>    Nouvelle option pour un nombre illimité de photos par page.</li>
+<li>    Par bouleau, impression d'étiquettes de couverture intérieure de livre. Veuillez consulter https://sourceforge.net/p/biblioteq/feature-requests/48.</li>
+<li>    Par paolofrancioso, ajout d'un rappel des données périmées dans les énumérations de bases de données.</li>
+<li>    Remplacement de l'opérateur QHash, QMap [] par value() ; performance.</li>
+<li>    Le destructeur de biblioteq_magazine doit être virtuel.</li>
+<li>    Mise à jour de Qt à la version 5.6.1 sur Windows.</li>
+<li>    Mise à niveau de SQLite vers la version 3.13.0 sous Windows.</li>
+</ul>
+<p>15 mars 2016 .</p>
+<ul>
+<li>    Une nouvelle version est disponible, 2016.03.15.</li>
+<li>    Plus de requêtes SQL en avant-première.</li>
+<li>    Portable BiblioteQ. Les paramètres de configuration des utilisateurs précédents seront perdus.</li>
+</ul>
+<p>8 mars 2016 .</p>
+<ul>
+<li>    Mise en ligne d'un nouvel installateur W32, ajoutant api-ms-win-crt-runtime-l1-1-0.dll. Merci à Bill Burns d'avoir signalé le problème.</li>
+</ul>
+<p>7 mars 2016 .</p>
+<ul>
+<li>    Mise en ligne d'un nouvel installateur W32, ajoutant vcruntime140.dll. Merci à Lazaros S. d'avoir signalé le problème.</li>
+</ul>
+<p>3 mars 2016 .</p>
+<ul>
+<li>    La version 2016.03.03 est disponible.</li>
+<li>    Correction de la sélection de la langue. Merci à Lazaros S. d'avoir signalé le problème.</li>
+<li>    Nouvelle option sous Options, par Lazaros S.</li>
+<li>    Suppression des directives INI dupliquées de la source.</li>
+<li>    Mise à niveau de SQLite vers la version 3.11.1 sous Windows.</li>
+</ul>
+<p>17 février 2016 .</p>
+<ul>
+<li>    La version 2016.02.17 est disponible.</li>
+<li>    Ajout d'une fonctionnalité de mise à jour des anciens schémas SQLite BiblioteQ. Veuillez consulter le menu Outils.</li>
+<li>    Ajout du support de l'architecture ARM.</li>
+<li>    Possibilité d'annuler les requêtes Z39.50.</li>
+<li>    BiblioteQ ne doit pas créer d'identifiants de copie artificiels.</li>
+<li>    Correction de biblioteq_image_drop_site::clear(). La méthode ne supprimait pas les éléments graphiques supprimés.</li>
+<li>    Correction de la découverte des noms de champs de base de données des résultats de requêtes personnalisées.</li>
+<li>    Correction d'un message d'erreur incomplet pour les photographies.</li>
+<li>    Correction des vignettes des photographies sur Qt 5.</li>
+<li>    Corrigé les fichiers du projet Qt de FreeBSD ; clang.</li>
+<li>    Corrigé le mécanisme de recherche de jeux vidéo.</li>
+<li>    Amélioration des styles de bordure des images sélectionnées.</li>
+<li>    Amélioration des mnémoniques des widgets.</li>
+<li>    Mécanisme d'importation de photos.</li>
+<li>    Les connexions PostgreSQL requièrent désormais SSL/TLS par défaut. Veuillez consulter biblioteq.conf.</li>
+<li>    Corrections du dialogue de progression de Qt 5.5.1. Veuillez consulter https://bugreports.qt.io/browse/QTBUG-47042.</li>
+<li>    Fichiers SQL préparés pour la littérature grise. Incomplet.</li>
+<li>    Empêcher l'exécution de requêtes SQL vides.</li>
+<li>    Renommé les fichiers du projet. Comme cela peut avoir introduit des problèmes, veuillez signaler les divergences.</li>
+<li>    Les bases de données SQLite doivent supporter les historiques des clients.</li>
+<li>    Mise à niveau des produits PostgreSQL vers la version 9.5.1.1 sur Windows.</li>
+<li>    Mise à niveau des produits SQLite vers la version 3.10.2 sous Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.15.2 sous Windows.</li>
+</ul>
+<p>28 octobre 2015 .</p>
+<ul>
+<li>    La version 2015.10.28 est disponible.</li>
+<li>    Correction du problème de QProgressDialog pour Qt 5.5.x.</li>
+<li>    Veuillez signaler les erreurs à https://github.com/textbrowser/biblioteq/issues.</li>
+<li>    Mise à jour de Qt à la version 5.5.1 sur Windows.</li>
+</ul>
+<p>16 octobre 2015 .</p>
+<ul>
+<li>    La version 2015.10.16 est prête.</li>
+<li>    Permettre le zoom de l'image de l'élément via un double-clic.</li>
+<li>    Correction du titre de la boîte de dialogue HTTP.</li>
+<li>    Correction mineure sur la feuille de style de la barre d'état.</li>
+<li>    Mise à niveau des produits Qt vers la version 5.5.0 sous Windows.</li>
+<li>    Mise à niveau des produits SQLite vers la version 3.9.1 sous Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.14.10 sous Windows.</li>
+</ul>
+<p>4 juillet 2015 .</p>
+<ul>
+<li>    La version 2015.07.04 est maintenant disponible.</li>
+<li>    Le sexe d'un mécène est désormais facultatif. Administrateurs PostgreSQL, veuillez mettre à jour le(s) schéma(s) de la base de données via postgresql_update_schema.sql.</li>
+</ul>
+<p>27 juin 2015 .</p>
+<ul>
+<li>    La version 2015.06.27 est disponible.</li>
+<li>    Modification de la requête Z39.50 pour les livres. N'inclure l'opérateur OR que si les deux valeurs ISBN-10 et ISBN-13 sont fournies.</li>
+</ul>
+<p>10 Juin 2015.</p>
+<ul>
+<li>    La version 2015.06.10 est disponible.</li>
+<li>    Protections supplémentaires pour les pointeurs.</li>
+<li>    Nouveau système de version.</li>
+<li>    Réinitialisation des champs sensibles chaque fois que le dialogue de connexion est rejeté.</li>
+<li>    Mise à jour des produits Qt vers la version 4.8.7 sur OS X et 5.4.2 sur Windows.</li>
+<li>    Mise à niveau de SQLite vers la version 3.8.10.2 sous Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.13.0 sous Windows.</li>
+<li>    Utilisez DROP USER IF EXISTS au lieu de DROP USER. PostgreSQL uniquement.</li>
+</ul>
+<p>19 avril 2015 .</p>
+<ul>
+<li>    La version 10.01 est disponible.</li>
+<li>    Ajout du support de l'authentification par proxy aux requêtes du magazine SRU.</li>
+<li>    Toutes les requêtes d'extraction de la base de données sont maintenant forward-only. Veuillez consulter https://doc.qt.io/qt-4.8/qsqlquery.html#setForwardOnly.</li>
+<li>    Permet l'utilisation de QHttp à la place de QNetworkAccessManager. Source uniquement.</li>
+<li>    Correction de postgresql_destroy_schema.sql.</li>
+<li>    Correction des sélections d'éléments demandés.</li>
+<li>    Correction de l'affectation des variables dans marc::parseBookZ3950Marc21() en ce qui concerne les champs 100 et 700.</li>
+<li>    Désactivation des widgets de recherche générale après l'exécution d'une recherche. Les widgets peuvent être activés via l'interface.</li>
+<li>    Introduction d'une recherche de base intégrée dans la fenêtre principale.</li>
+<li>    Modifications de la mise en page.</li>
+<li>    Déplacement de l'option catégorie dans le menu Affichage.</li>
+<li>    Nouveau compte invité PostgreSQL ! Veuillez consulter postgresql_update_schema.sql.</li>
+<li>    Les clients peuvent maintenant refuser l'historique des réservations. Activé par défaut.</li>
+<li>    Suppression des permissions biblioteq_patron de biblioteq_membership. Administrateurs PostgreSQL, veuillez consulter postgresql_update_schema.sql. Le rôle biblioteq_membership ne doit pas avoir accès à l'activité des patrons.</li>
+<li>    Support OS X 10.6.8 et Qt 4.8.6. Merci à Ceres d'avoir signalé les erreurs.</li>
+<li>    Mise à jour des produits Qt à la version 5.4.1 sur Windows.</li>
+</ul>
+<p>27 janvier 2015 .</p>
+<ul>
+<li>    La version 10.00 est maintenant disponible.</li>
+<li>    BiblioteQ fête ses dix ans d'existence !</li>
+<li>    Bonne année !</li>
+<li>    Support expérimental de l'UNIMARC pour le protocole Z39.50.</li>
+<li>    Introduction d'une recherche générale insensible à la casse.</li>
+<li>    Les données MARC des revues et magazines sont abrégées. Corrigé.</li>
+<li>    Suppression correcte des objets QNetworkReply.</li>
+<li>    Mise à jour des bibliothèques SQLite à la version 3.8.8.1 sur Windows.</li>
+<li>    Mise à jour des produits Qt à la version 5.4.0 sur Windows.</li>
+</ul>
+<p>18 décembre 2014 .</p>
+<ul>
+<li>    La version 6.74 est disponible.</li>
+<li>    Correction de l'utilisation de ZOOM_connection_error().</li>
+<li>    QSqlRecord::fieldName() peut inclure un alias. Par exemple, la méthode peut retourner journal.type au lieu de type. Par conséquent, certaines requêtes donneront lieu à des données mal représentées. Corrigé.</li>
+</ul>
+<p>9 décembre 2014 .</p>
+<ul>
+<li>    La version 6.73 est désormais disponible.</li>
+<li>    Une nouvelle traduction en hongrois. Merci à Csanád Baksay.</li>
+<li>    Amélioration de l'enregistrement des erreurs Z39.50.</li>
+<li>    Interdiction des noms d'administrateurs PostgreSQL sensibles à la casse. Merci Nicola.</li>
+<li>    Mise à jour des produits YAZ à la version 5.7.1 sous Windows.</li>
+</ul>
+<p>13 octobre 2014 .</p>
+<ul>
+<li>    La version 6.72 est maintenant disponible.</li>
+<li>    Tous les chiens vont au paradis.</li>
+<li>    Empêcher l'annulation des processus qui ne sont pas interruptibles.</li>
+<li>    Corrections orthographiques.</li>
+<li>    Mise à jour des produits Qt à la version 5.3.2 sous Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.4.3 sous OS X et 5.4.1 sous Windows.</li>
+</ul>
+<p>9 août 2014 .</p>
+<ul>
+<li>    La version 6.71 est désormais disponible.</li>
+<li>    Correction de la prise en charge des ISBN optionnels en ce qui concerne les titres manquants dans le navigateur de copies.</li>
+<li>    Les ISSNs sont maintenant optionnels. Administrateurs PostgreSQL, veuillez consulter le fichier postgresql_update_schema.sql.</li>
+</ul>
+<p>2 août 2014 .</p>
+<ul>
+<li>    La version 6.70 est disponible.</li>
+<li>    Extension du champ sexe dans la table des membres. Administrateurs PostgreSQL, veuillez consulter le fichier postgresql_update_schema.sql. Merci à Frans.</li>
+<li>    Par Frans, suppression des masques de saisie pour les numéros de téléphone et les codes postaux.</li>
+<li>    Rappeler à l'utilisateur de sauvegarder ses paramètres après un changement de locale.</li>
+<li>    Mise à jour de Qt à la version 5.3.1 sur Windows.</li>
+<li>    Mise à jour des produits YAZ à la version 5.3.0 sur les plateformes OS X et Windows.</li>
+</ul>
+<p>6 juin 2014 .</p>
+<ul>
+<li>    La version 6.69 a été mise en ligne.</li>
+<li>    Après avoir ajouté une collection de photographies, les éléments de la collection devraient être modifiables sans nécessiter le rechargement de la collection. Corrigé.</li>
+<li>    Éviter d'accéder à des éléments de tableau invalides.</li>
+<li>    Correction des constructeurs C++.</li>
+<li>    Création d'un fichier de ressources d'icônes et mise à jour de toutes les sources pertinentes. Merci à Nick d'avoir signalé le problème OS X.</li>
+<li>    Inspecter les résultats de indexOf() et les résultats des méthodes similaires.</li>
+<li>    Mise à niveau des bibliothèques SQLite vers la version 3.8.5 sous Windows.</li>
+</ul>
+<p>21 Mai 2014.</p>
+<ul>
+<li>    La version 6.68 est disponible.</li>
+<li>    Ajout de la prise en charge des entiers 64 bits pour limiter et décaler les clauses SQL.</li>
+<li>    Evite les divisions par zéro.</li>
+<li>    Correction du fichier de projet OS X Qt 5 en ce qui concerne une bibliothèque Cocoa manquante.</li>
+<li>    Correction des chemins du chargeur PostgreSQL dans le bundle OS X.</li>
+<li>    Correction des mécanismes SRU et Z39.50 en ce qui concerne les livres. BiblioteQ ne doit pas remplacer les champs ISBN si ceux-ci ont été remplis par l'utilisateur. Les ISBN à dix ou treize caractères sont considérés comme fournis par l'utilisateur.</li>
+<li>    Correction du parent de la scène dans qtbook_photographcollection::slotViewPhotograph().</li>
+<li>    Correction de l'utilisation de qgetenv(). La fonction retourne un tableau d'octets.</li>
+<li>    Correction de la mise en évidence des widgets en ce qui concerne les résultats des requêtes SRU et Z39.50.</li>
+<li>    Ne pas accéder aux membres des pointeurs invalides.</li>
+<li>    Ne pas stocker les informations d'identification de la base de données dans les objets de la base de données et les widgets d'affichage.</li>
+<li>    Augmentation des valeurs maximales de numéro et de volume pour les revues et les magazines.</li>
+<li>    Prévention de la mauvaise gestion de la mémoire des objets qtbook_item pendant le processus de réservation.</li>
+<li>    Définition correcte des parents des widgets d'action.</li>
+<li>    Rappeler à l'utilisateur les limites de ressources.</li>
+<li>    Respecter les limites des tableaux.</li>
+<li>    Mise à jour des objets photographie dans qtbook::updateItemWindows().</li>
+<li>    Mise à jour de Qt à la version 4.8.6 sur OS X.</li>
+<li>    Mise à jour des produits YAZ à la version 5.1.1 sur les plateformes OS X et Windows.</li>
+<li>    Utilisez des instructions SQL paramétrées afin d'éviter les erreurs d'injection. Veuillez noter que ce point a nécessité des modifications importantes. Veuillez signaler les problèmes.</li>
+</ul>
+<p>27 mars 2014 .</p>
+<ul>
+<li>    La version 6.67 est maintenant disponible.</li>
+<li>    Notifier l'utilisateur si une base de données SQLite ne peut pas être créée.</li>
+<li>    Lier correctement les valeurs SQL NULL dans QSqlQuery.</li>
+<li>    Suppression des variables obsolètes.</li>
+<li>    Résolution de deux problèmes SRU. Merci à SigmaX d'avoir signalé les erreurs.</li>
+<li>    Revoir les résultats de lecture et d'écriture de QDataStream.</li>
+<li>    Revoir les résultats de indexOf().</li>
+<li>    Le champ type dans la table des lieux ne doit pas être nul. Utilisateurs de PostgreSQL, veuillez mettre à jour votre (vos) schéma(s) via le fichier postgresql_update_schema.sql.</li>
+<li>    Mise à jour des produits Qt vers la version 5.2.1 sur Windows.</li>
+<li>    Mise à jour des produits SQLite vers la version 3.8.3.1 sur Windows.</li>
+<li>    Mise à niveau des produits YAZ vers la version 5.0.18 sur OS X et Windows.</li>
+</ul>
+<p>17 septembre 2013 .</p>
+<ul>
+<li>    La version 6.66 est prête !</li>
+<li>    Ajout des champs condition et originalité aux tables de base de données book et book_copy_info. Les éléments de l'interface utilisateur reflètent les nouveaux ajouts.</li>
+<li>    J'ai besoin d'une licence pour Windows 7. Merci de faire un don !</li>
+<li>    Comme toujours, les administrateurs PostgreSQL sont priés de mettre à jour leurs schémas de base de données. Veuillez consulter postgresql_update_schema.sql.</li>
+<li>    Types de reliure personnalisés. Veuillez consulter le navigateur d'énumérations de bases de données. Veuillez noter que vous devez alimenter la table book_binding_types afin que les cases de combinaison Book Binding Type contiennent les nouvelles données. PostgreSQL : INSERT INTO book_binding_types (binding_type) (SELECT DISTINCT binding_type FROM book).</li>
+<li>    Mise à jour des produits Qt vers la version 4.8.5 sous OS X et la version 5.1.1 sous Windows.</li>
+<li>    Mise à jour des produits YAZ vers la version 4.2.66 sur OS X et la version 4.2.65 sur Windows.</li>
+</ul>
+<p>3 juin 2013 .</p>
+<ul>
+<li>    La version 6.65 a été publiée.</li>
+<li>    Ajout de la documentation dans doc.d/contributors.d. Document fourni par Ana Monteiro et Fátima Dias.</li>
+<li>    Ajout de contraintes de clé étrangère à diverses tables de base de données SQLite. Malheureusement, les changements ne seront visibles que dans les nouvelles bases de données.</li>
+<li>    Correction d'une faille dans les clés étrangères SQLite. Merci à Ana Monteiro d'avoir signalé le problème. Le problème a été introduit dans la version 6.56.</li>
+<li>    Mise à jour de la bibliothèque SQLite sous Windows à la version 3.7.17.</li>
+</ul>
+<p>27 Mai 2013 .</p>
+<ul>
+<li>    La version 6.64 est maintenant disponible.</li>
+<li>    Ajout des privilèges manquants au rôle biblioteq_librarian. Administrateurs PostgreSQL, veuillez consulter postgresql_update_schema.sql.</li>
+<li>    Correction d'un problème qui se produit lorsqu'un nouvel administrateur est défini. Les rôles de l'administrateur ne sont pas correctement enregistrés. Merci à numibesi d'avoir découvert le problème.</li>
+<li>    Correction de quelques problèmes de privilèges profonds. Encore une fois, merci à numibesi.</li>
+<li>    Correction d'une comparaison incorrecte liée à la longueur minimale des identifiants des clients.</li>
+<li>    Mise à jour de postgresql_destroy_schema.sql.</li>
+</ul>
+<p>29 avril 2013 .</p>
+<ul>
+<li>    La version 6.63 est maintenant disponible.</li>
+<li>    Ajout des champs artiste et compositeur à la table cd_songs. Les administrateurs PostgreSQL sont priés de revoir le fichier postgresql_update_schema.sql. Veuillez consulter le ticket 3598802 pour plus d'informations.</li>
+<li>    Purge des fichiers SQLite sql. Le fichier include.d/sqlite_create_schema.h est suffisant.</li>
+<li>    Mise à jour des produits YAZ à la version 4.2.54 pour OS X et Windows.</li>
+</ul>
+<p>15 avril 2013.</p>
+<ul>
+<li>    Nouveau site !</li>
+</ul>
+<p>7 mars 2013.</p>
+<ul>
+<li>    La version 6.62 est maintenant disponible.</li>
+<li>    Garde les limites des tableaux.</li>
+</ul>
+<p>28 février 2013 .</p>
+<ul>
+<li>    La version 6.61 sera publiée aujourd'hui.</li>
+<li>    Comme les collections de photographies ne peuvent pas être réservées par les usagers, le processus de réservation de ces éléments ne devrait pas soulever d'exceptions dans la base de données.</li>
+<li>    Centrez la vue détaillée d'une photographie par rapport à son parent.</li>
+<li>    Le champ de base de données MYOID est garanti comme étant unique par table. Correction des routines (qtbook::slotDisplaySummary(), qtbook::slotSceneSelectionChanged(), qtbook::updateSceneItem()) qui ne reconnaissaient pas les types d'éléments en plus des valeurs MYOID.</li>
+</ul>
+<p>27 Février 2013 .</p>
+<ul>
+<li>    La version 6.60 est désormais disponible.</li>
+<li>    Ajout de menus contextuels aux vues de la collection de photographies. L'activation des menus permettra aux utilisateurs de visualiser les photographies individuelles de manière plus détaillée.</li>
+<li>    Mise à jour des produits Qt à la version 4.8.4 sur OS X.</li>
+<li>    Mise à jour des produits YAZ à la version 4.2.50 sur les plateformes OS X et Windows.</li>
+</ul>
+<p>4 janvier 2013.</p>
+<ul>
+<li>    Bonne année ! La version 6.59 est maintenant disponible. Veuillez signaler les problèmes à https://sourceforge.net/tracker?group_id=129976.</li>
+<li>    Ajout de documents fournis par Olivia Novak. Veuillez voir doc.d/contributors.d.</li>
+<li>    Ajout des numéros d'édition et de volume dans le résumé de la fenêtre principale pour les revues et les magazines.</li>
+<li>    Correction des castings d'objets C++.</li>
+<li>    Les formats d'affichage des dates ont été modifiés en ISO 8601.</li>
+<li>    Élimination des avertissements de QGraphicsView concernant les événements de type glisser-déposer.</li>
+<li>    Correction de l'état de la case à cocher ISBNs pour les livres.</li>
+<li>    Modification d'une grande partie de BiblioteQ afin d'éviter les problèmes créés par des traductions incohérentes. Commentaires ?</li>
+<li>    Selon Myshkin, la touche Tab devrait changer le focus pour les champs de saisie de texte.</li>
+<li>    Collections de photographies !</li>
+<li>    Les administrateurs PostgreSQL doivent mettre à jour leurs schémas. Veuillez consulter le fichier postgresql_update_schema.sql.</li>
+<li>    Suppression des validateurs de saisie de l'ISBN pour la prise en charge des tirets.</li>
+<li>    Remplacement du programme d'installation de l'application OS X par un simple fichier image disque.</li>
+<li>    Support SRU pour les livres, revues et magazines.</li>
+<li>    Le navigateur de copie n'affichait pas l'ID correct de l'article dans le titre.</li>
+<li>    Mise à jour de biblioteq.conf pour le support de QSettings. Veuillez mettre à jour vos fichiers de configuration en conséquence.</li>
+</ul>
+<p>19 Novembre 2012.</p>
+<ul>
+<li>    La version 6.59 offrira un support pour les collections de photographies et le protocole SRU.</li>
+<li>    La nouvelle version devrait être livrée avant 2013.</li>
+</ul>
+<p>15 Octobre 2012.</p>
+<ul>
+<li>    Un utilisateur a signalé un fichier iconv.dll manquant. Nous avons téléchargé un nouvel installateur Windows pour corriger le problème. La version reste à 6.58.</li>
+</ul>
+<p>3 octobre 2012 .</p>
+<ul>
+<li>    Une version en ligne de BiblioteQ a été mise à disposition par Clint Bush. Le logiciel se trouve à https://code.google.com/p/biblioteqonline.</li>
+</ul>
+<li>Le 18 août 2012.</p>
+<ul>
+<li>    La version 6.58 a été publiée.</li>
+<li>    Ajout de l'option de catégorie Tous disponibles.</li>
+<li>    Ajout du sous-menu Langue dans le menu Options.</li>
+<li>    Initialisation des membres de la classe.</li>
+<li>    Empêche BiblioteQ de mettre à l'échelle les images nulles.</li>
+<li>    Mise à jour des produits YAZ à la version 4.2.34 sur les plateformes OS X et Windows.</li>
+</ul>
+<p>3 juillet 2012.</p>
+<ul>
+<li>    La version 6.57 est disponible en téléchargement.</li>
+<li>    Ajout de plusieurs nouveaux rôles PostgreSQL en support de diverses configurations.</li>
+<li>    Les administrateurs ne pouvaient pas modifier leurs mots de passe.</li>
+<li>    Amélioration des recherches de livres. Les champs ISBN sont pris en compte dans les requêtes uniquement s'ils sont fournis.</li>
+<li>    La requête Z39.50 peut retourner une édition qui n'est pas dans le format attendu. Le logiciel a été adapté pour prendre en charge différents formats.</li>
+<li>    Le rôle biblioteq_patron n'était pas correctement appliqué aux comptes d'utilisateurs.</li>
+<li>    La version 6.57 inclut des changements au schéma PostgreSQL. Veuillez mettre à jour vos schémas.</li>
+</ul>
+<p>17 juin 2012.</p>
+<ul>
+<li>    La version 6.56 est maintenant disponible.</li>
+<li>    Ajout du support des proxy Amazon et Z39.50.</li>
+<li>    Ajout de la documentation française et des fichiers de traduction. Merci à J. Cornavin.</li>
+<li>    Ajout de grilles à divers rapports.</li>
+<li>    Ajout de champs dans la base de données des utilisateurs : commentaires, numéro d'enregistrement général, et classe de membre.</li>
+<li>    Application des correctifs fournis par Jason Perry. La cible d'installation Unix ne fonctionnait pas correctement. Le tri par le numéro d'appel a également été amélioré.</li>
+<li>    BiblioteQ tente désormais d'utiliser les deux ISBN (10, 13) lors d'une requête sur le site Z39.50. La première découverte conclut le processus d'interrogation.</li>
+<li>    La longueur minimale de l'identifiant du membre a été modifiée de sept à cinq caractères.</li>
+<li>    Correction des options d'authentification Z39.50.</li>
+<li>    Correction des images vides dans la vue Icônes.</li>
+<li>    Activation explicite de la prise en charge des clés étrangères pour les bases de données SQLite. Veuillez vous référer à https://sqlite.org/foreignkeys.html#fk_enable.</li>
+<li>    Augmentation des intervalles msleep() Z39.50 de 10 millisecondes à 100.</li>
+<li>    Il faut se souvenir de purger les objets obsolètes.</li>
+<li>    Merci à tous pour leur soutien.</li>
+</ul>
+<p>13 mai 2012.</p>
+<ul>
+<li>    La version 6.55 est maintenant disponible.</li>
+<li>    Bonne fête des mères !</li>
+<li>    Une faille critique a été découverte par un utilisateur. En raison de la conception actuelle de la base de données PostgreSQL, le nombre d'utilisateurs pouvant exister est limité. La nouvelle approche introduit les rôles biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership, et biblioteq_patron. Les rôles seront désormais attribués aux comptes. Pour mettre à jour votre schéma PostgreSQL, veuillez exécuter les suggestions suivantes :</li>
+<li>        Modifiez votre schéma PostgreSQL en exécutant les instructions SQL sous la version 6.55 du fichier postgresql_schema_update.sql.</li>
+<li>        Lancez BiblioteQ et connectez-vous à votre instance PostgreSQL. Vous devez vous connecter avec le compte administrateur que vous avez utilisé pour créer la base de données BiblioteQ.</li>
+<li>        Ouvrez le navigateur Administrateur et effectuez une sauvegarde.</li>
+<li>        Ouvrez le navigateur des membres et effectuez une mise à jour par lot des privilèges.</li>
+<li>    Corrections des utilisations de QProgressBars. BiblioteQ doit éviter d'attribuer des valeurs en dehors des plages définies.</li>
+<li>    Correction des boucles while responsables de l'analyse des données Z39.50.</li>
+<li>    Modification du fichier biblioteq.pro, en changeant l'emplacement du fichier biblioteq.conf à /usr/local/biblioteq.</li>
+<li>    Par cbush06, le champ item_id de la table member_history a été supprimé. Ce champ était mal renseigné. Il était également redondant. Veuillez mettre à jour vos schémas PostgreSQL.</li>
+<li>    Nous avons reçu un don d'un utilisateur anonyme. Merci.</li>
+<li>    Nous avons reçu un don de luismontilla. Merci.</li>
+<li>    Mise à jour des produits Qt à la version 4.8.1 pour les systèmes Windows.</li>
+<li>    Mise à jour des produits YAZ (Z39.50) à la version 4.2.31 sur les systèmes OS X et Windows.</li>
+<li>    Chaque fois qu'un élément est mis à jour, son image Icons Mode doit également être mise à jour.</li>
+</ul>
+<li>Le 9 mars 2012.</p>
+<ul>
+<li>    La version 6.54 est maintenant disponible.</li>
+<li>    Un guide d'utilisation en grec a été fourni par Dimitris Kanas.</li>
+<li>    Ajout du sous-menu Ajouter un élément au menu Édition.</li>
+<li>    Ajout du spécificateur de format dans biblioteq.conf. Ce nouveau champ permettra aux utilisateurs de spécifier les conversions de caractères Z39.50.</li>
+<li>    Ajout de la colonne Total réservé à divers tableaux.</li>
+<li>    Après de nombreuses années, BiblioteQ présentera un nouveau jeu d'icônes.</li>
+<li>    Sur la plate-forme OS X, BiblioteQ utilisera désormais les polices de caractères du système. Le fait de permettre à l'utilisateur de définir les polices peut entraîner une distorsion des widgets.</li>
+<li>    Correction de problèmes avec les fichiers SQLite. Merci à yasbean d'avoir signalé ces problèmes.</li>
+<li>    Correction de certains problèmes d'état concernant la duplication d'éléments. Certains boutons (Copies, État de la réservation, Afficher les traces) doivent être initialement désactivés.</li>
+<li>    Les recherches génériques supportent maintenant la disponibilité des articles.</li>
+<li>    Nous avons reçu le premier don en argent. Merci à yasbean.</li>
+<li>    Le navigateur des membres permet maintenant aux administrateurs de mettre à jour les privilèges pour tous les clients listés.</li>
+</ul>
+<li>Le 7 janvier 2012.</p>
+<ul>
+<li>    Bonne année !</li>
+<li>    La version 6.53 est maintenant disponible. Profitez-en !</li>
+<li>    Ajout d'un support de base pour les frais de retard. Les utilisateurs de PostgreSQL sont priés d'exécuter la section appropriée du fichier postgresql_update_schema.sql.</li>
+<li>    Amélioration de la représentation des données numériques.</li>
+<li>    Introduction du mode Icônes dans le menu Affichage. Si vous remarquez que le processus de récupération est lent, veuillez diminuer la valeur des entrées par page. Diminuer la taille des images aidera également.</li>
+<li>    Modification de biblioteq.conf pour que les images de taille moyenne soient récupérées sur Amazon.</li>
+<li>    Les produits Qt ont été mis à jour à la version 4.8.0 sur les plateformes Windows.</li>
+<li>    Remplacement de turbine par localhost dans biblioteq.conf.</li>
+<li>    Les fichiers de base de données SQLite auront désormais l'extension sqlite automatiquement ajoutée.</li>
+<li>    La première école primaire de Nea Erythraia, Attique, Grèce a choisi BiblioteQ.</li>
+</ul>
+<p>20 novembre 2011.</p>
+<ul>
+<li>    La version 6.52 est maintenant disponible.</li>
+<li>    Ajout d'un support pour la duplication des entrées.</li>
+<li>    Possibilité de créer plusieurs fenêtres.</li>
+<li>    Amélioration de la taille des fenêtres.</li>
+<li>    Modification des requêtes pour que les caractères spéciaux soient correctement échappés.</li>
+<li>    Suppression des conteneurs redondants.</li>
+<li>    Résolution de plusieurs défauts de segmentation.</li>
+<li>    L'interface Unity d'Ubuntu passe outre les paramètres du menu. Modification de BiblioteQ pour qu'il empêche certaines actions.</li>
+</ul>
+<p>3 novembre 2011.</p>
+<ul>
+<li>    Sortie de la version 6.51.1.</li>
+<li>    En raison des caractères internationaux, les recherches dans la base de données ont été rendues sensibles à la casse.</li>
+</ul>
+<p>29 septembre 2011.</p>
+<ul>
+<li>    La version 6.51 est disponible en téléchargement.</li>
+<li>    Un nouveau champ de mots-clés a été ajouté aux différents types d'articles. Les utilisateurs de PostgreSQL sont priés d'exécuter la section appropriée du fichier postgresql_update_schema.sql.</li>
+<li>    Ajout d'une traduction en néerlandais par editor3d7.</li>
+<li>    BiblioteQ conservera la branche de la base de données précédemment ouverte.</li>
+<li>    Les dates seront désormais affichées dans leur format natif. Les données de date conserveront le format habituel MM/jj/aaaa.</li>
+<li>    En raison d'une corruption, la largeur des colonnes de la table principale ne sera pas conservée. Cette fonctionnalité sera rétablie dans une prochaine version.</li>
+<li>    Les requêtes de recherche erronées ont été corrigées.</li>
+<li>    Correction des couleurs d'arrière-plan incorrectes des champs non essentiels.</li>
+<li>    Correction de problèmes liés au comportement de triage des tableaux de Qt. Les problèmes peuvent n'être apparents qu'avec Qt 4.6.x. Les versions 4.6.x de Qt sont déconseillées.</li>
+<li>    Amélioration de l'analyse des données Z39.50.</li>
+<li>    Les résultats Z39.50 multiples seront énumérés par ISSN pour les journaux et les magazines.</li>
+<li>    Les produits Qt ont été mis à jour à la version 4.7.4 sur les plateformes OS X et Windows.</li>
+<li>    Suppression de l'option Redimensionner automatiquement la table des matières.</li>
+<li>    Certaines requêtes UNION n'avaient pas de mots-clés ALL.</li>
+<li>    Certains conteneurs n'étaient pas effacés après une déconnexion de la base de données. Corrigé.</li>
+<li>    Merci pour la participation de tous.</li>
+<li>    Les champs ISBN sont maintenant optionnels. Les utilisateurs de PostgreSQL doivent mettre à jour leurs schémas.</li>
+<li>    Le programme d'installation Windows installe désormais une icône de bureau.</li>
+<li>    Lors de la réservation d'articles, le navigateur de copie sélectionne désormais automatiquement la prochaine copie disponible.</li>
+<li>    Les notices Z39.50 sont désormais récupérées au format MARC21.</li>
+</ul>
+<li>Le 18 août 2011.</p>
+<ul>
+<li>    La version 6.50 est maintenant disponible.</li>
+<li>    Ajout d'un appel à QMainWindow::closeEvent() dans qtbook_journal::closeEvent().</li>
+<li>    Ajout de diverses protections contre les objets NULL.</li>
+<li>    Force la sélection d'un site Z39.50 s'il n'y en a pas (livres, journaux, magazines).</li>
+<li>    Protection de misc_functions::updateSQLiteDatabase() contre les changements de version de BiblioteQ.</li>
+<li>    Conservation des états de la barre d'outils de la fenêtre principale.</li>
+</ul>
+<p>23 mai 2011.</p>
+<ul>
+<li>    La version 6.46 est sur le point d'être publiée.</li>
+<li>    Cette version est dédiée au père de M. R.</li>
+</ul>
+<p>15 mai 2011.</p>
+<ul>
+<li>    La version 6.46 sera bientôt disponible.</li>
+<li>    Possibilité d'enregistrer la vue actuelle comme un fichier CSV.</li>
+<li>    Ajout d'une cible d'installation pour biblioteq.pro.</li>
+<li>    Ajout de l'option Entrées illimitées par page pour les bases de données SQLite.</li>
+<li>    Les membres auront désormais des dates d'expiration. Les membres expirés ne seront pas autorisés à réserver des articles. Veuillez noter que pour les bases de données SQLite, le logiciel devrait automatiquement ajuster la table des membres afin de supporter le nouveau champ expiration_date. Veuillez soumettre un rapport d'incident si vous rencontrez des problèmes.</li>
+<li>    Les produits Qt ont été mis à jour à la version 4.7.3 sur les plateformes OS X et Windows.</li>
+<li>    Les états de la table principale sont maintenant restaurés et conservés.</li>
+<li>    Mise à jour des documents du Guide de l'Administrateur.</li>
+<li>    Récupérait incorrectement l'userid de l'interface utilisateur au lieu de l'objet de la base de données.</li>
+</ul>
+<li>Le 20 mars 2011.</p>
+<ul>
+<li>    La version 6.45 a été publiée.</li>
+<li>    Une traduction en espagnol a été reportée jusqu'à ce qu'une traduction soit disponible.</li>
+</ul>
+<p>18 mars 2011.</p>
+<ul>
+<li>    La version 6.45 sera bientôt disponible. Les nouvelles fonctionnalités et les corrections sont listées ci-dessous.</li>
+<li>    Toutes les entrées de recherche seront coupées.</li>
+<li>    Les en-têtes de colonne sont maintenant conservés et restaurés.</li>
+<li>    Traduction grecque.</li>
+<li>    Les clients ne pouvaient pas se connecter aux instances PostgreSQL en raison d'une gestion incorrecte des erreurs.</li>
+<li>    L'impression à partir de la fenêtre principale générera des rapports tabulaires.</li>
+<li>    Suppression de l'option Entrées illimitées par page.</li>
+<li>    Vraie pagination PostgreSQL et SQLite.</li>
+</ul>
+<p>25 Février 2011.</p>
+<ul>
+<li>    Sortie de la version 6.44.3.</li>
+<li>    Correction des erreurs de recherche de livres, journaux et magazines.</li>
+</ul>
+<p>7 Janvier 2011.</p>
+<ul>
+<li>    Bonne année !</li>
+<li>    La version 6.44.2 est disponible en téléchargement.</li>
+<li>    Correction d'une faille fatale avec les bases de données SQLite en introduisant une séquence artificielle. Les utilisateurs doivent exécuter l'instruction sous la version 6.44.2 du fichier sqlite_update_schema.sql depuis sqlite3 afin de créer la séquence requise. Merci à ResetFlag d'avoir signalé le problème.</li>
+<li>    Amélioration du look-and-feel sur les systèmes OS X.</li>
+<li>    Introduction de certains mécanismes de sécurité pour la requête Z39.50.</li>
+<li>    Modification du navigateur d'énumérations de bases de données par l'introduction de transactions séparées. Encore une fois, merci à ResetFlag d'avoir signalé ce problème.</li>
+<li>    Remplacement de QHttp par QNetworkReply et QNetworkAccessManager.</li>
+</ul>
+<p>31 décembre 2010.</p>
+<ul>
+<li>    Recréé le programme d'installation de Windows. Le nouveau paquet inclut un fichier manifeste potentiellement important.</li>
+</ul>
+<p>27 décembre 2010.</p>
+<ul>
+<li>    La version 6.44.1 a été publiée.</li>
+<li>    Cette version corrige un problème concernant QApplication::processEvents() sur OS X (10.6.5) et Qt 4.7.1.</li>
+</ul>
+<p>19 décembre 2010.</p>
+<ul>
+<li>    La version 6.44 est maintenant disponible ! Les modifications sont résumées ci-dessous.</li>
+<li>    Une traduction de base en espagnol sera disponible dans la version 6.45.</li>
+<li>    Ajout de champs MARC Tags aux livres, revues et magazines.</li>
+<li>    Les informations Amazon sont maintenant définies au moment de l'exécution si le fichier biblioteq.conf est endommagé ou manquant.</li>
+<li>    Les durées d'exécution des disques compacts sont maintenant calculées lorsque les informations sur les pistes sont enregistrées.</li>
+<li>    Correction d'un problème d'OID concernant les revues et les magazines sur les bases de données SQLite. Les ISSN se terminant par X étaient concernés.</li>
+<li>    Correction des valeurs par défaut incorrectes des boîtes de combinaison à divers endroits.</li>
+<li>    Amélioration de l'analyse des données Z39.50 pour les livres.</li>
+<li>    Amélioration des éléments de l'interface utilisateur.</li>
+<li>    Déplacement de la plupart des listes de configuration de biblioteq.conf vers les tables de la base de données. Veuillez mettre à jour les instances PostgreSQL et SQLite via postgresql_update_schema.sql et sqlite_update_schema.sql.</li>
+<li>    Qt a été mis à jour à la version 4.7.1 pour les plateformes OS X et Windows.</li>
+<li>    Le dialogue Custom Query contient maintenant des objets de données supplémentaires.</li>
+<li>    Le menu Entrées par page a été étendu.</li>
+</ul>
+<p>14 Novembre 2010.</p>
+<ul>
+<li>    La version 6.43 a été publiée.</li>
+<li>    Ajout de constantes à diverses méthodes.</li>
+<li>    Les valeurs des boîtes de combinaison sont maintenant dans l'ordre alphabétique.</li>
+<li>    Les jours d'échéance minimum sont maintenant configurables via le fichier biblioteq.conf.</li>
+</ul>
+<p>29 octobre 2010.</p>
+<ul>
+<li>    La version 6.42 est maintenant disponible.</li>
+<li>    Corrections mineures.</li>
+<li>    Nouveau bundle OS X.</li>
+<li>    Mise à jour des bibliothèques Qt pour Windows vers 4.7.0.</li>
+</ul>
+<p>5 septembre 2010.</p>
+<ul>
+<li>    Recréé BiblioteQ-6.41.pkg.zip pour Mac OS X.</li>
+</ul>
+<p>18 avril 2010.</p>
+<ul>
+<li>    La version 6.41 est prête à être utilisée immédiatement.</li>
+<li>    Introduction d'un mécanisme de conversion des ISBN à 13 chiffres en ISBN à 10 chiffres.</li>
+<li>    Résolution d'un problème potentiel d'ordonnancement des branches en cas d'installation d'un biblioteq.conf mal configuré.</li>
+</ul>
+<p>10 avril 2010.</p>
+<ul>
+<li>    Sortie de la version 6.40.</li>
+<li>    Affichage des informations de connexion.</li>
+<li>    Résolution d'un titre de fenêtre incorrect.</li>
+</ul>
+<li>Le 20 février 2010.</p>
+<ul>
+<li>    La version 6.39 est maintenant disponible.</li>
+<li>    Correction d'un crash lié à la sélection des polices sous OS X.</li>
+<li>    Nouvelle fonctionnalité : Fichier->Nouvelle base de données SQLite.</li>
+<li>    Le titre de la fenêtre principale fait maintenant référence à la base de données SQLite actuellement ouverte.</li>
+<li>    Mise à jour des sections PostgreSQL afin d'éliminer les avertissements.</li>
+</ul>
+<p>10 Janvier 2010.</p>
+<ul>
+<li>    La version 6.38 est disponible.</li>
+<li>    Ajout d'une icône à l'exécutable Windows, par David Bolton.</li>
+<li>    En train de simplifier le support des traductions.</li>
+<li>    La version Windows a été mise à jour pour utiliser Qt 4.6.</li>
+<li>    La catégorie actuelle est maintenant conservée.</li>
+<li>    Mise à jour du document Guide de l'administrateur.</li>
+</ul>
+<p>Le 26 octobre 2009.</p>
+<ul>
+<li>    En cours de re-livraison des paquets de logiciels.</li>
+<li>    Modification des fichiers de documentation.</li>
+<li>    Suppression des fichiers de traduction obsolètes.</li>
+</ul>
+<p>23 Octobre 2009.</p>
+<ul>
+<li>    La version 6.37 est en cours de publication.</li>
+<li>    Éliminé le mécanisme de pagination pour les bases de données SQLite sur Windows à cause des restrictions du plugin.</li>
+<li>    Les versions OS X et Windows ont été mises à jour pour utiliser Qt 4.5.3.</li>
+<li>    Veuillez mettre à jour les schémas de vos bases de données en exécutant les instructions sous la version 6.37 des fichiers postgresql_update_schema.sql et sqlite_update_schema.sql.</li>
+<li>    Éditions simplifiées du livre.</li>
+<li>    Merci à Robert (fmra357) d'avoir découvert le problème de SQLite sous Windows.</li>
+</ul>
+<p>Le 2 octobre 2009.</p>
+<ul>
+<li>    La version 6.36 sera disponible sous peu.</li>
+<li>    Correction d'un dialogue d'erreur incorrect.</li>
+<li>    Amélioration du mécanisme de téléchargement des images.</li>
+<li>    Modification du format dans lequel les images sont stockées. Cette mise à jour élimine certains avertissements de la base de données.</li>
+<li>    Nouvelle icône BiblioteQ.</li>
+<li>    Autres améliorations diverses.</li>
+</ul>
+<p>19 août 2009.</p>
+<ul>
+<li>    La version 6.35 est maintenant disponible.</li>
+<li>    Prise en charge de plusieurs sites Z39.50.</li>
+<li>    Mise à jour des paramètres de biblioteq.conf.</li>
+<li>    La version 6.22.4 est la dernière version de la branche 6.22.</li>
+</ul>
+<p>13 juillet 2009.</p>
+<ul>
+<li>    Les versions 6.34 et 6.22.4 sont disponibles.</li>
+<li>    Dialogues de vérification supplémentaires.</li>
+<li>    Correction de l'installateur OS X 6.22.</li>
+<li>    Amélioration des boîtes de dialogue de progression.</li>
+<li>    Résolution de problèmes de traduction.</li>
+</ul>
+<p>12 Juin 2009.</p>
+<ul>
+<li>    Les versions 6.33 et 6.22.3 seront disponibles prochainement.</li>
+<li>    Implémentation d'un mécanisme de pagination. Ce nouvel ajout devrait simplifier la navigation dans les grandes bases de données. Par défaut, les pages contiennent au maximum 25 entrées.</li>
+<li>    Améliorations diverses.</li>
+<li>    Nouveau menu. (Options->Entrées par page)</li>
+</ul>
+<p>2 mai 2009.</p>
+<ul>
+<li>    Les versions 6.32 et 6.22.2 sont maintenant disponibles.</li>
+<li>    Nouveau menu. (Fichier->Fichiers SQLite récents) </li>
+</ul>
+<p>16 Avril 2009.</p>
+<ul>
+<li>    Les versions 6.31 et 6.22.1 seront bientôt disponibles.</li>
+<li>    Correction d'un problème d'ordre dans le fichier postgresql_create_schema.sql.</li>
+<li>    Mise à jour de biblioteq.conf. Veuillez modifier la section [Amazon Front Cover Images] en conséquence et insérer la section [Amazon Back Cover Images].</li>
+</ul>
+<p>10 avril 2009.</p>
+<ul>
+<li>    La version 6.30 est en cours de publication.</li>
+<li>    Arrêt de la prise en charge de OFFSYSTEM.</li>
+<li>    Les corrections futures seront également appliquées à la branche 6.22.</li>
+</ul>
+<p>5 Avril 2009.</p>
+<ul>
+<li>    La version 6.22 a été publiée.</li>
+<li>    Changements mineurs.</li>
+<li>    Mise à jour du fichier qt.conf.</li>
+</ul>
+<p>21 mars 2009.</p>
+<ul>
+<li>    La version 6.21.1 est maintenant disponible.</li>
+<li>    Mise à jour de la documentation.</li>
+<li>    Mise à jour du répertoire translations.d.</li>
+</ul>
+<p>3 mars 2009.</p>
+<ul>
+<li>    La version 6.21 a été publiée !</li>
+<li>    Ajout du support pour les traductions en tchèque et en allemand. Je suis reconnaissant à ceux qui ont fourni les fichiers de traduction.</li>
+<li>    Modifications supplémentaires pour la prise en charge de l'internationalisation, y compris des corrections de bogues.</li>
+<li>    Correction d'un problème avec le navigateur de l'administrateur. Nous avons également implémenté une fonctionnalité qui empêche la création d'administrateurs sans privilèges.</li>
+<li>    Correction d'un problème avec le navigateur de réservation. Les comptes non privilégiés ne pouvaient pas afficher les réservations d'un élément.</li>
+</ul>
+<p>23 février 2009.</p>
+<ul>
+<li>    La version 6.20.2 sera disponible aujourd'hui.</li>
+<li>    Résolution de plusieurs problèmes concernant la fonction de glisser-déposer.</li>
+</ul>
+<p>22 février 2009.</p>
+<ul>
+<li>    La version 6.20.1 a été publiée.</li>
+<li>    Amélioration de la fonction de glisser-déposer d'images.</li>
+<li>    Résolution de certains problèmes liés à la prise en charge des traductions.</li>
+<li>    La version Windows XP sera disponible le 23 février 2009.</li>
+</ul>
+<p>22 février 2009.</p>
+<ul>
+<li>    La version 6.20 est désormais disponible.</li>
+<li>    Ajout d'icônes à divers widgets.</li>
+<li>    Le format des dates de recherche a été modifié en MM/yyyy.</li>
+</ul>
+<p>Le 7 février 2009.</p>
+<ul>
+<li>    La version 6.19 a été publiée.</li>
+<li>    Ajout du champ "Lieu de publication" pour les livres, revues, magazines et jeux vidéo.</li>
+<li>    Correction de plusieurs problèmes concernant les hyperliens incorporés.</li>
+<li>    Implémentation de valeurs par défaut pour plusieurs champs obligatoires.</li>
+<li>    Veuillez mettre à jour les schémas de vos bases de données en exécutant les instructions sous la version 6.19 des fichiers postgresql_update_schema.sql et sqlite_update_schema.sql.</li>
+</ul>
+<p>16 janvier 2009.</p>
+<ul>
+<li>    La version 6.18 est maintenant disponible.</li>
+<li>    Correction d'un problème de taille avec le champ texte ISBN-13 de la boîte de dialogue Livre.</li>
+<li>    Introduction de quelques commentaires dans les différents scripts SQL.</li>
+<li>    Modification de la taille initiale de la boîte de dialogue Sélection de branche.</li>
+</ul>
+<p>4 Janvier 2009.</p>
+<ul>
+<li>    Bonne année !</li>
+<li>    La version 6.17 est disponible.</li>
+<li>    Ajout d'une clé d'unicité supplémentaire à la table item_request. Les utilisateurs de PostgreSQL sont priés d'exécuter les instructions sous la version 6.17 du fichier postgresql_update_schema.sql. La nouvelle contrainte permet aux clients de demander des articles similaires.</li>
+<li>    Améliorations générales.</li>
+<li>    Refonte mineure de la boîte de dialogue de sélection des branches.</li>
+<li>    Résolution d'un problème SQLite concernant les bases de données vides et les requêtes personnalisées.</li>
+<li>    Le logiciel est en cours de préparation pour l'internationalisation.</li>
+</ul>
+<p>Le 7 décembre 2008.</p>
+<ul>
+<li>    Sortie de la version 6.16.</li>
+<li>    Activation de certaines options uniquement si elles sont applicables.</li>
+<li>    Amélioré le dialogue de sélection des branches.</li>
+</ul>
+<p>27 Novembre 2008.</p>
+<ul>
+<li>    La version 6.15 est maintenant disponible.</li>
+<li>    Amélioration des messages d'erreur.</li>
+<li>    Les identifiants des membres peuvent être modifiés pendant la création du compte de l'usager.</li>
+<li>    Les utilisateurs doivent réenregistrer les données de préférences.</li>
+</ul>
+<p>18 novembre 2008.</p>
+<ul>
+<li>    La version 6.14.1 sera disponible aujourd'hui.</li>
+<li>    Ajout de l'icône BiblioteQ dans les différentes fenêtres.</li>
+<li>    Tous les utilisateurs sont priés de faire la mise à jour !</li>
+<li>    Les bases de données SQLite existantes doivent être mises à jour. Veuillez exécuter les commandes de la version 6.14.1 du fichier sqlite_update_schema.sql.</li>
+<li>    Correction d'un défaut de segmentation qui avait été introduit par la version précédente.</li>
+<li>    Correction d'une requête incorrecte dans la boîte de dialogue Statut de réservation des éléments.</li>
+<li>    Correction d'une requête incorrecte dans l'explorateur de membres.</li>
+<li>    Résolution d'un problème bien dissimulé concernant la suppression des comptes d'administrateur et de mécène.</li>
+<li>    Résolution de plusieurs problèmes critiques concernant les privilèges des administrateurs.</li>
+</ul>
+<p>15 novembre 2008.</p>
+<ul>
+<li>    La version 6.14 est disponible.</li>
+<li>    Améliorations générales.</li>
+<li>    Nouvelles options dans le menu Options.</li>
+<li>    Le navigateur de l'administrateur inclut maintenant des détails concernant les capacités de l'administrateur.</li>
+</ul>
+<p>13 novembre 2008.</p>
+<ul>
+<li>    La version 6.13 est disponible.</li>
+<li>    Résolution d'un dialogue de question incorrect associé à des données non sauvegardées.</li>
+<li>    Les membres standards n'ont pas besoin d'accéder à la table d'administration. Veuillez "Sauvegarder" les données de chaque membre via le navigateur des membres.</li>
+<li>    L'installateur Windows XP nécessite une redistribution car il manque certaines bibliothèques PostgreSQL.</li>
+</ul>
+<p>3 Octobre 2008.</p>
+<ul>
+<li>    Sortie de la version 6.12.2.</li>
+<li>    Correction d'un problème avec le menu déroulant du filtre.</li>
+<li>    La table principale est maintenant remplie quand le filtre de type change.</li>
+</ul>
+<p>2 Octobre 2008.</p>
+<ul>
+<li>    La version 6.12.1 sera publiée aujourd'hui.</li>
+<li>    Correction des divergences entre les raccourcis du menu.</li>
+<li>    Mise à jour de plusieurs icônes.</li>
+</ul>
+<p>30 septembre 2008.</p>
+<ul>
+<li>    La version 6.12 est disponible !</li>
+<li>    Ajout d'informations sur les adresses e-mail dans les comptes des utilisateurs.</li>
+<li>    Amélioration des interfaces pour la requête Z39.50 et le téléchargement d'images.</li>
+<li>    Les utilisateurs peuvent maintenant annuler leurs articles demandés.</li>
+<li>    Les prix de 0.00 sont maintenant supportés.</li>
+<li>    Résolution de problèmes mineurs.</li>
+<li>    Les champs CUP permettent maintenant 13 chiffres.</li>
+<li>    Mise à jour du jeu d'icônes.</li>
+</ul>
+<p>19 septembre 2008.</p>
+<ul>
+<li>    La version 6.11 a été publiée.</li>
+<li>    Amélioration de la fonctionnalité de l'explorateur de membres.</li>
+<li>    Le panneau récapitulatif de la fenêtre principale affiche désormais la disponibilité de l'article sélectionné.</li>
+</ul>
+<p>29 août 2008.</p>
+<ul>
+<li>    Publication de la version 6.10.</li>
+<li>    Correction d'un problème d'état de visibilité des widgets.</li>
+<li>    Le document ROLES est inclus dans cette version. Ce document détaille les privilèges de l'administrateur.</li>
+</ul>
+<p>27 Août 2008.</p>
+<ul>
+<li>    La version 6.09 est maintenant disponible.</li>
+<li>    Définit le focus du widget quand c'est approprié.</li>
+<li>    Mise à jour de certains textes informatifs.</li>
+<li>    Vérification que BiblioteQ est fonctionnel sur Debian Sparc64 et CentOS 5.2.</li>
+</ul>
+<p>24 août 2008.</p>
+<ul>
+<li>    La version 6.08 sera disponible aujourd'hui.</li>
+<li>    Les crashs potentiels dus à une utilisation inappropriée des threads et des gestionnaires d'événements ont été résolus.</li>
+<li>    Préparation de l'application pour le téléchargement des images de quatrième de couverture depuis Amazon. Le fichier biblioteq.conf doit être correctement configuré.</li>
+</ul>
+<p>15 août 2008.</p>
+<ul>
+<li>    Sortie de la version 6.07.</li>
+<li>    Le téléchargement des images de la couverture avant des livres est maintenant supporté. Veuillez mettre à jour biblioteq.conf en conséquence. (Les images sont téléchargées depuis Amazon).</li>
+<li>    Correction d'un bogue avec la méthode misc_functions::grantPrivs(). Ce problème a été introduit après l'ajout de la table de base de données journal. Le bogue a un impact sur les bases de données PostgreSQL et les fonctions de l'administrateur (création, modification).</li>
+</ul>
+<p>27 Juin 2008.</p>
+<ul>
+<li>    Recréé le paquet OS X Intel car certains utilisateurs avaient des problèmes de connectivité avec les bases de données SQLite.</li>
+</ul>
+<p>Le 20 juin 2008.</p>
+<ul>
+<li>    La version 6.06 a été publiée.</li>
+<li>    Amélioration de l'affichage des images de couverture. Les images sont maintenant mises à l'échelle pour s'adapter à leurs conteneurs.</li>
+<li>    Les articles possèdent maintenant plusieurs catégories (genres pour les jeux vidéo). Veuillez mettre à jour vos schémas de base de données.</li>
+<li>    Les utilisateurs sont désormais avertis des modifications non sauvegardées.</li>
+</ul>
+<p>15 juin 2008.</p>
+<ul>
+<li>    La version 6.05 est maintenant disponible.</li>
+<li>    Autres améliorations mineures.</li>
+<li>    Suppression du "N/A" après une requête Z39.50 réussie pour les livres.</li>
+</ul>
+<p>8 Juin 2008.</p>
+<ul>
+<li>    Publication de la version 6.04 pour OS X Intel, encore une fois.</li>
+<li>    Inclusion de dépendances supplémentaires dans le bundle.</li>
+</ul>
+<p>4 juin 2008.</p>
+<ul>
+<li>    La version 6.04 a été publiée une fois de plus.</li>
+<li>    Veuillez signaler tout problème, car il y a eu beaucoup de mises à jour récemment !</li>
+<li>    Solidification des algorithmes d'analyse pour les requêtes Z39.50. Les algorithmes tentent également de définir les catégories.</li>
+</ul>
+<p>2 Juin 2008.</p>
+<ul>
+<li>    Publication de la version 6.04 pour OS X Intel.</li>
+<li>    Amélioration de la routine d'analyse des résultats des requêtes de la Library of Congress pour les articles de livres. Je vais très probablement rééditer cette version car elle est encore trop primitive.</li>
+</ul>
+<p>30 mai 2008.</p>
+<ul>
+<li>    La version 6.03 sera publiée aujourd'hui.</li>
+<li>    Tous les utilisateurs sont priés de la mettre à jour !</li>
+<li>    Création d'une table de journal.</li>
+<li>    Suppression des informations sur le format de l'image dans les tables d'éléments.</li>
+<li>    Résolution de problèmes critiques avec l'implémentation des tables journal et magazine.</li>
+</ul>
+<p>26 mai 2008.</p>
+<ul>
+<li>    La version 6.02 a été publiée !</li>
+<li>    Permet aux membres de visualiser leurs articles en retard, leurs articles demandés et leurs articles réservés.</li>
+<li>    Les ISBNs peuvent désormais être générés pour les bases de données PostgreSQL.</li>
+<li>    Les membres sont désormais autorisés à placer des articles sur demande.</li>
+<li>    Autres améliorations générales.</li>
+</ul>
+<p>21 mai 2008.</p>
+<ul>
+<li>    La version 6.01 est désormais disponible pour Windows XP.</li>
+</ul>
+<p>20 mai 2008.</p>
+<ul>
+<li>    Sortie de la version 6.01.</li>
+<li>    Il faut penser à mettre à jour certaines variables internes après l'enregistrement des informations de copie.</li>
+<li>    Le navigateur de copie affiche maintenant le titre de l'élément respectif.</li>
+</ul>
+<p>11 mai 2008.</p>
+<ul>
+<li>    Les versions 5.03.3 et 6.00 ont été publiées.</li>
+<li>    La version 5.03.3 résout plusieurs problèmes de sensibilité des widgets. (Ces problèmes ont également été traités par la version 6.00).</li>
+</ul>
+<p>10 mai 2008.</p>
+<ul>
+<li>    La version 6.00 pourrait être publiée aujourd'hui !</li>
+<li>    Les informations sur les prix sont maintenant présentées uniquement à certains rôles d'administrateur.</li>
+<li>    Résolution de plusieurs problèmes de sensibilité des widgets.</li>
+<li>    Conception plus fine de la base de données. Les tableaux contenant les informations de réservation ont été condensés.</li>
+</ul>
+<p>Le 7 mai 2008.</p>
+<ul>
+<li>    La version 5.03.2 est maintenant disponible.</li>
+<li>    Cette version résout un dysfonctionnement de l'implémentation du glisser-déposer sous OS X.</li>
+</ul>
+<p>6 mai 2008.</p>
+<ul>
+<li>    La version 5.03.1 a été publiée.</li>
+<li>    Cette version corrige une référence incorrecte à la colonne ISBN dans la table principale. La colonne est en fait ISBN-10.</li>
+</ul>
+<p>5 mai 2008.</p>
+<ul>
+<li>    Publication de la version 5.03.</li>
+<li>    Valeurs par défaut pour les champs obligatoires. Ceci s'applique uniquement à la catégorie Livre.</li>
+<li>    Implémentation d'un mécanisme pour générer des ISBN uniques pour les bases de données SQLite.</li>
+<li>    Résolution d'un problème avec myqstring::escape().</li>
+</ul>
+<p>3 Mai 2008.</p>
+<ul>
+<li>    La version 5.02 est maintenant disponible.</li>
+<li>    Terminé les éléments du document TO-DO.</li>
+<li>    Conception d'un algorithme de centrage des widgets.</li>
+<li>    Corrections diverses.</li>
+<li>    Résolution de plusieurs problèmes avec les catégories Journal et Magazine.</li>
+<li>    Résolution de quelques problèmes avec SQLite.</li>
+</ul>
+<p>2 mai 2008.</p>
+<ul>
+<li>    Publication de la version 5.01.</li>
+<li>    Le navigateur de l'administrateur est terminé. Ce navigateur est seulement disponible pour les bases de données PostgreSQL.</li>
+<li>    Amélioration du document INSTALL.</li>
+<li>    Améliorations mineures, mais charmantes.</li>
+<li>    Les champs obligatoires sont maintenant mis en évidence.</li>
+<li>    Résolution des points de la liste TO-DO.</li>
+</ul>
+<p>23 Avril 2008.</p>
+<ul>
+<li>    La version 5.00 est maintenant disponible au téléchargement.</li>
+<li>    Amélioration du support SQLite.</li>
+<li>    Améliorations diverses.</li>
+<li>    Suppression du support MySQL.</li>
+<li>    Résolution de quelques problèmes de CASCADE DELETE.</li>
+</ul>
+<p>21 Avril 2008.</p>
+<ul>
+<li>    La version 4.05 est disponible.</li>
+<li>    Correction de plusieurs requêtes SQL liées aux champs NULL dans les clauses WHERE.</li>
+<li>    Notification à l'administrateur de rappeler à un nouveau membre son mot de passe par défaut lors de la création du membre.</li>
+<li>    Mise à jour des scripts MySQL. Il y a quelques problèmes en suspens en ce qui concerne la création des membres.</li>
+</ul>
+<p>Le 20 avril 2008.</p>
+<ul>
+<li>    Sortie de la version 4.04.</li>
+<li>    Implémentation de la fonctionnalité OFFSYSTEM URL.</li>
+</ul>
+<p>19 Avril 2008.</p>
+<ul>
+<li>    Téléchargement d'un nouveau pack Windows XP pour résoudre plusieurs problèmes de dépendance.</li>
+</ul>
+<p>19 Avril 2008.</p>
+<ul>
+<li>    La version 4.03 est disponible en téléchargement.</li>
+<li>    Possibilité de faire glisser des images (BMP, JPG, PNG) sur les toiles d'images de couverture.</li>
+<li>    Première version officielle pour Windows XP.</li>
+<li>    Les champs clés (tels que Auteur(s), Réalisateur(s), etc.) sont maintenant représentés par des hyperliens. Cela simplifiera la recherche d'éléments similaires.</li>
+<li>    Correction de bugs mineurs.</li>
+</ul>
+<p>14 avril 2008.</p>
+<ul>
+<li>    La version 4.02.2 est maintenant disponible.</li>
+<li>    Modifié le script sqlite_create_tables.sql pour supporter les cascades de suppression.</li>
+<li>    Suppression de certains titres de l'interface utilisateur.</li>
+<li>    Testé avec succès l'application sous Windows XP via une connexion SQLite.</li>
+<li>    Mise à jour de plusieurs instructions INSERT pour supporter les limitations de SQLite sur les contraintes uniques.</li>
+</ul>
+<p>13 avril 2008.</p>
+<ul>
+<li>    Sortie de la version 4.02.1.</li>
+<li>    Création d'une enveloppe superficielle autour de QSqlQuery::size() en support de SQLite.</li>
+<li>    Correction d'une requête SQL avec le panneau Historique des réservations.</li>
+<li>    Améliorations générales.</li>
+<li>    Nouvelles options dans le menu Options.</li>
+</ul>
+<p>12 Avril 2008.</p>
+<ul>
+<li>    Sortie de la version 4.02.</li>
+<li>    SQLite 3.x est maintenant supporté.</li>
+</ul>
+<p>11 Avril 2008.</p>
+<ul>
+<li>    La version 4.01 est maintenant disponible.</li>
+<li>    Embelli de nombreux aspects de l'interface utilisateur.</li>
+<li>    Support des images de couverture.</li>
+<li>    Correction de certains scripts SQL.</li>
+<li>    Améliorations générales.</li>
+</ul>
+<p>31 mars 2008.</p>
+<ul>
+<li>    La version 4.00.1 est disponible.</li>
+<li>    Corrigé les scripts MySQL.</li>
+<li>    Mise à jour de plusieurs messages d'erreur.</li>
+<li>    Mise à jour du document INSTALL.freebsd.</li>
+</ul>
+<p>30 Mars 2008.</p>
+<ul>
+<li>    La version 4.00 est disponible.</li>
+<li>    Permettre aux membres de voir leurs articles réservés.</li>
+<li>    Amélioré l'interface utilisateur.</li>
+<li>    Implémentation de l'authentification des utilisateurs basée sur MySQL et PostgreSQL.</li>
+<li>    Suppression des informations de compte du fichier biblioteq.conf.</li>
+</ul>
+<p>22 mars 2008.</p>
+<ul>
+<li>    La version 3.23.1 est maintenant disponible.</li>
+<li>    Complété le panneau de l'historique des réservations des membres.</li>
+<li>    Correction des différents scripts SQL.</li>
+<li>    Amélioration de l'apparence du formulaire principal.</li>
+<li>    Correction de bogues mineurs.</li>
+</ul>
+<p>19 mars 2008.</p>
+<ul>
+<li>    Sortie de la version 3.23.</li>
+<li>    En cas de mise à jour, veuillez exécuter les instructions SQL 3.23 à partir des scripts mysql_update.sql ou postgresql_update.sql à l'invite de la base de données appropriée.</li>
+<li>    Version initiale de la prise en charge de l'historique des réservations.</li>
+<li>    Améliorations diverses.</li>
+<li>    Mise à jour de plusieurs icônes.</li>
+<li>    Mise à jour des fichiers SQL qui sont responsables de la création des différentes tables de la base de données.</li>
+</ul>
+<p>15 mars 2008.</p>
+<ul>
+<li>    Sortie de la version 3.22.</li>
+<li>    Si vous effectuez une mise à jour, veuillez exécuter les instructions SQL 3.22 à partir des scripts mysql_update.sql ou postgresql_update.sql à l'invite de la base de données appropriée.</li>
+<li>    Implémentation d'un mécanisme d'impression d'informations à partir de la fenêtre principale.</li>
+<li>    Modification des tables d'éléments de la base de données pour inclure des informations sur le type.</li>
+<li>    Remplacement de plusieurs appels hide() par raise().</li>
+</ul>
+<p>12 Mars 2008.</p>
+<ul>
+<li>    La version 3.21 est maintenant disponible.</li>
+<li>    Préservation de la visibilité des colonnes de la table principale après un changement de filtre de type.</li>
+</ul>
+<p>9 Mars 2008.</p>
+<ul>
+<li>    Sortie de la version 3.20.</li>
+<li>    Implémentation d'un moyen de copier le contenu du dialogue d'erreur dans le tampon du presse-papiers.</li>
+<li>    Modification du script backup.csh pour le support du port Qt4 de FreeBSD.</li>
+</ul>
+<p>7 Mars 2008.</p>
+<ul>
+<li>    Sortie de la version 3.19.</li>
+<li>    Correction d'un problème de focus.</li>
+<li>    Modification des attributs de défilement pour plusieurs des widgets de table.</li>
+<li>    Vérification du bon fonctionnement de l'application sur les systèmes FreeBSD 7.0.</li>
+</ul>
+<p>28 Février 2008.</p>
+<ul>
+<li>    La version 3.18 est maintenant disponible.</li>
+<li>    Correction de la signature du constructeur dans numeric_table_item.cc.</li>
+<li>    Le programme fonctionne correctement sur les systèmes Solaris 10.</li>
+</ul>
+<p>14 février 2008.</p>
+<ul>
+<li>    Sortie de la version 3.17.</li>
+<li>    Amélioration de plusieurs éléments de l'interface utilisateur.</li>
+<li>    Modification des fichiers SQL, suppression de TOUS les privilèges.</li>
+<li>    Suppression des appels redondants QApplication::restoreOverrideCursor().</li>
+</ul>
+<p>9 Février 2008.</p>
+<ul>
+<li>    Sortie de la version 3.16.</li>
+<li>    Implémentation d'algorithmes de traitement des données plus puissants sur les résultats des requêtes de la Bibliothèque du Congrès.</li>
+<li>    Améliorations mineures de l'interface utilisateur.</li>
+</ul>
+<p>18 Janvier 2008.</p>
+<ul>
+<li>    La version 3.15 est maintenant disponible.</li>
+<li>    Correction de quelques problèmes d'affichage mineurs.</li>
+</ul>
+<p>15 janvier 2008.</p>
+<ul>
+<li>    Sortie de la version 3.14.</li>
+<li>    Amélioration de l'apparence de l'explorateur de membres.</li>
+<li>    Résolution d'une instruction SELECT incorrecte dans misc_functions::getReservedItems().</li>
+<li>    Les utilisateurs standard peuvent maintenant voir la date d'échéance des articles réservés.</li>
+</ul>
+<p>13 Janvier 2008.</p>
+<ul>
+<li>    La version 3.13 est maintenant disponible.</li>
+<li>    Création d'un mécanisme pour imprimer les articles réservés d'un membre.</li>
+<li>    Correction d'une déclaration de requête incorrecte dans le navigateur des membres.</li>
+</ul>
+<p>8 janvier 2008.</p>
+<ul>
+<li>    Publication de la version 3.12.</li>
+<li>    Résolution d'un problème de réinitialisation du journal des erreurs lors d'une déconnexion de la base de données.</li>
+</ul>
+<p>28 décembre 2007.</p>
+<ul>
+<li>    La version 3.11 est maintenant disponible.</li>
+<li>    Correction d'un problème mineur avec les quantités d'articles.</li>
+<li>    Mise à jour du jeu d'icônes.</li>
+</ul>
+<p>25 décembre 2007.</p>
+<ul>
+<li>    Sortie de la version 3.10.</li>
+<li>    Plusieurs modifications de l'interface utilisateur.</li>
+<li>    Les recherches dans la base de données sont maintenant insensibles à la casse.</li>
+<li>    La géométrie de la fenêtre principale est maintenant stockée dans le fichier de configuration de l'utilisateur à chaque fois que le fichier est enregistré.</li>
+</ul>
+<p>23 Décembre 2007.</p>
+<ul>
+<li>    Téléchargement du paquet TAR sur SourceForge.net.</li>
+</ul>
+<p>22 Décembre 2007.</p>
+<ul>
+<li>    La version 3.09 est maintenant disponible.</li>
+<li>    Ajout d'une fonctionnalité pour les requêtes personnalisées.</li>
+<li>    Améliorations diverses.</li>
+<li>    Résolution d'un problème de privilège.</li>
+</ul>
+<p>30 Novembre 2007.</p>
+<ul>
+<li>    Création de biblioteq.sh.</li>
+<li>    Mise à jour de backup.csh, biblioteq.conf, et biblioteq.win.pro.</li>
+</ul>
+<p>29 Novembre 2007.</p>
+<ul>
+<li>    Sortie de la version 3.08.</li>
+<li>    Permettre les connexions anonymes. Les informations nécessaires pour établir de telles connexions sont disponibles dans le fichier biblioteq.conf.</li>
+</ul>
+<p>22 Novembre 2007.</p>
+<ul>
+<li>    La version 3.07 est maintenant disponible.</li>
+<li>    Introduction de la catégorie "Journal".</li>
+<li>    Résolution d'un problème de base de données avec les copies d'articles.</li>
+<li>    Le paquet YAZ++ n'est plus nécessaire.</li>
+</ul>
+<p>14 novembre 2007.</p>
+<ul>
+<li>    Publication de la version 3.06.</li>
+<li>    Mise à jour de la requête de la Library of Congress pour les revues (magazines).</li>
+</ul>
+<p>12 novembre 2007.</p>
+<ul>
+<li>    La version 3.05 est disponible.</li>
+<li>    Ajout d'une icône d'application pour la plateforme OS X.</li>
+</ul>
+<p>2 novembre 2007.</p>
+<ul>
+<li>    La version 3.04 est disponible.</li>
+<li>    Modification de certaines propriétés de taille minimale pour plusieurs panneaux.</li>
+<li>    Résolution d'une jointure de table de base de données incorrecte.</li>
+</ul>
+<p>27 Octobre 2007.</p>
+<ul>
+<li>    La version 3.03 a été publiée.</li>
+<li>    Permettre à l'administrateur de modifier les informations de copie pendant la création de l'élément.</li>
+<li>    Petites améliorations.</li>
+</ul>
+<p>Le 20 octobre 2007.</p>
+<ul>
+<li>    Sortie de la version 3.02.</li>
+<li>    Suppression de certains codes inutiles.</li>
+<li>    Simplifié le dialogue de sélection de branche.</li>
+</ul>
+<p>12 Octobre 2007.</p>
+<ul>
+<li>    Publication de la version 3.01.</li>
+<li>    Résolu un problème causé par un guillemet simple non encodé.</li>
+</ul>
+<p>11 Octobre 2007.</p>
+<ul>
+<li>    La version 3.00 est maintenant disponible !</li>
+<li>    Beaucoup de petites, mais merveilleuses, améliorations.</li>
+</ul>
+<p>5 Octobre 2007.</p>
+<ul>
+<li>    La version 3.00 sera disponible sous peu.</li>
+<li>    Des erreurs supplémentaires ont été résolues.</li>
+<li>    Le tableau des articles a été séparé en plusieurs tableaux afin de mieux représenter les données.</li>
+</ul>
+<p>26 septembre 2007.</p>
+<ul>
+<li>    Sortie de la version 2.09.</li>
+<li>    Correction de postgresql_create_tables.sql.</li>
+<li>    Correction de quelques défauts majeurs avec les sections liées à PostgreSQL.</li>
+<li>    Correction de certains problèmes causés par l'utilisation incorrecte de hide().</li>
+<li>    Introduction d'une nouvelle option dans le menu Options.</li>
+</ul>
+<p>24 Septembre 2007.</p>
+<ul>
+<li>    La version 2.08 est maintenant disponible.</li>
+<li>    Mise à jour de plusieurs conseils d'outils.</li>
+<li>    Mis à jour le script postgresql_create_tables.sql.</li>
+</ul>
+<p>21 septembre 2007.</p>
+<ul>
+<li>    La version 2.07 est disponible.</li>
+<li>    Désintoxication du code.</li>
+<li>    Mise à jour du contenu du fichier biblioteq.conf.</li>
+</ul>
+<p>19 septembre 2007.</p>
+<ul>
+<li>    Sortie de la version 2.06.</li>
+<li>    Correction d'une erreur avec la classe DVD.</li>
+<li>    Résolution d'un problème critique avec les indices.</li>
+</ul>
+<p>17 septembre 2007.</p>
+<ul>
+<li>    La version 2.05 est maintenant disponible.</li>
+<li>    Implémentation d'une journalisation supplémentaire des erreurs.</li>
+<li>    Plusieurs problèmes d'administrateur ont été résolus.</li>
+</ul>
+<p>Le 12 septembre 2007.</p>
+<ul>
+<li>    La version 2.04 est disponible.</li>
+<li>    Création d'une table "admin".</li>
+<li>    Correction de quelques problèmes avec l'authentification de l'administrateur.</li>
+</ul>
+<p>10 septembre 2007.</p>
+<ul>
+<li>    La version 2.03 est disponible.</li>
+<li>    Mise à jour de la routine d'analyse pour la requête de livres de la Library of Congress.</li>
+</ul>
+<p>Le 9 septembre 2007.</p>
+<ul>
+<li>    La version 2.02 est disponible.</li>
+<li>    Résolution d'un problème avec le champ ISSN pour les magazines. Le chiffre de contrôle peut être un X.</li>
+</ul>
+<p>Le 6 septembre 2007.</p>
+<ul>
+<li>    La version 2.01 est disponible.</li>
+<li>    Résolution de quelques problèmes mineurs avec Z39.50 pour les livres.</li>
+</ul>
+<p>5 septembre 2007.</p>
+<ul>
+<li>    La version 2.00 est enfin disponible !</li>
+<li>    Cette version inclut un support complet pour les livres, cds, dvds, magazines et jeux vidéo.</li>
+</ul>
+<p>22 Juillet 2007.</p>
+<ul>
+<li>    Correction de deux étiquettes incorrectes avec le panneau CD.</li>
+<li>    Mises à jour diverses.</li>
+<li>    Résolution d'un problème d'indexation avec la requête de la Library of Congress pour les livres.</li>
+</ul>
+<p>14 Juillet 2007.</p>
+<ul>
+<li>    Ajout d'une option permettant à l'utilisateur de définir la police globale.</li>
+<li>    Complété plusieurs éléments de la liste TO-DO.</li>
+<li>    Résolution de divers problèmes.</li>
+</ul>
+<p>9 juillet 2007.</p>
+<ul>
+<li>    Changement de la police par défaut en Times.</li>
+<li>    Changements divers.</li>
+<li>    Refonte de la présentation des informations sur les articles pour s'adapter aux petites résolutions d'affichage.</li>
+<li>    Mise à jour de la requête de la Bibliothèque du Congrès pour les livres.</li>
+</ul>
+<p>1er juillet 2007.</p>
+<ul>
+<li>    Achèvement des éléments de la liste des tâches à accomplir.</li>
+</ul>
+<p>24 juin 2007.</p>
+<ul>
+<li>    Ajout d'un champ Catégorie dans le panneau de recherche générique.</li>
+<li>    Correction d'un problème d'unicité des numéros ISSN.</li>
+<li>    Résolution de plusieurs problèmes potentiels avec des transactions incomplètes.</li>
+</ul>
+<p>21 juin 2007.</p>
+<ul>
+<li>    Terminé la requête Z39.50 de la Bibliothèque du Congrès pour les magazines.</li>
+<li>    Insertion d'une virgule manquante dans le fichier postgresql_create_tables.sql.</li>
+</ul>
+<p>17 juin 2007.</p>
+<ul>
+<li>    Création d'une copie initiale dans le cadre du processus de création d'articles.</li>
+<li>    Implémentation des tâches de la liste TO-DO.</li>
+<li>    Les informations de connexion à la Library of Congress sont maintenant récupérées dans le fichier biblioteq.conf.</li>
+<li>    Traitement des requêtes de la Bibliothèque du Congrès à partir des fils.</li>
+<li>    Renommé .qtbook.dat en .biblioteq.dat.</li>
+<li>    Renommé qtbook.conf en biblioteq.conf.</li>
+</ul>
+<p>15 juin 2007.</p>
+<ul>
+<li>    Utilisation initiale du protocole Z39.50 pour les livres. Vous devez installer la boîte à outils YAZ.</li>
+<li>    Refonte du navigateur des membres.</li>
+<li>    Résolution de quelques problèmes potentiels.</li>
+</ul>
+<p>10 juin 2007.</p>
+<ul>
+<li>    Achèvement des éléments de la liste TO-DO.</li>
+<li>    Résolution de plusieurs problèmes sans nom.</li>
+</ul>
+<p>Le 3 juin 2007.</p>
+<ul>
+<li>    Complété plusieurs éléments de la liste TO-DO.</li>
+<li>    Élimination de certains problèmes potentiels avec les indices de ligne.</li>
+<li>    Amélioration de l'interface utilisateur.</li>
+</ul>
+<p>1 Juin 2007.</p>
+<ul>
+<li>    Résolution d'un problème lié à PostgreSQL avec le navigateur des membres.</li>
+</ul>
+<p>31 Mai 2007.</p>
+<ul>
+<li>    Ajout de nouveaux champs dans la catégorie Magazine.</li>
+<li>    Terminé plusieurs éléments de la liste TO-DO.</li>
+</ul>
+<p>24 Mai 2007.</p>
+<ul>
+<li>    Résolution de quelques problèmes avec les titres des fenêtres.</li>
+<li>    Les dialogues de création et de recherche sont maintenant non-modaux.</li>
+</ul>
+<p>16 Mai 2007.</p>
+<ul>
+<li>    Ajout d'un mécanisme permettant de convertir les ISBN-10 en ISBN-13.</li>
+<li>    D'autres améliorations importantes ont été apportées.</li>
+</ul>
+<p>13 Mai 2007.</p>
+<ul>
+<li>    Ajout de plusieurs nouveaux champs dans la catégorie Livre.</li>
+<li>    Améliorations générales.</li>
+<li>    Résolution d'une erreur causée par le passage d'une catégorie à une autre.</li>
+</ul>
+<p>12 mai 2007.</p>
+<ul>
+<li>    Améliorations générales.</li>
+</ul>
+<p>11 mai 2007.</p>
+<ul>
+<li>    Correction de bugs.</li>
+<li>    Complété la catégorie Jeux vidéo.</li>
+</ul>
+<p>5 Mai 2007.</p>
+<ul>
+<li>    Résolution d'un problème avec le Track Browser.</li>
+</ul>
+<p>4 Mai 2007.</p>
+<ul>
+<li>    Implémentation de la catégorie CD.</li>
+</ul>
+<p>2 Mai 2007.</p>
+<ul>
+<li>    Ajout de quelques validateurs de texte dans les différents champs d'identification.</li>
+<li>    Remplacement d'une ou deux icônes.</li>
+</ul>
+<p>16 Avril 2007.</p>
+<ul>
+<li>    Complété plusieurs éléments de la liste TO-DO.</li>
+<li>    Amélioré la fonctionnalité de l'interface utilisateur.</li>
+</ul>
+<p>2 Avril 2007.</p>
+<ul>
+<li>    Correction de quelques problèmes de modalité.</li>
+<li>    Introduction du type VHS. Oui, VHS.</li>
+<li>    D'autres changements merveilleux.</li>
+</ul>
+<p>1er avril 2007.</p>
+<ul>
+<li>    Beaucoup de problèmes résolus.</li>
+<li>    Refonte massive du code. Les utilisateurs peuvent désormais parcourir plusieurs articles simultanément.</li>
+</ul>
+<p>27 mars 2007.</p>
+<ul>
+<li>    Une autre petite version. Permet aux utilisateurs normaux de voir les détails d'un article.</li>
+<li>    Correction de bugs et nettoyage du code.</li>
+</ul>
+<p>21 mars 2007.</p>
+<ul>
+<li>    Comme d'habitude, corrections de bugs. Terminé plusieurs éléments de la liste des choses à faire.</li>
+</ul>
+<p>18 Mars 2007.</p>
+<ul>
+<li>    Terminé plusieurs éléments de la liste TO-DO.</li>
+<li>    Renommé le projet en BiblioteQ.</li>
+</ul>
+<p>11 mars 2007.</p>
+<ul>
+<li>    Quelques améliorations mineures.</li>
+</ul>
+<p>9 mars 2007.</p>
+<ul>
+<li>    Plusieurs corrections de bogues. Presque terminé la catégorie CD.</li>
+</ul>
+<p>7 mars 2007.</p>
+<ul>
+<li>    Correction de bugs. Améliorations supplémentaires au navigateur de pistes.</li>
+</ul>
+<p>5 Mars 2007.</p>
+<ul>
+<li>    Publication de INSTALL.freebsd.</li>
+<li>    Quelques travaux mineurs sur le Tracks Browser.</li>
+</ul>
+<p>4 Mars 2007.</p>
+<ul>
+<li>    Correction de bogues.</li>
+<li>    Résolution de quelques problèmes avec les chemins de fichiers.</li>
+<li>    Compilation et exécution réussies du programme sous Windows XP !</li>
+</ul>
+<p>3 Mars 2007.</p>
+<ul>
+<li>    Complété le mécanisme de recherche de CD.</li>
+<li>    Diverses corrections de bogues. Le statut de l'application reste Pre-Alpha.</li>
+<li>    Le document d'installation pour PostgreSQL sur FreeBSD sera inclus dès que je le trouverai.</li>
+</ul>
+<p>2 Mars 2007.</p>
+<ul>
+<li>    Correction de bugs.</li>
+<li>    Les menus sont opérationnels.</li>
+<li>    Refonte de l'interface utilisateur.</li>
+</ul>
+<p>28 Février 2007.</p>
+<ul>
+<li>    Introduction d'un document d'installation pour PostgreSQL sur FreeBSD.</li>
+<li>    Résolution de certains problèmes qui ont été introduits dans les versions précédentes.</li>
+<li>    Certains des nouveaux menus ne sont pas encore opérationnels.</li>
+</ul>
+<p>27 Février 2007.</p>
+<ul>
+<li>    Plusieurs corrections de bogues.</li>
+</ul>
+<p>24 Février 2007.</p>
+<ul>
+<li>    Nettoyage supplémentaire du code et correction de bugs.</li>
+<li>    Implémentation de la réservation d'articles.</li>
+</ul>
+<p>21 Février 2007.</p>
+<ul>
+<li>    Correction de bogues.</li>
+<li>    Nettoyage du code.</li>
+<li>    Améliorations diverses.</li>
+</ul>
+<p>18 Février 2007.</p>
+<ul>
+<li>    Proche de l'achèvement du support CD.</li>
+<li>    Séparation du gros fichier qtbook.cc en petits morceaux.</li>
+</ul>
+<p>9 Février 2007.</p>
+<ul>
+<li>    Plus d'améliorations de l'interface utilisateur.</li>
+</ul>
+<p>5 Février 2007.</p>
+<ul>
+<li>    Améliorations de l'interface utilisateur.</li>
+</ul>
+<p>4 Février 2007.</p>
+<ul>
+<li>    Des éléments supplémentaires de la liste TO-DO ont été complétés.</li>
+<li>    Nettoyage du code.</li>
+</ul>
+<p>3 février 2007.</p>
+<ul>
+<li>    Version préliminaire en support de PostgreSQL.</li>
+</ul>
+<p>2 Février 2007.</p>
+<ul>
+<li>    Implémentation d'un mécanisme de sommeil via QMutex et QWaitCondition.</li>
+<li>    Ne doit pas référencer des objets après qu'ils aient été supprimés.</li>
+<li>    Autres améliorations générales incluses dans cette version.</li>
+</ul>
+<p>29 Janvier 2007.</p>
+<ul>
+<li>    Encore une autre version pré-alpha.</li>
+</ul>
+<p>28 janvier 2007.</p>
+<ul>
+<li>    Une nouvelle version ! Veuillez lire le fichier TO-DO pour les éléments restants.</li>
+</ul>
+<p>15 Janvier 2007.</p>
+<ul>
+<li>    La version 2.00 (Pre-Alpha) a été publiée. Veuillez lire la documentation incluse pour les informations sur la version.</li>
+</ul>
+<p>4 novembre 2006.</p>
+<ul>
+<li>    La version 2.00 est en cours de réalisation ! De nombreuses fonctionnalités merveilleuses seront incluses. La version précédente a été supprimée.</li>
+</ul>
+<p>1er janvier 2002.</p>
+<ul>
+<li>BiblioteQ, ou XBook, est introduit.</li>
+</ul>
 </body>
 </html>
