@@ -2660,7 +2660,7 @@ void biblioteq::slotConnectDB(void)
     {
       m_db.setHostName(tmphash.value("hostname"));
       m_db.setDatabaseName(br.branch_name->currentText());
-      m_db.setPort(tmphash.value("port").toInt());
+      m_db.setPort(static_cast<int> (tmphash.value("port").toUShort()));
     }
 
   if(tmphash.value("database_type") != "sqlite")
