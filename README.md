@@ -32,6 +32,7 @@ BiblioteQ is free and open library software.
 <li>Parse local MARC tags. Books, journals, magazines.</li>
 <li>Patron information.</li>
 <li>Portable.</li>
+<li>Portable libraries.</li>
 <li>PostgreSQL accounts with various privileges.</li>
 <li>PowerPC support.</li>
 <li>Print support, including previews.</li>
