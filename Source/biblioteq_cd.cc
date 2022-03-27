@@ -37,6 +37,7 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   cd.setupUi(this);
   setQMain(this);
   cd.publication_date_enabled->setVisible(false);
+  cd.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cd.release_date->setDisplayFormat(qmain->publicationDateFormat("musiccds"));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_tracks_diag->setWindowModality(Qt::WindowModal);

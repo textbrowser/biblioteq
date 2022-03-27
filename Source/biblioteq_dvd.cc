@@ -36,6 +36,7 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   dvd.setupUi(this);
   setQMain(this);
   dvd.publication_date_enabled->setVisible(false);
+  dvd.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   dvd.release_date->setDisplayFormat(qmain->publicationDateFormat("dvds"));
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),

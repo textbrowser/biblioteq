@@ -37,6 +37,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   setQMain(this);
   pc.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("photographcollections"));
+  pc.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   pc.thumbnail_item->enableDoubleClickResize(false);
   m_scene = new biblioteq_bgraphicsscene(pc.graphicsView);
   connect(m_scene,
@@ -47,6 +48,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   m_isQueryEnabled = false;
   m_parentWid = parentArg;
   photo.setupUi(m_photo_diag);
+  photo.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   photo.thumbnail_item->enableDoubleClickResize(false);
   pc.graphicsView->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(pc.graphicsView,

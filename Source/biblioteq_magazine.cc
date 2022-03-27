@@ -56,6 +56,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("magazines"));
   ma.publication_date_enabled->setVisible(false);
+  ma.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   ma.view_pdf->setEnabled(false);
   ma.view_pdf->setToolTip

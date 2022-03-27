@@ -57,46 +57,17 @@ class userinfo_diag_class: public QDialog
   {
     QStringList list;
 
-    if(m_memberProperties.value("membersince") !=
-       m_userinfo.membersince->date().toString(Qt::ISODate))
-      list << "membersince";
+    if(m_memberProperties.value("city") != m_userinfo.city->text().trimmed())
+      list << "city";
+
+    if(m_memberProperties.value("comments") !=
+       m_userinfo.comments->toPlainText().
+       trimmed())
+      list << "comments";
 
     if(m_memberProperties.value("dob") !=
        m_userinfo.dob->date().toString(Qt::ISODate))
       list << "dob";
-
-    if(m_memberProperties.value("sex") != m_userinfo.sex->currentText())
-      list << "sex";
-
-    if(m_memberProperties.value("first_name") != m_userinfo.firstName->text().
-       trimmed())
-      list << "first_name";
-
-    if(m_memberProperties.value("middle_init") != m_userinfo.middle->text().
-       trimmed())
-      list << "middle_init";
-
-    if(m_memberProperties.value("last_name") != m_userinfo.lastName->text().
-       trimmed())
-      list << "last_name";
-
-    if(m_memberProperties.value("telephone_num") !=
-       m_userinfo.telephoneNumber->text())
-      list << "telephone_num";
-
-    if(m_memberProperties.value("street") !=
-       m_userinfo.street->text().trimmed())
-      list << "street";
-
-    if(m_memberProperties.value("city") != m_userinfo.city->text().trimmed())
-      list << "city";
-
-    if(m_memberProperties.value("state_abbr") !=
-       m_userinfo.state->currentText())
-      list << "state_abbr";
-
-    if(m_memberProperties.value("zip") != m_userinfo.zip->text())
-      list << "zip";
 
     if(m_memberProperties.value("email") != m_userinfo.email->text())
       list << "email";
@@ -105,30 +76,59 @@ class userinfo_diag_class: public QDialog
        m_userinfo.expirationdate->date().toString(Qt::ISODate))
       list << "expiration_date";
 
-    if(m_memberProperties.value("overdue_fees") !=
-       m_userinfo.overduefees->text())
-      list << "overdue_fees";
-
-    if(m_memberProperties.value("comments") !=
-       m_userinfo.comments->toPlainText().
+    if(m_memberProperties.value("first_name") != m_userinfo.firstName->text().
        trimmed())
-      list << "comments";
+      list << "first_name";
 
     if(m_memberProperties.value("general_registration_number") !=
        m_userinfo.generalregistrationnumber->text().trimmed())
       list << "general_registration_number";
 
-    if(m_memberProperties.value("memberclass") !=
-       m_userinfo.memberclass->text().trimmed())
-      list << "memberclass";
+    if(m_memberProperties.value("last_name") != m_userinfo.lastName->text().
+       trimmed())
+      list << "last_name";
 
     if(m_memberProperties.value("maximum_reserved_books") !=
        m_userinfo.maximum_reserved_books->text())
       list << "maximum_reserved_books";
 
+    if(m_memberProperties.value("memberclass") !=
+       m_userinfo.memberclass->text().trimmed())
+      list << "memberclass";
+
     if(m_memberProperties.value("membership_fees") !=
        m_userinfo.membershipfees->text())
       list << "membership_fees";
+
+    if(m_memberProperties.value("membersince") !=
+       m_userinfo.membersince->date().toString(Qt::ISODate))
+      list << "membersince";
+
+    if(m_memberProperties.value("middle_init") != m_userinfo.middle->text().
+       trimmed())
+      list << "middle_init";
+
+    if(m_memberProperties.value("overdue_fees") !=
+       m_userinfo.overduefees->text())
+      list << "overdue_fees";
+
+    if(m_memberProperties.value("sex") != m_userinfo.sex->currentText())
+      list << "sex";
+
+    if(m_memberProperties.value("state_abbr") !=
+       m_userinfo.state->currentText())
+      list << "state_abbr";
+
+    if(m_memberProperties.value("street") !=
+       m_userinfo.street->text().trimmed())
+      list << "street";
+
+    if(m_memberProperties.value("telephone_num") !=
+       m_userinfo.telephoneNumber->text())
+      list << "telephone_num";
+
+    if(m_memberProperties.value("zip") != m_userinfo.zip->text())
+      list << "zip";
 
     std::sort(list.begin(), list.end());
 
@@ -192,6 +192,11 @@ class biblioteq: public QMainWindow
   Q_OBJECT
 
  public:
+  enum Limits
+    {
+     QUANTITY = 1000 // Copies per item.
+    };
+
   static QString s_locale;
   static QString s_unknown;
   static QTranslator *s_appTranslator;

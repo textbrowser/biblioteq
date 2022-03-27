@@ -373,6 +373,7 @@ biblioteq::biblioteq(void):QMainWindow()
   br.setupUi(m_branch_diag);
   pass.setupUi(m_pass_diag);
   al.setupUi(m_all_diag);
+  al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cq.setupUi(m_customquery_diag);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);

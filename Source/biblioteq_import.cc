@@ -271,7 +271,10 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			}
 		    }
 		  else if(m_mappings.value(i).first == "quantity")
-		    quantity = str.toInt();
+		    quantity = qBound
+		      (1,
+		       str.toInt(),
+		       static_cast<int> (biblioteq::Limits::QUANTITY));
 
 		  if(str.isEmpty())
 		    /*

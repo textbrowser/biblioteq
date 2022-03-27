@@ -36,6 +36,7 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
   vg.setupUi(this);
   setQMain(this);
   vg.publication_date_enabled->setVisible(false);
+  vg.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),

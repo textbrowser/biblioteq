@@ -572,9 +572,6 @@
                 <property name="minimum">
                  <number>1</number>
                 </property>
-                <property name="maximum">
-                 <number>999999999</number>
-                </property>
                 <property name="value">
                  <number>1</number>
                 </property>

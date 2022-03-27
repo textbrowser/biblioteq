@@ -1727,6 +1727,8 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
   QString id = "";
   QString itemType = "";
   QString itemoid = "";
+  auto copies = qBound
+    (0, numCopies, static_cast<int> (biblioteq::Limits::QUANTITY));
   int i = 0;
 
   /*
@@ -1765,7 +1767,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
     }
 
   if(!itemoid.isEmpty())
-    for(i = 0; i < numCopies; i++)
+    for(i = 0; i < copies; i++)
       {
 	if(db.driverName() != "QSQLITE")
 	  {

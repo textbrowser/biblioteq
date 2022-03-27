@@ -53,6 +53,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.parse_marc_tags->setVisible(false);
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
   id.publication_date_enabled->setVisible(false);
+  id.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   id.view_pdf->setEnabled(false);
   id.view_pdf->setToolTip
