@@ -87,6 +87,8 @@
 	  <li>PDF reader via Poppler, where available.</li>
 	  <li>Parse local MARC tags. Books, journals, magazines.</li>
 	  <li>Patron information.</li>
+	  <li>Portable.</li>
+	  <li>Portable libraries.</li>
 	  <li>PostgreSQL accounts with various privileges.</li>
 	  <li>PowerPC support.</li>
 	  <li>Print support, including previews.</li>
@@ -104,6 +106,26 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>March 30, 2022.</p>
+	<ul>
+	  <li>Copy contents of book_sequence and sequence tables during Merge SQLite Databases.</li>
+	  <li>Display a warning if the current database schema is not current.</li>
+	  <li>French release notes. Thank you meteos77.</li>
+	  <li>Limit Files Per Page (Files Browser) and Members Per Page (Members Browser) to 2500.</li>
+	  <li>Limit copies to 1000.</li>
+	  <li>New multivolume_set_isbn database field. For SQLite databases, the field cannot be added with a UNIQUE constraint per https://www.sqlite.org/lang_altertable.html. Consider merging the existing database with a newly-created database. See https://github.com/textbrowser/biblioteq/discussions/191.</li>
+	  <ol>
+	    <li>Create a new SQLite database: File -> New SQLite Database.</li>
+	    <li>Open Merge SQLite Databases: Tools -> Merge SQLite Databases.</li>
+	    <li>Press Add Row.</li>
+	    <li>Select the legacy SQLite database file.</li>
+	    <li>Press the Merge button.</li>
+	  </ol>
+	  <li>PostgreSQL 10.20.1; Windows.</li>
+	  <li>Retain SQLite upgrade statements of previous release (2022.02.30) only. All other statements have been archived in the source.</li>
+	  <li>Revised BiblioteQ.odt: new information, new sections, replaced images, spelling corrections.</li>
+	  <li>SQLite 3.38.2; Windows.</li>
+	</ul>
 	<p>February 30, 2022.</p>
 	<ul>
 	  <li>Generate e-mail patron reminders.</li>
