@@ -521,3 +521,5 @@
 283. QSqlField::tableName() and Qt 5.5.1. PowerPC and Ubuntu 16.04. (TBD)
 284. Alternate identifier and Open Library image query. (Done)
 285. Viewable Members Browser columns. (TBD)
+286. Double-clicking on the main table should activate the cell for
+     copying. (TBD)
