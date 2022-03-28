@@ -401,7 +401,7 @@
 213. Context menus. (Done)
 214. Improve PDF pagination. (Done)
 215. Documentation. (Done)
-216. Bar scanner. (TBD)
+216. Bar scanner. Functional with USB scanners. (Done)
 217. Database import of books. (Done)
 218. Translation files are not properly generated on OS X. (Done)
 219. Portuguese translation. (Done)
@@ -518,6 +518,6 @@
 282. The artificial read-status column has broken the recording of
      visible columns. The status should not be a separate column.
      Not a problem. (Done)
-283. QSqlField::tableName() and Qt 5.5.1. (TBD)
+283. QSqlField::tableName() and Qt 5.5.1. PowerPC and Ubuntu 16.04. (TBD)
 284. Alternate identifier and Open Library image query. (Done)
 285. Viewable Members Browser columns. (TBD)
