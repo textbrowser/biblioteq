@@ -406,6 +406,14 @@
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A value of zero disables the maximum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>Une valeur zero déactive le maximum</translation>
     </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate a reminder letter and place its contents in the clipboard buffer. &lt;span style=&quot; background-color:transparent;&quot;&gt;The current contents of this panel will influence the generated letter.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Launch the preferred e-mail software.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Générer une lettre de rappel et placer son contenu dans le tampon du presse-papiers. &lt;span style=&quot; background-color:transparent;&quot;&gt;Le contenu actuel de ce panneau influencera la lettre générée.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Lancez le logiciel de messagerie préféré.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Membership Fees</source>
+        <translation>Cotisations des membres</translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -1121,7 +1129,7 @@
     </message>
     <message>
         <source>In order to reserve an item, you must first select it.</source>
-        <translation>Pour pouvoir réserver un article, il faut d&apos;abord le sélectionner.</translation>
+        <translation>Pour pouvoir emprunter un article, il faut d&apos;abord le sélectionner.</translation>
     </message>
     <message>
         <source>It appears that the item you selected is not available for reservation.</source>
@@ -1813,7 +1821,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
-        <translation>Vous êtes sur le point de mettre à niveau l&apos;ancienne base de données SQLite %1. Veuillez vérifier que vous avez fait une copie de cette base de données. Êtes-vous sûr de vouloir continuer ?</translation>
+        <translation type="vanished">Vous êtes sur le point de mettre à niveau l&apos;ancienne base de données SQLite %1. Veuillez vérifier que vous avez fait une copie de cette base de données. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
         <source>BiblioteQ: Upgrade SQLite Schema Results</source>
@@ -2161,11 +2169,51 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>PNG (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>PNG (*.png)</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Icons View As PNG</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Exporter la vue par icons vers PNG</translation>
+    </message>
+    <message>
+        <source>Membership Fees</source>
+        <translation>Cotisations des membres</translation>
+    </message>
+    <message>
+        <source>Generate Letter</source>
+        <translation>Générer une lettre</translation>
+    </message>
+    <message>
+        <source>Launch E-Mail Software...</source>
+        <translation>Lancer le logiciel de messagerie...</translation>
+    </message>
+    <message>
+        <source>You are about to upgrade the SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
+        <translation>Vous êtes sur le point de mettre à niveau la base de données SQLite %1. Veuillez vérifier que vous avez fait une copie de cette base de données. Êtes-vous sûr de vouloir continuer ?</translation>
+    </message>
+    <message>
+        <source>The current PostgreSQL schema must be updated. Please execute the statement(s) in %1 for version %2.</source>
+        <translation>Le schéma PostgreSQL actuel doit être mis à jour. Veuillez exécuter la ou les déclarations dans %1 pour la version %2.</translation>
+    </message>
+    <message>
+        <source>The current SQLite schema must be updated. Tools -&gt; Upgrade SQLite Schema.</source>
+        <translation>Le schéma SQLite actuel doit être mis à jour. Outils -&gt; Mettre à jour le schéma SQLite.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Set Membership Dues</source>
+        <translation>BiblioteQ : Fixer les cotisations des membres</translation>
+    </message>
+    <message>
+        <source>Membership Dues</source>
+        <translation>Cotisations des membres</translation>
+    </message>
+    <message>
+        <source>Unable to update the entries.</source>
+        <translation>Impossible de mettre à jour les entrées.</translation>
+    </message>
+    <message>
+        <source>Unable to update the entry %1.</source>
+        <translation>Impossible de mettre à jour l&apos;entrés %1.</translation>
     </message>
 </context>
 <context>
@@ -2656,11 +2704,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Pour interroger un site SRU, il faut fournir l&apos;ISBN-10 ou l&apos;ISBN-13.</translation>
+        <translation type="vanished">Pour interroger un site SRU, il faut fournir l&apos;ISBN-10 ou l&apos;ISBN-13.</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Pour interroger un site Z39.50, il faut fournir soit l&apos;ISBN-10, soit l&apos;ISBN-13.</translation>
+        <translation type="vanished">Pour interroger un site Z39.50, il faut fournir soit l&apos;ISBN-10, soit l&apos;ISBN-13.</translation>
     </message>
     <message>
         <source>Downloading...</source>
@@ -2788,7 +2836,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>In order to download a cover image, the ISBN-10 must be provided.</source>
-        <translation>Pour pouvoir télécharger une image de couverture, il faut fournir l&apos;ISBN-10.</translation>
+        <translation type="vanished">Pour pouvoir télécharger une image de couverture, il faut fournir l&apos;ISBN-10.</translation>
     </message>
     <message>
         <source>BiblioteQ: Open Library Data Retrieval</source>
@@ -2804,7 +2852,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>In order to query an Open Library site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Pour interroger un site Open Library, il faut fournir soit l&apos;ISBN-10, soit l&apos;ISBN-13.</translation>
+        <translation type="vanished">Pour interroger un site Open Library, il faut fournir soit l&apos;ISBN-10, soit l&apos;ISBN-13.</translation>
     </message>
     <message>
         <source>The Open Library query produced invalid results. Perhaps the book is not defined.</source>
@@ -2825,6 +2873,26 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>The YAZ library is not available.</source>
         <translation>La librairie YAZ n&apos;est pas disponible.</translation>
+    </message>
+    <message>
+        <source>Reset Multi-Volume Set ISBN</source>
+        <translation>Réinitialisation d&apos;un ensemble de plusieurs volumes ISBN</translation>
+    </message>
+    <message>
+        <source>In order to download a cover image, Alternate Identifier or ISBN-10 must be provided.</source>
+        <translation>Pour pouvoir télécharger une image de couverture, il faut fournir un identifiant alternatif ou un ISBN-10.</translation>
+    </message>
+    <message>
+        <source>In order to query an Open Library site, Alternate Identifier, ISBN-10, or ISBN-13 must be provided.</source>
+        <translation>Pour interroger un site Open Library, il faut fournir un identifiant alternatif, un ISBN-10 ou un ISBN-13.</translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, ISBN-10 or ISBN-13 must be provided.</source>
+        <translation>Pour interroger un site SRU, il faut fournir l&apos;ISBN-10 ou l&apos;ISBN-13.</translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, ISBN-10 or ISBN-13 must be provided.</source>
+        <translation>Pour interroger un site Z39.50, il faut fournir l&apos;ISBN-10 ou l&apos;ISBN-13.</translation>
     </message>
 </context>
 <context>
@@ -9040,6 +9108,18 @@ minmal de jours.</translation>
         <source>Abstract / Description</source>
         <translation>Résumé / Description</translation>
     </message>
+    <message>
+        <source>Multi-Volume Set ISBN</source>
+        <translation>ISBN pour un ensemble de plusieurs volumes</translation>
+    </message>
+    <message>
+        <source>Alternate Identifier</source>
+        <translation>Identifiant alternatif</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library, for example.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library, par exemple.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -9920,7 +10000,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Release Notes...</source>
-        <translation>&amp;Notes de publication...</translation>
+        <translation type="vanished">&amp;Notes de publication...</translation>
     </message>
     <message>
         <source>&amp;Merge SQLite Databases...</source>
@@ -9944,7 +10024,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Export Icons View as PNG...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la vuepar icones vers PNG...</translation>
+    </message>
+    <message>
+        <source>&amp;Release Notes</source>
+        <translation>&amp;Notes de publication</translation>
     </message>
 </context>
 <context>
@@ -10324,6 +10408,22 @@ minmal de jours.</translation>
         <source>&amp;Export All Member Information as CSV...</source>
         <translation>&amp;Exporter toutes les informations sur les membres au format CSV...</translation>
     </message>
+    <message>
+        <source>Membership Fees</source>
+        <translation>Cotisations des membres</translation>
+    </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation>Amandes pour retard</translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation>&amp;Outils</translation>
+    </message>
+    <message>
+        <source>&amp;Set Membership Fees...</source>
+        <translation>&amp;Fixer les frais d&apos;adhésion...</translation>
+    </message>
 </context>
 <context>
     <name>mergeSQLiteDatabases</name>
@@ -10520,15 +10620,27 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display the Read Status column for the Books category. Please note that enabling this option may degrade performance for views containing numerous items. SQLite databases only.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Affichez la colonne État de lecture pour la catégorie Livres. Veuillez noter que l&apos;activation de cette option peut dégrader les performances des vues contenant de nombreux éléments. Bases de données SQLite uniquement.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Icons View Column Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de colonnes de la vue des icônes</translation>
     </message>
     <message>
         <source>[5, 100]</source>
-        <translation type="unfinished"></translation>
+        <translation>[5, 100]</translation>
+    </message>
+    <message>
+        <source>Members</source>
+        <translation>Membres</translation>
+    </message>
+    <message>
+        <source>Generated Letter</source>
+        <translation>Lettre générée</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dear Last Name (%1), First Name (%2),&lt;/p&gt;&lt;p&gt;Your Membership Fees of %3 are currently due.&lt;/p&gt;&lt;p&gt;Thank you for your continued support.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cher nom de famille (%1), Prénom (%2),&lt;/p&gt;&lt;p&gt;Vos frais d&apos;adhésion de %3 sont actuellement dus.&lt;/p&gt;&lt;p&gt;Merci pour votre soutien continu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
