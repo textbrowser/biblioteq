@@ -507,7 +507,7 @@
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -614,7 +614,7 @@
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Case Insensitive</source>
@@ -4086,7 +4086,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -4993,7 +4993,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Reservation Status</source>
@@ -7292,7 +7292,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Compute the runtime from the available tracks.</source>
@@ -7759,7 +7759,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Please provide a query statement.</source>
@@ -7998,7 +7998,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -8381,7 +8381,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Actors / Actresses</source>
@@ -8432,7 +8432,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
 </context>
 <context>
@@ -8495,7 +8495,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>F5</source>
@@ -8608,7 +8608,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -8695,7 +8695,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Ignored Row(s)</source>
@@ -9062,7 +9062,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Download the book&apos;s front cover image.</source>
@@ -9337,7 +9337,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -10346,7 +10346,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>E-Mail Address</source>
@@ -10473,7 +10473,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
 </context>
 <context>
@@ -10504,7 +10504,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Items</source>
@@ -10869,7 +10869,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Subject</source>
@@ -10940,7 +10940,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
@@ -11102,7 +11102,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Next Photograph</source>
@@ -14872,7 +14872,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Crtl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
 </context>
 <context>
