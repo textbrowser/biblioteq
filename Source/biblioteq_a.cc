@@ -75,7 +75,7 @@ extern "C"
 */
 
 QString biblioteq::s_locale = "";
-QString biblioteq::s_unknown = QObject::tr("UNKNOWN");
+QString biblioteq::s_unknown = "UNKNOWN";
 QTranslator *biblioteq::s_appTranslator = nullptr;
 QTranslator *biblioteq::s_qtTranslator = nullptr;
 
@@ -154,7 +154,12 @@ int main(int argc, char *argv[])
 
   if(biblioteq::s_appTranslator->
      load(":/biblioteq_" + biblioteq::s_locale + ".qm"))
-    qapplication.installTranslator(biblioteq::s_appTranslator);
+    {
+      if(qapplication.installTranslator(biblioteq::s_appTranslator))
+	biblioteq::s_unknown = QObject::tr("UNKNOWN");
+      else
+	biblioteq::s_unknown = "UNKNOWN";
+    }
 
   if(biblioteq::s_qtTranslator->
      load(":/qtbase_" + biblioteq::s_locale + ".qm"))
@@ -1316,6 +1321,7 @@ void biblioteq::changeEvent(QEvent *event)
 	  er.retranslateUi(m_error_diag);
 	  history.retranslateUi(m_history_diag);
 	  pass.retranslateUi(m_pass_diag);
+	  s_unknown = QObject::tr("UNKNOWN");
 	  ui.retranslateUi(this);
 	  ui.graphicsView->scene()->clear();
 	  ui.graphicsView->resetTransform();
