@@ -2137,9 +2137,16 @@ void biblioteq::slotAbout(void)
 #ifndef Q_OS_MACOS
   mb.setFont(QApplication::font());
 #endif
-  mb.setWindowIcon(windowIcon());
-  mb.setWindowTitle(tr("BiblioteQ: About"));
-  mb.setTextFormat(Qt::RichText);
+  mb.setIconPixmap
+    (QPixmap(":/book.png").scaled(QSize(128, 128),
+				  Qt::KeepAspectRatio,
+				  Qt::SmoothTransformation));
+  mb.setStandardButtons(QMessageBox::Ok);
+  mb.setStyleSheet
+    ("QDialog {background: qlineargradient(x1: 0.0, y1: 0.0, x2: 0.0, y2: 1.0, "
+     "stop: 0.0 rgba(0, 87, 183, 1), "
+     "stop: 0.5 rgba(255, 215, 0, 1));} "
+     "QWidget {color: white;}");
   mb.setText
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
@@ -2176,11 +2183,9 @@ void biblioteq::slotAbout(void)
      arg(tr("is not available")).
 #endif
      arg(SQLITE_VERSION));
-  mb.setStandardButtons(QMessageBox::Ok);
-  mb.setIconPixmap
-    (QPixmap(":/book.png").scaled(QSize(128, 128),
-				  Qt::KeepAspectRatio,
-				  Qt::SmoothTransformation));
+  mb.setTextFormat(Qt::RichText);
+  mb.setWindowIcon(windowIcon());
+  mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.exec();
   QApplication::processEvents();
 }
