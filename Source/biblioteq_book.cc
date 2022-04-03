@@ -2066,7 +2066,7 @@ void biblioteq_book::slotDownloadImage(void)
   if(!action)
     return;
 
-  bool ok = false;
+  auto ok = false;
 
   if(!id.alternate_id_1->text().trimmed().isEmpty())
     ok = true;
@@ -3574,7 +3574,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   if(m_openLibraryManager->findChild<QNetworkReply *> ())
     return;
 
-  bool ok = false;
+  auto ok = false;
 
   if(!id.alternate_id_1->text().trimmed().isEmpty())
     ok = true;
