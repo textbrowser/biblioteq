@@ -2143,9 +2143,9 @@ void biblioteq::slotAbout(void)
 				  Qt::SmoothTransformation));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setStyleSheet
-    ("QDialog {background: qlineargradient(x1: 0.0, y1: 0.0, x2: 0.0, y2: 1.0, "
-     "stop: 0.0 rgba(0, 87, 183, 1), "
-     "stop: 0.5 rgba(255, 215, 0, 1));} "
+    ("QDialog {background: qlineargradient(y1: 0, y2: 1, "
+     "stop: 0.45 rgb(0, 87, 184), "
+     "stop: 0.46 rgb(254, 221, 0));} "
      "QWidget {color: white;}");
   mb.setText
     (tr("<html>BiblioteQ Version %1<br>"
