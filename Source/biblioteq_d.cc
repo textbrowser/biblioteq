@@ -151,7 +151,10 @@ void biblioteq::slotExportAsPNG(void)
 
       image.fill(Qt::white);
       painter.begin(&image);
-      ui.graphicsView->scene()->render(&painter);
+      ui.graphicsView->scene()->render
+	(&painter,
+	 QRectF(),
+	 ui.graphicsView->scene()->itemsBoundingRect());
       painter.end();
       image.save(dialog.selectedFiles().value(0), "PNG", 100);
       QApplication::restoreOverrideCursor();

@@ -366,9 +366,9 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(selectionChanged(void)),
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
-  ui.graphicsView->setScene(scene);
   ui.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   ui.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
+  ui.graphicsView->setScene(scene);
   bb.setupUi(m_members_diag);
 
   if(bb.menuBar)
