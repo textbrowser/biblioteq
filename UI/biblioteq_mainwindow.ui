@@ -395,7 +395,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -1365,5 +1365,1183 @@
  <resources>
   <include location="../Icons/icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>resetAllSearch</sender>
+   <signal>clicked()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotResetAllSearch()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>749</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_VacuumDatabase</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotVacuum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>modifyTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotModify()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionModifyEntry</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotModify()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>menu_Category</sender>
+   <signal>triggered(QAction*)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotAutoPopOnFilter(QAction*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>26</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionReload_biblioteq_conf</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotReloadBiblioteqConf()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRefreshTable</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotRefresh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>refreshTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotRefresh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDuplicateEntry</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDuplicate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDeleteEntry</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDelete()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>duplicateTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDuplicate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDelete()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSetGlobalFonts</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotSetFonts()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotExit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exitTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotExit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowErrorDialog</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowErrorDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotAbout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowGrid</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowGrid()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionResizeColumns</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotResizeColumns()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>userTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowMembersBrowser()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reserveTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotReserveCopy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMembersBrowser</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowMembersBrowser()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionChangePassword</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowChangePassword()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveSettings</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotSaveConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRequests</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotRequest()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>connectTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowConnectionDB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionConnect</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowConnectionDB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>disconnectTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDisconnect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDisconnect</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDisconnect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionReservationHistory</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowHistory()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filesTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowFiles()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customQueryTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowCustomQuery()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDatabaseSearch</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotSearch()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionViewDetails</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotViewDetails()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>detailsTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotViewDetails()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>createTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>search</sender>
+   <signal>returnPressed()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotSearchBasic()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>423</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>configTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>printTool</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>previousPageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotPreviousPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>504</x>
+     <y>742</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nextPageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotNextPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>742</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pagesLabel</sender>
+   <signal>linkActivated(QString)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotPageClicked(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>526</x>
+     <y>742</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionConfigureAdministratorPrivileges</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowAdminDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_New_SQLite_Database</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotDisplayNewSqliteDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDatabase_Enumerations</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowDbEnumerations()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExport_Current_View</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotExportAsCSV()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExport_View_as_PNG</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotExportAsPNG()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Database_Enumerations</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowDbEnumerations()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Upgrade_SQLite_Schema</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotUpgradeSqliteScheme()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Video_Game</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertVideoGame()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Photograph_Collection</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertPhotograph()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Merge_SQLite_Databases</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotMergeSQLiteDatabases()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Magazine</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertMag()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Journal</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertJourn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Full_Screen</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotViewFullOrNormalScreen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_DVD</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertDVD()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMusic_CD</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertCD()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOther_Options</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowOtherOptions()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionImportCSV</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowImport()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Print_Icons_View</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotPrintIconsView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Open_PDF_File</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotOpenPDFFiles()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Online_Documentation</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotOpenOnlineDocumentation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Grey_Literature</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertGreyLiterature()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_French_Release_Notes</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowReleaseNotes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_French</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowDocumentation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_English_Release_Notes</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowReleaseNotes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_English</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotShowDocumentation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Contributors</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotContributors()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Book</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>slotInsertBook()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotResetAllSearch()</slot>
+  <slot>slotVacuum()</slot>
+  <slot>slotModify()</slot>
+  <slot>slotAutoPopOnFilter(QAction*)</slot>
+  <slot>slotReloadBiblioteqConf()</slot>
+  <slot>slotRefresh()</slot>
+  <slot>slotDuplicate()</slot>
+  <slot>slotDelete()</slot>
+  <slot>slotSetFonts()</slot>
+  <slot>slotExit()</slot>
+  <slot>slotShowErrorDialog()</slot>
+  <slot>slotAbout()</slot>
+  <slot>slotShowGrid()</slot>
+  <slot>slotResizeColumns()</slot>
+  <slot>slotShowMembersBrowser()</slot>
+  <slot>slotReserveCopy()</slot>
+  <slot>slotShowChangePassword()</slot>
+  <slot>slotSaveConfig()</slot>
+  <slot>slotRequest()</slot>
+  <slot>slotShowConnectionDB()</slot>
+  <slot>slotDisconnect()</slot>
+  <slot>slotShowHistory()</slot>
+  <slot>slotShowFiles()</slot>
+  <slot>slotShowMenu()</slot>
+  <slot>slotShowCustomQuery()</slot>
+  <slot>slotSearch()</slot>
+  <slot>slotViewDetails()</slot>
+  <slot>slotSearchBasic()</slot>
+  <slot>slotPreviousPage()</slot>
+  <slot>slotNextPage()</slot>
+  <slot>slotPageClicked(QString)</slot>
+  <slot>slotShowAdminDialog()</slot>
+  <slot>slotDisplayNewSqliteDialog()</slot>
+  <slot>slotShowDbEnumerations()</slot>
+  <slot>slotExportAsCSV()</slot>
+  <slot>slotExportAsPNG()</slot>
+  <slot>slotUpgradeSqliteScheme()</slot>
+  <slot>slotInsertVideoGame()</slot>
+  <slot>slotInsertPhotograph()</slot>
+  <slot>slotMergeSQLiteDatabases()</slot>
+  <slot>slotInsertMag()</slot>
+  <slot>slotInsertJourn()</slot>
+  <slot>slotViewFullOrNormalScreen()</slot>
+  <slot>slotInsertDVD()</slot>
+  <slot>slotInsertCD()</slot>
+  <slot>slotShowOtherOptions()</slot>
+  <slot>slotShowImport()</slot>
+  <slot>slotPrintIconsView()</slot>
+  <slot>slotOpenPDFFiles()</slot>
+  <slot>slotOpenOnlineDocumentation()</slot>
+  <slot>slotInsertGreyLiterature()</slot>
+  <slot>slotShowReleaseNotes()</slot>
+  <slot>slotShowDocumentation()</slot>
+  <slot>slotContributors()</slot>
+  <slot>slotInsertBook()</slot>
+ </slots>
 </ui>
