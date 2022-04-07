@@ -69,7 +69,7 @@
       <item>
        <widget class="QLineEdit" name="search">
         <property name="toolTip">
-         <string>Please press the Enter key to execute the query.</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="placeholderText">
          <string>Search</string>

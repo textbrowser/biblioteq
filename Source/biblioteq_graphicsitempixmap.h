@@ -41,9 +41,9 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
   }
 
   enum
-  {
-    Type = QGraphicsItem::UserType + 1
-  };
+    {
+     Type = QGraphicsPixmapItem::UserType + 1
+    };
 
   int type(void) const
   {
