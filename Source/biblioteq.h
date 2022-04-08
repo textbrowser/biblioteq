@@ -30,6 +30,7 @@
 #include "ui_biblioteq_userinfo.h"
 
 #include <QMessageBox>
+#include <QTimer>
 
 class biblioteq_documentationwindow;
 class biblioteq_files;
@@ -379,7 +380,9 @@ class biblioteq: public QMainWindow
   QMainWindow *m_members_diag;
   QMap<QString, QHash<QString, QString> > m_branches;
   QMap<QString, QHash<QString, QString> > m_sruMaps;
+  QMessageBox *m_about;
   QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
+  QPair<QColor, QColor> m_aboutColors;
   QPointer<QMenu> m_menu;
   QPointer<biblioteq_dbenumerations> db_enumerations;
   QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
@@ -392,6 +395,7 @@ class biblioteq: public QMainWindow
   QString m_roles;
   QStringList m_deletedAdmins;
   QTextBrowser *m_printPreview;
+  QTimer m_aboutTimer;
   QToolButton *m_error_bar_label;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
@@ -450,6 +454,7 @@ class biblioteq: public QMainWindow
   void slotAdminContextMenu(const QPoint &point);
   void slotAllGo(void);
   void slotAllowAnyUserEmail(bool state);
+  void slotAnimateAbout(void);
   void slotAutoPopOnFilter(QAction *action);
   void slotBookSearch(void);
   void slotBranchChanged(void);

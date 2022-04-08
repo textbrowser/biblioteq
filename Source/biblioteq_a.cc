@@ -181,6 +181,7 @@ biblioteq::biblioteq(void):QMainWindow()
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
 
+  m_about = nullptr;
   m_allSearchShown = false;
   m_connected_bar_label = nullptr;
   m_error_bar_label = nullptr;
@@ -2122,7 +2123,24 @@ void biblioteq::showMain(void)
 
 void biblioteq::slotAbout(void)
 {
-  QMessageBox mb(this);
+  if(!m_about)
+    {
+      connect(&m_aboutTimer,
+	      &QTimer::timeout,
+	      this,
+	      &biblioteq::slotAnimateAbout);
+      m_about = new QMessageBox(this);
+    }
+
+  if(!m_aboutTimer.isActive())
+    {
+      m_aboutColors.first = QColor(0, 87, 184);
+      m_aboutColors.first = m_aboutColors.first.darker(10000);
+      m_aboutColors.second = QColor(254, 221, 0);
+      m_aboutColors.second = m_aboutColors.second.darker(10000);
+      m_aboutTimer.start(50);
+    }
+
   QString qversion("");
   const auto tmp = qVersion();
 
@@ -2135,19 +2153,13 @@ void biblioteq::slotAbout(void)
     qversion = "unknown";
 
 #ifndef Q_OS_MACOS
-  mb.setFont(QApplication::font());
+  m_about->setFont(QApplication::font());
 #endif
-  mb.setIconPixmap
+  m_about->setIconPixmap
     (QPixmap(":/book.png").scaled(QSize(128, 128),
 				  Qt::KeepAspectRatio,
 				  Qt::SmoothTransformation));
-  mb.setStandardButtons(QMessageBox::Ok);
-  mb.setStyleSheet
-    ("QDialog {background: qlineargradient(y1: 0, y2: 1, "
-     "stop: 0.45 rgb(0, 87, 184), "
-     "stop: 0.46 rgb(254, 221, 0));} "
-     "QWidget {color: white;}");
-  mb.setText
+  m_about->setText
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
@@ -2183,10 +2195,10 @@ void biblioteq::slotAbout(void)
      arg(tr("is not available")).
 #endif
      arg(SQLITE_VERSION));
-  mb.setTextFormat(Qt::RichText);
-  mb.setWindowIcon(windowIcon());
-  mb.setWindowTitle(tr("BiblioteQ: About"));
-  mb.exec();
+  m_about->setTextFormat(Qt::RichText);
+  m_about->setWindowIcon(windowIcon());
+  m_about->setWindowTitle(tr("BiblioteQ: About"));
+  m_about->exec();
   QApplication::processEvents();
 }
 
