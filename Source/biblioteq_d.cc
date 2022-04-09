@@ -12,6 +12,11 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_merge_databases.h"
 
+QHash<QString, QString> biblioteq::otherImagesHash(void) const
+{
+  return m_otherImages;
+}
+
 QString biblioteq::formattedISBN10(const QString &str) const
 {
   return m_otheroptions->isbn10DisplayFormat(str);
@@ -73,6 +78,24 @@ void biblioteq::prepareUpgradeNotification(void)
 
       QApplication::processEvents();
     }
+}
+
+void biblioteq::slotAnimateAbout(void)
+{
+  if(m_aboutColors.first.lightness() >= 100)
+    m_aboutTimer.stop();
+  else
+    {
+      m_aboutColors.first = m_aboutColors.first.lighter(105);
+      m_aboutColors.second = m_aboutColors.second.lighter(105);
+    }
+
+  m_about->setStyleSheet
+    (QString("QDialog {background: qlineargradient(y1: 0, y2: 1, "
+	     "stop: 0.45 %1, "
+	     "stop: 0.46 %2);} "
+	     "QWidget {color: white;}").
+     arg(m_aboutColors.first.name()).arg(m_aboutColors.second.name()));
 }
 
 void biblioteq::slotContributors(void)

@@ -4672,7 +4672,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("COALESCE(LOWER(accession_number), '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4680,7 +4681,8 @@ void biblioteq::slotSearchBasic(void)
 		else
 		  {
 		    str.append("COALESCE(accession_number, '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4723,7 +4725,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("COALESCE(LOWER(notes), '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4741,7 +4744,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("COALESCE(LOWER(about), '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4814,7 +4818,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("COALESCE(LOWER(keyword), '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4822,7 +4827,8 @@ void biblioteq::slotSearchBasic(void)
 		else
 		  {
 		    str.append("COALESCE(keyword, '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4831,7 +4837,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("COALESCE(LOWER(notes), '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4848,7 +4855,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("COALESCE(LOWER(about), '') LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4870,7 +4878,8 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append("LOWER(document_title) LIKE " +
-			       E + "'%' || ? || '%' ");
+			       E +
+			       "'%' || ? || '%' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4901,7 +4910,8 @@ void biblioteq::slotSearchBasic(void)
 	str += QString("GROUP BY "
 		       "%1.title, "
 		       "%1.id, "
-		       "%1.publisher, %1.pdate, "
+		       "%1.publisher, "
+		       "%1.pdate, "
 		       "%1.category, "
 		       "%1.language, "
 		       "%1.price, "
