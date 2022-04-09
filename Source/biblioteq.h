@@ -225,6 +225,7 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> getOpenLibraryItemsHash(void) const;
   QHash<QString, QString> getSRUHash(const QString &name) const;
   QHash<QString, QString> getZ3950Hash(const QString &name) const;
+  QHash<QString, QString> otherImagesHash(void) const;
   QMainWindow *getMembersBrowser(void) const;
   QSqlDatabase getDB(void) const;
   QString formattedISBN10(const QString &str) const;
@@ -369,6 +370,7 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> m_amazonImages;
   QHash<QString, QString> m_openLibraryImages;
   QHash<QString, QString> m_openLibraryItems;
+  QHash<QString, QString> m_otherImages;
   QHash<QString, QString> m_selectedBranch;
   QLabel *m_connected_bar_label;
   QLabel *m_status_bar_label;

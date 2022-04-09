@@ -311,12 +311,14 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   QAction *action = nullptr;
 
-  for(int i = 1; i <= 4; i++)
+  for(int i = 1; i <= 6; i++)
     {
       if(i == 1 || i == 3)
 	action = new QAction(tr("&Amazon"), this);
-      else
+      else if(i == 2 || i == 4)
 	action = new QAction(tr("&Open Library"), this);
+      else
+      	action = new QAction(tr("&Other"), this);
 
       if(i == 1)
 	{
@@ -333,9 +335,19 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  action->setProperty("download_type", "amazon_back");
 	  id.dwnldBack->addAction(action);
 	}
-      else
+      else if(i == 4)
 	{
 	  action->setProperty("download_type", "open_library_back");
+	  id.dwnldBack->addAction(action);
+	}
+      else if(i == 5)
+	{
+	  action->setProperty("download_type", "other_front");
+	  id.dwnldFront->addAction(action);
+	}
+      else
+	{
+	  action->setProperty("download_type", "other_back");
 	  id.dwnldBack->addAction(action);
 	}
 
@@ -469,13 +481,21 @@ biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
   dialog->show();
   dialog->update();
   dialog->repaint();
-  connect(dialog, SIGNAL(canceled(void)), dialog,
+  connect(dialog,
+	  SIGNAL(canceled(void)),
+	  dialog,
 	  SLOT(deleteLater(void)));
-  connect(dialog, SIGNAL(rejected(void)), dialog,
-	  SLOT(deleteLater(void)));
-  connect(dialog, SIGNAL(canceled(void)), this,
+  connect(dialog,
+	  SIGNAL(canceled(void)),
+	  this,
 	  SLOT(slotCancelImageDownload(void)));
-  connect(dialog, SIGNAL(rejected(void)), this,
+  connect(dialog,
+	  SIGNAL(rejected(void)),
+	  dialog,
+	  SLOT(deleteLater(void)));
+  connect(dialog,
+	  SIGNAL(rejected(void)),
+	  this,
 	  SLOT(slotCancelImageDownload(void)));
   return dialog;
 }
@@ -2066,28 +2086,50 @@ void biblioteq_book::slotDownloadImage(void)
   if(!action)
     return;
 
-  auto ok = false;
-
-  if(!id.alternate_id_1->text().trimmed().isEmpty())
-    ok = true;
-
-  if(id.isbnAvailableCheckBox->isChecked() &&
-     id.id->text().remove('-').trimmed().length() == 10)
-    ok = true;
-
-  if(!ok)
-    {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: User Error"),
-	 tr("In order to download a cover image, "
-	    "Alternate Identifier or ISBN-10 must be provided."));
-      QApplication::processEvents();
-      id.id->setFocus();
-      return;
-    }
-
   auto downloadType(action->property("download_type").toString());
+
+  if(downloadType.contains("amazon") || downloadType.contains("open"))
+    {
+      auto ok = false;
+
+      if(!id.alternate_id_1->text().trimmed().isEmpty())
+	ok = true;
+
+      if(id.isbnAvailableCheckBox->isChecked() &&
+	 id.id->text().remove('-').trimmed().length() == 10)
+	ok = true;
+
+      if(!ok)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("In order to download a cover image, "
+		"Alternate Identifier or ISBN-10 must be provided."));
+	  QApplication::processEvents();
+	  id.id->setFocus();
+	  return;
+	}
+    }
+  else
+    {
+      auto ok = false;
+
+      if(!id.alternate_id_1->text().trimmed().isEmpty())
+	ok = true;
+
+      if(!ok)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("In order to download a cover image, "
+		"Alternate Identifier must be provided."));
+	  QApplication::processEvents();
+	  id.id->setFocus();
+	  return;
+	}
+    }
 
   if(downloadType.contains("back"))
     m_imageBuffer.setProperty("which", "back");
@@ -2209,7 +2251,7 @@ void biblioteq_book::slotDownloadImage(void)
 	    }
 	}
     }
-  else
+  else if(downloadType.contains("open"))
     {
       QString string("");
 
@@ -2312,6 +2354,13 @@ void biblioteq_book::slotDownloadImage(void)
 	      m_imageManager->setProxy(proxy);
 	    }
 	}
+    }
+  else
+    {
+      auto string(qmain->otherImagesHash().value("front_url"));
+
+      string.replace("%1", id.alternate_id_1->text());
+      url = QUrl::fromUserInput(string);
     }
 
   auto dialog = createImageDownloadDialog(downloadType);

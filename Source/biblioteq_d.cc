@@ -12,6 +12,11 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_merge_databases.h"
 
+QHash<QString, QString> biblioteq::otherImagesHash(void) const
+{
+  return m_otherImages;
+}
+
 QString biblioteq::formattedISBN10(const QString &str) const
 {
   return m_otheroptions->isbn10DisplayFormat(str);
