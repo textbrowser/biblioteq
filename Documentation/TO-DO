@@ -522,4 +522,4 @@
 284. Alternate identifier and Open Library image query. (Done)
 285. Viewable Members Browser columns. (TBD)
 286. Double-clicking on the main table should activate the cell for
-     copying. (TBD)
+     copying. This will confuse some people. (TBD)
