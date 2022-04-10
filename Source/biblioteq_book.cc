@@ -680,8 +680,9 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
   m_duplicate = true;
   modify(state); // Initial population.
   id.accession_number->setText
-    (QString::number(biblioteq_misc_functions::
-		     bookAccessionNumber(qmain->getDB())));
+    (biblioteq_misc_functions::
+     accessionNumberAsSpecialText(biblioteq_misc_functions::
+				  bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
   id.view_pdf->setEnabled(false);
   id.copiesButton->setEnabled(false);
@@ -698,8 +699,9 @@ void biblioteq_book::insert(void)
 {
   slotReset();
   id.accession_number->setText
-    (QString::number(biblioteq_misc_functions::
-		     bookAccessionNumber(qmain->getDB())));
+    (biblioteq_misc_functions::
+     accessionNumberAsSpecialText(biblioteq_misc_functions::
+				  bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
   id.marc_tags_format->setVisible(true);
   id.parse_marc_tags->setVisible(true);

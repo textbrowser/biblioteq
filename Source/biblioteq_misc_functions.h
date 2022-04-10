@@ -26,6 +26,7 @@ class biblioteq_misc_functions
   static QMap<QString, qint64> getItemsReservedCounts(const QSqlDatabase &,
 						      const QString &,
 						      QString &);
+  static QString accessionNumberAsSpecialText(const qint64 integer);
   static QString getAbstractInfo(const QString &,
 				 const QString &,
 				 const QSqlDatabase &);

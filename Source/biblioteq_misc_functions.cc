@@ -179,6 +179,12 @@ QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
   return counts;
 }
 
+QString biblioteq_misc_functions::accessionNumberAsSpecialText
+(const qint64 integer)
+{
+  return QString::number(integer).rightJustified(20, QChar('0'));
+}
+
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
