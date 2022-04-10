@@ -1608,8 +1608,12 @@ void biblioteq::readGlobalSetup(void)
 	    }
 	}
       else if(settings.group().startsWith("Other Cover Images"))
-	m_otherImages["front_url"] =
-	  settings.value("front_url", "").toString().trimmed();
+	{
+	  m_otherImages["back_url"] =
+	    settings.value("back_url", "").toString().trimmed();
+	  m_otherImages["front_url"] =
+	    settings.value("front_url", "").toString().trimmed();
+	}
       else if(settings.group().startsWith("SRU"))
 	{
 	  if(!settings.value("name", "").toString().trimmed().isEmpty())

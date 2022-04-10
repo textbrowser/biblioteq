@@ -309,38 +309,53 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   else if(!found)
     id.sruQueryButton->actions().at(0)->setChecked(true);
 
-  QAction *action = nullptr;
-
-  for(int i = 1; i <= 6; i++)
+  for(int i = 1; i <= 2; i++)
     {
-      if(i == 1 || i == 3)
-	action = new QAction(tr("&Amazon"), this);
-      else if(i == 2 || i == 4)
-	action = new QAction(tr("&Open Library"), this);
-      else
-      	action = new QAction(tr("&Other"), this);
+      auto action = new QAction(tr("&Amazon"), this);
 
       if(i == 1)
 	{
 	  action->setProperty("download_type", "amazon_front");
 	  id.dwnldFront->addAction(action);
 	}
-      else if(i == 2)
-	{
-	  action->setProperty("download_type", "open_library_front");
-	  id.dwnldFront->addAction(action);
-	}
-      else if(i == 3)
+      else
 	{
 	  action->setProperty("download_type", "amazon_back");
 	  id.dwnldBack->addAction(action);
 	}
-      else if(i == 4)
+
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotDownloadImage(void)));
+    }
+
+  for(int i = 1; i <= 2; i++)
+    {
+      auto action = new QAction(tr("&Open Library"), this);
+
+      if(i == 1)
+	{
+	  action->setProperty("download_type", "open_library_front");
+	  id.dwnldFront->addAction(action);
+	}
+      else
 	{
 	  action->setProperty("download_type", "open_library_back");
 	  id.dwnldBack->addAction(action);
 	}
-      else if(i == 5)
+
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotDownloadImage(void)));
+    }
+
+  for(int i = 1; i <= 2; i++)
+    {
+      auto action = new QAction(tr("&Other"), this);
+
+      if(i == 1)
 	{
 	  action->setProperty("download_type", "other_front");
 	  id.dwnldFront->addAction(action);
@@ -357,7 +372,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	      SLOT(slotDownloadImage(void)));
     }
 
-  action = new QAction(tr("All..."), this);
+  auto action = new QAction(tr("All..."), this);
+
   connect(action,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -2359,7 +2375,12 @@ void biblioteq_book::slotDownloadImage(void)
     }
   else
     {
-      auto string(qmain->otherImagesHash().value("front_url"));
+      QString string("");
+
+      if(downloadType.contains("back"))
+	string = qmain->otherImagesHash().value("back_url");
+      else
+	string = qmain->otherImagesHash().value("front_url");
 
       string.replace("%1", id.alternate_id_1->text());
       url = QUrl::fromUserInput(string);
