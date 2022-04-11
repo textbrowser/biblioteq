@@ -4673,7 +4673,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(LOWER(accession_number), '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4682,21 +4682,20 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(accession_number, '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
 	    else if(ui.case_insensitive->isChecked())
 	      {
-		str.append
-		  ("LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
+		str.append("LOWER(document_id) LIKE " + E + "'' || ? || '' ");
 		values.append
 		  (biblioteq_myqstring::
 		   escape(text.toLower().trimmed(), true));
 	      }
 	    else
 	      {
-		str.append("document_id LIKE " + E + "'%' || ? || '%' ");
+		str.append("document_id LIKE " + E + "'' || ? || '' ");
 		values.append(biblioteq_myqstring::escape(text.trimmed()));
 	      }
 
@@ -4708,15 +4707,14 @@ void biblioteq::slotSearchBasic(void)
 	      {
 		if(ui.case_insensitive->isChecked())
 		  {
-		    str.append
-		      ("LOWER(category) LIKE " + E + "'%' || ? || '%' ");
+		    str.append("LOWER(category) LIKE " + E + "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
-		    str.append("category LIKE " + E + "'%' || ? || '%' ");
+		    str.append("category LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4726,7 +4724,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(LOWER(notes), '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4734,7 +4732,7 @@ void biblioteq::slotSearchBasic(void)
 		else
 		  {
 		    str.append
-		      ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
+		      ("COALESCE(notes, '') LIKE " + E + "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::escape(text.trimmed()));
 		  }
@@ -4745,7 +4743,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(LOWER(about), '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4753,7 +4751,7 @@ void biblioteq::slotSearchBasic(void)
 		else
 		  {
 		    str.append
-		      ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
+		      ("COALESCE(about, '') LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4767,27 +4765,27 @@ void biblioteq::slotSearchBasic(void)
 		if(ui.case_insensitive->isChecked())
 		  {
 		    str.append
-		      ("(LOWER(document_id) LIKE " + E + "'%' || ? || '%' ");
+		      ("(LOWER(document_id) LIKE " + E + "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
-		    str.append("(document_id LIKE " + E + "'%' || ? || '%' ");
+		    str.append("(document_id LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
 	    else if(ui.case_insensitive->isChecked())
 	      {
-		str.append("(LOWER(id) LIKE " + E + "'%' || ? || '%' ");
+		str.append("(LOWER(id) LIKE " + E + "'' || ? || '' ");
 		values.append
 		  (biblioteq_myqstring::
 		   escape(text.toLower().trimmed(), true));
 	      }
 	    else
 	      {
-		str.append("(id LIKE " + E + "'%' || ? || '%' ");
+		str.append("(id LIKE " + E + "'' || ? || '' ");
 		values.append(biblioteq_myqstring::escape(text.trimmed()));
 	      }
 
@@ -4795,15 +4793,14 @@ void biblioteq::slotSearchBasic(void)
 	      {
 		if(ui.case_insensitive->isChecked())
 		  {
-		    str.append
-		      ("OR LOWER(isbn13) LIKE " + E + "'%' || ? || '%' ");
+		    str.append("OR LOWER(isbn13) LIKE " + E + "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
-		    str.append("OR isbn13 LIKE " + E + "'%' || ? || '%' ");
+		    str.append("OR isbn13 LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4819,7 +4816,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(LOWER(keyword), '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4828,7 +4825,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(keyword, '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4838,7 +4835,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(LOWER(notes), '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4846,7 +4843,7 @@ void biblioteq::slotSearchBasic(void)
 		else
 		  {
 		    str.append
-		      ("COALESCE(notes, '') LIKE " + E + "'%' || ? || '%' ");
+		      ("COALESCE(notes, '') LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4856,7 +4853,7 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("COALESCE(LOWER(about), '') LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
@@ -4864,7 +4861,7 @@ void biblioteq::slotSearchBasic(void)
 		else
 		  {
 		    str.append
-		      ("COALESCE(about, '') LIKE " + E + "'%' || ? || '%' ");
+		      ("COALESCE(about, '') LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
@@ -4879,27 +4876,27 @@ void biblioteq::slotSearchBasic(void)
 		  {
 		    str.append("LOWER(document_title) LIKE " +
 			       E +
-			       "'%' || ? || '%' ");
+			       "'' || ? || '' ");
 		    values.append
 		      (biblioteq_myqstring::
 		       escape(text.toLower().trimmed(), true));
 		  }
 		else
 		  {
-		    str.append("document_title LIKE " + E + "'%' || ? || '%' ");
+		    str.append("document_title LIKE " + E + "'' || ? || '' ");
 		    values.append(biblioteq_myqstring::escape(text.trimmed()));
 		  }
 	      }
 	    else if(ui.case_insensitive->isChecked())
 	      {
-		str.append("LOWER(title) LIKE " + E + "'%' || ? || '%' ");
+		str.append("LOWER(title) LIKE " + E + "'' || ? || '' ");
 		values.append
 		  (biblioteq_myqstring::
 		   escape(text.toLower().trimmed(), true));
 	      }
 	    else
 	      {
-		str.append("title LIKE " + E + "'%' || ? || '%' ");
+		str.append("title LIKE " + E + "'' || ? || '' ");
 		values.append(biblioteq_myqstring::escape(text.trimmed()));
 	      }
 	  }
