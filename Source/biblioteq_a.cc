@@ -420,6 +420,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportMembersAsCSV(void)));
+  connect(bb.database_enumerations_browser_label,
+	  SIGNAL(linkActivated(const QString &)),
+	  this,
+	  SLOT(slotShowDbEnumerations(void)));
   connect(bb.pages,
 	  SIGNAL(valueChanged(int)),
 	  this,
