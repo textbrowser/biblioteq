@@ -3074,6 +3074,9 @@ void biblioteq::slotConnectDB(void)
       ui.menu_Category->setDefaultAction(ui.menu_Category->actions().value(0));
     }
 
+  bb.database_enumerations_browser_label->setVisible
+    (canAccessDatabaseEnumerations());
+
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
 

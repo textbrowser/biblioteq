@@ -27,11 +27,23 @@ QString biblioteq::formattedISBN13(const QString &str) const
   return m_otheroptions->isbn13DisplayFormat(str);
 }
 
+bool biblioteq::canAccessDatabaseEnumerations(void) const
+{
+  if(m_db.driverName() == "QSQLITE")
+    return true;
+  else if(m_roles.contains("administrator") ||
+	  m_roles.contains("librarian"))
+    return true;
+  else
+    return false;
+}
+
 bool biblioteq::isCurrentItemAPhotograph(void) const
 {
   return biblioteq_misc_functions::getColumnString
-    (ui.table, ui.table->currentRow(), ui.table->columnNumber("Type")) ==
-    "Photograph Collection";
+    (ui.table,
+     ui.table->currentRow(),
+     ui.table->columnNumber("Type")) == "Photograph Collection";
 }
 
 bool biblioteq::showBookReadStatus(void) const

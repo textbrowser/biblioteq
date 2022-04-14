@@ -1269,6 +1269,10 @@
    </property>
   </action>
   <action name="actionImportCSV">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/32x32/import.png</normaloff>:/32x32/import.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Import CSV...</string>
    </property>
@@ -1276,14 +1280,6 @@
   <action name="action_VacuumDatabase">
    <property name="text">
     <string>&amp;Vacuum Database</string>
-   </property>
-  </action>
-  <action name="action_Database_Enumerations">
-   <property name="text">
-    <string>Database &amp;Enumerations...</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+E</string>
    </property>
   </action>
   <action name="filesTool">
@@ -1341,6 +1337,18 @@
   <action name="action_French_Release_Notes">
    <property name="text">
     <string>&amp;French...</string>
+   </property>
+  </action>
+  <action name="action_Database_Enumerations">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/32x32/settings.png</normaloff>:/32x32/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Database &amp;Enumerations...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>

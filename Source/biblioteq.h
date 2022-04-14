@@ -244,6 +244,7 @@ class biblioteq: public QMainWindow
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
   bool availabilityColors(void) const;
+  bool canAccessDatabaseEnumerations(void) const;
   bool isGuest(void) const;
   bool isPatron(void) const;
   bool showBookReadStatus(void) const;
