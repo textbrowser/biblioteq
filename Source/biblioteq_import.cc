@@ -70,6 +70,7 @@ void biblioteq_import::changeEvent(QEvent *event)
 
 void biblioteq_import::importBooks(QProgressDialog *progress,
 				   QStringList &errors,
+				   const Templates importTemplate,
 				   const int idIndex,
 				   qint64 *imported,
 				   qint64 *notImported)
@@ -105,18 +106,23 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     }
 
   queryString.append("INSERT INTO book (");
-  queryString.append("description,"); /*
-				      ** The description field is not exported
-				      ** because it is not a column in the
-				      ** Books category.
-				      */
+
+  if(importTemplate == Templates::TEMPLATE_2)
+    /*
+    ** The description field is not exported because
+    ** it is not a column in the Books category.
+    */
+
+    queryString.append("description,");
 
   if(m_qmain->getDB().driverName() != "QPSQL")
     queryString.append("myoid,");
 
   queryString.append(f);
   queryString.append(") VALUES (");
-  queryString.append("?,"); // The description field!
+
+  if(importTemplate == Templates::TEMPLATE_2)
+    queryString.append("?,"); // The description field!
 
   if(m_qmain->getDB().driverName() != "QPSQL")
     queryString.append("?,"); // The myoid field!
@@ -178,7 +184,9 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	      qint64 oid = 0;
 
 	      query.prepare(queryString);
-	      query.addBindValue("N/A"); // The description field.
+
+	      if(importTemplate == Templates::TEMPLATE_2)
+		query.addBindValue("N/A"); // The description field.
 
 	      if(m_qmain->getDB().driverName() != "QPSQL")
 		{
@@ -664,8 +672,8 @@ void biblioteq_import::slotAddRow(void)
 
   switch(m_ui.templates->currentIndex())
     {
-    case TEMPLATE_1:
-    case TEMPLATE_2:
+    case Templates::TEMPLATE_1:
+    case Templates::TEMPLATE_2:
       {
 	comboBox->addItems(QStringList()
 			   << "<ignored>"
@@ -698,7 +706,7 @@ void biblioteq_import::slotAddRow(void)
 			   << "url");
 	break;
       }
-    case TEMPLATE_3:
+    case Templates::TEMPLATE_3:
       {
 	comboBox->addItems(QStringList()
 			   << "<ignored>"
@@ -869,19 +877,29 @@ void biblioteq_import::slotImport(void)
   qint64 imported = 0;
   qint64 notImported = 0;
 
-  if(index == TEMPLATE_1)
+  if(index == Templates::TEMPLATE_1)
     /*
     ** ID's index is 1-based.
     */
 
-    importBooks(progress.data(), errors, 11, &imported, &notImported);
-  else if(index == TEMPLATE_2)
+    importBooks(progress.data(),
+		errors,
+		Templates::TEMPLATE_1,
+		11,
+		&imported,
+		&notImported);
+  else if(index == Templates::TEMPLATE_2)
     /*
     ** ID's index is 1-based.
     */
 
-    importBooks(progress.data(), errors, 9, &imported, &notImported);
-  else if(index == TEMPLATE_3)
+    importBooks(progress.data(),
+		errors,
+		Templates::TEMPLATE_2,
+		9,
+		&imported,
+		&notImported);
+  else if(index == Templates::TEMPLATE_3)
     importPatrons(progress.data(), errors, &imported, &notImported);
 
   progress->close();
@@ -1018,7 +1036,7 @@ void biblioteq_import::slotTemplates(int index)
 
 	QStringList list;
 
-	if(index == TEMPLATE_1)
+	if(index == Templates::TEMPLATE_1)
 	  list << "accession_number"
 	       << "alternate_id_1"
 	       << "author"
@@ -1046,7 +1064,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "quantity"
 	       << "title"
 	       << "url";
-	else if(index == TEMPLATE_2)
+	else if(index == Templates::TEMPLATE_2)
 	  list << "title"
 	       << "author"
 	       << "publisher"
@@ -1070,7 +1088,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "originality"
 	       << "condition"
 	       << "accession_number";
-	else if(index == TEMPLATE_3)
+	else if(index == Templates::TEMPLATE_3)
 	  list << "city"
 	       << "comments"
 	       << "dob"

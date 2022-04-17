@@ -806,6 +806,7 @@ void biblioteq_book::modify(const int state)
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
+      id.isbnAvailableCheckBox->setChecked(false);
       id.marc_tags_format->setVisible(true);
       id.parse_marc_tags->setVisible(true);
       id.showUserButton->setEnabled(true);
@@ -1038,9 +1039,7 @@ void biblioteq_book::modify(const int state)
 	      id.id->setText(qmain->formattedISBN10(var.toString().trimmed()));
 	      setWindowTitle(str);
 
-	      if(query.isNull(i))
-		id.isbnAvailableCheckBox->setChecked(false);
-	      else
+	      if(!query.isNull(i))
 		id.isbnAvailableCheckBox->setChecked(true);
 	    }
 	  else if(fieldname == "description")
@@ -1051,8 +1050,13 @@ void biblioteq_book::modify(const int state)
 	    id.keyword->setMultipleLinks("book_search", "keyword",
 					 var.toString().trimmed());
 	  else if(fieldname == "isbn13")
-	    id.isbn13->setText
-	      (qmain->formattedISBN13(var.toString().trimmed()));
+	    {
+	      id.isbn13->setText
+		(qmain->formattedISBN13(var.toString().trimmed()));
+
+	      if(!query.isNull(i))
+		id.isbnAvailableCheckBox->setChecked(true);
+	    }
 	  else if(fieldname == "lccontrolnumber")
 	    id.lcnum->setText(var.toString().trimmed());
 	  else if(fieldname == "callnumber")

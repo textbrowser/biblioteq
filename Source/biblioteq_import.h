@@ -25,11 +25,11 @@ class biblioteq_import: public QMainWindow
 
   enum Templates
     {
-     // Zero is the text Templates.
+     // Zero is the literal text Templates.
 
-     TEMPLATE_1 = 1,
-     TEMPLATE_2,
-     TEMPLATE_3
+     TEMPLATE_1 = 1, // Books (All Fields)
+     TEMPLATE_2,     // Books (Some Fields)
+     TEMPLATE_3      // Patrons
     };
 
   QMap<int, QPair<QString, QString> > m_mappings;
@@ -39,6 +39,7 @@ class biblioteq_import: public QMainWindow
   void changeEvent(QEvent *event);
   void importBooks(QProgressDialog *progress,
 		   QStringList &errors,
+		   const Templates importTemplate,
 		   const int idIndex, // ISBN-10
 		   qint64 *imported,
 		   qint64 *notImported);
