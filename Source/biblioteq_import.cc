@@ -870,8 +870,16 @@ void biblioteq_import::slotImport(void)
   qint64 notImported = 0;
 
   if(index == TEMPLATE_1)
-    importBooks(progress.data(), errors, 10, &imported, &notImported);
+    /*
+    ** ID's index is 1-based.
+    */
+
+    importBooks(progress.data(), errors, 11, &imported, &notImported);
   else if(index == TEMPLATE_2)
+    /*
+    ** ID's index is 1-based.
+    */
+
     importBooks(progress.data(), errors, 9, &imported, &notImported);
   else if(index == TEMPLATE_3)
     importPatrons(progress.data(), errors, &imported, &notImported);
