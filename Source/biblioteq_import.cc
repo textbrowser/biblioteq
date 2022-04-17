@@ -670,6 +670,7 @@ void biblioteq_import::slotAddRow(void)
 	comboBox->addItems(QStringList()
 			   << "<ignored>"
 			   << "accession_number"
+			   << "alternate_id_1"
 			   << "author"
 			   << "binding_type"
 			   << "callnumber"
@@ -686,6 +687,7 @@ void biblioteq_import::slotAddRow(void)
 			   << "location"
 			   << "marc_tags"
 			   << "monetary_units"
+			   << "multivolume_set_isbn"
 			   << "originality"
 			   << "pdate"
 			   << "place"
@@ -1010,6 +1012,7 @@ void biblioteq_import::slotTemplates(int index)
 
 	if(index == TEMPLATE_1)
 	  list << "accession_number"
+	       << "alternate_id_1"
 	       << "author"
 	       << "binding_type"
 	       << "callnumber"
@@ -1026,6 +1029,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "location"
 	       << "marc_tags"
 	       << "monetary_units"
+	       << "multivolume_set_isbn"
 	       << "originality"
 	       << "pdate"
 	       << "place"
