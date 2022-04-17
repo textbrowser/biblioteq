@@ -27,7 +27,7 @@ CREATE TABLE book							\
     location	 TEXT NOT NULL,						\
     marc_tags    TEXT,							\
     monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-    multivolume_set_isbn VARCHAR(32) UNIQUE,				\
+    multivolume_set_isbn VARCHAR(32),					\
     myoid	 BIGINT NOT NULL,					\
     originality  TEXT,							\
     pdate	 VARCHAR(32) NOT NULL,					\

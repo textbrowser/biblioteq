@@ -1414,3 +1414,7 @@ ALTER TABLE member ADD membership_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
 /* Release 2022.03.30 */
 
 ALTER TABLE book ADD multivolume_set_isbn VARCHAR(32) UNIQUE;
+
+/* Release 2022.04.30 */
+
+ALTER TABLE book DROP CONSTRAINT book_multivolume_set_isbn_key;
