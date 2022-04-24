@@ -38,6 +38,7 @@ CREATE TABLE book
 	price		     NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
 	publisher	     TEXT NOT NULL,
 	quantity	     INTEGER NOT NULL DEFAULT 1,
+	target_audience	     TEXT,
 	title		     TEXT NOT NULL,
 	type		     VARCHAR(16) NOT NULL DEFAULT 'Book',
 	url		     TEXT
