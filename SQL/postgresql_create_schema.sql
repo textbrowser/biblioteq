@@ -534,6 +534,11 @@ CREATE TABLE book_binding_types
 	binding_type	 TEXT NOT NULL PRIMARY KEY
 );
 
+CREATE TABLE book_target_audiences
+(
+	book_target_audience	TEXT NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE cd_formats
 (
 	cd_format	 TEXT NOT NULL PRIMARY KEY

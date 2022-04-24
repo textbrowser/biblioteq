@@ -1418,3 +1418,8 @@ ALTER TABLE book ADD multivolume_set_isbn VARCHAR(32) UNIQUE;
 /* Release 2022.04.30 */
 
 ALTER TABLE book DROP CONSTRAINT book_multivolume_set_isbn_key;
+
+CREATE TABLE book_target_audiences
+(
+	book_target_audience	TEXT NOT NULL PRIMARY KEY
+);
