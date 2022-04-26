@@ -161,10 +161,12 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(toggled(bool)),
 	  ma.sruQueryButton,
 	  SLOT(setEnabled(bool)));
+#ifndef BIBLIOTEQ_LINKED_WITH_YAZ
   connect(ma.issnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  ma.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
+#endif
   connect(qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,

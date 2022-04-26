@@ -113,10 +113,12 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(toggled(bool)),
 	  id.sruQueryButton,
 	  SLOT(setEnabled(bool)));
+#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  id.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
+#endif
   connect(menu->addAction(tr("Reset Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Back Cover Image")),
@@ -206,6 +208,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
       connect(id.isbnAvailableCheckBox,
 	      SIGNAL(toggled(bool)),
 	      menu->actions().at(3),
+	      SLOT(setEnabled(bool)));
+      connect(id.isbnAvailableCheckBox,
+	      SIGNAL(toggled(bool)),
+	      menu->actions().at(27),
 	      SLOT(setEnabled(bool)));
     }
 
