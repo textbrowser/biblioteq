@@ -67,11 +67,10 @@ void biblioteq::prepareUpgradeNotification(void)
   */
 
   auto record1(m_db.record("book"));
-  auto record2(m_db.record("member"));
+  auto record2(m_db.record("book_target_audiences"));
 
-  if(!(record1.indexOf("alternate_id_1") >= 0 &&
-       record1.indexOf("multivolume_set_isbn") >= 0 &&
-       record2.indexOf("membership_fees") >= 0))
+  if(!(record1.indexOf("target_audience") >= 0 &&
+       record2.indexOf("book_target_audience") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
 	QMessageBox::critical

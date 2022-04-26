@@ -5349,25 +5349,28 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD book_read INTEGER DEFAULT 0");
   list.append("ALTER TABLE member ADD maximum_reserved_books "
 	      "INTEGER NOT NULL DEFAULT 0");
-#endif
   list.append("ALTER TABLE book ADD alternate_id_1 TEXT");
   list.append("ALTER TABLE book ADD multivolume_set_isbn VARCHAR(32)");
   list.append("ALTER TABLE member ADD membership_fees NUMERIC(10, 2) "
 	      "NOT NULL DEFAULT 0.00");
+#endif
+  list.append("ALTER TABLE book ADD target_audience TEXT");
+  list.append("CREATE TABLE IF NOT EXISTS book_target_audiences "
+	      "(book_target_audience TEXT NOT NULL PRIMARY KEY)");
 
   QString errors("<html>");
   int ct = 1;
 
-  errors.append(tr("Executing %1 statements.<br><br>").arg(list.size()));
+  errors.append(tr("Executing %1 statement(s).<br><br>").arg(list.size()));
 
   for(int i = 0; i < list.size(); i++)
     {
       QSqlQuery query(m_db);
 
       errors.append(QString::number(i + 1));
-      errors.append(". ");
+      errors.append(". <b>");
       errors.append(list.at(i));
-      errors.append("<br><br>");
+      errors.append("</b><br><br>");
 
       if(!query.exec(list.at(i)))
 	{

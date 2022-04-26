@@ -911,7 +911,8 @@ void biblioteq_book::modify(const int state)
 		"accession_number, "
 		"url, "
 		"alternate_id_1, "
-		"multivolume_set_isbn "
+		"multivolume_set_isbn, "
+		"target_audience "
 		"FROM book WHERE myoid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1116,6 +1117,8 @@ void biblioteq_book::modify(const int state)
 	      else
 		id.multivolume_set_isbn->setText(qmain->formattedISBN13(str));
 	    }
+	  else if(fieldname == "target_audience")
+	    id.target_audience->setText(var.toString().trimmed());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
