@@ -119,8 +119,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(menu2->addAction(tr("&Selected...")),
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
-  connect(pc.page, SIGNAL(currentIndexChanged(const QString &)),
-	  this, SLOT(slotPageChanged(const QString &)));
+  connect(pc.page, SIGNAL(currentIndexChanged(int)),
+	  this, SLOT(slotPageChanged(int)));
   connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
 	  this, SLOT(slotViewPhotograph(void)));
   pc.resetButton->setMenu(menu1);
@@ -520,9 +520,9 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 	      ui.view,
 	      SLOT(slotSave(void)));
       connect(ui.view_size,
-	      SIGNAL(currentIndexChanged(const QString &)),
+	      SIGNAL(currentIndexChanged(int)),
 	      this,
-	      SLOT(slotImageViewSizeChanged(const QString &)));
+	      SLOT(slotImageViewSizeChanged(int)));
       ui.save->setVisible(m_engWindowTitle.contains("Modify"));
 
       auto scene = new QGraphicsScene(mainWindow);
@@ -1505,7 +1505,6 @@ void biblioteq_photographcollection::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
-      QSqlQuery query(qmain->getDB());
       QString searchstr("");
       QString frontCover("'' AS image_scaled ");
 
@@ -1567,17 +1566,20 @@ void biblioteq_photographcollection::slotGo(void)
 		       "photograph_collection.type, "
 		       "photograph_collection.myoid, "
 		       "photograph_collection.image_scaled");
-      query.prepare(searchstr);
-      query.addBindValue(pc.id_collection->text().trimmed());
-      query.addBindValue
+
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
+      query->addBindValue(pc.id_collection->text().trimmed());
+      query->addBindValue
 	(biblioteq_myqstring::escape(pc.title_collection->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(pc.about_collection->toPlainText().
 				     trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(pc.notes_collection->toPlainText().
 				     trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(pc.accession_number->text().trimmed()));
       (void) qmain->populateTable
 	(query,
@@ -1587,8 +1589,7 @@ void biblioteq_photographcollection::slotGo(void)
     }
 }
 
-void biblioteq_photographcollection::slotImageViewSizeChanged
-(const QString &text)
+void biblioteq_photographcollection::slotImageViewSizeChanged(int index)
 {
   auto comboBox = qobject_cast<QComboBox *> (sender());
 
@@ -1626,7 +1627,16 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 	  if(image.loadFromData(item->data(1).toByteArray()))
 	    {
 	      QSize size;
-	      auto percent = QString(text).remove("%").toInt();
+	      auto percent = index;
+
+	      if(percent == 1)
+		percent = 100;
+	      else if(percent == 2)
+		percent = 80;
+	      else if(percent == 3)
+		percent = 50;
+	      else if(percent == 4)
+		percent = 25;
 
 	      if(percent == 0)
 		{
@@ -2079,11 +2089,11 @@ void biblioteq_photographcollection::slotModifyItem(void)
   m_photo_diag->show();
 }
 
-void biblioteq_photographcollection::slotPageChanged(const QString &text)
+void biblioteq_photographcollection::slotPageChanged(int index)
 {
   pc.page->repaint();
   QApplication::processEvents();
-  showPhotographs(text.toInt());
+  showPhotographs(index);
 }
 
 void biblioteq_photographcollection::slotPrint(void)

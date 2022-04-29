@@ -786,7 +786,6 @@ void biblioteq_cd::slotDeleteTrack(void)
 
 void biblioteq_cd::slotGo(void)
 {
-  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
   QString str = "";
@@ -955,6 +954,8 @@ void biblioteq_cd::slotGo(void)
       cd.keyword->setPlainText(str);
       str = cd.accession_number->text().trimmed();
       cd.accession_number->setText(str);
+
+      QSqlQuery query(qmain->getDB());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE cd SET "
@@ -1424,7 +1425,6 @@ void biblioteq_cd::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
-      QSqlQuery query(qmain->getDB());
       QString frontCover("'' AS front_cover ");
 
       if(qmain->showMainTableImages())
@@ -1566,53 +1566,56 @@ void biblioteq_cd::slotGo(void)
 		       "cd.type, "
 		       "cd.myoid, "
 		       "cd.front_cover");
-      query.prepare(searchstr);
-      query.addBindValue(cd.id->text().trimmed());
+
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
+      query->addBindValue(cd.id->text().trimmed());
 
       if(cd.format->currentIndex() != 0)
-	query.addBindValue
+	query->addBindValue
 	  (biblioteq_myqstring::escape(cd.format->currentText().trimmed()));
 
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.artist->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.artist->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.composer->toPlainText().trimmed()));
 
       if(cd.audio->currentIndex() != 0)
-	query.addBindValue(cd.audio->currentText().trimmed());
+	query->addBindValue(cd.audio->currentText().trimmed());
 
       if(cd.recording_type->currentIndex() != 0)
-	query.addBindValue(cd.recording_type->currentText().trimmed());
+	query->addBindValue(cd.recording_type->currentText().trimmed());
 
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.title->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::
 	 escape(cd.recording_label->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.category->toPlainText().trimmed()));
 
       if(cd.language->currentIndex() != 0)
-	query.addBindValue
+	query->addBindValue
 	  (biblioteq_myqstring::escape(cd.language->currentText().trimmed()));
 
       if(cd.monetary_units->currentIndex() != 0)
-	query.addBindValue
+	query->addBindValue
 	  (biblioteq_myqstring::
 	   escape(cd.monetary_units->currentText().trimmed()));
 
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.description->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.keyword->toPlainText().trimmed()));
 
       if(cd.location->currentIndex() != 0)
-	query.addBindValue
+	query->addBindValue
 	  (biblioteq_myqstring::escape(cd.location->currentText().trimmed()));
 
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(cd.accession_number->text().trimmed()));
       (void) qmain->populateTable
 	(query, "Music CDs", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);

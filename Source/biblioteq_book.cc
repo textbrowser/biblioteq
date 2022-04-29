@@ -2575,7 +2575,6 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 void biblioteq_book::slotGo(void)
 {
-  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
   QString str = "";
@@ -2799,6 +2798,8 @@ void biblioteq_book::slotGo(void)
       else if(id.multivolume_set_isbn->text().length() == 13)
 	id.multivolume_set_isbn->setText
 	  (qmain->formattedISBN13(id.multivolume_set_isbn->text()));
+
+      QSqlQuery query(qmain->getDB());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
@@ -3354,7 +3355,6 @@ void biblioteq_book::slotGo(void)
   else if(m_engWindowTitle.contains("Search"))
     {
       QList<QVariant> values;
-      QSqlQuery query(qmain->getDB());
       QString frontCover("'' AS front_cover ");
 
       if(qmain->showMainTableImages())
@@ -3579,10 +3579,13 @@ void biblioteq_book::slotGo(void)
 	 "book.myoid, "
 	 "book.front_cover "
 	 "ORDER BY book.title");
-      query.prepare(searchstr);
+
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
 
       for(int i = 0; i < values.size(); i++)
-	query.addBindValue(values.at(i));
+	query->addBindValue(values.at(i));
 
       (void) qmain->populateTable
 	(query, "Books", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);

@@ -301,21 +301,24 @@ bool biblioteq::emptyContainers(void)
   return true;
 }
 
-int biblioteq::populateTable(const QSqlQuery &query,
+int biblioteq::populateTable(QSqlQuery *query,
 			     const QString &typefilter,
 			     const int pagingType,
 			     const int searchType)
 {
+  if(m_searchQuery != query)
+    {
+      delete m_searchQuery;
+      m_searchQuery = query;
+    }
+
+  if(!m_searchQuery)
+    return 1;
+
   if(pagingType == NEW_PAGE)
     {
-      if(m_searchQuery.isActive())
-	m_searchQuery.clear();
-
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-      m_searchQuery = query;
-#else
-      m_searchQuery = query;
-#endif
+      if(m_searchQuery->isActive())
+	m_searchQuery->clear();
     }
 
   if(m_configToolMenu)
@@ -405,13 +408,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
   auto ok = true;
 
   if(pagingType == NEW_PAGE)
-    ok = m_searchQuery.exec();
+    ok = m_searchQuery->exec();
   else if(pagingType == NEXT_PAGE || pagingType == PREVIOUS_PAGE)
-    ok = m_searchQuery.seek(static_cast<int> (offset));
+    ok = m_searchQuery->seek(static_cast<int> (offset));
   else if(pagingType < 0)
-    ok = m_searchQuery.seek(limit * qAbs(pagingType + 1));
+    ok = m_searchQuery->seek(limit * qAbs(pagingType + 1));
 
-  if(m_searchQuery.lastError().isValid() || !ok)
+  if(m_searchQuery->lastError().isValid() || !ok)
     {
       if(progress)
 	progress->close();
@@ -433,16 +436,18 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	      break;
 	    }
 
-      if(m_searchQuery.lastError().isValid())
+      if(m_searchQuery->lastError().isValid())
 	addError(QString(tr("Database Error")),
 		 QString(tr("Unable to retrieve the data required for "
 			    "populating the main views.")),
-		 m_searchQuery.lastError().text(), __FILE__, __LINE__);
+		 m_searchQuery->lastError().text(), __FILE__, __LINE__);
 
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main views."));
       QApplication::processEvents();
+      delete m_searchQuery;
+      m_searchQuery = nullptr;
       return 1;
     }
 
@@ -590,11 +595,11 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
   if(limit == -1)
     {
-      m_searchQuery.seek(0);
+      m_searchQuery->seek(0);
 
       int size = 0;
 
-      while(m_searchQuery.next())
+      while(m_searchQuery->next())
 	size += 1;
 
       if(size > 0)
@@ -607,13 +612,13 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(progress && size >= 0)
 	progress->setMaximum(size);
 
-      m_searchQuery.seek(static_cast<int> (offset));
+      m_searchQuery->seek(static_cast<int> (offset));
     }
 
   if(limit != -1 &&
      m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
      progress)
-    progress->setMaximum(qMin(limit, m_searchQuery.size()));
+    progress->setMaximum(qMin(limit, m_searchQuery->size()));
 
   QFontMetrics fontMetrics(ui.table->font());
   QSettings settings;
@@ -648,19 +653,19 @@ int biblioteq::populateTable(const QSqlQuery &query,
       if(progress && progress->wasCanceled())
 	break;
 
-      if(m_searchQuery.at() == QSql::BeforeFirstRow)
-	if(!m_searchQuery.next())
+      if(m_searchQuery->at() == QSql::BeforeFirstRow)
+	if(!m_searchQuery->next())
 	  break;
 
       biblioteq_graphicsitempixmap *pixmapItem = nullptr;
       biblioteq_numeric_table_item *availabilityItem = nullptr;
       quint64 myoid = 0;
 
-      if(m_searchQuery.isValid())
+      if(m_searchQuery->isValid())
 	{
 	  QString tooltip("");
 	  QTableWidgetItem *first = nullptr;
-	  auto record(m_searchQuery.record());
+	  auto record(m_searchQuery->record());
 
 	  if(showToolTips)
 	    {
@@ -701,7 +706,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(fieldName == "id" || fieldName == "isbn13")
 #endif
 		    {
-		      auto str(m_searchQuery.value(j).toString().trimmed());
+		      auto str(m_searchQuery->value(j).toString().trimmed());
 
 		      if(fieldName == "id")
 			str = m_otheroptions->isbn10DisplayFormat(str);
@@ -712,7 +717,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    }
 		  else
 		    tooltip.append
-		      (m_searchQuery.value(j).
+		      (m_searchQuery->value(j).
 		       toString().simplified().replace("<br>", " ").
 		       simplified().trimmed());
 
@@ -737,7 +742,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(fieldName.contains("date") ||
 		     fieldName.contains("membersince"))
 		    {
-		      auto date(QDate::fromString(m_searchQuery.value(j).
+		      auto date(QDate::fromString(m_searchQuery->value(j).
 						  toString().trimmed(),
 						  "MM/dd/yyyy"));
 
@@ -747,10 +752,10 @@ int biblioteq::populateTable(const QSqlQuery &query,
 			str = date.toString(dateFormat);
 
 		      if(str.isEmpty())
-			str = m_searchQuery.value(j).toString().trimmed();
+			str = m_searchQuery->value(j).toString().trimmed();
 		    }
 		  else
-		    str = m_searchQuery.value(j).toString().trimmed();
+		    str = m_searchQuery->value(j).toString().trimmed();
 		}
 
 #if QT_VERSION > 0x050501
@@ -773,7 +778,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		    {
 		      if(booksAccessionNumberIndex == 0)
 			item = new biblioteq_numeric_table_item
-			  (query.value(j).toInt());
+			  (m_searchQuery->value(j).toInt());
 		      else
 			item = new QTableWidgetItem();
 		    }
@@ -796,14 +801,14 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		  if(fieldName.endsWith("price"))
 		    {
 		      item = new biblioteq_numeric_table_item
-			(m_searchQuery.value(j).toDouble());
+			(m_searchQuery->value(j).toDouble());
 		      str = QString::number
-			(m_searchQuery.value(j).toDouble(), 'f', 2);
+			(m_searchQuery->value(j).toDouble(), 'f', 2);
 		    }
 		  else
 		    {
 		      item = new biblioteq_numeric_table_item
-			(m_searchQuery.value(j).toInt());
+			(m_searchQuery->value(j).toInt());
 
 		      if(availabilityColors &&
 			 fieldName.endsWith("availability"))
@@ -813,7 +818,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 		}
 	      else if(fieldName.endsWith("callnumber"))
 		{
-		  str = m_searchQuery.value(j).toString().trimmed();
+		  str = m_searchQuery->value(j).toString().trimmed();
 		  item = new biblioteq_callnum_table_item(str);
 		}
 	      else if(fieldName.endsWith("front_cover") ||
@@ -823,15 +828,15 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 		  if(showMainTableImages)
 		    {
-		      if(!m_searchQuery.isNull(j))
+		      if(!m_searchQuery->isNull(j))
 			{
 			  image.loadFromData
-			    (QByteArray::fromBase64(m_searchQuery.value(j).
+			    (QByteArray::fromBase64(m_searchQuery->value(j).
 						    toByteArray()));
 
 			  if(image.isNull())
 			    image.loadFromData
-			      (m_searchQuery.value(j).toByteArray());
+			      (m_searchQuery->value(j).toByteArray());
 			}
 		    }
 
@@ -899,7 +904,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 
 		  if(fieldName.endsWith("myoid"))
 		    {
-		      myoid = query.value(j).toULongLong();
+		      myoid = m_searchQuery->value(j).toULongLong();
 		      updateRows(str, item, itemType);
 		    }
 		}
@@ -948,7 +953,7 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	    }
 	}
 
-      if(m_searchQuery.isValid())
+      if(m_searchQuery->isValid())
 	if(pixmapItem)
 	  {
 	    pixmapItem->setData(0, myoid);
@@ -964,8 +969,8 @@ int biblioteq::populateTable(const QSqlQuery &query,
 	  QApplication::processEvents();
 	}
 
-      if(m_searchQuery.at() != QSql::BeforeFirstRow)
-	if(!m_searchQuery.next())
+      if(m_searchQuery->at() != QSql::BeforeFirstRow)
+	if(!m_searchQuery->next())
 	  break;
     }
 
@@ -1758,7 +1763,6 @@ void biblioteq::slotAllGo(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QList<QVariant> values;
-  QSqlQuery query(m_db);
   QString bookFrontCover("'' AS front_cover ");
   QString cdFrontCover("'' AS front_cover ");
   QString dvdFrontCover("'' AS front_cover ");
@@ -1772,6 +1776,7 @@ void biblioteq::slotAllGo(void)
   QString videoGameFrontCover("'' AS front_cover ");
   QStringList types;
   auto caseinsensitive = al.caseinsensitive->isChecked();
+  auto query = new QSqlQuery(m_db);
 
   if(m_otheroptions->showMainTableImages())
     {
@@ -2383,12 +2388,12 @@ void biblioteq::slotAllGo(void)
     }
 
   if(m_db.driverName() == "QSQLITE")
-    query.exec("PRAGMA case_sensitive_like = TRUE");
+    query->exec("PRAGMA case_sensitive_like = TRUE");
 
-  query.prepare(searchstr);
+  query->prepare(searchstr);
 
   for(int i = 0; i < values.size(); i++)
-    query.addBindValue(values.at(i));
+    query->addBindValue(values.at(i));
 
   QApplication::restoreOverrideCursor();
   (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH);
@@ -3111,10 +3116,8 @@ void biblioteq::slotDisconnect(void)
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
-
-  if(m_searchQuery.isActive())
-    m_searchQuery.clear();
-
+  delete m_searchQuery;
+  m_searchQuery = nullptr;
   userinfo_diag->m_memberProperties.clear();
 #ifdef Q_OS_ANDROID
   m_admin_diag->hide();

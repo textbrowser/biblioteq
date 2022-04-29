@@ -56,11 +56,11 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotExportItem(void);
   void slotExportPhotographs(void);
   void slotGo(void);
-  void slotImageViewSizeChanged(const QString &text);
+  void slotImageViewSizeChanged(int index);
   void slotImportItems(void);
   void slotInsertItem(void);
   void slotModifyItem(void);
-  void slotPageChanged(const QString &text);
+  void slotPageChanged(int index);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);

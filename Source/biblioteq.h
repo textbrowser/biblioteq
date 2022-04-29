@@ -250,7 +250,7 @@ class biblioteq: public QMainWindow
   bool showBookReadStatus(void) const;
   bool showMainTableImages(void) const;
   int pageLimit(void) const;
-  int populateTable(const QSqlQuery &query,
+  int populateTable(QSqlQuery *query,
 		    const QString &typefilter,
 		    const int pagingType,
 		    const int searchType);
@@ -390,7 +390,7 @@ class biblioteq: public QMainWindow
   QPointer<biblioteq_dbenumerations> db_enumerations;
   QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
   QSqlDatabase m_db;
-  QSqlQuery m_searchQuery;
+  QSqlQuery *m_searchQuery;
   QString m_engUserinfoTitle;
   QString m_lastCategory;
   QString m_lastSearchStr;

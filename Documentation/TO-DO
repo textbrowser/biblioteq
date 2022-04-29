@@ -494,7 +494,7 @@
 266. Qt 6.2 LTS:
      QNetworkReply (Done)
      QSqlQuery (Done)
-     QSqlQuery Copy (TBD)
+     QSqlQuery Copy (Done)
 267. Qt 6.2 LTS regular expressions. (TBD)
 268. Prepare Database Enumerations during an import. (Done)
 269. Embed translation files. (Done)

@@ -661,7 +661,6 @@ void biblioteq_videogame::slotCancel(void)
 
 void biblioteq_videogame::slotGo(void)
 {
-  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
   QString str = "";
@@ -832,6 +831,8 @@ void biblioteq_videogame::slotGo(void)
       str = vg.accession_number->text().trimmed();
       vg.accession_number->setText(str);
       QApplication::restoreOverrideCursor();
+
+      QSqlQuery query(qmain->getDB());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE videogame SET id = ?, "
@@ -1263,7 +1264,6 @@ void biblioteq_videogame::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
-      QSqlQuery query(qmain->getDB());
       QString frontCover("'' AS front_cover ");
 
       if(qmain->showMainTableImages())
@@ -1399,23 +1399,26 @@ void biblioteq_videogame::slotGo(void)
 		       "videogame.type, "
 		       "videogame.myoid, "
 		       "videogame.front_cover");
-      query.prepare(searchstr);
-      query.addBindValue(vg.id->text().trimmed());
-      query.addBindValue
+
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
+      query->addBindValue(vg.id->text().trimmed());
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.title->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.developer->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.publisher->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.place->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.genre->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.description->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.keyword->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(vg.accession_number->text().trimmed()));
       (void) qmain->populateTable
 	(query, "Video Games", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);

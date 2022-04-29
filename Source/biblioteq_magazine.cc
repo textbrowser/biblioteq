@@ -2151,7 +2151,6 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 void biblioteq_magazine::slotGo(void)
 {
-  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
   QString str = "";
@@ -2323,6 +2322,8 @@ void biblioteq_magazine::slotGo(void)
       ma.keyword->setPlainText(str);
       str = ma.accession_number->text().trimmed();
       ma.accession_number->setText(str);
+
+      QSqlQuery query(qmain->getDB());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE %1 SET "
@@ -2874,7 +2875,6 @@ void biblioteq_magazine::slotGo(void)
   else if(m_engWindowTitle.contains("Search"))
     {
       QList<QVariant> values;
-      QSqlQuery query(qmain->getDB());
       QString frontCover("'' AS front_cover ");
 
       if(qmain->showMainTableImages())
@@ -3064,10 +3064,12 @@ void biblioteq_magazine::slotGo(void)
 			 "magazine.myoid, "
 			 "magazine.front_cover");
 
-      query.prepare(searchstr);
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
 
       for(int i = 0; i < values.size(); i++)
-	query.addBindValue(values.at(i));
+	query->addBindValue(values.at(i));
 
       if(m_subType == "Journal")
 	(void) qmain->populateTable

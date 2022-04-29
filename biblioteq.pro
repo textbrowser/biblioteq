@@ -54,6 +54,12 @@ QMAKE_CXXFLAGS_RELEASE += -O3 \
                           -pedantic \
                           -pie \
                           -std=c++11
+
+greaterThan(QT_MAJOR_VERSION, 5) {
+QMAKE_CXXFLAGS_RELEASE -= -std=c++11
+QMAKE_CXXFLAGS_RELEASE += -std=c++17
+}
+
 QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = doxygen purge
 

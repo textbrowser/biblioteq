@@ -4537,7 +4537,6 @@ void biblioteq::slotSearchBasic(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QList<QVariant> values;
-  QSqlQuery query(m_db);
   QString bookFrontCover("'' AS front_cover ");
   QString cdFrontCover("'' AS front_cover ");
   QString dvdFrontCover("'' AS front_cover ");
@@ -4550,6 +4549,7 @@ void biblioteq::slotSearchBasic(void)
   QString type("");
   QString videoGameFrontCover("'' AS front_cover ");
   QStringList types;
+  auto query = new QSqlQuery(m_db);
   auto text(ui.search->text().trimmed());
 
   types.append("Book");
@@ -4967,12 +4967,12 @@ void biblioteq::slotSearchBasic(void)
   searchstr.append("ORDER BY 1");
 
   if(m_db.driverName() == "QSQLITE")
-    query.exec("PRAGMA case_sensitive_like = TRUE");
+    query->exec("PRAGMA case_sensitive_like = TRUE");
 
-  query.prepare(searchstr);
+  query->prepare(searchstr);
 
   for(int i = 0; i < values.size(); i++)
-    query.addBindValue(values.at(i));
+    query->addBindValue(values.at(i));
 
   QApplication::restoreOverrideCursor();
   (void) populateTable(query, "All", NEW_PAGE, POPULATE_SEARCH_BASIC);

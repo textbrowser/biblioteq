@@ -192,6 +192,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_pages = 0;
   m_previousTypeFilter = "";
   m_queryOffset = 0;
+  m_searchQuery = nullptr;
   m_status_bar_label = nullptr;
   m_branch_diag = new QDialog(this);
   m_menuCategoryActionGroup = new QActionGroup(this);

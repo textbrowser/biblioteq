@@ -1164,7 +1164,6 @@ void biblioteq_grey_literature::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
-      QSqlQuery query(qmain->getDB());
       QString frontCover("'' AS front_cover ");
       QString searchstr("");
 
@@ -1314,24 +1313,27 @@ void biblioteq_grey_literature::slotGo(void)
 		       "grey_literature.type, "
 		       "grey_literature.myoid, "
 		       "grey_literature.front_cover");
-      query.prepare(searchstr);
-      query.addBindValue
+
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.title->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.id->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.author->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.client->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.code_a->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.code_b->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.job_number->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.notes->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(m_ui.status->text().trimmed()));
       (void) qmain->populateTable
 	(query,

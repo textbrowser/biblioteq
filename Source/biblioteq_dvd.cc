@@ -722,7 +722,6 @@ void biblioteq_dvd::slotCancel(void)
 
 void biblioteq_dvd::slotGo(void)
 {
-  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
   QString str = "";
@@ -913,6 +912,8 @@ void biblioteq_dvd::slotGo(void)
       str = dvd.accession_number->text().trimmed();
       dvd.accession_number->setText(str);
       QApplication::restoreOverrideCursor();
+
+      QSqlQuery query(qmain->getDB());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE dvd SET "
@@ -1390,7 +1391,6 @@ void biblioteq_dvd::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
-      QSqlQuery query(qmain->getDB());
       QString frontCover("'' AS front_cover ");
 
       if(qmain->showMainTableImages())
@@ -1548,25 +1548,28 @@ void biblioteq_dvd::slotGo(void)
 		       "dvd.type, "
 		       "dvd.myoid, "
 		       "dvd.front_cover");
-      query.prepare(searchstr);
-      query.addBindValue(dvd.id->text().trimmed());
-      query.addBindValue
+
+      auto query = new QSqlQuery(qmain->getDB());
+
+      query->prepare(searchstr);
+      query->addBindValue(dvd.id->text().trimmed());
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.format->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.actors->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.directors->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.title->text().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.studio->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.category->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.description->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.keyword->toPlainText().trimmed()));
-      query.addBindValue
+      query->addBindValue
 	(biblioteq_myqstring::escape(dvd.accession_number->text().trimmed()));
       (void) qmain->populateTable
 	(query, "DVDs", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
