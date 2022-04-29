@@ -1124,7 +1124,14 @@ void biblioteq_book::modify(const int state)
 		id.multivolume_set_isbn->setText(qmain->formattedISBN13(str));
 	    }
 	  else if(fieldname == "target_audience")
-	    id.target_audience->setText(var.toString().trimmed());
+	    {
+	      if(id.target_audience->findText(var.toString().trimmed()) > -1)
+		id.target_audience->setCurrentIndex
+		  (id.target_audience->findText(var.toString().trimmed()));
+	      else
+		id.target_audience->setCurrentIndex
+		  (id.target_audience->findText(biblioteq::s_unknown));
+	    }
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -1875,6 +1882,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.location->insertItem(0, tr("Any"));
   id.originality->insertItem(0, tr("Any"));
   id.condition->insertItem(0, tr("Any"));
+  id.target_audience->insertItem(0, tr("Any"));
   id.location->setCurrentIndex(0);
   id.edition->setCurrentIndex(0);
   id.language->setCurrentIndex(0);
@@ -1882,6 +1890,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.binding->setCurrentIndex(0);
   id.originality->setCurrentIndex(0);
   id.condition->setCurrentIndex(0);
+  id.target_audience->setCurrentIndex(0);
   id.accession_number->clear();
   id.isbnAvailableCheckBox->setCheckable(false);
   m_engWindowTitle = "Search";
@@ -2828,7 +2837,8 @@ void biblioteq_book::slotGo(void)
 		      "accession_number = ?, "
 		      "url = ?, "
 		      "alternate_id_1 = ?, "
-		      "multivolume_set_isbn = ? "
+		      "multivolume_set_isbn = ?, "
+		      "target_audience = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -2842,8 +2852,8 @@ void biblioteq_book::slotGo(void)
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
-		      "multivolume_set_isbn) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		      "multivolume_set_isbn, target_audience) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -2859,10 +2869,10 @@ void biblioteq_book::slotGo(void)
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
-		      "multivolume_set_isbn, myoid) "
+		      "multivolume_set_isbn, target_audience, myoid) "
 		      "VALUES (?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, "
-		      "?, ?, "
+		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?)");
@@ -3004,8 +3014,10 @@ void biblioteq_book::slotGo(void)
       else
 	query.bindValue(28, id.multivolume_set_isbn->text());
 
+      query.bindValue(29, id.target_audience->currentText());
+
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(29, m_oid);
+	query.bindValue(30, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  auto value = biblioteq_misc_functions::getSqliteUniqueId
@@ -3013,7 +3025,7 @@ void biblioteq_book::slotGo(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      query.bindValue(29, value);
+	      query.bindValue(30, value);
 	      m_oid = QString::number(value);
 	    }
 	  else
