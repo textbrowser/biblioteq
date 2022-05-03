@@ -3571,6 +3571,16 @@ void biblioteq_book::slotGo(void)
 	("LOWER(COALESCE(multivolume_set_isbn, '')) "
 	 "LIKE LOWER('%' || ? || '%') ");
       values.append(id.multivolume_set_isbn->text().remove('-').trimmed());
+
+      if(id.target_audience->currentIndex() != 0)
+	{
+	  searchstr.append
+	    ("AND " + UNACCENT + "(target_audience) = " + UNACCENT + "(?) ");
+	  values.append
+	    (biblioteq_myqstring::
+	     escape(id.target_audience->currentText().trimmed()));
+	}
+
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.author, "
