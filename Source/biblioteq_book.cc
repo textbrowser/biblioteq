@@ -281,6 +281,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   if(id.location->findText(biblioteq::s_unknown) == -1)
     id.location->addItem(biblioteq::s_unknown);
 
+  if(id.target_audience->findText(biblioteq::s_unknown) == -1)
+    id.target_audience->addItem(biblioteq::s_unknown);
+
   QActionGroup *actionGroup1 = nullptr;
   QActionGroup *actionGroup2 = nullptr;
 
