@@ -226,7 +226,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the book binding types.")),
+       QString(tr("Unable to retrieve the binding types.")),
        errorstr, __FILE__, __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -263,7 +263,19 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the book locations.")),
+       QString(tr("Unable to retrieve the locations.")),
+       errorstr, __FILE__, __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  id.target_audience->addItems
+    (biblioteq_misc_functions::getBookTargetAudiences(qmain->getDB(),
+						      errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the target audiences.")),
        errorstr, __FILE__, __LINE__);
 
   id.front_image->setScene(scene1);
