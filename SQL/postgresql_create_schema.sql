@@ -537,7 +537,7 @@ CREATE TABLE book_binding_types
 
 CREATE TABLE book_target_audiences
 (
-	book_target_audience	TEXT NOT NULL PRIMARY KEY
+	target_audience	TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE cd_formats

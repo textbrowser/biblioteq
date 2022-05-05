@@ -70,7 +70,7 @@ void biblioteq::prepareUpgradeNotification(void)
   auto record2(m_db.record("book_target_audiences"));
 
   if(!(record1.indexOf("target_audience") >= 0 &&
-       record2.indexOf("book_target_audience") >= 0))
+       record2.indexOf("target_audience") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
 	QMessageBox::critical

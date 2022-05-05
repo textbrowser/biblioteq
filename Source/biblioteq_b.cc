@@ -5356,7 +5356,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 #endif
   list.append("ALTER TABLE book ADD target_audience TEXT");
   list.append("CREATE TABLE IF NOT EXISTS book_target_audiences "
-	      "(book_target_audience TEXT NOT NULL PRIMARY KEY)");
+	      "(target_audience TEXT NOT NULL PRIMARY KEY)");
 
   QString errors("<html>");
   int ct = 1;

@@ -591,6 +591,28 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
   return types;
 }
 
+QStringList biblioteq_misc_functions::getBookTargetAudiences
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList list;
+
+  errorstr = "";
+  querystr = "SELECT target_audience FROM book_target_audiences "
+    "WHERE LENGTH(TRIM(target_audience)) > 0 "
+    "ORDER BY target_audience";
+
+  if(query.exec(querystr))
+    while(query.next())
+      list.append(query.value(0).toString().trimmed());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return list;
+}
+
 QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
 						   QString &errorstr)
 {

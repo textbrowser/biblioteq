@@ -11,6 +11,10 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
+  connect(m_ui.addBookTargetAudience,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
   connect(m_ui.addCdFormat,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -60,6 +64,10 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  this,
 	  SLOT(slotReload(void)));
   connect(m_ui.removeBookBinding,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeBookTargetAudience,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
@@ -162,9 +170,10 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
   if(listData != m_listData || tableData != m_tableData)
     {
       if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
+	 question(this,
+		  tr("BiblioteQ: Question"),
 		  tr("Your changes have not been saved. Continue?"),
-		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
@@ -183,6 +192,9 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 
 void biblioteq_dbenumerations::populateWidgets(void)
 {
+  if(!qmain)
+    return;
+
   clear();
 
   QList<QPair<QString, QString> > pairList;
@@ -191,6 +203,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
   QStringList tables;
 
   tables << "book_binding_types"
+	 << "book_target_audiences"
 	 << "cd_formats"
 	 << "dvd_aspect_ratios"
 	 << "dvd_ratings"
@@ -213,32 +226,38 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
       if(str == "book_binding_types")
 	{
-	  list = biblioteq_misc_functions::getBookBindingTypes(qmain->getDB(),
-							       errorstr);
+	  list = biblioteq_misc_functions::getBookBindingTypes
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.bookBindingsList;
+	}
+      else if(str == "book_target_audiences")
+	{
+	  list = biblioteq_misc_functions::getBookTargetAudiences
+	    (qmain->getDB(), errorstr);
+	  listwidget = m_ui.bookTargetAudiences;
 	}
       else if(str == "cd_formats")
 	{
-	  list = biblioteq_misc_functions::getCDFormats(qmain->getDB(),
-							errorstr);
+	  list = biblioteq_misc_functions::getCDFormats
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.cdFormatsList;
 	}
       else if(str == "dvd_aspect_ratios")
 	{
-	  list = biblioteq_misc_functions::getDVDAspectRatios(qmain->getDB(),
-							      errorstr);
+	  list = biblioteq_misc_functions::getDVDAspectRatios
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.dvdAspectRatiosList;
 	}
       else if(str == "dvd_ratings")
 	{
-	  list = biblioteq_misc_functions::getDVDRatings(qmain->getDB(),
-							 errorstr);
+	  list = biblioteq_misc_functions::getDVDRatings
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.dvdRatingsList;
 	}
       else if(str == "dvd_regions")
 	{
-	  list = biblioteq_misc_functions::getDVDRegions(qmain->getDB(),
-							 errorstr);
+	  list = biblioteq_misc_functions::getDVDRegions
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.dvdRegionsList;
 	}
       else if(str == "grey_literature_types")
@@ -249,38 +268,38 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "languages")
 	{
-	  list = biblioteq_misc_functions::getLanguages(qmain->getDB(),
-							errorstr);
+	  list = biblioteq_misc_functions::getLanguages
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.languagesList;
 	}
       else if(str == "locations")
 	{
-	  pairList = biblioteq_misc_functions::getLocations(qmain->getDB(),
-							    errorstr);
+	  pairList = biblioteq_misc_functions::getLocations
+	    (qmain->getDB(), errorstr);
 	  tablewidget = m_ui.locationsTable;
 	}
       else if(str == "minimum_days")
 	{
-	  list = biblioteq_misc_functions::getMinimumDays(qmain->getDB(),
-							  errorstr);
+	  list = biblioteq_misc_functions::getMinimumDays
+	    (qmain->getDB(), errorstr);
 	  tablewidget = m_ui.minimumDaysTable;
 	}
       else if(str == "monetary_units")
 	{
-	  list = biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
-							    errorstr);
+	  list = biblioteq_misc_functions::getMonetaryUnits
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.monetaryUnitsList;
 	}
       else if(str == "videogame_platforms")
 	{
-	  list = biblioteq_misc_functions::getVideoGamePlatforms(qmain->getDB(),
-								 errorstr);
+	  list = biblioteq_misc_functions::getVideoGamePlatforms
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.videoGamePlatformsList;
 	}
       else if(str == "videogame_ratings")
 	{
-	  list = biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(),
-							       errorstr);
+	  list = biblioteq_misc_functions::getVideoGameRatings
+	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.videoGameRatingsList;
 	}
 
@@ -493,6 +512,11 @@ void biblioteq_dbenumerations::slotAdd(void)
       list = m_ui.bookBindingsList;
       listItem = new QListWidgetItem(tr("Book Binding"));
     }
+  else if(toolButton == m_ui.addBookTargetAudience)
+    {
+      list = m_ui.bookTargetAudiences;
+      listItem = new QListWidgetItem(tr("Book Target Audience"));
+    }
   else if(toolButton == m_ui.addCdFormat)
     {
       list = m_ui.cdFormatsList;
@@ -552,15 +576,12 @@ void biblioteq_dbenumerations::slotAdd(void)
       widget->setLayout(layout);
       m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
       m_ui.locationsTable->setCellWidget
-	(m_ui.locationsTable->rowCount() - 1,
-	 0,
-	 widget);
+	(m_ui.locationsTable->rowCount() - 1, 0, widget);
       m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
 				   1,
 				   item);
       m_ui.locationsTable->setCurrentCell
-	(m_ui.locationsTable->rowCount() - 1,
-	 0);
+	(m_ui.locationsTable->rowCount() - 1, 0);
       m_ui.locationsTable->resizeColumnToContents(0);
       m_ui.locationsTable->resizeRowsToContents();
     }
@@ -608,9 +629,10 @@ void biblioteq_dbenumerations::slotReload(void)
      tableData != m_tableData)
     {
       if(QMessageBox::
-	 question(this, tr("BiblioteQ: Question"),
+	 question(this,
+		  tr("BiblioteQ: Question"),
 		  tr("Your changes have not been saved. Continue?"),
-		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
@@ -630,6 +652,8 @@ void biblioteq_dbenumerations::slotRemove(void)
 
   if(toolButton == m_ui.removeBookBinding)
     list = m_ui.bookBindingsList;
+  else if(toolButton == m_ui.removeBookTargetAudience)
+    list = m_ui.bookTargetAudiences;
   else if(toolButton == m_ui.removeCdFormat)
     list = m_ui.cdFormatsList;
   else if(toolButton == m_ui.removeDvdAspectRatio)
@@ -651,13 +675,15 @@ void biblioteq_dbenumerations::slotRemove(void)
   else if(toolButton == m_ui.removeVideoGameRating)
     list = m_ui.videoGameRatingsList;
 
-  if(list)
-    if(list->item(list->currentRow()))
-      delete list->takeItem(list->currentRow());
+  if(list && list->item(list->currentRow()))
+    delete list->takeItem(list->currentRow());
 }
 
 void biblioteq_dbenumerations::slotSave(void)
 {
+  if(!qmain)
+    return;
+
   QListWidget *listwidget = nullptr;
   QSqlQuery query(qmain->getDB());
   QString querystr("");
@@ -667,6 +693,7 @@ void biblioteq_dbenumerations::slotSave(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   tables << "book_binding_types"
+	 << "book_target_audiences"
 	 << "cd_formats"
 	 << "dvd_aspect_ratios"
 	 << "dvd_ratings"
@@ -709,26 +736,28 @@ void biblioteq_dbenumerations::slotSave(void)
       if(i == 0)
 	listwidget = m_ui.bookBindingsList;
       else if(i == 1)
-	listwidget = m_ui.cdFormatsList;
+	listwidget = m_ui.bookTargetAudiences;
       else if(i == 2)
-	listwidget = m_ui.dvdAspectRatiosList;
+	listwidget = m_ui.cdFormatsList;
       else if(i == 3)
-	listwidget = m_ui.dvdRatingsList;
+	listwidget = m_ui.dvdAspectRatiosList;
       else if(i == 4)
-	listwidget = m_ui.dvdRegionsList;
+	listwidget = m_ui.dvdRatingsList;
       else if(i == 5)
-	listwidget = m_ui.greyLiteratureTypes;
+	listwidget = m_ui.dvdRegionsList;
       else if(i == 6)
-	listwidget = m_ui.languagesList;
+	listwidget = m_ui.greyLiteratureTypes;
       else if(i == 7)
-	tablewidget = m_ui.locationsTable;
+	listwidget = m_ui.languagesList;
       else if(i == 8)
-	tablewidget = m_ui.minimumDaysTable;
+	tablewidget = m_ui.locationsTable;
       else if(i == 9)
-	listwidget = m_ui.monetaryUnitsList;
+	tablewidget = m_ui.minimumDaysTable;
       else if(i == 10)
-	listwidget = m_ui.videoGamePlatformsList;
+	listwidget = m_ui.monetaryUnitsList;
       else if(i == 11)
+	listwidget = m_ui.videoGamePlatformsList;
+      else if(i == 12)
 	listwidget = m_ui.videoGameRatingsList;
 
       if(listwidget)
@@ -754,11 +783,10 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget == m_ui.locationsTable && tablewidget)
+      else if(tablewidget && tablewidget == m_ui.locationsTable)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
-	    if(tablewidget->cellWidget(j, 0) &&
-	       tablewidget->item(j, 1))
+	    if(tablewidget->cellWidget(j, 0) && tablewidget->item(j, 1))
 	      {
 		QString currentText("");
 		auto comboBox = tablewidget->cellWidget(j, 0)->
@@ -846,7 +874,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget == m_ui.minimumDaysTable && tablewidget)
+      else if(tablewidget && tablewidget == m_ui.minimumDaysTable)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
 	    if(tablewidget->item(j, 1))
@@ -948,7 +976,8 @@ void biblioteq_dbenumerations::slotSave(void)
 
   if(error)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("An error occurred while attempting to save "
 			       "the database enumerations."));
       QApplication::processEvents();

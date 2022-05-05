@@ -24,8 +24,7 @@ class biblioteq_dbenumerations: public QMainWindow
   Ui_dbEnumerations m_ui;
   void changeEvent(QEvent *event);
   void populateWidgets(void);
-  void saveData(QHash<QWidget *,
-		QStringList> &listData,
+  void saveData(QHash<QWidget *, QStringList> &listData,
 		QHash<QWidget *, QMap<QString, QString> > &tableData);
 
  private slots:
