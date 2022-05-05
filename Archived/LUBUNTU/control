@@ -1,10 +1,10 @@
 Architecture: amd64
 Depends: libpoppler-qt5-1 (>= 0.40), libpq5 (>= 5.5), libqt5core5a (>= 5.5.1), libqt5gui5 (>= 5.5.1), libqt5network5 (>= 5.5.1), libqt5printsupport5 (>= 5.5.1), libqt5sql5 (>= 5.5.1), libqt5sql5-psql (>= 5.5.1), libqt5sql5-sqlite (>= 5.5.1), libqt5widgets5 (>= 5.5.1), libsqlite3-0 (>= 3.10), libyaz5 (>= 5.15)
-Maintainer: textbrowser@gmail.com
+Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
 Priority: optional
 Section: Database
-Version: 2020.05.05
+Version: YYYY.MM.DD
 Description: BiblioteQ
  Welcome to BiblioteQ!
  BiblioteQ is governed by a BSD license. Enjoy!
