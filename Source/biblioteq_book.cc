@@ -775,6 +775,7 @@ void biblioteq_book::insert(void)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.target_audience->setEditable(true);
   id.url->clear();
   biblioteq_misc_functions::highlightWidget
     (id.id, QColor(255, 248, 220));
@@ -842,6 +843,7 @@ void biblioteq_book::modify(const int state)
       id.dwnldBack->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
+      id.target_audience->setEditable(true);
       biblioteq_misc_functions::highlightWidget
 	(id.id, QColor(255, 248, 220));
       biblioteq_misc_functions::highlightWidget
@@ -1908,6 +1910,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.target_audience->setCurrentIndex(0);
   id.accession_number->clear();
   id.isbnAvailableCheckBox->setCheckable(false);
+  id.target_audience->setEditable(true);
   m_engWindowTitle = "Search";
 
   if(field.isEmpty() && value.isEmpty())
@@ -5029,6 +5032,7 @@ void biblioteq_book::updateWindow(const int state)
       id.dwnldBack->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
+      id.target_audience->setEditable(true);
 
       if(!id.id->text().remove('-').trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
