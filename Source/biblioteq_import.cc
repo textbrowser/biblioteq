@@ -702,6 +702,7 @@ void biblioteq_import::slotAddRow(void)
 			   << "price"
 			   << "publisher"
 			   << "quantity"
+			   << "target_audience"
 			   << "title"
 			   << "url");
 	break;
@@ -1062,6 +1063,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "price"
 	       << "publisher"
 	       << "quantity"
+	       << "target_audience"
 	       << "title"
 	       << "url";
 	else if(index == Templates::TEMPLATE_2)
