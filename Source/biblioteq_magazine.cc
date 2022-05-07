@@ -915,7 +915,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
     {
       ma.marc_tags->setText(data);
       biblioteq_misc_functions::highlightWidget
-	(ma.marc_tags->viewport(), QColor(162, 205, 90));
+	(ma.marc_tags->viewport(), m_queryHighlightColor);
     }
 
   QXmlStreamReader reader(data);
@@ -971,7 +971,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		str = str.trimmed();
 		ma.lcnum->setText(str);
 		biblioteq_misc_functions::highlightWidget
-		  (ma.lcnum, QColor(162, 205, 90));
+		  (ma.lcnum, m_queryHighlightColor);
 	      }
 	    else if(tag == "050")
 	      {
@@ -1001,7 +1001,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.callnum->setText(str);
 		biblioteq_misc_functions::highlightWidget
-		  (ma.callnum, QColor(162, 205, 90));
+		  (ma.callnum, m_queryHighlightColor);
 	      }
 	    else if(tag == "082")
 	      {
@@ -1037,7 +1037,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.deweynum->setText(str);
 		biblioteq_misc_functions::highlightWidget
-		  (ma.deweynum, QColor(162, 205, 90));
+		  (ma.deweynum, m_queryHighlightColor);
 	      }
 	    else if(tag == "245")
 	      {
@@ -1077,7 +1077,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.title->setText(str.trimmed());
 		biblioteq_misc_functions::highlightWidget
-		  (ma.title, QColor(162, 205, 90));
+		  (ma.title, m_queryHighlightColor);
 	      }
 	    else if(tag == "260")
 	      {
@@ -1132,7 +1132,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.place->setPlainText(place);
 		biblioteq_misc_functions::highlightWidget
-		  (ma.place->viewport(), QColor(162, 205, 90));
+		  (ma.place->viewport(), m_queryHighlightColor);
 
 		if(publisher.endsWith(","))
 		  publisher = publisher.mid
@@ -1140,7 +1140,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.publisher->setPlainText(publisher);
 		biblioteq_misc_functions::highlightWidget
-		  (ma.publisher->viewport(), QColor(162, 205, 90));
+		  (ma.publisher->viewport(), m_queryHighlightColor);
 	      }
 	    else if(tag == "300")
 	      {
@@ -1166,7 +1166,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.description->setPlainText(str);
 		biblioteq_misc_functions::highlightWidget
-		  (ma.description->viewport(), QColor(162, 205, 90));
+		  (ma.description->viewport(), m_queryHighlightColor);
 	      }
 	    else if(tag == "650")
 	      {
@@ -1223,7 +1223,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 			biblioteq_misc_functions::highlightWidget
 			  (ma.category->viewport(),
-			   QColor(162, 205, 90));
+			   m_queryHighlightColor);
 		      }
 		  }
 	      }
@@ -1275,7 +1275,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
   if(!list.isEmpty())
     biblioteq_misc_functions::highlightWidget
-      (ma.marc_tags->viewport(), QColor(162, 205, 90));
+      (ma.marc_tags->viewport(), m_queryHighlightColor);
 
   if(recordSyntax == "UNIMARC")
     {
@@ -1291,7 +1291,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	  ma.category->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
 	    (ma.category->viewport(),
-	     QColor(162, 205, 90));
+	     m_queryHighlightColor);
 	}
 
       str = m.description();
@@ -1300,7 +1300,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	{
 	  ma.description->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.description->viewport(), QColor(162, 205, 90));
+	    (ma.description->viewport(), m_queryHighlightColor);
 	}
 
       str = m.place();
@@ -1309,7 +1309,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	{
 	  ma.place->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.place->viewport(), QColor(162, 205, 90));
+	    (ma.place->viewport(), m_queryHighlightColor);
 	}
 
       if(!m.publicationDate().isNull())
@@ -1325,7 +1325,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	{
 	  ma.publisher->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.publisher->viewport(), QColor(162, 205, 90));
+	    (ma.publisher->viewport(), m_queryHighlightColor);
 	}
 
       str = m.title();
@@ -1334,7 +1334,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	{
 	  ma.title->setText(str.trimmed());
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.title, QColor(162, 205, 90));
+	    (ma.title, m_queryHighlightColor);
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -1371,7 +1371,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
 	  ma.lcnum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.lcnum, QColor(162, 205, 90));
+	    (ma.lcnum, m_queryHighlightColor);
 	}
       else if(str.startsWith("050 "))
 	{
@@ -1400,7 +1400,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
 	  ma.callnum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.callnum, QColor(162, 205, 90));
+	    (ma.callnum, m_queryHighlightColor);
 	}
       else if(str.startsWith("082 "))
 	{
@@ -1432,7 +1432,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
 	  ma.deweynum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.deweynum, QColor(162, 205, 90));
+	    (ma.deweynum, m_queryHighlightColor);
 	}
       else if(str.startsWith("245 "))
 	{
@@ -1478,7 +1478,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
 	  ma.title->setText(str.trimmed());
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.title, QColor(162, 205, 90));
+	    (ma.title, m_queryHighlightColor);
 	}
       else if(str.startsWith("260 "))
 	{
@@ -1547,7 +1547,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	    }
 
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.place->viewport(), QColor(162, 205, 90));
+	    (ma.place->viewport(), m_queryHighlightColor);
 
 	  if(str.indexOf("$c") > -1 &&
 	     str.mid(str.indexOf("$c") + 2, 4).contains("c"))
@@ -1584,7 +1584,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
 	  ma.publisher->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.publisher->viewport(), QColor(162, 205, 90));
+	    (ma.publisher->viewport(), m_queryHighlightColor);
 	}
       else if(str.startsWith("300 "))
 	{
@@ -1613,7 +1613,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	  str = str.remove(" $8").trimmed();
 	  ma.description->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.description->viewport(), QColor(162, 205, 90));
+	    (ma.description->viewport(), m_queryHighlightColor);
 	}
       else if(str.startsWith("650 "))
 	{
@@ -1677,7 +1677,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 
 		  biblioteq_misc_functions::highlightWidget
 		    (ma.category->viewport(),
-		     QColor(162, 205, 90));
+		     m_queryHighlightColor);
 		}
 	    }
 	}
