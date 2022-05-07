@@ -2587,13 +2587,13 @@ void biblioteq_magazine::slotGo(void)
 		  m_oid = query.value(0).toString().trimmed();
 		}
 
-	      if(ma.id->text().isEmpty())
+	      if(ma.id->text().trimmed().isEmpty())
 		biblioteq_misc_functions::createInitialCopies
 		  (m_oid + "," + ma.volume->text() + "," + ma.issue->text(),
 		   ma.quantity->value(), qmain->getDB(), m_subType, errorstr);
 	      else
 		biblioteq_misc_functions::createInitialCopies
-		  (ma.id->text() + "," + ma.volume->text() + "," +
+		  (ma.id->text().trimmed() + "," + ma.volume->text() + "," +
 		   ma.issue->text(), ma.quantity->value(),
 		   qmain->getDB(), m_subType, errorstr);
 
@@ -2676,14 +2676,14 @@ void biblioteq_magazine::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      if(!ma.id->text().isEmpty())
+	      if(!ma.id->text().trimmed().isEmpty())
 		{
 		  if(m_subType == "Journal")
 		    str = QString(tr("BiblioteQ: Modify Journal Entry ("));
 		  else
 		    str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
 
-		  str += ma.id->text() + tr(")");
+		  str += ma.id->text().trimmed() + tr(")");
 		}
 	      else
 		{
@@ -2730,7 +2730,7 @@ void biblioteq_magazine::slotGo(void)
 		      else if(names.at(i) == "ISSN" ||
 			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.id->text());
+			  (ma.id->text().trimmed());
 		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.title->text());
@@ -3549,9 +3549,11 @@ void biblioteq_magazine::slotSRUQuery(void)
 
   QString searchstr("");
   auto hash(qmain->getSRUHash(name));
+  auto issn(ma.id->text().remove('-').trimmed());
 
+  issn = issn.mid(0, 4) + "-" + issn.mid(4);
   searchstr = hash.value("url_issn");
-  searchstr.replace("%1", ma.id->text().trimmed());
+  searchstr.replace("%1", issn);
 
   QNetworkProxy proxy;
   QString type("none");
@@ -3810,7 +3812,7 @@ void biblioteq_magazine::slotShowUsers(void)
      static_cast<biblioteq_item *> (this),
      ma.quantity->value(),
      m_oid,
-     ma.id->text(),
+     ma.id->text().trimmed(),
      font(),
      m_subType,
      state);
@@ -3877,7 +3879,10 @@ void biblioteq_magazine::slotZ3950Query(void)
       m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
     }
 
-  searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
+  auto issn(ma.id->text().remove('-').trimmed());
+
+  issn = issn.mid(0, 4) + "-" + issn.mid(4);
+  searchstr = QString("@attr 1=8 %1").arg(issn);
   m_thread->setType(biblioteq_generic_thread::Z3950_QUERY);
   m_thread->setZ3950SearchString(searchstr);
   m_thread->start();
@@ -3935,8 +3940,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 	  QMessageBox::critical
 	    (this,
 	     tr("BiblioteQ: Z39.50 Query Error"),
-	     tr("A Z39.50 entry may not yet exist for ") +
-	     ma.id->text() + tr("."));
+	     tr("A Z39.50 entry may not yet exist for ") + issn + tr("."));
 	  QApplication::processEvents();
 	}
     }
@@ -4001,7 +4005,8 @@ void biblioteq_magazine::sruDownloadFinished(void)
 	(this,
 	 tr("BiblioteQ: SRU Query Error"),
 	 tr("An SRU entry may not yet exist for ") +
-	 ma.id->text() + tr(" or a network error occurred."));
+	 ma.id->text().trimmed() +
+	 tr(" or a network error occurred."));
       QApplication::processEvents();
     }
 }
@@ -4037,7 +4042,7 @@ void biblioteq_magazine::updateWindow(const int state)
 	  else
 	    str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
 
-	  str += ma.id->text() + tr(")");
+	  str += ma.id->text().trimmed() + tr(")");
 	}
       else
 	{
@@ -4079,7 +4084,7 @@ void biblioteq_magazine::updateWindow(const int state)
 	  else
 	    str = QString(tr("BiblioteQ: View Magazine Details ("));
 
-	  str += ma.id->text() + tr(")");
+	  str += ma.id->text().trimmed() + tr(")");
 	}
       else
 	{
