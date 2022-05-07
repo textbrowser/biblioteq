@@ -449,8 +449,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 	    else if(tag == "650")
 	      {
 		/*
-		** $a - Topical term or geographic name entry
-		**      element (NR)
+		** $a - Topical term or geographic name entry element (NR)
 		** $b - Topical term following geographic name
 		**      entry element (NR)
 		** $c - Location of event (NR)
@@ -929,13 +928,41 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  str = str.remove(" $8").trimmed();
 	  m_description = str;
 	}
+      else if(str.startsWith("521 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Target audience note (R)
+	  ** $b - Source (NR)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$3"
+		    << "$6"
+		    << "$8";
+
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+
+	  if(m_targetAudience.isEmpty())
+	    m_targetAudience = str.trimmed();
+	}
       else if(str.startsWith("650 "))
 	{
 	  str = str.mid(4);
 
 	  /*
-	  ** $a - Topical term or geographic name entry
-	  **      element (NR)
+	  ** $a - Topical term or geographic name entry element (NR)
 	  ** $b - Topical term following geographic name entry
 	  **      element (NR)
 	  ** $c - Location of event (NR)

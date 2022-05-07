@@ -1147,9 +1147,14 @@ void biblioteq_book::modify(const int state)
 	      if(id.target_audience->findText(var.toString().trimmed()) > -1)
 		id.target_audience->setCurrentIndex
 		  (id.target_audience->findText(var.toString().trimmed()));
-	      else
+	      else if(var.toString().trimmed().isEmpty())
 		id.target_audience->setCurrentIndex
 		  (id.target_audience->findText(biblioteq::s_unknown));
+	      else
+		{
+		  id.target_audience->insertItem(0, var.toString().trimmed());
+		  id.target_audience->setCurrentIndex(0);
+		}
 	    }
 	}
 
@@ -1629,7 +1634,14 @@ void biblioteq_book::populateAfterSRU
 
   if(!str.isEmpty())
     {
-      id.target_audience->setCurrentText(str);
+      if(id.target_audience->findText(str) > -1)
+	id.target_audience->setCurrentIndex(id.target_audience->findText(str));
+      else
+	{
+	  id.target_audience->insertItem(0, str);
+	  id.target_audience->setCurrentIndex(0);
+	}
+
       id.target_audience->setStyleSheet
 	(QString("background-color: %1").arg(m_queryHighlightColor.name()));
     }
@@ -1791,6 +1803,22 @@ void biblioteq_book::populateAfterZ3950
       id.publisher->setPlainText(str);
       biblioteq_misc_functions::highlightWidget
 	(id.publisher->viewport(), m_queryHighlightColor);
+    }
+
+  str = m.targetAudience();
+
+  if(!str.isEmpty())
+    {
+      if(id.target_audience->findText(str) > -1)
+	id.target_audience->setCurrentIndex(id.target_audience->findText(str));
+      else
+	{
+	  id.target_audience->insertItem(0, str);
+	  id.target_audience->setCurrentIndex(0);
+	}
+
+      id.target_audience->setStyleSheet
+	(QString("background-color: %1").arg(m_queryHighlightColor.name()));
     }
 
   str = m.title();

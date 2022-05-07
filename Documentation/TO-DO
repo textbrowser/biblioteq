@@ -524,5 +524,5 @@
 286. Double-clicking on the main table should activate the cell for
      copying. This will confuse some people. (TBD)
 287. Non-database local find from the main window. (TBD)
-288. Book target audience. (TBD)
+288. Book target audience. (Done)
 289. Book x of y. (TBD)
