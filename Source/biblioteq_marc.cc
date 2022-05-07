@@ -1280,6 +1280,22 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  str = str.remove(" $e").trimmed();
 	  m_description = str;
 	}
+      else if(str.startsWith("333 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Text of Note
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  else
+	    str = str.trimmed();
+
+	  if(m_targetAudience.isEmpty())
+	    m_targetAudience = str;
+	}
       else if(str.startsWith("606 "))
 	{
 	  str = str.mid(4);

@@ -324,17 +324,17 @@ void biblioteq_cd::insert(void)
   cd.format->setCurrentIndex(0);
   cd.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
-    (cd.id, QColor(255, 248, 220));
+    (cd.id, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (cd.title, QColor(255, 248, 220));
+    (cd.title, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (cd.recording_label->viewport(), QColor(255, 248, 220));
+    (cd.recording_label->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (cd.artist->viewport(), QColor(255, 248, 220));
+    (cd.artist->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (cd.description->viewport(), QColor(255, 248, 220));
+    (cd.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (cd.category->viewport(), QColor(255, 248, 220));
+    (cd.category->viewport(), m_requiredHighlightColor);
   setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
   m_engWindowTitle = "Create";
   cd.id->setFocus();
@@ -374,17 +374,17 @@ void biblioteq_cd::modify(const int state)
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
       biblioteq_misc_functions::highlightWidget
-	(cd.id, QColor(255, 248, 220));
+	(cd.id, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(cd.title, QColor(255, 248, 220));
+	(cd.title, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(cd.recording_label->viewport(), QColor(255, 248, 220));
+	(cd.recording_label->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(cd.artist->viewport(), QColor(255, 248, 220));
+	(cd.artist->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(cd.description->viewport(), QColor(255, 248, 220));
+	(cd.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(cd.category->viewport(), QColor(255, 248, 220));
+	(cd.category->viewport(), m_requiredHighlightColor);
     }
   else
     {
