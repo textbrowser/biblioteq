@@ -16,6 +16,8 @@ biblioteq_item::biblioteq_item(const QModelIndex &index)
   m_isQueryEnabled = false;
   m_oldq = -1;
   m_parentWid = nullptr;
+  m_queryHighlightColor = QColor(162, 205, 90);
+  m_requiredHighlightColor = QColor(255, 248, 220);
   qmain = nullptr;
 }
 
@@ -25,6 +27,8 @@ biblioteq_item::biblioteq_item(void)
   m_isQueryEnabled = false;
   m_oldq = -1;
   m_parentWid = nullptr;
+  m_queryHighlightColor = QColor(162, 205, 90);
+  m_requiredHighlightColor = QColor(255, 248, 220);
   qmain = nullptr;
 }
 

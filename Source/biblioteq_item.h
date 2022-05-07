@@ -55,6 +55,8 @@ class biblioteq_item
   void updateRow(const QModelIndex &index);
 
  protected:
+  QColor m_queryHighlightColor;
+  QColor m_requiredHighlightColor;
   QMap<QString, QImage> m_imageValues;
   QMap<QString, QString> m_widgetValues;
   QPersistentModelIndex *m_index;

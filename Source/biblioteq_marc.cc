@@ -36,6 +36,7 @@ void biblioteq_marc::clear(void)
   m_place.clear();
   m_publicationDate = QDate();
   m_publisher.clear();
+  m_targetAudience.clear();
   m_title.clear();
 }
 
@@ -98,8 +99,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		  else
 		    break;
 
-		str = str.trimmed();
-		m_lcnum = str;
+		m_lcnum = str.trimmed();
 	      }
 	    else if(tag == "020")
 	      {
@@ -140,7 +140,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		    m_isbn13 = str;
 		  }
 		else if(str.length() == 10)
-		  m_isbn10 = str;
+		  m_isbn10 = str.trimmed();
 	      }
 	    else if(tag == "050")
 	      {
@@ -168,7 +168,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		  else
 		    break;
 
-		m_callnum = str;
+		m_callnum = str.trimmed();
 	      }
 	    else if(tag == "082")
 	      {
@@ -202,7 +202,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		  else
 		    break;
 
-		m_deweynum = str;
+		m_deweynum = str.trimmed();
 	      }
 	    else if(tag == "100" || tag == "700")
 	      {
@@ -247,6 +247,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		if(str.endsWith(","))
 		  str = str.mid(0, str.length() - 1).trimmed();
+		else
+		  str = str.trimmed();
 
 		if(!m_author.contains(str))
 		  {
@@ -292,8 +294,9 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		    break;
 
 		if(str.lastIndexOf('/') > -1)
-		  str = str.mid
-		    (0, str.lastIndexOf('/')).trimmed();
+		  str = str.mid(0, str.lastIndexOf('/')).trimmed();
+		else
+		  str = str.trimmed();
 
 		m_title = str;
 	      }
@@ -325,6 +328,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		if(str.indexOf(" ") > -1)
 		  str = str.mid(0, str.indexOf(" ")).trimmed();
+		else
+		  str = str.trimmed();
 
 		int i = 0;
 
@@ -332,7 +337,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		  if(!str.at(i).isDigit())
 		    break;
 
-		str = str.mid(0, i);
+		str = str.mid(0, i).trimmed();
 		m_edition = str;
 	      }
 	    else if(tag == "260")
@@ -418,7 +423,28 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		  else
 		    break;
 
-		m_description = str;
+		m_description = str.trimmed();
+	      }
+	    else if(tag == "521")
+	      {
+		/*
+		** $a - Target audience note (R)
+		** $b - Source (NR)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    str.append(reader.readElementText());
+		  else
+		    break;
+
+		if(m_targetAudience.isEmpty())
+		  m_targetAudience = str.trimmed();
 	      }
 	    else if(tag == "650")
 	      {
@@ -458,6 +484,8 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		    }
 		  else
 		    break;
+
+		str = str.trimmed();
 
 		if(!str.isEmpty())
 		  {
@@ -517,7 +545,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    if(str.contains(subfields.at(i)))
 	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
-	  m_lcnum = str;
+	  m_lcnum = str.trimmed();
 	}
       else if(str.startsWith("020 "))
 	{
@@ -548,7 +576,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  else if(str.contains(" ") && str.indexOf(" ") == 13)
 	    m_isbn13 = str.mid(0, 13).trimmed();
 	  else if(str.length() == 10)
-	    m_isbn10 = str;
+	    m_isbn10 = str.trimmed();
 	}
       else if(str.startsWith("050 "))
 	{
@@ -577,7 +605,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    if(str.contains(subfields.at(i)))
 	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
-	  m_callnum = str;
+	  m_callnum = str.trimmed();
 	}
       else if(str.startsWith("082 "))
 	{
@@ -609,7 +637,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    if(str.contains(subfields.at(i)))
 	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
 
-	  m_deweynum = str;
+	  m_deweynum = str.trimmed();
 	}
       else if(str.startsWith("100 ") || str.startsWith("700 "))
 	{
@@ -667,6 +695,8 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  if(!m_author.contains(str))
 	    {
@@ -721,6 +751,8 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  m_title = str;
 	}
@@ -863,6 +895,8 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  m_publisher = str;
 	}
@@ -942,6 +976,8 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  for(int i = 0; i < subfields.size(); i++)
 	    if(str.contains(subfields.at(i)))
 	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+
+	  str = str.trimmed();
 
 	  if(!str.isEmpty())
 	    {
@@ -1042,6 +1078,8 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 	      if(author.indexOf("$") > -1)
 		author = author.mid(0, author.indexOf("$")).trimmed();
+	      else
+		author = author.trimmed();
 
 	      if(!m_author.isEmpty())
 		m_author = m_author + "\n" + author;
@@ -1068,6 +1106,8 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  m_title = str;
 	}
@@ -1189,6 +1229,8 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  m_publisher = str;
 	}
@@ -1240,6 +1282,8 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  for(int i = 0; i < subfields.size(); i++)
 	    if(str.contains(subfields.at(i)))
 	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+
+	  str = str.trimmed();
 
 	  if(!str.isEmpty())
 	    {
@@ -1316,6 +1360,8 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  m_title = str;
 	}
@@ -1404,6 +1450,8 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
+	  else
+	    str = str.trimmed();
 
 	  m_publisher = str;
 	}
@@ -1455,6 +1503,8 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	  for(int i = 0; i < subfields.size(); i++)
 	    if(str.contains(subfields.at(i)))
 	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+
+	  str = str.trimmed();
 
 	  if(!str.isEmpty())
 	    {
