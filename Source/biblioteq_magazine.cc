@@ -533,17 +533,17 @@ void biblioteq_magazine::insert(void)
   ma.monetary_units->setCurrentIndex(0);
   ma.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
-    (ma.id, QColor(255, 248, 220));
+    (ma.id, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (ma.title, QColor(255, 248, 220));
+    (ma.title, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (ma.publisher->viewport(), QColor(255, 248, 220));
+    (ma.publisher->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (ma.description->viewport(), QColor(255, 248, 220));
+    (ma.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (ma.category->viewport(), QColor(255, 248, 220));
+    (ma.category->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (ma.place->viewport(), QColor(255, 248, 220));
+    (ma.place->viewport(), m_requiredHighlightColor);
   m_te_orig_pal = ma.description->viewport()->palette();
 
   if(m_subType == "Journal")
@@ -597,17 +597,17 @@ void biblioteq_magazine::modify(const int state)
       ma.frontButton->setVisible(true);
       ma.backButton->setVisible(true);
       biblioteq_misc_functions::highlightWidget
-	(ma.id, QColor(255, 248, 220));
+	(ma.id, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(ma.title, QColor(255, 248, 220));
+	(ma.title, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(ma.publisher->viewport(), QColor(255, 248, 220));
+	(ma.publisher->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(ma.description->viewport(), QColor(255, 248, 220));
+	(ma.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(ma.category->viewport(), QColor(255, 248, 220));
+	(ma.category->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(ma.place->viewport(), QColor(255, 248, 220));
+	(ma.place->viewport(), m_requiredHighlightColor);
       m_te_orig_pal = ma.description->viewport()->palette();
       setReadOnlyFields(this, false);
     }

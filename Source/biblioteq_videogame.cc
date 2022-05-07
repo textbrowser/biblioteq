@@ -296,19 +296,19 @@ void biblioteq_videogame::insert(void)
   vg.rating->setCurrentIndex(0);
   vg.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
-    (vg.id, QColor(255, 248, 220));
+    (vg.id, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (vg.title, QColor(255, 248, 220));
+    (vg.title, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (vg.publisher->viewport(), QColor(255, 248, 220));
+    (vg.publisher->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (vg.developer->viewport(), QColor(255, 248, 220));
+    (vg.developer->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (vg.description->viewport(), QColor(255, 248, 220));
+    (vg.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (vg.genre->viewport(), QColor(255, 248, 220));
+    (vg.genre->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (vg.place->viewport(), QColor(255, 248, 220));
+    (vg.place->viewport(), m_requiredHighlightColor);
   setWindowTitle(tr("BiblioteQ: Create Video Game Entry"));
   m_engWindowTitle = "Create";
   vg.id->setFocus();
@@ -344,19 +344,19 @@ void biblioteq_videogame::modify(const int state)
       vg.frontButton->setVisible(true);
       vg.backButton->setVisible(true);
       biblioteq_misc_functions::highlightWidget
-	(vg.id, QColor(255, 248, 220));
+	(vg.id, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(vg.title, QColor(255, 248, 220));
+	(vg.title, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(vg.publisher->viewport(), QColor(255, 248, 220));
+	(vg.publisher->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(vg.developer->viewport(), QColor(255, 248, 220));
+	(vg.developer->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(vg.description->viewport(), QColor(255, 248, 220));
+	(vg.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(vg.genre->viewport(), QColor(255, 248, 220));
+	(vg.genre->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(vg.place->viewport(), QColor(255, 248, 220));
+	(vg.place->viewport(), m_requiredHighlightColor);
     }
   else
     {

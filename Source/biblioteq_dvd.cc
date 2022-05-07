@@ -325,21 +325,21 @@ void biblioteq_dvd::insert(void)
   dvd.aspectratio->setCurrentIndex(0);
   dvd.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
-    (dvd.id, QColor(255, 248, 220));
+    (dvd.id, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.title, QColor(255, 248, 220));
+    (dvd.title, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.actors->viewport(), QColor(255, 248, 220));
+    (dvd.actors->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.directors->viewport(), QColor(255, 248, 220));
+    (dvd.directors->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.description->viewport(), QColor(255, 248, 220));
+    (dvd.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.studio->viewport(), QColor(255, 248, 220));
+    (dvd.studio->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.format, QColor(255, 248, 220));
+    (dvd.format, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (dvd.category->viewport(), QColor(255, 248, 220));
+    (dvd.category->viewport(), m_requiredHighlightColor);
   setWindowTitle(tr("BiblioteQ: Create DVD Entry"));
   m_engWindowTitle = "Create";
   dvd.id->setFocus();
@@ -375,21 +375,21 @@ void biblioteq_dvd::modify(const int state)
       dvd.frontButton->setVisible(true);
       dvd.backButton->setVisible(true);
       biblioteq_misc_functions::highlightWidget
-	(dvd.id, QColor(255, 248, 220));
+	(dvd.id, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.title, QColor(255, 248, 220));
+	(dvd.title, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.actors->viewport(), QColor(255, 248, 220));
+	(dvd.actors->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.directors->viewport(), QColor(255, 248, 220));
+	(dvd.directors->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.description->viewport(), QColor(255, 248, 220));
+	(dvd.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.studio->viewport(), QColor(255, 248, 220));
+	(dvd.studio->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.format, QColor(255, 248, 220));
+	(dvd.format, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(dvd.category->viewport(), QColor(255, 248, 220));
+	(dvd.category->viewport(), m_requiredHighlightColor);
     }
   else
     {

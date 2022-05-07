@@ -378,13 +378,17 @@ void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
 void biblioteq_grey_literature::highlightRequiredWidgets(void)
 {
   biblioteq_misc_functions::highlightWidget
-    (m_ui.author->viewport(), QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(m_ui.code_a, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(m_ui.code_b, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(m_ui.id, QColor(255, 248, 220));
+    (m_ui.author->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (m_ui.job_number, QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(m_ui.title, QColor(255, 248, 220));
+    (m_ui.code_a, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (m_ui.code_b, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (m_ui.id, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (m_ui.job_number, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (m_ui.title, m_requiredHighlightColor);
 }
 
 void biblioteq_grey_literature::insert(void)

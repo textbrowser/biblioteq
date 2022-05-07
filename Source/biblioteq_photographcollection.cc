@@ -178,17 +178,17 @@ biblioteq_photographcollection::biblioteq_photographcollection
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
   biblioteq_misc_functions::highlightWidget
-    (photo.id_item, QColor(255, 248, 220));
+    (photo.id_item, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (photo.title_item, QColor(255, 248, 220));
+    (photo.title_item, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (photo.creators_item->viewport(), QColor(255, 248, 220));
+    (photo.creators_item->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (photo.medium_item, QColor(255, 248, 220));
+    (photo.medium_item, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (photo.reproduction_number_item->viewport(), QColor(255, 248, 220));
+    (photo.reproduction_number_item->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (photo.copyright_item->viewport(), QColor(255, 248, 220));
+    (photo.copyright_item->viewport(), m_requiredHighlightColor);
 }
 
 biblioteq_photographcollection::~biblioteq_photographcollection()
@@ -355,9 +355,9 @@ void biblioteq_photographcollection::insert(void)
 						 "MM/dd/yyyy"));
   pc.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
-    (pc.id_collection, QColor(255, 248, 220));
+    (pc.id_collection, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (pc.title_collection, QColor(255, 248, 220));
+    (pc.title_collection, m_requiredHighlightColor);
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
   m_engWindowTitle = "Create";
   pc.id_collection->setFocus();
@@ -572,9 +572,9 @@ void biblioteq_photographcollection::modify(const int state,
       pc.resetButton->setVisible(true);
       pc.select_image_collection->setVisible(true);
       biblioteq_misc_functions::highlightWidget
-	(pc.id_collection, QColor(255, 248, 220));
+	(pc.id_collection, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(pc.title_collection, QColor(255, 248, 220));
+	(pc.title_collection, m_requiredHighlightColor);
     }
   else
     {
