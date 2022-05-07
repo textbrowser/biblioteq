@@ -4046,9 +4046,9 @@ void biblioteq_book::slotPrint(void)
     id.accession_number->text().trimmed() + "<br>";
   m_html += "<b>" + tr("URL:") + "</b> " +
     id.url->toPlainText().trimmed();
-  m_html + "<br>" + tr("Multi-Volume ISBN") + "</br>" +
+  m_html + "<br>" + tr("Multi-Volume ISBN:") + "</br>" +
     id.multivolume_set_isbn->text().trimmed();
-  m_html + "<br>" + tr("Target Audience") + "</br>" +
+  m_html + "<br>" + tr("Target Audience:") + "</br>" +
     id.target_audience->currentText().trimmed();
   m_html += "</html>";
   print(this);
