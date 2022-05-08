@@ -1942,7 +1942,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.location->insertItem(0, tr("Any"));
   id.originality->insertItem(0, tr("Any"));
   id.condition->insertItem(0, tr("Any"));
-  id.target_audience->insertItem(0, tr("Any"));
+  id.target_audience->insertItem(0, "%");
   id.location->setCurrentIndex(0);
   id.edition->setCurrentIndex(0);
   id.language->setCurrentIndex(0);
@@ -3629,18 +3629,14 @@ void biblioteq_book::slotGo(void)
 	(biblioteq_myqstring::escape(id.alternate_id_1->text().trimmed()));
       searchstr.append
 	("LOWER(COALESCE(multivolume_set_isbn, '')) "
-	 "LIKE LOWER('%' || ? || '%') ");
+	 "LIKE LOWER('%' || ? || '%') AND ");
       values.append(id.multivolume_set_isbn->text().remove('-').trimmed());
-
-      if(id.target_audience->currentIndex() != 0)
-	{
-	  searchstr.append
-	    ("AND " + UNACCENT + "(target_audience) = " + UNACCENT + "(?) ");
-	  values.append
-	    (biblioteq_myqstring::
-	     escape(id.target_audience->currentText().trimmed()));
-	}
-
+      searchstr.append
+	("LOWER(COALESCE(target_audience, '')) LIKE " +
+	 UNACCENT + "(LOWER('%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::
+	 escape(id.target_audience->currentText().trimmed()));
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.author, "
