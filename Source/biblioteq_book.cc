@@ -2724,10 +2724,7 @@ void biblioteq_book::slotGo(void)
 	      slotConvertISBN10to13();
 	}
       else
-	{
-	  id.id->clear();
-	  id.multivolume_set_isbn->clear();
-	}
+	id.id->clear();
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{
