@@ -933,47 +933,12 @@
                     <bool>true</bool>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_4">
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_11">
-                      <property name="text">
-                       <string>ISBN-13</string>
-                      </property>
-                     </widget>
-                    </item>
                     <item row="0" column="0">
                      <widget class="QLabel" name="label">
                       <property name="text">
                        <string>ISBN-10</string>
                       </property>
                      </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <layout class="QHBoxLayout" name="horizontalLayout_3">
-                      <item>
-                       <widget class="QLineEdit" name="id">
-                        <property name="maxLength">
-                         <number>32</number>
-                        </property>
-                        <property name="placeholderText">
-                         <string>ISBN-10</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="isbn13to10">
-                        <property name="toolTip">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent. The 13-digit ISBN must start with the digits 978.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                        </property>
-                        <property name="text">
-                         <string>From &amp;ISBN-13</string>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="../Icons/icons.qrc">
-                          <normaloff>:/16x16/convert.png</normaloff>:/16x16/convert.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
                     </item>
                     <item row="1" column="1">
                      <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -999,6 +964,54 @@
                        </widget>
                       </item>
                      </layout>
+                    </item>
+                    <item row="0" column="1">
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <item>
+                       <widget class="QLineEdit" name="id">
+                        <property name="maxLength">
+                         <number>32</number>
+                        </property>
+                        <property name="placeholderText">
+                         <string>ISBN-10</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="isbn13to10">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="text">
+                         <string>From &amp;ISBN-13</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="../Icons/icons.qrc">
+                          <normaloff>:/16x16/convert.png</normaloff>:/16x16/convert.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_11">
+                      <property name="text">
+                       <string>ISBN-13</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <spacer name="verticalSpacer">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
                     </item>
                    </layout>
                   </widget>
