@@ -430,6 +430,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		/*
 		** $a - Target audience note (R)
 		** $b - Source (NR)
+		** $2 - Source (NR) (This is a peculiarity.)
 		** $3 - Materials specified (NR)
 		** $6 - Linkage (NR)
 		** $8 - Field link and sequence number (R)
@@ -935,6 +936,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  /*
 	  ** $a - Target audience note (R)
 	  ** $b - Source (NR)
+	  ** $2 - Source (NR) (This is a peculiarity.)
 	  ** $3 - Materials specified (NR)
 	  ** $6 - Linkage (NR)
 	  ** $8 - Field link and sequence number (R)
@@ -946,6 +948,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  QStringList subfields;
 
 	  subfields << "$b"
+		    << "$2"
 		    << "$3"
 		    << "$6"
 		    << "$8";
@@ -1286,12 +1289,23 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 	  /*
 	  ** $a - Text of Note
+	  ** $k - Unknown (French?)
+	  ** $2 - Unknown (French?)
 	  */
 
 	  if(str.indexOf("$a") > -1)
 	    str = str.mid(str.indexOf("$a") + 2).trimmed();
-	  else
-	    str = str.trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$k"
+		    << "$2";
+
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+
+	  str = str.trimmed();
 
 	  if(m_targetAudience.isEmpty())
 	    m_targetAudience = str;
