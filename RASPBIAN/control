@@ -1,5 +1,16 @@
 Architecture: armhf
-Depends: libpoppler-qt5-1 (>= 0.45), libpq5 (>= 5.10), libqt5core5a (>= 5.11.0), libqt5gui5 (>= 5.11.0), libqt5network5 (>= 5.11.0), libqt5printsupport5 (>= 5.11.0), libqt5sql5 (>= 5.11.0), libqt5sql5-psql (>= 5.11.0), libqt5sql5-sqlite (>= 5.11.0), libqt5widgets5 (>= 5.11.0), libsqlite3-0 (>= 3.10), libyaz5 (>= 5.25)
+Depends: libpoppler-qt5-1 (>= 0.45),
+	 libpq5 (>= 5.10),
+	 libqt5core5a (>= 5.11.0),
+	 libqt5gui5 (>= 5.11.0),
+	 libqt5network5 (>= 5.11.0),
+	 libqt5printsupport5 (>= 5.11.0),
+	 libqt5sql5 (>= 5.11.0),
+	 libqt5sql5-psql (>= 5.11.0),
+	 libqt5sql5-sqlite (>= 5.11.0),
+	 libqt5widgets5 (>= 5.11.0),
+	 libsqlite3-0 (>= 3.10),
+	 libyaz5 (>= 5.25)
 Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
 Priority: optional
