@@ -1,6 +1,21 @@
 <html>
  <body>
 <u>Notes de publication</u>
+<p>15 mai 2022.</p>
+<ul>
+<li>     Ajout des champs alternate_id_1, description, et multivolume_set_isbn dans le modèle d'importation tous les chamsp.</li>
+<li>		Ajout du lien vers "Enumérations de la base de données" depuis l'explorateur des membres pour renseigner la durée de prêt minimum.</li>
+<li>     La recherche de base (fenêtre principale) est désormais exacte, conformément à la demande. Le caractère de remplacement est %.</li>
+<li>     Vérification du widget de la case à cocher ISBNs si l'un ou l'autre des ISBN est disponible : panneau du livre.</li>
+<li>     Correction de la fonction "Exporter la vue icônes vers PNG". La fonction render() d'une scène doit recevoir le rectangle de délimitation de la scène. Merci à meteos77 pour le rapport.</li>
+<li>     Correction des signaux Qt dans la photographie..</li>
+<li>		Amélioration de la détection des types de reliure des livres pour les requêtes MARC.</li>
+<li>     Les ISBN des volumes multiples sont dans les impressions de livres.
+<li>     Nouveau champ pour le public cible du livre. Veuillez mettre à jour vos bases de données.</li>
+<li>		Recherche d'images pour les couvertures de livres : avec l'identifiant alternatif (par exemple Ark:// pour la BnF).</li>
+<li>     Qt 6.2 LTS est plus complet !</li>
+<li>     Suppression de la contrainte UNIQUE sur le champ multivolume_set_isbn. Voir les notes de mise à jour du 30 mars 2022 pour SQLite.</li>
+</ul>
 <p>30 mars 2022.</p>
 <ul>
 <li>    Copie du contenu des tables book_sequence et sequence pendant la fusion des bases de données SQLite.</li>

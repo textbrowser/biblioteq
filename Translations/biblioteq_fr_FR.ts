@@ -45,15 +45,15 @@
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>INCONNU</translation>
+        <translation>INCONNU(E)</translation>
     </message>
     <message>
         <source>hardcover</source>
-        <translation>couverture rigide</translation>
+        <translation>Livre relié</translation>
     </message>
     <message>
         <source>paperback</source>
-        <translation>livre de poche</translation>
+        <translation>Livre broché</translation>
     </message>
     <message>
         <source>Exporting image(s)...</source>
@@ -439,7 +439,7 @@
     </message>
     <message>
         <source>Item Creation</source>
-        <translation>Création d&apos;un article</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Membership</source>
@@ -475,7 +475,7 @@
     </message>
     <message>
         <source>Item Deletion</source>
-        <translation>Supprimer un article</translation>
+        <translation>Effacer un article</translation>
     </message>
     <message>
         <source>Delete Selected Administrator</source>
@@ -1521,7 +1521,7 @@
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation>Réinitaliser unités monétaires</translation>
+        <translation>Réinitaliser unité monétaire</translation>
     </message>
     <message>
         <source>Reset Abstract</source>
@@ -1597,7 +1597,7 @@
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Impossible de récupérer les unités monétaires.</translation>
+        <translation>Impossible de récupérer l&apos; unité monétaire.</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
@@ -1681,7 +1681,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Add &amp;Book...</source>
-        <translation>Ajouter un li&amp;vre...</translation>
+        <translation>Ajouter un &amp;livre...</translation>
     </message>
     <message>
         <source>Add &amp;DVD...</source>
@@ -1981,7 +1981,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Executing %1 statements.&lt;br&gt;&lt;br&gt;</source>
-        <translation>Exécution des instructions %1.&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="vanished">Exécution des instructions %1.&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Reservation Date: </source>
@@ -2215,6 +2215,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <source>Unable to update the entry %1.</source>
         <translation>Impossible de mettre à jour l&apos;entrés %1.</translation>
     </message>
+    <message>
+        <source>Executing %1 statement(s).&lt;br&gt;&lt;br&gt;</source>
+        <translation>Exécution de(s) %1 instruction(s).&lt;br&gt;&lt;br&gt;</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -2284,7 +2288,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the book locations.</source>
-        <translation>Impossible d&apos;extraire les emplacements des livres.</translation>
+        <translation type="vanished">Impossible d&apos;extraire les emplacements des livres.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -2460,7 +2464,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Unités monétaires :</translation>
+        <translation>Unité monétaire :</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -2596,7 +2600,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation>Réinitaliser unités monétaires</translation>
+        <translation>Réinitaliser unité monétaire</translation>
     </message>
     <message>
         <source>Reset Copies</source>
@@ -2636,7 +2640,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the book binding types.</source>
-        <translation>Impossible de récupérer les types de reliure.</translation>
+        <translation type="vanished">Impossible de récupérer les types de reliure.</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -2644,7 +2648,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Impossible de récupérer les unités monétaires.</translation>
+        <translation>Impossible de récupérer l&apos; unité monétaire.</translation>
     </message>
     <message>
         <source>All...</source>
@@ -2893,6 +2897,38 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>In order to query a Z39.50 site, ISBN-10 or ISBN-13 must be provided.</source>
         <translation>Pour interroger un site Z39.50, il faut fournir l&apos;ISBN-10 ou l&apos;ISBN-13.</translation>
+    </message>
+    <message>
+        <source>Reset Target Audience</source>
+        <translation>Réinitialiser le public cible</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the binding types.</source>
+        <translation>Impossible de récupérer les types de liaison.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the locations.</source>
+        <translation>Impossible d&apos;extraire les emplacements.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the target audiences.</source>
+        <translation>Impossible de récupérer les publics cibles.</translation>
+    </message>
+    <message>
+        <source>&amp;Other</source>
+        <translation>&amp;Autres</translation>
+    </message>
+    <message>
+        <source>In order to download a cover image, Alternate Identifier must be provided.</source>
+        <translation>Pour pouvoir télécharger une image de couverture, il faut fournir un identifiant alternatif.</translation>
+    </message>
+    <message>
+        <source>Multi-Volume ISBN:</source>
+        <translation>Multi-volume ISBN :</translation>
+    </message>
+    <message>
+        <source>Target Audience:</source>
+        <translation>Public cible :</translation>
     </message>
 </context>
 <context>
@@ -3322,7 +3358,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Unités monétaires :</translation>
+        <translation>Unité monétaire :</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -3414,7 +3450,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation>Réinitaliser unités monétaires</translation>
+        <translation>Réinitaliser unité monétaire</translation>
     </message>
     <message>
         <source>Reset Copies</source>
@@ -3446,7 +3482,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Impossible de récupérer les unités monétaires.</translation>
+        <translation>Impossible de récupérer l&apos; unité monétaire.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -3951,7 +3987,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>DVD Rating</source>
-        <translation>Note de DVD</translation>
+        <translation>Classification des DVD</translation>
     </message>
     <message>
         <source>DVD Region</source>
@@ -3971,7 +4007,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Video Game Rating</source>
-        <translation>Notes de jeux vidéo</translation>
+        <translation>Classification des jeux vidéo</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -4052,6 +4088,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ&#xa0;: erreur de la base de données</translation>
+    </message>
+    <message>
+        <source>Book Target Audience</source>
+        <translation>Public cible pour les livres</translation>
     </message>
 </context>
 <context>
@@ -4165,7 +4205,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the dvd ratings.</source>
-        <translation>Impossible d&apos;extraire les notes du DVD.</translation>
+        <translation>Impossible d&apos;extraire les classifications du DVD.</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd aspect ratios.</source>
@@ -4349,7 +4389,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Unités monétaires :</translation>
+        <translation>Unité monétaire :</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -4389,7 +4429,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Rating</source>
-        <translation>Réinitialiser la note</translation>
+        <translation>Réinitialiser la classification</translation>
     </message>
     <message>
         <source>Reset Actors</source>
@@ -4445,7 +4485,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation>Réinitaliser unités monétaires</translation>
+        <translation>Réinitaliser unité monétaire</translation>
     </message>
     <message>
         <source>Reset Copies</source>
@@ -4477,7 +4517,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Impossible de récupérer les unités monétaires.</translation>
+        <translation>Impossible de récupérer l&apos; unité monétaire.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -4682,7 +4722,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Notes</source>
-        <translation>Réinitialiser Notes</translation>
+        <translation>Réinitialiser classification</translation>
     </message>
     <message>
         <source>Reset Location</source>
@@ -4858,7 +4898,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Notes:</source>
-        <translation>Notes :</translation>
+        <translation>Classification :</translation>
     </message>
     <message>
         <source>Status:</source>
@@ -4949,7 +4989,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notes</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Include the Date in the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -5380,7 +5420,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Unités monétaires :</translation>
+        <translation>Unité monétaire :</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -5480,7 +5520,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation>Réinitaliser unités monétaires</translation>
+        <translation>Réinitaliser unité monétaire</translation>
     </message>
     <message>
         <source>Reset Copies</source>
@@ -5516,7 +5556,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Impossible de récupérer les unités monétaires.</translation>
+        <translation>Impossible de récupérer l&apos; unité monétaire.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -5943,7 +5983,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Note du jeu</translation>
+        <translation>Classification du jeu</translation>
     </message>
     <message>
         <source>Genres</source>
@@ -6581,7 +6621,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Game Rating:</source>
-        <translation>Note du jeu :</translation>
+        <translation>Classification du jeu :</translation>
     </message>
     <message>
         <source>Developer(s):</source>
@@ -6617,7 +6657,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Unités monétaires :</translation>
+        <translation>Unité monétaire :</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -6657,7 +6697,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Game Rating</source>
-        <translation>Réinitialiser la note du jeu</translation>
+        <translation>Réinitialiser la classification du jeu</translation>
     </message>
     <message>
         <source>Reset Developers</source>
@@ -6701,7 +6741,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Reset Monetary Units</source>
-        <translation>Réinitaliser unités monétaires</translation>
+        <translation>Réinitaliser unité monétaire</translation>
     </message>
     <message>
         <source>Reset Copies</source>
@@ -6733,7 +6773,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Impossible de récupérer les unités monétaires.</translation>
+        <translation>Impossible de récupérer l&apos; unité monétaire.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -7777,6 +7817,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query. Please include myoid and type fields as these fields are required by BiblioteQ for editing of items.</source>
         <translation>Le tableau de bord est destiné aux utilisateurs avancés ayant une connaissance approfondie de SQL et de la disposition de la base de données de BiblioteQ. Veuillez noter que l&apos;extraction des informations d&apos;images (couverture, quatrième de couverture) alourdira la requête. Veuillez inclure les champs myoid et type car ces champs sont requis par BiblioteQ pour l&apos;édition des articles.</translation>
     </message>
+    <message>
+        <source>DELETE and SELECT queries are allowed.</source>
+        <translation>Les requêtes DELETE et SELECT sont autorisées.</translation>
+    </message>
 </context>
 <context>
     <name>dbEnumerations</name>
@@ -7894,7 +7938,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>DVD Ratings</source>
-        <translation>Notes de DVD</translation>
+        <translation>Classification de DVD</translation>
     </message>
     <message>
         <source>DVD Regions</source>
@@ -7906,7 +7950,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <source>Video Game Ratings</source>
-        <translation>Notes de jeux vidéo</translation>
+        <translation>Classifications des jeux vidéo</translation>
     </message>
     <message>
         <source>Remove Monetary Unit</source>
@@ -8015,6 +8059,10 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <source>F5</source>
         <translation>F5</translation>
+    </message>
+    <message>
+        <source>Book Target Audiences</source>
+        <translation>Publics cible pour les livres</translation>
     </message>
 </context>
 <context>
@@ -8946,7 +8994,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent. The 13-digit ISBN must start with the digits 978.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convertissez l&apos;ISBN à 13 chiffres en son équivalent à 10 chiffres. L&apos;ISBN à 13 chiffres doit commencer par les chiffres 978.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convertissez l&apos;ISBN à 13 chiffres en son équivalent à 10 chiffres. L&apos;ISBN à 13 chiffres doit commencer par les chiffres 978.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -9119,6 +9167,14 @@ minmal de jours.</translation>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library, for example.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library, par exemple.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Target Audience</source>
+        <translation>Public cible</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convertissez l&apos;ISBN à 13 chiffres en son équivalent à 10 chiffres.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -9568,7 +9624,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Preferred &amp;Z39.50 Site</source>
-        <translation>Site &amp;Z39.50 préféré</translation>
+        <translation>Serveur &amp;Z39.50 préféré</translation>
     </message>
     <message>
         <source>Database Enumerations</source>
@@ -9792,7 +9848,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Please press the Enter key to execute the query.</source>
-        <translation>Veuillez appuyer sur la touche Enter pour exécuter la requête.</translation>
+        <translation type="vanished">Veuillez appuyer sur la touche Enter pour exécuter la requête.</translation>
     </message>
     <message>
         <source>&amp;Category</source>
@@ -9804,7 +9860,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Preferred SRU S&amp;ite</source>
-        <translation>S&amp;ite &amp;ZRU préféré</translation>
+        <translation>Serveur S&amp;RU préféré</translation>
     </message>
     <message>
         <source>P&amp;hotographs per Page</source>
@@ -9900,7 +9956,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Upgrade SQLite Schema</source>
-        <translation>&amp;Mise à jour du schèma de SQLite</translation>
+        <translation>&amp;Mettre à jour le schèma de SQLite</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Column Widths</source>
@@ -10024,11 +10080,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Export Icons View as PNG...</source>
-        <translation>Exporter la vuepar icones vers PNG...</translation>
+        <translation>Exporter la vue par icônes vers PNG...</translation>
     </message>
     <message>
         <source>&amp;Release Notes</source>
         <translation>&amp;Notes de publication</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Veuillez appuyer sur la touche Entrer pour exécuter la requête. Le caractère générique est %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -10424,6 +10484,10 @@ minmal de jours.</translation>
         <source>&amp;Set Membership Fees...</source>
         <translation>&amp;Fixer les frais d&apos;adhésion...</translation>
     </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;launch_database_enumerations_browser&quot;&gt;Change reservation durations through the Database Enumerations Browser.&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;launch_database_enumerations_browser&quot;&gt;Modifier les durées de réservation via le navigateur d&apos;énumérations de la base de données.&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
 </context>
 <context>
     <name>mergeSQLiteDatabases</name>
@@ -10801,7 +10865,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notes</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <source>Accession Number</source>
@@ -10817,7 +10881,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Item Information</source>
-        <translation>Information sur l&apos;article</translation>
+        <translation>Information de l&apos;article</translation>
     </message>
     <message>
         <source>Creators</source>
@@ -11035,7 +11099,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notes</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <source>Other Number</source>
@@ -14780,7 +14844,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Note du jeu</translation>
+        <translation>Classification du jeu</translation>
     </message>
     <message>
         <source>Language</source>
