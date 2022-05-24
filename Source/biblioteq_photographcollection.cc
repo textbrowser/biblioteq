@@ -2823,8 +2823,7 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
     pos = pc.graphicsView->mapFromGlobal(QCursor::pos());
 
   loadPhotographFromItemInNewWindow
-    (qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (pc.graphicsView->
-							 itemAt(pos)));
+    (qgraphicsitem_cast<QGraphicsPixmapItem *> (pc.graphicsView->itemAt(pos)));
 }
 
 void biblioteq_photographcollection::slotViewPreviousPhotograph(void)

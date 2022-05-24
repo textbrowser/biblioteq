@@ -40,16 +40,6 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
   {
   }
 
-  enum
-    {
-     Type = QGraphicsPixmapItem::UserType + 1
-    };
-
-  int type(void) const
-  {
-    return Type;
-  }
-
   void paint(QPainter *painter,
 	     const QStyleOptionGraphicsItem *option,
 	     QWidget *widget = nullptr)
