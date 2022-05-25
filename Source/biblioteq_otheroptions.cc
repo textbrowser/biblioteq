@@ -63,7 +63,7 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
     value = settings.value
       ("otheroptions/videogame_availability_color").toString();
 
-  return QColor(value);
+  return QColor(value.remove('&'));
 }
 
 QString biblioteq_otheroptions::publicationDateFormat
@@ -234,7 +234,7 @@ void biblioteq_otheroptions::prepareAvailability(void)
       m_ui.availability_color->setItem(i, ITEM_TYPE, item);
       pushButton->setText(list2.at(i));
       pushButton->setStyleSheet
-	(QString("background-color: %1").arg(list2.at(i)));
+	(QString("background-color: %1").arg(QString(list2.at(i)).remove('&')));
     }
 
   m_ui.availability_color->resizeColumnToContents(ITEM_TYPE);
@@ -358,7 +358,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.publication_date->resizeRowsToContents();
 
   QColor color
-    (settings.value("mainwindow_canvas_background_color").toString().trimmed());
+    (settings.value("mainwindow_canvas_background_color").
+     toString().remove('&').trimmed());
 
   if(!color.isValid())
     color = Qt::white;
@@ -478,7 +479,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   settings.setValue
     ("mainwindow_canvas_background_color",
-     m_ui.main_window_canvas_background_color->text().toLatin1());
+     m_ui.main_window_canvas_background_color->text().remove('&').toLatin1());
   settings.setValue
     ("otheroptions/book_read_status", m_ui.book_read_status->isChecked());
   settings.setValue
@@ -507,7 +508,7 @@ void biblioteq_otheroptions::slotSave(void)
   m_isbn10Format = m_ui.isbn10_display_format->currentText();
   m_isbn13Format = m_ui.isbn13_display_format->currentText();
   emit mainWindowCanvasBackgroundColorChanged
-    (QColor(m_ui.main_window_canvas_background_color->text()));
+    (QColor(m_ui.main_window_canvas_background_color->text().remove('&')));
   emit saved();
   QApplication::restoreOverrideCursor();
 }
@@ -521,7 +522,7 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
 
   QColorDialog dialog(this);
 
-  dialog.setCurrentColor(QColor(pushButton->text()));
+  dialog.setCurrentColor(QColor(pushButton->text().remove('&')));
   dialog.setOption(QColorDialog::DontUseNativeDialog);
 
   if(dialog.exec() == QDialog::Accepted)
@@ -537,7 +538,7 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
 
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 {
-  QColor color(m_ui.main_window_canvas_background_color->text());
+  QColor color(m_ui.main_window_canvas_background_color->text().remove('&'));
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(color);

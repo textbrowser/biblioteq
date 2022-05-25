@@ -1489,7 +1489,7 @@ void biblioteq::readConfig(void)
     ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
   QColor color(settings.value("mainwindow_canvas_background_color").
-	       toString().trimmed());
+	       toString().remove('&').trimmed());
 
   if(!color.isValid())
     color = Qt::white;
@@ -3924,7 +3924,7 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
   else
     {
       QColor color(settings.value("mainwindow_canvas_background_color").
-		   toString().trimmed());
+		   toString().remove('&').trimmed());
 
       if(!color.isValid())
 	color = Qt::white;
