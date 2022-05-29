@@ -84,8 +84,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
     return;
 
   QMapIterator<int, QPair<QString, QString> > it(m_mappings);
-  QString f("");
-  QString q("");
+  QString f(""); // Field Names
+  QString q(""); // Positional Placeholders
   QString queryString("");
 
   while(it.hasNext())
@@ -965,6 +965,7 @@ void biblioteq_import::slotReset(void)
 
   m_mappings.clear();
   m_previewHeaders.clear();
+  m_ui.barcode->setValue(0);
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
@@ -1111,6 +1112,14 @@ void biblioteq_import::slotTemplates(int index)
 	       << "street"
 	       << "telephone_num"
 	       << "zip";
+
+	if(index == Templates::TEMPLATE_3)
+	  {
+	    m_ui.barcode->setEnabled(false);
+	    m_ui.barcode->setValue(0);
+	  }
+	else
+	  m_ui.barcode->setEnabled(true);
 
 	for(int i = 0; i < list.size(); i++)
 	  {
