@@ -31,9 +31,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-1469</y>
+            <y>-1334</y>
             <width>499</width>
-            <height>2141</height>
+            <height>2960</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -54,6 +54,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="bookBindingsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -158,6 +164,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="bookTargetAudiences">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -262,6 +274,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="cdFormatsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -366,6 +384,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="dvdAspectRatiosList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -470,6 +494,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="dvdRatingsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -574,6 +604,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="dvdRegionsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -678,6 +714,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="greyLiteratureTypes">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -782,6 +824,12 @@
              </item>
              <item>
               <widget class="QTableWidget" name="locationsTable">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="alternatingRowColors">
                 <bool>true</bool>
                </property>
@@ -902,6 +950,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="monetaryUnitsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -1006,6 +1060,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="languagesList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -1110,6 +1170,12 @@
              </item>
              <item>
               <widget class="QTableWidget" name="minimumDaysTable">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="alternatingRowColors">
                 <bool>true</bool>
                </property>
@@ -1307,6 +1373,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="videoGamePlatformsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
@@ -1411,6 +1483,12 @@
              </item>
              <item>
               <widget class="QListWidget" name="videoGameRatingsList">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>150</height>
+                </size>
+               </property>
                <property name="tabKeyNavigation">
                 <bool>true</bool>
                </property>
