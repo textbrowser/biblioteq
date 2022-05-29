@@ -151,6 +151,10 @@ class biblioteq_misc_functions
 			QString &,
 			const QString & = "");
   static void center(QWidget *, QMainWindow *);
+  static void createBookCopy(const QString &idArg,
+			     const int copyNumber,
+			     const QSqlDatabase &db,
+			     QString &errorstr);
   static void createInitialCopies(QString const &,
 				  const int,
 				  const QSqlDatabase &,

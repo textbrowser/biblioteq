@@ -1745,6 +1745,57 @@ void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
   child->move(X, Y);
 }
 
+void biblioteq_misc_functions::createBookCopy(const QString &idArg,
+					      const int copyNumber,
+					      const QSqlDatabase &db,
+					      QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString id("");
+  QString itemOid("");
+
+  /*
+  ** Retrieve the item's OID.
+  */
+
+  errorstr.clear();
+  id = idArg;
+  itemOid = getOID(id, "Book", db, errorstr);
+
+  if(!errorstr.isEmpty())
+    return;
+
+  if(itemOid.isEmpty())
+    itemOid = id;
+
+  if(!itemOid.isEmpty())
+    {
+      if(db.driverName() != "QSQLITE")
+	query.prepare("INSERT INTO book_copy_info "
+		      "(item_oid, copy_number, copyid) "
+		      "VALUES (?, ?, ?)");
+      else
+	query.prepare("INSERT INTO book_copy_info "
+		      "(item_oid, copy_number, copyid, myoid) "
+		      "VALUES (?, ?, ?, ?)");
+
+      query.addBindValue(itemOid);
+      query.addBindValue(copyNumber);
+      query.addBindValue(id + "-" + QString::number(copyNumber));
+
+      if(db.driverName() == "QSQLITE")
+	{
+	  auto value = getSqliteUniqueId(db, errorstr);
+
+	  if(errorstr.isEmpty())
+	    query.addBindValue(value);
+	}
+
+      if(errorstr.isEmpty() && !query.exec())
+	errorstr = query.lastError().text();
+    }
+}
+
 void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 						   const int numCopies,
 						   const QSqlDatabase &db,
@@ -1840,7 +1891,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 	      break;
 	  }
 
-	if(!query.exec())
+	if(errorstr.isEmpty() && !query.exec())
 	  {
 	    errorstr = query.lastError().text();
 	    break;

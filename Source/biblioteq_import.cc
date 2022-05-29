@@ -139,6 +139,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   if(notImported)
     *notImported = 0;
 
+  QHash<QString, int> isbns;
   QTextStream in(&file);
   auto list(m_ui.ignored_rows->text().trimmed().split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
@@ -180,6 +181,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	      QMap<int, QString> values;
 	      QSqlQuery query(m_qmain->getDB());
 	      QString id("");
+	      auto duplicate = false;
 	      int quantity = 1;
 	      qint64 oid = 0;
 
@@ -231,6 +233,12 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		      if(str.length() == 10)
 			id = str;
+
+		      if(isbns.contains(id))
+			duplicate = true;
+
+		      if(!id.isEmpty())
+			isbns[id] = isbns.value(id, 0) + 1;
 		    }
 		  else if(m_mappings.value(i).first == "isbn13")
 		    {
@@ -238,6 +246,12 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		      if(id.length() == 10 && str.isEmpty())
 			str = biblioteq_misc_functions::isbn10to13(id);
+
+		      if(isbns.contains(str))
+			duplicate = true;
+
+		      if(!str.isEmpty())
+			isbns[str] = isbns.value(str, 0) + 1;
 		    }
 		  else if(m_mappings.value(i).first == "language")
 		    {
@@ -313,7 +327,28 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    query.addBindValue(it.value());
 		}
 
-	      if(query.exec())
+	      if(duplicate)
+		{
+		  QString errorstr("");
+
+		  biblioteq_misc_functions::createBookCopy
+		    (id, isbns.value(id), m_qmain->getDB(), errorstr);
+
+		  if(errorstr.isEmpty())
+		    {
+		      if(imported)
+			*imported += 1;
+		    }
+		  else
+		    {
+		      errors << tr("Database error (%1) at row %2.").
+			arg(errorstr).arg(ct);
+
+		      if(notImported)
+			*notImported += 1;
+		    }
+		}
+	      else if(query.exec())
 		{
 		  if(m_qmain->getDB().driverName() == "QPSQL")
 		    {
@@ -965,7 +1000,6 @@ void biblioteq_import::slotReset(void)
 
   m_mappings.clear();
   m_previewHeaders.clear();
-  m_ui.barcode->setValue(0);
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
@@ -1112,14 +1146,6 @@ void biblioteq_import::slotTemplates(int index)
 	       << "street"
 	       << "telephone_num"
 	       << "zip";
-
-	if(index == Templates::TEMPLATE_3)
-	  {
-	    m_ui.barcode->setEnabled(false);
-	    m_ui.barcode->setValue(0);
-	  }
-	else
-	  m_ui.barcode->setEnabled(true);
 
 	for(int i = 0; i < list.size(); i++)
 	  {
