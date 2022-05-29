@@ -336,7 +336,7 @@
              <item>
               <widget class="QCheckBox" name="bottom_scroll_on_add">
                <property name="text">
-                <string>Bottom Scroll On Add</string>
+                <string>Bottom-Scroll On Add</string>
                </property>
                <property name="checked">
                 <bool>true</bool>

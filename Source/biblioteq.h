@@ -2,7 +2,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2022.05.15"
+#define BIBLIOTEQ_VERSION "2022.05.30"
 
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
