@@ -1793,6 +1793,17 @@ void biblioteq_misc_functions::createBookCopy(const QString &idArg,
 
       if(errorstr.isEmpty() && !query.exec())
 	errorstr = query.lastError().text();
+
+      if(errorstr.isEmpty())
+	{
+	  query.exec
+	    ("UPDATE book SET quantity = "
+	     "(SELECT COUNT(*) FROM book_copy_info WHERE item_oid = ?) "
+	     "WHERE oid = ?");
+	  query.addBindValue(itemOid);
+	  query.addBindValue(itemOid);
+	  query.exec();
+	}
     }
 }
 
@@ -2251,8 +2262,8 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
      itemType == "journal" ||
      itemType == "magazine" ||
      itemType == "videogame")
-    querystr = QString("UPDATE %1 SET quantity = ? WHERE "
-		       "myoid = ?").arg(itemType);
+    querystr = QString("UPDATE %1 SET quantity = ? WHERE myoid = ?").
+      arg(itemType);
   else
     return;
 
