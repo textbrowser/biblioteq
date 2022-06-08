@@ -1796,10 +1796,10 @@ void biblioteq_misc_functions::createBookCopy(const QString &idArg,
 
       if(errorstr.isEmpty())
 	{
-	  query.exec
+	  query.prepare
 	    ("UPDATE book SET quantity = "
 	     "(SELECT COUNT(*) FROM book_copy_info WHERE item_oid = ?) "
-	     "WHERE oid = ?");
+	     "WHERE myoid = ?");
 	  query.addBindValue(itemOid);
 	  query.addBindValue(itemOid);
 	  query.exec();
