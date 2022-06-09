@@ -1404,8 +1404,9 @@ void biblioteq::readConfig(void)
 #ifndef Q_OS_MACOS
   font = QApplication::font();
 
-  if(settings.contains("global_font"))
-    if(!font.fromString(settings.value("global_font", "").toString()))
+  if(settings.contains("global_font") &&
+     !settings.value("global_font", "").toString().trimmed().isEmpty())
+    if(!font.fromString(settings.value("global_font", "").toString().trimmed()))
       font = QApplication::font();
 
   QApplication::setFont(font);
