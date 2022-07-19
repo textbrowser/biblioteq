@@ -432,7 +432,7 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <addaction name="actionBatch_Activities_Browser"/>
+    <addaction name="actionBatchActivitiesBrowser"/>
     <addaction name="separator"/>
     <addaction name="actionImportCSV"/>
     <addaction name="separator"/>
@@ -1353,7 +1353,7 @@
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionBatch_Activities_Browser">
+  <action name="actionBatchActivitiesBrowser">
    <property name="text">
     <string>Batch Activities Browser...</string>
    </property>

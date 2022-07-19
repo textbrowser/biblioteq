@@ -1,5 +1,6 @@
 FORMS           = UI/biblioteq_adminsetup.ui \
-		  UI/biblioteq_allinfo.ui \
+                  UI/biblioteq_allinfo.ui \
+                  UI/biblioteq_batch_activities_browser.ui \
                   UI/biblioteq_bookcopybrowser.ui \
                   UI/biblioteq_bookinfo.ui \
                   UI/biblioteq_borrowers.ui \

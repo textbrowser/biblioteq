@@ -33,6 +33,24 @@
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Member ID</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="member_id">
+               <property name="placeholderText">
+                <string>Member ID</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
             <widget class="QTableWidget" name="borrow_table">
              <property name="alternatingRowColors">
               <bool>true</bool>
@@ -244,6 +262,7 @@
  </widget>
  <tabstops>
   <tabstop>tab</tabstop>
+  <tabstop>member_id</tabstop>
   <tabstop>borrow_table</tabstop>
   <tabstop>borrow_add_row</tabstop>
   <tabstop>borrow_remove_row</tabstop>

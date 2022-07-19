@@ -710,6 +710,7 @@ biblioteq::biblioteq(void):QMainWindow()
 #endif
 
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.actionBatchActivitiesBrowser->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.actionDatabaseSearch->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
@@ -1224,15 +1225,19 @@ void biblioteq::adminSetup(void)
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     ui.actionModifyEntry->setEnabled(true);
 
-  if(m_roles.contains("administrator") || m_roles.contains("circulation") ||
+  if(m_roles.contains("administrator") ||
+     m_roles.contains("circulation") ||
      m_roles.contains("membership"))
     {
-      ui.userTool->setEnabled(true);
       ui.actionMembersBrowser->setEnabled(true);
+      ui.userTool->setEnabled(true);
     }
 
   if(m_roles.contains("administrator") || m_roles.contains("circulation"))
-    ui.reserveTool->setEnabled(true);
+    {
+      ui.actionBatchActivitiesBrowser->setEnabled(true);
+      ui.reserveTool->setEnabled(true);
+    }
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     ui.actionAutoPopulateOnCreation->setEnabled(true);

@@ -3150,6 +3150,7 @@ void biblioteq::slotDisconnect(void)
   resetAdminBrowser();
   resetMembersBrowser();
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.actionBatchActivitiesBrowser->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.actionDatabaseSearch->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);

@@ -8,6 +8,7 @@ export QT_X11_NO_MITSHM=1
 
 if [ -r ./BiblioteQ ] && [ -x ./BiblioteQ ]
 then
+    echo "Launching a local BiblioteQ."
     exec ./BiblioteQ "$@"
     exit $?
 fi
