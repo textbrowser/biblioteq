@@ -356,6 +356,10 @@ void biblioteq::slotSetMembershipFees(void)
     }
 }
 
+void biblioteq::slotShowBatchActivitiesBrowser(void)
+{
+}
+
 void biblioteq::slotShowDocumentation(void)
 {
   auto action = qobject_cast<QAction *> (sender());

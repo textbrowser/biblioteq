@@ -269,6 +269,10 @@ biblioteq::biblioteq(void):QMainWindow()
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   ui.action_Open_PDF_File->setEnabled(false);
 #endif
+  connect(ui.actionBatchActivitiesBrowser,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowBatchActivitiesBrowser(void)));
   connect(ui.action_Book,
 	  SIGNAL(triggered(void)),
 	  this,
