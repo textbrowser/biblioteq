@@ -125,7 +125,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>340</height>
+          <height>336</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -432,6 +432,8 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <addaction name="actionBatch_Activities_Browser"/>
+    <addaction name="separator"/>
     <addaction name="actionImportCSV"/>
     <addaction name="separator"/>
     <addaction name="actionResizeColumns"/>
@@ -1349,6 +1351,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionBatch_Activities_Browser">
+   <property name="text">
+    <string>Batch Activities Browser...</string>
    </property>
   </action>
  </widget>
