@@ -27,6 +27,7 @@ BiblioteQ is free and open library software.
 <li>MacOS and Windows install targets: make install.</li>
 <li>Merging of SQLite databases.</li>
 <li>Natively compiled on Alpha, ARM, PowerPC, Sparc64, X86, X86_64.</li>
+<li>Network-less!</li>
 <li>Open Library queries for select items.</li>
 <li>Optional item reservation histories for patrons.</li>
 <li>PDF reader via Poppler, where available.</li>
