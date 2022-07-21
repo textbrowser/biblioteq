@@ -73,17 +73,17 @@
            </item>
            <item>
             <property name="text">
+             <string>Languages</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Locations</string>
             </property>
            </item>
            <item>
             <property name="text">
              <string>Monetary Units</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Languages</string>
             </property>
            </item>
            <item>
@@ -129,7 +129,7 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>0</y>
+              <y>-2330</y>
               <width>497</width>
               <height>2960</height>
              </rect>
@@ -138,7 +138,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
-                <widget class="QLabel" name="label_7">
+                <widget class="QLabel" name="bookBindingsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -248,7 +248,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_9">
                <item>
-                <widget class="QLabel" name="label_9">
+                <widget class="QLabel" name="bookTargetAudiencesLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -358,7 +358,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
-                <widget class="QLabel" name="label_4">
+                <widget class="QLabel" name="cdFormatsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -468,7 +468,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <item>
-                <widget class="QLabel" name="label_5">
+                <widget class="QLabel" name="dvdAspectRatiosListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -578,7 +578,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
-                <widget class="QLabel" name="label_6">
+                <widget class="QLabel" name="dvdRatingsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -688,7 +688,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_13">
                <item>
-                <widget class="QLabel" name="label_13">
+                <widget class="QLabel" name="dvdRegionsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -798,7 +798,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
-                <widget class="QLabel" name="label_8">
+                <widget class="QLabel" name="greyLiteratureTypesLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -906,9 +906,119 @@
               </widget>
              </item>
              <item>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <widget class="QLabel" name="languagesListLabel">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Languages</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QListWidget" name="languagesList">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>150</height>
+                  </size>
+                 </property>
+                 <property name="tabKeyNavigation">
+                  <bool>true</bool>
+                 </property>
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                 <property name="verticalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="horizontalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="addLanguage">
+                   <property name="toolTip">
+                    <string>Add</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="removeLanguage">
+                   <property name="toolTip">
+                    <string>Remove</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="Line" name="line_10">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
               <layout class="QVBoxLayout" name="_3">
                <item>
-                <widget class="QLabel" name="label">
+                <widget class="QLabel" name="locationsTableLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -1034,7 +1144,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <widget class="QLabel" name="label_3">
+                <widget class="QLabel" name="monetaryUnitsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -1135,116 +1245,6 @@
               </layout>
              </item>
              <item>
-              <widget class="Line" name="line_10">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_2">
-               <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="font">
-                  <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Languages</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QListWidget" name="languagesList">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>150</height>
-                  </size>
-                 </property>
-                 <property name="tabKeyNavigation">
-                  <bool>true</bool>
-                 </property>
-                 <property name="alternatingRowColors">
-                  <bool>true</bool>
-                 </property>
-                 <property name="verticalScrollMode">
-                  <enum>QAbstractItemView::ScrollPerPixel</enum>
-                 </property>
-                 <property name="horizontalScrollMode">
-                  <enum>QAbstractItemView::ScrollPerPixel</enum>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="addLanguage">
-                   <property name="toolTip">
-                    <string>Add</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../Icons/icons.qrc">
-                     <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>16</width>
-                     <height>16</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="removeLanguage">
-                   <property name="toolTip">
-                    <string>Remove</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../Icons/icons.qrc">
-                     <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>16</width>
-                     <height>16</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </item>
-             <item>
               <widget class="Line" name="line_11">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -1254,7 +1254,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
-                <widget class="QLabel" name="label_14">
+                <widget class="QLabel" name="minimumDaysTableLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -1457,7 +1457,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_16">
                <item>
-                <widget class="QLabel" name="label_16">
+                <widget class="QLabel" name="videoGamePlatformsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -1567,7 +1567,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_15">
                <item>
-                <widget class="QLabel" name="label_15">
+                <widget class="QLabel" name="videoGameRatingsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -1796,15 +1796,15 @@
   <tabstop>greyLiteratureTypes</tabstop>
   <tabstop>addGreyLiteratureType</tabstop>
   <tabstop>removeGreyLiteratureType</tabstop>
+  <tabstop>languagesList</tabstop>
+  <tabstop>addLanguage</tabstop>
+  <tabstop>removeLanguage</tabstop>
   <tabstop>locationsTable</tabstop>
   <tabstop>addLocation</tabstop>
   <tabstop>removeLocation</tabstop>
   <tabstop>monetaryUnitsList</tabstop>
   <tabstop>addMonetaryUnit</tabstop>
   <tabstop>removeMonetaryUnit</tabstop>
-  <tabstop>languagesList</tabstop>
-  <tabstop>addLanguage</tabstop>
-  <tabstop>removeLanguage</tabstop>
   <tabstop>minimumDaysTable</tabstop>
   <tabstop>videoGamePlatformsList</tabstop>
   <tabstop>addVideoGamePlatform</tabstop>

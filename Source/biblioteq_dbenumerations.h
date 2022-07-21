@@ -34,6 +34,7 @@ class biblioteq_dbenumerations: public QMainWindow
   void slotReload(void);
   void slotRemove(void);
   void slotSave(void);
+  void slotScrollToSection(int index);
 };
 
 #endif

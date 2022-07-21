@@ -111,6 +111,7 @@ sqlite3_db_config
 sqlite3_db_filename
 sqlite3_db_handle
 sqlite3_db_mutex
+sqlite3_db_name
 sqlite3_db_readonly
 sqlite3_db_release_memory
 sqlite3_db_status

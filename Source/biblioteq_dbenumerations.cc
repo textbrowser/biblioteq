@@ -1,3 +1,5 @@
+#include <QScrollBar>
+
 #include "biblioteq.h"
 #include "biblioteq_dbenumerations.h"
 #include "biblioteq_misc_functions.h"
@@ -115,6 +117,10 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSave(void)));
+  connect(m_ui.section,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotScrollToSection(int)));
 
   if(qmain)
     connect(qmain,
@@ -984,4 +990,24 @@ void biblioteq_dbenumerations::slotSave(void)
     }
   else
     populateWidgets();
+}
+
+void biblioteq_dbenumerations::slotScrollToSection(int index)
+{
+  QList<QWidget *> widgets;
+
+  widgets << m_ui.bookBindingsListLabel
+	  << m_ui.bookTargetAudiencesLabel
+	  << m_ui.cdFormatsListLabel
+	  << m_ui.dvdAspectRatiosListLabel
+	  << m_ui.dvdRatingsListLabel
+	  << m_ui.dvdRegionsListLabel
+	  << m_ui.greyLiteratureTypesLabel
+	  << m_ui.languagesListLabel
+	  << m_ui.locationsTableLabel
+	  << m_ui.minimumDaysTableLabel
+	  << m_ui.monetaryUnitsListLabel
+	  << m_ui.videoGamePlatformsListLabel
+	  << m_ui.videoGameRatingsListLabel;
+  m_ui.scrollArea->verticalScrollBar()->setValue(widgets.at(index)->pos().y());
 }
