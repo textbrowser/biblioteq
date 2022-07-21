@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>importBrowser</class>
- <widget class="QMainWindow" name="importBrowser">
+ <class>batchActivitiesBrowser</class>
+ <widget class="QMainWindow" name="batchActivitiesBrowser">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -147,7 +147,7 @@
       <item>
        <widget class="QToolButton" name="go">
         <property name="toolTip">
-         <string>Go!</string>
+         <string>Go! (Current Page)</string>
         </property>
         <property name="text">
          <string/>
@@ -177,7 +177,7 @@
       <item>
        <widget class="QToolButton" name="reset">
         <property name="toolTip">
-         <string>Reset</string>
+         <string>Reset Current Page</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
@@ -236,23 +236,6 @@
      </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>700</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_Help">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="action_Documentation"/>
-   </widget>
-   <addaction name="menu_Help"/>
   </widget>
   <action name="action_Documentation">
    <property name="text">

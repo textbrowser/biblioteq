@@ -4,6 +4,7 @@
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
 #define BIBLIOTEQ_VERSION "2022.05.30"
 
+#include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
 #include "biblioteq_callnum_table_item.h"
 #include "biblioteq_cd.h"
@@ -412,6 +413,7 @@ class biblioteq: public QMainWindow
   Ui_mainWindow ui;
   Ui_membersBrowser bb;
   Ui_passSelect pass;
+  biblioteq_batch_activities *m_batchActivities;
   biblioteq_files *m_files;
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;

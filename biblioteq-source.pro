@@ -35,6 +35,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_z3950results.ui
 
 HEADERS		= Source/biblioteq.h \
+                  Source/biblioteq_batch_activities.h \
                   Source/biblioteq_bgraphicsscene.h \
 		  Source/biblioteq_book.h \
 		  Source/biblioteq_borrowers_editor.h \
@@ -70,6 +71,7 @@ RESOURCES	= Documentation/documentation.qrc \
 
 SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_b.cc \
+                  Source/biblioteq_batch_activities.cc \
                   Source/biblioteq_bgraphicsscene.cc \
                   Source/biblioteq_book.cc \
                   Source/biblioteq_borrowers_editor.cc \

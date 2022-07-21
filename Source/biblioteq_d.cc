@@ -358,6 +358,7 @@ void biblioteq::slotSetMembershipFees(void)
 
 void biblioteq::slotShowBatchActivitiesBrowser(void)
 {
+  m_batchActivities->show(this);
 }
 
 void biblioteq::slotShowDocumentation(void)

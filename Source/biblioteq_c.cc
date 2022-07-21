@@ -3123,6 +3123,7 @@ void biblioteq::slotDisconnect(void)
 #ifdef Q_OS_ANDROID
   m_admin_diag->hide();
   m_all_diag->hide();
+  m_batchActivities->hide();
   m_customquery_diag->hide();
   m_history_diag->hide();
   m_import->hide();
@@ -3130,6 +3131,7 @@ void biblioteq::slotDisconnect(void)
 #else
   m_admin_diag->close();
   m_all_diag->close();
+  m_batchActivities->close();
   m_customquery_diag->close();
   m_history_diag->close();
   m_import->close();

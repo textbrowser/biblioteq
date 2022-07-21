@@ -232,6 +232,7 @@ biblioteq::biblioteq(void):QMainWindow()
 #else
   m_error_diag = new QMainWindow();
 #endif
+  m_batchActivities = new biblioteq_batch_activities(this);
   m_import = new biblioteq_import(this);
   menu1 = new QMenu(this);
   connect(QCoreApplication::instance(),
