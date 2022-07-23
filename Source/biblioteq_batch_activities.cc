@@ -6,6 +6,22 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+  connect(m_qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(slotSetGlobalFonts(const QFont &)));
+  connect(m_ui.borrow_add_row,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAddBorrowingRow(void)));
+  connect(m_ui.borrow_remove_row,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteBorrowingRow(void)));
+  connect(m_ui.close,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotClose(void)));
 }
 
 void biblioteq_batch_activities::changeEvent(QEvent *event)

@@ -29,7 +29,7 @@
          </property>
          <widget class="QWidget" name="page_1">
           <attribute name="title">
-           <string>Borrowing</string>
+           <string>Borrow</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
