@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>700</height>
+    <width>750</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,6 +52,9 @@
            </item>
            <item>
             <widget class="QTableWidget" name="borrow_table">
+             <property name="editTriggers">
+              <set>QAbstractItemView::DoubleClicked</set>
+             </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
              </property>
@@ -81,7 +84,12 @@
              </attribute>
              <column>
               <property name="text">
-               <string>ISBN</string>
+               <string>Category</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Identifier</string>
               </property>
              </column>
              <column>

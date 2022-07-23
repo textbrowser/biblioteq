@@ -1,3 +1,5 @@
+#include <QComboBox>
+
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
 
@@ -65,24 +67,43 @@ void biblioteq_batch_activities::show(QMainWindow *parent)
 void biblioteq_batch_activities::slotAddBorrowingRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-
   m_ui.borrow_table->setRowCount(m_ui.borrow_table->rowCount() + 1);
 
   auto row = m_ui.borrow_table->rowCount() - 1;
 
   for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
-    {
-      auto item = new QTableWidgetItem();
+    if(i == 0)
+      {
+	auto comboBox = new QComboBox();
+	auto widget = new QWidget();
 
-      if(i == 2)
-	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      else
-	item->setFlags
-	  (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	comboBox->addItem(tr("Book"));
+	comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
-      m_ui.borrow_table->setItem(row, i, item);
-    }
+	auto layout = new QHBoxLayout(widget);
+	auto spacer = new QSpacerItem
+	  (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+	layout->addWidget(comboBox);
+	layout->addSpacerItem(spacer);
+	layout->setContentsMargins(0, 0, 0, 0);
+	m_ui.borrow_table->setCellWidget(row, i, widget);
+      }
+    else
+      {
+	auto item = new QTableWidgetItem();
+
+	if(i == 2)
+	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	else
+	  item->setFlags
+	    (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+	m_ui.borrow_table->setItem(row, i, item);
+      }
+
+  m_ui.borrow_table->resizeColumnsToContents();
   QApplication::restoreOverrideCursor();
 }
 
@@ -124,5 +145,6 @@ void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
       widget->update();
     }
 
+  m_ui.borrow_table->resizeColumnsToContents();
   update();
 }
