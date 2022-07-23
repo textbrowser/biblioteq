@@ -56,7 +56,7 @@
               <bool>true</bool>
              </property>
              <property name="selectionMode">
-              <enum>QAbstractItemView::SingleSelection</enum>
+              <enum>QAbstractItemView::ExtendedSelection</enum>
              </property>
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectRows</enum>
@@ -119,9 +119,9 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="borrow_remove_row">
+              <widget class="QPushButton" name="borrow_delete_row">
                <property name="text">
-                <string>Remove Row</string>
+                <string>Delete Row(s)</string>
                </property>
               </widget>
              </item>
@@ -253,7 +253,7 @@
   <tabstop>member_id</tabstop>
   <tabstop>borrow_table</tabstop>
   <tabstop>borrow_add_row</tabstop>
-  <tabstop>borrow_remove_row</tabstop>
+  <tabstop>borrow_delete_row</tabstop>
   <tabstop>go</tabstop>
   <tabstop>reset</tabstop>
   <tabstop>close</tabstop>

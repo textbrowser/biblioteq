@@ -14,7 +14,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAddBorrowingRow(void)));
-  connect(m_ui.borrow_remove_row,
+  connect(m_ui.borrow_delete_row,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteBorrowingRow(void)));
@@ -22,6 +22,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
 }
 
 void biblioteq_batch_activities::changeEvent(QEvent *event)
@@ -61,6 +65,24 @@ void biblioteq_batch_activities::show(QMainWindow *parent)
 void biblioteq_batch_activities::slotAddBorrowingRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  m_ui.borrow_table->setRowCount(m_ui.borrow_table->rowCount() + 1);
+
+  auto row = m_ui.borrow_table->rowCount() - 1;
+
+  for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
+    {
+      auto item = new QTableWidgetItem();
+
+      if(i == 2)
+	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      else
+	item->setFlags
+	  (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+      m_ui.borrow_table->setItem(row, i, item);
+    }
+
   QApplication::restoreOverrideCursor();
 }
 
@@ -76,11 +98,20 @@ void biblioteq_batch_activities::slotClose(void)
 void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto rows(biblioteq_misc_functions::selectedRows(m_ui.borrow_table));
+
+  for(auto i = rows.size() - 1; i >= 0; i--)
+    m_ui.borrow_table->removeRow(rows.at(i));
+
   QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_batch_activities::slotReset(void)
 {
+  m_ui.borrow_table->clearContents();
+  m_ui.borrow_table->setRowCount(0);
+  m_ui.member_id->clear();
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
