@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Alexis Megas.
 
 if [ ! -x /usr/bin/dpkg-deb ]; then
@@ -32,7 +32,7 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./DEBIAN biblioteq-debian/.
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2022.05.30_amd64.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2022.07.30_amd64.deb
 rm -fr ./usr
 rm -fr biblioteq-debian
 make distclean
