@@ -991,7 +991,7 @@ void biblioteq_import::slotReset(void)
     if(QMessageBox::question(this,
 			     tr("BiblioteQ: Question"),
 			     tr("Are you sure that you wish to reset?"),
-			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No | QMessageBox::Yes,
 			     QMessageBox::No) == QMessageBox::No)
       {
 	QApplication::processEvents();
@@ -1059,7 +1059,7 @@ void biblioteq_import::slotTemplates(int index)
 				     tr("BiblioteQ: Question"),
 				     tr("Populate the table with "
 					"Template %1 values?").arg(index),
-				     QMessageBox::Yes | QMessageBox::No,
+				     QMessageBox::No | QMessageBox::Yes,
 				     QMessageBox::No) == QMessageBox::No)
 	      {
 		QApplication::processEvents();

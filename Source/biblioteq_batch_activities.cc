@@ -142,7 +142,7 @@ void biblioteq_batch_activities::slotReset(void)
     if(QMessageBox::question(this,
 			     tr("BiblioteQ: Question"),
 			     tr("Are you sure that you wish to reset?"),
-			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No | QMessageBox::Yes,
 			     QMessageBox::No) == QMessageBox::No)
       {
 	QApplication::processEvents();
