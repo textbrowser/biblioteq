@@ -23,6 +23,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotAddBorrowingRow(void);
   void slotClose(void);
   void slotDeleteBorrowingRow(void);
+  void slotGo(void);
   void slotReset(void);
   void slotSetGlobalFonts(const QFont &font);
 };

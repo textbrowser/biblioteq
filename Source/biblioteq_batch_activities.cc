@@ -24,6 +24,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.go,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -126,6 +130,10 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
     m_ui.borrow_table->removeRow(rows.at(i));
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::slotGo(void)
+{
 }
 
 void biblioteq_batch_activities::slotReset(void)
