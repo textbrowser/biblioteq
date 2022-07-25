@@ -77,7 +77,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	auto comboBox = new QComboBox();
 	auto widget = new QWidget();
 
-	comboBox->addItem(tr("Book"));
+	comboBox->addItems(QStringList() << tr("Book"));
 	comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
@@ -94,7 +94,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
       {
 	auto item = new QTableWidgetItem();
 
-	if(i == 2)
+	if(i == m_ui.borrow_table->columnCount() - 1)
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else
 	  item->setFlags
@@ -130,6 +130,17 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotReset(void)
 {
+  if(m_ui.borrow_table->rowCount() > 0)
+    if(QMessageBox::question(this,
+			     tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to reset?"),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	QApplication::processEvents();
+	return;
+      }
+
   m_ui.borrow_table->clearContents();
   m_ui.borrow_table->setRowCount(0);
   m_ui.member_id->clear();
