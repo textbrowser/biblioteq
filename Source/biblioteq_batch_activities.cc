@@ -134,6 +134,16 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotGo(void)
 {
+  auto memberid(m_ui.member_id->text().trimmed());
+
+  if(memberid.isEmpty())
+    {
+      m_ui.member_id->setFocus();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_batch_activities::slotReset(void)
