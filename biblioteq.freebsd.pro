@@ -27,9 +27,7 @@ message("The directory /usr/local/include/poppler/cpp does not exist. Poppler ve
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE += -O3 \
-                          -Wall \
+QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
                           -Wdouble-promotion \
