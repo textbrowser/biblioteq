@@ -1,4 +1,5 @@
 #include <QComboBox>
+#include <QProgressDialog>
 
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
@@ -142,8 +143,30 @@ void biblioteq_batch_activities::slotGo(void)
       return;
     }
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  QApplication::restoreOverrideCursor();
+  QProgressDialog progress(this);
+
+  progress.setLabelText(tr("Borrowing item(s)..."));
+  progress.setMaximum(m_ui.borrow_table->rowCount());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+
+  for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
+    {
+      if(progress.wasCanceled())
+	break;
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+      QApplication::processEvents();
+    }
+
+  progress.close();
+  QApplication::processEvents();
 }
 
 void biblioteq_batch_activities::slotReset(void)
