@@ -28,11 +28,11 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
  private:
   enum Columns
     {
-     COMPRESSED_SIZE = 2,
-     DESCRIPTION = 3,
-     DIGEST = 1,
-     FILE = 0,
-     MYOID = 4
+      COMPRESSED_SIZE = 2,
+      DESCRIPTION = 3,
+      DIGEST = 1,
+      FILE = 0,
+      MYOID = 4
     };
 
   QPalette m_te_orig_pal;

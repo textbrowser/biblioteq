@@ -39,11 +39,11 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
  protected:
   enum Columns
     {
-     COMPRESSED_SIZE = 2,
-     DESCRIPTION = 3,
-     DIGEST = 1,
-     FILE = 0,
-     MYOID = 4
+      COMPRESSED_SIZE = 2,
+      DESCRIPTION = 3,
+      DIGEST = 1,
+      FILE = 0,
+      MYOID = 4
     };
 
   QByteArray m_sruResults;

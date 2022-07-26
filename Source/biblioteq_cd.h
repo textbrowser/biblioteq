@@ -29,12 +29,12 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
  private:
   enum TracksColumns
     {
-     ALBUM_NUMBER = 0,
-     ARTIST = 4,
-     COMPOSER = 5,
-     TRACK_NUMBER = 1,
-     TRACK_RUNTIME = 3,
-     TRACK_TITLE = 2
+      ALBUM_NUMBER = 0,
+      ARTIST = 4,
+      COMPOSER = 5,
+      TRACK_NUMBER = 1,
+      TRACK_RUNTIME = 3,
+      TRACK_TITLE = 2
     };
 
   QAction *m_composer_action;

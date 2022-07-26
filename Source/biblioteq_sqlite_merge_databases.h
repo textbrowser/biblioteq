@@ -15,9 +15,9 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
  private:
   enum Columns
     {
-     PROGRESS_COLUMN = 2,
-     SELECT_COLUMN = 1,
-     SQLITE_DATABASE_COLUMN = 0
+      PROGRESS_COLUMN = 2,
+      SELECT_COLUMN = 1,
+      SQLITE_DATABASE_COLUMN = 0
     };
 
   Ui_mergeSQLiteDatabases m_ui;

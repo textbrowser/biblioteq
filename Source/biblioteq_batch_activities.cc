@@ -77,7 +77,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
   auto row = m_ui.borrow_table->rowCount() - 1;
 
   for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
-    if(i == 0)
+    if(i == BorrowTableColumns::CATEGORY_COLUMN)
       {
 	auto comboBox = new QComboBox();
 	auto widget = new QWidget();
@@ -99,7 +99,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
       {
 	auto item = new QTableWidgetItem();
 
-	if(i == m_ui.borrow_table->columnCount() - 1)
+	if(i == BorrowTableColumns::RESULTS_COLUMN)
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else
 	  item->setFlags

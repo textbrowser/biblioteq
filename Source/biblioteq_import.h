@@ -17,19 +17,19 @@ class biblioteq_import: public QMainWindow
  private:
   enum Columns
     {
-     BIBLIOTEQ_TABLE_FIELD_NAME = 2,
-     CSV_COLUMN_NUMBER = 0,
-     CSV_PREVIEW = 1,
-     SUBSTITUTE_VALUE = 3
+      BIBLIOTEQ_TABLE_FIELD_NAME = 2,
+      CSV_COLUMN_NUMBER = 0,
+      CSV_PREVIEW = 1,
+      SUBSTITUTE_VALUE = 3
     };
 
   enum Templates
     {
-     // Zero is the literal text Templates.
+      // Zero is the literal text Templates.
 
-     TEMPLATE_1 = 1, // Books (All Fields)
-     TEMPLATE_2,     // Books (Some Fields)
-     TEMPLATE_3      // Patrons
+      TEMPLATE_1 = 1, // Books (All Fields)
+      TEMPLATE_2,     // Books (Some Fields)
+      TEMPLATE_3      // Patrons
     };
 
   QMap<int, QPair<QString, QString> > m_mappings;

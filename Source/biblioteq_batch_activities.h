@@ -15,6 +15,14 @@ class biblioteq_batch_activities: public QMainWindow
   void show(QMainWindow *parent);
 
  private:
+  enum BorrowTableColumns
+    {
+      CATEGORY_COLUMN = 0,
+      COPY_IDENTIFIER_COLUMN = 2,
+      IDENTIFIER_COLUMN = 1,
+      RESULTS_COLUMN = 3
+    };
+
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);

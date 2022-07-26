@@ -8,20 +8,20 @@ class biblioteq_marc
  public:
   enum ITEM_TYPE
     {
-     BOOK = 0,
-     MAGAZINE
+      BOOK = 0,
+      MAGAZINE
     };
 
   enum PROTOCOL
     {
-     SRU = 0,
-     Z3950
+      SRU = 0,
+      Z3950
     };
 
   enum RECORD_SYNTAX
     {
-     MARC21 = 0,
-     UNIMARC
+      MARC21 = 0,
+      UNIMARC
     };
 
   biblioteq_marc(const ITEM_TYPE itemType,

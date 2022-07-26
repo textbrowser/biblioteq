@@ -53,14 +53,14 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
 
   enum Columns
     {
-     AVAILABILITY = 2,
-     BARCODE = 1,
-     CONDITION = 4,
-     COPY_NUMBER = 7,
-     MYOID = 6,
-     ORIGINALITY = 3,
-     STATUS = 5,
-     TITLE = 0
+      AVAILABILITY = 2,
+      BARCODE = 1,
+      CONDITION = 4,
+      COPY_NUMBER = 7,
+      MYOID = 6,
+      ORIGINALITY = 3,
+      STATUS = 5,
+      TITLE = 0
     };
 
   QList<copy_class *> m_copies;

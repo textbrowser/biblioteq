@@ -53,12 +53,12 @@ class biblioteq_copy_editor: public QDialog
 
   enum Columns
     {
-     AVAILABILITY = 2,
-     BARCODE = 1,
-     COPY_NUMBER = 5,
-     MYOID = 4,
-     STATUS = 3,
-     TITLE = 0
+      AVAILABILITY = 2,
+      BARCODE = 1,
+      COPY_NUMBER = 5,
+      MYOID = 4,
+      STATUS = 3,
+      TITLE = 0
     };
 
   QList<copy_class *> m_copies;

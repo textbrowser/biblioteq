@@ -65,9 +65,9 @@ class biblioteq_otheroptions: public QMainWindow
  private:
   enum ItemsColumns
     {
-     AVAILABILITY_COLOR = 1,
-     ITEM_TYPE = 0,
-     PUBLICATION_DATE_FORMAT = 1
+      AVAILABILITY_COLOR = 1,
+      ITEM_TYPE = 0,
+      PUBLICATION_DATE_FORMAT = 1
     };
 
   Ui_otheroptions m_ui;

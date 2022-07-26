@@ -196,7 +196,7 @@ class biblioteq: public QMainWindow
  public:
   enum Limits
     {
-     QUANTITY = 1000 // Copies per item.
+      QUANTITY = 1000 // Copies per item.
     };
 
   static QString s_locale;
@@ -316,54 +316,54 @@ class biblioteq: public QMainWindow
  private:
   enum AdminSetupColumns
     {
-     ADMINISTRATOR = 1,
-     CIRCULATION = 2,
-     ID = 0,
-     LIBRARIAN = 3,
-     MEMBERSHIP = 4
+      ADMINISTRATOR = 1,
+      CIRCULATION = 2,
+      ID = 0,
+      LIBRARIAN = 3,
+      MEMBERSHIP = 4
     };
 
   enum ErrorDialogColumns
     {
-     EVENT_TIME = 0,
-     EVENT_TYPE = 1,
-     FILE = 4,
-     FULL_DESCRIPTION = 3,
-     LINE_NUMBER = 5,
-     SUMMARY = 2
+      EVENT_TIME = 0,
+      EVENT_TYPE = 1,
+      FILE = 4,
+      FULL_DESCRIPTION = 3,
+      LINE_NUMBER = 5,
+      SUMMARY = 2
     };
 
   enum GenericSearchTypes
     {
-     ACCESSION_NUMBER_GENERIC_SEARCH_TYPE = 0,
-     CATEGORY_GENERIC_SEARCH_TYPE = 1,
-     ID_GENERIC_SEARCH_TYPE = 2,
-     KEYWORD_GENERIC_SEARCH_TYPE = 3,
-     TITLE_GENERIC_SEARCH_TYPE = 4
+      ACCESSION_NUMBER_GENERIC_SEARCH_TYPE = 0,
+      CATEGORY_GENERIC_SEARCH_TYPE = 1,
+      ID_GENERIC_SEARCH_TYPE = 2,
+      KEYWORD_GENERIC_SEARCH_TYPE = 3,
+      TITLE_GENERIC_SEARCH_TYPE = 4
     };
 
   enum HistoryColumns
     {
-     BARCODE = 5,
-     DUE_DATE = 8,
-     FIRST_NAME = 1,
-     ID_NUMBER = 4,
-     LAST_NAME = 2,
-     LENDER = 10,
-     MEMBER_ID = 0,
-     MYOID = 11,
-     RESERVATION_DATE = 7,
-     RETURNED_DATE = 9,
-     TITLE = 3,
-     TYPE = 6
+      BARCODE = 5,
+      DUE_DATE = 8,
+      FIRST_NAME = 1,
+      ID_NUMBER = 4,
+      LAST_NAME = 2,
+      LENDER = 10,
+      MEMBER_ID = 0,
+      MYOID = 11,
+      RESERVATION_DATE = 7,
+      RETURNED_DATE = 9,
+      TITLE = 3,
+      TYPE = 6
     };
 
   enum RequestActionItems
     {
-     CANCEL_REQUESTED = 0,
-     INACTIVE,
-     REQUEST_SELECTED,
-     RETURN_RESERVED
+      CANCEL_REQUESTED = 0,
+      INACTIVE,
+      REQUEST_SELECTED,
+      RETURN_RESERVED
     };
 
   QActionGroup *m_menuCategoryActionGroup;
