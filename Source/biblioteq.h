@@ -2,7 +2,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2022.07.30"
+#define BIBLIOTEQ_VERSION "2022.08.10"
 
 #include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
