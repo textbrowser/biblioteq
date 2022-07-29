@@ -175,8 +175,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>620</width>
-            <height>351</height>
+            <width>599</width>
+            <height>402</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -204,7 +204,10 @@
            <item>
             <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>Please do not ignore unique fields!</string>
+              <string>Please do not ignore unique fields! Please clear Substitute Value fields if necessary! For example, ISBNs are not required and N/A substitutions may not be relevant.</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
