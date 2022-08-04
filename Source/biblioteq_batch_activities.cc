@@ -55,10 +55,23 @@ void biblioteq_batch_activities::borrow(void)
   progress.show();
   progress.repaint();
 
+  QString error("");
+  auto expired = biblioteq_misc_functions::hasMemberExpired
+    (m_qmain->getDB(), memberid, error);
+
   for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
     {
       if(progress.wasCanceled())
 	break;
+
+      auto item = m_ui.borrow_table->item
+	(i, BorrowTableColumns::RESULTS_COLUMN);
+
+      if(item)
+	{
+	  if(expired)
+	    item->setText(tr("Membership has expired."));
+	}
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
