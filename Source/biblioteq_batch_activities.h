@@ -3,7 +3,6 @@
 
 #include "ui_biblioteq_batch_activities_browser.h"
 
-class QProgressDialog;
 class biblioteq;
 
 class biblioteq_batch_activities: public QMainWindow
@@ -23,8 +22,14 @@ class biblioteq_batch_activities: public QMainWindow
       RESULTS_COLUMN = 3
     };
 
+  enum Pages
+    {
+      Borrow = 0
+    };
+
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
+  void borrow(void);
   void changeEvent(QEvent *event);
 
  private slots:

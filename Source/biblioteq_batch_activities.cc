@@ -35,6 +35,42 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SLOT(slotReset(void)));
 }
 
+void biblioteq_batch_activities::borrow(void)
+{
+  auto memberid(m_ui.member_id->text().trimmed());
+
+  if(memberid.isEmpty())
+    {
+      m_ui.member_id->setFocus();
+      return;
+    }
+
+  QProgressDialog progress(this);
+
+  progress.setLabelText(tr("Borrowing item(s)..."));
+  progress.setMaximum(m_ui.borrow_table->rowCount());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+
+  for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
+    {
+      if(progress.wasCanceled())
+	break;
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+      QApplication::processEvents();
+    }
+
+  progress.close();
+  QApplication::processEvents();
+}
+
 void biblioteq_batch_activities::changeEvent(QEvent *event)
 {
   if(event)
@@ -135,38 +171,8 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotGo(void)
 {
-  auto memberid(m_ui.member_id->text().trimmed());
-
-  if(memberid.isEmpty())
-    {
-      m_ui.member_id->setFocus();
-      return;
-    }
-
-  QProgressDialog progress(this);
-
-  progress.setLabelText(tr("Borrowing item(s)..."));
-  progress.setMaximum(m_ui.borrow_table->rowCount());
-  progress.setMinimum(0);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.show();
-  progress.repaint();
-
-  for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
-    {
-      if(progress.wasCanceled())
-	break;
-
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
-      progress.repaint();
-      QApplication::processEvents();
-    }
-
-  progress.close();
-  QApplication::processEvents();
+  if(m_ui.tab->currentIndex() == Pages::Borrow)
+    borrow();
 }
 
 void biblioteq_batch_activities::slotReset(void)
