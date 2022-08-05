@@ -1272,6 +1272,25 @@ bool biblioteq_misc_functions::isGnome(void)
     return false;
 }
 
+bool biblioteq_misc_functions::isItemAvailable
+(const QSqlDatabase &db, const QString &id, const QString &t)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  auto type(t.toLower().trimmed());
+
+  if(type == "book")
+    {
+    }
+
+  query.prepare(querystr);
+
+  if(query.exec() && query.next())
+    return query.value(0).toBool();
+
+  return false;
+}
+
 bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
 					   const QString &oid,
 					   const QString &itemTypeArg,

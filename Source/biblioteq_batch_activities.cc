@@ -64,14 +64,30 @@ void biblioteq_batch_activities::borrow(void)
       if(progress.wasCanceled())
 	break;
 
-      auto item = m_ui.borrow_table->item
+      auto identifier = m_ui.borrow_table->item
+	(i, BorrowTableColumns::IDENTIFIER_COLUMN);
+      auto results = m_ui.borrow_table->item
 	(i, BorrowTableColumns::RESULTS_COLUMN);
 
-      if(item)
+      if(expired && results)
 	{
-	  if(expired)
-	    item->setText(tr("Membership has expired."));
+	  results->setText(tr("Membership has expired."));
+	  goto next_label;
 	}
+
+      if(identifier && results)
+	{
+	  auto available = biblioteq_misc_functions::isItemAvailable
+	    (m_qmain->getDB(), identifier->text(), "Book");
+
+	  if(!available)
+	    {
+	      results->setText(tr("Item is not available for reservation."));
+	      goto next_label;
+	    }
+	}
+
+    next_label:
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
