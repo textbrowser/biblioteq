@@ -1281,9 +1281,9 @@ bool biblioteq_misc_functions::isItemAvailable
 
   if(type == "book")
     {
+      query.prepare(querystr);
+      query.addBindValue(id);
     }
-
-  query.prepare(querystr);
 
   if(query.exec() && query.next())
     return query.value(0).toBool();
