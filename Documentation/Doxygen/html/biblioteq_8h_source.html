@@ -73,7 +73,7 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _BIBLIOTEQ_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#define BIBLIOTEQ_GUEST_ACCOUNT &quot;xbook_guest&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define BIBLIOTEQ_VERSION &quot;2022.07.30&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define BIBLIOTEQ_VERSION &quot;2022.08.10&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;biblioteq_batch_activities.h&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;biblioteq_book.h&quot;</span></div>
@@ -267,7 +267,7 @@ $(function() {
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keyword">enum</span> Limits</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;     QUANTITY = 1000 <span class="comment">// Copies per item.</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      QUANTITY = 1000 <span class="comment">// Copies per item.</span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    };</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  <span class="keyword">static</span> QString s_locale;</div>
@@ -387,54 +387,54 @@ $(function() {
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;  <span class="keyword">enum</span> AdminSetupColumns</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;     ADMINISTRATOR = 1,</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;     CIRCULATION = 2,</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;     ID = 0,</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;     LIBRARIAN = 3,</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;     MEMBERSHIP = 4</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;      ADMINISTRATOR = 1,</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      CIRCULATION = 2,</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      ID = 0,</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      LIBRARIAN = 3,</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      MEMBERSHIP = 4</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    };</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  <span class="keyword">enum</span> ErrorDialogColumns</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    {</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;     EVENT_TIME = 0,</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;     EVENT_TYPE = 1,</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;     FILE = 4,</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;     FULL_DESCRIPTION = 3,</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;     LINE_NUMBER = 5,</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;     SUMMARY = 2</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      EVENT_TIME = 0,</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      EVENT_TYPE = 1,</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      FILE = 4,</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      FULL_DESCRIPTION = 3,</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      LINE_NUMBER = 5,</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      SUMMARY = 2</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    };</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  <span class="keyword">enum</span> GenericSearchTypes</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    {</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;     ACCESSION_NUMBER_GENERIC_SEARCH_TYPE = 0,</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;     CATEGORY_GENERIC_SEARCH_TYPE = 1,</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;     ID_GENERIC_SEARCH_TYPE = 2,</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;     KEYWORD_GENERIC_SEARCH_TYPE = 3,</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;     TITLE_GENERIC_SEARCH_TYPE = 4</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;      ACCESSION_NUMBER_GENERIC_SEARCH_TYPE = 0,</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;      CATEGORY_GENERIC_SEARCH_TYPE = 1,</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;      ID_GENERIC_SEARCH_TYPE = 2,</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;      KEYWORD_GENERIC_SEARCH_TYPE = 3,</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;      TITLE_GENERIC_SEARCH_TYPE = 4</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    };</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  <span class="keyword">enum</span> HistoryColumns</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    {</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;     BARCODE = 5,</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;     DUE_DATE = 8,</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;     FIRST_NAME = 1,</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;     ID_NUMBER = 4,</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;     LAST_NAME = 2,</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;     LENDER = 10,</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;     MEMBER_ID = 0,</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;     MYOID = 11,</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;     RESERVATION_DATE = 7,</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;     RETURNED_DATE = 9,</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;     TITLE = 3,</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;     TYPE = 6</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;      BARCODE = 5,</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;      DUE_DATE = 8,</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;      FIRST_NAME = 1,</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;      ID_NUMBER = 4,</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;      LAST_NAME = 2,</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;      LENDER = 10,</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;      MEMBER_ID = 0,</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      MYOID = 11,</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      RESERVATION_DATE = 7,</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      RETURNED_DATE = 9,</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;      TITLE = 3,</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;      TYPE = 6</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    };</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160; </div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;  <span class="keyword">enum</span> RequestActionItems</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    {</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;     CANCEL_REQUESTED = 0,</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;     INACTIVE,</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;     REQUEST_SELECTED,</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;     RETURN_RESERVED</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;      CANCEL_REQUESTED = 0,</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;      INACTIVE,</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;      REQUEST_SELECTED,</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;      RETURN_RESERVED</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    };</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  QActionGroup *m_menuCategoryActionGroup;</div>
@@ -661,7 +661,7 @@ $(function() {
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;};</div>
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160; </div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassbiblioteq__batch__activities_html"><div class="ttname"><a href="classbiblioteq__batch__activities.html">biblioteq_batch_activities</a></div><div class="ttdef"><b>Definition:</b> biblioteq_batch_activities.h:10</div></div>
+<div class="ttc" id="aclassbiblioteq__batch__activities_html"><div class="ttname"><a href="classbiblioteq__batch__activities.html">biblioteq_batch_activities</a></div><div class="ttdef"><b>Definition:</b> biblioteq_batch_activities.h:9</div></div>
 <div class="ttc" id="aclassbiblioteq__book_html"><div class="ttname"><a href="classbiblioteq__book.html">biblioteq_book</a></div><div class="ttdef"><b>Definition:</b> biblioteq_book.h:16</div></div>
 <div class="ttc" id="aclassbiblioteq__cd_html"><div class="ttname"><a href="classbiblioteq__cd.html">biblioteq_cd</a></div><div class="ttdef"><b>Definition:</b> biblioteq_cd.h:9</div></div>
 <div class="ttc" id="aclassbiblioteq__documentationwindow_html"><div class="ttname"><a href="classbiblioteq__documentationwindow.html">biblioteq_documentationwindow</a></div><div class="ttdef"><b>Definition:</b> biblioteq_documentationwindow.h:9</div></div>
