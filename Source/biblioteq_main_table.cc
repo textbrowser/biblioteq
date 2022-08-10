@@ -85,6 +85,10 @@ void biblioteq_main_table::keyPressEvent(QKeyEvent *event)
   if(event)
     switch(event->key())
       {
+      case Qt::Key_Delete:
+	{
+	  break;
+	}
       case Qt::Key_Enter:
       case Qt::Key_Return:
 	{

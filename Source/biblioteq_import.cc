@@ -181,6 +181,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	      QMap<int, QString> values;
 	      QSqlQuery query(m_qmain->getDB());
 	      QString id("");
+	      QString isbn13("");
 	      auto duplicate = false;
 	      int quantity = 1;
 	      qint64 oid = 0;
@@ -247,11 +248,13 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		      if(id.length() == 10 && str.isEmpty())
 			str = biblioteq_misc_functions::isbn10to13(id);
 
-		      if(isbns.contains(str))
+		      isbn13 = str;
+
+		      if(isbns.contains(isbn13))
 			duplicate = true;
 
-		      if(!str.isEmpty())
-			isbns[str] = isbns.value(str, 0) + 1;
+		      if(!isbn13.isEmpty())
+			isbns[isbn13] = isbns.value(str, 0) + 1;
 		    }
 		  else if(m_mappings.value(i).first == "language")
 		    {
@@ -331,8 +334,12 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		{
 		  QString errorstr("");
 
-		  biblioteq_misc_functions::createBookCopy
-		    (id, isbns.value(id), m_qmain->getDB(), errorstr);
+		  if(!id.isEmpty())
+		    biblioteq_misc_functions::createBookCopy
+		      (id, isbns.value(id), m_qmain->getDB(), errorstr);
+		  else
+		    biblioteq_misc_functions::createBookCopy
+		      (isbn13, isbns.value(isbn13), m_qmain->getDB(), errorstr);
 
 		  if(errorstr.isEmpty())
 		    {
@@ -358,16 +365,19 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		  QString errorstr("");
 
-		  if(id.isEmpty())
+		  if(!id.isEmpty())
+		    biblioteq_misc_functions::createInitialCopies
+		      (id, quantity, m_qmain->getDB(), "Book", errorstr);
+		  else if(!isbn13.isEmpty())
+		    biblioteq_misc_functions::createInitialCopies
+		      (isbn13, quantity, m_qmain->getDB(), "Book", errorstr);
+		  else
 		    biblioteq_misc_functions::createInitialCopies
 		      (QString::number(oid),
 		       quantity,
 		       m_qmain->getDB(),
 		       "Book",
 		       errorstr);
-		  else
-		    biblioteq_misc_functions::createInitialCopies
-		      (id, quantity, m_qmain->getDB(), "Book", errorstr);
 
 		  if(!errorstr.isEmpty())
 		    // Do not increase notImported.
