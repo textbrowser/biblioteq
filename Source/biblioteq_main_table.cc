@@ -87,6 +87,7 @@ void biblioteq_main_table::keyPressEvent(QKeyEvent *event)
       {
       case Qt::Key_Delete:
 	{
+	  emit deleteKeyPressed();
 	  break;
 	}
       case Qt::Key_Enter:

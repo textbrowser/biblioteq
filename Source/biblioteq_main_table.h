@@ -51,6 +51,7 @@ class biblioteq_main_table: public QTableWidget
 		  const QString &roles);
 
  signals:
+  void deleteKeyPressed(void);
   void enterKeyPressed(void);
 };
 

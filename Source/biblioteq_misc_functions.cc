@@ -386,8 +386,8 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
     itemType = itemType.remove(" ");
 
   if(itemType == "book")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "id IS NOT NULL").arg(itemType);
+    querystr = "SELECT myoid FROM book WHERE "
+      "(id = ? AND id IS NOT NULL) OR (isbn13 = ? AND isbn13 IS NOT NULL)";
   else if(itemType == "cd" ||
 	  itemType == "dvd" ||
 	  itemType == "photograph_collection" ||
@@ -404,7 +404,12 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   query.prepare(querystr);
 
-  if(itemType == "journal" || itemType == "magazine")
+  if(itemType == "book")
+    {
+      query.addBindValue(id);
+      query.addBindValue(id);
+    }
+  else if(itemType == "journal" || itemType == "magazine")
     {
       auto list(id.split(","));
 
@@ -1785,7 +1790,12 @@ void biblioteq_misc_functions::createBookCopy(const QString &idArg,
     return;
 
   if(itemOid.isEmpty())
-    itemOid = id;
+    {
+      errorstr = QObject::tr
+	("The method biblioteq_misc_functions::getOID() did not "
+	 "discover a valid OID.");
+      return;
+    }
 
   if(!itemOid.isEmpty())
     {
