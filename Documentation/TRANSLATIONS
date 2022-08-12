@@ -4,3 +4,8 @@ is not consistent, correct columns will not be located.
 
 https://doc.qt.io/qt-6/linguist-manager.html
 https://doc.qt.io/qt-6/linguist-translators.html
+
+> lupdate biblioteq.pro
+> lrelease biblioteq.pro
+> qmake -o Makefile biblioteq.pro
+> make
