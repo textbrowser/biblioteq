@@ -3840,6 +3840,11 @@ void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
     al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
 
+void biblioteq::slotGraphicsSceneDeleteKeyPressed(void)
+{
+  slotMainTableDeleteKeyPressed();
+}
+
 void biblioteq::slotGraphicsSceneEnterKeyPressed(void)
 {
   slotMainTableEnterKeyPressed();
@@ -3906,6 +3911,12 @@ void biblioteq::slotLastWindowClosed(void)
     slotSaveConfig();
 
   cleanup();
+}
+
+void biblioteq::slotMainTableDeleteKeyPressed(void)
+{
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
+    slotDelete();
 }
 
 void biblioteq::slotMainTableEnterKeyPressed(void)

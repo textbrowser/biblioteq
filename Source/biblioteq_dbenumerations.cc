@@ -118,7 +118,7 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  this,
 	  SLOT(slotSave(void)));
   connect(m_ui.section,
-	  SIGNAL(currentIndexChanged(int)),
+	  SIGNAL(activated(int)),
 	  this,
 	  SLOT(slotScrollToSection(int)));
 

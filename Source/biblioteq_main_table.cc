@@ -85,6 +85,7 @@ void biblioteq_main_table::keyPressEvent(QKeyEvent *event)
   if(event)
     switch(event->key())
       {
+      case Qt::Key_Backspace:
       case Qt::Key_Delete:
 	{
 	  emit deleteKeyPressed();

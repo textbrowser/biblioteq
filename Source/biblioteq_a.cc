@@ -405,9 +405,17 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotSetMembershipFees(void)));
   connect(ui.graphicsView->scene(),
+	  SIGNAL(deleteKeyPressed(void)),
+	  this,
+	  SLOT(slotGraphicsSceneDeleteKeyPressed(void)));
+  connect(ui.graphicsView->scene(),
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
 	  SLOT(slotGraphicsSceneEnterKeyPressed(void)));
+  connect(ui.table,
+	  SIGNAL(deleteKeyPressed(void)),
+	  this,
+	  SLOT(slotMainTableDeleteKeyPressed(void)));
   connect(ui.table,
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
