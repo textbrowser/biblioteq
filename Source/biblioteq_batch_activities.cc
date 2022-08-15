@@ -42,6 +42,8 @@ void biblioteq_batch_activities::borrow(void)
   if(memberid.isEmpty())
     {
       m_ui.member_id->setFocus();
+      m_ui.member_id->setPlaceholderText
+	(tr("Please provide the patron's identifier."));
       return;
     }
 
@@ -78,7 +80,9 @@ void biblioteq_batch_activities::borrow(void)
       if(identifier && results)
 	{
 	  auto available = biblioteq_misc_functions::isItemAvailable
-	    (m_qmain->getDB(), identifier->text(), "Book");
+	    (m_qmain->getDB(),
+	     identifier->text(),
+	     "Book");
 
 	  if(!available)
 	    {
