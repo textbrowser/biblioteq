@@ -1289,6 +1289,13 @@ bool biblioteq_misc_functions::isItemAvailable
 
   if(type == "book")
     {
+      if(copyId.trimmed().isEmpty())
+	{
+	}
+      else
+	{
+	}
+
       query.prepare(querystr);
       query.addBindValue(id);
     }
