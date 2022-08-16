@@ -66,6 +66,8 @@ void biblioteq_batch_activities::borrow(void)
       if(progress.wasCanceled())
 	break;
 
+      auto copyIdentifier = m_ui.borrow_table->item
+	(i, BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
       auto identifier = m_ui.borrow_table->item
 	(i, BorrowTableColumns::IDENTIFIER_COLUMN);
       auto results = m_ui.borrow_table->item
@@ -77,11 +79,12 @@ void biblioteq_batch_activities::borrow(void)
 	  goto next_label;
 	}
 
-      if(identifier && results)
+      if(copyIdentifier && identifier && results)
 	{
 	  auto available = biblioteq_misc_functions::isItemAvailable
 	    (m_qmain->getDB(),
 	     identifier->text(),
+	     copyIdentifier->text(),
 	     "Book");
 
 	  if(!available)

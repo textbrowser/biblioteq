@@ -1278,7 +1278,10 @@ bool biblioteq_misc_functions::isGnome(void)
 }
 
 bool biblioteq_misc_functions::isItemAvailable
-(const QSqlDatabase &db, const QString &id, const QString &t)
+(const QSqlDatabase &db,
+ const QString &id,
+ const QString &copyId,
+ const QString &t)
 {
   QSqlQuery query(db);
   QString querystr("");
