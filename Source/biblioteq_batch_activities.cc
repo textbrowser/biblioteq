@@ -73,6 +73,9 @@ void biblioteq_batch_activities::borrow(void)
       auto results = m_ui.borrow_table->item
 	(i, BorrowTableColumns::RESULTS_COLUMN);
 
+      if(results)
+	results->setText("");
+
       if(expired && results)
 	{
 	  results->setText(tr("Membership has expired."));

@@ -1306,11 +1306,29 @@ bool biblioteq_misc_functions::isItemAvailable
 	}
       else
 	{
+	  querystr = "SELECT book.quantity - COUNT(item_borrower.item_oid) "
+	    "FROM "
+	    "book LEFT JOIN item_borrower ON "
+	    "book.myoid = item_borrower.item_oid AND "
+	    "item_borrower.type = 'Book' "
+	    "WHERE "
+	    "(book.id = ? OR book.isbn13 = ?) AND item_borrower.copyid = ? "
+	    "GROUP BY book.quantity, "
+	    "book.myoid";
+	  query.prepare(querystr);
+	  query.addBindValue(id);
+	  query.addBindValue(id);
+	  query.addBindValue(copyId);
 	}
     }
 
-  if(query.exec() && query.next())
-    return query.value(0).toInt() > 0;
+  if(query.exec())
+    {
+      if(query.next())
+	return query.value(0).toInt() > 0;
+      else
+	return true;
+    }
 
   return false;
 }
