@@ -83,7 +83,7 @@ void biblioteq_batch_activities::borrow(void)
 	{
 	  auto available = biblioteq_misc_functions::isItemAvailable
 	    (m_qmain->getDB(),
-	     identifier->text(),
+	     identifier->text().remove('-'),
 	     copyIdentifier->text(),
 	     "Book");
 
