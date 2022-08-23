@@ -3629,6 +3629,7 @@ int biblioteq::populateTable(const int search_type_arg,
   i = -1;
 
   QFontMetrics fontMetrics(ui.table->font());
+  QLocale locale;
   auto availabilityColors = this->availabilityColors();
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
@@ -3795,7 +3796,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		    {
 		      item = new biblioteq_numeric_table_item
 			(query.value(j).toDouble());
-		      str = QString::number(query.value(j).toDouble(), 'f', 2);
+		      str = locale.toCurrencyString(query.value(j).toDouble());
 		    }
 		  else
 		    {

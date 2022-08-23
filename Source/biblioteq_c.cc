@@ -621,6 +621,7 @@ int biblioteq::populateTable(QSqlQuery *query,
     progress->setMaximum(qMin(limit, m_searchQuery->size()));
 
   QFontMetrics fontMetrics(ui.table->font());
+  QLocale locale;
   QSettings settings;
   QString dateFormat("");
   auto availabilityColors = this->availabilityColors();
@@ -802,8 +803,8 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    {
 		      item = new biblioteq_numeric_table_item
 			(m_searchQuery->value(j).toDouble());
-		      str = QString::number
-			(m_searchQuery->value(j).toDouble(), 'f', 2);
+		      str = locale.toCurrencyString
+			(m_searchQuery->value(j).toDouble());
 		    }
 		  else
 		    {
