@@ -73,6 +73,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 		this,
 		SLOT(slotGo(void)));
 #endif
+  biblioteq_misc_functions::sortCombinationBox(id.condition);
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),

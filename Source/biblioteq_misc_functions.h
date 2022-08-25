@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QTableWidget>
 
+class QComboBox;
 class QMainWindow;
 class biblioteq;
 
@@ -194,6 +195,7 @@ class biblioteq_misc_functions
 			   QString &);
   static void setBookRead(const QSqlDatabase &, const bool, const quint64);
   static void setRole(const QSqlDatabase &, QString &, const QString &);
+  static void sortCombinationBox(QComboBox *comboBox);
   static void updateColumn(QTableWidget *,
 			   const int,
 			   const int,

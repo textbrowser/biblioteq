@@ -2404,6 +2404,21 @@ void biblioteq_misc_functions::setRole(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 }
 
+void biblioteq_misc_functions::sortCombinationBox(QComboBox *comboBox)
+{
+  if(!comboBox)
+    return;
+
+  QStringList list;
+
+  for(int i = 0; i < comboBox->count(); i++)
+    list << comboBox->itemText(i);
+
+  std::sort(list.begin(), list.end());
+  comboBox->clear();
+  comboBox->addItems(list);
+}
+
 void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 					    const int row,
 					    int column,
