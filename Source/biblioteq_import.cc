@@ -299,7 +299,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    {
 		      QLocale locale;
 		      bool ok = true;
-		      double price = locale.toDouble(str, &ok);
+		      double price = locale.toDouble
+			(str.remove(locale.currencySymbol()), &ok);
 
 		      if(ok)
 			str = QString::number(price);
