@@ -36,6 +36,8 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   cd.setupUi(this);
   setQMain(this);
+  biblioteq_misc_functions::sortCombinationBox(cd.audio);
+  biblioteq_misc_functions::sortCombinationBox(cd.recording_type);
   cd.publication_date_enabled->setVisible(false);
   cd.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cd.release_date->setDisplayFormat(qmain->publicationDateFormat("musiccds"));

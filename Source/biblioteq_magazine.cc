@@ -49,6 +49,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
   setQMain(this);
+  biblioteq_misc_functions::sortCombinationBox(ma.marc_tags_format);
   ma.files->setColumnHidden(MYOID, true);
   ma.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   ma.marc_tags_format->setVisible(false);

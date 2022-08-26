@@ -6,6 +6,7 @@
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 {
   m_ui.setupUi(this);
+  biblioteq_misc_functions::sortCombinationBox(m_ui.books_accession_number);
   qmain = parent;
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
@@ -148,6 +149,8 @@ void biblioteq_otheroptions::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  m_ui.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox
+	    (m_ui.books_accession_number);
 	  break;
 	}
       default:

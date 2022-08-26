@@ -35,6 +35,7 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
   setQMain(this);
+  biblioteq_misc_functions::sortCombinationBox(vg.mode);
   vg.publication_date_enabled->setVisible(false);
   vg.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
