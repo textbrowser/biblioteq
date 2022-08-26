@@ -295,6 +295,17 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			  query.exec();
 			}
 		    }
+		  else if(m_mappings.value(i).first == "price")
+		    {
+		      QLocale locale;
+		      bool ok = true;
+		      double price = locale.toDouble(str, &ok);
+
+		      if(ok)
+			str = QString::number(price);
+		      else
+			str = str.replace(',', '.');
+		    }
 		  else if(m_mappings.value(i).first == "quantity")
 		    quantity = qBound
 		      (1,
