@@ -2765,7 +2765,7 @@ void biblioteq_magazine::slotGo(void)
 			  (ma.category->toPlainText().trimmed());
 		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (QLocale().toCurrencyString(ma.price->value()));
+			  (QLocale().toString(ma.price->value()));
 		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.language->currentText().trimmed());

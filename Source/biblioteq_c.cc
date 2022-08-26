@@ -803,8 +803,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    {
 		      item = new biblioteq_numeric_table_item
 			(m_searchQuery->value(j).toDouble());
-		      str = locale.toCurrencyString
-			(m_searchQuery->value(j).toDouble());
+		      str = locale.toString(m_searchQuery->value(j).toDouble());
 		    }
 		  else
 		    {

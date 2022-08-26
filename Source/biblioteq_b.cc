@@ -3796,7 +3796,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		    {
 		      item = new biblioteq_numeric_table_item
 			(query.value(j).toDouble());
-		      str = locale.toCurrencyString(query.value(j).toDouble());
+		      str = locale.toString(query.value(j).toDouble());
 		    }
 		  else
 		    {

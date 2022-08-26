@@ -1157,7 +1157,7 @@ void biblioteq_videogame::slotGo(void)
 			  (vg.genre->toPlainText().trimmed());
 		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (QLocale().toCurrencyString(vg.price->value()));
+			  (QLocale().toString(vg.price->value()));
 		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.language->currentText().trimmed());
