@@ -1291,7 +1291,7 @@ void biblioteq_dvd::slotGo(void)
 			  (dvd.category->toPlainText());
 		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (dvd.price->cleanText());
+			  (QLocale().toCurrencyString(dvd.price->value()));
 		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (dvd.language->currentText().trimmed());
