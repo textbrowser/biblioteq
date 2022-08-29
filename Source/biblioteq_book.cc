@@ -51,7 +51,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   id.marc_tags_format->setVisible(false);
   id.parse_marc_tags->setVisible(false);
-  id.price->setLocale(QLocale());
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
   id.publication_date_enabled->setVisible(false);
   id.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
