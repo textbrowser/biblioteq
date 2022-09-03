@@ -2807,6 +2807,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.originality, "
 	      "book.condition, "
 	      "book.accession_number, "
+	      "book.alternate_id_1, "
 	      "book.type, "
 	      "book.myoid, " +
 	      bookFrontCover +
@@ -2832,6 +2833,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.originality, "
 	      "book.condition, "
 	      "book.accession_number, "
+	      "book.alternate_id_1, "
 	      "book.type, "
 	      "book.myoid, "
 	      "book.front_cover "
@@ -3124,6 +3126,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.originality, "
 				 "book.condition, "
 				 "book.accession_number, "
+				 "book.alternate_id_1, "
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover "
