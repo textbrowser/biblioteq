@@ -3456,6 +3456,7 @@ void biblioteq_book::slotGo(void)
 	"book.originality, "
 	"book.condition, "
 	"book.accession_number, "
+	"book.alternate_id_1, "
 	"book.type, "
 	"book.myoid, " +
 	frontCover +
@@ -3659,6 +3660,7 @@ void biblioteq_book::slotGo(void)
 	 "book.originality, "
 	 "book.condition, "
 	 "book.accession_number, "
+	 "book.alternate_id_1, "
 	 "book.type, "
 	 "book.myoid, "
 	 "book.front_cover "
