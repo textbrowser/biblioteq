@@ -1463,8 +1463,8 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   int minimumdays = 1;
 
   errorstr = "";
-  query.prepare("SELECT days FROM minimum_days WHERE type = ?");
-  query.bindValue(0, type);
+  query.prepare("SELECT days FROM minimum_days WHERE LOWER(type) = ?");
+  query.bindValue(0, type.toLower().trimmed());
 
   if(query.exec())
     if(query.next())

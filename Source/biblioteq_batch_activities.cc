@@ -95,6 +95,37 @@ void biblioteq_batch_activities::borrow(void)
 	      results->setText(tr("Item is not available for reservation."));
 	      goto next_label;
 	    }
+
+	  /*
+	  ** Reserve the item.
+	  */
+
+	  QSqlQuery query(m_qmain->getDB());
+	  QString errorstr("");
+	  auto dueDate(QDate::currentDate());
+	  int copyNumber = 0;
+
+	  dueDate = dueDate.addDays
+	    (biblioteq_misc_functions::
+	     getMinimumDays(m_qmain->getDB(), "Book", errorstr));
+	  query.prepare("INSERT INTO item_borrower "
+			"(copy_number, "
+			"copyid, "
+			"duedate, "
+			"item_oid, "
+			"memberid, "
+			"reserved_by, "
+			"reserved_date, "
+			"type) "
+			"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	  query.addBindValue(copyNumber);
+	  query.addBindValue(copyIdentifier->text());
+
+	  if(query.exec())
+	    results->setText(tr("Reserved!"));
+	  else
+	    results->setText
+	      (tr("Reservation problem (%1).").arg(query.lastError().text()));
 	}
 
     next_label:
