@@ -124,6 +124,9 @@ void biblioteq_batch_activities::borrow(void)
 	  query.addBindValue(dueDate.toString("MM/dd/yyyy"));
 	  query.addBindValue(itemOid);
 	  query.addBindValue(memberId);
+	  query.addBindValue(m_qmain->getAdminID());
+	  query.addBindValue(QDate::currentDate().toString("MM/dd/yyyy"));
+	  query.addBindValue("Book");
 
 	  if(query.exec())
 	    results->setText(tr("Reserved!"));
