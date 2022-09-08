@@ -37,9 +37,9 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 
 void biblioteq_batch_activities::borrow(void)
 {
-  auto memberid(m_ui.member_id->text().trimmed());
+  auto memberId(m_ui.member_id->text().trimmed());
 
-  if(memberid.isEmpty())
+  if(memberId.isEmpty())
     {
       m_ui.member_id->setFocus();
       m_ui.member_id->setPlaceholderText
@@ -59,7 +59,7 @@ void biblioteq_batch_activities::borrow(void)
 
   QString error("");
   auto expired = biblioteq_misc_functions::hasMemberExpired
-    (m_qmain->getDB(), memberid, error);
+    (m_qmain->getDB(), memberId, error);
 
   for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
     {
@@ -104,6 +104,7 @@ void biblioteq_batch_activities::borrow(void)
 	  QString errorstr("");
 	  auto dueDate(QDate::currentDate());
 	  int copyNumber = 0;
+	  qint64 itemOid = 0;
 
 	  dueDate = dueDate.addDays
 	    (biblioteq_misc_functions::
@@ -120,6 +121,9 @@ void biblioteq_batch_activities::borrow(void)
 			"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 	  query.addBindValue(copyNumber);
 	  query.addBindValue(copyIdentifier->text());
+	  query.addBindValue(dueDate.toString("MM/dd/yyyy"));
+	  query.addBindValue(itemOid);
+	  query.addBindValue(memberId);
 
 	  if(query.exec())
 	    results->setText(tr("Reserved!"));
