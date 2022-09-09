@@ -119,7 +119,8 @@ class biblioteq_misc_functions
     (const QSqlDatabase &db,
      const QString &id,
      const QString &copyId,
-     const QString &t);
+     const QString &t,
+     const bool emptyCopyIdAllowed = false);
   static bool isRequested(const QSqlDatabase &,
 			  const QString &,
 			  const QString &,

@@ -1281,7 +1281,8 @@ bool biblioteq_misc_functions::isItemAvailable
 (const QSqlDatabase &db,
  const QString &id,
  const QString &copyId,
- const QString &t)
+ const QString &t,
+ const bool emptyCopyIdAllowed)
 {
   QSqlQuery query(db);
   QString querystr("");
@@ -1289,7 +1290,7 @@ bool biblioteq_misc_functions::isItemAvailable
 
   if(type == "book")
     {
-      if(copyId.trimmed().isEmpty())
+      if(copyId.trimmed().isEmpty() && emptyCopyIdAllowed)
 	{
 	  querystr = "SELECT book.quantity - COUNT(item_borrower.item_oid) "
 	    "FROM "
