@@ -103,8 +103,9 @@ void biblioteq_batch_activities::borrow(void)
 	  QSqlQuery query(m_qmain->getDB());
 	  QString errorstr("");
 	  auto dueDate(QDate::currentDate());
+	  auto itemOid = biblioteq_misc_functions::getOID
+	    (identifier->text(), "Book", m_qmain->getDB(), errorstr);
 	  int copyNumber = 0;
-	  qint64 itemOid = 0;
 
 	  dueDate = dueDate.addDays
 	    (biblioteq_misc_functions::
