@@ -104,13 +104,22 @@ void biblioteq_batch_activities::borrow(void)
 	  QString errorstr("");
 	  auto dueDate(QDate::currentDate());
 	  auto itemOid = biblioteq_misc_functions::getOID
-	    (identifier->text(), "Book", m_qmain->getDB(), errorstr);
+	    (identifier->text().remove('-'),
+	     "Book",
+	     m_qmain->getDB(),
+	     errorstr);
 	  int copyNumber = biblioteq_misc_functions::getCopyNumber
 	    (m_qmain->getDB(),
 	     copyIdentifier->text(),
 	     itemOid,
 	     "Book",
 	     errorstr);
+
+	  if(copyNumber == -1)
+	    {
+	      results->setText(tr("Error retrieving copy number."));
+	      goto next_label;
+	    }
 
 	  dueDate = dueDate.addDays
 	    (biblioteq_misc_functions::

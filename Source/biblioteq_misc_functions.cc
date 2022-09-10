@@ -1440,7 +1440,8 @@ int biblioteq_misc_functions::getCopyNumber(const QSqlDatabase &db,
   errorstr.clear();
   query.prepare
     (QString("SELECT copy_number FROM %1_copy_info "
-	     "WHERE copyid = ? AND item_oid = ?").arg(itemType.remove('_')));
+	     "WHERE copyid = ? AND item_oid = ?").
+     arg(itemType.replace(' ', '_')));
   query.addBindValue(copyId.trimmed());
   query.addBindValue(itemOid);
 
