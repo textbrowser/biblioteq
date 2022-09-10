@@ -105,7 +105,12 @@ void biblioteq_batch_activities::borrow(void)
 	  auto dueDate(QDate::currentDate());
 	  auto itemOid = biblioteq_misc_functions::getOID
 	    (identifier->text(), "Book", m_qmain->getDB(), errorstr);
-	  int copyNumber = 0;
+	  int copyNumber = biblioteq_misc_functions::getCopyNumber
+	    (m_qmain->getDB(),
+	     copyIdentifier->text(),
+	     itemOid,
+	     "Book",
+	     errorstr);
 
 	  dueDate = dueDate.addDays
 	    (biblioteq_misc_functions::

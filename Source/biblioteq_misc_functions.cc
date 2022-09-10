@@ -1427,6 +1427,35 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
   return num;
 }
 
+int biblioteq_misc_functions::getCopyNumber(const QSqlDatabase &db,
+					    const QString &copyId,
+					    const QString &itemOid,
+					    const QString &itemTypeArg,
+					    QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString itemType(itemTypeArg.toLower().trimmed());
+  int copyNumber = -1;
+
+  errorstr.clear();
+  query.prepare
+    (QString("SELECT copy_number FROM %1_copy_info "
+	     "WHERE copyid = ? AND item_oid = ?").arg(itemType.remove('_')));
+  query.addBindValue(copyId.trimmed());
+  query.addBindValue(itemOid);
+
+  if(query.exec() && query.next())
+    copyNumber = query.value(0).toInt();
+
+  if(query.lastError().isValid())
+    {
+      copyNumber = -1;
+      errorstr = query.lastError().text();
+    }
+
+  return copyNumber;
+}
+
 int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 					       const QString &oid,
 					       const QString &itemTypeArg,

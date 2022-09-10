@@ -127,6 +127,11 @@ class biblioteq_misc_functions
 			  QString &);
   static bool userExists(const QString &, const QSqlDatabase &, QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
+  static int getCopyNumber(const QSqlDatabase &db,
+			   const QString &copyId,
+			   const QString &itemOid,
+			   const QString &itemTypeArg,
+			   QString &errorstr);
   static int getMaxCopyNumber(const QSqlDatabase &,
 			      const QString &,
 			      const QString &,
