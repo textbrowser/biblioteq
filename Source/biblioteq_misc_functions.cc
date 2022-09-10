@@ -1302,8 +1302,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
-	  query.addBindValue(id);
-	  query.addBindValue(id);
+	  query.addBindValue(id.trimmed());
+	  query.addBindValue(id.trimmed());
 	}
       else
 	{
@@ -1317,9 +1317,9 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
-	  query.addBindValue(id);
-	  query.addBindValue(id);
-	  query.addBindValue(copyId);
+	  query.addBindValue(id.trimmed());
+	  query.addBindValue(id.trimmed());
+	  query.addBindValue(copyId.trimmed());
 	}
     }
 
