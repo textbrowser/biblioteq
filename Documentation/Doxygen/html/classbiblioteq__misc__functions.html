@@ -192,9 +192,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCopyCheckedO
 <tr class="memitem:a0b90606d0c828d910eef77c594605d9d"><td class="memItemLeft" align="right" valign="top"><a id="a0b90606d0c828d910eef77c594605d9d"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isGnome</b> (void)</td></tr>
 <tr class="separator:a0b90606d0c828d910eef77c594605d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3fc098d7f5b9c210d72b4ec77db791"><td class="memItemLeft" align="right" valign="top"><a id="ade3fc098d7f5b9c210d72b4ec77db791"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isItemAvailable</b> (const QSqlDatabase &amp;db, const QString &amp;id, const QString &amp;copyId, const QString &amp;t)</td></tr>
-<tr class="separator:ade3fc098d7f5b9c210d72b4ec77db791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c9b5ded081fa655f76de18c55db9bc"><td class="memItemLeft" align="right" valign="top"><a id="a65c9b5ded081fa655f76de18c55db9bc"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isItemAvailable</b> (const QSqlDatabase &amp;db, const QString &amp;id, const QString &amp;copyId, const QString &amp;t, const bool emptyCopyIdAllowed=false)</td></tr>
+<tr class="separator:a65c9b5ded081fa655f76de18c55db9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a177bb20f20439dc028958786b9022281"><td class="memItemLeft" align="right" valign="top"><a id="a177bb20f20439dc028958786b9022281"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRequested</b> (const QSqlDatabase &amp;, const QString &amp;, const QString &amp;, QString &amp;)</td></tr>
 <tr class="separator:a177bb20f20439dc028958786b9022281"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +204,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>userExists</b>
 <tr class="memitem:a67ee6fed14e86e67c2b7330e53a114ba"><td class="memItemLeft" align="right" valign="top"><a id="a67ee6fed14e86e67c2b7330e53a114ba"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getColumnNumber</b> (const QTableWidget *, const QString &amp;)</td></tr>
 <tr class="separator:a67ee6fed14e86e67c2b7330e53a114ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92dc03d5ca67f5da6343a51738da16b"><td class="memItemLeft" align="right" valign="top"><a id="ab92dc03d5ca67f5da6343a51738da16b"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>getCopyNumber</b> (const QSqlDatabase &amp;db, const QString &amp;copyId, const QString &amp;itemOid, const QString &amp;itemTypeArg, QString &amp;errorstr)</td></tr>
+<tr class="separator:ab92dc03d5ca67f5da6343a51738da16b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a789674e0da5a26b80ae01185c460fc90"><td class="memItemLeft" align="right" valign="top"><a id="a789674e0da5a26b80ae01185c460fc90"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxCopyNumber</b> (const QSqlDatabase &amp;, const QString &amp;, const QString &amp;, QString &amp;)</td></tr>
 <tr class="separator:a789674e0da5a26b80ae01185c460fc90"><td class="memSeparator" colspan="2">&#160;</td></tr>
