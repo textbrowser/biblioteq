@@ -83,8 +83,6 @@ install_name_tool2.extra = install_name_tool -change /usr/local/Cellar/poppler/2
 install_name_tool2.path  = .
 install_name_tool3.extra = install_name_tool -change /usr/local/Cellar/poppler/22.08.0/lib/libpoppler.123.dylib @executable_path/../Frameworks/libpoppler.123.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
 install_name_tool3.path  = .
-library1.extra           = cp /usr/local/opt/poppler-qt5/lib/libpoppler.123.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/.
-library1.path            = /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
 lupdate.extra            = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
@@ -112,5 +110,4 @@ INSTALLS	= preinstall \
                   install_name_tool1 \
                   install_name_tool2 \
                   install_name_tool3 \
-                  library1 \
                   zzz
