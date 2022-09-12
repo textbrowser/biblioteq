@@ -7,23 +7,6 @@ LANGUAGE	= C++
 QT		+= network sql
 QT		-= webkit
 
-exists(/usr/local/opt/poppler-qt5/include/poppler/cpp) {
-DEFINES         += BIBLIOTEQ_POPPLER_VERSION_DEFINED
-INCLUDEPATH     += /usr/local/opt/poppler-qt5/include/poppler/cpp
-} else {
-message("The directory " \
-        "/usr/local/opt/poppler-qt5/include/poppler/cpp " \
-        "does not exist. Poppler version information will not be available.")
-}
-
-exists(/usr/local/opt/poppler-qt5)
-{
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH += /usr/local/opt/poppler-qt5/include/poppler/qt5
-LIBS        += -L/usr/local/opt/poppler-qt5/lib -lpoppler-qt5
-QT          += printsupport widgets
-}
-
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXX       = clang++
 QMAKE_CXXFLAGS_RELEASE += -Wall \
@@ -79,10 +62,6 @@ doc2.files		 = Documentation/Contributed/*.docx Documentation/Contributed/*.html
 doc2.path		 = /Applications/BiblioteQ.d/Documentation/Contributed
 install_name_tool1.extra = install_name_tool -change /usr/local/Cellar/nettle/3.8.1/lib/libnettle.8.dylib @executable_path/../Frameworks/libnettle.8.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libhogweed.6.dylib
 install_name_tool1.path  = .
-install_name_tool2.extra = install_name_tool -change /usr/local/Cellar/poppler/22.08.0/lib/libpoppler.123.dylib @executable_path/../Frameworks/libpoppler.123.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
-install_name_tool2.path  = .
-install_name_tool3.extra = install_name_tool -change /usr/local/Cellar/poppler/22.08.0/lib/libpoppler.123.dylib @executable_path/../Frameworks/libpoppler.123.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libpoppler-qt5.1.dylib
-install_name_tool3.path  = .
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
 lupdate.extra            = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
@@ -108,6 +87,4 @@ INSTALLS	= preinstall \
 		  sql \
                   postinstall \
                   install_name_tool1 \
-                  install_name_tool2 \
-                  install_name_tool3 \
                   zzz
