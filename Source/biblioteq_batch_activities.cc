@@ -207,10 +207,21 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
   for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
     if(i == BorrowTableColumns::CATEGORY_COLUMN)
       {
+	QStringList list;
 	auto comboBox = new QComboBox();
 	auto widget = new QWidget();
 
-	comboBox->addItems(QStringList() << tr("Book"));
+	list << tr("Book");
+	/*
+	  << tr("CD")
+	  << tr("DVD")
+	  << tr("Grey Literature")
+	  << tr("Journal")
+	  << tr("Magazine")
+	  << tr("Video Game");
+	*/
+	std::sort(list.begin(), list.end());
+	comboBox->addItems(list);
 	comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
