@@ -1015,7 +1015,10 @@ void biblioteq_book::modify(const int state)
 		  (id.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
-	    id.quantity->setValue(var.toInt());
+	    {
+	      id.quantity->setValue(var.toInt());
+	      m_oldq = id.quantity->value();
+	    }
 	  else if(fieldname == "monetary_units")
 	    {
 	      if(id.monetary_units->findText(var.toString().trimmed()) > -1)

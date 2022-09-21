@@ -772,7 +772,10 @@ void biblioteq_magazine::modify(const int state)
 		  (ma.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
-	    ma.quantity->setValue(var.toInt());
+	    {
+	      ma.quantity->setValue(var.toInt());
+	      m_oldq = ma.quantity->value();
+	    }
 	  else if(fieldname == "monetary_units")
 	    {
 	      if(ma.monetary_units->findText(var.toString().trimmed()) > -1)

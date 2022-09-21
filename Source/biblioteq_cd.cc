@@ -515,7 +515,10 @@ void biblioteq_cd::modify(const int state)
 		  (cd.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
-	    cd.quantity->setValue(var.toInt());
+	    {
+	      cd.quantity->setValue(var.toInt());
+	      m_oldq = cd.quantity->value();
+	    }
 	  else if(fieldname == "monetary_units")
 	    {
 	      if(cd.monetary_units->findText(var.toString()) > -1)

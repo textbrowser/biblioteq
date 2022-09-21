@@ -515,7 +515,10 @@ void biblioteq_dvd::modify(const int state)
 		  (dvd.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
-	    dvd.quantity->setValue(var.toInt());
+	    {
+	      dvd.quantity->setValue(var.toInt());
+	      m_oldq = dvd.quantity->value();
+	    }
 	  else if(fieldname == "monetary_units")
 	    {
 	      if(dvd.monetary_units->findText(var.toString().trimmed()) > -1)

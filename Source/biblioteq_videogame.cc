@@ -484,7 +484,10 @@ void biblioteq_videogame::modify(const int state)
 		  (vg.language->findText(biblioteq::s_unknown));
 	    }
 	  else if(fieldname == "quantity")
-	    vg.quantity->setValue(var.toInt());
+	    {
+	      vg.quantity->setValue(var.toInt());
+	      m_oldq = vg.quantity->value();
+	    }
 	  else if(fieldname == "monetary_units")
 	    {
 	      if(vg.monetary_units->findText(var.toString().trimmed()) > -1)
