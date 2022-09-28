@@ -5,6 +5,7 @@ BiblioteQ is free and open library software.
 <li>Administrator roles.</li>
 <li>Alpha architecture support.</li>
 <li>Android!</li>
+<li>Anti-censorship through digital content.</li>
 <li>Archive important documents.</li>
 <li>Bar scanners supported indirectly.</li>
 <li>Cataloging of books, dvds, grey literature, journals, magazines, music cds, photograph collections, and video games.</li>
