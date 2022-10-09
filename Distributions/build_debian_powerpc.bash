@@ -12,7 +12,7 @@ if [ ! -x /usr/bin/fakeroot ]; then
 fi
 
 if [ ! -r biblioteq.powerpc.pro ]; then
-    echo "Please execute $0 from the source directory."
+    echo "Please execute $0 from the primary directory."
     exit 1
 fi
 
