@@ -1511,6 +1511,9 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
 					      const QString &memberid,
 					      const QString &type)
 {
+  if(type.toLower() != "book")
+    return 0;
+
   QSqlQuery query(db);
   QString querystr = "";
 
