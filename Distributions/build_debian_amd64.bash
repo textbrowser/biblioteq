@@ -11,6 +11,11 @@ if [ ! -x /usr/bin/fakeroot ]; then
     exit 1
 fi
 
+if [ ! -r biblioteq.pro ]; then
+    echo "Please execute $0 from the source directory."
+    exit 1
+fi
+
 # Preparing ./usr/local/biblioteq:
 
 make distclean 2>/dev/null
