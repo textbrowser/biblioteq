@@ -29,7 +29,7 @@ fi
 
 # SQLite Binaries
 
-sqlite=sqlite-dll-win32-x86-3390300.zip
+sqlite=sqlite-dll-win32-x86-3390400.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2022/$sqlite
@@ -57,7 +57,7 @@ else
     echo "Cannot read $sqlite."
 fi
 
-sqlite=sqlite-amalgamation-3390300
+sqlite=sqlite-amalgamation-3390400
 
 if [ -r $sqlite ]; then
     cp $sqlite/*.h Android/sqlite3/.
