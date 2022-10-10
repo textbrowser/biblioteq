@@ -45,7 +45,7 @@ fi
 
 # SQLite Source
 
-sqlite=sqlite-amalgamation-3390300.zip
+sqlite=sqlite-amalgamation-3390400.zip
 
 rm -f $sqlite
 wget --progress=bar https://sqlite.org/2022/$sqlite
