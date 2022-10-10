@@ -577,7 +577,7 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.attach_files->setEnabled(true);
       m_ui.delete_files->setEnabled(true);
       m_ui.export_files->setEnabled(true);
-      m_ui.okButton->setText("&Save");
+      m_ui.okButton->setText(tr("&Save"));
       m_ui.okButton->setVisible(true);
       m_ui.resetButton->setVisible(true);
       m_ui.showUserButton->setEnabled(true);
