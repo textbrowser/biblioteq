@@ -60,6 +60,8 @@ void biblioteq_batch_activities::borrow(void)
   QString error("");
   auto expired = biblioteq_misc_functions::hasMemberExpired
     (m_qmain->getDB(), memberId, error);
+  auto maximumReserved = biblioteq_misc_functions::maximumReserved
+    (m_qmain->getDB(), memberId, "book");
 
   for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
     {
@@ -94,6 +96,21 @@ void biblioteq_batch_activities::borrow(void)
 	    {
 	      results->setText(tr("Item is not available for reservation."));
 	      goto next_label;
+	    }
+
+	  if(maximumReserved > 0)
+	    {
+	      auto totalReserved = biblioteq_misc_functions::
+		getItemsReservedCounts
+		(m_qmain->getDB(), memberId, error).value("numbooks");
+
+	      if(maximumReserved <= totalReserved)
+		{
+		  results->setText
+		    (tr("Maximum (%1) number of reserved (%2) items exceeded.").
+		     arg(maximumReserved).arg(totalReserved));
+		  goto next_label;
+		}
 	    }
 
 	  /*

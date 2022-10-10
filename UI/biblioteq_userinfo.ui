@@ -40,7 +40,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-208</y>
+            <y>0</y>
             <width>547</width>
             <height>695</height>
            </rect>
@@ -847,7 +847,7 @@
          <item>
           <widget class="QLabel" name="label_20">
            <property name="text">
-            <string>The limit is not enforced.</string>
+            <string>The limit is enforced in some places.</string>
            </property>
           </widget>
          </item>

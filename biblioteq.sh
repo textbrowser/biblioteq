@@ -16,8 +16,10 @@ fi
 if [ -r /usr/local/biblioteq/BiblioteQ ] &&
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
+    echo "Launching an official BiblioteQ."
     cd /usr/local/biblioteq && exec ./BiblioteQ "$@"
     exit $?
 else
+    "BiblioteQ not found!"
     exit 1
 fi
