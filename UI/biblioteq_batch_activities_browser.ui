@@ -53,7 +53,7 @@
            <item>
             <widget class="QTableWidget" name="borrow_table">
              <property name="editTriggers">
-              <set>QAbstractItemView::DoubleClicked</set>
+              <set>QAbstractItemView::AllEditTriggers</set>
              </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
