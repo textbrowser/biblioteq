@@ -91,7 +91,12 @@ void biblioteq_batch_activities::borrow(void)
 	(i, BorrowTableColumns::RESULTS_COLUMN);
 
       if(!copyIdentifier || !identifier || !results)
-	continue;
+	{
+	  if(results)
+	    results->setText(tr("Critical error! Missing table item(s)."));
+
+	  continue;
+	}
 
       results->setText("");
 

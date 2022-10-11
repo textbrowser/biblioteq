@@ -1324,10 +1324,18 @@ bool biblioteq_misc_functions::isItemAvailable
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(id.trimmed());
+
+	  if(query.exec())
+	    {
+	      if(query.next())
+		return query.value(0).toInt() > 0;
+	      else
+		return true;
+	    }
 	}
       else
 	{
-	  querystr = "SELECT book.quantity - COUNT(item_borrower.item_oid) "
+	  querystr = "SELECT COUNT(item_borrower.item_oid) "
 	    "FROM "
 	    "book LEFT JOIN item_borrower ON "
 	    "book.myoid = item_borrower.item_oid AND "
@@ -1340,15 +1348,15 @@ bool biblioteq_misc_functions::isItemAvailable
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(copyId.trimmed());
-	}
-    }
 
-  if(query.exec())
-    {
-      if(query.next())
-	return query.value(0).toInt() > 0;
-      else
-	return true;
+	  if(query.exec())
+	    {
+	      if(query.next())
+		return query.value(0).toInt() == 0;
+	      else
+		return true;
+	    }
+	}
     }
 
   return false;
