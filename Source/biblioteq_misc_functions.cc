@@ -365,6 +365,26 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
   return str;
 }
 
+QString biblioteq_misc_functions::getNextCopy(const QSqlDatabase &db,
+					      const QString &id,
+					      const QString &type)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+
+  query.prepare(QString("SELECT copyid FROM %1_copy_info WHERE "
+			"copyid NOT IN (SELECT copyid FROM item_borrower) AND "
+			"item_oid IN (SELECT myoid FROM %1 WHERE id = ? OR "
+			"isbn13 = ?)").arg(type.toLower().remove(' ')));
+  query.addBindValue(QString(id).remove('-'));
+  query.addBindValue(QString(id).remove('-'));
+
+  if(query.exec() && query.next())
+    return query.value(0).toString();
+  else
+    return "";
+}
+
 QString biblioteq_misc_functions::getOID(const QString &idArg,
 					 const QString &itemTypeArg,
 					 const QSqlDatabase &db,

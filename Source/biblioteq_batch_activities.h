@@ -42,7 +42,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotGo(void);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
-  void slotScannedBorrowing(const QString &text);
+  void slotScannedBorrowing(void);
   void slotSetGlobalFonts(const QFont &font);
 };
 

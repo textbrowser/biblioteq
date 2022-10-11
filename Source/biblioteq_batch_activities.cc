@@ -26,6 +26,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteBorrowingRow(void)));
+  connect(m_ui.scan,
+	  SIGNAL(editingFinished(void)),
+	  this,
+	  SLOT(slotScannedBorrowing(void)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -38,10 +42,6 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(m_ui.scan_borrowing,
-	  SIGNAL(textEdited(const QString &)),
-	  this,
-	  SLOT(slotScannedBorrowing(const QString &)));
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -325,25 +325,33 @@ void biblioteq_batch_activities::slotReset(void)
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 {
-  if(!m_ui.scan_borrowing->text().trimmed().isEmpty())
+  if(!m_ui.scan->text().trimmed().isEmpty())
     {
       slotAddBorrowingRow();
+
+      auto copyIdentifier = m_ui.borrow_table->item
+	(m_ui.borrow_table->rowCount() - 1,
+	 BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
+
+      if(copyIdentifier)
+	copyIdentifier->setText
+	  (biblioteq_misc_functions::
+	   getNextCopy(m_qmain->getDB(), m_ui.scan->text(), "Book"));
 
       auto identifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
 	 BorrowTableColumns::IDENTIFIER_COLUMN);
 
       if(identifier)
-	identifier->setText(m_ui.scan_borrowing->text().trimmed());
+	identifier->setText(m_ui.scan->text().trimmed());
     }
 
-  m_ui.scan_borrowing->clear();
+  m_ui.scan->clear();
 }
 
-void biblioteq_batch_activities::slotScannedBorrowing(const QString &text)
+void biblioteq_batch_activities::slotScannedBorrowing(void)
 {
-  Q_UNUSED(text);
-  m_scanBorrowingTimer.start(1000);
+  m_scanBorrowingTimer.start(50);
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)

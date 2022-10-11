@@ -42,6 +42,9 @@ class biblioteq_misc_functions
   static QString getMemberName(const QSqlDatabase &,
 			       const QString &,
 			       QString &);
+  static QString getNextCopy(const QSqlDatabase &db,
+			     const QString &id,
+			     const QString &type);
   static QString getOID(const QString &,
 			const QString &,
 			const QSqlDatabase &,
