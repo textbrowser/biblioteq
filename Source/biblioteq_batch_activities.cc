@@ -68,6 +68,12 @@ void biblioteq_batch_activities::borrow(void)
       if(progress.wasCanceled())
 	break;
 
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.repaint();
+      QApplication::processEvents();
+
       auto copyIdentifier = m_ui.borrow_table->item
 	(i, BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
       auto identifier = m_ui.borrow_table->item
@@ -75,105 +81,100 @@ void biblioteq_batch_activities::borrow(void)
       auto results = m_ui.borrow_table->item
 	(i, BorrowTableColumns::RESULTS_COLUMN);
 
-      if(results)
-	results->setText("");
+      if(!copyIdentifier || !identifier || !results)
+	continue;
 
-      if(expired && results)
+      results->setText("");
+
+      if(expired)
 	{
 	  results->setText(tr("Membership has expired."));
-	  goto next_label;
+	  continue;
 	}
 
-      if(copyIdentifier && identifier && results)
+      if(copyIdentifier->text().trimmed().isEmpty())
 	{
-	  auto available = biblioteq_misc_functions::isItemAvailable
-	    (m_qmain->getDB(),
-	     identifier->text().remove('-'),
-	     copyIdentifier->text(),
-	     "Book");
-
-	  if(!available)
-	    {
-	      results->setText(tr("Item is not available for reservation."));
-	      goto next_label;
-	    }
-
-	  if(maximumReserved > 0)
-	    {
-	      auto totalReserved = biblioteq_misc_functions::
-		getItemsReservedCounts
-		(m_qmain->getDB(), memberId, error).value("numbooks");
-
-	      if(maximumReserved <= totalReserved)
-		{
-		  results->setText
-		    (tr("Maximum (%1) number of reserved (%2) items exceeded.").
-		     arg(maximumReserved).arg(totalReserved));
-		  goto next_label;
-		}
-	    }
-
-	  /*
-	  ** Reserve the item.
-	  */
-
-	  QSqlQuery query(m_qmain->getDB());
-	  QString errorstr("");
-	  auto dueDate(QDate::currentDate());
-	  auto itemOid = biblioteq_misc_functions::getOID
-	    (identifier->text().remove('-'),
-	     "Book",
-	     m_qmain->getDB(),
-	     errorstr);
-	  int copyNumber = biblioteq_misc_functions::getCopyNumber
-	    (m_qmain->getDB(),
-	     copyIdentifier->text(),
-	     itemOid,
-	     "Book",
-	     errorstr);
-
-	  if(copyNumber == -1)
-	    {
-	      results->setText(tr("Error retrieving copy number."));
-	      goto next_label;
-	    }
-
-	  dueDate = dueDate.addDays
-	    (biblioteq_misc_functions::
-	     getMinimumDays(m_qmain->getDB(), "Book", errorstr));
-	  query.prepare("INSERT INTO item_borrower "
-			"(copy_number, "
-			"copyid, "
-			"duedate, "
-			"item_oid, "
-			"memberid, "
-			"reserved_by, "
-			"reserved_date, "
-			"type) "
-			"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-	  query.addBindValue(copyNumber);
-	  query.addBindValue(copyIdentifier->text());
-	  query.addBindValue(dueDate.toString("MM/dd/yyyy"));
-	  query.addBindValue(itemOid);
-	  query.addBindValue(memberId);
-	  query.addBindValue(m_qmain->getAdminID());
-	  query.addBindValue(QDate::currentDate().toString("MM/dd/yyyy"));
-	  query.addBindValue("Book");
-
-	  if(query.exec())
-	    results->setText(tr("Reserved!"));
-	  else
-	    results->setText
-	      (tr("Reservation problem (%1).").arg(query.lastError().text()));
+	  results->setText(tr("Empty copy identifier."));
+	  continue;
+	}
+      else if(identifier->text().trimmed().isEmpty())
+	{
+	  results->setText(tr("Empty identifier."));
+	  continue;
 	}
 
-    next_label:
+      auto available = biblioteq_misc_functions::isItemAvailable
+	(m_qmain->getDB(),
+	 identifier->text().remove('-'),
+	 copyIdentifier->text(),
+	 "Book");
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
+      if(!available)
+	{
+	  results->setText(tr("Item is not available for reservation."));
+	  continue;
+	}
 
-      progress.repaint();
-      QApplication::processEvents();
+      if(maximumReserved > 0)
+	{
+	  auto totalReserved = biblioteq_misc_functions::
+	    getItemsReservedCounts
+	    (m_qmain->getDB(), memberId, error).value("numbooks");
+
+	  if(maximumReserved <= totalReserved)
+	    {
+	      results->setText
+		(tr("Maximum (%1) number of reserved (%2) items exceeded.").
+		 arg(maximumReserved).arg(totalReserved));
+	      continue;
+	    }
+	}
+
+      /*
+      ** Reserve the item.
+      */
+
+      QSqlQuery query(m_qmain->getDB());
+      QString errorstr("");
+      auto dueDate(QDate::currentDate());
+      auto itemOid = biblioteq_misc_functions::getOID
+	(identifier->text().remove('-'), "Book", m_qmain->getDB(), errorstr);
+      int copyNumber = biblioteq_misc_functions::getCopyNumber
+	(m_qmain->getDB(), copyIdentifier->text(), itemOid, "Book", errorstr);
+
+      if(copyNumber == -1)
+	{
+	  results->setText(tr("Error retrieving copy number."));
+	  continue;
+	}
+
+      dueDate = dueDate.addDays
+	(biblioteq_misc_functions::
+	 getMinimumDays(m_qmain->getDB(), "Book", errorstr));
+      query.prepare("INSERT INTO item_borrower "
+		    "(copy_number, "
+		    "copyid, "
+		    "duedate, "
+		    "item_oid, "
+		    "memberid, "
+		    "reserved_by, "
+		    "reserved_date, "
+		    "type) "
+		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+      query.addBindValue(copyNumber);
+      query.addBindValue(copyIdentifier->text());
+      query.addBindValue(dueDate.toString("MM/dd/yyyy"));
+      query.addBindValue(itemOid);
+      query.addBindValue(memberId);
+      query.addBindValue(m_qmain->getAdminID());
+      query.addBindValue(QDate::currentDate().toString("MM/dd/yyyy"));
+      query.addBindValue("Book");
+
+      if(query.exec())
+	results->setText(tr("Reserved!"));
+      else
+	results->setText
+	  (tr("Reservation problem (%1).").arg(query.lastError().text()));
     }
 
   progress.close();
