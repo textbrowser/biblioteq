@@ -127,6 +127,16 @@
               </widget>
              </item>
              <item>
+              <widget class="QLineEdit" name="scan_borrowing">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click in this field and scan an item. A new row will be created with the scanned identifier value. Please wait until the text hint is visible before scanning an item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="placeholderText">
+                <string>Scan Identifier Ready</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="borrow_delete_row">
                <property name="text">
                 <string>Delete Row(s)</string>
@@ -261,6 +271,7 @@
   <tabstop>member_id</tabstop>
   <tabstop>borrow_table</tabstop>
   <tabstop>borrow_add_row</tabstop>
+  <tabstop>scan_borrowing</tabstop>
   <tabstop>borrow_delete_row</tabstop>
   <tabstop>go</tabstop>
   <tabstop>reset</tabstop>

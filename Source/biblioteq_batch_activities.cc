@@ -8,7 +8,12 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
 {
   m_qmain = parent;
+  m_scanBorrowingTimer.setSingleShot(true);
   m_ui.setupUi(this);
+  connect(&m_scanBorrowingTimer,
+	  SIGNAL(timeout(void)),
+	  this,
+	  SLOT(slotScanBorrowingTimerTimeout(void)));
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -33,6 +38,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(m_ui.scan_borrowing,
+	  SIGNAL(textEdited(const QString &)),
+	  this,
+	  SLOT(slotScannedBorrowing(const QString &)));
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -205,7 +214,7 @@ void biblioteq_batch_activities::show(QMainWindow *parent)
   static auto resized = false;
 
   if(!resized && parent)
-    resize(qRound(0.50 * parent->size().width()),
+    resize(qRound(0.70 * parent->size().width()),
 	   qRound(0.80 * parent->size().height()));
 
   resized = true;
@@ -312,6 +321,29 @@ void biblioteq_batch_activities::slotReset(void)
   m_ui.borrow_table->clearContents();
   m_ui.borrow_table->setRowCount(0);
   m_ui.member_id->clear();
+}
+
+void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
+{
+  if(!m_ui.scan_borrowing->text().trimmed().isEmpty())
+    {
+      slotAddBorrowingRow();
+
+      auto identifier = m_ui.borrow_table->item
+	(m_ui.borrow_table->rowCount() - 1,
+	 BorrowTableColumns::IDENTIFIER_COLUMN);
+
+      if(identifier)
+	identifier->setText(m_ui.scan_borrowing->text().trimmed());
+    }
+
+  m_ui.scan_borrowing->clear();
+}
+
+void biblioteq_batch_activities::slotScannedBorrowing(const QString &text)
+{
+  Q_UNUSED(text);
+  m_scanBorrowingTimer.start(1000);
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
