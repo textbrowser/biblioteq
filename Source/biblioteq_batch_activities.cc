@@ -127,8 +127,8 @@ void biblioteq_batch_activities::borrow(void)
       if(maximumReserved > 0)
 	{
 	  auto totalReserved = biblioteq_misc_functions::
-	    getItemsReservedCounts
-	    (m_qmain->getDB(), memberId, error).value("numbooks");
+	    getItemsReservedCounts(m_qmain->getDB(), memberId, error).
+	    value("numbooks");
 
 	  if(maximumReserved <= totalReserved)
 	    {
