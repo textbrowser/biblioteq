@@ -8,12 +8,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
 {
   m_qmain = parent;
-  m_scanBorrowingTimer.setSingleShot(true);
   m_ui.setupUi(this);
-  connect(&m_scanBorrowingTimer,
-	  SIGNAL(timeout(void)),
-	  this,
-	  SLOT(slotScanBorrowingTimerTimeout(void)));
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -356,7 +351,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 
 void biblioteq_batch_activities::slotScannedBorrowing(void)
 {
-  m_scanBorrowingTimer.start(50);
+  QTimer::singleShot(100, this, SLOT(slotScanBorrowingTimerTimeout(void)));
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)

@@ -1,8 +1,6 @@
 #ifndef _BIBLIOTEQ_BATCH_ACTIVITIES_H_
 #define _BIBLIOTEQ_BATCH_ACTIVITIES_H_
 
-#include <QTimer>
-
 #include "ui_biblioteq_batch_activities_browser.h"
 
 class biblioteq;
@@ -29,7 +27,6 @@ class biblioteq_batch_activities: public QMainWindow
       Borrow = 0
     };
 
-  QTimer m_scanBorrowingTimer;
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
   void borrow(void);
