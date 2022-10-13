@@ -97,7 +97,11 @@ void biblioteq_batch_activities::borrow(void)
 
       if(expired)
 	{
-	  results->setText(tr("Membership has expired."));
+	  if(error.isEmpty())
+	    results->setText(tr("Membership has expired."));
+	  else
+	    results->setText(tr("Cannot locate member (%1).").arg(error));
+
 	  continue;
 	}
 

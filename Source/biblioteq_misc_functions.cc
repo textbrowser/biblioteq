@@ -1127,27 +1127,31 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
   query.bindValue(0, memberid);
 
   if(query.exec())
-    if(query.next())
-      {
-	if(db.driverName() == "QSQLITE")
-	  {
-	    auto date
-	      (QDate::
-	       fromString(query.value(0).toString().trimmed(), "MM/dd/yyyy"));
+    {
+      if(query.next())
+	{
+	  if(db.driverName() == "QSQLITE")
+	    {
+	      auto date
+		(QDate::
+		 fromString(query.value(0).toString().trimmed(), "MM/dd/yyyy"));
 
-	    if(date.daysTo(QDate::currentDate()) > 0)
-	      expired = true;
-	    else
-	      expired = false;
-	  }
-	else
-	  {
-	    if(query.value(0).toLongLong() < 0)
-	      expired = true;
-	    else
-	      expired = false;
-	  }
-      }
+	      if(date.daysTo(QDate::currentDate()) > 0)
+		expired = true;
+	      else
+		expired = false;
+	    }
+	  else
+	    {
+	      if(query.value(0).toLongLong() < 0)
+		expired = true;
+	      else
+		expired = false;
+	    }
+	}
+      else
+	errorstr = QObject::tr("QSqlQuery::next() was false.");
+    }
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
