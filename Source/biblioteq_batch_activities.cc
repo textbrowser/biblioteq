@@ -65,7 +65,7 @@ void biblioteq_batch_activities::borrow(void)
   auto expired = biblioteq_misc_functions::hasMemberExpired
     (m_qmain->getDB(), memberId, error);
   auto maximumReserved = biblioteq_misc_functions::maximumReserved
-    (m_qmain->getDB(), memberId, "book");
+    (m_qmain->getDB(), memberId, "book"); // Only books offer maximums.
 
   for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
     {
@@ -78,6 +78,8 @@ void biblioteq_batch_activities::borrow(void)
       progress.repaint();
       QApplication::processEvents();
 
+      auto category = qobject_cast<QComboBox *>
+	(m_ui.borrow_table->cellWidget(i, BorrowTableColumns::CATEGORY_COLUMN));
       auto copyIdentifier = m_ui.borrow_table->item
 	(i, BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
       auto identifier = m_ui.borrow_table->item
@@ -85,7 +87,7 @@ void biblioteq_batch_activities::borrow(void)
       auto results = m_ui.borrow_table->item
 	(i, BorrowTableColumns::RESULTS_COLUMN);
 
-      if(!copyIdentifier || !identifier || !results)
+      if(!category || !copyIdentifier || !identifier || !results)
 	{
 	  if(results)
 	    results->setText(tr("Critical error! Missing table item(s)."));
@@ -116,11 +118,28 @@ void biblioteq_batch_activities::borrow(void)
 	  continue;
 	}
 
+      QString type("");
+
+      if(category && category->currentText() == tr("Book"))
+	type = "Book";
+      else if(category && category->currentText() == tr("CD"))
+	type = "CD";
+      else if(category && category->currentText() == tr("DVD"))
+	type = "DVD";
+      else if(category && category->currentText() == tr("Grey Literature"))
+	type = "Grey Literature";
+      else if(category && category->currentText() == tr("Journal"))
+	type = "Journal";
+      else if(category && category->currentText() == tr("Magazine"))
+	type = "Magazine";
+      else if(category && category->currentText() == tr("Video Game"))
+	type = "Video Game";
+
       auto available = biblioteq_misc_functions::isItemAvailable
 	(m_qmain->getDB(),
 	 identifier->text().remove('-'),
 	 copyIdentifier->text(),
-	 "Book");
+	 type);
 
       if(!available)
 	{
@@ -151,9 +170,9 @@ void biblioteq_batch_activities::borrow(void)
       QString errorstr("");
       auto dueDate(QDate::currentDate());
       auto itemOid = biblioteq_misc_functions::getOID
-	(identifier->text().remove('-'), "Book", m_qmain->getDB(), errorstr);
+	(identifier->text().remove('-'), type, m_qmain->getDB(), errorstr);
       int copyNumber = biblioteq_misc_functions::getCopyNumber
-	(m_qmain->getDB(), copyIdentifier->text(), itemOid, "Book", errorstr);
+	(m_qmain->getDB(), copyIdentifier->text(), itemOid, type, errorstr);
 
       if(copyNumber == -1)
 	{
@@ -163,7 +182,7 @@ void biblioteq_batch_activities::borrow(void)
 
       dueDate = dueDate.addDays
 	(biblioteq_misc_functions::
-	 getMinimumDays(m_qmain->getDB(), "Book", errorstr));
+	 getMinimumDays(m_qmain->getDB(), type, errorstr));
       query.prepare("INSERT INTO item_borrower "
 		    "(copy_number, "
 		    "copyid, "
@@ -181,7 +200,7 @@ void biblioteq_batch_activities::borrow(void)
       query.addBindValue(memberId);
       query.addBindValue(m_qmain->getAdminID());
       query.addBindValue(QDate::currentDate().toString("MM/dd/yyyy"));
-      query.addBindValue("Book");
+      query.addBindValue(type);
 
       if(query.exec())
 	results->setText(tr("Reserved!"));
@@ -242,15 +261,13 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	auto comboBox = new QComboBox();
 	auto widget = new QWidget();
 
-	list << tr("Book");
-	/*
-	  << tr("CD")
-	  << tr("DVD")
-	  << tr("Grey Literature")
-	  << tr("Journal")
-	  << tr("Magazine")
-	  << tr("Video Game");
-	*/
+	list << tr("Book")
+	     << tr("CD")
+	     << tr("DVD")
+	     << tr("Grey Literature")
+	     << tr("Journal")
+	     << tr("Magazine")
+	     << tr("Video Game");
 	std::sort(list.begin(), list.end());
 	comboBox->addItems(list);
 	comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
