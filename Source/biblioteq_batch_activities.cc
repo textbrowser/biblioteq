@@ -361,11 +361,28 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	 BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
 
       if(copyIdentifier)
-	copyIdentifier->setText
-	  (biblioteq_misc_functions::
-	   getNextCopy(m_qmain->getDB(),
-		       m_ui.scan->text(),
-		       m_ui.scan_type->currentText()));
+	{
+	  QString type("");
+
+	  if(m_ui.scan_type->currentText() == tr("Book"))
+	    type = "Book";
+	  else if(m_ui.scan_type->currentText() == tr("CD"))
+	    type = "CD";
+	  else if(m_ui.scan_type->currentText() == tr("DVD"))
+	    type = "DVD";
+	  else if(m_ui.scan_type->currentText() == tr("Grey Literature"))
+	    type = "Grey Literature";
+	  else if(m_ui.scan_type->currentText() == tr("Journal"))
+	    type = "Journal";
+	  else if(m_ui.scan_type->currentText() == tr("Magazine"))
+	    type = "Magazine";
+	  else if(m_ui.scan_type->currentText() == tr("Video Game"))
+	    type = "Video Game";
+
+	  copyIdentifier->setText
+	    (biblioteq_misc_functions::
+	     getNextCopy(m_qmain->getDB(), m_ui.scan->text(), type));
+	}
 
       auto identifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
@@ -373,6 +390,28 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 
       if(identifier)
 	identifier->setText(m_ui.scan->text().trimmed());
+
+      /*
+      ** Discover the desired category. Unpleasant, yet again!
+      */
+
+      auto widget = m_ui.borrow_table->cellWidget
+	(m_ui.borrow_table->rowCount() - 1,
+	 BorrowTableColumns::CATEGORY_COLUMN);
+
+      if(widget)
+	{
+	  auto comboBox = widget->findChild<QComboBox *> ();
+
+	  if(comboBox)
+	    {
+	      comboBox->setCurrentIndex
+		(comboBox->findText(m_ui.scan_type->currentText()));
+
+	      if(comboBox->currentIndex() < 0)
+		comboBox->setCurrentIndex(0);
+	    }
+	}
     }
 
   m_ui.scan->clear();

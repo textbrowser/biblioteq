@@ -369,15 +369,31 @@ QString biblioteq_misc_functions::getNextCopy(const QSqlDatabase &db,
 					      const QString &id,
 					      const QString &type)
 {
+  if(type.toLower().contains("grey literature") ||
+     type.toLower().contains("photo"))
+    return "";
+
   QSqlQuery query(db);
   QString querystr("");
 
-  query.prepare(QString("SELECT copyid FROM %1_copy_info WHERE "
-			"copyid NOT IN (SELECT copyid FROM item_borrower) AND "
-			"item_oid IN (SELECT myoid FROM %1 WHERE id = ? OR "
-			"isbn13 = ?)").arg(type.toLower().remove(' ')));
-  query.addBindValue(QString(id).remove('-'));
-  query.addBindValue(QString(id).remove('-'));
+  if(type.toLower().trimmed() == "book")
+    {
+      query.prepare
+	("SELECT copyid FROM book_copy_info WHERE "
+	 "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
+	 "item_oid IN (SELECT myoid FROM book WHERE id = ? OR isbn13 = ?)");
+      query.addBindValue(QString(id).remove('-'));
+      query.addBindValue(QString(id).remove('-'));
+    }
+  else
+    {
+      query.prepare
+	(QString("SELECT copyid FROM %1_copy_info WHERE "
+		 "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
+		 "item_oid IN (SELECT myoid FROM %1 WHERE id = ?)").
+	 arg(QString(type).remove(" ").toLower()));
+      query.addBindValue(id);
+    }
 
   if(query.exec() && query.next())
     return query.value(0).toString();
@@ -1364,6 +1380,9 @@ bool biblioteq_misc_functions::isItemAvailable
     }
   else
     {
+      if(type == "video game")
+	type = type.remove(" ");
+
       if(copyId.trimmed().isEmpty() && emptyCopyIdAllowed)
 	{
 	  querystr = QString
@@ -1375,7 +1394,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	     "WHERE "
 	     "%1.id = ? "
 	     "GROUP BY %1.quantity, "
-	     "%1.myoid").arg(type.replace(' ', '_')).arg(t);
+	     "%1.myoid").arg(type.replace(" ", "_")).arg(t);
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(id.trimmed());
@@ -1399,7 +1418,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	     "WHERE "
 	     "%1.id = ? AND item_borrower.copyid = ? "
 	     "GROUP BY %1.quantity, "
-	     "%1.myoid").arg(type.replace(' ', '_')).arg(t);
+	     "%1.myoid").arg(type.replace(" ", "_")).arg(t);
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(id.trimmed());
@@ -1525,7 +1544,7 @@ int biblioteq_misc_functions::getCopyNumber(const QSqlDatabase &db,
   query.prepare
     (QString("SELECT copy_number FROM %1_copy_info "
 	     "WHERE copyid = ? AND item_oid = ?").
-     arg(itemType.replace(' ', '_')));
+     arg(itemType.replace(" ", "_")));
   query.addBindValue(copyId.trimmed());
   query.addBindValue(itemOid);
 

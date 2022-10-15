@@ -17,6 +17,7 @@ class biblioteq_batch_activities: public QMainWindow
   enum BorrowTableColumns
     {
       CATEGORY_COLUMN = 0,
+      DESCRIPTION_COLUMN = 4,
       COPY_IDENTIFIER_COLUMN = 2,
       IDENTIFIER_COLUMN = 1,
       RESULTS_COLUMN = 3
