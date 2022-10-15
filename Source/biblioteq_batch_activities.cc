@@ -78,8 +78,13 @@ void biblioteq_batch_activities::borrow(void)
       progress.repaint();
       QApplication::processEvents();
 
-      auto category = qobject_cast<QComboBox *>
-	(m_ui.borrow_table->cellWidget(i, BorrowTableColumns::CATEGORY_COLUMN));
+      QComboBox *category = nullptr;
+      auto widget = m_ui.borrow_table->cellWidget
+	(i, BorrowTableColumns::CATEGORY_COLUMN);
+
+      if(widget)
+	category = widget->findChild<QComboBox *> ();
+
       auto copyIdentifier = m_ui.borrow_table->item
 	(i, BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
       auto identifier = m_ui.borrow_table->item
