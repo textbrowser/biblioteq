@@ -22,7 +22,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  this,
 	  SLOT(slotDeleteBorrowingRow(void)));
   connect(m_ui.scan,
-	  SIGNAL(editingFinished(void)),
+	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedBorrowing(void)));
   connect(m_ui.close,
@@ -342,6 +342,7 @@ void biblioteq_batch_activities::slotReset(void)
   m_ui.borrow_table->clearContents();
   m_ui.borrow_table->setRowCount(0);
   m_ui.member_id->clear();
+  m_ui.scan->clear();
 }
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
@@ -357,7 +358,9 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
       if(copyIdentifier)
 	copyIdentifier->setText
 	  (biblioteq_misc_functions::
-	   getNextCopy(m_qmain->getDB(), m_ui.scan->text(), "Book"));
+	   getNextCopy(m_qmain->getDB(),
+		       m_ui.scan->text(),
+		       m_ui.scan_type->currentText()));
 
       auto identifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,

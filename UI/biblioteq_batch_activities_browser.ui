@@ -35,6 +35,51 @@
           </widget>
          </item>
          <item>
+          <widget class="QComboBox" name="scan_type">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Not translated!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="currentText">
+            <string notr="true">Book</string>
+           </property>
+           <item>
+            <property name="text">
+             <string notr="true">Book</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">CD</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">DVD</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Grey Literature</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Journal</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Magazine</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Video Game</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -288,6 +333,7 @@
  </widget>
  <tabstops>
   <tabstop>scan</tabstop>
+  <tabstop>scan_type</tabstop>
   <tabstop>tab</tabstop>
   <tabstop>member_id</tabstop>
   <tabstop>borrow_table</tabstop>
