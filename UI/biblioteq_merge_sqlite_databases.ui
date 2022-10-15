@@ -79,6 +79,9 @@
                  <attribute name="horizontalHeaderStretchLastSection">
                   <bool>true</bool>
                  </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
                  <column>
                   <property name="text">
                    <string>SQLite Database</string>

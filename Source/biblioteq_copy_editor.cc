@@ -566,9 +566,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     }
 
   progress2.close();
-
-  for(int i = 0; i < m_cb.table->columnCount() - 1; i++)
-    m_cb.table->resizeColumnToContents(i);
+  m_cb.table->resizeColumnsToContents();
+  m_cb.table->resizeRowsToContents();
 
   if(m_speedy)
     QTimer::singleShot(250, this, SLOT(slotCheckoutCopy(void)));

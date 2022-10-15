@@ -1362,6 +1362,58 @@ bool biblioteq_misc_functions::isItemAvailable
 	    }
 	}
     }
+  else
+    {
+      if(copyId.trimmed().isEmpty() && emptyCopyIdAllowed)
+	{
+	  querystr = QString
+	    ("SELECT %1.quantity - COUNT(item_borrower.item_oid) "
+	     "FROM "
+	     "%1 LEFT JOIN item_borrower ON "
+	     "%1.myoid = item_borrower.item_oid AND "
+	     "item_borrower.type = '%2' "
+	     "WHERE "
+	     "%1.id = ? "
+	     "GROUP BY %1.quantity, "
+	     "%1.myoid").arg(type.replace(' ', '_')).arg(t);
+	  query.prepare(querystr);
+	  query.addBindValue(id.trimmed());
+	  query.addBindValue(id.trimmed());
+
+	  if(query.exec())
+	    {
+	      if(query.next())
+		return query.value(0).toInt() > 0;
+	      else
+		return true;
+	    }
+	}
+      else
+	{
+	  querystr = QString
+	    ("SELECT COUNT(item_borrower.item_oid) "
+	     "FROM "
+	     "%1 LEFT JOIN item_borrower ON "
+	     "%1.myoid = item_borrower.item_oid AND "
+	     "item_borrower.type = '%2' "
+	     "WHERE "
+	     "%1.id = ? AND item_borrower.copyid = ? "
+	     "GROUP BY %1.quantity, "
+	     "%1.myoid").arg(type.replace(' ', '_')).arg(t);
+	  query.prepare(querystr);
+	  query.addBindValue(id.trimmed());
+	  query.addBindValue(id.trimmed());
+	  query.addBindValue(copyId.trimmed());
+
+	  if(query.exec())
+	    {
+	      if(query.next())
+		return query.value(0).toInt() == 0;
+	      else
+		return true;
+	    }
+	}
+    }
 
   return false;
 }

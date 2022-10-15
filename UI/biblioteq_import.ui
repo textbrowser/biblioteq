@@ -304,6 +304,9 @@
               <attribute name="horizontalHeaderStretchLastSection">
                <bool>true</bool>
               </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>CSV Column Number</string>
