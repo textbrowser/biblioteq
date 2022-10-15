@@ -485,7 +485,7 @@
      table entries upon item removal. (Done)
 258. Enumerate database fields and table columns. (TBD)
 259. Backup script for FreeBSD. (Done)
-260. Replace Poppler with QtPDF. QtPDF requires a fee! (Done)
+260. Replace Poppler with QtPDF. QtPDF is sometimes free! (TBD)
 261. Read status for books. SQLite only. (Done)
 262. Persian language. (TBD)
 263. Highlight unavailable items: per-item color. (Done)
