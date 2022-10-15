@@ -432,9 +432,16 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
   else if(itemType == "grey_literature")
     querystr = "SELECT myoid FROM grey_literature WHERE document_id = ?";
   else if(itemType == "journal" || itemType == "magazine")
-    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "issuevolume = ? AND issueno = ? AND "
-		       "id IS NOT NULL").arg(itemType);
+    {
+      if(id.contains(","))
+	querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
+			   "issuevolume = ? AND issueno = ? AND "
+			   "id IS NOT NULL").arg(itemType);
+      else
+	querystr = QString
+	  ("SELECT myoid FROM %1 WHERE id = ? AND id IS NOT NULL").
+	  arg(itemType);
+    }
   else
     return oid;
 
@@ -442,15 +449,20 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   if(itemType == "book")
     {
-      query.addBindValue(id);
-      query.addBindValue(id);
+      query.addBindValue(id.remove("-"));
+      query.addBindValue(id.remove("-"));
     }
   else if(itemType == "journal" || itemType == "magazine")
     {
-      auto list(id.split(","));
+      if(id.contains(","))
+	{
+	  auto list(id.split(","));
 
-      for(i = 0; i < list.size(); i++)
-	query.bindValue(i, list[i]);
+	  for(i = 0; i < list.size(); i++)
+	    query.bindValue(i, list[i]);
+	}
+      else
+	query.addBindValue(id);
     }
   else
     query.bindValue(0, id);
@@ -1342,8 +1354,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
-	  query.addBindValue(id.trimmed());
-	  query.addBindValue(id.trimmed());
+	  query.addBindValue(QString(id).remove("-").trimmed());
+	  query.addBindValue(QString(id).remove("-").trimmed());
 
 	  if(query.exec())
 	    {
@@ -1365,8 +1377,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
-	  query.addBindValue(id.trimmed());
-	  query.addBindValue(id.trimmed());
+	  query.addBindValue(QString(id).remove("-").trimmed());
+	  query.addBindValue(QString(id).remove("-").trimmed());
 	  query.addBindValue(copyId.trimmed());
 
 	  if(query.exec())
@@ -1397,7 +1409,6 @@ bool biblioteq_misc_functions::isItemAvailable
 	     "%1.myoid").arg(type.replace(" ", "_")).arg(t);
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
-	  query.addBindValue(id.trimmed());
 
 	  if(query.exec())
 	    {
@@ -1420,7 +1431,6 @@ bool biblioteq_misc_functions::isItemAvailable
 	     "GROUP BY %1.quantity, "
 	     "%1.myoid").arg(type.replace(" ", "_")).arg(t);
 	  query.prepare(querystr);
-	  query.addBindValue(id.trimmed());
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(copyId.trimmed());
 

@@ -141,10 +141,7 @@ void biblioteq_batch_activities::borrow(void)
 	type = "Video Game";
 
       auto available = biblioteq_misc_functions::isItemAvailable
-	(m_qmain->getDB(),
-	 identifier->text().remove('-'),
-	 copyIdentifier->text(),
-	 type);
+	(m_qmain->getDB(), identifier->text(), copyIdentifier->text(), type);
 
       if(!available)
 	{
@@ -175,7 +172,7 @@ void biblioteq_batch_activities::borrow(void)
       QString errorstr("");
       auto dueDate(QDate::currentDate());
       auto itemOid = biblioteq_misc_functions::getOID
-	(identifier->text().remove('-'), type, m_qmain->getDB(), errorstr);
+	(identifier->text(), type, m_qmain->getDB(), errorstr);
       int copyNumber = biblioteq_misc_functions::getCopyNumber
 	(m_qmain->getDB(), copyIdentifier->text(), itemOid, type, errorstr);
 
