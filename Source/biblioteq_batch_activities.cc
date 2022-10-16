@@ -345,6 +345,7 @@ void biblioteq_batch_activities::slotReset(void)
   m_ui.borrow_table->setRowCount(0);
   m_ui.member_id->clear();
   m_ui.scan->clear();
+  m_ui.scan_type->setCurrentIndex(0);
 }
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
