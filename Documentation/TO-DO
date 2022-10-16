@@ -356,8 +356,7 @@
 193. All QFileDialog instances should have their current directory set
      to the user's home directory. (Done)
 194. Allow patrons to opt-out of reservation histories. (Done)
-195. Dates should not be retrieved from local services.
-     PostgreSQL only. (TBD)
+195. Dates should not be retrieved from local services. PostgreSQL only. (TBD)
 196. Users should only be allowed to view their reservation histories.
      Create temporary views? No. Row-level privacy. (Done)
 197. After an item has been added, the item's row must be updated. One
@@ -508,7 +507,7 @@
 273. Optional images in the main views. (Done)
 274. Replace tr("UNKNOWN") with single instance. (Done)
 275. Special Unimarc import. (TBD)
-276. Improve reservation processes. Batch reservations. (TBD)
+276. Improve reservation processes. Batch reservations. (Done)
 277. Include release notes with the releases. (Done)
 278. Preserve order of columns in the main table. (TBD)
 279. MARC parsing (books). (TBD)
@@ -518,7 +517,8 @@
 282. The artificial read-status column has broken the recording of
      visible columns. The status should not be a separate column.
      Not a problem. (Done)
-283. QSqlField::tableName() and Qt 5.5.1. PowerPC and Ubuntu 16.04. (TBD)
+283. QSqlField::tableName() and Qt 5.5.1. PowerPC and Ubuntu 16.04.
+     Field is not available in legacy Qt. (Done)
 284. Alternate identifier and Open Library image query. (Done)
 285. Viewable Members Browser columns. (TBD)
 286. Double-clicking on the main table should activate the cell for
