@@ -20,6 +20,6 @@ then
     cd /usr/local/biblioteq && exec ./BiblioteQ "$@"
     exit $?
 else
-    "BiblioteQ not found!"
+    "BiblioteQ was not found!"
     exit 1
 fi
