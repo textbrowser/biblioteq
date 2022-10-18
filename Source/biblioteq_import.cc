@@ -75,7 +75,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 				   qint64 *imported,
 				   qint64 *notImported)
 {
-  if(!progress)
+  if(!progress || m_ui.csv_file->text().trimmed().isEmpty())
     return;
 
   QFile file(m_ui.csv_file->text());
@@ -427,7 +427,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 				     qint64 *imported,
 				     qint64 *notImported)
 {
-  if(!progress)
+  if(!progress || m_ui.csv_file->text().trimmed().isEmpty())
     return;
 
   QFile file(m_ui.csv_file->text());
@@ -618,6 +618,9 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
 void biblioteq_import::loadPreview(void)
 {
+  if(m_ui.csv_file->text().trimmed().isEmpty())
+    return;
+
   QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
 
   progress->setLabelText(tr("Reading the CSV file..."));
@@ -843,7 +846,8 @@ void biblioteq_import::slotDeleteRow(void)
 
 void biblioteq_import::slotImport(void)
 {
-  if(m_ui.templates->currentIndex() == 0)
+  if(m_ui.csv_file->text().trimmed().isEmpty() ||
+     m_ui.templates->currentIndex() == 0)
     /*
     ** A template has not been selected!
     */
