@@ -316,6 +316,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	auto item = new QTableWidgetItem();
 
 	if(i == BorrowTableColumns::DESCRIPTION_COLUMN ||
+	   i == BorrowTableColumns::FIELD_COLUMN ||
 	   i == BorrowTableColumns::RESULTS_COLUMN)
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else
@@ -410,6 +411,12 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	    (biblioteq_misc_functions::
 	     getNextCopy(field, m_qmain->getDB(), m_ui.scan->text(), type));
 	}
+
+      auto fieldItem = m_ui.borrow_table->item
+	(m_ui.borrow_table->rowCount() - 1, BorrowTableColumns::FIELD_COLUMN);
+
+      if(fieldItem)
+	fieldItem->setText(field);
 
       auto identifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,

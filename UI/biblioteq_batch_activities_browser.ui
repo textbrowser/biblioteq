@@ -120,6 +120,13 @@
             </layout>
            </item>
            <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Description and Field columns are completed by scanner queries.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QTableWidget" name="borrow_table">
              <property name="editTriggers">
               <set>QAbstractItemView::AllEditTriggers</set>
@@ -177,6 +184,11 @@
              <column>
               <property name="text">
                <string>Description</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Field</string>
               </property>
              </column>
             </widget>
