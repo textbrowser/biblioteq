@@ -497,8 +497,8 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   if(itemType == "book")
     {
-      query.addBindValue(id.remove("-"));
-      query.addBindValue(id.remove("-"));
+      query.addBindValue(id.remove('-'));
+      query.addBindValue(id.remove('-'));
     }
   else if(itemType == "journal" || itemType == "magazine")
     {
@@ -1402,8 +1402,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
-	  query.addBindValue(QString(id).remove("-").trimmed());
-	  query.addBindValue(QString(id).remove("-").trimmed());
+	  query.addBindValue(QString(id).remove('-').trimmed());
+	  query.addBindValue(QString(id).remove('-').trimmed());
 
 	  if(query.exec())
 	    {
@@ -1425,8 +1425,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
-	  query.addBindValue(QString(id).remove("-").trimmed());
-	  query.addBindValue(QString(id).remove("-").trimmed());
+	  query.addBindValue(QString(id).remove('-').trimmed());
+	  query.addBindValue(QString(id).remove('-').trimmed());
 	  query.addBindValue(copyId.trimmed());
 
 	  if(query.exec())
