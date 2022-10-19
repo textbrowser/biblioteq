@@ -419,7 +419,11 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
 		     "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
 		     "item_oid IN (SELECT myoid FROM book WHERE %1 = ?)").
 	     arg(list.at(i)));
-	  query.addBindValue(QString(id).remove('-'));
+
+	  if(list.at(i) == "accession_number")
+	    query.addBindValue(id);
+	  else
+	    query.addBindValue(QString(id).remove('-'));
 
 	  if(query.exec() && query.next())
 	    {
