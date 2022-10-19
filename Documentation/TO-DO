@@ -530,3 +530,4 @@
 291. Sort book condition combination box values for non-English. (Done)
 292. Syntax highlighting for custom SQL queries. (TBD)
 293. Guard SQL queries. Limit strings in queries. (TBD)
+294. Remote query for version information. (TBD)
