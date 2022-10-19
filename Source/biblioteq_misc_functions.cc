@@ -392,10 +392,13 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
   return str;
 }
 
-QString biblioteq_misc_functions::getNextCopy(const QSqlDatabase &db,
+QString biblioteq_misc_functions::getNextCopy(QString &field,
+					      const QSqlDatabase &db,
 					      const QString &id,
 					      const QString &type)
 {
+  field = "";
+
   if(type.toLower().contains("grey literature") ||
      type.toLower().contains("photo"))
     return "";
@@ -405,27 +408,41 @@ QString biblioteq_misc_functions::getNextCopy(const QSqlDatabase &db,
 
   if(type.toLower().trimmed() == "book")
     {
-      query.prepare
-	("SELECT copyid FROM book_copy_info WHERE "
-	 "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
-	 "item_oid IN (SELECT myoid FROM book WHERE id = ? OR isbn13 = ?)");
-      query.addBindValue(QString(id).remove('-'));
-      query.addBindValue(QString(id).remove('-'));
+      QStringList list;
+
+      list << "accession_number" << "id" << "isbn13";
+
+      for(int i = 0; i < list.size(); i++)
+	{
+	  query.prepare
+	    (QString("SELECT copyid FROM book_copy_info WHERE "
+		     "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
+		     "item_oid IN (SELECT myoid FROM book WHERE %1 = ?)").
+	     arg(list.at(i)));
+	  query.addBindValue(QString(id).remove('-'));
+
+	  if(query.exec() && query.next())
+	    {
+	      field = list.at(i);
+	      return query.value(0).toString();
+	    }
+	}
     }
   else
     {
+      field = "id";
       query.prepare
 	(QString("SELECT copyid FROM %1_copy_info WHERE "
 		 "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
 		 "item_oid IN (SELECT myoid FROM %1 WHERE id = ?)").
 	 arg(QString(type).remove(" ").toLower()));
       query.addBindValue(id);
+
+      if(query.exec() && query.next())
+	return query.value(0).toString();
     }
 
-  if(query.exec() && query.next())
-    return query.value(0).toString();
-  else
-    return "";
+  return "";
 }
 
 QString biblioteq_misc_functions::getOID(const QString &idArg,

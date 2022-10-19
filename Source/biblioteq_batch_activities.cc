@@ -382,6 +382,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
     {
       slotAddBorrowingRow();
 
+      QString field("");
       auto copyIdentifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
 	 BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
@@ -407,7 +408,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 
 	  copyIdentifier->setText
 	    (biblioteq_misc_functions::
-	     getNextCopy(m_qmain->getDB(), m_ui.scan->text(), type));
+	     getNextCopy(field, m_qmain->getDB(), m_ui.scan->text(), type));
 	}
 
       auto identifier = m_ui.borrow_table->item
