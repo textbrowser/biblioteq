@@ -315,8 +315,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
       {
 	auto item = new QTableWidgetItem();
 
-	if(i == BorrowTableColumns::DESCRIPTION_COLUMN ||
-	   i == BorrowTableColumns::FIELD_COLUMN ||
+	if(i == BorrowTableColumns::FIELD_COLUMN ||
 	   i == BorrowTableColumns::RESULTS_COLUMN)
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else

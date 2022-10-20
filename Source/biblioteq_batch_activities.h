@@ -45,8 +45,7 @@ class biblioteq_batch_activities: public QMainWindow
     {
       CATEGORY_COLUMN = 0,
       COPY_IDENTIFIER_COLUMN = 2,
-      DESCRIPTION_COLUMN = 4,
-      FIELD_COLUMN = 5,
+      FIELD_COLUMN = 4,
       IDENTIFIER_COLUMN = 1,
       RESULTS_COLUMN = 3
     };
