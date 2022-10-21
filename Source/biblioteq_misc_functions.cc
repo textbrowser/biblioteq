@@ -507,7 +507,7 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 	  auto list(id.split(","));
 
 	  for(i = 0; i < list.size(); i++)
-	    query.bindValue(i, list[i]);
+	    query.bindValue(i, list[i].trimmed());
 	}
       else
 	query.addBindValue(id);

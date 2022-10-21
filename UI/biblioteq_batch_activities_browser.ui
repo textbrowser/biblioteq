@@ -23,75 +23,6 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QComboBox" name="scan_type">
-           <property name="currentText">
-            <string>Book</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Book</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CD</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>DVD</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Grey Literature</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Journal</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Magazine</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Video Game</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="scan">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click in this field and scan an item. A new row will be created with the scanned identifier value. Please wait until the text hint is visible before scanning an item. Of course, you may also type an identifier and press the Enter key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="placeholderText">
-            <string>Please scan an item.</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
         <widget class="QTabWidget" name="tab">
          <property name="currentIndex">
           <number>0</number>
@@ -101,6 +32,75 @@
            <string>Borrow</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QComboBox" name="scan_type">
+               <property name="currentText">
+                <string>Book</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Book</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CD</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>DVD</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Grey Literature</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Journal</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Magazine</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Video Game</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="scan">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click in this field and scan an item. A new row will be created with the scanned identifier value. Please wait until the text hint is visible before scanning an item. Of course, you may also type an identifier and press the Enter key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="placeholderText">
+                <string>Please scan an item.</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
@@ -122,7 +122,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Description and Field columns are completed by scanner queries.</string>
+              <string>Field column is completed by scanner queries.</string>
              </property>
             </widget>
            </item>
@@ -341,8 +341,9 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>scan</tabstop>
   <tabstop>tab</tabstop>
+  <tabstop>scan_type</tabstop>
+  <tabstop>scan</tabstop>
   <tabstop>member_id</tabstop>
   <tabstop>borrow_table</tabstop>
   <tabstop>borrow_add_row</tabstop>
