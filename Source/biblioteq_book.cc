@@ -3104,7 +3104,7 @@ void biblioteq_book::slotGo(void)
 	query.bindValue(28, QVariant(QVariant::String));
 #endif
       else
-	query.bindValue(28, id.multivolume_set_isbn->text());
+	query.bindValue(28, id.multivolume_set_isbn->text().remove('-'));
 
       query.bindValue(29, id.target_audience->currentText());
 
