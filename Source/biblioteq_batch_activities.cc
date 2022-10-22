@@ -150,6 +150,7 @@ void biblioteq_batch_activities::borrow(void)
 	  continue;
 	}
 
+      QString error("");
       QString type("");
 
       if(category && category->currentText() == tr("Book"))
@@ -168,11 +169,20 @@ void biblioteq_batch_activities::borrow(void)
 	type = "Video Game";
 
       auto available = biblioteq_misc_functions::isItemAvailable
-	(m_qmain->getDB(), identifier->text(), copyIdentifier->text(), type);
+	(error,
+	 m_qmain->getDB(),
+	 identifier->text(),
+	 copyIdentifier->text(),
+	 type);
 
       if(!available)
 	{
-	  results->setText(tr("Item is not available for reservation."));
+	  if(error.isEmpty())
+	    results->setText(tr("Item is not available for reservation."));
+	  else
+	    results->setText
+	      (tr("Item is not available (%1) for reservation.").arg(error));
+
 	  continue;
 	}
 
@@ -406,9 +416,18 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	  else if(m_ui.scan_type->currentText() == tr("Video Game"))
 	    type = "Video Game";
 
-	  copyIdentifier->setText
-	    (biblioteq_misc_functions::
-	     getNextCopy(field, m_qmain->getDB(), m_ui.scan->text(), type));
+	  auto ok = true;
+	  auto str(biblioteq_misc_functions::
+		   getNextCopy(field,
+			       ok,
+			       m_qmain->getDB(),
+			       m_ui.scan->text(),
+			       type));
+
+	  if(ok)
+	    copyIdentifier->setText(str);
+	  else
+	    copyIdentifier->setText(tr("Copy not available (%1).").arg(str));
 	}
 
       auto fieldItem = m_ui.borrow_table->item

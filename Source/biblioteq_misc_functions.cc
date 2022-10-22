@@ -393,11 +393,13 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
 }
 
 QString biblioteq_misc_functions::getNextCopy(QString &field,
+					      bool &ok,
 					      const QSqlDatabase &db,
 					      const QString &id,
 					      const QString &type)
 {
   field = "";
+  ok = true;
 
   if(type.toLower().contains("grey literature") ||
      type.toLower().contains("photo"))
@@ -446,7 +448,13 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
 	return query.value(0).toString();
     }
 
-  return "";
+  if(query.lastError().isValid())
+    {
+      ok = false;
+      return query.lastError().text();
+    }
+  else
+    return QObject::tr("QSqlQuery::next() was false.");
 }
 
 QString biblioteq_misc_functions::getOID(const QString &idArg,
@@ -1378,14 +1386,18 @@ bool biblioteq_misc_functions::isGnome(void)
 }
 
 bool biblioteq_misc_functions::isItemAvailable
-(const QSqlDatabase &db,
+(QString &error,
+ const QSqlDatabase &db,
  const QString &id,
  const QString &copyId,
  const QString &t,
  const bool emptyCopyIdAllowed)
 {
+  error = "";
+
   QSqlQuery query(db);
   QString querystr("");
+  auto available = true;
   auto type(t.toLower().trimmed());
 
   if(type == "book")
@@ -1408,9 +1420,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	  if(query.exec())
 	    {
 	      if(query.next())
-		return query.value(0).toInt() > 0;
-	      else
-		return true;
+		available = query.value(0).toInt() > 0;
 	    }
 	}
       else
@@ -1432,9 +1442,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	  if(query.exec())
 	    {
 	      if(query.next())
-		return query.value(0).toInt() == 0;
-	      else
-		return true;
+		available = query.value(0).toInt() == 0;
 	    }
 	}
     }
@@ -1461,9 +1469,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	  if(query.exec())
 	    {
 	      if(query.next())
-		return query.value(0).toInt() > 0;
-	      else
-		return true;
+		available = query.value(0).toInt() > 0;
 	    }
 	}
       else
@@ -1485,14 +1491,18 @@ bool biblioteq_misc_functions::isItemAvailable
 	  if(query.exec())
 	    {
 	      if(query.next())
-		return query.value(0).toInt() == 0;
-	      else
-		return true;
+		available = query.value(0).toInt() == 0;
 	    }
 	}
     }
 
-  return false;
+  if(query.lastError().isValid())
+    {
+      available = false;
+      error = query.lastError().text().trimmed();
+    }
+
+  return available;
 }
 
 bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,

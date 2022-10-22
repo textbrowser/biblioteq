@@ -70,6 +70,7 @@ class biblioteq_misc_functions
 			       const QString &,
 			       QString &);
   static QString getNextCopy(QString &field,
+			     bool &ok,
 			     const QSqlDatabase &db,
 			     const QString &id,
 			     const QString &type);
@@ -147,7 +148,8 @@ class biblioteq_misc_functions
 			       QString &);
   static bool isGnome(void);
   static bool isItemAvailable
-    (const QSqlDatabase &db,
+    (QString &error,
+     const QSqlDatabase &db,
      const QString &id,
      const QString &copyId,
      const QString &t,
