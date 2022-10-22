@@ -3662,7 +3662,7 @@ void biblioteq_book::slotGo(void)
       values.append
 	(biblioteq_myqstring::escape(id.alternate_id_1->text().trimmed()));
       searchstr.append
-	("LOWER(COALESCE(multivolume_set_isbn, '')) "
+	("LOWER(COALESCE(REPLACE(multivolume_set_isbn, '-', ''), '')) "
 	 "LIKE LOWER('%' || ? || '%') AND ");
       values.append(id.multivolume_set_isbn->text().remove('-').trimmed());
       searchstr.append
@@ -3691,6 +3691,8 @@ void biblioteq_book::slotGo(void)
 	 "book.condition, "
 	 "book.accession_number, "
 	 "book.alternate_id_1, "
+	 "book.multivolume_set_isbn, "
+	 "book.target_audience, "
 	 "book.type, "
 	 "book.myoid, "
 	 "book.front_cover "
