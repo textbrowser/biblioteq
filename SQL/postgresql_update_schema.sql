@@ -1433,4 +1433,3 @@ GRANT SELECT ON book_target_audiences TO biblioteq_circulation;
 GRANT SELECT ON book_target_audiences TO biblioteq_guest;
 GRANT SELECT ON book_target_audiences TO biblioteq_membership;
 GRANT SELECT ON book_target_audiences TO biblioteq_patron;
-
