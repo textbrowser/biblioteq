@@ -1410,18 +1410,16 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "book.myoid = item_borrower.item_oid AND "
 	    "item_borrower.type = 'Book' "
 	    "WHERE "
-	    "book.id = ? OR book.isbn13 = ? "
+	    "book.accession_number = ? OR book.id = ? OR book.isbn13 = ? "
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
+	  query.addBindValue(id.trimmed());
 	  query.addBindValue(QString(id).remove('-').trimmed());
 	  query.addBindValue(QString(id).remove('-').trimmed());
 
-	  if(query.exec())
-	    {
-	      if(query.next())
-		available = query.value(0).toInt() > 0;
-	    }
+	  if(query.exec() && query.next())
+	    available = query.value(0).toInt() > 0;
 	}
       else
 	{
@@ -1431,19 +1429,18 @@ bool biblioteq_misc_functions::isItemAvailable
 	    "book.myoid = item_borrower.item_oid AND "
 	    "item_borrower.type = 'Book' "
 	    "WHERE "
-	    "(book.id = ? OR book.isbn13 = ?) AND item_borrower.copyid = ? "
+	    "(book.accession_number = ? OR book.id = ? OR book.isbn13 = ?) AND "
+	    "item_borrower.copyid = ? "
 	    "GROUP BY book.quantity, "
 	    "book.myoid";
 	  query.prepare(querystr);
+	  query.addBindValue(id.trimmed());
 	  query.addBindValue(QString(id).remove('-').trimmed());
 	  query.addBindValue(QString(id).remove('-').trimmed());
 	  query.addBindValue(copyId.trimmed());
 
-	  if(query.exec())
-	    {
-	      if(query.next())
-		available = query.value(0).toInt() == 0;
-	    }
+	  if(query.exec() && query.next())
+	    available = query.value(0).toInt() == 0;
 	}
     }
   else
@@ -1466,11 +1463,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 
-	  if(query.exec())
-	    {
-	      if(query.next())
-		available = query.value(0).toInt() > 0;
-	    }
+	  if(query.exec() && query.next())
+	    available = query.value(0).toInt() > 0;
 	}
       else
 	{
@@ -1488,11 +1482,8 @@ bool biblioteq_misc_functions::isItemAvailable
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(copyId.trimmed());
 
-	  if(query.exec())
-	    {
-	      if(query.next())
-		available = query.value(0).toInt() == 0;
-	    }
+	  if(query.exec() && query.next())
+	    available = query.value(0).toInt() == 0;
 	}
     }
 

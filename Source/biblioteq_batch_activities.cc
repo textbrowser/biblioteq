@@ -434,7 +434,8 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	  if(ok)
 	    copyIdentifier->setText(str);
 	  else
-	    copyIdentifier->setText(tr("Copy not available (%1).").arg(str));
+	    copyIdentifier->setText
+	      (tr("A copy is not available (%1).").arg(str));
 	}
 
       auto fieldItem = m_ui.borrow_table->item
