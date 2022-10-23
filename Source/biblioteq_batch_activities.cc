@@ -242,10 +242,16 @@ void biblioteq_batch_activities::borrow(void)
       query.addBindValue(type);
 
       if(query.exec())
-	results->setText(tr("Reserved!"));
+	{
+	  results->setBackground(QColor(144, 238, 144)); // Green light.
+	  results->setText(tr("Reserved!"));
+	}
       else
-	results->setText
-	  (tr("Reservation problem (%1).").arg(query.lastError().text()));
+	{
+	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setText
+	    (tr("Reservation problem (%1).").arg(query.lastError().text()));
+	}
     }
 
   progress.close();
