@@ -1424,3 +1424,13 @@ CREATE TABLE book_target_audiences
 (
 	target_audience	TEXT NOT NULL PRIMARY KEY
 );
+
+/* Release 2022.11.25 */
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO biblioteq_librarian;
+GRANT SELECT ON book_target_audiences TO biblioteq_circulation;
+GRANT SELECT ON book_target_audiences TO biblioteq_guest;
+GRANT SELECT ON book_target_audiences TO biblioteq_membership;
+GRANT SELECT ON book_target_audiences TO biblioteq_patron;
+
