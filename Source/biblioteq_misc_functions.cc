@@ -479,7 +479,9 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   if(itemType == "book")
     querystr = "SELECT myoid FROM book WHERE "
-      "(id = ? AND id IS NOT NULL) OR (isbn13 = ? AND isbn13 IS NOT NULL)";
+      "(accession_number = ? AND accession_number IS NOT NULL) OR "
+      "(id = ? AND id IS NOT NULL) OR "
+      "(isbn13 = ? AND isbn13 IS NOT NULL)";
   else if(itemType == "cd" ||
 	  itemType == "dvd" ||
 	  itemType == "photograph_collection" ||
@@ -505,6 +507,7 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 
   if(itemType == "book")
     {
+      query.addBindValue(id);
       query.addBindValue(id.remove('-'));
       query.addBindValue(id.remove('-'));
     }

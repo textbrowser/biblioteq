@@ -122,15 +122,21 @@ void biblioteq_batch_activities::borrow(void)
       if(!category || !copyIdentifier || !identifier || !results)
 	{
 	  if(results)
-	    results->setText(tr("Critical error! Missing table item(s)."));
+	    {
+	      results->setBackground(QColor(255, 114, 118)); // Red light.
+	      results->setText(tr("Critical error! Missing table item(s)."));
+	    }
 
 	  continue;
 	}
 
+      results->setBackground(copyIdentifier->background());
       results->setText("");
 
       if(expired)
 	{
+	  results->setBackground(QColor(255, 114, 118)); // Red light.
+
 	  if(error.isEmpty())
 	    results->setText(tr("Membership has expired."));
 	  else
@@ -141,11 +147,13 @@ void biblioteq_batch_activities::borrow(void)
 
       if(copyIdentifier->text().trimmed().isEmpty())
 	{
+	  results->setBackground(QColor(255, 114, 118)); // Red light.
 	  results->setText(tr("Empty copy identifier."));
 	  continue;
 	}
       else if(identifier->text().trimmed().isEmpty())
 	{
+	  results->setBackground(QColor(255, 114, 118)); // Red light.
 	  results->setText(tr("Empty identifier."));
 	  continue;
 	}
@@ -177,6 +185,8 @@ void biblioteq_batch_activities::borrow(void)
 
       if(!available)
 	{
+	  results->setBackground(QColor(255, 114, 118)); // Red light.
+
 	  if(error.isEmpty())
 	    results->setText(tr("Item is not available for reservation."));
 	  else
@@ -194,6 +204,7 @@ void biblioteq_batch_activities::borrow(void)
 
 	  if(maximumReserved <= totalReserved)
 	    {
+	      results->setBackground(QColor(255, 114, 118)); // Red light.
 	      results->setText
 		(tr("Maximum (%1) number of reserved (%2) items exceeded.").
 		 arg(maximumReserved).arg(totalReserved));
@@ -215,6 +226,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(copyNumber == -1)
 	{
+	  results->setBackground(QColor(255, 114, 118)); // Red light.
 	  results->setText(tr("Error retrieving copy number."));
 	  continue;
 	}
