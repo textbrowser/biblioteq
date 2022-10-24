@@ -3851,7 +3851,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		  auto duedate
 		    (QDateTime::fromString(query.value(j).toString().trimmed(),
-					   "mm/dd/yyyy"));
+					   "MM/dd/yyyy"));
 
 		  if(duedate <= QDateTime::currentDateTime())
 		    item->setBackground(QColor(255, 114, 118)); // Red light.
