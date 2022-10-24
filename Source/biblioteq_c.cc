@@ -848,6 +848,19 @@ int biblioteq::populateTable(QSqlQuery *query,
 		  str = m_searchQuery->value(j).toString().trimmed();
 		  item = new biblioteq_callnum_table_item(str);
 		}
+	      else if(fieldName.endsWith("duedate"))
+		{
+		  item = new QTableWidgetItem
+		    (m_searchQuery->value(j).toString().trimmed());
+
+		  auto duedate
+		    (QDateTime::
+		     fromString(m_searchQuery->value(j).toString().trimmed(),
+				"mm/dd/yyyy"));
+
+		  if(duedate <= QDateTime::currentDateTime())
+		    item->setBackground(QColor(255, 114, 118)); // Red light.
+		}
 	      else if(fieldName.endsWith("front_cover") ||
 		      fieldName.endsWith("image_scaled"))
 		{
