@@ -98,7 +98,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Copies are ordered by copy numbers.</string>
+         <string>Copies are ordered by copy numbers. Some fields may be edited even if the parent copy is reserved.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
