@@ -399,7 +399,7 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
 					      const QString &type)
 {
   field = "";
-  ok = true;
+  ok = false;
 
   if(type.toLower().contains("grey literature") ||
      type.toLower().contains("photo"))
@@ -430,13 +430,13 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
 	  if(query.exec() && query.next())
 	    {
 	      field = list.at(i);
+	      ok = true;
 	      return query.value(0).toString();
 	    }
 	}
     }
   else
     {
-      field = "id";
       query.prepare
 	(QString("SELECT copyid FROM %1_copy_info WHERE "
 		 "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
@@ -445,14 +445,15 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
       query.addBindValue(id);
 
       if(query.exec() && query.next())
-	return query.value(0).toString();
+	{
+	  field = "id";
+	  ok = true;
+	  return query.value(0).toString();
+	}
     }
 
   if(query.lastError().isValid())
-    {
-      ok = false;
-      return query.lastError().text();
-    }
+    return query.lastError().text();
   else
     return QObject::tr("QSqlQuery::next() was false.");
 }

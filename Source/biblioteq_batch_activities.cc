@@ -31,6 +31,11 @@
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
 
+QColor biblioteq_batch_activities::s_notSoOkColor =
+  QColor(255, 114, 118); // Red light.
+QColor biblioteq_batch_activities::s_okColor =
+  QColor(144, 238, 144); // Green light.
+
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
 {
@@ -123,7 +128,7 @@ void biblioteq_batch_activities::borrow(void)
 	{
 	  if(results)
 	    {
-	      results->setBackground(QColor(255, 114, 118)); // Red light.
+	      results->setBackground(s_notSoOkColor);
 	      results->setText(tr("Critical error! Missing table item(s)."));
 	    }
 
@@ -135,7 +140,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(expired)
 	{
-	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setBackground(s_notSoOkColor);
 
 	  if(error.isEmpty())
 	    results->setText(tr("Membership has expired."));
@@ -147,13 +152,13 @@ void biblioteq_batch_activities::borrow(void)
 
       if(copyIdentifier->text().trimmed().isEmpty())
 	{
-	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setBackground(s_notSoOkColor);
 	  results->setText(tr("Empty copy identifier."));
 	  continue;
 	}
       else if(identifier->text().trimmed().isEmpty())
 	{
-	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setBackground(s_notSoOkColor);
 	  results->setText(tr("Empty identifier."));
 	  continue;
 	}
@@ -185,7 +190,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(!available)
 	{
-	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setBackground(s_notSoOkColor);
 
 	  if(error.isEmpty())
 	    results->setText(tr("Item is not available for reservation."));
@@ -204,7 +209,7 @@ void biblioteq_batch_activities::borrow(void)
 
 	  if(maximumReserved <= totalReserved)
 	    {
-	      results->setBackground(QColor(255, 114, 118)); // Red light.
+	      results->setBackground(s_notSoOkColor);
 	      results->setText
 		(tr("Maximum (%1) number of reserved (%2) items exceeded.").
 		 arg(maximumReserved).arg(totalReserved));
@@ -226,7 +231,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(copyNumber == -1)
 	{
-	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setBackground(s_notSoOkColor);
 	  results->setText(tr("Error retrieving copy number."));
 	  continue;
 	}
@@ -255,12 +260,12 @@ void biblioteq_batch_activities::borrow(void)
 
       if(query.exec())
 	{
-	  results->setBackground(QColor(144, 238, 144)); // Green light.
+	  results->setBackground(s_okColor);
 	  results->setText(tr("Reserved!"));
 	}
       else
 	{
-	  results->setBackground(QColor(255, 114, 118)); // Red light.
+	  results->setBackground(s_notSoOkColor);
 	  results->setText
 	    (tr("Reservation problem (%1).").arg(query.lastError().text()));
 	}
@@ -353,6 +358,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	m_ui.borrow_table->setItem(row, i, item);
       }
 
+  m_ui.borrow_table->resizeColumnsToContents();
   m_ui.borrow_table->resizeRowsToContents();
   QApplication::restoreOverrideCursor();
 }
@@ -446,8 +452,11 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	  if(ok)
 	    copyIdentifier->setText(str);
 	  else
-	    copyIdentifier->setText
-	      (tr("A copy is not available (%1).").arg(str));
+	    {
+	      copyIdentifier->setBackground(s_notSoOkColor);
+	      copyIdentifier->setText
+		(tr("A copy is not available (%1).").arg(str));
+	    }
 	}
 
       auto fieldItem = m_ui.borrow_table->item

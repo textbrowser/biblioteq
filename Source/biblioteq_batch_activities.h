@@ -57,6 +57,8 @@ class biblioteq_batch_activities: public QMainWindow
 
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
+  static QColor s_notSoOkColor;
+  static QColor s_okColor;
   void borrow(void);
   void changeEvent(QEvent *event);
 
