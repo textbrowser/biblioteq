@@ -233,6 +233,10 @@ biblioteq::biblioteq(void):QMainWindow()
   m_error_diag = new QMainWindow();
 #endif
   m_batchActivities = new biblioteq_batch_activities(this);
+  connect(m_batchActivities,
+	  SIGNAL(listMembersReservedItems(const QString &)),
+	  this,
+	  SLOT(slotListReservedItems(const QString &)));
   m_import = new biblioteq_import(this);
   menu1 = new QMenu(this);
   connect(QCoreApplication::instance(),
@@ -3359,6 +3363,11 @@ void biblioteq::slotListOverdueItems(void)
   m_members_diag->showNormal();
   m_members_diag->activateWindow();
   m_members_diag->raise();
+}
+
+void biblioteq::slotListReservedItems(const QString &id)
+{
+  (void) populateTable(POPULATE_ALL, "All Reserved", id);
 }
 
 void biblioteq::slotListReservedItems(void)

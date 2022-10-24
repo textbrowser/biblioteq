@@ -53,6 +53,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteBorrowingRow(void)));
+  connect(m_ui.borrow_list,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotListMembersReservedItems(void)));
   connect(m_ui.scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -73,12 +77,12 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 
 void biblioteq_batch_activities::borrow(void)
 {
-  auto memberId(m_ui.member_id->text().trimmed());
+  auto memberId(m_ui.borrow_member_id->text().trimmed());
 
   if(memberId.isEmpty())
     {
-      m_ui.member_id->setFocus();
-      m_ui.member_id->setPlaceholderText
+      m_ui.borrow_member_id->setFocus();
+      m_ui.borrow_member_id->setPlaceholderText
 	(tr("Please provide the patron's identifier."));
       return;
     }
@@ -392,6 +396,11 @@ void biblioteq_batch_activities::slotGo(void)
     borrow();
 }
 
+void biblioteq_batch_activities::slotListMembersReservedItems(void)
+{
+  emit listMembersReservedItems(m_ui.borrow_member_id->text());
+}
+
 void biblioteq_batch_activities::slotReset(void)
 {
   if(m_ui.borrow_table->rowCount() > 0)
@@ -405,10 +414,10 @@ void biblioteq_batch_activities::slotReset(void)
 	return;
       }
 
+  m_ui.borrow_member_id->clear();
+  m_ui.borrow_member_id->setFocus();
   m_ui.borrow_table->clearContents();
   m_ui.borrow_table->setRowCount(0);
-  m_ui.member_id->clear();
-  m_ui.member_id->setFocus();
   m_ui.scan->clear();
   m_ui.scan_type->setCurrentIndex(0);
 }

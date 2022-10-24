@@ -67,10 +67,14 @@ class biblioteq_batch_activities: public QMainWindow
   void slotClose(void);
   void slotDeleteBorrowingRow(void);
   void slotGo(void);
+  void slotListMembersReservedItems(void);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScannedBorrowing(void);
   void slotSetGlobalFonts(const QFont &font);
+
+ signals:
+  void listMembersReservedItems(const QString &id);
 };
 
 #endif

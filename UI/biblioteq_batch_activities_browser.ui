@@ -111,9 +111,29 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="member_id">
+              <widget class="QLineEdit" name="borrow_member_id">
                <property name="placeholderText">
                 <string>Member ID</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="borrow_list">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List Member's Reserved Items&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/32x32/stamp.png</normaloff>:/32x32/stamp.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="autoRaise">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -344,7 +364,8 @@
   <tabstop>tab</tabstop>
   <tabstop>scan_type</tabstop>
   <tabstop>scan</tabstop>
-  <tabstop>member_id</tabstop>
+  <tabstop>borrow_member_id</tabstop>
+  <tabstop>borrow_list</tabstop>
   <tabstop>borrow_table</tabstop>
   <tabstop>borrow_add_row</tabstop>
   <tabstop>borrow_delete_row</tabstop>

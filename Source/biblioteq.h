@@ -533,6 +533,7 @@ class biblioteq: public QMainWindow
   void slotLastWindowClosed(void);
   void slotLaunchEmailSoftware(void);
   void slotListOverdueItems(void);
+  void slotListReservedItems(const QString &);
   void slotListReservedItems(void);
   void slotMagSearch(void);
   void slotMainTableDeleteKeyPressed(void);
