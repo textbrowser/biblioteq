@@ -264,6 +264,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(query.exec())
 	{
+	  copyIdentifier->setData(Qt::BackgroundRole, QVariant());
 	  results->setBackground(s_okColor);
 	  results->setText(tr("Reserved!"));
 	}
