@@ -311,11 +311,16 @@ void biblioteq_batch_activities::show(QMainWindow *parent)
   showNormal();
   activateWindow();
   raise();
+  m_ui.scan->setFocus();
 }
 
 void biblioteq_batch_activities::slotAddBorrowingRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  disconnect(m_ui.borrow_table,
+	     SIGNAL(itemChanged(QTableWidgetItem *)),
+	     this,
+	     SLOT(slotBorrowItemChanged(QTableWidgetItem *)));
   m_ui.borrow_table->setRowCount(m_ui.borrow_table->rowCount() + 1);
 
   auto row = m_ui.borrow_table->rowCount() - 1;
@@ -366,7 +371,24 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
     m_ui.borrow_table->resizeColumnToContents(i);
 
   m_ui.borrow_table->resizeRowsToContents();
+  connect(m_ui.borrow_table,
+	  SIGNAL(itemChanged(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotBorrowItemChanged(QTableWidgetItem *)));
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::slotBorrowItemChanged(QTableWidgetItem *item)
+{
+  if(!item)
+    return;
+
+  if(item->column() == BorrowTableColumns::COPY_IDENTIFIER_COLUMN)
+    {
+      m_ui.borrow_table->blockSignals(true);
+      item->setData(Qt::BackgroundRole, QVariant());
+      m_ui.borrow_table->blockSignals(false);
+    }
 }
 
 void biblioteq_batch_activities::slotClose(void)
@@ -415,10 +437,10 @@ void biblioteq_batch_activities::slotReset(void)
       }
 
   m_ui.borrow_member_id->clear();
-  m_ui.borrow_member_id->setFocus();
   m_ui.borrow_table->clearContents();
   m_ui.borrow_table->setRowCount(0);
   m_ui.scan->clear();
+  m_ui.scan->setFocus();
   m_ui.scan_type->setCurrentIndex(0);
 }
 
@@ -460,6 +482,8 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 			       m_ui.scan->text(),
 			       type));
 
+	  m_ui.borrow_table->blockSignals(true);
+
 	  if(ok)
 	    copyIdentifier->setText(str);
 	  else
@@ -468,6 +492,8 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	      copyIdentifier->setText
 		(tr("A copy is not available (%1).").arg(str));
 	    }
+
+	  m_ui.borrow_table->blockSignals(false);
 	}
 
       auto fieldItem = m_ui.borrow_table->item
