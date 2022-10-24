@@ -358,7 +358,9 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	m_ui.borrow_table->setItem(row, i, item);
       }
 
-  m_ui.borrow_table->resizeColumnsToContents();
+  for(int i = 0; i < m_ui.borrow_table->columnCount() - 1; i++)
+    m_ui.borrow_table->resizeColumnToContents(i);
+
   m_ui.borrow_table->resizeRowsToContents();
   QApplication::restoreOverrideCursor();
 }
