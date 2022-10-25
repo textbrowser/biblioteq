@@ -2497,6 +2497,31 @@ void biblioteq::slotCheckout(void)
 	  QApplication::processEvents();
 	  return;
 	}
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      auto maximumReserved = biblioteq_misc_functions::maximumReserved
+	(m_db, memberid, "book"); // Only books offer maximums.
+
+      if(maximumReserved > 0)
+	{
+	  auto totalReserved = biblioteq_misc_functions::
+	    getItemsReservedCounts(m_db, memberid, errorstr).value("numbooks");
+
+	  if(maximumReserved <= totalReserved)
+	    {
+	      QApplication::restoreOverrideCursor();
+	      QMessageBox::critical
+		(m_members_diag,
+		 tr("BiblioteQ: User Error"),
+		 tr("Too many (%1) items reserved (%2).").
+		 arg(maximumReserved).arg(totalReserved));
+	      QApplication::processEvents();
+	      return;
+	    }
+	}
+
+      QApplication::restoreOverrideCursor();
     }
 
   if(row2.isValid())

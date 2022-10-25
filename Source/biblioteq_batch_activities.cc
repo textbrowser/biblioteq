@@ -422,6 +422,7 @@ void biblioteq_batch_activities::slotGo(void)
 void biblioteq_batch_activities::slotListMembersReservedItems(void)
 {
   emit listMembersReservedItems(m_ui.borrow_member_id->text());
+  show(m_qmain);
 }
 
 void biblioteq_batch_activities::slotReset(void)
