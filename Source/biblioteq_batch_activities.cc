@@ -312,7 +312,7 @@ void biblioteq_batch_activities::show(QMainWindow *parent)
   showNormal();
   activateWindow();
   raise();
-  m_ui.scan->setFocus();
+  m_ui.borrow_member_id->setFocus();
 }
 
 void biblioteq_batch_activities::slotAddBorrowingRow(void)
