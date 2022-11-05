@@ -57,7 +57,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotListMembersReservedItems(void)));
-  connect(m_ui.scan,
+  connect(m_ui.borrow_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedBorrowing(void)));
@@ -116,17 +116,17 @@ void biblioteq_batch_activities::borrow(void)
 
       QComboBox *category = nullptr;
       auto widget = m_ui.borrow_table->cellWidget
-	(i, BorrowTableColumns::CATEGORY_COLUMN);
+	(i, static_cast<int> (BorrowTableColumns::CATEGORY_COLUMN));
 
       if(widget)
 	category = widget->findChild<QComboBox *> ();
 
       auto copyIdentifier = m_ui.borrow_table->item
-	(i, BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
+	(i, static_cast<int> (BorrowTableColumns::COPY_IDENTIFIER_COLUMN));
       auto identifier = m_ui.borrow_table->item
-	(i, BorrowTableColumns::IDENTIFIER_COLUMN);
+	(i, static_cast<int> (BorrowTableColumns::IDENTIFIER_COLUMN));
       auto results = m_ui.borrow_table->item
-	(i, BorrowTableColumns::RESULTS_COLUMN);
+	(i, static_cast<int> (BorrowTableColumns::RESULTS_COLUMN));
 
       if(!category || !copyIdentifier || !identifier || !results)
 	{
@@ -327,7 +327,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
   auto row = m_ui.borrow_table->rowCount() - 1;
 
   for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
-    if(i == BorrowTableColumns::CATEGORY_COLUMN)
+    if(i == static_cast<int> (BorrowTableColumns::CATEGORY_COLUMN))
       {
 	QStringList list;
 	auto comboBox = new QComboBox();
@@ -358,8 +358,8 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
       {
 	auto item = new QTableWidgetItem();
 
-	if(i == BorrowTableColumns::FIELD_COLUMN ||
-	   i == BorrowTableColumns::RESULTS_COLUMN)
+	if(i == static_cast<int> (BorrowTableColumns::FIELD_COLUMN) ||
+	   i == static_cast<int> (BorrowTableColumns::RESULTS_COLUMN))
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else
 	  item->setFlags
@@ -384,7 +384,8 @@ void biblioteq_batch_activities::slotBorrowItemChanged(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() == BorrowTableColumns::COPY_IDENTIFIER_COLUMN)
+  if(item->column() ==
+     static_cast<int> (BorrowTableColumns::COPY_IDENTIFIER_COLUMN))
     {
       m_ui.borrow_table->blockSignals(true);
       item->setData(Qt::BackgroundRole, QVariant());
@@ -427,53 +428,63 @@ void biblioteq_batch_activities::slotListMembersReservedItems(void)
 
 void biblioteq_batch_activities::slotReset(void)
 {
-  if(m_ui.borrow_table->rowCount() > 0)
-    if(QMessageBox::question(this,
-			     tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to reset?"),
-			     QMessageBox::No | QMessageBox::Yes,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	QApplication::processEvents();
-	return;
-      }
+  if(m_ui.tab->currentIndex() == 0)
+    {
+      if(m_ui.borrow_table->rowCount() > 0)
+	if(QMessageBox::question(this,
+				 tr("BiblioteQ: Question"),
+				 tr("Are you sure that you wish to reset?"),
+				 QMessageBox::No | QMessageBox::Yes,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
+	    return;
+	  }
 
-  m_ui.borrow_member_id->clear();
-  m_ui.borrow_table->clearContents();
-  m_ui.borrow_table->setRowCount(0);
-  m_ui.scan->clear();
-  m_ui.scan->setFocus();
-  m_ui.scan_type->setCurrentIndex(0);
+      m_ui.borrow_member_id->clear();
+      m_ui.borrow_scan->clear();
+      m_ui.borrow_scan->setFocus();
+      m_ui.borrow_scan_type->setCurrentIndex(0);
+      m_ui.borrow_table->clearContents();
+      m_ui.borrow_table->setRowCount(0);
+    }
+  else if(m_ui.tab->currentIndex() == 1)
+    {
+      m_ui.discover_scan->clear();
+      m_ui.discover_scan->setFocus();
+      m_ui.discover_table->clearContents();
+      m_ui.discover_table->setRowCount(0);
+    }
 }
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 {
-  if(!m_ui.scan->text().trimmed().isEmpty())
+  if(!m_ui.borrow_scan->text().trimmed().isEmpty())
     {
       slotAddBorrowingRow();
 
       QString field("");
       auto copyIdentifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
-	 BorrowTableColumns::COPY_IDENTIFIER_COLUMN);
+	 static_cast<int> (BorrowTableColumns::COPY_IDENTIFIER_COLUMN));
 
       if(copyIdentifier)
 	{
 	  QString type("");
 
-	  if(m_ui.scan_type->currentText() == tr("Book"))
+	  if(m_ui.borrow_scan_type->currentText() == tr("Book"))
 	    type = "Book";
-	  else if(m_ui.scan_type->currentText() == tr("CD"))
+	  else if(m_ui.borrow_scan_type->currentText() == tr("CD"))
 	    type = "CD";
-	  else if(m_ui.scan_type->currentText() == tr("DVD"))
+	  else if(m_ui.borrow_scan_type->currentText() == tr("DVD"))
 	    type = "DVD";
-	  else if(m_ui.scan_type->currentText() == tr("Grey Literature"))
+	  else if(m_ui.borrow_scan_type->currentText() == tr("Grey Literature"))
 	    type = "Grey Literature";
-	  else if(m_ui.scan_type->currentText() == tr("Journal"))
+	  else if(m_ui.borrow_scan_type->currentText() == tr("Journal"))
 	    type = "Journal";
-	  else if(m_ui.scan_type->currentText() == tr("Magazine"))
+	  else if(m_ui.borrow_scan_type->currentText() == tr("Magazine"))
 	    type = "Magazine";
-	  else if(m_ui.scan_type->currentText() == tr("Video Game"))
+	  else if(m_ui.borrow_scan_type->currentText() == tr("Video Game"))
 	    type = "Video Game";
 
 	  auto ok = true;
@@ -481,7 +492,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 		   getNextCopy(field,
 			       ok,
 			       m_qmain->getDB(),
-			       m_ui.scan->text(),
+			       m_ui.borrow_scan->text(),
 			       type));
 
 	  m_ui.borrow_table->blockSignals(true);
@@ -499,17 +510,18 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	}
 
       auto fieldItem = m_ui.borrow_table->item
-	(m_ui.borrow_table->rowCount() - 1, BorrowTableColumns::FIELD_COLUMN);
+	(m_ui.borrow_table->rowCount() - 1,
+	 static_cast<int> (BorrowTableColumns::FIELD_COLUMN));
 
       if(fieldItem)
 	fieldItem->setText(field);
 
       auto identifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
-	 BorrowTableColumns::IDENTIFIER_COLUMN);
+	 static_cast<int> (BorrowTableColumns::IDENTIFIER_COLUMN));
 
       if(identifier)
-	identifier->setText(m_ui.scan->text().trimmed());
+	identifier->setText(m_ui.borrow_scan->text().trimmed());
 
       /*
       ** Discover the desired category. Unpleasant, yet again!
@@ -517,7 +529,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 
       auto widget = m_ui.borrow_table->cellWidget
 	(m_ui.borrow_table->rowCount() - 1,
-	 BorrowTableColumns::CATEGORY_COLUMN);
+	 static_cast<int> (BorrowTableColumns::CATEGORY_COLUMN));
 
       if(widget)
 	{
@@ -526,7 +538,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	  if(comboBox)
 	    {
 	      comboBox->setCurrentIndex
-		(comboBox->findText(m_ui.scan_type->currentText()));
+		(comboBox->findText(m_ui.borrow_scan_type->currentText()));
 
 	      if(comboBox->currentIndex() < 0)
 		comboBox->setCurrentIndex(0);
@@ -534,7 +546,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	}
     }
 
-  m_ui.scan->clear();
+  m_ui.borrow_scan->clear();
 }
 
 void biblioteq_batch_activities::slotScannedBorrowing(void)

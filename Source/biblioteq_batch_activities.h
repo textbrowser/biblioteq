@@ -41,13 +41,19 @@ class biblioteq_batch_activities: public QMainWindow
   void show(QMainWindow *parent);
 
  private:
-  enum BorrowTableColumns
+  enum class BorrowTableColumns
     {
       CATEGORY_COLUMN = 0,
       COPY_IDENTIFIER_COLUMN = 2,
       FIELD_COLUMN = 4,
       IDENTIFIER_COLUMN = 1,
       RESULTS_COLUMN = 3
+    };
+
+  enum class DiscoverTableColumns
+    {
+      CATEGORY_COLUMN = 1,
+      IDENTIFIER_COLUMN = 0
     };
 
   enum Pages
