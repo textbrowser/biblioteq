@@ -299,6 +299,10 @@ void biblioteq_batch_activities::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
+void biblioteq_batch_activities::discover(void)
+{
+}
+
 void biblioteq_batch_activities::show(QMainWindow *parent)
 {
   static auto resized = false;
@@ -416,8 +420,10 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotGo(void)
 {
-  if(m_ui.tab->currentIndex() == Pages::Borrow)
+  if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Borrow))
     borrow();
+  else if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Discover))
+    discover();
 }
 
 void biblioteq_batch_activities::slotListMembersReservedItems(void)
@@ -428,7 +434,7 @@ void biblioteq_batch_activities::slotListMembersReservedItems(void)
 
 void biblioteq_batch_activities::slotReset(void)
 {
-  if(m_ui.tab->currentIndex() == 0)
+  if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Borrow))
     {
       if(m_ui.borrow_table->rowCount() > 0)
 	if(QMessageBox::question(this,
@@ -448,7 +454,7 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.borrow_table->clearContents();
       m_ui.borrow_table->setRowCount(0);
     }
-  else if(m_ui.tab->currentIndex() == 1)
+  else if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Discover))
     {
       m_ui.discover_scan->clear();
       m_ui.discover_scan->setFocus();
@@ -549,9 +555,26 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
   m_ui.borrow_scan->clear();
 }
 
+void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
+{
+  auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
+
+  m_ui.discover_table->setRowCount(m_ui.discover_table->rowCount() + 1);
+  m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 0, item);
+  item = new QTableWidgetItem();
+  m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 1, item);
+  m_ui.discover_scan->clear();
+  m_ui.discover_scan->setFocus();
+}
+
 void biblioteq_batch_activities::slotScannedBorrowing(void)
 {
   QTimer::singleShot(100, this, SLOT(slotScanBorrowingTimerTimeout(void)));
+}
+
+void biblioteq_batch_activities::slotScannedDiscover(void)
+{
+  QTimer::singleShot(100, this, SLOT(slotScanDiscoverTimerTimeout(void)));
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
@@ -565,5 +588,6 @@ void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
     }
 
   m_ui.borrow_table->resizeColumnsToContents();
+  m_ui.discover_table->resizeColumnsToContents();
   update();
 }

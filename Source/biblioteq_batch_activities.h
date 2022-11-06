@@ -56,9 +56,10 @@ class biblioteq_batch_activities: public QMainWindow
       IDENTIFIER_COLUMN = 0
     };
 
-  enum Pages
+  enum class Pages
     {
-      Borrow = 0
+      Borrow = 0,
+      Discover = 1
     };
 
   Ui_batchActivitiesBrowser m_ui;
@@ -67,6 +68,7 @@ class biblioteq_batch_activities: public QMainWindow
   static QColor s_okColor;
   void borrow(void);
   void changeEvent(QEvent *event);
+  void discover(void);
 
  private slots:
   void slotAddBorrowingRow(void);
@@ -77,7 +79,9 @@ class biblioteq_batch_activities: public QMainWindow
   void slotListMembersReservedItems(void);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
+  void slotScanDiscoverTimerTimeout(void);
   void slotScannedBorrowing(void);
+  void slotScannedDiscover(void);
   void slotSetGlobalFonts(const QFont &font);
 
  signals:

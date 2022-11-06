@@ -212,6 +212,46 @@ QString biblioteq_misc_functions::accessionNumberAsSpecialText
   return QString::number(integer).rightJustified(20, QChar('0'));
 }
 
+QString biblioteq_misc_functions::categories(const QSqlDatabase &db,
+					     const QString &id)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QString string("");
+  QStringList list;
+
+  list << "book"
+       << "cd"
+       << "dvd"
+       << "grey_literature"
+       << "journal"
+       << "magazine"
+       << "photograph_collection"
+       << "videogame";
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      if(list.at(i) == "book")
+	{
+	  querystr = "SELECT EXISTS(SELECT 1 FROM book WHERE "
+	    "id = ? OR isbn13 = ?)";
+	  query.prepare(querystr);
+	  query.addBindValue(QString(id).remove('-'));
+	  query.addBindValue(QString(id).remove('-'));
+	}
+
+      if(query.exec() && query.next() && query.value(0).toBool())
+	{
+	  if(!string.isEmpty())
+	    string.prepend(", ");
+
+	  string.append(list.at(i));
+	}
+    }
+
+  return string;
+}
+
 QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
