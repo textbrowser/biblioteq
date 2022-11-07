@@ -65,6 +65,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.discover_scan,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotScannedDiscover(void)));
   connect(m_ui.go,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -557,14 +561,22 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 
 void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
 
+  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   m_ui.discover_table->setRowCount(m_ui.discover_table->rowCount() + 1);
   m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 0, item);
   item = new QTableWidgetItem();
+  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  item->setText
+    (biblioteq_misc_functions::
+     categories(m_qmain->getDB(), m_ui.discover_scan->text()));
   m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 1, item);
   m_ui.discover_scan->clear();
   m_ui.discover_scan->setFocus();
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_batch_activities::slotScannedBorrowing(void)

@@ -239,6 +239,13 @@ QString biblioteq_misc_functions::categories(const QSqlDatabase &db,
 	  query.addBindValue(QString(id).remove('-'));
 	  query.addBindValue(QString(id).remove('-'));
 	}
+      else
+	{
+	  querystr = QString
+	    ("SELECT EXISTS(SELECT 1 FROM %1 WHERE id = ?)").arg(list.at(i));
+	  query.prepare(querystr);
+	  query.addBindValue(id.trimmed());
+	}
 
       if(query.exec() && query.next() && query.value(0).toBool())
 	{
