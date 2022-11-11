@@ -234,8 +234,9 @@ QString biblioteq_misc_functions::categories(const QSqlDatabase &db,
       if(list.at(i) == "book")
 	{
 	  querystr = "SELECT EXISTS(SELECT 1 FROM book WHERE "
-	    "id = ? OR isbn13 = ?)";
+	    "accession_number = ? OR id = ? OR isbn13 = ?)";
 	  query.prepare(querystr);
+	  query.addBindValue(id);
 	  query.addBindValue(QString(id).remove('-'));
 	  query.addBindValue(QString(id).remove('-'));
 	}
