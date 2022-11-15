@@ -38,7 +38,7 @@ class biblioteq_batch_activities: public QMainWindow
 
  public:
   biblioteq_batch_activities(biblioteq *parent);
-  void show(QMainWindow *parent);
+  void show(QMainWindow *parent, const bool center = true);
 
  private:
   enum class BorrowTableColumns
@@ -76,6 +76,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotClose(void);
   void slotDeleteBorrowingRow(void);
   void slotGo(void);
+  void slotListDiscoveredItems(void);
   void slotListMembersReservedItems(void);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);

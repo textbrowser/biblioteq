@@ -2328,9 +2328,7 @@ void biblioteq::slotAllGo(void)
 			 "%1.accession_number, "
 			 "%1.type, "
 			 "%1.myoid, "
-			 "%1.front_cover "
-			 ).arg
-	    (type.toLower().remove(" "));
+			 "%1.front_cover ").arg(type.toLower().remove(" "));
 	}
       else if(type == "Grey Literature")
 	{

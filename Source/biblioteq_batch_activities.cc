@@ -65,6 +65,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.discover_list,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotListDiscoveredItems(void)));
   connect(m_ui.discover_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -307,7 +311,7 @@ void biblioteq_batch_activities::discover(void)
 {
 }
 
-void biblioteq_batch_activities::show(QMainWindow *parent)
+void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
   static auto resized = false;
 
@@ -316,7 +320,10 @@ void biblioteq_batch_activities::show(QMainWindow *parent)
 	   qRound(0.80 * parent->size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(this, parent);
+
+  if(center)
+    biblioteq_misc_functions::center(this, parent);
+
   showNormal();
   activateWindow();
   raise();
@@ -430,10 +437,268 @@ void biblioteq_batch_activities::slotGo(void)
     discover();
 }
 
+void biblioteq_batch_activities::slotListDiscoveredItems(void)
+{
+  if(m_ui.discover_table->rowCount() == 0)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QVariant> values;
+  QString bookFrontCover("'' AS front_cover ");
+  QString bookWhere("(");
+  QString cdFrontCover("'' AS front_cover ");
+  QString dvdFrontCover("'' AS front_cover ");
+  QString greyLiteratureFrontCover("'' AS front_cover ");
+  QString journalFrontCover("'' AS front_cover ");
+  QString magazineFrontCover("'' AS front_cover ");
+  QString photographCollectionFrontCover("'' AS image_scaled ");
+  QString searchstr("");
+  QString videoGameFrontCover("'' AS front_cover ");
+  QString where("(");
+  QStringList types;
+  auto query = new QSqlQuery(m_qmain->getDB());
+
+  if(m_qmain->showMainTableImages())
+    {
+      bookFrontCover = "book.front_cover ";
+      cdFrontCover = "cd.front_cover ";
+      dvdFrontCover = "dvd.front_cover ";
+      greyLiteratureFrontCover = "grey_literature.front_cover ";
+      journalFrontCover = "journal.front_cover ";
+      magazineFrontCover = "magazine.front_cover ";
+      photographCollectionFrontCover = "photograph_collection.image_scaled ";
+      videoGameFrontCover = "videogame.front_cover ";
+    }
+
+  types.append("Book");
+  types.append("CD");
+  types.append("DVD");
+  types.append("Grey Literature");
+  types.append("Journal");
+  types.append("Magazine");
+  types.append("Photograph Collection");
+  types.append("Video Game");
+
+  for(int i = 0; i < m_ui.discover_table->rowCount(); i++)
+    {
+      auto item = m_ui.discover_table->item(i, 0);
+
+      if(!item)
+	continue;
+
+      bookWhere.append("?");
+
+      if(i < m_ui.discover_table->rowCount() - 1)
+	bookWhere.append(", ");
+
+      where.append("?");
+
+      if(i < m_ui.discover_table->rowCount() - 1)
+	where.append(", ");
+
+      values << item->text()              // accession_number
+	     << item->text().remove('-')  // id
+	     << item->text().remove('-'); // isbn13
+
+      for(int j = 0; j < types.size() - 1; j++)
+	values << item->text();
+    }
+
+  bookWhere.append(")");
+  where.append(")");
+
+  for(int i = 0; i < types.size(); i++)
+    {
+      QString str("");
+      const auto &type(types.at(i));
+
+      if(type == "Grey Literature")
+	{
+	  str = "SELECT DISTINCT grey_literature.document_title, "
+	    "grey_literature.document_id, "
+	    "'', "
+	    "grey_literature.document_date, "
+	    "'', "
+	    "'', "
+	    "0.00, "
+	    "'', "
+	    "grey_literature.quantity, "
+	    "grey_literature.location, "
+	    "1 - COUNT(item_borrower.item_oid) AS availability, "
+	    "COUNT(item_borrower.item_oid) AS total_reserved, "
+	    "grey_literature.job_number, "
+	    "grey_literature.type, "
+	    "grey_literature.myoid, " +
+	    greyLiteratureFrontCover +
+	    "FROM "
+	    "grey_literature LEFT JOIN item_borrower ON "
+	    "grey_literature.myoid = "
+	    "item_borrower.item_oid "
+	    "AND item_borrower.type = 'Grey Literature' "
+	    "WHERE grey_literature.document_id IN ";
+	  str.append(where);
+	}
+      else if(type == "Photograph Collection")
+	{
+	  str = "SELECT DISTINCT photograph_collection.title, "
+	    "photograph_collection.id, "
+	    "'', "
+	    "'', "
+	    "'', "
+	    "'', "
+	    "0.00, "
+	    "'', "
+	    "1 AS quantity, "
+	    "photograph_collection.location, "
+	    "0 AS availability, "
+	    "0 AS total_reserved, "
+	    "photograph_collection.accession_number, "
+	    "photograph_collection.type, "
+	    "photograph_collection.myoid, " +
+	    photographCollectionFrontCover +
+	    "FROM photograph_collection "
+	    "WHERE photograph_collection.id IN ";
+	  str.append(where);
+	}
+      else
+	{
+	  str = QString
+	    ("SELECT DISTINCT %1.title, "
+	     "%1.id, "
+	     "%1.publisher, %1.pdate, "
+	     "%1.category, "
+	     "%1.language, "
+	     "%1.price, %1.monetary_units, "
+	     "%1.quantity, "
+	     "%1.location, "
+	     "%1.quantity - "
+	     "COUNT(item_borrower.item_oid) AS availability, "
+	     "COUNT(item_borrower.item_oid) AS total_reserved, "
+	     "%1.accession_number, "
+	     "%1.type, "
+	     "%1.myoid, ").arg(type.toLower().remove(" "));
+
+	  if(type == "Book")
+	    str.append(bookFrontCover);
+	  else if(type == "CD")
+	    str.append(cdFrontCover);
+	  else if(type == "DVD")
+	    str.append(dvdFrontCover);
+	  else if(type == "Journal")
+	    str.append(journalFrontCover);
+	  else if(type == "Magazine")
+	    str.append(magazineFrontCover);
+	  else
+	    str.append(videoGameFrontCover);
+
+	  str += QString("FROM "
+			 "%1 LEFT JOIN item_borrower ON "
+			 "%1.myoid = "
+			 "item_borrower.item_oid "
+			 "AND item_borrower.type = '%2' "
+			 "WHERE ").arg(type.toLower().remove(" ")).arg(type);
+
+	  if(type == "Book")
+	    {
+	      str.append("book.accession_number IN ");
+	      str.append(bookWhere);
+	      str.append(" OR ");
+	      str.append("book.id IN ");
+	      str.append(bookWhere);
+	      str.append(" OR ");
+	      str.append("book.isbn13 IN ");
+	      str.append(bookWhere);
+	    }
+	  else
+	    str.append(QString("%1.id IN %2").
+		       arg(type.toLower().remove(" ")).
+		       arg(where));
+
+	  str.append(" ");
+	}
+
+      if(type != "Grey Literature" &&
+	 type != "Photograph Collection")
+	{
+	  str += QString("GROUP BY "
+			 "%1.title, "
+			 "%1.id, "
+			 "%1.publisher, %1.pdate, "
+			 "%1.category, "
+			 "%1.language, "
+			 "%1.price, "
+			 "%1.monetary_units, "
+			 "%1.quantity, "
+			 "%1.location, "
+			 "%1.keyword, "
+			 "%1.accession_number, "
+			 "%1.type, "
+			 "%1.myoid, "
+			 "%1.front_cover ").arg(type.toLower().remove(" "));
+	}
+      else if(type == "Grey Literature")
+	{
+	  str += "GROUP BY grey_literature.document_title, "
+	    "grey_literature.document_id, "
+	    "grey_literature.document_date, "
+	    "grey_literature.location, "
+	    "grey_literature.job_number, "
+	    "grey_literature.type, "
+	    "grey_literature.myoid, "
+	    "grey_literature.front_cover ";
+	}
+      else if(type == "Photograph Collection")
+	{
+	  str += "GROUP BY "
+	    "photograph_collection.title, "
+	    "photograph_collection.id, "
+	    "photograph_collection.location, "
+	    "photograph_collection.accession_number, "
+	    "photograph_collection.type, "
+	    "photograph_collection.myoid, "
+	    "photograph_collection.image_scaled ";
+	}
+
+      if(type == "CD")
+	{
+	  str = str.replace("pdate", "rdate");
+	  str = str.replace("publisher", "recording_label");
+	}
+      else if(type == "DVD")
+	{
+	  str = str.replace("pdate", "rdate");
+	  str = str.replace("publisher", "studio");
+	}
+      else if(type == "Video Game")
+	{
+	  str = str.replace("pdate", "rdate");
+	  str = str.replace("category", "genre");
+	}
+
+      if(type != "Video Game")
+	str += "UNION ALL ";
+      else
+	str += " ";
+
+      searchstr += str;
+    }
+
+  query->prepare(searchstr);
+
+  for(int i = 0; i < values.size(); i++)
+    query->addBindValue(values.at(i));
+
+  QApplication::restoreOverrideCursor();
+  m_qmain->populateTable
+    (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
+  show(m_qmain, false);
+}
+
 void biblioteq_batch_activities::slotListMembersReservedItems(void)
 {
   emit listMembersReservedItems(m_ui.borrow_member_id->text());
-  show(m_qmain);
+  show(m_qmain, false);
 }
 
 void biblioteq_batch_activities::slotReset(void)
