@@ -299,8 +299,11 @@
                  <height>32</height>
                 </size>
                </property>
-               <property name="autoRaise">
-                <bool>true</bool>
+               <property name="popupMode">
+                <enum>QToolButton::MenuButtonPopup</enum>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextBesideIcon</enum>
                </property>
               </widget>
              </item>

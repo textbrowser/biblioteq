@@ -41,6 +41,22 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+
+  QAction *action1 = nullptr;
+  QAction *action2 = nullptr;
+
+  m_ui.discover_list->addAction
+    (action1 = new QAction(tr("List Discovered Items"), this));
+  m_ui.discover_list->addAction
+    (action2 = new QAction(tr("List Other Items"), this));
+  connect(action1,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotListDiscoveredItems(void)));
+  connect(action2,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotListDiscoveredItems(void)));
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -67,8 +83,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SLOT(slotClose(void)));
   connect(m_ui.discover_list,
 	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotListDiscoveredItems(void)));
+	  m_ui.discover_list,
+	  SLOT(showMenu(void)));
   connect(m_ui.discover_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -442,6 +458,11 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
   if(m_ui.discover_table->rowCount() == 0)
     return;
 
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QList<QVariant> values;
@@ -450,6 +471,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
   QString cdFrontCover("'' AS front_cover ");
   QString dvdFrontCover("'' AS front_cover ");
   QString greyLiteratureFrontCover("'' AS front_cover ");
+  QString in(action->text().contains(tr("Other")) ? " NOT IN " : " IN ");
   QString journalFrontCover("'' AS front_cover ");
   QString magazineFrontCover("'' AS front_cover ");
   QString photographCollectionFrontCover("'' AS image_scaled ");
@@ -536,7 +558,8 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 	    "grey_literature.myoid = "
 	    "item_borrower.item_oid "
 	    "AND item_borrower.type = 'Grey Literature' "
-	    "WHERE grey_literature.document_id IN ";
+	    "WHERE grey_literature.document_id";
+	  str.append(in);
 	  str.append(where);
 	}
       else if(type == "Photograph Collection")
@@ -558,7 +581,8 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 	    "photograph_collection.myoid, " +
 	    photographCollectionFrontCover +
 	    "FROM photograph_collection "
-	    "WHERE photograph_collection.id IN ";
+	    "WHERE photograph_collection.id";
+	  str.append(in);
 	  str.append(where);
 	}
       else
@@ -601,18 +625,32 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 
 	  if(type == "Book")
 	    {
-	      str.append("book.accession_number IN ");
+	      str.append("COALESCE(book.accession_number, '')");
+	      str.append(in);
 	      str.append(bookWhere);
-	      str.append(" OR ");
-	      str.append("book.id IN ");
+
+	      if(in.contains("NOT"))
+		str.append(" AND ");
+	      else
+		str.append(" OR ");
+
+	      str.append("COALESCE(book.id, '')");
+	      str.append(in);
 	      str.append(bookWhere);
-	      str.append(" OR ");
-	      str.append("book.isbn13 IN ");
+
+	      if(in.contains("NOT"))
+		str.append(" AND ");
+	      else
+		str.append(" OR ");
+
+	      str.append("COALESCE(book.isbn13, '')");
+	      str.append(in);
 	      str.append(bookWhere);
 	    }
 	  else
-	    str.append(QString("%1.id IN %2").
+	    str.append(QString("%1.id %2 %3").
 		       arg(type.toLower().remove(" ")).
+		       arg(in).
 		       arg(where));
 
 	  str.append(" ");
