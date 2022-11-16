@@ -47,8 +47,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 
   m_ui.discover_list->addAction
     (action1 = new QAction(tr("List Discovered Items"), this));
+  action1->setProperty("in-or-not-in", " IN ");
   m_ui.discover_list->addAction
     (action2 = new QAction(tr("List Other Items"), this));
+  action2->setProperty("in-or-not-in", " NOT IN ");
   connect(action1,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -465,20 +467,20 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  QList<QVariant> values;
   QString bookFrontCover("'' AS front_cover ");
-  QString bookWhere("(");
   QString cdFrontCover("'' AS front_cover ");
   QString dvdFrontCover("'' AS front_cover ");
   QString greyLiteratureFrontCover("'' AS front_cover ");
-  QString in(action->text().contains(tr("Other")) ? " NOT IN " : " IN ");
+  QString in(action->property("in-or-not-in").toString());
   QString journalFrontCover("'' AS front_cover ");
   QString magazineFrontCover("'' AS front_cover ");
   QString photographCollectionFrontCover("'' AS image_scaled ");
   QString searchstr("");
   QString videoGameFrontCover("'' AS front_cover ");
   QString where("(");
+  QStringList ids;
   QStringList types;
+  QStringList values;
   auto query = new QSqlQuery(m_qmain->getDB());
 
   if(m_qmain->showMainTableImages())
@@ -509,25 +511,24 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
       if(!item)
 	continue;
 
-      bookWhere.append("?");
-
-      if(i < m_ui.discover_table->rowCount() - 1)
-	bookWhere.append(", ");
-
+      ids << item->text();
       where.append("?");
 
       if(i < m_ui.discover_table->rowCount() - 1)
 	where.append(", ");
-
-      values << item->text()              // accession_number
-	     << item->text().remove('-')  // id
-	     << item->text().remove('-'); // isbn13
-
-      for(int j = 0; j < types.size() - 1; j++)
-	values << item->text();
     }
 
-  bookWhere.append(")");
+  values << ids; // book.accession_number
+
+  for(int i = 0; i < ids.size(); i++)
+    values << QString(ids.at(i)).remove('-'); // book.id
+
+  for(int i = 0; i < ids.size(); i++)
+    values << QString(ids.at(i)).remove('-'); // book.isbn13
+
+  for(int i = 0; i < types.size() - 1; i++)
+    values << ids; // type.id
+
   where.append(")");
 
   for(int i = 0; i < types.size(); i++)
@@ -627,7 +628,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 	    {
 	      str.append("COALESCE(book.accession_number, '')");
 	      str.append(in);
-	      str.append(bookWhere);
+	      str.append(where);
 
 	      if(in.contains("NOT"))
 		str.append(" AND ");
@@ -636,7 +637,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 
 	      str.append("COALESCE(book.id, '')");
 	      str.append(in);
-	      str.append(bookWhere);
+	      str.append(where);
 
 	      if(in.contains("NOT"))
 		str.append(" AND ");
@@ -645,7 +646,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 
 	      str.append("COALESCE(book.isbn13, '')");
 	      str.append(in);
-	      str.append(bookWhere);
+	      str.append(where);
 	    }
 	  else
 	    str.append(QString("%1.id %2 %3").
@@ -656,8 +657,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 	  str.append(" ");
 	}
 
-      if(type != "Grey Literature" &&
-	 type != "Photograph Collection")
+      if(type != "Grey Literature" && type != "Photograph Collection")
 	{
 	  str += QString("GROUP BY "
 			 "%1.title, "
