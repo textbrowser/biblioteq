@@ -358,6 +358,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
+  connect(ui.actionTearOffMenus,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotTearOffMenus(void)));
   connect(ui.action_VacuumDatabase,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -774,6 +778,8 @@ biblioteq::biblioteq(void):QMainWindow()
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
+  ui.actionTearOffMenus->setChecked
+    (settings.value("tearOffMenus", true).toBool());
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
   ui.table->resetTable(dbUserName(), m_lastCategory, m_roles);
@@ -785,6 +791,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
+  prepareTearOffMenus();
 
   auto found = false;
 

@@ -472,6 +472,7 @@ class biblioteq: public QMainWindow
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
   void prepareReservationHistoryMenu(void);
+  void prepareTearOffMenus(void);
   void prepareUpgradeNotification(void);
   void readConfig(void);
   void readGlobalSetup(void);
@@ -608,6 +609,7 @@ class biblioteq: public QMainWindow
   void slotShowPrev(void);
   void slotShowReleaseNotes(void);
   void slotSqliteFileSelected(bool state);
+  void slotTearOffMenus(void);
   void slotUpdateIndicesAfterSort(int column);
   void slotUpgradeSqliteScheme(void);
   void slotVacuum(void);

@@ -83,6 +83,14 @@ bool biblioteq::showMainTableImages(void) const
   return m_otheroptions->showMainTableImages();
 }
 
+void biblioteq::prepareTearOffMenus(void)
+{
+  ui.menu_Edit->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
+  ui.menu_Options->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
+  ui.menu_Tools->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
+  ui.menu_View->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
+}
+
 void biblioteq::prepareUpgradeNotification(void)
 {
   if(!m_db.isOpen())
@@ -469,4 +477,12 @@ void biblioteq::slotShowReleaseNotes(void)
 
   m_releaseNotes.value(action)->show();
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq::slotTearOffMenus(void)
+{
+  QSettings settings;
+
+  prepareTearOffMenus();
+  settings.setValue("tearOffMenus", ui.actionTearOffMenus->isChecked());
 }

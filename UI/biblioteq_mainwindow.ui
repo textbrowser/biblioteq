@@ -564,6 +564,7 @@
     <addaction name="actionAutoPopulateOnCreation"/>
     <addaction name="actionPreserveGeometry"/>
     <addaction name="actionResetErrorLogOnDisconnect"/>
+    <addaction name="actionTearOffMenus"/>
     <addaction name="separator"/>
     <addaction name="menuEntriesPerPage"/>
     <addaction name="menu_Language"/>
@@ -1356,6 +1357,17 @@
   <action name="actionBatchActivitiesBrowser">
    <property name="text">
     <string>Batch Activities Browser...</string>
+   </property>
+  </action>
+  <action name="actionTearOffMenus">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tear-Off Menus</string>
    </property>
   </action>
  </widget>
