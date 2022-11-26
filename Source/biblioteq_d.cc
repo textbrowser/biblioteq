@@ -466,7 +466,7 @@ void biblioteq::slotShowReleaseNotes(void)
     {
       if(action == ui.action_French_Release_Notes)
 	m_releaseNotes[action] = new biblioteq_documentationwindow
-	  (QUrl("qrc:/Release-Notes-French.html"), this);
+	  (QUrl("qrc:/Contributed/Release-Notes-French.html"), this);
       else
 	m_releaseNotes[action] = new biblioteq_documentationwindow
 	  (QUrl("qrc:/Release-Notes.html"), this);

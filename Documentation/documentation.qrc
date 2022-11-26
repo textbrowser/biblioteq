@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-    	<file>BiblioteQ.html</file>
+	<file>Contributed/Release-Notes-French.html</file>
 	<file>Release-Notes.html</file>
-	<file>Release-Notes-French.html</file>
+    	<file>BiblioteQ.html</file>
     </qresource>
 </RCC>
