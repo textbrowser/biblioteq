@@ -2694,7 +2694,7 @@ void biblioteq::slotConnectDB(void)
     drivers = "N/A";
 
   foreach(const auto &path, QApplication::libraryPaths())
-    if(path.toLower().contains("plugin"))
+    if(path.contains("plugin", Qt::CaseInsensitive))
       {
 	plugins = path;
 	break;
@@ -4603,7 +4603,6 @@ void biblioteq::slotRefreshAdminList(void)
   QSqlQuery query(m_db);
   QString columnname = "";
   QString str = "";
-  QStringList list;
   QTableWidgetItem *item = nullptr;
   int i = -1;
   int j = 0;
@@ -4666,7 +4665,7 @@ void biblioteq::slotRefreshAdminList(void)
 		ab.table->setCellWidget(i, j, checkBox);
 		columnname = m_abColumnHeaderIndexes.value(j).toLower();
 
-		if(str.toLower().contains(columnname))
+		if(str.contains(columnname, Qt::CaseInsensitive))
 		  checkBox->setChecked(true);
 
 		if(query.value(0).toString().trimmed() == getAdminID())

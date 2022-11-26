@@ -146,14 +146,14 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		  else
 		    break;
 
-		if(str.toLower().contains("br.") ||
-		   str.toLower().contains("pbk"))
+		if(str.contains("br.", Qt::CaseInsensitive) ||
+		   str.contains("pbk", Qt::CaseInsensitive))
 		  m_binding = QObject::tr("paperback");
-		else if(str.toLower().contains("cart.") ||
-			str.toLower().contains("hardback") ||
-			str.toLower().contains("hardcover") ||
-			str.toLower().contains("hbk") ||
-			str.toLower().contains("rel."))
+		else if(str.contains("cart.", Qt::CaseInsensitive) ||
+			str.contains("hardback", Qt::CaseInsensitive) ||
+			str.contains("hardcover", Qt::CaseInsensitive) ||
+			str.contains("hbk", Qt::CaseInsensitive) ||
+			str.contains("rel.", Qt::CaseInsensitive))
 		  m_binding = QObject::tr("hardcover");
 		else
 		  m_binding = biblioteq::s_unknown;
@@ -592,14 +592,14 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  if(str.indexOf("$a") > -1)
 	    str = str.mid(str.indexOf("$a") + 2).trimmed();
 
-	  if(str.toLower().contains("br.") ||
-	     str.toLower().contains("pbk"))
+	  if(str.contains("br.", Qt::CaseInsensitive) ||
+	     str.contains("pbk", Qt::CaseInsensitive))
 	    m_binding = QObject::tr("paperback");
-	  else if(str.toLower().contains("cart.") ||
-	     str.toLower().contains("hardback") ||
-	     str.toLower().contains("hardcover") ||
-	     str.toLower().contains("hbk") ||
-	     str.toLower().contains("rel."))
+	  else if(str.contains("cart.", Qt::CaseInsensitive) ||
+		  str.contains("hardback", Qt::CaseInsensitive) ||
+		  str.contains("hardcover", Qt::CaseInsensitive) ||
+		  str.contains("hbk", Qt::CaseInsensitive) ||
+		  str.contains("rel.", Qt::CaseInsensitive))
 	    m_binding = QObject::tr("hardcover");
 	  else
 	    m_binding = biblioteq::s_unknown;
@@ -1084,14 +1084,14 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  if(str.indexOf("$a") > -1)
 	    str = str.mid(str.indexOf("$a") + 2).trimmed();
 
-	  if(str.toLower().contains("br.") ||
-	     str.toLower().contains("pbk"))
+	  if(str.contains("br.", Qt::CaseInsensitive) ||
+	     str.contains("pbk", Qt::CaseInsensitive))
 	    m_binding = QObject::tr("paperback");
-	  else if(str.toLower().contains("cart.") ||
-	     str.toLower().contains("hardback") ||
-	     str.toLower().contains("hardcover") ||
-	     str.toLower().contains("hbk") ||
-	     str.toLower().contains("rel."))
+	  else if(str.contains("cart.", Qt::CaseInsensitive) ||
+		  str.contains("hardback", Qt::CaseInsensitive) ||
+		  str.contains("hardcover", Qt::CaseInsensitive) ||
+		  str.contains("hbk", Qt::CaseInsensitive) ||
+		  str.contains("rel.", Qt::CaseInsensitive))
 	    m_binding = QObject::tr("hardcover");
 	  else
 	    m_binding = biblioteq::s_unknown;

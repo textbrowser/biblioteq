@@ -449,12 +449,11 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
   field = "";
   ok = false;
 
-  if(type.toLower().contains("grey literature") ||
-     type.toLower().contains("photo"))
+  if(type.contains("grey literature", Qt::CaseInsensitive) ||
+     type.contains("photo", Qt::CaseInsensitive))
     return "";
 
   QSqlQuery query(db);
-  QString querystr("");
 
   if(type.toLower().trimmed() == "book")
     {
@@ -1193,7 +1192,6 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 
   QSqlQuery query(db);
   QString querystr("");
-  QStringList types;
   auto dnt = true;
 
   errorstr = "";

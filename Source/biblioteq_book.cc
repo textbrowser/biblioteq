@@ -1543,7 +1543,7 @@ void biblioteq_book::populateAfterSRU
       ** Guess?
       */
 
-      if(text.toLower().contains("marc21"))
+      if(text.contains("marc21", Qt::CaseInsensitive))
 	m.initialize
 	  (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::MARC21);
       else
@@ -4912,9 +4912,6 @@ void biblioteq_book::slotZ3950Query(void)
   QString errorstr = "";
   QString etype = "";
   QString searchstr = "";
-  QString str = "";
-  QStringList list;
-  QStringList tmplist;
   int i = 0;
 
   if(!(id.id->text().remove('-').trimmed().length() == 10 ||

@@ -354,7 +354,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	      (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	    listwidget->addItem(item);
 	  }
-      else if(tablewidget == m_ui.locationsTable)
+      else if(m_ui.locationsTable == tablewidget && tablewidget)
 	{
 	  m_ui.locationsTable->setRowCount(pairList.size());
 

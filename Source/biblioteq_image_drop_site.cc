@@ -55,11 +55,9 @@ QString biblioteq_image_drop_site::determineFormat
   QByteArray bytes(10, 0);
   QFile file(filename);
   QString imgf("");
-  qint64 bytesRead = 0;
 
-  if(file.open(QIODevice::ReadOnly) && (bytesRead =
-					file.read(bytes.data(),
-						  bytes.length())) > 0)
+  if(file.open(QIODevice::ReadOnly) &&
+     file.read(bytes.data(), bytes.length()) > 0)
     imgf = biblioteq_misc_functions::imageFormatGuess(bytes);
 
   if(imgf.isEmpty())
