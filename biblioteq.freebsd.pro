@@ -47,7 +47,6 @@ QMAKE_EXTRA_TARGETS = doxygen purge
 
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
-LIBS		+= -lsqlite3
 
 exists(/usr/local/include/yaz) {
 DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ

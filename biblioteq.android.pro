@@ -29,7 +29,6 @@ QMAKE_EXTRA_TARGETS = purge
 
 INCLUDEPATH	+= Android Source temp
 LIBS		+=
-SOURCES         += Android/sqlite3/sqlite3.c
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ

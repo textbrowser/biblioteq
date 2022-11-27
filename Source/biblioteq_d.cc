@@ -83,6 +83,25 @@ bool biblioteq::showMainTableImages(void) const
   return m_otheroptions->showMainTableImages();
 }
 
+void biblioteq::populateFavorites(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  cq.favorites->clear();
+
+  QSettings settings;
+  QStringList list;
+
+  settings.beginGroup("customqueries");
+
+  foreach(const auto &key, settings.childKeys())
+    if(!key.trimmed().isEmpty())
+      list << key;
+
+  std::sort(list.begin(), list.end());
+  cq.favorites->addItems(list);
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq::prepareTearOffMenus(void)
 {
   ui.menu_Edit->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
@@ -319,6 +338,25 @@ void biblioteq::slotSaveCustomQuery(void)
 {
   if(cq.query_te->toPlainText().trimmed().isEmpty())
     return;
+
+  QString value("");
+  auto ok = true;
+
+  value = QInputDialog::getText(m_customquery_diag,
+				tr("BiblioteQ: Custom Query Favorite"),
+				tr("Query Name"),
+				QLineEdit::Normal,
+				"",
+				&ok);
+
+  if(!ok)
+    return;
+
+  QSettings settings;
+
+  settings.setValue
+    (QString("customqueries/%1").arg(value),
+     cq.query_te->toPlainText().trimmed().toUtf8().toBase64());
 }
 
 void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)

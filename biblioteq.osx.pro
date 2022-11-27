@@ -35,8 +35,7 @@ INCLUDEPATH	+= /usr/local/include \
                    temp
 LIBS		+= -L/usr/local/lib \
                    -framework Cocoa \
-                   -lpq \
-                   -lsqlite3
+                   -lpq
 
 exists(/usr/local/include/yaz) {
 DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ

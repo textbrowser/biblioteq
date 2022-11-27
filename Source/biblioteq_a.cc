@@ -53,12 +53,6 @@
 
 extern "C"
 {
-#include <math.h>
-#if defined(Q_OS_ANDROID) || defined(Q_OS_WIN)
-#include <sqlite3/sqlite3.h>
-#else
-#include <sqlite3.h>
-#endif
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
 #include <yaz/yaz-version.h>
 #endif
@@ -943,6 +937,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.menuPreferredSRUSite->setStyleSheet("QMenu {menu-scrollable: 1;}");
   ui.menuPreferredZ3950Server->setStyleSheet("QMenu {menu-scrollable: 1;}");
   ui.menu_Language->setStyleSheet("QMenu {menu-scrollable: 1;}");
+  populateFavorites();
 
   QRegularExpression rx1("\\w+");
   auto validator1 = new QRegularExpressionValidator(rx1, this);
@@ -2208,7 +2203,6 @@ void biblioteq::slotAbout(void)
 	"%5<br>"
 #endif
 	"Qt version %6 (runtime %7).<br>"
-	"SQLite version %9.<br>"
 	"YAZ version %8.<br><br>"
 	"Please visit <a href=\"https://biblioteq.sourceforge.io\">"
 	"https://biblioteq.sourceforge.io</a> or "
@@ -2227,11 +2221,10 @@ void biblioteq::slotAbout(void)
      arg(QT_VERSION_STR).
      arg(qversion).
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
-     arg(YAZ_VERSION).
+     arg(YAZ_VERSION));
 #else
-     arg(tr("is not available")).
+     arg(tr("is not available"));
 #endif
-     arg(SQLITE_VERSION));
   m_about->setTextFormat(Qt::RichText);
   m_about->setWindowIcon(windowIcon());
   m_about->setWindowTitle(tr("BiblioteQ: About"));
@@ -2868,7 +2861,7 @@ void biblioteq::slotDeleteAdmin(void)
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
   QFileDialog dialog(this);
-  auto error = true;
+  auto error = false;
 
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
@@ -2885,40 +2878,42 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
     {
       repaint();
       QApplication::processEvents();
-
-      int rc = 0;
-      sqlite3 *ppDb = nullptr;
-
       QApplication::setOverrideCursor(Qt::WaitCursor);
-      QFile::remove(dialog.selectedFiles().value(0));
-      rc = sqlite3_open_v2(dialog.selectedFiles().value(0).toUtf8(),
-			   &ppDb,
-			   SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE,
-			   nullptr);
 
-      if(rc == SQLITE_OK)
-	{
-	  char *errorstr = nullptr;
+      QString connectionName("create_sqlite_database");
 
-	  if(sqlite3_exec(ppDb,
-			  sqlite_create_schema_text,
-			  nullptr,
-			  nullptr,
-			  &errorstr) == SQLITE_OK)
-	    error = false;
-	  else
-	    addError(tr("Database Error"),
-		     "Unable to create the specified SQLite database.",
-		     errorstr, __FILE__, __LINE__);
+      {
+	auto db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
 
-	  sqlite3_free(errorstr);
-	}
-      else
-	addError(tr("Database Error"),
-		 tr("Unable to create the specified SQLite database."),
-		 "sqlite3_open_v2() failure.", __FILE__, __LINE__);
+	QFile::remove(dialog.selectedFiles().value(0));
+	db.setDatabaseName(dialog.selectedFiles().value(0));
 
-      sqlite3_close(ppDb);
+	if(db.open())
+	  {
+	    QSqlQuery query(db);
+	    auto list
+	      (QString(sqlite_create_schema_text).split("CREATE",
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+							Qt::SkipEmptyParts
+#else
+							QString::SkipEmptyParts
+#endif
+							));
+
+	    foreach(const auto &string, list)
+	      if(!query.exec("CREATE " + string))
+		{
+		  error = true;
+		  break;
+		}
+	  }
+	else
+	  error = true;
+
+	db.close();
+      }
+
+      QSqlDatabase::removeDatabase(connectionName);
       QApplication::restoreOverrideCursor();
 
       if(!error)

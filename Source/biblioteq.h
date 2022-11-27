@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2022.11.25"
+#define BIBLIOTEQ_VERSION "2022.12.25"
 
 #include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
@@ -467,6 +467,7 @@ class biblioteq: public QMainWindow
   void deleteItem(const QString &oid, const QString &itemType);
   void exportAsCSV(biblioteq_main_table *table, const QString &title);
   void initialUpdate(void);
+  void populateFavorites(void);
   void prepareContextMenus(void);
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);

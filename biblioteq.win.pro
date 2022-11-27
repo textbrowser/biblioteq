@@ -31,9 +31,7 @@ INCLUDEPATH	+= Include.win32 \
                    Source \
                    temp
 LIBS		+= -L"." \
-		   -L"Libraries.win32\\sqlite3" \
                    -L"Libraries.win32\\yaz" \
-                   -lsqlite3 \
                    -lyaz5
 RC_FILE		= biblioteq.win.rc
 PROJECTNAME	= BiblioteQ
@@ -52,7 +50,6 @@ documentation.path = release\\Documentation\\.
 libraries.files = Libraries.win32\\miscellaneous\\*.dll \
                   Libraries.win32\\postgresql\\*.dll \
                   Libraries.win32\\postgresql\\*.manifest \
-                  Libraries.win32\\sqlite3\\*.dll \
                   Libraries.win32\\yaz\\*.dll \
                   Libraries.win32\\yaz\\*.exe \
                   Libraries.win64\\*.exe

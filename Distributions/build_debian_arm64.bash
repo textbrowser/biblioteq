@@ -37,7 +37,7 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./PIOS64 biblioteq-debian/DEBIAN
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2022.11.25_arm64.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2022.12.25_arm64.deb
 rm -fr ./usr
 rm -fr biblioteq-debian
 make distclean
