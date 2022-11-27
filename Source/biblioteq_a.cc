@@ -2228,7 +2228,7 @@ void biblioteq::slotAbout(void)
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
      arg(YAZ_VERSION));
 #else
-     arg(tr("is not available"));
+     arg(tr("is not available")));
 #endif
   m_about->setTextFormat(Qt::RichText);
   m_about->setWindowIcon(windowIcon());
