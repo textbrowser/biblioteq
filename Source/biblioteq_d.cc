@@ -315,6 +315,12 @@ void biblioteq::slotPrintIconsView(void)
   QApplication::processEvents();
 }
 
+void biblioteq::slotSaveCustomQuery(void)
+{
+  if(cq.query_te->toPlainText().trimmed().isEmpty())
+    return;
+}
+
 void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
 {
   QSettings settings;

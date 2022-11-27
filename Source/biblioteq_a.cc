@@ -629,6 +629,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotExecuteCustomQuery(void)));
   connect(cq.refresh_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotRefreshCustomQuery(void)));
+  connect(cq.save, SIGNAL(clicked(void)), this,
+	  SLOT(slotSaveCustomQuery(void)));
   connect(pass.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSavePassword(void)));
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,

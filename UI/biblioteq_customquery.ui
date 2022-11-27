@@ -94,6 +94,37 @@
        </property>
        <layout class="QVBoxLayout">
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Saved Queries</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="saved_queries">
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::AdjustToContents</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
          <widget class="QTextEdit" name="query_te">
           <property name="tabChangesFocus">
            <bool>true</bool>
@@ -110,17 +141,21 @@
     <item>
      <layout class="QHBoxLayout">
       <item>
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QPushButton" name="execute_pb">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>125</width>
+          <height>0</height>
          </size>
         </property>
-       </spacer>
+        <property name="text">
+         <string>&amp;Execute</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="refresh_pb">
@@ -143,21 +178,37 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="execute_pb">
+       <widget class="QPushButton" name="save">
         <property name="minimumSize">
          <size>
           <width>125</width>
           <height>0</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Save the query statement.</string>
+        </property>
         <property name="text">
-         <string>&amp;Execute</string>
+         <string>&amp;Save</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
-          <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
+          <normaloff>:/16x16/filesave.png</normaloff>:/16x16/filesave.png</iconset>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <widget class="QPushButton" name="close_pb">
@@ -179,19 +230,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
      </layout>
     </item>
    </layout>
@@ -199,9 +237,11 @@
  </widget>
  <tabstops>
   <tabstop>tables_t</tabstop>
+  <tabstop>saved_queries</tabstop>
   <tabstop>query_te</tabstop>
-  <tabstop>refresh_pb</tabstop>
   <tabstop>execute_pb</tabstop>
+  <tabstop>refresh_pb</tabstop>
+  <tabstop>save</tabstop>
   <tabstop>close_pb</tabstop>
  </tabstops>
  <resources>

@@ -577,6 +577,7 @@ class biblioteq: public QMainWindow
   void slotRoleChanged(int index);
   void slotSaveAdministrators(void);
   void slotSaveConfig(void);
+  void slotSaveCustomQuery(void);
   void slotSaveDnt(bool state);
   void slotSaveGeneralSearchCaseSensitivity(bool state);
   void slotSavePassword(void);
