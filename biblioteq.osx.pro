@@ -34,13 +34,7 @@ INCLUDEPATH	+= /usr/local/include \
                    Source \
                    temp
 LIBS		+= -L/usr/local/lib \
-                   -framework Cocoa \
-                   -lpq
-
-exists(/usr/local/include/yaz) {
-DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
-LIBS            += -lyaz
-}
+                   -framework Cocoa
 
 OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
@@ -59,8 +53,6 @@ doc1.files		 = Documentation/*.html Documentation/*.pdf Documentation/*.txt Docu
 doc1.path		 = /Applications/BiblioteQ.d/Documentation
 doc2.files		 = Documentation/Contributed/*.docx Documentation/Contributed/*.html Documentation/Contributed/*.pdf
 doc2.path		 = /Applications/BiblioteQ.d/Documentation/Contributed
-install_name_tool1.extra = install_name_tool -change /usr/local/Cellar/nettle/3.8.1/lib/libnettle.8.dylib @executable_path/../Frameworks/libnettle.8.dylib /Applications/BiblioteQ.d/BiblioteQ.app/Contents/Frameworks/libhogweed.6.dylib
-install_name_tool1.path  = .
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
 lupdate.extra            = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
@@ -85,5 +77,4 @@ INSTALLS	= preinstall \
 		  doc2 \
 		  sql \
                   postinstall \
-                  install_name_tool1 \
                   zzz
