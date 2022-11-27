@@ -221,8 +221,9 @@ class biblioteq: public QMainWindow
   Q_OBJECT
 
  public:
-  enum Limits
+  enum class Limits
     {
+      FAVORITES_LENGTH = 1024,
       QUANTITY = 1000 // Copies per item.
     };
 
@@ -507,6 +508,7 @@ class biblioteq: public QMainWindow
   void slotDVDSearch(void);
   void slotDelete(void);
   void slotDeleteAdmin(void);
+  void slotDeleteFavoriteQuery(void);
   void slotDisconnect(void);
   void slotDisplayNewSqliteDialog(void);
   void slotDuplicate(void);
@@ -537,6 +539,7 @@ class biblioteq: public QMainWindow
   void slotListOverdueItems(void);
   void slotListReservedItems(const QString &);
   void slotListReservedItems(void);
+  void slotLoadFavorite(void);
   void slotMagSearch(void);
   void slotMainTableDeleteKeyPressed(void);
   void slotMainTableEnterKeyPressed(void);

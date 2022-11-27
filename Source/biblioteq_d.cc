@@ -94,12 +94,20 @@ void biblioteq::populateFavorites(void)
   settings.beginGroup("customqueries");
 
   foreach(const auto &key, settings.childKeys())
-    if(!key.trimmed().isEmpty())
-      list << key;
+    if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
+      list << key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
+	remove('\n').remove('\r');
 
-  std::sort(list.begin(), list.end());
-  cq.favorites->addItems(list);
+  if(!list.isEmpty())
+    {
+      std::sort(list.begin(), list.end());
+      cq.favorites->addItems(list);
+    }
+  else
+    cq.favorites->addItem(tr("(Empty)"));
+
   QApplication::restoreOverrideCursor();
+  slotLoadFavorite();
 }
 
 void biblioteq::prepareTearOffMenus(void)
@@ -214,6 +222,30 @@ void biblioteq::slotContributors(void)
   m_contributors->show();
 }
 
+void biblioteq::slotDeleteFavoriteQuery(void)
+{
+  if(cq.favorites->currentText() == tr("(Empty)"))
+    return;
+
+  if(QMessageBox::question(this,
+			   tr("BiblioteQ: Question"),
+			   tr("Are you sure you wish to delete %1?").
+			   arg(cq.favorites->currentText()),
+			   QMessageBox::No | QMessageBox::Yes,
+			   QMessageBox::No) == QMessageBox::No)
+    {
+      QApplication::processEvents();
+      return;
+    }
+  else
+    QApplication::processEvents();
+
+  QSettings settings;
+
+  settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
+  populateFavorites();
+}
+
 void biblioteq::slotExportAsPNG(void)
 {
   QFileDialog dialog(this);
@@ -287,6 +319,28 @@ void biblioteq::slotLaunchEmailSoftware(void)
 			 arg(str)));
 }
 
+void biblioteq::slotLoadFavorite(void)
+{
+  if(cq.favorites->currentText() == tr("(Empty)"))
+    {
+      cq.query_te->clear();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSettings settings;
+
+  cq.query_te->setText
+    (QString::
+     fromUtf8(QByteArray::
+	      fromBase64(settings.
+			 value(QString("customqueries/%1").
+			       arg(cq.favorites->currentText())).
+			 toByteArray()).constData()));
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq::slotMembersPagesChanged(int value)
 {
   QSettings settings;
@@ -347,16 +401,18 @@ void biblioteq::slotSaveCustomQuery(void)
 				tr("Query Name"),
 				QLineEdit::Normal,
 				"",
-				&ok);
+				&ok).remove('\n').remove('\r').trimmed();
 
-  if(!ok)
+  if(!ok || value.isEmpty())
     return;
 
   QSettings settings;
 
   settings.setValue
-    (QString("customqueries/%1").arg(value),
+    (QString("customqueries/%1").
+     arg(value.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH))),
      cq.query_te->toPlainText().trimmed().toUtf8().toBase64());
+  populateFavorites();
 }
 
 void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)

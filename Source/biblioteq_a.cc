@@ -617,10 +617,15 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotNextPage(void)));
   connect(ui.pagesLabel, SIGNAL(linkActivated(const QString &)),
 	  this, SLOT(slotPageClicked(const QString &)));
+  connect(cq.clear, SIGNAL(clicked(void)), cq.query_te, SLOT(clear(void)));
   connect(cq.close_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCustomQueryDialog(void)));
+  connect(cq.delete_favorite, SIGNAL(clicked(void)), this,
+	  SLOT(slotDeleteFavoriteQuery(void)));
   connect(cq.execute_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotExecuteCustomQuery(void)));
+  connect(cq.favorites, SIGNAL(activated(int)), this,
+	  SLOT(slotLoadFavorite(void)));
   connect(cq.refresh_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotRefreshCustomQuery(void)));
   connect(cq.save, SIGNAL(clicked(void)), this,

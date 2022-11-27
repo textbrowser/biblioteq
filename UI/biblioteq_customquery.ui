@@ -86,6 +86,43 @@
           </property>
          </widget>
         </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="refresh_pb">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>&amp;Refresh</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../Icons/icons.qrc">
+              <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
+            </property>
+            <property name="shortcut">
+             <string>F5</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
        </layout>
       </widget>
       <widget class="QGroupBox" name="query_gb">
@@ -107,6 +144,11 @@
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToContents</enum>
             </property>
+            <item>
+             <property name="text">
+              <string>(Empty)</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item>
@@ -164,6 +206,23 @@
     <item>
      <layout class="QHBoxLayout">
       <item>
+       <widget class="QPushButton" name="clear">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Clear</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="execute_pb">
         <property name="minimumSize">
          <size>
@@ -177,26 +236,6 @@
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="refresh_pb">
-        <property name="minimumSize">
-         <size>
-          <width>125</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>&amp;Refresh</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../Icons/icons.qrc">
-          <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
-        </property>
-        <property name="shortcut">
-         <string>F5</string>
         </property>
        </widget>
       </item>
@@ -260,11 +299,12 @@
  </widget>
  <tabstops>
   <tabstop>tables_t</tabstop>
+  <tabstop>refresh_pb</tabstop>
   <tabstop>favorites</tabstop>
   <tabstop>delete_favorite</tabstop>
   <tabstop>query_te</tabstop>
+  <tabstop>clear</tabstop>
   <tabstop>execute_pb</tabstop>
-  <tabstop>refresh_pb</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close_pb</tabstop>
  </tabstops>
