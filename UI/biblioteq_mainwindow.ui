@@ -1009,7 +1009,7 @@
      <normaloff>:/32x32/customquery.png</normaloff>:/32x32/customquery.png</iconset>
    </property>
    <property name="text">
-    <string>Custom Database Query</string>
+    <string>Custom Query</string>
    </property>
   </action>
   <action name="refreshTool">
