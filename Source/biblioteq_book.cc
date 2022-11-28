@@ -1941,9 +1941,9 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.files->setVisible(false);
   id.files_label->setVisible(false);
   id.view_pdf->setVisible(false);
-  id.id->clear();
+  id.id->setText("%");
   id.category->clear();
-  id.isbn13->clear();
+  id.isbn13->setText("%");
   id.author->clear();
   id.lcnum->clear();
   id.callnum->clear();
@@ -3498,9 +3498,12 @@ void biblioteq_book::slotGo(void)
 
       if(!id.id->text().remove('-').trimmed().isEmpty())
 	{
-	  searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
+	  searchstr.append
+	    ("LOWER(COALESCE(id, '')) LIKE LOWER('%' || ? || '%') AND ");
 	  values.append(id.id->text().remove('-').trimmed());
 	}
+      else
+	searchstr.append("id IS NULL AND ");
 
       QString ESCAPE("");
       auto UNACCENT(qmain->unaccent());
@@ -3513,12 +3516,14 @@ void biblioteq_book::slotGo(void)
 	 "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       values.append(biblioteq_myqstring::escape(id.title->text().trimmed()));
 
-      if(!m_engWindowTitle.isEmpty())
-	if(!id.isbn13->text().remove('-').trimmed().isEmpty())
-	  {
-	    searchstr.append("LOWER(isbn13) LIKE LOWER('%' || ? || '%') AND ");
-	    values.append(id.isbn13->text().remove('-').trimmed());
-	  }
+      if(!id.isbn13->text().remove('-').trimmed().isEmpty())
+	{
+	  searchstr.append
+	    ("LOWER(COALESCE(isbn13, '')) LIKE LOWER('%' || ? || '%') AND ");
+	  values.append(id.isbn13->text().remove('-').trimmed());
+	}
+      else
+	searchstr.append("isbn13 IS NULL AND ");
 
       searchstr.append
 	(UNACCENT +
@@ -4248,13 +4253,21 @@ void biblioteq_book::slotReset(void)
 	id.back_image->clear();
       else if(action == actions[2])
 	{
-	  id.id->clear();
+	  if(!m_engWindowTitle.contains("Search"))
+	    id.id->clear();
+	  else
+	    id.id->setText("%");
+
 	  id.id->setPalette(m_te_orig_pal);
 	  id.id->setFocus();
 	}
       else if(action == actions[3])
 	{
-	  id.isbn13->clear();
+	  if(!m_engWindowTitle.contains("Search"))
+	    id.isbn13->clear();
+	  else
+	    id.isbn13->setText("%");
+
 	  id.isbn13->setPalette(m_te_orig_pal);
 	  id.isbn13->setFocus();
 	}
@@ -4437,7 +4450,11 @@ void biblioteq_book::slotReset(void)
       ** Reset all.
       */
 
-      id.id->clear();
+      if(!m_engWindowTitle.contains("Search"))
+	id.id->clear();
+      else
+	id.id->setText("%");
+
       id.title->clear();
 
       if(!m_engWindowTitle.contains("Search"))
@@ -4480,7 +4497,12 @@ void biblioteq_book::slotReset(void)
       id.marc_tags_format->setCurrentIndex(0);
       id.keyword->clear();
       id.url->clear();
-      id.isbn13->clear();
+
+      if(!m_engWindowTitle.contains("Search"))
+	id.isbn13->clear();
+      else
+	id.isbn13->setText("%");
+
       id.lcnum->clear();
       id.callnum->clear();
       id.deweynum->clear();
