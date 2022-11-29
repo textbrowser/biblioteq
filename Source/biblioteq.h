@@ -64,6 +64,7 @@ class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
 class biblioteq_sqlite_merge_databases;
+class woody_collapse_expand_tool_button;
 
 class userinfo_diag_class: public QDialog
 {
@@ -452,6 +453,7 @@ class biblioteq: public QMainWindow
   qint64 m_queryOffset;
   quint64 m_idCt;
   userinfo_diag_class *userinfo_diag;
+  woody_collapse_expand_tool_button *m_woody;
   QString dbUserName(void) const;
   QString reservationHistoryHtml(void) const;
   QString viewHtml(void) const;

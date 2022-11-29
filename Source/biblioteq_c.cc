@@ -31,6 +31,7 @@
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
+#include "biblioteq_woody.h"
 
 #include <QActionGroup>
 #include <QDesktopServices>
@@ -4822,6 +4823,12 @@ void biblioteq::slotRefreshCustomQuery(void)
 
   cq.tables_t->setSortingEnabled(true);
   cq.tables_t->sortByColumn(0, Qt::AscendingOrder);
+
+  if(!m_woody->isChecked())
+    cq.tables_t->collapseAll();
+  else
+    cq.tables_t->expandAll();
+
   QApplication::restoreOverrideCursor();
 }
 
