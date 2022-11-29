@@ -87,6 +87,7 @@ void biblioteq::populateFavorites(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
   cq.favorites->clear();
+  ui.menu_Custom_Query->clear();
 
   QSettings settings;
   QStringList list;
@@ -95,8 +96,13 @@ void biblioteq::populateFavorites(void)
 
   foreach(const auto &key, settings.childKeys())
     if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
-      list << key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
-	remove('\n').remove('\r');
+      {
+	auto k(key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
+	       remove('\n').remove('\r'));
+
+	list << k;
+	ui.menu_Custom_Query->addAction(k, this, SLOT(slotCustomQuery(void)));
+      }
 
   if(!list.isEmpty())
     {
@@ -104,7 +110,10 @@ void biblioteq::populateFavorites(void)
       cq.favorites->addItems(list);
     }
   else
-    cq.favorites->addItem(tr("(Empty)"));
+    {
+      cq.favorites->addItem(tr("(Empty)"));
+      ui.menu_Custom_Query->addAction(tr("(Empty)"));
+    }
 
   QApplication::restoreOverrideCursor();
   slotLoadFavorite();
@@ -222,17 +231,41 @@ void biblioteq::slotContributors(void)
   m_contributors->show();
 }
 
+void biblioteq::slotCustomQuery(void)
+{
+  if(!m_db.isOpen())
+    return;
+
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSettings settings;
+  auto string
+    (QString::
+     fromUtf8(QByteArray::
+	      fromBase64(settings.
+			 value(QString("customqueries/%1").arg(action->text())).
+			 toByteArray()).constData()));
+  QApplication::restoreOverrideCursor();
+  (void) populateTable(CUSTOM_QUERY, "Custom", string);
+}
+
 void biblioteq::slotDeleteFavoriteQuery(void)
 {
   if(cq.favorites->currentText() == tr("(Empty)"))
     return;
 
-  if(QMessageBox::question(this,
-			   tr("BiblioteQ: Question"),
-			   tr("Are you sure you wish to delete %1?").
-			   arg(cq.favorites->currentText()),
-			   QMessageBox::No | QMessageBox::Yes,
-			   QMessageBox::No) == QMessageBox::No)
+  if(QMessageBox::
+     question(m_customquery_diag,
+	      tr("BiblioteQ: Question"),
+	      tr("Are you sure that you wish to delete the favorite %1?").
+	      arg(cq.favorites->currentText()),
+	      QMessageBox::No | QMessageBox::Yes,
+	      QMessageBox::No) == QMessageBox::No)
     {
       QApplication::processEvents();
       return;

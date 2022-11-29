@@ -84,6 +84,9 @@
           <property name="columnCount">
            <number>0</number>
           </property>
+          <attribute name="headerMinimumSectionSize">
+           <number>150</number>
+          </attribute>
          </widget>
         </item>
         <item>

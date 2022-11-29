@@ -514,7 +514,13 @@
       <string>&amp;Category</string>
      </property>
     </widget>
+    <widget class="QMenu" name="menu_Custom_Query">
+     <property name="title">
+      <string>Custom Query</string>
+     </property>
+    </widget>
     <addaction name="menu_Category"/>
+    <addaction name="menu_Custom_Query"/>
     <addaction name="separator"/>
     <addaction name="action_Full_Screen"/>
     <addaction name="separator"/>
@@ -1368,6 +1374,11 @@
    </property>
    <property name="text">
     <string>Tear-Off Menus</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="text">
+    <string>Test</string>
    </property>
   </action>
  </widget>
