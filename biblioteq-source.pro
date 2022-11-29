@@ -62,7 +62,8 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_photograph_view.h \
                   Source/biblioteq_sqlite_merge_databases.h \
 		  Source/biblioteq_sruResults.h \
-		  Source/biblioteq_videogame.h \
+                  Source/biblioteq_videogame.h \
+                  Source/biblioteq_woody.h \
 		  Source/biblioteq_z3950results.h
 
 RESOURCES	= Documentation/documentation.qrc \

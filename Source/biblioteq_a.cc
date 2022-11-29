@@ -63,6 +63,7 @@ extern "C"
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_create_schema.h"
+#include "biblioteq_woody.h"
 
 /*
 ** -- Global Variables --
@@ -389,6 +390,7 @@ biblioteq::biblioteq(void):QMainWindow()
   al.setupUi(m_all_diag);
   al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cq.setupUi(m_customquery_diag);
+  new woody_collapse_expand_tool_button(cq.tables_t);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);
   ab.splitter->setStretchFactor(0, 0);

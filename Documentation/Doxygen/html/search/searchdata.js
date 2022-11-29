@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
-  0: "bcpu",
-  1: "bcpu"
+  0: "bcpuw",
+  1: "bcpuw"
 };
 
 var indexSectionNames =
