@@ -38,6 +38,6 @@ cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./DEBIAN biblioteq-debian/.
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2022.12.25_amd64.deb
+make distclean
 rm -fr ./usr
 rm -fr biblioteq-debian
-make distclean
