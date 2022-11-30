@@ -6,7 +6,7 @@ if [ ! -r biblioteq.pro ]; then
     exit 1
 fi
 
-# Preparing ./usr/local/biblioteq:
+# Prepare ./biblioteq.
 
 make distclean 2>/dev/null
 mkdir -p ./biblioteq/Documentation
