@@ -4,7 +4,8 @@ include(biblioteq-source.pro)
 purge.commands = del /Q *~ && del /Q *\\*~
 
 CONFIG		+= qt release thread warn_on windows
-DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
+DEFINES         += BIBLIOTEQ_LINKED_WITH_POPPLER \
+                   BIBLIOTEQ_LINKED_WITH_YAZ
 LANGUAGE	= C++
 QT		+= network sql printsupport widgets
 QT		-= webkit
@@ -28,10 +29,13 @@ QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
 INCLUDEPATH	+= Include.win32 \
+                   Include.win32\\poppler\\include\\poppler\\qt5 \
                    Source \
                    temp
 LIBS		+= -L"." \
+                   -L"Libraries.win32\\bin" \
                    -L"Libraries.win32\\yaz" \
+                   -lpoppler-qt5 \
                    -lyaz5
 RC_FILE		= biblioteq.win.rc
 PROJECTNAME	= BiblioteQ
