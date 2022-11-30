@@ -33,7 +33,7 @@ INCLUDEPATH	+= Include.win32 \
                    Source \
                    temp
 LIBS		+= -L"." \
-                   -L"Libraries.win32\\poppler\\bin" \
+                   -L"Libraries.win32\\poppler\\lib" \
                    -L"Libraries.win32\\yaz" \
                    -lpoppler-qt5 \
                    -lyaz5
