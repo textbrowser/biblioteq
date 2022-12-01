@@ -43,6 +43,16 @@
            </item>
            <item>
             <property name="text">
+             <string>Book Conditions</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Book Originality</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Book Target Audiences</string>
             </property>
            </item>
@@ -129,9 +139,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-2330</y>
+              <y>0</y>
               <width>497</width>
-              <height>2960</height>
+              <height>3422</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -246,7 +256,227 @@
               </widget>
              </item>
              <item>
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <item>
+                <widget class="QLabel" name="bookBindingsListLabel_2">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Book Conditions</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QListWidget" name="bookConditionsList">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>150</height>
+                  </size>
+                 </property>
+                 <property name="tabKeyNavigation">
+                  <bool>true</bool>
+                 </property>
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                 <property name="verticalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="horizontalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <item>
+                  <spacer name="horizontalSpacer_20">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="addBookCondition">
+                   <property name="toolTip">
+                    <string>Add</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="removeBookCondition">
+                   <property name="toolTip">
+                    <string>Remove</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_21">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="Line" name="line_14">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QLabel" name="bookBindingsListLabel_3">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Book Originality</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QListWidget" name="bookOriginalityList">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>150</height>
+                  </size>
+                 </property>
+                 <property name="tabKeyNavigation">
+                  <bool>true</bool>
+                 </property>
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                 <property name="verticalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="horizontalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                 <item>
+                  <spacer name="horizontalSpacer_22">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="addBookOriginality">
+                   <property name="toolTip">
+                    <string>Add</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="removeBookOriginality">
+                   <property name="toolTip">
+                    <string>Remove</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_23">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
               <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="Line" name="line_15">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QLabel" name="bookTargetAudiencesLabel">
                  <property name="font">
@@ -1787,6 +2017,12 @@
   <tabstop>bookBindingsList</tabstop>
   <tabstop>addBookBinding</tabstop>
   <tabstop>removeBookBinding</tabstop>
+  <tabstop>bookConditionsList</tabstop>
+  <tabstop>addBookCondition</tabstop>
+  <tabstop>removeBookCondition</tabstop>
+  <tabstop>bookOriginalityList</tabstop>
+  <tabstop>addBookOriginality</tabstop>
+  <tabstop>removeBookOriginality</tabstop>
   <tabstop>bookTargetAudiences</tabstop>
   <tabstop>addBookTargetAudience</tabstop>
   <tabstop>removeBookTargetAudience</tabstop>
