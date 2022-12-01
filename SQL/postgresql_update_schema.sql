@@ -1433,3 +1433,28 @@ GRANT SELECT ON book_target_audiences TO biblioteq_circulation;
 GRANT SELECT ON book_target_audiences TO biblioteq_guest;
 GRANT SELECT ON book_target_audiences TO biblioteq_membership;
 GRANT SELECT ON book_target_audiences TO biblioteq_patron;
+
+/* Release 2022.12.25 */
+
+CREATE TABLE book_conditions
+(
+	condition	TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE book_originality
+(
+	originality	TEXT NOT NULL PRIMARY KEY
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO biblioteq_librarian;
+GRANT SELECT ON book_conditions TO biblioteq_circulation;
+GRANT SELECT ON book_conditions TO biblioteq_guest;
+GRANT SELECT ON book_conditions TO biblioteq_membership;
+GRANT SELECT ON book_conditions TO biblioteq_patron;
+GRANT SELECT ON book_originality TO biblioteq_circulation;
+GRANT SELECT ON book_originality TO biblioteq_guest;
+GRANT SELECT ON book_originality TO biblioteq_membership;
+GRANT SELECT ON book_originality TO biblioteq_patron;
