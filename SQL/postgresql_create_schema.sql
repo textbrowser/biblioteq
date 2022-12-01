@@ -535,6 +535,16 @@ CREATE TABLE book_binding_types
 	binding_type	 TEXT NOT NULL PRIMARY KEY
 );
 
+CREATE TABLE book_conditions
+(
+	condition	TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE book_originality
+(
+	originality	TEXT NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE book_target_audiences
 (
 	target_audience	TEXT NOT NULL PRIMARY KEY
@@ -619,6 +629,10 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_administrato
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_administrator;
@@ -721,6 +735,14 @@ GRANT SELECT ON book_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON book_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON book_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON book_myoid_seq TO biblioteq_patron;
+GRANT SELECT ON book_conditions TO biblioteq_circulation;
+GRANT SELECT ON book_conditions TO biblioteq_guest;
+GRANT SELECT ON book_conditions TO biblioteq_membership;
+GRANT SELECT ON book_conditions TO biblioteq_patron;
+GRANT SELECT ON book_originality TO biblioteq_circulation;
+GRANT SELECT ON book_originality TO biblioteq_guest;
+GRANT SELECT ON book_originality TO biblioteq_membership;
+GRANT SELECT ON book_originality TO biblioteq_patron;
 GRANT SELECT ON book_target_audiences TO biblioteq_circulation;
 GRANT SELECT ON book_target_audiences TO biblioteq_guest;
 GRANT SELECT ON book_target_audiences TO biblioteq_membership;
