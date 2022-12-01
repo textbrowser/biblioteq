@@ -528,12 +528,22 @@ END;									\
 									\
 CREATE TABLE book_binding_types						\
 (									\
-    binding_type     TEXT NOT NULL PRIMARY KEY				\
+    binding_type TEXT NOT NULL PRIMARY KEY				\
+);									\
+									\
+CREATE TABLE book_conditions						\
+(									\
+    condition TEXT NOT NULL PRIMARY KEY					\
+);									\
+									\
+CREATE TABLE book_originality						\
+(									\
+    originality TEXT NOT NULL PRIMARY KEY				\
 );									\
 									\
 CREATE TABLE book_target_audiences					\
 (									\
-	target_audience	TEXT NOT NULL PRIMARY KEY			\
+    target_audience TEXT NOT NULL PRIMARY KEY				\
 );									\
 									\
 CREATE TABLE cd_formats							\
