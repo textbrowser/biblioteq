@@ -43,7 +43,7 @@ class woody_collapse_expand_tool_button: public QToolButton
   {
     m_tree = tree;
 
-    if(m_tree)
+    if(m_tree && m_tree->header())
       {
 	m_tree->header()->setDefaultAlignment(Qt::AlignCenter);
 	m_tree->header()->setMinimumHeight(30);
