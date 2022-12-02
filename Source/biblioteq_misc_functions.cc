@@ -751,6 +751,50 @@ QStringList biblioteq_misc_functions::getBookBindingTypes
   return types;
 }
 
+QStringList biblioteq_misc_functions::getBookConditions
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+
+  errorstr = "";
+  querystr = "SELECT condition FROM book_conditions "
+    "WHERE LENGTH(TRIM(condition)) > 0 "
+    "ORDER BY condition";
+
+  if(query.exec(querystr))
+    while(query.next())
+      types.append(query.value(0).toString().trimmed());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return types;
+}
+
+QStringList biblioteq_misc_functions::getBookOriginality
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+
+  errorstr = "";
+  querystr = "SELECT originality FROM book_originality "
+    "WHERE LENGTH(TRIM(originality)) > 0 "
+    "ORDER BY originality";
+
+  if(query.exec(querystr))
+    while(query.next())
+      types.append(query.value(0).toString().trimmed());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return types;
+}
+
 QStringList biblioteq_misc_functions::getBookTargetAudiences
 (const QSqlDatabase &db, QString &errorstr)
 {

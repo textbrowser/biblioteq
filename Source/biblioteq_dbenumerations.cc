@@ -236,6 +236,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
   QStringList tables;
 
   tables << "book_binding_types"
+	 << "book_conditions"
+	 << "book_originality"
 	 << "book_target_audiences"
 	 << "cd_formats"
 	 << "dvd_aspect_ratios"
@@ -262,6 +264,18 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	  list = biblioteq_misc_functions::getBookBindingTypes
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.bookBindingsList;
+	}
+      else if(str == "book_conditions")
+	{
+	  list = biblioteq_misc_functions::getBookConditions
+	    (qmain->getDB(), errorstr);
+	  listwidget = m_ui.bookConditionsList;
+	}
+      else if(str == "book_originality")
+	{
+	  list = biblioteq_misc_functions::getBookOriginality
+	    (qmain->getDB(), errorstr);
+	  listwidget = m_ui.bookOriginalityList;
 	}
       else if(str == "book_target_audiences")
 	{
@@ -544,6 +558,16 @@ void biblioteq_dbenumerations::slotAdd(void)
     {
       list = m_ui.bookBindingsList;
       listItem = new QListWidgetItem(tr("Book Binding"));
+    }
+  else if(toolButton == m_ui.addBookCondition)
+    {
+      list = m_ui.bookConditionsList;
+      listItem = new QListWidgetItem(tr("Book Condition"));
+    }
+  else if(toolButton == m_ui.addBookOriginality)
+    {
+      list = m_ui.bookOriginalityList;
+      listItem = new QListWidgetItem(tr("Book Originality"));
     }
   else if(toolButton == m_ui.addBookTargetAudience)
     {
@@ -1024,7 +1048,9 @@ void biblioteq_dbenumerations::slotScrollToSection(int index)
   QList<QWidget *> widgets;
 
   widgets << m_ui.bookBindingsListLabel
-	  << m_ui.bookTargetAudiencesLabel
+	  << m_ui.bookConditionsListLabel
+	  << m_ui.bookOriginalityListLabel
+	  << m_ui.bookTargetAudiencesListLabel
 	  << m_ui.cdFormatsListLabel
 	  << m_ui.dvdAspectRatiosListLabel
 	  << m_ui.dvdRatingsListLabel
@@ -1032,8 +1058,8 @@ void biblioteq_dbenumerations::slotScrollToSection(int index)
 	  << m_ui.greyLiteratureTypesLabel
 	  << m_ui.languagesListLabel
 	  << m_ui.locationsTableLabel
-	  << m_ui.minimumDaysTableLabel
 	  << m_ui.monetaryUnitsListLabel
+    	  << m_ui.minimumDaysTableLabel
 	  << m_ui.videoGamePlatformsListLabel
 	  << m_ui.videoGameRatingsListLabel;
   m_ui.scrollArea->verticalScrollBar()->setValue(widgets.at(index)->pos().y());

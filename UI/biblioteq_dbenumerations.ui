@@ -139,7 +139,7 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>0</y>
+              <y>-221</y>
               <width>497</width>
               <height>3422</height>
              </rect>
@@ -258,7 +258,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
-                <widget class="QLabel" name="bookBindingsListLabel_2">
+                <widget class="QLabel" name="bookConditionsListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -368,7 +368,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_12">
                <item>
-                <widget class="QLabel" name="bookBindingsListLabel_3">
+                <widget class="QLabel" name="bookOriginalityListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -478,7 +478,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="bookTargetAudiencesLabel">
+                <widget class="QLabel" name="bookTargetAudiencesListLabel">
                  <property name="font">
                   <font>
                    <weight>75</weight>

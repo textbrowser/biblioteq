@@ -89,6 +89,8 @@ class biblioteq_misc_functions
   static QString isbn13to10(const QString &text);
   static QString linearizeString(const QString &text);
   static QStringList getBookBindingTypes(const QSqlDatabase &, QString &);
+  static QStringList getBookConditions(const QSqlDatabase &, QString &);
+  static QStringList getBookOriginality(const QSqlDatabase &, QString &);
   static QStringList getBookTargetAudiences(const QSqlDatabase &, QString &);
   static QStringList getCDFormats(const QSqlDatabase &, QString &);
   static QStringList getDVDAspectRatios(const QSqlDatabase &, QString &);
