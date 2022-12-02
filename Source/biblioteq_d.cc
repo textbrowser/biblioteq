@@ -137,11 +137,11 @@ void biblioteq::prepareUpgradeNotification(void)
   ** Must keep the following conditions current.
   */
 
-  auto record1(m_db.record("book"));
-  auto record2(m_db.record("book_target_audiences"));
+  auto record1(m_db.record("book_conditions"));
+  auto record2(m_db.record("book_originality"));
 
-  if(!(record1.indexOf("target_audience") >= 0 &&
-       record2.indexOf("target_audience") >= 0))
+  if(!(record1.indexOf("condition") >= 0 &&
+       record2.indexOf("originality") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
 	QMessageBox::critical
