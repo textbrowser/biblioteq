@@ -40,6 +40,14 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
+  connect(m_ui.addBookCondition,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(m_ui.addBookOriginality,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
   connect(m_ui.addBookTargetAudience,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -93,6 +101,14 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	  this,
 	  SLOT(slotReload(void)));
   connect(m_ui.removeBookBinding,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeBookCondition,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(m_ui.removeBookOriginality,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
@@ -709,6 +725,10 @@ void biblioteq_dbenumerations::slotRemove(void)
 
   if(toolButton == m_ui.removeBookBinding)
     list = m_ui.bookBindingsList;
+  else if(toolButton == m_ui.removeBookCondition)
+    list = m_ui.bookConditionsList;
+  else if(toolButton == m_ui.removeBookOriginality)
+    list = m_ui.bookOriginalityList;
   else if(toolButton == m_ui.removeBookTargetAudience)
     list = m_ui.bookTargetAudiences;
   else if(toolButton == m_ui.removeCdFormat)
