@@ -1988,6 +1988,9 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.isbnAvailableCheckBox->setCheckable(false);
   id.target_audience->setCurrentIndex(0);
   id.target_audience->setEditable(true);
+  id.target_audience->setToolTip
+    (tr("<html>Values from individual books are not included. "
+	"Please see the Database Enumerations Browser.</html>"));
   m_engWindowTitle = "Search";
 
   if(field.isEmpty() && value.isEmpty())
