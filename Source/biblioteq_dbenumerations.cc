@@ -770,6 +770,8 @@ void biblioteq_dbenumerations::slotSave(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   tables << "book_binding_types"
+	 << "book_conditions"
+	 << "book_originality"
 	 << "book_target_audiences"
 	 << "cd_formats"
 	 << "dvd_aspect_ratios"
@@ -810,31 +812,31 @@ void biblioteq_dbenumerations::slotSave(void)
 	  goto db_rollback;
 	}
 
-      if(i == 0)
+      if(tables.at(i) == "book_binding_types")
 	listwidget = m_ui.bookBindingsList;
-      else if(i == 1)
+      else if(tables.at(i) == "book_target_audiences")
 	listwidget = m_ui.bookTargetAudiences;
-      else if(i == 2)
+      else if(tables.at(i) == "cd_formats")
 	listwidget = m_ui.cdFormatsList;
-      else if(i == 3)
+      else if(tables.at(i) == "dvd_aspect_ratios")
 	listwidget = m_ui.dvdAspectRatiosList;
-      else if(i == 4)
+      else if(tables.at(i) == "dvd_ratings")
 	listwidget = m_ui.dvdRatingsList;
-      else if(i == 5)
+      else if(tables.at(i) == "dvd_regions")
 	listwidget = m_ui.dvdRegionsList;
-      else if(i == 6)
+      else if(tables.at(i) == "grey_literature_types")
 	listwidget = m_ui.greyLiteratureTypes;
-      else if(i == 7)
+      else if(tables.at(i) == "languages")
 	listwidget = m_ui.languagesList;
-      else if(i == 8)
+      else if(tables.at(i) == "locations")
 	tablewidget = m_ui.locationsTable;
-      else if(i == 9)
+      else if(tables.at(i) == "minimum_days")
 	tablewidget = m_ui.minimumDaysTable;
-      else if(i == 10)
+      else if(tables.at(i) == "monetary_units")
 	listwidget = m_ui.monetaryUnitsList;
-      else if(i == 11)
+      else if(tables.at(i) == "videogame_platforms")
 	listwidget = m_ui.videoGamePlatformsList;
-      else if(i == 12)
+      else if(tables.at(i) == "videogame_ratings")
 	listwidget = m_ui.videoGameRatingsList;
 
       if(listwidget)
