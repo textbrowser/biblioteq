@@ -814,6 +814,10 @@ void biblioteq_dbenumerations::slotSave(void)
 
       if(tables.at(i) == "book_binding_types")
 	listwidget = m_ui.bookBindingsList;
+      else if(tables.at(i) == "book_conditions")
+	listwidget = m_ui.bookConditionsList;
+      else if(tables.at(i) == "book_originality")
+	listwidget = m_ui.bookOriginalityList;
       else if(tables.at(i) == "book_target_audiences")
 	listwidget = m_ui.bookTargetAudiences;
       else if(tables.at(i) == "cd_formats")

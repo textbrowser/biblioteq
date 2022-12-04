@@ -5396,10 +5396,14 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD multivolume_set_isbn VARCHAR(32)");
   list.append("ALTER TABLE member ADD membership_fees NUMERIC(10, 2) "
 	      "NOT NULL DEFAULT 0.00");
-#endif
   list.append("ALTER TABLE book ADD target_audience TEXT");
   list.append("CREATE TABLE IF NOT EXISTS book_target_audiences "
 	      "(target_audience TEXT NOT NULL PRIMARY KEY)");
+#endif
+  list.append("CREATE TABLE book_conditions "
+	      "(condition TEXT NOT NULL PRIMARY KEY)");
+  list.append("CREATE TABLE book_originality "
+	      "(originality TEXT NOT NULL PRIMARY KEY)");
 
   QString errors("<html>");
   int ct = 1;
@@ -5446,6 +5450,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      SIGNAL(clicked(void)),
 	      &dialog,
 	      SLOT(close(void)));
+      dialog.resize(500, 500);
       dialog.setWindowTitle(tr("BiblioteQ: Upgrade SQLite Schema Results"));
       QApplication::restoreOverrideCursor();
       dialog.exec();
