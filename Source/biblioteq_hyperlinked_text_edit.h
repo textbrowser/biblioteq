@@ -45,6 +45,9 @@ class biblioteq_hyperlinked_text_edit: public QTextBrowser
 
  private:
   biblioteq *qmain;
+  int m_readOnly;
+  void keyPressEvent(QKeyEvent *event);
+  void keyReleaseEvent(QKeyEvent *event);
 
  private slots:
   void slotAnchorClicked(const QUrl &url);

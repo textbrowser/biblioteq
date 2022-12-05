@@ -35,7 +35,30 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 	  SIGNAL(anchorClicked(const QUrl &)),
 	  this,
 	  SLOT(slotAnchorClicked(const QUrl &)));
+  m_readOnly = -1;
   qmain = nullptr;
+}
+
+void biblioteq_hyperlinked_text_edit::keyPressEvent(QKeyEvent *event)
+{
+  QTextBrowser::keyPressEvent(event);
+
+  if(qmain && qmain->getDB().driverName() == "QSQLITE")
+    {
+      if(m_readOnly == -1)
+	isReadOnly() ? m_readOnly = 1 : m_readOnly = 0;
+
+      if(event && event->key() == Qt::Key_Alt)
+	setReadOnly(true);
+    }
+}
+
+void biblioteq_hyperlinked_text_edit::keyReleaseEvent(QKeyEvent *event)
+{
+  QTextBrowser::keyReleaseEvent(event);
+
+  if(qmain && qmain->getDB().driverName() == "QSQLITE")
+    setReadOnly(m_readOnly == 1);
 }
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
@@ -54,12 +77,9 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
 
   for(i = 0; i < tmplist.size(); i++)
     {
-      if(qmain->getDB().driverName() == "QSQLITE")
-	html += tmplist[i].trimmed();
-      else
-	html += QString
-	  ("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
-	  (searchType).arg(searchField).arg(tmplist[i].trimmed());
+      html += QString
+	("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
+	(searchType).arg(searchField).arg(tmplist[i].trimmed());
 
       if(i != tmplist.size() - 1)
 	html += "<br>";
