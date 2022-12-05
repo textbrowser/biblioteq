@@ -250,9 +250,30 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   QString errorstr("");
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  id.condition->addItems
+    (biblioteq_misc_functions::getBookConditions(qmain->getDB(), errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the conditions.")),
+       errorstr, __FILE__, __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  id.originality->addItems
+    (biblioteq_misc_functions::getBookOriginality(qmain->getDB(), errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the originality list.")),
+       errorstr, __FILE__, __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   id.binding->addItems
-    (biblioteq_misc_functions::getBookBindingTypes(qmain->getDB(),
-						   errorstr));
+    (biblioteq_misc_functions::getBookBindingTypes(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -263,8 +284,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.language->addItems
-    (biblioteq_misc_functions::getLanguages(qmain->getDB(),
-					    errorstr));
+    (biblioteq_misc_functions::getLanguages(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -275,8 +295,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
-						errorstr));
+    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -287,9 +306,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.location->addItems
-    (biblioteq_misc_functions::getLocations(qmain->getDB(),
-					    "Book",
-					    errorstr));
+    (biblioteq_misc_functions::getLocations(qmain->getDB(), "Book", errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -300,8 +317,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.target_audience->addItems
-    (biblioteq_misc_functions::getBookTargetAudiences(qmain->getDB(),
-						      errorstr));
+    (biblioteq_misc_functions::
+     getBookTargetAudiences(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -313,17 +330,23 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
 
+  if(id.condition->findText(biblioteq::s_unknown) == -1)
+    id.condition->addItem(biblioteq::s_unknown);
+
+  if(id.originality->findText(biblioteq::s_unknown) == -1)
+    id.originality->addItem(biblioteq::s_unknown);
+
   if(id.binding->findText(biblioteq::s_unknown) == -1)
     id.binding->addItem(biblioteq::s_unknown);
 
   if(id.language->findText(biblioteq::s_unknown) == -1)
     id.language->addItem(biblioteq::s_unknown);
 
-  if(id.monetary_units->findText(biblioteq::s_unknown) == -1)
-    id.monetary_units->addItem(biblioteq::s_unknown);
-
   if(id.location->findText(biblioteq::s_unknown) == -1)
     id.location->addItem(biblioteq::s_unknown);
+
+  if(id.monetary_units->findText(biblioteq::s_unknown) == -1)
+    id.monetary_units->addItem(biblioteq::s_unknown);
 
   if(id.target_audience->findText(biblioteq::s_unknown) == -1)
     id.target_audience->addItem(biblioteq::s_unknown);

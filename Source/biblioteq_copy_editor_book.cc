@@ -354,6 +354,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
       for(j = 0; j < m_cb.table->columnCount(); j++)
 	if(j == CONDITION || j == ORIGINALITY)
 	  {
+	    QString error("");
 	    QStringList list;
 	    auto comboBox = new QComboBox();
 	    auto layout = new QHBoxLayout();
@@ -362,27 +363,13 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    auto widget = new QWidget();
 
 	    if(j == ORIGINALITY)
-	      list << tr("Black & White Copy")
-		   << tr("Color Copy")
-		   << tr("Original")
-		   << biblioteq::s_unknown;
+	      list = biblioteq_misc_functions::getBookOriginality
+		(qmain->getDB(), error);
 	    else
-	      list << tr("As New")
-		   << tr("Binding Copy")
-		   << tr("Book Club")
-		   << tr("Ex-Library")
-		   << tr("Fair")
-		   << tr("Fine")
-		   << tr("Good")
-		   << tr("Poor")
-		   << biblioteq::s_unknown
-		   << tr("Very Good");
+	      list = biblioteq_misc_functions::getBookConditions
+		(qmain->getDB(), error);
 
-	    comboBox->addItems(list);
-
-	    if(j == ORIGINALITY)
-	      comboBox->setCurrentIndex(2);
-
+	    comboBox->addItems(list << biblioteq::s_unknown);
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    comboBox->setSizePolicy
 	      (QSizePolicy::Preferred, QSizePolicy::Minimum);

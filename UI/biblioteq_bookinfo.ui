@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-776</y>
+         <y>0</y>
          <width>1067</width>
          <height>1299</height>
         </rect>
@@ -605,51 +605,6 @@
                        <property name="minimumContentsLength">
                         <number>25</number>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>As New</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Binding Copy</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Book Club</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Ex-Library</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Fair</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Fine</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Good</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Poor</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Very Good</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                      <item>
@@ -744,21 +699,6 @@
                        <property name="minimumContentsLength">
                         <number>25</number>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>Black &amp; White Copy</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Color Copy</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Original</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                      <item>
