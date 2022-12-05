@@ -255,6 +255,32 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			  query.exec();
 			}
 		    }
+		  else if(m_mappings.value(i).first == "condition")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare
+			    ("INSERT INTO book_conditions "
+			     "(condition) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
+		    }
+		  else if(m_mappings.value(i).first == "originality")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare
+			    ("INSERT INTO book_originality "
+			     "(originality) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
+		    }
 		  else if(m_mappings.value(i).first == "id")
 		    {
 		      str.remove('-');
