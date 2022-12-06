@@ -86,6 +86,12 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
     }
 
   setText(html);
+
+  if(qmain->getDB().driverName() == "QSQLITE" &&
+     toolTip().trimmed().isEmpty())
+    setToolTip(tr("<html>A link may be activated by placing this widget in "
+		  "focus and then pressing and holding the Alt key while the "
+		  "link is clicked.</html>"));
 }
 
 void biblioteq_hyperlinked_text_edit::setQMain(biblioteq *biblioteq)
