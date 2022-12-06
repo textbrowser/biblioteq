@@ -62,8 +62,10 @@ plugins3.files = $$[QT_INSTALL_PLUGINS]\\platforms\\qdirect2d.dll
 plugins3.path = release\\plugins\\platforms\\.
 plugins4.files = $$[QT_INSTALL_PLUGINS]\\renderplugins\\scene2d.dll
 plugins4.path = release\\plugins\\renderplugins\\.
-pluginspurge.extra = del /Q /S *d.dll
-pluginspurge.path = release\\plugins\\.
+pluginspurge1.extra = del /Q /S *.debug
+pluginspurge1.path = release\\plugins\\.
+pluginspurge2.extra = del /Q /S *d.dll
+pluginspurge2.path = release\\plugins\\.
 qt.files = Qt\\qt.conf
 qt.path = release\\.
 qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt5Concurrent.dll \
@@ -86,7 +88,8 @@ sql2.path = release\\SQL\\.
 INSTALLS = biblioteq \
            data \
            plugins1 \
-           pluginspurge \
+           pluginspurge1 \
+           pluginspurge2 \
            libraries \
            documentation \
            plugins2 \
