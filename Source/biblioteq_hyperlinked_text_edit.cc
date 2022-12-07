@@ -48,7 +48,8 @@ void biblioteq_hyperlinked_text_edit::keyPressEvent(QKeyEvent *event)
       if(m_readOnly == -1)
 	isReadOnly() ? m_readOnly = 1 : m_readOnly = 0;
 
-      if(event && event->key() == Qt::Key_Alt)
+      if(event && (event->key() == Qt::AltModifier ||
+		   event->key() == Qt::Key_Alt))
 	setReadOnly(true);
     }
 }
