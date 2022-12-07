@@ -40,7 +40,9 @@ QString biblioteq_myqstring::escape(const QString &str,
 {
   auto mystr(str);
 
+#ifdef BIBLIOTEQ_ESCAPE_SINGLE_QUOTE
   mystr = mystr.replace("'", "''");
+#endif
 
   if(caseinsensitive)
     mystr = mystr.toLower();

@@ -2,6 +2,10 @@ BIBLIOTEQ_CONFIGFILE
 
 Name of BiblioteQ's configuration file.
 
+BIBLIOTEQ_ESCAPE_SINGLE_QUOTE
+
+Escape the single quote before executing an SQL query.
+
 BIBLIOTEQ_LINKED_WITH_POPPLER
 
 Defined if BiblioteQ is linked with the Poppler library.
