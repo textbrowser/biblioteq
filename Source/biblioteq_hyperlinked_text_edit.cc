@@ -43,23 +43,17 @@ void biblioteq_hyperlinked_text_edit::keyPressEvent(QKeyEvent *event)
 {
   QTextBrowser::keyPressEvent(event);
 
-  if(qmain && qmain->getDB().driverName() == "QSQLITE")
-    {
-      if(m_readOnly == -1)
-	isReadOnly() ? m_readOnly = 1 : m_readOnly = 0;
+  if(m_readOnly == -1)
+    isReadOnly() ? m_readOnly = 1 : m_readOnly = 0;
 
-      if(event && (event->key() == Qt::AltModifier ||
-		   event->key() == Qt::Key_Alt))
-	setReadOnly(true);
-    }
+  if(event && (event->key() == Qt::AltModifier || event->key() == Qt::Key_Alt))
+    setReadOnly(true);
 }
 
 void biblioteq_hyperlinked_text_edit::keyReleaseEvent(QKeyEvent *event)
 {
   QTextBrowser::keyReleaseEvent(event);
-
-  if(qmain && qmain->getDB().driverName() == "QSQLITE")
-    setReadOnly(m_readOnly == 1);
+  setReadOnly(m_readOnly == 1);
 }
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
@@ -88,8 +82,7 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
 
   setText(html);
 
-  if(qmain->getDB().driverName() == "QSQLITE" &&
-     toolTip().trimmed().isEmpty())
+  if(toolTip().trimmed().isEmpty())
     setToolTip(tr("<html>A link may be activated by placing this widget in "
 		  "focus and then pressing and holding the Alt key while the "
 		  "link is clicked.</html>"));
