@@ -882,17 +882,26 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 			       ok,
 			       m_qmain->getDB(),
 			       m_ui.borrow_scan->text(),
-			       type));
+			       type).trimmed());
 
 	  m_ui.borrow_table->blockSignals(true);
 
-	  if(ok)
-	    copyIdentifier->setText(str);
+	  if(ok && str.length() > 0)
+	    {
+	      copyIdentifier->setText(str);
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+	      play("qrc:/discovered.wav");
+#endif
+	    }
 	  else
 	    {
 	      copyIdentifier->setBackground(s_notSoOkColor);
-	      copyIdentifier->setText
-		(tr("A copy is not available (%1).").arg(str));
+
+	      if(str.isEmpty())
+		copyIdentifier->setText(tr("A copy is not available."));
+	      else
+		copyIdentifier->setText
+		  (tr("A copy is not available (%1).").arg(str));
 	    }
 
 	  m_ui.borrow_table->blockSignals(false);

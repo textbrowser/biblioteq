@@ -451,7 +451,8 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
 
   if(type.contains("grey literature", Qt::CaseInsensitive) ||
      type.contains("photo", Qt::CaseInsensitive))
-    return "";
+    return QObject::tr
+      ("Grey Literatures and Photographs do not possess copies.");
 
   QSqlQuery query(db);
 
