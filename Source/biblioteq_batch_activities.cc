@@ -529,6 +529,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  QSet<QString> contains;
   QString bookFrontCover("'' AS front_cover ");
   QString cdFrontCover("'' AS front_cover ");
   QString dvdFrontCover("'' AS front_cover ");
@@ -570,14 +571,14 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
     {
       auto item = m_ui.discover_table->item(i, 0);
 
-      if(!item)
+      if(!item || contains.contains(item->text()))
 	continue;
+      else
+	contains << item->text();
 
       ids << item->text();
       where.append("?");
-
-      if(i < m_ui.discover_table->rowCount() - 1)
-	where.append(", ");
+      where.append(", ");
     }
 
   values << ids; // book.accession_number
@@ -591,6 +592,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
   for(int i = 0; i < types.size() - 1; i++)
     values << ids; // type.id
 
+  where = where.mid(0, where.length() - 2); // Remove the last two characters.
   where.append(")");
 
   for(int i = 0; i < types.size(); i++)
@@ -988,10 +990,10 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   item->setText
     (biblioteq_misc_functions::
-     categories(m_qmain->getDB(), m_ui.discover_scan->text()));
+     categories(m_qmain->getDB(), m_ui.discover_scan->text()).trimmed());
 
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
-  if(!item->text().trimmed().isEmpty())
+  if(!item->text().isEmpty())
     play("qrc:/discovered.wav");
 #endif
 
