@@ -125,7 +125,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>340</height>
+          <height>342</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -395,7 +395,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -762,7 +762,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Populate View on Connect</string>
+    <string>&amp;Populate View On Connect</string>
    </property>
   </action>
   <action name="actionShowErrorDialog">
@@ -782,7 +782,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Reset &amp;Error Log on Disconnect</string>
+    <string>Reset &amp;Error Log On Disconnect</string>
    </property>
   </action>
   <action name="actionConnect">
@@ -916,7 +916,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate View on Item &amp;Creation</string>
+    <string>Populate View On Item &amp;Creation</string>
    </property>
   </action>
   <action name="connectTool">
@@ -1085,7 +1085,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Automatically Save Settings on E&amp;xit</string>
+    <string>Automatically Save Settings On E&amp;xit</string>
    </property>
   </action>
   <action name="actionConfigureAdministratorPrivileges">
@@ -1117,7 +1117,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate &amp;Members Browser on Display</string>
+    <string>Populate &amp;Members Browser On Display</string>
    </property>
   </action>
   <action name="actionPopulate_Administrator_Browser_Table_on_Display">
@@ -1125,7 +1125,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate &amp;Administrator Browser on Display</string>
+    <string>Populate &amp;Administrator Browser On Display</string>
    </property>
   </action>
   <action name="action_New_SQLite_Database">
@@ -1157,7 +1157,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate Database En&amp;umerations Browser on Display</string>
+    <string>Populate Database En&amp;umerations Browser On Display</string>
    </property>
   </action>
   <action name="actionExport_Current_View">
@@ -1166,7 +1166,7 @@
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export Table View as CSV...</string>
+    <string>&amp;Export Table View As CSV...</string>
    </property>
   </action>
   <action name="duplicateTool">
@@ -1335,7 +1335,7 @@
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>Export Icons View as PNG...</string>
+    <string>Export Icons View As PNG...</string>
    </property>
   </action>
   <action name="action_English_Release_Notes">

@@ -614,8 +614,5 @@ void biblioteq::slotShowReleaseNotes(void)
 
 void biblioteq::slotTearOffMenus(void)
 {
-  QSettings settings;
-
   prepareTearOffMenus();
-  settings.setValue("tearOffMenus", ui.actionTearOffMenus->isChecked());
 }

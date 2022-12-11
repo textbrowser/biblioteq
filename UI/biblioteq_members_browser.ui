@@ -612,7 +612,7 @@
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export All Member Information as CSV...</string>
+    <string>&amp;Export All Member Information As CSV...</string>
    </property>
   </action>
   <action name="action_Set_Membership_Fees">
