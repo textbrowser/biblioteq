@@ -25,18 +25,7 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <QApplication>
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
-#include <QAudioOutput>
-#endif
-#endif
 #include <QComboBox>
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
-#include <QMediaPlayer>
-#endif
-#endif
 #include <QProgressDialog>
 
 #include "biblioteq.h"
@@ -353,7 +342,7 @@ void biblioteq_batch_activities::play(const QString &file)
   m_audioOutput->setVolume(100);
   player = new QMediaPlayer(this);
   player->setAudioOutput(m_audioOutput);
-  player->setSource(QUrl::fromLocalFile(file));
+  player->setSource(QUrl::fromUserInput(file));
   connect(player,
 	  SIGNAL(errorOccurred(QMediaPlayer::Error, const QString &)),
 	  this,
@@ -364,7 +353,7 @@ void biblioteq_batch_activities::play(const QString &file)
 	  SIGNAL(error(QMediaPlayer::Error)),
 	  this,
 	  SLOT(slotMediaError(QMediaPlayer::Error)));
-  player->setMedia(QUrl::fromLocalFile(file));
+  player->setMedia(QUrl::fromUserInput(file));
   player->setVolume(100);
 #endif
   connect(player,
@@ -951,6 +940,9 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 
 void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
 {
+  if(m_ui.discover_scan->text().trimmed().isEmpty())
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
@@ -963,6 +955,12 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
   item->setText
     (biblioteq_misc_functions::
      categories(m_qmain->getDB(), m_ui.discover_scan->text()));
+
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+  if(!item->text().trimmed().isEmpty())
+    play("qrc:/discovered.wav");
+#endif
+
   m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 1, item);
   m_ui.discover_scan->clear();
   m_ui.discover_scan->setFocus();

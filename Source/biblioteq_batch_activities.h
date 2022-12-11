@@ -28,13 +28,20 @@
 #ifndef _BIBLIOTEQ_BATCH_ACTIVITIES_H_
 #define _BIBLIOTEQ_BATCH_ACTIVITIES_H_
 
-#include "ui_biblioteq_batch_activities_browser.h"
-
+#include <QApplication>
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
-class QAudioOutput;
+#include <QAudioOutput>
 #endif
 #endif
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+#include <QMediaPlayer>
+#endif
+#endif
+
+#include "ui_biblioteq_batch_activities_browser.h"
+
 class biblioteq;
 
 class biblioteq_batch_activities: public QMainWindow

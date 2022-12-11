@@ -1,5 +1,6 @@
 qtHaveModule(multimedia) {
-  DEFOMES += BIBLIOTEQ_AUDIO_SUPPORTED
+  DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
+  QT += multimedia
 }
 
 FORMS           = UI/biblioteq_adminsetup.ui \
