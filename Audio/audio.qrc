@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+	<file>discovered.wav</file>
+    </qresource>
+</RCC>
