@@ -27,6 +27,7 @@
 
 #include <QComboBox>
 #include <QProgressDialog>
+#include <QSettings>
 
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
@@ -44,6 +45,11 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 #ifndef BIBLIOTEQ_AUDIO_SUPPORTED
   m_ui.audio->setChecked(false);
   m_ui.audio->setEnabled(false);
+#else
+  QSettings settings;
+
+  m_ui.audio->setChecked
+    (settings.value("otheroptions/batch_activities_audio", false).toBool());
 #endif
 
   QAction *action1 = nullptr;
@@ -67,6 +73,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(slotSetGlobalFonts(const QFont &)));
+  connect(m_ui.audio,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotAudioEnabled(void)));
   connect(m_ui.borrow_add_row,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -454,6 +464,14 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	  this,
 	  SLOT(slotBorrowItemChanged(QTableWidgetItem *)));
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::slotAudioEnabled(void)
+{
+  QSettings settings;
+
+  settings.setValue
+    ("otheroptions/batch_activities_audio", m_ui.audio->isChecked());
 }
 
 void biblioteq_batch_activities::slotBorrowItemChanged(QTableWidgetItem *item)

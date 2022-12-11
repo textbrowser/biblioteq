@@ -90,6 +90,7 @@ class biblioteq_batch_activities: public QMainWindow
 
  private slots:
   void slotAddBorrowingRow(void);
+  void slotAudioEnabled(void);
   void slotBorrowItemChanged(QTableWidgetItem *item);
   void slotClose(void);
   void slotDeleteBorrowingRow(void);
