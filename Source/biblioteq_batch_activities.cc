@@ -41,6 +41,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+#ifndef BIBLIOTEQ_AUDIO_SUPPORTED
+  m_ui.audio->setChecked(false);
+  m_ui.audio->setEnabled(false);
+#endif
 
   QAction *action1 = nullptr;
   QAction *action2 = nullptr;
@@ -331,6 +335,9 @@ void biblioteq_batch_activities::discover(void)
 
 void biblioteq_batch_activities::play(const QString &file)
 {
+  if(!m_ui.audio->isChecked())
+    return;
+
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED  
   QMediaPlayer *player = findChild<QMediaPlayer *> ();
 

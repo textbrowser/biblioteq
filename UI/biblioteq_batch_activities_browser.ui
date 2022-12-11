@@ -23,6 +23,16 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <widget class="QCheckBox" name="audio">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable audio. Requires multimedia libraries.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Audio</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QTabWidget" name="tab">
          <property name="currentIndex">
           <number>0</number>
@@ -465,6 +475,7 @@
   </action>
  </widget>
  <tabstops>
+  <tabstop>audio</tabstop>
   <tabstop>tab</tabstop>
   <tabstop>borrow_scan_type</tabstop>
   <tabstop>borrow_scan</tabstop>
