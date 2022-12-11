@@ -30,6 +30,11 @@
 
 #include "ui_biblioteq_batch_activities_browser.h"
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+class QAudioOutput;
+#endif
+#endif
 class biblioteq;
 
 class biblioteq_batch_activities: public QMainWindow
@@ -62,6 +67,11 @@ class biblioteq_batch_activities: public QMainWindow
       Discover = 1
     };
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+  QScopedPointer<QAudioOutput> m_audioOutput;
+#endif
+#endif
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
   static QColor s_notSoOkColor;
@@ -69,6 +79,7 @@ class biblioteq_batch_activities: public QMainWindow
   void borrow(void);
   void changeEvent(QEvent *event);
   void discover(void);
+  void play(const QString &file);
 
  private slots:
   void slotAddBorrowingRow(void);
@@ -78,6 +89,11 @@ class biblioteq_batch_activities: public QMainWindow
   void slotGo(void);
   void slotListDiscoveredItems(void);
   void slotListMembersReservedItems(void);
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+  void slotMediaError(QMediaPlayer::Error error);
+  void slotMediaError(QMediaPlayer::Error error, const QString &errorString);
+  void slotMediaStatusChanged(QMediaPlayer::MediaStatus status);
+#endif
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);

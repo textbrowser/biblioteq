@@ -25,7 +25,18 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QApplication>
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+#include <QAudioOutput>
+#endif
+#endif
 #include <QComboBox>
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+#include <QMediaPlayer>
+#endif
+#endif
 #include <QProgressDialog>
 
 #include "biblioteq.h"
@@ -327,6 +338,43 @@ void biblioteq_batch_activities::changeEvent(QEvent *event)
 
 void biblioteq_batch_activities::discover(void)
 {
+}
+
+void biblioteq_batch_activities::play(const QString &file)
+{
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED  
+  QMediaPlayer *player = findChild<QMediaPlayer *> ();
+
+  if(player)
+    player->deleteLater();
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  m_audioOutput.reset(new QAudioOutput());
+  m_audioOutput->setVolume(100);
+  player = new QMediaPlayer(this);
+  player->setAudioOutput(m_audioOutput);
+  player->setSource(QUrl::fromLocalFile(file));
+  connect(player,
+	  SIGNAL(errorOccurred(QMediaPlayer::Error, const QString &)),
+	  this,
+	  SLOT(slotMediaError(QMediaPlayer::Error, const QString &)));
+#else
+  player = new QMediaPlayer(this, QMediaPlayer::LowLatency);
+  connect(player,
+	  SIGNAL(error(QMediaPlayer::Error)),
+	  this,
+	  SLOT(slotMediaError(QMediaPlayer::Error)));
+  player->setMedia(QUrl::fromLocalFile(file));
+  player->setVolume(100);
+#endif
+  connect(player,
+	  SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),
+	  this,
+	  SLOT(slotMediaStatusChanged(QMediaPlayer::MediaStatus)));
+  player->play();
+#else
+  Q_UNUSED(file);
+#endif
 }
 
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
@@ -738,6 +786,45 @@ void biblioteq_batch_activities::slotListMembersReservedItems(void)
   emit listMembersReservedItems(m_ui.borrow_member_id->text());
   show(m_qmain, false);
 }
+
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+void biblioteq_batch_activities::slotMediaError(QMediaPlayer::Error error)
+{
+  QMediaPlayer *player = qobject_cast<QMediaPlayer *> (sender());
+
+  if(!player)
+    return;
+
+  if(error != QMediaPlayer::NoError)
+    player->deleteLater();
+}
+
+void biblioteq_batch_activities::slotMediaError
+(QMediaPlayer::Error error, const QString &errorString)
+{
+  Q_UNUSED(errorString);
+
+  QMediaPlayer *player = qobject_cast<QMediaPlayer *> (sender());
+
+  if(!player)
+    return;
+
+  if(error != QMediaPlayer::NoError)
+    player->deleteLater();
+}
+
+void biblioteq_batch_activities::slotMediaStatusChanged
+(QMediaPlayer::MediaStatus status)
+{
+  QMediaPlayer *player = qobject_cast<QMediaPlayer *> (sender());
+
+  if(!player)
+    return;
+
+  if(status == QMediaPlayer::EndOfMedia)
+    player->deleteLater();
+}
+#endif
 
 void biblioteq_batch_activities::slotReset(void)
 {

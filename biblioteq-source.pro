@@ -1,3 +1,7 @@
+qtHaveModule(multimedia) {
+  DEFOMES += BIBLIOTEQ_AUDIO_SUPPORTED
+}
+
 FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_allinfo.ui \
                   UI/biblioteq_batch_activities_browser.ui \
@@ -66,7 +70,8 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_woody.h \
 		  Source/biblioteq_z3950results.h
 
-RESOURCES	= Documentation/documentation.qrc \
+RESOURCES	= Audio/audio.qrc \
+		  Documentation/documentation.qrc \
                   Icons/icons.qrc \
                   Translations/translations.qrc
 
