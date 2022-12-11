@@ -834,7 +834,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
       if(i == end)
 	action = group1->addAction
-	  (QString(tr("&Unlimited Entries per Page")));
+	  (QString(tr("&Unlimited Entries")));
       else
 	action = group1->addAction(QString(tr("&%1")).arg(5 * i));
 

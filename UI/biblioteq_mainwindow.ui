@@ -125,7 +125,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>336</height>
+          <height>340</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -395,7 +395,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -537,7 +537,7 @@
     </property>
     <widget class="QMenu" name="menuEntriesPerPage">
      <property name="title">
-      <string>E&amp;ntries per Page</string>
+      <string>E&amp;ntries Per Page</string>
      </property>
     </widget>
     <widget class="QMenu" name="menuPreferredZ3950Server">
@@ -557,7 +557,7 @@
     </widget>
     <widget class="QMenu" name="menuPhotographs_per_Page">
      <property name="title">
-      <string>P&amp;hotographs per Page</string>
+      <string>P&amp;hotographs Per Page</string>
      </property>
     </widget>
     <addaction name="actionAutomatically_Resize_Column_Widths"/>
@@ -1243,7 +1243,7 @@
   </action>
   <action name="actionReload_biblioteq_conf">
    <property name="text">
-    <string>Reload &amp;biblioteq.conf</string>
+    <string>Reload the &amp;biblioteq.conf file.</string>
    </property>
   </action>
   <action name="actionOther_Options">
