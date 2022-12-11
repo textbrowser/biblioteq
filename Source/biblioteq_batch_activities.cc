@@ -358,7 +358,7 @@ void biblioteq_batch_activities::play(const QString &file)
   m_audioOutput.reset(new QAudioOutput());
   m_audioOutput->setVolume(100);
   player = new QMediaPlayer(this);
-  player->setAudioOutput(m_audioOutput);
+  player->setAudioOutput(m_audioOutput.data());
   player->setSource(QUrl::fromUserInput(file));
   connect(player,
 	  SIGNAL(errorOccurred(QMediaPlayer::Error, const QString &)),

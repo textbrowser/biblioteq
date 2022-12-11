@@ -29,15 +29,11 @@
 #define _BIBLIOTEQ_BATCH_ACTIVITIES_H_
 
 #include <QApplication>
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 #include <QAudioOutput>
 #endif
-#endif
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
 #include <QMediaPlayer>
-#endif
 #endif
 
 #include "ui_biblioteq_batch_activities_browser.h"
