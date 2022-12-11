@@ -929,6 +929,10 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	      else
 		copyIdentifier->setText
 		  (tr("A copy is not available (%1).").arg(str));
+
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
+	      play("qrc:/error.wav");
+#endif
 	    }
 
 	  m_ui.borrow_table->blockSignals(false);
@@ -995,6 +999,8 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
   if(!item->text().isEmpty())
     play("qrc:/discovered.wav");
+  else
+    play("qrc:/error.wav");
 #endif
 
   m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 1, item);
