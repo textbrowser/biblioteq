@@ -86,6 +86,11 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
+void biblioteq_sqlite_merge_databases::reset(void)
+{
+  slotReset();
+}
+
 void biblioteq_sqlite_merge_databases::slotAddRow(void)
 {
   m_ui.databases->setRowCount(m_ui.databases->rowCount() + 1);
@@ -141,7 +146,7 @@ void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
 
 void biblioteq_sqlite_merge_databases::slotMerge(void)
 {
-  if(!m_qmain || m_ui.databases->rowCount() == 0)
+  if(!m_qmain || !m_qmain->getDB().isOpen() || m_ui.databases->rowCount() == 0)
     return;
 
   QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
@@ -159,9 +164,12 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
   auto tables(QStringList()
 	      << "book"
 	      << "book_binding_types"
+	      << "book_conditions"
 	      << "book_copy_info"
 	      << "book_files"
+	      << "book_originality"
 	      << "book_sequence"
+	      << "book_target_audiences"
 	      << "cd"
 	      << "cd_copy_info"
 	      << "cd_formats"
@@ -269,13 +277,23 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
 		      if(!q.exec())
 			{
 			  ct += 1;
-			  errors.append
-			    (tr("<font color='red'>Error %1: %2. "
-				"Statement: %3, myoid %4.</font>").
-			     arg(ct).
-			     arg(q.lastError().text().toLower()).
-			     arg(q.lastQuery()).
-			     arg(myoid.toString()));
+
+			  if(myoid.isNull())
+			    errors.append
+			      (tr("<font color='red'>Error %1: %2. "
+				  "Statement: %3.</font>").
+			       arg(ct).
+			       arg(q.lastError().text().toLower()).
+			       arg(q.lastQuery()));
+			  else
+			    errors.append
+			      (tr("<font color='red'>Error %1: %2. "
+				  "Statement: %3, myoid %4.</font>").
+			       arg(ct).
+			       arg(q.lastError().text().toLower()).
+			       arg(q.lastQuery()).
+			       arg(myoid.toString()));
+
 			  errors.append("<br><br>");
 			}
 		    }

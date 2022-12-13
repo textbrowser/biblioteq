@@ -55,7 +55,8 @@ class biblioteq_misc_functions
 						      const QString &,
 						      QString &);
   static QString accessionNumberAsSpecialText(const qint64 integer);
-  static QString categories(const QSqlDatabase &db,
+  static QString categories(QHash<QString, QString> &hash,
+			    const QSqlDatabase &db,
 			    const QString &id);
   static QString getAbstractInfo(const QString &,
 				 const QString &,

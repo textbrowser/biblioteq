@@ -2939,7 +2939,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "(SELECT COUNT(myoid) FROM grey_literature_files "
 	      "WHERE grey_literature_files.item_oid = grey_literature.myoid) "
 	      "AS file_count, "
-	      "1 - COUNT(item_borrower.item_oid) AS availability, "
+	      "grey_literature.quantity - "
+	      "COUNT(item_borrower.item_oid) AS availability, "
 	      "COUNT(item_borrower.item_oid) AS total_reserved, "
 	      "grey_literature.type, "
 	      "grey_literature.myoid, " +

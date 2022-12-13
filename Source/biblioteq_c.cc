@@ -31,6 +31,7 @@
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
+#include "biblioteq_sqlite_merge_databases.h"
 #include "biblioteq_woody.h"
 
 #include <QActionGroup>
@@ -3192,6 +3193,12 @@ void biblioteq::slotDisconnect(void)
   m_history_diag->hide();
   m_import->hide();
   m_members_diag->hide();
+
+  if(m_sqliteMergeDatabases)
+    {
+      m_sqliteMergeDatabases->reset();
+      m_sqliteMergeDatabases->hide();
+    }
 #else
   m_admin_diag->close();
   m_all_diag->close();
@@ -3200,6 +3207,12 @@ void biblioteq::slotDisconnect(void)
   m_history_diag->close();
   m_import->close();
   m_members_diag->close();
+
+  if(m_sqliteMergeDatabases)
+    {
+      m_sqliteMergeDatabases->reset();
+      m_sqliteMergeDatabases->close();
+    }
 #endif
   m_unaccent.clear();
   cq.tables_t->clear();

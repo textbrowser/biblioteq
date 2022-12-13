@@ -212,12 +212,13 @@ QString biblioteq_misc_functions::accessionNumberAsSpecialText
   return QString::number(integer).rightJustified(20, QChar('0'));
 }
 
-QString biblioteq_misc_functions::categories(const QSqlDatabase &db,
-					     const QString &id)
+QString biblioteq_misc_functions::categories
+(QHash<QString, QString> &hash, const QSqlDatabase &db, const QString &id)
 {
   QSqlQuery query(db);
   QString querystr("");
   QString string("");
+  QString title("");
   QStringList list;
 
   list << "book"
@@ -233,8 +234,8 @@ QString biblioteq_misc_functions::categories(const QSqlDatabase &db,
     {
       if(list.at(i) == "book")
 	{
-	  querystr = "SELECT EXISTS(SELECT 1 FROM book WHERE "
-	    "accession_number = ? OR id = ? OR isbn13 = ?)";
+	  querystr = "SELECT title FROM book WHERE "
+	    "accession_number = ? OR id = ? OR isbn13 = ?";
 	  query.prepare(querystr);
 	  query.addBindValue(id);
 	  query.addBindValue(QString(id).remove('-'));
@@ -242,21 +243,32 @@ QString biblioteq_misc_functions::categories(const QSqlDatabase &db,
 	}
       else
 	{
-	  querystr = QString
-	    ("SELECT EXISTS(SELECT 1 FROM %1 WHERE id = ?)").arg(list.at(i));
+	  if(list.at(i) == "grey_literature")
+	    querystr = QString
+	      ("SELECT document_title FROM %1 WHERE document_id = ?").
+	      arg(list.at(i));
+	  else
+	    querystr = QString
+	      ("SELECT title FROM %1 WHERE id = ?").arg(list.at(i));
+
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 	}
 
-      if(query.exec() && query.next() && query.value(0).toBool())
+      if(query.exec() && query.next())
 	{
 	  if(!string.isEmpty())
 	    string.prepend(", ");
 
 	  string.append(list.at(i));
+
+	  if(title.isEmpty())
+	    title = query.value(0).toString().trimmed();
 	}
     }
 
+  hash["categories"] = string;
+  hash["title"] = title;
   return string;
 }
 

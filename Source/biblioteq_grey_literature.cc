@@ -1215,10 +1215,17 @@ void biblioteq_grey_literature::slotGo(void)
 	"(SELECT COUNT(myoid) FROM grey_literature_files "
 	"WHERE grey_literature_files.item_oid = grey_literature.myoid) "
 	"AS file_count, "
+	"grey_literature.quantity - COUNT(item_borrower.item_oid) "
+	"AS availability, "
+	"COUNT(item_borrower.item_oid) AS total_reserved, "
 	"grey_literature.type, "
 	"grey_literature.myoid, " +
 	frontCover +
-	"FROM grey_literature WHERE ";
+	"FROM "
+	"grey_literature LEFT JOIN item_borrower ON "
+	"grey_literature.myoid = item_borrower.item_oid "
+	"AND item_borrower.type = 'Grey Literature' "
+	"WHERE ";
 
       QString ESCAPE("");
       auto UNACCENT(qmain->unaccent());
@@ -1336,14 +1343,21 @@ void biblioteq_grey_literature::slotGo(void)
 	   m_ui.type->currentText().trimmed() +
 	   "') ");
 
-      searchstr.append("GROUP BY grey_literature.document_title, "
+      searchstr.append("GROUP BY grey_literature.author, "
+		       "grey_literature.client, "
+		       "grey_literature.document_code_a, "
+		       "grey_literature.document_code_b, "
+		       "grey_literature.document_date, "
 		       "grey_literature.document_id, "
-		       "grey_literature.location, "
-		       "grey_literature.notes, "
+		       "grey_literature.document_status, "
+		       "grey_literature.document_title, "
+		       "grey_literature.document_type, "
 		       "grey_literature.job_number, "
+		       "grey_literature.location, "
 		       "grey_literature.type, "
 		       "grey_literature.myoid, "
-		       "grey_literature.front_cover");
+		       "grey_literature.front_cover "
+		       "ORDER BY grey_literature.author");
 
       auto query = new QSqlQuery(qmain->getDB());
 

@@ -569,7 +569,8 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 
   for(int i = 0; i < m_ui.discover_table->rowCount(); i++)
     {
-      auto item = m_ui.discover_table->item(i, 0);
+      auto item = m_ui.discover_table->item
+	(i, static_cast<int> (DiscoverTableColumns::IDENTIFIER_COLUMN));
 
       if(!item || contains.contains(item->text()))
 	continue;
@@ -985,16 +986,20 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  QHash<QString, QString> hash;
   auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
 
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   m_ui.discover_table->setRowCount(m_ui.discover_table->rowCount() + 1);
-  m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 0, item);
+  m_ui.discover_table->setItem
+    (m_ui.discover_table->rowCount() - 1,
+     static_cast<int> (DiscoverTableColumns::IDENTIFIER_COLUMN),
+     item);
   item = new QTableWidgetItem();
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-  item->setText
-    (biblioteq_misc_functions::
-     categories(m_qmain->getDB(), m_ui.discover_scan->text()).trimmed());
+  biblioteq_misc_functions::categories
+    (hash, m_qmain->getDB(), m_ui.discover_scan->text());
+  item->setText(hash.value("categories").trimmed());
 
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
   if(!item->text().isEmpty())
@@ -1003,7 +1008,17 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
     play("qrc:/error.wav");
 #endif
 
-  m_ui.discover_table->setItem(m_ui.discover_table->rowCount() - 1, 1, item);
+  m_ui.discover_table->setItem
+    (m_ui.discover_table->rowCount() - 1,
+     static_cast<int> (DiscoverTableColumns::CATEGORY_COLUMN),
+     item);
+  item = new QTableWidgetItem();
+  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  item->setText(hash.value("title").trimmed());
+  m_ui.discover_table->setItem
+    (m_ui.discover_table->rowCount() - 1,
+     static_cast<int> (DiscoverTableColumns::TITLE_COLUMN),
+     item);
   m_ui.discover_scan->clear();
   m_ui.discover_scan->setFocus();
   QApplication::restoreOverrideCursor();

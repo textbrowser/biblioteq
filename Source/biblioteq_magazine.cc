@@ -2913,23 +2913,26 @@ void biblioteq_magazine::slotGo(void)
 	  if(m_subType == "Journal")
 	    frontCover = "journal.front_cover ";
 	  else
-	    frontCover = "magazine.front_cover";
+	    frontCover = "magazine.front_cover ";
 	}
 
       searchstr = QString("SELECT DISTINCT %1.title, "
-			  "%1.publisher, %1.pdate, %1.place, "
+			  "%1.publisher, "
+			  "%1.pdate, "
+			  "%1.place, "
 			  "%1.issuevolume, "
 			  "%1.issueno, "
-			  "%1.category, %1.language, "
+			  "%1.category, "
+			  "%1.language, "
 			  "%1.id, "
-			  "%1.price, %1.monetary_units, "
+			  "%1.price, "
+			  "%1.monetary_units, "
 			  "%1.quantity, "
 			  "%1.location, "
 			  "%1.lccontrolnumber, "
 			  "%1.callnumber, "
 			  "%1.deweynumber, "
-			  "%1.quantity - COUNT(item_borrower."
-			  "item_oid) "
+			  "%1.quantity - COUNT(item_borrower.item_oid) "
 			  "AS availability, "
 			  "COUNT(item_borrower.item_oid) AS "
 			  "total_reserved, "
@@ -3058,11 +3061,13 @@ void biblioteq_magazine::slotGo(void)
 
       if(m_subType == "Journal")
 	searchstr.append("GROUP BY journal.title, "
-			 "journal.publisher, journal.pdate, "
+			 "journal.publisher, "
+			 "journal.pdate, "
 			 "journal.place, "
 			 "journal.issuevolume, "
 			 "journal.issueno, "
-			 "journal.category, journal.language, "
+			 "journal.category, "
+			 "journal.language, "
 			 "journal.id, "
 			 "journal.price, "
 			 "journal.monetary_units, "
@@ -3077,11 +3082,13 @@ void biblioteq_magazine::slotGo(void)
 			 "journal.front_cover");
       else
 	searchstr.append("GROUP BY magazine.title, "
-			 "magazine.publisher, magazine.pdate, "
+			 "magazine.publisher, "
+			 "magazine.pdate, "
 			 "magazine.place, "
 			 "magazine.issuevolume, "
 			 "magazine.issueno, "
-			 "magazine.category, magazine.language, "
+			 "magazine.category, "
+			 "magazine.language, "
 			 "magazine.id, "
 			 "magazine.price, "
 			 "magazine.monetary_units, "
