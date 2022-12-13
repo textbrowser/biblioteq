@@ -3174,16 +3174,22 @@ void biblioteq::slotDisconnect(void)
 
   br.show_password->setChecked(false);
   m_allSearchShown = false;
+  m_batchActivities->reset();
 
   if(m_files)
     m_files->reset();
 
+  m_import->reset();
   m_membersWasRefreshed = false;
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
   delete m_searchQuery;
   m_searchQuery = nullptr;
+
+  if(m_sqliteMergeDatabases)
+    m_sqliteMergeDatabases->reset();
+
   userinfo_diag->m_memberProperties.clear();
 #ifdef Q_OS_ANDROID
   m_admin_diag->hide();
@@ -3195,10 +3201,7 @@ void biblioteq::slotDisconnect(void)
   m_members_diag->hide();
 
   if(m_sqliteMergeDatabases)
-    {
-      m_sqliteMergeDatabases->reset();
-      m_sqliteMergeDatabases->hide();
-    }
+    m_sqliteMergeDatabases->hide();
 #else
   m_admin_diag->close();
   m_all_diag->close();
@@ -3209,10 +3212,7 @@ void biblioteq::slotDisconnect(void)
   m_members_diag->close();
 
   if(m_sqliteMergeDatabases)
-    {
-      m_sqliteMergeDatabases->reset();
-      m_sqliteMergeDatabases->close();
-    }
+    m_sqliteMergeDatabases->close();
 #endif
   m_unaccent.clear();
   cq.tables_t->clear();

@@ -750,6 +750,11 @@ void biblioteq_import::loadPreview(void)
   QApplication::processEvents();
 }
 
+void biblioteq_import::reset(void)
+{
+  slotReset();
+}
+
 void biblioteq_import::show(QMainWindow *parent)
 {
   static auto resized = false;
@@ -1067,15 +1072,16 @@ void biblioteq_import::slotReset(void)
   if(m_ui.rows->rowCount() > 0 ||
      !m_ui.csv_file->text().isEmpty() ||
      m_ui.delimiter->text() != ",")
-    if(QMessageBox::question(this,
-			     tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to reset?"),
-			     QMessageBox::No | QMessageBox::Yes,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	QApplication::processEvents();
-	return;
-      }
+    if(sender())
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to reset?"),
+			       QMessageBox::No | QMessageBox::Yes,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
 
   m_mappings.clear();
   m_previewHeaders.clear();

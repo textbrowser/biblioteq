@@ -383,6 +383,12 @@ void biblioteq_batch_activities::play(const QString &file)
 #endif
 }
 
+void biblioteq_batch_activities::reset(void)
+{
+  m_ui.tab->setCurrentIndex(0);
+  slotReset();
+}
+
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
   static auto resized = false;
@@ -845,9 +851,13 @@ void biblioteq_batch_activities::slotMediaStatusChanged
 
 void biblioteq_batch_activities::slotReset(void)
 {
-  if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Borrow))
+  /*
+  ** If sender() is null, reset all fields.
+  */
+
+  if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Borrow))
     {
-      if(m_ui.borrow_table->rowCount() > 0)
+      if(m_ui.borrow_table->rowCount() > 0 && sender())
 	if(QMessageBox::question(this,
 				 tr("BiblioteQ: Question"),
 				 tr("Are you sure that you wish to reset?"),
@@ -865,7 +875,9 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.borrow_table->clearContents();
       m_ui.borrow_table->setRowCount(0);
     }
-  else if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Discover))
+
+  if(!sender() ||
+     m_ui.tab->currentIndex() == static_cast<int> (Pages::Discover))
     {
       m_ui.discover_scan->clear();
       m_ui.discover_scan->setFocus();
