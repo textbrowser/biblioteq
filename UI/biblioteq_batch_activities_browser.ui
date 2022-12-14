@@ -23,14 +23,44 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QCheckBox" name="audio">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable audio. Requires multimedia libraries.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Audio</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QCheckBox" name="audio">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable audio. Requires multimedia libraries.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>Audio</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="bottom_scroll_on_add">
+           <property name="toolTip">
+            <string>Not retained fof future sessions.</string>
+           </property>
+           <property name="text">
+            <string>Bottom-Scroll On Add</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QTabWidget" name="tab">
@@ -481,6 +511,7 @@
  </widget>
  <tabstops>
   <tabstop>audio</tabstop>
+  <tabstop>bottom_scroll_on_add</tabstop>
   <tabstop>tab</tabstop>
   <tabstop>borrow_scan_type</tabstop>
   <tabstop>borrow_scan</tabstop>

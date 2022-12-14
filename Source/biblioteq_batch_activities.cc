@@ -417,6 +417,9 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 	     SLOT(slotBorrowItemChanged(QTableWidgetItem *)));
   m_ui.borrow_table->setRowCount(m_ui.borrow_table->rowCount() + 1);
 
+  if(m_ui.bottom_scroll_on_add->isChecked())
+    m_ui.borrow_table->scrollToBottom();
+
   auto row = m_ui.borrow_table->rowCount() - 1;
 
   for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
@@ -1003,6 +1006,10 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
 
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   m_ui.discover_table->setRowCount(m_ui.discover_table->rowCount() + 1);
+
+  if(m_ui.bottom_scroll_on_add->isChecked())
+    m_ui.discover_table->scrollToBottom();
+
   m_ui.discover_table->setItem
     (m_ui.discover_table->rowCount() - 1,
      static_cast<int> (DiscoverTableColumns::IDENTIFIER_COLUMN),
