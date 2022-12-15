@@ -347,6 +347,26 @@
                </property>
               </widget>
              </item>
+             <item>
+              <widget class="QToolButton" name="export_missing">
+               <property name="toolTip">
+                <string>Export missing items.</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/32x32/save.png</normaloff>:/32x32/save.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>
@@ -522,6 +542,7 @@
   <tabstop>borrow_delete_row</tabstop>
   <tabstop>discover_scan</tabstop>
   <tabstop>discover_list</tabstop>
+  <tabstop>export_missing</tabstop>
   <tabstop>discover_table</tabstop>
   <tabstop>go</tabstop>
   <tabstop>reset</tabstop>

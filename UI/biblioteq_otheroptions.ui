@@ -345,9 +345,6 @@
             </item>
             <item>
              <widget class="QCheckBox" name="show_maintable_images">
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
               <property name="text">
                <string>&amp;Show Table / View Images</string>
               </property>
@@ -358,9 +355,6 @@
             </item>
             <item>
              <widget class="QCheckBox" name="show_maintable_tooltips">
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
               <property name="text">
                <string>&amp;Show Table Tool Tips</string>
               </property>
