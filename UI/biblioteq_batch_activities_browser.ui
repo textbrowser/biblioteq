@@ -400,10 +400,10 @@
               <bool>false</bool>
              </property>
              <attribute name="horizontalHeaderMinimumSectionSize">
-              <number>150</number>
+              <number>225</number>
              </attribute>
              <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>150</number>
+              <number>225</number>
              </attribute>
              <attribute name="horizontalHeaderStretchLastSection">
               <bool>true</bool>
@@ -418,7 +418,7 @@
              </column>
              <column>
               <property name="text">
-               <string>Category</string>
+               <string>Database Table Name(s)</string>
               </property>
              </column>
              <column>
