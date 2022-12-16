@@ -1107,7 +1107,7 @@ void biblioteq::createConfigToolMenu(void)
     {
       m_configToolMenu = new QMenu(this);
 #ifndef Q_OS_ANDROID
-      m_configToolMenu->setTearOffEnabled(true);
+      m_configToolMenu->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
       m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
       m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
 #endif

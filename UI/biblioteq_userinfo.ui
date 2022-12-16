@@ -847,7 +847,7 @@
          <item>
           <widget class="QLabel" name="label_20">
            <property name="text">
-            <string>The limit is enforced in some places.</string>
+            <string>The limit is enforced.</string>
            </property>
           </widget>
          </item>

@@ -121,6 +121,8 @@ void biblioteq::populateFavorites(void)
 
 void biblioteq::prepareTearOffMenus(void)
 {
+  createConfigToolMenu();
+  m_configToolMenu->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
   ui.menu_Edit->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
   ui.menu_Options->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
   ui.menu_Tools->setTearOffEnabled(ui.actionTearOffMenus->isChecked());
