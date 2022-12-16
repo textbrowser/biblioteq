@@ -354,7 +354,7 @@ void biblioteq_batch_activities::play(const QString &file)
   if(!m_ui.audio->isChecked())
     return;
 
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED  
+#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
   QMediaPlayer *player = findChild<QMediaPlayer *> ();
 
   if(player)
