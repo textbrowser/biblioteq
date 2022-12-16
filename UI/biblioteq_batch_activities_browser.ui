@@ -327,7 +327,7 @@
              <item>
               <widget class="QToolButton" name="discover_list">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List discovered items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="icon">
                 <iconset resource="../Icons/icons.qrc">
@@ -368,6 +368,13 @@
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>The Title column will include the first discovered item if there are multiple categories.</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QTableWidget" name="discover_table">

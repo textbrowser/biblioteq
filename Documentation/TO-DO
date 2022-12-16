@@ -12,7 +12,7 @@
 9.   Create a mechanism for determining the uniqueness of members. (Done)
 10.  Provide support for:
         Books (Done)
-	Cassette Tapes (TBD)
+	Cassette Tapes (Done) (Grey Literature)
 	DVDs (Done)
 	Grey Literature (Done)
 	Journals (Done)
@@ -20,10 +20,10 @@
 	Music CDs (Done)
 	Newspapers (Done) (Grey Literature)
 	Photograph Collections (Done)
-	Plants (TBD)
-	VHS (TBD)
+	Plants (Done) (Grey Literature)
+	VHS (Done) (Grey Literature)
 	Video Games (Done)
-	Vinyl Records (TBD)
+	Vinyl Records (Done) (Grey Literature)
 11.  Finish the availability column. (Done)
 12.  Implement a generic search. (Done)
      Fields included:
@@ -356,7 +356,8 @@
 193. All QFileDialog instances should have their current directory set
      to the user's home directory. (Done)
 194. Allow patrons to opt-out of reservation histories. (Done)
-195. Dates should not be retrieved from local services. PostgreSQL only. (TBD)
+195. Dates should not be retrieved from local services. PostgreSQL only.
+     Not necessary. (Done)
 196. Users should only be allowed to view their reservation histories.
      Create temporary views? No. Row-level privacy. (Done)
 197. After an item has been added, the item's row must be updated. One
@@ -454,7 +455,8 @@
 	Source/biblioteq_sruResults.cc (Done)
 	Source/biblioteq_videogame.cc (Done)
 	Source/biblioteq_z3950results.cc (Done)
-239. Google Books API: https://developers.google.com/books/docs/v1/using. (TBD)
+239. Google Books API: https://developers.google.com/books/docs/v1/using.
+     May require authentication. (Done)
 240. Report import results. (Done)
 241. Remove std::nothrow. (Done)
 242. Replace first(). The file biblioteq_c.cc is fine. (Done)
@@ -489,7 +491,7 @@
 262. Persian language. (TBD)
 263. Highlight unavailable items: per-item color. (Done)
 264. Optional YAZ. (Done)
-265. Icons mode and read status. (TBD)
+265. Icons Mode and read status. (TBD)
 266. Qt 6.2 LTS:
      QNetworkReply (Done)
      QSqlQuery (Done)
@@ -509,7 +511,8 @@
 275. Special Unimarc import. (TBD)
 276. Improve reservation processes. Batch reservations. (Done)
 277. Include release notes with the releases. (Done)
-278. Preserve order of columns in the main table. (TBD)
+278. Preserve order of columns in the main table. Too much refactoring.
+     (Done)
 279. MARC parsing (books). (TBD)
 280. See release notes and add names of contributors. (Done)
 281. Remove special characters from text which is sent to the main table
@@ -529,5 +532,6 @@
 290. Add ESCAPE and UNACCENT to search strings. Already completed. (Done)
 291. Sort book condition combination box values for non-English. (Done)
 292. Syntax highlighting for custom SQL queries. (TBD)
-293. Guard SQL queries. Limit strings in queries. (TBD)
+293. Guard SQL queries. Limit strings in queries. Source may be refactored,
+     neglecting the revisions. (Done)
 294. Remote query for version information. No. (Done)
