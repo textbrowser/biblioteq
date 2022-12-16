@@ -1,3 +1,11 @@
+BIBLIOTEQ_AUDIO_SUPPORTED
+
+Defined if the local system provides audio services.
+
+BIBLIOTEQ_CALLNUM_DEBUG
+
+Display text in biblioteq_callnum_table_item.cc.
+
 BIBLIOTEQ_CONFIGFILE
 
 Name of BiblioteQ's configuration file.
