@@ -26,8 +26,10 @@
 */
 
 #include <QComboBox>
+#include <QFileDialog>
 #include <QProgressDialog>
 #include <QSettings>
+#include <QTextStream>
 
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
@@ -524,6 +526,94 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotExportMissing(void)
 {
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setDefaultSuffix("csv");
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setNameFilter(tr("CSV (*.csv)"));
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Export As CSV"));
+  dialog.exec();
+  QApplication::processEvents();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QFile file(dialog.selectedFiles().value(0));
+
+      if(file.open(QIODevice::Text |
+		   QIODevice::Truncate |
+		   QIODevice::WriteOnly))
+	{
+	  QString str("");
+	  QTextStream stream(&file);
+	  auto i = static_cast<int> (DiscoverTableColumns::IDENTIFIER_COLUMN);
+
+	  if(m_ui.discover_table->horizontalHeaderItem(i))
+	    {
+	      if(m_ui.discover_table->horizontalHeaderItem(i)->text().
+		 contains(","))
+		str += QString("\"%1\"").arg
+		  (m_ui.discover_table->horizontalHeaderItem(i)->text());
+	      else
+		str += QString("%1").arg
+		  (m_ui.discover_table->horizontalHeaderItem(i)->text());
+	    }
+
+	  if(!str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+	    stream << str << Qt::endl;
+#else
+	    stream << str << endl;
+#endif
+
+	  for(int i = 0; i < m_ui.discover_table->rowCount(); i++)
+	    {
+	      str = "";
+
+	      if(m_ui.discover_table->
+		 item(i,
+		      static_cast<int> (DiscoverTableColumns::
+					CATEGORY_COLUMN)) &&
+		 m_ui.discover_table->
+		 item(i,
+		      static_cast<int> (DiscoverTableColumns::
+					CATEGORY_COLUMN))->text().length() > 0)
+		continue;
+
+	      auto c = static_cast<int>
+		(DiscoverTableColumns::IDENTIFIER_COLUMN);
+
+	      if(!m_ui.discover_table->item(i, c))
+		continue;
+
+	      auto cleaned(m_ui.discover_table->item(i, c)->text());
+
+	      cleaned.replace("\n", " ");
+	      cleaned.replace("\r\n", " ");
+	      cleaned = cleaned.trimmed();
+
+	      if(cleaned.contains(","))
+		str += QString("\"%1\"").arg(cleaned);
+	      else
+		str += QString("%1").arg(cleaned);
+
+	      if(!str.isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		stream << str << Qt::endl;
+#else
+	        stream << str << endl;
+#endif
+	    }
+
+	  file.close();
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq_batch_activities::slotGo(void)
