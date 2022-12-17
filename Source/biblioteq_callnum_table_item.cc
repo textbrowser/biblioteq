@@ -28,6 +28,9 @@
 #include "biblioteq_callnum_table_item.h"
 
 #include <QDebug>
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#include <QRegularExpression>
+#endif
 #include <QTableWidgetItem>
 
 #undef BIBLIOTEQ_CALLNUM_DEBUG
@@ -36,11 +39,11 @@ static int callnum_lt(const QString &m, const QString &n)
 {
   // In all of its glory.
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   QString lc_regexp
     ("([A-Za-z]+) *([0-9]+)(?: *\\.([0-9]+))?"
      "(?: *\\.([A-Za-z][0-9]+))?(?: *([A-Za-z][0-9]+))?(?: +([0-9]{4}))? *");
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   // CAPTURE FIELDS - only the first two are required.
   //   1. Call letters.
   //   2. Call number.
@@ -94,6 +97,38 @@ static int callnum_lt(const QString &m, const QString &n)
 #ifdef BIBLIOTEQ_CALLNUM_DEBUG
   qDebug() << "Call number regex match failed." << endl;
 #endif
+#else
+  QRegularExpression match1(QRegularExpression::anchoredPattern(lc_regexp));
+  QRegularExpression match2(match1); // Copy constructor should be faster.
+  auto m1(match1.match(m));
+  auto n1(match2.match(n));
+  auto res1 = m1.hasMatch();
+  auto res2 = n1.hasMatch();
+
+  if(res1 && res2)
+    {
+      if(m1.captured(1) == n1.captured(1))
+	{
+	  if(m1.captured(2) == n1.captured(2))
+	    {
+	      // From here on out we can lexicographically sort.
+
+	      for(int i = 3; i <= 5; i++)
+		{
+		  if(m1.captured(i) != n1.captured(i))
+		    // Empty string is less than anything.
+
+		    return m1.captured(i) < n1.captured(i);
+		}
+
+	      return m1.captured(6) < n1.captured(6);
+	    }
+	  else // Different call numbers.
+	    return m1.captured(2).toInt() < n1.captured(2).toInt();
+	}
+      else // Different call letters.
+	return m1.captured(1).toUpper() < n1.captured(1).toUpper();
+    }
 #endif
   return m < n;
 }
