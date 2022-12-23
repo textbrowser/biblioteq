@@ -28,6 +28,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
+                          -Wno-deprecated-declarations \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \
