@@ -72,6 +72,7 @@ qt.path = release\\.
 qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt5Concurrent.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Core.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
+                    $$[QT_INSTALL_BINS]\\Qt5Multimedia.dll \                    
                     $$[QT_INSTALL_BINS]\\Qt5Network.dll \
                     $$[QT_INSTALL_BINS]\\Qt5PrintSupport.dll \
                     $$[QT_INSTALL_BINS]\\Qt5Sql.dll \
