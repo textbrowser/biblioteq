@@ -23,6 +23,7 @@ cp -pr ./Documentation/* ./biblioteq/Documentation/.
 # Prepare a tar bundle.
 
 cp $(ldd ./BiblioteQ | awk '{print $3}' | grep -e '^/') ./biblioteq/.
+chmod -x ./biblioteq/*.so*
 tar -cv -f BiblioteQ-2022.12.25.tar ./biblioteq
 make distclean
 rm -fr ./biblioteq
