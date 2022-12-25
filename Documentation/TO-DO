@@ -535,3 +535,5 @@
      neglecting the revisions. (Done)
 294. Remote query for version information. (TBD)
 295. Create unique myoid values on SQLite merge. (TBD)
+296. Do not disconnect the current database if the future database does not
+     have a proper driver. (TBD)
