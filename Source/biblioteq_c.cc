@@ -2645,8 +2645,6 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::slotConnectDB(void)
 {
-  slotDisconnect();
-
   auto tmphash(m_branches[br.branch_name->currentText()]);
 
   if(tmphash.value("database_type") == "sqlite")
@@ -2730,6 +2728,7 @@ void biblioteq::slotConnectDB(void)
       return;
     }
 
+  slotDisconnect();
   m_db = QSqlDatabase::addDatabase(str, "Default");
 
   if(tmphash.value("database_type") == "sqlite")
