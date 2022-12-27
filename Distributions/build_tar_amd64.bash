@@ -10,6 +10,7 @@ fi
 
 make distclean 2>/dev/null
 mkdir -p ./biblioteq/Documentation
+mkdir -p ./biblioteq/Lib
 mkdir -p ./biblioteq/SQL
 qmake -o Makefile biblioteq.pro && make -j $(nproc)
 cp -p ./BiblioteQ ./biblioteq/.
@@ -22,8 +23,8 @@ cp -pr ./Documentation/* ./biblioteq/Documentation/.
 
 # Prepare a tar bundle.
 
-cp $(ldd ./BiblioteQ | awk '{print $3}' | grep -e '^/') ./biblioteq/.
-chmod -x ./biblioteq/*.so*
+cp $(ldd ./BiblioteQ | awk '{print $3}' | grep -e '^/') ./biblioteq/Lib/.
+chmod -x ./biblioteq/Lib/*.so*
 tar -cv -f BiblioteQ-2023.01.01.tar ./biblioteq
 make distclean
 rm -fr ./biblioteq
