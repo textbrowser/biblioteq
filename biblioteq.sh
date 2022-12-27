@@ -9,7 +9,12 @@ export QT_X11_NO_MITSHM=1
 if [ -r ./BiblioteQ ] && [ -x ./BiblioteQ ]
 then
     echo "Launching a local BiblioteQ."
-    export LD_LIBRARY_PATH=.
+
+    if [ -r ./Lib ]
+    then
+	export LD_LIBRARY_PATH=Lib
+    fi
+
     exec ./BiblioteQ "$@"
     exit $?
 fi
