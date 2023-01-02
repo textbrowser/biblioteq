@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# Alexis Megas.
 
 date=$(date "+%Y%m%d")
 
