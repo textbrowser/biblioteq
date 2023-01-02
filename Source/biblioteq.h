@@ -574,6 +574,7 @@ class biblioteq: public QMainWindow
   void slotRefreshCustomQuery(void);
   void slotReloadBiblioteqConf(void);
   void slotRemoveMember(void);
+  void slotRenameFavoriteQuery(void);
   void slotRequest(void);
   void slotReserveCopy(void);
   void slotReset(void);

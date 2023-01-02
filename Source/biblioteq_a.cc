@@ -630,6 +630,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotLoadFavorite(void)));
   connect(cq.refresh_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotRefreshCustomQuery(void)));
+  connect(cq.rename_favorite, SIGNAL(clicked(void)), this,
+	  SLOT(slotRenameFavoriteQuery(void)));
   connect(cq.save, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveCustomQuery(void)));
   connect(pass.okButton, SIGNAL(clicked(void)), this,

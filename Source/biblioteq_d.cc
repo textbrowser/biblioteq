@@ -423,29 +423,60 @@ void biblioteq::slotPrintIconsView(void)
   QApplication::processEvents();
 }
 
+void biblioteq::slotRenameFavoriteQuery(void)
+{
+  if(cq.favorites->currentText() == tr("(Empty)"))
+    return;
+
+  QString name("");
+  auto ok = true;
+
+  name = QInputDialog::getText(m_customquery_diag,
+			       tr("BiblioteQ: Rename Custom Query Favorite"),
+			       tr("Query Name"),
+			       QLineEdit::Normal,
+			       cq.favorites->currentText(),
+			       &ok).remove('\n').remove('\r').trimmed();
+
+  if(!ok || name.isEmpty())
+    return;
+
+  QSettings settings;
+  auto value
+    (settings.
+     value(QString("customqueries/%1").arg(cq.favorites->currentText())));
+
+  settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
+  settings.setValue
+    (QString("customqueries/%1").
+     arg(name.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH))),
+     value);
+  populateFavorites();
+}
+
 void biblioteq::slotSaveCustomQuery(void)
 {
   if(cq.query_te->toPlainText().trimmed().isEmpty())
     return;
 
-  QString value("");
+  QString name("");
   auto ok = true;
 
-  value = QInputDialog::getText(m_customquery_diag,
-				tr("BiblioteQ: Custom Query Favorite"),
-				tr("Query Name"),
-				QLineEdit::Normal,
-				"",
-				&ok).remove('\n').remove('\r').trimmed();
+  name = QInputDialog::getText(m_customquery_diag,
+			       tr("BiblioteQ: Custom Query Favorite"),
+			       tr("Query Name"),
+			       QLineEdit::Normal,
+			       "",
+			       &ok).remove('\n').remove('\r').trimmed();
 
-  if(!ok || value.isEmpty())
+  if(!ok || name.isEmpty())
     return;
 
   QSettings settings;
 
   settings.setValue
     (QString("customqueries/%1").
-     arg(value.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH))),
+     arg(name.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH))),
      cq.query_te->toPlainText().trimmed().toUtf8().toBase64());
   populateFavorites();
 }

@@ -155,25 +155,22 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="delete_favorite">
+           <widget class="QPushButton" name="delete_favorite">
             <property name="toolTip">
              <string>Delete Favorite</string>
             </property>
             <property name="text">
-             <string>...</string>
+             <string>Delete</string>
             </property>
-            <property name="icon">
-             <iconset resource="../Icons/icons.qrc">
-              <normaloff>:/32x32/remove.png</normaloff>:/32x32/remove.png</iconset>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="rename_favorite">
+            <property name="toolTip">
+             <string>Delete Favorite</string>
             </property>
-            <property name="iconSize">
-             <size>
-              <width>32</width>
-              <height>32</height>
-             </size>
-            </property>
-            <property name="autoRaise">
-             <bool>true</bool>
+            <property name="text">
+             <string>Rename</string>
             </property>
            </widget>
           </item>
@@ -305,6 +302,7 @@
   <tabstop>refresh_pb</tabstop>
   <tabstop>favorites</tabstop>
   <tabstop>delete_favorite</tabstop>
+  <tabstop>rename_favorite</tabstop>
   <tabstop>query_te</tabstop>
   <tabstop>clear</tabstop>
   <tabstop>execute_pb</tabstop>
