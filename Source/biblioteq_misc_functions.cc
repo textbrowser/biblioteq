@@ -688,7 +688,7 @@ QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 
 QString biblioteq_misc_functions::isbn10to13(const QString &text)
 {
-  if(QString(text).remove('-').length() != 10)
+  if(QString(text).remove('-').trimmed().length() != 10)
     return text;
 
   QList<int> array;
@@ -716,7 +716,9 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
 
 QString biblioteq_misc_functions::isbn13to10(const QString &text)
 {
-  if(QString(text).remove('-').length() != 13)
+  if(!text.trimmed().startsWith("978"))
+    return "";
+  else if(QString(text).remove('-').trimmed().length() != 13)
     return text;
 
   QString z("");
