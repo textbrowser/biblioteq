@@ -3864,7 +3864,13 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   if(id.isbnAvailableCheckBox->isChecked())
     {
       if(!id.id->text().remove('-').trimmed().isEmpty())
-	searchstr.replace("%1", id.id->text().remove('-').trimmed());
+	{
+	  searchstr.replace("%1", id.id->text().remove('-').trimmed());
+
+	  if(id.isbn13->text().remove('-').trimmed().isEmpty())
+	    searchstr.replace
+	      ("%2", biblioteq_misc_functions::isbn10to13(id.id->text()));
+	}
       else
 	searchstr.replace("%1", id.isbn13->text().remove('-').trimmed());
 
@@ -4692,7 +4698,13 @@ void biblioteq_book::slotSRUQuery(void)
   searchstr = hash.value("url_isbn");
 
   if(!id.id->text().remove('-').trimmed().isEmpty())
-    searchstr.replace("%1", id.id->text().remove('-').trimmed());
+    {
+      searchstr.replace("%1", id.id->text().remove('-').trimmed());
+
+      if(id.isbn13->text().remove('-').trimmed().isEmpty())
+	searchstr.replace
+	  ("%2", biblioteq_misc_functions::isbn10to13(id.id->text()));
+    }
   else
     searchstr.replace("%1", id.isbn13->text().remove('-').trimmed());
 
@@ -5002,8 +5014,12 @@ void biblioteq_book::slotZ3950Query(void)
   QString recordSyntax("MARC21");
   QStringList isbns;
 
-  isbns << id.id->text().remove('-').trimmed()
-	<< id.isbn13->text().remove('-').trimmed();
+  isbns << id.id->text().remove('-').trimmed();
+
+  if(id.isbn13->text().remove('-').trimmed().isEmpty())
+    isbns << biblioteq_misc_functions::isbn10to13(id.id->text());
+  else
+    isbns << id.isbn13->text().remove('-').trimmed();
 
   if(isbns.at(0).isEmpty())
     searchstr = QString("@attr 1=7 %1").arg(isbns.at(1));
