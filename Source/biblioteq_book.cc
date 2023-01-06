@@ -2163,13 +2163,12 @@ void biblioteq_book::slotConvertISBN10to13(void)
 
 void biblioteq_book::slotConvertISBN13to10(void)
 {
-  if(!(id.isbn13->text().remove('-').trimmed().startsWith("978") ||
-       id.isbn13->text().remove('-').trimmed().startsWith("979")))
+  if(!id.isbn13->text().remove('-').trimmed().startsWith("978"))
     {
       QMessageBox::critical
 	(this,
 	 tr("BiblioteQ: User Error"),
-	 tr("The ISBN-13 must begin with 978 or 979."));
+	 tr("The ISBN-13 must begin with 978."));
       QApplication::processEvents();
       return;
     }
@@ -2788,20 +2787,19 @@ void biblioteq_book::slotGo(void)
       if(id.isbnAvailableCheckBox->isChecked())
 	{
 	  if(id.isbn13->text().remove('-').length() == 13 &&
-	     (id.isbn13->text().startsWith("978") ||
-	      id.isbn13->text().startsWith("979")))
+	     id.isbn13->text().startsWith("978"))
 	    slotConvertISBN13to10();
 	}
       else
 	id.isbn13->clear();
 
       if(id.isbnAvailableCheckBox->isChecked())
-	if(id.id->text().remove('-').length() != 10 ||
-	   id.isbn13->text().remove('-').length() != 13)
+	if(!(id.id->text().remove('-').length() == 10 ||
+	     id.isbn13->text().remove('-').length() == 13))
 	  {
 	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				  tr("Please complete both the "
-				     "ISBN-10 and ISBN-13 fields."));
+				  tr("Please complete the ISBN-10 or "
+				     "the ISBN-13 field."));
 	    QApplication::processEvents();
 
 	    if(id.id->text().remove('-').length() != 10)
