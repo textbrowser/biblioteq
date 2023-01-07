@@ -537,3 +537,4 @@
 295. Create unique myoid values on SQLite merge. (TBD)
 296. Do not disconnect the current database if a future database does not
      have a proper driver. (Done)
+297. Should databases be listed if drivers are not available? (TBD)
