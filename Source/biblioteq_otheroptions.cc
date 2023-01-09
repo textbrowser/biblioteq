@@ -338,50 +338,19 @@ void biblioteq_otheroptions::prepareSettings(void)
     {
       auto str(list2.at(i).trimmed());
 
-      if(!(str == "MM/dd/yyyy" ||
-	   str == "MM/dd" ||
-	   str == "MM/yyyy" ||
-	   str == "MM" ||
-	   str == "dd/MM/yyyy" ||
-	   str == "yyyy" ||
-	   str == "yyyy/MM/dd"))
+      if(str.isEmpty())
 	str = "MM/dd/yyyy";
 
-      auto comboBox = new QComboBox();
       auto item = new QTableWidgetItem(list1.at(i));
 
-      comboBox->addItems(QStringList() << "MM/dd/yyyy"
-			               << "MM/dd"
-			               << "MM/yyyy"
-			               << "MM"
-			               << "dd/MM/yyyy"
-			               << "yyyy"
-			               << "yyyy/MM/dd");
-
-      if(comboBox->findText(str) >= 0)
-	comboBox->setCurrentIndex(comboBox->findText(str));
-      else
-	comboBox->setCurrentIndex(0);
-
-      comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
-      comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-      auto layout = new QHBoxLayout();
-      auto spacer1 = new QSpacerItem
-	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-      auto spacer2 = new QSpacerItem
-	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-      auto widget = new QWidget();
-
-      widget->setLayout(layout);
-      layout->addSpacerItem(spacer1);
-      layout->addWidget(comboBox);
-      layout->addSpacerItem(spacer2);
-      layout->setContentsMargins(0, 0, 0, 0);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setCellWidget(i, PUBLICATION_DATE_FORMAT, widget);
       m_ui.publication_date->setItem(i, ITEM_TYPE, item);
+      item = new QTableWidgetItem(str);
+      item->setData(Qt::UserRole, list3.at(i));
+      item->setFlags
+	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.publication_date->setItem(i, PUBLICATION_DATE_FORMAT, item);
     }
 
   m_ui.publication_date->resizeColumnToContents(ITEM_TYPE);
@@ -492,17 +461,11 @@ void biblioteq_otheroptions::slotSave(void)
   for(int i = 0; i < list.size(); i++)
     {
       QString value("MM/dd/yyyy");
-      auto widget = m_ui.publication_date->cellWidget
-	(i, PUBLICATION_DATE_FORMAT);
+      auto item = m_ui.publication_date->item(i, PUBLICATION_DATE_FORMAT);
       const auto &key(list.at(i));
 
-      if(widget)
-	{
-	  auto comboBox = widget->findChild<QComboBox *> ();
-
-	  if(comboBox)
-	    value = comboBox->currentText();
-	}
+      if(item)
+	value = item->text().trimmed();
 
       settings.setValue(key, value);
     }
