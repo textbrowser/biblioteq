@@ -146,7 +146,7 @@
             <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>Please note that the publication date formats are applied to item details and the main window. Please review Qt documentation for proper formats.</string>
+               <string>Please note that the publication date formats are applied to item details and the main window for the specific categories. Please review Qt documentation for proper formats.</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
