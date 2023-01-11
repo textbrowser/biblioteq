@@ -362,6 +362,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		      if(!date.isValid())
 			str = "01/01/2000";
+		      else
+			str = date.toString("MM/dd/yyyy");
 		    }
 		  else if(m_mappings.value(i).first == "price")
 		    {
