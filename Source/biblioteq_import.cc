@@ -1253,6 +1253,14 @@ void biblioteq_import::slotTemplates(int index)
 	  {
 	    slotAddRow();
 
+	    if(list.at(i) == "id" || list.at(i) == "isbn13")
+	      {
+		auto item = m_ui.rows->item(i, Columns::SUBSTITUTE_VALUE);
+
+		if(item)
+		  item->setText("");
+	      }
+
 	    auto widget = m_ui.rows->cellWidget
 	      (i, Columns::BIBLIOTEQ_TABLE_FIELD_NAME);
 
