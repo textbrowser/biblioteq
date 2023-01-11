@@ -348,6 +348,21 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			  query.exec();
 			}
 		    }
+		  else if(m_mappings.value(i).first == "pdate")
+		    {
+		      auto date(QDate::fromString(str, "MM/dd/yyyy"));
+
+		      if(!date.isValid())
+			{
+			  date = QDate::fromString(str, "yyyy");
+
+			  if(date.isValid())
+			    str = "01/01/" + date.toString("yyyy");
+			}
+
+		      if(!date.isValid())
+			str = "01/01/2000";
+		    }
 		  else if(m_mappings.value(i).first == "price")
 		    {
 		      QLocale locale;
