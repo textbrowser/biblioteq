@@ -526,6 +526,9 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotExportMissing(void)
 {
+  if(m_ui.discover_table->rowCount() == 0)
+    return;
+
   QFileDialog dialog(this);
 
   dialog.setAcceptMode(QFileDialog::AcceptSave);
