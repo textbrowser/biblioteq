@@ -100,7 +100,7 @@ $(function() {
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define _BIBLIOTEQ_H_</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define BIBLIOTEQ_GUEST_ACCOUNT &quot;xbook_guest&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define BIBLIOTEQ_VERSION &quot;2022.12.25&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define BIBLIOTEQ_VERSION &quot;2023.01.16&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;biblioteq_batch_activities.h&quot;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;biblioteq_book.h&quot;</span></div>
@@ -645,62 +645,63 @@ $(function() {
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;  <span class="keywordtype">void</span> slotRefreshCustomQuery(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;  <span class="keywordtype">void</span> slotReloadBiblioteqConf(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;  <span class="keywordtype">void</span> slotRemoveMember(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;  <span class="keywordtype">void</span> slotRequest(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;  <span class="keywordtype">void</span> slotReserveCopy(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;  <span class="keywordtype">void</span> slotReset(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;  <span class="keywordtype">void</span> slotResetAllSearch(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;  <span class="keywordtype">void</span> slotResetErrorLog(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;  <span class="keywordtype">void</span> slotResetLoginDialog(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;  <span class="keywordtype">void</span> slotResizeColumnsAfterSort(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;  <span class="keywordtype">void</span> slotRoleChanged(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;  <span class="keywordtype">void</span> slotSaveAdministrators(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;  <span class="keywordtype">void</span> slotSaveConfig(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;  <span class="keywordtype">void</span> slotSaveCustomQuery(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;  <span class="keywordtype">void</span> slotSaveDnt(<span class="keywordtype">bool</span> state);</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;  <span class="keywordtype">void</span> slotSaveGeneralSearchCaseSensitivity(<span class="keywordtype">bool</span> state);</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;  <span class="keywordtype">void</span> slotSavePassword(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;  <span class="keywordtype">void</span> slotSaveUser(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;  <span class="keywordtype">void</span> slotSceneSelectionChanged(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;  <span class="keywordtype">void</span> slotSearch(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;  <span class="keywordtype">void</span> slotSearchBasic(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;  <span class="keywordtype">void</span> slotSectionResized(<span class="keywordtype">int</span> logicalIndex, <span class="keywordtype">int</span> oldSize, <span class="keywordtype">int</span> newSize);</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;  <span class="keywordtype">void</span> slotSelectDatabaseFile(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;  <span class="keywordtype">void</span> slotSetColumns(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;  <span class="keywordtype">void</span> slotSetFonts(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;  <span class="keywordtype">void</span> slotSetMembershipFees(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;  <span class="keywordtype">void</span> slotShowAdminDialog(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;  <span class="keywordtype">void</span> slotShowBatchActivitiesBrowser(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;  <span class="keywordtype">void</span> slotShowChangePassword(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;  <span class="keywordtype">void</span> slotShowConnectionDB(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;  <span class="keywordtype">void</span> slotShowCustomQuery(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;  <span class="keywordtype">void</span> slotShowDbEnumerations(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;  <span class="keywordtype">void</span> slotShowDocumentation(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;  <span class="keywordtype">void</span> slotShowErrorDialog(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;  <span class="keywordtype">void</span> slotShowFiles(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;  <span class="keywordtype">void</span> slotShowGrid(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;  <span class="keywordtype">void</span> slotShowHistory(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;  <span class="keywordtype">void</span> slotShowImport(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;  <span class="keywordtype">void</span> slotShowMembersBrowser(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;  <span class="keywordtype">void</span> slotShowMenu(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;  <span class="keywordtype">void</span> slotShowNext(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;  <span class="keywordtype">void</span> slotShowOtherOptions(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;  <span class="keywordtype">void</span> slotShowPassword(<span class="keywordtype">bool</span> state);</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;  <span class="keywordtype">void</span> slotShowPrev(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;  <span class="keywordtype">void</span> slotShowReleaseNotes(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;  <span class="keywordtype">void</span> slotSqliteFileSelected(<span class="keywordtype">bool</span> state);</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;  <span class="keywordtype">void</span> slotTearOffMenus(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;  <span class="keywordtype">void</span> slotUpdateIndicesAfterSort(<span class="keywordtype">int</span> column);</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;  <span class="keywordtype">void</span> slotUpgradeSqliteScheme(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;  <span class="keywordtype">void</span> slotVacuum(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;  <span class="keywordtype">void</span> slotVideoGameSearch(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;  <span class="keywordtype">void</span> slotViewDetails(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;  <span class="keywordtype">void</span> slotViewFullOrNormalScreen(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160; </div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160; signals:</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;  <span class="keywordtype">void</span> fontChanged(<span class="keyword">const</span> QFont &amp;font);</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;};</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160; </div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;  <span class="keywordtype">void</span> slotRenameFavoriteQuery(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;  <span class="keywordtype">void</span> slotRequest(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;  <span class="keywordtype">void</span> slotReserveCopy(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;  <span class="keywordtype">void</span> slotReset(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;  <span class="keywordtype">void</span> slotResetAllSearch(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;  <span class="keywordtype">void</span> slotResetErrorLog(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;  <span class="keywordtype">void</span> slotResetLoginDialog(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;  <span class="keywordtype">void</span> slotResizeColumnsAfterSort(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;  <span class="keywordtype">void</span> slotRoleChanged(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;  <span class="keywordtype">void</span> slotSaveAdministrators(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;  <span class="keywordtype">void</span> slotSaveConfig(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;  <span class="keywordtype">void</span> slotSaveCustomQuery(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;  <span class="keywordtype">void</span> slotSaveDnt(<span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;  <span class="keywordtype">void</span> slotSaveGeneralSearchCaseSensitivity(<span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;  <span class="keywordtype">void</span> slotSavePassword(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;  <span class="keywordtype">void</span> slotSaveUser(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;  <span class="keywordtype">void</span> slotSceneSelectionChanged(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;  <span class="keywordtype">void</span> slotSearch(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;  <span class="keywordtype">void</span> slotSearchBasic(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;  <span class="keywordtype">void</span> slotSectionResized(<span class="keywordtype">int</span> logicalIndex, <span class="keywordtype">int</span> oldSize, <span class="keywordtype">int</span> newSize);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;  <span class="keywordtype">void</span> slotSelectDatabaseFile(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;  <span class="keywordtype">void</span> slotSetColumns(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;  <span class="keywordtype">void</span> slotSetFonts(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;  <span class="keywordtype">void</span> slotSetMembershipFees(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;  <span class="keywordtype">void</span> slotShowAdminDialog(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;  <span class="keywordtype">void</span> slotShowBatchActivitiesBrowser(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;  <span class="keywordtype">void</span> slotShowChangePassword(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;  <span class="keywordtype">void</span> slotShowConnectionDB(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;  <span class="keywordtype">void</span> slotShowCustomQuery(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;  <span class="keywordtype">void</span> slotShowDbEnumerations(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;  <span class="keywordtype">void</span> slotShowDocumentation(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;  <span class="keywordtype">void</span> slotShowErrorDialog(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;  <span class="keywordtype">void</span> slotShowFiles(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;  <span class="keywordtype">void</span> slotShowGrid(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;  <span class="keywordtype">void</span> slotShowHistory(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;  <span class="keywordtype">void</span> slotShowImport(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;  <span class="keywordtype">void</span> slotShowMembersBrowser(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;  <span class="keywordtype">void</span> slotShowMenu(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;  <span class="keywordtype">void</span> slotShowNext(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;  <span class="keywordtype">void</span> slotShowOtherOptions(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;  <span class="keywordtype">void</span> slotShowPassword(<span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;  <span class="keywordtype">void</span> slotShowPrev(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;  <span class="keywordtype">void</span> slotShowReleaseNotes(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;  <span class="keywordtype">void</span> slotSqliteFileSelected(<span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;  <span class="keywordtype">void</span> slotTearOffMenus(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;  <span class="keywordtype">void</span> slotUpdateIndicesAfterSort(<span class="keywordtype">int</span> column);</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;  <span class="keywordtype">void</span> slotUpgradeSqliteScheme(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;  <span class="keywordtype">void</span> slotVacuum(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;  <span class="keywordtype">void</span> slotVideoGameSearch(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;  <span class="keywordtype">void</span> slotViewDetails(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;  <span class="keywordtype">void</span> slotViewFullOrNormalScreen(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160; </div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160; signals:</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;  <span class="keywordtype">void</span> fontChanged(<span class="keyword">const</span> QFont &amp;font);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;};</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160; </div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassbiblioteq__batch__activities_html"><div class="ttname"><a href="classbiblioteq__batch__activities.html">biblioteq_batch_activities</a></div><div class="ttdef"><b>Definition:</b> biblioteq_batch_activities.h:44</div></div>
 <div class="ttc" id="aclassbiblioteq__book_html"><div class="ttname"><a href="classbiblioteq__book.html">biblioteq_book</a></div><div class="ttdef"><b>Definition:</b> biblioteq_book.h:43</div></div>
 <div class="ttc" id="aclassbiblioteq__cd_html"><div class="ttname"><a href="classbiblioteq__cd.html">biblioteq_cd</a></div><div class="ttdef"><b>Definition:</b> biblioteq_cd.h:36</div></div>
