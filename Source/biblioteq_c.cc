@@ -774,7 +774,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    {
 		      auto date(QDate::fromString(m_searchQuery->value(j).
 						  toString().trimmed(),
-						  "MM/dd/yyyy"));
+						  s_databaseDateFormat));
 
 		      if(dateFormat.isEmpty())
 			str = date.toString(Qt::ISODate);
@@ -858,7 +858,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		  auto duedate
 		    (QDateTime::
 		     fromString(m_searchQuery->value(j).toString().trimmed(),
-				"MM/dd/yyyy"));
+				s_databaseDateFormat));
 
 		  if(duedate <= QDateTime::currentDateTime())
 		    item->setBackground(QColor(255, 114, 118)); // Red light.
@@ -4118,10 +4118,12 @@ void biblioteq::slotModifyBorrower(void)
 	      (var.toString().trimmed());
 	  else if(fieldname == "membersince")
 	    userinfo_diag->m_userinfo.membersince->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 s_databaseDateFormat));
 	  else if(fieldname == "dob")
 	    userinfo_diag->m_userinfo.dob->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 s_databaseDateFormat));
 	  else if(fieldname == "sex")
 	    {
 	      if(userinfo_diag->m_userinfo.sex->
@@ -4165,7 +4167,8 @@ void biblioteq::slotModifyBorrower(void)
 	    userinfo_diag->m_userinfo.email->setText(var.toString().trimmed());
 	  else if(fieldname == "expiration_date")
 	    userinfo_diag->m_userinfo.expirationdate->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 s_databaseDateFormat));
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
 	  else if(fieldname == "comments")
@@ -4187,7 +4190,7 @@ void biblioteq::slotModifyBorrower(void)
 	     fieldname.contains("date") ||
 	     fieldname.contains("membersince"))
 	    userinfo_diag->m_memberProperties[fieldname] =
-	      QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy").
+	      QDate::fromString(var.toString().trimmed(), s_databaseDateFormat).
 	      toString(Qt::ISODate);
 	  else if(fieldname == "membership_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
@@ -4549,8 +4552,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
 		 record.fieldName(j).contains("membersince"))
 		{
 		  auto date(QDate::fromString(query.value(j).toString().
-					       trimmed(),
-					       "MM/dd/yyyy"));
+					      trimmed(),
+					      s_databaseDateFormat));
 
 		  str = date.toString(Qt::ISODate);
 		}
@@ -5130,7 +5133,7 @@ void biblioteq::slotRequest(void)
 			    "VALUES (?, ?, ?, ?)");
 	      query.addBindValue(oid);
 	      query.addBindValue(dbUserName());
-	      query.addBindValue(now.toString("MM/dd/yyyy"));
+	      query.addBindValue(now.toString(s_databaseDateFormat));
 	      query.addBindValue(itemType);
 	    }
 	  else
@@ -5156,7 +5159,7 @@ void biblioteq::slotRequest(void)
 				"WHERE copyid = ? AND "
 				"item_oid = ? AND "
 				"memberid = ?");
-		  query.addBindValue(now.toString("MM/dd/yyyy"));
+		  query.addBindValue(now.toString(s_databaseDateFormat));
 		  query.addBindValue(copyid);
 		  query.addBindValue(oid);
 		  query.addBindValue(memberid);
@@ -5786,7 +5789,7 @@ void biblioteq::slotSaveUser(void)
     }
 
   checksum.append(userinfo_diag->m_userinfo.dob->date().
-		  toString("MM/dd/yyyy"));
+		  toString(s_databaseDateFormat));
   checksum.append(userinfo_diag->m_userinfo.sex->currentText());
   checksum.append(userinfo_diag->m_userinfo.firstName->text());
   checksum.append(userinfo_diag->m_userinfo.middle->text());
@@ -5858,9 +5861,9 @@ void biblioteq::slotSaveUser(void)
 		    "?, ?, ?, ?, ?, ?)");
       query.bindValue(0, userinfo_diag->m_userinfo.memberid->text().trimmed());
       query.bindValue(1, userinfo_diag->m_userinfo.membersince->
-		      date().toString("MM/dd/yyyy"));
+		      date().toString(s_databaseDateFormat));
       query.bindValue(2, userinfo_diag->m_userinfo.dob->date().
-		      toString("MM/dd/yyyy"));
+		      toString(s_databaseDateFormat));
       query.bindValue(3, userinfo_diag->m_userinfo.sex->currentText());
       query.bindValue(4, userinfo_diag->m_userinfo.firstName->text().trimmed());
       query.bindValue(5, userinfo_diag->m_userinfo.middle->text().trimmed());
@@ -5872,7 +5875,7 @@ void biblioteq::slotSaveUser(void)
       query.bindValue(11, userinfo_diag->m_userinfo.zip->text());
       query.bindValue(12, userinfo_diag->m_userinfo.email->text().trimmed());
       query.bindValue(13, userinfo_diag->m_userinfo.expirationdate->
-		      date().toString("MM/dd/yyyy"));
+		      date().toString(s_databaseDateFormat));
       query.bindValue(14, userinfo_diag->m_userinfo.overduefees->value());
       query.bindValue
 	(15, userinfo_diag->m_userinfo.comments->toPlainText().trimmed());
@@ -5910,9 +5913,9 @@ void biblioteq::slotSaveUser(void)
 		    "membership_fees = ? "
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
-		      toString("MM/dd/yyyy"));
+		      toString(s_databaseDateFormat));
       query.bindValue(1, userinfo_diag->m_userinfo.dob->date().
-		      toString("MM/dd/yyyy"));
+		      toString(s_databaseDateFormat));
       query.bindValue(2, userinfo_diag->m_userinfo.sex->currentText());
       query.bindValue
 	(3, userinfo_diag->m_userinfo.firstName->text().trimmed());
@@ -5925,7 +5928,7 @@ void biblioteq::slotSaveUser(void)
       query.bindValue(10, userinfo_diag->m_userinfo.zip->text());
       query.bindValue(11, userinfo_diag->m_userinfo.email->text().trimmed());
       query.bindValue(12, userinfo_diag->m_userinfo.expirationdate->
-		      date().toString("MM/dd/yyyy"));
+		      date().toString(s_databaseDateFormat));
       query.bindValue(13, userinfo_diag->m_userinfo.overduefees->value());
       query.bindValue(14, userinfo_diag->m_userinfo.comments->toPlainText().
 		      trimmed());
@@ -6619,8 +6622,8 @@ void biblioteq::slotShowHistory(void)
 	      if(record.fieldName(j).contains("date"))
 		{
 		  auto date(QDate::fromString(query.value(j).toString().
-					       trimmed(),
-					       "MM/dd/yyyy"));
+					      trimmed(),
+					      s_databaseDateFormat));
 
 		  str = date.toString(Qt::ISODate);
 		}

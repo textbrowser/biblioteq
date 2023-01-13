@@ -305,7 +305,7 @@ void biblioteq_videogame::insert(void)
   vg.queryButton->setEnabled(true);
   vg.okButton->setText(tr("&Save"));
   vg.release_date->setDate(QDate::fromString("01/01/2000",
-					     "MM/dd/yyyy"));
+					     biblioteq::s_databaseDateFormat));
   vg.price->setMinimum(0.00);
   vg.price->setValue(0.00);
   vg.quantity->setMinimum(1);
@@ -483,7 +483,8 @@ void biblioteq_videogame::modify(const int state)
 	       var.toString().trimmed());
 	  else if(fieldname == "rdate")
 	    vg.release_date->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "vgrating")
 	    {
 	      if(vg.rating->findText(var.toString().trimmed()) > -1)
@@ -917,7 +918,8 @@ void biblioteq_videogame::slotGo(void)
       query.bindValue(1, vg.title->text());
       query.bindValue(2, vg.rating->currentText().trimmed());
       query.bindValue(3, vg.developer->toPlainText().trimmed());
-      query.bindValue(4, vg.release_date->date().toString("MM/dd/yyyy"));
+      query.bindValue
+	(4, vg.release_date->date().toString(biblioteq::s_databaseDateFormat));
       query.bindValue(5, vg.publisher->toPlainText().trimmed());
       query.bindValue(6, vg.genre->toPlainText().trimmed());
       query.bindValue(7, vg.price->value());
@@ -1591,7 +1593,8 @@ void biblioteq_videogame::slotReset(void)
 	    }
 	  else
 	    vg.release_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
 
 	  vg.release_date->setFocus();
 	}
@@ -1709,8 +1712,8 @@ void biblioteq_videogame::slotReset(void)
 	  vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	}
       else
-	vg.release_date->setDate(QDate::fromString("01/01/2000",
-						   "MM/dd/yyyy"));
+	vg.release_date->setDate
+	  (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
 
       vg.quantity->setValue(vg.quantity->minimum());
       vg.location->setCurrentIndex(0);

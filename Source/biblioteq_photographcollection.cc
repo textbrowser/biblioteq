@@ -378,8 +378,8 @@ void biblioteq_photographcollection::insert(void)
   pc.okButton->setText(tr("&Save"));
   pc.addItemButton->setEnabled(false);
   pc.importItems->setEnabled(false);
-  pc.publication_date->setDate(QDate::fromString("01/01/2000",
-						 "MM/dd/yyyy"));
+  pc.publication_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   pc.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (pc.id_collection, m_requiredHighlightColor);
@@ -946,8 +946,8 @@ void biblioteq_photographcollection::slotAddItem(void)
   photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
   photo.title_item->setText("N/A");
   photo.creators_item->setPlainText("N/A");
-  photo.publication_date->setDate(QDate::fromString("01/01/2000",
-						    "MM/dd/yyyy"));
+  photo.publication_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   photo.quantity->setValue(1);
   photo.medium_item->setText("N/A");
   photo.reproduction_number_item->setPlainText("N/A");
@@ -1941,7 +1941,9 @@ void biblioteq_photographcollection::slotInsertItem(void)
   query.bindValue(1, m_oid);
   query.bindValue(2, photo.title_item->text());
   query.bindValue(3, photo.creators_item->toPlainText());
-  query.bindValue(4, photo.publication_date->date().toString("MM/dd/yyyy"));
+  query.bindValue
+    (4, photo.publication_date->date().toString(biblioteq::
+						s_databaseDateFormat));
   query.bindValue(5, photo.quantity->value());
   query.bindValue(6, photo.medium_item->text());
   query.bindValue(7, photo.reproduction_number_item->toPlainText());
@@ -2324,7 +2326,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
       pc.title_item->clear();
       pc.creators_item->clear();
       pc.publication_date->setDate
-	(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	(QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
       pc.quantity->setValue(1);
       pc.medium_item->clear();
       pc.reproduction_number_item->clear();
@@ -2404,10 +2406,10 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		  {
 		    pc.publication_date->setDate
 		      (QDate::fromString(var.toString().trimmed(),
-					 "MM/dd/yyyy"));
+					 biblioteq::s_databaseDateFormat));
 		    photo.publication_date->setDate
 		      (QDate::fromString(var.toString().trimmed(),
-					 "MM/dd/yyyy"));
+					 biblioteq::s_databaseDateFormat));
 		  }
 		else if(fieldname == "quantity")
 		  {
@@ -2609,7 +2611,9 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   query.bindValue(0, photo.id_item->text());
   query.bindValue(1, photo.title_item->text());
   query.bindValue(2, photo.creators_item->toPlainText());
-  query.bindValue(3, photo.publication_date->date().toString("MM/dd/yyyy"));
+  query.bindValue
+    (3, photo.publication_date->date().toString(biblioteq::
+						s_databaseDateFormat));
   query.bindValue(4, photo.quantity->value());
   query.bindValue(5, photo.medium_item->text());
   query.bindValue(6, photo.reproduction_number_item->toPlainText());

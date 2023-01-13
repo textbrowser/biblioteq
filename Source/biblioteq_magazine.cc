@@ -544,8 +544,8 @@ void biblioteq_magazine::insert(void)
   ma.sruQueryButton->setVisible(true);
   ma.z3950QueryButton->setVisible(true);
   ma.okButton->setText(tr("&Save"));
-  ma.publication_date->setDate(QDate::fromString("01/01/2000",
-						 "MM/dd/yyyy"));
+  ma.publication_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   ma.id->setCursorPosition(0);
   ma.price->setMinimum(0.00);
   ma.price->setValue(0.00);
@@ -768,7 +768,8 @@ void biblioteq_magazine::modify(const int state)
 	    }
 	  else if(fieldname == "pdate")
 	    ma.publication_date->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "price")
 	    ma.price->setValue(var.toDouble());
 	  else if(fieldname == "place")
@@ -1148,7 +1149,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 		ma.publication_date->setDate
 		  (QDate::fromString("01/01/" + date,
-				     "MM/dd/yyyy"));
+				     biblioteq::s_databaseDateFormat));
 		ma.publication_date->setStyleSheet
 		  ("background-color: rgb(162, 205, 90)");
 
@@ -1586,13 +1587,13 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	      (QDate::fromString
 	       ("01/01/" +
 		str.mid(str.indexOf("$c") + 4, 4),
-		"MM/dd/yyyy"));
+		biblioteq::s_databaseDateFormat));
 	  else if(str.indexOf("$c") > -1)
 	    ma.publication_date->setDate
 	      (QDate::fromString
 	       ("01/01/" +
 		str.mid(str.indexOf("$c") + 3, 4),
-		"MM/dd/yyyy"));
+		biblioteq::s_databaseDateFormat));
 
 	  ma.publication_date->setStyleSheet
 	    ("background-color: rgb(162, 205, 90)");
@@ -2427,7 +2428,9 @@ void biblioteq_magazine::slotGo(void)
 #endif
 
       query.bindValue(1, ma.title->text());
-      query.bindValue(2, ma.publication_date->date().toString("MM/dd/yyyy"));
+      query.bindValue
+	(2, ma.publication_date->date().toString(biblioteq::
+						 s_databaseDateFormat));
       query.bindValue(3, ma.publisher->toPlainText());
       query.bindValue(4, ma.category->toPlainText().trimmed());
       query.bindValue(5, ma.price->value());
@@ -3321,7 +3324,8 @@ void biblioteq_magazine::slotReset(void)
 	    }
 	  else
 	    ma.publication_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
 
 	  ma.publication_date->setFocus();
 	  ma.publication_date->setStyleSheet(m_dt_orig_ss);
@@ -3453,7 +3457,7 @@ void biblioteq_magazine::slotReset(void)
 	}
       else
 	ma.publication_date->setDate
-	  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	  (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
 
       ma.language->setCurrentIndex(0);
       ma.monetary_units->setCurrentIndex(0);
