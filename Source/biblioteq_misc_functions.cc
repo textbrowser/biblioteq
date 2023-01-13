@@ -1176,7 +1176,7 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
     while(query.next())
       {
 	date = QDate::fromString(query.value(4).toString().trimmed(),
-				 "MM/dd/yyyy");
+				 biblioteq::s_databaseDateFormat);
 	str = QString(QObject::tr("#")) +
 	  QString::number(list.size() + 1) + "<br>";
 	str += QObject::tr("Barcode: ") +
@@ -1327,7 +1327,8 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
 	    {
 	      auto date
 		(QDate::
-		 fromString(query.value(0).toString().trimmed(), "MM/dd/yyyy"));
+		 fromString(query.value(0).toString().trimmed(),
+			    biblioteq::s_databaseDateFormat));
 
 	      if(date.daysTo(QDate::currentDate()) > 0)
 		expired = true;
