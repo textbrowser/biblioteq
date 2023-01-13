@@ -25,6 +25,7 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include "biblioteq.h"
 #include "biblioteq_hyperlinked_text_edit.h"
 #include "biblioteq_image_drop_site.h"
 #include "biblioteq_item.h"
@@ -94,7 +95,8 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	  trimmed();
       else if(classname == "QDateEdit")
 	newdata[objectname] =
-	  (qobject_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
+	  (qobject_cast<QDateEdit *> (widget))->date().toString
+	  (biblioteq::s_databaseDateFormat);
       else if(classname == "QDoubleSpinBox")
 	newdata[objectname] =
 	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();
@@ -258,7 +260,8 @@ void biblioteq_item::storeData(QMainWindow *window)
 	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
       else if(classname == "QDateEdit")
 	m_widgetValues[objectname] =
-	  (qobject_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
+	  (qobject_cast<QDateEdit *> (widget))->date().toString
+	  (biblioteq::s_databaseDateFormat);
       else if(classname == "QDoubleSpinBox")
 	m_widgetValues[objectname] =
 	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();

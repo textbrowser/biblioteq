@@ -128,7 +128,7 @@ QString biblioteq_otheroptions::publicationDateFormat(const QString &it) const
   format = format.trimmed();
 
   if(format.isEmpty())
-    return "MM/dd/yyyy";
+    return biblioteq::s_databaseDateFormat;
   else
     return format;
 }
@@ -345,7 +345,7 @@ void biblioteq_otheroptions::prepareSettings(void)
       auto str(list2.at(i).trimmed());
 
       if(str.isEmpty())
-	str = "MM/dd/yyyy";
+	str = biblioteq::s_databaseDateFormat;
 
       auto item = new QTableWidgetItem(list1.at(i));
 
@@ -466,7 +466,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      QString value("MM/dd/yyyy");
+      QString value(biblioteq::s_databaseDateFormat);
       auto item = m_ui.publication_date->item(i, PUBLICATION_DATE_FORMAT);
       const auto &key(list.at(i));
 

@@ -423,7 +423,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		m_place = place.trimmed();
 		m_publicationDate = QDate::fromString
-		  ("01/01/" + date.mid(0, 4), "MM/dd/yyyy");
+		  ("01/01/" + date.mid(0, 4), biblioteq::s_databaseDateFormat);
 
 		if(publisher.endsWith(","))
 		  publisher = publisher.mid
@@ -901,12 +901,12 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    m_publicationDate = QDate::fromString
 	      ("01/01/" +
 	       str.mid(str.indexOf("$c") + 4, 4),
-	       "MM/dd/yyyy");
+	       biblioteq::s_databaseDateFormat);
 	  else if(str.indexOf("$c") > -1)
 	    m_publicationDate = QDate::fromString
 	      ("01/01/" +
 	       str.mid(str.indexOf("$c") + 3, 4),
-	       "MM/dd/yyyy");
+	       biblioteq::s_databaseDateFormat);
 
 	  if(str.contains("$b"))
 	    str = str.mid(str.indexOf("$b") + 2).trimmed();
@@ -1280,12 +1280,12 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	    m_publicationDate = QDate::fromString
 	      ("01/01/" +
 	       str.mid(str.indexOf("$d") + 4, 4),
-	       "MM/dd/yyyy");
+	       biblioteq::s_databaseDateFormat);
 	  else if(str.indexOf("$d") > -1)
 	    m_publicationDate = QDate::fromString
 	      ("01/01/" +
 	       str.mid(str.indexOf("$d") + 3, 4),
-	       "MM/dd/yyyy");
+	       biblioteq::s_databaseDateFormat);
 
 	  if(str.contains("$c"))
 	    str = str.mid(str.indexOf("$c") + 2).trimmed();
@@ -1528,12 +1528,12 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	    m_publicationDate = QDate::fromString
 	      ("01/01/" +
 	       str.mid(str.indexOf("$d") + 4, 4),
-	       "MM/dd/yyyy");
+	       biblioteq::s_databaseDateFormat);
 	  else if(str.indexOf("$d") > -1)
 	    m_publicationDate = QDate::fromString
 	      ("01/01/" +
 	       str.mid(str.indexOf("$d") + 3, 4),
-	       "MM/dd/yyyy");
+	       biblioteq::s_databaseDateFormat);
 
 	  if(str.contains("$c"))
 	    str = str.mid(str.indexOf("$c") + 2).trimmed();

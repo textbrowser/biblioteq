@@ -622,10 +622,10 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   QString errorstr = "";
   QString memberid = "";
   auto available = false;
-  auto checkedout = now.toString("MM/dd/yyyy");
+  auto checkedout = now.toString(biblioteq::s_databaseDateFormat);
   auto copyrow = m_cb.table->currentRow();
   auto dnt = true;
-  auto duedate = m_cb.dueDate->date().toString("MM/dd/yyyy");
+  auto duedate = m_cb.dueDate->date().toString(biblioteq::s_databaseDateFormat);
   auto memberrow = qmain->getBB().table->currentRow();
 
   if(copyrow < 0 || m_cb.table->item(copyrow, BARCODE) == nullptr)

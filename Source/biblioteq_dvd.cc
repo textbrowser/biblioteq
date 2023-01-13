@@ -335,7 +335,8 @@ void biblioteq_dvd::insert(void)
   dvd.showUserButton->setEnabled(false);
   dvd.queryButton->setEnabled(true);
   dvd.okButton->setText(tr("&Save"));
-  dvd.release_date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+  dvd.release_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   dvd.runtime->setTime(QTime(0, 0, 1));
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
   dvd.price->setMinimum(0.00);
@@ -526,7 +527,8 @@ void biblioteq_dvd::modify(const int state)
 	       var.toString().trimmed());
 	  else if(fieldname == "rdate")
 	    dvd.release_date->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "price")
 	    dvd.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
@@ -1045,7 +1047,9 @@ void biblioteq_dvd::slotGo(void)
       query.bindValue(7, dvd.region->currentText().trimmed());
       query.bindValue(8, dvd.aspectratio->currentText().trimmed());
       query.bindValue(9, dvd.title->text());
-      query.bindValue(10, dvd.release_date->date().toString("MM/dd/yyyy"));
+      query.bindValue
+	(10, dvd.release_date->date().toString(biblioteq::
+					       s_databaseDateFormat));
       query.bindValue(11, dvd.studio->toPlainText());
       query.bindValue(12, dvd.category->toPlainText());
       query.bindValue(13, dvd.price->value());
@@ -1778,7 +1782,8 @@ void biblioteq_dvd::slotReset(void)
 	    }
 	  else
 	    dvd.release_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
 
 	  dvd.release_date->setFocus();
 	}
@@ -1893,8 +1898,8 @@ void biblioteq_dvd::slotReset(void)
 	}
       else
 	{
-	  dvd.release_date->setDate(QDate::fromString("01/01/2000",
-						      "MM/dd/yyyy"));
+	  dvd.release_date->setDate
+	    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
 	  dvd.runtime->setTime(QTime(0, 0, 1));
 	}
 
