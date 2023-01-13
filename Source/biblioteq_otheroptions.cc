@@ -94,37 +94,43 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   return QColor(value.remove('&'));
 }
 
-QString biblioteq_otheroptions::publicationDateFormat
-(const QString &it) const
+QString biblioteq_otheroptions::publicationDateFormat(const QString &it) const
 {
   QSettings settings;
+  QString format("");
   auto itemType(it.toLower().trimmed());
 
   if(itemType == "books")
-    return settings.value
+    format = settings.value
       ("otheroptions/book_publication_date_format").toString();
   else if(itemType == "dvds")
-    return settings.value
+    format = settings.value
       ("otheroptions/dvd_publication_date_format").toString();
   else if(itemType == "greyliterature")
-    return settings.value
+    format = settings.value
       ("otheroptions/grey_literature_date_format").toString();
   else if(itemType == "journals")
-    return settings.value
+    format = settings.value
       ("otheroptions/journal_publication_date_format").toString();
   else if(itemType == "magazines")
-    return settings.value
+    format = settings.value
       ("otheroptions/magazine_publication_date_format").toString();
   else if(itemType == "musiccds")
-    return settings.value("otheroptions/cd_publication_date_format").toString();
+    format = settings.value
+      ("otheroptions/cd_publication_date_format").toString();
   else if(itemType == "photographcollections")
-    return settings.value
+    format = settings.value
       ("otheroptions/photograph_publication_date_format").toString();
   else if(itemType == "videogames")
-    return settings.value
+    format = settings.value
       ("otheroptions/videogame_publication_date_format").toString();
-  else
+
+  format = format.trimmed();
+
+  if(format.isEmpty())
     return "MM/dd/yyyy";
+  else
+    return format;
 }
 
 bool biblioteq_otheroptions::showBookReadStatus(void) const
