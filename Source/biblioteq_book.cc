@@ -818,8 +818,8 @@ void biblioteq_book::insert(void)
   id.sruQueryButton->setVisible(true);
   id.z3950QueryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
-  id.publication_date->setDate(QDate::fromString("01/01/2000",
-						 "MM/dd/yyyy"));
+  id.publication_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   id.price->setMinimum(0.00);
   id.price->setValue(0.00);
   id.quantity->setMinimum(1);
@@ -1041,7 +1041,8 @@ void biblioteq_book::modify(const int state)
 				       var.toString().trimmed());
 	  else if(fieldname == "pdate")
 	    id.publication_date->setDate
-	      (QDate::fromString(var.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "edition")
 	    {
 	      if(id.edition->findText(var.toString().trimmed()) > -1)
@@ -1484,7 +1485,8 @@ void biblioteq_book::populateAfterOpenLibrary(void)
   if(!publicationDate.isEmpty())
     {
       id.publication_date->setDate
-	(QDate::fromString("01/01/" + publicationDate, "MM/dd/yyyy"));
+	(QDate::fromString("01/01/" + publicationDate,
+			   biblioteq::s_databaseDateFormat));
       id.publication_date->setStyleSheet
 	(QString("background-color: %1").arg(m_queryHighlightColor.name()));
     }
@@ -3006,7 +3008,9 @@ void biblioteq_book::slotGo(void)
       query.bindValue(1, id.title->text().trimmed());
       query.bindValue(2, id.edition->currentText().trimmed());
       query.bindValue(3, id.author->toPlainText().trimmed());
-      query.bindValue(4, id.publication_date->date().toString("MM/dd/yyyy"));
+      query.bindValue
+	(4,
+	 id.publication_date->date().toString(biblioteq::s_databaseDateFormat));
       query.bindValue(5, id.publisher->toPlainText().trimmed());
       query.bindValue(6, id.category->toPlainText().trimmed());
       query.bindValue(7, id.price->value());
@@ -4364,7 +4368,8 @@ void biblioteq_book::slotReset(void)
 	    }
 	  else
 	    id.publication_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
 
 	  id.publication_date->setFocus();
 	  id.publication_date->setStyleSheet(m_dt_orig_ss);
@@ -4522,7 +4527,8 @@ void biblioteq_book::slotReset(void)
 	}
       else
 	id.publication_date->setDate(QDate::fromString("01/01/2000",
-						       "MM/dd/yyyy"));
+						       biblioteq::
+						       s_databaseDateFormat));
 
       id.quantity->setValue(id.quantity->minimum());
 

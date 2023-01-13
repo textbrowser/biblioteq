@@ -69,6 +69,7 @@ extern "C"
 ** -- Global Variables --
 */
 
+QString biblioteq::s_databaseDateFormat = "MM/dd/yyyy";
 QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = "UNKNOWN";
 QTranslator *biblioteq::s_appTranslator = nullptr;
@@ -2292,7 +2293,7 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.telephoneNumber->clear();
   userinfo_diag->m_userinfo.email->clear();
   userinfo_diag->m_userinfo.expirationdate->setDate
-    (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
+    (QDate::fromString("01/01/3000", s_databaseDateFormat));
   userinfo_diag->m_userinfo.membershipfees->setValue(0.00);
   userinfo_diag->m_userinfo.overduefees->setValue(0.00);
   userinfo_diag->m_userinfo.comments->clear();
@@ -5463,7 +5464,8 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {
-		auto date(QDate::fromString(returnedDate, "MM/dd/yyyy"));
+		auto date
+		  (QDate::fromString(returnedDate, s_databaseDateFormat));
 
 		biblioteq_misc_functions::updateColumn
 		  (history.table, i,

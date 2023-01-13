@@ -3761,8 +3761,8 @@ int biblioteq::populateTable(const int search_type_arg,
 		     fieldName.contains("membersince"))
 		    {
 		      auto date
-			(QDate::
-			 fromString(query.value(j).toString(), "MM/dd/yyyy"));
+			(QDate::fromString(query.value(j).toString(),
+					   s_databaseDateFormat));
 
 		      if(dateFormat.isEmpty())
 			str = date.toString(Qt::ISODate);
@@ -3852,7 +3852,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		  auto duedate
 		    (QDateTime::fromString(query.value(j).toString().trimmed(),
-					   "MM/dd/yyyy"));
+					   s_databaseDateFormat));
 
 		  if(duedate <= QDateTime::currentDateTime())
 		    item->setBackground(QColor(255, 114, 118)); // Red light.

@@ -301,11 +301,12 @@ void biblioteq_batch_activities::borrow(void)
 		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
       query.addBindValue(copyNumber);
       query.addBindValue(copyIdentifier->text());
-      query.addBindValue(dueDate.toString("MM/dd/yyyy"));
+      query.addBindValue(dueDate.toString(biblioteq::s_databaseDateFormat));
       query.addBindValue(itemOid);
       query.addBindValue(memberId);
       query.addBindValue(m_qmain->getAdminID());
-      query.addBindValue(QDate::currentDate().toString("MM/dd/yyyy"));
+      query.addBindValue
+	(QDate::currentDate().toString(biblioteq::s_databaseDateFormat));
       query.addBindValue(type);
 
       if(query.exec())

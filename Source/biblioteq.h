@@ -228,6 +228,7 @@ class biblioteq: public QMainWindow
       QUANTITY = 1000 // Copies per item.
     };
 
+  static QString s_databaseDateFormat;
   static QString s_locale;
   static QString s_unknown;
   static QTranslator *s_appTranslator;

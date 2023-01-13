@@ -336,7 +336,7 @@ void biblioteq_cd::insert(void)
   cd.computeButton->setVisible(true);
   cd.okButton->setText(tr("&Save"));
   cd.release_date->setDate(QDate::fromString("01/01/2000",
-					     "MM/dd/yyyy"));
+					     biblioteq::s_databaseDateFormat));
   cd.runtime->setTime(QTime(0, 0, 1));
   cd.runtime->setMinimumTime(QTime(0, 0, 1));
   cd.price->setMinimum(0.00);
@@ -526,7 +526,8 @@ void biblioteq_cd::modify(const int state)
 	       var.toString());
 	  else if(fieldname == "rdate")
 	    cd.release_date->setDate
-	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      (QDate::fromString(var.toString(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "price")
 	    cd.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
@@ -1078,7 +1079,8 @@ void biblioteq_cd::slotGo(void)
       query.bindValue(3, cd.artist->toPlainText());
       query.bindValue(4, cd.no_of_discs->text());
       query.bindValue(5, cd.runtime->text());
-      query.bindValue(6, cd.release_date->date().toString("MM/dd/yyyy"));
+      query.bindValue
+	(6, cd.release_date->date().toString(biblioteq::s_databaseDateFormat));
       query.bindValue(7, cd.recording_label->toPlainText());
       query.bindValue(8, cd.category->toPlainText());
       query.bindValue(9, cd.price->value());
@@ -2062,7 +2064,8 @@ void biblioteq_cd::slotReset(void)
 	    }
 	  else
 	    cd.release_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
 
 	  cd.release_date->setFocus();
 	}
@@ -2168,8 +2171,9 @@ void biblioteq_cd::slotReset(void)
       else
 	{
 	  cd.runtime->setTime(QTime(0, 0, 1));
-	  cd.release_date->setDate(QDate::fromString("01/01/2000",
-						     "MM/dd/yyyy"));
+	  cd.release_date->setDate
+	    (QDate::fromString("01/01/2000",
+			       biblioteq::s_databaseDateFormat));
 	}
 
       cd.id->clear();
