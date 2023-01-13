@@ -427,7 +427,8 @@ void biblioteq_grey_literature::insert(void)
   m_ui.client->clear();
   m_ui.code_a->setText("N/A");
   m_ui.code_b->setText("N/A");
-  m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+  m_ui.date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   m_ui.delete_files->setEnabled(false);
   m_ui.export_files->setEnabled(false);
   m_ui.id->setText(QUuid::createUuid().toString().remove("{").remove("}"));
@@ -488,7 +489,8 @@ void biblioteq_grey_literature::insertDatabase(void)
 
   query.addBindValue(m_ui.code_a->text());
   query.addBindValue(m_ui.code_b->text());
-  query.addBindValue(m_ui.date->date().toString("MM/dd/yyyy"));
+  query.addBindValue
+    (m_ui.date->date().toString(biblioteq::s_databaseDateFormat));
   query.addBindValue(m_ui.id->text());
   query.addBindValue(m_ui.status->text());
   query.addBindValue(m_ui.title->text());
@@ -694,7 +696,8 @@ void biblioteq_grey_literature::modify(const int state)
 	    m_ui.code_b->setText(variant.toString().trimmed());
 	  else if(fieldName == "document_date")
 	    m_ui.date->setDate
-	      (QDate::fromString(variant.toString().trimmed(), "MM/dd/yyyy"));
+	      (QDate::fromString(variant.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldName == "document_id")
 	    {
 	      QString string("");
@@ -1470,7 +1473,9 @@ void biblioteq_grey_literature::slotReset(void)
 	  if(m_engWindowTitle.contains("Search"))
 	    m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
 	  else
-	    m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	    m_ui.date->setDate
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
 
 	  m_ui.date->setFocus();
 	  m_ui.date->setStyleSheet(m_dt_orig_ss);
@@ -1568,7 +1573,8 @@ void biblioteq_grey_literature::slotReset(void)
       if(m_engWindowTitle.contains("Search"))
 	m_ui.date->setDate(QDate::fromString("2001", "yyyy"));
       else
-	m_ui.date->setDate(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	m_ui.date->setDate(QDate::fromString("01/01/2000",
+					     biblioteq::s_databaseDateFormat));
 
       m_ui.date_enabled->setChecked(false);
       m_ui.id->clear();
@@ -1643,7 +1649,8 @@ void biblioteq_grey_literature::updateDatabase(void)
 
   query.addBindValue(m_ui.code_a->text());
   query.addBindValue(m_ui.code_b->text());
-  query.addBindValue(m_ui.date->date().toString("MM/dd/yyyy"));
+  query.addBindValue
+    (m_ui.date->date().toString(biblioteq::s_databaseDateFormat));
   query.addBindValue(m_ui.id->text());
   query.addBindValue(m_ui.status->text());
   query.addBindValue(m_ui.title->text());
