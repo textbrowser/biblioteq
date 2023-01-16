@@ -39,6 +39,14 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.item_mandatory_field_color,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectColor(void)));
+  connect(m_ui.item_query_result_color,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectColor(void)));
   connect(m_ui.main_window_canvas_background_color,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -338,6 +346,27 @@ void biblioteq_otheroptions::prepareSettings(void)
     (qBound(0,
 	    settings.value("otheroptions/isbn13_display_format_index").toInt(),
 	    m_ui.isbn13_display_format->count() - 1));
+
+  QColor color
+    (settings.value("otheroptions/item_mandatory_field_color").
+     toString().remove('&').trimmed());
+
+  if(!color.isValid())
+    color = QColor(255, 248, 220);
+
+  m_ui.item_mandatory_field_color->setStyleSheet
+    (QString("background-color: %1").arg(color.name()));
+  m_ui.item_mandatory_field_color->setText(color.name());
+  color = QColor
+    (settings.value("otheroptions/item_query_result_color").
+     toString().remove('&').trimmed());
+
+  if(!color.isValid())
+    color = QColor(162, 205, 90);
+
+  m_ui.item_query_result_color->setStyleSheet
+    (QString("background-color: %1").arg(color.name()));
+  m_ui.item_query_result_color->setText(color.name());
   m_ui.publication_date->setRowCount(list1.size());
 
   for(int i = 0; i < list1.size(); i++)
@@ -361,8 +390,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 
   m_ui.publication_date->resizeColumnToContents(ITEM_TYPE);
   m_ui.publication_date->resizeRowsToContents();
-
-  QColor color
+  color = QColor
     (settings.value("mainwindow_canvas_background_color").
      toString().remove('&').trimmed());
 
@@ -537,12 +565,12 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
 
 void biblioteq_otheroptions::slotSelectColor(void)
 {
-  auto widget = qobject_cast<QPushButton *> (sender());
+  auto pushButton = qobject_cast<QPushButton *> (sender());
 
-  if(!widget)
+  if(!pushButton)
     return;
 
-  QColor color(widget->text().remove('&').trimmed());
+  QColor color(pushButton->text().remove('&').trimmed());
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(color);
@@ -550,6 +578,9 @@ void biblioteq_otheroptions::slotSelectColor(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
+      pushButton->setStyleSheet
+	(QString("background-color: %1").arg(dialog.selectedColor().name()));
+      pushButton->setText(dialog.selectedColor().name());
       QApplication::processEvents();
     }
   else
