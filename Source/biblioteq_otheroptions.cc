@@ -476,7 +476,7 @@ void biblioteq_otheroptions::slotSave(void)
 	  auto pushButton = widget->findChild<QPushButton *> ();
 
 	  if(pushButton)
-	    value = pushButton->text();
+	    value = pushButton->text().trimmed().toLatin1();
 	}
 
       settings.setValue(key, value);
@@ -524,6 +524,12 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/isbn13_display_format_index",
      m_ui.isbn13_display_format->currentIndex());
+  settings.setValue
+    ("otheroptions/item_mandatory_field_color",
+     m_ui.item_mandatory_field_color->text().remove('&').toLatin1());
+  settings.setValue
+    ("otheroptions/item_query_result_color",
+     m_ui.item_query_result_color->text().remove('&').toLatin1());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue
