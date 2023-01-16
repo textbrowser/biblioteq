@@ -35,7 +35,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>DELETE and SELECT queries are allowed.</string>
+          <string>DELETE, SELECT, and UPDATE queries are allowed. If an UPDATE query does not include a WHERE clause, the UPDATE query will be executed on the selected items via myoid values.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

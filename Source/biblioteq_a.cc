@@ -3151,16 +3151,15 @@ void biblioteq::slotExecuteCustomQuery(void)
 
   const auto &q(querystr.toLower());
 
-  if(q.contains("alter ") ||
-     q.contains("cluster ") ||
-     q.contains("create " ) ||
-     q.contains("drop ") ||
-     q.contains("grant ") ||
-     q.contains("insert ") ||
-     q.contains("lock ") ||
-     q.contains("revoke ") ||
-     q.contains("truncate ") ||
-     q.contains("update "))
+  if(q.startsWith("alter ") ||
+     q.startsWith("cluster ") ||
+     q.startsWith("create " ) ||
+     q.startsWith("drop ") ||
+     q.startsWith("grant ") ||
+     q.startsWith("insert ") ||
+     q.startsWith("lock ") ||
+     q.startsWith("revoke ") ||
+     q.startsWith("truncate "))
     {
       QMessageBox::critical
 	(m_customquery_diag,
@@ -3169,7 +3168,7 @@ void biblioteq::slotExecuteCustomQuery(void)
       QApplication::processEvents();
       return;
     }
-  else if(q.contains("delete "))
+  else if(q.startsWith("delete "))
     {
       if(QMessageBox::
 	 question(m_customquery_diag,
@@ -3188,6 +3187,25 @@ void biblioteq::slotExecuteCustomQuery(void)
 
       if(query.exec(querystr))
 	slotRefresh();
+
+      return;
+    }
+  else if(q.startsWith("update "))
+    {
+      if(QMessageBox::
+	 question(m_customquery_diag,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to execute the statement?"),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+      else
+	QApplication::processEvents();
+
+      QSqlQuery query(m_db);
 
       return;
     }
