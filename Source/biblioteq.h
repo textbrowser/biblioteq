@@ -251,6 +251,8 @@ class biblioteq: public QMainWindow
   QPointer<biblioteq_documentationwindow> m_contributors;
   QString m_unaccent;
   QColor availabilityColor(const QString &itemType) const;
+  QColor itemMandatoryFieldColor(void) const;
+  QColor itemQueryResultColor(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
   QHash<QString, QString> getOpenLibraryImagesHash(void) const;
   QHash<QString, QString> getOpenLibraryItemsHash(void) const;

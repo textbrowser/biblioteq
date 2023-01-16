@@ -200,6 +200,12 @@ void biblioteq_item::setQMain(QMainWindow *window)
 	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
 	  setQMain(qmain);
     }
+
+  if(qmain)
+    {
+      m_queryHighlightColor = qmain->itemQueryResultColor();
+      m_requiredHighlightColor = qmain->itemMandatoryFieldColor();
+    }
 }
 
 void biblioteq_item::setReadOnlyFields(QMainWindow *window, const bool state)

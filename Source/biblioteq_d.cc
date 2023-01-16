@@ -39,6 +39,16 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_merge_databases.h"
 
+QColor biblioteq::itemMandatoryFieldColor(void) const
+{
+  return m_otheroptions->itemMandatoryFieldColor();
+}
+
+QColor biblioteq::itemQueryResultColor(void) const
+{
+  return m_otheroptions->itemQueryResultColor();
+}
+
 QHash<QString, QString> biblioteq::otherImagesHash(void) const
 {
   return m_otherImages;

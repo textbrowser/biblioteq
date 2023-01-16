@@ -102,6 +102,24 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   return QColor(value.remove('&'));
 }
 
+QColor biblioteq_otheroptions::itemMandatoryFieldColor(void) const
+{
+  QSettings settings;
+
+  return QColor
+    (settings.value("otheroptions/item_mandatory_field_color").toString().
+     remove('&').trimmed());
+}
+
+QColor biblioteq_otheroptions::itemQueryResultColor(void) const
+{
+  QSettings settings;
+
+  return QColor
+    (settings.value("otheroptions/item_query_result_color").toString().
+     remove('&').trimmed());
+}
+
 QString biblioteq_otheroptions::publicationDateFormat(const QString &it) const
 {
   QSettings settings;

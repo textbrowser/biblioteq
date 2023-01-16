@@ -42,6 +42,8 @@ class biblioteq_otheroptions: public QMainWindow
   biblioteq_otheroptions(biblioteq *parent);
   ~biblioteq_otheroptions();
   QColor availabilityColor(const QString &it) const;
+  QColor itemMandatoryFieldColor(void) const;
+  QColor itemQueryResultColor(void) const;
 
   QString isbn10DisplayFormat(const QString &str) const
   {
