@@ -539,3 +539,5 @@
      have a proper driver. (Done)
 297. Should databases be listed if drivers are not available? (TBD)
 298. Interpret Publication Date formats in generic categories. (TBD)
+299. Custom queries via View -> Custom Query must be evaluated because
+     they may represent DELETE or UPDATE requests. (TBD)

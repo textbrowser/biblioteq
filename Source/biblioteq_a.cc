@@ -3206,6 +3206,36 @@ void biblioteq::slotExecuteCustomQuery(void)
 	QApplication::processEvents();
 
       QSqlQuery query(m_db);
+      auto list(ui.table->selectionModel()->selectedRows());
+
+      if(list.isEmpty())
+	{
+	  if(query.exec(querystr))
+	    slotRefresh();
+	}
+      else
+	{
+	  querystr.append(" WHERE myoid IN (");
+
+	  auto column = ui.table->columnNumber("MYOID");
+
+	  foreach(const auto &index, list)
+	    {
+	      auto item = ui.table->item(index.row(), column);
+
+	      if(item)
+		{
+		  querystr.append(item->text());
+		  querystr.append(", ");
+		}
+	    }
+
+	  querystr = querystr.mid(0, querystr.length() - 2);
+	  querystr.append(")");
+
+	  if(query.exec(querystr))
+	    slotRefresh();
+	}
 
       return;
     }
