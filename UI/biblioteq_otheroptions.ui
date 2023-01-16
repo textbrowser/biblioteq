@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>588</width>
-         <height>546</height>
+         <width>567</width>
+         <height>622</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -127,6 +127,83 @@
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_3">
+              <property name="title">
+               <string>Item Fields</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <item>
+                  <widget class="QLabel" name="label_10">
+                   <property name="text">
+                    <string>Mandatory Field Color</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="item_mandatory_field_color">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: #ffffff;</string>
+                   </property>
+                   <property name="text">
+                    <string notr="true">#fff8dc</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <widget class="QLabel" name="label_11">
+                   <property name="text">
+                    <string>Query Result Color</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="item_query_result_color">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: #ffffff;</string>
+                   </property>
+                   <property name="text">
+                    <string notr="true">#a2cd5a</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_7">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -553,6 +630,8 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>isbn10_display_format</tabstop>
   <tabstop>isbn13_display_format</tabstop>
+  <tabstop>item_mandatory_field_color</tabstop>
+  <tabstop>item_query_result_color</tabstop>
   <tabstop>publication_date</tabstop>
   <tabstop>availability_colors</tabstop>
   <tabstop>availability_color</tabstop>

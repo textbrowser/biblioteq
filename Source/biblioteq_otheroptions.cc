@@ -535,6 +535,27 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
     QApplication::processEvents();
 }
 
+void biblioteq_otheroptions::slotSelectColor(void)
+{
+  auto widget = qobject_cast<QPushButton *> (sender());
+
+  if(!widget)
+    return;
+
+  QColor color(widget->text().remove('&').trimmed());
+  QColorDialog dialog(this);
+
+  dialog.setCurrentColor(color);
+  dialog.setOption(QColorDialog::DontUseNativeDialog);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      QApplication::processEvents();
+    }
+  else
+    QApplication::processEvents();
+}
+
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 {
   QColor color(m_ui.main_window_canvas_background_color->text().remove('&'));

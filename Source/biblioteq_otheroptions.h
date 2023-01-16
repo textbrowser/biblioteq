@@ -136,6 +136,7 @@ class biblioteq_otheroptions: public QMainWindow
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotSave(void);
   void slotSelectAvailabilityColor(void);
+  void slotSelectColor(void);
   void slotSelectMainwindowCanvasBackgroundColor(void);
 
  public slots:
