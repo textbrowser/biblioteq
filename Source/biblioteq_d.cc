@@ -83,6 +83,110 @@ bool biblioteq::showMainTableImages(void) const
   return m_otheroptions->showMainTableImages();
 }
 
+void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
+{
+  auto querystr(text.trimmed());
+
+  if(querystr.isEmpty())
+    {
+      QMessageBox::critical(widget,
+			    tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid SQL statement."));
+      QApplication::processEvents();
+      return;
+    }
+
+  const auto &q(querystr.toLower());
+
+  if(q.startsWith("alter ") ||
+     q.startsWith("cluster ") ||
+     q.startsWith("create " ) ||
+     q.startsWith("drop ") ||
+     q.startsWith("grant ") ||
+     q.startsWith("insert ") ||
+     q.startsWith("lock ") ||
+     q.startsWith("revoke ") ||
+     q.startsWith("truncate "))
+    {
+      QMessageBox::critical
+	(widget,
+	 tr("BiblioteQ: User Error"),
+	 tr("Please provide a non-destructive SQL statement."));
+      QApplication::processEvents();
+    }
+  else if(q.startsWith("delete "))
+    {
+      if(QMessageBox::
+	 question(widget,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to execute the statement?"),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+      else
+	QApplication::processEvents();
+
+      QSqlQuery query(m_db);
+
+      if(query.exec(querystr))
+	slotRefresh();
+    }
+  else if(q.startsWith("update "))
+    {
+      if(QMessageBox::
+	 question(widget,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to execute the statement?"),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+      else
+	QApplication::processEvents();
+
+      QSqlQuery query(m_db);
+      auto list(ui.table->selectionModel()->selectedRows());
+
+      if(list.isEmpty())
+	{
+	  if(query.exec(querystr))
+	    slotRefresh();
+	}
+      else
+	{
+	  querystr.append(" WHERE myoid IN (");
+
+	  auto column = ui.table->columnNumber("MYOID");
+
+	  foreach(const auto &index, list)
+	    {
+	      auto item = ui.table->item(index.row(), column);
+
+	      if(item)
+		{
+		  querystr.append(item->text());
+		  querystr.append(", ");
+		}
+	    }
+
+	  if(querystr.endsWith(", "))
+	    querystr = querystr.mid(0, querystr.length() - 2);
+
+	  querystr.append(")");
+
+	  if(query.exec(querystr))
+	    slotRefresh();
+	}
+    }
+  else
+    (void) populateTable(CUSTOM_QUERY, "Custom", querystr);
+}
+
 void biblioteq::populateFavorites(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -253,7 +357,7 @@ void biblioteq::slotCustomQuery(void)
 			 value(QString("customqueries/%1").arg(action->text())).
 			 toByteArray()).constData()));
   QApplication::restoreOverrideCursor();
-  (void) populateTable(CUSTOM_QUERY, "Custom", string);
+  executeCustomQuery(this, string);
 }
 
 void biblioteq::slotDeleteFavoriteQuery(void)

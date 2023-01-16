@@ -469,6 +469,7 @@ class biblioteq: public QMainWindow
   void createConfigToolMenu(void);
   void createSqliteMenuActions(void);
   void deleteItem(const QString &oid, const QString &itemType);
+  void executeCustomQuery(QWidget *widget, const QString &text);
   void exportAsCSV(biblioteq_main_table *table, const QString &title);
   void initialUpdate(void);
   void populateFavorites(void);
