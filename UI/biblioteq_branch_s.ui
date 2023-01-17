@@ -47,6 +47,27 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="driver_warning">
+       <property name="font">
+        <font>
+         <pointsize>25</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Missing Qt database driver! Please contact your system administrator!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget {color: #ff612f;}</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&amp;#9888;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

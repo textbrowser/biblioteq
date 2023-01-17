@@ -541,4 +541,4 @@
 298. Interpret Publication Date formats in generic categories. (TBD)
 299. Custom queries via View -> Custom Query must be evaluated because
      they may represent DELETE or UPDATE requests. (Done)
-300. Show an HTML warning icon if a database driver is not available. (TBD)
+300. Show an HTML warning icon if a database driver is not available. (Done)

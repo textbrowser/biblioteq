@@ -1927,10 +1927,13 @@ void biblioteq::setGlobalFonts(const QFont &font)
   QApplication::setFont(font);
 
   foreach(auto widget, QApplication::allWidgets())
-    {
-      widget->setFont(font);
-      widget->update();
-    }
+    if(br.driver_warning == widget)
+      continue;
+    else
+      {
+	widget->setFont(font);
+	widget->update();
+      }
 
   auto mb = menuBar();
 
@@ -2417,22 +2420,22 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotBranchChanged(void)
 {
-  QHash<QString, QString> tmphash;
-
-  tmphash = m_branches[br.branch_name->currentText()];
+  QHash<QString, QString> tmphash(m_branches[br.branch_name->currentText()]);
 
   if(tmphash.value("database_type") == "sqlite")
     {
-      br.stackedWidget->setCurrentIndex(0);
+      br.driver_warning->setVisible
+	(!QSqlDatabase::isDriverAvailable("QSQLITE"));
       br.fileButton->setFocus();
+      br.stackedWidget->setCurrentIndex(0);
     }
   else
     {
+      br.driver_warning->setVisible(!QSqlDatabase::isDriverAvailable("QPSQL"));
       br.stackedWidget->setCurrentIndex(1);
       br.userid->selectAll();
     }
 
-  tmphash.clear();
   m_branch_diag->update();
   m_branch_diag->resize(m_branch_diag->width(),
 			m_branch_diag->minimumSize().height());
