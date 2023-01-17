@@ -2420,7 +2420,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotBranchChanged(void)
 {
-  QHash<QString, QString> tmphash(m_branches[br.branch_name->currentText()]);
+  auto tmphash(m_branches[br.branch_name->currentText()]);
 
   if(tmphash.value("database_type") == "sqlite")
     {
