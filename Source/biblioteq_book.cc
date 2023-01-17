@@ -1688,6 +1688,13 @@ void biblioteq_book::populateAfterSRU
 	(id.publisher->viewport(), m_queryHighlightColor);
     }
 
+  if(id.alternate_id_1->text().trimmed().isEmpty())
+    {
+      id.alternate_id_1->setText(m.sru003());
+      biblioteq_misc_functions::highlightWidget
+	(id.alternate_id_1, m_queryHighlightColor);
+    }
+
   str = m.targetAudience();
 
   if(!str.isEmpty())

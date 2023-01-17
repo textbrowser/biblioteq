@@ -63,6 +63,7 @@ void biblioteq_marc::clear(void)
   m_place.clear();
   m_publicationDate = QDate();
   m_publisher.clear();
+  m_sru003.clear();
   m_targetAudience.clear();
   m_title.clear();
 }
@@ -531,6 +532,23 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			  m_category = str;
 		      }
 		  }
+	      }
+	  }
+	else if(reader.name().toString().toLower().trimmed() == "controlfield")
+	  {
+	    auto tag
+	      (reader.attributes().value("tag").toString().toLower().trimmed());
+
+	    if(tag == "003")
+	      {
+		QString str("");
+
+		str.append(reader.readElementText());
+
+		auto index = str.indexOf("ark:/");
+
+		if(index >= 0)
+		  m_sru003 = str.mid(index);
 	      }
 	  }
       }
