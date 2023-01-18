@@ -55,7 +55,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fstack-protector-all \
                           -fwrapv \
                           -mabi=altivec \
-                          -mpowerpc \
+                          -mcpu=powerpc \
                           -mtune=powerpc \
                           -pie
 QMAKE_DISTCLEAN += -r temp
