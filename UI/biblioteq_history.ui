@@ -273,6 +273,32 @@
     </item>
    </layout>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionExport_As_CSV"/>
+   </widget>
+   <addaction name="menu_File"/>
+  </widget>
+  <action name="actionExport_As_CSV">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export As CSV...</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>dnt</tabstop>
