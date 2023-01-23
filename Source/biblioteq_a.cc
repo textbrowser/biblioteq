@@ -449,6 +449,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotMembersPagesChanged(int)));
   connect(bb.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
+  connect(history.actionExport_As_CSV, SIGNAL(triggered(void)),
+	  this, SLOT(slotExportMembersHistoryAsCSV(void)));
   connect(history.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table, SIGNAL(itemSelectionChanged(void)), this,
@@ -3155,7 +3157,7 @@ void biblioteq::slotExit(void)
 
 void biblioteq::slotExportAsCSV(void)
 {
-  exportAsCSV(ui.table, tr("BiblioteQ: Export Table View as CSV"));
+  exportAsCSV(ui.table, this, tr("BiblioteQ: Export Table View As CSV"));
 }
 
 void biblioteq::slotGrantPrivileges(void)

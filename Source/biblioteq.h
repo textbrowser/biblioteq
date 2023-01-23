@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2023.01.16"
+#define BIBLIOTEQ_VERSION "2023.01.25"
 
 #include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
@@ -472,7 +472,7 @@ class biblioteq: public QMainWindow
   void createSqliteMenuActions(void);
   void deleteItem(const QString &oid, const QString &itemType);
   void executeCustomQuery(QWidget *widget, const QString &text);
-  void exportAsCSV(biblioteq_main_table *table, const QString &title);
+  void exportAsCSV(QTableWidget *table, QWidget *parent, const QString &title);
   void initialUpdate(void);
   void populateFavorites(void);
   void prepareContextMenus(void);
@@ -524,6 +524,7 @@ class biblioteq: public QMainWindow
   void slotExportAsCSV(void);
   void slotExportAsPNG(void);
   void slotExportMembersAsCSV(void);
+  void slotExportMembersHistoryAsCSV(void);
   void slotGeneralSearchPublicationDateEnabled(bool state);
   void slotGenerateAndCopyMemberLetter(void);
   void slotGrantPrivileges(void);

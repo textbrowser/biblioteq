@@ -1235,12 +1235,13 @@ void biblioteq::dvdSearch(const QString &field, const QString &value)
   dvd->deleteLater();
 }
 
-void biblioteq::exportAsCSV(biblioteq_main_table *table, const QString &title)
+void biblioteq::exportAsCSV
+(QTableWidget *table, QWidget *parent, const QString &title)
 {
   if(!table)
     return;
 
-  QFileDialog dialog(this);
+  QFileDialog dialog(parent);
 
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setDefaultSuffix("csv");
@@ -1271,7 +1272,7 @@ void biblioteq::exportAsCSV(biblioteq_main_table *table, const QString &title)
 		if(!table->horizontalHeaderItem(i))
 		  continue;
 
-		if(table->columnNames().value(i) == "Read Status")
+		if(table->horizontalHeaderItem(i)->text() == tr("Read Status"))
 		  /*
 		  ** We cannot export the Read Status column because
 		  ** it is not supported by PostgreSQL.
@@ -1309,13 +1310,14 @@ void biblioteq::exportAsCSV(biblioteq_main_table *table, const QString &title)
 		    ** !table->item(i, j) is true!
 		    */
 
-		    if(!table->item(i, j))
+		    if(!table->horizontalHeaderItem(j) || !table->item(i, j))
 		      {
 			str += ",";
 			continue;
 		      }
 
-		    if(table->columnNames().value(j) == "Read Status")
+		    if(table->horizontalHeaderItem(j)->text() ==
+		       tr("Read Status"))
 		      /*
 		      ** We cannot export the Read Status column because
 		      ** it is not supported by PostgreSQL.

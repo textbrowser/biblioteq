@@ -430,6 +430,12 @@ void biblioteq::slotExportAsPNG(void)
     }
 }
 
+void biblioteq::slotExportMembersHistoryAsCSV(void)
+{
+  exportAsCSV
+    (history.table, m_members_diag, tr("BiblioteQ: Member's History As CSV"));
+}
+
 void biblioteq::slotGenerateAndCopyMemberLetter(void)
 {
   auto clipboard = QApplication::clipboard();
