@@ -1,6 +1,6 @@
 <map id="biblioteq_magazine" name="biblioteq_magazine">
-<area shape="rect" id="node1" title=" " alt="" coords="5,247,139,273"/>
-<area shape="rect" id="node2" title=" " alt="" coords="19,5,125,32"/>
-<area shape="rect" id="node4" href="$classbiblioteq.html" title=" " alt="" coords="102,81,173,108"/>
-<area shape="rect" id="node3" href="$classbiblioteq__item.html" title=" " alt="" coords="94,171,197,197"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,247,156,273"/>
+<area shape="rect" id="node2" title=" " alt="" coords="23,5,139,32"/>
+<area shape="rect" id="node4" href="$classbiblioteq.html" title=" " alt="" coords="112,81,191,108"/>
+<area shape="rect" id="node3" href="$classbiblioteq__item.html" title=" " alt="" coords="103,171,219,197"/>
 </map>
