@@ -4087,6 +4087,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  SIGNAL(itemChanged(QTableWidgetItem *)),
 	  this,
 	  SLOT(slotItemChanged(QTableWidgetItem *)));
+  m_findList.clear();
   QApplication::restoreOverrideCursor();
   return 0;
 }

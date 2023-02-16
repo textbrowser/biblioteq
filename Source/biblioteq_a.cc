@@ -369,7 +369,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(ui.find,
 	  SIGNAL(returnPressed(void)),
 	  this,
-	  SLOT(slotFindTableNext(void)));
+	  SLOT(slotTableFindNext(void)));
   connect(ui.find,
 	  SIGNAL(textChanged(const QString &)),
 	  this,
@@ -377,7 +377,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(ui.next,
 	  SIGNAL(clicked(void)),
 	  this,
-	  SLOT(slotFindTableNext(void)));
+	  SLOT(slotTableFindNext(void)));
   connect(ui.resetAllSearch,
 	  SIGNAL(clicked(void)),
 	  this,
