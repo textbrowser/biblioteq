@@ -366,6 +366,18 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertVideoGame(void)));
+  connect(ui.find,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotFindTableNext(void)));
+  connect(ui.find,
+	  SIGNAL(textChanged(const QString &)),
+	  this,
+	  SLOT(slotTableFindTextCleared(const QString &)));
+  connect(ui.next,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotFindTableNext(void)));
   connect(ui.resetAllSearch,
 	  SIGNAL(clicked(void)),
 	  this,

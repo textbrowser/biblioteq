@@ -25,6 +25,6 @@ cp -pr ./Documentation/* ./biblioteq/Documentation/.
 
 cp $(ldd ./BiblioteQ | awk '{print $3}' | grep -e '^/') ./biblioteq/Lib/.
 chmod -x ./biblioteq/Lib/*.so*
-tar -cvz -f BiblioteQ-2023.01.25.tar.gz ./biblioteq
+tar -cvz -f BiblioteQ-2023.02.20.tar.gz ./biblioteq
 make distclean
 rm -fr ./biblioteq

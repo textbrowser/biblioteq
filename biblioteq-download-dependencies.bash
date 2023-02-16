@@ -14,6 +14,7 @@ wget --output-document=$postgresql \
 
 if [ -r $postgresql ]; then
     unzip -q $postgresql
+    mkdir -p Libraries.win32/postgresql
     mv pgsql/lib/libpq.dll Libraries.win32/postgresql/.
     mv 'pgsql/pgAdmin 4/bin/libiconv-2.dll' Libraries.win32/postgresql/.
     mv 'pgsql/pgAdmin 4/bin/libintl-8.dll' Libraries.win32/postgresql/.

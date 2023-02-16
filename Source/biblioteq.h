@@ -408,6 +408,7 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> m_selectedBranch;
   QLabel *m_connected_bar_label;
   QLabel *m_status_bar_label;
+  QList<QTableWidgetItem *> m_findList;
   QMainWindow *m_admin_diag;
   QMainWindow *m_all_diag;
   QMainWindow *m_customquery_diag;
@@ -623,6 +624,8 @@ class biblioteq: public QMainWindow
   void slotShowPrev(void);
   void slotShowReleaseNotes(void);
   void slotSqliteFileSelected(bool state);
+  void slotTableFindNext(void);
+  void slotTableFindTextCleared(const QString &text);
   void slotTearOffMenus(void);
   void slotUpdateIndicesAfterSort(int column);
   void slotUpgradeSqliteScheme(void);

@@ -765,6 +765,30 @@ void biblioteq::slotShowReleaseNotes(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq::slotTableFindNext(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(m_findList.isEmpty())
+    m_findList = ui.table->findItems
+      (ui.find->text().trimmed(), Qt::MatchContains);
+
+  if(!m_findList.isEmpty())
+    {
+      ui.table->scrollToItem(m_findList.at(0));
+      ui.table->selectRow(m_findList.at(0)->row());
+      m_findList.removeFirst();
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq::slotTableFindTextCleared(const QString &text)
+{
+  Q_UNUSED(text);
+  m_findList.clear();
+}
+
 void biblioteq::slotTearOffMenus(void)
 {
   prepareTearOffMenus();
