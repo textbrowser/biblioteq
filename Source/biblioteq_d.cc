@@ -767,6 +767,9 @@ void biblioteq::slotShowReleaseNotes(void)
 
 void biblioteq::slotTableFindNext(void)
 {
+  if(!m_db.isOpen() || ui.stackedWidget->currentIndex() != 1)
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(m_findList.isEmpty())
