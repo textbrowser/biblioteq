@@ -3333,6 +3333,7 @@ void biblioteq::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
+  m_findList.clear();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->resetTransform();
   ui.graphicsView->verticalScrollBar()->setValue(0);

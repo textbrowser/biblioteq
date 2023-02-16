@@ -1377,6 +1377,7 @@ void biblioteq::changeEvent(QEvent *event)
 	  cq.retranslateUi(m_customquery_diag);
 	  er.retranslateUi(m_error_diag);
 	  history.retranslateUi(m_history_diag);
+	  m_findList.clear();
 	  pass.retranslateUi(m_pass_diag);
 	  s_unknown = QObject::tr("UNKNOWN");
 	  ui.retranslateUi(this);
@@ -2420,6 +2421,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
       QString typefilter("");
 
       typefilter = action->data().toString();
+      m_findList.clear();
       ui.graphicsView->scene()->clear();
       ui.graphicsView->resetTransform();
       ui.graphicsView->verticalScrollBar()->setValue(0);
