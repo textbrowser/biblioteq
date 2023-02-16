@@ -525,7 +525,7 @@
 285. Viewable Members Browser columns. (TBD)
 286. Double-clicking on the main table should activate the cell for
      copying. This will confuse some people. No. (Done)
-287. Non-database local find from the main window. (TBD)
+287. Non-database local find from the main window. (Done)
 288. Book target audience. (Done)
 289. Book x of y. (TBD)
 290. Add ESCAPE and UNACCENT to search strings. Already completed. (Done)
