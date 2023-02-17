@@ -62,6 +62,8 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	    this,
 	    SLOT(setGlobalFonts(const QFont &)));
 
+  m_ui.custom_query->setItemDelegateForColumn
+    (1, new biblioteq_otheroptions_item_delegate(this));
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
   prepareSQLiteKeywords();
@@ -363,6 +365,7 @@ void biblioteq_otheroptions::prepareSQLiteKeywords(void)
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.custom_query->setItem(i, 0, item);
       item = new QTableWidgetItem(QColor(Qt::black).name());
+      item->setBackground(QColor(item->text().remove('&')));
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.custom_query->setItem(i, 1, item);

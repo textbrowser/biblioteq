@@ -29,8 +29,71 @@
 #define _BIBLIOTEQ_OTHEROPTIONS_H_
 
 #include <QSettings>
+#include <QStyledItemDelegate>
 
 #include "ui_biblioteq_otheroptions.h"
+
+class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
+{
+  Q_OBJECT
+
+ public:
+  biblioteq_otheroptions_item_delegate(QObject *parent):
+    QStyledItemDelegate(parent)
+  {
+  }
+
+  QWidget *createEditor(QWidget *parent,
+			const QStyleOptionViewItem &option,
+			const QModelIndex &index) const
+  {
+    switch(index.column())
+      {
+      case 1:
+	{
+	  auto pushButton = new QPushButton(parent);
+
+	  connect(pushButton,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotEmitSignal(void))
+#ifdef Q_OS_MACOS
+		  , Qt::QueuedConnection
+#endif
+		  );
+	  pushButton->setText(index.data().toString().trimmed());
+	  return pushButton;
+	}
+      default:
+	{
+	  break;
+	}
+      }
+
+    return QStyledItemDelegate::createEditor(parent, option, index);
+  }
+
+ private:
+  void setModelData(QWidget *editor,
+		    QAbstractItemModel *model,
+		    const QModelIndex &index) const
+  {
+    QPushButton *pushButton = qobject_cast<QPushButton *> (editor);
+
+    if(model && pushButton)
+      {
+	pushButton->setText(model->data(index).toString().trimmed());
+	return;
+      }
+
+    QStyledItemDelegate::setModelData(editor, model, index);
+  }
+
+ private slots:
+  void slotEmitSignal(void)
+  {
+  }
+};
 
 class biblioteq;
 
