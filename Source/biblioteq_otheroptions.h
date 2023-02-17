@@ -28,6 +28,7 @@
 #ifndef _BIBLIOTEQ_OTHEROPTIONS_H_
 #define _BIBLIOTEQ_OTHEROPTIONS_H_
 
+#include <QColorDialog>
 #include <QSettings>
 #include <QStyledItemDelegate>
 
@@ -56,7 +57,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 	  connect(pushButton,
 		  SIGNAL(clicked(void)),
 		  this,
-		  SLOT(slotEmitSignal(void))
+		  SLOT(slotSelectColor(void))
 #ifdef Q_OS_MACOS
 		  , Qt::QueuedConnection
 #endif
@@ -78,7 +79,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		    QAbstractItemModel *model,
 		    const QModelIndex &index) const
   {
-    QPushButton *pushButton = qobject_cast<QPushButton *> (editor);
+    auto pushButton = qobject_cast<QPushButton *> (editor);
 
     if(model && pushButton)
       {
@@ -90,8 +91,20 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   }
 
  private slots:
-  void slotEmitSignal(void)
+  void slotSelectColor(void)
   {
+    auto pushButton = qobject_cast<QPushButton *> (sender());
+
+    if(!pushButton)
+      return;
+
+    QColorDialog dialog(pushButton);
+
+    dialog.setCurrentColor(QColor(pushButton->text().remove('&')));
+    dialog.setOptions(QColorDialog::DontUseNativeDialog);
+
+    if(dialog.exec() == QDialog::Accepted)
+      pushButton->setText(dialog.selectedColor().name());
   }
 };
 
