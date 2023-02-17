@@ -224,7 +224,7 @@ class biblioteq_otheroptions: public QMainWindow
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
   void prepareAvailability(void);
-  void prepareSQLiteKeywords(void);
+  void prepareSQLKeywords(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);

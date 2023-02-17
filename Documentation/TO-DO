@@ -530,7 +530,7 @@
 289. Book x of y. (TBD)
 290. Add ESCAPE and UNACCENT to search strings. Already completed. (Done)
 291. Sort book condition combination box values for non-English. (Done)
-292. Syntax highlighting for custom SQL queries. (TBD)
+292. Syntax highlighting for custom SQL queries. (Done)
 293. Guard SQL queries. Limit strings in queries. Source may be refactored,
      neglecting the revisions. (Done)
 294. Remote query for version information. (TBD)

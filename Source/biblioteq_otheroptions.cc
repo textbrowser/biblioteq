@@ -68,7 +68,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  SIGNAL(changed(const QColor &, const int)),
 	  this,
 	  SLOT(slotCustomQueryColorSelected(const QColor &, const int)));
-  prepareSQLiteKeywords();
+  prepareSQLKeywords();
   prepareSettings();
 }
 
@@ -325,7 +325,7 @@ void biblioteq_otheroptions::prepareAvailability(void)
 
 }
 
-void biblioteq_otheroptions::prepareSQLiteKeywords(void)
+void biblioteq_otheroptions::prepareSQLKeywords(void)
 {
   QStringList list;
 
@@ -376,7 +376,7 @@ void biblioteq_otheroptions::prepareSQLiteKeywords(void)
        << "WHERE";
   m_ui.custom_query->setRowCount(list.size());
 
-  for(int i = 0; i <list.size(); i++)
+  for(int i = 0; i < list.size(); i++)
     {
       auto item = new QTableWidgetItem(list.at(i));
 
