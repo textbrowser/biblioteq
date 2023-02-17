@@ -392,7 +392,10 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Find</string>
+         <string>&amp;Table Find</string>
+        </property>
+        <property name="buddy">
+         <cstring>find</cstring>
         </property>
        </widget>
       </item>

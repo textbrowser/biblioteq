@@ -62,6 +62,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		  , Qt::QueuedConnection
 #endif
 		  );
+	  m_index = index;
 	  pushButton->setText(index.data().toString().trimmed());
 	  return pushButton;
 	}
@@ -90,6 +91,8 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
     QStyledItemDelegate::setModelData(editor, model, index);
   }
 
+  mutable QModelIndex m_index;
+
  private slots:
   void slotSelectColor(void)
   {
@@ -104,8 +107,20 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
     dialog.setOptions(QColorDialog::DontUseNativeDialog);
 
     if(dialog.exec() == QDialog::Accepted)
-      pushButton->setText(dialog.selectedColor().name());
+      {
+	if(m_index.isValid() && m_index.model())
+	  const_cast<QAbstractItemModel *> (m_index.model())->setData
+	    (m_index, dialog.selectedColor().name());
+
+	pushButton->setText(dialog.selectedColor().name());
+
+	if(m_index.isValid())
+	  emit changed(dialog.selectedColor(), m_index.row());
+      }
   }
+
+ signals:
+  void changed(const QColor &color, const int row);
 };
 
 class biblioteq;
@@ -177,6 +192,7 @@ class biblioteq_otheroptions: public QMainWindow
 
   Ui_otheroptions m_ui;
   biblioteq *qmain;
+  biblioteq_otheroptions_item_delegate *m_itemDelegate;
   mutable QString m_isbn10Format;
   mutable QString m_isbn13Format;
 
@@ -212,6 +228,7 @@ class biblioteq_otheroptions: public QMainWindow
  private slots:
   void setGlobalFonts(const QFont &font);
   void slotClose(void);
+  void slotCustomQueryColorSelected(const QColor &color, const int row);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotSave(void);
   void slotSelectAvailabilityColor(void);

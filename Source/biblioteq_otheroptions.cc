@@ -63,9 +63,13 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	    SLOT(setGlobalFonts(const QFont &)));
 
   m_ui.custom_query->setItemDelegateForColumn
-    (1, new biblioteq_otheroptions_item_delegate(this));
+    (1, m_itemDelegate = new biblioteq_otheroptions_item_delegate(this));
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
+  connect(m_itemDelegate,
+	  SIGNAL(changed(const QColor &, const int)),
+	  this,
+	  SLOT(slotCustomQueryColorSelected(const QColor &, const int)));
   prepareSQLiteKeywords();
   prepareSettings();
 }
@@ -381,6 +385,22 @@ void biblioteq_otheroptions::prepareSettings(void)
   QStringList list1;
   QStringList list2;
   QStringList list3;
+  int i = 0;
+
+  foreach(const auto &string,
+	  settings.value("otheroptions/custom_query_colors", "").
+	  toString().split(','))
+    {
+      auto item = m_ui.custom_query->item(i, 1);
+
+      if(item)
+	{
+	  item->setBackground(QColor(string));
+	  item->setText(string);
+	}
+
+      i += 1;
+    }
 
   list1 << tr("Books")
 	<< tr("DVDs")
@@ -524,6 +544,15 @@ void biblioteq_otheroptions::slotClose(void)
 #endif
 }
 
+void biblioteq_otheroptions::slotCustomQueryColorSelected
+(const QColor &color, const int row)
+{
+  auto item = m_ui.custom_query->item(row, 1);
+
+  if(item)
+    item->setBackground(color);
+}
+
 void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
 (const QColor &color)
 {
@@ -537,9 +566,27 @@ void biblioteq_otheroptions::slotSave(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
+  QString string("");
 
   settings.setValue
     ("otheroptions/availability_colors", m_ui.availability_colors->isChecked());
+
+  for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
+    {
+      auto item = m_ui.custom_query->item(i, 1);
+
+      if(item)
+	{
+	  string.append(item->text().remove('&'));
+	  string.append(",");
+	}
+    }
+
+  if(string.isEmpty())
+    settings.setValue("otheroptions/custom_query_colors", "");
+  else
+    settings.setValue
+      ("otheroptions/custom_query_colors", string.mid(0, string.length() - 1));
 
   QStringList list;
 
