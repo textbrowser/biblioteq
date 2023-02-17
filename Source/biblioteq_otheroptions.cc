@@ -28,8 +28,6 @@
 #include "biblioteq.h"
 #include "biblioteq_otheroptions.h"
 
-#include <QColorDialog>
-
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 {
   m_ui.setupUi(this);
@@ -125,6 +123,22 @@ QColor biblioteq_otheroptions::itemQueryResultColor(void) const
   return QColor
     (settings.value("otheroptions/item_query_result_color").toString().
      remove('&').trimmed());
+}
+
+QMap<QString, QColor> biblioteq_otheroptions::customQueryColors(void) const
+{
+  QMap<QString, QColor> map;
+
+  for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
+    {
+      auto item1 = m_ui.custom_query->item(i, 0);
+      auto item2 = m_ui.custom_query->item(i, 1);
+
+      if(item1 && item2)
+	map[item1->text()] = QColor(item2->text());
+    }
+
+  return map;
 }
 
 QString biblioteq_otheroptions::publicationDateFormat(const QString &it) const

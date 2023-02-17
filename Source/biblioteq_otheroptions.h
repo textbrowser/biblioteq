@@ -135,6 +135,7 @@ class biblioteq_otheroptions: public QMainWindow
   QColor availabilityColor(const QString &it) const;
   QColor itemMandatoryFieldColor(void) const;
   QColor itemQueryResultColor(void) const;
+  QMap<QString, QColor> customQueryColors(void) const;
 
   QString isbn10DisplayFormat(const QString &str) const
   {
