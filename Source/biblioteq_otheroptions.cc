@@ -336,7 +336,7 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
        << "ASC"
        << "BETWEEN"
        << "CASE"
-       << "DEFAUT"
+       << "DEFAULT"
        << "DELETE"
        << "DESC"
        << "DISTINCT"
@@ -641,8 +641,8 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      QString value(biblioteq::s_databaseDateFormat);
       auto item = m_ui.publication_date->item(i, PUBLICATION_DATE_FORMAT);
+      auto value(biblioteq::s_databaseDateFormat);
       const auto &key(list.at(i));
 
       if(item)
