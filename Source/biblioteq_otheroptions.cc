@@ -395,8 +395,8 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       if(item)
 	{
-	  item->setBackground(QColor(string));
-	  item->setText(string);
+	  item->setBackground(QColor(string.trimmed().mid(0, 16)));
+	  item->setText(string.trimmed().mid(0, 16));
 	}
 
       i += 1;
