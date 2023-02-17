@@ -64,6 +64,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
+  prepareSQLiteKeywords();
   prepareSettings();
 }
 
@@ -302,6 +303,70 @@ void biblioteq_otheroptions::prepareAvailability(void)
   m_ui.availability_color->resizeColumnToContents(ITEM_TYPE);
   m_ui.availability_color->resizeRowsToContents();
 
+}
+
+void biblioteq_otheroptions::prepareSQLiteKeywords(void)
+{
+  QStringList list;
+
+  list << "ALL"
+       << "AND"
+       << "ANY"
+       << "AS"
+       << "ASC"
+       << "BETWEEN"
+       << "CASE"
+       << "DEFAUT"
+       << "DELETE"
+       << "DESC"
+       << "DISTINCT"
+       << "EXISTS"
+       << "FROM"
+       << "FULL OUTER JOIN"
+       << "GROUP BY"
+       << "HAVING"
+       << "IN"
+       << "INNER JOIN"
+       << "INSERT INTO"
+       << "INSERT INTO SELECT"
+       << "IS NULL"
+       << "IS NOT NULL"
+       << "JOIN"
+       << "LEFT JOIN"
+       << "LIKE"
+       << "LIMIT"
+       << "NOT"
+       << "NOT NULL"
+       << "OR"
+       << "ORDER BY"
+       << "OUTER JOIN"
+       << "RIGHT JOIN"
+       << "ROWNUM"
+       << "SELECT"
+       << "SELECT DISTINCT"
+       << "SELECT INTO"
+       << "SELECT TOP"
+       << "SET"
+       << "TOP"
+       << "UNION"
+       << "UNION ALL"
+       << "UNIQUE"
+       << "UPDATE"
+       << "VALUES"
+       << "WHERE";
+  m_ui.custom_query->setRowCount(list.size());
+
+  for(int i = 0; i <list.size(); i++)
+    {
+      auto item = new QTableWidgetItem(list.at(i));
+
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.custom_query->setItem(i, 0, item);
+      item = new QTableWidgetItem(QColor(Qt::black).name());
+      item->setFlags
+	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.custom_query->setItem(i, 1, item);
+    }
 }
 
 void biblioteq_otheroptions::prepareSettings(void)
