@@ -31,10 +31,11 @@
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(240, 128, 128);</string>
+          <string notr="true">QLabel {background-color: #f2dede; border: 1px solid #ebccd1; color:#a94442;}
+</string>
          </property>
          <property name="text">
-          <string>Please use lower-case IDs.</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please apply lower-case identifiers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -55,8 +56,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1046</width>
-             <height>137</height>
+             <width>1195</width>
+             <height>148</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
