@@ -1,6 +1,6 @@
 # Background
 
-Microsoft Windows based programs often use shared libraries (called dynamic link libraries or DLL files) as part of a runtime environment.  There are many versions of these runtimes.
+Microsoft Windows-based programs often use shared libraries (called dynamic link libraries or DLL files) as part of a runtime environment.  There are many versions of these runtimes.
 Sometimes a program can't find the version it needs.  Windows will give an error about a "procedure entry point" that "could not be located in the dynamic link library".
 
 # Dependencies
