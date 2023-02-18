@@ -410,8 +410,8 @@ void biblioteq_otheroptions::prepareSettings(void)
       auto list(string.split('='));
 
       if(list.size() == 2)
-	map[list.value(0).mid(0, 64).toUpper().trimmed()] =
-	  QColor(list.value(1).mid(0, 64).trimmed());
+	map[list.at(0).mid(0, 64).toUpper().trimmed()] =
+	  QColor(list.at(1).mid(0, 64).trimmed());
     }
 
   for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
