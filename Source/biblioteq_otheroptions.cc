@@ -397,25 +397,33 @@ void biblioteq_otheroptions::prepareSettings(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   prepareAvailability();
 
+  QMap<QString, QColor> map;
   QSettings settings;
   QStringList list1;
   QStringList list2;
   QStringList list3;
-  int i = 0;
 
   foreach(const auto &string,
 	  settings.value("otheroptions/custom_query_colors", "").
 	  toString().split(','))
     {
-      auto item = m_ui.custom_query->item(i, 1);
+      auto list(string.split('='));
 
-      if(item)
+      if(list.size() == 2)
+	map[list.value(0).mid(0, 64).toUpper().trimmed()] =
+	  QColor(list.value(1).mid(0, 64).trimmed());
+    }
+
+  for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
+    {
+      auto item1 = m_ui.custom_query->item(i, 0);
+      auto item2 = m_ui.custom_query->item(i, 1);
+
+      if(item1 && item2)
 	{
-	  item->setBackground(QColor(string.trimmed().mid(0, 16)));
-	  item->setText(string.trimmed().mid(0, 16));
+	  item2->setBackground(map.value(item1->text()));
+	  item2->setText(map.value(item1->text()).name());
 	}
-
-      i += 1;
     }
 
   list1 << tr("Books")
@@ -589,11 +597,14 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
     {
-      auto item = m_ui.custom_query->item(i, 1);
+      auto item1 = m_ui.custom_query->item(i, 0);
+      auto item2 = m_ui.custom_query->item(i, 1);
 
-      if(item)
+      if(item1 && item2)
 	{
-	  string.append(item->text().remove('&'));
+	  string.append(item1->text());
+	  string.append("=");
+	  string.append(item2->text().remove('&'));
 	  string.append(",");
 	}
     }
