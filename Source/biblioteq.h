@@ -63,6 +63,7 @@
 class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
+class biblioteq_sql_syntax_highlighter;
 class biblioteq_sqlite_merge_databases;
 class woody_collapse_expand_tool_button;
 
@@ -450,6 +451,7 @@ class biblioteq: public QMainWindow
   biblioteq_files *m_files;
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
+  biblioteq_sql_syntax_highlighter *m_sqlSyntaxHighlighter;
   bool m_allSearchShown;
   bool m_membersWasRefreshed;
   int m_lastSearchType;

@@ -62,6 +62,7 @@ extern "C"
 #include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_otheroptions.h"
+#include "biblioteq_sql_syntax_highlighter.h"
 #include "biblioteq_sqlite_create_schema.h"
 #include "biblioteq_woody.h"
 
@@ -403,6 +404,10 @@ biblioteq::biblioteq(void):QMainWindow()
   al.setupUi(m_all_diag);
   al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cq.setupUi(m_customquery_diag);
+  m_sqlSyntaxHighlighter = new biblioteq_sql_syntax_highlighter
+    (cq.query_te->document());
+  m_sqlSyntaxHighlighter->setKeywordsColors
+    (m_otheroptions->customQueryColors());
   m_woody = new woody_collapse_expand_tool_button(cq.tables_t);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);

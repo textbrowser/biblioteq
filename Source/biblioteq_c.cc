@@ -31,6 +31,7 @@
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
+#include "biblioteq_sql_syntax_highlighter.h"
 #include "biblioteq_sqlite_merge_databases.h"
 #include "biblioteq_woody.h"
 
@@ -4320,6 +4321,9 @@ void biblioteq::slotOtherOptionsSaved(void)
     ui.table->setIconSize(QSize(64, 94));
   else
     ui.table->setIconSize(QSize(0, 0));
+
+  m_sqlSyntaxHighlighter->setKeywordsColors
+    (m_otheroptions->customQueryColors());
 
   QFontMetrics fontMetrics(ui.table->font());
 

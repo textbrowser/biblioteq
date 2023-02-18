@@ -65,6 +65,7 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_pdfreader.h \
 		  Source/biblioteq_photographcollection.h \
                   Source/biblioteq_photograph_view.h \
+                  Source/biblioteq_sql_syntax_highlighter.h \
                   Source/biblioteq_sqlite_merge_databases.h \
 		  Source/biblioteq_sruResults.h \
                   Source/biblioteq_videogame.h \
@@ -111,6 +112,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_pdfreader.cc \
                   Source/biblioteq_photographcollection.cc \
                   Source/biblioteq_photograph_view.cc \
+                  Source/biblioteq_sql_syntax_highlighter.cc \
                   Source/biblioteq_sqlite_merge_databases.cc \
                   Source/biblioteq_sruResults.cc \
                   Source/biblioteq_videogame.cc \
