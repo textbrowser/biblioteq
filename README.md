@@ -27,7 +27,7 @@ BiblioteQ is free and open library software.
 <li>MARC21 and UNIMARC record syntaxes.</li>
 <li>MacOS and Windows install targets: make install.</li>
 <li>Merging of SQLite databases.</li>
-<li>Natively compiled on Alpha, ARM, PowerPC, Sparc64, X86, X86_64.</li>
+<li>Natively compiled on ARM, Alpha, PowerPC, Sparc64, X86, X86_64.</li>
 <li>Network-less!</li>
 <li>Open Library queries for select items.</li>
 <li>Optional item reservation histories for patrons.</li>
@@ -37,6 +37,7 @@ BiblioteQ is free and open library software.
 <li>Portable.</li>
 <li>Portable libraries.</li>
 <li>PostgreSQL accounts with various privileges.</li>
+<li>PostgreSQL and SQLite engines.</li>
 <li>PowerPC support.</li>
 <li>Print support, including previews.</li>
 <li>Qt 5 LTS and Qt 6 LTS support.</li>
