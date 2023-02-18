@@ -43,6 +43,7 @@ BiblioteQ is free and open library software.
 <li>Raspberry Pi!</li>
 <li>Rich search capabilities, including custom SQL queries.</li>
 <li>Row-level security policies for PostgreSQL.</li>
+<li>SQL syntax highlighting with custom colors.</li>
 <li>Sparc64 support.</li>
 <li>Support for multiple SRU and Z39.50 sites.</li>
 <li>Support for requesting unavailable items.</li>
