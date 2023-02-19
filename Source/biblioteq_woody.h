@@ -32,14 +32,14 @@
 #include <QPointer>
 #include <QScrollBar>
 #include <QToolButton>
-#include <QTreeView>
+#include <QTreeWidget>
 
 class woody_collapse_expand_tool_button: public QToolButton
 {
   Q_OBJECT
 
  public:
-  woody_collapse_expand_tool_button(QTreeView *tree):QToolButton(tree)
+  woody_collapse_expand_tool_button(QTreeWidget *tree):QToolButton(tree)
   {
     m_tree = tree;
 
@@ -59,6 +59,14 @@ class woody_collapse_expand_tool_button: public QToolButton
 		      "QToolButton::menu-button {border: none;}");
 	setText(tr("+"));
 	setToolTip(tr("Collapse / Expand"));
+	connect(m_tree,
+		SIGNAL(itemCollapsed(QTreeWidgetItem *)),
+		this,
+		SLOT(slot_item_collapsed_expanded(void)));
+	connect(m_tree,
+		SIGNAL(itemExpanded(QTreeWidgetItem *)),
+		this,
+		SLOT(slot_item_collapsed_expanded(void)));
 	connect(m_tree->horizontalScrollBar(),
 		SIGNAL(valueChanged(int)),
 		this,
@@ -73,11 +81,23 @@ class woody_collapse_expand_tool_button: public QToolButton
   }
 
  private:
-  QPointer<QTreeView> m_tree;
+  QPointer<QTreeWidget> m_tree;
 
  private slots:
   void slot_collapse(void)
   {
+    if(m_tree)
+      {
+    	disconnect(m_tree,
+		   SIGNAL(itemCollapsed(QTreeWidgetItem *)),
+		   this,
+		   SLOT(slot_item_collapsed_expanded(void)));
+	disconnect(m_tree,
+		   SIGNAL(itemExpanded(QTreeWidgetItem *)),
+		   this,
+		   SLOT(slot_item_collapsed_expanded(void)));
+      }
+
     if(isChecked())
       {
 	if(m_tree)
@@ -91,6 +111,41 @@ class woody_collapse_expand_tool_button: public QToolButton
 	  m_tree->collapseAll();
 
 	setText(tr("+"));
+      }
+
+    if(m_tree)
+      {
+    	connect(m_tree,
+		SIGNAL(itemCollapsed(QTreeWidgetItem *)),
+		this,
+		SLOT(slot_item_collapsed_expanded(void)));
+	connect(m_tree,
+		SIGNAL(itemExpanded(QTreeWidgetItem *)),
+		this,
+		SLOT(slot_item_collapsed_expanded(void)));
+      }
+  }
+
+  void slot_item_collapsed_expanded(void)
+  {
+    if(!m_tree)
+      return;
+
+    int expanded = 0;
+
+    for(int i = 0; i < m_tree->topLevelItemCount(); i++)
+      if(m_tree->topLevelItem(i) && m_tree->topLevelItem(i)->childCount() > 0)
+	expanded += m_tree->topLevelItem(i)->isExpanded() ? 1 : 0;
+
+    if(expanded == 0)
+      {
+	setChecked(false);
+	setText(tr("+"));
+      }
+    else
+      {
+	setChecked(true);
+	setText(tr("-"));
       }
   }
 
