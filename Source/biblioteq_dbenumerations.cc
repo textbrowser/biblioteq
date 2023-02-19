@@ -175,6 +175,16 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
     (QHeaderView::Fixed);
   m_ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
+
+  for(int i = 0; i < m_ui.minimumDaysTable->rowCount(); i++)
+    {
+      auto lineEdit = new QLineEdit(this);
+
+      lineEdit->setToolTip("[1, 1000]");
+      lineEdit->setValidator(new QIntValidator(1, 1000, this));
+      m_ui.minimumDaysTable->setCellWidget(i, 1, lineEdit);
+    }
+
   setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
@@ -444,8 +454,14 @@ void biblioteq_dbenumerations::populateWidgets(void)
       else if(tablewidget == m_ui.minimumDaysTable && tablewidget)
 	{
 	  for(int j = 0; j < list.size(); j++)
-	    if(tablewidget->item(j, 1))
-	      tablewidget->item(j, 1)->setText(list.at(j));
+	    {
+	      auto lineEdit = qobject_cast<QLineEdit *>
+		(tablewidget->cellWidget(j, 1));
+
+	      if(lineEdit)
+		lineEdit->setText
+		  (QString::number(qBound(1, list.at(j).toInt(), 1000)));
+	    }
 
 	  m_ui.minimumDaysTable->resizeColumnToContents(0);
 	}
@@ -848,10 +864,9 @@ void biblioteq_dbenumerations::slotSave(void)
 	  for(int j = 0; j < listwidget->count(); j++)
 	    if(listwidget->item(j))
 	      {
-		query.prepare(QString("INSERT INTO %1 VALUES (?)").
-			      arg(tables.at(i)));
-		query.bindValue(0,
-				listwidget->item(j)->text().trimmed());
+		query.prepare
+		  (QString("INSERT INTO %1 VALUES (?)").arg(tables.at(i)));
+		query.bindValue(0, listwidget->item(j)->text().trimmed());
 
 		if(!query.exec())
 		  {
@@ -960,78 +975,59 @@ void biblioteq_dbenumerations::slotSave(void)
       else if(tablewidget && tablewidget == m_ui.minimumDaysTable)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
-	    if(tablewidget->item(j, 1))
-	      {
-		if(j == 0)
-		  {
+	    {
+	      auto lineEdit = qobject_cast<QLineEdit *>
+		(tablewidget->cellWidget(j, 1));
+
+	      if(lineEdit)
+		{
+		  if(j == 0)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'Book')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
-		else if(j == 1)
-		  {
+		  else if(j == 1)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'DVD')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
-		else if(j == 2)
-		  {
+		  else if(j == 2)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'Grey Literature')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
-		else if(j == 3)
-		  {
+		  else if(j == 3)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'Journal')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
-		else if(j == 4)
-		  {
+		  else if(j == 4)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'Magazine')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
-		else if(j == 5)
-		  {
+		  else if(j == 5)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'CD')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
-		else if(j == 6)
-		  {
+		  else if(j == 6)
 		    query.prepare("INSERT INTO minimum_days "
 				  "(days, type) VALUES "
 				  "(?, 'Video Game')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
-		  }
 
-		if(!query.exec())
-		  {
-		    qmain->addError
-		      (QString(tr("Database Error")),
-		       QString(tr("Unable to create the minimum day (")) +
-		       tablewidget->item(j, 0)->text() +
-		       tr(", ") +
-		       tablewidget->item(j, 1)->text().trimmed() +
-		       QString(tr(").")),
-		       query.lastError().text(), __FILE__, __LINE__);
-		    goto db_rollback;
-		  }
-	      }
+		  query.bindValue(0, lineEdit->text());
+
+		  if(!query.exec())
+		    {
+		      if(tablewidget->item(j, 0))
+			qmain->addError
+			  (QString(tr("Database Error")),
+			   QString(tr("Unable to create the minimum day (")) +
+			   tablewidget->item(j, 0)->text() +
+			   tr(", ") +
+			   lineEdit->text() +
+			   QString(tr(").")),
+			   query.lastError().text(), __FILE__, __LINE__);
+
+		      goto db_rollback;
+		    }
+		}
+	    }
 	}
 
       if(!qmain->getDB().commit())
