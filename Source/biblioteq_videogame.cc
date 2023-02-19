@@ -1266,7 +1266,7 @@ void biblioteq_videogame::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (biblioteq::POPULATE_ALL, "Video Games", QString(""));
+		  (biblioteq::POPULATE_ALL, "Video Games", "");
 
 	      raise();
 	    }

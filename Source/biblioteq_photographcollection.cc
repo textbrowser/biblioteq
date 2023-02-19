@@ -1499,9 +1499,9 @@ void biblioteq_photographcollection::slotGo(void)
 	      updateWindow(biblioteq::EDITABLE);
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
-		(void) qmain->populateTable
-		  (biblioteq::POPULATE_ALL, "Photograph Collections",
-		   QString(""));
+		(void) qmain->populateTable(biblioteq::POPULATE_ALL,
+					    "Photograph Collections",
+					    "");
 
 	      raise();
 	    }

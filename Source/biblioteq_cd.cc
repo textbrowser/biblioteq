@@ -1428,7 +1428,7 @@ void biblioteq_cd::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (biblioteq::POPULATE_ALL, "Music CDs", QString(""));
+		  (biblioteq::POPULATE_ALL, "Music CDs", "");
 
 	      raise();
 	    }

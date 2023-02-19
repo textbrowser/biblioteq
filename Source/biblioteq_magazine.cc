@@ -2871,10 +2871,10 @@ void biblioteq_magazine::slotGo(void)
 		{
 		  if(m_subType == "Journal")
 		    (void) qmain->populateTable
-		      (biblioteq::POPULATE_ALL, "Journals", QString(""));
+		      (biblioteq::POPULATE_ALL, "Journals", "");
 		  else
 		    (void) qmain->populateTable
-		      (biblioteq::POPULATE_ALL, "Magazines", QString(""));
+		      (biblioteq::POPULATE_ALL, "Magazines", "");
 		}
 
 	      raise();

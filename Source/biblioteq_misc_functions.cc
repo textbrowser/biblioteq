@@ -385,7 +385,7 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 						  const QString &columnName)
 {
   if(columnName.isEmpty() || row < 0 || !table)
-    return QString("");
+    return "";
 
   QString str = "";
   QTableWidgetItem *column = nullptr;
@@ -414,14 +414,14 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 						  const int column)
 {
   if(column < 0 || row < 0 || !table)
-    return QString("");
+    return "";
 
   QTableWidgetItem *item = nullptr;
 
   if((item = table->item(row, column)))
     return item->text();
   else
-    return QString("");
+    return "";
 }
 
 QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,

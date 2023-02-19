@@ -567,8 +567,7 @@ void biblioteq_grey_literature::insertDatabase(void)
   updateWindow(biblioteq::EDITABLE);
 
   if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
-    (void) qmain->populateTable
-      (biblioteq::POPULATE_ALL, "Grey Literature", QString(""));
+    (void) qmain->populateTable(biblioteq::POPULATE_ALL, "Grey Literature", "");
 
   raise();
   storeData(this);

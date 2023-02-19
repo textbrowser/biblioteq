@@ -3466,7 +3466,7 @@ void biblioteq_book::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (biblioteq::POPULATE_ALL, "Books", QString(""));
+		  (biblioteq::POPULATE_ALL, "Books", "");
 
 	      raise();
 	    }
