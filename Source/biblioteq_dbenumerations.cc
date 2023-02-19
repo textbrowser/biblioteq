@@ -542,7 +542,10 @@ void biblioteq_dbenumerations::setGlobalFonts(const QFont &font)
 
   foreach(auto widget, findChildren<QWidget *> ())
     {
-      widget->setFont(font);
+      auto f(font);
+
+      f.setBold(widget->font().bold());
+      widget->setFont(f);
       widget->update();
     }
 

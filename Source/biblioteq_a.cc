@@ -1951,7 +1951,10 @@ void biblioteq::setGlobalFonts(const QFont &font)
       continue;
     else
       {
-	widget->setFont(font);
+	auto f(font);
+
+	f.setBold(widget->font().bold());
+	widget->setFont(f);
 	widget->update();
       }
 
