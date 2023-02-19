@@ -227,6 +227,9 @@ int biblioteq::populateTable(const int search_type_arg,
 	ui.configTool->setToolTip(tr("Disabled for custom queries."));
 	searchstr = searchstrArg;
 
+	while(searchstr.endsWith(';'))
+	  searchstr = searchstr.mid(0, searchstr.length() - 1);
+
 	if(searchstr.lastIndexOf("LIMIT") != -1)
 	  searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			   searchstr.length());
