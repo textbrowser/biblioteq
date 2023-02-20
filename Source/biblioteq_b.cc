@@ -115,6 +115,9 @@ int biblioteq::populateTable(const int search_type_arg,
 			     const QString &searchstrArg,
 			     const int pagingType)
 {
+  QElapsedTimer elapsed;
+
+  elapsed.start();
   ui.itemsCountLabel->setText(tr("0 Results"));
 
   QScopedPointer<QProgressDialog> progress;
@@ -280,7 +283,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "book.myoid, "
 	       "book.front_cover "
 	       " %1 "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT cd.title, "
 	       "cd.id, "
 	       "cd.recording_label, cd.rdate, "
@@ -313,7 +316,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "cd.myoid, "
 	       "cd.front_cover "
 	       " %1 "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT dvd.title, "
 	       "dvd.id, "
 	       "dvd.studio, dvd.rdate, "
@@ -346,7 +349,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "dvd.myoid, "
 	       "dvd.front_cover "
 	       " %1 "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT grey_literature.document_title, "
 	       "grey_literature.document_id, "
 	       "grey_literature.author, "
@@ -379,7 +382,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "grey_literature.myoid, "
 	       "grey_literature.front_cover "
 	       "%1 "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT journal.title, "
 	       "journal.id, "
 	       "journal.publisher, journal.pdate, "
@@ -412,7 +415,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "journal.myoid, "
 	       "journal.front_cover "
 	       " %1 "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT magazine.title, "
 	       "magazine.id, "
 	       "magazine.publisher, magazine.pdate, "
@@ -445,7 +448,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "magazine.myoid, "
 	       "magazine.front_cover "
 	       " %1 "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT photograph_collection.title, "
 	       "photograph_collection.id, "
 	       "'', "
@@ -471,7 +474,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	       "photograph_collection.type, "
 	       "photograph_collection.myoid, " +
 	       "photograph_collection.image_scaled "
-	       "UNION "
+	       "UNION ALL "
 	       "SELECT DISTINCT videogame.title, "
 	       "videogame.id, "
 	       "videogame.publisher, videogame.rdate, "
@@ -566,7 +569,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -620,7 +623,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.type, "
 				 "cd.myoid, "
 				 "cd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -674,7 +677,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.type, "
 				 "dvd.myoid, "
 				 "dvd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -728,7 +731,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.type, "
 				 "grey_literature.myoid, "
 				 "grey_literature.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -782,7 +785,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.type, "
 				 "journal.myoid, "
 				 "journal.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -836,7 +839,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.type, "
 				 "magazine.myoid, "
 				 "magazine.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -959,7 +962,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1023,7 +1026,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.type, "
 				 "cd.myoid, "
 				 "cd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1087,7 +1090,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.type, "
 				 "dvd.myoid, "
 				 "dvd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1151,7 +1154,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.type, "
 				 "grey_literature.myoid, "
 				 "grey_literature.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1216,7 +1219,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.type, "
 				 "journal.myoid, "
 				 "journal.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1281,7 +1284,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.type, "
 				 "magazine.myoid, "
 				 "magazine.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1397,7 +1400,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.myoid, "
 				 "item_request.myoid, "
 				 "book.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
 				 "cd.title, "
@@ -1438,7 +1441,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.myoid, "
 				 "item_request.myoid, "
 				 "cd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
 				 "dvd.title, "
@@ -1479,7 +1482,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.myoid, "
 				 "item_request.myoid, "
 				 "dvd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
 				 "grey_literature.document_title, "
@@ -1521,7 +1524,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.myoid, "
 				 "item_request.myoid, "
 				 "grey_literature.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
 				 "journal.title, "
@@ -1563,7 +1566,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.myoid, "
 				 "item_request.myoid, "
 				 "journal.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
 				 "magazine.title, "
@@ -1605,7 +1608,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.myoid, "
 				 "item_request.myoid, "
 				 "magazine.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
 				 "videogame.title, "
@@ -1699,7 +1702,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.myoid, "
 				 "item_request.myoid, "
 				 "book.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1747,7 +1750,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.myoid, "
 				 "item_request.myoid, "
 				 "cd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1795,7 +1798,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.myoid, "
 				 "item_request.myoid, "
 				 "dvd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1844,7 +1847,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.myoid, "
 				 "item_request.myoid, "
 				 "grey_literature.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1893,7 +1896,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.myoid, "
 				 "item_request.myoid, "
 				 "journal.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -1942,7 +1945,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.myoid, "
 				 "item_request.myoid, "
 				 "magazine.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -2048,7 +2051,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -2096,7 +2099,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.type, "
 				 "cd.myoid, "
 				 "cd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -2144,7 +2147,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.type, "
 				 "dvd.myoid, "
 				 "dvd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -2192,7 +2195,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.type, "
 				 "grey_literature.myoid, "
 				 "grey_literature.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -2241,7 +2244,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.type, "
 				 "journal.myoid, "
 				 "journal.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -2290,7 +2293,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.type, "
 				 "magazine.myoid, "
 				 "magazine.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
@@ -2402,7 +2405,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -2461,7 +2464,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "cd.type, "
 				 "cd.myoid, "
 				 "cd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -2520,7 +2523,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "dvd.type, "
 				 "dvd.myoid, "
 				 "dvd.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -2579,7 +2582,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "grey_literature.type, "
 				 "grey_literature.myoid, "
 				 "grey_literature.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -2639,7 +2642,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.type, "
 				 "journal.myoid, "
 				 "journal.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -2699,7 +2702,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.type, "
 				 "magazine.myoid, "
 				 "magazine.front_cover ");
-		searchstr.append("UNION ");
+		searchstr.append("UNION ALL ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
@@ -4091,6 +4094,13 @@ int biblioteq::populateTable(const int search_type_arg,
 	  this,
 	  SLOT(slotItemChanged(QTableWidgetItem *)));
   m_findList.clear();
+
+  if(statusBar())
+    statusBar()->showMessage
+      (tr("Query completed in %1 second(s).").
+       arg(qAbs(static_cast<double> (elapsed.elapsed())) / 1000.0),
+       5000);
+
   QApplication::restoreOverrideCursor();
   return 0;
 }

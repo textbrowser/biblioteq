@@ -336,6 +336,10 @@ int biblioteq::populateTable(QSqlQuery *query,
 			     const int pagingType,
 			     const int searchType)
 {
+  QElapsedTimer elapsed;
+
+  elapsed.start();
+
   if(m_searchQuery != query)
     {
       delete m_searchQuery;
@@ -1083,6 +1087,13 @@ int biblioteq::populateTable(QSqlQuery *query,
 	  this,
 	  SLOT(slotItemChanged(QTableWidgetItem *)));
   m_findList.clear();
+
+  if(statusBar())
+    statusBar()->showMessage
+      (tr("Query completed in %1 second(s).").
+       arg(qAbs(static_cast<double> (elapsed.elapsed())) / 1000.0),
+       5000);
+
   QApplication::restoreOverrideCursor();
   return 0;
 }
