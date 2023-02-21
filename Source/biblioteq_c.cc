@@ -656,6 +656,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 
   QFontMetrics fontMetrics(ui.table->font());
   QLocale locale;
+  QMap<QByteArray, QImage> images;
   QSettings settings;
   QString dateFormat("");
   auto availabilityColors = this->availabilityColors();
@@ -877,18 +878,47 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    {
 		      if(!m_searchQuery->isNull(j))
 			{
-			  image.loadFromData
+			  auto bytes
 			    (QByteArray::fromBase64(m_searchQuery->value(j).
 						    toByteArray()));
 
+			  if(images.contains(bytes))
+			    image = images.value(bytes);
+			  else
+			    {
+			      image.loadFromData(bytes);
+
+			      if(!image.isNull())
+				images[bytes] = image;
+			    }
+
 			  if(image.isNull())
-			    image.loadFromData
-			      (m_searchQuery->value(j).toByteArray());
+			    {
+			      bytes = m_searchQuery->value(j).toByteArray();
+
+			      if(images.contains(bytes))
+				image = images.value(bytes);
+			      else
+				{
+				  image.loadFromData(bytes);
+
+				  if(!image.isNull())
+				    images[bytes] = image;
+				}
+			    }
 			}
 		    }
 
 		  if(image.isNull())
-		    image = QImage(":/no_image.png");
+		    {
+		      if(images.contains(QByteArray()))
+			image = images.value(QByteArray());
+		      else
+			{
+			  image = QImage(":/no_image.png");
+			  images[QByteArray()] = image;
+			}
+		    }
 
 		  /*
 		  ** The size of no_image.png is 126x187.

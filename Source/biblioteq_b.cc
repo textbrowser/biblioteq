@@ -3667,6 +3667,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QFontMetrics fontMetrics(ui.table->font());
   QLocale locale;
+  QMap<QByteArray, QImage> images;
   auto availabilityColors = this->availabilityColors();
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
@@ -3872,17 +3873,47 @@ int biblioteq::populateTable(const int search_type_arg,
 		    {
 		      if(!query.isNull(j))
 			{
-			  image.loadFromData
-			    (QByteArray::fromBase64(query.value(j).
-						    toByteArray()));
+			  auto bytes
+			    (QByteArray::
+			     fromBase64(query.value(j).toByteArray()));
+
+			  if(images.contains(bytes))
+			    image = images.value(bytes);
+			  else
+			    {
+			      image.loadFromData(bytes);
+
+			      if(!image.isNull())
+				images[bytes] = image;
+			    }
 
 			  if(image.isNull())
-			    image.loadFromData(query.value(j).toByteArray());
+			    {
+			      bytes = query.value(j).toByteArray();
+
+			      if(images.contains(bytes))
+				image = images.value(bytes);
+			      else
+				{
+				  image.loadFromData(bytes);
+
+				  if(!image.isNull())
+				    images[bytes] = image;
+				}
+			    }
 			}
 		    }
 
 		  if(image.isNull())
-		    image = QImage(":/no_image.png");
+		    {
+		      if(images.contains(QByteArray()))
+			image = images.value(QByteArray());
+		      else
+			{
+			  image = QImage(":/no_image.png");
+			  images[QByteArray()] = image;
+			}
+		    }
 
 		  /*
 		  ** The size of no_image.png is 126x187.
