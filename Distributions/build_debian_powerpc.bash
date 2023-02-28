@@ -37,7 +37,7 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./DEBIAN-POWERPC biblioteq-debian/DEBIAN
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-0000.00.00_powerpc.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2023.07.07_powerpc.deb
 make distclean
 rm -fr ./usr
 rm -fr biblioteq-debian
