@@ -111,18 +111,27 @@ QColor biblioteq_otheroptions::itemMandatoryFieldColor(void) const
 {
   QSettings settings;
 
-  return QColor
-    (settings.value("otheroptions/item_mandatory_field_color").toString().
-     remove('&').trimmed());
+  auto color
+    (QColor(settings.value("otheroptions/item_mandatory_field_color").
+	    toString().remove('&').trimmed()));
+
+  if(!color.isValid())
+    color = QColor(255, 248, 220);
+
+  return color;
 }
 
 QColor biblioteq_otheroptions::itemQueryResultColor(void) const
 {
   QSettings settings;
 
-  return QColor
-    (settings.value("otheroptions/item_query_result_color").toString().
-     remove('&').trimmed());
+  auto color(QColor(settings.value("otheroptions/item_query_result_color").
+		    toString().remove('&').trimmed()));
+
+  if(!color.isValid())
+    color = QColor(162, 205, 90);
+
+  return color;
 }
 
 QMap<QString, QColor> biblioteq_otheroptions::customQueryColors(void) const
