@@ -104,7 +104,12 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
     value = settings.value
       ("otheroptions/videogame_availability_color").toString();
 
-  return QColor(value.remove('&'));
+  auto color(QColor(value.remove('&')));
+
+  if(!color.isValid())
+    color = QColor(Qt::green);
+
+  return color;
 }
 
 QColor biblioteq_otheroptions::itemMandatoryFieldColor(void) const
