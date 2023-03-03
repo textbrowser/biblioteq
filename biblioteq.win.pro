@@ -41,6 +41,8 @@ TEMPLATE        = app
 
 biblioteq.files = biblioteq.conf
 biblioteq.path = release\\.
+biblioteq_bat.files = biblioteq-darkmode.bat
+biblioteq_bat.path = release\\.
 data.files = Data\\*
 data.path = release\\Data\\.
 documentation.files = Documentation\\*.html \
@@ -88,6 +90,7 @@ sql2.files = SQL\\*.sql
 sql2.path = release\\SQL\\.
 
 INSTALLS = biblioteq \
+           biblioteq_bat \
            data \
            plugins1 \
            pluginspurge1 \
