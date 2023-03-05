@@ -27,7 +27,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -std=c++17
 QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.13
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.0
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= /usr/local/include \
@@ -44,29 +44,27 @@ TARGET		= BiblioteQ
 TEMPLATE        = app
 
 biblioteq.files		 = BiblioteQ.app/*
-biblioteq.path		 = /Applications/BiblioteQ.d/BiblioteQ.app
+biblioteq.path		 = BiblioteQ.d/BiblioteQ.app
 conf.files		 = biblioteq.conf
-conf.path		 = /Applications/BiblioteQ.d
+conf.path		 = BiblioteQ.d
 data.files		 = Data/*
-data.path		 = /Applications/BiblioteQ.d/Data
+data.path		 = BiblioteQ.d/Data
 doc1.files		 = Documentation/*.html Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
-doc1.path		 = /Applications/BiblioteQ.d/Documentation
+doc1.path		 = BiblioteQ.d/Documentation
 doc2.files		 = Documentation/Contributed/*.docx Documentation/Contributed/*.html Documentation/Contributed/*.pdf
-doc2.path		 = /Applications/BiblioteQ.d/Documentation/Contributed
+doc2.path		 = BiblioteQ.d/Documentation/Contributed
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
 lupdate.extra            = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
 lupdate.path             = .
 macdeployqt.extra	 = $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 macdeployqt.path	 = BiblioteQ.app
-postinstall.extra	 = cp -r BiblioteQ.app /Applications/BiblioteQ.d/.
-postinstall.path	 = /Applications/BiblioteQ.d
-preinstall.extra         = rm -fr /Applications/BiblioteQ.d/BiblioteQ.app/*
-preinstall.path          = /Applications/BiblioteQ.d
+postinstall.extra	 = cp -r BiblioteQ.app BiblioteQ.d/.
+postinstall.path	 = BiblioteQ.d
+preinstall.extra         = rm -fr BiblioteQ.d/BiblioteQ.app/*
+preinstall.path          = BiblioteQ.d
 sql.files		 = SQL/*.sql
-sql.path		 = /Applications/BiblioteQ.d
-zzz.extra                = chown -Rh root:wheel /Applications/BiblioteQ.d
-zzz.path                 = /Applications/BiblioteQ.d
+sql.path		 = BiblioteQ.d
 
 INSTALLS	= preinstall \
 		  macdeployqt \
@@ -76,5 +74,4 @@ INSTALLS	= preinstall \
 		  doc1 \
 		  doc2 \
 		  sql \
-                  postinstall \
-                  zzz
+                  postinstall
