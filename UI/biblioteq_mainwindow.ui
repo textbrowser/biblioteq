@@ -125,7 +125,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>256</height>
+          <height>289</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -309,7 +309,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="previousPageButton">
+           <widget class="QPushButton" name="previousPageButton">
             <property name="toolTip">
              <string>Previous Page</string>
             </property>
@@ -322,9 +322,6 @@
               <width>16</width>
               <height>16</height>
              </size>
-            </property>
-            <property name="autoRaise">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -342,7 +339,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="nextPageButton">
+           <widget class="QPushButton" name="nextPageButton">
             <property name="toolTip">
              <string>Next Page</string>
             </property>
@@ -355,9 +352,6 @@
               <width>16</width>
               <height>16</height>
              </size>
-            </property>
-            <property name="autoRaise">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -407,7 +401,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="next">
+       <widget class="QPushButton" name="next">
         <property name="minimumSize">
          <size>
           <width>100</width>
@@ -429,7 +423,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>34</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
