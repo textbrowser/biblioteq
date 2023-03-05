@@ -118,14 +118,26 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="find_next">
+       <widget class="QPushButton" name="find_next">
+        <property name="minimumSize">
+         <size>
+          <width>135</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="text">
          <string>Find &amp;Next</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="find_previous">
+       <widget class="QPushButton" name="find_previous">
+        <property name="minimumSize">
+         <size>
+          <width>135</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="text">
          <string>Find &amp;Previous</string>
         </property>
@@ -133,6 +145,12 @@
       </item>
       <item>
        <widget class="QToolButton" name="case_sensitive">
+        <property name="minimumSize">
+         <size>
+          <width>135</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="text">
          <string>&amp;Case Sensitive</string>
         </property>
@@ -230,7 +248,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
