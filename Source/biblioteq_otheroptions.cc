@@ -353,7 +353,7 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-	item->setCheckState(Qt::Unchecked);
+	item->setCheckState(Qt::Checked);
 	m_ui.members_visible_columns->addItem(item);
       }
 }
@@ -430,34 +430,61 @@ void biblioteq_otheroptions::prepareSettings(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   prepareAvailability();
 
-  QMap<QString, QColor> map;
   QSettings settings;
   QStringList list1;
   QStringList list2;
   QStringList list3;
 
-  foreach(const auto &string,
-	  settings.value("otheroptions/custom_query_colors", "").
-	  toString().split(','))
-    {
-      auto list(string.split('='));
+  {
+    QMap<QString, QColor> map;
 
-      if(list.size() == 2)
-	map[list.at(0).mid(0, 64).toUpper().trimmed()] =
-	  QColor(list.at(1).mid(0, 64).trimmed());
-    }
+    foreach(const auto &string,
+	    settings.value("otheroptions/custom_query_colors", "").
+	    toString().split(','))
+      {
+	auto list(string.split('='));
 
-  for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
-    {
-      auto item1 = m_ui.custom_query->item(i, 0);
-      auto item2 = m_ui.custom_query->item(i, 1);
+	if(list.size() == 2)
+	  map[list.at(0).mid(0, 64).toUpper().trimmed()] =
+	    QColor(list.at(1).mid(0, 64).trimmed());
+      }
 
-      if(item1 && item2)
-	{
-	  item2->setBackground(map.value(item1->text()));
-	  item2->setText(map.value(item1->text()).name());
-	}
-    }
+    for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
+      {
+	auto item1 = m_ui.custom_query->item(i, 0);
+	auto item2 = m_ui.custom_query->item(i, 1);
+
+	if(item1 && item2)
+	  {
+	    item2->setBackground(map.value(item1->text()));
+	    item2->setText(map.value(item1->text()).name());
+	  }
+      }
+  }
+
+  {
+    QMap<QString, bool> map;
+
+    foreach(const auto &string,
+	    settings.value("otheroptions/members_visible_columns", "").
+	    toString().split(','))
+      {
+	auto list(string.split('='));
+
+	if(list.size() == 2)
+	  map[list.at(0).mid(0, 128).trimmed()] =
+	    QVariant(list.at(1).mid(0, 5).trimmed()).toBool();
+      }
+
+    for(int i = 0; i < m_ui.members_visible_columns->count(); i++)
+      {
+	auto item = m_ui.members_visible_columns->item(i);
+
+	if(item)
+	  item->setCheckState
+	    (map.value(item->text()) ? Qt::Checked : Qt::Unchecked);
+      }
+  }
 
   list1 << tr("Books")
 	<< tr("DVDs")
@@ -650,6 +677,28 @@ void biblioteq_otheroptions::slotSave(void)
   else
     settings.setValue
       ("otheroptions/custom_query_colors", string.mid(0, string.length() - 1));
+
+  string.clear();
+
+  for(int i = 0; i < m_ui.members_visible_columns->count(); i++)
+    {
+      auto item = m_ui.members_visible_columns->item(i);
+
+      if(item)
+	{
+	  string.append(item->text());
+	  string.append("=");
+	  string.append(item->checkState() == Qt::Checked ? "true" : "false");
+	  string.append(",");
+	}
+    }
+
+  if(string.isEmpty())
+    settings.setValue("otheroptions/members_visible_columns", "");
+  else
+    settings.setValue
+      ("otheroptions/members_visible_columns",
+       string.mid(0, string.length() - 1));
 
   QStringList list;
 
