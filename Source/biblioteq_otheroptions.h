@@ -182,6 +182,7 @@ class biblioteq_otheroptions: public QMainWindow
   int booksAccessionNumberIndex(void) const;
   int iconsViewColumnCount(void) const;
   void prepareSettings(void);
+  void prepareMembersVisibleColumns(QTableWidget *table);
 
  private:
   enum ItemsColumns

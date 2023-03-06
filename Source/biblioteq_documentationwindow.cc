@@ -155,7 +155,7 @@ void biblioteq_documentationwindow::slotFindText(void)
   QTextDocument::FindFlags options = 0;
 #endif
 
-  if(qobject_cast<QToolButton *> (sender()) == m_ui.previous)
+  if(qobject_cast<QPushButton *> (sender()) == m_ui.previous)
     options = QTextDocument::FindBackward;
 
   if(m_ui.find->text().isEmpty())

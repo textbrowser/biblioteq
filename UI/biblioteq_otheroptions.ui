@@ -531,6 +531,18 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_4">
+              <property name="title">
+               <string>Visible Columns</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <item>
+                <widget class="QListWidget" name="members_visible_columns"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="tab_4">
@@ -729,6 +741,7 @@
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
   <tabstop>generated_letter</tabstop>
+  <tabstop>members_visible_columns</tabstop>
   <tabstop>books_accession_number</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close</tabstop>

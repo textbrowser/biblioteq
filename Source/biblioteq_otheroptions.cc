@@ -339,6 +339,25 @@ void biblioteq_otheroptions::prepareAvailability(void)
 
 }
 
+void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
+{
+  if(!table)
+    return;
+
+  m_ui.members_visible_columns->clear();
+
+  for(int i = 0; i < table->columnCount(); i++)
+    if(table->horizontalHeaderItem(i))
+      {
+	auto item = new QListWidgetItem(table->horizontalHeaderItem(i)->text());
+
+	item->setFlags
+	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+	item->setCheckState(Qt::Unchecked);
+	m_ui.members_visible_columns->addItem(item);
+      }
+}
+
 void biblioteq_otheroptions::prepareSQLKeywords(void)
 {
   QStringList list;

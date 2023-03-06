@@ -404,6 +404,7 @@ biblioteq::biblioteq(void):QMainWindow()
   al.setupUi(m_all_diag);
   al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cq.setupUi(m_customquery_diag);
+  m_otheroptions->prepareMembersVisibleColumns(bb.table);
   m_sqlSyntaxHighlighter = new biblioteq_sql_syntax_highlighter
     (cq.query_te->document());
   m_sqlSyntaxHighlighter->setKeywordsColors
