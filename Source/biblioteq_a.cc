@@ -1938,8 +1938,17 @@ void biblioteq::resetMembersBrowser(void)
   list.clear();
   bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
 
-  for(int i = 0; i < bb.table->columnCount() - 1; i++)
-    bb.table->resizeColumnToContents(i);
+  for(int i = 0; i < bb.table->columnCount(); i++)
+    {
+      auto item = bb.table->horizontalHeaderItem(i);
+
+      if(item)
+	bb.table->setColumnHidden
+	  (i, !m_otheroptions->isMembersColumnVisible(item->text()));
+
+      if(i < bb.table->columnCount() - 1)
+	bb.table->resizeColumnToContents(i);
+    }
 }
 
 void biblioteq::setGlobalFonts(const QFont &font)

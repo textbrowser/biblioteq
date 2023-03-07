@@ -522,7 +522,7 @@
 283. QSqlField::tableName() and Qt 5.5.1. PowerPC and Ubuntu 16.04.
      Field is not available in legacy Qt. (Done)
 284. Alternate identifier and Open Library image query. (Done)
-285. Viewable Members Browser columns. (TBD)
+285. Viewable Members Browser columns. (Done)
 286. Double-clicking on the main table should activate the cell for
      copying. This will confuse some people. No. (Done)
 287. Non-database local find from the main window. (Done)
