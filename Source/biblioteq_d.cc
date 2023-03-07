@@ -66,7 +66,9 @@ QString biblioteq::formattedISBN13(const QString &str) const
 
 bool biblioteq::canAccessDatabaseEnumerations(void) const
 {
-  if(m_db.driverName() == "QSQLITE")
+  if(!m_db.isOpen())
+    return false;
+  else if(m_db.driverName() == "QSQLITE")
     return true;
   else if(m_roles.contains("administrator") ||
 	  m_roles.contains("librarian"))
