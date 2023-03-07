@@ -176,6 +176,7 @@ class biblioteq_otheroptions: public QMainWindow
   }
 
   QString publicationDateFormat(const QString &it) const;
+  bool isMembersColumnVisible(const QString &text) const;
   bool showBookReadStatus(void) const;
   bool showMainTableImages(void) const;
   bool showMainTableProgressDialogs(void) const;

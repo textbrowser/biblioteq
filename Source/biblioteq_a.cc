@@ -2148,6 +2148,7 @@ void biblioteq::showMain(void)
   else
     {
       auto list(QApplication::arguments());
+      auto openDatabase = false;
 
       for(int i = 0; i < list.size(); i++)
 	if(list.at(i) == "--open-postgresql-database")
@@ -2157,13 +2158,16 @@ void biblioteq::showMain(void)
 	    if(i >= list.size())
 	      continue;
 
-	    auto index = br.branch_name->findText(list.at(i));
-
-	    if(index >= 0)
+	    if(!openDatabase)
 	      {
-		br.branch_name->setCurrentIndex(index);
-		slotConnectDB();
-		break;
+		auto index = br.branch_name->findText(list.at(i));
+
+		if(index >= 0)
+		  {
+		    br.branch_name->setCurrentIndex(index);
+		    openDatabase = true;
+		    slotConnectDB();
+		  }
 	      }
 	  }
 	else if(list.at(i) == "--open-sqlite-database")
@@ -2173,19 +2177,21 @@ void biblioteq::showMain(void)
 	    if(i >= list.size())
 	      continue;
 
-	    br.filename->setText(QFileInfo(list.at(i)).absoluteFilePath());
+	    if(!openDatabase)
+	      {
+		br.filename->setText(QFileInfo(list.at(i)).absoluteFilePath());
 
-	    for(int j = 0; j < br.branch_name->count(); j++)
-	      if(m_branches.contains(br.branch_name->itemText(j)))
-		if(m_branches[br.branch_name->itemText(j)].
-		   value("database_type") == "sqlite")
-		  {
-		    br.branch_name->setCurrentIndex(j);
-		    slotConnectDB();
-		    break;
-		  }
-
-	    break;
+		for(int j = 0; j < br.branch_name->count(); j++)
+		  if(m_branches.contains(br.branch_name->itemText(j)))
+		    if(m_branches[br.branch_name->itemText(j)].
+		       value("database_type") == "sqlite")
+		      {
+			br.branch_name->setCurrentIndex(j);
+			openDatabase = true;
+			slotConnectDB();
+			break;
+		      }
+	      }
 	  }
     }
 }
@@ -4621,8 +4627,17 @@ void biblioteq::slotShowMembersBrowser(void)
   bb.filterBox->setCheckState(Qt::Checked);
   bb.filtertype->setCurrentIndex(0);
 
-  for(int i = 0; i < bb.table->columnCount() - 1; i++)
-    bb.table->resizeColumnToContents(i);
+  for(int i = 0; i < bb.table->columnCount(); i++)
+    {
+      auto item = bb.table->horizontalHeaderItem(i);
+
+      if(item)
+	bb.table->setColumnHidden
+	  (i, !m_otheroptions->isMembersColumnVisible(item->text()));
+
+      if(i < bb.table->columnCount() - 1)
+	bb.table->resizeColumnToContents(i);
+    }
 
   biblioteq_misc_functions::center(m_members_diag, this);
   m_members_diag->showNormal();

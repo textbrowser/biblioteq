@@ -194,6 +194,19 @@ QString biblioteq_otheroptions::publicationDateFormat(const QString &it) const
     return format;
 }
 
+bool biblioteq_otheroptions::isMembersColumnVisible(const QString &text) const
+{
+  for(int i = 0; i < m_ui.members_visible_columns->count(); i++)
+    {
+      auto item = m_ui.members_visible_columns->item(i);
+
+      if(item && item->text() == text)
+	return item->checkState() == Qt::Checked;
+    }
+
+  return false;
+}
+
 bool biblioteq_otheroptions::showBookReadStatus(void) const
 {
   QSettings settings;
@@ -346,6 +359,20 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 
   m_ui.members_visible_columns->clear();
 
+  QMap<QString, bool> map;
+  QSettings settings;
+
+  foreach(const auto &string,
+	  settings.value("otheroptions/members_visible_columns", "").
+	  toString().split(','))
+    {
+      auto list(string.split('='));
+
+      if(list.size() == 2)
+	map[list.at(0).mid(0, 128).trimmed()] =
+	  QVariant(list.at(1).mid(0, 5).trimmed()).toBool();
+    }
+
   for(int i = 0; i < table->columnCount(); i++)
     if(table->horizontalHeaderItem(i))
       {
@@ -353,7 +380,8 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-	item->setCheckState(Qt::Checked);
+	item->setCheckState
+	  (map.value(item->text()) ? Qt::Checked : Qt::Unchecked);
 	m_ui.members_visible_columns->addItem(item);
       }
 }

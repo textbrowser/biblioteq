@@ -4358,6 +4358,15 @@ void biblioteq::slotOtherOptionsSaved(void)
       qobject_cast<biblioteq_videogame *> (widget)->setPublicationDateFormat
 	(m_otheroptions->publicationDateFormat("videogames"));
 
+  for(int i = 0; i < bb.table->columnCount(); i++)
+    {
+      auto item = bb.table->horizontalHeaderItem(i);
+
+      if(item)
+	bb.table->setColumnHidden
+	  (i, !m_otheroptions->isMembersColumnVisible(item->text()));
+    }
+
   if(m_otheroptions->showMainTableImages())
     ui.table->setIconSize(QSize(64, 94));
   else
