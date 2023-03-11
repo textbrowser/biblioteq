@@ -378,10 +378,14 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
       {
 	auto item = new QListWidgetItem(table->horizontalHeaderItem(i)->text());
 
+	if(map.contains(item->text()))
+	  item->setCheckState
+	    (map.value(item->text()) ? Qt::Checked : Qt::Unchecked);
+	else
+	  item->setCheckState(Qt::Checked);
+
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-	item->setCheckState
-	  (map.value(item->text()) ? Qt::Checked : Qt::Unchecked);
 	m_ui.members_visible_columns->addItem(item);
       }
 }
@@ -509,8 +513,13 @@ void biblioteq_otheroptions::prepareSettings(void)
 	auto item = m_ui.members_visible_columns->item(i);
 
 	if(item)
-	  item->setCheckState
-	    (map.value(item->text()) ? Qt::Checked : Qt::Unchecked);
+	  {
+	    if(map.contains(item->text()))
+	      item->setCheckState
+		(map.value(item->text()) ? Qt::Checked : Qt::Unchecked);
+	    else
+	      item->setCheckState(Qt::Checked);
+	  }
       }
   }
 

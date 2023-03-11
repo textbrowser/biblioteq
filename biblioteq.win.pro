@@ -23,7 +23,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -pedantic \
                           -pie \
-                          -std=c++11
+                          -std=c++17
 QMAKE_DISTCLEAN += debug temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
