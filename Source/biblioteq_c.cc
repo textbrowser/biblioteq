@@ -1488,7 +1488,6 @@ void biblioteq::readConfig(void)
   else
     ui.actionPreserveGeometry->setChecked(false);
 
-#ifndef Q_OS_MACOS
   font = QApplication::font();
 
   if(settings.contains("global_font") &&
@@ -1497,7 +1496,6 @@ void biblioteq::readConfig(void)
       font = QApplication::font();
 
   QApplication::setFont(font);
-#endif
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", true).toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked

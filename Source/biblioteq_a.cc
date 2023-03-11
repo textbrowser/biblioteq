@@ -417,9 +417,6 @@ biblioteq::biblioteq(void):QMainWindow()
 #ifdef Q_OS_ANDROID
   ui.action_Full_Screen->setEnabled(false);
 #endif
-#ifdef Q_OS_MACOS
-  ui.actionSetGlobalFonts->setVisible(false);
-#endif
   m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   m_branch_diag->setModal(true);
@@ -2105,9 +2102,7 @@ void biblioteq::showMain(void)
 
   initialUpdate();
   show();
-#ifndef Q_OS_MACOS
   setGlobalFonts(QApplication::font());
-#endif
   slotResizeColumns();
 
 #if defined(Q_OS_ANDROID)
@@ -2236,9 +2231,7 @@ void biblioteq::slotAbout(void)
   if(qversion.isEmpty())
     qversion = "unknown";
 
-#ifndef Q_OS_MACOS
   m_about->setFont(QApplication::font());
-#endif
   m_about->setIconPixmap
     (QPixmap(":/book.png").scaled(QSize(128, 128),
 				  Qt::KeepAspectRatio,
@@ -2893,9 +2886,10 @@ void biblioteq::slotDeleteAdmin(void)
       Qt::ItemIsEditable) == 0 &&
      str == getAdminID())
     {
-      QMessageBox::critical(m_admin_diag, tr("BiblioteQ: User Error"),
-			    tr("As an administrator, you may not delete "
-			       "your account."));
+      QMessageBox::critical
+	(m_admin_diag,
+	 tr("BiblioteQ: User Error"),
+	 tr("As an administrator, you may not delete your account."));
       QApplication::processEvents();
       return;
     }
