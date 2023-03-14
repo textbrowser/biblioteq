@@ -23,6 +23,22 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Empty containers? Please review Options -&gt; Populate Database Enumerations Browser On Display.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_12">
          <item>
           <widget class="QLabel" name="label_10">
@@ -139,9 +155,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-221</y>
+              <y>0</y>
               <width>497</width>
-              <height>3422</height>
+              <height>3482</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">

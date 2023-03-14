@@ -23,6 +23,22 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <widget class="QLabel" name="label_33">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Empty containers? Please review Options -&gt; Populate Administrator Browser On Display.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_32">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -57,7 +73,7 @@
              <x>0</x>
              <y>0</y>
              <width>1195</width>
-             <height>148</height>
+             <height>146</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
