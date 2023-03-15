@@ -1,17 +1,59 @@
 <html>
   <body>
-    <u>Notes de publication</u>
+    <u>Notes de publication</u> 
+    <p>15 mars 2023.</p>
+    <ul>
+      <li>C++17.</li>
+      <li>Initialisation des colonnes visibles du navigateur des membres.</li>
+    </ul>
+    <p>10 mars 2023.</p>
+    <ul>
+      <li>Options -> Sélectionner une police globale est maintenant valable sur Mac.</li>
+      <li>Définir les colonnes visibles du navigateur des membres (Menu : Options et Autres... -> Membres -> Colonnes visibles.) <b>ticket GitHub #246.</b></li>
+    </ul>
+    <p>3 mars 2023.</p>
+    <ul>
+      <li>Initialiser Autres options -> Éléments -> Champs d'éléments.. <b>ticket GitHub #276.</b></li>
+      <li>Nouveau fichier pour windows : biblioteq-darkmode.bat.</li>
+    </ul>   
+    <p>25 février 2023.</p>
+    <ul>
+    	<li>Amélioration du traitement des images de couverture en double. Diminution de la consommation de mémoire.</li>
+      <li>Amélioration de l'enregistrement des couleurs de la syntaxe SQL. Exemple de valeur INI : keyword=color. Les valeurs existantes ne seront pas portées. Excuses !</li>
+      <li>Fonctionnalité "Woody Intelligent" (permet de réduire ou développer une arborescence).</li>
+      <li>Préserver la graisse des polices de caractères, si possible.</li>
+      <li>Suppression des points-virgules de fin de chaîne de recherche des requêtes personnalisées. Les points-virgules produisent des erreurs dans SQLite.</li>
+      <li>Révision de toutes les déclarations UNION. Remplacé UNION par UNION ALL. Les ensembles séparés ne nécessitent pas d'élagage.</li>
+      <li>Afficher le temps d'achèvement de la requête dans la barre d'état de la fenêtre principale. Toutes les requêtes ne sont pas mesurées.</li>
+      <li>Validation de la saisie du nombre entier de jours minimum de réservation dans le navigateur d'énumérations de base de données.</li>
+    </ul>
+    <p>20 février 2023.</p>
+    <ul>
+      <li>Ajout d'une fonction de recherche pour et dans le tableau principal.</li>
+      <li>Mise en évidence du langage SQL Custom Query. <b>ticket GitHub #246.</b></li>
+      <li>Nouveau panneau dans "Options et Autres : couleurs requêtes SQL". <b>ticket GitHub #246.</b></li>
+    </ul>
+    <p>25 janvier 2023.</p>
+    <ul>
+      <li>Possibilité d'exporter l'historique des membres dans un fichier CSV. Discussion GitHub.</li>
+    </ul>
     <p>16 janvier 2023.</p>
     <ul>
       <li>Bonne année !</li>
       <li>Permettre de renommer les favoris des requêtes personnalisées.</li>
       <li>Navigateur d'activités par lots : ne pas afficher un dialogue de fichier si une exportation serait vide.</li>
+      <li>Résultats des requêtes SRU : définir l'identifiant alternatif comme étant la valeur de l'ark du champ de contrôle 003 si l'identifiant alternatif est vide. Discussion sur GitHub.</li>
       <li>Navigateur d'importation CSV : substitutions ISBN-10 et ISBN-13 vides. Les valeurs peuvent être préparées manuellement.</li>
-      <li>Ne pas convertir l'ISBN-13 en ISBN-10 sauf si le préfixe est 978. (biblioteq_misc_functions::isbn13to10())</li>
+      <li>Completé <b>ticket GitHub #228</b>. Autoriser les requêtes UPDATE sur les éléments sélectionnés.</li>
+      <li>Les requêtes personnalisées exécutées via le menu Requête personnalisée seront exécutées selon la même logique que le navigateur de requêtes personnalisées.</li>
+      <li>Ne pas convertir l'ISBN-13 en ISBN-10 sauf si le préfixe est 978. (biblioteq_misc_functions::isbn13to10()). <b>ticket GitHub #269.</b></li>
       <li>Ne pas déconnecter la base de données actuelle si une future base de données ne dispose pas d'un pilote de base de données.</li>
-      <li>Date de publication Les formats sont maintenant ouverts. Des formats corrects sont attendus. Voir les autres options.</li>
-      <li>Certains opérateurs estiment que BiblioteQ doit corriger leurs données malformées, quels que soient l'effort, l'intérêt et le temps consacrés. Modification du mécanisme d'importation afin qu'il tente de corriger les dates de publication.</li>
-      <li>Une version à base de sources uniquement ! La préparation des fichiers de version nécessite un effort et un intérêt importants. Les demandes de fichiers de version seront ignorées ! Excuses</li>
+      <li>Couleurs des champs de l'article. Nouvelles options dans Autres options. <b>ticket GitHub #272.</b></li>
+      <li>Date de publication Les formats sont maintenant ouverts. Des formats corrects sont attendus. Voir les autres options. <b>ticket GitHub #270.</b></li>
+      <li>Remplacement de toutes les occurrences de MM/jj/aaaa par biblioteq::s_databaseDateFormat. <b>ticket GitHub #270.</b></li>
+      <li>Afficher une étiquette d'avertissement si le pilote de la base de données sélectionnée n'existe pas dans Branch Selection.</li>
+      <li>Certains opérateurs estiment que BiblioteQ doit corriger leurs données malformées, quels que soient l'effort, l'intérêt et le temps consacrés. Modification du mécanisme d'importation afin qu'il tente de corriger les dates de publication. <b>ticket GitHub #270.</b></li>
+      <li>Publication des sources uniquement ! La préparation des fichiers de diffusion nécessite un effort et un intérêt considérables. Les demandes de fichiers de version seront ignorées ! Toutes nos excuses. Le paquet tar pour Linux est créé sous Ubuntu 20.04.</li>
     </ul>
     <p>25 décembre 2022.</p>
     <ul>
