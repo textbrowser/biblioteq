@@ -12,7 +12,9 @@ make distclean 2>/dev/null
 mkdir -p ./biblioteq/Documentation
 mkdir -p ./biblioteq/Lib
 mkdir -p ./biblioteq/SQL
-qmake -o Makefile biblioteq.pro && make -j $(nproc)
+qmake -o Makefile biblioteq.pro
+lupdate biblioteq.pro && lrelease biblioteq.pro
+make -j $(nproc)
 cp -p ./BiblioteQ ./biblioteq/.
 cp -p ./Icons/book.png ./biblioteq/.
 cp -p ./SQL/* ./biblioteq/SQL/.

@@ -21,7 +21,9 @@ fi
 make distclean 2>/dev/null
 mkdir -p ./usr/local/biblioteq/Documentation
 mkdir -p ./usr/local/biblioteq/SQL
-qmake -o Makefile biblioteq.powerpc.pro && make -j $(nproc)
+qmake -o Makefile biblioteq.powerpc.pro
+lupdate biblioteq.powerpc.pro && lrelease biblioteq.powerpc.pro
+make -j $(nproc)
 cp -p ./BiblioteQ ./usr/local/biblioteq/.
 cp -p ./Icons/book.png ./usr/local/biblioteq/.
 cp -p ./SQL/* ./usr/local/biblioteq/SQL/.
