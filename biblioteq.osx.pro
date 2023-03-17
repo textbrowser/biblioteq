@@ -27,7 +27,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -std=c++17
 QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 13.0
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= /usr/local/include \
