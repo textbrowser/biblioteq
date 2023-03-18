@@ -1499,14 +1499,14 @@ void biblioteq::readConfig(void)
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", true).toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
-    (settings.value("automatically_populate_members_"
-		    "list_on_display", false).toBool());
+    (settings.value("automatically_populate_members_list_on_display", true).
+     toBool());
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
-    (settings.value("automatically_populate_admin_list_on_display",
-		    false).toBool());
+    (settings.value("automatically_populate_admin_list_on_display", true).
+     toBool());
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setChecked
-    (settings.value("automatically_populate_enum_list_on_display",
-		    false).toBool());
+    (settings.value("automatically_populate_enum_list_on_display", true).
+     toBool());
 
   QHash<QString, QString> states;
 

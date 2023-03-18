@@ -1144,12 +1144,18 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Populate &amp;Members Browser On Display</string>
    </property>
   </action>
   <action name="actionPopulate_Administrator_Browser_Table_on_Display">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="text">
@@ -1182,6 +1188,9 @@
   </action>
   <action name="actionPopulate_Database_Enumerations_Browser_on_Display">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="text">

@@ -4591,8 +4591,7 @@ void biblioteq::slotShowDbEnumerations(void)
 
   db_enumerations->show
     (this,
-     ui.actionPopulate_Database_Enumerations_Browser_on_Display->
-     isChecked());
+     ui.actionPopulate_Database_Enumerations_Browser_on_Display->isChecked());
 }
 
 void biblioteq::slotShowErrorDialog(void)
