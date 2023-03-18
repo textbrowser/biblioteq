@@ -23,9 +23,18 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
-        <widget class="QCheckBox" name="populate_on_display">
+        <widget class="QLabel" name="label_33">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Populate Database Enumerations Browser on display.</string>
+          <string>Empty containers? Please review Options -&gt; Populate Database Enumerations Browser On Display.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -146,7 +155,7 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-2915</y>
+              <y>0</y>
               <width>479</width>
               <height>3544</height>
              </rect>
@@ -2019,7 +2028,6 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>populate_on_display</tabstop>
   <tabstop>section</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>bookBindingsList</tabstop>
