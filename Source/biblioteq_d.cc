@@ -212,6 +212,7 @@ void biblioteq::populateFavorites(void)
 
   QSettings settings;
   QStringList list;
+  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
 
   settings.beginGroup("customqueries");
 
@@ -260,7 +261,7 @@ void biblioteq::prepareUpgradeNotification(void)
 
   /*
   ** Display a warning if the current database's schema is not current.
-  ** Must keep the following conditions current.
+  ** Must keep the following condition(s) current.
   */
 
   auto record1(m_db.record("book_conditions"));
@@ -505,14 +506,23 @@ void biblioteq::slotLoadFavorite(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
+  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
 
-  cq.query_te->setText
+  cq.query_te->setPlainText
     (QString::
      fromUtf8(QByteArray::
 	      fromBase64(settings.
 			 value(QString("customqueries/%1").
 			       arg(cq.favorites->currentText())).
 			 toByteArray()).constData()));
+  cq.favorite->blockSignals(true);
+
+  if(cq.favorites->currentText() == favorite)
+    cq.favorite->setChecked(true);
+  else
+    cq.favorite->setChecked(false);
+
+  cq.favorite->blockSignals(false);
   QApplication::restoreOverrideCursor();
 }
 

@@ -3263,7 +3263,6 @@ void biblioteq::slotDisconnect(void)
   cq.tables_t->horizontalScrollBar()->setValue(0);
   cq.tables_t->clearSelection();
   cq.tables_t->setCurrentItem(nullptr);
-  cq.query_te->clear();
 
   if(db_enumerations)
     db_enumerations->clear();
