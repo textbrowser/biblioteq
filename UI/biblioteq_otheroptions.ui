@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>650</width>
     <height>700</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>588</width>
+         <width>638</width>
          <height>642</height>
         </rect>
        </property>
@@ -42,7 +42,7 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="page_custom_query">
            <attribute name="title">
             <string>Custom Query</string>
            </attribute>
@@ -90,7 +90,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_1">
+          <widget class="QWidget" name="page_items">
            <attribute name="title">
             <string>Items</string>
            </attribute>
@@ -327,7 +327,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_2">
+          <widget class="QWidget" name="page_main_window">
            <attribute name="title">
             <string>Main Window</string>
            </attribute>
@@ -509,7 +509,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_3">
+          <widget class="QWidget" name="page_members">
            <attribute name="title">
             <string>Members</string>
            </attribute>
@@ -545,7 +545,77 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_4">
+          <widget class="QWidget" name="page_shortcuts">
+           <attribute name="title">
+            <string>Shortcuts</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="title">
+               <string>Main Window</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Please click into a Shortcut cell and press the required shortcut key(s).</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="shortcuts_2">
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
+                 </property>
+                 <property name="selectionBehavior">
+                  <enum>QAbstractItemView::SelectRows</enum>
+                 </property>
+                 <property name="verticalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="horizontalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="cornerButtonEnabled">
+                  <bool>false</bool>
+                 </property>
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>150</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>150</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Function</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Shortcut</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="page_sort">
            <attribute name="title">
             <string>Sort</string>
            </attribute>
@@ -726,7 +796,7 @@
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>custom_query</tabstop>
+  <tabstop>page_custom_query</tabstop>
   <tabstop>isbn10_display_format</tabstop>
   <tabstop>isbn13_display_format</tabstop>
   <tabstop>item_mandatory_field_color</tabstop>
@@ -742,6 +812,7 @@
   <tabstop>show_maintable_tooltips</tabstop>
   <tabstop>generated_letter</tabstop>
   <tabstop>members_visible_columns</tabstop>
+  <tabstop>shortcuts_2</tabstop>
   <tabstop>books_accession_number</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close</tabstop>

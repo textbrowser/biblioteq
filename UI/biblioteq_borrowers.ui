@@ -47,9 +47,6 @@
         <property name="horizontalScrollMode">
          <enum>QAbstractItemView::ScrollPerPixel</enum>
         </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
         <property name="cornerButtonEnabled">
          <bool>false</bool>
         </property>
