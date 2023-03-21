@@ -39,32 +39,51 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   Q_OBJECT
 
  public:
-  biblioteq_otheroptions_item_delegate(QObject *parent):
+  enum class ParentTypes
+    {
+      Keywords = 0,
+      Shortcuts
+    };
+
+  biblioteq_otheroptions_item_delegate(const ParentTypes type, QObject *parent):
     QStyledItemDelegate(parent)
   {
+    m_type = type;
   }
 
   QWidget *createEditor(QWidget *parent,
 			const QStyleOptionViewItem &option,
 			const QModelIndex &index) const
   {
-    switch(index.column())
+    switch(m_type)
       {
-      case 1:
+      case ParentTypes::Keywords:
 	{
-	  auto pushButton = new QPushButton(parent);
+	  switch(index.column())
+	    {
+	    case 1:
+	      {
+		auto pushButton = new QPushButton(parent);
 
-	  connect(pushButton,
-		  SIGNAL(clicked(void)),
-		  this,
-		  SLOT(slotSelectColor(void))
+		connect(pushButton,
+			SIGNAL(clicked(void)),
+			this,
+			SLOT(slotSelectColor(void))
 #ifdef Q_OS_MACOS
-		  , Qt::QueuedConnection
+			, Qt::QueuedConnection
 #endif
-		  );
-	  m_index = index;
-	  pushButton->setText(index.data().toString().trimmed());
-	  return pushButton;
+			);
+		m_index = index;
+		pushButton->setText(index.data().toString().trimmed());
+		return pushButton;
+	      }
+	    default:
+	      {
+		break;
+	      }
+	    }
+
+	  break;
 	}
       default:
 	{
@@ -91,6 +110,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
     QStyledItemDelegate::setModelData(editor, model, index);
   }
 
+  ParentTypes m_type;
   mutable QModelIndex m_index;
 
  private slots:
@@ -196,7 +216,8 @@ class biblioteq_otheroptions: public QMainWindow
 
   Ui_otheroptions m_ui;
   biblioteq *qmain;
-  biblioteq_otheroptions_item_delegate *m_itemDelegate;
+  biblioteq_otheroptions_item_delegate *m_keywordsItemDelegate;
+  biblioteq_otheroptions_item_delegate *m_shortcutsItemDelegate;
   mutable QString m_isbn10Format;
   mutable QString m_isbn13Format;
 

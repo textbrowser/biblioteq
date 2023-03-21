@@ -60,11 +60,15 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	    this,
 	    SLOT(setGlobalFonts(const QFont &)));
 
-  m_ui.custom_query->setItemDelegateForColumn
-    (1, m_itemDelegate = new biblioteq_otheroptions_item_delegate(this));
+  m_keywordsItemDelegate = new biblioteq_otheroptions_item_delegate
+    (biblioteq_otheroptions_item_delegate::ParentTypes::Keywords, this);
+  m_shortcutsItemDelegate = new biblioteq_otheroptions_item_delegate
+    (biblioteq_otheroptions_item_delegate::ParentTypes::Shortcuts, this);
+  m_ui.custom_query->setItemDelegateForColumn(1, m_keywordsItemDelegate);
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
-  connect(m_itemDelegate,
+  m_ui.shortcuts->setItemDelegateForColumn(1, m_shortcutsItemDelegate);
+  connect(m_keywordsItemDelegate,
 	  SIGNAL(changed(const QColor &, const int)),
 	  this,
 	  SLOT(slotCustomQueryColorSelected(const QColor &, const int)));
@@ -827,6 +831,17 @@ void biblioteq_otheroptions::slotSave(void)
 
       settings.setValue(key, value);
     }
+
+  for(int i = 0; i < m_ui.shortcuts->rowCount(); i++)
+    if(m_ui.shortcuts->item(i, 0) &&
+       m_ui.shortcuts->item(i, 0)->text() == tr("Custom Query Favorite") &&
+       m_ui.shortcuts->item(i, 1))
+      {
+	settings.setValue
+	  ("custom_query_favorite_shortcut",
+	   m_ui.shortcuts->item(i, 1)->text().trimmed());
+	break;
+      }
 
   settings.setValue
     ("mainwindow_canvas_background_color",
