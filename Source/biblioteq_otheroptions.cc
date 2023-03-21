@@ -37,6 +37,10 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.custom_query_reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetCustomQueryColors(void)));
   connect(m_ui.item_mandatory_field_color,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -729,6 +733,24 @@ void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
   m_ui.main_window_canvas_background_color->setStyleSheet
     (QString("background-color: %1").arg(color.name()));
   m_ui.main_window_canvas_background_color->setText(color.name());
+}
+
+void biblioteq_otheroptions::slotResetCustomQueryColors(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
+    {
+      auto item = m_ui.custom_query->item(i, 1);
+
+      if(item)
+	{
+	  item->setBackground(QColor(Qt::black));
+	  item->setText(QColor(Qt::black).name());
+	}
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_otheroptions::slotSave(void)

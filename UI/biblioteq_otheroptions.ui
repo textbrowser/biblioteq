@@ -63,7 +63,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="custom_query_reset">
                 <property name="text">
                  <string>Reset</string>
                 </property>
@@ -833,7 +833,7 @@
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>pushButton</tabstop>
+  <tabstop>custom_query_reset</tabstop>
   <tabstop>custom_query</tabstop>
   <tabstop>isbn10_display_format</tabstop>
   <tabstop>isbn13_display_format</tabstop>
