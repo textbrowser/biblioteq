@@ -31,6 +31,7 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QSettings>
+#include <QShortcut>
 #include <QSqlRecord>
 
 #include "biblioteq.h"
@@ -52,6 +53,21 @@ QColor biblioteq::itemQueryResultColor(void) const
 QHash<QString, QString> biblioteq::otherImagesHash(void) const
 {
   return m_otherImages;
+}
+
+QMap<QString, QKeySequence> biblioteq::shortcuts(void) const
+{
+  QMap<QString, QKeySequence> map;
+
+  foreach(auto action, findChildren<QAction *> ())
+    if(action && action->shortcut().isEmpty() == false)
+      map[action->text()] = action->shortcut();
+
+  foreach(auto shortcut, findChildren<QShortcut *> ())
+    if(shortcut && shortcut->key().isEmpty() == false)
+      map[shortcut->key().toString()] = shortcut->key();
+
+  return map;
 }
 
 QString biblioteq::formattedISBN10(const QString &str) const

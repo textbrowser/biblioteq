@@ -70,6 +70,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  SLOT(slotCustomQueryColorSelected(const QColor &, const int)));
   prepareSQLKeywords();
   prepareSettings();
+  prepareShortcuts();
 }
 
 biblioteq_otheroptions::~biblioteq_otheroptions()
@@ -630,6 +631,50 @@ void biblioteq_otheroptions::prepareSettings(void)
     (settings.value("show_maintable_progress_dialogs", true).toBool());
   m_ui.show_maintable_tooltips->setChecked
     (settings.value("show_maintable_tooltips", false).toBool());
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_otheroptions::prepareShortcuts(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.shortcuts->setRowCount(0);
+
+  if(!qmain)
+    return;
+
+  m_ui.shortcuts->setRowCount(qmain->shortcuts().size());
+
+  QSettings settings;
+  QString shortcut
+    (settings.value("custom_query_favorite_shortcut").toString().trimmed());
+  auto map(qmain->shortcuts());
+
+  map[tr("Custom Query Favorite")] = shortcut;
+
+  QMapIterator<QString, QKeySequence> it(map);
+  int i = -1;
+
+  while(it.hasNext())
+    {
+      i += 1;
+      it.next();
+
+      auto item = new QTableWidgetItem(it.key());
+
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.shortcuts->setItem(i, 0, item);
+      item = new QTableWidgetItem(it.value().toString());
+
+      if(it.key() != tr("Custom Query Favorite"))
+	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      else
+	item->setFlags
+	  (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+      m_ui.shortcuts->setItem(i, 1, item);
+    }
+
+  m_ui.shortcuts->resizeColumnsToContents();
   QApplication::restoreOverrideCursor();
 }
 

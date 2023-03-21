@@ -124,6 +124,9 @@
                <property name="placeholderText">
                 <string>Please scan an item.</string>
                </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
@@ -154,6 +157,9 @@
               <widget class="QLineEdit" name="borrow_member_id">
                <property name="placeholderText">
                 <string>Member ID</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -308,6 +314,9 @@
                </property>
                <property name="placeholderText">
                 <string>Please scan an item.</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
                </property>
               </widget>
              </item>

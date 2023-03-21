@@ -74,6 +74,9 @@
         <property name="placeholderText">
          <string>Search</string>
         </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -125,7 +128,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>289</height>
+          <height>260</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -398,6 +401,9 @@
         <property name="placeholderText">
          <string>Table Find</string>
         </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -423,7 +429,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

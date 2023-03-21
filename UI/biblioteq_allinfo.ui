@@ -41,9 +41,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-207</y>
          <width>617</width>
-         <height>663</height>
+         <height>701</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -80,6 +80,9 @@
              <property name="placeholderText">
               <string>ID Number</string>
              </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
            <item row="1" column="0">
@@ -93,6 +96,9 @@
             <widget class="QLineEdit" name="title">
              <property name="placeholderText">
               <string>Title</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -157,6 +163,9 @@
             <widget class="QLineEdit" name="publisher">
              <property name="placeholderText">
               <string>Publisher</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
              </property>
             </widget>
            </item>

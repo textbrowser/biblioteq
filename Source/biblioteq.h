@@ -261,6 +261,7 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> getZ3950Hash(const QString &name) const;
   QHash<QString, QString> otherImagesHash(void) const;
   QMainWindow *getMembersBrowser(void) const;
+  QMap<QString, QKeySequence> shortcuts(void) const;
   QSqlDatabase getDB(void) const;
   QString formattedISBN10(const QString &str) const;
   QString formattedISBN13(const QString &str) const;

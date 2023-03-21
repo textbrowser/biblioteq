@@ -559,7 +559,7 @@
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>Please click into a Shortcut cell and press the required shortcut key(s).</string>
+                  <string>Please click into a Shortcut cell and press the required shortcut key(s). Shortcuts from the main window are included for reference.</string>
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>
@@ -567,7 +567,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QTableWidget" name="shortcuts_2">
+                <widget class="QTableWidget" name="shortcuts">
                  <property name="alternatingRowColors">
                   <bool>true</bool>
                  </property>
@@ -812,7 +812,7 @@
   <tabstop>show_maintable_tooltips</tabstop>
   <tabstop>generated_letter</tabstop>
   <tabstop>members_visible_columns</tabstop>
-  <tabstop>shortcuts_2</tabstop>
+  <tabstop>shortcuts</tabstop>
   <tabstop>books_accession_number</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close</tabstop>
