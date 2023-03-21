@@ -29,6 +29,7 @@
 #define _BIBLIOTEQ_OTHEROPTIONS_H_
 
 #include <QColorDialog>
+#include <QLineEdit>
 #include <QSettings>
 #include <QStyledItemDelegate>
 
@@ -76,6 +77,27 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		m_index = index;
 		pushButton->setText(index.data().toString().trimmed());
 		return pushButton;
+	      }
+	    default:
+	      {
+		break;
+	      }
+	    }
+
+	  break;
+	}
+      case ParentTypes::Shortcuts:
+	{
+	  switch(index.column())
+	    {
+	    case 1:
+	      {
+		auto lineEdit = new QLineEdit(parent);
+
+		lineEdit->setClearButtonEnabled(true);
+		lineEdit->setPlaceholderText(tr("Shortcut"));
+		lineEdit->setText(index.data().toString().trimmed());
+		return lineEdit;
 	      }
 	    default:
 	      {

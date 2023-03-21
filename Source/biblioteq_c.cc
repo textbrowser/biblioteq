@@ -4371,6 +4371,7 @@ void biblioteq::slotOtherOptionsSaved(void)
 
   m_sqlSyntaxHighlighter->setKeywordsColors
     (m_otheroptions->customQueryColors());
+  cq.query_te->setPlainText(cq.query_te->toPlainText());
 
   QFontMetrics fontMetrics(ui.table->font());
 
