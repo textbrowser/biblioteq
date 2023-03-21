@@ -35,6 +35,50 @@
 
 #include "ui_biblioteq_otheroptions.h"
 
+class biblioteq_otheroptions_shortcut_lineedit: public QLineEdit
+{
+  Q_OBJECT
+
+ public:
+  biblioteq_otheroptions_shortcut_lineedit(QWidget *parent):QLineEdit(parent)
+  {
+  }
+
+ private:
+  void keyPressEvent(QKeyEvent *event)
+  {
+    QLineEdit::keyReleaseEvent(event);
+
+    if(event)
+      {
+	auto key = static_cast<Qt::Key> (event->key());
+
+	if(key == Qt::Key_Alt ||
+	   key == Qt::Key_Control ||
+	   key == Qt::Key_Meta ||
+	   key == Qt::Key_Shift)
+	  return;
+
+	auto integer = event->key();
+	auto modifiers = event->modifiers();
+
+	if(modifiers & Qt::AltModifier)
+	  integer += Qt::ALT;
+
+	if(modifiers & Qt::ControlModifier)
+	  integer += Qt::CTRL;
+
+	if(modifiers & Qt::MetaModifier)
+	  integer += Qt::META;
+
+	if(modifiers & Qt::ShiftModifier)
+	  integer += Qt::SHIFT;
+
+	setText(QKeySequence(integer).toString(QKeySequence::NativeText));
+      }
+  }
+};
+
 class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 {
   Q_OBJECT
@@ -46,8 +90,8 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
       Shortcuts
     };
 
-  biblioteq_otheroptions_item_delegate(const ParentTypes type, QObject *parent):
-    QStyledItemDelegate(parent)
+  biblioteq_otheroptions_item_delegate
+    (const ParentTypes type, QObject *parent):QStyledItemDelegate(parent)
   {
     m_type = type;
   }
@@ -92,7 +136,8 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 	    {
 	    case 1:
 	      {
-		auto lineEdit = new QLineEdit(parent);
+		auto lineEdit = new biblioteq_otheroptions_shortcut_lineedit
+		  (parent);
 
 		lineEdit->setClearButtonEnabled(true);
 		lineEdit->setPlaceholderText(tr("Shortcut"));
