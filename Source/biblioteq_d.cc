@@ -202,6 +202,11 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 void biblioteq::populateFavorites(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  connect(cq.favorite,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotCustomQueryFavorite(bool)),
+	  Qt::UniqueConnection);
   cq.favorites->clear();
   ui.menu_Custom_Query->clear();
 
@@ -373,6 +378,16 @@ void biblioteq::slotCustomQuery(void)
 			 toByteArray()).constData()));
   QApplication::restoreOverrideCursor();
   executeCustomQuery(this, string);
+}
+
+void biblioteq::slotCustomQueryFavorite(bool state)
+{
+  QSettings settings;
+
+  if(cq.favorites->count() > 0 && state)
+    settings.setValue("custom_query_favorite", cq.favorites->currentText());
+  else
+    settings.remove("custom_query_favorite");
 }
 
 void biblioteq::slotDeleteFavoriteQuery(void)

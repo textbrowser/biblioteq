@@ -515,6 +515,7 @@ class biblioteq: public QMainWindow
   void slotContributors(void);
   void slotCopyError(void);
   void slotCustomQuery(void);
+  void slotCustomQueryFavorite(bool state);
   void slotDVDSearch(void);
   void slotDelete(void);
   void slotDeleteAdmin(void);
