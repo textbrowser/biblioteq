@@ -591,16 +591,19 @@ void biblioteq::slotRenameFavoriteQuery(void)
   if(!ok || name.isEmpty())
     return;
 
+  name = name.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH));
+
   QSettings settings;
+  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
   auto value
     (settings.
      value(QString("customqueries/%1").arg(cq.favorites->currentText())));
 
+  if(cq.favorites->currentText() == favorite)
+    settings.setValue("custom_query_favorite", name);
+
   settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
-  settings.setValue
-    (QString("customqueries/%1").
-     arg(name.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH))),
-     value);
+  settings.setValue(QString("customqueries/%1").arg(name), value);
   populateFavorites();
 }
 
