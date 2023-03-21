@@ -223,10 +223,13 @@ void biblioteq::populateFavorites(void)
   if(!list.isEmpty())
     {
       std::sort(list.begin(), list.end());
+      cq.favorite->setEnabled(true);
       cq.favorites->addItems(list);
     }
   else
     {
+      cq.favorite->setChecked(false);
+      cq.favorite->setEnabled(false);
       cq.favorites->addItem(tr("(Empty)"));
       ui.menu_Custom_Query->addAction(tr("(Empty)"));
     }

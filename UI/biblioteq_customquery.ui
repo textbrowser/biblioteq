@@ -143,6 +143,16 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="favorite">
+            <property name="toolTip">
+             <string>Favorite</string>
+            </property>
+            <property name="text">
+             <string>Favorite</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QComboBox" name="favorites">
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToContents</enum>
@@ -300,6 +310,7 @@
  <tabstops>
   <tabstop>tables_t</tabstop>
   <tabstop>refresh_pb</tabstop>
+  <tabstop>favorite</tabstop>
   <tabstop>favorites</tabstop>
   <tabstop>delete_favorite</tabstop>
   <tabstop>rename_favorite</tabstop>
