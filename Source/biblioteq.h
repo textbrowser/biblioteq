@@ -480,6 +480,7 @@ class biblioteq: public QMainWindow
   void initialUpdate(void);
   void populateFavorites(void);
   void prepareContextMenus(void);
+  void prepareCustomQueryFavoriteShortcut(void);
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);

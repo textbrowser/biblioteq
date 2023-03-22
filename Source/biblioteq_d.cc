@@ -247,6 +247,8 @@ void biblioteq::populateFavorites(void)
 
 	if(action && action->text() == favorite)
 	  action->setShortcut(QKeySequence(shortcut));
+	else
+	  action->setShortcut(QKeySequence());
       }
 
   if(!list.isEmpty())
@@ -265,6 +267,20 @@ void biblioteq::populateFavorites(void)
 
   QApplication::restoreOverrideCursor();
   slotLoadFavorite();
+}
+
+void biblioteq::prepareCustomQueryFavoriteShortcut(void)
+{
+  QSettings settings;
+  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
+  auto shortcut
+    (settings.value("custom_query_favorite_shortcut").toString().trimmed());
+
+  foreach(auto action, ui.menu_Custom_Query->actions())
+    if(action && action->text() == favorite)
+      action->setShortcut(QKeySequence(shortcut));
+    else
+      action->setShortcut(QKeySequence());
 }
 
 void biblioteq::prepareTearOffMenus(void)
@@ -412,6 +428,8 @@ void biblioteq::slotCustomQueryFavorite(bool state)
     settings.setValue("custom_query_favorite", cq.favorites->currentText());
   else
     settings.remove("custom_query_favorite");
+
+  prepareCustomQueryFavoriteShortcut();
 }
 
 void biblioteq::slotDeleteFavoriteQuery(void)
