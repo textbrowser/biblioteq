@@ -101,6 +101,9 @@
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
               <attribute name="horizontalHeaderMinimumSectionSize">
                <number>250</number>
               </attribute>
@@ -338,6 +341,9 @@
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
               <attribute name="horizontalHeaderMinimumSectionSize">
                <number>250</number>
               </attribute>
@@ -408,6 +414,9 @@
               </property>
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
               </property>
               <attribute name="horizontalHeaderMinimumSectionSize">
                <number>250</number>
@@ -575,7 +584,11 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
-                <widget class="QListWidget" name="members_visible_columns"/>
+                <widget class="QListWidget" name="members_visible_columns">
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -619,6 +632,9 @@
                  </property>
                  <property name="horizontalScrollMode">
                   <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="sortingEnabled">
+                  <bool>true</bool>
                  </property>
                  <property name="cornerButtonEnabled">
                   <bool>false</bool>

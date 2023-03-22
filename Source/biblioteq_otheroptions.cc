@@ -324,6 +324,7 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	<< "musiccds"
 	<< "videogames";
   m_ui.availability_color->setRowCount(list1.size());
+  m_ui.availability_color->setSortingEnabled(false);
   m_ui.availability_colors->setChecked
     (settings.value("otheroptions/availability_colors", false).toBool());
 
@@ -358,7 +359,8 @@ void biblioteq_otheroptions::prepareAvailability(void)
 
   m_ui.availability_color->resizeColumnToContents(ITEM_TYPE);
   m_ui.availability_color->resizeRowsToContents();
-
+  m_ui.availability_color->setSortingEnabled(true);
+  m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
 }
 
 void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
@@ -367,6 +369,7 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
     return;
 
   m_ui.members_visible_columns->clear();
+  m_ui.members_visible_columns->setSortingEnabled(false);
 
   QMap<QString, bool> map;
   QSettings settings;
@@ -397,6 +400,8 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
 	m_ui.members_visible_columns->addItem(item);
       }
+
+  m_ui.members_visible_columns->setSortingEnabled(true);
 }
 
 void biblioteq_otheroptions::prepareSQLKeywords(void)
@@ -448,6 +453,7 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
        << "VALUES"
        << "WHERE";
   m_ui.custom_query->setRowCount(list.size());
+  m_ui.custom_query->setSortingEnabled(false);
 
   for(int i = 0; i < list.size(); i++)
     {
@@ -461,6 +467,9 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.custom_query->setItem(i, 1, item);
     }
+
+  m_ui.custom_query->setSortingEnabled(true);
+  m_ui.custom_query->sortByColumn(0, Qt::AscendingOrder);
 }
 
 void biblioteq_otheroptions::prepareSettings(void)
@@ -601,6 +610,7 @@ void biblioteq_otheroptions::prepareSettings(void)
     (QString("background-color: %1").arg(color.name()));
   m_ui.item_query_result_color->setText(color.name());
   m_ui.publication_date->setRowCount(list1.size());
+  m_ui.publication_date->setSortingEnabled(false);
 
   for(int i = 0; i < list1.size(); i++)
     {
@@ -623,6 +633,8 @@ void biblioteq_otheroptions::prepareSettings(void)
 
   m_ui.publication_date->resizeColumnToContents(ITEM_TYPE);
   m_ui.publication_date->resizeRowsToContents();
+  m_ui.publication_date->setSortingEnabled(true);
+  m_ui.publication_date->sortByColumn(0, Qt::AscendingOrder);
   color = QColor
     (settings.value("mainwindow_canvas_background_color").
      toString().remove('&').trimmed());
@@ -651,6 +663,7 @@ void biblioteq_otheroptions::prepareShortcuts(void)
     return;
 
   m_ui.shortcuts->setRowCount(qmain->shortcuts().size());
+  m_ui.shortcuts->setSortingEnabled(false);
 
   QSettings settings;
   QString shortcut
@@ -683,6 +696,8 @@ void biblioteq_otheroptions::prepareShortcuts(void)
     }
 
   m_ui.shortcuts->resizeColumnsToContents();
+  m_ui.shortcuts->setSortingEnabled(true);
+  m_ui.shortcuts->sortByColumn(0, Qt::AscendingOrder);
   QApplication::restoreOverrideCursor();
 }
 

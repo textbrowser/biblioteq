@@ -156,8 +156,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>479</width>
-              <height>3544</height>
+              <width>497</width>
+              <height>3482</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -1293,6 +1293,9 @@
                  <property name="horizontalScrollMode">
                   <enum>QAbstractItemView::ScrollPerPixel</enum>
                  </property>
+                 <property name="cornerButtonEnabled">
+                  <bool>false</bool>
+                 </property>
                  <attribute name="horizontalHeaderMinimumSectionSize">
                   <number>150</number>
                  </attribute>
@@ -1534,6 +1537,9 @@
                  </property>
                  <property name="sortingEnabled">
                   <bool>true</bool>
+                 </property>
+                 <property name="cornerButtonEnabled">
+                  <bool>false</bool>
                  </property>
                  <attribute name="horizontalHeaderMinimumSectionSize">
                   <number>150</number>
