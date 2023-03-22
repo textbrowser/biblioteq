@@ -229,6 +229,8 @@ void biblioteq::populateFavorites(void)
   QSettings settings;
   QStringList list;
   auto favorite(settings.value("custom_query_favorite").toString().trimmed());
+  auto shortcut
+    (settings.value("custom_query_favorite_shortcut").toString().trimmed());
 
   settings.beginGroup("customqueries");
 
@@ -239,7 +241,12 @@ void biblioteq::populateFavorites(void)
 	       remove('\n').remove('\r'));
 
 	list << k;
-	ui.menu_Custom_Query->addAction(k, this, SLOT(slotCustomQuery(void)));
+
+	auto action = ui.menu_Custom_Query->addAction
+	  (k, this, SLOT(slotCustomQuery(void)));
+
+	if(action && action->text() == favorite)
+	  action->setShortcut(QKeySequence(shortcut));
       }
 
   if(!list.isEmpty())
