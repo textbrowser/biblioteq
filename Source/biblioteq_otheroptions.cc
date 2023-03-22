@@ -68,6 +68,10 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
     (biblioteq_otheroptions_item_delegate::ParentTypes::Keywords, this);
   m_shortcutsItemDelegate = new biblioteq_otheroptions_item_delegate
     (biblioteq_otheroptions_item_delegate::ParentTypes::Shortcuts, this);
+  connect(m_shortcutsItemDelegate,
+	  SIGNAL(changed(void)),
+	  this,
+	  SLOT(slotMainWindowShortcutChanged(void)));
   m_ui.custom_query->setItemDelegateForColumn(1, m_keywordsItemDelegate);
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
@@ -696,6 +700,7 @@ void biblioteq_otheroptions::prepareShortcuts(void)
   m_ui.shortcuts->resizeColumnsToContents();
   m_ui.shortcuts->setSortingEnabled(true);
   m_ui.shortcuts->sortByColumn(0, Qt::AscendingOrder);
+  slotMainWindowShortcutChanged();
   QApplication::restoreOverrideCursor();
 }
 
@@ -738,6 +743,34 @@ void biblioteq_otheroptions::slotCustomQueryColorSelected
 
   if(item)
     item->setBackground(color);
+}
+
+void biblioteq_otheroptions::slotMainWindowShortcutChanged(void)
+{
+  if(!m_ui.shortcuts->item(0, 0))
+    return;
+
+  QMap<QString, int> map;
+  static auto color(m_ui.shortcuts->item(0, 0)->background());
+
+  for(int i = 0; i < m_ui.shortcuts->rowCount(); i++)
+    {
+      auto item = m_ui.shortcuts->item(i, 1);
+
+      if(!item)
+	continue;
+
+      if(map.contains(item->text()))
+	{
+	  item->setBackground(QColor(255, 114, 118));
+	  m_ui.shortcuts->item
+	    (map.value(item->text()), 1)->setBackground(item->background());
+	}
+      else
+	item->setBackground(color);
+
+      map[item->text()] = i;
+    }
 }
 
 void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor

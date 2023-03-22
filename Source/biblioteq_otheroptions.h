@@ -32,6 +32,7 @@
 #include <QLineEdit>
 #include <QSettings>
 #include <QStyledItemDelegate>
+#include <QTimer>
 
 #include "ui_biblioteq_otheroptions.h"
 
@@ -170,11 +171,13 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 
     if(model && pushButton)
       {
+	QTimer::singleShot(1000, this, SIGNAL(changed(void))); // Constness.
 	pushButton->setText(model->data(index).toString().trimmed());
 	return;
       }
 
     QStyledItemDelegate::setModelData(editor, model, index);
+    QTimer::singleShot(1000, this, SIGNAL(changed(void))); // Constness.
   }
 
   ParentTypes m_type;
@@ -208,6 +211,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 
  signals:
   void changed(const QColor &color, const int row);
+  void changed(void);
 };
 
 class biblioteq;
@@ -321,6 +325,7 @@ class biblioteq_otheroptions: public QMainWindow
   void setGlobalFonts(const QFont &font);
   void slotClose(void);
   void slotCustomQueryColorSelected(const QColor &color, const int row);
+  void slotMainWindowShortcutChanged(void);
   void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotResetCustomQueryColors(void);
   void slotSave(void);
