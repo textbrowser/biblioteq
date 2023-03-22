@@ -674,7 +674,7 @@ void biblioteq_otheroptions::prepareShortcuts(void)
       item = new QTableWidgetItem(it.value().toString());
 
       if(it.key() != tr("Custom Query Favorite"))
-	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	item->setFlags(Qt::ItemIsSelectable);
       else
 	item->setFlags
 	  (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);

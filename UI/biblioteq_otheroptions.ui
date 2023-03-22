@@ -596,7 +596,7 @@
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>Please click into a Shortcut cell and press the required shortcut key(s). Shortcuts from the main window are included for reference.</string>
+                  <string>Please double-click into an editable Shortcut cell and press the required shortcut key(s). Shortcuts from the main window are included for reference.</string>
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>
