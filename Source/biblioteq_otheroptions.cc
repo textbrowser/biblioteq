@@ -369,7 +369,6 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
     return;
 
   m_ui.members_visible_columns->clear();
-  m_ui.members_visible_columns->setSortingEnabled(false);
 
   QMap<QString, bool> map;
   QSettings settings;
@@ -400,8 +399,6 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
 	m_ui.members_visible_columns->addItem(item);
       }
-
-  m_ui.members_visible_columns->setSortingEnabled(true);
 }
 
 void biblioteq_otheroptions::prepareSQLKeywords(void)
@@ -476,6 +473,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
   prepareAvailability();
+  prepareShortcuts();
 
   QSettings settings;
   QStringList list1;
