@@ -37,6 +37,7 @@
 
 #include <QActionGroup>
 #include <QDesktopServices>
+#include <QElapsedTimer>
 #include <QFileDialog>
 #include <QScrollBar>
 #include <QSettings>
