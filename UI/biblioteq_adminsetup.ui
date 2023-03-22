@@ -409,9 +409,6 @@
           </widget>
          </widget>
          <widget class="QTableWidget" name="table">
-          <property name="focusPolicy">
-           <enum>Qt::StrongFocus</enum>
-          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::DoubleClicked</set>
           </property>
