@@ -32,6 +32,7 @@
 
 #include <QActionGroup>
 #include <QDir>
+#include <QElapsedTimer>
 #include <QScrollBar>
 #include <QSettings>
 #include <QSqlDriver>
