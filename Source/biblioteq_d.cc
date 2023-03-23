@@ -847,39 +847,14 @@ void biblioteq::slotTableFindNext(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(m_findList.isEmpty())
-    {
-      if(ui.scanner_friendly->isChecked() == false)
-	m_findList = ui.table->findItems
-	  (ui.find->text().trimmed(), Qt::MatchContains);
-      else
-	m_findList = ui.table->findItems
-	  (ui.find->text().remove('-').trimmed(), Qt::MatchExactly);
-    }
+    m_findList = ui.table->findItems
+      (ui.find->text().trimmed(), Qt::MatchContains);
 
   if(!m_findList.isEmpty())
     {
       ui.table->scrollToItem(ui.table->item(m_findList.at(0)->row(), 0));
-
-      if(ui.select_discovered->isChecked())
-	ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
-      else
-	{
-	  if(ui.stackedWidget->currentIndex() == 0)
-	    ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
-	  else
-	    ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
-	}
-
       ui.table->selectRow(m_findList.at(0)->row());
       m_findList.removeFirst();
-    }
-
-  if(ui.scanner_friendly->isChecked())
-    {
-      ui.find->blockSignals(true);
-      ui.find->clear();
-      ui.find->blockSignals(false);
-      ui.find->setFocus();
     }
 
   QApplication::restoreOverrideCursor();

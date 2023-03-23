@@ -419,26 +419,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QCheckBox" name="scanner_friendly">
-        <property name="toolTip">
-         <string>Option is not saved in the INI file.</string>
-        </property>
-        <property name="text">
-         <string>Scanner-Friendly</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="select_discovered">
-        <property name="toolTip">
-         <string>Option is not saved in the INI file.</string>
-        </property>
-        <property name="text">
-         <string>Select Discovered</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
    </layout>
@@ -1464,8 +1444,6 @@
   <tabstop>nextPageButton</tabstop>
   <tabstop>find</tabstop>
   <tabstop>next</tabstop>
-  <tabstop>scanner_friendly</tabstop>
-  <tabstop>select_discovered</tabstop>
  </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>
