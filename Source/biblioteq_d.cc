@@ -856,17 +856,17 @@ void biblioteq::slotTableFindNext(void)
 	  (ui.find->text().trimmed(), Qt::MatchExactly);
     }
 
+  if(ui.scanner_friendly->isChecked())
+    {
+      ui.find->blockSignals(true);
+      ui.find->clear();
+      ui.find->blockSignals(false);
+      ui.find->setFocus();
+    }
+
   if(!m_findList.isEmpty())
     {
-      ui.table->scrollToItem(m_findList.at(0));
-
-      if(ui.scanner_friendly->isChecked())
-	{
-	  ui.find->blockSignals(true);
-	  ui.find->clear();
-	  ui.find->blockSignals(false);
-	  ui.find->setFocus();
-	}
+      ui.table->scrollToItem(ui.table->item(m_findList.at(0)->row(), 0));
 
       if(ui.select_discovered->isChecked())
 	ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
