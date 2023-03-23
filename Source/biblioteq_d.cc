@@ -853,7 +853,7 @@ void biblioteq::slotTableFindNext(void)
 	  (ui.find->text().trimmed(), Qt::MatchContains);
       else
 	m_findList = ui.table->findItems
-	  (ui.find->text().trimmed(), Qt::MatchExactly);
+	  (ui.find->text().remove('-').trimmed(), Qt::MatchExactly);
     }
 
   if(!m_findList.isEmpty())
