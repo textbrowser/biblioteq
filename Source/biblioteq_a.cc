@@ -212,6 +212,8 @@ biblioteq::biblioteq(void):QMainWindow()
   m_members_diag = new QMainWindow(this);
 #else
   m_members_diag = new QMainWindow();
+  m_members_diag->setWindowFlags
+    (Qt::WindowStaysOnTopHint | m_members_diag->windowFlags());
 #endif
 #ifdef Q_OS_ANDROID
   m_history_diag = new QMainWindow(this);
