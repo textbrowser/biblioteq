@@ -128,7 +128,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>260</height>
+          <height>289</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -219,9 +219,9 @@
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
-          <widget class="QWidget" name="page_2">
+          <widget class="QWidget" name="page_a">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QGraphicsView" name="graphicsView">
@@ -235,7 +235,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="page">
+          <widget class="QWidget" name="page_b">
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
              <widget class="biblioteq_main_table" name="table">
@@ -419,6 +419,26 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="scanner_friendly">
+        <property name="toolTip">
+         <string>Option is not saved in the INI file.</string>
+        </property>
+        <property name="text">
+         <string>Scanner-Friendly</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="select_discovered">
+        <property name="toolTip">
+         <string>Option is not saved in the INI file.</string>
+        </property>
+        <property name="text">
+         <string>Select Discovered</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -429,7 +449,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>34</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -1444,6 +1464,8 @@
   <tabstop>nextPageButton</tabstop>
   <tabstop>find</tabstop>
   <tabstop>next</tabstop>
+  <tabstop>scanner_friendly</tabstop>
+  <tabstop>select_discovered</tabstop>
  </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>
