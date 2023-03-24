@@ -398,6 +398,9 @@
       </item>
       <item>
        <widget class="QLineEdit" name="find">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If an item contains the specified text, the row housing it will be selected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="placeholderText">
          <string>Table Find</string>
         </property>
