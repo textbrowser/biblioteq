@@ -67,7 +67,7 @@
          <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="page_1">
+         <widget class="QWidget" name="page_borrow">
           <attribute name="title">
            <string>Borrow</string>
           </attribute>
@@ -300,7 +300,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tab_2">
+         <widget class="QWidget" name="page_discover">
           <attribute name="title">
            <string>Discover</string>
           </attribute>
@@ -387,6 +387,102 @@
            </item>
            <item>
             <widget class="QTableWidget" name="discover_table">
+             <property name="editTriggers">
+              <set>QAbstractItemView::AllEditTriggers</set>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::ExtendedSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <property name="verticalScrollMode">
+              <enum>QAbstractItemView::ScrollPerPixel</enum>
+             </property>
+             <property name="horizontalScrollMode">
+              <enum>QAbstractItemView::ScrollPerPixel</enum>
+             </property>
+             <property name="cornerButtonEnabled">
+              <bool>false</bool>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>225</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>225</number>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>Identifier</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Database Table Name(s)</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Title</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_return">
+          <attribute name="title">
+           <string>Return</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLineEdit" name="return_scan">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click in this field and scan an item. A new row will be created with the scanned identifier value. Please wait until the text hint is visible before scanning an item. Of course, you may also type an identifier and press the Enter key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="placeholderText">
+                <string>Please scan an item.</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Discovered items will be listed in the main table after the Go! button is pressed.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="return_table">
              <property name="editTriggers">
               <set>QAbstractItemView::AllEditTriggers</set>
              </property>
@@ -560,6 +656,8 @@
   <tabstop>discover_list</tabstop>
   <tabstop>export_missing</tabstop>
   <tabstop>discover_table</tabstop>
+  <tabstop>return_scan</tabstop>
+  <tabstop>return_table</tabstop>
   <tabstop>go</tabstop>
   <tabstop>reset</tabstop>
   <tabstop>close</tabstop>
