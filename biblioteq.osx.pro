@@ -25,7 +25,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
-QMAKE_DISTCLEAN += -r temp .qmake.cache .qmake.stash
+QMAKE_DISTCLEAN += -r BiblioteQ.d temp .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
 
