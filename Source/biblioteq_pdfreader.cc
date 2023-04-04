@@ -549,7 +549,6 @@ void biblioteq_pdfreader::slotSaveAs(void)
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Save PDF As"));
   dialog.selectFile(m_fileName);
 

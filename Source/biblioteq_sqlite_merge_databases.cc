@@ -331,7 +331,6 @@ void biblioteq_sqlite_merge_databases::slotSelect(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setNameFilter("SQLite Database (*.sqlite)");
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
   QApplication::processEvents();

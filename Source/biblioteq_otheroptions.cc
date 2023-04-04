@@ -963,7 +963,6 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(QColor(pushButton->text().remove('&')));
-  dialog.setOption(QColorDialog::DontUseNativeDialog);
 
   if(dialog.exec() == QDialog::Accepted)
     {
@@ -987,7 +986,6 @@ void biblioteq_otheroptions::slotSelectColor(void)
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(color);
-  dialog.setOption(QColorDialog::DontUseNativeDialog);
 
   if(dialog.exec() == QDialog::Accepted)
     {
@@ -1006,7 +1004,6 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(color);
-  dialog.setOption(QColorDialog::DontUseNativeDialog);
   connect(&dialog,
 	  SIGNAL(currentColorChanged(const QColor &)),
 	  this,

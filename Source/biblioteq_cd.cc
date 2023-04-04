@@ -2366,9 +2366,8 @@ void biblioteq_cd::slotSelectImage(void)
   QFileDialog dialog(this);
   auto button = qobject_cast<QPushButton *> (sender());
 
-  dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setFileMode(QFileDialog::ExistingFile);
 
   if(button == cd.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));

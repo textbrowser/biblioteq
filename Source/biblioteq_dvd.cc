@@ -1926,9 +1926,8 @@ void biblioteq_dvd::slotSelectImage(void)
   QFileDialog dialog(this);
   auto button = qobject_cast<QPushButton *> (sender());
 
-  dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setFileMode(QFileDialog::ExistingFile);
 
   if(button == dvd.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));

@@ -88,9 +88,6 @@ int main(int argc, char *argv[])
   QApplication qapplication(argc, argv);
   auto font(qapplication.font());
 
-#if QT_VERSION >= 0x050700
-  qapplication.setAttribute(Qt::AA_DontUseNativeDialogs);
-#endif
   font.setStyleStrategy
     (QFont::StyleStrategy(QFont::PreferAntialias | QFont::PreferQuality));
   qapplication.setFont(font);
@@ -2915,12 +2912,11 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   QFileDialog dialog(this);
   auto error = false;
 
-  dialog.setFileMode(QFileDialog::AnyFile);
-  dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("SQLite Database (*.sqlite)");
-  dialog.setDefaultSuffix("sqlite");
   dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setDefaultSuffix("sqlite");
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setNameFilter("SQLite Database (*.sqlite)");
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
   dialog.exec();
   dialog.close();
@@ -4491,10 +4487,9 @@ void biblioteq::slotSelectDatabaseFile(void)
 {
   QFileDialog dialog(m_branch_diag);
 
-  dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setNameFilter("SQLite Database (*.sqlite)");
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
   QApplication::processEvents();
@@ -4524,7 +4519,6 @@ void biblioteq::slotSetFonts(void)
   QFontDialog dialog(this);
 
   dialog.setCurrentFont(QApplication::font());
-  dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
 
   if(dialog.exec() == QDialog::Accepted)

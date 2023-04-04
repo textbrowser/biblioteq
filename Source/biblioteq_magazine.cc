@@ -1899,7 +1899,6 @@ void biblioteq_magazine::slotAttachFiles(void)
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setDirectory(QDir::homePath());
   fileDialog.setFileMode(QFileDialog::ExistingFiles);
-  fileDialog.setOption(QFileDialog::DontUseNativeDialog);
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
@@ -2025,7 +2024,6 @@ void biblioteq_magazine::slotExportFiles(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::Directory);
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
 
   if(m_subType.toLower() == "journal")
     dialog.setWindowTitle(tr("BiblioteQ: Journal File Export"));
@@ -3747,9 +3745,8 @@ void biblioteq_magazine::slotSelectImage(void)
   QFileDialog dialog(this);
   auto button = qobject_cast<QPushButton *> (sender());
 
-  dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setFileMode(QFileDialog::ExistingFile);
 
   if(button == ma.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
