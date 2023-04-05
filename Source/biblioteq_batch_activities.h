@@ -69,7 +69,15 @@ class biblioteq_batch_activities: public QMainWindow
   enum class Pages
     {
       Borrow = 0,
-      Discover = 1
+      Discover = 1,
+      Return
+    };
+
+  enum class ReturnTableColumns
+    {
+      CATEGORY_COLUMN = 1,
+      IDENTIFIER_COLUMN = 0,
+      TITLE_COLUMN = 2
     };
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

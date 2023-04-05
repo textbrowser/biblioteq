@@ -988,6 +988,15 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.discover_table->clearContents();
       m_ui.discover_table->setRowCount(0);
     }
+
+  if(!sender() ||
+     m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
+    {
+      m_ui.return_scan->clear();
+      m_ui.return_scan->setFocus();
+      m_ui.return_table->clearContents();
+      m_ui.return_table->setRowCount(0);
+    }
 }
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
