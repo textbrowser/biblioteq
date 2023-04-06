@@ -112,8 +112,10 @@ class biblioteq_batch_activities: public QMainWindow
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);
+  void slotScanReturnTimerTimeout(void);
   void slotScannedBorrowing(void);
   void slotScannedDiscover(void);
+  void slotScannedReturn(void);
   void slotSetGlobalFonts(const QFont &font);
 
  signals:
