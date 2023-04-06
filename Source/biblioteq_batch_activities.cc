@@ -625,10 +625,27 @@ void biblioteq_batch_activities::slotExportMissing(void)
 
 void biblioteq_batch_activities::slotGo(void)
 {
-  if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Borrow))
-    borrow();
-  else if(m_ui.tab->currentIndex() == static_cast<int> (Pages::Discover))
-    discover();
+  switch(static_cast<Pages> (m_ui.tab->currentIndex()))
+    {
+    case Pages::Borrow:
+      {
+	borrow();
+	break;
+      }
+    case Pages::Discover:
+      {
+	discover();
+	break;
+      }
+    case Pages::Return:
+      {
+	break;
+      }
+    default:
+      {
+	break;
+      }
+    }
 }
 
 void biblioteq_batch_activities::slotListDiscoveredItems(void)
@@ -921,7 +938,7 @@ void biblioteq_batch_activities::slotListMembersReservedItems(void)
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
 void biblioteq_batch_activities::slotMediaError(QMediaPlayer::Error error)
 {
-  QMediaPlayer *player = qobject_cast<QMediaPlayer *> (sender());
+  auto player = qobject_cast<QMediaPlayer *> (sender());
 
   if(!player)
     return;
@@ -935,7 +952,7 @@ void biblioteq_batch_activities::slotMediaError
 {
   Q_UNUSED(errorString);
 
-  QMediaPlayer *player = qobject_cast<QMediaPlayer *> (sender());
+  auto player = qobject_cast<QMediaPlayer *> (sender());
 
   if(!player)
     return;
@@ -947,7 +964,7 @@ void biblioteq_batch_activities::slotMediaError
 void biblioteq_batch_activities::slotMediaStatusChanged
 (QMediaPlayer::MediaStatus status)
 {
-  QMediaPlayer *player = qobject_cast<QMediaPlayer *> (sender());
+  auto player = qobject_cast<QMediaPlayer *> (sender());
 
   if(!player)
     return;
