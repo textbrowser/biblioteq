@@ -639,6 +639,8 @@ void biblioteq_batch_activities::slotGo(void)
       }
     case Pages::Return:
       {
+	(void) m_qmain->populateTable
+	  (biblioteq::POPULATE_ALL, "All Reserved", "");
 	break;
       }
     default:
@@ -924,7 +926,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
     query->addBindValue(values.at(i));
 
   QApplication::restoreOverrideCursor();
-  m_qmain->populateTable
+  (void) m_qmain->populateTable
     (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
   show(m_qmain, false);
 }
