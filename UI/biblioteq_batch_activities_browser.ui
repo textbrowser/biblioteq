@@ -523,6 +523,11 @@
              </column>
              <column>
               <property name="text">
+               <string>Borrower</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>Database Table Name(s)</string>
               </property>
              </column>

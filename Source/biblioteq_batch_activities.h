@@ -75,9 +75,10 @@ class biblioteq_batch_activities: public QMainWindow
 
   enum class ReturnTableColumns
     {
-      CATEGORY_COLUMN = 1,
+      BORROWER_COLUMN = 1,
+      CATEGORY_COLUMN = 2,
       IDENTIFIER_COLUMN = 0,
-      TITLE_COLUMN = 2
+      TITLE_COLUMN = 3
     };
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
