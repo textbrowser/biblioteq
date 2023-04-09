@@ -667,19 +667,21 @@ QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
 {
   QString format("");
 
-  if(bytes.size() >= 4 &&
-     tolower(bytes[1]) == 'p' &&
-     tolower(bytes[2]) == 'n' &&
-     tolower(bytes[3]) == 'g')
+  if(bytes.size() >= 2 &&
+     tolower(bytes[0]) == 'b' &&
+     tolower(bytes[1]) == 'm')
+    format = "BMP";
+  else if(bytes.size() >= 4 &&
+	  tolower(bytes[1]) == 'p' &&
+	  tolower(bytes[2]) == 'n' &&
+	  tolower(bytes[3]) == 'g')
     format = "PNG";
   else if(bytes.size() >= 10 &&
-	  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
-	  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
+	  tolower(bytes[6]) == 'j' &&
+	  tolower(bytes[7]) == 'f' &&
+	  tolower(bytes[8]) == 'i' &&
+	  tolower(bytes[9]) == 'f')
     format = "JPG";
-  else if(bytes.size() >= 2 &&
-	  tolower(bytes[0]) == 'b' &&
-	  tolower(bytes[1]) == 'm')
-    format = "BMP";
   else // Guess!
     format = "JPG";
 

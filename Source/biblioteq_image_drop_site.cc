@@ -30,6 +30,7 @@
 
 #include <QDropEvent>
 #include <QFile>
+#include <QFileInfo>
 #include <QMimeData>
 #include <QUrl>
 
@@ -62,10 +63,7 @@ QString biblioteq_image_drop_site::determineFormat
 
   if(imgf.isEmpty())
     {
-      QString ext("");
-
-      if(filename.contains("."))
-	ext = filename.mid(filename.lastIndexOf(".") + 1);
+      auto ext(QFileInfo(filename).suffix());
 
       if(ext.isEmpty())
 	imgf = "JPG";
@@ -110,11 +108,9 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 
   if(event)
     {
-      auto imgf = determineFormat(filename);
+      auto f(determineFormat(filename));
 
-      if(imgf == "BMP" ||
-	 imgf == "JPG" || imgf == "JPEG" ||
-	 imgf == "PNG")
+      if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
 	event->acceptProposedAction();
     }
 }
@@ -150,11 +146,9 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
   if(event)
     {
-      QString imgf = determineFormat(filename);
+      auto f(determineFormat(filename));
 
-      if(imgf == "BMP" ||
-	 imgf == "JPG" || imgf == "JPEG" ||
-	 imgf == "PNG")
+      if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
 	event->acceptProposedAction();
     }
 }
@@ -207,8 +201,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 
 	  if(!pixmap.isNull())
 	    pixmap = pixmap.scaled
-	      (0.50 * size(), Qt::KeepAspectRatio,
-	       Qt::SmoothTransformation);
+	      (0.50 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	}
       else
 	pixmap = QPixmap::fromImage(m_image);
@@ -237,7 +230,7 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 {
   if(acceptDrops())
     if(event)
-      if(event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
+      if(event->key() == Qt::Key_Backspace || event->key() == Qt::Key_Delete)
 	if(!scene()->selectedItems().isEmpty())
 	  clear();
 }
@@ -257,8 +250,7 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
-	  (0.50 * size(), Qt::KeepAspectRatio,
-	   Qt::SmoothTransformation);
+	  (0.50 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
   else
     pixmap = QPixmap::fromImage(m_image);
@@ -301,8 +293,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
-	  (size(), Qt::KeepAspectRatio,
-	   Qt::SmoothTransformation);
+	  (size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(pixmap.isNull())
 	pixmap = QPixmap(":/no_image.png");
@@ -333,8 +324,7 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
-	  (0.50 * size(), Qt::KeepAspectRatio,
-	   Qt::SmoothTransformation);
+	  (0.50 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
   else
     pixmap = QPixmap::fromImage(this->m_image);
