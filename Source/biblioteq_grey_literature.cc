@@ -924,6 +924,9 @@ void biblioteq_grey_literature::slotAttachFiles(void)
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setDirectory(QDir::homePath());
   fileDialog.setFileMode(QFileDialog::ExistingFiles);
+#ifdef Q_OS_ANDROID
+  fileDialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
@@ -1044,6 +1047,9 @@ void biblioteq_grey_literature::slotExportFiles(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::Directory);
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: Grey Literature File Export"));
   dialog.exec();
   QApplication::processEvents();

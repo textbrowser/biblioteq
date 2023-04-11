@@ -1121,6 +1121,9 @@ void biblioteq_photographcollection::slotExportItem(void)
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle
     (tr("BiblioteQ: Photograph Collection Photograph Export"));
   dialog.selectFile(QString("biblioteq-image-export.%1").
@@ -1158,8 +1161,11 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setDirectory(QDir::homePath());
-  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photographs "
-			   "Export"));
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
+  dialog.setWindowTitle
+    (tr("BiblioteQ: Photograph Collection Photographs Export"));
   dialog.exec();
   QApplication::processEvents();
 
@@ -1708,6 +1714,9 @@ void biblioteq_photographcollection::slotImportItems(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFiles);
   dialog.setNameFilters(list);
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Import"));
   dialog.exec();
   QApplication::processEvents();
@@ -2512,6 +2521,9 @@ void biblioteq_photographcollection::slotSelectImage(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
 
   if(button == pc.select_image_collection)
     dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection "

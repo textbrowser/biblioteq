@@ -135,6 +135,9 @@ void biblioteq_files::slotExport(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::Directory);
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: File Export"));
 
   if(dialog.exec() != QDialog::Accepted)

@@ -2910,6 +2910,7 @@ void biblioteq::slotDeleteAdmin(void)
 void biblioteq::slotDisplayNewSqliteDialog(void)
 {
   QFileDialog dialog(this);
+  QString errorstr("");
   auto error = false;
 
   dialog.setAcceptMode(QFileDialog::AcceptSave);
@@ -2917,6 +2918,9 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setNameFilter("SQLite Database (*.sqlite)");
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
   dialog.exec();
   dialog.close();
@@ -2952,11 +2956,16 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	      if(!query.exec("CREATE " + string))
 		{
 		  error = true;
+		  errorstr = query.lastError().text();
 		  break;
 		}
 	  }
 	else
-	  error = true;
+	  {
+	    error = true;
+	    errorstr = tr("db.open() (%1) error").arg
+	      (dialog.selectedFiles().value(0));
+	  }
 
 	db.close();
       }
@@ -3042,8 +3051,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	{
 	  QMessageBox::critical
 	    (this, tr("BiblioteQ: Database Error"),
-	     tr("An error occurred while attempting "
-		"to create the specified SQLite database."));
+	     tr("An error (%1) occurred while attempting "
+		"to create the specified SQLite database.").arg(errorstr));
 	  QApplication::processEvents();
 	}
     }
@@ -4490,6 +4499,9 @@ void biblioteq::slotSelectDatabaseFile(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setNameFilter("SQLite Database (*.sqlite)");
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
   QApplication::processEvents();

@@ -1738,6 +1738,9 @@ void biblioteq_videogame::slotSelectImage(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
 
   if(button == vg.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));

@@ -537,6 +537,9 @@ void biblioteq_batch_activities::slotExportMissing(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setNameFilter(tr("CSV (*.csv)"));
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: Export As CSV"));
   dialog.exec();
   QApplication::processEvents();

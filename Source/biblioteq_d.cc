@@ -466,6 +466,9 @@ void biblioteq::slotExportAsPNG(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setNameFilter(tr("PNG (*.png)"));
+#ifdef Q_OS_ANDROID
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+#endif
   dialog.setWindowTitle(tr("BiblioteQ: Export Icons View As PNG"));
   dialog.exec();
   QApplication::processEvents();
