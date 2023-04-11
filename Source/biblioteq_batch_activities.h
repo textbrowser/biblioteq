@@ -69,16 +69,7 @@ class biblioteq_batch_activities: public QMainWindow
   enum class Pages
     {
       Borrow = 0,
-      Discover = 1,
-      Return
-    };
-
-  enum class ReturnTableColumns
-    {
-      BORROWER_COLUMN = 1,
-      CATEGORY_COLUMN = 2,
-      IDENTIFIER_COLUMN = 0,
-      TITLE_COLUMN = 3
+      Discover = 1
     };
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -113,10 +104,8 @@ class biblioteq_batch_activities: public QMainWindow
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);
-  void slotScanReturnTimerTimeout(void);
   void slotScannedBorrowing(void);
   void slotScannedDiscover(void);
-  void slotScannedReturn(void);
   void slotSetGlobalFonts(const QFont &font);
 
  signals:
