@@ -10,6 +10,7 @@ BiblioteQ is free and open library software.
 <li>Bar scanners supported indirectly.</li>
 <li>Cataloging of books, dvds, grey literature, journals, magazines, music cds, photograph collections, and video games.</li>
 <li>Cover images with drag and drop support.</li>
+<li>Cover images with paste support.</li>
 <li>Customized displays.</li>
 <li>Customized item data, pricing information, and currencies.</li>
 <li>Documentation.</li>
