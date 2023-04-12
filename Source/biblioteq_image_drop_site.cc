@@ -82,14 +82,11 @@ QString biblioteq_image_drop_site::determineFormat
 
 void biblioteq_image_drop_site::clear(void)
 {
-  if(!m_readOnly)
-    {
-      m_doubleclicked = false;
-      m_image = QImage();
-      m_imageFormat.clear();
-      scene()->clear();
-      scene()->clearSelection();
-    }
+  m_doubleclicked = false;
+  m_image = QImage();
+  m_imageFormat.clear();
+  scene()->clear();
+  scene()->clearSelection();
 }
 
 void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
@@ -270,15 +267,18 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 	if((QGuiApplication::keyboardModifiers() & Qt::ControlModifier) &&
 	   event->key() == Qt::Key_V)
 	  {
-	    auto clipboard = QApplication::clipboard();
+	    if(!m_readOnly)
+	      {
+		auto clipboard = QApplication::clipboard();
 
-	    if(clipboard)
-	      setImage(clipboard->image());
+		if(clipboard)
+		  setImage(clipboard->image());
+	      }
 	  }
 	else if(event->key() == Qt::Key_Backspace ||
 		event->key() == Qt::Key_Delete)
 	  {
-	    if(!scene()->selectedItems().isEmpty())
+	    if(!m_readOnly && !scene()->selectedItems().isEmpty())
 	      clear();
 	  }
       }
@@ -286,9 +286,6 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 {
-  if(m_readOnly)
-    return;
-
   QPixmap pixmap;
 
   m_doubleclicked = false;
@@ -368,9 +365,6 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 
 void biblioteq_image_drop_site::setImage(const QImage &image)
 {
-  if(m_readOnly)
-    return;
-
   QByteArray bytes;
   QBuffer buffer(&bytes);
   QPixmap pixmap;
