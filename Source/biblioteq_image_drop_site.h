@@ -47,6 +47,7 @@ class biblioteq_image_drop_site: public QGraphicsView
  private:
   bool m_doubleClickResizeEnabled;
   bool m_doubleclicked;
+  bool m_readOnly;
   QString determineFormat(const QByteArray &bytes) const;
   QString determineFormat(const QString &filename) const;
   void dragEnterEvent(QDragEnterEvent *event);
