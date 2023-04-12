@@ -543,3 +543,4 @@
      they may represent DELETE or UPDATE requests. (Done)
 300. Show an HTML warning icon if a database driver is not available. (Done)
 301. Execute lupdate and lrelease before creating a release file. (Done)
+302. Paste buttons for Back and Front cover images. (TBD)
