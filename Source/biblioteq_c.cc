@@ -3054,7 +3054,7 @@ void biblioteq::slotConnectDB(void)
 
       if(!ui.menuEntriesPerPage->actions().isEmpty())
 	ui.menuEntriesPerPage->actions().at
-	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(false);
+	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 
       ui.actionChangePassword->setEnabled(true);
       disconnect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
