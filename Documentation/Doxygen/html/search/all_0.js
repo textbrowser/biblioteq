@@ -32,12 +32,13 @@ var searchData=
   ['biblioteq_5fopen_5flibrary_29',['biblioteq_open_library',['../classbiblioteq__open__library.html',1,'']]],
   ['biblioteq_5fotheroptions_30',['biblioteq_otheroptions',['../classbiblioteq__otheroptions.html',1,'']]],
   ['biblioteq_5fotheroptions_5fitem_5fdelegate_31',['biblioteq_otheroptions_item_delegate',['../classbiblioteq__otheroptions__item__delegate.html',1,'']]],
-  ['biblioteq_5fpdfreader_32',['biblioteq_pdfreader',['../classbiblioteq__pdfreader.html',1,'']]],
-  ['biblioteq_5fphotograph_5fview_33',['biblioteq_photograph_view',['../classbiblioteq__photograph__view.html',1,'']]],
-  ['biblioteq_5fphotographcollection_34',['biblioteq_photographcollection',['../classbiblioteq__photographcollection.html',1,'']]],
-  ['biblioteq_5fsql_5fsyntax_5fhighlighter_35',['biblioteq_sql_syntax_highlighter',['../classbiblioteq__sql__syntax__highlighter.html',1,'']]],
-  ['biblioteq_5fsqlite_5fmerge_5fdatabases_36',['biblioteq_sqlite_merge_databases',['../classbiblioteq__sqlite__merge__databases.html',1,'']]],
-  ['biblioteq_5fsruresults_37',['biblioteq_sruresults',['../classbiblioteq__sruresults.html',1,'']]],
-  ['biblioteq_5fvideogame_38',['biblioteq_videogame',['../classbiblioteq__videogame.html',1,'']]],
-  ['biblioteq_5fz3950results_39',['biblioteq_z3950results',['../classbiblioteq__z3950results.html',1,'']]]
+  ['biblioteq_5fotheroptions_5fshortcut_5flineedit_32',['biblioteq_otheroptions_shortcut_lineedit',['../classbiblioteq__otheroptions__shortcut__lineedit.html',1,'']]],
+  ['biblioteq_5fpdfreader_33',['biblioteq_pdfreader',['../classbiblioteq__pdfreader.html',1,'']]],
+  ['biblioteq_5fphotograph_5fview_34',['biblioteq_photograph_view',['../classbiblioteq__photograph__view.html',1,'']]],
+  ['biblioteq_5fphotographcollection_35',['biblioteq_photographcollection',['../classbiblioteq__photographcollection.html',1,'']]],
+  ['biblioteq_5fsql_5fsyntax_5fhighlighter_36',['biblioteq_sql_syntax_highlighter',['../classbiblioteq__sql__syntax__highlighter.html',1,'']]],
+  ['biblioteq_5fsqlite_5fmerge_5fdatabases_37',['biblioteq_sqlite_merge_databases',['../classbiblioteq__sqlite__merge__databases.html',1,'']]],
+  ['biblioteq_5fsruresults_38',['biblioteq_sruresults',['../classbiblioteq__sruresults.html',1,'']]],
+  ['biblioteq_5fvideogame_39',['biblioteq_videogame',['../classbiblioteq__videogame.html',1,'']]],
+  ['biblioteq_5fz3950results_40',['biblioteq_z3950results',['../classbiblioteq__z3950results.html',1,'']]]
 ];
