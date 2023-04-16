@@ -41,9 +41,7 @@ BiblioteQ is free and open library software.
 <li>PostgreSQL and SQLite engines.</li>
 <li>PowerPC support.</li>
 <li>Print support, including previews.</li>
-<li>Qt 5.15 LTS.</li>
-<li>Qt 6.2 LTS.</li>
-<li>Qt 6.5 LTS.</li>
+<li>Qt LTS.</li>
 <li>Raspberry Pi!</li>
 <li>Rich search capabilities, including custom SQL queries.</li>
 <li>Row-level security policies for PostgreSQL.</li>
