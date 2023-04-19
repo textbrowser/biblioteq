@@ -1013,3 +1013,12 @@ CREATE POLICY member_history_biblioteq_patron_policy ON member_history TO biblio
 CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership USING (true);
 CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);
+
+/* Enable compression. */
+
+ALTER TABLE book_files ALTER file SET COMPRESSION DEFAULT;
+ALTER TABLE grey_literature_files ALTER file SET COMPRESSION DEFAULT;
+ALTER TABLE journal_files ALTER file SET COMPRESSION DEFAULT;
+ALTER TABLE magazine_files ALTER file SET COMPRESSION DEFAULT;
+ALTER TABLE photograph ALTER image SET COMPRESSION DEFAULT;
+ALTER TABLE photograph_collection ALTER image SET COMPRESSION DEFAULT;

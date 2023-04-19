@@ -1121,9 +1121,7 @@ void biblioteq_import::slotSelectCSVFile(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setNameFilter("CSV (*.csv)");
-#ifdef Q_OS_ANDROID
   dialog.setOption(QFileDialog::DontUseNativeDialog);
-#endif
   dialog.setWindowTitle(tr("BiblioteQ: Select CSV Import File"));
   dialog.exec();
   QApplication::processEvents();

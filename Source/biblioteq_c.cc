@@ -1292,9 +1292,7 @@ void biblioteq::exportAsCSV
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setNameFilter(tr("CSV (*.csv)"));
-#ifdef Q_OS_ANDROID
   dialog.setOption(QFileDialog::DontUseNativeDialog);
-#endif
   dialog.setWindowTitle(title);
   dialog.exec();
   QApplication::processEvents();
@@ -3844,9 +3842,7 @@ void biblioteq::slotExportMembersAsCSV(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setNameFilter(tr("CSV (*.csv)"));
-#ifdef Q_OS_ANDROID
   dialog.setOption(QFileDialog::DontUseNativeDialog);
-#endif
   dialog.setWindowTitle(tr("BiblioteQ: Export Patrons As CSV"));
   dialog.exec();
   QApplication::processEvents();
@@ -4290,6 +4286,7 @@ void biblioteq::slotOpenPDFFiles(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFiles);
   dialog.setNameFilter("PDF (*.pdf)");
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Open PDF File(s)"));
 
   if(dialog.exec() == QDialog::Accepted)

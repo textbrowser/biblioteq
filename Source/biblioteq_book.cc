@@ -2085,9 +2085,7 @@ void biblioteq_book::slotAttachFiles(void)
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setDirectory(QDir::homePath());
   fileDialog.setFileMode(QFileDialog::ExistingFiles);
-#ifdef Q_OS_ANDROID
   fileDialog.setOption(QFileDialog::DontUseNativeDialog);
-#endif
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
@@ -2579,9 +2577,7 @@ void biblioteq_book::slotExportFiles(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::Directory);
-#ifdef Q_OS_ANDROID
   dialog.setOption(QFileDialog::DontUseNativeDialog);
-#endif
   dialog.setWindowTitle(tr("BiblioteQ: Book File Export"));
   dialog.exec();
   QApplication::processEvents();
@@ -4882,9 +4878,7 @@ void biblioteq_book::slotSelectImage(void)
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
-#ifdef Q_OS_ANDROID
   dialog.setOption(QFileDialog::DontUseNativeDialog);
-#endif
 
   if(button == id.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
