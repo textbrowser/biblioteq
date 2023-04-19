@@ -1014,7 +1014,7 @@ CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator
 CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
 CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);
 
-/* Enable compression. */
+/* PostgreSQL 14 or newer is required. */
 
 ALTER TABLE book_files ALTER file SET COMPRESSION DEFAULT;
 ALTER TABLE grey_literature_files ALTER file SET COMPRESSION DEFAULT;

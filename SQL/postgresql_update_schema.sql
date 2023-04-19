@@ -1460,6 +1460,7 @@ GRANT SELECT ON book_originality TO biblioteq_membership;
 GRANT SELECT ON book_originality TO biblioteq_patron;
 
 /* Release 2023.04.30 */
+/* PostgreSQL 14 or newer is required. */
 
 ALTER TABLE book_files ALTER file SET COMPRESSION DEFAULT;
 ALTER TABLE grey_literature_files ALTER file SET COMPRESSION DEFAULT;
