@@ -119,6 +119,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(m_ui.return_scan,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotScannedReturn(void)));
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -396,6 +400,10 @@ void biblioteq_batch_activities::reset(void)
   slotReset();
 }
 
+void biblioteq_batch_activities::returnItems(void)
+{
+}
+
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
   static auto resized = false;
@@ -632,6 +640,11 @@ void biblioteq_batch_activities::slotGo(void)
     case Pages::Discover:
       {
 	discover();
+	break;
+      }
+    case Pages::Return:
+      {
+	returnItems();
 	break;
       }
     default:
@@ -1002,6 +1015,15 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.discover_table->clearContents();
       m_ui.discover_table->setRowCount(0);
     }
+
+  if(!sender() ||
+     m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
+    {
+      m_ui.return_scan->clear();
+      m_ui.return_scan->setFocus();
+      m_ui.return_table->clearContents();
+      m_ui.return_table->setRowCount(0);
+    }
 }
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
@@ -1158,6 +1180,12 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
+{
+  if(m_ui.return_scan->text().trimmed().isEmpty())
+    return;
+}
+
 void biblioteq_batch_activities::slotScannedBorrowing(void)
 {
   QTimer::singleShot(100, this, SLOT(slotScanBorrowingTimerTimeout(void)));
@@ -1166,6 +1194,11 @@ void biblioteq_batch_activities::slotScannedBorrowing(void)
 void biblioteq_batch_activities::slotScannedDiscover(void)
 {
   QTimer::singleShot(100, this, SLOT(slotScanDiscoverTimerTimeout(void)));
+}
+
+void biblioteq_batch_activities::slotScannedReturn(void)
+{
+  QTimer::singleShot(100, this, SLOT(slotScanReturnTimerTimeout(void)));
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
@@ -1180,5 +1213,6 @@ void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
 
   m_ui.borrow_table->resizeColumnsToContents();
   m_ui.discover_table->resizeColumnsToContents();
+  m_ui.return_table->resizeColumnsToContents();
   update();
 }

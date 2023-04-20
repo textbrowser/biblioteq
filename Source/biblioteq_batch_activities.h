@@ -69,7 +69,8 @@ class biblioteq_batch_activities: public QMainWindow
   enum class Pages
     {
       Borrow = 0,
-      Discover = 1
+      Discover = 1,
+      Return = 2
     };
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -85,6 +86,7 @@ class biblioteq_batch_activities: public QMainWindow
   void changeEvent(QEvent *event);
   void discover(void);
   void play(const QString &file);
+  void returnItems(void);
 
  private slots:
   void slotAddBorrowingRow(void);
@@ -104,8 +106,10 @@ class biblioteq_batch_activities: public QMainWindow
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);
+  void slotScanReturnTimerTimeout(void);
   void slotScannedBorrowing(void);
   void slotScannedDiscover(void);
+  void slotScannedReturn(void);
   void slotSetGlobalFonts(const QFont &font);
 
  signals:
