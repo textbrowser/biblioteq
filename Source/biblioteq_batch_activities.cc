@@ -1184,6 +1184,22 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 {
   if(m_ui.return_scan->text().trimmed().isEmpty())
     return;
+
+  if(m_ui.return_table->columnCount() == 0)
+    {
+      m_ui.return_table->setColumnCount(5);
+      m_ui.return_table->setHorizontalHeaderLabels
+	(QStringList()
+	 << tr("Copy ID")
+	 << tr("Member ID")
+	 << tr("Member Information")
+	 << tr("Reservation Date")
+	 << tr("Due Date"));
+    }
+
+  QSqlQuery query(m_qmain->getDB());
+
+  query.setForwardOnly(true);
 }
 
 void biblioteq_batch_activities::slotScannedBorrowing(void)
