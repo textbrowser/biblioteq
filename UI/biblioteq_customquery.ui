@@ -145,7 +145,7 @@
           <item>
            <widget class="QCheckBox" name="favorite">
             <property name="toolTip">
-             <string>Favorite</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A favorite query may be activated by a custom shortcut. Please see Other Options -&amp;gt; Shortcuts -&amp;gt; Custom Query Shortcut.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Favorite</string>
