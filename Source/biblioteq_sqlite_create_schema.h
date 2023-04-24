@@ -506,6 +506,12 @@ CREATE TABLE member							\
     zip		     VARCHAR(16) NOT NULL DEFAULT 'N/A'			\
 );									\
 									\
+CREATE TRIGGER item_borrower_trigger AFTER DELETE ON member		\
+FOR EACH row								\
+BEGIN									\
+    DELETE FROM item_borrower WHERE memberid = old.memberid;		\
+END;									\
+									\
 CREATE TABLE member_history						\
 (									\
     memberid	  VARCHAR(16) NOT NULL,					\
