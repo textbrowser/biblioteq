@@ -5446,11 +5446,16 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD target_audience TEXT");
   list.append("CREATE TABLE IF NOT EXISTS book_target_audiences "
 	      "(target_audience TEXT NOT NULL PRIMARY KEY)");
-#endif
   list.append("CREATE TABLE book_conditions "
 	      "(condition TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE book_originality "
 	      "(originality TEXT NOT NULL PRIMARY KEY)");
+#endif
+  list.append("CREATE TRIGGER item_borrower_trigger AFTER DELETE ON member "
+	      "FOR EACH row "
+	      "BEGIN "
+	      "DELETE FROM item_borrower WHERE memberid = old.memberid; "
+	      "END;");
 
   QString errors("<html>");
   int ct = 1;

@@ -303,28 +303,24 @@ void biblioteq::prepareUpgradeNotification(void)
   ** Must keep the following condition(s) current.
   */
 
-  auto record1(m_db.record("book_conditions"));
-  auto record2(m_db.record("book_originality"));
-
-  if(!(record1.indexOf("condition") >= 0 &&
-       record2.indexOf("originality") >= 0))
+  if(m_db.driverName() != "QPSQL")
     {
-      if(m_db.driverName() == "QPSQL")
-	QMessageBox::critical
-	  (this,
-	   tr("BiblioteQ: Database Error"),
-	   tr("The current PostgreSQL schema must be updated. "
-	      "Please execute the statement(s) in %1 for version %2.").
-	   arg("postgresql_update_schema.sql").
-	   arg(BIBLIOTEQ_VERSION));
-      else
-	QMessageBox::critical
-	  (this,
-	   tr("BiblioteQ: Database Error"),
-	   tr("The current SQLite schema must be updated. "
-	      "Tools -> Upgrade SQLite Schema."));
+      QSqlQuery query(m_db);
 
-      QApplication::processEvents();
+      if(query.exec("SELECT name FROM sqlite_master "
+		    "WHERE name = 'item_borrower_trigger'") &&
+	 query.next())
+	{
+	}
+      else
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: Database Error"),
+	     tr("The current SQLite schema must be updated. "
+		"Tools -> Upgrade SQLite Schema."));
+	  QApplication::processEvents();
+	}
     }
 }
 
