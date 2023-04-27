@@ -1200,6 +1200,32 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
   QSqlQuery query(m_qmain->getDB());
 
   query.setForwardOnly(true);
+  query.prepare("SELECT "
+		"item_borrower.copyid, "
+		"item_borrower.memberid, "
+		"member.last_name || ', ' || member.first_name, "
+		"item_borrower.reserved_date, "
+		"item_borrower.duedate "
+		"FROM item_borrower, member "
+		"WHERE "
+		"item_borrower.copyid LIKE '%' || ? || '%' AND "
+		"item_borrower.memberid = member.memberid");
+  query.addBindValue(m_ui.return_scan->text().remove('-').trimmed());
+  m_ui.return_scan->clear();
+
+  if(query.exec() && query.next())
+    {
+      m_ui.return_table->setRowCount(m_ui.return_table->rowCount() + 1);
+
+      for(int i = 0; i < m_ui.return_table->columnCount(); i++)
+	{
+	  auto item = new QTableWidgetItem(query.value(i).toString().trimmed());
+
+	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	  m_ui.return_table->setItem
+	    (m_ui.return_table->rowCount() - 1, i, item);
+	}
+    }
 }
 
 void biblioteq_batch_activities::slotScannedBorrowing(void)
