@@ -205,7 +205,7 @@
 103. Allow for custom queries. (Done)
 104. The database searches should be case-insensitive. (Done)
 105. Prepare the application for translations. (Done)
-106. Provide a graphical representation of the database layout. (TBD)
+106. Provide a graphical representation of the database layout. (Done)
 107. Create an elegant display of a member's reserved items. (Done)
 108. Update the Returned Date in the member_history table after an item
      has been returned. (Done)
