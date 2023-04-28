@@ -4148,8 +4148,8 @@ void biblioteq::prepareContextMenus()
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
-      if(getTypeFilterString == "All Requested" &&
-	 !m_roles.contains("librarian"))
+      if(!m_roles.contains("librarian") &&
+	 getTypeFilterString == "All Requested")
 	{
 	  m_menu->addAction(tr("Cancel Selected Request(s)"),
 			    this,

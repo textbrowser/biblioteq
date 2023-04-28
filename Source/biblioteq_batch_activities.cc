@@ -1658,6 +1658,7 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
     }
 
   QSqlQuery query(m_qmain->getDB());
+  auto id(m_ui.return_scan->text().remove('-').trimmed());
 
   query.setForwardOnly(true);
   query.prepare("SELECT "
@@ -1669,10 +1670,28 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 		"item_borrower.item_oid "
 		"FROM item_borrower, member "
 		"WHERE "
-		"REPLACE(item_borrower.copyid, '-', '') "
-		"LIKE '%' || ? || '%' AND "
+		"item_borrower.item_oid IN "
+		"(SELECT myoid FROM book WHERE "
+		"REPLACE(accession_number, '-', '') = ? OR "
+		"id = ? OR "
+		"isbn13 = ? UNION ALL "
+		"SELECT myoid FROM cd WHERE id = ? UNION ALL "
+		"SELECT myoid FROM dvd WHERE id = ? UNION ALL "
+		"SELECT myoid FROM grey_literature WHERE document_id = ? "
+		"UNION ALL "
+		"SELECT myoid FROM journal WHERE id = ? UNION ALL "
+		"SELECT myoid FROM magazine WHERE id = ? UNION ALL "
+		"SELECT myoid FROM videogame WHERE id = ?) AND "
 		"item_borrower.memberid = member.memberid");
-  query.addBindValue(m_ui.return_scan->text().remove('-').trimmed());
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
+  query.addBindValue(id);
   m_ui.return_scan->clear();
 
   if(query.exec() && query.next())
