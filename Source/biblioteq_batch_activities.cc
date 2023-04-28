@@ -360,7 +360,7 @@ void biblioteq_batch_activities::play(const QString &file)
     return;
 
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
-  QMediaPlayer *player = findChild<QMediaPlayer *> ();
+  auto player = findChild<QMediaPlayer *> ();
 
   if(player)
     player->deleteLater();
@@ -402,6 +402,471 @@ void biblioteq_batch_activities::reset(void)
 
 void biblioteq_batch_activities::returnItems(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSet<QString> values;
+  QString bookFrontCover("'' AS front_cover ");
+  QString cdFrontCover("'' AS front_cover ");
+  QString dvdFrontCover("'' AS front_cover ");
+  QString greyLiteratureFrontCover("'' AS front_cover ");
+  QString in("(");
+  QString journalFrontCover("'' AS front_cover ");
+  QString magazineFrontCover("'' AS front_cover ");
+  QString searchstr("");
+  QString videoGameFrontCover("'' AS front_cover ");
+  auto query = new QSqlQuery(m_qmain->getDB());
+
+  if(m_qmain->showMainTableImages())
+    {
+      bookFrontCover = "book.front_cover ";
+      cdFrontCover = "cd.front_cover ";
+      dvdFrontCover = "dvd.front_cover ";
+      greyLiteratureFrontCover = "grey_literature.front_cover ";
+      journalFrontCover = "journal.front_cover ";
+      magazineFrontCover = "magazine.front_cover ";
+      videoGameFrontCover = "videogame.front_cover ";
+    }
+
+  for(int i = 0; i < m_ui.return_table->rowCount(); i++)
+    {
+      auto item = m_ui.return_table->item
+	(i, m_ui.return_table->columnCount() - 1);
+
+      if(!item)
+	continue;
+
+      if(!values.contains(item->text()))
+	{
+	  in.append("?");
+	  in.append(", ");
+	  values << item->text();
+	}
+    }
+
+  in = in.mid(0, in.length() - 2); // Remove the last two characters.
+  in.append(")");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "book.title, "
+		   "book.id, "
+		   "book.callnumber, "
+		   "book.publisher, book.pdate, "
+		   "book.category, "
+		   "book.language, "
+		   "book.price, book.monetary_units, "
+		   "book.quantity, "
+		   "book.location, "
+		   "book.quantity - "
+		   "COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "book.accession_number, "
+		   "book.type, "
+		   "book.myoid, " +
+		   bookFrontCover +
+		   "FROM "
+		   "member, "
+		   "book LEFT JOIN item_borrower ON "
+		   "book.myoid = item_borrower.item_oid "
+		   "AND item_borrower.type = 'Book' "
+		   "WHERE "
+		   "book.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "book.title, "
+		   "book.id, "
+		   "book.callnumber, "
+		   "book.publisher, book.pdate, "
+		   "book.category, "
+		   "book.language, "
+		   "book.price, book.monetary_units, "
+		   "book.quantity, "
+		   "book.location, "
+		   "book.accession_number, "
+		   "book.type, "
+		   "book.myoid, "
+		   "book.front_cover ");
+  searchstr.append("UNION ALL ");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "cd.title, "
+		   "cd.id, "
+		   "'' AS callnumber, "
+		   "cd.recording_label, cd.rdate, "
+		   "cd.category, "
+		   "cd.language, "
+		   "cd.price, cd.monetary_units, "
+		   "cd.quantity, "
+		   "cd.location, "
+		   "cd.quantity - "
+		   "COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "cd.accession_number, "
+		   "cd.type, "
+		   "cd.myoid, " +
+		   cdFrontCover +
+		   "FROM "
+		   "member, "
+		   "cd LEFT JOIN item_borrower ON "
+		   "cd.myoid = item_borrower.item_oid "
+		   "AND item_borrower.type = 'CD' "
+		   "WHERE "
+		   "cd.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "cd.title, "
+		   "cd.id, "
+		   "callnumber, "
+		   "cd.recording_label, cd.rdate, "
+		   "cd.category, "
+		   "cd.language, "
+		   "cd.price, cd.monetary_units, "
+		   "cd.quantity, "
+		   "cd.location, "
+		   "cd.accession_number, "
+		   "cd.type, "
+		   "cd.myoid, "
+		   "cd.front_cover ");
+  searchstr.append("UNION ALL ");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "dvd.title, "
+		   "dvd.id, "
+		   "'' AS callnumber, "
+		   "dvd.studio, dvd.rdate, "
+		   "dvd.category, "
+		   "dvd.language, "
+		   "dvd.price, dvd.monetary_units, "
+		   "dvd.quantity, "
+		   "dvd.location, "
+		   "dvd.quantity - "
+		   "COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "dvd.accession_number, "
+		   "dvd.type, "
+		   "dvd.myoid, " +
+		   dvdFrontCover +
+		   "FROM "
+		   "member, "
+		   "dvd LEFT JOIN item_borrower ON "
+		   "dvd.myoid = item_borrower.item_oid "
+		   "AND item_borrower.type = 'DVD' "
+		   "WHERE "
+		   "dvd.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "dvd.title, "
+		   "dvd.id, "
+		   "callnumber, "
+		   "dvd.studio, dvd.rdate, "
+		   "dvd.category, "
+		   "dvd.language, "
+		   "dvd.price, dvd.monetary_units, "
+		   "dvd.quantity, "
+		   "dvd.location, "
+		   "dvd.accession_number, "
+		   "dvd.type, "
+		   "dvd.myoid, "
+		   "dvd.front_cover ");
+  searchstr.append("UNION ALL ");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "grey_literature.document_title, "
+		   "grey_literature.document_id, "
+		   "'', "
+		   "grey_literature.author, "
+		   "grey_literature.document_date, "
+		   "grey_literature.document_type, "
+		   "'', "
+		   "0.00, "
+		   "'', "
+		   "grey_literature.quantity, "
+		   "grey_literature.location, "
+		   "1 - COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "grey_literature.job_number, "
+		   "grey_literature.type, "
+		   "grey_literature.myoid, " +
+		   greyLiteratureFrontCover +
+		   "FROM "
+		   "member, "
+		   "grey_literature LEFT JOIN item_borrower ON "
+		   "grey_literature.myoid = "
+		   "item_borrower.item_oid "
+		   "AND item_borrower.type = 'Grey Literature' "
+		   "WHERE "
+		   "grey_literature.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "grey_literature.document_title, "
+		   "grey_literature.document_id, "
+		   "grey_literature.author, "
+		   "grey_literature.document_date, "
+		   "grey_literature.document_type, "
+		   "grey_literature.quantity, "
+		   "grey_literature.location, "
+		   "grey_literature.job_number, "
+		   "grey_literature.type, "
+		   "grey_literature.myoid, "
+		   "grey_literature.front_cover ");
+  searchstr.append("UNION ALL ");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "journal.title, "
+		   "journal.id, "
+		   "journal.callnumber, "
+		   "journal.publisher, journal.pdate, "
+		   "journal.category, "
+		   "journal.language, "
+		   "journal.price, journal.monetary_units, "
+		   "journal.quantity, "
+		   "journal.location, "
+		   "journal.quantity - "
+		   "COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "journal.accession_number, "
+		   "journal.type, "
+		   "journal.myoid, " +
+		   journalFrontCover +
+		   "FROM "
+		   "member, "
+		   "journal LEFT JOIN item_borrower ON "
+		   "journal.myoid = "
+		   "item_borrower.item_oid "
+		   "AND item_borrower.type = journal.type "
+		   "WHERE "
+		   "journal.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "journal.title, "
+		   "journal.id, "
+		   "journal.callnumber, "
+		   "journal.publisher, journal.pdate, "
+		   "journal.category, "
+		   "journal.language, "
+		   "journal.price, journal.monetary_units, "
+		   "journal.quantity, "
+		   "journal.location, "
+		   "journal.accession_number, "
+		   "journal.type, "
+		   "journal.myoid, "
+		   "journal.front_cover ");
+  searchstr.append("UNION ALL ");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "magazine.title, "
+		   "magazine.id, "
+		   "magazine.callnumber, "
+		   "magazine.publisher, magazine.pdate, "
+		   "magazine.category, "
+		   "magazine.language, "
+		   "magazine.price, magazine.monetary_units, "
+		   "magazine.quantity, "
+		   "magazine.location, "
+		   "magazine.quantity - "
+		   "COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "magazine.accession_number, "
+		   "magazine.type, "
+		   "magazine.myoid, " +
+		   magazineFrontCover +
+		   "FROM "
+		   "member, "
+		   "magazine LEFT JOIN item_borrower ON "
+		   "magazine.myoid = "
+		   "item_borrower.item_oid "
+		   "AND item_borrower.type = magazine.type "
+		   "WHERE "
+		   "magazine.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "magazine.title, "
+		   "magazine.id, "
+		   "magazine.callnumber, "
+		   "magazine.publisher, magazine.pdate, "
+		   "magazine.category, "
+		   "magazine.language, "
+		   "magazine.price, magazine.monetary_units, "
+		   "magazine.quantity, "
+		   "magazine.location, "
+		   "magazine.accession_number, "
+		   "magazine.type, "
+		   "magazine.myoid, "
+		   "magazine.front_cover ");
+  searchstr.append("UNION ALL ");
+  searchstr.append("SELECT DISTINCT "
+		   "member.last_name || ', ' || "
+		   "member.first_name AS name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "videogame.title, "
+		   "videogame.id, "
+		   "'' AS callnumber, "
+		   "videogame.publisher, videogame.rdate, "
+		   "videogame.genre, "
+		   "videogame.language, "
+		   "videogame.price, videogame.monetary_units, "
+		   "videogame.quantity, "
+		   "videogame.location, "
+		   "videogame.quantity - "
+		   "COUNT(item_borrower.item_oid) "
+		   "AS availability, "
+		   "COUNT(item_borrower.item_oid) AS "
+		   "total_reserved, "
+		   "videogame.accession_number, "
+		   "videogame.type, "
+		   "videogame.myoid, " +
+		   videoGameFrontCover +
+		   "FROM "
+		   "member, "
+		   "videogame LEFT JOIN item_borrower ON "
+		   "videogame.myoid = "
+		   "item_borrower.item_oid "
+		   "AND item_borrower.type = 'Video Game' "
+		   "WHERE "
+		   "videogame.myoid IN ");
+  searchstr.append(in);
+  searchstr.append(" AND ");
+  searchstr.append("item_borrower.memberid = "
+		   "member.memberid ");
+  searchstr.append("GROUP BY "
+		   "name, "
+		   "member.memberid, "
+		   "member.telephone_num, "
+		   "item_borrower.copyid, "
+		   "item_borrower.reserved_date, "
+		   "item_borrower.duedate, "
+		   "videogame.title, "
+		   "videogame.id, "
+		   "callnumber, "
+		   "videogame.publisher, videogame.rdate, "
+		   "videogame.genre, "
+		   "videogame.language, "
+		   "videogame.price, videogame.monetary_units, "
+		   "videogame.quantity, "
+		   "videogame.location, "
+		   "videogame.accession_number, "
+		   "videogame.type, "
+		   "videogame.myoid, "
+		   "videogame.front_cover ");
+  searchstr.append("ORDER BY 1");
+  query->prepare(searchstr);
+
+  for(int i = 0; i < searchstr.count("WHERE"); i++) // Seven tables.
+    {
+      QSetIterator<QString> it(values);
+
+      while(it.hasNext())
+	query->addBindValue(it.next());
+    }
+
+  QApplication::restoreOverrideCursor();
+  (void) m_qmain->populateTable
+    (query, "All Reserved", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
 }
 
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
@@ -1069,9 +1534,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	  if(ok && str.length() > 0)
 	    {
 	      copyIdentifier->setText(str);
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
 	      play("qrc:/discovered.wav");
-#endif
 	    }
 	  else
 	    {
@@ -1083,9 +1546,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 		copyIdentifier->setText
 		  (tr("A copy is not available (%1).").arg(str));
 
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
 	      play("qrc:/error.wav");
-#endif
 	    }
 
 	  m_ui.borrow_table->blockSignals(false);
@@ -1157,12 +1618,10 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
     (hash, m_qmain->getDB(), m_ui.discover_scan->text());
   item->setText(hash.value("categories").trimmed());
 
-#ifdef BIBLIOTEQ_AUDIO_SUPPORTED
   if(!item->text().isEmpty())
     play("qrc:/discovered.wav");
   else
     play("qrc:/error.wav");
-#endif
 
   m_ui.discover_table->setItem
     (m_ui.discover_table->rowCount() - 1,
@@ -1187,14 +1646,15 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 
   if(m_ui.return_table->columnCount() == 0)
     {
-      m_ui.return_table->setColumnCount(5);
+      m_ui.return_table->setColumnCount(6);
       m_ui.return_table->setHorizontalHeaderLabels
 	(QStringList()
 	 << tr("Copy ID")
 	 << tr("Member ID")
 	 << tr("Member Information")
 	 << tr("Reservation Date")
-	 << tr("Due Date"));
+	 << tr("Due Date")
+	 << tr("Item OID"));
     }
 
   QSqlQuery query(m_qmain->getDB());
@@ -1205,10 +1665,12 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 		"item_borrower.memberid, "
 		"member.last_name || ', ' || member.first_name, "
 		"item_borrower.reserved_date, "
-		"item_borrower.duedate "
+		"item_borrower.duedate, "
+		"item_borrower.item_oid "
 		"FROM item_borrower, member "
 		"WHERE "
-		"item_borrower.copyid LIKE '%' || ? || '%' AND "
+		"REPLACE(item_borrower.copyid, '-', '') "
+		"LIKE '%' || ? || '%' AND "
 		"item_borrower.memberid = member.memberid");
   query.addBindValue(m_ui.return_scan->text().remove('-').trimmed());
   m_ui.return_scan->clear();
@@ -1216,6 +1678,11 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
   if(query.exec() && query.next())
     {
       m_ui.return_table->setRowCount(m_ui.return_table->rowCount() + 1);
+
+      if(m_ui.bottom_scroll_on_add->isChecked())
+	m_ui.return_table->scrollToBottom();
+
+      play("qrc:/discovered.wav");
 
       for(int i = 0; i < m_ui.return_table->columnCount(); i++)
 	{
@@ -1226,6 +1693,8 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 	    (m_ui.return_table->rowCount() - 1, i, item);
 	}
     }
+  else
+    play("qrc:/error.wav");
 }
 
 void biblioteq_batch_activities::slotScannedBorrowing(void)
