@@ -12,7 +12,6 @@ QMAKE_CXX       = clang++
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
-                          -Wdouble-promotion \
                           -Wextra \
                           -Wformat=2 \
                           -Wno-deprecated-declarations \
