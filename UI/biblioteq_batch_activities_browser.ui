@@ -477,7 +477,7 @@
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>Items are discovered via wildcard queries. If items cannot be located, please consider the All Reserved category in the main window.</string>
+              <string>Items are searched via wildcards. If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table.</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
