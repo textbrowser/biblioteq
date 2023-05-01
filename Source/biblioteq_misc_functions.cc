@@ -295,14 +295,12 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
   else if(type == "grey literature")
     {
       type = type.replace(" ", "_");
-      querystr = QString("SELECT notes FROM %1 WHERE myoid = ?").arg
-	(type);
+      querystr = QString("SELECT notes FROM %1 WHERE myoid = ?").arg(type);
     }
   else if(type == "photograph collection")
     {
       type = type.replace(" ", "_");
-      querystr = QString("SELECT about FROM %1 WHERE myoid = ?").arg
-	(type);
+      querystr = QString("SELECT about FROM %1 WHERE myoid = ?").arg(type);
     }
   else
     return str;
