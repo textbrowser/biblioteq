@@ -545,5 +545,6 @@
 300. Show an HTML warning icon if a database driver is not available. (Done)
 301. Execute lupdate and lrelease before creating a release file. (Done)
 302. Paste buttons for Back and Front cover images. (TBD)
-303. Add member_history_dnt for SQLite. (TBD)
+303. Add member_history_dnt for SQLite. The table is not required. Allow
+     administrator to disable histories for all patrons. (Done)
 304. Main table context menu requires some intelligence. Not necessary. (Done)

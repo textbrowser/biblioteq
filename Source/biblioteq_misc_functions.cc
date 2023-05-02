@@ -31,6 +31,7 @@
 #include <QDate>
 #include <QDir>
 #include <QProgressDialog>
+#include <QSettings>
 
 QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QString &which,
@@ -1247,7 +1248,12 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 				   QString &errorstr)
 {
   if(db.driverName() == "QSQLITE")
-    return false;
+    {
+      QSettings settings;
+
+      errorstr = "";
+      return settings.value("dnt", true).toBool();
+    }
 
   QSqlQuery query(db);
   QString querystr("");
@@ -1256,11 +1262,10 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
   errorstr = "";
   querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
   query.prepare(querystr);
-  query.bindValue(0, memberid);
+  query.addBindValue(memberid);
 
-  if(query.exec())
-    while(query.next())
-      dnt = query.value(0).toBool();
+  if(query.exec() && query.next())
+    dnt = query.value(0).toBool();
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();

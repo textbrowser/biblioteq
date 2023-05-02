@@ -4588,13 +4588,19 @@ void biblioteq::slotRoleChanged(int index)
 
 void biblioteq::slotSaveDnt(bool state)
 {
+  if(m_db.driverName() == "QSQLITE")
+    {
+      QSettings settings;
+
+      settings.setValue("dnt", state);
+      return;
+    }
+
   QSqlQuery query(m_db);
 
-  query.prepare("INSERT INTO member_history_dnt "
-		"(dnt, memberid) "
-		"VALUES (?, ?)");
-  query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, dbUserName());
+  query.prepare("INSERT INTO member_history_dnt (dnt, memberid) VALUES (?, ?)");
+  query.addBindValue(QVariant(state).toInt());
+  query.addBindValue(dbUserName());
   query.exec();
 
   if(!(query.lastError().text().toLower().contains("duplicate") ||
@@ -4602,21 +4608,22 @@ void biblioteq::slotSaveDnt(bool state)
     addError(QString(tr("Database Error")),
 	     QString(tr("Unable to insert into member_history_dnt for "
 			"member %1.").arg(dbUserName())),
-	     query.lastError().text(), __FILE__, __LINE__);
+	     query.lastError().text(),
+	     __FILE__,
+	     __LINE__);
 
-  query.prepare("UPDATE member_history_dnt "
-		"SET dnt = ? "
-		"WHERE memberid = ?");
-  query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, dbUserName());
+  query.prepare("UPDATE member_history_dnt SET dnt = ? WHERE memberid = ?");
+  query.addBindValue(QVariant(state).toInt());
+  query.addBindValue(dbUserName());
   query.exec();
 
   if(query.lastError().isValid())
     addError(QString(tr("Database Error")),
 	     QString(tr("Unable to update member_history_dnt for "
 			"member %1.").arg(dbUserName())),
-	     query.lastError().text(), __FILE__, __LINE__);
-
+	     query.lastError().text(),
+	     __FILE__,
+	     __LINE__);
 }
 
 void biblioteq::slotSearchBasic(void)

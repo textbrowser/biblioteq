@@ -6328,6 +6328,11 @@ void biblioteq::slotShowHistory(void)
 
       auto dnt = biblioteq_misc_functions::dnt(m_db, dbUserName(), errorstr);
 
+      disconnect(history.dnt,
+		 SIGNAL(toggled(bool)),
+		 this,
+		 SLOT(slotSaveDnt(bool)));
+
       if(errorstr.isEmpty())
 	{
 	  history.dnt->setChecked(dnt);
@@ -6336,26 +6341,45 @@ void biblioteq::slotShowHistory(void)
 	}
       else
 	{
+	  history.dnt->setChecked(true);
 	  history.dnt->setEnabled(false);
 	  history.dnt->setToolTip
 	    (tr("The option is not available because an error "
 		"occurred while attempting to retrieve its value."));
 	}
 
+      connect(history.dnt,
+	      SIGNAL(toggled(bool)),
+	      this,
+	      SLOT(slotSaveDnt(bool)));
       QApplication::restoreOverrideCursor();
     }
   else
     {
-      history.dnt->setChecked(true);
-      history.dnt->setEnabled(false);
+      disconnect(history.dnt,
+		 SIGNAL(toggled(bool)),
+		 this,
+		 SLOT(slotSaveDnt(bool)));
 
       if(m_db.driverName() == "QPSQL")
-	history.dnt->setToolTip
-	  (tr("The option is only available for patrons."));
+	{
+	  history.dnt->setChecked(true);
+	  history.dnt->setEnabled(false);
+	  history.dnt->setToolTip
+	    (tr("The option is only available for PostgreSQL patrons."));
+	}
       else
-	history.dnt->setToolTip
-	  (tr("The option is not available for SQLite databases as "
-	      "such databases do not support actual patrons."));
+	{
+	  history.dnt->setChecked
+	    (biblioteq_misc_functions::dnt(m_db, dbUserName(), errorstr));
+	  history.dnt->setEnabled(true);
+	  history.dnt->setToolTip("");
+	}
+
+      connect(history.dnt,
+	      SIGNAL(toggled(bool)),
+	      this,
+	      SLOT(slotSaveDnt(bool)));
     }
 
   if(m_members_diag->isVisible())

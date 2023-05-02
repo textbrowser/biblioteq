@@ -560,8 +560,10 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(history.cancelButton, SIGNAL(clicked(void)),
 	  m_history_diag, SLOT(close(void)));
 #endif
-  connect(history.dnt, SIGNAL(toggled(bool)),
-	  this, SLOT(slotSaveDnt(bool)));
+  connect(history.dnt,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveDnt(bool)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotConnectDB(void)));
   connect(br.branch_name, SIGNAL(activated(int)), this,
