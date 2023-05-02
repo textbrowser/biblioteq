@@ -22,7 +22,7 @@
     <item>
      <widget class="QCheckBox" name="dnt">
       <property name="text">
-       <string>&amp;Do not record reservation history. PostgreSQL patrons only and SQLite.</string>
+       <string>&amp;Do not record reservation history. PostgreSQL patrons and SQLite.</string>
       </property>
       <property name="checked">
        <bool>true</bool>
