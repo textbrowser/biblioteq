@@ -457,6 +457,31 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		m_description = str.trimmed();
 	      }
+	    else if(tag == "491")
+	      {
+		/*
+		** $v - Volume Number
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().toLower().trimmed() == "v")
+			{
+			  str.append(reader.readElementText());
+			  break;
+			}
+		      else
+			reader.skipCurrentElement();
+		    }
+		  else
+		    break;
+
+		m_volumeNumber = str.trimmed();
+	      }
 	    else if(tag == "521")
 	      {
 		/*
@@ -839,8 +864,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    remove("r").remove("s").remove("t").trimmed();
 	  m_edition = str;
 	}
-      else if(str.startsWith("260 ") ||
-	      str.startsWith("264 "))
+      else if(str.startsWith("260 ") || str.startsWith("264 "))
 	{
 	  str = str.mid(4);
 
