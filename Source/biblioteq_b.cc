@@ -2842,6 +2842,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.condition, "
 	      "book.accession_number, "
 	      "book.alternate_id_1, "
+	      "book.volume_number, "
 	      "book.type, "
 	      "book.myoid, " +
 	      bookFrontCover +
@@ -2868,6 +2869,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.condition, "
 	      "book.accession_number, "
 	      "book.alternate_id_1, "
+	      "book.volume_number, "
 	      "book.type, "
 	      "book.myoid, "
 	      "book.front_cover "
@@ -3162,6 +3164,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.condition, "
 				 "book.accession_number, "
 				 "book.alternate_id_1, "
+				 "book.volume_number, "
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover "
@@ -5458,6 +5461,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("CREATE TABLE book_originality "
 	      "(originality TEXT NOT NULL PRIMARY KEY)");
 #endif
+  list.append("ALTER TABLE book ADD volume_number TEXT");
   list.append("CREATE TRIGGER item_borrower_trigger AFTER DELETE ON member "
 	      "FOR EACH row "
 	      "BEGIN "

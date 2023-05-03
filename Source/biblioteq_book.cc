@@ -207,6 +207,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Target Audience")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Volume Number")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -990,7 +992,8 @@ void biblioteq_book::modify(const int state)
 		"url, "
 		"alternate_id_1, "
 		"multivolume_set_isbn, "
-		"target_audience "
+		"target_audience, "
+		"volume_number "
 		"FROM book WHERE myoid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1213,6 +1216,8 @@ void biblioteq_book::modify(const int state)
 		  id.target_audience->setCurrentIndex(0);
 		}
 	    }
+	  else if(fieldname == "volume_number")
+	    id.volume_number->setText(var.toString().trimmed());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -2023,6 +2028,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.target_audience->setToolTip
     (tr("<html>Values from individual books are not included. "
 	"Please see the Database Enumerations Browser.</html>"));
+  id.volume_number->clear();
   m_engWindowTitle = "Search";
 
   if(field.isEmpty() && value.isEmpty())
@@ -2925,6 +2931,7 @@ void biblioteq_book::slotGo(void)
       id.alternate_id_1->setText(id.alternate_id_1->text().trimmed());
       id.multivolume_set_isbn->setText
 	(id.multivolume_set_isbn->text().remove('-').trimmed());
+      id.volume_number->setText(id.volume_number->text().trimmed());
 
       if(id.multivolume_set_isbn->text().length() == 10)
 	id.multivolume_set_isbn->setText
@@ -2963,7 +2970,8 @@ void biblioteq_book::slotGo(void)
 		      "url = ?, "
 		      "alternate_id_1 = ?, "
 		      "multivolume_set_isbn = ?, "
-		      "target_audience = ? "
+		      "target_audience = ?, "
+		      "volume_number = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -2977,8 +2985,8 @@ void biblioteq_book::slotGo(void)
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
-		      "multivolume_set_isbn, target_audience) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
+		      "multivolume_set_isbn, target_audience, volume_number) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -2994,13 +3002,14 @@ void biblioteq_book::slotGo(void)
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
-		      "multivolume_set_isbn, target_audience, myoid) "
+		      "multivolume_set_isbn, target_audience, "
+		      "volume_number, myoid) "
 		      "VALUES (?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, ?, ?)");
+		      "?, ?, ?, ?, ?, ?)");
 
       if(id.isbnAvailableCheckBox->isChecked() &&
 	 !id.id->text().remove('-').isEmpty())
@@ -3142,9 +3151,10 @@ void biblioteq_book::slotGo(void)
 	query.bindValue(28, id.multivolume_set_isbn->text().remove('-'));
 
       query.bindValue(29, id.target_audience->currentText());
+      query.bindValue(30, id.volume_number->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(30, m_oid);
+	query.bindValue(31, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  auto value = biblioteq_misc_functions::getSqliteUniqueId
@@ -3152,14 +3162,14 @@ void biblioteq_book::slotGo(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      query.bindValue(30, value);
 	      m_oid = QString::number(value);
+	      query.bindValue(31, value);
 	    }
 	  else
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique "
-				       "integer.")),
-			    errorstr);
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("Unable to generate a unique integer.")),
+	       errorstr);
 	}
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -3170,7 +3180,9 @@ void biblioteq_book::slotGo(void)
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
-	     query.lastError().text(), __FILE__, __LINE__);
+	     query.lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  goto db_rollback;
 	}
       else
@@ -3429,6 +3441,9 @@ void biblioteq_book::slotGo(void)
 			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
+		      else if(names.at(i) == "Volume Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.volume_number->text().trimmed());
 		    }
 
 		  if(imageColumn == -1)
@@ -3527,6 +3542,7 @@ void biblioteq_book::slotGo(void)
 	"book.condition, "
 	"book.accession_number, "
 	"book.alternate_id_1, "
+	"book.volume_number, "
 	"book.type, "
 	"book.myoid, " +
 	frontCover +
@@ -3712,10 +3728,15 @@ void biblioteq_book::slotGo(void)
       values.append(id.multivolume_set_isbn->text().remove('-').trimmed());
       searchstr.append
 	("LOWER(COALESCE(target_audience, '')) LIKE " +
-	 UNACCENT + "(LOWER('%' || ? || '%')) ");
+	 UNACCENT + "(LOWER('%' || ? || '%')) AND ");
       values.append
 	(biblioteq_myqstring::
 	 escape(id.target_audience->currentText().trimmed()));
+      searchstr.append
+	(UNACCENT + "(LOWER(COALESCE(volume_number, ''))) LIKE " +
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.volume_number->text().trimmed()));
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.author, "
@@ -3741,6 +3762,7 @@ void biblioteq_book::slotGo(void)
 	 "book.alternate_id_1, "
 	 "book.multivolume_set_isbn, "
 	 "book.target_audience, "
+	 "book.volume_number, "
 	 "book.type, "
 	 "book.myoid, "
 	 "book.front_cover "
@@ -4292,7 +4314,7 @@ void biblioteq_book::slotReset(void)
     {
       auto actions = id.resetButton->menu()->actions();
 
-      if(actions.size() < 29)
+      if(actions.size() < 30)
 	{
 	  // Error.
 	}
@@ -4491,6 +4513,11 @@ void biblioteq_book::slotReset(void)
 	  id.target_audience->setCurrentIndex(0);
 	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	}
+      else if(action == actions[29])
+	{
+	  id.volume_number->clear();
+	  id.volume_number->setFocus();
+	}
 
       actions.clear();
     }
@@ -4592,6 +4619,7 @@ void biblioteq_book::slotReset(void)
       id.target_audience->setStyleSheet(m_cb_orig_ss);
       id.accession_number->clear();
       id.multivolume_set_isbn->clear();
+      id.volume_number->clear();
       id.id->setFocus();
     }
 }

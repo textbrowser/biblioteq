@@ -343,6 +343,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Condition"));
       list.append(tr("Accession Number"));
       list.append(tr("Alternate Identifier"));
+      list.append(tr("Volume Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -369,6 +370,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Condition");
       m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Alternate Identifier");
+      m_columnHeaderIndexes.append("Volume Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }

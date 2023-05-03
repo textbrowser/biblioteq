@@ -65,7 +65,8 @@ CREATE TABLE book							\
     target_audience TEXT,						\
     title	 TEXT NOT NULL,						\
     type	 VARCHAR(16) NOT NULL DEFAULT 'Book',			\
-    url          TEXT							\
+    url          TEXT,							\
+    volume_number TEXT							\
 );									\
 									\
 CREATE TABLE book_copy_info						\
