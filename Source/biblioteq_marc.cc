@@ -457,19 +457,26 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		m_description = str.trimmed();
 	      }
-	    else if(tag == "491")
+	    else if(tag == "490" || tag == "774")
 	      {
 		/*
+		** $g - Volume Number
 		** $v - Volume Number
 		*/
 
+		QString key("");
 		QString str("");
+
+		if(tag == "490")
+		  key = "v";
+		else
+		  key = "g";
 
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "v")
+		      if(key == reader.attributes().value("code").
+			        toString().toLower().trimmed())
 			{
 			  str.append(reader.readElementText());
 			  break;
@@ -1005,17 +1012,24 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  str = str.remove(" $8").trimmed();
 	  m_description = str;
 	}
-      else if(str.startsWith("490 "))
+      else if(str.startsWith("490 ") || str.startsWith("774 "))
 	{
 	  /*
 	  ** $v - Volume Number
 	  */
 
+	  QString key("");
+
+	  if(str.startsWith("490 "))
+	    key = "$v";
+	  else
+	    key = "$g";
+
 	  str = str.mid(4);
 
-	  if(str.indexOf("$v") > -1)
+	  if(str.indexOf(key) > -1)
 	    {
-	      str = str.mid(str.indexOf("$v") + 2).trimmed();
+	      str = str.mid(str.indexOf(key) + 2).trimmed();
 
 	      if(str.indexOf("$") > -1)
 		str = str.mid(0, str.indexOf("$"));

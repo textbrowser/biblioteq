@@ -1725,6 +1725,15 @@ void biblioteq_book::populateAfterSRU
 	(id.title, m_queryHighlightColor);
     }
 
+  str = m.volumeNumber();
+
+  if(!str.isEmpty())
+    {
+      id.volume_number->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.volume_number, m_queryHighlightColor);
+    }
+
   foreach(auto textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }
@@ -1898,6 +1907,15 @@ void biblioteq_book::populateAfterZ3950
       id.title->setText(str);
       biblioteq_misc_functions::highlightWidget
 	(id.title, m_queryHighlightColor);
+    }
+
+  str = m.volumeNumber();
+
+  if(!str.isEmpty())
+    {
+      id.volume_number->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.volume_number, m_queryHighlightColor);
     }
 
   foreach(auto textfield, findChildren<QLineEdit *> ())
