@@ -981,6 +981,26 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  str = str.remove(" $8").trimmed();
 	  m_description = str;
 	}
+      else if(str.startsWith("490 "))
+	{
+	  /*
+	  ** $v - Volume Number
+	  */
+
+	  str = str.mid(4);
+
+	  if(str.indexOf("$v") > -1)
+	    {
+	      str = str.mid(str.indexOf("$v") + 2).trimmed();
+
+	      if(str.indexOf("$") > -1)
+		str = str.mid(0, str.indexOf("$"));
+
+	      m_volumeNumber = str.trimmed();
+	    }
+	  else
+	    m_volumeNumber.clear();
+	}
       else if(str.startsWith("521 "))
 	{
 	  str = str.mid(4);
