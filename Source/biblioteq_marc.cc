@@ -1338,6 +1338,26 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  str = str.remove(" $e").trimmed();
 	  m_description = str;
 	}
+      else if(str.startsWith("225 ") || str.startsWith("461 "))
+	{
+	  /*
+	  ** $v - Volume Number
+	  */
+
+	  str = str.mid(4);
+
+	  if(str.indexOf("$v") > -1)
+	    {
+	      str = str.mid(str.indexOf("$v") + 2).trimmed();
+
+	      if(str.indexOf("$") > -1)
+		str = str.mid(0, str.indexOf("$"));
+
+	      m_volumeNumber = str.trimmed();
+	    }
+	  else
+	    m_volumeNumber.clear();
+	}
       else if(str.startsWith("333 "))
 	{
 	  str = str.mid(4);
