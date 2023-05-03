@@ -201,6 +201,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Accession Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Alternate Identifier")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset URL")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Multi-Volume Set ISBN")),
@@ -4342,7 +4344,7 @@ void biblioteq_book::slotReset(void)
     {
       auto actions = id.resetButton->menu()->actions();
 
-      if(actions.size() < 30)
+      if(actions.size() < 31)
 	{
 	  // Error.
 	}
@@ -4528,20 +4530,26 @@ void biblioteq_book::slotReset(void)
 	}
       else if(action == actions[26])
 	{
+	  id.alternate_id_1->clear();
+	  id.alternate_id_1->setFocus();
+	}
+      else if(action == actions[27])
+	{
 	  id.url->clear();
 	  id.url->setFocus();
 	}
-      else if(action == actions[27])
+      else if(action == actions[28])
 	{
 	  id.multivolume_set_isbn->clear();
 	  id.multivolume_set_isbn->setFocus();
 	}
-      else if(action == actions[28])
+      else if(action == actions[29])
 	{
 	  id.target_audience->setCurrentIndex(0);
-	  id.target_audience->setStyleSheet(m_cb_orig_ss);
+	  id.target_audience->setFocus();
+       	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	}
-      else if(action == actions[29])
+      else if(action == actions[30])
 	{
 	  id.volume_number->clear();
 	  id.volume_number->setFocus();
