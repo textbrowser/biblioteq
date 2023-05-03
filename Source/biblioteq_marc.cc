@@ -66,6 +66,7 @@ void biblioteq_marc::clear(void)
   m_sru003.clear();
   m_targetAudience.clear();
   m_title.clear();
+  m_volumeNumber.clear();
 }
 
 void biblioteq_marc::initialize(const ITEM_TYPE itemType,
