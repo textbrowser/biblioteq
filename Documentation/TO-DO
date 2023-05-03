@@ -528,7 +528,7 @@
      copying. This will confuse some people. No. (Done)
 287. Non-database local find from the main window. (Done)
 288. Book target audience. (Done)
-289. Book x of y. (TBD)
+289. Book x of y. Volume number. (Done)
 290. Add ESCAPE and UNACCENT to search strings. Already completed. (Done)
 291. Sort book condition combination box values for non-English. (Done)
 292. Syntax highlighting for custom SQL queries. (Done)
