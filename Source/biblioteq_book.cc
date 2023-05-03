@@ -3898,6 +3898,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
     }
 
   createOpenLibraryDialog();
+  resetQueryHighlights();
 
   if(m_openLibraryWorking)
     {
@@ -4719,6 +4720,7 @@ void biblioteq_book::slotSRUQuery(void)
     }
 
   createSRUDialog();
+  resetQueryHighlights();
 
   if(m_sruWorking)
     {
@@ -5045,6 +5047,7 @@ void biblioteq_book::slotZ3950Query(void)
       return;
     }
 
+  resetQueryHighlights();
   m_thread = new biblioteq_generic_thread(this, qmain);
 
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
