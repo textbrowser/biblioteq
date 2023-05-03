@@ -102,6 +102,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void populateAfterZ3950(const QString &text,
 			  const biblioteq_marc::RECORD_SYNTAX recordSyntax);
   void populateFiles(void);
+  void resetQueryHighlights(void);
 
  private slots:
   void downloadFinished(void);

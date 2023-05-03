@@ -1987,6 +1987,29 @@ void biblioteq_book::populateFiles(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_book::resetQueryHighlights(void)
+{
+  id.alternate_id_1->setPalette(m_te_orig_pal);
+  id.author->viewport()->setPalette(m_te_orig_pal);
+  id.binding->setStyleSheet(m_cb_orig_ss);
+  id.callnum->setPalette(m_white_pal);
+  id.category->viewport()->setPalette(m_te_orig_pal);
+  id.description->viewport()->setPalette(m_te_orig_pal);
+  id.deweynum->setPalette(m_white_pal);
+  id.edition->setStyleSheet(m_cb_orig_ss);
+  id.id->setPalette(m_te_orig_pal);
+  id.isbn13->setPalette(m_te_orig_pal);
+  id.keyword->viewport()->setPalette(m_white_pal);
+  id.lcnum->setPalette(m_white_pal);
+  id.marc_tags->viewport()->setPalette(m_white_pal);
+  id.place->viewport()->setPalette(m_te_orig_pal);
+  id.publication_date->setStyleSheet(m_dt_orig_ss);
+  id.publisher->viewport()->setPalette(m_te_orig_pal);
+  id.target_audience->setStyleSheet(m_cb_orig_ss);
+  id.title->setPalette(m_te_orig_pal);
+  id.volume_number->setPalette(m_te_orig_pal);
+}
+
 void biblioteq_book::search(const QString &field, const QString &value)
 {
   id.attach_files->setVisible(false);
@@ -3302,24 +3325,8 @@ void biblioteq_book::slotGo(void)
 	      id.isbn13->clear();
 	    }
 
-	  id.id->setPalette(m_te_orig_pal);
-	  id.isbn13->setPalette(m_te_orig_pal);
-	  id.edition->setStyleSheet(m_cb_orig_ss);
-	  id.binding->setStyleSheet(m_cb_orig_ss);
-	  id.category->viewport()->setPalette(m_te_orig_pal);
-	  id.publication_date->setStyleSheet(m_dt_orig_ss);
-	  id.author->viewport()->setPalette(m_te_orig_pal);
-	  id.title->setPalette(m_te_orig_pal);
-	  id.description->viewport()->setPalette(m_te_orig_pal);
-	  id.marc_tags->viewport()->setPalette(m_white_pal);
-	  id.keyword->viewport()->setPalette(m_white_pal);
-	  id.publisher->viewport()->setPalette(m_te_orig_pal);
-	  id.place->viewport()->setPalette(m_te_orig_pal);
-	  id.lcnum->setPalette(m_white_pal);
-	  id.callnum->setPalette(m_white_pal);
-	  id.deweynum->setPalette(m_white_pal);
-	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	  m_oldq = id.quantity->value();
+	  resetQueryHighlights();
 
 	  if(id.front_image->m_image.isNull())
 	    id.front_image->m_imageFormat = "";
@@ -4611,36 +4618,20 @@ void biblioteq_book::slotReset(void)
       else
 	id.originality->setCurrentIndex(2);
 
+      id.accession_number->clear();
+      id.back_image->clear();
+      id.binding->setCurrentIndex(0);
       id.condition->setCurrentIndex(0);
       id.edition->setCurrentIndex(0);
-      id.price->setValue(id.price->minimum());
+      id.front_image->clear();
+      id.id->setFocus();
       id.language->setCurrentIndex(0);
       id.monetary_units->setCurrentIndex(0);
-      id.binding->setCurrentIndex(0);
-      id.target_audience->setCurrentIndex(0);
-      id.front_image->clear();
-      id.back_image->clear();
-      id.title->setPalette(m_te_orig_pal);
-      id.lcnum->setPalette(m_white_pal);
-      id.deweynum->setPalette(m_white_pal);
-      id.callnum->setPalette(m_white_pal);
-      id.id->setPalette(m_te_orig_pal);
-      id.isbn13->setPalette(m_te_orig_pal);
-      id.edition->setStyleSheet(m_cb_orig_ss);
-      id.binding->setStyleSheet(m_cb_orig_ss);
-      id.category->viewport()->setPalette(m_te_orig_pal);
-      id.publication_date->setStyleSheet(m_dt_orig_ss);
-      id.author->viewport()->setPalette(m_te_orig_pal);
-      id.description->viewport()->setPalette(m_te_orig_pal);
-      id.marc_tags->viewport()->setPalette(m_white_pal);
-      id.keyword->viewport()->setPalette(m_white_pal);
-      id.publisher->viewport()->setPalette(m_te_orig_pal);
-      id.place->viewport()->setPalette(m_te_orig_pal);
-      id.target_audience->setStyleSheet(m_cb_orig_ss);
-      id.accession_number->clear();
       id.multivolume_set_isbn->clear();
+      id.price->setValue(id.price->minimum());
+      id.target_audience->setCurrentIndex(0);
       id.volume_number->clear();
-      id.id->setFocus();
+      resetQueryHighlights();
     }
 }
 
