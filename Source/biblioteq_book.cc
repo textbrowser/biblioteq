@@ -4521,6 +4521,7 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[24])
 	{
 	  id.keyword->clear();
+	  id.keyword->viewport()->setPalette(m_white_pal);
 	  id.keyword->setFocus();
 	}
       else if(action == actions[25])
@@ -4531,6 +4532,7 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[26])
 	{
 	  id.alternate_id_1->clear();
+	  id.alternate_id_1->setPalette(m_te_orig_pal);
 	  id.alternate_id_1->setFocus();
 	}
       else if(action == actions[27])
@@ -4546,12 +4548,13 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[29])
 	{
 	  id.target_audience->setCurrentIndex(0);
+	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	  id.target_audience->setFocus();
-       	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	}
       else if(action == actions[30])
 	{
 	  id.volume_number->clear();
+	  id.volume_number->setPalette(m_te_orig_pal);
 	  id.volume_number->setFocus();
 	}
 
