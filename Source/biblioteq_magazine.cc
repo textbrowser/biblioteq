@@ -1151,7 +1151,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		  (QDate::fromString("01/01/" + date,
 				     biblioteq::s_databaseDateFormat));
 		ma.publication_date->setStyleSheet
-		  ("background-color: rgb(162, 205, 90)");
+		  (QString("background-color: %1").
+		   arg(m_queryHighlightColor.name()));
 
 		if(place.lastIndexOf(" ") > -1)
 		  place = place.mid(0, place.lastIndexOf(" ")).
@@ -1322,8 +1323,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	{
 	  ma.category->setPlainText(str);
 	  biblioteq_misc_functions::highlightWidget
-	    (ma.category->viewport(),
-	     m_queryHighlightColor);
+	    (ma.category->viewport(), m_queryHighlightColor);
 	}
 
       str = m.description();
@@ -1348,7 +1348,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 	{
 	  ma.publication_date->setDate(m.publicationDate());
 	  ma.publication_date->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
+	    (QString("background-color: %1").arg(m_queryHighlightColor.name()));
 	}
 
       str = m.publisher();
@@ -1596,7 +1596,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
 		biblioteq::s_databaseDateFormat));
 
 	  ma.publication_date->setStyleSheet
-	    ("background-color: rgb(162, 205, 90)");
+	    (QString("background-color: %1").arg(m_queryHighlightColor.name()));
 
 	  if(str.contains("$b"))
 	    str = str.mid(str.indexOf("$b") + 2).trimmed();
@@ -1786,6 +1786,21 @@ void biblioteq_magazine::populateFiles(void)
   ma.files->setRowCount(totalRows);
   ma.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_magazine::resetQueryHighlights(void)
+{
+  ma.callnum->setPalette(m_white_pal);
+  ma.category->viewport()->setPalette(m_te_orig_pal);
+  ma.description->viewport()->setPalette(m_te_orig_pal);
+  ma.deweynum->setPalette(m_white_pal);
+  ma.id->setPalette(m_te_orig_pal);
+  ma.lcnum->setPalette(m_white_pal);
+  ma.marc_tags->viewport()->setPalette(m_white_pal);
+  ma.place->viewport()->setPalette(m_te_orig_pal);
+  ma.publication_date->setStyleSheet(m_dt_orig_ss);
+  ma.publisher->viewport()->setPalette(m_te_orig_pal);
+  ma.title->setPalette(m_te_orig_pal);
 }
 
 void biblioteq_magazine::search(const QString &field, const QString &value)
@@ -2657,18 +2672,8 @@ void biblioteq_magazine::slotGo(void)
 	  if(!ma.issnAvailableCheckBox->isChecked())
 	    ma.id->clear();
 
-	  ma.id->setPalette(m_te_orig_pal);
-	  ma.category->viewport()->setPalette(m_te_orig_pal);
-	  ma.place->viewport()->setPalette(m_te_orig_pal);
-	  ma.lcnum->setPalette(m_white_pal);
-	  ma.callnum->setPalette(m_white_pal);
-	  ma.deweynum->setPalette(m_white_pal);
-	  ma.title->setPalette(m_te_orig_pal);
-	  ma.publication_date->setStyleSheet(m_dt_orig_ss);
-	  ma.description->viewport()->setPalette(m_te_orig_pal);
-	  ma.marc_tags->viewport()->setPalette(m_white_pal);
-	  ma.publisher->viewport()->setPalette(m_te_orig_pal);
 	  m_oldq = ma.quantity->value();
+	  resetQueryHighlights();
 
 	  if(ma.front_image->m_image.isNull())
 	    ma.front_image->m_imageFormat = "";
@@ -3468,19 +3473,9 @@ void biblioteq_magazine::slotReset(void)
       ma.deweynum->clear();
       ma.front_image->clear();
       ma.back_image->clear();
-      ma.id->setPalette(m_te_orig_pal);
-      ma.category->viewport()->setPalette(m_te_orig_pal);
-      ma.place->viewport()->setPalette(m_te_orig_pal);
-      ma.lcnum->setPalette(m_white_pal);
-      ma.callnum->setPalette(m_white_pal);
-      ma.deweynum->setPalette(m_white_pal);
-      ma.title->setPalette(m_te_orig_pal);
-      ma.publication_date->setStyleSheet(m_dt_orig_ss);
-      ma.description->viewport()->setPalette(m_te_orig_pal);
-      ma.marc_tags->viewport()->setPalette(m_white_pal);
-      ma.publisher->viewport()->setPalette(m_te_orig_pal);
       ma.accession_number->clear();
       ma.id->setFocus();
+      resetQueryHighlights();
     }
 }
 
@@ -3566,6 +3561,7 @@ void biblioteq_magazine::slotSRUQuery(void)
     }
 
   createSRUDialog();
+  resetQueryHighlights();
 
   if(m_sruWorking)
     {
@@ -3883,6 +3879,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       return;
     }
 
+  resetQueryHighlights();
   m_thread = new biblioteq_generic_thread(this, qmain);
 
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
