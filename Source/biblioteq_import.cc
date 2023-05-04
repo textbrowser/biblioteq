@@ -841,7 +841,8 @@ void biblioteq_import::slotAddRow(void)
 			   << "quantity"
 			   << "target_audience"
 			   << "title"
-			   << "url");
+			   << "url"
+			   << "volume_number");
 	break;
       }
     case Templates::TEMPLATE_3:
@@ -1204,7 +1205,8 @@ void biblioteq_import::slotTemplates(int index)
 	       << "quantity"
 	       << "target_audience"
 	       << "title"
-	       << "url";
+	       << "url"
+	       << "volume_number";
 	else if(index == Templates::TEMPLATE_2)
 	  list << "title"
 	       << "author"
@@ -1228,7 +1230,9 @@ void biblioteq_import::slotTemplates(int index)
 	       << "<ignored>" // Total Reserved
 	       << "originality"
 	       << "condition"
-	       << "accession_number";
+	       << "accession_number"
+	       << "alternate_id_1"
+	       << "volume_number";
 	else if(index == Templates::TEMPLATE_3)
 	  list << "city"
 	       << "comments"
