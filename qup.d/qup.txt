@@ -1,0 +1,35 @@
+# Qup definitions file.
+
+[Debian]
+
+executable:amd64 = BiblioteQ_amd64
+executable:armhf = BiblioteQ_armhf
+executable:powerpc = BiblioteQ_powerpc
+local_executable = BiblioteQ
+
+[General]
+
+file = Administrator Guide.pdf
+file = BQ@PQ.png
+file = BQ@SQ.png
+file = BiblioteQ.html
+file = BiblioteQ.pdf
+file = Release-Notes.html
+file = TO-DO
+file = Windows Installation-French.pdf
+file = postgresql_create_schema.sql
+file = postgresql_update_schema.sql
+file_destination = Documentation
+
+[MacOS]
+
+executable = BiblioteQ.app.zip
+local_executable = BiblioteQ.app
+
+[Windows]
+
+executable = BiblioteQ.exe
+executable:7 = BiblioteQ.exe
+file = Windows Installation.pdf
+file_destination = Documentation
+local_executable = BiblioteQ.exe
