@@ -1,12 +1,5 @@
 # Qup definitions file.
 
-[Debian]
-
-executable:amd64 = BiblioteQ_amd64
-executable:armhf = BiblioteQ_armhf
-executable:powerpc = BiblioteQ_powerpc
-local_executable = BiblioteQ
-
 [General]
 
 file = Administrator Guide.pdf
@@ -20,6 +13,13 @@ file = Windows Installation-French.pdf
 file = postgresql_create_schema.sql
 file = postgresql_update_schema.sql
 file_destination = Documentation
+
+[Linux]
+
+executable:amd64 = BiblioteQ_amd64
+executable:armhf = BiblioteQ_armhf
+executable:powerpc = BiblioteQ_powerpc
+local_executable = BiblioteQ
 
 [MacOS]
 
