@@ -196,7 +196,8 @@
 	Password
 	Branch Name
 98.  Allow editing of copy information during item creation. (Done)
-99.  Create a statistics panel. (TBD)
+99.  Create a statistics panel. (Done)
+     https://www.postgresql.org/docs/current/monitoring-stats.html
 100. Release a version for Windows XP. (Done)
 101. Create a Journal category. The new class should inherit from the
      Magazine class. (Done)
