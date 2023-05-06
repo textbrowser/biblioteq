@@ -1,0 +1,123 @@
+<html>
+  <body>
+    <u>Notes de publication</u>     
+    <p>Mai, 2023.</p>
+    <ul>
+      <li>Ajout d'un déclencheur SQLite pour la table item_borrower_trigger.</li>
+      <li>Ajout du champ volume_number à la catégorie de livre.	<b>ticket GitHub #227.</b></li>
+      <li>Permettre le collage d'images dans les conteneurs d'images de couverture et de quatrième de couverture.<b>ticket GitHub #284.</b></li>
+      <li>Permettre la réinitialisation des couleurs de surbrillance : Autres options -> Requête personnalisée.</li>
+      <li>Android et Qt 6.2 LTS.</li>
+      <li>Notes de publication archivées.</li>
+      <li>Navigateur d'activités par lots : Retours. <b>ticket GitHub #280.</b></li>
+		<li>missing alternate_id_1. était manquant dans le modèle- d'importation</li>
+      <li>Correction de l'impression des livres.</li>      
+      <li>Favoris et raccourcis de requête personnalisés. Voir aussi Autres options -> Raccourcis. <b>Ticket GitHub #279.</b></li>
+      <li>Activer le bouton d'effacement pour de nombreux champs de texte.</li>
+      <li>Activer le tri pour les widgets de tableau dans Autres options.</li>
+      <li>Pour les nouvelles installations, les options suivantes seront activées : Remplir le navigateur de l'administrateur à l'affichage, Remplir le navigateur des énumérations de la base de données à l'affichage, Remplir le navigateur des membres à l'affichage.</li>
+      <li>Menu et Fenêtres de dialogue native. les boites de dialogue sur les fichiers restent non natifs.</li>
+      <li>Fenêtre de l'historique des réservations du membre au premier plan. <b>discussion GitHub #248.</b></li>
+      <li>Fenêtre du gestionnaire des membres au premier plan. <b>discussion GitHub #248.</b></li>
+      <li>Historique optionnel des réservations des membres pour les bases de données SQLite.</li>
+      <li>PostgreSQL et compression. Voir SQL/postgresql_update_schema.sql.</li>
+      <li>Conformité à Qt 6.5 LTS.</li> 
+      <li>Suppression des mots-clés SQL pour la mise en évidence : INSERT INTO, INSERT INTO SELECT, SELECT INTO.</li>
+      <li>Réinitialiser les couleurs de surbrillance post-requête pour les livres, les revues et les magazines si nécessaire.</li>
+      <li>Mise en évidence du texte de la requête personnalisée immédiatement après la configuration et l'enregistrement des couleurs.</li>
+      <li>Requêtes illimitées pour PostgreSQL. Attention !.</li>
+    </ul>
+    <p>15 mars 2023.</p>
+    <ul>
+      <li>C++17.</li>
+      <li>Initialisation des colonnes visibles du navigateur des membres.</li>
+      <li>Certains conteneurs peuvent être intentionnellement vides. Rappels d'étiquetage ajoutés.</li>
+    </ul>
+    <p>10 mars 2023.</p>
+    <ul>
+      <li>Options -> Sélectionner une police globale est maintenant valable sur Mac.</li>
+      <li>Définir les colonnes visibles du navigateur des membres (Menu : Options et Autres... -> Membres -> Colonnes visibles.) <b>ticket GitHub #246.</b></li>
+    </ul>
+    <p>3 mars 2023.</p>
+    <ul>
+      <li>Initialiser Autres options -> Éléments -> Champs d'éléments.. <b>ticket GitHub #276.</b></li>
+      <li>Nouveau fichier pour windows : biblioteq-darkmode.bat.</li>
+    </ul>   
+    <p>25 février 2023.</p>
+    <ul>
+      <li>Amélioration du traitement des images de couverture en double. Diminution de la consommation de mémoire.</li>
+      <li>Amélioration de l'enregistrement des couleurs de la syntaxe SQL. Exemple de valeur INI : keyword=color. Les valeurs existantes ne seront pas portées. Excuses !</li>
+      <li>Fonctionnalité "Woody Intelligent" (permet de réduire ou développer une arborescence).</li>
+      <li>Préserver la graisse des polices de caractères, si possible.</li>
+      <li>Suppression des points-virgules de fin de chaîne de recherche des requêtes personnalisées. Les points-virgules produisent des erreurs dans SQLite.</li>
+      <li>Révision de toutes les déclarations UNION. Remplacé UNION par UNION ALL. Les ensembles séparés ne nécessitent pas d'élagage.</li>
+      <li>Afficher le temps d'achèvement de la requête dans la barre d'état de la fenêtre principale. Toutes les requêtes ne sont pas mesurées.</li>
+      <li>Validation de la saisie du nombre entier de jours minimum de réservation dans le navigateur d'énumérations de base de données.</li>
+    </ul>
+    <p>20 février 2023.</p>
+    <ul>
+      <li>Ajout d'une fonction de recherche pour et dans le tableau principal.</li>
+      <li>Mise en évidence du langage SQL Custom Query. <b>ticket GitHub #246.</b></li>
+      <li>Nouveau panneau dans "Options et Autres : couleurs requêtes SQL". <b>ticket GitHub #246.</b></li>
+    </ul>
+    <p>25 janvier 2023.</p>
+    <ul>
+      <li>Possibilité d'exporter l'historique des membres dans un fichier CSV. Discussion GitHub.</li>
+    </ul>
+    <p>16 janvier 2023.</p>
+    <ul>
+      <li>Bonne année !</li>
+      <li>Permettre de renommer les favoris des requêtes personnalisées.</li>
+      <li>Navigateur d'activités par lots : ne pas afficher un dialogue de fichier si une exportation serait vide.</li>
+      <li>Résultats des requêtes SRU : définir l'identifiant alternatif comme étant la valeur de l'ark du champ de contrôle 003 si l'identifiant alternatif est vide. Discussion sur GitHub.</li>
+      <li>Navigateur d'importation CSV : substitutions ISBN-10 et ISBN-13 vides. Les valeurs peuvent être préparées manuellement.</li>
+      <li>Completé <b>ticket GitHub #228</b>. Autoriser les requêtes UPDATE sur les éléments sélectionnés.</li>
+      <li>Les requêtes personnalisées exécutées via le menu Requête personnalisée seront exécutées selon la même logique que le navigateur de requêtes personnalisées.</li>
+      <li>Ne pas convertir l'ISBN-13 en ISBN-10 sauf si le préfixe est 978. (biblioteq_misc_functions::isbn13to10()). <b>ticket GitHub #269.</b></li>
+      <li>Ne pas déconnecter la base de données actuelle si une future base de données ne dispose pas d'un pilote de base de données.</li>
+      <li>Couleurs des champs de l'article. Nouvelles options dans Autres options. <b>ticket GitHub #272.</b></li>
+      <li>Date de publication Les formats sont maintenant ouverts. Des formats corrects sont attendus. Voir les autres options. <b>ticket GitHub #270.</b></li>
+      <li>Remplacement de toutes les occurrences de MM/jj/aaaa par biblioteq::s_databaseDateFormat. <b>ticket GitHub #270.</b></li>
+      <li>Afficher une étiquette d'avertissement si le pilote de la base de données sélectionnée n'existe pas dans Branch Selection.</li>
+      <li>Certains opérateurs estiment que BiblioteQ doit corriger leurs données malformées, quels que soient l'effort, l'intérêt et le temps consacrés. Modification du mécanisme d'importation afin qu'il tente de corriger les dates de publication. <b>ticket GitHub #270.</b></li>
+      <li>Publication des sources uniquement ! La préparation des fichiers de diffusion nécessite un effort et un intérêt considérables. Les demandes de fichiers de version seront ignorées ! Toutes nos excuses. Le paquet tar pour Linux est créé sous Ubuntu 20.04.</li>
+    </ul>
+    <p>25 décembre 2022.</p>
+    <ul>
+      <li>Ajout de book_target_audiences à la fonctionnalité Requêtes Personnalisées.<li>
+      <li>Ajout de book_target_audiences à la fonctionnalité Fusionner les bases de données SQLite.</li>
+      <li>Ajout de member_history_dnt à la fonctionnalité Requêtes Personnalisées.</li>
+      <li>Autoriser les recherches de livres à ISBN nul.</li>
+      <li>Navigateur d'activités par lots : audio. Système multimédia requis</li>
+      <li>Évite la recherche d'éléments en double dans le navigateur d'activités par lots.</li>
+      <li>Ajouté au navigateur d'activités par lots de scrolling sur ajout. Le paramètre est éphémère.</li>
+      <li>Fermer et réinitialiser la fenêtre Fusionner les bases de données SQLite lors de la déconnexion d'une base de données.</li>
+      <li>Terminé pour les expressions régulières de Qt 6.2 LTS. Quelques problèmes peuvent subsister.</li>      
+      <li>Correction de la découverte d'articles de littérature grise dans le navigateur d'activités par lots. Problème causé par la référence à un champ de base de données incorrect</li>
+      <li>Correction des recherches de littérature grise. Des champs manquaient dans la requête.</li>
+      <li>Correction des recherches de magazines. Il manquait un caractère d'espacement dans la requête.</li>
+      <li>Correction des requêtes qui incluent des guillemets simples pour SQLite et PostgreSQ</li>
+      <li>Correction du défilement des sections dans le navigateur d'énumérations de bases de données.</li>
+      <li>Requêtes personnalisées et favoris. Veuillez consulter le menu Requête personnalisée et Vue.</li>
+      <li>Ne pas inclure les informations myoid vides dans l'utilitaire Fusionner les bases de données SQLite lors du signalement des erreurs.</li>
+      <li>Fonctionnalité d'exportation des éléments manquants dans le panneau "Découvrir" du navigateur d'activités par lots.</li>      
+      <li>Hyperliens pour SQLite. Veuillez activer un lien en appuyant sur la touche Alt et en la maintenant enfoncée tout en cliquant sur le lien.Fonctionne également sur les entrées PostgreSQL modifiables.</li>
+      <li>Ignore les entrées numérisées vides dans le navigateur d'activités par lots.</li>      
+      <li>Amélioration du rapport d'erreur de biblioteq_misc_functions::getNextCopy()</li>  
+      <li>Inclure le titre de l'élément dans la partie Découverte du navigateur d'activités de lot.</li>
+      <li>Nouvelles tables de base de données book_conditions, book_originality. Veuillez mettre à jour les bases de données. Les valeurs statiques seront supprimées.</li>
+      <li>Suppression de Poppler (PDF), PostgreSQL et YAZ de MacOS.</li>
+      <li>Suppression des bibliothèques SQLite. Qt fournit des services SQLite suffisants.</li>
+      <li>Suppression des conseils d'outils en double dans les autres options.</li>
+      <li>Réinitialisation de nombreux panneaux après la fermeture d'une base de données.</li>
+      <li>Texte révisé sur de nombreux éléments du menu.</li>
+      <li>Enregistrer le paramètre des menus detachebles uniquement si l'option Enregistrer automatiquement les paramètres à la sortie est activée ou si les paramètres sont explicitement enregistrés</li>      
+      <li>Il s'agit de la dernière version du paquet. Les prochaines versions incluront uniquement les sources. Bonne chance</li>
+      <li>Fonctionnalité "Woody" (permet de réduire ou développer une arborescence).</li>
+    </ul>
+    <p>1er janvier 2002.</p>
+    <ul>
+      <li>BiblioteQ, ou XBook, est introduit.</li>
+    </ul>
+  </body>
+</html>
