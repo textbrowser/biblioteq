@@ -1,6 +1,10 @@
 # Qup definitions file.
 # https://github.com/textbrowser/qup
 
+[Download]
+
+url = https://github.com/textbrowser/biblioteq/tree/master/QupRelease
+
 [General]
 
 file = Administrator Guide.pdf
@@ -11,9 +15,13 @@ file = BiblioteQ.pdf
 file = Release-Notes.html
 file = TO-DO
 file = Windows Installation-French.pdf
+file_destination = Documentation
+
+[General]
+
 file = postgresql_create_schema.sql
 file = postgresql_update_schema.sql
-file_destination = Documentation
+file_destination = SQL
 
 [Linux]
 
