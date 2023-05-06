@@ -1459,7 +1459,7 @@ GRANT SELECT ON book_originality TO biblioteq_guest;
 GRANT SELECT ON book_originality TO biblioteq_membership;
 GRANT SELECT ON book_originality TO biblioteq_patron;
 
-/* Release 2023.05.15 */
+/* Release 2023.05.20 */
 
 ALTER TABLE book ADD volume_number TEXT;
 
