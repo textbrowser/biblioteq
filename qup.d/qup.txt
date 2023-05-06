@@ -1,4 +1,5 @@
 # Qup definitions file.
+# https://github.com/textbrowser/qup
 
 [General]
 
