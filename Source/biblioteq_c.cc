@@ -3024,7 +3024,7 @@ void biblioteq::slotConnectDB(void)
       ui.actionImportCSV->setEnabled(true);
       ui.action_Merge_SQLite_Databases->setEnabled(true);
       ui.action_Upgrade_SQLite_SchemaAll->setEnabled(true);
-      ui.action_Upgrade_SQLite_SchemaRecent->setEnabled(false);
+      ui.action_Upgrade_SQLite_SchemaRecent->setEnabled(true);
       ui.action_VacuumDatabase->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 

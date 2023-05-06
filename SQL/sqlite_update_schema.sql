@@ -4,7 +4,7 @@
 
 ALTER TABLE book ADD volume_number TEXT;
 
-CREATE TRIGGER item_borrower_trigger AFTER DELETE ON member 
+CREATE TRIGGER IF NOT EXISTS item_borrower_trigger AFTER DELETE ON member
 FOR EACH row
 BEGIN
 DELETE FROM item_borrower WHERE memberid = old.memberid;

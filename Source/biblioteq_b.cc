@@ -5464,7 +5464,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "(originality TEXT NOT NULL PRIMARY KEY)");
  recent_label:
   list.append("ALTER TABLE book ADD volume_number TEXT");
-  list.append("CREATE TRIGGER item_borrower_trigger AFTER DELETE ON member "
+  list.append("CREATE TRIGGER IF NOT EXISTS "
+	      "item_borrower_trigger AFTER DELETE ON member "
 	      "FOR EACH row "
 	      "BEGIN "
 	      "DELETE FROM item_borrower WHERE memberid = old.memberid; "
