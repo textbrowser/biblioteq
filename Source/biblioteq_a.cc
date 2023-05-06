@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
   biblioteq biblioteq;
 
   biblioteq.showMain();
-  return qapplication.exec();
+  return static_cast<int> (qapplication.exec());
 }
 
 biblioteq::biblioteq(void):QMainWindow()
@@ -352,7 +352,11 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertPhotograph(void)));
-  connect(ui.action_Upgrade_SQLite_Schema,
+  connect(ui.action_Upgrade_SQLite_SchemaAll,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotUpgradeSqliteScheme(void)));
+  connect(ui.action_Upgrade_SQLite_SchemaRecent,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
@@ -776,7 +780,8 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionViewDetails->setEnabled(false);
   ui.action_Database_Enumerations->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);
-  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
+  ui.action_Upgrade_SQLite_SchemaAll->setEnabled(false);
+  ui.action_Upgrade_SQLite_SchemaRecent->setEnabled(false);
   ui.action_VacuumDatabase->setEnabled(false);
   ui.configTool->setEnabled(false);
   ui.createTool->setEnabled(false);

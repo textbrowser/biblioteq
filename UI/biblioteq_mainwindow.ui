@@ -128,7 +128,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>289</height>
+          <height>260</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -432,7 +432,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -480,7 +480,8 @@
     <addaction name="actionRefreshTable"/>
     <addaction name="separator"/>
     <addaction name="action_Merge_SQLite_Databases"/>
-    <addaction name="action_Upgrade_SQLite_Schema"/>
+    <addaction name="action_Upgrade_SQLite_SchemaAll"/>
+    <addaction name="action_Upgrade_SQLite_SchemaRecent"/>
     <addaction name="separator"/>
     <addaction name="action_Open_PDF_File"/>
    </widget>
@@ -1274,9 +1275,9 @@
     <string>&amp;Photograph Collection...</string>
    </property>
   </action>
-  <action name="action_Upgrade_SQLite_Schema">
+  <action name="action_Upgrade_SQLite_SchemaAll">
    <property name="text">
-    <string>&amp;Upgrade SQLite Schema</string>
+    <string>&amp;Upgrade SQLite Schema (All)</string>
    </property>
   </action>
   <action name="actionAutomatically_Resize_Column_Widths">
@@ -1425,6 +1426,11 @@
   <action name="actionTest">
    <property name="text">
     <string>Test</string>
+   </property>
+  </action>
+  <action name="action_Upgrade_SQLite_SchemaRecent">
+   <property name="text">
+    <string>Upgrade SQLite Schema (Recent)</string>
    </property>
   </action>
  </widget>

@@ -3023,7 +3023,8 @@ void biblioteq::slotConnectDB(void)
       ui.actionChangePassword->setEnabled(false);
       ui.actionImportCSV->setEnabled(true);
       ui.action_Merge_SQLite_Databases->setEnabled(true);
-      ui.action_Upgrade_SQLite_Schema->setEnabled(true);
+      ui.action_Upgrade_SQLite_SchemaAll->setEnabled(true);
+      ui.action_Upgrade_SQLite_SchemaRecent->setEnabled(false);
       ui.action_VacuumDatabase->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 
@@ -3284,7 +3285,8 @@ void biblioteq::slotDisconnect(void)
   ui.actionReservationHistory->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);
-  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
+  ui.action_Upgrade_SQLite_SchemaAll->setEnabled(false);
+  ui.action_Upgrade_SQLite_SchemaRecent->setEnabled(false);
   ui.action_VacuumDatabase->setEnabled(false);
   ui.configTool->setEnabled(false);
   ui.createTool->setEnabled(false);

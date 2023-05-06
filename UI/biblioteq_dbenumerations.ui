@@ -31,7 +31,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Empty containers? Please review Options -&gt; Populate Database Enumerations Browser On Display.</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Empty containers? Please review Options -&amp;gt; Populate Database Enumerations Browser On Display. Existing item windows will not reflect revisions!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

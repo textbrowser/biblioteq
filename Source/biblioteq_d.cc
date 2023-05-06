@@ -318,7 +318,7 @@ void biblioteq::prepareUpgradeNotification(void)
 	    (this,
 	     tr("BiblioteQ: Database Error"),
 	     tr("The current SQLite schema must be updated. "
-		"Tools -> Upgrade SQLite Schema."));
+		"Tools -> Upgrade SQLite Schema (Recent)."));
 	  QApplication::processEvents();
 	}
     }

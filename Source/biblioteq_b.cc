@@ -5103,7 +5103,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
   QStringList list;
 
-#ifdef BIBLIOTEQ_RETAIN_SQLITE_UPGRADE_STATEMENTS
+  if(sender() == ui.action_Upgrade_SQLite_SchemaRecent)
+    goto recent_label;
+
   list.append("CREATE TABLE IF NOT EXISTS book_files"
 	      "("
 	      "description	TEXT,"
@@ -5460,7 +5462,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "(condition TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE book_originality "
 	      "(originality TEXT NOT NULL PRIMARY KEY)");
-#endif
+ recent_label:
   list.append("ALTER TABLE book ADD volume_number TEXT");
   list.append("CREATE TRIGGER item_borrower_trigger AFTER DELETE ON member "
 	      "FOR EACH row "
