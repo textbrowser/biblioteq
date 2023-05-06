@@ -5083,14 +5083,24 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   if(m_db.driverName() != "QSQLITE")
     return;
 
-  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+  QString message("");
+
+  if(sender() == ui.action_Upgrade_SQLite_SchemaAll)
+    message = tr("Please note that BiblioteQ will execute all of the upgrade "
+		 "statements since the upgrade tool was introduced.");
+  else
+    message = tr("Please note that BiblioteQ will execute this version's "
+		 "upgrade statements.");
+
+  if(QMessageBox::question(this,
+			   tr("BiblioteQ: Question"),
 			   tr("You are about to upgrade the "
 			      "SQLite database %1. "
 			      "Please verify that you have made a "
-			      "copy of this database. "
+			      "copy of this database. %2 "
 			      "Are you sure that you wish to continue?").
-			   arg(m_db.databaseName()),
-			   QMessageBox::Yes | QMessageBox::No,
+			   arg(m_db.databaseName()).arg(message),
+			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
     {
       QApplication::processEvents();
