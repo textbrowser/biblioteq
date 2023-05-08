@@ -3798,15 +3798,7 @@ void biblioteq::slotPrintReserved(void)
       return;
     }
 
-  QMap<QString, QString> memberinfo;
-  QPrinter printer;
-  QScopedPointer<QPrintDialog> dialog
-    (new QPrintDialog(&printer, m_members_diag));
-  QString errorstr = "";
   QString memberid = "";
-  QString str = "";
-  QStringList itemsList;
-  QTextDocument document;
   int itemsReserved = 0;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -3842,6 +3834,15 @@ void biblioteq::slotPrintReserved(void)
       QApplication::processEvents();
       return;
     }
+
+  QMap<QString, QString> memberinfo;
+  QPrinter printer;
+  QScopedPointer<QPrintDialog> dialog
+    (new QPrintDialog(&printer, m_members_diag));
+  QString errorstr = "";
+  QString str = "";
+  QStringList itemsList;
+  QTextDocument document;
 
   memberinfo["firstname"] = biblioteq_misc_functions::getColumnString
     (bb.table, row,
