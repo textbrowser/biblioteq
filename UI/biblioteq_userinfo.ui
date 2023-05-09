@@ -42,7 +42,7 @@
             <x>0</x>
             <y>-264</y>
             <width>547</width>
-            <height>751</height>
+            <height>753</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout">
@@ -739,6 +739,13 @@
               </widget>
              </item>
              <item>
+              <widget class="QToolButton" name="expiration_date_future">
+               <property name="text">
+                <string>Year's End</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -979,6 +986,7 @@
   <tabstop>email</tabstop>
   <tabstop>menu</tabstop>
   <tabstop>expirationdate</tabstop>
+  <tabstop>expiration_date_future</tabstop>
   <tabstop>membershipfees</tabstop>
   <tabstop>overduefees</tabstop>
   <tabstop>comments</tabstop>
