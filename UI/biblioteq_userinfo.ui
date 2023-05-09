@@ -40,7 +40,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-264</y>
+            <y>-266</y>
             <width>547</width>
             <height>753</height>
            </rect>
@@ -739,9 +739,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="expiration_date_future">
+              <widget class="QToolButton" name="expirationdatefuture">
                <property name="text">
                 <string>Year's End</string>
+               </property>
+               <property name="popupMode">
+                <enum>QToolButton::MenuButtonPopup</enum>
                </property>
               </widget>
              </item>
@@ -986,7 +989,7 @@
   <tabstop>email</tabstop>
   <tabstop>menu</tabstop>
   <tabstop>expirationdate</tabstop>
-  <tabstop>expiration_date_future</tabstop>
+  <tabstop>expirationdatefuture</tabstop>
   <tabstop>membershipfees</tabstop>
   <tabstop>overduefees</tabstop>
   <tabstop>comments</tabstop>

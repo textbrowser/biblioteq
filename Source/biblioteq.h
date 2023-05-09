@@ -75,6 +75,47 @@ class userinfo_diag_class: public QDialog
   userinfo_diag_class(QMainWindow *parent):QDialog(parent)
   {
     m_userinfo.setupUi(this);
+    connect(m_userinfo.expirationdatefuture,
+	    SIGNAL(clicked(void)),
+	    m_userinfo.expirationdatefuture,
+	    SLOT(showMenu(void)));
+    m_userinfo.expirationdatefuture->setMenu(new QMenu(this));
+    connect
+      (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End")),
+       SIGNAL(triggered(void)),
+       this,
+       SLOT(slotExpirationDate(void)));
+    connect
+      (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End + 1")),
+       SIGNAL(triggered(void)),
+       this,
+       SLOT(slotExpirationDate(void)));
+    connect
+      (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End + 2")),
+       SIGNAL(triggered(void)),
+       this,
+       SLOT(slotExpirationDate(void)));
+    connect
+      (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End + 3")),
+       SIGNAL(triggered(void)),
+       this,
+       SLOT(slotExpirationDate(void)));
+    connect
+      (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End + 4")),
+       SIGNAL(triggered(void)),
+       this,
+       SLOT(slotExpirationDate(void)));
+    connect
+      (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End + 5")),
+       SIGNAL(triggered(void)),
+       this,
+       SLOT(slotExpirationDate(void)));
+
+    int i = 0;
+
+    foreach(auto action, m_userinfo.expirationdatefuture->menu()->actions())
+      if(action)
+	action->setData(i++);
   }
 
   ~userinfo_diag_class()
@@ -215,6 +256,19 @@ class userinfo_diag_class: public QDialog
 	}
 
     QDialog::done(result);
+  }
+
+  void slotExpirationDate(void)
+  {
+    auto action = qobject_cast<QAction *> (sender());
+
+    if(!action)
+      return;
+
+    auto date(QDate::currentDate());
+
+    date.setDate(date.year(), 12, 31);
+    m_userinfo.expirationdate->setDate(date.addYears(action->data().toInt()));
   }
 };
 
