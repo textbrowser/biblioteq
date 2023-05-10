@@ -46,7 +46,8 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_borrowers_editor.h \
 		  Source/biblioteq_cd.h \
 		  Source/biblioteq_copy_editor.h \
-		  Source/biblioteq_copy_editor_book.h \
+                  Source/biblioteq_copy_editor_book.h \
+                  Source/biblioteq_custom_query.h \
                   Source/biblioteq_dbenumerations.h \
                   Source/biblioteq_documentationwindow.h \
                   Source/biblioteq_dvd.h \
@@ -88,6 +89,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_cd.cc \
                   Source/biblioteq_copy_editor.cc \
                   Source/biblioteq_copy_editor_book.cc \
+                  Source/biblioteq_custom_query.cc \
                   Source/biblioteq_dbenumerations.cc \
                   Source/biblioteq_d.cc \
                   Source/biblioteq_documentationwindow.cc \

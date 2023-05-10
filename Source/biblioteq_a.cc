@@ -61,10 +61,9 @@ extern "C"
 #include "biblioteq.h"
 #include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
+#include "biblioteq_custom_query.h"
 #include "biblioteq_otheroptions.h"
-#include "biblioteq_sql_syntax_highlighter.h"
 #include "biblioteq_sqlite_create_schema.h"
-#include "biblioteq_woody.h"
 
 /*
 ** -- Global Variables --
@@ -218,11 +217,6 @@ biblioteq::biblioteq(void):QMainWindow()
   m_history_diag = new QMainWindow();
   m_history_diag->setWindowFlags
     (Qt::WindowStaysOnTopHint | m_history_diag->windowFlags());
-#endif
-#ifdef Q_OS_ANDROID
-  m_customquery_diag = new QMainWindow(this);
-#else
-  m_customquery_diag = new QMainWindow();
 #endif
   userinfo_diag = new userinfo_diag_class(m_members_diag);
 #ifdef Q_OS_ANDROID
@@ -408,13 +402,7 @@ biblioteq::biblioteq(void):QMainWindow()
   pass.setupUi(m_pass_diag);
   al.setupUi(m_all_diag);
   al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
-  cq.setupUi(m_customquery_diag);
   m_otheroptions->prepareMembersVisibleColumns(bb.table);
-  m_sqlSyntaxHighlighter = new biblioteq_sql_syntax_highlighter
-    (cq.query_te->document());
-  m_sqlSyntaxHighlighter->setKeywordsColors
-    (m_otheroptions->customQueryColors());
-  m_woody = new woody_collapse_expand_tool_button(cq.tables_t);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);
   ab.splitter->setStretchFactor(0, 0);
@@ -644,21 +632,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotNextPage(void)));
   connect(ui.pagesLabel, SIGNAL(linkActivated(const QString &)),
 	  this, SLOT(slotPageClicked(const QString &)));
-  connect(cq.clear, SIGNAL(clicked(void)), cq.query_te, SLOT(clear(void)));
-  connect(cq.close_pb, SIGNAL(clicked(void)), this,
-	  SLOT(slotCloseCustomQueryDialog(void)));
-  connect(cq.delete_favorite, SIGNAL(clicked(void)), this,
-	  SLOT(slotDeleteFavoriteQuery(void)));
-  connect(cq.execute_pb, SIGNAL(clicked(void)), this,
-	  SLOT(slotExecuteCustomQuery(void)));
-  connect(cq.favorites, SIGNAL(activated(int)), this,
-	  SLOT(slotLoadFavorite(void)));
-  connect(cq.refresh_pb, SIGNAL(clicked(void)), this,
-	  SLOT(slotRefreshCustomQuery(void)));
-  connect(cq.rename_favorite, SIGNAL(clicked(void)), this,
-	  SLOT(slotRenameFavoriteQuery(void)));
-  connect(cq.save, SIGNAL(clicked(void)), this,
-	  SLOT(slotSaveCustomQuery(void)));
   connect(pass.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSavePassword(void)));
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,
@@ -1385,7 +1358,6 @@ void biblioteq::changeEvent(QEvent *event)
 	  al.retranslateUi(m_all_diag);
 	  bb.retranslateUi(m_members_diag);
 	  br.retranslateUi(m_branch_diag);
-	  cq.retranslateUi(m_customquery_diag);
 	  er.retranslateUi(m_error_diag);
 	  history.retranslateUi(m_history_diag);
 	  m_findList.clear();
@@ -2531,15 +2503,6 @@ void biblioteq::slotClearSqliteMenu(bool state)
   createSqliteMenuActions();
 }
 
-void biblioteq::slotCloseCustomQueryDialog(void)
-{
-#ifdef Q_OS_ANDROID
-  m_customquery_diag->hide();
-#else
-  m_customquery_diag->close();
-#endif
-}
-
 void biblioteq::slotCloseMembersBrowser(void)
 {
   /*
@@ -3184,11 +3147,6 @@ void biblioteq::slotDuplicate(void)
 	 tr("Unable to determine the selected item's type."));
       QApplication::processEvents();
     }
-}
-
-void biblioteq::slotExecuteCustomQuery(void)
-{
-  executeCustomQuery(m_customquery_diag, cq.query_te->toPlainText().trimmed());
 }
 
 void biblioteq::slotExit(void)
@@ -4582,20 +4540,13 @@ void biblioteq::slotShowConnectionDB(void)
 
 void biblioteq::slotShowCustomQuery(void)
 {
-  if(cq.tables_t->columnCount() == 0)
-    slotRefreshCustomQuery();
+  auto dialog = new biblioteq_custom_query(m_otheroptions, this);
 
-  static auto resized = false;
+  dialog->resize
+    (qRound(0.50 * size().width()), qRound(0.85 * size().height()));
 
-  if(!resized)
-    m_customquery_diag->resize(qRound(0.85 * size().width()),
-			       qRound(0.85 * size().height()));
-
-  resized = true;
-  biblioteq_misc_functions::center(m_customquery_diag, this);
-  m_customquery_diag->showNormal();
-  m_customquery_diag->activateWindow();
-  m_customquery_diag->raise();
+  biblioteq_misc_functions::center(dialog, this);
+  dialog->show();
 }
 
 void biblioteq::slotShowDbEnumerations(void)

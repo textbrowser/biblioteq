@@ -32,7 +32,6 @@
 #include <QInputDialog>
 #include <QSettings>
 #include <QShortcut>
-#include <QSqlRecord>
 
 #include "biblioteq.h"
 #include "biblioteq_documentationwindow.h"
@@ -218,16 +217,9 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 void biblioteq::populateFavorites(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  connect(cq.favorite,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotCustomQueryFavorite(bool)),
-	  Qt::UniqueConnection);
-  cq.favorites->clear();
   ui.menu_Custom_Query->clear();
 
   QSettings settings;
-  QStringList list;
   auto favorite(settings.value("custom_query_favorite").toString().trimmed());
   auto shortcut
     (settings.value("custom_query_favorite_shortcut").toString().trimmed());
@@ -237,12 +229,11 @@ void biblioteq::populateFavorites(void)
   foreach(const auto &key, settings.childKeys())
     if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
       {
+	QAction *action = nullptr;
 	auto k(key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
 	       remove('\n').remove('\r'));
 
-	list << k;
-
-	auto action = ui.menu_Custom_Query->addAction
+	action = ui.menu_Custom_Query->addAction
 	  (k, this, SLOT(slotCustomQuery(void)));
 
 	if(action && action->text() == favorite)
@@ -251,22 +242,10 @@ void biblioteq::populateFavorites(void)
 	  action->setShortcut(QKeySequence());
       }
 
-  if(!list.isEmpty())
-    {
-      std::sort(list.begin(), list.end());
-      cq.favorite->setEnabled(true);
-      cq.favorites->addItems(list);
-    }
-  else
-    {
-      cq.favorite->setChecked(false);
-      cq.favorite->setEnabled(false);
-      cq.favorites->addItem(tr("(Empty)"));
-      ui.menu_Custom_Query->addAction(tr("(Empty)"));
-    }
+  if(ui.menu_Custom_Query->actions().isEmpty())
+    ui.menu_Custom_Query->addAction(tr("(Empty)"));
 
   QApplication::restoreOverrideCursor();
-  slotLoadFavorite();
 }
 
 void biblioteq::prepareCustomQueryFavoriteShortcut(void)
@@ -416,43 +395,6 @@ void biblioteq::slotCustomQuery(void)
   executeCustomQuery(this, string);
 }
 
-void biblioteq::slotCustomQueryFavorite(bool state)
-{
-  QSettings settings;
-
-  if(cq.favorites->count() > 0 && state)
-    settings.setValue("custom_query_favorite", cq.favorites->currentText());
-  else
-    settings.remove("custom_query_favorite");
-
-  prepareCustomQueryFavoriteShortcut();
-}
-
-void biblioteq::slotDeleteFavoriteQuery(void)
-{
-  if(cq.favorites->currentText() == tr("(Empty)"))
-    return;
-
-  if(QMessageBox::
-     question(m_customquery_diag,
-	      tr("BiblioteQ: Question"),
-	      tr("Are you sure that you wish to delete the favorite %1?").
-	      arg(cq.favorites->currentText()),
-	      QMessageBox::No | QMessageBox::Yes,
-	      QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
-  else
-    QApplication::processEvents();
-
-  QSettings settings;
-
-  settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
-  populateFavorites();
-}
-
 void biblioteq::slotExportAsPNG(void)
 {
   QFileDialog dialog(this);
@@ -532,37 +474,6 @@ void biblioteq::slotLaunchEmailSoftware(void)
 			 arg(str)));
 }
 
-void biblioteq::slotLoadFavorite(void)
-{
-  if(cq.favorites->currentText() == tr("(Empty)"))
-    {
-      cq.query_te->clear();
-      return;
-    }
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
-
-  cq.query_te->setPlainText
-    (QString::
-     fromUtf8(QByteArray::
-	      fromBase64(settings.
-			 value(QString("customqueries/%1").
-			       arg(cq.favorites->currentText())).
-			 toByteArray()).constData()));
-  cq.favorite->blockSignals(true);
-
-  if(cq.favorites->currentText() == favorite)
-    cq.favorite->setChecked(true);
-  else
-    cq.favorite->setChecked(false);
-
-  cq.favorite->blockSignals(false);
-  QApplication::restoreOverrideCursor();
-}
-
 void biblioteq::slotMembersPagesChanged(int value)
 {
   QSettings settings;
@@ -608,67 +519,6 @@ void biblioteq::slotPrintIconsView(void)
     }
 
   QApplication::processEvents();
-}
-
-void biblioteq::slotRenameFavoriteQuery(void)
-{
-  if(cq.favorites->currentText() == tr("(Empty)"))
-    return;
-
-  QString name("");
-  auto ok = true;
-
-  name = QInputDialog::getText(m_customquery_diag,
-			       tr("BiblioteQ: Rename Custom Query Favorite"),
-			       tr("Query Name"),
-			       QLineEdit::Normal,
-			       cq.favorites->currentText(),
-			       &ok).remove('\n').remove('\r').trimmed();
-
-  if(!ok || name.isEmpty())
-    return;
-
-  name = name.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH));
-
-  QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
-  auto value
-    (settings.
-     value(QString("customqueries/%1").arg(cq.favorites->currentText())));
-
-  if(cq.favorites->currentText() == favorite)
-    settings.setValue("custom_query_favorite", name);
-
-  settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
-  settings.setValue(QString("customqueries/%1").arg(name), value);
-  populateFavorites();
-}
-
-void biblioteq::slotSaveCustomQuery(void)
-{
-  if(cq.query_te->toPlainText().trimmed().isEmpty())
-    return;
-
-  QString name("");
-  auto ok = true;
-
-  name = QInputDialog::getText(m_customquery_diag,
-			       tr("BiblioteQ: Custom Query Favorite"),
-			       tr("Query Name"),
-			       QLineEdit::Normal,
-			       "",
-			       &ok).remove('\n').remove('\r').trimmed();
-
-  if(!ok || name.isEmpty())
-    return;
-
-  QSettings settings;
-
-  settings.setValue
-    (QString("customqueries/%1").
-     arg(name.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH))),
-     cq.query_te->toPlainText().trimmed().toUtf8().toBase64());
-  populateFavorites();
 }
 
 void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)

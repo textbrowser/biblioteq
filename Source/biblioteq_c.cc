@@ -27,6 +27,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_copy_editor.h"
+#include "biblioteq_custom_query.h"
 #include "biblioteq_files.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
@@ -3239,7 +3240,6 @@ void biblioteq::slotDisconnect(void)
   m_admin_diag->hide();
   m_all_diag->hide();
   m_batchActivities->hide();
-  m_customquery_diag->hide();
   m_history_diag->hide();
   m_import->hide();
   m_members_diag->hide();
@@ -3250,7 +3250,6 @@ void biblioteq::slotDisconnect(void)
   m_admin_diag->close();
   m_all_diag->close();
   m_batchActivities->close();
-  m_customquery_diag->close();
   m_history_diag->close();
   m_import->close();
   m_members_diag->close();
@@ -3258,13 +3257,12 @@ void biblioteq::slotDisconnect(void)
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->close();
 #endif
+
+  foreach(auto dialog, findChildren<biblioteq_custom_query *> ())
+    if(dialog)
+      dialog->deleteLater();
+
   m_unaccent.clear();
-  cq.tables_t->clear();
-  cq.tables_t->setColumnCount(0);
-  cq.tables_t->scrollToTop();
-  cq.tables_t->horizontalScrollBar()->setValue(0);
-  cq.tables_t->clearSelection();
-  cq.tables_t->setCurrentItem(nullptr);
 
   if(db_enumerations)
     db_enumerations->clear();
@@ -4372,10 +4370,6 @@ void biblioteq::slotOtherOptionsSaved(void)
   else
     ui.table->setIconSize(QSize(0, 0));
 
-  m_sqlSyntaxHighlighter->setKeywordsColors
-    (m_otheroptions->customQueryColors());
-  cq.query_te->setPlainText(cq.query_te->toPlainText());
-
   QFontMetrics fontMetrics(ui.table->font());
 
   for(int i = 0; i < ui.table->rowCount(); i++)
@@ -4766,152 +4760,6 @@ void biblioteq::slotRefreshAdminList(void)
     ab.table->resizeColumnToContents(i);
 
   m_deletedAdmins.clear();
-}
-
-void biblioteq::slotRefreshCustomQuery(void)
-{
-  if(!m_db.isOpen())
-    return;
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QSqlField field;
-  QSqlRecord rec;
-  QStringList list;
-  QTreeWidgetItem *item1 = nullptr;
-  QTreeWidgetItem *item2 = nullptr;
-  int i = 0;
-  int j = 0;
-
-  cq.tables_t->clear();
-
-  if(m_db.driverName() == "QSQLITE")
-    list << "book"
-	 << "book_binding_types"
-	 << "book_conditions"
-	 << "book_copy_info"
-	 << "book_files"
-	 << "book_originality"
-	 << "book_target_audiences"
-	 << "cd"
-	 << "cd_copy_info"
-	 << "cd_formats"
-	 << "cd_songs"
-	 << "dvd"
-	 << "dvd_aspect_ratios"
-	 << "dvd_copy_info"
-	 << "dvd_ratings"
-	 << "dvd_regions"
-	 << "grey_literature"
-	 << "grey_literature_files"
-	 << "grey_literature_types"
-	 << "item_borrower"
-	 << "journal"
-	 << "journal_copy_info"
-	 << "journal_files"
-	 << "languages"
-	 << "locations"
-	 << "magazine"
-	 << "magazine_copy_info"
-	 << "magazine_files"
-	 << "member"
-	 << "member_history"
-	 << "minimum_days"
-	 << "monetary_units"
-	 << "photograph"
-	 << "photograph_collection"
-	 << "videogame"
-	 << "videogame_copy_info"
-	 << "videogame_platforms"
-	 << "videogame_ratings";
-  else
-    list << "admin"
-	 << "book"
-	 << "book_binding_types"
-	 << "book_conditions"
-	 << "book_copy_info"
-	 << "book_files"
-	 << "book_originality"
-	 << "book_target_audiences"
-	 << "cd"
-	 << "cd_copy_info"
-	 << "cd_formats"
-	 << "cd_songs"
-	 << "dvd"
-	 << "dvd_aspect_ratios"
-	 << "dvd_copy_info"
-	 << "dvd_ratings"
-	 << "dvd_regions"
-	 << "grey_literature"
-	 << "grey_literature_files"
-	 << "grey_literature_types"
-	 << "item_borrower"
-	 << "item_request"
-	 << "journal"
-	 << "journal_copy_info"
-	 << "journal_files"
-	 << "languages"
-	 << "locations"
-	 << "magazine"
-	 << "magazine_copy_info"
-	 << "magazine_files"
-	 << "member"
-	 << "member_history"
-	 << "member_history_dnt"
-	 << "minimum_days"
-	 << "monetary_units"
-	 << "photograph"
-	 << "photograph_collection"
-	 << "videogame"
-	 << "videogame_copy_info"
-	 << "videogame_platforms"
-	 << "videogame_ratings";
-
-  list.sort();
-  cq.tables_t->setSortingEnabled(false);
-  cq.tables_t->setColumnCount(3);
-  cq.tables_t->setHeaderLabels(QStringList()
-			       << tr("Table Name")
-			       << tr("Column")
-			       << tr("Column Type")
-			       << tr("NULL"));
-
-  for(i = 0; i < list.size(); i++)
-    {
-      item1 = new QTreeWidgetItem(cq.tables_t);
-      item1->setText(0, list[i]);
-      rec = m_db.record(list[i]);
-
-      for(j = 0; j < rec.count(); j++)
-	{
-	  item2 = new QTreeWidgetItem(item1);
-	  field = rec.field(rec.fieldName(j));
-	  item2->setText(1, rec.fieldName(j));
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-	  item2->setText(2, QMetaType(rec.field(j).metaType().id()).name());
-#else
-	  item2->setText(2, QVariant::typeToName(field.type()));
-#endif
-
-	  if(field.requiredStatus() == QSqlField::Required)
-	    item2->setText(3, tr("No"));
-	  else
-	    item2->setText(3, "");
-	}
-    }
-
-  for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
-    cq.tables_t->resizeColumnToContents(i);
-
-  cq.tables_t->setSortingEnabled(true);
-  cq.tables_t->sortByColumn(0, Qt::AscendingOrder);
-
-  if(!m_woody->isChecked())
-    cq.tables_t->collapseAll();
-  else
-    cq.tables_t->expandAll();
-
-  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::slotRemoveMember(void)

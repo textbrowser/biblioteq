@@ -49,7 +49,6 @@
 #include "ui_biblioteq_adminsetup.h"
 #include "ui_biblioteq_allinfo.h"
 #include "ui_biblioteq_branch_s.h"
-#include "ui_biblioteq_customquery.h"
 #include "ui_biblioteq_errordiag.h"
 #include "ui_biblioteq_history.h"
 #include "ui_biblioteq_mainwindow.h"
@@ -63,9 +62,7 @@
 class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
-class biblioteq_sql_syntax_highlighter;
 class biblioteq_sqlite_merge_databases;
-class woody_collapse_expand_tool_button;
 
 class userinfo_diag_class: public QDialog
 {
@@ -358,10 +355,13 @@ class biblioteq: public QMainWindow
   void bookSearch(const QString &field, const QString &value);
   void cdSearch(const QString &field, const QString &value);
   void dvdSearch(const QString &field, const QString &value);
+  void executeCustomQuery(QWidget *widget, const QString &text);
   void greyLiteratureSearch(const QString &field, const QString &value);
   void journSearch(const QString &field, const QString &value);
   void magSearch(const QString &field, const QString &value);
   void pcSearch(const QString &field, const QString &value);
+  void populateFavorites(void);
+  void prepareCustomQueryFavoriteShortcut(void);
   void removeBook(biblioteq_book *book);
   void removeCD(biblioteq_cd *cd);
   void removeDVD(biblioteq_dvd *dvd);
@@ -467,7 +467,6 @@ class biblioteq: public QMainWindow
   QList<QTableWidgetItem *> m_findList;
   QMainWindow *m_admin_diag;
   QMainWindow *m_all_diag;
-  QMainWindow *m_customquery_diag;
   QMainWindow *m_error_diag;
   QMainWindow *m_history_diag;
   QMainWindow *m_members_diag;
@@ -496,7 +495,6 @@ class biblioteq: public QMainWindow
   Ui_adminBrowser ab;
   Ui_allDialog al;
   Ui_branchSelect br;
-  Ui_customquery cq;
   Ui_errordialog er;
   Ui_historyDialog history;
   Ui_mainWindow ui;
@@ -506,7 +504,6 @@ class biblioteq: public QMainWindow
   biblioteq_files *m_files;
   biblioteq_import *m_import;
   biblioteq_otheroptions *m_otheroptions;
-  biblioteq_sql_syntax_highlighter *m_sqlSyntaxHighlighter;
   bool m_allSearchShown;
   bool m_membersWasRefreshed;
   int m_lastSearchType;
@@ -514,7 +511,6 @@ class biblioteq: public QMainWindow
   qint64 m_queryOffset;
   quint64 m_idCt;
   userinfo_diag_class *userinfo_diag;
-  woody_collapse_expand_tool_button *m_woody;
   QString dbUserName(void) const;
   QString reservationHistoryHtml(void) const;
   QString viewHtml(void) const;
@@ -529,12 +525,9 @@ class biblioteq: public QMainWindow
   void createConfigToolMenu(void);
   void createSqliteMenuActions(void);
   void deleteItem(const QString &oid, const QString &itemType);
-  void executeCustomQuery(QWidget *widget, const QString &text);
   void exportAsCSV(QTableWidget *table, QWidget *parent, const QString &title);
   void initialUpdate(void);
-  void populateFavorites(void);
   void prepareContextMenus(void);
-  void prepareCustomQueryFavoriteShortcut(void);
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
@@ -563,7 +556,6 @@ class biblioteq: public QMainWindow
   void slotChangeView(bool checked);
   void slotCheckout(void);
   void slotClearSqliteMenu(bool state);
-  void slotCloseCustomQueryDialog(void);
   void slotCloseMembersBrowser(void);
   void slotClosePasswordDialog(void);
   void slotConnectDB(void);
@@ -571,15 +563,12 @@ class biblioteq: public QMainWindow
   void slotContributors(void);
   void slotCopyError(void);
   void slotCustomQuery(void);
-  void slotCustomQueryFavorite(bool state);
   void slotDVDSearch(void);
   void slotDelete(void);
   void slotDeleteAdmin(void);
-  void slotDeleteFavoriteQuery(void);
   void slotDisconnect(void);
   void slotDisplayNewSqliteDialog(void);
   void slotDuplicate(void);
-  void slotExecuteCustomQuery(void);
   void slotExit(void);
   void slotExportAsCSV(void);
   void slotExportAsPNG(void);
@@ -607,7 +596,6 @@ class biblioteq: public QMainWindow
   void slotListOverdueItems(void);
   void slotListReservedItems(const QString &);
   void slotListReservedItems(void);
-  void slotLoadFavorite(void);
   void slotMagSearch(void);
   void slotMainTableDeleteKeyPressed(void);
   void slotMainTableEnterKeyPressed(void);
@@ -636,10 +624,8 @@ class biblioteq: public QMainWindow
   void slotPrintViewPreview(void);
   void slotRefresh(void);
   void slotRefreshAdminList(void);
-  void slotRefreshCustomQuery(void);
   void slotReloadBiblioteqConf(void);
   void slotRemoveMember(void);
-  void slotRenameFavoriteQuery(void);
   void slotRequest(void);
   void slotReserveCopy(void);
   void slotReset(void);
@@ -650,7 +636,6 @@ class biblioteq: public QMainWindow
   void slotRoleChanged(int index);
   void slotSaveAdministrators(void);
   void slotSaveConfig(void);
-  void slotSaveCustomQuery(void);
   void slotSaveDnt(bool state);
   void slotSaveGeneralSearchCaseSensitivity(bool state);
   void slotSavePassword(void);
@@ -694,7 +679,9 @@ class biblioteq: public QMainWindow
   void slotViewFullOrNormalScreen(void);
 
  signals:
+  void favoritesChanged(void);
   void fontChanged(const QFont &font);
+  void newFavorite(void);
 };
 
 #endif
