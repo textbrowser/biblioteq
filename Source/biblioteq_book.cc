@@ -4032,7 +4032,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 	      this, SLOT(slotOpenLibraryReadyRead(void)));
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotOpenLibraryDownloadFinished(void)));
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
       connect(reply,
 	      SIGNAL(error(QNetworkReply::NetworkError)),
 	      this,
@@ -4867,7 +4867,7 @@ void biblioteq_book::slotSRUQuery(void)
 	      this, SLOT(slotSRUReadyRead(void)));
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotSRUDownloadFinished(void)));
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
       connect(reply,
 	      SIGNAL(error(QNetworkReply::NetworkError)),
 	      this,

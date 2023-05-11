@@ -3682,7 +3682,7 @@ void biblioteq_magazine::slotSRUQuery(void)
 	      this, SLOT(slotSRUReadyRead(void)));
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotSRUDownloadFinished(void)));
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
       connect(reply,
 	      SIGNAL(error(QNetworkReply::NetworkError)),
 	      this,
