@@ -240,14 +240,15 @@ void biblioteq::populateFavorites(void)
 	summary = QString::fromUtf8
 	  (QByteArray::fromBase64(settings.value(k).toByteArray()));
 
+	if(summary.length() > 32)
+	  summary = summary.left(16) + "..." + summary.right(16);
+
 	if(favorite == k)
 	  action->setShortcut(QKeySequence(shortcut));
 	else
 	  action->setShortcut(QKeySequence());
 
-	action->setText
-	  (QString("%1 (%2...%3)").
-	   arg(k).arg(summary.left(16)).arg(summary.right(16)));
+	action->setText(QString("%1 (%2)").arg(k).arg(summary));
       }
 
   if(ui.menu_Custom_Query->actions().isEmpty())
