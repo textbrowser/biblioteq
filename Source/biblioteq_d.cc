@@ -230,16 +230,24 @@ void biblioteq::populateFavorites(void)
     if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
       {
 	QAction *action = nullptr;
+	QString summary("");
 	auto k(key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
 	       remove('\n').remove('\r'));
 
 	action = ui.menu_Custom_Query->addAction
 	  (k, this, SLOT(slotCustomQuery(void)));
+	action->setProperty("name", k);
+	summary = QString::fromUtf8
+	  (QByteArray::fromBase64(settings.value(k).toByteArray()));
 
-	if(action && action->text() == favorite)
+	if(favorite == k)
 	  action->setShortcut(QKeySequence(shortcut));
 	else
 	  action->setShortcut(QKeySequence());
+
+	action->setText
+	  (QString("%1 (%2...%3)").
+	   arg(k).arg(summary.left(16)).arg(summary.right(16)));
       }
 
   if(ui.menu_Custom_Query->actions().isEmpty())
@@ -256,9 +264,9 @@ void biblioteq::prepareCustomQueryFavoriteShortcut(void)
     (settings.value("custom_query_favorite_shortcut").toString().trimmed());
 
   foreach(auto action, ui.menu_Custom_Query->actions())
-    if(action && action->text() == favorite)
+    if(action && action->property("name").toString() == favorite)
       action->setShortcut(QKeySequence(shortcut));
-    else
+    else if(action)
       action->setShortcut(QKeySequence());
 }
 
@@ -385,11 +393,12 @@ void biblioteq::slotCustomQuery(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
+  QString text(action->property("name").toString());
   auto string
     (QString::
      fromUtf8(QByteArray::
 	      fromBase64(settings.
-			 value(QString("customqueries/%1").arg(action->text())).
+			 value(QString("customqueries/%1").arg(text)).
 			 toByteArray()).constData()));
   QApplication::restoreOverrideCursor();
   executeCustomQuery(this, string);
