@@ -21,10 +21,10 @@ jobs:
         export DEBIAN_FRONTEND=noninteractive
         apt update
         apt upgrade -y
-        apt install -y \
+        apt install --no-install-recommends -y \
           sudo curl wget git \
           make cmake build-essential gdb \
-          iputils-ping lzip nano perl python3 valgrind
+          iputils-ping lzip nano perl valgrind python3 python3-pip 
     - name: Setup Qt ${{ env.QT_VERSION }}
       uses: jurplel/install-qt-action@v3
       with: 
