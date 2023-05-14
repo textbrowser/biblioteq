@@ -360,6 +360,7 @@ void biblioteq::slotContributors(void)
 	    "a12554<br>"
 	    "caalma<br>"
 	    "coldacid<br>"
+	    "duhow<br>"
 	    "fmra357<br>"
 	    "jerzyPL<br>"
 	    "jferby<br>"
