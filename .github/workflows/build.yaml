@@ -6,6 +6,9 @@ on:
     branches:
       - master
 
+env:
+  QT_VERSION: 5.15.9
+
 jobs:
   linux:
     runs-on: ubuntu-latest
@@ -23,32 +26,11 @@ jobs:
           sudo curl wget git \
           make cmake build-essential gdb \
           iputils-ping lzip nano perl python3 valgrind
-        # QT dependencies
-        apt install -y \
-          fontconfig dbus mesa-common-dev libxcb-glx0 libxkbcommon-x11-0 libgl1 \
-          freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev libnss3-dev libopus-dev \
-          libpng-dev libsqlite3-dev libssl-dev libx11-xcb-dev libxcb-xinerama0-dev \
-          libxcb-xkb-dev libxcb1-dev libxcursor-dev libxi-dev libxml2-dev libxrender-dev \
-          libxslt-dev zlib1g-dev '^libxcb.*-dev' libxkbcommon-dev libxkbcommon-x11-dev libgl-dev
-    - name: Setup Qt5
-      env:
-        QT5_VERSION: 5.15.9
-      run: |
-        set -eux
-        cd /opt
-        curl -Lo qt.tar.xz "https://download.qt.io/archive/qt/${QT5_VERSION%.*}/${QT5_VERSION}/single/qt-everywhere-opensource-src-${QT5_VERSION}.tar.xz"
-        tar xf qt.tar.xz && rm -f qt.tar.xz
-        cd /opt/qt-everywhere-src-*
-        ./configure -opensource -confirm-license -release -static \
-          -nomake tests -nomake examples -skip qtwebengine \
-          -qt-zlib -qt-libjpeg -qt-libpng -xcb -qt-freetype -qt-pcre -qt-harfbuzz
-        make -j $(nproc)
-        make install
-        cd /opt
-        rm -rf /opt/qt-everywhere-src-*
-
-        export PATH=${PATH}:/usr/local/Qt-${QT5_VERSION}/bin
-        echo "PATH=${PATH}" >> ${GITHUB_ENV}
+    - name: Setup Qt ${{ env.QT_VERSION }}
+      uses: jurplel/install-qt-action@v3
+      with: 
+        version: ${{ env.QT_VERSION }}
+        cache: true
     - uses: actions/checkout@v3
     - name: Generate makefile
       env:
