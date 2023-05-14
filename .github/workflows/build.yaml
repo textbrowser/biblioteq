@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    name: Linux
+    container:
+      image: ghcr.io/duhow/qt:static
+    steps:
+    - uses: actions/checkout@v3
+    - name: Generate makefile
+      env:
+        TARGET: biblioteq.pro
+      run: |
+        qmake -o Makefile ${TARGET}
+    - name: Build
+      run: |
+        make -j$(nproc)
+    - uses: actions/upload-artifact@v3
+      with:
+        name: BiblioteQ-amd64
+        path: BiblioteQ
