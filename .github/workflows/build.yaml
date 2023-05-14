@@ -32,7 +32,7 @@ jobs:
           libxslt-dev zlib1g-dev '^libxcb.*-dev' libxkbcommon-dev libxkbcommon-x11-dev libgl-dev
     - name: Setup Qt5
       env:
-        QT5_VERSION: 5.12.12
+        QT5_VERSION: 5.15.9
       run: |
         set -eux
         cd /opt
