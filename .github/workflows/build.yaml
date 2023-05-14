@@ -6,57 +6,13 @@ on:
     branches:
       - master
 
-env:
-  QT_VERSION: 5.15.9
-
 jobs:
   linux:
     runs-on: ubuntu-latest
     name: Linux
     container:
-      image: ubuntu:20.04
+      image: ghcr.io/duhow/qt:static
     steps:
-    - name: Setup dependencies
-      run: |
-        export DEBIAN_FRONTEND=noninteractive
-        apt update
-        apt upgrade -y
-        apt install --no-install-recommends -y \
-          sudo curl wget git \
-          make cmake build-essential gdb pkgconf \
-          iputils-ping lzip nano perl valgrind python3 python3-pip 
-        # QT dependencies
-        apt install -y \
-          fontconfig dbus mesa-common-dev libxcb-glx0 libxkbcommon-x11-0 libgl1 \
-          freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev libnss3-dev libopus-dev \
-          libpng-dev libsqlite3-dev libssl-dev libx11-xcb-dev libxcb-xinerama0-dev \
-          libxcb-xkb-dev libxcb1-dev libxcursor-dev libxi-dev libxml2-dev libxrender-dev \
-          libxslt-dev zlib1g-dev '^libxcb.*-dev' libxkbcommon-dev libxkbcommon-x11-dev libgl-dev
-    - name: Setup Qt ${{ env.QT_VERSION }}
-      if: steps.cache-qt.outputs.cache-hit != 'true'
-      run: |
-        set -eux
-        cd /opt
-        curl -Lo qt.tar.xz "https://download.qt.io/archive/qt/${QT_VERSION%.*}/${QT_VERSION}/single/qt-everywhere-opensource-src-${QT_VERSION}.tar.xz"
-        tar xf qt.tar.xz && rm -f qt.tar.xz
-        cd /opt/qt-everywhere-src-*
-        ./configure -release -static -opensource -confirm-license \
-          -nomake tests \
-          -nomake examples \
-          -nomake tools \
-          -skip qtwebengine \
-          -skip webengine \
-          -no-dbus \
-          -no-ssl \
-          -no-pch \
-          -qt-zlib -qt-libjpeg -qt-libpng -qt-pcre
-        make -j4
-        make install
-        cd /opt
-        rm -rf /opt/qt-everywhere-src-*
-
-        export PATH=${PATH}:/usr/local/Qt-${QT5_VERSION}/bin
-        echo "PATH=${PATH}" >> ${GITHUB_ENV}
     - uses: actions/checkout@v3
     - name: Generate makefile
       env:
@@ -70,4 +26,3 @@ jobs:
       with:
         name: BiblioteQ-amd64
         path: BiblioteQ
-
