@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    name: Linux
+    container:
+      image: ubuntu:20.04
+    steps:
+    # Based from https://github.com/fffaraz/docker-qt
+    - name: Setup dependencies
+      run: |
+        export DEBIAN_FRONTEND=noninteractive
+        apt update
+        apt upgrade -y
+        apt install -y \
+          sudo curl wget git \
+          make cmake build-essential gdb \
+          iputils-ping lzip nano perl python3 valgrind
+        # QT dependencies
+        apt install -y \
+          fontconfig dbus mesa-common-dev libxcb-glx0 libxkbcommon-x11-0 libgl1 \
+          freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev libmysqlclient-dev libnss3-dev libopus-dev \
+          libpng-dev libsqlite3-dev libssl-dev libx11-xcb-dev libxcb-xinerama0-dev \
+          libxcb-xkb-dev libxcb1-dev libxcursor-dev libxi-dev libxml2-dev libxrender-dev \
+          libxslt-dev zlib1g-dev '^libxcb.*-dev' libxkbcommon-dev libxkbcommon-x11-dev libgl-dev
+    - name: Setup Qt5
+      env:
+        QT5_VERSION: 5.12.12
+      run: |
+        set -eux
+        cd /opt
+        curl -Lo qt.tar.xz "https://download.qt.io/archive/qt/${QT5_VERSION%.*}/${QT5_VERSION}/single/qt-everywhere-opensource-src-${QT5_VERSION}.tar.xz"
+        tar xf qt.tar.xz && rm -f qt.tar.xz
+        cd /opt/qt-everywhere-src-*
+        ./configure -opensource -confirm-license -release -static \
+          -nomake tests -nomake examples -skip qtwebengine \
+          -qt-zlib -qt-libjpeg -qt-libpng -xcb -qt-freetype -qt-pcre -qt-harfbuzz
+        make -j $(nproc)
+        make install
+        cd /opt
+        rm -rf /opt/qt-everywhere-src-*
+
+        export PATH=${PATH}:/usr/local/Qt-${QT5_VERSION}/bin
+        echo "PATH=${PATH}" >> ${GITHUB_ENV}
+    - uses: actions/checkout@v3
+    - name: Generate makefile
+      env:
+        TARGET: biblioteq.pro
+      run: |
+        qmake -o Makefile ${TARGET}
+    - name: Build
+      run: |
+        make -j$(nproc)
+    - uses: actions/upload-artifact@v3
+      with:
+        name: BiblioteQ-amd64
+        path: BiblioteQ
+
