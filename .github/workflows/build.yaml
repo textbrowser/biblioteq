@@ -16,7 +16,6 @@ jobs:
     container:
       image: ubuntu:20.04
     steps:
-    # Based from https://github.com/fffaraz/docker-qt
     - name: Setup dependencies
       run: |
         export DEBIAN_FRONTEND=noninteractive
@@ -30,6 +29,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with: 
         version: ${{ env.QT_VERSION }}
+        setup-python: false
         cache: true
     - uses: actions/checkout@v3
     - name: Generate makefile
