@@ -3468,9 +3468,13 @@ void biblioteq_book::slotGo(void)
 			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
+		      else if(names.at(i) == "Target Audience")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.target_audience->currentText().trimmed());
 		      else if(names.at(i) == "Volume Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.volume_number->text().trimmed());
+
 		    }
 
 		  if(imageColumn == -1)
@@ -3569,6 +3573,7 @@ void biblioteq_book::slotGo(void)
 	"book.condition, "
 	"book.accession_number, "
 	"book.alternate_id_1, "
+	"book.target_audience, "
 	"book.volume_number, "
 	"book.type, "
 	"book.myoid, " +
