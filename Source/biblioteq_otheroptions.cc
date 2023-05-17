@@ -76,10 +76,6 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
   m_ui.publication_date->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
   m_ui.shortcuts->setItemDelegateForColumn(1, m_shortcutsItemDelegate);
-  connect(m_keywordsItemDelegate,
-	  SIGNAL(changed(const QColor &, const int)),
-	  this,
-	  SLOT(slotCustomQueryColorSelected(const QColor &, const int)));
   prepareSQLKeywords();
   prepareSettings();
   prepareShortcuts();
@@ -463,7 +459,7 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.custom_query->setItem(i, 0, item);
       item = new QTableWidgetItem(QColor(Qt::black).name());
-      item->setBackground(QColor(item->text().remove('&')));
+      item->setData(Qt::DecorationRole, QColor(Qt::black));
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.custom_query->setItem(i, 1, item);
@@ -505,7 +501,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 
 	if(item1 && item2)
 	  {
-	    item2->setBackground(map.value(item1->text()));
+	    item2->setData(Qt::DecorationRole, map.value(item1->text()));
 	    item2->setText(map.value(item1->text()).name());
 	  }
       }
@@ -736,15 +732,6 @@ void biblioteq_otheroptions::slotClose(void)
 #endif
 }
 
-void biblioteq_otheroptions::slotCustomQueryColorSelected
-(const QColor &color, const int row)
-{
-  auto item = m_ui.custom_query->item(row, 1);
-
-  if(item)
-    item->setBackground(color);
-}
-
 void biblioteq_otheroptions::slotMainWindowShortcutChanged(void)
 {
   if(!m_ui.shortcuts->item(0, 0))
@@ -784,6 +771,7 @@ void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
 void biblioteq_otheroptions::slotResetCustomQueryColors(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.custom_query->setSortingEnabled(false);
 
   for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
     {
@@ -791,11 +779,12 @@ void biblioteq_otheroptions::slotResetCustomQueryColors(void)
 
       if(item)
 	{
-	  item->setBackground(QColor(Qt::black));
+	  item->setData(Qt::DecorationRole, QColor(Qt::black));
 	  item->setText(QColor(Qt::black).name());
 	}
     }
 
+  m_ui.custom_query->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
 }
 
