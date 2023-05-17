@@ -55,15 +55,17 @@ biblioteq_copy_editor::biblioteq_copy_editor
  const QString &uniqueIdArg,
  const bool speedy):QDialog(parent)
 {
-  m_cb.setupUi(this);
   m_bitem = bitemArg;
+  m_cb.setupUi(this);
   m_cb.deleteButton->setVisible(false);
   m_cb.information->setVisible(showForLendingArg);
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ioid = ioidArg;
   m_itemType = itemTypeArg;
   m_parent = parent;
-  m_quantity = quantityArg;
+  m_quantity = quantityArg >= 1 ?
+    quantityArg :
+    biblioteq_misc_functions::quantity(biblioteq->getDB(), m_ioid, m_itemType);
   m_showForLending = showForLendingArg;
   m_speedy = speedy;
   m_spinbox = spinboxArg;

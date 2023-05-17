@@ -46,7 +46,9 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ioid = ioidArg;
   m_itemType = "Book";
-  m_quantity = quantityArg;
+  m_quantity = quantityArg >= 1 ?
+    quantityArg :
+    biblioteq_misc_functions::quantity(biblioteq->getDB(), m_ioid, m_itemType);
   m_showForLending = showForLendingArg;
   m_spinbox = spinboxArg;
   m_uniqueIdArg = uniqueIdArg.trimmed();

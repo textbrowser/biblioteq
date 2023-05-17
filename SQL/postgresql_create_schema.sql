@@ -177,7 +177,7 @@ CREATE TABLE grey_literature
 	location	TEXT,
 	myoid		BIGSERIAL UNIQUE,
 	notes		TEXT,
-	quantity	 INTEGER NOT NULL DEFAULT 1,
+	quantity	INTEGER NOT NULL DEFAULT 1,
 	type		VARCHAR(16) NOT NULL DEFAULT 'Grey Literature'
 );
 

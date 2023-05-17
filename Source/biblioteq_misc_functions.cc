@@ -1806,6 +1806,27 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
   return 0;
 }
 
+int biblioteq_misc_functions::quantity
+(const QSqlDatabase &db, const QString &oid, const QString &t)
+{
+  QSqlQuery query(db);
+  QString type(QString(t).remove(' ').toLower());
+  QString querystr = "";
+
+  if(type == "greyliterature")
+    querystr = "SELECT quantity FROM grey_literature WHERE myoid = ?";
+  else
+    querystr = QString("SELECT quantity FROM %1 WHERE myoid = ?").arg(type);
+
+  query.prepare(querystr);
+  query.addBindValue(oid);
+
+  if(query.exec() && query.next())
+    return qAbs(query.value(0).toInt());
+  else
+    return 0;
+}
+
 int biblioteq_misc_functions::sqliteQuerySize
 (const QString &querystr,
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
