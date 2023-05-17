@@ -310,6 +310,14 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
       if(m_itemType == "Book")
 	totalReserved = biblioteq_misc_functions::getItemsReservedCounts
 	  (qmain->getDB(), memberid, errorstr2).value("numbooks");
+      else
+	{
+	  auto type(QString("num%1s").arg(m_itemType.toLower()));
+
+	  type = type.remove(' ').remove('_');
+	  totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	    (qmain->getDB(), memberid, errorstr2).value(type);
+	}
 
       QApplication::restoreOverrideCursor();
 
