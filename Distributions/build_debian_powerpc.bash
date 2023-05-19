@@ -16,6 +16,8 @@ if [ ! -r biblioteq.powerpc.pro ]; then
     exit 1
 fi
 
+VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
+
 # Preparing ./usr/local/biblioteq:
 
 make distclean 2>/dev/null
@@ -39,7 +41,7 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./DEBIAN-POWERPC biblioteq-debian/DEBIAN
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2023.07.07_powerpc.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-${VERSION}_powerpc.deb
 make distclean
 rm -fr ./usr
 rm -fr biblioteq-debian

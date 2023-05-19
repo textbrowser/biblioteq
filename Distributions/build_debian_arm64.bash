@@ -16,6 +16,8 @@ if [ ! -r biblioteq.arm.pro ]; then
     exit 1
 fi
 
+VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
+
 # Preparing ./usr/local/biblioteq:
 
 make distclean 2>/dev/null
@@ -39,7 +41,7 @@ mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./PIOS64 biblioteq-debian/DEBIAN
 cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-2023.07.07_arm64.deb
+fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-${VERSION}_arm64.deb
 make distclean
 rm -fr ./usr
 rm -fr biblioteq-debian
