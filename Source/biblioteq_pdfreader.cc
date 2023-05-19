@@ -373,6 +373,8 @@ void biblioteq_pdfreader::slotPrint(void)
       progress.setMinimum(0);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      biblioteq_misc_functions::center
+	(this, qobject_cast<QMainWindow *> (parentWidget()));
       progress.show();
       progress.repaint();
       QApplication::processEvents();
@@ -450,6 +452,8 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
   progress.setMinimum(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  biblioteq_misc_functions::center
+    (this, qobject_cast<QMainWindow *> (parentWidget()));
   progress.show();
   progress.repaint();
   QApplication::processEvents();

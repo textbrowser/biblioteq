@@ -2220,7 +2220,7 @@ void biblioteq::slotAbout(void)
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
-	"Copyright (c) 2005 - present, Warner Sisters.<br>"
+	"Made with love by textbrower.<br>"
 	"Software for and from the margins.<br>"
 	"Faenza icons.<br>"
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
