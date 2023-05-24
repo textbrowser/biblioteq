@@ -1,0 +1,37 @@
+name: Check
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  doxygen:
+    runs-on: ubuntu-latest
+    name: Doxygen
+    steps:
+    - uses: actions/checkout@v3
+    - uses: mattnotmitt/doxygen-action@v1.9.1
+      with:
+        doxyfile-path: 'biblioteq.doxygen'
+
+    - name: Check for modified files
+      id: check_files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "modified=true" >> ${GITHUB_OUTPUT}
+        else
+          echo "modified=false" >> ${GITHUB_OUTPUT}
+        fi
+
+    - name: Commit and push changes (PR only)
+      if: github.event_name == 'push' && steps.check_files.outputs.modified == 'true'
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: Update doxygen documentation
+        default_author: github_actions
+        commit: --signoff
