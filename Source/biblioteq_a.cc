@@ -64,6 +64,7 @@ extern "C"
 #include "biblioteq_custom_query.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_create_schema.h"
+#include "biblioteq_swifty.h"
 
 /*
 ** -- Global Variables --
@@ -166,6 +167,17 @@ int main(int argc, char *argv[])
 
 biblioteq::biblioteq(void):QMainWindow()
 {
+  m_swifty = new swifty
+    (BIBLIOTEQ_VERSION,
+     "#define BIBLIOTEQ_VERSION",
+     QUrl::fromUserInput("https://raw.githubusercontent.com/"
+			 "textbrowser/biblioteq/master/Source/biblioteq.h"),
+     this);
+  connect(m_swifty,
+	  SIGNAL(different(const QString &)),
+	  this,
+	  SLOT(slotSwifty(void)));
+
   QMenu *menu1 = nullptr;
 
   ui.setupUi(this);
@@ -187,6 +199,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_queryOffset = 0;
   m_searchQuery = nullptr;
   m_status_bar_label = nullptr;
+  m_swifty->download();
   m_branch_diag = new QDialog(this);
   m_menuCategoryActionGroup = new QActionGroup(this);
   m_menuCategoryActionGroup->setExclusive(true);

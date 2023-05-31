@@ -38,6 +38,7 @@
 #include "biblioteq_files.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_merge_databases.h"
+#include "biblioteq_swifty.h"
 
 QColor biblioteq::itemMandatoryFieldColor(void) const
 {
@@ -726,4 +727,18 @@ void biblioteq::slotTableFindTextCleared(const QString &text)
 void biblioteq::slotTearOffMenus(void)
 {
   prepareTearOffMenus();
+}
+
+void biblioteq::slotSwifty(void)
+{
+  auto version(m_swifty->newest_version().trimmed());
+
+  if(BIBLIOTEQ_VERSION != version && version.isEmpty() == false)
+    if(statusBar())
+      {
+	QTimer::singleShot(10000, this, SLOT(slotSwifty(void)));
+	statusBar()->showMessage
+	  (tr("A new version (%1) of BiblioteQ is available!").arg(version),
+	   7500);
+      }
 }

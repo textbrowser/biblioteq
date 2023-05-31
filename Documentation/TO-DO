@@ -536,7 +536,7 @@
 292. Syntax highlighting for custom SQL queries. (Done)
 293. Guard SQL queries. Limit strings in queries. Source may be refactored,
      neglecting the revisions. (Done)
-294. Remote query for version information. (TBD)
+294. Remote query for version information. (Done)
 295. Create unique myoid values on SQLite merge. (TBD)
 296. Do not disconnect the current database if a future database does not
      have a proper driver. (Done)

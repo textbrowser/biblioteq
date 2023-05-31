@@ -63,6 +63,7 @@ class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
 class biblioteq_sqlite_merge_databases;
+class swifty;
 
 class userinfo_diag_class: public QDialog
 {
@@ -510,6 +511,7 @@ class biblioteq: public QMainWindow
   qint64 m_pages;
   qint64 m_queryOffset;
   quint64 m_idCt;
+  swifty *m_swifty;
   userinfo_diag_class *userinfo_diag;
   QString dbUserName(void) const;
   QString reservationHistoryHtml(void) const;
@@ -668,6 +670,7 @@ class biblioteq: public QMainWindow
   void slotShowPrev(void);
   void slotShowReleaseNotes(void);
   void slotSqliteFileSelected(bool state);
+  void slotSwifty(void);
   void slotTableFindNext(void);
   void slotTableFindTextCleared(const QString &text);
   void slotTearOffMenus(void);
