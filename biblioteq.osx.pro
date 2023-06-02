@@ -1,5 +1,6 @@
 include(biblioteq-source.pro)
-purge.commands = find . -name '*~*' -exec rm -f {} \;
+dmg.commands = hdiutil create BiblioteQ.d.dmg -srcfolder BiblioteQ.d
+purge.commands = find . -name '*~*' -exec rm -f {} \ ;
 
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= QT_DEPRECATED_WARNINGS
@@ -25,7 +26,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -std=c++17
 QMAKE_DISTCLEAN += -r BiblioteQ.d temp .qmake.cache .qmake.stash
-QMAKE_EXTRA_TARGETS = purge
+QMAKE_EXTRA_TARGETS = dmg purge
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
 
 ICON		= Icons/book.icns
