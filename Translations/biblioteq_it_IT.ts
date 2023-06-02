@@ -59,6 +59,18 @@
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Grey Literatures and Photographs do not possess copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QSqlQuery::next() was false.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The method biblioteq_misc_functions::getOID() did not discover a valid OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -398,15 +410,23 @@
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A value of zero disables the maximum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate a reminder letter and place its contents in the clipboard buffer. &lt;span style=&quot; background-color:transparent;&quot;&gt;The current contents of this panel will influence the generated letter.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Launch the preferred e-mail software.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year&apos;s End</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Membership Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
     <message>
         <source>BiblioteQ: Administrator Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please use lower-case IDs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -495,6 +515,14 @@
     </message>
     <message>
         <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty containers? Please review Options -&gt; Populate Administrator Browser On Display.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please apply lower-case identifiers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -602,6 +630,165 @@
     </message>
 </context>
 <context>
+    <name>batchActivitiesBrowser</name>
+    <message>
+        <source>BiblioteQ: Batch Activities Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable audio. Requires multimedia libraries.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not retained fof future sessions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom-Scroll On Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Borrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click in this field and scan an item. A new row will be created with the scanned identifier value. Please wait until the text hint is visible before scanning an item. Of course, you may also type an identifier and press the Enter key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please scan an item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List member&apos;s reserved items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Field column is completed by scanner queries.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Row(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Discover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export missing items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Title column will include the first discovered item if there are multiple categories.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Table Name(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Return</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go! (Current Page)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq</name>
     <message>
         <source> in file </source>
@@ -681,10 +868,6 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1358,14 +1541,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The option is only available for patrons.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The option is not available for SQLite databases as such databases do not support actual patrons.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1562,23 +1737,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An error occurred while attempting to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>CSV (*.csv)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Export Table View as CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1638,10 +1801,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Upgrade SQLite Schema Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1651,26 +1810,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Unlimited</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Table Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Column Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NULL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1806,10 +1945,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Executing %1 statements.&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reservation Date: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1863,10 +1998,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Return Selected Item(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Copyright (c) 2005 - present, X.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;SQLite version %9.&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1982,10 +2113,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Contributors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1999,6 +2126,245 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Release Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Membership Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>db.open() (%1) error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error (%1) occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Table View As CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate Letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Launch E-Mail Software...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query completed in %1 second(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that BiblioteQ will execute all of the upgrade statements since the upgrade tool was introduced.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that BiblioteQ will execute this version&apos;s upgrade statements.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are about to upgrade the SQLite database %1. Please verify that you have made a copy of this database. %2 Are you sure that you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Executing %1 statement(s).&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Too many (%1) items reserved (%2).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The option is only available for PostgreSQL patrons.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Empty)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current SQLite schema must be updated. Tools -&gt; Upgrade SQLite Schema (Recent).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Member&apos;s History As CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Set Membership Dues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Membership Dues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the entries.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the entry %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version (%1) of BiblioteQ is available!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_batch_activities</name>
+    <message>
+        <source>List Discovered Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>List Other Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the patron&apos;s identifier.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Borrowing item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Critical error! Missing table item(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Membership has expired.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot locate member (%1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty copy identifier.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty identifier.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item is not available for reservation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item is not available (%1) for reservation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum (%1) number of reserved (%2) items exceeded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error retrieving copy number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reserved!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation problem (%1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export As CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to reset?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A copy is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A copy is not available (%1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Member Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item OID</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2117,19 +2483,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to retrieve the book binding types.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the book locations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2166,10 +2524,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2278,14 +2632,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2525,10 +2871,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>In order to download a cover image, the ISBN-10 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Open Library Data Retrieval</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2541,15 +2883,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>In order to query an Open Library site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The Open Library query produced invalid results. Perhaps the book is not defined.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The ISBN-13 must begin with 978 or 979.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2562,6 +2896,90 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The YAZ library is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Alternate Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Multi-Volume Set ISBN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Target Audience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Volume Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the originality list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the target audiences.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;Values from individual books are not included. Please see the Database Enumerations Browser.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The ISBN-13 must begin with 978.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to download a cover image, Alternate Identifier or ISBN-10 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to download a cover image, Alternate Identifier must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the ISBN-10 or the ISBN-13 field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an Open Library site, Alternate Identifier, ISBN-10, or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-Volume ISBN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target Audience:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, ISBN-10 or ISBN-13 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3353,54 +3771,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Black &amp; White Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>As New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Binding Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Club</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ex-Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Very Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to retrieve copy data.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3474,6 +3844,53 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Lost</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_custom_query</name>
+    <message>
+        <source>(Empty)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the favorite %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Rename Custom Query Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Custom Query Favorite</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3617,6 +4034,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>An error occurred while attempting to save the database enumerations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Target Audience</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4483,6 +4912,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Single copies only, please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_hyperlinked_text_edit</name>
+    <message>
+        <source>&lt;html&gt;A link may be activated by placing this widget in focus and then pressing and holding the Alt key while the link is clicked.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5358,6 +5794,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Read Status</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Alternate Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target Audience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_otheroptions</name>
@@ -5391,6 +5839,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Video Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Query Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_otheroptions_item_delegate</name>
+    <message>
+        <source>Shortcut</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5798,6 +6257,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>BiblioteQ: SQLite Database Selection</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_sruresults</name>
@@ -6203,11 +6666,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copies are ordered by copy numbers.</source>
+        <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Status</source>
+        <source>Copies are ordered by copy numbers. Some fields may be edited even if the parent copy is reserved.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6275,6 +6738,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Missing Qt database driver! Please contact your system administrator!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&amp;#9888;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6614,11 +7085,55 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query. Please include myoid and type fields as these fields are required by BiblioteQ for editing of items.</source>
+        <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>F5</source>
+        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query. Please include myoid and type fields as these fields are required by BiblioteQ for item editing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DELETE, SELECT, and UPDATE queries are allowed. An UPDATE query will be executed on the selected items via myoid values if items are selected. Otherwise, the UPDATE query will be executed verbatim.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saved Queries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A favorite query may be activated by a custom shortcut. Please see Other Options -&amp;gt; Shortcuts -&amp;gt; Custom Query Shortcut.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Empty)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save the query statement. If the favorite already exists, it will be overwritten.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6782,6 +7297,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Empty containers? Please review Options -&amp;gt; Populate Database Enumerations Browser On Display. Existing item windows will not reflect revisions!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Section</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Conditions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Target Audiences</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7076,10 +7611,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Do not record reservation history.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Member ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7153,6 +7684,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Do not record reservation history. PostgreSQL patrons and SQLite (all patrons).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export As CSV...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7255,10 +7798,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please do not ignore unique fields!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Template 1 (BiblioteQ Books (All Fields))</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7275,10 +7814,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bottom Scroll On Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7288,6 +7823,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Documentation...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please do not ignore unique fields! Please clear Substitute Value fields if necessary! For example, ISBNs are not required and N/A substitutions may not be relevant.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom-Scroll On Add</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7327,10 +7870,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent. The 13-digit ISBN must start with the digits 978.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7379,18 +7918,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Black &amp; White Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7455,42 +7982,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>As New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Binding Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Club</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ex-Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7599,6 +8090,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Abstract / Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target Audience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-Volume Set ISBN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library, for example.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternate Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7836,10 +8351,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please press the Enter key to execute the query.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Previous Page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7888,10 +8399,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>E&amp;ntries per Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Preferred &amp;Z39.50 Site</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7901,10 +8408,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Preferred SRU S&amp;ite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>P&amp;hotographs per Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7940,10 +8443,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Re&amp;size Columns to Contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Save Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7952,19 +8451,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Populate View on Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>View Error &amp;Log...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset &amp;Error Log on Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8044,10 +8535,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Populate View on Item &amp;Creation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8084,10 +8571,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Custom Database Query</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Refresh Table</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8112,23 +8595,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically Save Settings on E&amp;xit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Configure Administrator Privileges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Item Requests</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populate &amp;Members Browser on Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populate &amp;Administrator Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8141,14 +8612,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Database Enumerations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Populate Database En&amp;umerations Browser on Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Export Table View as CSV...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8192,15 +8655,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Upgrade SQLite Schema</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Automatically &amp;Resize Column Widths</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8304,10 +8759,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Release Notes...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Merge SQLite Databases...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8320,7 +8771,103 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Export Icons View as PNG...</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Table Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If an item contains the specified text, the row housing it will be selected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Release Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;ntries Per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;hotographs Per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Re&amp;size Columns To Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Populate View On Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Error Log On Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate View On Item &amp;Creation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically Save Settings On E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Members Browser On Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Administrator Browser On Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate Database En&amp;umerations Browser On Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View As CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Upgrade SQLite Schema (All)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reload the &amp;biblioteq.conf file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Icons View As PNG...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Batch Activities Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tear-Off Menus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrade SQLite Schema (Recent)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8479,7 +9026,35 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export All Member Information as CSV...</source>
+        <source>Empty containers? Please review Options -&gt; Populate Members Browser On Display.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;launch_database_enumerations_browser&quot;&gt;Change reservation durations through the Database Enumerations Browser.&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Membership Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export All Member Information As CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Set Membership Fees...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8581,10 +9156,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please note that the publication date formats are applied to item details and the main window.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Availability Colors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8665,15 +9236,75 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please reload the main table on value change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Show Table / View Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mandatory Field Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query Result Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that the publication date formats are applied to item details and the main window for the specific categories. Please review Qt documentation for proper formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Members</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generated Letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dear Last Name (%1), First Name (%2),&lt;/p&gt;&lt;p&gt;Your Membership Fees of %3 are currently due.&lt;/p&gt;&lt;p&gt;Thank you for your continued support.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visible Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please double-click into an editable Shortcut cell and press the required shortcut key(s). Shortcuts from the main window are included for reference.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcut</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9212,6 +9843,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Year&apos;s End</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year&apos;s End + 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year&apos;s End + 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year&apos;s End + 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year&apos;s End + 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year&apos;s End + 5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>vgDialog</name>
@@ -9361,6 +10016,21 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>woody_collapse_expand_tool_button</name>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse / Expand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
