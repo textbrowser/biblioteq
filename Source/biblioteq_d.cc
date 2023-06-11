@@ -285,6 +285,9 @@ void biblioteq::prepareExternalApplicationsMenu(void)
       ui.menuExternal_Applications->addAction
 	(it.key(), this, SLOT(slotSpecialApplication(void)));
     }
+
+  if(ui.menuExternal_Applications->isEmpty())
+    ui.menuExternal_Applications->addAction(tr("Empty"));
 }
 
 void biblioteq::prepareTearOffMenus(void)
