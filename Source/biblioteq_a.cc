@@ -2200,6 +2200,8 @@ void biblioteq::showMain(void)
 	    m_specialExecutables[list.at(i).trimmed()] = 0;
 	  }
     }
+
+  prepareExternalApplicationsMenu();
 }
 
 void biblioteq::slotAbout(void)

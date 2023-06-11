@@ -30,6 +30,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QProcess>
 #include <QSettings>
 #include <QShortcut>
 
@@ -270,6 +271,20 @@ void biblioteq::prepareCustomQueryFavoriteShortcut(void)
       action->setShortcut(QKeySequence(shortcut));
     else if(action)
       action->setShortcut(QKeySequence());
+}
+
+void biblioteq::prepareExternalApplicationsMenu(void)
+{
+  ui.menuExternal_Applications->clear();
+
+  QMapIterator<QString, char> it(m_specialExecutables);
+
+  while(it.hasNext())
+    {
+      it.next();
+      ui.menuExternal_Applications->addAction
+	(it.key(), this, SLOT(slotSpecialApplication(void)));
+    }
 }
 
 void biblioteq::prepareTearOffMenus(void)
@@ -695,6 +710,18 @@ void biblioteq::slotShowReleaseNotes(void)
 
   m_releaseNotes.value(action)->show();
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq::slotSpecialApplication(void)
+{
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  qputenv("BIBLIOTEQ_DATABASE_NAME", m_db.databaseName().toUtf8());
+  QProcess::startDetached(action->text());
+  qunsetenv("BIBLIOTEQ_DATABASE_NAME");
 }
 
 void biblioteq::slotTableFindNext(void)

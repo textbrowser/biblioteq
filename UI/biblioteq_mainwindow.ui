@@ -469,7 +469,14 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <widget class="QMenu" name="menuExternal_Applications">
+     <property name="title">
+      <string>External Applications</string>
+     </property>
+    </widget>
     <addaction name="actionBatchActivitiesBrowser"/>
+    <addaction name="separator"/>
+    <addaction name="menuExternal_Applications"/>
     <addaction name="separator"/>
     <addaction name="actionImportCSV"/>
     <addaction name="separator"/>
@@ -1431,6 +1438,11 @@
   <action name="action_Upgrade_SQLite_SchemaRecent">
    <property name="text">
     <string>Upgrade SQLite Schema (Recent)</string>
+   </property>
+  </action>
+  <action name="actionEmpty">
+   <property name="text">
+    <string>Empty</string>
    </property>
   </action>
  </widget>

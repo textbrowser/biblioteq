@@ -531,6 +531,7 @@ class biblioteq: public QMainWindow
   void exportAsCSV(QTableWidget *table, QWidget *parent, const QString &title);
   void initialUpdate(void);
   void prepareContextMenus(void);
+  void prepareExternalApplicationsMenu(void);
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
@@ -670,6 +671,7 @@ class biblioteq: public QMainWindow
   void slotShowPassword(bool state);
   void slotShowPrev(void);
   void slotShowReleaseNotes(void);
+  void slotSpecialApplication(void);
   void slotSqliteFileSelected(bool state);
   void slotSwifty(void);
   void slotTableFindNext(void);
