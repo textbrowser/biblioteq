@@ -473,6 +473,7 @@ class biblioteq: public QMainWindow
   QMainWindow *m_members_diag;
   QMap<QString, QHash<QString, QString> > m_branches;
   QMap<QString, QHash<QString, QString> > m_sruMaps;
+  QMap<QString, char> m_specialExecutables;
   QMessageBox *m_about;
   QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
   QPair<QColor, QColor> m_aboutColors;

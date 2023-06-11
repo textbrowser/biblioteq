@@ -2190,6 +2190,15 @@ void biblioteq::showMain(void)
 		      }
 	      }
 	  }
+	else if(list.at(i) == "--special-executable")
+	  {
+	    i += 1;
+
+	    if(i >= list.size())
+	      continue;
+
+	    m_specialExecutables[list.at(i).trimmed()] = 0;
+	  }
     }
 }
 
