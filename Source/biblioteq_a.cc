@@ -955,6 +955,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	      SLOT(slotLanguageChanged(void)));
     }
 
+  ui.menuExternal_Applications->setStyleSheet("QMenu {menu-scrollable: 1;}");
   ui.menuPreferredSRUSite->setStyleSheet("QMenu {menu-scrollable: 1;}");
   ui.menuPreferredZ3950Server->setStyleSheet("QMenu {menu-scrollable: 1;}");
   ui.menu_Custom_Query->setStyleSheet("QMenu {menu-scrollable: 1;}");
