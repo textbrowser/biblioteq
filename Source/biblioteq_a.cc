@@ -2241,6 +2241,7 @@ void biblioteq::slotAbout(void)
     (QPixmap(":/book.png").scaled(QSize(128, 128),
 				  Qt::KeepAspectRatio,
 				  Qt::SmoothTransformation));
+  m_about->setStandardButtons(QMessageBox::Close);
   m_about->setText
     (tr("<html>BiblioteQ Version %1<br>"
 	"Architecture %4.<br>"
