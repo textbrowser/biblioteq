@@ -723,7 +723,7 @@ void biblioteq::slotSpecialApplication(void)
     return;
 
   qputenv("BIBLIOTEQ_DATABASE_NAME", m_db.databaseName().toUtf8());
-  QProcess::startDetached(action->text());
+  QProcess::startDetached(action->text(), QStringList());
   qunsetenv("BIBLIOTEQ_DATABASE_NAME");
 }
 
