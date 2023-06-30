@@ -155,9 +155,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>0</y>
+              <y>-558</y>
               <width>497</width>
-              <height>3482</height>
+              <height>3658</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -175,6 +175,37 @@
                   <string>Book Binding Types</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="bbt_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_24">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QListWidget" name="bookBindingsList">
@@ -287,6 +318,37 @@
                 </widget>
                </item>
                <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <item>
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="bc_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_31">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
                 <widget class="QListWidget" name="bookConditionsList">
                  <property name="minimumSize">
                   <size>
@@ -397,6 +459,37 @@
                 </widget>
                </item>
                <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_19">
+                 <item>
+                  <widget class="QLabel" name="label_3">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="bo_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_32">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
                 <widget class="QListWidget" name="bookOriginalityList">
                  <property name="minimumSize">
                   <size>
@@ -505,6 +598,37 @@
                   <string>Book Target Audiences</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_20">
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="bta_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_33">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QListWidget" name="bookTargetAudiences">
@@ -2036,15 +2160,19 @@
  <tabstops>
   <tabstop>section</tabstop>
   <tabstop>scrollArea</tabstop>
+  <tabstop>bbt_favorite</tabstop>
   <tabstop>bookBindingsList</tabstop>
   <tabstop>addBookBinding</tabstop>
   <tabstop>removeBookBinding</tabstop>
+  <tabstop>bc_favorite</tabstop>
   <tabstop>bookConditionsList</tabstop>
   <tabstop>addBookCondition</tabstop>
   <tabstop>removeBookCondition</tabstop>
+  <tabstop>bo_favorite</tabstop>
   <tabstop>bookOriginalityList</tabstop>
   <tabstop>addBookOriginality</tabstop>
   <tabstop>removeBookOriginality</tabstop>
+  <tabstop>bta_favorite</tabstop>
   <tabstop>bookTargetAudiences</tabstop>
   <tabstop>addBookTargetAudience</tabstop>
   <tabstop>removeBookTargetAudience</tabstop>
