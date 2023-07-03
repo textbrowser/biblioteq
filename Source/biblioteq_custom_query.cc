@@ -170,6 +170,9 @@ void biblioteq_custom_query::slotDeleteFavoriteQuery(void)
 
   QSettings settings;
 
+  if(cq.favorite->isChecked())
+    settings.remove("custom_query_favorite");
+
   settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
   emit favoritesChanged();
   m_parent->populateFavorites();
