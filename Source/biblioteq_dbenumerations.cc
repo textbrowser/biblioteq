@@ -417,7 +417,10 @@ void biblioteq_dbenumerations::populateWidgets(void)
 			  toString()));
 
 	      if(combobox->currentIndex() < 0)
-		combobox->setCurrentIndex(0);
+		{
+		  combobox->setCurrentIndex(0);
+		  settings.remove(QString("%1_favorite").arg(str));
+		}
 	    }
 	}
       else if(m_ui.locationsTable == tablewidget && tablewidget)
