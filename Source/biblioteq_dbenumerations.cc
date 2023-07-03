@@ -26,6 +26,7 @@
 */
 
 #include <QScrollBar>
+#include <QSettings>
 
 #include "biblioteq.h"
 #include "biblioteq_dbenumerations.h"
@@ -209,6 +210,10 @@ void biblioteq_dbenumerations::clear(void)
 {
   m_listData.clear();
   m_tableData.clear();
+  m_ui.bbt_favorite->clear();
+  m_ui.bc_favorite->clear();
+  m_ui.bo_favorite->clear();
+  m_ui.bta_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
@@ -257,6 +262,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
   clear();
 
   QList<QPair<QString, QString> > pairList;
+  QSettings settings;
   QString errorstr("");
   QStringList list;
   QStringList tables;
@@ -279,6 +285,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
   for(int i = 0; i < tables.size(); i++)
     {
+      QComboBox *combobox = nullptr;
       QListWidget *listwidget = nullptr;
       QTableWidget *tablewidget = nullptr;
       const auto &str(tables.at(i));
@@ -287,24 +294,28 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
       if(str == "book_binding_types")
 	{
+	  combobox = m_ui.bbt_favorite;
 	  list = biblioteq_misc_functions::getBookBindingTypes
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.bookBindingsList;
 	}
       else if(str == "book_conditions")
 	{
+	  combobox = m_ui.bc_favorite;
 	  list = biblioteq_misc_functions::getBookConditions
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.bookConditionsList;
 	}
       else if(str == "book_originality")
 	{
+	  combobox = m_ui.bo_favorite;
 	  list = biblioteq_misc_functions::getBookOriginality
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.bookOriginalityList;
 	}
       else if(str == "book_target_audiences")
 	{
+	  combobox = m_ui.bta_favorite;
 	  list = biblioteq_misc_functions::getBookTargetAudiences
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.bookTargetAudiences;
@@ -385,15 +396,30 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	   tables.at(i) + tr("."),
 	   errorstr, __FILE__, __LINE__);
       else if(listwidget)
-	for(int i = 0; i < list.size(); i++)
-	  {
-	    QListWidgetItem *item = nullptr;
+	{
+	  for(int i = 0; i < list.size(); i++)
+	    {
+	      QListWidgetItem *item = nullptr;
 
-	    item = new QListWidgetItem(list.at(i));
-	    item->setFlags
-	      (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	    listwidget->addItem(item);
-	  }
+	      item = new QListWidgetItem(list.at(i));
+	      item->setFlags
+		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	      listwidget->addItem(item);
+	    }
+
+	  if(combobox)
+	    {
+	      combobox->addItems(list);
+	      combobox->insertItem(0, "");
+	      combobox->setCurrentIndex
+		(combobox->
+		 findText(settings.value(QString("%1_favorite").arg(str)).
+			  toString()));
+
+	      if(combobox->currentIndex() < 0)
+		combobox->setCurrentIndex(0);
+	    }
+	}
       else if(m_ui.locationsTable == tablewidget && tablewidget)
 	{
 	  m_ui.locationsTable->setRowCount(pairList.size());
@@ -780,7 +806,9 @@ void biblioteq_dbenumerations::slotSave(void)
   if(!qmain)
     return;
 
+  QComboBox *combobox = nullptr;
   QListWidget *listwidget = nullptr;
+  QSettings settings;
   QSqlQuery query(qmain->getDB());
   QString querystr("");
   QStringList tables;
@@ -807,8 +835,8 @@ void biblioteq_dbenumerations::slotSave(void)
   for(int i = 0; i < tables.size(); i++)
     {
       listwidget = nullptr;
-      tablewidget = nullptr;
       querystr = QString("DELETE FROM %1").arg(tables.at(i));
+      tablewidget = nullptr;
 
       if(!qmain->getDB().transaction())
 	{
@@ -832,13 +860,25 @@ void biblioteq_dbenumerations::slotSave(void)
 	}
 
       if(tables.at(i) == "book_binding_types")
-	listwidget = m_ui.bookBindingsList;
+	{
+	  combobox = m_ui.bbt_favorite;
+	  listwidget = m_ui.bookBindingsList;
+	}
       else if(tables.at(i) == "book_conditions")
-	listwidget = m_ui.bookConditionsList;
+	{
+	  combobox = m_ui.bc_favorite;
+	  listwidget = m_ui.bookConditionsList;
+	}
       else if(tables.at(i) == "book_originality")
-	listwidget = m_ui.bookOriginalityList;
+	{
+	  combobox = m_ui.bo_favorite;
+	  listwidget = m_ui.bookOriginalityList;
+	}
       else if(tables.at(i) == "book_target_audiences")
-	listwidget = m_ui.bookTargetAudiences;
+	{
+	  combobox = m_ui.bta_favorite;
+	  listwidget = m_ui.bookTargetAudiences;
+	}
       else if(tables.at(i) == "cd_formats")
 	listwidget = m_ui.cdFormatsList;
       else if(tables.at(i) == "dvd_aspect_ratios")
@@ -883,6 +923,11 @@ void biblioteq_dbenumerations::slotSave(void)
 		    goto db_rollback;
 		  }
 	      }
+
+	  if(combobox)
+	    settings.setValue
+	      (QString("%1_favorite").arg(tables.at(i)),
+	       combobox->currentText());
 	}
       else if(tablewidget && tablewidget == m_ui.locationsTable)
 	{
