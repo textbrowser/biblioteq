@@ -18,30 +18,30 @@ fi
 
 VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
 
-# Preparing ./usr/local/biblioteq:
+# Preparing ./opt/biblioteq:
 
 make distclean 2>/dev/null
-mkdir -p ./usr/local/biblioteq/Documentation
-mkdir -p ./usr/local/biblioteq/SQL
+mkdir -p ./opt/biblioteq/Documentation
+mkdir -p ./opt/biblioteq/SQL
 qmake -o Makefile biblioteq.arm.pro
 lupdate biblioteq.arm.pro && lrelease biblioteq.arm.pro
 make -j $(nproc)
-cp -p ./BiblioteQ ./usr/local/biblioteq/.
-cp -p ./Icons/book.png ./usr/local/biblioteq/.
-cp -p ./SQL/* ./usr/local/biblioteq/SQL/.
-cp -p ./biblioteq.conf ./usr/local/biblioteq/.
-cp -p ./biblioteq.sh ./usr/local/biblioteq/.
-cp -pr ./Data ./usr/local/biblioteq/.
-cp -pr ./Documentation/* ./usr/local/biblioteq/Documentation/.
+cp -p ./BiblioteQ ./opt/biblioteq/.
+cp -p ./Icons/book.png ./opt/biblioteq/.
+cp -p ./SQL/* ./opt/biblioteq/SQL/.
+cp -p ./biblioteq.conf ./opt/biblioteq/.
+cp -p ./biblioteq.sh ./opt/biblioteq/.
+cp -pr ./Data ./opt/biblioteq/.
+cp -pr ./Documentation/* ./opt/biblioteq/Documentation/.
 
 # Preparing BiblioteQ-x.deb:
 
-mkdir -p biblioteq-debian/usr/local
+mkdir -p biblioteq-debian/opt
 mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
 cp -pr ./PIOS64 biblioteq-debian/DEBIAN
-cp -r ./usr/local/biblioteq biblioteq-debian/usr/local/.
+cp -r ./opt/biblioteq biblioteq-debian/opt/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-${VERSION}_arm64.deb
 make distclean
-rm -fr ./usr
+rm -fr ./opt
 rm -fr biblioteq-debian
