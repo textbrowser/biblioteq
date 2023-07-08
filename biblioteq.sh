@@ -20,13 +20,20 @@ then
     exit $?
 fi
 
+if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
+then
+    echo "Launching an official BiblioteQ."
+    cd /opt/biblioteq && exec ./BiblioteQ "$@"
+    exit $?
+fi
+
 if [ -r /usr/local/biblioteq/BiblioteQ ] &&
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
     cd /usr/local/biblioteq && exec ./BiblioteQ "$@"
     exit $?
-else
-    "BiblioteQ was not found!"
-    exit 1
 fi
+
+echo "BiblioteQ was not found!"
+exit 1

@@ -780,15 +780,15 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
      accessionNumberAsSpecialText(biblioteq_misc_functions::
 				  bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
-  id.view_pdf->setEnabled(false);
   id.copiesButton->setEnabled(false);
   id.delete_files->setEnabled(false);
   id.export_files->setEnabled(false);
   id.showUserButton->setEnabled(false);
+  id.view_pdf->setEnabled(false);
+  m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
   m_duplicate = false;
-  m_engWindowTitle = "Create";
 }
 
 void biblioteq_book::insert(void)
