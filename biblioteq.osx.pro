@@ -1,6 +1,6 @@
 include(biblioteq-source.pro)
 dmg.commands = hdiutil create BiblioteQ.d.dmg -srcfolder BiblioteQ.d
-purge.commands = find . -name '*~*' -exec rm -f {} \ ;
+purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= QT_DEPRECATED_WARNINGS
