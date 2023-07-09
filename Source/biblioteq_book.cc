@@ -38,6 +38,7 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QNetworkProxy>
+#include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -550,7 +551,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.splitter->setStretchFactor(2, 0);
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
-  prepareFavorites();
 }
 
 biblioteq_book::~biblioteq_book()
@@ -795,6 +795,7 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
 void biblioteq_book::insert(void)
 {
   slotReset();
+  prepareFavorites();
   id.accession_number->setText
     (biblioteq_misc_functions::
      accessionNumberAsSpecialText(biblioteq_misc_functions::
@@ -1992,6 +1993,33 @@ void biblioteq_book::populateFiles(void)
 
 void biblioteq_book::prepareFavorites(void)
 {
+  QSettings settings;
+
+  id.binding->setCurrentIndex
+    (id.binding->findText(settings.value("book_binding_types_favorite").
+			  toString().trimmed()));
+  id.condition->setCurrentIndex
+    (id.condition->findText(settings.value("book_conditions_favorite").
+			    toString().trimmed()));
+  id.originality->setCurrentIndex
+    (id.originality->findText(settings.value("book_originality_favorite").
+			      toString().trimmed()));
+  id.target_audience->setCurrentIndex
+    (id.target_audience->
+     findText(settings.value("book_target_audiences_favorite").
+	      toString().trimmed()));
+
+  if(id.binding->currentIndex() < 0)
+    id.binding->setCurrentIndex(0);
+
+  if(id.condition->currentIndex() < 0)
+    id.condition->setCurrentIndex(0);
+
+  if(id.originality->currentIndex() < 0)
+    id.originality->setCurrentIndex(0);
+
+  if(id.target_audience->currentIndex() < 0)
+    id.target_audience->setCurrentIndex(0);
 }
 
 void biblioteq_book::resetQueryHighlights(void)
