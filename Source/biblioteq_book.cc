@@ -550,6 +550,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.splitter->setStretchFactor(2, 0);
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
+  prepareFavorites();
 }
 
 biblioteq_book::~biblioteq_book()
@@ -1987,6 +1988,10 @@ void biblioteq_book::populateFiles(void)
   id.files->setRowCount(totalRows);
   id.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_book::prepareFavorites(void)
+{
 }
 
 void biblioteq_book::resetQueryHighlights(void)
