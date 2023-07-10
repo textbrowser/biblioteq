@@ -795,7 +795,6 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
 void biblioteq_book::insert(void)
 {
   slotReset();
-  prepareFavorites();
   id.accession_number->setText
     (biblioteq_misc_functions::
      accessionNumberAsSpecialText(biblioteq_misc_functions::
@@ -858,6 +857,7 @@ void biblioteq_book::insert(void)
   setWindowTitle(tr("BiblioteQ: Create Book Entry"));
   m_engWindowTitle = "Create";
   id.id->setFocus();
+  prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -2106,6 +2106,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
 	"Please see the Database Enumerations Browser.</html>"));
   id.volume_number->clear();
   m_engWindowTitle = "Search";
+  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
