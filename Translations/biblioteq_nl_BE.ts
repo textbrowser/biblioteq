@@ -2388,6 +2388,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>A new version (%1) of BiblioteQ is available!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_batch_activities</name>
@@ -8624,6 +8628,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Book Target Audiences</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>dbenumerations</name>
@@ -10611,6 +10619,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Upgrade SQLite Schema (Recent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External Applications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
