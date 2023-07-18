@@ -71,6 +71,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   Ui_tracksDialog trd;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void prepareFavorites(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);

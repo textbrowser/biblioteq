@@ -32,6 +32,7 @@
 
 #include <QFileDialog>
 #include <QScrollBar>
+#include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -367,6 +368,7 @@ void biblioteq_cd::insert(void)
   setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
   m_engWindowTitle = "Create";
   cd.id->setFocus();
+  prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -656,6 +658,18 @@ void biblioteq_cd::modify(const int state)
   raise();
 }
 
+void biblioteq_cd::prepareFavorites(void)
+{
+  QSettings settings;
+
+  cd.format->setCurrentIndex
+    (cd.format->findText(settings.value("cd_formats_favorite").
+			 toString().trimmed()));
+
+  if(cd.format->currentIndex() < 0)
+    cd.format->setCurrentIndex(0);
+}
+
 void biblioteq_cd::search(const QString &field, const QString &value)
 {
   m_composer_action->setVisible(true);
@@ -700,6 +714,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.format->setCurrentIndex(0);
   cd.accession_number->clear();
   m_engWindowTitle = "Search";
+  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {

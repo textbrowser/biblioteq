@@ -155,9 +155,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-558</y>
+              <y>-770</y>
               <width>497</width>
-              <height>3658</height>
+              <height>3702</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -739,6 +739,37 @@
                   <string>CD Formats</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <item>
+                  <widget class="QLabel" name="label_5">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="cdf_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_34">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QListWidget" name="cdFormatsList">
@@ -2176,6 +2207,7 @@
   <tabstop>bookTargetAudiences</tabstop>
   <tabstop>addBookTargetAudience</tabstop>
   <tabstop>removeBookTargetAudience</tabstop>
+  <tabstop>cdf_favorite</tabstop>
   <tabstop>cdFormatsList</tabstop>
   <tabstop>addCdFormat</tabstop>
   <tabstop>removeCdFormat</tabstop>

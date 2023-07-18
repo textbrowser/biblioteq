@@ -214,6 +214,7 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.bc_favorite->clear();
   m_ui.bo_favorite->clear();
   m_ui.bta_favorite->clear();
+  m_ui.cdf_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
@@ -322,6 +323,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "cd_formats")
 	{
+	  combobox = m_ui.cdf_favorite;
 	  list = biblioteq_misc_functions::getCDFormats
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.cdFormatsList;
@@ -883,7 +885,10 @@ void biblioteq_dbenumerations::slotSave(void)
 	  listwidget = m_ui.bookTargetAudiences;
 	}
       else if(tables.at(i) == "cd_formats")
-	listwidget = m_ui.cdFormatsList;
+	{
+	  combobox = m_ui.cdf_favorite;
+	  listwidget = m_ui.cdFormatsList;
+	}
       else if(tables.at(i) == "dvd_aspect_ratios")
 	listwidget = m_ui.dvdAspectRatiosList;
       else if(tables.at(i) == "dvd_ratings")
