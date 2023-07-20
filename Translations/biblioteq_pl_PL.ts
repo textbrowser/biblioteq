@@ -4596,158 +4596,158 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
 <context>
     <name>biblioteq_cd</name>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="111"/>
+        <location filename="../Source/biblioteq_cd.cc" line="112"/>
         <source>Reset Front Cover Image</source>
         <translation>Zresetuj ilustrację przedniej okładki</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="113"/>
+        <location filename="../Source/biblioteq_cd.cc" line="114"/>
         <source>Reset Back Cover Image</source>
         <translation>Zresetuj ilustrację tylnej okładki</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="115"/>
+        <location filename="../Source/biblioteq_cd.cc" line="116"/>
         <source>Reset Catalog Number</source>
         <translation>Zresetuj Numer katalogowy</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="117"/>
+        <location filename="../Source/biblioteq_cd.cc" line="118"/>
         <source>Reset Format</source>
         <translation>Zresetuj Format</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="119"/>
+        <location filename="../Source/biblioteq_cd.cc" line="120"/>
         <source>Reset Artist</source>
         <translation>Zresetuj Artystę</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="121"/>
+        <location filename="../Source/biblioteq_cd.cc" line="122"/>
         <source>Reset Composer</source>
         <translation>Zresetuj Kompozytora</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="125"/>
+        <location filename="../Source/biblioteq_cd.cc" line="126"/>
         <source>Reset Number of Discs</source>
         <translation>Zresetuj Liczbę dysków</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="127"/>
+        <location filename="../Source/biblioteq_cd.cc" line="128"/>
         <source>Reset Runtime</source>
         <translation>Zresetuj Czas trwania</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="129"/>
+        <location filename="../Source/biblioteq_cd.cc" line="130"/>
         <source>Reset Audio</source>
         <translation>Zresetuj Audio</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="131"/>
+        <location filename="../Source/biblioteq_cd.cc" line="132"/>
         <source>Reset Recording Type</source>
         <translation>Zresetuj Typ nagrania</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="133"/>
+        <location filename="../Source/biblioteq_cd.cc" line="134"/>
         <source>Reset Title</source>
         <translation>Zresetuj Tytuł</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="135"/>
+        <location filename="../Source/biblioteq_cd.cc" line="136"/>
         <source>Reset Release Date</source>
         <translation>Zresetuj Datę wydania</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="137"/>
+        <location filename="../Source/biblioteq_cd.cc" line="138"/>
         <source>Reset Recording Label</source>
         <translation>Zresetuj Wydawnictwo muzyczne</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="139"/>
+        <location filename="../Source/biblioteq_cd.cc" line="140"/>
         <source>Reset Categories</source>
         <translation>Zresetuj Kategorie</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="141"/>
+        <location filename="../Source/biblioteq_cd.cc" line="142"/>
         <source>Reset Price</source>
         <translation>Zresetuj Cenę</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="143"/>
+        <location filename="../Source/biblioteq_cd.cc" line="144"/>
         <source>Reset Language</source>
         <translation>Zresetuj Język</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="145"/>
+        <location filename="../Source/biblioteq_cd.cc" line="146"/>
         <source>Reset Monetary Units</source>
         <translation>Zresetuj Jednostki monetarne</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="147"/>
+        <location filename="../Source/biblioteq_cd.cc" line="148"/>
         <source>Reset Copies</source>
         <translation>Zresetuj Egzemplarze</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="149"/>
+        <location filename="../Source/biblioteq_cd.cc" line="150"/>
         <source>Reset Location</source>
         <translation>Zresetuj Lokalizację</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="151"/>
+        <location filename="../Source/biblioteq_cd.cc" line="152"/>
         <source>Reset Abstract</source>
         <translation>Zresetuj Abstrakt</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="153"/>
+        <location filename="../Source/biblioteq_cd.cc" line="154"/>
         <source>Reset Keywords</source>
         <translation>Zresetuj Słowa kluczowe</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="155"/>
+        <location filename="../Source/biblioteq_cd.cc" line="156"/>
         <source>Reset Accession Number</source>
         <translation>Zresetuj Numer ewidencyjny</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="181"/>
-        <location filename="../Source/biblioteq_cd.cc" line="193"/>
-        <location filename="../Source/biblioteq_cd.cc" line="206"/>
-        <location filename="../Source/biblioteq_cd.cc" line="218"/>
-        <location filename="../Source/biblioteq_cd.cc" line="492"/>
-        <location filename="../Source/biblioteq_cd.cc" line="843"/>
-        <location filename="../Source/biblioteq_cd.cc" line="975"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1164"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1176"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1206"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1217"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1241"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1251"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1383"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1415"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1450"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1785"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2223"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2240"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2246"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2318"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2336"/>
+        <location filename="../Source/biblioteq_cd.cc" line="182"/>
+        <location filename="../Source/biblioteq_cd.cc" line="194"/>
+        <location filename="../Source/biblioteq_cd.cc" line="207"/>
+        <location filename="../Source/biblioteq_cd.cc" line="219"/>
+        <location filename="../Source/biblioteq_cd.cc" line="494"/>
+        <location filename="../Source/biblioteq_cd.cc" line="858"/>
+        <location filename="../Source/biblioteq_cd.cc" line="990"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1179"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1191"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1221"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1232"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1256"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1266"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1398"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1430"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1465"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1800"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2238"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2255"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2261"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2333"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2351"/>
         <source>Database Error</source>
         <translation>Błąd bazy danych</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="182"/>
+        <location filename="../Source/biblioteq_cd.cc" line="183"/>
         <source>Unable to retrieve the languages.</source>
         <translation>Nie można pozyskać języków.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="194"/>
+        <location filename="../Source/biblioteq_cd.cc" line="195"/>
         <source>Unable to retrieve the monetary units.</source>
         <translation>Nie można pozyskać jednostek monetarnych.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="207"/>
+        <location filename="../Source/biblioteq_cd.cc" line="208"/>
         <source>Unable to retrieve the cd locations.</source>
         <translation>Nie można pozyskać lokalizacji CD.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="219"/>
+        <location filename="../Source/biblioteq_cd.cc" line="220"/>
         <source>Unable to retrieve the cd formats.</source>
         <translation>Nie można pozyskać formatów dysków CD.</translation>
     </message>
@@ -4756,423 +4756,423 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <translation type="vanished">Nieznane</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="292"/>
-        <location filename="../Source/biblioteq_cd.cc" line="871"/>
+        <location filename="../Source/biblioteq_cd.cc" line="293"/>
+        <location filename="../Source/biblioteq_cd.cc" line="886"/>
         <source>BiblioteQ: Question</source>
         <translation>BiblioteQ: Pytanie</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="293"/>
+        <location filename="../Source/biblioteq_cd.cc" line="294"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation>Twoje zmiany nie zostały zapisane. Kontynuować zamykanie?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="318"/>
+        <location filename="../Source/biblioteq_cd.cc" line="319"/>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
         <translation>BiblioteQ: Zduplikuj wpis dysk CD z muzyką</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="337"/>
-        <location filename="../Source/biblioteq_cd.cc" line="453"/>
+        <location filename="../Source/biblioteq_cd.cc" line="338"/>
+        <location filename="../Source/biblioteq_cd.cc" line="455"/>
         <source>&amp;Save</source>
         <translation>&amp;Zapisz</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="367"/>
+        <location filename="../Source/biblioteq_cd.cc" line="368"/>
         <source>BiblioteQ: Create Music CD Entry</source>
         <translation>BiblioteQ: Utwórz wpis dysk CD z muzyką</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="392"/>
+        <location filename="../Source/biblioteq_cd.cc" line="394"/>
         <source>BiblioteQ: Modify Music CD Entry</source>
         <translation>BiblioteQ: Zmodyfikuj wpis dysk CD z muzyką</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="421"/>
+        <location filename="../Source/biblioteq_cd.cc" line="423"/>
         <source>BiblioteQ: View Music CD Details</source>
         <translation>BiblioteQ: Wyświetl szczegóły dysk CD z muzyką</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="493"/>
-        <location filename="../Source/biblioteq_cd.cc" line="496"/>
+        <location filename="../Source/biblioteq_cd.cc" line="495"/>
+        <location filename="../Source/biblioteq_cd.cc" line="498"/>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
         <translation>Nie można pozyskać danych wybranego dysku CD.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="495"/>
-        <location filename="../Source/biblioteq_cd.cc" line="848"/>
-        <location filename="../Source/biblioteq_cd.cc" line="979"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1419"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1454"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1790"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2226"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2348"/>
+        <location filename="../Source/biblioteq_cd.cc" line="497"/>
+        <location filename="../Source/biblioteq_cd.cc" line="863"/>
+        <location filename="../Source/biblioteq_cd.cc" line="994"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1434"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1469"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1805"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2241"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2363"/>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ: Błąd bazy danych</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="576"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1282"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2466"/>
+        <location filename="../Source/biblioteq_cd.cc" line="578"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1297"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2481"/>
         <source>BiblioteQ: Modify Music CD Entry (</source>
         <translation>BiblioteQ: Zmodyfikuj wpis dysk CD z muzyką (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="577"/>
-        <location filename="../Source/biblioteq_cd.cc" line="583"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1283"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1820"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2467"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2488"/>
+        <location filename="../Source/biblioteq_cd.cc" line="579"/>
+        <location filename="../Source/biblioteq_cd.cc" line="585"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1298"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1835"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2482"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2503"/>
         <source>)</source>
         <translation>)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="582"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2487"/>
+        <location filename="../Source/biblioteq_cd.cc" line="584"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2502"/>
         <source>BiblioteQ: View Music CD Details (</source>
         <translation>BiblioteQ: Wyświetl szczegóły dysku CD z muzyką (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="677"/>
+        <location filename="../Source/biblioteq_cd.cc" line="691"/>
         <source>&amp;Search</source>
         <translation>&amp;Szukaj</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="689"/>
-        <location filename="../Source/biblioteq_cd.cc" line="690"/>
-        <location filename="../Source/biblioteq_cd.cc" line="691"/>
-        <location filename="../Source/biblioteq_cd.cc" line="692"/>
-        <location filename="../Source/biblioteq_cd.cc" line="693"/>
-        <location filename="../Source/biblioteq_cd.cc" line="694"/>
+        <location filename="../Source/biblioteq_cd.cc" line="703"/>
+        <location filename="../Source/biblioteq_cd.cc" line="704"/>
+        <location filename="../Source/biblioteq_cd.cc" line="705"/>
+        <location filename="../Source/biblioteq_cd.cc" line="706"/>
+        <location filename="../Source/biblioteq_cd.cc" line="707"/>
+        <location filename="../Source/biblioteq_cd.cc" line="708"/>
         <source>Any</source>
         <translation>Dowolny</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="716"/>
+        <location filename="../Source/biblioteq_cd.cc" line="731"/>
         <source>BiblioteQ: Database Music CD Search</source>
         <translation>BiblioteQ: Wyszukiwanie dysku CD z muzyką w bazie danych</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="802"/>
-        <location filename="../Source/biblioteq_cd.cc" line="860"/>
-        <location filename="../Source/biblioteq_cd.cc" line="891"/>
-        <location filename="../Source/biblioteq_cd.cc" line="903"/>
-        <location filename="../Source/biblioteq_cd.cc" line="912"/>
-        <location filename="../Source/biblioteq_cd.cc" line="924"/>
-        <location filename="../Source/biblioteq_cd.cc" line="936"/>
-        <location filename="../Source/biblioteq_cd.cc" line="949"/>
-        <location filename="../Source/biblioteq_cd.cc" line="962"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2212"/>
+        <location filename="../Source/biblioteq_cd.cc" line="817"/>
+        <location filename="../Source/biblioteq_cd.cc" line="875"/>
+        <location filename="../Source/biblioteq_cd.cc" line="906"/>
+        <location filename="../Source/biblioteq_cd.cc" line="918"/>
+        <location filename="../Source/biblioteq_cd.cc" line="927"/>
+        <location filename="../Source/biblioteq_cd.cc" line="939"/>
+        <location filename="../Source/biblioteq_cd.cc" line="951"/>
+        <location filename="../Source/biblioteq_cd.cc" line="964"/>
+        <location filename="../Source/biblioteq_cd.cc" line="977"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2227"/>
         <source>BiblioteQ: User Error</source>
         <translation>BiblioteQ: Błąd użytkownika</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="803"/>
+        <location filename="../Source/biblioteq_cd.cc" line="818"/>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
         <translation>Całkowity czas trwania dostępnych utworów wynosi zero. Proszę ustawić indywidualne czasy trwania utworów.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="844"/>
-        <location filename="../Source/biblioteq_cd.cc" line="849"/>
+        <location filename="../Source/biblioteq_cd.cc" line="859"/>
+        <location filename="../Source/biblioteq_cd.cc" line="864"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation>Nie można określić maksymalnej liczby egzemplarzy danej pozycji.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="861"/>
+        <location filename="../Source/biblioteq_cd.cc" line="876"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation>Wygląda na to, że próbujesz zmniejszyć liczbę egzemplarzy, podczas gdy istnieją egzemplarze zarezerwowane.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="872"/>
+        <location filename="../Source/biblioteq_cd.cc" line="887"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation>Zwiększyłeś liczbę egzemplarzy. Czy chcesz zmodyfikować informacje o egzemplarzu?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="892"/>
+        <location filename="../Source/biblioteq_cd.cc" line="907"/>
         <source>Please complete the Catalog Number field.</source>
         <translation>Proszę wypełnić pole Numer katalogowy.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="904"/>
+        <location filename="../Source/biblioteq_cd.cc" line="919"/>
         <source>Please complete the Artist field.</source>
         <translation>Proszę wypełnić pole Artysta.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="913"/>
+        <location filename="../Source/biblioteq_cd.cc" line="928"/>
         <source>Please provide a valid Runtime.</source>
         <translation>Proszę podać prawidłowy Czas trwania.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="925"/>
+        <location filename="../Source/biblioteq_cd.cc" line="940"/>
         <source>Please complete the Title field.</source>
         <translation>Proszę wypełnić pole Tytuł.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="937"/>
+        <location filename="../Source/biblioteq_cd.cc" line="952"/>
         <source>Please complete the Recording Label field.</source>
         <translation>Proszę wypełnić pole Wydawnictwo muzyczne.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="950"/>
+        <location filename="../Source/biblioteq_cd.cc" line="965"/>
         <source>Please complete the Categories field.</source>
         <translation>Proszę wypełnić pole Kategorie.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="963"/>
+        <location filename="../Source/biblioteq_cd.cc" line="978"/>
         <source>Please complete the Abstract field.</source>
         <translation>Proszę wypełnić pole Abstrakt.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="976"/>
-        <location filename="../Source/biblioteq_cd.cc" line="980"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2224"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2227"/>
+        <location filename="../Source/biblioteq_cd.cc" line="991"/>
+        <location filename="../Source/biblioteq_cd.cc" line="995"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2239"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2242"/>
         <source>Unable to create a database transaction.</source>
         <translation>Nie można utworzyć transakcji bazy danych.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1165"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1180"/>
         <source>Unable to generate a unique integer.</source>
         <translation>Nie można wygenerować unikalnej liczby całkowitej.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1177"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1192"/>
         <source>Unable to create or update the entry.</source>
         <translation>Nie można utworzyć lub zaktualizować wpisu.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1207"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1222"/>
         <source>Unable to purge unnecessary copy data.</source>
         <translation>Nie można wyczyścić niepotrzebnych danych egzemplarza.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1218"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1252"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1233"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1267"/>
         <source>Unable to commit the current database transaction.</source>
         <translation>Nie można zatwierdzić bieżącej transakcji bazy danych.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1242"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1257"/>
         <source>Unable to create initial copies.</source>
         <translation>Nie można utworzyć egzemplarzy początkowych.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1384"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1399"/>
         <source>Retrieving availability.</source>
         <translation>Pozyskiwanie dostępności.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1416"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1420"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1431"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1435"/>
         <source>Unable to retrieve the CD&apos;s OID.</source>
         <translation>Nie można pozyskać identyfikatora OID płyty CD.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1450"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2247"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1465"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2262"/>
         <source>Rollback failure.</source>
         <translation>Niepowodzenie przywracania.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1455"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1470"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation>Nie można utworzyć lub zaktualizować wpisu. Proszę sprawdzić, czy wpis już istnieje.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1686"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1701"/>
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1786"/>
-        <location filename="../Source/biblioteq_cd.cc" line="1791"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1801"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1806"/>
         <source>Unable to retrieve track data for table populating.</source>
         <translation>Nie można pozyskać danych utworu w celu wypełnienia tabeli.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1805"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1820"/>
         <source>Album Number</source>
         <translation>Numer albumu</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1806"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1821"/>
         <source>Track Number</source>
         <translation>Numer utworu</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1807"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1822"/>
         <source>Track Title</source>
         <translation>Tytuł utworu</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1808"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1823"/>
         <source>Track Runtime</source>
         <translation>Czas trwania utworu</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1809"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1824"/>
         <source>Artist</source>
         <translation>Artysta</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1810"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1825"/>
         <source>Composer</source>
         <translation>Kompozytor</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1819"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1834"/>
         <source>BiblioteQ: Album Tracks Browser (</source>
         <translation>BiblioteQ: Przeglądarka utworów albumu (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1828"/>
-        <location filename="../Source/biblioteq_cd.cc" line="2258"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1843"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2273"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>BiblioteQ: Okno dialogowe postępu</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1829"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1844"/>
         <source>Populating the table...</source>
         <translation>Wypełnianie tabeli...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1935"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1950"/>
         <source>Catalog Number:</source>
         <translation>Numer katalogowy:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1937"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1952"/>
         <source>Format:</source>
         <translation>Format:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1938"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1953"/>
         <source>Artist:</source>
         <translation>Artysta:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1940"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1955"/>
         <source>Number of Discs:</source>
         <translation>Liczba dysków:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1942"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1957"/>
         <source>Runtime:</source>
         <translation>Czas trwania:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1943"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1958"/>
         <source>Audio:</source>
         <translation>Audio:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1944"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1959"/>
         <source>Recording Type:</source>
         <translation>Typ nagrania:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1951"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1966"/>
         <source>Title:</source>
         <translation>Tytuł:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1953"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1968"/>
         <source>Release Date:</source>
         <translation>Data wydania:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1955"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1970"/>
         <source>Recording Label:</source>
         <translation>Wydawnictwo muzyczne:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1957"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1972"/>
         <source>Categories:</source>
         <translation>Kategorie:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1959"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1974"/>
         <source>Price:</source>
         <translation>Cena:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1960"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1975"/>
         <source>Language:</source>
         <translation>Język:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1962"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1977"/>
         <source>Monetary Units:</source>
         <translation>Jednostki monetarne:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1964"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1979"/>
         <source>Copies:</source>
         <translation>Egzemplarze:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1965"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1980"/>
         <source>Location:</source>
         <translation>Lokalizacja:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1967"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1982"/>
         <source>Abstract:</source>
         <translation>Abstrakt:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1969"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1984"/>
         <source>Keywords:</source>
         <translation>Słowa kluczowe:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="1971"/>
+        <location filename="../Source/biblioteq_cd.cc" line="1986"/>
         <source>Accession Number:</source>
         <translation>Numer ewidencyjny:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2210"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2225"/>
         <source>Row number </source>
         <translation>Numer wiersza </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2211"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2226"/>
         <source> contains an empty Song Title.</source>
         <translation> zawiera pusty Tytuł piosenki.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2241"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2256"/>
         <source>Unable to purge track data.</source>
         <translation>Nie można wyczyścić danych utworu.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2259"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2274"/>
         <source>Saving the track data...</source>
         <translation>Zapisywanie danych utworu...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2319"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2334"/>
         <source>Unable to create track data.</source>
         <translation>Nie można utworzyć danych utworu.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2337"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2352"/>
         <source>Commit failure.</source>
         <translation>Zakończono niepowodzeniem.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2349"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2364"/>
         <source>Some or all of the track data has not been saved.</source>
         <translation>Niektóre lub wszystkie dane utworu nie zostały zapisane.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2374"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2389"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation>BiblioteQ: Wybór ilustracji przedniej okładki</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="2376"/>
+        <location filename="../Source/biblioteq_cd.cc" line="2391"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation>BiblioteQ: Wybór ilustracji tylnej okładki</translation>
     </message>
@@ -5768,212 +5768,212 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
 <context>
     <name>biblioteq_dbenumerations</name>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="238"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="754"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="239"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="756"/>
         <source>BiblioteQ: Question</source>
         <translation>BiblioteQ: Pytanie</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="239"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="755"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="240"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="757"/>
         <source>Your changes have not been saved. Continue?</source>
         <translation>Twoje zmiany nie zostały zapisane. Kontynuować?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="394"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="848"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="857"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="920"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1015"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1070"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1086"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1099"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="396"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="850"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="859"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="925"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1020"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1075"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1091"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1104"/>
         <source>Database Error</source>
         <translation>Błąd bazy danych</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="395"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="397"/>
         <source>Unable to retrieve the contents of </source>
         <translation>Nie można pozyskać zawartości </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="396"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="924"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="398"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="929"/>
         <source>.</source>
         <translation>.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="443"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="684"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="445"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="686"/>
         <source>Book</source>
         <translation>Książka</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="444"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="685"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="446"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="687"/>
         <source>DVD</source>
         <translation>Dysk DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="445"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="686"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="447"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="688"/>
         <source>Grey Literature</source>
         <translation>Szara literatura</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="446"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="687"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="448"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="689"/>
         <source>Journal</source>
         <translation>Czasopismo</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="447"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="688"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="449"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="690"/>
         <source>Magazine</source>
         <translation>Periodyk</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="448"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="689"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="450"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="691"/>
         <source>Music CD</source>
         <translation>Dysk CD z muzyką</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="449"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="690"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="451"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="692"/>
         <source>Photograph Collection</source>
         <translation>Zbiór fotograficzny</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="450"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="691"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="452"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="693"/>
         <source>Video Game</source>
         <translation>Gra wideo</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="624"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="626"/>
         <source>Book Binding</source>
         <translation>Oprawa książki</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="629"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="631"/>
         <source>Book Condition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="634"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="636"/>
         <source>Book Originality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="639"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="641"/>
         <source>Book Target Audience</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="644"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="646"/>
         <source>CD Format</source>
         <translation>Format dysku CD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="649"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="651"/>
         <source>DVD Aspect Ratio</source>
         <translation>Proporcje obrazu dysku DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="654"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="656"/>
         <source>DVD Rating</source>
         <translation>Ocena dysku DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="659"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="661"/>
         <source>DVD Region</source>
         <translation>Region dysku DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="664"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="666"/>
         <source>Document Type</source>
         <translation>Typ Dokumentu</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="669"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="671"/>
         <source>Language</source>
         <translation>Język</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="712"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="714"/>
         <source>Monetary Unit</source>
         <translation>Jednostka monetarna</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="717"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="719"/>
         <source>Video Game Platform</source>
         <translation>Platforma gier wideo</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="722"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="724"/>
         <source>Video Game Rating</source>
         <translation>Ocena gry wideo</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="849"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="851"/>
         <source>Unable to create a database transaction.</source>
         <translation>Nie można utworzyć transakcji bazy danych.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="858"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="860"/>
         <source>An error occurred while attempting to remove entries from the %1 table.</source>
         <translation>Wystąpił błąd podczas próby usunięcia wpisów z tabeli %1.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="921"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="926"/>
         <source>Unable to create an entry in </source>
         <translation>Nie można utworzyć wpisu w </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="922"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="927"/>
         <source>for </source>
         <translation>dla </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1016"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1021"/>
         <source>Unable to create the location (</source>
         <translation>Nie można utworzyć lokalizacji (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1018"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1073"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1023"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1078"/>
         <source>, </source>
         <translation>, </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1020"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1075"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1025"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1080"/>
         <source>).</source>
         <translation>).</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1071"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1076"/>
         <source>Unable to create the minimum day (</source>
         <translation>Nie można utworzyć minimalnego dnia (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1087"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1092"/>
         <source>Unable to commit the current database transaction.</source>
         <translation>Nie można zatwierdzić bieżącej transakcji bazy danych.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1100"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1105"/>
         <source>Rollback failure.</source>
         <translation>Niepowodzenie przywracania.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1110"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1115"/>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ: Błąd bazy danych</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1111"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1116"/>
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation>Wystąpił błąd podczas próby zapisania wyliczeń bazy danych.</translation>
     </message>
@@ -10308,16 +10308,16 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <location filename="../UI/biblioteq_dbenumerations.ui" line="391"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="532"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="673"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="783"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="893"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1003"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1113"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1223"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1333"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1465"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1575"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1897"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2007"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="814"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="924"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1034"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1144"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1254"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1364"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1496"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1606"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1928"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2038"/>
         <source>Add</source>
         <translation>Dodaj</translation>
     </message>
@@ -10326,16 +10326,16 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <location filename="../UI/biblioteq_dbenumerations.ui" line="408"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="549"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="690"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="800"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="910"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1020"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1130"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1240"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1350"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1482"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1592"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1914"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2024"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="831"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="941"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1051"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1161"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1271"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1381"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1513"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1623"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1945"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2055"/>
         <source>Remove</source>
         <translation>Usuń</translation>
     </message>
@@ -10347,54 +10347,54 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="82"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="849"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="880"/>
         <source>DVD Aspect Ratios</source>
         <translation>Proporcje obrazu dysku DVD</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="87"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="959"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="990"/>
         <source>DVD Ratings</source>
         <translation>Oceny dysku DVD</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="92"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1069"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1100"/>
         <source>DVD Regions</source>
         <translation>Regiony dysku DVD</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="97"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1179"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1210"/>
         <source>Grey Literature Document Types</source>
         <translation>Typy dokumentów Szara literatura</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="102"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1289"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1320"/>
         <source>Languages</source>
         <translation>Języki</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="107"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1399"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1430"/>
         <source>Locations</source>
         <translation>Lokalizacje</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1437"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1717"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1468"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1748"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1442"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1473"/>
         <source>Location</source>
         <translation>Lokalizacja</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="112"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1531"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1562"/>
         <source>Monetary Units</source>
         <translation>Jednostki monetarne</translation>
     </message>
@@ -10428,7 +10428,7 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="117"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1641"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1672"/>
         <source>Reservations Minimum Days</source>
         <translation>Minimalne dni rezerwacji</translation>
     </message>
@@ -10437,128 +10437,129 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <location filename="../UI/biblioteq_dbenumerations.ui" line="325"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="466"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="607"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="748"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1682"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1713"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1687"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1718"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1692"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1723"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1697"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1728"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1702"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1733"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1707"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1738"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1712"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1743"/>
         <source>7</source>
         <translation type="unfinished">25% {7?}</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1722"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1753"/>
         <source>Days</source>
         <translation>Dni</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1727"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1758"/>
         <source>Books</source>
         <translation>Książki</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1735"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1777"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1793"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1766"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1808"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1824"/>
         <source>21</source>
         <translation>21</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1743"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1774"/>
         <source>DVDs</source>
         <translation>Dyski DVD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1751"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1764"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1809"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1825"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1782"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1795"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1840"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1856"/>
         <source>14</source>
         <translation>14</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1759"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1790"/>
         <source>Grey Literature</source>
         <translation type="unfinished">Szara literatura</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1769"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1800"/>
         <source>Journals</source>
         <translation>Czasopisma</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1785"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1816"/>
         <source>Magazines</source>
         <translation>Periodyki</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1801"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1832"/>
         <source>Music CDs</source>
         <translation>Dyski CD z muzyką</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1817"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1848"/>
         <source>Video Games</source>
         <translation>Gry wideo</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="122"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1853"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1884"/>
         <source>Video Game Platforms</source>
         <translation>Platformy gier wideo</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="127"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1963"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1994"/>
         <source>Video Game Ratings</source>
         <translation>Oceny gry wideo</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2064"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2095"/>
         <source>Save Changes</source>
         <translation>Zapisz zmiany</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2077"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2108"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2094"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2125"/>
         <source>Refresh</source>
         <translation>Odśwież</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2107"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2138"/>
         <source>F5</source>
         <translation type="unfinished">F5</translation>
     </message>
@@ -10567,12 +10568,12 @@ Plik qt.conf jest obecny w bieżącym katalogu roboczym BiblioteQ. Być może is
         <translation type="vanished">Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2130"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2161"/>
         <source>Close Browser</source>
         <translation>Zamknij przeglądarkę</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2143"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2174"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
