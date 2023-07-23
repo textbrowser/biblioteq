@@ -56,4 +56,4 @@ BiblioteQ is free and open library software.
 <li>Windows portable.</li>
 </ul>
 
-![alt text](https://github.com/textbrowser/biblioteq/blob/gh-pages/images/biblioteq_11.jpg)
+![alt text](https://github.com/textbrowser/biblioteq/blob/gh-pages/images/biblioteq-android.jpg)
