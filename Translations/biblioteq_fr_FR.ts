@@ -3278,7 +3278,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_d.cc" line="290"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Vide</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="327"/>
@@ -3319,7 +3319,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_d.cc" line="771"/>
         <source>A new version (%1) of BiblioteQ is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version (%1) de BiblioteQ est disponible !</translation>
     </message>
 </context>
 <context>
@@ -3446,7 +3446,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="320"/>
         <source>Reserved!</source>
-        <translation>Emprunter !</translation>
+        <translation>Emprunté!</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="326"/>
@@ -10264,7 +10264,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../UI/biblioteq_dbenumerations.ui" line="607"/>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="748"/>
         <source>Favorite</source>
-        <translation type="unfinished">Favorite</translation>
+        <translation>Favorite</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="250"/>
@@ -11916,7 +11916,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="474"/>
         <source>External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Applications externes</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="497"/>
@@ -12042,7 +12042,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1445"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Vide</translation>
     </message>
     <message>
         <source>E&amp;ntries per Page</source>
