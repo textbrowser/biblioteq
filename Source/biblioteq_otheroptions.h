@@ -329,7 +329,6 @@ class biblioteq_otheroptions: public QMainWindow
   }
 
   void changeEvent(QEvent *event);
-  void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
   void prepareAvailability(void);
   void prepareSQLKeywords(void);

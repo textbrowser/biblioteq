@@ -276,11 +276,6 @@ void biblioteq_otheroptions::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-void biblioteq_otheroptions::closeEvent(QCloseEvent *event)
-{
-  QMainWindow::closeEvent(event);
-}
-
 void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
