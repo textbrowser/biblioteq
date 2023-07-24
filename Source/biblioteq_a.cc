@@ -686,7 +686,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotSaveAdministrators(void)));
 #ifdef Q_OS_ANDROID
   connect(ab.cancelButton, SIGNAL(clicked(void)),
-	  m_admin_diag, SLOT(close(void)));
+	  m_admin_diag, SLOT(hide(void)));
 #else
   connect(ab.cancelButton, SIGNAL(clicked(void)),
 	  m_admin_diag, SLOT(close(void)));

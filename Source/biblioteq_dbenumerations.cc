@@ -227,8 +227,8 @@ void biblioteq_dbenumerations::clear(void)
 
 void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 {
-  QHash<QWidget *, QStringList> listData;
   QHash<QWidget *, QMap<QString, QString> > tableData;
+  QHash<QWidget *, QStringList> listData;
 
   saveData(listData, tableData);
 
