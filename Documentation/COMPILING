@@ -1,4 +1,4 @@
-Qt 5.5.x and newer are supported. Qt 4.8.7 is not supported.
+Qt 4.8.7 is not supported. Qt 5.5.1 and Qt LTS versions are supported.
 
 qmake -o Makefile biblioteq.platform.pro
 gmake or make or mingw32-make
