@@ -215,6 +215,9 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.bo_favorite->clear();
   m_ui.bta_favorite->clear();
   m_ui.cdf_favorite->clear();
+  m_ui.dar_favorite->clear();
+  m_ui.dr_favorite->clear();
+  m_ui.drs_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
@@ -330,18 +333,21 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "dvd_aspect_ratios")
 	{
+	  combobox = m_ui.dar_favorite;
 	  list = biblioteq_misc_functions::getDVDAspectRatios
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.dvdAspectRatiosList;
 	}
       else if(str == "dvd_ratings")
 	{
+	  combobox = m_ui.dr_favorite;
 	  list = biblioteq_misc_functions::getDVDRatings
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.dvdRatingsList;
 	}
       else if(str == "dvd_regions")
 	{
+	  combobox = m_ui.drs_favorite;
 	  list = biblioteq_misc_functions::getDVDRegions
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.dvdRegionsList;
@@ -890,11 +896,20 @@ void biblioteq_dbenumerations::slotSave(void)
 	  listwidget = m_ui.cdFormatsList;
 	}
       else if(tables.at(i) == "dvd_aspect_ratios")
-	listwidget = m_ui.dvdAspectRatiosList;
+	{
+	  combobox = m_ui.dar_favorite;
+	  listwidget = m_ui.dvdAspectRatiosList;
+	}
       else if(tables.at(i) == "dvd_ratings")
-	listwidget = m_ui.dvdRatingsList;
+	{
+	  combobox = m_ui.dr_favorite;
+	  listwidget = m_ui.dvdRatingsList;
+	}
       else if(tables.at(i) == "dvd_regions")
-	listwidget = m_ui.dvdRegionsList;
+	{
+	  combobox = m_ui.drs_favorite;
+	  listwidget = m_ui.dvdRegionsList;
+	}
       else if(tables.at(i) == "grey_literature_types")
 	listwidget = m_ui.greyLiteratureTypes;
       else if(tables.at(i) == "languages")
