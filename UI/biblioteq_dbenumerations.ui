@@ -155,9 +155,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-770</y>
+              <y>-1905</y>
               <width>497</width>
-              <height>3702</height>
+              <height>3834</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -882,6 +882,37 @@
                 </widget>
                </item>
                <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_22">
+                 <item>
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="dar_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_35">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
                 <widget class="QListWidget" name="dvdAspectRatiosList">
                  <property name="minimumSize">
                   <size>
@@ -992,6 +1023,37 @@
                 </widget>
                </item>
                <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_23">
+                 <item>
+                  <widget class="QLabel" name="label_7">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="dr_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_36">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
                 <widget class="QListWidget" name="dvdRatingsList">
                  <property name="minimumSize">
                   <size>
@@ -1100,6 +1162,37 @@
                   <string>DVD Regions</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_24">
+                 <item>
+                  <widget class="QLabel" name="label_8">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="drs_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_37">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QListWidget" name="dvdRegionsList">
@@ -2211,12 +2304,15 @@
   <tabstop>cdFormatsList</tabstop>
   <tabstop>addCdFormat</tabstop>
   <tabstop>removeCdFormat</tabstop>
+  <tabstop>dar_favorite</tabstop>
   <tabstop>dvdAspectRatiosList</tabstop>
   <tabstop>addDvdAspectRatio</tabstop>
   <tabstop>removeDvdAspectRatio</tabstop>
+  <tabstop>dr_favorite</tabstop>
   <tabstop>dvdRatingsList</tabstop>
   <tabstop>addDvdRating</tabstop>
   <tabstop>removeDvdRating</tabstop>
+  <tabstop>drs_favorite</tabstop>
   <tabstop>dvdRegionsList</tabstop>
   <tabstop>addDvdRegion</tabstop>
   <tabstop>removeDvdRegion</tabstop>
