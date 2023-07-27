@@ -31,6 +31,7 @@
 #include "biblioteq_dvd.h"
 
 #include <QFileDialog>
+#include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -371,6 +372,7 @@ void biblioteq_dvd::insert(void)
   setWindowTitle(tr("BiblioteQ: Create DVD Entry"));
   m_engWindowTitle = "Create";
   dvd.id->setFocus();
+  prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -666,6 +668,32 @@ void biblioteq_dvd::modify(const int state)
   raise();
 }
 
+void biblioteq_dvd::prepareFavorites(void)
+{
+  QSettings settings;
+
+  dvd.aspectratio->setCurrentIndex
+    (dvd.aspectratio->findText(settings.value("dvd_aspect_ratios_favorite").
+			       toString().trimmed()));
+
+  if(dvd.aspectratio->currentIndex() < 0)
+    dvd.aspectratio->setCurrentIndex(0);
+
+  dvd.rating->setCurrentIndex
+    (dvd.rating->findText(settings.value("dvd_ratings_favorite").
+			  toString().trimmed()));
+
+  if(dvd.rating->currentIndex() < 0)
+    dvd.rating->setCurrentIndex(0);
+
+  dvd.region->setCurrentIndex
+    (dvd.region->findText(settings.value("dvd_regions_favorite").
+			  toString().trimmed()));
+
+  if(dvd.region->currentIndex() < 0)
+    dvd.region->setCurrentIndex(0);  
+}
+
 void biblioteq_dvd::search(const QString &field, const QString &value)
 {
   dvd.coverImages->setVisible(false);
@@ -707,6 +735,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.aspectratio->setCurrentIndex(0);
   dvd.accession_number->clear();
   m_engWindowTitle = "Search";
+  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {

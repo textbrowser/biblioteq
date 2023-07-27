@@ -57,6 +57,7 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
   Ui_dvdDialog dvd;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void prepareFavorites(void);
 
  private slots:
   void slotCancel(void);
