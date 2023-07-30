@@ -1418,6 +1418,9 @@
    <property name="text">
     <string>Batch Activities Browser...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
   </action>
   <action name="actionTearOffMenus">
    <property name="checkable">
