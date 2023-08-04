@@ -9,7 +9,8 @@ BiblioteQ is free and open library software.
 - Anti-censorship through digital content.
 - Archive important documents.
 - Bar scanners supported indirectly.
-- Cataloging of books, dvds, grey literature, journals, magazines, music cds, photograph collections, and video games.
+- Cataloging of books, dvds, grey literature, journals, magazines,
+  music cds, photograph collections, and video games.
 - Cover images with drag and drop support.
 - Cover images with paste support.
 - Customized displays.
@@ -22,7 +23,9 @@ BiblioteQ is free and open library software.
 - FreeBSD, Linux, Mac, OS/2, OpenBSD, Windows, etc.
 - Front cover image retrieval via Amazon and Open Library.
 - Importing of books from CSV files.
-- Internationalization (translation) support. BiblioteQ currently supports Arabic, Czech, Dutch, English, French, German, Greek, Hungarian, Polish, Portuguese, Russian, and Spanish.
+- Internationalization (translation) support. BiblioteQ currently supports
+  Arabic, Czech, Dutch, English, French, German, Greek, Hungarian, Polish,
+  Portuguese, Russian, and Spanish.
 - Item file attachments.
 - Item reservation.
 - Listings of overdue items, requested items, and reserved items.
@@ -50,7 +53,8 @@ BiblioteQ is free and open library software.
 - Sparc64 support.
 - Support for multiple SRU and Z39.50 sites.
 - Support for requesting unavailable items.
-- Threaded data retrieval via the standard Z39.50 protocol for books, journals, and magazines.
+- Threaded data retrieval via the standard Z39.50 protocol for books,
+  journals, and magazines.
 - Transactional database queries.
 - True PostgreSQL and SQLite pagination.
 - Uniform functionality across various platforms.
@@ -58,9 +62,7 @@ BiblioteQ is free and open library software.
 
 ![screenshot](https://github.com/textbrowser/biblioteq/blob/gh-pages/images/biblioteq-android.png)
 
-## Installation
-
-### Debian based distros
+### Debian Installation
 
 ```
 wget https://github.com/textbrowser/biblioteq/releases/download/2023.06.06/BiblioteQ-2023.06.06_amd64.deb
