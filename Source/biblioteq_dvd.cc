@@ -691,7 +691,7 @@ void biblioteq_dvd::prepareFavorites(void)
 			  toString().trimmed()));
 
   if(dvd.region->currentIndex() < 0)
-    dvd.region->setCurrentIndex(0);  
+    dvd.region->setCurrentIndex(0);
 }
 
 void biblioteq_dvd::search(const QString &field, const QString &value)
