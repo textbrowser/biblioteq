@@ -403,11 +403,11 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 
       for(j = 0; j < names.size(); j++)
 	{
-	  item2 = new QTreeWidgetItem(item1);
 	  field = rec.field(names.at(j));
+	  item2 = new QTreeWidgetItem(item1);
 	  item2->setText(1, names.at(j));
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-	  item2->setText(2, QMetaType(rec.field(j).metaType().id()).name());
+	  item2->setText(2, QMetaType(field.metaType().id()).name());
 #else
 	  item2->setText(2, QVariant::typeToName(field.type()));
 #endif
