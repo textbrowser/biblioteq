@@ -2844,6 +2844,9 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.alternate_id_1, "
 	      "book.target_audience, "
 	      "book.volume_number, "
+	      "book.date_of_reform, "
+	      "book.origin, "
+	      "book.purchase_date, "
 	      "book.type, "
 	      "book.myoid, " +
 	      bookFrontCover +
@@ -2872,6 +2875,9 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "book.alternate_id_1, "
 	      "book.target_audience, "
 	      "book.volume_number, "
+	      "book.date_of_reform, "
+	      "book.origin, "
+	      "book.purchase_date, "
 	      "book.type, "
 	      "book.myoid, "
 	      "book.front_cover "
@@ -3168,6 +3174,9 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "book.alternate_id_1, "
 				 "book.target_audience, "
 				 "book.volume_number, "
+				 "book.date_of_reform, "
+				 "book.origin, "
+				 "book.purchase_date, "
 				 "book.type, "
 				 "book.myoid, "
 				 "book.front_cover "
@@ -5475,7 +5484,6 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "(condition TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE book_originality "
 	      "(originality TEXT NOT NULL PRIMARY KEY)");
- recent_label:
   list.append("ALTER TABLE book ADD volume_number TEXT");
   list.append("CREATE TRIGGER IF NOT EXISTS "
 	      "item_borrower_trigger AFTER DELETE ON member "
@@ -5483,6 +5491,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "BEGIN "
 	      "DELETE FROM item_borrower WHERE memberid = old.memberid; "
 	      "END;");
+ recent_label:
+  list.append("ALTER TABLE book ADD date_of_reform VARCHAR(32)");
+  list.append("ALTER TABLE book ADD origin TEXT");
+  list.append("ALTER TABLE book ADD purchase_date VARCHAR(32)");
 
   QString errors("<html>");
   int ct = 1;

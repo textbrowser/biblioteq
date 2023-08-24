@@ -212,6 +212,12 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Volume Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Reform Date")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Origin")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Purchase Date")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -997,7 +1003,10 @@ void biblioteq_book::modify(const int state)
 		"alternate_id_1, "
 		"multivolume_set_isbn, "
 		"target_audience, "
-		"volume_number "
+		"volume_number, "
+		"date_of_reform, "
+		"origin, "
+		"purchase_date "
 		"FROM book WHERE myoid = ?");
   query.bindValue(0, str);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1222,6 +1231,16 @@ void biblioteq_book::modify(const int state)
 	    }
 	  else if(fieldname == "volume_number")
 	    id.volume_number->setText(var.toString().trimmed());
+	  else if(fieldname == "date_of_reform")
+	    id.reform_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
+	  else if(fieldname == "origin")
+	    id.origin->setText(var.toString().trimmed());
+	  else if(fieldname == "purchase_date")
+	    id.purchase_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -2024,7 +2043,7 @@ void biblioteq_book::prepareFavorites(void)
 
 void biblioteq_book::resetQueryHighlights(void)
 {
-  id.alternate_id_1->setPalette(m_te_orig_pal);
+  id.alternate_id_1->setPalette(m_white_pal);
   id.author->viewport()->setPalette(m_te_orig_pal);
   id.binding->setStyleSheet(m_cb_orig_ss);
   id.callnum->setPalette(m_white_pal);
@@ -2037,74 +2056,81 @@ void biblioteq_book::resetQueryHighlights(void)
   id.keyword->viewport()->setPalette(m_white_pal);
   id.lcnum->setPalette(m_white_pal);
   id.marc_tags->viewport()->setPalette(m_white_pal);
+  id.origin->setPalette(m_white_pal);
   id.place->viewport()->setPalette(m_te_orig_pal);
   id.publication_date->setStyleSheet(m_dt_orig_ss);
   id.publisher->viewport()->setPalette(m_te_orig_pal);
+  id.purchase_date->setStyleSheet(m_dt_orig_ss);
+  id.reform_date->setStyleSheet(m_dt_orig_ss);
   id.target_audience->setStyleSheet(m_cb_orig_ss);
   id.title->setPalette(m_te_orig_pal);
-  id.volume_number->setPalette(m_te_orig_pal);
+  id.volume_number->setPalette(m_white_pal);
 }
 
 void biblioteq_book::search(const QString &field, const QString &value)
 {
+  id.accession_number->clear();
   id.attach_files->setVisible(false);
+  id.author->clear();
+  id.binding->insertItem(0, tr("Any"));
+  id.binding->setCurrentIndex(0);
+  id.callnum->clear();
+  id.category->clear();
+  id.condition->insertItem(0, tr("Any"));
+  id.condition->setCurrentIndex(0);
+  id.copiesButton->setVisible(false);
   id.coverImages->setVisible(false);
   id.delete_files->setVisible(false);
+  id.description->clear();
+  id.deweynum->clear();
+  id.edition->insertItem(0, tr("Any"));
+  id.edition->setCurrentIndex(0);
   id.export_files->setVisible(false);
   id.files->setVisible(false);
   id.files_label->setVisible(false);
-  id.view_pdf->setVisible(false);
   id.id->setText("%");
-  id.category->clear();
   id.isbn13->setText("%");
-  id.author->clear();
-  id.lcnum->clear();
-  id.callnum->clear();
-  id.deweynum->clear();
-  id.title->clear();
-  id.publisher->clear();
-  id.place->clear();
-  id.description->clear();
-  id.marc_tags->clear();
+  id.isbnAvailableCheckBox->setCheckable(false);
   id.keyword->clear();
-  id.url->clear();
-  id.copiesButton->setVisible(false);
-  id.showUserButton->setVisible(false);
-  id.openLibraryQuery->setVisible(false);
-  id.sruQueryButton->setVisible(false);
-  id.z3950QueryButton->setVisible(false);
+  id.language->insertItem(0, tr("Any"));
+  id.language->setCurrentIndex(0);
+  id.lcnum->clear();
+  id.location->insertItem(0, tr("Any"));
+  id.location->setCurrentIndex(0);
+  id.marc_tags->clear();
+  id.monetary_units->insertItem(0, tr("Any"));
+  id.monetary_units->setCurrentIndex(0);
   id.okButton->setText(tr("&Search"));
+  id.openLibraryQuery->setVisible(false);
+  id.origin->clear();
+  id.originality->insertItem(0, tr("Any"));
+  id.originality->setCurrentIndex(0);
+  id.place->clear();
+  id.price->setMinimum(-0.01);
+  id.price->setValue(-0.01);
   id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
   id.publication_date->setDisplayFormat("yyyy");
   id.publication_date_enabled->setVisible(true);
-  id.price->setMinimum(-0.01);
-  id.price->setValue(-0.01);
+  id.publisher->clear();
+  id.purchase_date->setDate(QDate::fromString("9999", "yyyy"));
+  id.purchase_date->setDisplayFormat("yyyy");
   id.quantity->setMinimum(0);
   id.quantity->setValue(0);
-  id.edition->insertItem(0, tr("Any"));
-  id.language->insertItem(0, tr("Any"));
-  id.monetary_units->insertItem(0, tr("Any"));
-  id.binding->insertItem(0, tr("Any"));
-  id.location->insertItem(0, tr("Any"));
-  id.originality->insertItem(0, tr("Any"));
-  id.condition->insertItem(0, tr("Any"));
+  id.reform_date->setDate(QDate::fromString("9999", "yyyy"));
+  id.reform_date->setDisplayFormat("yyyy");
+  id.showUserButton->setVisible(false);
+  id.sruQueryButton->setVisible(false);
   id.target_audience->insertItem(0, "%");
-  id.location->setCurrentIndex(0);
-  id.edition->setCurrentIndex(0);
-  id.language->setCurrentIndex(0);
-  id.monetary_units->setCurrentIndex(0);
-  id.binding->setCurrentIndex(0);
-  id.originality->setCurrentIndex(0);
-  id.condition->setCurrentIndex(0);
-  id.target_audience->setCurrentIndex(0);
-  id.accession_number->clear();
-  id.isbnAvailableCheckBox->setCheckable(false);
   id.target_audience->setCurrentIndex(0);
   id.target_audience->setEditable(true);
   id.target_audience->setToolTip
     (tr("<html>Values from individual books are not included. "
 	"Please see the Database Enumerations Browser.</html>"));
+  id.title->clear();
+  id.url->clear();
+  id.view_pdf->setVisible(false);
   id.volume_number->clear();
+  id.z3950QueryButton->setVisible(false);
   m_engWindowTitle = "Search";
   prepareFavorites();
 
@@ -2132,16 +2158,16 @@ void biblioteq_book::search(const QString &field, const QString &value)
     }
   else
     {
-      if(field == "publisher")
-	id.publisher->setPlainText(value);
-      else if(field == "author")
+      if(field == "author")
 	id.author->setPlainText(value);
       else if(field == "category")
 	id.category->setPlainText(value);
-      else if(field == "place")
-	id.place->setPlainText(value);
       else if(field == "keyword")
 	id.keyword->setPlainText(value);
+      else if(field == "place")
+	id.place->setPlainText(value);
+      else if(field == "publisher")
+	id.publisher->setPlainText(value);
 
       slotGo();
     }
@@ -3048,7 +3074,10 @@ void biblioteq_book::slotGo(void)
 		      "alternate_id_1 = ?, "
 		      "multivolume_set_isbn = ?, "
 		      "target_audience = ?, "
-		      "volume_number = ? "
+		      "volume_number = ?, "
+		      "date_of_reform = ?, "
+		      "origin = ?, "
+		      "purchase_date = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -3062,9 +3091,10 @@ void biblioteq_book::slotGo(void)
 		      "back_cover, "
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
-		      "multivolume_set_isbn, target_audience, volume_number) "
+		      "multivolume_set_isbn, target_audience, volume_number, "
+		      "date_of_reform, origin, purchase_date) "
 		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, "
+		      "?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING myoid");
@@ -3080,9 +3110,10 @@ void biblioteq_book::slotGo(void)
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
 		      "multivolume_set_isbn, target_audience, "
-		      "volume_number, myoid) "
+		      "volume_number, date_of_reform, origin, purchase_date, "
+		      "myoid) "
 		      "VALUES (?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, ?, ?, "
+		      "?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
@@ -3229,9 +3260,15 @@ void biblioteq_book::slotGo(void)
 
       query.bindValue(29, id.target_audience->currentText());
       query.bindValue(30, id.volume_number->text().trimmed());
+      query.bindValue
+	(31, id.reform_date->date().toString(biblioteq::s_databaseDateFormat));
+      query.bindValue(32, id.origin->text().trimmed());
+      query.bindValue
+	(33,
+	 id.purchase_date->date().toString(biblioteq::s_databaseDateFormat));
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(31, m_oid);
+	query.bindValue(34, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  auto value = biblioteq_misc_functions::getSqliteUniqueId
@@ -3240,7 +3277,7 @@ void biblioteq_book::slotGo(void)
 	  if(errorstr.isEmpty())
 	    {
 	      m_oid = QString::number(value);
-	      query.bindValue(31, value);
+	      query.bindValue(34, value);
 	    }
 	  else
 	    qmain->addError
@@ -3508,7 +3545,17 @@ void biblioteq_book::slotGo(void)
 		      else if(names.at(i) == "Volume Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.volume_number->text().trimmed());
-
+		      else if(names.at(i) == "Reform Date")
+			qmain->getUI().table->item(m_index->row(), i)->
+			  setText(id.reform_date->date().
+				  toString(Qt::ISODate));
+		      else if(names.at(i) == "Origin")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.origin->text().trimmed());
+		      else if(names.at(i) == "Purchase Date")
+			qmain->getUI().table->item(m_index->row(), i)->
+			  setText(id.purchase_date->date().
+				  toString(Qt::ISODate));
 		    }
 
 		  if(imageColumn == -1)
@@ -3609,6 +3656,9 @@ void biblioteq_book::slotGo(void)
 	"book.alternate_id_1, "
 	"book.target_audience, "
 	"book.volume_number, "
+	"book.date_of_reform, "
+	"book.origin, "
+	"book.purchase_date, "
 	"book.type, "
 	"book.myoid, " +
 	frontCover +
@@ -3800,9 +3850,27 @@ void biblioteq_book::slotGo(void)
 	 escape(id.target_audience->currentText().trimmed()));
       searchstr.append
 	(UNACCENT + "(LOWER(COALESCE(volume_number, ''))) LIKE " +
-	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) ");
+	 UNACCENT + "(LOWER(" + ESCAPE + "'%' || ? || '%')) AND ");
       values.append
 	(biblioteq_myqstring::escape(id.volume_number->text().trimmed()));
+
+      if(id.reform_date->date().toString("yyyy") != "9999")
+	{
+	  searchstr.append("SUBSTR(date_of_reform, 7) = ? AND ");
+	  values.append(id.reform_date->date().toString("yyyy"));
+	}
+
+      if(id.purchase_date->date().toString("yyyy") != "9999")
+	{
+	  searchstr.append("SUBSTR(purchase_date, 7) = ? AND ");
+	  values.append(id.purchase_date->date().toString("yyyy"));
+	}
+      
+      searchstr.append
+	("LOWER(COALESCE(origin, '')) LIKE " +
+	 UNACCENT +
+	 "(LOWER('%' || ? || '%')) ");
+      values.append(biblioteq_myqstring::escape(id.origin->text().trimmed()));
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.author, "
@@ -3829,6 +3897,9 @@ void biblioteq_book::slotGo(void)
 	 "book.multivolume_set_isbn, "
 	 "book.target_audience, "
 	 "book.volume_number, "
+	 "book.date_of_reform, "
+	 "book.origin, "
+	 "book.purchase_date, "
 	 "book.type, "
 	 "book.myoid, "
 	 "book.front_cover "
@@ -4256,6 +4327,12 @@ void biblioteq_book::slotPrint(void)
     id.target_audience->currentText().trimmed() + "<br>";
   m_html += "<b>" + tr("Volume Number:") + "</b>" +
     id.volume_number->text().trimmed();
+  m_html += "<b>" + tr("Reform Date:") + "</b>" +
+    id.reform_date->date().toString(Qt::ISODate) + "<br>";
+  m_html += "<b>" + tr("Origin:") + "</b>" +
+    id.origin->text().trimmed();
+  m_html += "<b>" + tr("Purchase Date:") + "</b>" +
+    id.purchase_date->date().toString(Qt::ISODate) + "<br>";
   m_html += "</html>";
   print(this);
 }
@@ -4383,7 +4460,7 @@ void biblioteq_book::slotReset(void)
     {
       auto actions = id.resetButton->menu()->actions();
 
-      if(actions.size() < 31)
+      if(actions.size() < 34)
 	{
 	  // Error.
 	}
@@ -4571,7 +4648,7 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[26])
 	{
 	  id.alternate_id_1->clear();
-	  id.alternate_id_1->setPalette(m_te_orig_pal);
+	  id.alternate_id_1->setPalette(m_white_pal);
 	  id.alternate_id_1->setFocus();
 	}
       else if(action == actions[27])
@@ -4593,8 +4670,38 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[30])
 	{
 	  id.volume_number->clear();
-	  id.volume_number->setPalette(m_te_orig_pal);
+	  id.volume_number->setPalette(m_white_pal);
 	  id.volume_number->setFocus();
+	}
+      else if(action == actions[31])
+	{
+	  if(m_engWindowTitle.contains("Search"))
+	    id.reform_date->setDate(QDate::fromString("9999", "yyyy"));
+	  else
+	    id.reform_date->setDate
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
+
+	  id.reform_date->setFocus();
+	  id.reform_date->setStyleSheet(m_dt_orig_ss);
+	}
+      else if(action == actions[32])
+	{
+	  id.origin->clear();
+	  id.origin->setFocus();
+	  id.origin->setPalette(m_white_pal);
+	}
+      else if(action == actions[33])
+	{
+	  if(m_engWindowTitle.contains("Search"))
+	    id.purchase_date->setDate(QDate::fromString("9999", "yyyy"));
+	  else
+	    id.purchase_date->setDate
+	      (QDate::fromString("01/01/2000",
+				 biblioteq::s_databaseDateFormat));
+
+	  id.purchase_date->setFocus();
+	  id.purchase_date->setStyleSheet(m_dt_orig_ss);
 	}
 
       actions.clear();
@@ -4636,11 +4743,18 @@ void biblioteq_book::slotReset(void)
 	{
 	  id.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 	  id.publication_date_enabled->setChecked(false);
+	  id.purchase_date->setDate(QDate::fromString("9999", "yyyy"));
+	  id.reform_date->setDate(QDate::fromString("9999", "yyyy"));
 	}
       else
-	id.publication_date->setDate(QDate::fromString("01/01/2000",
-						       biblioteq::
-						       s_databaseDateFormat));
+	{
+	  id.publication_date->setDate
+	    (QDate::fromString("01/01/2000", biblioteq:: s_databaseDateFormat));
+	  id.purchase_date->setDate
+	    (QDate::fromString("01/01/2000", biblioteq:: s_databaseDateFormat));
+	  id.reform_date->setDate
+	    (QDate::fromString("01/01/2000", biblioteq:: s_databaseDateFormat));
+	}
 
       id.quantity->setValue(id.quantity->minimum());
 
@@ -4679,6 +4793,7 @@ void biblioteq_book::slotReset(void)
       id.language->setCurrentIndex(0);
       id.monetary_units->setCurrentIndex(0);
       id.multivolume_set_isbn->clear();
+      id.origin->clear();
       id.price->setValue(id.price->minimum());
       id.target_audience->setCurrentIndex(0);
       id.volume_number->clear();

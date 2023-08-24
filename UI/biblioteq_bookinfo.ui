@@ -34,9 +34,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-622</y>
+         <y>-1049</y>
          <width>1070</width>
-         <height>1417</height>
+         <height>1543</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -958,20 +958,6 @@
                  </item>
                  <item>
                   <layout class="QGridLayout" name="gridLayout_5">
-                   <item row="5" column="0">
-                    <widget class="QLabel" name="label_27">
-                     <property name="text">
-                      <string>Multi-Volume Set ISBN</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_25">
-                     <property name="text">
-                      <string>Accession Number</string>
-                     </property>
-                    </widget>
-                   </item>
                    <item row="1" column="1">
                     <widget class="QLineEdit" name="alternate_id_1">
                      <property name="toolTip">
@@ -985,10 +971,27 @@
                      </property>
                     </widget>
                    </item>
-                   <item row="2" column="0">
-                    <widget class="QLabel" name="label_17">
+                   <item row="8" column="0">
+                    <widget class="QLabel" name="label_31">
                      <property name="text">
-                      <string>Call Number</string>
+                      <string>Origin</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLineEdit" name="lcnum">
+                     <property name="maxLength">
+                      <number>64</number>
+                     </property>
+                     <property name="placeholderText">
+                      <string>LC Control Number</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="1">
+                    <widget class="QLineEdit" name="volume_number">
+                     <property name="placeholderText">
+                      <string>Volume Number</string>
                      </property>
                     </widget>
                    </item>
@@ -1009,10 +1012,10 @@
                      </property>
                     </widget>
                    </item>
-                   <item row="3" column="0">
-                    <widget class="QLabel" name="label_12">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_25">
                      <property name="text">
-                      <string>LC Control Number</string>
+                      <string>Accession Number</string>
                      </property>
                     </widget>
                    </item>
@@ -1020,6 +1023,20 @@
                     <widget class="QLineEdit" name="accession_number">
                      <property name="placeholderText">
                       <string>Accession Number</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="0">
+                    <widget class="QLabel" name="label_30">
+                     <property name="text">
+                      <string>Reform Date</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_17">
+                     <property name="text">
+                      <string>Call Number</string>
                      </property>
                     </widget>
                    </item>
@@ -1033,12 +1050,9 @@
                      </property>
                     </widget>
                    </item>
-                   <item row="3" column="1">
-                    <widget class="QLineEdit" name="lcnum">
-                     <property name="maxLength">
-                      <number>64</number>
-                     </property>
-                     <property name="placeholderText">
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="label_12">
+                     <property name="text">
                       <string>LC Control Number</string>
                      </property>
                     </widget>
@@ -1053,13 +1067,6 @@
                      </property>
                     </widget>
                    </item>
-                   <item row="4" column="0">
-                    <widget class="QLabel" name="label_18">
-                     <property name="text">
-                      <string>Dewey Class Number</string>
-                     </property>
-                    </widget>
-                   </item>
                    <item row="6" column="0">
                     <widget class="QLabel" name="label_29">
                      <property name="text">
@@ -1067,10 +1074,78 @@
                      </property>
                     </widget>
                    </item>
-                   <item row="6" column="1">
-                    <widget class="QLineEdit" name="volume_number">
+                   <item row="5" column="0">
+                    <widget class="QLabel" name="label_27">
+                     <property name="text">
+                      <string>Multi-Volume Set ISBN</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="label_18">
+                     <property name="text">
+                      <string>Dewey Class Number</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="0">
+                    <widget class="QLabel" name="label_32">
+                     <property name="text">
+                      <string>Purchase Date</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="1">
+                    <widget class="QDateEdit" name="reform_date">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="displayFormat">
+                      <string>yyyy-MM-dd</string>
+                     </property>
+                     <property name="calendarPopup">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="1">
+                    <widget class="QDateEdit" name="purchase_date">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="displayFormat">
+                      <string>yyyy-MM-dd</string>
+                     </property>
+                     <property name="calendarPopup">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="1">
+                    <widget class="QLineEdit" name="origin">
+                     <property name="text">
+                      <string/>
+                     </property>
                      <property name="placeholderText">
-                      <string>Volume Number</string>
+                      <string>Origin</string>
                      </property>
                     </widget>
                    </item>
@@ -1536,6 +1611,9 @@
   <tabstop>deweynum</tabstop>
   <tabstop>multivolume_set_isbn</tabstop>
   <tabstop>volume_number</tabstop>
+  <tabstop>reform_date</tabstop>
+  <tabstop>origin</tabstop>
+  <tabstop>purchase_date</tabstop>
   <tabstop>files</tabstop>
   <tabstop>attach_files</tabstop>
   <tabstop>delete_files</tabstop>

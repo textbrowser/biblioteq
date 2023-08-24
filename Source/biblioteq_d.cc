@@ -33,6 +33,7 @@
 #include <QProcess>
 #include <QSettings>
 #include <QShortcut>
+#include <QSqlRecord>
 
 #include "biblioteq.h"
 #include "biblioteq_documentationwindow.h"
@@ -307,27 +308,28 @@ void biblioteq::prepareUpgradeNotification(void)
 
   /*
   ** Display a warning if the current database's schema is not current.
-  ** Must keep the following condition(s) current.
   */
 
-  if(m_db.driverName() != "QPSQL")
-    {
-      QSqlQuery query(m_db);
+  auto record(m_db.record("book"));
 
-      if(query.exec("SELECT name FROM sqlite_master "
-		    "WHERE name = 'item_borrower_trigger'") &&
-	 query.next())
-	{
-	}
+  if(!(record.indexOf("date_of_reform") >= 0))
+    {
+      if(m_db.driverName() == "QPSQL")
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Database Error"),
+	   tr("The current PostgreSQL schema must be updated. "
+	      "Please execute the statement(s) in %1 for version %2.").
+	   arg("postgresql_update_schema.sql").
+	   arg(BIBLIOTEQ_VERSION));
       else
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: Database Error"),
-	     tr("The current SQLite schema must be updated. "
-		"Tools -> Upgrade SQLite Schema (Recent)."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Database Error"),
+	   tr("The current SQLite schema must be updated. "
+	      "Tools -> Upgrade SQLite Schema (Recent)."));
+
+      QApplication::processEvents();
     }
 }
 
@@ -761,14 +763,18 @@ void biblioteq::slotTearOffMenus(void)
 
 void biblioteq::slotSwifty(void)
 {
-  auto version(m_swifty->newest_version().trimmed());
+  if(!statusBar())
+    return;
 
-  if(BIBLIOTEQ_VERSION != version && version.isEmpty() == false)
-    if(statusBar())
-      {
-	QTimer::singleShot(10000, this, SLOT(slotSwifty(void)));
-	statusBar()->showMessage
-	  (tr("A new version (%1) of BiblioteQ is available!").arg(version),
-	   7500);
-      }
+  auto version1(QString(BIBLIOTEQ_VERSION).remove('.').toLong());
+  auto version2(m_swifty->newest_version().remove('.').trimmed().toLong());
+
+  if(version1 < version2)
+    {
+      QTimer::singleShot(10000, this, SLOT(slotSwifty(void)));
+      statusBar()->showMessage
+	(tr("A new version %1 of BiblioteQ is available!").
+	 arg(m_swifty->newest_version().trimmed()),
+	 7500);
+    }
 }

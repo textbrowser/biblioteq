@@ -42,6 +42,7 @@ CREATE TABLE book							\
     callnumber	 VARCHAR(64),						\
     category	 TEXT NOT NULL,						\
     condition    TEXT,							\
+    date_of_reform VARCHAR(32),						\
     description	 TEXT NOT NULL,						\
     deweynumber	 VARCHAR(64),						\
     edition	 VARCHAR(8) NOT NULL,					\
@@ -56,11 +57,13 @@ CREATE TABLE book							\
     monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
     multivolume_set_isbn VARCHAR(32),					\
     myoid	 BIGINT NOT NULL,					\
+    origin TEXT,							\
     originality  TEXT,							\
     pdate	 VARCHAR(32) NOT NULL,					\
     place	 TEXT NOT NULL,						\
     price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
     publisher	 TEXT NOT NULL,						\
+    purchase_date VARCHAR(32),						\
     quantity	 INTEGER NOT NULL DEFAULT 1,				\
     target_audience TEXT,						\
     title	 TEXT NOT NULL,						\

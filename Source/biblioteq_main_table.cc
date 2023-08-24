@@ -345,6 +345,9 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Alternate Identifier"));
       list.append(tr("Target Audience"));
       list.append(tr("Volume Number"));
+      list.append(tr("Reform Date"));
+      list.append(tr("Origin"));
+      list.append(tr("Purchase Date"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -373,6 +376,9 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Alternate Identifier");
       m_columnHeaderIndexes.append("Target Audience");
       m_columnHeaderIndexes.append("Volume Number");
+      m_columnHeaderIndexes.append("Reform Date");
+      m_columnHeaderIndexes.append("Origin");
+      m_columnHeaderIndexes.append("Purchase Date");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
