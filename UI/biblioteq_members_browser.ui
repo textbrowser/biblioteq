@@ -70,12 +70,12 @@
            </property>
            <item>
             <property name="text">
-             <string>Member ID</string>
+             <string>Last Name</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Last Name</string>
+             <string>Member ID</string>
             </property>
            </item>
           </widget>
@@ -544,7 +544,7 @@
       <item>
        <widget class="QToolButton" name="reloadButton">
         <property name="toolTip">
-         <string>Refresh Table</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Refresh the table. Please review Apply Filter.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">

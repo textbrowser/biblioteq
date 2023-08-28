@@ -4420,18 +4420,11 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	if(m_db.driverName() != "QSQLITE")
 	  E = "E";
 
-	if(bb.filtertype->currentIndex() == 0) // Member ID
-	  {
-	    str.append("LOWER(memberid) LIKE " + E + "'%' || ");
-	    str.append("LOWER(?)");
-	  }
+	if(bb.filtertype->currentIndex() == 0)
+	  str.append("LOWER(last_name) LIKE " + E + "'%' || LOWER(?) || '%'");
 	else
-	  {
-	    str.append("LOWER(last_name) LIKE " + E + "'%' || ");
-	    str.append("LOWER(?)");
-	  }
+	  str.append("LOWER(memberid) LIKE " + E + "'%' || LOWER(?) || '%'");
 
-	str.append("|| '%' ");
 	query.prepare(str);
 	query.bindValue
 	  (0, biblioteq_myqstring::escape(bb.filter->text().trimmed()));
@@ -4505,18 +4498,12 @@ void biblioteq::slotPopulateMembersBrowser(void)
       if(m_db.driverName() != "QSQLITE")
 	E = "E";
 
-      if(bb.filtertype->currentIndex() == 0) // Member ID
-	{
-	  str.append("LOWER(member.memberid) LIKE " + E + "'%' || ");
-	  str.append("LOWER(?)");
-	}
+      if(bb.filtertype->currentIndex() == 0)
+	str.append
+	  ("LOWER(member.last_name) LIKE " + E + "'%' || LOWER(?) || '%' ");
       else
-	{
-	  str.append("LOWER(member.last_name) LIKE " + E + "'%' || ");
-	  str.append("LOWER(?)");
-	}
-
-      str.append("|| '%' ");
+	str.append
+	  ("LOWER(member.memberid) LIKE " + E + "'%' || LOWER(?) || '%' ");
     }
 
   str.append("GROUP BY "
