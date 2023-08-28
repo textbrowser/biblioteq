@@ -1041,7 +1041,7 @@ void biblioteq_import::slotImport(void)
     importBooks(progress.data(),
 		errors,
 		Templates::TEMPLATE_1,
-		11,
+		12, // ISBN-10
 		&imported,
 		&notImported);
   else if(index == Templates::TEMPLATE_2)
@@ -1052,7 +1052,7 @@ void biblioteq_import::slotImport(void)
     importBooks(progress.data(),
 		errors,
 		Templates::TEMPLATE_2,
-		9,
+		9, // ISBN-10
 		&imported,
 		&notImported);
   else if(index == Templates::TEMPLATE_3)
