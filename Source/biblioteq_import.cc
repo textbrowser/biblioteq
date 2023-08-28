@@ -384,6 +384,19 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		      (1,
 		       str.toInt(),
 		       static_cast<int> (biblioteq::Limits::QUANTITY));
+		  else if(m_mappings.value(i).first == "target_audience")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare
+			    ("INSERT INTO book_target_audiences "
+			     "(target_audience) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
+		    }
 
 		  if(str.isEmpty())
 		    /*
