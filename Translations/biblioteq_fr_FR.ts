@@ -62,7 +62,7 @@
     <message>
         <location filename="../Source/biblioteq_misc_functions.cc" line="1189"/>
         <source>Title: </source>
-        <translation>Titre: </translation>
+        <translation>Titre : </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_misc_functions.cc" line="1191"/>
@@ -494,7 +494,7 @@
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="769"/>
         <source>Overdue Fees</source>
-        <translation>Amandes pour retard</translation>
+        <translation>Frais de dépassement</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="776"/>
@@ -975,7 +975,7 @@
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="339"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;Lister les éléments de la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Liste des éléments de la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List discovered items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -1545,7 +1545,7 @@
         <location filename="../Source/biblioteq_a.cc" line="1900"/>
         <location filename="../Source/biblioteq_c.cc" line="3878"/>
         <source>Overdue Fees</source>
-        <translation>Amandes pour retard</translation>
+        <translation>Frais de dépassement</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1901"/>
@@ -3461,7 +3461,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="1014"/>
         <source>BiblioteQ: Export As CSV</source>
-        <translation>BiblioteQ : Exporter en CSV</translation>
+        <translation>BibliteQ : Exporter en CSV</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="1458"/>
@@ -10160,7 +10160,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="34"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Empty containers? Please review Options -&amp;gt; Populate Database Enumerations Browser On Display. Existing item windows will not reflect revisions!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Conteneurs vides ? Veuillez examiner les options -&amp;gt; Remplir le navigateur d&apos;énumérations de la base de données à l&apos;écran. Les fenêtres des articles existants ne refléteront pas les révisions.!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="46"/>
@@ -11455,7 +11455,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1268"/>
         <source>Guess</source>
-        <translation>Guess</translation>
+        <translation>Automatique</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1273"/>
@@ -11743,7 +11743,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="965"/>
         <source>Guess</source>
-        <translation>Guess</translation>
+        <translation>Automatique</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="970"/>
@@ -11982,7 +11982,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="830"/>
         <source>Reset &amp;Error Log On Disconnect</source>
-        <translation>Réinitialiser le journal des erre&amp;urs à la déconnexion</translation>
+        <translation>Réinitialisation du journal des &amp;erreurs lors de la déconnexion</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="964"/>
@@ -11997,7 +11997,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1168"/>
         <source>Populate &amp;Members Browser On Display</source>
-        <translation>Remplir le navigateur des &amp;membres à l&apos;affichage</translation>
+        <translation>Remplir le navigateur des &amp;membres lors de l&apos;affichage</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1179"/>
@@ -12012,7 +12012,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1223"/>
         <source>&amp;Export Table View As CSV...</source>
-        <translation>&amp;Exporter la vue tableau en tant que CSV...</translation>
+        <translation>&amp;Exporter le Tableau en CSV...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1287"/>
@@ -12640,7 +12640,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="202"/>
         <source>Overdue Fees</source>
-        <translation>Amandes pour retard</translation>
+        <translation>Frais de dépassement</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="207"/>
@@ -12780,7 +12780,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="637"/>
         <source>&amp;Export All Member Information As CSV...</source>
-        <translation>&amp;Exporter toutes les informations sur les membres au format CSV...</translation>
+        <translation>&amp;Exporter Toutes les informations des member en CSV...</translation>
     </message>
     <message>
         <source>&amp;Export All Member Information as CSV...</source>
@@ -13047,7 +13047,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="600"/>
         <source>Shortcuts</source>
-        <translation>Raccourcis</translation>
+        <translation>Raccourçis</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="612"/>
