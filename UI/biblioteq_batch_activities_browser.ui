@@ -172,6 +172,9 @@
              </item>
              <item>
               <widget class="QLineEdit" name="borrow_member_name">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A database query will be performed after editing of the Member ID has completed. For example, Member ID has lost input focus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
