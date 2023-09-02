@@ -91,6 +91,14 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotListMembersReservedItems(void)));
+  connect(m_ui.borrow_member_id,
+	  SIGNAL(editingFinished(void)),
+	  this,
+	  SLOT(slotDiscoverMemberName(void)));
+  connect(m_ui.borrow_member_id,
+	  SIGNAL(textEdited(const QString &)),
+	  m_ui.borrow_member_name,
+	  SLOT(clear(void)));
   connect(m_ui.borrow_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -996,6 +1004,24 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
     m_ui.borrow_table->removeRow(rows.at(i));
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::slotDiscoverMemberName(void)
+{
+  if(m_ui.borrow_member_id == sender())
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QString errorstr("");
+      auto name(biblioteq_misc_functions::
+		getMemberName(m_qmain->getDB(),
+			      m_ui.borrow_member_id->text(),
+			      errorstr));
+
+      m_ui.borrow_member_name->setText(name);
+      m_ui.borrow_member_name->setCursorPosition(0);
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq_batch_activities::slotExportMissing(void)

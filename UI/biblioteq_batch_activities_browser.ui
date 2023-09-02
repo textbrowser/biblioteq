@@ -164,6 +164,20 @@
               </widget>
              </item>
              <item>
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>Discovered Name</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="borrow_member_name">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QToolButton" name="borrow_list">
                <property name="toolTip">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List member's reserved items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -636,6 +650,7 @@
   <tabstop>borrow_scan_type</tabstop>
   <tabstop>borrow_scan</tabstop>
   <tabstop>borrow_member_id</tabstop>
+  <tabstop>borrow_member_name</tabstop>
   <tabstop>borrow_list</tabstop>
   <tabstop>borrow_table</tabstop>
   <tabstop>borrow_add_row</tabstop>
