@@ -28,11 +28,11 @@ QMAKE_DISTCLEAN += .qmake.cache .qmake.stash debug temp
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
-INCLUDEPATH	+= Include.win32 \
+INCLUDEPATH	+= Distributions\\Windows\\Include.64 \
                    Source \
                    temp
 LIBS		+= -L"." \
-                   -L"Libraries.win32\\yaz" \
+                   -L"Distributions\\Windows\\Libraries.64\\yaz" \
                    -lyaz5
 RC_FILE		= biblioteq.win.rc
 PROJECTNAME	= BiblioteQ
@@ -50,12 +50,12 @@ documentation.files = Documentation\\*.html \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
-libraries.files = Libraries.win32\\miscellaneous\\*.dll \
-                  Libraries.win32\\postgresql\\*.dll \
-                  Libraries.win32\\postgresql\\*.manifest \
-                  Libraries.win32\\yaz\\*.dll \
-                  Libraries.win32\\yaz\\*.exe \
-                  Libraries.win64\\*.exe
+libraries.files = Distributions\\Windows\\Libraries.64\\miscellaneous\\*.dll \
+                  Distributions\\Windows\\Libraries.64\\postgresql\\*.dll \
+                  Distributions\\Windows\\Libraries.64\\postgresql\\*.manifest \
+                  Distributions\\Windows\\Libraries.64\\yaz\\*.dll \
+                  Distributions\\Windows\\Libraries.64\\yaz\\*.exe \
+                  Distributions\\Windows\\Libraries.64\\*.exe
 libraries.path = release\\.
 plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins1.path = release\\plugins\\.
