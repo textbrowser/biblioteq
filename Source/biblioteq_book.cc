@@ -3865,7 +3865,7 @@ void biblioteq_book::slotGo(void)
 	  searchstr.append("SUBSTR(purchase_date, 7) = ? AND ");
 	  values.append(id.purchase_date->date().toString("yyyy"));
 	}
-      
+
       searchstr.append
 	("LOWER(COALESCE(origin, '')) LIKE " +
 	 UNACCENT +
