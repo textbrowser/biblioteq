@@ -41,7 +41,7 @@ TEMPLATE        = app
 
 biblioteq.files = biblioteq.conf
 biblioteq.path = release\\.
-biblioteq_bat.files = biblioteq-darkmode.bat
+biblioteq_bat.files = Distributions\\biblioteq-darkmode.bat
 biblioteq_bat.path = release\\.
 data.files = Data\\*
 data.path = release\\Data\\.

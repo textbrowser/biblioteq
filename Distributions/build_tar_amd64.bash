@@ -19,11 +19,11 @@ lupdate biblioteq.pro && lrelease biblioteq.pro
 make -j $(nproc)
 cp -p ./BiblioteQ ./biblioteq/.
 cp -p ./Icons/book.png ./biblioteq/.
-cp -p ./SQL/* ./biblioteq/SQL/.
 cp -p ./biblioteq.conf ./biblioteq/.
 cp -p ./biblioteq.sh ./biblioteq/.
 cp -pr ./Data ./biblioteq/.
 cp -pr ./Documentation/* ./biblioteq/Documentation/.
+cp -pr ./SQL/* ./biblioteq/SQL/.
 
 # Prepare a tar bundle.
 

@@ -28,18 +28,19 @@ lupdate biblioteq.pro && lrelease biblioteq.pro
 make -j $(nproc)
 cp -p ./BiblioteQ ./opt/biblioteq/.
 cp -p ./Icons/book.png ./opt/biblioteq/.
-cp -p ./SQL/* ./opt/biblioteq/SQL/.
 cp -p ./biblioteq.conf ./opt/biblioteq/.
 cp -p ./biblioteq.sh ./opt/biblioteq/.
 cp -pr ./Data ./opt/biblioteq/.
 cp -pr ./Documentation/* ./opt/biblioteq/Documentation/.
+cp -pr ./SQL/* ./opt/biblioteq/SQL/.
 
 # Preparing BiblioteQ-x.deb:
 
 mkdir -p biblioteq-debian/opt
 mkdir -p biblioteq-debian/usr/share/applications
-cp -p ./biblioteq.desktop biblioteq-debian/usr/share/applications/.
-cp -pr ./DEBIAN biblioteq-debian/.
+cp -p ./Distributions/biblioteq.desktop \
+   biblioteq-debian/usr/share/applications/.
+cp -pr ./Distributions/DEBIAN biblioteq-debian/.
 cp -r ./opt/biblioteq biblioteq-debian/opt/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-${VERSION}_amd64.deb
 make distclean

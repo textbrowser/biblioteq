@@ -819,6 +819,14 @@
         <source>Close</source>
         <translation type="unfinished">Schlie√üen</translation>
     </message>
+    <message>
+        <source>Discovered Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A database query will be performed after editing of the Member ID has completed. For example, after Member ID has lost input focus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq</name>
@@ -2431,11 +2439,15 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A new version (%1) of BiblioteQ is available!</source>
+        <source>Empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Empty</source>
+        <source>The current PostgreSQL schema must be updated. Please execute the statement(s) in %1 for version %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version %1 of BiblioteQ is available!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3274,6 +3286,30 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>In order to query a Z39.50 site, ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Reform Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Origin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Purchase Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reform Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Origin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Purchase Date:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6338,6 +6374,18 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Volume Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reform Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Origin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Purchase Date</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9621,6 +9669,18 @@ URL</source>
         <source>Volume Number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Origin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reform Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Purchase Date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -10706,6 +10766,10 @@ URL</source>
         <source>Empty</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ctrl+B</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -11046,7 +11110,7 @@ URL</source>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation>Tabelle aktualisieren</translation>
+        <translation type="vanished">Tabelle aktualisieren</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -11158,6 +11222,10 @@ URL</source>
     </message>
     <message>
         <source>&amp;Set Membership Fees...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Refresh the table. Please review Apply Filter.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
