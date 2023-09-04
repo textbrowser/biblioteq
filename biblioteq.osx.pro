@@ -5,7 +5,7 @@ purge.commands = find . -name '*~*' -exec rm -f {} \;
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
-QT		+= network sql printsupport widgets
+QT		+= network printsupport sql widgets
 QT		-= webkit
 
 QMAKE_CLEAN	+= BiblioteQ

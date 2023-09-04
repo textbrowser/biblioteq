@@ -6,7 +6,7 @@ CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
                    QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
-QT              += network sql printsupport widgets
+QT              += network printsupport sql widgets
 QT              -= webkit
 
 exists(/usr/local/include/poppler) {
