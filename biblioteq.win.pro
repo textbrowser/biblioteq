@@ -34,7 +34,7 @@ INCLUDEPATH	+= Distributions\\Windows\\Include.64 \
 LIBS		+= -L"." \
                    -L"Distributions\\Windows\\Libraries.64\\yaz" \
                    -lyaz5
-RC_FILE		= biblioteq.win.rc
+RC_FILE		= Distributions\\Windows\\biblioteq.win.rc
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app
