@@ -26,6 +26,7 @@
 */
 
 #include "biblioteq.h"
+#include "biblioteq_boolean_table_item.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "ui_biblioteq_generalmessagediag.h"
@@ -4017,7 +4018,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      ** Was the book read?
 	      */
 
-	      auto item = new QTableWidgetItem();
+	      auto item = new biblioteq_boolean_table_item();
 
 	      if(itemType == "book")
 		{

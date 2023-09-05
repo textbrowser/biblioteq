@@ -84,6 +84,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_batch_activities.cc \
                   Source/biblioteq_bgraphicsscene.cc \
                   Source/biblioteq_book.cc \
+                  Source/biblioteq_boolean_table_item.cc \
                   Source/biblioteq_borrowers_editor.cc \
 		  Source/biblioteq_c.cc \
                   Source/biblioteq_callnum_table_item.cc \

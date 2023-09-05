@@ -26,6 +26,7 @@
 */
 
 #include "biblioteq.h"
+#include "biblioteq_boolean_table_item.h"
 #include "biblioteq_copy_editor.h"
 #include "biblioteq_custom_query.h"
 #include "biblioteq_files.h"
@@ -1010,7 +1011,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 	      ** Was the book read?
 	      */
 
-	      auto item = new QTableWidgetItem();
+	      auto item = new biblioteq_boolean_table_item();
 
 	      if(itemType == "book")
 		{
