@@ -1802,20 +1802,20 @@ void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
 
 void biblioteq::replaceBook(const QString &id, biblioteq_book *book)
 {
-  Q_UNUSED(id);
   Q_UNUSED(book);
+  Q_UNUSED(id);
 }
 
 void biblioteq::replaceCD(const QString &id, biblioteq_cd *cd)
 {
-  Q_UNUSED(id);
   Q_UNUSED(cd);
+  Q_UNUSED(id);
 }
 
 void biblioteq::replaceDVD(const QString &id, biblioteq_dvd *dvd)
 {
-  Q_UNUSED(id);
   Q_UNUSED(dvd);
+  Q_UNUSED(id);
 }
 
 void biblioteq::replaceGreyLiterature(const QString &id,
