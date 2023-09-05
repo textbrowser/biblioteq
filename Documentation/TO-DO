@@ -552,6 +552,6 @@
 304. Main table context menu requires some intelligence. Not necessary. (Done)
 305. Describe in enum. browser that existing item windows do not reflect
      revisions. (Done)
-306. Deprecate Windows x86. (TBD)
+306. Deprecate Windows x86. (Done)
 307. Document special-executable option. (Done)
 308. Android image. (Done)
