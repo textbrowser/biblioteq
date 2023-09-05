@@ -1,6 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,64,136,91"/>
-<area shape="rect" id="node2" href="$classbiblioteq__callnum__table__item.html" title=" " alt="" coords="185,5,374,32"/>
-<area shape="rect" id="node3" href="$classbiblioteq__filesize__table__item.html" title=" " alt="" coords="221,57,337,98"/>
-<area shape="rect" id="node4" href="$classbiblioteq__numeric__table__item.html" title=" " alt="" coords="184,123,375,149"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,122,73,149"/>
+<area shape="rect" id="node2" href="$classbiblioteq__borrowers__editor.html" title=" " alt="" coords="129,5,264,47"/>
+<area shape="rect" id="node3" href="$classbiblioteq__copy__editor.html" title=" " alt="" coords="125,71,268,98"/>
+<area shape="rect" id="node5" href="$classbiblioteq__sruresults.html" title=" " alt="" coords="129,122,264,149"/>
+<area shape="rect" id="node6" href="$classbiblioteq__z3950results.html" title=" " alt="" coords="121,173,272,199"/>
+<area shape="rect" id="node7" href="$classuserinfo__diag__class.html" title=" " alt="" coords="128,223,265,250"/>
+<area shape="rect" id="node4" href="$classbiblioteq__copy__editor__book.html" title=" " alt="" coords="320,71,499,98"/>
 </map>
