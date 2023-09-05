@@ -2866,7 +2866,7 @@ void biblioteq_magazine::slotGo(void)
 	    {
 	      if(m_subType == "Journal")
 		qmain->replaceJournal
-		  (m_oid, dynamic_cast<biblioteq_journal *> (this));
+		  (m_oid, qobject_cast<biblioteq_journal *> (this));
 	      else if(m_subType == "Magazine")
 		qmain->replaceMagazine(m_oid, this);
 
