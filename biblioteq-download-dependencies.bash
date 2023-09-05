@@ -14,15 +14,18 @@ wget --output-document=$postgresql \
 
 if [ -r $postgresql ]; then
     unzip -q $postgresql
-    mkdir -p Libraries.win64/postgresql
-    mv pgsql/lib/libpq.dll Libraries.win64/postgresql/.
-    mv 'pgsql/pgAdmin 4/bin/libiconv-2.dll' Libraries.win64/postgresql/.
-    mv 'pgsql/pgAdmin 4/bin/libintl-8.dll' Libraries.win64/postgresql/.
-    mv 'pgsql/pgAdmin 4/venv/DLLs/libcrypto-1_1.dll' \
-       Libraries.win64/postgresql/.
-    mv 'pgsql/pgAdmin 4/venv/DLLs/libssl-1_1.dll' Libraries.win64/postgresql/.
-    mv pgsql/bin/libx*.dll Libraries.win64/postgresql/.
-    chmod +r,+w,-x Libraries.win64/postgresql/*
+    mkdir -p Distributions/Windows/Libraries.64/postgresql
+    mv pgsql/bin/libpq.dll Distributions/Windows/Libraries.64/postgresql/.
+    mv 'pgsql/pgAdmin 4/runtime/libcrypto-3-x64.dll' \
+       Distributions/Windows/Libraries.64/postgresql/.
+    mv 'pgsql/pgAdmin 4/runtime/libiconv-2.dll' \
+       Distributions/Windows/Libraries.64/postgresql/.
+    mv 'pgsql/pgAdmin 4/runtime/libintl-9.dll' \
+       Distributions/Windows/Libraries.64/postgresql/.
+    mv 'pgsql/pgAdmin 4/runtime/libssl-3-x64.dll' \
+       Distributions/Windows/Libraries.64/postgresql/.
+    mv pgsql/bin/libx*.dll Distributions/Windows/Libraries.64/postgresql/.
+    chmod +r,+w,-x Distributions/Windows/Libraries.64/postgresql/*.dll
     rm -f $postgresql
     rm -fr pgsql
 else
