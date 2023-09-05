@@ -1,6 +1,7 @@
 cache()
 include(biblioteq-source.pro)
 
+doxygen.commands = doxygen biblioteq.doxygen
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= copy_dir_files qt release thread warn_on
@@ -53,7 +54,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pie \
                           -std=c++17
 QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash temp
-QMAKE_EXTRA_TARGETS = purge
+QMAKE_EXTRA_TARGETS = doxygen purge
 
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
