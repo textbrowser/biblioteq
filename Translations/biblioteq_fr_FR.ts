@@ -62,7 +62,7 @@
     <message>
         <location filename="../Source/biblioteq_misc_functions.cc" line="1189"/>
         <source>Title: </source>
-        <translation>Titre: </translation>
+        <translation>Titre : </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_misc_functions.cc" line="1191"/>
@@ -494,7 +494,7 @@
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="769"/>
         <source>Overdue Fees</source>
-        <translation>Amandes pour retard</translation>
+        <translation>Frais de dépassement</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="776"/>
@@ -924,12 +924,12 @@
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="169"/>
         <source>Discovered Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom découvert</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A database query will be performed after editing of the Member ID has completed. For example, after Member ID has lost input focus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Une interrogation de la base de données sera effectuée une fois l&apos;édition de l&apos;identifiant du membre terminée. Par exemple, après que l&apos;ID du membre a perdu le focus d&apos;entrée.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="186"/>
@@ -985,7 +985,7 @@
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="356"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;Lister les éléments de la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Liste des éléments de la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List discovered items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -1555,7 +1555,7 @@
         <location filename="../Source/biblioteq_a.cc" line="1900"/>
         <location filename="../Source/biblioteq_c.cc" line="3878"/>
         <source>Overdue Fees</source>
-        <translation>Amandes pour retard</translation>
+        <translation>Frais de dépassement</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1901"/>
@@ -2735,7 +2735,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_c.cc" line="3846"/>
         <source>BiblioteQ: Export Patrons As CSV</source>
-        <translation>biblioteQ : Exportation des membres en format CSV</translation>
+        <translation>BiblioteQ : Exportation des membres en format CSV</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="3864"/>
@@ -3331,7 +3331,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_d.cc" line="776"/>
         <source>A new version %1 of BiblioteQ is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version %1 de BiblioteQ est disponible !</translation>
     </message>
     <message>
         <source>A new version (%1) of BiblioteQ is available!</source>
@@ -3680,7 +3680,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_book.cc" line="209"/>
         <source>Reset Multi-Volume Set ISBN</source>
-        <translation>Réinitialisation d&apos;un ensemble de plusieurs volumes ISBN</translation>
+        <translation>Réinitialiser l&apos;ensemble des volumes ISBN</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="211"/>
@@ -3695,17 +3695,17 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_book.cc" line="215"/>
         <source>Reset Reform Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser Date de réforme</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="217"/>
         <source>Reset Origin</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser l&apos;origine</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="219"/>
         <source>Reset Purchase Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser la date d&apos;achat</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="270"/>
@@ -4324,17 +4324,17 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_book.cc" line="4330"/>
         <source>Reform Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de réforme :</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="4332"/>
         <source>Origin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Origine :</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="4334"/>
         <source>Purchase Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Date d&apos;achat :</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="4418"/>
@@ -8214,17 +8214,17 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_main_table.cc" line="348"/>
         <source>Reform Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de réforme</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_main_table.cc" line="349"/>
         <source>Origin</source>
-        <translation type="unfinished"></translation>
+        <translation>Origine</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_main_table.cc" line="350"/>
         <source>Purchase Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Date d&apos;achat</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_main_table.cc" line="388"/>
@@ -8580,7 +8580,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="139"/>
         <source>Reset Collection Notes</source>
-        <translation>Réinitialisation des notes de la collection</translation>
+        <translation>Réinitialiser les notes de la collection</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="141"/>
@@ -10221,7 +10221,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="34"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Empty containers? Please review Options -&amp;gt; Populate Database Enumerations Browser On Display. Existing item windows will not reflect revisions!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Conteneurs vides ? Veuillez examiner les options -&amp;gt; Remplir le navigateur d&apos;énumérations de la base de données à l&apos;écran. Les fenêtres des articles existants ne refléteront pas les révisions.!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_dbenumerations.ui" line="46"/>
@@ -11466,17 +11466,17 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../UI/biblioteq_bookinfo.ui" line="977"/>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1148"/>
         <source>Origin</source>
-        <translation type="unfinished"></translation>
+        <translation>Origine</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1032"/>
         <source>Reform Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de réforme</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1094"/>
         <source>Purchase Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Date d&apos;achat</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1163"/>
@@ -11537,7 +11537,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1343"/>
         <source>Guess</source>
-        <translation>Guess</translation>
+        <translation>Automatique</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="1348"/>
@@ -11825,7 +11825,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="965"/>
         <source>Guess</source>
-        <translation>Guess</translation>
+        <translation>Automatique</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_maginfo.ui" line="970"/>
@@ -12064,7 +12064,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="830"/>
         <source>Reset &amp;Error Log On Disconnect</source>
-        <translation>Réinitialiser le journal des erre&amp;urs à la déconnexion</translation>
+        <translation>Réinitialiser le journal des &amp;erreurs lors de la déconnexion</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="964"/>
@@ -12079,7 +12079,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1168"/>
         <source>Populate &amp;Members Browser On Display</source>
-        <translation>Remplir le navigateur des &amp;membres à l&apos;affichage</translation>
+        <translation>Remplir le navigateur des &amp;membres lors de l&apos;affichage</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1179"/>
@@ -12094,7 +12094,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1223"/>
         <source>&amp;Export Table View As CSV...</source>
-        <translation>&amp;Exporter la vue tableau en tant que CSV...</translation>
+        <translation>&amp;Exporter le Tableau en CSV...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1287"/>
@@ -12114,7 +12114,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1422"/>
         <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+B</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1438"/>
@@ -12727,7 +12727,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="202"/>
         <source>Overdue Fees</source>
-        <translation>Amandes pour retard</translation>
+        <translation>Frais de dépassement</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="207"/>
@@ -12837,7 +12837,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="547"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Refresh the table. Please review Apply Filter.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Actualiser le tableau. Veuillez revoir Appliquer le filtre.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Refresh Table</source>
@@ -12871,7 +12871,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="637"/>
         <source>&amp;Export All Member Information As CSV...</source>
-        <translation>&amp;Exporter toutes les informations sur les membres au format CSV...</translation>
+        <translation>&amp;Exporter Toutes les informations des member en CSV...</translation>
     </message>
     <message>
         <source>&amp;Export All Member Information as CSV...</source>
@@ -13138,7 +13138,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="600"/>
         <source>Shortcuts</source>
-        <translation>Raccourcis</translation>
+        <translation>Raccourçis</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="612"/>
