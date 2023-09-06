@@ -685,6 +685,7 @@ void biblioteq_otheroptions::prepareShortcuts(void)
 	item->setFlags
 	  (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
+      item->setToolTip(item->text());
       m_ui.shortcuts->setItem(i, 1, item);
     }
 
@@ -889,6 +890,8 @@ void biblioteq_otheroptions::slotSave(void)
        m_ui.shortcuts->item(i, 0)->text() == tr("Custom Query Favorite") &&
        m_ui.shortcuts->item(i, 1))
       {
+	m_ui.shortcuts->item(i, 1)->setToolTip
+	  (m_ui.shortcuts->item(i, 1)->text().trimmed());
 	settings.setValue
 	  ("custom_query_favorite_shortcut",
 	   m_ui.shortcuts->item(i, 1)->text().trimmed());
