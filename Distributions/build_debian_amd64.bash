@@ -33,6 +33,7 @@ cp -p ./biblioteq.sh ./opt/biblioteq/.
 cp -pr ./Data ./opt/biblioteq/.
 cp -pr ./Documentation/* ./opt/biblioteq/Documentation/.
 cp -pr ./SQL/* ./opt/biblioteq/SQL/.
+rm -fr ./opt/biblioteq/Documentation/Doxygen
 
 # Preparing BiblioteQ-x.deb:
 
