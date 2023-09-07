@@ -359,6 +359,8 @@ void biblioteq::slotContributors(void)
       m_contributors->setHtml
 	(tr("<html>"
 	    "<b>The following people have made BiblioteQ beautiful. "
+	    "If your name is not mentioned, please submit a ticket at "
+	    "https://github.com/textbrowser/biblioteq/issues. "
 	    "Thank You!</b><br><br>"
 	    "Ana Monteiro<br>"
 	    "Arti<br>"
