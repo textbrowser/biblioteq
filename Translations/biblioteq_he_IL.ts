@@ -1035,8 +1035,8 @@
 <context>
     <name>biblioteq</name>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="1157"/>
-        <location filename="../Source/biblioteq_c.cc" line="3412"/>
+        <location filename="../Source/biblioteq_c.cc" line="1158"/>
+        <location filename="../Source/biblioteq_c.cc" line="3413"/>
         <source>BiblioteQ</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1116,17 +1116,17 @@
         <location filename="../Source/biblioteq_a.cc" line="1542"/>
         <location filename="../Source/biblioteq_a.cc" line="1572"/>
         <location filename="../Source/biblioteq_a.cc" line="1598"/>
-        <location filename="../Source/biblioteq_b.cc" line="3491"/>
-        <location filename="../Source/biblioteq_b.cc" line="3500"/>
-        <location filename="../Source/biblioteq_c.cc" line="507"/>
-        <location filename="../Source/biblioteq_c.cc" line="516"/>
-        <location filename="../Source/biblioteq_c.cc" line="3185"/>
+        <location filename="../Source/biblioteq_b.cc" line="3492"/>
+        <location filename="../Source/biblioteq_b.cc" line="3501"/>
+        <location filename="../Source/biblioteq_c.cc" line="508"/>
+        <location filename="../Source/biblioteq_c.cc" line="517"/>
+        <location filename="../Source/biblioteq_c.cc" line="3186"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="853"/>
-        <location filename="../Source/biblioteq_b.cc" line="4275"/>
+        <location filename="../Source/biblioteq_b.cc" line="4276"/>
         <source>&amp;%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1245,28 +1245,28 @@
         <location filename="../Source/biblioteq_a.cc" line="1394"/>
         <location filename="../Source/biblioteq_a.cc" line="2025"/>
         <location filename="../Source/biblioteq_a.cc" line="2456"/>
-        <location filename="../Source/biblioteq_b.cc" line="122"/>
-        <location filename="../Source/biblioteq_b.cc" line="3427"/>
-        <location filename="../Source/biblioteq_b.cc" line="4113"/>
-        <location filename="../Source/biblioteq_c.cc" line="379"/>
-        <location filename="../Source/biblioteq_c.cc" line="439"/>
-        <location filename="../Source/biblioteq_c.cc" line="1091"/>
-        <location filename="../Source/biblioteq_c.cc" line="3385"/>
+        <location filename="../Source/biblioteq_b.cc" line="123"/>
+        <location filename="../Source/biblioteq_b.cc" line="3428"/>
+        <location filename="../Source/biblioteq_b.cc" line="4114"/>
+        <location filename="../Source/biblioteq_c.cc" line="380"/>
+        <location filename="../Source/biblioteq_c.cc" line="440"/>
+        <location filename="../Source/biblioteq_c.cc" line="1092"/>
+        <location filename="../Source/biblioteq_c.cc" line="3386"/>
         <source>0 Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1315"/>
         <location filename="../Source/biblioteq_a.cc" line="1716"/>
-        <location filename="../Source/biblioteq_c.cc" line="3321"/>
+        <location filename="../Source/biblioteq_c.cc" line="3322"/>
         <source>Item Requests (PostgreSQL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1399"/>
-        <location filename="../Source/biblioteq_b.cc" line="5554"/>
-        <location filename="../Source/biblioteq_c.cc" line="5448"/>
-        <location filename="../Source/biblioteq_c.cc" line="6088"/>
+        <location filename="../Source/biblioteq_b.cc" line="5555"/>
+        <location filename="../Source/biblioteq_c.cc" line="5449"/>
+        <location filename="../Source/biblioteq_c.cc" line="6089"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1375,16 +1375,16 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1659"/>
         <location filename="../Source/biblioteq_a.cc" line="1682"/>
-        <location filename="../Source/biblioteq_b.cc" line="4169"/>
-        <location filename="../Source/biblioteq_b.cc" line="4202"/>
-        <location filename="../Source/biblioteq_b.cc" line="4236"/>
+        <location filename="../Source/biblioteq_b.cc" line="4170"/>
+        <location filename="../Source/biblioteq_b.cc" line="4203"/>
+        <location filename="../Source/biblioteq_b.cc" line="4237"/>
         <source>Cancel Selected Request(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1675"/>
-        <location filename="../Source/biblioteq_b.cc" line="4240"/>
-        <location filename="../Source/biblioteq_c.cc" line="3138"/>
+        <location filename="../Source/biblioteq_b.cc" line="4241"/>
+        <location filename="../Source/biblioteq_c.cc" line="3139"/>
         <source>Request Selected Item(s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1409,24 +1409,24 @@
         <location filename="../Source/biblioteq_a.cc" line="1727"/>
         <location filename="../Source/biblioteq_a.cc" line="1731"/>
         <location filename="../Source/biblioteq_a.cc" line="3228"/>
-        <location filename="../Source/biblioteq_c.cc" line="2768"/>
-        <location filename="../Source/biblioteq_c.cc" line="2770"/>
-        <location filename="../Source/biblioteq_c.cc" line="2903"/>
-        <location filename="../Source/biblioteq_c.cc" line="2911"/>
-        <location filename="../Source/biblioteq_c.cc" line="2922"/>
-        <location filename="../Source/biblioteq_c.cc" line="2929"/>
-        <location filename="../Source/biblioteq_c.cc" line="2959"/>
-        <location filename="../Source/biblioteq_c.cc" line="2966"/>
-        <location filename="../Source/biblioteq_c.cc" line="4860"/>
-        <location filename="../Source/biblioteq_c.cc" line="4874"/>
-        <location filename="../Source/biblioteq_c.cc" line="5246"/>
-        <location filename="../Source/biblioteq_c.cc" line="5264"/>
-        <location filename="../Source/biblioteq_c.cc" line="5333"/>
-        <location filename="../Source/biblioteq_c.cc" line="5361"/>
-        <location filename="../Source/biblioteq_c.cc" line="5382"/>
-        <location filename="../Source/biblioteq_c.cc" line="5400"/>
-        <location filename="../Source/biblioteq_c.cc" line="5414"/>
-        <location filename="../Source/biblioteq_c.cc" line="5955"/>
+        <location filename="../Source/biblioteq_c.cc" line="2769"/>
+        <location filename="../Source/biblioteq_c.cc" line="2771"/>
+        <location filename="../Source/biblioteq_c.cc" line="2904"/>
+        <location filename="../Source/biblioteq_c.cc" line="2912"/>
+        <location filename="../Source/biblioteq_c.cc" line="2923"/>
+        <location filename="../Source/biblioteq_c.cc" line="2930"/>
+        <location filename="../Source/biblioteq_c.cc" line="2960"/>
+        <location filename="../Source/biblioteq_c.cc" line="2967"/>
+        <location filename="../Source/biblioteq_c.cc" line="4861"/>
+        <location filename="../Source/biblioteq_c.cc" line="4875"/>
+        <location filename="../Source/biblioteq_c.cc" line="5247"/>
+        <location filename="../Source/biblioteq_c.cc" line="5265"/>
+        <location filename="../Source/biblioteq_c.cc" line="5334"/>
+        <location filename="../Source/biblioteq_c.cc" line="5362"/>
+        <location filename="../Source/biblioteq_c.cc" line="5383"/>
+        <location filename="../Source/biblioteq_c.cc" line="5401"/>
+        <location filename="../Source/biblioteq_c.cc" line="5415"/>
+        <location filename="../Source/biblioteq_c.cc" line="5956"/>
         <source>.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1462,34 +1462,34 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1891"/>
-        <location filename="../Source/biblioteq_c.cc" line="3874"/>
-        <location filename="../Source/biblioteq_c.cc" line="6477"/>
+        <location filename="../Source/biblioteq_c.cc" line="3875"/>
+        <location filename="../Source/biblioteq_c.cc" line="6478"/>
         <source>Member ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1892"/>
-        <location filename="../Source/biblioteq_c.cc" line="3869"/>
-        <location filename="../Source/biblioteq_c.cc" line="6481"/>
+        <location filename="../Source/biblioteq_c.cc" line="3870"/>
+        <location filename="../Source/biblioteq_c.cc" line="6482"/>
         <source>First Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1893"/>
-        <location filename="../Source/biblioteq_c.cc" line="3871"/>
-        <location filename="../Source/biblioteq_c.cc" line="6482"/>
+        <location filename="../Source/biblioteq_c.cc" line="3872"/>
+        <location filename="../Source/biblioteq_c.cc" line="6483"/>
         <source>Last Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1894"/>
-        <location filename="../Source/biblioteq_c.cc" line="3867"/>
+        <location filename="../Source/biblioteq_c.cc" line="3868"/>
         <source>E-Mail Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1895"/>
-        <location filename="../Source/biblioteq_c.cc" line="3882"/>
+        <location filename="../Source/biblioteq_c.cc" line="3883"/>
         <source>Telephone Number</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1500,19 +1500,19 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1897"/>
-        <location filename="../Source/biblioteq_c.cc" line="3875"/>
+        <location filename="../Source/biblioteq_c.cc" line="3876"/>
         <source>Member Since</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1898"/>
-        <location filename="../Source/biblioteq_c.cc" line="3868"/>
+        <location filename="../Source/biblioteq_c.cc" line="3869"/>
         <source>Expiration Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1899"/>
-        <location filename="../Source/biblioteq_c.cc" line="3876"/>
+        <location filename="../Source/biblioteq_c.cc" line="3877"/>
         <source>Membership Fees</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1558,13 +1558,13 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1997"/>
-        <location filename="../Source/biblioteq_c.cc" line="3364"/>
+        <location filename="../Source/biblioteq_c.cc" line="3365"/>
         <source>Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="2001"/>
-        <location filename="../Source/biblioteq_c.cc" line="3370"/>
+        <location filename="../Source/biblioteq_c.cc" line="3371"/>
         <source>Standard User Mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1684,32 +1684,32 @@
         <location filename="../Source/biblioteq_a.cc" line="4297"/>
         <location filename="../Source/biblioteq_a.cc" line="4307"/>
         <location filename="../Source/biblioteq_a.cc" line="4903"/>
-        <location filename="../Source/biblioteq_c.cc" line="2506"/>
-        <location filename="../Source/biblioteq_c.cc" line="2539"/>
-        <location filename="../Source/biblioteq_c.cc" line="2561"/>
-        <location filename="../Source/biblioteq_c.cc" line="2599"/>
-        <location filename="../Source/biblioteq_c.cc" line="2610"/>
-        <location filename="../Source/biblioteq_c.cc" line="2654"/>
-        <location filename="../Source/biblioteq_c.cc" line="2707"/>
-        <location filename="../Source/biblioteq_c.cc" line="2868"/>
-        <location filename="../Source/biblioteq_c.cc" line="2879"/>
-        <location filename="../Source/biblioteq_c.cc" line="4114"/>
-        <location filename="../Source/biblioteq_c.cc" line="4762"/>
-        <location filename="../Source/biblioteq_c.cc" line="4793"/>
-        <location filename="../Source/biblioteq_c.cc" line="4919"/>
-        <location filename="../Source/biblioteq_c.cc" line="4948"/>
-        <location filename="../Source/biblioteq_c.cc" line="4960"/>
-        <location filename="../Source/biblioteq_c.cc" line="5191"/>
-        <location filename="../Source/biblioteq_c.cc" line="5207"/>
-        <location filename="../Source/biblioteq_c.cc" line="5613"/>
-        <location filename="../Source/biblioteq_c.cc" line="5631"/>
-        <location filename="../Source/biblioteq_c.cc" line="5643"/>
-        <location filename="../Source/biblioteq_c.cc" line="5652"/>
-        <location filename="../Source/biblioteq_c.cc" line="5661"/>
-        <location filename="../Source/biblioteq_c.cc" line="5670"/>
-        <location filename="../Source/biblioteq_c.cc" line="5679"/>
-        <location filename="../Source/biblioteq_c.cc" line="5719"/>
-        <location filename="../Source/biblioteq_c.cc" line="6226"/>
+        <location filename="../Source/biblioteq_c.cc" line="2507"/>
+        <location filename="../Source/biblioteq_c.cc" line="2540"/>
+        <location filename="../Source/biblioteq_c.cc" line="2562"/>
+        <location filename="../Source/biblioteq_c.cc" line="2600"/>
+        <location filename="../Source/biblioteq_c.cc" line="2611"/>
+        <location filename="../Source/biblioteq_c.cc" line="2655"/>
+        <location filename="../Source/biblioteq_c.cc" line="2708"/>
+        <location filename="../Source/biblioteq_c.cc" line="2869"/>
+        <location filename="../Source/biblioteq_c.cc" line="2880"/>
+        <location filename="../Source/biblioteq_c.cc" line="4115"/>
+        <location filename="../Source/biblioteq_c.cc" line="4763"/>
+        <location filename="../Source/biblioteq_c.cc" line="4794"/>
+        <location filename="../Source/biblioteq_c.cc" line="4920"/>
+        <location filename="../Source/biblioteq_c.cc" line="4949"/>
+        <location filename="../Source/biblioteq_c.cc" line="4961"/>
+        <location filename="../Source/biblioteq_c.cc" line="5192"/>
+        <location filename="../Source/biblioteq_c.cc" line="5208"/>
+        <location filename="../Source/biblioteq_c.cc" line="5614"/>
+        <location filename="../Source/biblioteq_c.cc" line="5632"/>
+        <location filename="../Source/biblioteq_c.cc" line="5644"/>
+        <location filename="../Source/biblioteq_c.cc" line="5653"/>
+        <location filename="../Source/biblioteq_c.cc" line="5662"/>
+        <location filename="../Source/biblioteq_c.cc" line="5671"/>
+        <location filename="../Source/biblioteq_c.cc" line="5680"/>
+        <location filename="../Source/biblioteq_c.cc" line="5720"/>
+        <location filename="../Source/biblioteq_c.cc" line="6227"/>
         <location filename="../Source/biblioteq_d.cc" line="123"/>
         <location filename="../Source/biblioteq_d.cc" line="143"/>
         <source>BiblioteQ: User Error</source>
@@ -1750,54 +1750,54 @@
         <location filename="../Source/biblioteq_a.cc" line="4436"/>
         <location filename="../Source/biblioteq_a.cc" line="5293"/>
         <location filename="../Source/biblioteq_a.cc" line="5369"/>
-        <location filename="../Source/biblioteq_b.cc" line="3462"/>
-        <location filename="../Source/biblioteq_b.cc" line="4623"/>
-        <location filename="../Source/biblioteq_b.cc" line="4636"/>
-        <location filename="../Source/biblioteq_c.cc" line="476"/>
-        <location filename="../Source/biblioteq_c.cc" line="2528"/>
-        <location filename="../Source/biblioteq_c.cc" line="2588"/>
-        <location filename="../Source/biblioteq_c.cc" line="2818"/>
-        <location filename="../Source/biblioteq_c.cc" line="2836"/>
-        <location filename="../Source/biblioteq_c.cc" line="2899"/>
-        <location filename="../Source/biblioteq_c.cc" line="2919"/>
-        <location filename="../Source/biblioteq_c.cc" line="2939"/>
-        <location filename="../Source/biblioteq_c.cc" line="2956"/>
-        <location filename="../Source/biblioteq_c.cc" line="4130"/>
-        <location filename="../Source/biblioteq_c.cc" line="4535"/>
-        <location filename="../Source/biblioteq_c.cc" line="4673"/>
-        <location filename="../Source/biblioteq_c.cc" line="4777"/>
-        <location filename="../Source/biblioteq_c.cc" line="4815"/>
-        <location filename="../Source/biblioteq_c.cc" line="4834"/>
-        <location filename="../Source/biblioteq_c.cc" line="4838"/>
-        <location filename="../Source/biblioteq_c.cc" line="4858"/>
-        <location filename="../Source/biblioteq_c.cc" line="4865"/>
-        <location filename="../Source/biblioteq_c.cc" line="4882"/>
-        <location filename="../Source/biblioteq_c.cc" line="5066"/>
-        <location filename="../Source/biblioteq_c.cc" line="5084"/>
-        <location filename="../Source/biblioteq_c.cc" line="5090"/>
-        <location filename="../Source/biblioteq_c.cc" line="5221"/>
-        <location filename="../Source/biblioteq_c.cc" line="5243"/>
-        <location filename="../Source/biblioteq_c.cc" line="5261"/>
-        <location filename="../Source/biblioteq_c.cc" line="5330"/>
-        <location filename="../Source/biblioteq_c.cc" line="5359"/>
-        <location filename="../Source/biblioteq_c.cc" line="5379"/>
-        <location filename="../Source/biblioteq_c.cc" line="5397"/>
-        <location filename="../Source/biblioteq_c.cc" line="5411"/>
-        <location filename="../Source/biblioteq_c.cc" line="5427"/>
-        <location filename="../Source/biblioteq_c.cc" line="5463"/>
-        <location filename="../Source/biblioteq_c.cc" line="5706"/>
-        <location filename="../Source/biblioteq_c.cc" line="5731"/>
-        <location filename="../Source/biblioteq_c.cc" line="5848"/>
-        <location filename="../Source/biblioteq_c.cc" line="5852"/>
-        <location filename="../Source/biblioteq_c.cc" line="5877"/>
-        <location filename="../Source/biblioteq_c.cc" line="5883"/>
-        <location filename="../Source/biblioteq_c.cc" line="5902"/>
-        <location filename="../Source/biblioteq_c.cc" line="5945"/>
-        <location filename="../Source/biblioteq_c.cc" line="5950"/>
-        <location filename="../Source/biblioteq_c.cc" line="5971"/>
-        <location filename="../Source/biblioteq_c.cc" line="6449"/>
-        <location filename="../Source/biblioteq_d.cc" line="594"/>
-        <location filename="../Source/biblioteq_d.cc" line="621"/>
+        <location filename="../Source/biblioteq_b.cc" line="3463"/>
+        <location filename="../Source/biblioteq_b.cc" line="4624"/>
+        <location filename="../Source/biblioteq_b.cc" line="4637"/>
+        <location filename="../Source/biblioteq_c.cc" line="477"/>
+        <location filename="../Source/biblioteq_c.cc" line="2529"/>
+        <location filename="../Source/biblioteq_c.cc" line="2589"/>
+        <location filename="../Source/biblioteq_c.cc" line="2819"/>
+        <location filename="../Source/biblioteq_c.cc" line="2837"/>
+        <location filename="../Source/biblioteq_c.cc" line="2900"/>
+        <location filename="../Source/biblioteq_c.cc" line="2920"/>
+        <location filename="../Source/biblioteq_c.cc" line="2940"/>
+        <location filename="../Source/biblioteq_c.cc" line="2957"/>
+        <location filename="../Source/biblioteq_c.cc" line="4131"/>
+        <location filename="../Source/biblioteq_c.cc" line="4536"/>
+        <location filename="../Source/biblioteq_c.cc" line="4674"/>
+        <location filename="../Source/biblioteq_c.cc" line="4778"/>
+        <location filename="../Source/biblioteq_c.cc" line="4816"/>
+        <location filename="../Source/biblioteq_c.cc" line="4835"/>
+        <location filename="../Source/biblioteq_c.cc" line="4839"/>
+        <location filename="../Source/biblioteq_c.cc" line="4859"/>
+        <location filename="../Source/biblioteq_c.cc" line="4866"/>
+        <location filename="../Source/biblioteq_c.cc" line="4883"/>
+        <location filename="../Source/biblioteq_c.cc" line="5067"/>
+        <location filename="../Source/biblioteq_c.cc" line="5085"/>
+        <location filename="../Source/biblioteq_c.cc" line="5091"/>
+        <location filename="../Source/biblioteq_c.cc" line="5222"/>
+        <location filename="../Source/biblioteq_c.cc" line="5244"/>
+        <location filename="../Source/biblioteq_c.cc" line="5262"/>
+        <location filename="../Source/biblioteq_c.cc" line="5331"/>
+        <location filename="../Source/biblioteq_c.cc" line="5360"/>
+        <location filename="../Source/biblioteq_c.cc" line="5380"/>
+        <location filename="../Source/biblioteq_c.cc" line="5398"/>
+        <location filename="../Source/biblioteq_c.cc" line="5412"/>
+        <location filename="../Source/biblioteq_c.cc" line="5428"/>
+        <location filename="../Source/biblioteq_c.cc" line="5464"/>
+        <location filename="../Source/biblioteq_c.cc" line="5707"/>
+        <location filename="../Source/biblioteq_c.cc" line="5732"/>
+        <location filename="../Source/biblioteq_c.cc" line="5849"/>
+        <location filename="../Source/biblioteq_c.cc" line="5853"/>
+        <location filename="../Source/biblioteq_c.cc" line="5878"/>
+        <location filename="../Source/biblioteq_c.cc" line="5884"/>
+        <location filename="../Source/biblioteq_c.cc" line="5903"/>
+        <location filename="../Source/biblioteq_c.cc" line="5946"/>
+        <location filename="../Source/biblioteq_c.cc" line="5951"/>
+        <location filename="../Source/biblioteq_c.cc" line="5972"/>
+        <location filename="../Source/biblioteq_c.cc" line="6450"/>
+        <location filename="../Source/biblioteq_d.cc" line="596"/>
+        <location filename="../Source/biblioteq_d.cc" line="623"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1817,43 +1817,43 @@
         <location filename="../Source/biblioteq_a.cc" line="4030"/>
         <location filename="../Source/biblioteq_a.cc" line="4035"/>
         <location filename="../Source/biblioteq_a.cc" line="4335"/>
-        <location filename="../Source/biblioteq_b.cc" line="3466"/>
-        <location filename="../Source/biblioteq_c.cc" line="481"/>
-        <location filename="../Source/biblioteq_c.cc" line="2764"/>
-        <location filename="../Source/biblioteq_c.cc" line="2824"/>
-        <location filename="../Source/biblioteq_c.cc" line="2843"/>
-        <location filename="../Source/biblioteq_c.cc" line="2907"/>
-        <location filename="../Source/biblioteq_c.cc" line="2926"/>
-        <location filename="../Source/biblioteq_c.cc" line="2944"/>
-        <location filename="../Source/biblioteq_c.cc" line="2963"/>
-        <location filename="../Source/biblioteq_c.cc" line="4137"/>
-        <location filename="../Source/biblioteq_c.cc" line="4141"/>
-        <location filename="../Source/biblioteq_c.cc" line="4540"/>
-        <location filename="../Source/biblioteq_c.cc" line="4678"/>
-        <location filename="../Source/biblioteq_c.cc" line="4782"/>
-        <location filename="../Source/biblioteq_c.cc" line="4819"/>
-        <location filename="../Source/biblioteq_c.cc" line="4841"/>
-        <location filename="../Source/biblioteq_c.cc" line="4872"/>
-        <location filename="../Source/biblioteq_c.cc" line="4890"/>
-        <location filename="../Source/biblioteq_c.cc" line="5116"/>
-        <location filename="../Source/biblioteq_c.cc" line="5122"/>
-        <location filename="../Source/biblioteq_c.cc" line="5129"/>
-        <location filename="../Source/biblioteq_c.cc" line="5225"/>
-        <location filename="../Source/biblioteq_c.cc" line="5435"/>
-        <location filename="../Source/biblioteq_c.cc" line="5467"/>
-        <location filename="../Source/biblioteq_c.cc" line="5710"/>
-        <location filename="../Source/biblioteq_c.cc" line="5735"/>
-        <location filename="../Source/biblioteq_c.cc" line="5855"/>
-        <location filename="../Source/biblioteq_c.cc" line="5890"/>
-        <location filename="../Source/biblioteq_c.cc" line="5910"/>
-        <location filename="../Source/biblioteq_c.cc" line="5959"/>
-        <location filename="../Source/biblioteq_c.cc" line="5979"/>
-        <location filename="../Source/biblioteq_c.cc" line="6456"/>
-        <location filename="../Source/biblioteq_c.cc" line="6460"/>
-        <location filename="../Source/biblioteq_c.cc" line="6464"/>
+        <location filename="../Source/biblioteq_b.cc" line="3467"/>
+        <location filename="../Source/biblioteq_c.cc" line="482"/>
+        <location filename="../Source/biblioteq_c.cc" line="2765"/>
+        <location filename="../Source/biblioteq_c.cc" line="2825"/>
+        <location filename="../Source/biblioteq_c.cc" line="2844"/>
+        <location filename="../Source/biblioteq_c.cc" line="2908"/>
+        <location filename="../Source/biblioteq_c.cc" line="2927"/>
+        <location filename="../Source/biblioteq_c.cc" line="2945"/>
+        <location filename="../Source/biblioteq_c.cc" line="2964"/>
+        <location filename="../Source/biblioteq_c.cc" line="4138"/>
+        <location filename="../Source/biblioteq_c.cc" line="4142"/>
+        <location filename="../Source/biblioteq_c.cc" line="4541"/>
+        <location filename="../Source/biblioteq_c.cc" line="4679"/>
+        <location filename="../Source/biblioteq_c.cc" line="4783"/>
+        <location filename="../Source/biblioteq_c.cc" line="4820"/>
+        <location filename="../Source/biblioteq_c.cc" line="4842"/>
+        <location filename="../Source/biblioteq_c.cc" line="4873"/>
+        <location filename="../Source/biblioteq_c.cc" line="4891"/>
+        <location filename="../Source/biblioteq_c.cc" line="5117"/>
+        <location filename="../Source/biblioteq_c.cc" line="5123"/>
+        <location filename="../Source/biblioteq_c.cc" line="5130"/>
+        <location filename="../Source/biblioteq_c.cc" line="5226"/>
+        <location filename="../Source/biblioteq_c.cc" line="5436"/>
+        <location filename="../Source/biblioteq_c.cc" line="5468"/>
+        <location filename="../Source/biblioteq_c.cc" line="5711"/>
+        <location filename="../Source/biblioteq_c.cc" line="5736"/>
+        <location filename="../Source/biblioteq_c.cc" line="5856"/>
+        <location filename="../Source/biblioteq_c.cc" line="5891"/>
+        <location filename="../Source/biblioteq_c.cc" line="5911"/>
+        <location filename="../Source/biblioteq_c.cc" line="5960"/>
+        <location filename="../Source/biblioteq_c.cc" line="5980"/>
+        <location filename="../Source/biblioteq_c.cc" line="6457"/>
+        <location filename="../Source/biblioteq_c.cc" line="6461"/>
+        <location filename="../Source/biblioteq_c.cc" line="6465"/>
         <location filename="../Source/biblioteq_d.cc" line="320"/>
         <location filename="../Source/biblioteq_d.cc" line="328"/>
-        <location filename="../Source/biblioteq_d.cc" line="601"/>
+        <location filename="../Source/biblioteq_d.cc" line="603"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1882,11 +1882,11 @@
         <location filename="../Source/biblioteq_a.cc" line="4777"/>
         <location filename="../Source/biblioteq_a.cc" line="4824"/>
         <location filename="../Source/biblioteq_a.cc" line="4910"/>
-        <location filename="../Source/biblioteq_b.cc" line="5108"/>
-        <location filename="../Source/biblioteq_c.cc" line="4299"/>
-        <location filename="../Source/biblioteq_c.cc" line="4799"/>
-        <location filename="../Source/biblioteq_c.cc" line="4928"/>
-        <location filename="../Source/biblioteq_c.cc" line="6633"/>
+        <location filename="../Source/biblioteq_b.cc" line="5109"/>
+        <location filename="../Source/biblioteq_c.cc" line="4300"/>
+        <location filename="../Source/biblioteq_c.cc" line="4800"/>
+        <location filename="../Source/biblioteq_c.cc" line="4929"/>
+        <location filename="../Source/biblioteq_c.cc" line="6634"/>
         <location filename="../Source/biblioteq_d.cc" line="151"/>
         <location filename="../Source/biblioteq_d.cc" line="171"/>
         <source>BiblioteQ: Question</source>
@@ -1900,13 +1900,13 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="2737"/>
         <location filename="../Source/biblioteq_a.cc" line="3202"/>
-        <location filename="../Source/biblioteq_b.cc" line="3616"/>
-        <location filename="../Source/biblioteq_c.cc" line="617"/>
-        <location filename="../Source/biblioteq_c.cc" line="4565"/>
-        <location filename="../Source/biblioteq_c.cc" line="4689"/>
-        <location filename="../Source/biblioteq_c.cc" line="4991"/>
-        <location filename="../Source/biblioteq_c.cc" line="5273"/>
-        <location filename="../Source/biblioteq_c.cc" line="6524"/>
+        <location filename="../Source/biblioteq_b.cc" line="3617"/>
+        <location filename="../Source/biblioteq_c.cc" line="618"/>
+        <location filename="../Source/biblioteq_c.cc" line="4566"/>
+        <location filename="../Source/biblioteq_c.cc" line="4690"/>
+        <location filename="../Source/biblioteq_c.cc" line="4992"/>
+        <location filename="../Source/biblioteq_c.cc" line="5274"/>
+        <location filename="../Source/biblioteq_c.cc" line="6525"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1966,7 +1966,7 @@
         <location filename="../Source/biblioteq_a.cc" line="3173"/>
         <location filename="../Source/biblioteq_a.cc" line="3620"/>
         <location filename="../Source/biblioteq_a.cc" line="5110"/>
-        <location filename="../Source/biblioteq_c.cc" line="2655"/>
+        <location filename="../Source/biblioteq_c.cc" line="2656"/>
         <source>Unable to determine the selected item&apos;s type.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1993,7 +1993,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="3224"/>
-        <location filename="../Source/biblioteq_c.cc" line="5951"/>
+        <location filename="../Source/biblioteq_c.cc" line="5952"/>
         <source>An error occurred while attempting to update the database account for </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2059,7 +2059,7 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4001"/>
         <location filename="../Source/biblioteq_a.cc" line="4005"/>
-        <location filename="../Source/biblioteq_c.cc" line="2507"/>
+        <location filename="../Source/biblioteq_c.cc" line="2508"/>
         <source>Photographs may not be reserved.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2067,7 +2067,7 @@
         <location filename="../Source/biblioteq_a.cc" line="4022"/>
         <location filename="../Source/biblioteq_a.cc" line="4031"/>
         <location filename="../Source/biblioteq_a.cc" line="4036"/>
-        <location filename="../Source/biblioteq_c.cc" line="2589"/>
+        <location filename="../Source/biblioteq_c.cc" line="2590"/>
         <source>Unable to determine the availability of the selected item.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2202,13 +2202,13 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4696"/>
-        <location filename="../Source/biblioteq_c.cc" line="1440"/>
+        <location filename="../Source/biblioteq_c.cc" line="1441"/>
         <source>Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4700"/>
-        <location filename="../Source/biblioteq_c.cc" line="1447"/>
+        <location filename="../Source/biblioteq_c.cc" line="1448"/>
         <source>Print Preview...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2295,862 +2295,862 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3430"/>
-        <location filename="../Source/biblioteq_b.cc" line="4060"/>
-        <location filename="../Source/biblioteq_b.cc" line="4115"/>
-        <location filename="../Source/biblioteq_c.cc" line="442"/>
-        <location filename="../Source/biblioteq_c.cc" line="1057"/>
-        <location filename="../Source/biblioteq_c.cc" line="1093"/>
+        <location filename="../Source/biblioteq_b.cc" line="3431"/>
+        <location filename="../Source/biblioteq_b.cc" line="4061"/>
+        <location filename="../Source/biblioteq_b.cc" line="4116"/>
+        <location filename="../Source/biblioteq_c.cc" line="443"/>
+        <location filename="../Source/biblioteq_c.cc" line="1058"/>
+        <location filename="../Source/biblioteq_c.cc" line="1094"/>
         <source>%1 Result(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3463"/>
-        <location filename="../Source/biblioteq_b.cc" line="3467"/>
-        <location filename="../Source/biblioteq_c.cc" line="477"/>
-        <location filename="../Source/biblioteq_c.cc" line="482"/>
+        <location filename="../Source/biblioteq_b.cc" line="3464"/>
+        <location filename="../Source/biblioteq_b.cc" line="3468"/>
+        <location filename="../Source/biblioteq_c.cc" line="478"/>
+        <location filename="../Source/biblioteq_c.cc" line="483"/>
         <source>Unable to retrieve the data required for populating the main views.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3544"/>
-        <location filename="../Source/biblioteq_b.cc" line="3567"/>
-        <location filename="../Source/biblioteq_c.cc" line="556"/>
-        <location filename="../Source/biblioteq_c.cc" line="579"/>
+        <location filename="../Source/biblioteq_b.cc" line="3545"/>
+        <location filename="../Source/biblioteq_b.cc" line="3568"/>
+        <location filename="../Source/biblioteq_c.cc" line="557"/>
+        <location filename="../Source/biblioteq_c.cc" line="580"/>
         <source> %1 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3546"/>
-        <location filename="../Source/biblioteq_b.cc" line="3569"/>
-        <location filename="../Source/biblioteq_b.cc" line="3574"/>
-        <location filename="../Source/biblioteq_c.cc" line="558"/>
-        <location filename="../Source/biblioteq_c.cc" line="581"/>
-        <location filename="../Source/biblioteq_c.cc" line="586"/>
+        <location filename="../Source/biblioteq_b.cc" line="3547"/>
+        <location filename="../Source/biblioteq_b.cc" line="3570"/>
+        <location filename="../Source/biblioteq_b.cc" line="3575"/>
+        <location filename="../Source/biblioteq_c.cc" line="559"/>
+        <location filename="../Source/biblioteq_c.cc" line="582"/>
+        <location filename="../Source/biblioteq_c.cc" line="587"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3557"/>
-        <location filename="../Source/biblioteq_c.cc" line="569"/>
+        <location filename="../Source/biblioteq_b.cc" line="3558"/>
+        <location filename="../Source/biblioteq_c.cc" line="570"/>
         <source> 1 ... </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1386"/>
         <location filename="../Source/biblioteq_a.cc" line="2453"/>
-        <location filename="../Source/biblioteq_b.cc" line="3537"/>
-        <location filename="../Source/biblioteq_b.cc" line="3559"/>
-        <location filename="../Source/biblioteq_c.cc" line="549"/>
-        <location filename="../Source/biblioteq_c.cc" line="571"/>
-        <location filename="../Source/biblioteq_c.cc" line="3301"/>
-        <location filename="../Source/biblioteq_c.cc" line="3382"/>
+        <location filename="../Source/biblioteq_b.cc" line="3538"/>
+        <location filename="../Source/biblioteq_b.cc" line="3560"/>
+        <location filename="../Source/biblioteq_c.cc" line="550"/>
+        <location filename="../Source/biblioteq_c.cc" line="572"/>
+        <location filename="../Source/biblioteq_c.cc" line="3302"/>
+        <location filename="../Source/biblioteq_c.cc" line="3383"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3559"/>
-        <location filename="../Source/biblioteq_c.cc" line="571"/>
+        <location filename="../Source/biblioteq_b.cc" line="3560"/>
+        <location filename="../Source/biblioteq_c.cc" line="572"/>
         <source> ... </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3572"/>
-        <location filename="../Source/biblioteq_c.cc" line="584"/>
+        <location filename="../Source/biblioteq_b.cc" line="3573"/>
+        <location filename="../Source/biblioteq_c.cc" line="585"/>
         <source> ... %1 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3607"/>
-        <location filename="../Source/biblioteq_c.cc" line="608"/>
+        <location filename="../Source/biblioteq_b.cc" line="3608"/>
+        <location filename="../Source/biblioteq_c.cc" line="609"/>
         <source>Populating the views...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4147"/>
-        <location filename="../Source/biblioteq_c.cc" line="1125"/>
+        <location filename="../Source/biblioteq_b.cc" line="4148"/>
+        <location filename="../Source/biblioteq_c.cc" line="1126"/>
         <source>Query completed in %1 second(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4175"/>
+        <location filename="../Source/biblioteq_b.cc" line="4176"/>
         <source>Delete Selected Item(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4178"/>
+        <location filename="../Source/biblioteq_b.cc" line="4179"/>
         <source>Duplicate Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4181"/>
+        <location filename="../Source/biblioteq_b.cc" line="4182"/>
         <source>Modify Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4185"/>
-        <location filename="../Source/biblioteq_b.cc" line="4208"/>
-        <location filename="../Source/biblioteq_b.cc" line="4223"/>
-        <location filename="../Source/biblioteq_b.cc" line="4246"/>
+        <location filename="../Source/biblioteq_b.cc" line="4186"/>
+        <location filename="../Source/biblioteq_b.cc" line="4209"/>
+        <location filename="../Source/biblioteq_b.cc" line="4224"/>
+        <location filename="../Source/biblioteq_b.cc" line="4247"/>
         <source>Print Current View...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5101"/>
+        <location filename="../Source/biblioteq_b.cc" line="5102"/>
         <source>Please note that BiblioteQ will execute all of the upgrade statements since the upgrade tool was introduced.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5104"/>
+        <location filename="../Source/biblioteq_b.cc" line="5105"/>
         <source>Please note that BiblioteQ will execute this version&apos;s upgrade statements.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5109"/>
+        <location filename="../Source/biblioteq_b.cc" line="5110"/>
         <source>You are about to upgrade the SQLite database %1. Please verify that you have made a copy of this database. %2 Are you sure that you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5502"/>
+        <location filename="../Source/biblioteq_b.cc" line="5503"/>
         <source>Executing %1 statement(s).&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4217"/>
-        <location filename="../Source/biblioteq_b.cc" line="4227"/>
-        <location filename="../Source/biblioteq_b.cc" line="4250"/>
+        <location filename="../Source/biblioteq_b.cc" line="4218"/>
+        <location filename="../Source/biblioteq_b.cc" line="4228"/>
+        <location filename="../Source/biblioteq_b.cc" line="4251"/>
         <source>View Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="207"/>
-        <location filename="../Source/biblioteq_c.cc" line="385"/>
+        <location filename="../Source/biblioteq_b.cc" line="208"/>
+        <location filename="../Source/biblioteq_c.cc" line="386"/>
         <source>Interrupt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="231"/>
-        <location filename="../Source/biblioteq_c.cc" line="371"/>
+        <location filename="../Source/biblioteq_b.cc" line="232"/>
+        <location filename="../Source/biblioteq_c.cc" line="372"/>
         <source>Disabled for custom queries.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="851"/>
-        <location filename="../Source/biblioteq_b.cc" line="4273"/>
+        <location filename="../Source/biblioteq_b.cc" line="4274"/>
         <source>&amp;Unlimited</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4624"/>
+        <location filename="../Source/biblioteq_b.cc" line="4625"/>
         <source>Unable to insert into member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4637"/>
+        <location filename="../Source/biblioteq_b.cc" line="4638"/>
         <source>Unable to update member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5516"/>
+        <location filename="../Source/biblioteq_b.cc" line="5517"/>
         <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5545"/>
+        <location filename="../Source/biblioteq_b.cc" line="5546"/>
         <source>BiblioteQ: Upgrade SQLite Schema Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5555"/>
+        <location filename="../Source/biblioteq_b.cc" line="5556"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5597"/>
+        <location filename="../Source/biblioteq_b.cc" line="5598"/>
         <source>&amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5602"/>
+        <location filename="../Source/biblioteq_b.cc" line="5603"/>
         <source>&amp;Normal Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="1295"/>
-        <location filename="../Source/biblioteq_c.cc" line="3844"/>
+        <location filename="../Source/biblioteq_c.cc" line="1296"/>
+        <location filename="../Source/biblioteq_c.cc" line="3845"/>
         <source>CSV (*.csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="1320"/>
-        <location filename="../Source/biblioteq_c.cc" line="1365"/>
+        <location filename="../Source/biblioteq_c.cc" line="1321"/>
+        <location filename="../Source/biblioteq_c.cc" line="1366"/>
         <source>Read Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="1833"/>
+        <location filename="../Source/biblioteq_c.cc" line="1834"/>
         <source>Add Administrator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="1836"/>
+        <location filename="../Source/biblioteq_c.cc" line="1837"/>
         <source>Delete Selected Administrator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="1840"/>
-        <location filename="../Source/biblioteq_c.cc" line="4092"/>
+        <location filename="../Source/biblioteq_c.cc" line="1841"/>
+        <location filename="../Source/biblioteq_c.cc" line="4093"/>
         <source>Refresh Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2529"/>
+        <location filename="../Source/biblioteq_c.cc" line="2530"/>
         <source>Unable to determine if the membership of the selected member has expired.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2540"/>
+        <location filename="../Source/biblioteq_c.cc" line="2541"/>
         <source>It appears that the selected member&apos;s membership has expired.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2562"/>
+        <location filename="../Source/biblioteq_c.cc" line="2563"/>
         <source>Too many (%1) items reserved (%2).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2600"/>
+        <location filename="../Source/biblioteq_c.cc" line="2601"/>
         <source>It appears that the item that you selected is not available for reservation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2611"/>
+        <location filename="../Source/biblioteq_c.cc" line="2612"/>
         <source>Please select a member and an item to continue with the reservation process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2708"/>
+        <location filename="../Source/biblioteq_c.cc" line="2709"/>
         <source>The selected SQLite file is not accessible. Please verify that the file exists, is readable, and is writable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2759"/>
+        <location filename="../Source/biblioteq_c.cc" line="2760"/>
         <source>
 The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2765"/>
+        <location filename="../Source/biblioteq_c.cc" line="2766"/>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2767"/>
+        <location filename="../Source/biblioteq_c.cc" line="2768"/>
         <source>The following drivers are available: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2769"/>
+        <location filename="../Source/biblioteq_c.cc" line="2770"/>
         <source>In addition, Qt expects plugins to exist in: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2771"/>
+        <location filename="../Source/biblioteq_c.cc" line="2772"/>
         <source>Please contact your administrator.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2819"/>
+        <location filename="../Source/biblioteq_c.cc" line="2820"/>
         <source>Unable to open a database connection with the provided information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2825"/>
+        <location filename="../Source/biblioteq_c.cc" line="2826"/>
         <source>Unable to open a database connection with the provided information. Please review the Error Log.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2837"/>
-        <location filename="../Source/biblioteq_c.cc" line="2844"/>
+        <location filename="../Source/biblioteq_c.cc" line="2838"/>
+        <location filename="../Source/biblioteq_c.cc" line="2845"/>
         <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2869"/>
+        <location filename="../Source/biblioteq_c.cc" line="2870"/>
         <source>It appears that the user </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2871"/>
+        <location filename="../Source/biblioteq_c.cc" line="2872"/>
         <source> does not have administrator privileges.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2880"/>
+        <location filename="../Source/biblioteq_c.cc" line="2881"/>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2900"/>
-        <location filename="../Source/biblioteq_c.cc" line="2908"/>
-        <location filename="../Source/biblioteq_c.cc" line="2957"/>
-        <location filename="../Source/biblioteq_c.cc" line="2964"/>
+        <location filename="../Source/biblioteq_c.cc" line="2901"/>
+        <location filename="../Source/biblioteq_c.cc" line="2909"/>
+        <location filename="../Source/biblioteq_c.cc" line="2958"/>
+        <location filename="../Source/biblioteq_c.cc" line="2965"/>
         <source>Unable to set the role for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2920"/>
-        <location filename="../Source/biblioteq_c.cc" line="2927"/>
+        <location filename="../Source/biblioteq_c.cc" line="2921"/>
+        <location filename="../Source/biblioteq_c.cc" line="2928"/>
         <source>Unable to determine the roles of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="2940"/>
-        <location filename="../Source/biblioteq_c.cc" line="2945"/>
+        <location filename="../Source/biblioteq_c.cc" line="2941"/>
+        <location filename="../Source/biblioteq_c.cc" line="2946"/>
         <source>Unable to set a guest role.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3006"/>
+        <location filename="../Source/biblioteq_c.cc" line="3007"/>
         <source>Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3042"/>
-        <location filename="../Source/biblioteq_c.cc" line="3047"/>
+        <location filename="../Source/biblioteq_c.cc" line="3043"/>
+        <location filename="../Source/biblioteq_c.cc" line="3048"/>
         <source>BiblioteQ: %1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3075"/>
+        <location filename="../Source/biblioteq_c.cc" line="3076"/>
         <source>BiblioteQ: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3618"/>
+        <location filename="../Source/biblioteq_c.cc" line="3619"/>
         <source>%1 File(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3685"/>
+        <location filename="../Source/biblioteq_c.cc" line="3686"/>
         <source>%1 Photograph(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3736"/>
+        <location filename="../Source/biblioteq_c.cc" line="3737"/>
         <source>Available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3738"/>
+        <location filename="../Source/biblioteq_c.cc" line="3739"/>
         <source>Unavailable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3846"/>
+        <location filename="../Source/biblioteq_c.cc" line="3847"/>
         <source>BiblioteQ: Export Patrons As CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3864"/>
+        <location filename="../Source/biblioteq_c.cc" line="3865"/>
         <source>City</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3865"/>
+        <location filename="../Source/biblioteq_c.cc" line="3866"/>
         <source>Comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3866"/>
+        <location filename="../Source/biblioteq_c.cc" line="3867"/>
         <source>Date of Birth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3870"/>
+        <location filename="../Source/biblioteq_c.cc" line="3871"/>
         <source>General Registration Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3872"/>
+        <location filename="../Source/biblioteq_c.cc" line="3873"/>
         <source>Maximum Reserved Books</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3873"/>
+        <location filename="../Source/biblioteq_c.cc" line="3874"/>
         <source>Member Class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3877"/>
+        <location filename="../Source/biblioteq_c.cc" line="3878"/>
         <source>Middle Initial</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1900"/>
-        <location filename="../Source/biblioteq_c.cc" line="3878"/>
+        <location filename="../Source/biblioteq_c.cc" line="3879"/>
         <source>Overdue Fees</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3879"/>
+        <location filename="../Source/biblioteq_c.cc" line="3880"/>
         <source>Sex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3880"/>
+        <location filename="../Source/biblioteq_c.cc" line="3881"/>
         <source>State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3881"/>
+        <location filename="../Source/biblioteq_c.cc" line="3882"/>
         <source>Street</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3883"/>
+        <location filename="../Source/biblioteq_c.cc" line="3884"/>
         <source>ZIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4075"/>
+        <location filename="../Source/biblioteq_c.cc" line="4076"/>
         <source>Delete Selected Member</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4082"/>
+        <location filename="../Source/biblioteq_c.cc" line="4083"/>
         <source>List Selected Member&apos;s Reserved Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4961"/>
+        <location filename="../Source/biblioteq_c.cc" line="4962"/>
         <source>Please select at least one item to return.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4982"/>
+        <location filename="../Source/biblioteq_c.cc" line="4983"/>
         <source>Canceling the selected reservation request(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4986"/>
+        <location filename="../Source/biblioteq_c.cc" line="4987"/>
         <source>Returning the selected item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5067"/>
+        <location filename="../Source/biblioteq_c.cc" line="5068"/>
         <source>Unable to return the item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5085"/>
+        <location filename="../Source/biblioteq_c.cc" line="5086"/>
         <source>Unable to cancel the reservation request.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5117"/>
+        <location filename="../Source/biblioteq_c.cc" line="5118"/>
         <source>Unable to cancel some or all of the selected reservation requests.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5130"/>
+        <location filename="../Source/biblioteq_c.cc" line="5131"/>
         <source>Unable to return some or all of the selected items.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4078"/>
+        <location filename="../Source/biblioteq_c.cc" line="4079"/>
         <source>Modify Selected Member...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4085"/>
+        <location filename="../Source/biblioteq_c.cc" line="4086"/>
         <source>Print Selected Member&apos;s Reserved Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4192"/>
-        <location filename="../Source/biblioteq_b.cc" line="4212"/>
-        <location filename="../Source/biblioteq_c.cc" line="4096"/>
+        <location filename="../Source/biblioteq_b.cc" line="4193"/>
+        <location filename="../Source/biblioteq_b.cc" line="4213"/>
+        <location filename="../Source/biblioteq_c.cc" line="4097"/>
         <source>Reserve Selected Item...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4088"/>
+        <location filename="../Source/biblioteq_c.cc" line="4089"/>
         <source>Show Selected Member&apos;s Reservation History...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4115"/>
+        <location filename="../Source/biblioteq_c.cc" line="4116"/>
         <source>Please select a member to modify.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4131"/>
-        <location filename="../Source/biblioteq_c.cc" line="4138"/>
-        <location filename="../Source/biblioteq_c.cc" line="4142"/>
+        <location filename="../Source/biblioteq_c.cc" line="4132"/>
+        <location filename="../Source/biblioteq_c.cc" line="4139"/>
+        <location filename="../Source/biblioteq_c.cc" line="4143"/>
         <source>Unable to retrieve the selected member&apos;s information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4260"/>
+        <location filename="../Source/biblioteq_c.cc" line="4261"/>
         <source>BiblioteQ: Modify Member</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="107"/>
-        <location filename="../Source/biblioteq_c.cc" line="144"/>
+        <location filename="../Source/biblioteq_c.cc" line="108"/>
+        <location filename="../Source/biblioteq_c.cc" line="145"/>
         <source>Reservation Date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="110"/>
-        <location filename="../Source/biblioteq_c.cc" line="148"/>
+        <location filename="../Source/biblioteq_c.cc" line="111"/>
+        <location filename="../Source/biblioteq_c.cc" line="149"/>
         <source>Due Date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="113"/>
-        <location filename="../Source/biblioteq_c.cc" line="152"/>
+        <location filename="../Source/biblioteq_c.cc" line="114"/>
+        <location filename="../Source/biblioteq_c.cc" line="153"/>
         <source>Returned Date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="3752"/>
+        <location filename="../Source/biblioteq_c.cc" line="3753"/>
         <source>&lt;b&gt;Read&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4290"/>
+        <location filename="../Source/biblioteq_c.cc" line="4291"/>
         <source>BiblioteQ: Open PDF File(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4300"/>
+        <location filename="../Source/biblioteq_c.cc" line="4301"/>
         <source>Are you sure that you wish to open %1 PDF files?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4536"/>
-        <location filename="../Source/biblioteq_c.cc" line="4541"/>
+        <location filename="../Source/biblioteq_c.cc" line="4537"/>
+        <location filename="../Source/biblioteq_c.cc" line="4542"/>
         <source>Unable to retrieve member data for table populating.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4562"/>
-        <location filename="../Source/biblioteq_c.cc" line="4690"/>
-        <location filename="../Source/biblioteq_c.cc" line="6525"/>
+        <location filename="../Source/biblioteq_c.cc" line="4563"/>
+        <location filename="../Source/biblioteq_c.cc" line="4691"/>
+        <location filename="../Source/biblioteq_c.cc" line="6526"/>
         <source>Populating the table...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4674"/>
-        <location filename="../Source/biblioteq_c.cc" line="4679"/>
+        <location filename="../Source/biblioteq_c.cc" line="4675"/>
+        <location filename="../Source/biblioteq_c.cc" line="4680"/>
         <source>Unable to retrieve administrator data for table populating.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4763"/>
+        <location filename="../Source/biblioteq_c.cc" line="4764"/>
         <source>Please select a member to delete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4778"/>
-        <location filename="../Source/biblioteq_c.cc" line="4783"/>
+        <location filename="../Source/biblioteq_c.cc" line="4779"/>
+        <location filename="../Source/biblioteq_c.cc" line="4784"/>
         <source>Unable to determine the number of items that are reserved by the selected member.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4794"/>
+        <location filename="../Source/biblioteq_c.cc" line="4795"/>
         <source>You may not remove a member that has reserved items.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4800"/>
+        <location filename="../Source/biblioteq_c.cc" line="4801"/>
         <source>Are you sure that you wish to delete the selected member (%1)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4816"/>
-        <location filename="../Source/biblioteq_c.cc" line="4820"/>
-        <location filename="../Source/biblioteq_c.cc" line="5222"/>
-        <location filename="../Source/biblioteq_c.cc" line="5226"/>
-        <location filename="../Source/biblioteq_c.cc" line="5732"/>
-        <location filename="../Source/biblioteq_c.cc" line="5736"/>
+        <location filename="../Source/biblioteq_c.cc" line="4817"/>
+        <location filename="../Source/biblioteq_c.cc" line="4821"/>
+        <location filename="../Source/biblioteq_c.cc" line="5223"/>
+        <location filename="../Source/biblioteq_c.cc" line="5227"/>
+        <location filename="../Source/biblioteq_c.cc" line="5733"/>
+        <location filename="../Source/biblioteq_c.cc" line="5737"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4834"/>
-        <location filename="../Source/biblioteq_c.cc" line="4866"/>
-        <location filename="../Source/biblioteq_c.cc" line="5463"/>
-        <location filename="../Source/biblioteq_c.cc" line="5848"/>
-        <location filename="../Source/biblioteq_c.cc" line="5878"/>
-        <location filename="../Source/biblioteq_c.cc" line="5946"/>
+        <location filename="../Source/biblioteq_c.cc" line="4835"/>
+        <location filename="../Source/biblioteq_c.cc" line="4867"/>
+        <location filename="../Source/biblioteq_c.cc" line="5464"/>
+        <location filename="../Source/biblioteq_c.cc" line="5849"/>
+        <location filename="../Source/biblioteq_c.cc" line="5879"/>
+        <location filename="../Source/biblioteq_c.cc" line="5947"/>
         <source>Rollback failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4839"/>
-        <location filename="../Source/biblioteq_c.cc" line="4842"/>
+        <location filename="../Source/biblioteq_c.cc" line="4840"/>
+        <location filename="../Source/biblioteq_c.cc" line="4843"/>
         <source>Unable to remove the selected member.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4859"/>
-        <location filename="../Source/biblioteq_c.cc" line="4873"/>
+        <location filename="../Source/biblioteq_c.cc" line="4860"/>
+        <location filename="../Source/biblioteq_c.cc" line="4874"/>
         <source>Unable to remove the patron account </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4883"/>
-        <location filename="../Source/biblioteq_c.cc" line="4891"/>
-        <location filename="../Source/biblioteq_c.cc" line="5428"/>
-        <location filename="../Source/biblioteq_c.cc" line="5436"/>
-        <location filename="../Source/biblioteq_c.cc" line="5903"/>
-        <location filename="../Source/biblioteq_c.cc" line="5911"/>
-        <location filename="../Source/biblioteq_c.cc" line="5972"/>
-        <location filename="../Source/biblioteq_c.cc" line="5980"/>
+        <location filename="../Source/biblioteq_c.cc" line="4884"/>
+        <location filename="../Source/biblioteq_c.cc" line="4892"/>
+        <location filename="../Source/biblioteq_c.cc" line="5429"/>
+        <location filename="../Source/biblioteq_c.cc" line="5437"/>
+        <location filename="../Source/biblioteq_c.cc" line="5904"/>
+        <location filename="../Source/biblioteq_c.cc" line="5912"/>
+        <location filename="../Source/biblioteq_c.cc" line="5973"/>
+        <location filename="../Source/biblioteq_c.cc" line="5981"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4920"/>
+        <location filename="../Source/biblioteq_c.cc" line="4921"/>
         <source>Please select at least one reservation request to cancel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4929"/>
+        <location filename="../Source/biblioteq_c.cc" line="4930"/>
         <source>Are you sure that you wish to cancel the selected reservation request(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4949"/>
+        <location filename="../Source/biblioteq_c.cc" line="4950"/>
         <source>Please select at least one item to place on request.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="4984"/>
+        <location filename="../Source/biblioteq_c.cc" line="4985"/>
         <source>Requesting the selected item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5091"/>
+        <location filename="../Source/biblioteq_c.cc" line="5092"/>
         <source>Unable to request the item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5123"/>
+        <location filename="../Source/biblioteq_c.cc" line="5124"/>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5192"/>
+        <location filename="../Source/biblioteq_c.cc" line="5193"/>
         <source>Administrators must belong to at least one category.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5208"/>
+        <location filename="../Source/biblioteq_c.cc" line="5209"/>
         <source>Duplicate administrator ids are not allowed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5244"/>
+        <location filename="../Source/biblioteq_c.cc" line="5245"/>
         <source>An error occurred while attempting to remove </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5262"/>
+        <location filename="../Source/biblioteq_c.cc" line="5263"/>
         <source>An error occurred while attempting to remove the database account </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5274"/>
+        <location filename="../Source/biblioteq_c.cc" line="5275"/>
         <source>Saving administrator information...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5331"/>
+        <location filename="../Source/biblioteq_c.cc" line="5332"/>
         <source>The function biblioteq_misc_functions::userExists() failed for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5360"/>
+        <location filename="../Source/biblioteq_c.cc" line="5361"/>
         <source>Unable to create or update the administrator entry for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5380"/>
+        <location filename="../Source/biblioteq_c.cc" line="5381"/>
         <source>An error occurred while attempting to create a database account for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5398"/>
+        <location filename="../Source/biblioteq_c.cc" line="5399"/>
         <source>An error occurred while attempting to revoke privileges from </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5412"/>
+        <location filename="../Source/biblioteq_c.cc" line="5413"/>
         <source>An error occurred while attempting to grant privileges to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5449"/>
+        <location filename="../Source/biblioteq_c.cc" line="5450"/>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5468"/>
+        <location filename="../Source/biblioteq_c.cc" line="5469"/>
         <source>An error occurred while attempting to save the administrator information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5614"/>
+        <location filename="../Source/biblioteq_c.cc" line="5615"/>
         <source>The Member ID must be at least five characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5632"/>
+        <location filename="../Source/biblioteq_c.cc" line="5633"/>
         <source>The Member ID </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5634"/>
+        <location filename="../Source/biblioteq_c.cc" line="5635"/>
         <source> already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5644"/>
+        <location filename="../Source/biblioteq_c.cc" line="5645"/>
         <source>Please provide a valid First Name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5653"/>
+        <location filename="../Source/biblioteq_c.cc" line="5654"/>
         <source>Please provide a valid Last Name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5662"/>
+        <location filename="../Source/biblioteq_c.cc" line="5663"/>
         <source>Please provide a valid Street.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5671"/>
+        <location filename="../Source/biblioteq_c.cc" line="5672"/>
         <source>Please provide a valid City.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5680"/>
+        <location filename="../Source/biblioteq_c.cc" line="5681"/>
         <source>Please provide a ZIP Code.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5707"/>
-        <location filename="../Source/biblioteq_c.cc" line="5711"/>
+        <location filename="../Source/biblioteq_c.cc" line="5708"/>
+        <location filename="../Source/biblioteq_c.cc" line="5712"/>
         <source>Unable to determine the uniqueness of the proposed member.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5720"/>
+        <location filename="../Source/biblioteq_c.cc" line="5721"/>
         <source>An identical member already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5853"/>
-        <location filename="../Source/biblioteq_c.cc" line="5856"/>
+        <location filename="../Source/biblioteq_c.cc" line="5854"/>
+        <location filename="../Source/biblioteq_c.cc" line="5857"/>
         <source>Unable to save the member&apos;s information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5884"/>
-        <location filename="../Source/biblioteq_c.cc" line="5891"/>
+        <location filename="../Source/biblioteq_c.cc" line="5885"/>
+        <location filename="../Source/biblioteq_c.cc" line="5892"/>
         <source>An error occurred while attempting to create a database account for the new member.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="5960"/>
+        <location filename="../Source/biblioteq_c.cc" line="5961"/>
         <source>An error occurred while attempting to update the database account %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6089"/>
+        <location filename="../Source/biblioteq_c.cc" line="6090"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6184"/>
+        <location filename="../Source/biblioteq_c.cc" line="6185"/>
         <source>The option is not available because an error occurred while attempting to retrieve its value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6206"/>
+        <location filename="../Source/biblioteq_c.cc" line="6207"/>
         <source>The option is only available for PostgreSQL patrons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6227"/>
+        <location filename="../Source/biblioteq_c.cc" line="6228"/>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6450"/>
-        <location filename="../Source/biblioteq_c.cc" line="6457"/>
-        <location filename="../Source/biblioteq_c.cc" line="6461"/>
-        <location filename="../Source/biblioteq_c.cc" line="6465"/>
+        <location filename="../Source/biblioteq_c.cc" line="6451"/>
+        <location filename="../Source/biblioteq_c.cc" line="6458"/>
+        <location filename="../Source/biblioteq_c.cc" line="6462"/>
+        <location filename="../Source/biblioteq_c.cc" line="6466"/>
         <source>Unable to retrieve reservation history data for table populating.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6485"/>
+        <location filename="../Source/biblioteq_c.cc" line="6486"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6486"/>
+        <location filename="../Source/biblioteq_c.cc" line="6487"/>
         <source>ID Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6487"/>
+        <location filename="../Source/biblioteq_c.cc" line="6488"/>
         <source>Barcode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6488"/>
+        <location filename="../Source/biblioteq_c.cc" line="6489"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6489"/>
+        <location filename="../Source/biblioteq_c.cc" line="6490"/>
         <source>Reservation Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6490"/>
+        <location filename="../Source/biblioteq_c.cc" line="6491"/>
         <source>Original Due Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6491"/>
+        <location filename="../Source/biblioteq_c.cc" line="6492"/>
         <source>Returned Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6492"/>
+        <location filename="../Source/biblioteq_c.cc" line="6493"/>
         <source>Lender</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6634"/>
+        <location filename="../Source/biblioteq_c.cc" line="6635"/>
         <source>Vacuuming a database may require a significant amount of time to complete. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6652"/>
+        <location filename="../Source/biblioteq_c.cc" line="6653"/>
         <source>BiblioteQ: Vacuuming Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_c.cc" line="6660"/>
+        <location filename="../Source/biblioteq_c.cc" line="6661"/>
         <source>Vacuuming the database. Please be patient.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3177,57 +3177,57 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="360"/>
-        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="400"/>
+        <location filename="../Source/biblioteq_d.cc" line="402"/>
         <source>BiblioteQ: Contributors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="438"/>
+        <location filename="../Source/biblioteq_d.cc" line="440"/>
         <source>PNG (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="440"/>
+        <location filename="../Source/biblioteq_d.cc" line="442"/>
         <source>BiblioteQ: Export Icons View As PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="468"/>
+        <location filename="../Source/biblioteq_d.cc" line="470"/>
         <source>BiblioteQ: Member&apos;s History As CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="569"/>
+        <location filename="../Source/biblioteq_d.cc" line="571"/>
         <source>BiblioteQ: Set Membership Dues</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="570"/>
+        <location filename="../Source/biblioteq_d.cc" line="572"/>
         <source>Membership Dues</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="595"/>
-        <location filename="../Source/biblioteq_d.cc" line="602"/>
+        <location filename="../Source/biblioteq_d.cc" line="597"/>
+        <location filename="../Source/biblioteq_d.cc" line="604"/>
         <source>Unable to update the entries.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="622"/>
+        <location filename="../Source/biblioteq_d.cc" line="624"/>
         <source>Unable to update the entry %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="713"/>
+        <location filename="../Source/biblioteq_d.cc" line="715"/>
         <source>BiblioteQ: Release Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="776"/>
+        <location filename="../Source/biblioteq_d.cc" line="778"/>
         <source>A new version %1 of BiblioteQ is available!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8291,7 +8291,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location filename="../Source/biblioteq_otheroptions.cc" line="666"/>
         <location filename="../Source/biblioteq_otheroptions.cc" line="682"/>
-        <location filename="../Source/biblioteq_otheroptions.cc" line="889"/>
+        <location filename="../Source/biblioteq_otheroptions.cc" line="890"/>
         <source>Custom Query Favorite</source>
         <translation type="unfinished"></translation>
     </message>
