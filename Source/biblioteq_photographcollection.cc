@@ -87,10 +87,10 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
 
   if(photographsPerPage() != -1) // Unlimited.
-    pc.graphicsView->setSceneRect(0,
-				  0,
-				  5 * 150,
-				  photographsPerPage() / 5 * 200 + 15);
+    pc.graphicsView->setSceneRect(0.0,
+				  0.0,
+				  5.0 * 150.0,
+				  photographsPerPage() / 5.0 * 200 + 15.0);
 
   pc.thumbnail_item->setReadOnly(true);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -824,11 +824,8 @@ void biblioteq_photographcollection::search(const QString &field,
 
 void biblioteq_photographcollection::setSceneRect(const int size)
 {
-  if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
-    pc.graphicsView->setSceneRect(0, 0, 5 * 150, size * 250 + 15);
-  else
-    pc.graphicsView->setSceneRect
-      (0, 0, 5 * 150, std::numeric_limits<int>::max());
+  pc.graphicsView->setSceneRect
+    (0.0, 0.0, 5.0 * 150.0, size / 5.0 * 200.0 + 15.0);
 }
 
 void biblioteq_photographcollection::showPhotographs(const int page)
