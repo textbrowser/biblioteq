@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1007</width>
     <height>800</height>
    </rect>
   </property>
@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>967</width>
-         <height>1146</height>
+         <width>968</width>
+         <height>1000</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -292,6 +292,16 @@
                </spacer>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="statistics">
+              <property name="text">
+               <string>Statistics</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QGraphicsView" name="graphicsView">
