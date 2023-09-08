@@ -203,6 +203,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.splitter->setStretchFactor(0, 0);
   pc.splitter->setStretchFactor(1, 1);
   pc.splitter->setStretchFactor(2, 0);
+  pc.statistics->setText(tr("0 Images"));
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
   biblioteq_misc_functions::highlightWidget
@@ -738,6 +739,9 @@ void biblioteq_photographcollection::modify(const int state,
 	  if(query.exec())
 	    if(query.next())
 	      {
+		pc.statistics->setText
+		  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
+
 		auto i = photographsPerPage();
 
 		if(i == -1) // Unlimited.
@@ -1048,6 +1052,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   if(query.exec())
     if(query.next())
       {
+	pc.statistics->setText
+	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 	updateTablePhotographCount(query.value(0).toInt());
 
 	auto i = photographsPerPage();
@@ -1862,6 +1868,8 @@ void biblioteq_photographcollection::slotImportItems(void)
   if(query.exec())
     if(query.next())
       {
+	pc.statistics->setText
+	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 	updateTablePhotographCount(query.value(0).toInt());
 
 	auto i = photographsPerPage();
@@ -2059,6 +2067,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(query.exec())
     if(query.next())
       {
+	pc.statistics->setText
+	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 	updateTablePhotographCount(query.value(0).toInt());
 
 	auto i = photographsPerPage();
