@@ -747,7 +747,7 @@ void biblioteq_photographcollection::modify(const int state,
 		if(i == -1) // Unlimited.
 		  {
 		    pages = 1;
-		    setSceneRect(query.value(0).toInt());
+		    setSceneRect(query.value(0).toLongLong());
 		  }
 		else
 		  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -826,7 +826,7 @@ void biblioteq_photographcollection::search(const QString &field,
   raise();
 }
 
-void biblioteq_photographcollection::setSceneRect(const int size)
+void biblioteq_photographcollection::setSceneRect(const qint64 size)
 {
   pc.graphicsView->setSceneRect
     (0.0, 0.0, 5.0 * 150.0, size / 5.0 * 200.0 + 15.0);
@@ -1054,14 +1054,14 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       {
 	pc.statistics->setText
 	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
-	updateTablePhotographCount(query.value(0).toInt());
+	updateTablePhotographCount(query.value(0).toLongLong());
 
 	auto i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
 	  {
 	    pages = 1;
-	    setSceneRect(query.value(0).toInt());
+	    setSceneRect(query.value(0).toLongLong());
 	  }
 	else
 	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -1870,14 +1870,14 @@ void biblioteq_photographcollection::slotImportItems(void)
       {
 	pc.statistics->setText
 	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
-	updateTablePhotographCount(query.value(0).toInt());
+	updateTablePhotographCount(query.value(0).toLongLong());
 
 	auto i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
 	  {
 	    pages = 1;
-	    setSceneRect(query.value(0).toInt());
+	    setSceneRect(query.value(0).toLongLong());
 	  }
 	else
 	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -2069,14 +2069,14 @@ void biblioteq_photographcollection::slotInsertItem(void)
       {
 	pc.statistics->setText
 	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
-	updateTablePhotographCount(query.value(0).toInt());
+	updateTablePhotographCount(query.value(0).toLongLong());
 
 	auto i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
 	  {
 	    pages = 1;
-	    setSceneRect(query.value(0).toInt());
+	    setSceneRect(query.value(0).toLongLong());
 	  }
 	else
 	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -2963,7 +2963,7 @@ void biblioteq_photographcollection::storeData(void)
 }
 
 void biblioteq_photographcollection::updateTablePhotographCount
-(const int count)
+(const qint64 count)
 {
   if(m_index->isValid() &&
      (qmain->getTypeFilterString() == "All" ||
