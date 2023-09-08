@@ -87,7 +87,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
 
   if(photographsPerPage() != -1) // Unlimited.
-    pc.graphicsView->setSceneRect(0, 0,
+    pc.graphicsView->setSceneRect(0,
+				  0,
 				  5 * 150,
 				  photographsPerPage() / 5 * 200 + 15);
 
@@ -2123,7 +2124,7 @@ void biblioteq_photographcollection::slotPageChanged(int index)
 {
   pc.page->repaint();
   QApplication::processEvents();
-  showPhotographs(index);
+  showPhotographs(index + 1);
 }
 
 void biblioteq_photographcollection::slotPrint(void)

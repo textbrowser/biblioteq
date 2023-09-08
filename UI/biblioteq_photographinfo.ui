@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>967</width>
-         <height>1110</height>
+         <height>1146</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -273,12 +273,6 @@
               </item>
               <item>
                <widget class="QComboBox" name="page">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
                 <property name="sizeAdjustPolicy">
                  <enum>QComboBox::AdjustToContents</enum>
                 </property>
