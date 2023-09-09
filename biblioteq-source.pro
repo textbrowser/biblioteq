@@ -3,6 +3,11 @@ qtHaveModule(multimedia) {
   QT += multimedia
 }
 
+MOC_DIR     = Temporary/moc
+OBJECTS_DIR = Temporary/obj
+RCC_DIR     = Temporary/rcc
+UI_DIR      = Temporary/ui
+
 FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_allinfo.ui \
                   UI/biblioteq_batch_activities_browser.ui \
@@ -137,5 +142,3 @@ TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
 		  Translations/biblioteq_pt_PT.ts \
 		  Translations/biblioteq_ru_RU.ts \
                   Translations/biblioteq_zh_CN.ts
-
-UI_DIR          = temp

@@ -58,7 +58,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -mcpu=powerpc \
                           -mtune=powerpc \
                           -pie
-QMAKE_DISTCLEAN += -r temp
+QMAKE_DISTCLEAN += -r Temporary
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_CXXFLAGS_RELEASE += -pedantic \
@@ -69,7 +69,7 @@ QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons/book.png
-INCLUDEPATH	+= Source temp
+INCLUDEPATH	+= Source
 
 exists(/usr/include/yaz) {
 DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ

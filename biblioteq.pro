@@ -53,11 +53,11 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -pie \
                           -std=c++17
-QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash temp
+QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash Temporary
 QMAKE_EXTRA_TARGETS = doxygen purge
 
 ICON		= Icons/book.png
-INCLUDEPATH	+= Source temp
+INCLUDEPATH	+= Source
 
 exists(/usr/include/yaz) {
 DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ

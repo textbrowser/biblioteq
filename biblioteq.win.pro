@@ -24,13 +24,11 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -pie \
                           -std=c++17
-QMAKE_DISTCLEAN += .qmake.cache .qmake.stash debug temp
+QMAKE_DISTCLEAN += .qmake.cache .qmake.stash debug Temporary
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
-INCLUDEPATH	+= Distributions\\Windows\\Include.64 \
-                   Source \
-                   temp
+INCLUDEPATH	+= Distributions\\Windows\\Include.64 Source
 LIBS		+= -L"." \
                    -L"Distributions\\Windows\\Libraries.64\\yaz" \
                    -lyaz5

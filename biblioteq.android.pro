@@ -24,10 +24,10 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
-QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash temp
+QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash Temporary
 QMAKE_EXTRA_TARGETS = purge
 
-INCLUDEPATH	+= Android Source temp
+INCLUDEPATH	+= Android Source
 LIBS		+=
 
 PROJECTNAME	= BiblioteQ

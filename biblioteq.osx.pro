@@ -25,16 +25,13 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
-QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash BiblioteQ temp
+QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash BiblioteQ Temporary
 QMAKE_EXTRA_TARGETS = dmg purge
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
 
 ICON		= Icons/book.icns
-INCLUDEPATH	+= /usr/local/include \
-                   Source \
-                   temp
-LIBS		+= -L/usr/local/lib \
-                   -framework Cocoa
+INCLUDEPATH	+= /usr/local/include Source
+LIBS		+= -L/usr/local/lib -framework Cocoa
 
 OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
@@ -49,7 +46,8 @@ conf.files		 = biblioteq.conf
 conf.path		 = BiblioteQ.d
 data.files		 = Data/*
 data.path		 = BiblioteQ.d/Data
-doc1.files		 = Documentation/*.html Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
+doc1.files		 = Documentation/*.html Documentation/*.pdf \
+                           Documentation/*.txt Documentation/TO-DO
 doc1.path		 = BiblioteQ.d/Documentation
 doc2.files		 = Documentation/Contributed/*.docx Documentation/Contributed/*.html Documentation/Contributed/*.pdf
 doc2.path		 = BiblioteQ.d/Documentation/Contributed
@@ -57,7 +55,8 @@ lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
 lupdate.extra            = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
 lupdate.path             = .
-macdeployqt.extra	 = $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
+macdeployqt.extra	 = $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app \
+                           -verbose=0 2>/dev/null ; echo;
 macdeployqt.path	 = BiblioteQ.app
 postinstall.extra	 = cp -r BiblioteQ.app BiblioteQ.d/.
 postinstall.path	 = BiblioteQ.d
