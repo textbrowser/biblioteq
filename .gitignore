@@ -3,6 +3,6 @@
 .qmake.stash
 BiblioteQ
 Makefile
+Temporary
 moc_*
 qrc_icons.cpp
-temp/
