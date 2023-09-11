@@ -39,9 +39,15 @@ class biblioteq_dbenumerations: public QMainWindow
   Q_OBJECT
 
  public:
+  enum class Page
+  {
+    ReservationMinimumDays = 12
+  };
+
   biblioteq_dbenumerations(biblioteq *parent);
   void clear(void);
   void closeEvent(QCloseEvent *event);
+  void setPage(const Page page);
   void show(QMainWindow *parent, const bool populate);
 
  private:

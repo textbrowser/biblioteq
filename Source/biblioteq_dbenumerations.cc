@@ -591,6 +591,16 @@ void biblioteq_dbenumerations::setGlobalFonts(const QFont &font)
   update();
 }
 
+void biblioteq_dbenumerations::setPage(const Page page)
+{
+  if(page == Page::ReservationMinimumDays)
+    {
+      m_ui.section->setCurrentIndex
+	(m_ui.section->findText(tr("Reservations Minimum Days")));
+      slotScrollToSection(m_ui.section->currentIndex());
+    }
+}
+
 void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 {
   auto wasVisible = isVisible();

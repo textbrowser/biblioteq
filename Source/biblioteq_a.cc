@@ -4583,6 +4583,10 @@ void biblioteq::slotShowDbEnumerations(void)
   db_enumerations->show
     (this,
      ui.actionPopulate_Database_Enumerations_Browser_on_Display->isChecked());
+
+  if(bb.database_enumerations_browser_label == sender())
+    db_enumerations->setPage
+      (biblioteq_dbenumerations::Page::ReservationMinimumDays);
 }
 
 void biblioteq::slotShowErrorDialog(void)
