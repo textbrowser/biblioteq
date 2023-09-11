@@ -2691,7 +2691,11 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::slotConnectDB(void)
 {
+  QWidget *parent = this;
   auto tmphash(m_branches[br.branch_name->currentText()]);
+
+  if(m_branch_diag->isVisible())
+    parent = m_branch_diag;
 
   if(tmphash.value("database_type") == "sqlite")
     {
@@ -2699,13 +2703,9 @@ void biblioteq::slotConnectDB(void)
 
       if(!fileInfo.exists() || !fileInfo.isReadable() || !fileInfo.isWritable())
 	{
-	  QWidget *parent = this;
-
-	  if(m_branch_diag->isVisible())
-	    parent = m_branch_diag;
-
 	  QMessageBox::critical
-	    (parent, tr("BiblioteQ: User Error"),
+	    (parent,
+	     tr("BiblioteQ: User Error"),
 	     tr("The selected SQLite file is not accessible. Please "
 		"verify that the file exists, is readable, and is writable."));
 	  QApplication::processEvents();
@@ -2762,7 +2762,8 @@ void biblioteq::slotConnectDB(void)
 		 "exists.");
 
       QMessageBox::critical
-	(m_branch_diag, tr("BiblioteQ: Database Error"),
+	(parent,
+	 tr("BiblioteQ: Database Error"),
 	 tr("The selected branch's database type does not "
 	    "have a driver associated with it.") + "\n" +
 	 tr("The following drivers are available: ") +
@@ -2822,7 +2823,8 @@ void biblioteq::slotConnectDB(void)
 	       m_db.lastError().text(),
 	       __FILE__, __LINE__);
       QMessageBox::critical
-	(m_branch_diag, tr("BiblioteQ: Database Error"),
+	(parent,
+	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to open a database "
 	    "connection with the provided information. Please "
 	    "review the Error Log."));
@@ -2841,7 +2843,8 @@ void biblioteq::slotConnectDB(void)
 	     m_db.lastError().text(),
 	     __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (m_branch_diag, tr("BiblioteQ: Database Error"),
+	    (parent,
+	     tr("BiblioteQ: Database Error"),
 	     tr("The current database driver that you're using "
 		"does not support transactions. "
 		"Please upgrade your database and/or driver."));
@@ -2866,18 +2869,19 @@ void biblioteq::slotConnectDB(void)
 		{
 		  error = true;
 		  QMessageBox::critical
-		    (m_branch_diag, tr("BiblioteQ: User Error"),
+		    (parent,
+		     tr("BiblioteQ: User Error"),
 		     QString(tr("It appears that the user ")) +
 		     br.userid->text().trimmed() +
-		     QString(tr(" does not have "
-				"administrator privileges.")));
+		     QString(tr(" does not have administrator privileges.")));
 		  QApplication::processEvents();
 		}
 	      else if(br.role->currentIndex() != 0 && !m_roles.isEmpty())
 		{
 		  error = true;
 		  QMessageBox::critical
-		    (m_branch_diag, tr("BiblioteQ: User Error"),
+		    (parent,
+		     tr("BiblioteQ: User Error"),
 		     tr("It appears that you are attempting to assume an "
 			"administrator role in a non-administrator mode."));
 		  QApplication::processEvents();
@@ -2905,9 +2909,9 @@ void biblioteq::slotConnectDB(void)
 			       errorstr,
 			       __FILE__, __LINE__);
 		      QMessageBox::critical
-			(m_branch_diag, tr("BiblioteQ: Database Error"),
-			 QString(tr("Unable to set the role "
-				    "for ")) +
+			(parent,
+			 tr("BiblioteQ: Database Error"),
+			 QString(tr("Unable to set the role for ")) +
 			 br.userid->text().trimmed() +
 			 tr("."));
 		      QApplication::processEvents();
@@ -2924,7 +2928,8 @@ void biblioteq::slotConnectDB(void)
 		       errorstr,
 		       __FILE__, __LINE__);
 	      QMessageBox::critical
-		(m_branch_diag, tr("BiblioteQ: Database Error"),
+		(parent,
+		 tr("BiblioteQ: Database Error"),
 		 QString(tr("Unable to determine the roles of ")) +
 		 br.userid->text().trimmed() +
 		 tr("."));
@@ -2942,7 +2947,8 @@ void biblioteq::slotConnectDB(void)
 			   errorstr,
 			   __FILE__, __LINE__);
 		  QMessageBox::critical
-		    (m_branch_diag, tr("BiblioteQ: Database Error"),
+		    (parent,
+		     tr("BiblioteQ: Database Error"),
 		     tr("Unable to set a guest role."));
 		  QApplication::processEvents();
 		}
@@ -2961,7 +2967,8 @@ void biblioteq::slotConnectDB(void)
 			   errorstr,
 			   __FILE__, __LINE__);
 		  QMessageBox::critical
-		    (m_branch_diag, tr("BiblioteQ: Database Error"),
+		    (parent,
+		     tr("BiblioteQ: Database Error"),
 		     QString(tr("Unable to set the role for ")) +
 		     br.userid->text().trimmed() +
 		     tr("."));
@@ -4112,8 +4119,10 @@ void biblioteq::slotModifyBorrower(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
-			    tr("Please select a member to modify."));
+      QMessageBox::critical
+	(m_members_diag,
+	 tr("BiblioteQ: User Error"),
+	 tr("Please select a member to modify."));
       QApplication::processEvents();
       return;
     }

@@ -2098,6 +2098,7 @@ void biblioteq::showMain(void)
   show();
   setGlobalFonts(QApplication::font());
   slotResizeColumns();
+  QApplication::processEvents();
 
 #if defined(Q_OS_ANDROID)
   QFileInfo fileInfo("assets:/biblioteq.conf");
@@ -2165,6 +2166,7 @@ void biblioteq::showMain(void)
 		    br.branch_name->setCurrentIndex(index);
 		    openDatabase = true;
 		    slotConnectDB();
+		    break;
 		  }
 	      }
 	  }
