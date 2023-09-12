@@ -178,8 +178,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	(0.0,
 	 0.0,
 	 150.0 * static_cast<qreal> (columns),
-	 static_cast<qreal> (limit / static_cast<qreal> (columns) * 200.0) +
-	 200.0);
+	 (limit / static_cast<qreal> (columns)) * 200.0 + 200.0);
     }
 
   QString bookFrontCover("'' AS front_cover ");

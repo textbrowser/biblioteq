@@ -431,7 +431,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 	(0.0,
 	 0.0,
 	 150.0 * static_cast<qreal> (columns),
-	 limit / (static_cast<qreal> (columns)) * 200.0 + 200.0);
+	 (limit / static_cast<qreal> (columns)) * 200.0 + 200.0);
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -3302,6 +3302,7 @@ void biblioteq::slotDisconnect(void)
   ui.disconnectTool->setEnabled(false);
   ui.duplicateTool->setEnabled(false);
   ui.filesTool->setEnabled(false);
+  ui.graphicsView->setSceneRect(0.0, 0.0, 0.0, 0.0);
   ui.menuEntriesPerPage->setEnabled(false);
   ui.menu_Add_Item->setEnabled(false);
   ui.modifyTool->setEnabled(false);

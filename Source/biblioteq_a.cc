@@ -402,6 +402,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(selectionChanged(void)),
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
+  ui.graphicsView->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   ui.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   ui.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   ui.graphicsView->setScene(scene);

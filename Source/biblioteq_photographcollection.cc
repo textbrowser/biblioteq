@@ -77,6 +77,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   photo.setupUi(m_photo_diag);
   photo.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   photo.thumbnail_item->enableDoubleClickResize(false);
+  pc.graphicsView->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   pc.graphicsView->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(pc.graphicsView,
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
@@ -87,10 +88,11 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
 
   if(photographsPerPage() != -1) // Unlimited.
-    pc.graphicsView->setSceneRect(0.0,
-				  0.0,
-				  5.0 * 150.0,
-				  photographsPerPage() / 5.0 * 200 + 15.0);
+    pc.graphicsView->setSceneRect
+      (0.0,
+       0.0,
+       5.0 * 150.0,
+       (photographsPerPage() / 5.0) * 200.0 + 200.0);
 
   pc.thumbnail_item->setReadOnly(true);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -829,7 +831,7 @@ void biblioteq_photographcollection::search(const QString &field,
 void biblioteq_photographcollection::setSceneRect(const qint64 size)
 {
   pc.graphicsView->setSceneRect
-    (0.0, 0.0, 5.0 * 150.0, size / 5.0 * 200.0 + 15.0);
+    (0.0, 0.0, 5.0 * 150.0, (size / 5.0) * 200.0 + 200.0);
 }
 
 void biblioteq_photographcollection::showPhotographs(const int page)
