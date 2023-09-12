@@ -933,6 +933,9 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      columnIdx = 0;
 	    }
 	}
+
+      pc.graphicsView->setSceneRect
+	(pc.graphicsView->scene()->itemsBoundingRect());
     }
 
   progress.close();
