@@ -485,6 +485,8 @@ int biblioteq::populateTable(QSqlQuery *query,
       QApplication::processEvents();
       delete m_searchQuery;
       m_searchQuery = nullptr;
+      ui.graphicsView->setSceneRect
+	(ui.graphicsView->scene()->itemsBoundingRect());
       return 1;
     }
 
@@ -1127,6 +1129,7 @@ int biblioteq::populateTable(QSqlQuery *query,
        arg(qAbs(static_cast<double> (elapsed.elapsed())) / 1000.0),
        5000);
 
+  ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
   QApplication::restoreOverrideCursor();
   return 0;
 }
@@ -3302,7 +3305,6 @@ void biblioteq::slotDisconnect(void)
   ui.disconnectTool->setEnabled(false);
   ui.duplicateTool->setEnabled(false);
   ui.filesTool->setEnabled(false);
-  ui.graphicsView->setSceneRect(0.0, 0.0, 0.0, 0.0);
   ui.menuEntriesPerPage->setEnabled(false);
   ui.menu_Add_Item->setEnabled(false);
   ui.modifyTool->setEnabled(false);
@@ -3330,6 +3332,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
   ui.action_Database_Enumerations->setEnabled(false);
   ui.graphicsView->scene()->clear();
+  ui.graphicsView->setSceneRect(0.0, 0.0, 1.0, 1.0);
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));

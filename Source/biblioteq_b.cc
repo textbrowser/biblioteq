@@ -3466,6 +3466,8 @@ int biblioteq::populateTable(const int search_type_arg,
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main views."));
+      ui.graphicsView->setSceneRect
+	(ui.graphicsView->scene()->itemsBoundingRect());
       QApplication::processEvents();
       return 1;
     }
@@ -4148,6 +4150,8 @@ int biblioteq::populateTable(const int search_type_arg,
        arg(qAbs(static_cast<double> (elapsed.elapsed())) / 1000.0),
        5000);
 
+  ui.graphicsView->setSceneRect
+    (ui.graphicsView->scene()->itemsBoundingRect());
   QApplication::restoreOverrideCursor();
   return 0;
 }
