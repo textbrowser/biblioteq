@@ -555,3 +555,5 @@
 306. Deprecate Windows x86. (Done)
 307. Document special-executable option. (Done)
 308. Android image. (Done)
+309. Curtail heights of graphic scenes. Resize scenes according to their
+     contents.
