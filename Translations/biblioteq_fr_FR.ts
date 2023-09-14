@@ -3066,7 +3066,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_c.cc" line="5450"/>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation>Veuillez avertir les nouveaux administrateurs qu&apos;il leur a été attribué le mot de passe « Passtemp ».</translation>
+        <translation>Veuillez avertir les nouveaux administrateurs qu&apos;il leur a été attribué le mot de passe « tempPass ».</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="5469"/>
@@ -3144,7 +3144,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_c.cc" line="6090"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
-        <translation>Veuillez avertir le nouveau membre qu&apos;il lui a été attribué le mot de passe « Passtemp ».</translation>
+        <translation>Veuillez avertir le nouveau membre qu&apos;il lui a été attribué le mot de passe « tempPass ».</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="6185"/>
