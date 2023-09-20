@@ -4571,7 +4571,7 @@ void biblioteq::slotPhotographsPerPageChanged(void)
 void biblioteq::slotReloadBiblioteqConf(void)
 {
   m_otheroptions->prepareSettings();
-  readGlobalSetup();
+  readGlobalConfiguration();
 }
 
 void biblioteq::slotResetAllSearch(void)

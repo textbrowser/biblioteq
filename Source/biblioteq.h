@@ -538,8 +538,8 @@ class biblioteq: public QMainWindow
   void prepareReservationHistoryMenu(void);
   void prepareTearOffMenus(void);
   void prepareUpgradeNotification(void);
-  void readConfig(void);
-  void readGlobalSetup(void);
+  void readConfigurationFile(void);
+  void readGlobalConfiguration(void);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
 

@@ -1456,7 +1456,7 @@ void biblioteq::prepareReservationHistoryMenu(void)
   history.printButton->addAction(action);
 }
 
-void biblioteq::readConfig(void)
+void biblioteq::readConfigurationFile(void)
 {
   QFont font;
   QSettings settings;
@@ -1591,7 +1591,7 @@ void biblioteq::readConfig(void)
   createSqliteMenuActions();
 }
 
-void biblioteq::readGlobalSetup(void)
+void biblioteq::readGlobalConfiguration(void)
 {
 #if defined(Q_OS_ANDROID)
   QSettings settings("assets:/biblioteq.conf", QSettings::IniFormat);
@@ -1661,8 +1661,8 @@ void biblioteq::readGlobalSetup(void)
 	}
       else if(settings.group().startsWith("Branch"))
 	{
-	  if(!settings.value("database_name", "").
-	     toString().trimmed().isEmpty())
+	  if(!settings.value("database_name",
+			     "").toString().trimmed().isEmpty())
 	    {
 	      QHash<QString, QString> hash;
 
@@ -1677,8 +1677,9 @@ void biblioteq::readGlobalSetup(void)
 	      hash["port"] = settings.value("port", "").toString().trimmed();
 	      hash["ssl_enabled"] = settings.value("ssl_enabled", "").
 		toString().trimmed();
-	      m_branches[settings.value("database_name", "").
-			 toString().trimmed()] = hash;
+	      m_branches
+		[settings.value("database_name", "").toString().trimmed()] =
+		hash;
 	    }
 	}
       else if(settings.group().startsWith("Open Library"))
@@ -1789,9 +1790,9 @@ void biblioteq::readGlobalSetup(void)
     {
       QHash<QString, QString> hash;
 
-      hash["branch_name"] = "local_db";
-      hash["hostname"] = "127.0.0.1";
+      hash["branch_name"] = "sqlite";
       hash["database_type"] = "sqlite";
+      hash["hostname"] = "127.0.0.1";
       hash["port"] = "-1";
       hash["ssl_enabled"] = "false";
 

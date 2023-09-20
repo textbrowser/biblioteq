@@ -1483,7 +1483,7 @@ void biblioteq::initialUpdate(void)
   ** Read the configuration file.
   */
 
-  readConfig();
+  readConfigurationFile();
 
   /*
   ** Act upon the contents of the settings file.
@@ -2032,7 +2032,7 @@ void biblioteq::showMain(void)
   if(settings.contains("mainwindowState"))
     restoreState(settings.value("mainwindowState").toByteArray());
 
-  readGlobalSetup();
+  readGlobalConfiguration();
 
   /*
   ** Perform additional user interface duties.
