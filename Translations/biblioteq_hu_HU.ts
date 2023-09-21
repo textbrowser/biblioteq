@@ -531,6 +531,10 @@
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please apply lower-case identifiers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Batch Activities Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>allDialog</name>
@@ -4575,6 +4579,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Book Target Audience</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reservations Minimum Days</source>
+        <translation type="unfinished">Ajánlott Minimum Kölcsönzése Tartam</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_documentationwindow</name>
@@ -7043,6 +7051,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to update photograph.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0 Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Image(s)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11482,6 +11498,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Subject</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pdfreader</name>
@@ -11737,6 +11757,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>View &amp;Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

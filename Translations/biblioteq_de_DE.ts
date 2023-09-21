@@ -545,6 +545,10 @@
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please apply lower-case identifiers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Batch Activities Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>allDialog</name>
@@ -4522,6 +4526,10 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. MÃ
         <source>Book Target Audience</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reservations Minimum Days</source>
+        <translation type="unfinished">Minimum an Reservierungstagen</translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_documentationwindow</name>
@@ -6830,6 +6838,14 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. MÃ
     </message>
     <message>
         <source>Unable to update photograph.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0 Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Image(s)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11731,6 +11747,10 @@ URL</source>
         <source>Subject</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pdfreader</name>
@@ -11990,6 +12010,14 @@ URL</source>
     </message>
     <message>
         <source>View &amp;Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
