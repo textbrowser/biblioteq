@@ -137,6 +137,7 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "el_GR" ||
        biblioteq::s_locale == "en_US" ||
        biblioteq::s_locale == "es_AR" ||
+       biblioteq::s_locale == "es_ES" ||
        biblioteq::s_locale == "fr_FR" ||
        biblioteq::s_locale == "hu_HU" ||
        biblioteq::s_locale == "nl_BE" ||
@@ -902,46 +903,49 @@ biblioteq::biblioteq(void):QMainWindow()
   auto group3 = new QActionGroup(this);
 
   group3->setExclusive(true);
-  (action = group3->addAction(tr("&Arabic")))->setCheckable(true);
+  (action = group3->addAction(tr("Arabic")))->setCheckable(true);
   action->setData("ar_JO");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Czech")))->setCheckable(true);
+  (action = group3->addAction(tr("Czech")))->setCheckable(true);
   action->setData("cs_CZ");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("Dutch (&Belgium)")))->setCheckable(true);
+  (action = group3->addAction(tr("Dutch (Belgium)")))->setCheckable(true);
   action->setData("nl_BE");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("Dutch (&Netherlands)")))->setCheckable(true);
+  (action = group3->addAction(tr("Dutch (Netherlands)")))->setCheckable(true);
   action->setData("nl_NL");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&English")))->setCheckable(true);
+  (action = group3->addAction(tr("English")))->setCheckable(true);
   action->setData("en_US");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&French")))->setCheckable(true);
+  (action = group3->addAction(tr("French")))->setCheckable(true);
   action->setData("fr_FR");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&German")))->setCheckable(true);
+  (action = group3->addAction(tr("German")))->setCheckable(true);
   action->setData("de_DE");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("Gree&k")))->setCheckable(true);
+  (action = group3->addAction(tr("Greek")))->setCheckable(true);
   action->setData("el_GR");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Hebrew")))->setCheckable(true);
+  (action = group3->addAction(tr("Hebrew")))->setCheckable(true);
   action->setData("he_IL");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("H&ungarian")))->setCheckable(true);
+  (action = group3->addAction(tr("Hungarian")))->setCheckable(true);
   action->setData("hu_HU");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Polish")))->setCheckable(true);
+  (action = group3->addAction(tr("Polish")))->setCheckable(true);
   action->setData("pl_PL");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("Por&tuguese")))->setCheckable(true);
+  (action = group3->addAction(tr("Portuguese")))->setCheckable(true);
   action->setData("pt_PT");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Russian")))->setCheckable(true);
+  (action = group3->addAction(tr("Russian")))->setCheckable(true);
   action->setData("ru_RU");
   ui.menu_Language->addAction(action);
-  (action = group3->addAction(tr("&Spanish (Argentina)")))->setCheckable(true);
+  (action = group3->addAction(tr("Spanish")))->setCheckable(true);
+  action->setData("es_ES");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("Spanish (Argentina)")))->setCheckable(true);
   action->setData("es_AR");
   ui.menu_Language->addAction(action);
 
