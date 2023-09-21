@@ -29,6 +29,7 @@
 #include <QClipboard>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QInputDialog>
 #include <QPrintPreviewDialog>
 #include <QScrollBar>
 #include <QSettings>
@@ -3257,13 +3258,22 @@ void biblioteq::slotGrantPrivileges(void)
 
 void biblioteq::slotInsertBook(void)
 {
-  QString id("");
-  biblioteq_book *book = nullptr;
+  auto ok = false;
+  auto p = QInputDialog::getInt
+    (this, tr("BiblioteQ"), tr("Create Books"), 1, 1, 10, 1, &ok);
 
-  m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  book = new biblioteq_book(this, id, QModelIndex());
-  book->insert();
+  if(!ok)
+    return;
+
+  for(int i = 0; i < p; i++)
+    {
+      m_idCt += 1;
+
+      auto book = new biblioteq_book
+	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
+
+      book->insert();
+    }
 }
 
 void biblioteq::slotInsertCD(void)
