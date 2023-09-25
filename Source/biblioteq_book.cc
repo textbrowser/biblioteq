@@ -862,7 +862,7 @@ void biblioteq_book::insert(void)
   m_te_orig_pal = id.id->palette();
   setWindowTitle(tr("BiblioteQ: Create Book Entry"));
   m_engWindowTitle = "Create";
-  id.id->setFocus();
+  id.isbn13->setFocus();
   prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
@@ -1252,7 +1252,7 @@ void biblioteq_book::modify(const int state)
 	populateFiles();
     }
 
-  id.id->setFocus();
+  id.isbn13->setFocus();
   raise();
 }
 
@@ -2146,7 +2146,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
 
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
-      id.id->setFocus();
+      id.isbn13->setFocus();
 #ifdef Q_OS_ANDROID
       showMaximized();
 #else
@@ -4789,7 +4789,7 @@ void biblioteq_book::slotReset(void)
       id.condition->setCurrentIndex(0);
       id.edition->setCurrentIndex(0);
       id.front_image->clear();
-      id.id->setFocus();
+      id.isbn13->setFocus();
       id.language->setCurrentIndex(0);
       id.monetary_units->setCurrentIndex(0);
       id.multivolume_set_isbn->clear();
