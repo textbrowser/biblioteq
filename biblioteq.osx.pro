@@ -9,7 +9,6 @@ QT		+= network printsupport sql widgets
 QT		-= webkit
 
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXX       = clang++
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \

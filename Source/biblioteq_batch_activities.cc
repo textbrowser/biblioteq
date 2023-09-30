@@ -26,6 +26,7 @@
 */
 
 #include <QComboBox>
+#include <QCompleter>
 #include <QFileDialog>
 #include <QProgressDialog>
 #include <QSettings>
@@ -131,6 +132,11 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedReturn(void)));
+
+  auto completer = new QCompleter(this);
+
+  completer->setCaseSensitivity(Qt::CaseInsensitive);
+  m_ui.borrow_member_name->setCompleter(completer);
 }
 
 void biblioteq_batch_activities::borrow(void)

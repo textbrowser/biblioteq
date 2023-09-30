@@ -1,4 +1,9 @@
-Qt 4.8.7 is not supported. Qt 5.5.1 and Qt LTS versions are supported.
+Qt 4.8.7 is not supported.
+Qt 5.5.1 LTS is supported for PowerPC only.
+Qt 5.15 LTS is supported until it is not.
+Qt 6.5 LTS is supported.
+
+For Android, MacOS, and Windows, Qt 6.5 LTS is required.
 
 qmake -o Makefile biblioteq.platform.pro
 gmake or make or mingw32-make
