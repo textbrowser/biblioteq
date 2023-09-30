@@ -155,6 +155,9 @@
              </item>
              <item>
               <widget class="QLineEdit" name="borrow_member_id">
+               <property name="maxLength">
+                <number>16</number>
+               </property>
                <property name="placeholderText">
                 <string>Member ID</string>
                </property>

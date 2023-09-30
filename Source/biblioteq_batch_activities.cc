@@ -30,6 +30,7 @@
 #include <QFileDialog>
 #include <QProgressDialog>
 #include <QSettings>
+#include <QSqlTableModel>
 #include <QTextStream>
 
 #include "biblioteq.h"
@@ -132,11 +133,6 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedReturn(void)));
-
-  auto completer = new QCompleter(this);
-
-  completer->setCaseSensitivity(Qt::CaseInsensitive);
-  m_ui.borrow_member_name->setCompleter(completer);
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -410,6 +406,10 @@ void biblioteq_batch_activities::play(const QString &file)
 
 void biblioteq_batch_activities::reset(void)
 {
+  delete findChild<QSqlTableModel *> ("borrow_member_id_completer_model");
+  m_ui.borrow_member_id->completer() ?
+    m_ui.borrow_member_id->completer()->deleteLater() : Q_UNUSED(0);
+  m_ui.borrow_member_id->setCompleter(nullptr);
   m_ui.tab->setCurrentIndex(0);
   slotReset();
 }
@@ -900,6 +900,23 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
   activateWindow();
   raise();
   m_ui.borrow_member_id->setFocus();
+
+  if(!m_ui.borrow_member_id->completer())
+    {
+      auto completer = findChild<QCompleter *> ("borrow_member_id");
+      auto model = new QSqlTableModel(this, m_qmain->getDB());
+
+      completer = new QCompleter(this);
+      completer->setCaseSensitivity(Qt::CaseInsensitive);
+      completer->setCompletionMode(QCompleter::InlineCompletion);
+      completer->setFilterMode(Qt::MatchContains);
+      completer->setModel(model);
+      model->setObjectName("borrow_member_id_completer_model");
+      model->setTable("member");
+      model->select();
+      completer->setCompletionColumn(model->fieldIndex("memberid"));
+      m_ui.borrow_member_id->setCompleter(completer);
+    }
 }
 
 void biblioteq_batch_activities::slotAddBorrowingRow(void)

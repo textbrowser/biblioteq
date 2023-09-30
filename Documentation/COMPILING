@@ -5,5 +5,5 @@ Qt 6.5 LTS is supported.
 
 For Android, MacOS, and Windows, Qt 6.5 LTS is required.
 
-qmake -o Makefile biblioteq.platform.pro
-gmake or make or mingw32-make
+> qmake -o Makefile biblioteq.platform.pro
+> gmake or make or mingw32-make
