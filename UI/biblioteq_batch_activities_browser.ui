@@ -147,6 +147,29 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
+              <widget class="QToolButton" name="borrow_refresh_member_ids">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Populate the members completer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+R</string>
+               </property>
+               <property name="autoRaise">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLabel" name="label">
                <property name="text">
                 <string>Member ID</string>
@@ -655,6 +678,7 @@
   <tabstop>tab</tabstop>
   <tabstop>borrow_scan_type</tabstop>
   <tabstop>borrow_scan</tabstop>
+  <tabstop>borrow_refresh_member_ids</tabstop>
   <tabstop>borrow_member_id</tabstop>
   <tabstop>borrow_member_name</tabstop>
   <tabstop>borrow_list</tabstop>

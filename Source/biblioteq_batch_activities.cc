@@ -101,6 +101,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(textEdited(const QString &)),
 	  m_ui.borrow_member_name,
 	  SLOT(clear(void)));
+  connect(m_ui.borrow_refresh_member_ids,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPopulateMembersCompleter(void)));
   connect(m_ui.borrow_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -903,17 +907,15 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 
   if(!m_ui.borrow_member_id->completer())
     {
-      auto completer = findChild<QCompleter *> ("borrow_member_id");
+      auto completer = new QCompleter(this);
       auto model = new QSqlTableModel(this, m_qmain->getDB());
 
-      completer = new QCompleter(this);
       completer->setCaseSensitivity(Qt::CaseInsensitive);
       completer->setCompletionMode(QCompleter::InlineCompletion);
       completer->setFilterMode(Qt::MatchContains);
       completer->setModel(model);
       model->setObjectName("borrow_member_id_completer_model");
       model->setTable("member");
-      model->select();
       completer->setCompletionColumn(model->fieldIndex("memberid"));
       m_ui.borrow_member_id->setCompleter(completer);
     }
@@ -1493,6 +1495,19 @@ void biblioteq_batch_activities::slotMediaStatusChanged
     player->deleteLater();
 }
 #endif
+
+void biblioteq_batch_activities::slotPopulateMembersCompleter(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto model = findChild<QSqlTableModel *>
+    ("borrow_member_id_completer_model");
+
+  if(model)
+    model->select();
+
+  QApplication::restoreOverrideCursor();
+}
 
 void biblioteq_batch_activities::slotReset(void)
 {
