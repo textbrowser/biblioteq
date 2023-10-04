@@ -326,6 +326,9 @@
               <height>16</height>
              </size>
             </property>
+            <property name="shortcut">
+             <string>Ctrl+Left</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -355,6 +358,9 @@
               <width>16</width>
               <height>16</height>
              </size>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+Right</string>
             </property>
            </widget>
           </item>
