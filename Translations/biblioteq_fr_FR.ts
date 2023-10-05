@@ -499,7 +499,7 @@
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="776"/>
         <source>Membership Fees</source>
-        <translation>Frais des membres</translation>
+        <translation>Frais d&apos;adhésion à payer</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="807"/>
@@ -648,7 +648,7 @@
     <message>
         <location filename="../UI/biblioteq_adminsetup.ui" line="416"/>
         <source>Batch Activities Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigateur d&apos;activités par lots</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_adminsetup.ui" line="443"/>
@@ -1554,7 +1554,7 @@
         <location filename="../Source/biblioteq_a.cc" line="1900"/>
         <location filename="../Source/biblioteq_c.cc" line="3889"/>
         <source>Membership Fees</source>
-        <translation>Frais des membres</translation>
+        <translation>Frais d&apos;adhésion à payer</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1901"/>
@@ -3071,7 +3071,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_c.cc" line="5464"/>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation>Veuillez avertir les nouveaux administrateurs qu&apos;il leur a été attribué le mot de passe « tempPass ».</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="5483"/>
@@ -5824,7 +5824,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="599"/>
         <source>Reservations Minimum Days</source>
-        <translation type="unfinished">Nombre de jours minimal d&apos;emprunt</translation>
+        <translation>Nombre de jours minimal d&apos;emprunt</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="642"/>
@@ -8644,7 +8644,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="208"/>
         <source>0 Images</source>
-        <translation type="unfinished"></translation>
+        <translation>0 Images</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="238"/>
@@ -8771,7 +8771,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../Source/biblioteq_photographcollection.cc" line="1877"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2076"/>
         <source>%1 Image(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Image(s)</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="804"/>
@@ -12745,7 +12745,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="197"/>
         <source>Membership Fees</source>
-        <translation>Frais des membres</translation>
+        <translation>Frais d&apos;adhésion à payer</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_members_browser.ui" line="202"/>
@@ -13389,7 +13389,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="299"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="320"/>
@@ -13802,7 +13802,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_photographview.ui" line="223"/>
         <source>Ctrl+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Gauche</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_photographview.ui" line="239"/>
@@ -13832,7 +13832,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_photographview.ui" line="303"/>
         <source>Ctrl+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Droite</translation>
     </message>
 </context>
 <context>
