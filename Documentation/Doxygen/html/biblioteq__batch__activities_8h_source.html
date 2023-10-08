@@ -163,19 +163,19 @@ $(function() {
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordtype">void</span> slotAddBorrowingRow(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordtype">void</span> slotAudioEnabled(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordtype">void</span> slotBorrowItemChanged(QTableWidgetItem *item);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordtype">void</span> slotClose(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordtype">void</span> slotDeleteBorrowingRow(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordtype">void</span> slotDiscoverMemberName(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">void</span> slotExportMissing(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">void</span> slotGo(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordtype">void</span> slotListDiscoveredItems(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keywordtype">void</span> slotListMembersReservedItems(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#ifdef BIBLIOTEQ_AUDIO_SUPPORTED</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordtype">void</span> slotMediaError(QMediaPlayer::Error error);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordtype">void</span> slotMediaError(QMediaPlayer::Error error, <span class="keyword">const</span> QString &amp;errorString);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordtype">void</span> slotMediaStatusChanged(QMediaPlayer::MediaStatus status);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="keywordtype">void</span> slotPopulateMembersCompleter(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordtype">void</span> slotBorrowerMemberIdEdited(<span class="keyword">const</span> QString &amp;text);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordtype">void</span> slotClose(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordtype">void</span> slotDeleteBorrowingRow(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">void</span> slotDiscoverMemberName(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">void</span> slotExportMissing(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordtype">void</span> slotGo(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keywordtype">void</span> slotListDiscoveredItems(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keywordtype">void</span> slotListMembersReservedItems(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#ifdef BIBLIOTEQ_AUDIO_SUPPORTED</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordtype">void</span> slotMediaError(QMediaPlayer::Error error);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordtype">void</span> slotMediaError(QMediaPlayer::Error error, <span class="keyword">const</span> QString &amp;errorString);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordtype">void</span> slotMediaStatusChanged(QMediaPlayer::MediaStatus status);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keywordtype">void</span> slotReset(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <span class="keywordtype">void</span> slotScanBorrowingTimerTimeout(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="keywordtype">void</span> slotScanDiscoverTimerTimeout(<span class="keywordtype">void</span>);</div>
