@@ -30,7 +30,7 @@
 #include <QFileDialog>
 #include <QProgressDialog>
 #include <QSettings>
-#include <QSqlTableModel>
+#include <QSqlQueryModel>
 #include <QTextStream>
 
 #include "biblioteq.h"
@@ -101,10 +101,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(textEdited(const QString &)),
 	  m_ui.borrow_member_name,
 	  SLOT(clear(void)));
-  connect(m_ui.borrow_refresh_member_ids,
-	  SIGNAL(clicked(void)),
+  connect(m_ui.borrow_member_id,
+	  SIGNAL(textEdited(const QString &)),
 	  this,
-	  SLOT(slotPopulateMembersCompleter(void)));
+	  SLOT(slotBorrowerMemberIdEdited(const QString &)));
   connect(m_ui.borrow_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -410,7 +410,7 @@ void biblioteq_batch_activities::play(const QString &file)
 
 void biblioteq_batch_activities::reset(void)
 {
-  delete findChild<QSqlTableModel *> ("borrow_member_id_completer_model");
+  delete findChild<QSqlQueryModel *> ("borrow_member_id_completer_model");
   m_ui.borrow_member_id->completer() ?
     m_ui.borrow_member_id->completer()->deleteLater() : Q_UNUSED(0);
   m_ui.borrow_member_id->setCompleter(nullptr);
@@ -908,16 +908,15 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
   if(!m_ui.borrow_member_id->completer())
     {
       auto completer = new QCompleter(this);
-      auto model = new QSqlTableModel(this, m_qmain->getDB());
+      auto model = new QSqlQueryModel(this);
 
       completer->setCaseSensitivity(Qt::CaseInsensitive);
+      completer->setCompletionColumn(0);
       completer->setCompletionMode(QCompleter::InlineCompletion);
       completer->setFilterMode(Qt::MatchContains);
       completer->setModel(model);
-      model->setObjectName("borrow_member_id_completer_model");
-      model->setTable("member");
-      completer->setCompletionColumn(model->fieldIndex("memberid"));
       m_ui.borrow_member_id->setCompleter(completer);
+      model->setObjectName("borrow_member_id_completer_model");
     }
 }
 
@@ -1007,6 +1006,29 @@ void biblioteq_batch_activities::slotBorrowItemChanged(QTableWidgetItem *item)
       m_ui.borrow_table->blockSignals(true);
       item->setData(Qt::BackgroundRole, QVariant());
       m_ui.borrow_table->blockSignals(false);
+    }
+}
+
+void biblioteq_batch_activities::slotBorrowerMemberIdEdited(const QString &text)
+{
+  auto model = findChild<QSqlQueryModel *> ("borrow_member_id_completer_model");
+
+  if(model)
+    {
+      model->clear();
+
+      QSqlQuery query(m_qmain->getDB());
+      QString E("");
+
+      if(m_qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
+      query.prepare
+	("SELECT memberid FROM member WHERE "
+	 "LOWER(memberid) LIKE " + E + "'%' || ? || '%'");
+      query.addBindValue(text.toLower());
+      query.exec();
+      model->setQuery(query);
     }
 }
 
@@ -1495,19 +1517,6 @@ void biblioteq_batch_activities::slotMediaStatusChanged
     player->deleteLater();
 }
 #endif
-
-void biblioteq_batch_activities::slotPopulateMembersCompleter(void)
-{
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  auto model = findChild<QSqlTableModel *>
-    ("borrow_member_id_completer_model");
-
-  if(model)
-    model->select();
-
-  QApplication::restoreOverrideCursor();
-}
 
 void biblioteq_batch_activities::slotReset(void)
 {

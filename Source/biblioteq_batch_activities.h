@@ -92,6 +92,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotAddBorrowingRow(void);
   void slotAudioEnabled(void);
   void slotBorrowItemChanged(QTableWidgetItem *item);
+  void slotBorrowerMemberIdEdited(const QString &text);
   void slotClose(void);
   void slotDeleteBorrowingRow(void);
   void slotDiscoverMemberName(void);
@@ -104,7 +105,6 @@ class biblioteq_batch_activities: public QMainWindow
   void slotMediaError(QMediaPlayer::Error error, const QString &errorString);
   void slotMediaStatusChanged(QMediaPlayer::MediaStatus status);
 #endif
-  void slotPopulateMembersCompleter(void);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);
