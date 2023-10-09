@@ -1017,6 +1017,9 @@ void biblioteq_batch_activities::slotBorrowerMemberIdEdited(const QString &text)
     {
       model->clear();
 
+      if(text.trimmed().isEmpty())
+	return;
+
       QSqlQuery query(m_qmain->getDB());
       QString E("");
 
@@ -1026,7 +1029,7 @@ void biblioteq_batch_activities::slotBorrowerMemberIdEdited(const QString &text)
       query.prepare
 	("SELECT memberid FROM member WHERE "
 	 "LOWER(memberid) LIKE " + E + "'%' || ? || '%'");
-      query.addBindValue(text.toLower());
+      query.addBindValue(text.toLower().trimmed());
       query.exec();
       model->setQuery(query);
     }
