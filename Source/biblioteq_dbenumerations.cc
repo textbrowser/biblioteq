@@ -218,6 +218,7 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.dar_favorite->clear();
   m_ui.dr_favorite->clear();
   m_ui.drs_favorite->clear();
+  m_ui.gldt_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
@@ -354,6 +355,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "grey_literature_types")
 	{
+	  combobox = m_ui.gldt_favorite;
 	  list = biblioteq_misc_functions::getGreyLiteratureTypes
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.greyLiteratureTypes;
@@ -921,7 +923,10 @@ void biblioteq_dbenumerations::slotSave(void)
 	  listwidget = m_ui.dvdRegionsList;
 	}
       else if(tables.at(i) == "grey_literature_types")
-	listwidget = m_ui.greyLiteratureTypes;
+	{
+	  combobox = m_ui.gldt_favorite;
+	  listwidget = m_ui.greyLiteratureTypes;
+	}
       else if(tables.at(i) == "languages")
 	listwidget = m_ui.languagesList;
       else if(tables.at(i) == "locations")

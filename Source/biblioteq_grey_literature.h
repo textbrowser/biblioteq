@@ -76,6 +76,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void highlightRequiredWidgets(void);
   void insertDatabase(void);
   void populateFiles(void);
+  void prepareFavorites(void);
   void updateDatabase(void);
 
  private slots:

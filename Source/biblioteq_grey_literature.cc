@@ -34,6 +34,7 @@
 #include <QCryptographicHash>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -443,6 +444,7 @@ void biblioteq_grey_literature::insert(void)
   m_ui.type->setCurrentIndex(0);
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
+  prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -856,6 +858,18 @@ void biblioteq_grey_literature::populateFiles(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_grey_literature::prepareFavorites(void)
+{
+  QSettings settings;
+
+  m_ui.type->setCurrentIndex
+    (m_ui.type->findText(settings.value("grey_literature_types_favorite").
+			 toString().trimmed()));
+
+  if(m_ui.type->currentIndex() < 0)
+    m_ui.type->setCurrentIndex(0);
+}
+
 void biblioteq_grey_literature::search(const QString &field,
 				       const QString &value)
 {
@@ -874,6 +888,7 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.showUserButton->setEnabled(false);
   m_ui.type->insertItem(0, tr("Any"));
   m_ui.type->setCurrentIndex(0);
+  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
