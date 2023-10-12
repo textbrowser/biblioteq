@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2023.10.08"
+#define BIBLIOTEQ_VERSION "2023.12.25"
 
 #include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
