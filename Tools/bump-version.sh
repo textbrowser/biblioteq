@@ -4,7 +4,7 @@
 VERSION=$1
 
 if [ -z "$VERSION" ]; then
-    echo "Usage: $0 <VERSION>"
+    echo "Please specify the version: $0 <VERSION>."
     exit 1
 fi
 
