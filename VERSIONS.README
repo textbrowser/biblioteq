@@ -1,3 +1,5 @@
+Please see Tools/bump-version.sh.
+
 Distributions/*
 Distributions/*/control
 Documentation/Contributed/Release-Notes*
