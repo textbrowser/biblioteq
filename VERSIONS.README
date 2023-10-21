@@ -1,8 +1,1 @@
 Please see Tools/bump-version.sh.
-
-Distributions/*
-Distributions/*/control
-Documentation/Contributed/Release-Notes*
-Documentation/Release-Notes*
-Source/biblioteq.h
-android/AndroidManifest.xml
