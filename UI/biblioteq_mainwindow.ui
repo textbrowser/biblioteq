@@ -128,7 +128,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>260</height>
+          <height>289</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -438,7 +438,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>34</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -481,6 +481,7 @@
      </property>
     </widget>
     <addaction name="actionBatchActivitiesBrowser"/>
+    <addaction name="actionMagic"/>
     <addaction name="separator"/>
     <addaction name="menuExternal_Applications"/>
     <addaction name="separator"/>
@@ -1452,6 +1453,11 @@
   <action name="actionEmpty">
    <property name="text">
     <string>Empty</string>
+   </property>
+  </action>
+  <action name="actionMagic">
+   <property name="text">
+    <string>Magic...</string>
    </property>
   </action>
  </widget>
