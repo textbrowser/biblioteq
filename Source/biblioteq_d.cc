@@ -692,6 +692,11 @@ void biblioteq::slotShowFiles(void)
   m_files->raise();
 }
 
+void biblioteq::slotShowMagic(void)
+{
+  m_magic->show(this);
+}
+
 void biblioteq::slotShowReleaseNotes(void)
 {
   auto action = qobject_cast<QAction *> (sender());

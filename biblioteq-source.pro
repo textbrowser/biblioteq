@@ -65,7 +65,8 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_image_drop_site.h \
                   Source/biblioteq_import.h \
 		  Source/biblioteq_item.h \
-		  Source/biblioteq_magazine.h \
+                  Source/biblioteq_magazine.h \
+                  Source/biblioteq_magic.h \
                   Source/biblioteq_main_table.h \
                   Source/biblioteq_myqstring.h \
                   Source/biblioteq_otheroptions.h \
@@ -112,6 +113,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_item.cc \
                   Source/biblioteq_journal.cc \
                   Source/biblioteq_magazine.cc \
+                  Source/biblioteq_magic.cc \
                   Source/biblioteq_main_table.cc \
                   Source/biblioteq_marc.cc \
                   Source/biblioteq_misc_functions.cc \

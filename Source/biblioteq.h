@@ -41,6 +41,7 @@
 #include "biblioteq_grey_literature.h"
 #include "biblioteq_import.h"
 #include "biblioteq_magazine.h"
+#include "biblioteq_magic.h"
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_myqstring.h"
 #include "biblioteq_numeric_table_item.h"
@@ -505,6 +506,7 @@ class biblioteq: public QMainWindow
   biblioteq_batch_activities *m_batchActivities;
   biblioteq_files *m_files;
   biblioteq_import *m_import;
+  biblioteq_magic *m_magic;
   biblioteq_otheroptions *m_otheroptions;
   bool m_allSearchShown;
   bool m_membersWasRefreshed;
@@ -664,6 +666,7 @@ class biblioteq: public QMainWindow
   void slotShowGrid(void);
   void slotShowHistory(void);
   void slotShowImport(void);
+  void slotShowMagic(void);
   void slotShowMembersBrowser(void);
   void slotShowMenu(void);
   void slotShowNext(void);

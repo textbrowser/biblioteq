@@ -245,6 +245,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotListReservedItems(const QString &)));
   m_import = new biblioteq_import(this);
+  m_magic = new biblioteq_magic(this);
   menu1 = new QMenu(this);
   connect(QCoreApplication::instance(),
 	  SIGNAL(lastWindowClosed(void)),
@@ -329,6 +330,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowImport(void)));
+  connect(ui.actionMagic,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMagic(void)));
   connect(ui.actionOther_Options,
 	  SIGNAL(triggered(void)),
 	  this,
