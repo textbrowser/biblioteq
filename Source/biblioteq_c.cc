@@ -3289,6 +3289,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionDisconnect->setEnabled(false);
   ui.actionDuplicateEntry->setEnabled(false);
   ui.actionImportCSV->setEnabled(false);
+  ui.actionMagic->setEnabled(false);
   ui.actionMembersBrowser->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);

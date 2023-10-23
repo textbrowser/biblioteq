@@ -763,6 +763,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionDisconnect->setEnabled(false);
   ui.actionDuplicateEntry->setEnabled(false);
   ui.actionImportCSV->setEnabled(false);
+  ui.actionMagic->setEnabled(false);
   ui.actionMembersBrowser->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
@@ -1273,8 +1274,9 @@ void biblioteq::adminSetup(void)
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
-      ui.detailsTool->setEnabled(false);
+      ui.actionMagic->setEnabled(true);
       ui.actionViewDetails->setEnabled(false);
+      ui.detailsTool->setEnabled(false);
     }
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
