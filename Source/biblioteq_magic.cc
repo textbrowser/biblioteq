@@ -95,6 +95,10 @@ void biblioteq_magic::slotClose(void)
 
 void biblioteq_magic::slotReset(void)
 {
+  if(m_ui.download_images_progress->value() != 0)
+    return;
+
+  m_ui.image_site->setCurrentIndex(0);
 }
 
 void biblioteq_magic::slotSetGlobalFonts(const QFont &font)
