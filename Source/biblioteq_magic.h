@@ -28,6 +28,8 @@
 #ifndef _BIBLIOTEQ_MAGIC_H_
 #define _BIBLIOTEQ_MAGIC_H_
 
+#include <QFuture>
+
 #include "ui_biblioteq_magic.h"
 
 class biblioteq;
@@ -42,12 +44,14 @@ class biblioteq_magic: public QMainWindow
   void show(QMainWindow *parent, const bool center = true);
 
  private:
+  QFuture<void> m_downloadImagesFuture;
   Ui_magic m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);
 
  private slots:
   void slotClose(void);
+  void slotDownloadImages(void);
   void slotReset(void);
   void slotSetGlobalFonts(const QFont &font);
 };

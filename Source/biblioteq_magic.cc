@@ -32,6 +32,7 @@ biblioteq_magic::biblioteq_magic(biblioteq *parent):QMainWindow(parent)
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+  m_ui.cancel_download_images->setEnabled(false);
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -40,6 +41,10 @@ biblioteq_magic::biblioteq_magic(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.download_images,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDownloadImages(void)));
 }
 
 void biblioteq_magic::changeEvent(QEvent *event)
@@ -91,6 +96,15 @@ void biblioteq_magic::slotClose(void)
 #else
   close();
 #endif
+}
+
+void biblioteq_magic::slotDownloadImages(void)
+{
+  if(!m_downloadImagesFuture.isFinished())
+    return;
+
+  m_ui.cancel_download_images->setEnabled(true);
+  m_ui.download_images->setEnabled(false);
 }
 
 void biblioteq_magic::slotReset(void)
