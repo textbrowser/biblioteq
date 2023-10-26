@@ -105,6 +105,13 @@ void biblioteq_magic::slotDownloadImages(void)
 
   m_ui.cancel_download_images->setEnabled(true);
   m_ui.download_images->setEnabled(false);
+  m_ui.download_images_progress->setValue(0);
+}
+
+void biblioteq_magic::slotDownloadImagesFinished(void)
+{
+  m_ui.cancel_download_images->setEnabled(false);
+  m_ui.download_images->setEnabled(true);
 }
 
 void biblioteq_magic::slotReset(void)

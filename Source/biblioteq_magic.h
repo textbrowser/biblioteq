@@ -52,6 +52,7 @@ class biblioteq_magic: public QMainWindow
  private slots:
   void slotClose(void);
   void slotDownloadImages(void);
+  void slotDownloadImagesFinished(void);
   void slotReset(void);
   void slotSetGlobalFonts(const QFont &font);
 };
