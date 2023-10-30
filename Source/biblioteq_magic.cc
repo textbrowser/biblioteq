@@ -45,6 +45,7 @@ biblioteq_magic::biblioteq_magic(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDownloadImages(void)));
+  setWindowModality(Qt::ApplicationModal); // Focus on your work.
 }
 
 void biblioteq_magic::changeEvent(QEvent *event)
@@ -98,20 +99,17 @@ void biblioteq_magic::slotClose(void)
 #endif
 }
 
-void biblioteq_magic::slotDownloadImages(void)
-{
-  if(!m_downloadImagesFuture.isFinished())
-    return;
-
-  m_ui.cancel_download_images->setEnabled(true);
-  m_ui.download_images->setEnabled(false);
-  m_ui.download_images_progress->setValue(0);
-}
-
-void biblioteq_magic::slotDownloadImagesFinished(void)
+void biblioteq_magic::slotDownloadImageFinished(void)
 {
   m_ui.cancel_download_images->setEnabled(false);
   m_ui.download_images->setEnabled(true);
+}
+
+void biblioteq_magic::slotDownloadImages(void)
+{
+  m_ui.cancel_download_images->setEnabled(true);
+  m_ui.download_images->setEnabled(false);
+  m_ui.download_images_progress->setValue(0);
 }
 
 void biblioteq_magic::slotReset(void)
