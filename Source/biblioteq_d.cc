@@ -89,7 +89,7 @@ QStringList biblioteq::selectedISBN10s(void) const
   foreach(const auto &index, ui.table->selectionModel()->selectedRows())
     {
       auto string = biblioteq_misc_functions::getColumnString
-	(ui.table, index.row(), ui.table->columnNumber("ISBN")).trimmed();
+	(ui.table, index.row(), ui.table->columnNumber("ISBN-10")).trimmed();
 
       if(!string.isEmpty())
 	list << string;

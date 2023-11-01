@@ -82,7 +82,7 @@
                 <item>
                  <widget class="QToolButton" name="download_images">
                   <property name="toolTip">
-                   <string>Go! (Current Page)</string>
+                   <string>Download!</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -105,7 +105,7 @@
                 <item>
                  <widget class="QToolButton" name="cancel_download_images">
                   <property name="toolTip">
-                   <string>Close Browser</string>
+                   <string>Abort!</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Icons/icons.qrc">
