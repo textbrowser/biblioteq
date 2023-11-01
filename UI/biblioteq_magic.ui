@@ -32,8 +32,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>646</width>
-            <height>450</height>
+            <width>670</width>
+            <height>472</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -42,76 +42,90 @@
              <property name="title">
               <string>Download Front Cover Images</string>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
-               <widget class="QComboBox" name="image_site">
-                <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContents</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>Amazon</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Open Library</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item>
-               <widget class="QProgressBar" name="download_images_progress">
-                <property name="value">
-                 <number>0</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="download_images">
-                <property name="toolTip">
-                 <string>Go! (Current Page)</string>
-                </property>
+               <widget class="QLabel" name="label">
                 <property name="text">
-                 <string/>
+                 <string>At least one book must be selected on the main window and the ISBN-10 field present.</string>
                 </property>
-                <property name="icon">
-                 <iconset resource="../Icons/icons.qrc">
-                  <normaloff>:/32x32/ok.png</normaloff>:/32x32/ok.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>32</width>
-                  <height>32</height>
-                 </size>
-                </property>
-                <property name="autoRaise">
+                <property name="wordWrap">
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="cancel_download_images">
-                <property name="toolTip">
-                 <string>Close Browser</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../Icons/icons.qrc">
-                  <normaloff>:/32x32/cancel.png</normaloff>:/32x32/cancel.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>32</width>
-                  <height>32</height>
-                 </size>
-                </property>
-                <property name="shortcut">
-                 <string>Ctrl+W</string>
-                </property>
-                <property name="autoRaise">
-                 <bool>true</bool>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QComboBox" name="image_site">
+                  <property name="sizeAdjustPolicy">
+                   <enum>QComboBox::AdjustToContents</enum>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Amazon</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Open Library</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QProgressBar" name="download_images_progress">
+                  <property name="value">
+                   <number>0</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="download_images">
+                  <property name="toolTip">
+                   <string>Go! (Current Page)</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Icons/icons.qrc">
+                    <normaloff>:/32x32/ok.png</normaloff>:/32x32/ok.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>32</width>
+                    <height>32</height>
+                   </size>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="cancel_download_images">
+                  <property name="toolTip">
+                   <string>Close Browser</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Icons/icons.qrc">
+                    <normaloff>:/32x32/cancel.png</normaloff>:/32x32/cancel.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>32</width>
+                    <height>32</height>
+                   </size>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+W</string>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>
@@ -211,6 +225,7 @@
   <tabstop>scrollArea</tabstop>
   <tabstop>image_site</tabstop>
   <tabstop>download_images</tabstop>
+  <tabstop>cancel_download_images</tabstop>
   <tabstop>reset</tabstop>
   <tabstop>close</tabstop>
  </tabstops>
