@@ -1,0 +1,2 @@
+The main object (biblioteq) is often required in several other
+class instances. Please do not pass a null pointer in the constructors.
