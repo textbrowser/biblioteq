@@ -107,9 +107,20 @@ void biblioteq_magic::slotDownloadImageFinished(void)
 
 void biblioteq_magic::slotDownloadImages(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto list(m_qmain->selectedISBN10s());
+
+  if(list.isEmpty())
+    {
+      QApplication::restoreOverrideCursor();
+      return;
+    }
+
   m_ui.cancel_download_images->setEnabled(true);
   m_ui.download_images->setEnabled(false);
   m_ui.download_images_progress->setValue(0);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_magic::slotReset(void)

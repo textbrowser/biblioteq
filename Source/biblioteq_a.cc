@@ -2672,8 +2672,8 @@ void biblioteq::slotDelete(void)
 	}
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
-      isCheckedOut = biblioteq_misc_functions::isCheckedOut(m_db, oid, itemType,
-							    errorstr);
+      isCheckedOut = biblioteq_misc_functions::isCheckedOut
+	(m_db, oid, itemType, errorstr);
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())

@@ -327,6 +327,7 @@ class biblioteq: public QMainWindow
   QString unaccent(void) const;
   QStringList getSRUNames(void) const;
   QStringList getZ3950Names(void) const;
+  QStringList selectedISBN10s(void) const;
   QVariant setting(const QString &name) const;
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;

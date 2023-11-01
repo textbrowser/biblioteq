@@ -82,6 +82,22 @@ QString biblioteq::formattedISBN13(const QString &str) const
   return m_otheroptions->isbn13DisplayFormat(str);
 }
 
+QStringList biblioteq::selectedISBN10s(void) const
+{
+  QStringList list;
+
+  foreach(const auto &index, ui.table->selectionModel()->selectedRows())
+    {
+      auto string = biblioteq_misc_functions::getColumnString
+	(ui.table, index.row(), ui.table->columnNumber("ISBN")).trimmed();
+
+      if(!string.isEmpty())
+	list << string;
+    }
+
+  return list;
+}
+
 bool biblioteq::canAccessDatabaseEnumerations(void) const
 {
   if(!m_db.isOpen())
