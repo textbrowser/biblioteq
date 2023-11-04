@@ -1,7 +1,26 @@
 #!/usr/bin/env sh
 # Alexis Megas.
 
-if [ ! -w "$1" ]; then
+file=""
+query="SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"
+
+for i in "$@"; do
+    if [ "$i" == "--database" ]; then
+	file="1"
+	continue
+    fi
+
+    if [ "$i" == "--ignore-not-null" ]; then
+	query="SELECT TRIM(id, '-') FROM book WHERE front_cover IS NULL AND \
+	       id IS NOT NULL"
+    fi
+
+    if [ "$file" == "1" ]; then
+	file="$i"
+    fi
+done
+
+if [ ! -w "$file" ]; then
     echo "Please specify a writable database file."
     exit 1
 fi
@@ -23,8 +42,7 @@ fi
 
 rm -f "$0.output"
 
-for id in \
-    $(sqlite3 $1 "SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"); do
+for id in $(sqlite3 "$file" "$query"); do
     /bin/echo -n "Fetching $id's image... "
     wget --output-document "$id.jpg" \
 	 --quiet \
@@ -43,5 +61,8 @@ for id in \
     rm -f "$id.jpg"
 done
 
-sqlite3 "$1" < "$0.output" 2>/dev/null
+if [ -r "$0.output" ]; then
+    sqlite3 "$file" < "$0.output" 2>/dev/null
+fi
+
 rm -f "$0.output"
