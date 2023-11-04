@@ -25,13 +25,13 @@ rm -f "$0.output"
 
 for id in \
     $(sqlite3 $1 "SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"); do
-    /bin/echo -n "Fetching $id... "
+    /bin/echo -n "Fetching $id's image... "
     wget --output-document "$id.jpg" \
 	 --quiet \
 	 "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
 
     if [ $? -eq 0 ]; then
-	echo "Downloaded."
+	echo "Image downloaded."
 	echo "UPDATE book SET front_cover = " \
 	     "'$(cat "$id.jpg" | base64)'" \
 	     "WHERE TRIM(id, '-') = " \
