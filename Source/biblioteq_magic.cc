@@ -28,6 +28,8 @@
 #include "biblioteq.h"
 #include "biblioteq_magic.h"
 
+// Incomplete!
+
 biblioteq_magic::biblioteq_magic(biblioteq *parent):QMainWindow(parent)
 {
   m_qmain = parent;

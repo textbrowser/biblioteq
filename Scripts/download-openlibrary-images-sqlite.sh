@@ -6,6 +6,21 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+if [ ! -x "$(which base64)" ]; then
+    echo "Missing base64."
+    exit 1
+fi
+
+if [ ! -x "$(which sqlite3)" ]; then
+    echo "Missing sqlite3."
+    exit 1
+fi
+
+if [ ! -x "$(which wget)" ]; then
+    echo "Missing wget."
+    exit 1
+fi
+
 rm -f "$0.output"
 
 for id in \
@@ -28,5 +43,5 @@ for id in \
     rm -f "$id.jpg"
 done
 
-$(sqlite3 "$1" < "$0.output" 2>/dev/null)
+sqlite3 "$1" < "$0.output" 2>/dev/null
 rm -f "$0.output"

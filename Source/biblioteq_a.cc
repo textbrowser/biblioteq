@@ -764,6 +764,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionDuplicateEntry->setEnabled(false);
   ui.actionImportCSV->setEnabled(false);
   ui.actionMagic->setEnabled(false);
+  ui.actionMagic->setVisible(false);
   ui.actionMembersBrowser->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
