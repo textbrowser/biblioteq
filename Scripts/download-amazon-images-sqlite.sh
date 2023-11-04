@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 # Alexis Megas.
 
-if [ -z "$1" ]; then
-    echo "Database?"
+if [ ! -w "$1" ]; then
+    echo "Please specify a writable database file."
     exit 1
 fi
 
@@ -25,7 +25,7 @@ rm -f "$0.output"
 
 for id in \
     $(sqlite3 $1 "SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"); do
-    echo -n "Fetching $id... "
+    /bin/echo -n "Fetching $id... "
     wget --output-document "$id.jpg" \
 	 --quiet \
 	 "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
