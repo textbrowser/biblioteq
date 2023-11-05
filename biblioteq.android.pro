@@ -45,7 +45,7 @@ DISTFILES += android/AndroidManifest.xml \
 deployment.files = Data/*.csv \
                    Data/*.sqlite \
                    Documentation/*.html \
-                   Documentation/Contributed/*.html \
+                   Documentation/Contributed/French/*.html \
                    biblioteq.conf
 deployment.path = /assets
 

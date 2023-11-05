@@ -677,10 +677,10 @@ void biblioteq::slotShowDocumentation(void)
 #elif defined(Q_OS_MACOS)
 	  file.setFileName
 	    (QCoreApplication::applicationDirPath() +
-	     "/../../../Documentation/Contributed/BiblioteQ-Fr.html");
+	     "/../../../Documentation/Contributed/French/BiblioteQ-Fr.html");
 #else
 	  file.setFileName
-	    (QString("Documentation%1Contributed%1BiblioteQ-Fr.html").
+	    (QString("Documentation%1Contributed%1French%1BiblioteQ-Fr.html").
 	     arg(QDir::separator()));
 #endif
 	}
