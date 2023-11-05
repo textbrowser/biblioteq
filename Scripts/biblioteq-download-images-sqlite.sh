@@ -17,7 +17,7 @@ if [ ! -x "$(which wget)" ]; then
 fi
 
 for i in "$@"; do
-    if [ "$i" == "--help" ]; then
+    if [ "$i" = "--help" ]; then
 	echo "$0:\n" \
 	     " --database file-name\n" \
 	     " --ignore-not-null (download missing images only)\n" \
@@ -32,21 +32,21 @@ file=""
 query="SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"
 
 for i in "$@"; do
-    if [ "$i" == "--database" ]; then
+    if [ "$i" = "--database" ]; then
 	file="1"
 	continue
     fi
 
-    if [ "$i" == "--ignore-not-null" ]; then
+    if [ "$i" = "--ignore-not-null" ]; then
 	query="SELECT TRIM(id, '-') FROM book WHERE front_cover IS NULL AND \
 	       id IS NOT NULL"
     fi
 
-    if [ "$i" == "--open-library" ]; then
+    if [ "$i" = "--open-library" ]; then
 	amazon=0
     fi
 
-    if [ "$file" == "1" ]; then
+    if [ "$file" = "1" ]; then
 	file="$i"
     fi
 done
@@ -57,6 +57,12 @@ if [ ! -w "$file" ]; then
 fi
 
 rm -f "$0.output"
+
+if [ $amazon -eq 1 ]; then
+    echo "Downloading images from Amazon."
+else
+    echo "Downloading images from OpenLibrary."
+fi
 
 for id in $(sqlite3 "$file" "$query"); do
     /bin/echo -n "Fetching $id's image... "
@@ -86,6 +92,12 @@ done
 
 if [ -w "$0.output" ]; then
     sqlite3 "$file" < "$0.output" 2>/dev/null
+
+    if [ $? -eq 0 ]; then
+	echo "Database $file processed correctly."
+    else
+	echo "Error processing $file."
+    fi
 fi
 
 rm -f "$0.output"

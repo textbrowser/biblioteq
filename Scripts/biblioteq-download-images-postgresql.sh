@@ -17,7 +17,7 @@ if [ ! -x "$(which wget)" ]; then
 fi
 
 for i in "$@"; do
-    if [ "$i" == "--help" ]; then
+    if [ "$i" = "--help" ]; then
 	echo "$0:\n" \
 	     " --account database account\n" \
 	     " --database database name\n" \
@@ -34,30 +34,30 @@ database=""
 query="SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"
 
 for i in "$@"; do
-    if [ "$account" == "1" ]; then
+    if [ "$account" = "1" ]; then
 	account="$i"
     fi
 
-    if [ "$database" == "1" ]; then
+    if [ "$database" = "1" ]; then
 	database="$i"
     fi
 
-    if [ "$i" == "--account" ]; then
+    if [ "$i" = "--account" ]; then
 	account="1"
 	continue
     fi
 
-    if [ "$i" == "--database" ]; then
+    if [ "$i" = "--database" ]; then
 	database="1"
 	continue
     fi
 
-    if [ "$i" == "--ignore-not-null" ]; then
+    if [ "$i" = "--ignore-not-null" ]; then
 	query="SELECT TRIM(id, '-') FROM book WHERE front_cover IS NULL AND \
 	       id IS NOT NULL"
     fi
 
-    if [ "$i" == "--open-library" ]; then
+    if [ "$i" = "--open-library" ]; then
 	amazon=0
     fi
 done
