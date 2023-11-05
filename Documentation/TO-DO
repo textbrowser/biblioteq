@@ -514,6 +514,7 @@
 268. Prepare Database Enumerations during an import. (Completed)
 269. Embed translation files. (Completed)
 270. Android:
+     Close Panels (Completed)
      Configuration Menu (Completed)
      Exit (Completed)
      Menu Icons (Completed)
@@ -570,4 +571,5 @@
 308. Android image. (Completed)
 309. Curtail heights of graphic scenes. Resize scenes according to their
      contents. (Completed)
-310. Should memberid be wider? (TBD)
+310. Should memberid be wider? Not necessary. The memberid allows for
+     16 characters. (Completed)
