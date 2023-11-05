@@ -1,11 +1,26 @@
 #!/usr/bin/env sh
 # Alexis Megas.
 
+if [ ! -x "$(which base64)" ]; then
+    echo "Missing base64."
+    exit 1
+fi
+
+if [ ! -x "$(which psql)" ]; then
+    echo "Missing pqsql."
+    exit 1
+fi
+
+if [ ! -x "$(which wget)" ]; then
+    echo "Missing wget."
+    exit 1
+fi
+
 for i in "$@"; do
     if [ "$i" == "--help" ]; then
 	echo "$0:\n" \
-	     " --account account\n" \
-	     " --database database\n" \
+	     " --account database account\n" \
+	     " --database database name\n" \
 	     " --ignore-not-null (download missing images only)\n" \
 	     " --open-library (download from Open Library, default Amazon)\n" \
 	     " --help"
@@ -47,22 +62,8 @@ for i in "$@"; do
     fi
 done
 
-if [ ! -x "$(which base64)" ]; then
-    echo "Missing base64."
-    exit 1
-fi
-
-if [ ! -x "$(which psql)" ]; then
-    echo "Missing pqsql."
-    exit 1
-fi
-
-if [ ! -x "$(which wget)" ]; then
-    echo "Missing wget."
-    exit 1
-fi
-
 rm -f "$0.output"
+echo "Please provide the PostgreSQL password for $account."
 
 for id in \
     $(psql -U "$account" \
@@ -78,6 +79,9 @@ for id in \
 	     --quiet \
 	     "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
     else
+	wget --output-document "$id.jpg" \
+	     --quiet \
+	     "https://covers.openlibrary.org/b/isbn/$id-L.jpg"
     fi
 
     if [ $? -eq 0 ]; then

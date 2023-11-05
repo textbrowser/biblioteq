@@ -1,6 +1,21 @@
 #!/usr/bin/env sh
 # Alexis Megas.
 
+if [ ! -x "$(which base64)" ]; then
+    echo "Missing base64."
+    exit 1
+fi
+
+if [ ! -x "$(which sqlite3)" ]; then
+    echo "Missing sqlite3."
+    exit 1
+fi
+
+if [ ! -x "$(which wget)" ]; then
+    echo "Missing wget."
+    exit 1
+fi
+
 for i in "$@"; do
     if [ "$i" == "--help" ]; then
 	echo "$0:\n" \
@@ -41,21 +56,6 @@ if [ ! -w "$file" ]; then
     exit 1
 fi
 
-if [ ! -x "$(which base64)" ]; then
-    echo "Missing base64."
-    exit 1
-fi
-
-if [ ! -x "$(which sqlite3)" ]; then
-    echo "Missing sqlite3."
-    exit 1
-fi
-
-if [ ! -x "$(which wget)" ]; then
-    echo "Missing wget."
-    exit 1
-fi
-
 rm -f "$0.output"
 
 for id in $(sqlite3 "$file" "$query"); do
@@ -84,7 +84,7 @@ for id in $(sqlite3 "$file" "$query"); do
     rm -f "$id.jpg"
 done
 
-if [ -r "$0.output" ]; then
+if [ -w "$0.output" ]; then
     sqlite3 "$file" < "$0.output" 2>/dev/null
 fi
 
