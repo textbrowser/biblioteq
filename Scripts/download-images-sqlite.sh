@@ -13,12 +13,12 @@ for i in "$@"; do
 done
 
 amazon=1
-database=""
+file=""
 query="SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"
 
 for i in "$@"; do
     if [ "$i" == "--database" ]; then
-	database="1"
+	file="1"
 	continue
     fi
 
@@ -31,18 +31,23 @@ for i in "$@"; do
 	amazon=0
     fi
 
-    if [ "$database" == "1" ]; then
-	database="$i"
+    if [ "$file" == "1" ]; then
+	file="$i"
     fi
 done
+
+if [ ! -w "$file" ]; then
+    echo "Please specify a writable database file."
+    exit 1
+fi
 
 if [ ! -x "$(which base64)" ]; then
     echo "Missing base64."
     exit 1
 fi
 
-if [ ! -x "$(which psql)" ]; then
-    echo "Missing pqsql."
+if [ ! -x "$(which sqlite3)" ]; then
+    echo "Missing sqlite3."
     exit 1
 fi
 
@@ -51,24 +56,20 @@ if [ ! -x "$(which wget)" ]; then
     exit 1
 fi
 
-if [ ! "$#" -ne 2 ]; then
-   echo "Syntax: $0 database-account database-name"
-   exit 1
-fi
-
 rm -f "$0.output"
 
-for id in \
-    $(psql -U $1 \
-	   -W \
-	   -c 'SELECT id FROM book WHERE id IS NOT NULL' \
-	   -d $2 \
-	   -t \
-	   --csv); do
+for id in $(sqlite3 "$file" "$query"); do
     /bin/echo -n "Fetching $id's image... "
-    wget --output-document "$id.jpg" \
-	 --quiet \
-	 "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
+
+    if [ $amazon -eq 1 ]; then
+	wget --output-document "$id.jpg" \
+	     --quiet \
+	     "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
+    else
+	wget --output-document "$id.jpg" \
+	     --quiet \
+	     "https://covers.openlibrary.org/b/isbn/$id-L.jpg"
+    fi
 
     if [ $? -eq 0 ]; then
 	echo "Image downloaded."
@@ -82,5 +83,9 @@ for id in \
 
     rm -f "$id.jpg"
 done
+
+if [ -r "$0.output" ]; then
+    sqlite3 "$file" < "$0.output" 2>/dev/null
+fi
 
 rm -f "$0.output"
