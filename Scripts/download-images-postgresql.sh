@@ -4,7 +4,8 @@
 for i in "$@"; do
     if [ "$i" == "--help" ]; then
 	echo "$0:\n" \
-	     " --database file-name\n" \
+	     " --account account\n" \
+	     " --database database\n" \
 	     " --ignore-not-null (download missing images only)\n" \
 	     " --open-library (download from Open Library, default Amazon)\n" \
 	     " --help"
@@ -12,11 +13,25 @@ for i in "$@"; do
     fi
 done
 
+account=""
 amazon=1
 database=""
 query="SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"
 
 for i in "$@"; do
+    if [ "$account" == "1" ]; then
+	account="$i"
+    fi
+
+    if [ "$database" == "1" ]; then
+	database="$i"
+    fi
+
+    if [ "$i" == "--account" ]; then
+	account="1"
+	continue
+    fi
+
     if [ "$i" == "--database" ]; then
 	database="1"
 	continue
@@ -29,10 +44,6 @@ for i in "$@"; do
 
     if [ "$i" == "--open-library" ]; then
 	amazon=0
-    fi
-
-    if [ "$database" == "1" ]; then
-	database="$i"
     fi
 done
 
@@ -51,24 +62,23 @@ if [ ! -x "$(which wget)" ]; then
     exit 1
 fi
 
-if [ ! "$#" -ne 2 ]; then
-   echo "Syntax: $0 database-account database-name"
-   exit 1
-fi
-
 rm -f "$0.output"
 
 for id in \
-    $(psql -U $1 \
+    $(psql -U "$account" \
 	   -W \
 	   -c 'SELECT id FROM book WHERE id IS NOT NULL' \
-	   -d $2 \
+	   -d "$database" \
 	   -t \
 	   --csv); do
     /bin/echo -n "Fetching $id's image... "
-    wget --output-document "$id.jpg" \
-	 --quiet \
-	 "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
+
+    if [ $amazon -eq 1 ]; then
+	wget --output-document "$id.jpg" \
+	     --quiet \
+	     "https://m.media-amazon.com/images/P/$id.01._SCMZZZZZZZ_.jpg"
+    else
+    fi
 
     if [ $? -eq 0 ]; then
 	echo "Image downloaded."
