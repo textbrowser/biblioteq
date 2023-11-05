@@ -674,13 +674,9 @@ void biblioteq::slotShowDocumentation(void)
 	{
 #ifdef Q_OS_ANDROID
 	  file.setFileName("assets:/BiblioteQ-Fr.html");
-#elif defined(Q_OS_MACOS)
-	  file.setFileName
-	    (QCoreApplication::applicationDirPath() +
-	     "/../../../Documentation/Contributed/French/BiblioteQ-Fr.html");
 #else
 	  file.setFileName
-	    (QString("Documentation%1Contributed%1French%1BiblioteQ-Fr.html").
+	    (QString(":/Contributed%1French%1BiblioteQ-Fr.html").
 	     arg(QDir::separator()));
 #endif
 	}
@@ -727,7 +723,7 @@ void biblioteq::slotShowReleaseNotes(void)
     {
       if(action == ui.action_French_Release_Notes)
 	m_releaseNotes[action] = new biblioteq_documentationwindow
-	  (QUrl("qrc:/Contributed/Release-Notes-French.html"), this);
+	  (QUrl("qrc:/Contributed/French/Release-Notes-French.html"), this);
       else
 	m_releaseNotes[action] = new biblioteq_documentationwindow
 	  (QUrl("qrc:/Release-Notes.html"), this);
