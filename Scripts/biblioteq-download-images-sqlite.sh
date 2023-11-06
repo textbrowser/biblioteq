@@ -20,9 +20,9 @@ for i in "$@"; do
     if [ "$i" = "--help" ]; then
 	echo "$0:\n" \
 	     " --database file-name\n" \
+	     " --help\n" \
 	     " --ignore-not-null (download missing images only)\n" \
-	     " --open-library (download from Open Library, default Amazon)\n" \
-	     " --help"
+	     " --open-library (download from Open Library, default Amazon)"
 	exit 0
     fi
 done

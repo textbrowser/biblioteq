@@ -21,10 +21,10 @@ for i in "$@"; do
 	echo "$0:\n" \
 	     " --account database account\n" \
 	     " --database database name\n" \
+	     " --help\n" \
 	     " --host database host\n" \
 	     " --ignore-not-null (download missing images only)\n" \
-	     " --open-library (download from Open Library, default Amazon)\n" \
-	     " --help"
+	     " --open-library (download from Open Library, default Amazon)"
 	exit 0
     fi
 done
