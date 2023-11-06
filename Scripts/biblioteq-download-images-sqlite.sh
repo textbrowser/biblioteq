@@ -90,7 +90,7 @@ for id in $(sqlite3 "$file" "$query"); do
     rm -f "$id.jpg"
 done
 
-if [ -w "$0.output" ]; then
+if [ -r "$0.output" ]; then
     sqlite3 "$file" < "$0.output" 2>/dev/null
 
     if [ $? -eq 0 ]; then

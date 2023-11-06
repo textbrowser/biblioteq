@@ -97,4 +97,12 @@ for id in \
     rm -f "$id.jpg"
 done
 
+if [ -r "$0.output" ]; then
+    if [ $? -eq 0 ]; then
+	echo "Database $database processed correctly."
+    else
+	echo "Error processing $database."
+    fi
+fi
+
 rm -f "$0.output"
