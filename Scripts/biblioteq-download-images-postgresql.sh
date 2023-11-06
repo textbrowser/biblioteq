@@ -21,6 +21,7 @@ for i in "$@"; do
 	echo "$0:\n" \
 	     " --account database account\n" \
 	     " --database database name\n" \
+	     " --host database host\n" \
 	     " --ignore-not-null (download missing images only)\n" \
 	     " --open-library (download from Open Library, default Amazon)\n" \
 	     " --help"
@@ -31,6 +32,7 @@ done
 account=""
 amazon=1
 database=""
+host=""
 query="SELECT TRIM(id, '-') FROM book WHERE id IS NOT NULL"
 
 for i in "$@"; do
@@ -42,8 +44,17 @@ for i in "$@"; do
 	database="$i"
     fi
 
+    if [ "$host" = "1" ]; then
+	host="$i"
+    fi
+
     if [ "$i" = "--account" ]; then
 	account="1"
+	continue
+    fi
+
+    if [ "$i" = "--host" ]; then
+	host="1"
 	continue
     fi
 
@@ -62,16 +73,32 @@ for i in "$@"; do
     fi
 done
 
+if [ -z "$account" ]; then
+    echo "Please provide a database account."
+    exit 1
+fi
+
+if [ -z "$database" ]; then
+    echo "Please provide a database name."
+    exit 1
+fi
+
+if [ -z "$host" ]; then
+    echo "Please provide a database host."
+    exit 1
+fi
+
 rm -f "$0.output"
 echo "Please provide the PostgreSQL password for $account."
 
-for id in \
-    $(psql -U "$account" \
-	   -W \
-	   -c 'SELECT id FROM book WHERE id IS NOT NULL' \
-	   -d "$database" \
-	   -t \
-	   --csv); do
+for id in $(psql -U "$account" \
+		 -W \
+		 -c "$query" \
+		 -d "$database" \
+		 -h "$host" \
+		 -q \
+		 -t \
+		 --csv 2>/dev/null); do
     /bin/echo -n "Fetching $id's image... "
 
     if [ $amazon -eq 1 ]; then
@@ -98,6 +125,8 @@ for id in \
 done
 
 if [ -r "$0.output" ]; then
+    psql -U "$account" -W -d "$database" -f "$0.output" -h "$host" -q
+
     if [ $? -eq 0 ]; then
 	echo "Database $database processed correctly."
     else
