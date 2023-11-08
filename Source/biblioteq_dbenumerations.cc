@@ -365,12 +365,14 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "languages")
 	{
+	  combobox = m_ui.language_favorite;
 	  list = biblioteq_misc_functions::getLanguages
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.languagesList;
 	}
       else if(str == "locations")
 	{
+	  combobox = m_ui.location_favorite;
 	  pairList = biblioteq_misc_functions::getLocations
 	    (qmain->getDB(), errorstr);
 	  tablewidget = m_ui.locationsTable;
@@ -383,6 +385,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "monetary_units")
 	{
+	  combobox = m_ui.monetary_unit_favorite;
 	  list = biblioteq_misc_functions::getMonetaryUnits
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.monetaryUnitsList;
@@ -931,13 +934,22 @@ void biblioteq_dbenumerations::slotSave(void)
 	  listwidget = m_ui.greyLiteratureTypes;
 	}
       else if(tables.at(i) == "languages")
-	listwidget = m_ui.languagesList;
+	{
+	  combobox = m_ui.language_favorite;
+	  listwidget = m_ui.languagesList;
+	}
       else if(tables.at(i) == "locations")
-	tablewidget = m_ui.locationsTable;
+	{
+	  combobox = m_ui.location_favorite;
+	  tablewidget = m_ui.locationsTable;
+	}
       else if(tables.at(i) == "minimum_days")
 	tablewidget = m_ui.minimumDaysTable;
       else if(tables.at(i) == "monetary_units")
-	listwidget = m_ui.monetaryUnitsList;
+	{
+	  combobox = m_ui.monetary_unit_favorite;
+	  listwidget = m_ui.monetaryUnitsList;
+	}
       else if(tables.at(i) == "videogame_platforms")
 	listwidget = m_ui.videoGamePlatformsList;
       else if(tables.at(i) == "videogame_ratings")
