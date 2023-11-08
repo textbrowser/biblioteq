@@ -155,9 +155,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-2107</y>
+              <y>-2806</y>
               <width>497</width>
-              <height>3878</height>
+              <height>4010</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -1446,6 +1446,37 @@
                 </widget>
                </item>
                <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_26">
+                 <item>
+                  <widget class="QLabel" name="label_11">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="language_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_39">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
                 <widget class="QListWidget" name="languagesList">
                  <property name="minimumSize">
                   <size>
@@ -1554,6 +1585,37 @@
                   <string>Locations</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_27">
+                 <item>
+                  <widget class="QLabel" name="label_12">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="location_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_40">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QTableWidget" name="locationsTable">
@@ -1686,6 +1748,37 @@
                   <string>Monetary Units</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_28">
+                 <item>
+                  <widget class="QLabel" name="label_13">
+                   <property name="text">
+                    <string>Favorite</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="monetary_unit_favorite">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_41">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QListWidget" name="monetaryUnitsList">
@@ -2351,12 +2444,15 @@
   <tabstop>greyLiteratureTypes</tabstop>
   <tabstop>addGreyLiteratureType</tabstop>
   <tabstop>removeGreyLiteratureType</tabstop>
+  <tabstop>language_favorite</tabstop>
   <tabstop>languagesList</tabstop>
   <tabstop>addLanguage</tabstop>
   <tabstop>removeLanguage</tabstop>
+  <tabstop>location_favorite</tabstop>
   <tabstop>locationsTable</tabstop>
   <tabstop>addLocation</tabstop>
   <tabstop>removeLocation</tabstop>
+  <tabstop>monetary_unit_favorite</tabstop>
   <tabstop>monetaryUnitsList</tabstop>
   <tabstop>addMonetaryUnit</tabstop>
   <tabstop>removeMonetaryUnit</tabstop>

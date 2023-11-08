@@ -219,6 +219,9 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.dr_favorite->clear();
   m_ui.drs_favorite->clear();
   m_ui.gldt_favorite->clear();
+  m_ui.language_favorite->clear();
+  m_ui.location_favorite->clear();
+  m_ui.monetary_unit_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
