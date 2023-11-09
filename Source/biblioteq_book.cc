@@ -2020,6 +2020,15 @@ void biblioteq_book::prepareFavorites(void)
   id.condition->setCurrentIndex
     (id.condition->findText(settings.value("book_conditions_favorite").
 			    toString().trimmed()));
+  id.language->setCurrentIndex
+    (id.language->
+     findText(settings.value("language_favorite").toString().trimmed()));
+  id.location->setCurrentIndex
+    (id.location->
+     findText(settings.value("locations_favorite").toString().trimmed()));
+  id.monetary_units->setCurrentIndex
+    (id.monetary_units->
+     findText(settings.value("monetary_units_favorite").toString().trimmed()));
   id.originality->setCurrentIndex
     (id.originality->findText(settings.value("book_originality_favorite").
 			      toString().trimmed()));
@@ -2033,6 +2042,15 @@ void biblioteq_book::prepareFavorites(void)
 
   if(id.condition->currentIndex() < 0)
     id.condition->setCurrentIndex(0);
+
+  if(id.language->currentIndex() < 0)
+    id.language->setCurrentIndex(0);
+
+  if(id.location->currentIndex() < 0)
+    id.location->setCurrentIndex(0);
+
+  if(id.monetary_units->currentIndex() < 0)
+    id.monetary_units->setCurrentIndex(0);
 
   if(id.originality->currentIndex() < 0)
     id.originality->setCurrentIndex(0);
