@@ -675,20 +675,36 @@ void biblioteq_dvd::prepareFavorites(void)
   dvd.aspectratio->setCurrentIndex
     (dvd.aspectratio->findText(settings.value("dvd_aspect_ratios_favorite").
 			       toString().trimmed()));
+  dvd.language->setCurrentIndex
+    (dvd.language->
+     findText(settings.value("language_favorite").toString().trimmed()));
+  dvd.location->setCurrentIndex
+    (dvd.location->
+     findText(settings.value("locations_favorite").toString().trimmed()));
+  dvd.monetary_units->setCurrentIndex
+    (dvd.monetary_units->
+     findText(settings.value("monetary_units_favorite").toString().trimmed()));
+  dvd.rating->setCurrentIndex
+    (dvd.rating->findText(settings.value("dvd_ratings_favorite").
+			  toString().trimmed()));
+  dvd.region->setCurrentIndex
+    (dvd.region->findText(settings.value("dvd_regions_favorite").
+			  toString().trimmed()));
 
   if(dvd.aspectratio->currentIndex() < 0)
     dvd.aspectratio->setCurrentIndex(0);
 
-  dvd.rating->setCurrentIndex
-    (dvd.rating->findText(settings.value("dvd_ratings_favorite").
-			  toString().trimmed()));
+  if(dvd.language->currentIndex() < 0)
+    dvd.language->setCurrentIndex(0);
+
+  if(dvd.location->currentIndex() < 0)
+    dvd.location->setCurrentIndex(0);
+
+  if(dvd.monetary_units->currentIndex() < 0)
+    dvd.monetary_units->setCurrentIndex(0);
 
   if(dvd.rating->currentIndex() < 0)
     dvd.rating->setCurrentIndex(0);
-
-  dvd.region->setCurrentIndex
-    (dvd.region->findText(settings.value("dvd_regions_favorite").
-			  toString().trimmed()));
 
   if(dvd.region->currentIndex() < 0)
     dvd.region->setCurrentIndex(0);

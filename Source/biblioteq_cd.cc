@@ -665,9 +665,27 @@ void biblioteq_cd::prepareFavorites(void)
   cd.format->setCurrentIndex
     (cd.format->findText(settings.value("cd_formats_favorite").
 			 toString().trimmed()));
+  cd.language->setCurrentIndex
+    (cd.language->
+     findText(settings.value("language_favorite").toString().trimmed()));
+  cd.location->setCurrentIndex
+    (cd.location->
+     findText(settings.value("locations_favorite").toString().trimmed()));
+  cd.monetary_units->setCurrentIndex
+    (cd.monetary_units->
+     findText(settings.value("monetary_units_favorite").toString().trimmed()));
 
   if(cd.format->currentIndex() < 0)
     cd.format->setCurrentIndex(0);
+
+  if(cd.language->currentIndex() < 0)
+    cd.language->setCurrentIndex(0);
+
+  if(cd.location->currentIndex() < 0)
+    cd.location->setCurrentIndex(0);
+
+  if(cd.monetary_units->currentIndex() < 0)
+    cd.monetary_units->setCurrentIndex(0);
 }
 
 void biblioteq_cd::search(const QString &field, const QString &value)
