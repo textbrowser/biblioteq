@@ -2022,10 +2022,7 @@ void biblioteq_book::prepareFavorites(void)
 			    toString().trimmed()));
   id.language->setCurrentIndex
     (id.language->
-     findText(settings.value("language_favorite").toString().trimmed()));
-  id.location->setCurrentIndex
-    (id.location->
-     findText(settings.value("locations_favorite").toString().trimmed()));
+     findText(settings.value("languages_favorite").toString().trimmed()));
   id.monetary_units->setCurrentIndex
     (id.monetary_units->
      findText(settings.value("monetary_units_favorite").toString().trimmed()));
@@ -2045,9 +2042,6 @@ void biblioteq_book::prepareFavorites(void)
 
   if(id.language->currentIndex() < 0)
     id.language->setCurrentIndex(0);
-
-  if(id.location->currentIndex() < 0)
-    id.location->setCurrentIndex(0);
 
   if(id.monetary_units->currentIndex() < 0)
     id.monetary_units->setCurrentIndex(0);

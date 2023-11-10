@@ -220,7 +220,6 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.drs_favorite->clear();
   m_ui.gldt_favorite->clear();
   m_ui.language_favorite->clear();
-  m_ui.location_favorite->clear();
   m_ui.monetary_unit_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
@@ -372,7 +371,6 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "locations")
 	{
-	  combobox = m_ui.location_favorite;
 	  pairList = biblioteq_misc_functions::getLocations
 	    (qmain->getDB(), errorstr);
 	  tablewidget = m_ui.locationsTable;
@@ -939,10 +937,7 @@ void biblioteq_dbenumerations::slotSave(void)
 	  listwidget = m_ui.languagesList;
 	}
       else if(tables.at(i) == "locations")
-	{
-	  combobox = m_ui.location_favorite;
-	  tablewidget = m_ui.locationsTable;
-	}
+	tablewidget = m_ui.locationsTable;
       else if(tables.at(i) == "minimum_days")
 	tablewidget = m_ui.minimumDaysTable;
       else if(tables.at(i) == "monetary_units")

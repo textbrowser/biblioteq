@@ -677,10 +677,7 @@ void biblioteq_dvd::prepareFavorites(void)
 			       toString().trimmed()));
   dvd.language->setCurrentIndex
     (dvd.language->
-     findText(settings.value("language_favorite").toString().trimmed()));
-  dvd.location->setCurrentIndex
-    (dvd.location->
-     findText(settings.value("locations_favorite").toString().trimmed()));
+     findText(settings.value("languages_favorite").toString().trimmed()));
   dvd.monetary_units->setCurrentIndex
     (dvd.monetary_units->
      findText(settings.value("monetary_units_favorite").toString().trimmed()));
@@ -696,9 +693,6 @@ void biblioteq_dvd::prepareFavorites(void)
 
   if(dvd.language->currentIndex() < 0)
     dvd.language->setCurrentIndex(0);
-
-  if(dvd.location->currentIndex() < 0)
-    dvd.location->setCurrentIndex(0);
 
   if(dvd.monetary_units->currentIndex() < 0)
     dvd.monetary_units->setCurrentIndex(0);

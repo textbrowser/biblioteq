@@ -667,10 +667,7 @@ void biblioteq_cd::prepareFavorites(void)
 			 toString().trimmed()));
   cd.language->setCurrentIndex
     (cd.language->
-     findText(settings.value("language_favorite").toString().trimmed()));
-  cd.location->setCurrentIndex
-    (cd.location->
-     findText(settings.value("locations_favorite").toString().trimmed()));
+     findText(settings.value("languages_favorite").toString().trimmed()));
   cd.monetary_units->setCurrentIndex
     (cd.monetary_units->
      findText(settings.value("monetary_units_favorite").toString().trimmed()));
@@ -680,9 +677,6 @@ void biblioteq_cd::prepareFavorites(void)
 
   if(cd.language->currentIndex() < 0)
     cd.language->setCurrentIndex(0);
-
-  if(cd.location->currentIndex() < 0)
-    cd.location->setCurrentIndex(0);
 
   if(cd.monetary_units->currentIndex() < 0)
     cd.monetary_units->setCurrentIndex(0);
