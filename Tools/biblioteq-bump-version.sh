@@ -33,5 +33,4 @@ sed -i \
 sed -i \
     's/\(android:versionCode="\)[0-9]\+\(\.[0-9]\+\)*"/\1'"${VERSION//./}"'"/' \
     $FILE
-
 echo "Please remember the release notes!"
