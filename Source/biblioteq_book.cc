@@ -1941,6 +1941,15 @@ void biblioteq_book::populateAfterZ3950
 	(id.volume_number, m_queryHighlightColor);
     }
 
+  str = m.z3950Unimarc003();
+
+  if(id.alternate_id_1->text().trimmed().isEmpty() && str.isEmpty() == false)
+    {
+      id.alternate_id_1->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.alternate_id_1, m_queryHighlightColor);
+    }
+
   foreach(auto textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }

@@ -142,6 +142,11 @@ class biblioteq_marc
     return m_volumeNumber.trimmed();
   }
 
+  QString z3950Unimarc003(void) const
+  {
+    return m_z3950Unimarc003;
+  }
+
   void initialize(const ITEM_TYPE itemType,
 		  const PROTOCOL protocol,
 		  const RECORD_SYNTAX recordSyntax);
@@ -168,6 +173,7 @@ class biblioteq_marc
   QString m_targetAudience;
   QString m_title;
   QString m_volumeNumber;
+  QString m_z3950Unimarc003;
   RECORD_SYNTAX m_recordSyntax;
   void clear(void);
   void parseBookSRUMarc21(void);

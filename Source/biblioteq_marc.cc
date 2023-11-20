@@ -67,6 +67,7 @@ void biblioteq_marc::clear(void)
   m_targetAudience.clear();
   m_title.clear();
   m_volumeNumber.clear();
+  m_z3950Unimarc003.clear();
 }
 
 void biblioteq_marc::initialize(const ITEM_TYPE itemType,
@@ -1146,7 +1147,11 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
     {
       auto str = list[i];
 
-      if(str.startsWith("010 "))
+      if(str.startsWith("003 "))
+	{
+	  m_z3950Unimarc003 = str.trimmed();
+	}
+      else if(str.startsWith("010 "))
 	{
 	  str = str.mid(4);
 
