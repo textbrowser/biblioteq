@@ -57,6 +57,7 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   Ui_vgDialog vg;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void prepareFavorites(void);
 
  private slots:
   void slotCancel(void);

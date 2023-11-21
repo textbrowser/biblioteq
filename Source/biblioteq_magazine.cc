@@ -42,6 +42,7 @@
 #include <QInputDialog>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
+#include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -523,56 +524,57 @@ void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
 void biblioteq_magazine::insert(void)
 {
   slotReset();
+  ma.accession_number->clear();
   ma.attach_files->setEnabled(false);
-  ma.delete_files->setEnabled(false);
-  ma.export_files->setEnabled(false);
-  ma.marc_tags_format->setVisible(true);
-  ma.parse_marc_tags->setVisible(true);
-  ma.view_pdf->setEnabled(false);
-  ma.id->clear();
-  ma.lcnum->clear();
   ma.callnum->clear();
-  ma.deweynum->clear();
-  ma.title->clear();
-  ma.publisher->setPlainText("N/A");
-  ma.description->setPlainText("N/A");
-  ma.marc_tags->clear();
-  ma.keyword->clear();
   ma.category->setPlainText("N/A");
-  ma.place->setPlainText("N/A");
   ma.copiesButton->setEnabled(false);
-  ma.sruQueryButton->setVisible(true);
-  ma.z3950QueryButton->setVisible(true);
-  ma.okButton->setText(tr("&Save"));
-  ma.publication_date->setDate
-    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
+  ma.delete_files->setEnabled(false);
+  ma.description->setPlainText("N/A");
+  ma.deweynum->clear();
+  ma.export_files->setEnabled(false);
+  ma.id->clear();
   ma.id->setCursorPosition(0);
-  ma.price->setMinimum(0.00);
-  ma.price->setValue(0.00);
-  ma.quantity->setMinimum(1);
-  ma.quantity->setValue(1);
-  ma.volume->setMinimum(0);
-  ma.volume->setValue(0);
   ma.issue->setMinimum(0);
   ma.issue->setValue(0);
-  ma.showUserButton->setEnabled(false);
-  ma.location->setCurrentIndex(0);
+  ma.keyword->clear();
   ma.language->setCurrentIndex(0);
+  ma.lcnum->clear();
+  ma.location->setCurrentIndex(0);
+  ma.marc_tags->clear();
+  ma.marc_tags_format->setVisible(true);
   ma.monetary_units->setCurrentIndex(0);
-  ma.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (ma.id, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (ma.title, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (ma.publisher->viewport(), m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (ma.description->viewport(), m_requiredHighlightColor);
+  ma.okButton->setText(tr("&Save"));
+  ma.parse_marc_tags->setVisible(true);
+  ma.place->setPlainText("N/A");
+  ma.price->setMinimum(0.00);
+  ma.price->setValue(0.00);
+  ma.publication_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
+  ma.publisher->setPlainText("N/A");
+  ma.quantity->setMinimum(1);
+  ma.quantity->setValue(1);
+  ma.showUserButton->setEnabled(false);
+  ma.sruQueryButton->setVisible(true);
+  ma.title->clear();
+  ma.view_pdf->setEnabled(false);
+  ma.volume->setMinimum(0);
+  ma.volume->setValue(0);
+  ma.z3950QueryButton->setVisible(true);
   biblioteq_misc_functions::highlightWidget
     (ma.category->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
+    (ma.description->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (ma.id, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
     (ma.place->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (ma.publisher->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (ma.title, m_requiredHighlightColor);
   m_te_orig_pal = ma.description->viewport()->palette();
+  prepareFavorites();
 
   if(m_subType == "Journal")
     setWindowTitle(QString(tr("BiblioteQ: Create Journal Entry")));
@@ -1788,6 +1790,24 @@ void biblioteq_magazine::populateFiles(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_magazine::prepareFavorites(void)
+{
+  QSettings settings;
+
+  ma.language->setCurrentIndex
+    (ma.language->
+     findText(settings.value("languages_favorite").toString().trimmed()));
+  ma.monetary_units->setCurrentIndex
+    (ma.monetary_units->
+     findText(settings.value("monetary_units_favorite").toString().trimmed()));
+
+  if(ma.language->currentIndex() < 0)
+    ma.language->setCurrentIndex(0);
+
+  if(ma.monetary_units->currentIndex() < 0)
+    ma.monetary_units->setCurrentIndex(0);
+}
+
 void biblioteq_magazine::resetQueryHighlights(void)
 {
   ma.callnum->setPalette(m_white_pal);
@@ -1806,49 +1826,50 @@ void biblioteq_magazine::resetQueryHighlights(void)
 void biblioteq_magazine::search(const QString &field, const QString &value)
 {
   m_engWindowTitle = "Search";
+  ma.accession_number->clear();
   ma.attach_files->setVisible(false);
-  ma.view_pdf->setVisible(false);
+  ma.callnum->clear();
+  ma.category->clear();
+  ma.copiesButton->setVisible(false);
   ma.coverImages->setVisible(false);
   ma.delete_files->setVisible(false);
+  ma.description->clear();
+  ma.deweynum->clear();
   ma.export_files->setVisible(false);
   ma.files->setVisible(false);
   ma.files_label->setVisible(false);
   ma.id->clear();
-  ma.lcnum->clear();
-  ma.callnum->clear();
-  ma.deweynum->clear();
-  ma.title->clear();
-  ma.publisher->clear();
-  ma.place->clear();
-  ma.description->clear();
-  ma.marc_tags->clear();
+  ma.id->setCursorPosition(0);
+  ma.issnAvailableCheckBox->setCheckable(false);
+  ma.issue->setMinimum(-1);
+  ma.issue->setValue(-1);
   ma.keyword->clear();
-  ma.category->clear();
-  ma.copiesButton->setVisible(false);
-  ma.showUserButton->setVisible(false);
-  ma.sruQueryButton->setVisible(false);
-  ma.z3950QueryButton->setVisible(false);
+  ma.language->insertItem(0, tr("Any"));
+  ma.language->setCurrentIndex(0);
+  ma.lcnum->clear();
+  ma.location->insertItem(0, tr("Any"));
+  ma.location->setCurrentIndex(0);
+  ma.marc_tags->clear();
+  ma.monetary_units->insertItem(0, tr("Any"));
+  ma.monetary_units->setCurrentIndex(0);
   ma.okButton->setText(tr("&Search"));
+  ma.place->clear();
+  ma.price->setMinimum(-0.01);
+  ma.price->setValue(-0.01);
   ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
   ma.publication_date->setDisplayFormat("yyyy");
   ma.publication_date_enabled->setVisible(true);
-  ma.id->setCursorPosition(0);
-  ma.price->setMinimum(-0.01);
-  ma.price->setValue(-0.01);
+  ma.publisher->clear();
   ma.quantity->setMinimum(0);
   ma.quantity->setValue(0);
+  ma.showUserButton->setVisible(false);
+  ma.sruQueryButton->setVisible(false);
+  ma.title->clear();
+  ma.view_pdf->setVisible(false);
   ma.volume->setMinimum(-1);
   ma.volume->setValue(-1);
-  ma.issue->setMinimum(-1);
-  ma.issue->setValue(-1);
-  ma.language->insertItem(0, tr("Any"));
-  ma.monetary_units->insertItem(0, tr("Any"));
-  ma.location->insertItem(0, tr("Any"));
-  ma.location->setCurrentIndex(0);
-  ma.language->setCurrentIndex(0);
-  ma.monetary_units->setCurrentIndex(0);
-  ma.accession_number->clear();
-  ma.issnAvailableCheckBox->setCheckable(false);
+  ma.z3950QueryButton->setVisible(false);
+  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {

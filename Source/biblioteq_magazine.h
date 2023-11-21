@@ -94,6 +94,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
 		  const QString &fileName) const;
   void createSRUDialog(void);
   void populateFiles(void);
+  void prepareFavorites(void);
   void resetQueryHighlights(void);
 
  protected slots:

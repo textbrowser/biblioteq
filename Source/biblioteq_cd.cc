@@ -323,52 +323,52 @@ void biblioteq_cd::duplicate(const QString &p_oid, const int state)
 void biblioteq_cd::insert(void)
 {
   slotReset();
-  cd.id->clear();
+  cd.accession_number->clear();
   cd.artist->setPlainText("N/A");
-  cd.title->clear();
-  cd.recording_label->setPlainText("N/A");
-  cd.description->setPlainText("N/A");
-  cd.keyword->clear();
+  cd.audio->setCurrentIndex(0);
   cd.category->setPlainText("N/A");
-  cd.copiesButton->setEnabled(false);
-  cd.tracksButton->setEnabled(false);
-  cd.showUserButton->setEnabled(false);
-  cd.queryButton->setEnabled(true);
   cd.computeButton->setVisible(true);
+  cd.copiesButton->setEnabled(false);
+  cd.description->setPlainText("N/A");
+  cd.format->setCurrentIndex(0);
+  cd.id->clear();
+  cd.keyword->clear();
+  cd.language->setCurrentIndex(0);
+  cd.location->setCurrentIndex(0);
+  cd.monetary_units->setCurrentIndex(0);
+  cd.no_of_discs->setMinimum(1);
+  cd.no_of_discs->setValue(1);
   cd.okButton->setText(tr("&Save"));
-  cd.release_date->setDate(QDate::fromString("01/01/2000",
-					     biblioteq::s_databaseDateFormat));
-  cd.runtime->setTime(QTime(0, 0, 1));
-  cd.runtime->setMinimumTime(QTime(0, 0, 1));
   cd.price->setMinimum(0.00);
   cd.price->setValue(0.00);
   cd.quantity->setMinimum(1);
   cd.quantity->setValue(1);
-  cd.no_of_discs->setMinimum(1);
-  cd.no_of_discs->setValue(1);
-  cd.audio->setCurrentIndex(0);
-  cd.location->setCurrentIndex(0);
-  cd.language->setCurrentIndex(0);
-  cd.monetary_units->setCurrentIndex(0);
+  cd.queryButton->setEnabled(true);
+  cd.recording_label->setPlainText("N/A");
   cd.recording_type->setCurrentIndex(0);
-  cd.format->setCurrentIndex(0);
-  cd.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (cd.id, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (cd.title, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (cd.recording_label->viewport(), m_requiredHighlightColor);
+  cd.release_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
+  cd.runtime->setMinimumTime(QTime(0, 0, 1));
+  cd.runtime->setTime(QTime(0, 0, 1));
+  cd.showUserButton->setEnabled(false);
+  cd.title->clear();
+  cd.tracksButton->setEnabled(false);
   biblioteq_misc_functions::highlightWidget
     (cd.artist->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
+    (cd.category->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
     (cd.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (cd.category->viewport(), m_requiredHighlightColor);
-  setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
-  m_engWindowTitle = "Create";
+    (cd.id, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (cd.recording_label->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (cd.title, m_requiredHighlightColor);
   cd.id->setFocus();
+  m_engWindowTitle = "Create";
   prepareFavorites();
+  setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
   storeData(this);
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -684,47 +684,47 @@ void biblioteq_cd::prepareFavorites(void)
 
 void biblioteq_cd::search(const QString &field, const QString &value)
 {
-  m_composer_action->setVisible(true);
+  cd.accession_number->clear();
+  cd.artist->clear();
+  cd.audio->insertItem(0, tr("Any"));
+  cd.audio->setCurrentIndex(0);
+  cd.category->clear();
   cd.composer->setVisible(true);
   cd.composer_label->setVisible(true);
-  cd.id->clear();
-  cd.artist->clear();
-  cd.title->clear();
-  cd.recording_label->clear();
-  cd.description->clear();
-  cd.keyword->clear();
-  cd.category->clear();
-  cd.copiesButton->setVisible(false);
-  cd.tracksButton->setVisible(false);
-  cd.queryButton->setVisible(false);
-  cd.showUserButton->setVisible(false);
   cd.computeButton->setVisible(false);
-  cd.tracks_lbl->setVisible(false);
-  cd.okButton->setText(tr("&Search"));
-  cd.publication_date_enabled->setVisible(true);
-  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
-  cd.release_date->setDisplayFormat("yyyy");
-  cd.runtime->setTime(QTime(0, 0, 0));
-  cd.runtime->setMinimumTime(QTime(0, 0, 0));
-  cd.price->setMinimum(-0.01);
-  cd.price->setValue(-0.01);
-  cd.quantity->setMinimum(0);
-  cd.quantity->setValue(0);
+  cd.copiesButton->setVisible(false);
+  cd.description->clear();
+  cd.format->insertItem(0, tr("Any"));
+  cd.format->setCurrentIndex(0);
+  cd.id->clear();
+  cd.keyword->clear();
+  cd.language->insertItem(0, tr("Any"));
+  cd.language->setCurrentIndex(0);
+  cd.location->insertItem(0, tr("Any"));
+  cd.location->setCurrentIndex(0);
+  cd.monetary_units->insertItem(0, tr("Any"));
+  cd.monetary_units->setCurrentIndex(0);
   cd.no_of_discs->setMinimum(0);
   cd.no_of_discs->setValue(0);
-  cd.audio->insertItem(0, tr("Any"));
+  cd.okButton->setText(tr("&Search"));
+  cd.price->setMinimum(-0.01);
+  cd.price->setValue(-0.01);
+  cd.publication_date_enabled->setVisible(true);
+  cd.quantity->setMinimum(0);
+  cd.quantity->setValue(0);
+  cd.queryButton->setVisible(false);
+  cd.recording_label->clear();
   cd.recording_type->insertItem(0, tr("Any"));
-  cd.format->insertItem(0, tr("Any"));
-  cd.language->insertItem(0, tr("Any"));
-  cd.monetary_units->insertItem(0, tr("Any"));
-  cd.location->insertItem(0, tr("Any"));
-  cd.audio->setCurrentIndex(0);
-  cd.location->setCurrentIndex(0);
-  cd.language->setCurrentIndex(0);
-  cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
-  cd.format->setCurrentIndex(0);
-  cd.accession_number->clear();
+  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  cd.release_date->setDisplayFormat("yyyy");
+  cd.runtime->setMinimumTime(QTime(0, 0, 0));
+  cd.runtime->setTime(QTime(0, 0, 0));
+  cd.showUserButton->setVisible(false);
+  cd.title->clear();
+  cd.tracksButton->setVisible(false);
+  cd.tracks_lbl->setVisible(false);
+  m_composer_action->setVisible(true);
   m_engWindowTitle = "Search";
   prepareFavorites();
 

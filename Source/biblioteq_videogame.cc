@@ -31,6 +31,7 @@
 #include "biblioteq_videogame.h"
 
 #include <QFileDialog>
+#include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -301,44 +302,45 @@ void biblioteq_videogame::duplicate(const QString &p_oid, const int state)
 void biblioteq_videogame::insert(void)
 {
   slotReset();
+  vg.accession_number->clear();
   vg.copiesButton->setEnabled(false);
-  vg.queryButton->setEnabled(true);
-  vg.okButton->setText(tr("&Save"));
-  vg.release_date->setDate(QDate::fromString("01/01/2000",
-					     biblioteq::s_databaseDateFormat));
-  vg.price->setMinimum(0.00);
-  vg.price->setValue(0.00);
-  vg.quantity->setMinimum(1);
-  vg.quantity->setValue(1);
-  vg.developer->setPlainText("N/A");
-  vg.publisher->setPlainText("N/A");
-  vg.place->setPlainText("N/A");
-  vg.genre->setPlainText("N/A");
   vg.description->setPlainText("N/A");
+  vg.developer->setPlainText("N/A");
+  vg.genre->setPlainText("N/A");
   vg.keyword->clear();
-  vg.showUserButton->setEnabled(false);
+  vg.language->setCurrentIndex(0);
   vg.location->setCurrentIndex(0);
   vg.mode->setCurrentIndex(0);
-  vg.language->setCurrentIndex(0);
   vg.monetary_units->setCurrentIndex(0);
+  vg.okButton->setText(tr("&Save"));
+  vg.place->setPlainText("N/A");
+  vg.price->setMinimum(0.00);
+  vg.price->setValue(0.00);
+  vg.publisher->setPlainText("N/A");
+  vg.quantity->setMinimum(1);
+  vg.quantity->setValue(1);
+  vg.queryButton->setEnabled(true);
   vg.rating->setCurrentIndex(0);
-  vg.accession_number->clear();
-  biblioteq_misc_functions::highlightWidget
-    (vg.id, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (vg.title, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (vg.publisher->viewport(), m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (vg.developer->viewport(), m_requiredHighlightColor);
+  vg.release_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
+  vg.showUserButton->setEnabled(false);
   biblioteq_misc_functions::highlightWidget
     (vg.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
+    (vg.developer->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
     (vg.genre->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
+    (vg.id, m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
     (vg.place->viewport(), m_requiredHighlightColor);
-  setWindowTitle(tr("BiblioteQ: Create Video Game Entry"));
+  biblioteq_misc_functions::highlightWidget
+    (vg.publisher->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (vg.title, m_requiredHighlightColor);
   m_engWindowTitle = "Create";
+  prepareFavorites();
+  setWindowTitle(tr("BiblioteQ: Create Video Game Entry"));
   vg.id->setFocus();
   storeData(this);
 #ifdef Q_OS_ANDROID
@@ -611,41 +613,73 @@ void biblioteq_videogame::modify(const int state)
   raise();
 }
 
+void biblioteq_videogame::prepareFavorites(void)
+{
+  QSettings settings;
+
+  vg.language->setCurrentIndex
+    (vg.language->
+     findText(settings.value("languages_favorite").toString().trimmed()));
+  vg.monetary_units->setCurrentIndex
+    (vg.monetary_units->
+     findText(settings.value("monetary_units_favorite").toString().trimmed()));
+  vg.platform->setCurrentIndex
+    (vg.platform->
+     findText(settings.value("videogame_platforms_favorite").
+	      toString().trimmed()));
+  vg.rating->setCurrentIndex
+    (vg.rating->findText
+     (settings.value("videogame_ratings_favorite").toString().trimmed()));
+
+  if(vg.language->currentIndex() < 0)
+    vg.language->setCurrentIndex(0);
+
+  if(vg.monetary_units->currentIndex() < 0)
+    vg.monetary_units->setCurrentIndex(0);
+
+  if(vg.platform->currentIndex() < 0)
+    vg.platform->setCurrentIndex(0);
+
+  if(vg.rating->currentIndex() < 0)
+    vg.rating->setCurrentIndex(0);
+}
+
 void biblioteq_videogame::search(const QString &field, const QString &value)
 {
   m_engWindowTitle = "Search";
-  vg.coverImages->setVisible(false);
-  vg.id->clear();
-  vg.developer->clear();
-  vg.title->clear();
-  vg.publisher->clear();
-  vg.description->clear();
-  vg.keyword->clear();
-  vg.genre->clear();
+  vg.accession_number->clear();
   vg.copiesButton->setVisible(false);
-  vg.showUserButton->setVisible(false);
-  vg.queryButton->setVisible(false);
+  vg.coverImages->setVisible(false);
+  vg.description->clear();
+  vg.developer->clear();
+  vg.genre->clear();
+  vg.id->clear();
+  vg.keyword->clear();
+  vg.language->insertItem(0, tr("Any"));
+  vg.language->setCurrentIndex(0);
+  vg.location->insertItem(0, tr("Any"));
+  vg.location->setCurrentIndex(0);
+  vg.mode->insertItem(0, tr("Any"));
+  vg.mode->setCurrentIndex(0);
+  vg.monetary_units->insertItem(0, tr("Any"));
+  vg.monetary_units->setCurrentIndex(0);
   vg.okButton->setText(tr("&Search"));
-  vg.publication_date_enabled->setVisible(true);
-  vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
-  vg.release_date->setDisplayFormat("yyyy");
+  vg.platform->insertItem(0, tr("Any"));
+  vg.platform->setCurrentIndex(0);
   vg.price->setMinimum(-0.01);
   vg.price->setValue(-0.01);
+  vg.publication_date_enabled->setVisible(true);
+  vg.publisher->clear();
   vg.quantity->setMinimum(0);
   vg.quantity->setValue(0);
+  vg.queryButton->setVisible(false);
   vg.rating->insertItem(0, tr("Any"));
-  vg.language->insertItem(0, tr("Any"));
-  vg.monetary_units->insertItem(0, tr("Any"));
-  vg.platform->insertItem(0, tr("Any"));
-  vg.location->insertItem(0, tr("Any"));
-  vg.mode->insertItem(0, tr("Any"));
-  vg.location->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
-  vg.language->setCurrentIndex(0);
-  vg.monetary_units->setCurrentIndex(0);
-  vg.platform->setCurrentIndex(0);
-  vg.mode->setCurrentIndex(0);
-  vg.accession_number->clear();
+  vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  vg.release_date->setDisplayFormat("yyyy");
+  vg.showUserButton->setVisible(false);
+  vg.title->clear();
+  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
