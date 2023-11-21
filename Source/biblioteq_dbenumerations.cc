@@ -214,13 +214,15 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.bc_favorite->clear();
   m_ui.bo_favorite->clear();
   m_ui.bta_favorite->clear();
-  m_ui.cdf_favorite->clear();
+  m_ui.cf_favorite->clear();
   m_ui.dar_favorite->clear();
   m_ui.dr_favorite->clear();
   m_ui.drs_favorite->clear();
   m_ui.gldt_favorite->clear();
   m_ui.language_favorite->clear();
-  m_ui.monetary_unit_favorite->clear();
+  m_ui.monetary_units_favorite->clear();
+  m_ui.vgp_favorite->clear();
+  m_ui.vgr_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
@@ -329,7 +331,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "cd_formats")
 	{
-	  combobox = m_ui.cdf_favorite;
+	  combobox = m_ui.cf_favorite;
 	  list = biblioteq_misc_functions::getCDFormats
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.cdFormatsList;
@@ -383,19 +385,21 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "monetary_units")
 	{
-	  combobox = m_ui.monetary_unit_favorite;
+	  combobox = m_ui.monetary_units_favorite;
 	  list = biblioteq_misc_functions::getMonetaryUnits
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.monetaryUnitsList;
 	}
       else if(str == "videogame_platforms")
 	{
+	  combobox = m_ui.vgp_favorite;
 	  list = biblioteq_misc_functions::getVideoGamePlatforms
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.videoGamePlatformsList;
 	}
       else if(str == "videogame_ratings")
 	{
+	  combobox = m_ui.vgr_favorite;
 	  list = biblioteq_misc_functions::getVideoGameRatings
 	    (qmain->getDB(), errorstr);
 	  listwidget = m_ui.videoGameRatingsList;
@@ -908,7 +912,7 @@ void biblioteq_dbenumerations::slotSave(void)
 	}
       else if(tables.at(i) == "cd_formats")
 	{
-	  combobox = m_ui.cdf_favorite;
+	  combobox = m_ui.cf_favorite;
 	  listwidget = m_ui.cdFormatsList;
 	}
       else if(tables.at(i) == "dvd_aspect_ratios")
@@ -942,13 +946,19 @@ void biblioteq_dbenumerations::slotSave(void)
 	tablewidget = m_ui.minimumDaysTable;
       else if(tables.at(i) == "monetary_units")
 	{
-	  combobox = m_ui.monetary_unit_favorite;
+	  combobox = m_ui.monetary_units_favorite;
 	  listwidget = m_ui.monetaryUnitsList;
 	}
       else if(tables.at(i) == "videogame_platforms")
-	listwidget = m_ui.videoGamePlatformsList;
+	{
+	  combobox = m_ui.vgp_favorite;
+	  listwidget = m_ui.videoGamePlatformsList;
+	}
       else if(tables.at(i) == "videogame_ratings")
-	listwidget = m_ui.videoGameRatingsList;
+	{
+	  combobox = m_ui.vgr_favorite;
+	  listwidget = m_ui.videoGameRatingsList;
+	}
 
       if(listwidget)
 	{
