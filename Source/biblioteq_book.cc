@@ -806,63 +806,63 @@ void biblioteq_book::insert(void)
      accessionNumberAsSpecialText(biblioteq_misc_functions::
 				  bookAccessionNumber(qmain->getDB())));
   id.attach_files->setEnabled(false);
-  id.marc_tags_format->setVisible(true);
-  id.parse_marc_tags->setVisible(true);
-  id.view_pdf->setEnabled(false);
-  id.id->clear();
-  id.isbn13->clear();
-  id.category->setPlainText("N/A");
   id.author->setPlainText("N/A");
-  id.lcnum->clear();
+  id.binding->setCurrentIndex(0);
   id.callnum->clear();
-  id.deweynum->clear();
-  id.title->clear();
-  id.publisher->setPlainText("N/A");
-  id.place->setPlainText("N/A");
-  id.description->setPlainText("N/A");
-  id.marc_tags->clear();
-  id.keyword->clear();
+  id.category->setPlainText("N/A");
   id.copiesButton->setEnabled(false);
   id.delete_files->setEnabled(false);
+  id.description->setPlainText("N/A");
+  id.deweynum->clear();
+  id.edition->setCurrentIndex(0);
   id.export_files->setEnabled(false);
-  id.openLibraryQuery->setVisible(true);
-  id.sruQueryButton->setVisible(true);
-  id.z3950QueryButton->setVisible(true);
+  id.id->clear();
+  id.isbn13->clear();
+  id.keyword->clear();
+  id.language->setCurrentIndex(0);
+  id.lcnum->clear();
+  id.location->setCurrentIndex(0);
+  id.marc_tags->clear();
+  id.marc_tags_format->setVisible(true);
+  id.monetary_units->setCurrentIndex(0);
   id.okButton->setText(tr("&Save"));
-  id.publication_date->setDate
-    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
+  id.openLibraryQuery->setVisible(true);
+  id.parse_marc_tags->setVisible(true);
+  id.place->setPlainText("N/A");
   id.price->setMinimum(0.00);
   id.price->setValue(0.00);
+  id.publication_date->setDate
+    (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
+  id.publisher->setPlainText("N/A");
   id.quantity->setMinimum(1);
   id.quantity->setValue(1);
   id.showUserButton->setEnabled(false);
-  id.location->setCurrentIndex(0);
-  id.edition->setCurrentIndex(0);
-  id.language->setCurrentIndex(0);
-  id.monetary_units->setCurrentIndex(0);
-  id.binding->setCurrentIndex(0);
+  id.sruQueryButton->setVisible(true);
   id.target_audience->setEditable(true);
+  id.title->clear();
   id.url->clear();
+  id.view_pdf->setEnabled(false);
+  id.z3950QueryButton->setVisible(true);
+  biblioteq_misc_functions::highlightWidget
+    (id.author->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (id.category->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (id.description->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
     (id.id, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
     (id.isbn13, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (id.title, m_requiredHighlightColor);
+    (id.place->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
     (id.publisher->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (id.place->viewport(), m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (id.author->viewport(), m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (id.description->viewport(), m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (id.category->viewport(), m_requiredHighlightColor);
+    (id.title, m_requiredHighlightColor);
+  id.isbn13->setFocus();
+  m_engWindowTitle = "Create";
   m_te_orig_pal = id.id->palette();
   setWindowTitle(tr("BiblioteQ: Create Book Entry"));
-  m_engWindowTitle = "Create";
-  id.isbn13->setFocus();
   prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
@@ -1945,9 +1945,18 @@ void biblioteq_book::populateAfterZ3950
 
   if(id.alternate_id_1->text().trimmed().isEmpty() && str.isEmpty() == false)
     {
+      auto index = str.indexOf("ark:/");
+
+      if(index >= 0)
+	str = str.mid(index);
+
       id.alternate_id_1->setText(str);
+      id.url->setPlainText
+	(m.z3950Unimarc003().mid(m.z3950Unimarc003().indexOf(' ')).trimmed());
       biblioteq_misc_functions::highlightWidget
 	(id.alternate_id_1, m_queryHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(id.url->viewport(), m_queryHighlightColor);
     }
 
   foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -2085,6 +2094,7 @@ void biblioteq_book::resetQueryHighlights(void)
   id.reform_date->setStyleSheet(m_dt_orig_ss);
   id.target_audience->setStyleSheet(m_cb_orig_ss);
   id.title->setPalette(m_te_orig_pal);
+  id.url->viewport()->setPalette(m_white_pal);
   id.volume_number->setPalette(m_white_pal);
 }
 
@@ -4676,6 +4686,7 @@ void biblioteq_book::slotReset(void)
 	{
 	  id.url->clear();
 	  id.url->setFocus();
+	  id.url->viewport()->setPalette(m_white_pal);
 	}
       else if(action == actions[28])
 	{
