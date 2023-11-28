@@ -1150,6 +1150,11 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
       if(str.startsWith("003 "))
 	{
 	  m_z3950Unimarc003 = str.trimmed();
+
+	  auto index = str.indexOf("ark:/");
+
+	  if(index >= 0)
+	    m_z3950Unimarc003 = str.mid(index);
 	}
       else if(str.startsWith("010 "))
 	{
