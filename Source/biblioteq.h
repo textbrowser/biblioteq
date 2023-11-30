@@ -63,6 +63,7 @@
 class biblioteq_documentationwindow;
 class biblioteq_files;
 class biblioteq_otheroptions;
+class biblioteq_query_history;
 class biblioteq_sqlite_merge_databases;
 class swifty;
 
@@ -299,11 +300,6 @@ class biblioteq: public QMainWindow
   static const int VIEW_ONLY = 1;
   biblioteq(void);
   ~biblioteq();
-  QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_documentation;
-  QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_releaseNotes;
-  QPointer<QMenu> m_configToolMenu;
-  QPointer<biblioteq_documentationwindow> m_contributors;
-  QString m_unaccent;
   QColor availabilityColor(const QString &itemType) const;
   QColor itemMandatoryFieldColor(void) const;
   QColor itemQueryResultColor(void) const;
@@ -460,6 +456,8 @@ class biblioteq: public QMainWindow
   QActionGroup *m_menuCategoryActionGroup;
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;
+  QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_documentation;
+  QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_releaseNotes;
   QHash<QString, QString> m_amazonImages;
   QHash<QString, QString> m_openLibraryImages;
   QHash<QString, QString> m_openLibraryItems;
@@ -479,8 +477,11 @@ class biblioteq: public QMainWindow
   QMessageBox *m_about;
   QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
   QPair<QColor, QColor> m_aboutColors;
+  QPointer<QMenu> m_configToolMenu;
   QPointer<QMenu> m_menu;
   QPointer<biblioteq_dbenumerations> db_enumerations;
+  QPointer<biblioteq_documentationwindow> m_contributors;
+  QPointer<biblioteq_query_history> m_queryHistory;
   QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
   QSqlDatabase m_db;
   QSqlQuery *m_searchQuery;
@@ -489,6 +490,7 @@ class biblioteq: public QMainWindow
   QString m_lastSearchStr;
   QString m_previousTypeFilter;
   QString m_roles;
+  QString m_unaccent;
   QStringList m_deletedAdmins;
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;

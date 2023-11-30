@@ -128,7 +128,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>289</height>
+          <height>260</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -438,7 +438,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -491,6 +491,7 @@
     <addaction name="actionShowErrorDialog"/>
     <addaction name="separator"/>
     <addaction name="actionDatabaseSearch"/>
+    <addaction name="actionQuery_History"/>
     <addaction name="actionRefreshTable"/>
     <addaction name="separator"/>
     <addaction name="action_Merge_SQLite_Databases"/>
@@ -1458,6 +1459,11 @@
   <action name="actionMagic">
    <property name="text">
     <string>Magic...</string>
+   </property>
+  </action>
+  <action name="actionQuery_History">
+   <property name="text">
+    <string>Query History...</string>
    </property>
   </action>
  </widget>
