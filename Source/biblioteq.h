@@ -676,6 +676,7 @@ class biblioteq: public QMainWindow
   void slotShowOtherOptions(void);
   void slotShowPassword(bool state);
   void slotShowPrev(void);
+  void slotShowQueryHistory(void);
   void slotShowReleaseNotes(void);
   void slotSpecialApplication(void);
   void slotSqliteFileSelected(bool state);

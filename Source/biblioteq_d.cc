@@ -39,6 +39,7 @@
 #include "biblioteq_documentationwindow.h"
 #include "biblioteq_files.h"
 #include "biblioteq_otheroptions.h"
+#include "biblioteq_query_history.h"
 #include "biblioteq_sqlite_merge_databases.h"
 #include "biblioteq_swifty.h"
 
@@ -707,6 +708,12 @@ void biblioteq::slotShowFiles(void)
 void biblioteq::slotShowMagic(void)
 {
   m_magic->show(this);
+}
+
+void biblioteq::slotShowQueryHistory(void)
+{
+  if(!m_queryHistory)
+    m_queryHistory = new biblioteq_query_history(this);
 }
 
 void biblioteq::slotShowReleaseNotes(void)

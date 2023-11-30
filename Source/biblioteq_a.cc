@@ -374,6 +374,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
+  connect(ui.actionQuery_History,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowQueryHistory(void)));
   connect(ui.actionTearOffMenus,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -770,6 +774,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
+  ui.actionQuery_History->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);
   ui.actionRequests->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);

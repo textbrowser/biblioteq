@@ -3020,6 +3020,7 @@ void biblioteq::slotConnectDB(void)
 
   ui.actionDatabaseSearch->setEnabled(true);
   ui.actionDisconnect->setEnabled(true);
+  ui.actionQuery_History->setEnabled(true);
   ui.actionRefreshTable->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
   ui.configTool->setEnabled(true);
@@ -3292,6 +3293,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionMagic->setEnabled(false);
   ui.actionMembersBrowser->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
+  ui.actionQuery_History->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
