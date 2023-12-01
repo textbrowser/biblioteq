@@ -537,8 +537,12 @@ void biblioteq::slotMergeSQLiteDatabases(void)
   if(!m_sqliteMergeDatabases)
     m_sqliteMergeDatabases = new biblioteq_sqlite_merge_databases(this);
 
+#ifdef Q_OS_ANDROID
+  m_sqliteMergeDatabases->showMaximized();
+#else
   biblioteq_misc_functions::center(m_sqliteMergeDatabases, this);
   m_sqliteMergeDatabases->showNormal();
+#endif
   m_sqliteMergeDatabases->activateWindow();
   m_sqliteMergeDatabases->raise();
 }
@@ -714,6 +718,15 @@ void biblioteq::slotShowQueryHistory(void)
 {
   if(!m_queryHistory)
     m_queryHistory = new biblioteq_query_history(this);
+
+#ifdef Q_OS_ANDROID
+  m_queryHistory->showMaximized();
+#else
+  biblioteq_misc_functions::center(m_queryHistory, this);
+  m_queryHistory->showNormal();
+#endif
+  m_queryHistory->activateWindow();
+  m_queryHistory->raise();
 }
 
 void biblioteq::slotShowReleaseNotes(void)

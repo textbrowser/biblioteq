@@ -33,6 +33,7 @@
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
+#include "biblioteq_query_history.h"
 #include "biblioteq_sql_syntax_highlighter.h"
 #include "biblioteq_sqlite_merge_databases.h"
 #include "biblioteq_woody.h"
@@ -3245,6 +3246,9 @@ void biblioteq::slotDisconnect(void)
   delete m_searchQuery;
   m_searchQuery = nullptr;
 
+  if(m_queryHistory)
+    m_queryHistory->reset();
+
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->reset();
 
@@ -3257,6 +3261,9 @@ void biblioteq::slotDisconnect(void)
   m_import->hide();
   m_members_diag->hide();
 
+  if(m_queryHistory)
+    m_queryHistory->hide();
+
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->hide();
 #else
@@ -3266,6 +3273,9 @@ void biblioteq::slotDisconnect(void)
   m_history_diag->close();
   m_import->close();
   m_members_diag->close();
+
+  if(m_queryHistory)
+    m_queryHistory->close();
 
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->close();
