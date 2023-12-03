@@ -1131,6 +1131,7 @@ int biblioteq::populateTable(QSqlQuery *query,
        5000);
 
   ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
+  emit queryCompleted(query->executedQuery());
   QApplication::restoreOverrideCursor();
   return 0;
 }
@@ -3242,12 +3243,10 @@ void biblioteq::slotDisconnect(void)
   m_membersWasRefreshed = false;
   m_roles = "";
   m_pages = 0;
+  m_queryHistory->reset();
   m_queryOffset = 0;
   delete m_searchQuery;
   m_searchQuery = nullptr;
-
-  if(m_queryHistory)
-    m_queryHistory->reset();
 
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->reset();
@@ -3260,9 +3259,7 @@ void biblioteq::slotDisconnect(void)
   m_history_diag->hide();
   m_import->hide();
   m_members_diag->hide();
-
-  if(m_queryHistory)
-    m_queryHistory->hide();
+  m_queryHistory->hide();
 
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->hide();
@@ -3273,9 +3270,7 @@ void biblioteq::slotDisconnect(void)
   m_history_diag->close();
   m_import->close();
   m_members_diag->close();
-
-  if(m_queryHistory)
-    m_queryHistory->close();
+  m_queryHistory->close();
 
   if(m_sqliteMergeDatabases)
     m_sqliteMergeDatabases->close();

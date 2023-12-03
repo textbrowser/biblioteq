@@ -50,6 +50,8 @@ class biblioteq_query_history: public QMainWindow
 
  private slots:
   void slotClose(void);
+  void slotCopy(void);
+  void slotQueryCompleted(const QString &text);
 };
 
 #endif

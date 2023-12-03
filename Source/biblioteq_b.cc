@@ -4152,6 +4152,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   ui.graphicsView->setSceneRect
     (ui.graphicsView->scene()->itemsBoundingRect());
+  emit queryCompleted(query.executedQuery());
   QApplication::restoreOverrideCursor();
   return 0;
 }

@@ -716,9 +716,6 @@ void biblioteq::slotShowMagic(void)
 
 void biblioteq::slotShowQueryHistory(void)
 {
-  if(!m_queryHistory)
-    m_queryHistory = new biblioteq_query_history(this);
-
 #ifdef Q_OS_ANDROID
   m_queryHistory->showMaximized();
 #else

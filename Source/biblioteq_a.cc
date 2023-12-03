@@ -64,6 +64,7 @@ extern "C"
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_custom_query.h"
 #include "biblioteq_otheroptions.h"
+#include "biblioteq_query_history.h"
 #include "biblioteq_sqlite_create_schema.h"
 #include "biblioteq_swifty.h"
 
@@ -209,6 +210,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_pass_diag = new QDialog(this);
   m_printPreview = new QTextBrowser(this);
   m_printPreview->setVisible(false);
+  m_queryHistory = new biblioteq_query_history(this);
 #ifdef Q_OS_ANDROID
   m_all_diag = new QMainWindow(this);
 #else
@@ -244,6 +246,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(listMembersReservedItems(const QString &)),
 	  this,
 	  SLOT(slotListReservedItems(const QString &)));
+  connect(this,
+	  SIGNAL(queryCompleted(const QString &)),
+	  m_queryHistory,
+	  SLOT(slotQueryCompleted(const QString &)));
   m_import = new biblioteq_import(this);
   m_magic = new biblioteq_magic(this);
   menu1 = new QMenu(this);

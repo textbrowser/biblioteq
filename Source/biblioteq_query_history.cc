@@ -25,6 +25,8 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QClipboard>
+
 #include "biblioteq.h"
 #include "biblioteq_query_history.h"
 
@@ -33,6 +35,10 @@ biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
 {
   m_biblioteq = biblioteq;
   m_ui.setupUi(this);
+  connect(m_ui.clipboard,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCopy(void)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -72,4 +78,32 @@ void biblioteq_query_history::slotClose(void)
 #else
   close();
 #endif
+}
+
+void biblioteq_query_history::slotCopy(void)
+{
+  auto clipboard = QApplication::clipboard();
+
+  if(!clipboard)
+    return;
+
+  if(m_ui.table->item(m_ui.table->currentRow(), 1))
+    clipboard->setText(m_ui.table->item(m_ui.table->currentRow(), 1)->text());
+}
+
+void biblioteq_query_history::slotQueryCompleted(const QString &text)
+{
+  if(text.trimmed().isEmpty())
+    return;
+
+  auto item1 = new QTableWidgetItem
+    (QDateTime::currentDateTime().toString(Qt::ISODate));
+  auto item2 = new QTableWidgetItem(text.trimmed());
+
+  item1->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  item2->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  m_ui.table->setRowCount(m_ui.table->rowCount() + 1);
+  m_ui.table->setItem(m_ui.table->rowCount() - 1, 0, item1);
+  m_ui.table->setItem(m_ui.table->rowCount() - 1, 1, item2);
+  m_ui.table->scrollToBottom();
 }
