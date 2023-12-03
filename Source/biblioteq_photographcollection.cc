@@ -2241,14 +2241,14 @@ void biblioteq_photographcollection::slotReset(void)
       ** Reset all.
       */
 
-      pc.thumbnail_collection->clear();
-      pc.id_collection->clear();
-      pc.title_collection->clear();
       pc.about_collection->clear();
-      pc.notes_collection->clear();
-      pc.location->setCurrentIndex(0);
       pc.accession_number->clear();
+      pc.id_collection->clear();
       pc.id_collection->setFocus();
+      pc.location->setCurrentIndex(0);
+      pc.notes_collection->clear();
+      pc.thumbnail_collection->clear();
+      pc.title_collection->clear();
     }
 }
 
