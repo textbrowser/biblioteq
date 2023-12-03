@@ -745,6 +745,26 @@ QString biblioteq_misc_functions::linearizeString(const QString &text)
   return text.simplified().replace("<br>", " ").simplified().trimmed();
 }
 
+QString biblioteq_misc_functions::queryString(QSqlQuery *query)
+{
+  if(!query)
+    return "";
+
+  int index = -1;
+  auto list(query->boundValues().values());
+  auto str(query->executedQuery());
+
+  while((index = str.indexOf('?')) >= 0 && list.size() > 0)
+    {
+      QString value(list.takeFirst().toString().toUtf8().data());
+
+      str.replace
+	(index, 1, value.isEmpty() ? "'%'" : QString("'%1'").arg(value));
+    }
+
+  return str;
+}
+
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {

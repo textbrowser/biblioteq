@@ -43,6 +43,11 @@ biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.table,
+	  SIGNAL(doubleClicked(const QModelIndex &)),
+	  this,
+	  SLOT(slotExecuteQuery(const QModelIndex &)));
+  setWindowFlags(Qt::WindowStaysOnTopHint | windowFlags());
 }
 
 biblioteq_query_history::~biblioteq_query_history()
@@ -89,6 +94,11 @@ void biblioteq_query_history::slotCopy(void)
 
   if(m_ui.table->item(m_ui.table->currentRow(), 1))
     clipboard->setText(m_ui.table->item(m_ui.table->currentRow(), 1)->text());
+}
+
+void biblioteq_query_history::slotExecuteQuery(const QModelIndex &index)
+{
+  emit executeQuery(index.siblingAtColumn(1).data().toString().trimmed());
 }
 
 void biblioteq_query_history::slotQueryCompleted(const QString &text)

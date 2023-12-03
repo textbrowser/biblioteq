@@ -446,6 +446,14 @@ void biblioteq::slotCustomQuery(void)
   executeCustomQuery(this, string);
 }
 
+void biblioteq::slotExecuteQuery(const QString &text)
+{
+  if(text.trimmed().isEmpty())
+    return;
+
+  (void) populateTable(CUSTOM_QUERY, "Custom", text);
+}
+
 void biblioteq::slotExportAsPNG(void)
 {
   QFileDialog dialog(this);

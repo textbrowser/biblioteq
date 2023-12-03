@@ -3153,6 +3153,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY book.title, "
 				 "book.author, "
 				 "book.publisher, book.pdate, book.place, "
@@ -3194,6 +3195,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY "
 				 "dvd.title, "
 				 "dvd.dvdformat, "
@@ -3230,6 +3232,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY grey_literature.document_title, "
 				 "grey_literature.document_id, "
 				 "grey_literature.location, "
@@ -3252,6 +3255,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY journal.title, "
 				 "journal.publisher, journal.pdate, "
 				 "journal.place, "
@@ -3285,6 +3289,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY magazine.title, "
 				 "magazine.publisher, magazine.pdate, "
 				 "magazine.place, "
@@ -3318,6 +3323,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY "
 				 "cd.title, "
 				 "cd.artist, "
@@ -3354,6 +3360,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY photograph_collection.title, "
 				 "photograph_collection.id, "
 				 "photograph_collection.location, "
@@ -3376,6 +3383,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    if(!searchstr.contains("ORDER BY"))
 	      {
 		searchstr.append(searchstrArg);
+		searchstr.append(" ");
 		searchstr.append("GROUP BY "
 				 "videogame.title, "
 				 "videogame.vgrating, "
@@ -4152,7 +4160,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   ui.graphicsView->setSceneRect
     (ui.graphicsView->scene()->itemsBoundingRect());
-  emit queryCompleted(query.executedQuery());
+  emit queryCompleted(biblioteq_misc_functions::queryString(&query));
   QApplication::restoreOverrideCursor();
   return 0;
 }
@@ -5021,41 +5029,50 @@ void biblioteq::slotSearchBasic(void)
 
       if(type != "Grey Literature" &&
 	 type != "Photograph Collection")
-	str += QString("GROUP BY "
-		       "%1.title, "
-		       "%1.id, "
-		       "%1.publisher, "
-		       "%1.pdate, "
-		       "%1.category, "
-		       "%1.language, "
-		       "%1.price, "
-		       "%1.monetary_units, "
-		       "%1.quantity, "
-		       "%1.location, "
-		       "%1.keyword, "
-		       "%1.accession_number, "
-		       "%1.type, "
-		       "%1.myoid, "
-		       "%1.front_cover "
-		       ).arg(type.toLower().remove(" "));
+	{
+	  str += " ";
+	  str += QString("GROUP BY "
+			 "%1.title, "
+			 "%1.id, "
+			 "%1.publisher, "
+			 "%1.pdate, "
+			 "%1.category, "
+			 "%1.language, "
+			 "%1.price, "
+			 "%1.monetary_units, "
+			 "%1.quantity, "
+			 "%1.location, "
+			 "%1.keyword, "
+			 "%1.accession_number, "
+			 "%1.type, "
+			 "%1.myoid, "
+			 "%1.front_cover "
+			 ).arg(type.toLower().remove(" "));
+	}
       else if(type == "Grey Literature")
-	str += "GROUP BY "
-	  "grey_literature.document_title, "
-	  "grey_literature.document_id, "
-	  "grey_literature.location, "
-	  "grey_literature.job_number, "
-	  "grey_literature.type, "
-	  "grey_literature.myoid, "
-	  "grey_literature.front_cover ";
+	{
+	  str += " ";
+	  str += "GROUP BY "
+	    "grey_literature.document_title, "
+	    "grey_literature.document_id, "
+	    "grey_literature.location, "
+	    "grey_literature.job_number, "
+	    "grey_literature.type, "
+	    "grey_literature.myoid, "
+	    "grey_literature.front_cover ";
+	}
       else
-	str += "GROUP BY "
-	  "photograph_collection.title, "
-	  "photograph_collection.id, "
-	  "photograph_collection.location, "
-	  "photograph_collection.accession_number, "
-	  "photograph_collection.type, "
-	  "photograph_collection.myoid, "
-	  "photograph_collection.image_scaled ";
+	{
+	  str += " ";
+	  str += "GROUP BY "
+	    "photograph_collection.title, "
+	    "photograph_collection.id, "
+	    "photograph_collection.location, "
+	    "photograph_collection.accession_number, "
+	    "photograph_collection.type, "
+	    "photograph_collection.myoid, "
+	    "photograph_collection.image_scaled ";
+	}
 
       if(type == "CD")
 	{

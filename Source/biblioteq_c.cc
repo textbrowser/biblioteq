@@ -1131,7 +1131,7 @@ int biblioteq::populateTable(QSqlQuery *query,
        5000);
 
   ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
-  emit queryCompleted(m_searchQuery->executedQuery());
+  emit queryCompleted(biblioteq_misc_functions::queryString(m_searchQuery));
   QApplication::restoreOverrideCursor();
   return 0;
 }
@@ -2368,6 +2368,7 @@ void biblioteq::slotAllGo(void)
 		   (al.location->currentText().trimmed()) + "') ");
 	    }
 
+	  str += " ";
 	  str += QString("GROUP BY "
 			 "%1.title, "
 			 "%1.id, "
@@ -2403,6 +2404,7 @@ void biblioteq::slotAllGo(void)
 		   (al.location->currentText().trimmed()) + "') ");
 	    }
 
+	  str += " ";
 	  str += "GROUP BY grey_literature.document_title, "
 	    "grey_literature.document_id, "
 	    "grey_literature.document_date, "
@@ -2431,6 +2433,7 @@ void biblioteq::slotAllGo(void)
 		   (al.location->currentText().trimmed()) + "') ");
 	    }
 
+	  str += " ";
 	  str += "GROUP BY "
 	    "photograph_collection.title, "
 	    "photograph_collection.id, "
@@ -4529,6 +4532,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	  ("LOWER(member.memberid) LIKE " + E + "'%' || LOWER(?) || '%' ");
     }
 
+  str.append(" ");
   str.append("GROUP BY "
 	     "member.memberid, "
 	     "member.first_name, "

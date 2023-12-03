@@ -51,7 +51,11 @@ class biblioteq_query_history: public QMainWindow
  private slots:
   void slotClose(void);
   void slotCopy(void);
+  void slotExecuteQuery(const QModelIndex &index);
   void slotQueryCompleted(const QString &text);
+
+ signals:
+  void executeQuery(const QString &text);
 };
 
 #endif

@@ -246,6 +246,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(listMembersReservedItems(const QString &)),
 	  this,
 	  SLOT(slotListReservedItems(const QString &)));
+  connect(m_queryHistory,
+	  SIGNAL(executeQuery(const QString &)),
+	  this,
+	  SLOT(slotExecuteQuery(const QString &)));
   connect(this,
 	  SIGNAL(queryCompleted(const QString &)),
 	  m_queryHistory,
@@ -4222,7 +4226,7 @@ void biblioteq::slotReset(void)
 	  al.keywords_checkbox->setChecked(false);
 	  al.language->setCurrentIndex(0);
 	  al.location->setCurrentIndex(0);
-	  al.monetary_units->clear();
+	  al.monetary_units->setCurrentIndex(0);
 	  al.price->setMinimum(-0.01);
 	  al.price->setValue(-0.01);
 	  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));

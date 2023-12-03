@@ -578,6 +578,7 @@ class biblioteq: public QMainWindow
   void slotDisconnect(void);
   void slotDisplayNewSqliteDialog(void);
   void slotDuplicate(void);
+  void slotExecuteQuery(const QString &text);
   void slotExit(void);
   void slotExportAsCSV(void);
   void slotExportAsPNG(void);

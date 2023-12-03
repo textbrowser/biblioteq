@@ -25,7 +25,17 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Query strings may be incomplete and are therefore not executable.</string>
+          <string>If an item is double-clicked, BiblioteQ will attempt to execute its query. Please note that some queries may not be executable.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>This window will attempt to remain on top of other windows.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
