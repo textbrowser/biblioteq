@@ -23,6 +23,16 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout">
        <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Query strings may be incomplete and are therefore not executable.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QTableWidget" name="table">
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
