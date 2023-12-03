@@ -1131,7 +1131,7 @@ int biblioteq::populateTable(QSqlQuery *query,
        5000);
 
   ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
-  emit queryCompleted(query->executedQuery());
+  emit queryCompleted(m_searchQuery->executedQuery());
   QApplication::restoreOverrideCursor();
   return 0;
 }
