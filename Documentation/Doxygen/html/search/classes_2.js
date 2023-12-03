@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['private_94',['Private',['../classCocoaInitializer_1_1Private.html',1,'CocoaInitializer']]]
+  ['private_96',['Private',['../classCocoaInitializer_1_1Private.html',1,'CocoaInitializer']]]
 ];
