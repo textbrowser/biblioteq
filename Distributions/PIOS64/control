@@ -1,7 +1,7 @@
 Architecture: arm64
-Depends: libpoppler-qt5-1 (>= 0.45),
-	 libp5 (>= 5.10),
-	 libqt6core6a (>= 6.0),
+Depends: libpoppler-qt6-3 (>= 22.0),
+	 libpq5 (>= 15.0),
+	 libqt6core6 (>= 6.0),
 	 libqt6gui6 (>= 6.0),
 	 libqt6multimedia6 (>= 6.0),
 	 libqt6network6 (>= 6.0),
@@ -10,7 +10,7 @@ Depends: libpoppler-qt5-1 (>= 0.45),
 	 libqt6sql6-psql (>= 6.0),
 	 libqt6sql6-sqlite (>= 6.0),
 	 libqt6widgets6 (>= 6.0),
-	 libyaz5 (>= 5.25)
+	 libyaz5 (>= 5.30)
 Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
 Priority: optional
