@@ -23,7 +23,7 @@ VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
 make distclean 2>/dev/null
 mkdir -p ./opt/biblioteq/Documentation
 mkdir -p ./opt/biblioteq/SQL
-qmake -o Makefile biblioteq.arm.pro
+qmake6 -o Makefile biblioteq.arm.pro
 lupdate biblioteq.arm.pro 2>/dev/null
 lrelease biblioteq.arm.pro 2>/dev/null
 make -j $(nproc)
