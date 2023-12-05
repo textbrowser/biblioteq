@@ -751,7 +751,11 @@ QString biblioteq_misc_functions::queryString(QSqlQuery *query)
     return "";
 
   int index = -1;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  auto list(query->boundValues());
+#else
   auto list(query->boundValues().values());
+#endif
   auto str(query->executedQuery());
 
   while((index = str.indexOf('?')) >= 0 && list.size() > 0)
