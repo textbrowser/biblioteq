@@ -30,7 +30,7 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= Source
-LIBS		+= -L/usr/local/lib -framework Cocoa
+LIBS		+= -framework AppKit -framework Cocoa
 
 OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
