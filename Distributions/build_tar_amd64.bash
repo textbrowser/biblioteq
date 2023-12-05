@@ -15,7 +15,8 @@ mkdir -p ./biblioteq/Documentation
 mkdir -p ./biblioteq/Lib
 mkdir -p ./biblioteq/SQL
 qmake -o Makefile biblioteq.pro
-lupdate biblioteq.pro && lrelease biblioteq.pro
+lupdate biblioteq.pro 2>/dev/null
+lrelease biblioteq.pro 2>/dev/null
 make -j $(nproc)
 cp -p ./BiblioteQ ./biblioteq/.
 cp -p ./Icons/book.png ./biblioteq/.
