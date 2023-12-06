@@ -98,7 +98,7 @@ void biblioteq_query_history::slotCopy(void)
 
 void biblioteq_query_history::slotExecuteQuery(const QModelIndex &index)
 {
-  emit executeQuery(index.siblingAtColumn(1).data().toString().trimmed());
+  emit executeQuery(index.sibling(index.row(), 1).data().toString().trimmed());
 }
 
 void biblioteq_query_history::slotQueryCompleted(const QString &text)
