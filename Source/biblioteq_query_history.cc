@@ -98,7 +98,46 @@ void biblioteq_query_history::slotCopy(void)
 
 void biblioteq_query_history::slotExecuteQuery(const QModelIndex &index)
 {
-  emit executeQuery(index.sibling(index.row(), 1).data().toString().trimmed());
+  auto query(index.sibling(index.row(), 1).data().toString().trimmed());
+
+  if(query.isEmpty())
+    return;
+
+  auto q(query.toLower());
+
+  if(q.startsWith("alter ") ||
+     q.startsWith("cluster ") ||
+     q.startsWith("create " ) ||
+     q.startsWith("drop ") ||
+     q.startsWith("grant ") ||
+     q.startsWith("insert ") ||
+     q.startsWith("lock ") ||
+     q.startsWith("revoke ") ||
+     q.startsWith("truncate "))
+    {
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: User Error"),
+	 tr("Please provide a non-destructive SQL statement."));
+      QApplication::processEvents();
+    }
+  else if(q.startsWith("delete ") || q.startsWith("update "))
+    {
+      if(QMessageBox::
+	 question(this,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to execute the statement?"),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
+	{
+	  QApplication::processEvents();
+	  return;
+	}
+      else
+	QApplication::processEvents();
+    }
+
+  emit executeQuery(query);
 }
 
 void biblioteq_query_history::slotQueryCompleted(const QString &text)
