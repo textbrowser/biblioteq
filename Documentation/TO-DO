@@ -502,7 +502,8 @@
 260. Replace Poppler with QtPDF. QtPDF is sometimes free! QtPDF is
      very limited. (Completed)
 261. Read status for books. SQLite only. (Completed)
-262. Persian language. (TBD)
+262. Should memberid be wider? Not necessary. The memberid allows for
+     16 characters. (Completed)
 263. Highlight unavailable items: per-item color. (Completed)
 264. Optional YAZ. (Completed)
 265. Icons Mode and read status. (TBD)
@@ -527,7 +528,7 @@
 276. Improve reservation processes. Batch reservations. (Completed)
 277. Include release notes with the releases. (Completed)
 278. Preserve order of columns in the main table. (TBD)
-279. MARC parsing (books). (TBD)
+279. MARC parsing (books). (Completed)
 280. See release notes and add names of contributors. (Completed)
 281. Remove special characters from text which is sent to the main table
      whenever an item's information is saved via its details. (TBD)
@@ -559,7 +560,8 @@
 300. Show an HTML warning icon if a database driver is not available.
      (Completed)
 301. Execute lupdate and lrelease before creating a release file. (Completed)
-302. Paste buttons for Back and Front cover images. (TBD)
+302. Paste buttons for Back and Front cover images. Drag-and-drop.
+     Paste (Ctrl + V). Not necessary otherwise. (Completed)
 303. Add member_history_dnt for SQLite. The table is not required. Allow
      administrator to disable histories for all patrons. (Completed)
 304. Main table context menu requires some intelligence. Not necessary.
@@ -571,5 +573,3 @@
 308. Android image. (Completed)
 309. Curtail heights of graphic scenes. Resize scenes according to their
      contents. (Completed)
-310. Should memberid be wider? Not necessary. The memberid allows for
-     16 characters. (Completed)
