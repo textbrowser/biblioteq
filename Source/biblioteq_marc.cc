@@ -1354,18 +1354,22 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		m_place = m_place + "\n" + tmpstr;
 	    }
 
-	  if(str.indexOf("$d") > -1 &&
-	     str.mid(str.indexOf("$d") + 2, 4).toLower().
-	     contains("c"))
-	    m_publicationDate = QDate::fromString
-	      ("01/01/" +
-	       str.mid(str.indexOf("$d") + 4, 4),
-	       biblioteq::s_databaseDateFormat);
-	  else if(str.indexOf("$d") > -1)
-	    m_publicationDate = QDate::fromString
-	      ("01/01/" +
-	       str.mid(str.indexOf("$d") + 3, 4),
-	       biblioteq::s_databaseDateFormat);
+	  if(str.indexOf("$d") > -1)
+	    {
+	      QString s("");
+
+	      for(int i = str.indexOf("$d") + 2; i < str.length(); i++)
+		if(str[i].isDigit())
+		  {
+		    s.append(str[i]);
+
+		    if(s.length() == 4)
+		      break;
+		  }
+
+	      m_publicationDate = QDate::fromString
+		("01/01/" + s, biblioteq::s_databaseDateFormat);
+	    }
 
 	  if(str.contains("$c"))
 	    str = str.mid(str.indexOf("$c") + 2).trimmed();
@@ -1622,18 +1626,22 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 		m_place = m_place + "\n" + tmpstr;
 	    }
 
-	  if(str.indexOf("$d") > -1 &&
-	     str.mid(str.indexOf("$d") + 2, 4).toLower().
-	     contains("c"))
-	    m_publicationDate = QDate::fromString
-	      ("01/01/" +
-	       str.mid(str.indexOf("$d") + 4, 4),
-	       biblioteq::s_databaseDateFormat);
-	  else if(str.indexOf("$d") > -1)
-	    m_publicationDate = QDate::fromString
-	      ("01/01/" +
-	       str.mid(str.indexOf("$d") + 3, 4),
-	       biblioteq::s_databaseDateFormat);
+	  if(str.indexOf("$d") > -1)
+	    {
+	      QString s("");
+
+	      for(int i = str.indexOf("$d") + 2; i < str.length(); i++)
+		if(str[i].isDigit())
+		  {
+		    s.append(str[i]);
+
+		    if(s.length() == 4)
+		      break;
+		  }
+
+	      m_publicationDate = QDate::fromString
+		("01/01/" + s, biblioteq::s_databaseDateFormat);
+	    }
 
 	  if(str.contains("$c"))
 	    str = str.mid(str.indexOf("$c") + 2).trimmed();
