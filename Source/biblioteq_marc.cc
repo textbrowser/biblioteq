@@ -1384,6 +1384,69 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
 	  m_publisher = str;
 	}
+      else if(str.startsWith("214 "))
+	{
+	  /*
+	  ** $a - Place of Publication
+	  ** $c - Name of Publisher
+	  ** $d - Publication Date
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    {
+	      auto s(str.mid(str.indexOf("$a") + 2).trimmed());
+
+	      if(s.indexOf("$b") > -1)
+		s = s.mid(0, s.indexOf("$b")).trimmed();
+	      else if(s.indexOf("$c") > -1)
+		s = s.mid(0, s.indexOf("$c")).trimmed();
+	      else if(s.indexOf("$d") > -1)
+		s = s.mid(0, s.indexOf("$d")).trimmed();
+	      else if(s.indexOf("$r") > -1)
+		s = s.mid(0, s.indexOf("$r")).trimmed();
+	      else if(s.indexOf("$s") > -1)
+		s = s.mid(0, s.indexOf("$s")).trimmed();
+
+	      if(m_place.isEmpty())
+		m_place = s;
+	      else
+		m_place += "\n" + s;
+	    }
+
+	  if(str.indexOf("$c") > -1)
+	    {
+	      auto s(str.mid(str.indexOf("$c") + 2).trimmed());
+
+	      if(s.indexOf("$d") > -1)
+		s = s.mid(0, s.indexOf("$d")).trimmed();
+	      else if(s.indexOf("$r") > -1)
+		s = s.mid(0, s.indexOf("$r")).trimmed();
+	      else if(s.indexOf("$s") > -1)
+		s = s.mid(0, s.indexOf("$s")).trimmed();
+
+	      if(m_publisher.isEmpty())
+		m_publisher = s;
+	      else
+		m_publisher += "\n" + s;
+	    }
+
+	  if(str.indexOf("$d") > -1)
+	    {
+	      QString s("");
+
+	      for(int i = str.indexOf("$d") + 2; i < str.length(); i++)
+		if(str[i].isDigit())
+		  {
+		    s.append(str[i]);
+
+		    if(s.length() == 4)
+		      break;
+		  }
+
+	      m_publicationDate = QDate::fromString
+		("01/01/" + s, biblioteq::s_databaseDateFormat);
+	    }
+	}
       else if(str.startsWith("215 "))
 	{
 	  str = str.mid(4);
