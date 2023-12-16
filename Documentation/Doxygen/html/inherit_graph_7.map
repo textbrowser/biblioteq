@@ -1,24 +1,23 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classbiblioteq__item.html" title=" " alt="" coords="5,157,121,184"/>
-<area shape="rect" id="node2" href="$classbiblioteq__book.html" title=" " alt="" coords="227,5,346,32"/>
-<area shape="rect" id="node3" href="$classbiblioteq__cd.html" title=" " alt="" coords="236,56,337,83"/>
-<area shape="rect" id="node4" href="$classbiblioteq__dvd.html" title=" " alt="" coords="231,107,342,133"/>
-<area shape="rect" id="node5" href="$classbiblioteq__grey__literature.html" title=" " alt="" coords="195,157,378,184"/>
-<area shape="rect" id="node6" href="$classbiblioteq__magazine.html" title=" " alt="" coords="211,208,362,235"/>
-<area shape="rect" id="node8" href="$classbiblioteq__photographcollection.html" title=" " alt="" coords="175,259,398,285"/>
-<area shape="rect" id="node9" href="$classbiblioteq__videogame.html" title=" " alt="" coords="207,309,366,336"/>
-<area shape="rect" id="node7" href="$classbiblioteq__journal.html" title=" " alt="" coords="452,208,583,235"/>
-<area shape="rect" id="node10" title=" " alt="" coords="5,461,121,488"/>
-<area shape="rect" id="node11" href="$classbiblioteq.html" title=" " alt="" coords="247,832,326,859"/>
-<area shape="rect" id="node12" href="$classbiblioteq__batch__activities.html" title=" " alt="" coords="192,883,381,909"/>
-<area shape="rect" id="node13" href="$classbiblioteq__custom__query.html" title=" " alt="" coords="197,933,376,960"/>
-<area shape="rect" id="node14" href="$classbiblioteq__dbenumerations.html" title=" " alt="" coords="191,360,383,387"/>
-<area shape="rect" id="node15" href="$classbiblioteq__documentationwindow.html" title=" " alt="" coords="169,411,404,437"/>
-<area shape="rect" id="node16" href="$classbiblioteq__files.html" title=" " alt="" coords="230,461,343,488"/>
-<area shape="rect" id="node17" href="$classbiblioteq__import.html" title=" " alt="" coords="222,512,351,539"/>
-<area shape="rect" id="node18" href="$classbiblioteq__magic.html" title=" " alt="" coords="223,563,350,589"/>
-<area shape="rect" id="node19" href="$classbiblioteq__otheroptions.html" title=" " alt="" coords="203,613,371,640"/>
-<area shape="rect" id="node20" href="$classbiblioteq__pdfreader.html" title=" " alt="" coords="212,664,361,691"/>
-<area shape="rect" id="node21" href="$classbiblioteq__query__history.html" title=" " alt="" coords="199,715,374,741"/>
-<area shape="rect" id="node22" href="$classbiblioteq__sqlite__merge__databases.html" title=" " alt="" coords="201,766,372,807"/>
+<area shape="rect" id="node2" href="$classbiblioteq__book.html" title=" " alt="" coords="227,208,346,235"/>
+<area shape="rect" id="node3" href="$classbiblioteq__cd.html" title=" " alt="" coords="236,259,337,285"/>
+<area shape="rect" id="node4" href="$classbiblioteq__dvd.html" title=" " alt="" coords="231,309,342,336"/>
+<area shape="rect" id="node5" href="$classbiblioteq__grey__literature.html" title=" " alt="" coords="195,5,378,32"/>
+<area shape="rect" id="node6" href="$classbiblioteq__magazine.html" title=" " alt="" coords="211,56,362,83"/>
+<area shape="rect" id="node8" href="$classbiblioteq__photographcollection.html" title=" " alt="" coords="175,107,398,133"/>
+<area shape="rect" id="node9" href="$classbiblioteq__videogame.html" title=" " alt="" coords="207,157,366,184"/>
+<area shape="rect" id="node7" href="$classbiblioteq__journal.html" title=" " alt="" coords="452,56,583,83"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,436,121,463"/>
+<area shape="rect" id="node11" href="$classbiblioteq.html" title=" " alt="" coords="247,883,326,909"/>
+<area shape="rect" id="node12" href="$classbiblioteq__batch__activities.html" title=" " alt="" coords="192,360,381,387"/>
+<area shape="rect" id="node13" href="$classbiblioteq__custom__query.html" title=" " alt="" coords="197,411,376,437"/>
+<area shape="rect" id="node14" href="$classbiblioteq__dbenumerations.html" title=" " alt="" coords="191,461,383,488"/>
+<area shape="rect" id="node15" href="$classbiblioteq__documentationwindow.html" title=" " alt="" coords="169,512,404,539"/>
+<area shape="rect" id="node16" href="$classbiblioteq__files.html" title=" " alt="" coords="230,563,343,589"/>
+<area shape="rect" id="node17" href="$classbiblioteq__import.html" title=" " alt="" coords="222,613,351,640"/>
+<area shape="rect" id="node18" href="$classbiblioteq__magic.html" title=" " alt="" coords="223,664,350,691"/>
+<area shape="rect" id="node19" href="$classbiblioteq__otheroptions.html" title=" " alt="" coords="203,715,371,741"/>
+<area shape="rect" id="node20" href="$classbiblioteq__pdfreader.html" title=" " alt="" coords="212,765,361,792"/>
+<area shape="rect" id="node21" href="$classbiblioteq__sqlite__merge__databases.html" title=" " alt="" coords="201,817,372,858"/>
 </map>
