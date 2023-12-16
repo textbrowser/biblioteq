@@ -1441,19 +1441,9 @@
     <string>Tear-Off Menus</string>
    </property>
   </action>
-  <action name="actionTest">
-   <property name="text">
-    <string>Test</string>
-   </property>
-  </action>
   <action name="action_Upgrade_SQLite_SchemaRecent">
    <property name="text">
     <string>Upgrade SQLite Schema (Recent)</string>
-   </property>
-  </action>
-  <action name="actionEmpty">
-   <property name="text">
-    <string>Empty</string>
    </property>
   </action>
   <action name="actionMagic">

@@ -34,7 +34,7 @@
 
 class biblioteq;
 
-class biblioteq_query_history: public QMainWindow
+class biblioteq_query_history: public QDialog
 {
   Q_OBJECT
 

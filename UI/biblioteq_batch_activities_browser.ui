@@ -643,11 +643,6 @@
     </item>
    </layout>
   </widget>
-  <action name="action_Documentation">
-   <property name="text">
-    <string>Close</string>
-   </property>
-  </action>
  </widget>
  <tabstops>
   <tabstop>audio</tabstop>

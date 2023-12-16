@@ -31,7 +31,7 @@
 #include "biblioteq_query_history.h"
 
 biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
-  QMainWindow(biblioteq)
+  QDialog(biblioteq)
 {
   m_biblioteq = biblioteq;
   m_ui.setupUi(this);
@@ -47,7 +47,6 @@ biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
 	  SIGNAL(doubleClicked(const QModelIndex &)),
 	  this,
 	  SLOT(slotExecuteQuery(const QModelIndex &)));
-  setWindowFlags(Qt::WindowStaysOnTopHint | windowFlags());
 }
 
 biblioteq_query_history::~biblioteq_query_history()
@@ -68,7 +67,7 @@ void biblioteq_query_history::changeEvent(QEvent *event)
 	break;
       }
 
-  QMainWindow::changeEvent(event);
+  QDialog::changeEvent(event);
 }
 
 void biblioteq_query_history::reset(void)
