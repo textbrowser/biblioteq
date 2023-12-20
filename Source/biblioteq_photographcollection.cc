@@ -605,6 +605,7 @@ void biblioteq_photographcollection::modify(const int state,
 	m_engWindowTitle = behavior;
 
       setReadOnlyFields(this, false);
+      setReadOnlyFieldsOverride();
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
       pc.importItems->setEnabled(true);
@@ -626,6 +627,7 @@ void biblioteq_photographcollection::modify(const int state,
 	m_engWindowTitle = behavior;
 
       setReadOnlyFields(this, true);
+      setReadOnlyFieldsOverride();
       pc.okButton->setVisible(false);
       pc.page->setEnabled(true);
       pc.addItemButton->setVisible(false);
@@ -834,6 +836,25 @@ void biblioteq_photographcollection::search(const QString &field,
 #endif
   activateWindow();
   raise();
+}
+
+void biblioteq_photographcollection::setReadOnlyFieldsOverride(void)
+{
+  pc.accession_number_item->setReadOnly(true);
+  pc.call_number_item->setReadOnly(true);
+  pc.copyright_item->setReadOnly(true);
+  pc.creators_item->setReadOnly(true);
+  pc.format_item->setReadOnly(true);
+  pc.id_item->setReadOnly(true);
+  pc.medium_item->setReadOnly(true);
+  pc.notes_item->setReadOnly(true);
+  pc.other_number_item->setReadOnly(true);
+  pc.publication_date->setReadOnly(true);
+  pc.quantity->setReadOnly(true);
+  pc.reproduction_number_item->setReadOnly(true);
+  pc.subjects_item->setReadOnly(true);
+  pc.thumbnail_item->setReadOnly(true);
+  pc.title_item->setReadOnly(true);
 }
 
 void biblioteq_photographcollection::setSceneRect(const qint64 size)
@@ -3042,6 +3063,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
     }
 
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
+  setReadOnlyFieldsOverride();
   setWindowTitle(str);
   pc.page->setEnabled(true);
 }

@@ -72,6 +72,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 			      QTextBrowser *text,
 			      const int percent);
   void loadPhotographFromItemInNewWindow(QGraphicsPixmapItem *item);
+  void setReadOnlyFieldsOverride(void);
   void setSceneRect(const qint64 size);
   void showPhotographs(const int page);
   void storeData(void);
