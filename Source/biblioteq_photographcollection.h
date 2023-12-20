@@ -32,6 +32,7 @@
 #include "ui_biblioteq_photograph.h"
 #include "ui_biblioteq_photographinfo.h"
 
+class QTextBrowser;
 class biblioteq_bgraphicsscene;
 
 class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
@@ -66,8 +67,9 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   int photographsPerPage(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
-  void loadPhotographFromItem(QGraphicsScene *scene,
-			      QGraphicsPixmapItem *item,
+  void loadPhotographFromItem(QGraphicsPixmapItem *item,
+			      QGraphicsScene *scene,
+			      QTextBrowser *text,
 			      const int percent);
   void loadPhotographFromItemInNewWindow(QGraphicsPixmapItem *item);
   void setSceneRect(const qint64 size);

@@ -445,7 +445,7 @@
 233. Best View in photographs. (Completed)
 234. Resize photograph on container resize. (Completed)
 235. Photograph rotations. (Completed)
-236. Display descriptions in photograph views. (TBD)
+236. Display notes in photograph views. (Completed)
 237. Display contact information in Members Browser. (Completed)
 238. Issue QApplication::processEvents() after dialogs are dismissed:
 	Source/biblioteq_a.cc (Completed)

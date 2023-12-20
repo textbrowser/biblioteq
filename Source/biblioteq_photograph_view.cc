@@ -61,9 +61,9 @@ void biblioteq_photograph_view::resizeEvent(QResizeEvent *event)
 	    image = image.scaled
 	      (event->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
+	  horizontalScrollBar()->setValue(0);
 	  item->setPixmap(QPixmap::fromImage(image));
 	  scene()->setSceneRect(scene()->itemsBoundingRect());
-	  horizontalScrollBar()->setValue(0);
 	  verticalScrollBar()->setValue(0);
 	}
     }
@@ -85,9 +85,9 @@ void biblioteq_photograph_view::rotateImage(const qreal degrees)
       if(m_degrees >= 360.0 || m_degrees <= -360.0)
 	m_degrees = 0.0;
 
+      horizontalScrollBar()->setValue(0);
       item->setRotation(m_degrees);
       scene()->setSceneRect(scene()->itemsBoundingRect());
-      horizontalScrollBar()->setValue(0);
       verticalScrollBar()->setValue(0);
     }
 

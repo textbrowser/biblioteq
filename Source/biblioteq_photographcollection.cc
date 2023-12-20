@@ -36,6 +36,7 @@
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QTextBrowser>
 #include <QUuid>
 #include <QtCore/qmath.h>
 
@@ -410,21 +411,22 @@ void biblioteq_photographcollection::insert(void)
 }
 
 void biblioteq_photographcollection::loadPhotographFromItem
-(QGraphicsScene *scene, QGraphicsPixmapItem *item, const int percent)
+(QGraphicsPixmapItem *item,
+ QGraphicsScene *scene,
+ QTextBrowser *text,
+ const int percent)
 {
-  if(!item || !scene || !scene->views().value(0))
+  if(!item || !scene || !scene->views().value(0) || !text)
     return;
 
   QSqlQuery query(qmain->getDB());
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   query.setForwardOnly(true);
-  query.prepare("SELECT image FROM "
-		"photograph WHERE "
-		"collection_oid = ? AND "
-		"myoid = ?");
-  query.bindValue(0, m_oid);
-  query.bindValue(1, item->data(0).toLongLong());
+  query.prepare("SELECT image, notes FROM photograph WHERE "
+		"collection_oid = ? AND myoid = ?");
+  query.addBindValue(m_oid);
+  query.addBindValue(item->data(0).toLongLong());
 
   if(query.exec())
     if(query.next())
@@ -486,6 +488,8 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	  }
 
 	scene->setSceneRect(scene->itemsBoundingRect());
+	text->setPlainText(query.value(1).toString().trimmed());
+	text->setVisible(!text->toPlainText().isEmpty());
 
 	auto view = qobject_cast<biblioteq_photograph_view *>
 	  (scene->views().value(0));
@@ -562,9 +566,14 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
       biblioteq_misc_functions::center(mainWindow, this);
       mainWindow->hide();
       scene->setProperty("view_size", ui.view->viewport()->size());
+      ui.notes->setPlainText("");
+      ui.notes->setVisible(false);
       ui.view->setScene(scene);
       loadPhotographFromItem
-	(scene, item, ui.view_size->currentText().remove("%").toInt());
+	(item,
+	 scene,
+	 ui.notes,
+	 ui.view_size->currentText().remove("%").toInt());
       mainWindow->show();
     }
 }
@@ -2820,8 +2829,9 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
     return;
 
   auto comboBox = parent->findChild<QComboBox *> ();
-  auto scene = parent->findChild<QGraphicsScene *> ();
   auto percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
+  auto scene = parent->findChild<QGraphicsScene *> ();
+  auto text = parent->findChild<QTextBrowser *> ();
 
   if(scene)
     {
@@ -2849,8 +2859,9 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 
 	  QApplication::restoreOverrideCursor();
 	  loadPhotographFromItem
-	    (scene,
-	     qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
+	    (qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
+	     scene,
+	     text,
 	     percent);
 	}
     }
@@ -2898,6 +2909,7 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
   auto comboBox = parent->findChild<QComboBox *> ();
   auto percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
   auto scene = parent->findChild<QGraphicsScene *> ();
+  auto text = parent->findChild<QTextBrowser *> ();
 
   if(scene)
     {
@@ -2925,8 +2937,9 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 
 	  QApplication::restoreOverrideCursor();
 	  loadPhotographFromItem
-	    (scene,
-	     qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
+	    (qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
+	     scene,
+	     text,
 	     percent);
 	}
     }
