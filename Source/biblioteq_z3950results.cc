@@ -35,15 +35,14 @@ biblioteq_z3950results::biblioteq_z3950results
  const QFont &font,
  const QString &recordSyntax):QDialog(parent)
 {
-  int i = 0;
-  int row = -1;
-
   m_magazine = magazine_arg;
   m_recordSyntax = recordSyntax;
-  setWindowModality(Qt::ApplicationModal);
   m_ui.setupUi(this);
+  setWindowModality(Qt::ApplicationModal);
 
-  for(i = 0; i < list.size(); i++)
+  int row = -1;
+
+  for(int i = 0; i < list.size(); i++)
     {
       QString issn("");
       auto parsedList(list.at(i).split("\n"));
@@ -76,19 +75,23 @@ biblioteq_z3950results::biblioteq_z3950results
       if(!issn.isEmpty())
 	m_ui.list->addItem(issn);
       else
-	m_ui.list->addItem
-	  (QString(tr("Record #")) + QString::number(i + 1));
+	m_ui.list->addItem(tr("Record #%1").arg(i + 1));
 
       m_records.append(list[i]);
     }
 
-  list.clear();
-  connect(m_ui.list, SIGNAL(currentRowChanged(int)), this,
-	  SLOT(slotUpdateQueryText(void)));
-  connect(m_ui.okButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotSelectRecord(void)));
-  connect(m_ui.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_ui.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.list,
+	  SIGNAL(currentRowChanged(int)),
+	  this,
+	  SLOT(slotUpdateQueryText(void)));
+  connect(m_ui.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectRecord(void)));
 
   if(row == -1)
     row = 0;
@@ -162,14 +165,13 @@ void biblioteq_z3950results::setGlobalFonts(const QFont &font)
 
 void biblioteq_z3950results::slotSelectRecord(void)
 {
-  QStringList list;
-
-  list = m_ui.textarea->toPlainText().split("\n");
-
   if(m_magazine)
-    m_magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
+    {
+      auto list(m_ui.textarea->toPlainText().split("\n"));
 
-  list.clear();
+      m_magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
+    }
+
   close();
 }
 
@@ -229,7 +231,7 @@ void biblioteq_z3950results::slotUpdateQueryText(void)
 	break;
       }
 
+  m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
   m_ui.title->setText(title);
   m_ui.title->setCursorPosition(0);
-  m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
 }
