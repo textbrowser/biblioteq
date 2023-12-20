@@ -237,8 +237,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
   if(photo.id_item->text().isEmpty())
     {
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "ID field."));
+			    tr("Please complete the item's ID field."));
       QApplication::processEvents();
       photo.id_item->setFocus();
       return false;

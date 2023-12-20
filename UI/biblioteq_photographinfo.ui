@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>968</width>
-         <height>1000</height>
+         <y>-404</y>
+         <width>974</width>
+         <height>1146</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -364,6 +364,9 @@
                     <width>150</width>
                     <height>0</height>
                    </size>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                   <property name="displayFormat">
                    <string>yyyy-MM-dd</string>
