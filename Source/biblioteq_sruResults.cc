@@ -36,12 +36,12 @@ biblioteq_sruresults::biblioteq_sruresults
  biblioteq_magazine *magazine_arg,
  const QFont &font):QDialog(parent)
 {
-  int row = -1;
-
-  m_records = list;
   m_magazine = magazine_arg;
-  setWindowModality(Qt::ApplicationModal);
+  m_records = list;
   m_ui.setupUi(this);
+  setWindowModality(Qt::ApplicationModal);
+
+  int row = -1;
 
   for(int i = 0; i < m_records.size(); i++)
     {
@@ -89,16 +89,21 @@ biblioteq_sruresults::biblioteq_sruresults
       if(!issn.isEmpty())
 	m_ui.list->addItem(issn);
       else
-	m_ui.list->addItem
-	  (QString(tr("Record #")) + QString::number(i + 1));
+	m_ui.list->addItem(tr("Record #%1").arg(i + 1));
     }
 
-  connect(m_ui.list, SIGNAL(currentRowChanged(int)), this,
-	  SLOT(slotUpdateQueryText(void)));
-  connect(m_ui.okButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotSelectRecord(void)));
-  connect(m_ui.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_ui.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.list,
+	  SIGNAL(currentRowChanged(int)),
+	  this,
+	  SLOT(slotUpdateQueryText(void)));
+  connect(m_ui.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectRecord(void)));
 
   if(row == -1)
     row = 0;
@@ -223,8 +228,7 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
 	    }
 	}
 
-  title = title.mid(0, title.lastIndexOf('/')).trimmed();
-  m_ui.title->setText(title);
-  m_ui.title->setCursorPosition(0);
   m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
+  m_ui.title->setText(title.mid(0, title.lastIndexOf('/')).trimmed());
+  m_ui.title->setCursorPosition(0);
 }
