@@ -573,3 +573,8 @@
 308. Android image. (Completed)
 309. Curtail heights of graphic scenes. Resize scenes according to their
      contents. (Completed)
+310. Beautify the source:
+	Automatic variables (TBD)
+	Remove local clear() (lists, etc.) (TBD)
+	Sort connect() (TBD)
+	Sort local variables (TBD)
