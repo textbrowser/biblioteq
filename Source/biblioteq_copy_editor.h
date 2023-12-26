@@ -59,7 +59,7 @@ class biblioteq_copy_editor: public QDialog
  private:
   class copy_class
   {
-  public:
+   public:
     copy_class(const QString &copyid,
 	       const QString &copynumber,
 	       const QString &itemoid,
@@ -71,7 +71,6 @@ class biblioteq_copy_editor: public QDialog
       m_status = status;
     };
 
-  public:
     QString m_copyid;
     QString m_copynumber;
     QString m_itemoid;
