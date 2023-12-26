@@ -41,7 +41,6 @@ class biblioteq_generic_thread: public QThread
  public:
   static const int READ_GLOBAL_CONFIG_FILE = 200;
   static const int Z3950_QUERY = 300;
-
   biblioteq_generic_thread(QObject *parent, biblioteq *biblioteq);
   ~biblioteq_generic_thread();
   QString getEType(void) const;
