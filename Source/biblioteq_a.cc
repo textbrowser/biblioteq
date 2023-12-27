@@ -108,13 +108,11 @@ int main(int argc, char *argv[])
   ** Prepare configuration settings.
   */
 
-  QCoreApplication::setOrganizationName("BiblioteQ");
-  QCoreApplication::setOrganizationDomain("biblioteq.sourceforge.net");
   QCoreApplication::setApplicationName("BiblioteQ");
-  QSettings::setPath(QSettings::IniFormat,
-		     QSettings::UserScope,
-		     biblioteq::homePath());
+  QCoreApplication::setOrganizationName("BiblioteQ");
   QSettings::setDefaultFormat(QSettings::IniFormat);
+  QSettings::setPath
+    (QSettings::IniFormat, QSettings::UserScope, biblioteq::homePath());
   QDir().mkdir(biblioteq::homePath());
 
   /*
@@ -149,8 +147,9 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
-  if(biblioteq::s_appTranslator->
-     load(":/biblioteq_" + biblioteq::s_locale + ".qm"))
+  if(biblioteq::s_appTranslator->load(":/biblioteq_" +
+				      biblioteq::s_locale +
+				      ".qm"))
     {
       if(qapplication.installTranslator(biblioteq::s_appTranslator))
 	biblioteq::s_unknown = QObject::tr("UNKNOWN");
@@ -158,8 +157,7 @@ int main(int argc, char *argv[])
 	biblioteq::s_unknown = "UNKNOWN";
     }
 
-  if(biblioteq::s_qtTranslator->
-     load(":/qtbase_" + biblioteq::s_locale + ".qm"))
+  if(biblioteq::s_qtTranslator->load(":/qtbase_" + biblioteq::s_locale + ".qm"))
     qapplication.installTranslator(biblioteq::s_qtTranslator);
 
   biblioteq biblioteq;
