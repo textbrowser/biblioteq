@@ -19,7 +19,6 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
 			  -Wno-deprecated-declarations \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
-                          -Wstrict-overflow=5 \
                           -fwrapv \
                           -pedantic \
                           -pie \

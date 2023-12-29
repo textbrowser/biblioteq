@@ -50,7 +50,6 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \
-                          -Wstrict-overflow=5 \
                           -fPIE \
                           -fstack-protector-all \
                           -fwrapv \

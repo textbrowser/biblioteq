@@ -38,7 +38,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Werror=format-security \
                           -Wextra \
                           -Wfloat-equal \
-                          -Wformat-overflow=2 \
+                          -Wformat-overflow=5 \
                           -Wformat=2 \
                           -Wlogical-op \
                           -Wno-deprecated-declarations \

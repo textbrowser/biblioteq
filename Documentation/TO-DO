@@ -3,7 +3,7 @@
 3.   Implement the Library of Congress query. (Completed)
 4.   Allow for image storage of front and back covers. (Completed)
 5.   Port to Windows XP. (Completed) Test on FreeBSD (Completed),
-     Linux (Completed), OS X (Completed), and Solaris (Completed).
+     Linux (Completed), MacOS (Completed), and Solaris (Completed).
 6.   Allow searching of library members. This feature should only be
      available to administrators. (Completed)
 7.   Perform the database queries in threads. Not necessary. (Completed)
@@ -293,12 +293,12 @@
 150. Drop image format columns from the various item tables. (Completed)
 151. The program should display a different icon for the request action
      when an administrator is logged on. (Completed)
-152. Create an OS X installation package. (Completed)
+152. Create an MacOS installation package. (Completed)
 153. Create a Journal table. (Completed)
 154. Allow for multiple categories (labels). (Completed)
 155. Download front cover images from Amazon. (Completed)
 156. Close HTTP sockets after an Amazon query. (Completed)
-157. Style sheets are not fully supported in OS X (Edition,
+157. Style sheets are not fully supported in MacOS (Edition,
      Publication Date). (Completed)
 158. Resolve resource competition for Amazon and Z39.50 queries. (Completed)
 159. Provide documentation for administrator privileges. (Completed)
@@ -416,7 +416,7 @@
 215. Documentation. (Completed)
 216. Bar scanner. Functional with USB scanners. (Completed)
 217. Database import of books. (Completed)
-218. Translation files are not properly generated on OS X. (Completed)
+218. Translation files are not properly generated on MacOS. (Completed)
 219. Portuguese translation. (Completed)
 220. Update item icon in main table after item update. (Completed)
 221. ILIKE, or case-insensitive search. (Completed)

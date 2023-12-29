@@ -17,7 +17,6 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \
-                          -Wstrict-overflow=1 \
                           -Wundef \
                           -fPIC \
                           -fstack-protector-all \
