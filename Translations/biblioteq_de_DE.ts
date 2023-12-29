@@ -430,6 +430,14 @@
         <source>Membership Fees</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ctrl+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -821,7 +829,7 @@
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Schlie√üen</translation>
+        <translation type="obsolete">Schlie√üen</translation>
     </message>
     <message>
         <source>Discovered Name</source>
@@ -1516,27 +1524,27 @@
     </message>
     <message>
         <source>&amp;Arabic</source>
-        <translation>&amp;Arabisch</translation>
+        <translation type="vanished">&amp;Arabisch</translation>
     </message>
     <message>
         <source>&amp;Czech</source>
-        <translation>Ts&amp;chechisch</translation>
+        <translation type="vanished">Ts&amp;chechisch</translation>
     </message>
     <message>
         <source>Dutch (&amp;Belgium)</source>
-        <translation>D√§nisch (&amp;Belgien)</translation>
+        <translation type="vanished">D√§nisch (&amp;Belgien)</translation>
     </message>
     <message>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation>D√§nisch (&amp;Niederlande)</translation>
+        <translation type="vanished">D√§nisch (&amp;Niederlande)</translation>
     </message>
     <message>
         <source>&amp;English</source>
-        <translation>&amp;Englisch</translation>
+        <translation type="vanished">&amp;Englisch</translation>
     </message>
     <message>
         <source>&amp;French</source>
-        <translation>&amp;Franz√∂sisch</translation>
+        <translation type="vanished">&amp;Franz√∂sisch</translation>
     </message>
     <message>
         <source>&amp;Hungarian</source>
@@ -1544,7 +1552,7 @@
     </message>
     <message>
         <source>&amp;German</source>
-        <translation>&amp;Deutsch</translation>
+        <translation type="vanished">&amp;Deutsch</translation>
     </message>
     <message>
         <source>G&amp;reek</source>
@@ -2032,7 +2040,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&amp;Russian</source>
-        <translation>&amp;Russisch</translation>
+        <translation type="vanished">&amp;Russisch</translation>
     </message>
     <message>
         <source>Please verify that the PostgreSQL driver or the SQLite driver is installed. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a plugin conflict exists. Please resolve!</source>
@@ -2073,14 +2081,6 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     <message>
         <source>BiblioteQ: %1 (%2)</source>
         <translation>BiblioteQ: %1 (%2)</translation>
-    </message>
-    <message>
-        <source>&amp;Hebrew</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>H&amp;ungarian</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The member (%1) that you selected does not have reserved items.</source>
@@ -2155,10 +2155,6 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Polish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Print...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2184,18 +2180,6 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Are you sure that you wish to open %1 PDF files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gree&amp;k</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Por&amp;tuguese</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Spanish (Argentina)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2452,6 +2436,70 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csan√°d Baksay&lt;br&gt;Fares Othman&lt;br&gt;F√°tima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arabic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (Belgium)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (Netherlands)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Greek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hebrew</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Polish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Portuguese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spanish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spanish (Argentina)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create Books</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6850,6 +6898,25 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
 </context>
 <context>
+    <name>biblioteq_query_history</name>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a non-destructive SQL statement.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to execute the statement?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_sqlite_merge_databases</name>
     <message>
         <source>Select SQLite Database</source>
@@ -6880,7 +6947,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     <name>biblioteq_sruresults</name>
     <message>
         <source>Record #</source>
-        <translation>Eintrag #</translation>
+        <translation type="vanished">Eintrag #</translation>
+    </message>
+    <message>
+        <source>Record #%1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7254,7 +7325,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     <name>biblioteq_z3950results</name>
     <message>
         <source>Record #</source>
-        <translation>Eintrag #</translation>
+        <translation type="vanished">Eintrag #</translation>
+    </message>
+    <message>
+        <source>Record #%1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9074,6 +9149,18 @@ URL</source>
         <source>Export As CSV...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This window will attempt to remain on top of other windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>importBrowser</name>
@@ -9977,6 +10064,53 @@ URL</source>
     </message>
 </context>
 <context>
+    <name>magic</name>
+    <message>
+        <source>BiblioteQ: Magic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Front Cover Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>At least one book must be selected on the main window and the ISBN-10 field present.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amazon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abort!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished">Strg+W</translation>
+    </message>
+    <message>
+        <source>Reset Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished">Strg+R</translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>mainWindow</name>
     <message>
         <source>BiblioteQ</source>
@@ -10767,10 +10901,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Upgrade SQLite Schema (Recent)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10779,11 +10909,23 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Empty</source>
+        <source>Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+B</source>
+        <source>Ctrl+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magic...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query History...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11242,6 +11384,10 @@ URL</source>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Refresh the table. Please review Apply Filter.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This window will attempt to remain on top of other windows.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -15607,6 +15753,41 @@ URL</source>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation type="obsolete">BiblioteQ: Auswahl des Bildes des R√ºckendeckels</translation>
+    </message>
+</context>
+<context>
+    <name>queryHistory</name>
+    <message>
+        <source>BiblioteQ: Query History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If an item is double-clicked, BiblioteQ will attempt to execute its query. Please note that some queries may not be executable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This window will attempt to remain on top of other windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished">Strg+W</translation>
     </message>
 </context>
 <context>
