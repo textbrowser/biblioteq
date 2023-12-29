@@ -47,8 +47,7 @@ documentation.files = Documentation\\*.html \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
-libraries.files = Distributions\\Windows\\Libraries.64\\miscellaneous\\*.dll \
-                  Distributions\\Windows\\Libraries.64\\postgresql\\*.dll \
+libraries.files = Distributions\\Windows\\Libraries.64\\postgresql\\*.dll \
                   Distributions\\Windows\\Libraries.64\\postgresql\\*.manifest \
                   Distributions\\Windows\\Libraries.64\\yaz\\*.dll \
                   Distributions\\Windows\\Libraries.64\\yaz\\*.exe \
