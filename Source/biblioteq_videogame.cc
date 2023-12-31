@@ -413,8 +413,6 @@ void biblioteq_videogame::modify(const int state)
 	  actions[0]->setVisible(false);
 	  actions[1]->setVisible(false);
 	}
-
-      actions.clear();
     }
 
   vg.quantity->setMinimum(1);
@@ -691,7 +689,6 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
-      actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
       vg.id->setFocus();
 #ifdef Q_OS_ANDROID
@@ -1703,8 +1700,6 @@ void biblioteq_videogame::slotReset(void)
 	  vg.accession_number->clear();
 	  vg.accession_number->setFocus();
 	}
-
-      actions.clear();
     }
   else
     {
