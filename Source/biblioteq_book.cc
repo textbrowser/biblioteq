@@ -965,8 +965,6 @@ void biblioteq_book::modify(const int state)
 	  actions[0]->setVisible(false);
 	  actions[1]->setVisible(false);
 	}
-
-      actions.clear();
     }
 
   id.quantity->setMinimum(1);
@@ -2175,7 +2173,6 @@ void biblioteq_book::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
-      actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
       id.isbn13->setFocus();
 #ifdef Q_OS_ANDROID
@@ -2341,20 +2338,21 @@ void biblioteq_book::slotDeleteFiles(void)
   if(list.isEmpty())
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
+	(this,
+	 tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
       QApplication::processEvents();
       return;
     }
 
-  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+  if(QMessageBox::question(this,
+			   tr("BiblioteQ: Question"),
 			   tr("Are you sure that you wish to delete the "
 			      "selected file(s)?"),
-			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
     {
       QApplication::processEvents();
-      list.clear();
       return;
     }
 
@@ -4735,8 +4733,6 @@ void biblioteq_book::slotReset(void)
 	  id.purchase_date->setFocus();
 	  id.purchase_date->setStyleSheet(m_dt_orig_ss);
 	}
-
-      actions.clear();
     }
   else
     {
