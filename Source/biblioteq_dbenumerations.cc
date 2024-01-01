@@ -270,7 +270,6 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
   clear();
 
-  QList<QPair<QString, QString> > pairList;
   QSettings settings;
   QString errorstr("");
   QStringList list;
@@ -295,6 +294,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
   for(int i = 0; i < tables.size(); i++)
     {
       QComboBox *combobox = nullptr;
+      QList<QPair<QString, QString> > pairList;
       QListWidget *listwidget = nullptr;
       QTableWidget *tablewidget = nullptr;
       const auto &str(tables.at(i));
@@ -487,7 +487,6 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	      comboBox->setSizePolicy
 		(QSizePolicy::Preferred, QSizePolicy::Minimum);
-	      list.clear();
 	      item->setFlags
 		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	      widget->setLayout(layout);
@@ -512,9 +511,6 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 	  m_ui.minimumDaysTable->resizeColumnToContents(0);
 	}
-
-      list.clear();
-      pairList.clear();
     }
 
   m_listData.clear();
@@ -719,7 +715,6 @@ void biblioteq_dbenumerations::slotAdd(void)
 	   << tr("Video Game");
       comboBox->addItems(list);
       comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-      list.clear();
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       widget->setLayout(layout);
