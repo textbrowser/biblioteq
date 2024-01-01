@@ -1027,7 +1027,6 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 			   QMessageBox::No) == QMessageBox::No)
     {
       QApplication::processEvents();
-      list.clear();
       return;
     }
 
