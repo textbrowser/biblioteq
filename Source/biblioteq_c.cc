@@ -1524,7 +1524,6 @@ void biblioteq::readConfigurationFile(void)
 	settings.value(settings.allKeys().at(i)).toString();
 
   ui.table->parseStates(states);
-  states.clear();
 
   auto found = false;
 
@@ -2760,8 +2759,6 @@ void biblioteq::slotConnectDB(void)
 
   if(!QSqlDatabase::isDriverAvailable(str))
     {
-      tmphash.clear();
-
       QFileInfo fileInfo("qt.conf");
       QString str("");
 
@@ -2992,8 +2989,6 @@ void biblioteq::slotConnectDB(void)
 	m_roles = "administrator";
     }
 
-  tmphash.clear();
-
   if(error)
     {
       m_db = QSqlDatabase();
@@ -3115,8 +3110,6 @@ void biblioteq::slotConnectDB(void)
 		break;
 	      }
 
-	  actions.clear();
-
 	  if(!exists)
 	    {
 	      QSettings settings;
@@ -3127,9 +3120,8 @@ void biblioteq::slotConnectDB(void)
 		if(allKeys[i].startsWith("sqlite_db_"))
 		  index += 1;
 
-	      allKeys.clear();
-	      settings.setValue(QString("sqlite_db_%1").arg(index),
-				br.filename->text());
+	      settings.setValue
+		(QString("sqlite_db_%1").arg(index), br.filename->text());
 	      createSqliteMenuActions();
 	    }
 	}
@@ -3492,7 +3484,6 @@ void biblioteq::slotDisplaySummary(void)
 		  items.at(jj)->setSelected(false);
 	    }
 
-	  items.clear();
 	  ui.graphicsView->scene()->setSelectionArea(painterPath);
 	}
 
@@ -5211,11 +5202,11 @@ void biblioteq::slotSaveAdministrators(void)
 	   (ab.table->cellWidget(i, AdminSetupColumns::MEMBERSHIP))->
 	   isChecked()))
 	{
-	  tmplist.clear();
 	  ab.table->selectRow(i);
 	  ab.table->horizontalScrollBar()->setValue(i);
 	  QMessageBox::critical
-	    (m_admin_diag, tr("BiblioteQ: User Error"),
+	    (m_admin_diag,
+	     tr("BiblioteQ: User Error"),
 	     tr("Administrators must belong to at least one category."));
 	  QApplication::processEvents();
 	  return;
@@ -5227,18 +5218,17 @@ void biblioteq::slotSaveAdministrators(void)
 		       text().toLower().trimmed());
       else
 	{
-	  tmplist.clear();
 	  ab.table->selectRow(i);
 	  ab.table->horizontalScrollBar()->setValue(i);
 	  QMessageBox::critical
-	    (m_admin_diag, tr("BiblioteQ: User Error"),
+	    (m_admin_diag,
+	     tr("BiblioteQ: User Error"),
 	     tr("Duplicate administrator ids are not allowed."));
 	  QApplication::processEvents();
 	  return;
 	}
     }
 
-  tmplist.clear();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.transaction())
@@ -6158,9 +6148,6 @@ void biblioteq::slotSceneSelectionChanged(void)
 	   types.contains(ui.table->
 			  item(i, column2)->text().remove(' ').toLower()))
 	  ui.table->selectRow(i);
-
-      oids.clear();
-      types.clear();
     }
 }
 
@@ -6531,7 +6518,6 @@ void biblioteq::slotShowHistory(void)
   history.table->setColumnCount(list.size());
   history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnHidden(history.table->columnCount() - 1, true);
-  list.clear();
   history.table->setSortingEnabled(false);
 
   if(m_db.driverName() != "QSQLITE")

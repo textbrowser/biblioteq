@@ -193,7 +193,6 @@ void biblioteq_borrowers_editor::showUsers(void)
 
   m_bd.table->setColumnCount(list.size());
   m_bd.table->setHorizontalHeaderLabels(list);
-  list.clear();
   m_bd.table->setRowCount(m_quantity);
   m_bd.table->scrollToTop();
   m_bd.table->horizontalScrollBar()->setValue(0);
