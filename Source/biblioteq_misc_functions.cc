@@ -1067,7 +1067,6 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   for(int i = 0; i < map.values().size(); i++)
     minimumdays.append(map.values().at(i));
 
-  map.clear();
   return minimumdays;
 }
 
