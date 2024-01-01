@@ -446,8 +446,6 @@ void biblioteq_cd::modify(const int state)
 	  actions[0]->setVisible(false);
 	  actions[1]->setVisible(false);
 	}
-
-      actions.clear();
     }
 
   cd.tracksButton->setEnabled(true);
@@ -738,7 +736,6 @@ void biblioteq_cd::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
-      actions.clear();
       cd.coverImages->setVisible(false);
       setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
       cd.id->setFocus();
@@ -1756,7 +1753,6 @@ void biblioteq_cd::slotInsertTrack(void)
 	}
     }
 
-  list.clear();
   trd.table->setSortingEnabled(false);
 
   for(int i = 0; i < trd.table->columnCount() - 1; i++)
@@ -1837,7 +1833,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   list.append(tr("Composer"));
   trd.table->setColumnCount(list.size());
   trd.table->setHorizontalHeaderLabels(list);
-  list.clear();
   trd.table->setRowCount(0);
   trd.table->scrollToTop();
   trd.table->horizontalScrollBar()->setValue(0);
@@ -1947,7 +1942,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
   progress.close();
   trd.table->setSortingEnabled(false);
-  comboBoxList.clear();
   trd.table->setRowCount(i); // Support cancellation.
 
   for(int i = 0; i < trd.table->columnCount() - 1; i++)
@@ -2158,8 +2152,6 @@ void biblioteq_cd::slotReset(void)
 	  cd.accession_number->clear();
 	  cd.accession_number->setFocus();
 	}
-
-      actions.clear();
     }
   else
     {
