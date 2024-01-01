@@ -368,7 +368,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Copy Number");
   m_cb.table->setColumnCount(list.size());
   m_cb.table->setHorizontalHeaderLabels(list);
-  list.clear();
   m_cb.table->setRowCount(m_quantity);
   m_cb.table->scrollToTop();
   m_cb.table->horizontalScrollBar()->setValue(0);
@@ -944,7 +943,6 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	  tr(" contains an empty Barcode.");
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"), errormsg);
 	QApplication::processEvents();
-	duplicates.clear();
 	return;
       }
     else if(m_cb.table->item(i, BARCODE) != nullptr)
@@ -956,14 +954,12 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	      tr(" contains a duplicate Barcode.");
 	    QMessageBox::critical(this, tr("BiblioteQ: User Error"), errormsg);
 	    QApplication::processEvents();
-	    duplicates.clear();
 	    return;
 	  }
 	else
 	  duplicates.append(m_cb.table->item(i, BARCODE)->text());
       }
 
-  duplicates.clear();
   QApplication::setOverrideCursor(Qt::WaitCursor);
   clearCopiesList();
 
