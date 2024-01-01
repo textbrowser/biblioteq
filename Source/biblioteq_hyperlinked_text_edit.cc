@@ -127,6 +127,4 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
       else if(searchType == "videogame_search")
 	qmain->vgSearch(searchKey, searchValue);
     }
-
-  tmplist.clear();
 }

@@ -141,8 +141,6 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	break;
       }
 
-  newdata.clear();
-  newimg.clear();
   return hasChanged;
 }
 
