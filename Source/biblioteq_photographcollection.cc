@@ -639,8 +639,6 @@ void biblioteq_photographcollection::modify(const int state,
 
       if(!actions.isEmpty())
 	actions[0]->setVisible(false);
-
-      actions.clear();
     }
 
   query.setForwardOnly(true);
@@ -823,7 +821,6 @@ void biblioteq_photographcollection::search(const QString &field,
   for(int i = 7; i < actions.size(); i++)
     actions.at(i)->setVisible(false);
 
-  actions.clear();
   setWindowTitle(tr("BiblioteQ: Database Photograph Collection Search"));
   m_engWindowTitle = "Search";
   pc.okButton->setText(tr("&Search"));
@@ -2261,8 +2258,6 @@ void biblioteq_photographcollection::slotReset(void)
 	  pc.accession_number->clear();
 	  pc.accession_number->setFocus();
 	}
-
-      actions.clear();
     }
   else
     {
