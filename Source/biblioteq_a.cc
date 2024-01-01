@@ -1489,12 +1489,11 @@ void biblioteq::createSqliteMenuActions(void)
       ui.menu_Recent_SQLite_Files->addAction(action);
     }
 
-  dups.clear();
-  allKeys.clear();
-
   auto action = new QAction(tr("&Clear Menu"), ui.menu_Recent_SQLite_Files);
 
-  connect(action, SIGNAL(triggered(bool)), this,
+  connect(action,
+	  SIGNAL(triggered(bool)),
+	  this,
 	  SLOT(slotClearSqliteMenu(bool)));
 
   if(!ui.menu_Recent_SQLite_Files->actions().isEmpty())
@@ -1658,10 +1657,10 @@ void biblioteq::prepareFilter(void)
 	}
     }
 
-  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+  connect(ui.menu_Category,
+	  SIGNAL(triggered(QAction *)),
+	  this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
-  tmplist1.clear();
-  tmplist2.clear();
 }
 
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
@@ -1888,7 +1887,6 @@ void biblioteq::resetAdminBrowser(void)
   ab.table->setRowCount(0);
   ab.table->scrollToTop();
   ab.table->horizontalScrollBar()->setValue(0);
-  list.clear();
   list.append(tr("ID"));
   list.append(tr("Administrator"));
   list.append(tr("Circulation"));
@@ -1902,7 +1900,6 @@ void biblioteq::resetAdminBrowser(void)
   m_abColumnHeaderIndexes.append("Circulation");
   m_abColumnHeaderIndexes.append("Librarian");
   m_abColumnHeaderIndexes.append("Membership");
-  list.clear();
 }
 
 void biblioteq::resetMembersBrowser(void)
@@ -1953,7 +1950,6 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Total Reserved");
   bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
-  list.clear();
   bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
 
   for(int i = 0; i < bb.table->columnCount(); i++)
@@ -2554,7 +2550,6 @@ void biblioteq::slotClearSqliteMenu(bool state)
     if(allKeys[i].startsWith("sqlite_db_"))
       settings.remove(allKeys[i]);
 
-  allKeys.clear();
   createSqliteMenuActions();
 }
 
@@ -2625,7 +2620,6 @@ void biblioteq::slotCopyError(void)
   if(!text.isEmpty())
     clipboard->setText(text);
 
-  list.clear();
   QApplication::restoreOverrideCursor();
 }
 
@@ -2669,19 +2663,20 @@ void biblioteq::slotDelete(void)
       itemType = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("Type"));
 
-      if(oid.isEmpty() || itemType.isEmpty())
+      if(itemType.isEmpty() || oid.isEmpty())
 	{
 	  addError(QString(tr("Error")),
 		   QString(tr("The main table does not contain enough "
 			      "information for item deletion.")),
 		   QString(tr("The main table does not contain enough "
 			      "information for item deletion.")),
-		   __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+		   __FILE__,
+		   __LINE__);
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: Error"),
 				tr("The main table does not contain enough "
 				   "information for item deletion."));
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
@@ -2695,21 +2690,23 @@ void biblioteq::slotDelete(void)
 	  addError(QString(tr("Database Error")),
 		   QString(tr("Unable to determine if the item has been "
 			      "reserved.")),
-		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+		   errorstr,
+		   __FILE__,
+		   __LINE__);
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: Database Error"),
 				tr("Unable to determine if the item has "
 				   "been reserved."));
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
       if(isCheckedOut)
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Reserved items may not be deleted."));
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
@@ -2723,21 +2720,23 @@ void biblioteq::slotDelete(void)
 	  addError(QString(tr("Database Error")),
 		   QString(tr("Unable to determine if the item has been "
 			      "requested.")),
-		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+		   errorstr,
+		   __FILE__,
+		   __LINE__);
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: Database Error"),
 				tr("Unable to determine if the item has "
 				   "been requested."));
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
       if(isRequested)
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Requested items may not be deleted."));
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
     }
@@ -2748,11 +2747,10 @@ void biblioteq::slotDelete(void)
 			       tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to permanently "
 				  "delete the selected item(s)?"),
-			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
       else
@@ -2888,8 +2886,6 @@ void biblioteq::slotDelete(void)
 
   if(numdeleted > 0)
     slotRefresh();
-
-  list.clear();
 }
 
 void biblioteq::slotDeleteAdmin(void)
@@ -3111,18 +3107,18 @@ void biblioteq::slotDuplicate(void)
     }
   else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to duplicate "
 				  "the ") +
 			       QString::number(list.size()) +
 			       tr(" selected items? BiblioteQ will exit if "
 				  "it's unable "
 				  "to acquire resources."),
-			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
@@ -3191,7 +3187,6 @@ void biblioteq::slotDuplicate(void)
 	}
     }
 
-  list.clear();
   QApplication::restoreOverrideCursor();
 
   if(error)
@@ -3456,16 +3451,16 @@ void biblioteq::slotModify(void)
   else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
       if(QMessageBox::question
-	 (this, tr("BiblioteQ: Question"),
+	 (this,
+	  tr("BiblioteQ: Question"),
 	  tr("Are you sure that you wish to modify the ") +
 	  QString::number(list.size()) +
 	  tr(" selected items? BiblioteQ will exit if it's unable "
 	     "to acquire resources."),
-	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No | QMessageBox::Yes,
 	  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
@@ -3647,7 +3642,6 @@ void biblioteq::slotModify(void)
 	}
     }
 
-  list.clear();
   QApplication::restoreOverrideCursor();
 
   if(error)
@@ -3909,15 +3903,15 @@ void biblioteq::slotPrintReserved(void)
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to determine the reserved items for "
 			  "the selected member.")),
-	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+	       errorstr,
+	       __FILE__,
+	       __LINE__);
+      QMessageBox::critical(m_members_diag,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to determine the reserved items for "
 			       "the selected member."));
       QApplication::processEvents();
     }
-
-  itemsList.clear();
-  memberinfo.clear();
 }
 
 void biblioteq::slotPrintView(void)
@@ -4207,8 +4201,6 @@ void biblioteq::slotReset(void)
 	      al.caseinsensitive->setChecked(false);
 	      al.caseinsensitive->setFocus();
 	    }
-
-	  actions.clear();
 	}
       else
 	{
@@ -4255,7 +4247,6 @@ void biblioteq::slotResetErrorLog(void)
   er.table->horizontalScrollBar()->setValue(0);
   er.table->setColumnCount(list.size());
   er.table->setHorizontalHeaderLabels(list);
-  list.clear();
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
 
   for(int i = 0; i < er.table->columnCount() - 1; i++)
@@ -4949,17 +4940,17 @@ void biblioteq::slotViewDetails(void)
     }
   else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to view the ") +
 			       QString::number(list.size()) +
 			       tr(" selected items? BiblioteQ will exit if "
 				  "it's unable "
 				  "to acquire resources."),
-			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
-	  list.clear();
 	  return;
 	}
 
@@ -5141,7 +5132,6 @@ void biblioteq::slotViewDetails(void)
 	}
     }
 
-  list.clear();
   QApplication::restoreOverrideCursor();
 
   if(error)
@@ -5381,7 +5371,6 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 	    }
 	}
 
-      counts.clear();
       QApplication::restoreOverrideCursor();
     }
 }
@@ -5440,7 +5429,6 @@ void biblioteq::updateMembersBrowser(void)
 	(bb.table, row,
 	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
 	 QString::number(counts.value("numvideogames")));
-      counts.clear();
 
       if(m_history_diag->isVisible())
 	slotShowHistory();

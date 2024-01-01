@@ -576,6 +576,6 @@
 310. Beautify the source:
 	Automatic variables (TBD)
 	Enumerator classes (TBD)
-	Remove local clear() (lists, etc.) (TBD)
+	Remove local clear() (lists, etc.) (Completed)
 	Sort connect() (TBD)
 	Sort local variables (TBD)
