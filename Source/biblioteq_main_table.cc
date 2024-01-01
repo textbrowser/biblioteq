@@ -651,8 +651,6 @@ void biblioteq_main_table::setColumns(const QString &username,
 	setColumnHidden(list.size() - 2, true);
     }
 
-  list.clear();
-
   QString indexstr("");
   auto l_type(type);
 
