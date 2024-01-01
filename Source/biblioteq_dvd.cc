@@ -446,8 +446,6 @@ void biblioteq_dvd::modify(const int state)
 	  actions[0]->setVisible(false);
 	  actions[1]->setVisible(false);
 	}
-
-      actions.clear();
     }
 
   dvd.queryButton->setEnabled(true);
@@ -757,7 +755,6 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
-      actions.clear();
       setWindowTitle(tr("BiblioteQ: Database DVD Search"));
       dvd.id->setFocus();
 #ifdef Q_OS_ANDROID
@@ -1888,8 +1885,6 @@ void biblioteq_dvd::slotReset(void)
 	  dvd.accession_number->clear();
 	  dvd.accession_number->setFocus();
 	}
-
-      actions.clear();
     }
   else
     {
