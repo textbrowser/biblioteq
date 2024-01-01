@@ -676,7 +676,6 @@ void biblioteq_magazine::modify(const int state)
 	  actions[1]->setVisible(false);
 	}
 
-      actions.clear();
       setReadOnlyFields(this, true);
     }
 
@@ -1881,8 +1880,6 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
-      actions.clear();
-
       if(m_subType == "Journal")
 	setWindowTitle(QString(tr("BiblioteQ: Database Journal Search")));
       else
@@ -2023,7 +2020,6 @@ void biblioteq_magazine::slotDeleteFiles(void)
 			   QMessageBox::No) == QMessageBox::No)
     {
       QApplication::processEvents();
-      list.clear();
       return;
     }
 
@@ -3437,8 +3433,6 @@ void biblioteq_magazine::slotReset(void)
 	  ma.accession_number->clear();
 	  ma.accession_number->setFocus();
 	}
-
-      actions.clear();
     }
   else
     {
@@ -3969,16 +3963,16 @@ void biblioteq_magazine::slotZ3950Query(void)
       if(m_thread->getZ3950Results().size() == 1)
 	{
 	  if(QMessageBox::question
-	     (this, tr("BiblioteQ: Question"),
+	     (this,
+	      tr("BiblioteQ: Question"),
 	      tr("Replace existing values with those retrieved "
 		 "from the Z39.50 site?"),
-	      QMessageBox::Yes | QMessageBox::No,
+	      QMessageBox::No | QMessageBox::Yes,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
 	      QApplication::processEvents();
 	      list = QString(m_thread->getZ3950Results()[0]).split("\n");
 	      populateDisplayAfterZ3950(list, recordSyntax);
-	      list.clear();
 	    }
 
 	  QApplication::processEvents();
@@ -4011,10 +4005,14 @@ void biblioteq_magazine::slotZ3950Query(void)
 
   if(!errorstr.isEmpty())
     {
-      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
-		      __FILE__, __LINE__);
+      qmain->addError(QString(tr("Z39.50 Query Error")),
+		      etype,
+		      errorstr,
+		      __FILE__,
+		      __LINE__);
       QMessageBox::critical
-	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	(this,
+	 tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("The Z39.50 entry could not be retrieved."));
       QApplication::processEvents();
     }
