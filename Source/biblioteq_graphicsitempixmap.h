@@ -36,14 +36,14 @@ static void qt_graphicsItem_highlightSelected
   if(!item || !option || !painter)
     return;
 
-  const auto &murect = painter->transform().mapRect(QRectF(0, 0, 1, 1));
+  const auto &marect = painter->transform().mapRect(QRectF(0, 0, 1, 1));
 
-  if(qFuzzyIsNull(qMax(murect.width(), murect.height())))
+  if(qFuzzyIsNull(qMax(marect.height(), marect.width())))
     return;
 
   const auto &mbrect = painter->transform().mapRect(item->boundingRect());
 
-  if(qMin(mbrect.width(), mbrect.height()) < qreal(1.0))
+  if(qMin(mbrect.height(), mbrect.width()) < qreal(1.0))
     return;
 
   const QColor bgcolor(70, 130, 180);
@@ -87,7 +87,7 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
     painter->drawPixmap
       (exposed_rect, pixmap(), exposed_rect.translated(-offset()));
 
-    if(option->state & (QStyle::State_Selected | QStyle::State_HasFocus))
+    if(option->state & (QStyle::State_HasFocus | QStyle::State_Selected))
       qt_graphicsItem_highlightSelected(this, painter, option);
   }
 };

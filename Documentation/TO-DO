@@ -574,7 +574,8 @@
 309. Curtail heights of graphic scenes. Resize scenes according to their
      contents. (Completed)
 310. Beautify the source:
-	Automatic variables (TBD)
+	Automatic variables *.cc (TBD)
+	Automatic variables *.h (Completed)
 	Enumerator classes (TBD)
 	Remove local clear() (lists, etc.) (Completed)
 	Sort connect() (TBD)
