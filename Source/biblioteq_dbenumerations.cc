@@ -764,8 +764,8 @@ void biblioteq_dbenumerations::slotClose(void)
 
 void biblioteq_dbenumerations::slotReload(void)
 {
-  QHash<QWidget *, QStringList> listData;
   QHash<QWidget *, QMap<QString, QString> > tableData;
+  QHash<QWidget *, QStringList> listData;
 
   saveData(listData, tableData);
 

@@ -370,7 +370,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		  else if(m_mappings.value(i).first == "price")
 		    {
 		      QLocale locale;
-		      bool ok = true;
+		      auto ok = true;
 		      double price = locale.toDouble
 			(str.remove(locale.currencySymbol()), &ok);
 

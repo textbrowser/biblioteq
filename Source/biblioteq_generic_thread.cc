@@ -127,9 +127,9 @@ void biblioteq_generic_thread::run(void)
     case Z3950_QUERY:
       {
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
+	QHashIterator<QString, QString> it(qmain->getZ3950Hash(m_z3950Name));
 	ZOOM_connection zoomConnection = nullptr;
 	ZOOM_resultset zoomResultSet = nullptr;
-	QHashIterator<QString, QString> it(qmain->getZ3950Hash(m_z3950Name));
 	auto hash(qmain->getZ3950Hash(m_z3950Name));
 	auto options = ZOOM_options_create();
 	auto recordSyntax(hash.value("RecordSyntax").trimmed());
