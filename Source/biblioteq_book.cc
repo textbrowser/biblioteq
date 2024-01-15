@@ -4405,7 +4405,7 @@ void biblioteq_book::slotPrintCallDewey(void)
   auto list
     ((id.callnum->text().trimmed() + " " +
       id.deweynum->text().trimmed()).split(QRegularExpression("\\W+"),
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 					   Qt::SkipEmptyParts
 #else
 					   QString::SkipEmptyParts
