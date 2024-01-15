@@ -169,7 +169,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
   QHash<QString, int> isbns;
   QTextStream in(&file);
   auto list(m_ui.ignored_rows->text().trimmed().split(' ',
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 						      Qt::SkipEmptyParts
 #else
 						      QString::SkipEmptyParts
@@ -556,7 +556,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
   QTextStream in(&file);
   auto list(m_ui.ignored_rows->text().trimmed().split(' ',
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 						      Qt::SkipEmptyParts
 #else
 						      QString::SkipEmptyParts

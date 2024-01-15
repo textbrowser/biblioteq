@@ -442,6 +442,7 @@ void biblioteq::slotCustomQuery(void)
 	      fromBase64(settings.
 			 value(QString("customqueries/%1").arg(text)).
 			 toByteArray()).constData()));
+
   QApplication::restoreOverrideCursor();
   executeCustomQuery(this, string);
 }

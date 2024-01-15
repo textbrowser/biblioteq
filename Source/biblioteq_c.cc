@@ -2066,7 +2066,7 @@ void biblioteq::slotAllGo(void)
 	      auto words
 		(al.category->toPlainText().trimmed().
 		 split(QRegularExpression("\\s+"),
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 		       Qt::SkipEmptyParts
 #else
 		       QString::SkipEmptyParts
@@ -2197,7 +2197,7 @@ void biblioteq::slotAllGo(void)
 	      auto words
 		(al.description->toPlainText().trimmed().
 		 split(QRegularExpression("\\s+"),
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 		       Qt::SkipEmptyParts
 #else
 		       QString::SkipEmptyParts
@@ -2284,7 +2284,7 @@ void biblioteq::slotAllGo(void)
 	      auto words
 		(al.keyword->toPlainText().trimmed().
 		 split(QRegularExpression("\\s+"),
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 		       Qt::SkipEmptyParts
 #else
 		       QString::SkipEmptyParts

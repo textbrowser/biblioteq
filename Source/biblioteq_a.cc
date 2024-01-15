@@ -2964,7 +2964,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	    QSqlQuery query(db);
 	    auto list
 	      (QString(sqlite_create_schema_text).split("CREATE",
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 							Qt::SkipEmptyParts
 #else
 							QString::SkipEmptyParts

@@ -1763,9 +1763,7 @@ void biblioteq_cd::slotInsertTrack(void)
 
 void biblioteq_cd::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor *copyeditor = nullptr;
-
-  copyeditor = new biblioteq_copy_editor
+  auto copyeditor = new biblioteq_copy_editor
     (qobject_cast<QWidget *> (this),
      qmain,
      static_cast<biblioteq_item *> (this),
@@ -1777,6 +1775,7 @@ void biblioteq_cd::slotPopulateCopiesEditor(void)
      "CD",
      cd.id->text().trimmed(),
      false);
+
   copyeditor->populateCopiesEditor();
 }
 

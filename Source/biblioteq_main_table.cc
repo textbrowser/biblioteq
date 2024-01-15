@@ -142,7 +142,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
       QList<int> intList;
       auto strList
 	(states[states.keys().at(i)].split(",",
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 					   Qt::SkipEmptyParts
 #else
 					   QString::SkipEmptyParts
