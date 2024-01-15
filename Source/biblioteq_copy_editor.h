@@ -65,10 +65,10 @@ class biblioteq_copy_editor: public QDialog
 	       const QString &itemoid,
 	       const QString &status)
     {
-      m_copyid = copyid;
-      m_copynumber = copynumber;
-      m_itemoid = itemoid;
-      m_status = status;
+      m_copyid = copyid.trimmed();
+      m_copynumber = copynumber.trimmed();
+      m_itemoid = itemoid.trimmed();
+      m_status = status.trimmed();
     };
 
     QString m_copyid;

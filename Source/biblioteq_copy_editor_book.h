@@ -61,12 +61,12 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
 	       const QString &originality,
 	       const QString &status)
     {
-      m_condition = condition;
-      m_copyid = copyid;
-      m_copynumber = copynumber;
-      m_itemoid = itemoid;
-      m_originality = originality;
-      m_status = status;
+      m_condition = condition.trimmed();
+      m_copyid = copyid.trimmed();
+      m_copynumber = copynumber.trimmed();
+      m_itemoid = itemoid.trimmed();
+      m_originality = originality.trimmed();
+      m_status = status.trimmed();
     };
 
   public:

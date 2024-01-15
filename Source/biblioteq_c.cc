@@ -88,10 +88,10 @@ QString biblioteq::reservationHistoryHtml(void) const
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QString firstname("");
+  QString html("<html>");
   QString information("");
   QString lastname("");
   QString memberid("");
-  QString html("<html>");
   static QString endl("<br>");
 
   for(int i = 0; i < history.table->rowCount(); i++)

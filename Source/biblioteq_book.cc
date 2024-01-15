@@ -2243,7 +2243,7 @@ void biblioteq_book::slotAttachFiles(void)
 
       for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
-	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	  QFile file;
 	  const auto &fileName(files.at(i));
 
@@ -2264,8 +2264,8 @@ void biblioteq_book::slotAttachFiles(void)
 	      if(!total.isEmpty())
 		{
 		  total = qCompress(total, 9);
-		  createFile(digest.result(), total,
-			     QFileInfo(fileName).fileName());
+		  createFile
+		    (digest.result(), total, QFileInfo(fileName).fileName());
 		}
 	    }
 
@@ -2830,8 +2830,10 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
   auto text
     (QInputDialog::getText(this,
 			   tr("BiblioteQ: File Description"),
-			   tr("Description"), QLineEdit::Normal,
-			   description, &ok).trimmed());
+			   tr("Description"),
+			   QLineEdit::Normal,
+			   description,
+			   &ok).trimmed());
 
   if(!ok)
     return;

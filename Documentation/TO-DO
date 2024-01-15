@@ -579,4 +579,4 @@
 	Enumerator classes (TBD)
 	Remove local clear() (lists, etc.) (Completed)
 	Sort connect() (TBD)
-	Sort local variables (TBD)
+	Sort local variables (Completed)

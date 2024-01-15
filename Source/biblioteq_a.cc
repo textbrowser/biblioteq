@@ -126,7 +126,6 @@ int main(int argc, char *argv[])
   settings.remove("column_settings_cleared_v6_51");
   settings.remove("entries_per_page");
   settings.remove("sqlite_db");
-
   biblioteq::s_appTranslator = new QTranslator(nullptr);
   biblioteq::s_locale = settings.value("locale").toString();
   biblioteq::s_qtTranslator = new QTranslator(nullptr);
@@ -811,8 +810,8 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.searchTool->setEnabled(false);
   ui.userTool->setEnabled(false);
 
-  QString typefilter("");
   QSettings settings;
+  QString typefilter("");
 
   typefilter = m_lastCategory =
     settings.value("last_category", "All").toString();
@@ -2643,7 +2642,8 @@ void biblioteq::slotDelete(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select an item to delete."));
       QApplication::processEvents();
       return;

@@ -960,7 +960,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
       for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
-	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	  QFile file;
 	  const auto &fileName(files.at(i));
 

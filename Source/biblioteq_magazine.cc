@@ -1953,7 +1953,7 @@ void biblioteq_magazine::slotAttachFiles(void)
 
       for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
-	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	  QFile file;
 	  const auto &fileName(files.at(i));
 
@@ -3183,9 +3183,7 @@ void biblioteq_magazine::slotParseMarcTags(void)
 
 void biblioteq_magazine::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor *copyeditor = nullptr;
-
-  copyeditor = new biblioteq_copy_editor
+  auto copyeditor = new biblioteq_copy_editor
     (qobject_cast<QWidget *> (this),
      qmain,
      static_cast<biblioteq_item *> (this),
@@ -3197,6 +3195,7 @@ void biblioteq_magazine::slotPopulateCopiesEditor(void)
      m_subType,
      ma.id->text().trimmed(),
      false);
+
   copyeditor->populateCopiesEditor();
 }
 
