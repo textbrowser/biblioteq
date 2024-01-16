@@ -694,7 +694,7 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
 
   QList<int> array;
   QString numberstr("");
-  QString str("978" + QString(text).remove('-').trimmed().left(9));
+  auto str("978" + QString(text).remove('-').trimmed().left(9));
   int check = 0;
   int total = 0;
 
@@ -1833,8 +1833,8 @@ int biblioteq_misc_functions::quantity
 (const QSqlDatabase &db, const QString &oid, const QString &t)
 {
   QSqlQuery query(db);
-  QString type(QString(t).remove(' ').toLower());
   QString querystr = "";
+  auto type(QString(t).remove(' ').toLower());
 
   if(type == "greyliterature")
     querystr = "SELECT quantity FROM grey_literature WHERE myoid = ?";
@@ -2377,8 +2377,8 @@ void biblioteq_misc_functions::exportPhotographs
 	  QImage image;
 	  auto bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
-	  auto id = QDateTime::currentMSecsSinceEpoch();
 	  auto format(imageFormatGuess(bytes));
+	  auto id = QDateTime::currentMSecsSinceEpoch();
 
 	  image.loadFromData(bytes, format.toLatin1().constData());
 
@@ -2436,9 +2436,9 @@ void biblioteq_misc_functions::exportPhotographs
       else
 	progress.setMaximum(0);
 
+      auto id = QDateTime::currentMSecsSinceEpoch();
       int i = 0;
       int j = -1;
-      auto id = QDateTime::currentMSecsSinceEpoch();
 
       while(query.next())
 	{

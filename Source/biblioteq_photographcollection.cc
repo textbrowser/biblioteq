@@ -1568,8 +1568,8 @@ void biblioteq_photographcollection::slotGo(void)
     }
   else if(m_engWindowTitle.contains("Search"))
     {
-      QString searchstr("");
       QString frontCover("'' AS image_scaled ");
+      QString searchstr("");
 
       if(qmain->showMainTableImages())
 	frontCover = "photograph_collection.image_scaled ";
@@ -2884,8 +2884,8 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 
 void biblioteq_photographcollection::slotViewPhotograph(void)
 {
-  auto action = qobject_cast<QAction *> (sender());
   QPoint pos;
+  auto action = qobject_cast<QAction *> (sender());
 
   if(action)
     pos = action->data().toPoint();
