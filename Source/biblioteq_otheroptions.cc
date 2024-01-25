@@ -566,6 +566,10 @@ void biblioteq_otheroptions::prepareSettings(void)
     (qBound(0,
 	    settings.value("otheroptions/books_accession_number_index").toInt(),
 	    m_ui.books_accession_number->count() - 1));
+  m_ui.display_icon_set->setCurrentIndex
+    (qBound(0,
+	    settings.value("otheroptions/display_icon_set_index", 0).toInt(),
+	    m_ui.display_icon_set->count() - 1));
   m_ui.generated_letter->setPlainText
     (QString::
      fromUtf8(QByteArray::
@@ -906,6 +910,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/books_accession_number_index",
      m_ui.books_accession_number->currentIndex());
+  settings.setValue
+    ("otheroptions/display_icon_set_index",
+     m_ui.display_icon_set->currentIndex());
   settings.setValue
     ("otheroptions/generated_letter",
      m_ui.generated_letter->toPlainText().toUtf8().toBase64());
