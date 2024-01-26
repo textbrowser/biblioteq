@@ -287,7 +287,6 @@ class biblioteq_otheroptions: public QMainWindow
   int booksAccessionNumberIndex(void) const;
   int iconsViewColumnCount(void) const;
   void prepareSettings(void);
-  void prepareShortcuts(void);
   void prepareMembersVisibleColumns(QTableWidget *table);
 
  private:
@@ -331,7 +330,9 @@ class biblioteq_otheroptions: public QMainWindow
   void changeEvent(QEvent *event);
   void keyPressEvent(QKeyEvent *event);
   void prepareAvailability(void);
+  void prepareIcons(void);
   void prepareSQLKeywords(void);
+  void prepareShortcuts(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);

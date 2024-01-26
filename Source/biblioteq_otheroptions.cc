@@ -358,6 +358,27 @@ void biblioteq_otheroptions::prepareAvailability(void)
   m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
 }
 
+void biblioteq_otheroptions::prepareIcons(void)
+{
+  if(m_ui.display_icon_set->currentIndex() == 1)
+    {
+      m_ui.close->setIcon
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
+      m_ui.custom_query_reset->setIcon
+	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
+      m_ui.save->setIcon
+	(QIcon::fromTheme("document-save", QIcon(":/16x16/ok.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.close->setIcon(QIcon(":/16x16/cancel.png"));
+      m_ui.custom_query_reset->setIcon(QIcon(":/16x16/reset.png"));
+      m_ui.save->setIcon(QIcon(":/16x16/ok.png"));
+    }
+}
+
 void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 {
   if(!table)
@@ -468,6 +489,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
   prepareAvailability();
+  prepareIcons();
   prepareShortcuts();
 
   QSettings settings;
@@ -944,6 +966,7 @@ void biblioteq_otheroptions::slotSave(void)
   emit mainWindowCanvasBackgroundColorChanged
     (QColor(m_ui.main_window_canvas_background_color->text().remove('&')));
   emit saved();
+  prepareIcons();
   QApplication::restoreOverrideCursor();
 }
 
