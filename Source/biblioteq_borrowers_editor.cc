@@ -171,8 +171,6 @@ void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
 void biblioteq_borrowers_editor::showUsers(void)
 {
   QDateEdit *dateEdit = nullptr;
-  QProgressDialog progress1(this);
-  QProgressDialog progress2(this);
   QSqlQuery query(qmain->getDB());
   QString str = "";
   QStringList list;
@@ -236,6 +234,11 @@ void biblioteq_borrowers_editor::showUsers(void)
     updateGeometry();
 
   show();
+  QApplication::processEvents();
+
+  QProgressDialog progress1(this);
+  QProgressDialog progress2(this);
+
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
