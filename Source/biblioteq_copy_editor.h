@@ -105,6 +105,7 @@ class biblioteq_copy_editor: public QDialog
   void clearCopiesList(void);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
+  void prepareIcons(void);
 
  protected:
   void setGlobalFonts(const QFont &font);

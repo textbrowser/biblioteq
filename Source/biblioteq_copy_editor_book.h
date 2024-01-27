@@ -107,6 +107,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   void clearCopiesList(void);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
+  void prepareIcons(void);
 
  private slots:
   void slotDeleteCopy(void);

@@ -29,6 +29,7 @@
 #include "biblioteq_copy_editor.h"
 
 #include <QScrollBar>
+#include <QSettings>
 #include <QTimer>
 
 biblioteq_copy_editor::biblioteq_copy_editor
@@ -70,15 +71,15 @@ biblioteq_copy_editor::biblioteq_copy_editor
   m_speedy = speedy;
   m_spinbox = spinboxArg;
   m_uniqueIdArg = uniqueIdArg;
+  prepareIcons();
   qmain = biblioteq;
+  setGlobalFonts(font);
+  setWindowModality(Qt::ApplicationModal);
 
   if(!uniqueIdArg.trimmed().isEmpty())
     setWindowTitle(tr("BiblioteQ: Copy Browser (%1)").arg(uniqueIdArg));
   else
     setWindowTitle(tr("BiblioteQ: Copy Browser"));
-
-  setGlobalFonts(font);
-  setWindowModality(Qt::ApplicationModal);
 }
 
 biblioteq_copy_editor::~biblioteq_copy_editor()
@@ -347,12 +348,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotCloseCopyEditor(void)));
-
-  QProgressDialog progress1(this);
-  QProgressDialog progress2(this);
-
-  m_cb.table->setColumnCount(0);
-  m_cb.table->setRowCount(0);
   list.append(tr("Title"));
   list.append(tr("Barcode"));
   list.append(tr("Availability"));
@@ -366,8 +361,10 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Status");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
+  m_cb.table->setColumnCount(0);
   m_cb.table->setColumnCount(list.size());
   m_cb.table->setHorizontalHeaderLabels(list);
+  m_cb.table->setRowCount(0);
   m_cb.table->setRowCount(m_quantity);
   m_cb.table->scrollToTop();
   m_cb.table->horizontalScrollBar()->setValue(0);
@@ -380,6 +377,11 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 2, true);
   updateGeometry();
   show();
+  QApplication::processEvents();
+
+  QProgressDialog progress1(this);
+  QProgressDialog progress2(this);
+
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
@@ -606,6 +608,32 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   if(m_speedy)
     QTimer::singleShot(250, this, SLOT(slotCheckoutCopy(void)));
+}
+
+void biblioteq_copy_editor::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_cb.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      m_cb.deleteButton->setIcon
+	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
+      m_cb.saveButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_cb.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      m_cb.deleteButton->setIcon(QIcon(":/16x16/eraser.png"));
+      m_cb.saveButton->setIcon(QIcon(":/16x16/ok.png"));
+    }
 }
 
 void biblioteq_copy_editor::setGlobalFonts(const QFont &font)
