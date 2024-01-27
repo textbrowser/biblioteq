@@ -418,15 +418,30 @@ void biblioteq_batch_activities::prepareIcons(void)
     {
       // System.
 
+      m_ui.borrow_add_row->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/16x16/add.png")));
+      m_ui.borrow_delete_row->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
       m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
+      m_ui.close->setIcon
+	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
+      m_ui.export_missing->setIcon
+	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
+      m_ui.reset->setIcon
+	(QIcon::fromTheme("edit-clear", QIcon(":/32x32/reload.png")));
     }
   else
     {
       // Faenza.
 
+      m_ui.borrow_add_row->setIcon(QIcon(":/16x16/add.png"));
+      m_ui.borrow_delete_row->setIcon(QIcon(":/16x16/eraser.png"));
       m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
+      m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
+      m_ui.export_missing->setIcon(QIcon(":/32x32/save.png"));
       m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
+      m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
     }
 }
 
