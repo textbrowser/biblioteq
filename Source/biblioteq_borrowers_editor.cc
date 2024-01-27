@@ -30,6 +30,7 @@
 #include "biblioteq_misc_functions.h"
 
 #include <QScrollBar>
+#include <QSettings>
 
 biblioteq_borrowers_editor::biblioteq_borrowers_editor
 (QWidget *parent,
@@ -82,6 +83,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
 	  this,
 	  SLOT(slotCloseCurrentBorrowers(void)));
   m_bd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  prepareIcons();
   setGlobalFonts(font);
   setWindowModality(Qt::ApplicationModal);
 
@@ -125,6 +127,32 @@ void biblioteq_borrowers_editor::keyPressEvent(QKeyEvent *event)
     slotCloseCurrentBorrowers();
 
   QDialog::keyPressEvent(event);
+}
+
+void biblioteq_borrowers_editor::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_bd.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      m_bd.eraseButton->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
+      m_bd.saveButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_bd.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      m_bd.eraseButton->setIcon(QIcon(":/16x16/eraser.png"));
+      m_bd.saveButton->setIcon(QIcon(":/16x16/ok.png"));
+    }
 }
 
 void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
@@ -333,14 +361,14 @@ void biblioteq_borrowers_editor::showUsers(void)
 	  {
 	    if(j == 0)
 	      str = query.value(j).toString().trimmed();
-	    else if(j == 5 && m_state == biblioteq::EDITABLE)
+	    else if((j == 2 || j == 3) && m_state != biblioteq::EDITABLE)
 	      {
 		date = QDate::fromString
 		  (query.value(j).toString().trimmed(),
 		   biblioteq::s_databaseDateFormat);
 		str = date.toString(Qt::ISODate);
 	      }
-	    else if((j == 2 || j == 3) && m_state != biblioteq::EDITABLE)
+	    else if(j == 5 && m_state == biblioteq::EDITABLE)
 	      {
 		date = QDate::fromString
 		  (query.value(j).toString().trimmed(),
