@@ -4397,6 +4397,7 @@ void biblioteq::slotOtherOptionsSaved(void)
   prepareCustomQueryFavoriteShortcut();
   prepareIcons();
   QApplication::restoreOverrideCursor();
+  emit otherOptionsSaved();
 }
 
 void biblioteq::slotPopulateMembersBrowser(void)

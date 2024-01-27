@@ -103,6 +103,7 @@ biblioteq_custom_query::biblioteq_custom_query
     (m_otheroptions->customQueryColors());
   m_woody = new woody_collapse_expand_tool_button(cq.tables_t);
   slotPopulateFavorites();
+  slotPrepareIcons();
   slotRefreshCustomQuery();
 }
 
@@ -278,6 +279,10 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
 
   QApplication::restoreOverrideCursor();
   slotLoadFavorite();
+}
+
+void biblioteq_custom_query::slotPrepareIcons(void)
+{
 }
 
 void biblioteq_custom_query::slotRefreshCustomQuery(void)

@@ -62,6 +62,7 @@ class biblioteq_custom_query: public QMainWindow
   void slotNewFavorite(void);
   void slotOtherOptionsChanged(void);
   void slotPopulateFavorites(void);
+  void slotPrepareIcons(void);
   void slotRefreshCustomQuery(void);
   void slotRenameFavoriteQuery(void);
   void slotSaveCustomQuery(void);

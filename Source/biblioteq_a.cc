@@ -4598,9 +4598,12 @@ void biblioteq::slotShowCustomQuery(void)
 {
   auto dialog = new biblioteq_custom_query(m_otheroptions, this);
 
+  connect(this,
+	  SIGNAL(otherOptionsSaved(void)),
+	  dialog,
+	  SLOT(slotPrepareIcons(void)));
   dialog->resize
     (qRound(0.50 * size().width()), qRound(0.85 * size().height()));
-
   biblioteq_misc_functions::center(dialog, this);
   dialog->show();
 }

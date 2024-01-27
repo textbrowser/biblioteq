@@ -697,6 +697,7 @@ class biblioteq: public QMainWindow
   void favoritesChanged(void);
   void fontChanged(const QFont &font);
   void newFavorite(void);
+  void otherOptionsSaved(void);
   void queryCompleted(const QString &text);
 };
 
