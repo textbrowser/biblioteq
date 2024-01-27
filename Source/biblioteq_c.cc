@@ -4393,7 +4393,9 @@ void biblioteq::slotOtherOptionsSaved(void)
     ui.table->setRowHeight
       (i, qMax(fontMetrics.height() + 10, ui.table->iconSize().height()));
 
+  m_batchActivities->prepareIcons();
   prepareCustomQueryFavoriteShortcut();
+  prepareIcons();
   QApplication::restoreOverrideCursor();
 }
 

@@ -46,6 +46,7 @@ class biblioteq_batch_activities: public QMainWindow
 
  public:
   biblioteq_batch_activities(biblioteq *parent);
+  void prepareIcons(void);
   void reset(void);
   void show(QMainWindow *parent, const bool center = true);
 

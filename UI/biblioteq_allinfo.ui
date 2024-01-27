@@ -41,7 +41,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-207</y>
+         <y>0</y>
          <width>617</width>
          <height>701</height>
         </rect>
@@ -491,8 +491,15 @@
         <property name="text">
          <string>&amp;Reset</string>
         </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
+        </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>

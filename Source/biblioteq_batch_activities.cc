@@ -137,6 +137,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedReturn(void)));
+  prepareIcons();
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -406,6 +407,27 @@ void biblioteq_batch_activities::play(const QString &file)
 #else
   Q_UNUSED(file);
 #endif
+}
+
+void biblioteq_batch_activities::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
+      m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
+      m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
+    }
 }
 
 void biblioteq_batch_activities::reset(void)

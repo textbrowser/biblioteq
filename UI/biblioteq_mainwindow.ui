@@ -100,6 +100,10 @@
         <property name="text">
          <string>&amp;Reset</string>
         </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
+        </property>
        </widget>
       </item>
      </layout>
@@ -425,6 +429,10 @@
         </property>
         <property name="text">
          <string>&amp;Next</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/next.png</normaloff>:/16x16/next.png</iconset>
         </property>
        </widget>
       </item>

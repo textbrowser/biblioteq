@@ -2117,6 +2117,7 @@ void biblioteq::showMain(void)
   */
 
   initialUpdate();
+  prepareIcons();
   show();
   setGlobalFonts(QApplication::font());
   slotResizeColumns();

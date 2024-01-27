@@ -291,15 +291,35 @@
              </item>
              <item>
               <widget class="QPushButton" name="borrow_add_row">
+               <property name="minimumSize">
+                <size>
+                 <width>135</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Add Row</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="borrow_delete_row">
+               <property name="minimumSize">
+                <size>
+                 <width>135</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Delete Row(s)</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                </property>
               </widget>
              </item>

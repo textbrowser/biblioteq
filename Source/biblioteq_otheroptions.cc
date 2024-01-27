@@ -362,6 +362,8 @@ void biblioteq_otheroptions::prepareIcons(void)
 {
   if(m_ui.display_icon_set->currentIndex() == 1)
     {
+      // System.
+
       m_ui.close->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_ui.custom_query_reset->setIcon

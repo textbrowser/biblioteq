@@ -308,6 +308,21 @@ void biblioteq::prepareExternalApplicationsMenu(void)
     ui.menuExternal_Applications->addAction(tr("Empty"));
 }
 
+void biblioteq::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+    }
+  else
+    {
+      // Faenza.
+    }
+}
+
 void biblioteq::prepareTearOffMenus(void)
 {
   createConfigToolMenu();

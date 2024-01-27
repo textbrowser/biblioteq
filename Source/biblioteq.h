@@ -361,6 +361,7 @@ class biblioteq: public QMainWindow
   void pcSearch(const QString &field, const QString &value);
   void populateFavorites(void);
   void prepareCustomQueryFavoriteShortcut(void);
+  void prepareIcons(void);
   void removeBook(biblioteq_book *book);
   void removeCD(biblioteq_cd *cd);
   void removeDVD(biblioteq_dvd *dvd);
