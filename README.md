@@ -65,7 +65,7 @@ BiblioteQ is free and open library software.
 ### Debian Installation
 
 ```
-wget https://github.com/textbrowser/biblioteq/releases/download/2023.06.06/BiblioteQ-2023.06.06_amd64.deb
-sudo dpkg -i BiblioteQ-2023.06.06_amd64.deb
+wget https://github.com/textbrowser/biblioteq/releases/download/2023.12.30/BiblioteQ-2023.12.30_amd64.deb
+sudo dpkg -i BiblioteQ-2023.12.30_amd64.deb
 sudo apt install -f
 ```
