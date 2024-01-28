@@ -7,6 +7,7 @@ BiblioteQ is free and open library software.
 - Alpha architecture support.
 - Android!
 - Anti-censorship through digital content.
+- Apple Silicon.
 - Archive important documents.
 - Bar scanners supported indirectly.
 - Cataloging of books, dvds, grey literature, journals, magazines,
@@ -32,6 +33,7 @@ BiblioteQ is free and open library software.
 - MARC21 and UNIMARC record syntaxes.
 - MacOS and Windows install targets: make install.
 - Merging of SQLite databases.
+- Multiple icon sets.
 - Natively compiled on ARM, Alpha, PowerPC, Sparc64, X86, X86_64.
 - Network-less!
 - Open Library queries for select items.
