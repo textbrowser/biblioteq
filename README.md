@@ -17,6 +17,7 @@ BiblioteQ is free and open library software.
 - Customized displays.
 - Customized item data, pricing information, and currencies.
 - Documentation.
+- Elaborate options. Many options. Very many.
 - Embedded hyperlinks for localized searches of similar items.
 - Exporting of views to CSV files.
 - Files browser.
