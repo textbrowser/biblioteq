@@ -26,6 +26,7 @@
 */
 
 #include <QInputDialog>
+#include <QSettings>
 #include <QSqlField>
 #include <QSqlRecord>
 
@@ -283,6 +284,24 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
 
 void biblioteq_custom_query::slotPrepareIcons(void)
 {
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+    }
+  else
+    {
+      // Faenza.
+
+      cq.clear->setIcon(QIcon(":/16x16/eraser.png"));
+      cq.close_pb->setIcon(QIcon(":/16x16/cancel.png"));
+      cq.delete_favorite->setIcon(QIcon(":/16x16/eraser.png"));
+      cq.execute_pb->setIcon(QIcon(":/16x16/ok.png"));
+      cq.refresh_pb->setIcon(QIcon(":/16x16/reload.png"));
+      cq.save->setIcon(QIcon(":/16x16/filesave.png"));
+    }
 }
 
 void biblioteq_custom_query::slotRefreshCustomQuery(void)
