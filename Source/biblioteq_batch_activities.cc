@@ -429,7 +429,7 @@ void biblioteq_batch_activities::prepareIcons(void)
 	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
       m_ui.reset->setIcon
-	(QIcon::fromTheme("edit-clear", QIcon(":/32x32/reload.png")));
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
     }
   else
     {

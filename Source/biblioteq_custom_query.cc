@@ -290,6 +290,19 @@ void biblioteq_custom_query::slotPrepareIcons(void)
   if(index == 1)
     {
       // System.
+
+      cq.clear->setIcon
+	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/eraser.png")));
+      cq.close_pb->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      cq.delete_favorite->setIcon
+	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/eraser.png")));
+      cq.execute_pb->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+      cq.refresh_pb->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
+      cq.save->setIcon
+	(QIcon::fromTheme("document-save", QIcon(":/16x16/filesave.png")));
     }
   else
     {
