@@ -1,4 +1,4 @@
-BiblioteQ is free and open library software.
+BiblioteQ is free, lovely, and open library software.
 
 ## Features
 
@@ -50,6 +50,7 @@ BiblioteQ is free and open library software.
 - Print support, including previews.
 - Qt LTS.
 - Raspberry Pi!
+- Retain the privacy of your memories.
 - Rich search capabilities, including custom SQL queries.
 - Row-level security policies for PostgreSQL.
 - SQL syntax highlighting with custom colors.
