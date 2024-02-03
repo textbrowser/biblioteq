@@ -186,6 +186,7 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
       m_ui.minimumDaysTable->setCellWidget(i, 1, lineEdit);
     }
 
+  prepareIcons();
   setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
@@ -517,6 +518,31 @@ void biblioteq_dbenumerations::populateWidgets(void)
   m_tableData.clear();
   saveData(m_listData, m_tableData);
   m_ui.bookBindingsList->setFocus();
+}
+
+void biblioteq_dbenumerations::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+    }
+  else
+    {
+      // Faenza.
+
+      foreach(auto toolButton, findChildren<QToolButton *> ())
+	if(toolButton->objectName().startsWith("add"))
+	  toolButton->setIcon(QIcon(":/16x16/add.png"));
+	else if(toolButton->objectName().startsWith("remove"))
+	  toolButton->setIcon(QIcon(":/16x16/eraser.png"));
+
+      m_ui.cancelButton->setIcon(QIcon(":/32x32/cancel.png"));
+      m_ui.reloadButton->setIcon(QIcon(":/32x32/reload.png"));
+      m_ui.saveButton->setIcon(QIcon(":/32x32/save.png"));
+    }
 }
 
 void biblioteq_dbenumerations::saveData
