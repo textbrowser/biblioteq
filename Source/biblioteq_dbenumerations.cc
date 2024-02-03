@@ -528,6 +528,21 @@ void biblioteq_dbenumerations::prepareIcons(void)
   if(index == 1)
     {
       // System.
+
+      foreach(auto toolButton, findChildren<QToolButton *> ())
+	if(toolButton->objectName().startsWith("add"))
+	  toolButton->setIcon
+	    (QIcon::fromTheme("list-add", QIcon(":/16x16/add.png")));
+	else if(toolButton->objectName().startsWith("remove"))
+	  toolButton->setIcon
+	    (QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
+
+      m_ui.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+      m_ui.reloadButton->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
+      m_ui.saveButton->setIcon
+	(QIcon::fromTheme("document-save", QIcon(":/32x32/save.png")));
     }
   else
     {
