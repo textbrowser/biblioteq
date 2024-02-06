@@ -50,6 +50,7 @@ class biblioteq_sruresults: public QDialog
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
+  void prepareIcons(void);
   void setGlobalFonts(const QFont &font);
 
  private slots:

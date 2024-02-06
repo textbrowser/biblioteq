@@ -25,10 +25,11 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QSettings>
+#include <QXmlStreamReader>
+
 #include "biblioteq_magazine.h"
 #include "biblioteq_sruResults.h"
-
-#include <QXmlStreamReader>
 
 biblioteq_sruresults::biblioteq_sruresults
 (QWidget *parent,
@@ -39,6 +40,7 @@ biblioteq_sruresults::biblioteq_sruresults
   m_magazine = magazine_arg;
   m_records = list;
   m_ui.setupUi(this);
+  prepareIcons();
   setWindowModality(Qt::ApplicationModal);
 
   int row = -1;
@@ -155,6 +157,29 @@ void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
     close();
 
   QDialog::keyPressEvent(event);
+}
+
+void biblioteq_sruresults::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      m_ui.okButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      m_ui.okButton->setIcon(QIcon(":/16x16/ok.png"));
+    }
 }
 
 void biblioteq_sruresults::setGlobalFonts(const QFont &font)
