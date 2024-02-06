@@ -41,6 +41,7 @@ class biblioteq_query_history: public QDialog
  public:
   biblioteq_query_history(biblioteq *biblioteq);
   ~biblioteq_query_history();
+  void prepareIcons(void);
   void reset(void);
 
  private:

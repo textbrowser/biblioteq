@@ -26,6 +26,7 @@
 */
 
 #include <QClipboard>
+#include <QSettings>
 
 #include "biblioteq.h"
 #include "biblioteq_query_history.h"
@@ -47,6 +48,7 @@ biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
 	  SIGNAL(doubleClicked(const QModelIndex &)),
 	  this,
 	  SLOT(slotExecuteQuery(const QModelIndex &)));
+  prepareIcons();
 }
 
 biblioteq_query_history::~biblioteq_query_history()
@@ -68,6 +70,29 @@ void biblioteq_query_history::changeEvent(QEvent *event)
       }
 
   QDialog::changeEvent(event);
+}
+
+void biblioteq_query_history::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.clipboard->setIcon
+	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
+      m_ui.close->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.clipboard->setIcon(QIcon(":/16x16/editcopy.png"));
+      m_ui.close->setIcon(QIcon(":/16x16/cancel.png"));
+    }
 }
 
 void biblioteq_query_history::reset(void)
