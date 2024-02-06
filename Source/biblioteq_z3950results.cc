@@ -25,6 +25,8 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QSettings>
+
 #include "biblioteq_magazine.h"
 #include "biblioteq_z3950results.h"
 
@@ -38,6 +40,7 @@ biblioteq_z3950results::biblioteq_z3950results
   m_magazine = magazine_arg;
   m_recordSyntax = recordSyntax;
   m_ui.setupUi(this);
+  prepareIcons();
   setWindowModality(Qt::ApplicationModal);
 
   int row = -1;
@@ -143,6 +146,29 @@ void biblioteq_z3950results::keyPressEvent(QKeyEvent *event)
     close();
 
   QDialog::keyPressEvent(event);
+}
+
+void biblioteq_z3950results::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      m_ui.okButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      m_ui.okButton->setIcon(QIcon(":/16x16/ok.png"));
+    }
 }
 
 void biblioteq_z3950results::slotClose(void)
