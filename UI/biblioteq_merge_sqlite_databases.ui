@@ -103,6 +103,12 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
                   <widget class="QPushButton" name="add_row">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>&amp;Add Row</string>
                    </property>
@@ -114,6 +120,12 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="delete_row">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>&amp;Delete Row(s)</string>
                    </property>

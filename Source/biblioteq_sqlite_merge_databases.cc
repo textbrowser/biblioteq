@@ -29,6 +29,7 @@
 #include <QProgressBar>
 #include <QProgressDialog>
 #include <QPushButton>
+#include <QSettings>
 #include <QSqlRecord>
 
 #include "biblioteq.h"
@@ -65,6 +66,7 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  prepareIcons();
 }
 
 void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
@@ -86,6 +88,38 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
+void biblioteq_sqlite_merge_databases::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.add_row->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/16x16/add.png")));
+      m_ui.close->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+      m_ui.delete_row->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
+      m_ui.merge->setIcon
+	(QIcon::fromTheme("document-import", QIcon(":/32x32/import.png")));
+      m_ui.reset->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.add_row->setIcon(QIcon(":/16x16/add.png"));
+      m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
+      m_ui.delete_row->setIcon(QIcon(":/16x16/eraser.png"));
+      m_ui.merge->setIcon(QIcon(":/32x32/import.png"));
+      m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
+    }
+}
+
 void biblioteq_sqlite_merge_databases::reset(void)
 {
   slotReset();
@@ -98,16 +132,16 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
   auto row = m_ui.databases->rowCount() - 1;
 
   for(int i = 0; i < m_ui.databases->columnCount(); i++)
-    switch(i)
+    switch(static_cast<Columns> (i))
       {
-      case PROGRESS_COLUMN:
+      case Columns::PROGRESS_COLUMN:
 	{
 	  auto progress = new QProgressBar();
 
 	  m_ui.databases->setCellWidget(row, i, progress);
 	  break;
 	}
-      case SELECT_COLUMN:
+      case Columns::SELECT_COLUMN:
 	{
 	  auto pushButton = new QPushButton(tr("Select SQLite Database"));
 
@@ -118,7 +152,7 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 	  m_ui.databases->setCellWidget(row, i, pushButton);
 	  break;
 	}
-      case SQLITE_DATABASE_COLUMN:
+      case Columns::SQLITE_DATABASE_COLUMN:
 	{
 	  auto item = new QTableWidgetItem();
 
@@ -212,9 +246,11 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
       progress->repaint();
       QApplication::processEvents();
 
-      auto item = m_ui.databases->item(i, SQLITE_DATABASE_COLUMN);
+      auto item = m_ui.databases->item
+	(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN));
       auto progressBar = qobject_cast<QProgressBar *>
-	(m_ui.databases->cellWidget(i, PROGRESS_COLUMN));
+	(m_ui.databases->
+	 cellWidget(i, static_cast<int> (Columns::PROGRESS_COLUMN)));
 
       if(!QFileInfo(item->text()).isReadable() || !item || !progressBar)
 	continue;
@@ -341,13 +377,18 @@ void biblioteq_sqlite_merge_databases::slotSelect(void)
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       for(int i = 0; i < m_ui.databases->rowCount(); i++)
-	if(m_ui.databases->cellWidget(i, SELECT_COLUMN) == pushButton)
-	  if(m_ui.databases->item(i, SQLITE_DATABASE_COLUMN))
+	if(m_ui.databases->
+	   cellWidget(i, static_cast<int> (Columns::SELECT_COLUMN)) ==
+	   pushButton)
+	  if(m_ui.databases->
+	     item(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN)))
 	    {
-	      m_ui.databases->item(i, SQLITE_DATABASE_COLUMN)->
+	      m_ui.databases->item
+		(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN))->
 		setText(dialog.selectedFiles().value(0));
-	      m_ui.databases->item(i, SQLITE_DATABASE_COLUMN)->setToolTip
-		(dialog.selectedFiles().value(0));
+	      m_ui.databases->item
+		(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN))->
+		setToolTip(dialog.selectedFiles().value(0));
 	      break;
 	    }
 

@@ -38,10 +38,11 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
 
  public:
   biblioteq_sqlite_merge_databases(biblioteq *parent);
+  void prepareIcons(void);
   void reset(void);
 
  private:
-  enum Columns
+  enum class Columns
     {
       PROGRESS_COLUMN = 2,
       SELECT_COLUMN = 1,

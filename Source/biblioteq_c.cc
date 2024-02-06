@@ -4395,6 +4395,7 @@ void biblioteq::slotOtherOptionsSaved(void)
 
   db_enumerations ? db_enumerations->prepareIcons() : (void) 0;
   m_batchActivities->prepareIcons();
+  m_sqliteMergeDatabases ? m_sqliteMergeDatabases->prepareIcons() : (void) 0;
   prepareCustomQueryFavoriteShortcut();
   prepareIcons();
   QApplication::restoreOverrideCursor();
