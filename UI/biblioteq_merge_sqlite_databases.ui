@@ -106,12 +106,20 @@
                    <property name="text">
                     <string>&amp;Add Row</string>
                    </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
+                   </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QPushButton" name="delete_row">
                    <property name="text">
                     <string>&amp;Delete Row(s)</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../Icons/icons.qrc">
+                     <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                    </property>
                   </widget>
                  </item>
