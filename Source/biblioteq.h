@@ -493,6 +493,7 @@ class biblioteq: public QMainWindow
   QString m_roles;
   QString m_unaccent;
   QStringList m_deletedAdmins;
+  QStringList m_specialExecutablesIcons;
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;
   QToolButton *m_error_bar_label;

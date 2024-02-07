@@ -2225,6 +2225,15 @@ void biblioteq::showMain(void)
 
 	    m_specialExecutables[list.at(i).trimmed()] = 0;
 	  }
+	else if(list.at(i) == "--special-executable-icon")
+	  {
+	    i += 1;
+
+	    if(i >= list.size())
+	      continue;
+
+	    m_specialExecutablesIcons << list.at(i).trimmed();
+	  }
     }
 
   prepareExternalApplicationsMenu();

@@ -296,12 +296,17 @@ void biblioteq::prepareExternalApplicationsMenu(void)
   ui.menuExternal_Applications->clear();
 
   QMapIterator<QString, char> it(m_specialExecutables);
+  int i = -1;
 
   while(it.hasNext())
     {
+      i += 1;
       it.next();
       ui.menuExternal_Applications->addAction
-	(it.key(), this, SLOT(slotSpecialApplication(void)));
+	(QIcon(m_specialExecutablesIcons.value(i, " ")),
+	 it.key(),
+	 this,
+	 SLOT(slotSpecialApplication(void)));
     }
 
   if(ui.menuExternal_Applications->isEmpty())
