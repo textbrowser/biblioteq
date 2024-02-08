@@ -49,12 +49,16 @@
        <widget class="QPushButton" name="next">
         <property name="minimumSize">
          <size>
-          <width>100</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
         <property name="text">
          <string>&amp;Next</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/next.png</normaloff>:/16x16/next.png</iconset>
         </property>
        </widget>
       </item>
@@ -62,12 +66,16 @@
        <widget class="QPushButton" name="previous">
         <property name="minimumSize">
          <size>
-          <width>100</width>
+          <width>125</width>
           <height>0</height>
          </size>
         </property>
         <property name="text">
          <string>&amp;Previous</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/previous.png</normaloff>:/16x16/previous.png</iconset>
         </property>
        </widget>
       </item>
