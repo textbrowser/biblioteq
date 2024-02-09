@@ -64,8 +64,18 @@
               </item>
               <item>
                <widget class="QPushButton" name="custom_query_reset">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>Reset</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Icons/icons.qrc">
+                  <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
                 </property>
                </widget>
               </item>
@@ -146,6 +156,12 @@
               </item>
               <item>
                <widget class="QComboBox" name="display_icon_set">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="sizeAdjustPolicy">
                  <enum>QComboBox::AdjustToContents</enum>
                 </property>
@@ -229,6 +245,12 @@
                  </item>
                  <item>
                   <widget class="QComboBox" name="isbn10_display_format">
+                   <property name="minimumSize">
+                    <size>
+                     <width>175</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="sizeAdjustPolicy">
                     <enum>QComboBox::AdjustToContents</enum>
                    </property>
@@ -265,6 +287,12 @@
                  </item>
                  <item>
                   <widget class="QComboBox" name="isbn13_display_format">
+                   <property name="minimumSize">
+                    <size>
+                     <width>175</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="sizeAdjustPolicy">
                     <enum>QComboBox::AdjustToContents</enum>
                    </property>
@@ -315,6 +343,12 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="item_mandatory_field_color">
+                   <property name="minimumSize">
+                    <size>
+                     <width>125</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">background-color: #ffffff;</string>
                    </property>
@@ -349,6 +383,12 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="item_query_result_color">
+                   <property name="minimumSize">
+                    <size>
+                     <width>125</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">background-color: #ffffff;</string>
                    </property>
@@ -524,6 +564,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="main_window_canvas_background_color">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: #ffffff;</string>
                 </property>
@@ -558,6 +604,12 @@
               </item>
               <item>
                <widget class="QSpinBox" name="icons_view_column_count">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>[5, 100]</string>
                 </property>
@@ -777,6 +829,12 @@
                  </item>
                  <item>
                   <widget class="QComboBox" name="books_accession_number">
+                   <property name="minimumSize">
+                    <size>
+                     <width>125</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="sizeAdjustPolicy">
                     <enum>QComboBox::AdjustToContents</enum>
                    </property>

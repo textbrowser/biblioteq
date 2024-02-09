@@ -61,8 +61,18 @@
          </item>
          <item>
           <widget class="QPushButton" name="select_csv_file">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>&amp;Select...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../Icons/icons.qrc">
+             <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
            </property>
           </widget>
          </item>
@@ -116,8 +126,18 @@
             </item>
             <item>
              <widget class="QPushButton" name="refresh_preview">
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>Refresh</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../Icons/icons.qrc">
+                <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
               </property>
              </widget>
             </item>
@@ -180,7 +200,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-73</y>
             <width>599</width>
             <height>424</height>
            </rect>
@@ -340,8 +360,18 @@
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="QPushButton" name="add_row">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="text">
                 <string>&amp;Add Row</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                </property>
               </widget>
              </item>
@@ -357,8 +387,18 @@
              </item>
              <item>
               <widget class="QPushButton" name="delete_row">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="text">
                 <string>&amp;Delete Row(s)</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Icons/icons.qrc">
+                 <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                </property>
               </widget>
              </item>

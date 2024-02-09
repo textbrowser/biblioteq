@@ -347,6 +347,7 @@ void biblioteq_otheroptions::prepareAvailability(void)
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.availability_color->setCellWidget(i, AVAILABILITY_COLOR, widget);
       m_ui.availability_color->setItem(i, ITEM_TYPE, item);
+      pushButton->setMinimumWidth(135);
       pushButton->setText(list2.at(i));
       pushButton->setStyleSheet
 	(QString("background-color: %1").arg(QString(list2.at(i)).remove('&')));

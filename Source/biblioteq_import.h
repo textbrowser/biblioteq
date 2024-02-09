@@ -39,6 +39,7 @@ class biblioteq_import: public QMainWindow
 
  public:
   biblioteq_import(biblioteq *parent);
+  void prepareIcons(void);
   void reset(void);
   void show(QMainWindow *parent);
 

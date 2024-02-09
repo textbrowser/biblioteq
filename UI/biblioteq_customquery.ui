@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>650</width>
     <height>600</height>
    </rect>
   </property>
@@ -154,6 +154,12 @@
           </item>
           <item>
            <widget class="QComboBox" name="favorites">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToContents</enum>
             </property>
@@ -166,6 +172,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="delete_favorite">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Delete Favorite</string>
             </property>
@@ -180,6 +192,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="rename_favorite">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Delete Favorite</string>
             </property>

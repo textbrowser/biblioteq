@@ -28,6 +28,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressDialog>
+#include <QSettings>
 
 #include "biblioteq.h"
 #include "biblioteq_import.h"
@@ -74,6 +75,7 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(currentIndexChanged(int)),
 	  this,
 	  SLOT(slotTemplates(int)));
+  prepareIcons();
 }
 
 void biblioteq_import::changeEvent(QEvent *event)
@@ -780,6 +782,29 @@ void biblioteq_import::loadPreview(void)
   file.close();
   progress->close();
   QApplication::processEvents();
+}
+
+void biblioteq_import::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.add_row->setIcon(QIcon(":/16x16/add.png"));
+      m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
+      m_ui.delete_row->setIcon(QIcon(":/16x16/eraser.png"));
+      m_ui.import_csv->setIcon(QIcon(":/32x32/import.png"));
+      m_ui.refresh_preview->setIcon(QIcon(":/16x16/reload.png"));
+      m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
+      m_ui.select_csv_file->setIcon(QIcon(":/16x16/fileopen.png"));
+    }
 }
 
 void biblioteq_import::reset(void)

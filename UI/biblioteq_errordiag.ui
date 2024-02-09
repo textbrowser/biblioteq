@@ -123,7 +123,7 @@
        <widget class="QPushButton" name="copyButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>150</width>
           <height>0</height>
          </size>
         </property>
@@ -140,7 +140,7 @@
        <widget class="QPushButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>150</width>
           <height>0</height>
          </size>
         </property>
@@ -157,7 +157,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>150</width>
           <height>0</height>
          </size>
         </property>
