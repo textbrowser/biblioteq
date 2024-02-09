@@ -123,6 +123,10 @@
    <addaction name="menu_Edit"/>
   </widget>
   <action name="action_Close">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Close</string>
    </property>
@@ -131,6 +135,10 @@
    </property>
   </action>
   <action name="action_Find">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/16x16/find.png</normaloff>:/16x16/find.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Find</string>
    </property>
@@ -139,6 +147,10 @@
    </property>
   </action>
   <action name="action_Print">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Print...</string>
    </property>

@@ -93,12 +93,6 @@
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QPushButton" name="refresh_pb">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string>&amp;Refresh</string>
             </property>

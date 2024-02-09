@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
+    <width>1200</width>
     <height>600</height>
    </rect>
   </property>
@@ -34,8 +34,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-1049</y>
-         <width>1070</width>
+         <y>-1028</y>
+         <width>1167</width>
          <height>1543</height>
         </rect>
        </property>
@@ -1258,12 +1258,20 @@
                          <property name="text">
                           <string>&amp;Delete</string>
                          </property>
+                         <property name="icon">
+                          <iconset resource="../Icons/icons.qrc">
+                           <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+                         </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QPushButton" name="export_files">
                          <property name="text">
                           <string>&amp;Export...</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../Icons/icons.qrc">
+                           <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
                          </property>
                         </widget>
                        </item>
@@ -1422,7 +1430,7 @@
        <widget class="QPushButton" name="okButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1439,7 +1447,7 @@
        <widget class="QToolButton" name="openLibraryQuery">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1452,7 +1460,7 @@
        <widget class="QToolButton" name="sruQueryButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1468,7 +1476,7 @@
        <widget class="QToolButton" name="z3950QueryButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1484,7 +1492,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1500,7 +1508,7 @@
        <widget class="QToolButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1523,7 +1531,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>

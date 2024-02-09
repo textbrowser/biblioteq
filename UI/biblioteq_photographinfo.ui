@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1015</width>
+    <width>1100</width>
     <height>800</height>
    </rect>
   </property>
@@ -31,8 +31,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>982</width>
+         <y>-404</y>
+         <width>1067</width>
          <height>1146</height>
         </rect>
        </property>
@@ -690,7 +690,7 @@
        <widget class="QPushButton" name="okButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -707,7 +707,7 @@
        <widget class="QPushButton" name="addItemButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -724,7 +724,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -740,7 +740,7 @@
        <widget class="QToolButton" name="exportPhotographsToolButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -756,7 +756,7 @@
        <widget class="QPushButton" name="importItems">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -769,7 +769,7 @@
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -786,7 +786,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>

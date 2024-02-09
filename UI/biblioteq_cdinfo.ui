@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>967</width>
-         <height>766</height>
+         <width>983</width>
+         <height>806</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -938,7 +938,7 @@
        <widget class="QPushButton" name="okButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -955,7 +955,7 @@
        <widget class="QPushButton" name="queryButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -972,7 +972,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -991,7 +991,7 @@
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1008,7 +1008,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>

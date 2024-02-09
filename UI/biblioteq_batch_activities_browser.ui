@@ -76,12 +76,6 @@
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
               <widget class="QComboBox" name="borrow_scan_type">
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>0</height>
-                </size>
-               </property>
                <property name="currentText">
                 <string>Book</string>
                </property>

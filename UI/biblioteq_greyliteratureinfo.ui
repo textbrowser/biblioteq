@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-269</y>
+         <y>-321</y>
          <width>617</width>
-         <height>1015</height>
+         <height>1063</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -350,6 +350,12 @@
             </item>
             <item>
              <widget class="QPushButton" name="attach_files">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>&amp;Attach...</string>
               </property>
@@ -357,15 +363,35 @@
             </item>
             <item>
              <widget class="QPushButton" name="delete_files">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>&amp;Delete</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../Icons/icons.qrc">
+                <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="export_files">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>&amp;Export...</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../Icons/icons.qrc">
+                <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
               </property>
              </widget>
             </item>

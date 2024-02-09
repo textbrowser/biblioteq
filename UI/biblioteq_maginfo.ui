@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-550</y>
-         <width>967</width>
-         <height>1296</height>
+         <y>0</y>
+         <width>969</width>
+         <height>1344</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -1015,7 +1015,7 @@
        <widget class="QPushButton" name="okButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1032,7 +1032,7 @@
        <widget class="QToolButton" name="sruQueryButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1048,7 +1048,7 @@
        <widget class="QToolButton" name="z3950QueryButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1064,7 +1064,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1083,7 +1083,7 @@
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
@@ -1100,7 +1100,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
