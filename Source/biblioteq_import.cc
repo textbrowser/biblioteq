@@ -792,6 +792,21 @@ void biblioteq_import::prepareIcons(void)
   if(index == 1)
     {
       // System.
+
+      m_ui.add_row->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/16x16/add.png")));
+      m_ui.close->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+      m_ui.delete_row->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
+      m_ui.import_csv->setIcon
+	(QIcon::fromTheme("document-import", QIcon(":/32x32/import.png")));
+      m_ui.refresh_preview->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
+      m_ui.reset->setIcon
+	(QIcon::fromTheme("edit-reset", QIcon(":/32x32/reload.png")));
+      m_ui.select_csv_file->setIcon
+	(QIcon::fromTheme("document-open", QIcon(":/16x16/fileopen.png")));
     }
   else
     {
