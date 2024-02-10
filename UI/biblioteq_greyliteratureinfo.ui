@@ -607,8 +607,15 @@
         <property name="text">
          <string>&amp;Reset</string>
         </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
+        </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>

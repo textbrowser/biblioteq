@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1100</width>
     <height>800</height>
    </rect>
   </property>
@@ -31,8 +31,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>969</width>
+         <y>-602</y>
+         <width>1067</width>
          <height>1344</height>
         </rect>
        </property>
@@ -793,6 +793,12 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="attach_files">
+                  <property name="minimumSize">
+                   <size>
+                    <width>110</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>&amp;Attach...</string>
                   </property>
@@ -800,20 +806,46 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="delete_files">
+                  <property name="minimumSize">
+                   <size>
+                    <width>110</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>&amp;Delete</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Icons/icons.qrc">
+                    <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="export_files">
+                  <property name="minimumSize">
+                   <size>
+                    <width>110</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>&amp;Export...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Icons/icons.qrc">
+                    <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="view_pdf">
+                  <property name="minimumSize">
+                   <size>
+                    <width>110</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>&amp;View PDF...</string>
                   </property>
@@ -1071,8 +1103,15 @@
         <property name="text">
          <string>&amp;Reset</string>
         </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
+        </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
         <property name="arrowType">
          <enum>Qt::NoArrow</enum>

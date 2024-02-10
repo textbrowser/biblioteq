@@ -34,8 +34,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-1028</y>
-         <width>1167</width>
+         <y>-1049</y>
+         <width>1230</width>
          <height>1543</height>
         </rect>
        </property>
@@ -83,6 +83,12 @@
               </item>
               <item>
                <widget class="QToolButton" name="dwnldFront">
+                <property name="minimumSize">
+                 <size>
+                  <width>145</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Download the book's front cover image.</string>
                 </property>
@@ -103,6 +109,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="frontButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>145</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>&amp;Select...</string>
                 </property>
@@ -160,6 +172,12 @@
               </item>
               <item>
                <widget class="QToolButton" name="dwnldBack">
+                <property name="minimumSize">
+                 <size>
+                  <width>145</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Download the book's back cover image.</string>
                 </property>
@@ -180,6 +198,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="backButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>145</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>&amp;Select...</string>
                 </property>
@@ -1248,6 +1272,12 @@
                        </item>
                        <item>
                         <widget class="QPushButton" name="attach_files">
+                         <property name="minimumSize">
+                          <size>
+                           <width>110</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>&amp;Attach...</string>
                          </property>
@@ -1255,6 +1285,12 @@
                        </item>
                        <item>
                         <widget class="QPushButton" name="delete_files">
+                         <property name="minimumSize">
+                          <size>
+                           <width>110</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>&amp;Delete</string>
                          </property>
@@ -1266,6 +1302,12 @@
                        </item>
                        <item>
                         <widget class="QPushButton" name="export_files">
+                         <property name="minimumSize">
+                          <size>
+                           <width>110</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>&amp;Export...</string>
                          </property>
@@ -1277,6 +1319,12 @@
                        </item>
                        <item>
                         <widget class="QPushButton" name="view_pdf">
+                         <property name="minimumSize">
+                          <size>
+                           <width>110</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>&amp;View PDF...</string>
                          </property>
@@ -1499,8 +1547,15 @@
         <property name="text">
          <string>&amp;Reset</string>
         </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
+        </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
