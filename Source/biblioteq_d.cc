@@ -340,6 +340,11 @@ void biblioteq::prepareIcons(void)
 
 	    label->setPixmap(icon.pixmap(QSize(16, 16)));
 	  }
+
+      pass.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      pass.okButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
     }
   else
     {
@@ -354,6 +359,9 @@ void biblioteq::prepareIcons(void)
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
 	  label->setPixmap(QPixmap(":/16x16/ok.png"));
+
+      pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
     }
 }
 
