@@ -321,10 +321,39 @@ void biblioteq::prepareIcons(void)
   if(index == 1)
     {
       // System.
+
+      ab.addButton->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/32x32/add.png")));
+      ab.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+      ab.deleteButton->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
+      ab.reloadButton->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
+      ab.saveButton->setIcon
+	(QIcon::fromTheme("document-save", QIcon(":/32x32/save.png")));
+
+      foreach(auto label, ab.frame->findChildren<QLabel *> ())
+	if(!label->pixmap(Qt::ReturnByValue).isNull())
+	  {
+	    QIcon icon(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+
+	    label->setPixmap(icon.pixmap(QSize(16, 16)));
+	  }
     }
   else
     {
       // Faenza.
+
+      ab.addButton->setIcon(QIcon(":/32x32/add.png"));
+      ab.cancelButton->setIcon(QIcon(":/32x32/cancel.png"));
+      ab.deleteButton->setIcon(QIcon(":/32x32/remove.png"));
+      ab.reloadButton->setIcon(QIcon(":/32x32/reload.png"));
+      ab.saveButton->setIcon(QIcon(":/32x32/save.png"));
+
+      foreach(auto label, ab.frame->findChildren<QLabel *> ())
+	if(!label->pixmap(Qt::ReturnByValue).isNull())
+	  label->setPixmap(QPixmap(":/16x16/ok.png"));
     }
 }
 
