@@ -50,30 +50,26 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 			       const QModelIndex &index):
   QMainWindow(), biblioteq_item(index)
 {
-  m_duplicate = false;
-  m_openLibraryWorking = nullptr;
-  m_sruWorking = nullptr;
+  auto menu = new QMenu(this);
+  auto scene1 = new QGraphicsScene(this);
+  auto scene2 = new QGraphicsScene(this);
+
   qmain = parentArg;
-
-  QGraphicsScene *scene1 = nullptr;
-  QGraphicsScene *scene2 = nullptr;
-  QMenu *menu = nullptr;
-
-  menu = new QMenu(this);
-  scene1 = new QGraphicsScene(this);
-  scene2 = new QGraphicsScene(this);
+  m_duplicate = false;
   m_imageManager = new QNetworkAccessManager(this);
-  m_openLibraryManager = new QNetworkAccessManager(this);
-  m_proxyDialog = new QDialog(this);
-  m_sruManager = new QNetworkAccessManager(this);
-  ui_p.setupUi(m_proxyDialog);
-  m_parentWid = parentArg;
   m_oid = oidArg;
   m_oldq = biblioteq_misc_functions::getColumnString
     (qmain->getUI().table,
      m_index->row(),
      qmain->getUI().table->columnNumber("Quantity")).toInt();
+  m_openLibraryManager = new QNetworkAccessManager(this);
+  m_openLibraryWorking = nullptr;
+  m_parentWid = parentArg;
+  m_proxyDialog = new QDialog(this);
+  m_sruManager = new QNetworkAccessManager(this);
+  m_sruWorking = nullptr;
   id.setupUi(this);
+  ui_p.setupUi(m_proxyDialog);
   setQMain(this);
   id.files->setColumnHidden(Columns::MYOID, true);
   id.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
@@ -109,36 +105,49 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAttachFiles(void)));
+  connect(id.backButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
+  connect(id.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCancel(void)));
+  connect(id.copiesButton,
+	  SIGNAL(clicked()),
+	  this,
+	  SLOT(slotPopulateCopiesEditor(void)));
   connect(id.delete_files,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteFiles(void)));
+  connect(id.dwnldBack,
+	  SIGNAL(clicked(void)),
+	  id.dwnldBack,
+	  SLOT(showMenu(void)));
+  connect(id.dwnldFront,
+	  SIGNAL(clicked(void)),
+	  id.dwnldFront,
+	  SLOT(showMenu(void)));
   connect(id.export_files,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
-  connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	  this, SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
-  connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
-  connect(id.openLibraryQuery, SIGNAL(clicked(void)), this,
-	  SLOT(slotOpenLibraryQuery(void)));
-  connect(id.parse_marc_tags, SIGNAL(clicked(void)), this,
-	  SLOT(slotParseMarcTags(void)));
-  connect(id.showUserButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotShowUsers(void)));
-  connect(id.sruQueryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotSRUQuery(void)));
-  connect(id.z3950QueryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotZ3950Query(void)));
-  connect(id.cancelButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotCancel(void)));
-  connect(id.copiesButton, SIGNAL(clicked()), this,
-	  SLOT(slotPopulateCopiesEditor(void)));
-  connect(id.resetButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotReset(void)));
-  connect(id.isbn10to13, SIGNAL(clicked(void)), this,
+  connect(id.files,
+	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
+  connect(id.frontButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
+  connect(id.isbn10to13,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotConvertISBN10to13(void)));
-  connect(id.isbn13to10, SIGNAL(clicked(void)), this,
+  connect(id.isbn13to10,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotConvertISBN13to10(void)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
@@ -150,82 +159,170 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  id.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
 #endif
+  connect(id.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
+  connect(id.openLibraryQuery,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotOpenLibraryQuery(void)));
+  connect(id.parse_marc_tags,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotParseMarcTags(void)));
+  connect(id.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(id.showUserButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowUsers(void)));
+  connect(id.sruQueryButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSRUQuery(void)));
+  connect(id.z3950QueryButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotZ3950Query(void)));
   connect(menu->addAction(tr("Reset Front Cover Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Back Cover Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset ISBN-10")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset ISBN-13")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Edition")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Authors")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Book Binding Type")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset LC Control Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Call Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Dewey Class Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Title")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Publication Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Publisher")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Place of Publication")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Categories")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Price")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Language")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Monetary Units")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Copies")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Location")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Originality")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Condition")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Abstract")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset MARC Tags")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Keywords")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Accession Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Alternate Identifier")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset URL")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Multi-Volume Set ISBN")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Target Audience")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Volume Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Reform Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Origin")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Purchase Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(id.frontButton,
-	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
-  connect(id.backButton,
-	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
-  connect(id.dwnldFront, SIGNAL(clicked(void)), id.dwnldFront,
-	  SLOT(showMenu(void)));
-  connect(id.dwnldBack, SIGNAL(clicked(void)), id.dwnldBack,
-	  SLOT(showMenu(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -269,7 +366,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the conditions.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.originality->addItems
@@ -280,7 +379,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the originality list.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.binding->addItems
@@ -291,7 +392,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the binding types.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.language->addItems
@@ -302,7 +405,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the languages.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.monetary_units->addItems
@@ -313,7 +418,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the monetary units.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.location->addItems
@@ -324,7 +431,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the locations.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   id.target_audience->addItems
@@ -336,19 +445,18 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the target audiences.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
-  id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
-
-  if(id.condition->findText(biblioteq::s_unknown) == -1)
-    id.condition->addItem(biblioteq::s_unknown);
-
-  if(id.originality->findText(biblioteq::s_unknown) == -1)
-    id.originality->addItem(biblioteq::s_unknown);
+  id.front_image->setScene(scene1);
 
   if(id.binding->findText(biblioteq::s_unknown) == -1)
     id.binding->addItem(biblioteq::s_unknown);
+
+  if(id.condition->findText(biblioteq::s_unknown) == -1)
+    id.condition->addItem(biblioteq::s_unknown);
 
   if(id.language->findText(biblioteq::s_unknown) == -1)
     id.language->addItem(biblioteq::s_unknown);
@@ -358,6 +466,9 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(id.monetary_units->findText(biblioteq::s_unknown) == -1)
     id.monetary_units->addItem(biblioteq::s_unknown);
+
+  if(id.originality->findText(biblioteq::s_unknown) == -1)
+    id.originality->addItem(biblioteq::s_unknown);
 
   if(id.target_audience->findText(biblioteq::s_unknown) == -1)
     id.target_audience->addItem(biblioteq::s_unknown);
@@ -566,10 +677,9 @@ biblioteq_book::~biblioteq_book()
 biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
 (const QString &downloadType)
 {
-  biblioteq_item_working_dialog *dialog = nullptr;
+  auto dialog = new biblioteq_item_working_dialog
+    (qobject_cast<QMainWindow *> (this));
 
-  dialog = new
-    biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this));
   dialog->resize(dialog->sizeHint());
   dialog->setLabelText(tr("Downloading..."));
   dialog->setMaximum(0);
@@ -628,9 +738,10 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
     if(hasDataChanged(this))
       {
 	if(QMessageBox::
-	   question(this, tr("BiblioteQ: Question"),
+	   question(this,
+		    tr("BiblioteQ: Question"),
 		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
 	  {
 	    QApplication::processEvents();
@@ -677,8 +788,7 @@ void biblioteq_book::createFile(const QByteArray &digest,
 	query.bindValue(4, value);
       else
 	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique "
-				   "integer.")),
+			QString(tr("Unable to generate a unique integer.")),
 			errorstr);
     }
 
@@ -686,7 +796,9 @@ void biblioteq_book::createFile(const QByteArray &digest,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to create a database transaction.")),
-       query.lastError().text(), __FILE__, __LINE__);
+       query.lastError().text(),
+       __FILE__,
+       __LINE__);
 }
 
 void biblioteq_book::createOpenLibraryDialog(void)
@@ -750,9 +862,9 @@ void biblioteq_book::downloadFinished(void)
 	{
 	  m_imageBuffer.close();
 	  QMessageBox::warning
-	    (this, tr("BiblioteQ: HTTP Warning"),
-	     tr("The front cover image for the specified "
-		"ISBN may not exist."));
+	    (this,
+	     tr("BiblioteQ: HTTP Warning"),
+	     tr("The front cover image for the specified ISBN may not exist."));
 	  QApplication::processEvents();
 	}
     }
@@ -768,9 +880,9 @@ void biblioteq_book::downloadFinished(void)
 	{
 	  m_imageBuffer.close();
 	  QMessageBox::warning
-	    (this, tr("BiblioteQ: HTTP Warning"),
-	     tr("The back cover image for the specified ISBN "
-		"may not exist."));
+	    (this,
+	     tr("BiblioteQ: HTTP Warning"),
+	     tr("The back cover image for the specified ISBN may not exist."));
 	  QApplication::processEvents();
 	}
     }
@@ -1015,9 +1127,12 @@ void biblioteq_book::modify(const int state)
       qmain->addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to retrieve the selected book's data.")),
-	 query.lastError().text(), __FILE__, __LINE__);
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
       QMessageBox::critical
-	(this, tr("BiblioteQ: Database Error"),
+	(this,
+	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve the selected book's data."));
       QApplication::processEvents();
       close();
@@ -2161,7 +2276,6 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.volume_number->clear();
   id.z3950QueryButton->setVisible(false);
   m_engWindowTitle = "Search";
-  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -2173,6 +2287,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
+      prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
       id.isbn13->setFocus();
 #ifdef Q_OS_ANDROID
@@ -2877,9 +2992,12 @@ void biblioteq_book::slotGo(void)
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
 			    "the item.")),
-		 errorstr, __FILE__, __LINE__);
+		 errorstr,
+		 __FILE__,
+		 __LINE__);
 	      QMessageBox::critical
-		(this, tr("BiblioteQ: Database Error"),
+		(this,
+		 tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
 	      QApplication::processEvents();
@@ -2891,11 +3009,10 @@ void biblioteq_book::slotGo(void)
 	  if(newq < maxcopynumber)
 	    {
 	      QMessageBox::critical
-		(this, tr("BiblioteQ: User Error"),
-		 tr("It appears that you are attempting to "
-		    "decrease the "
-		    "number of copies while there are "
-		    "copies "
+		(this,
+		 tr("BiblioteQ: User Error"),
+		 tr("It appears that you are attempting to decrease the "
+		    "number of copies while there are copies "
 		    "that have been reserved."));
 	      QApplication::processEvents();
 	      id.quantity->setValue(m_oldq);
@@ -2904,10 +3021,11 @@ void biblioteq_book::slotGo(void)
 	  else if(newq > m_oldq)
 	    {
 	      if(QMessageBox::question
-		 (this, tr("BiblioteQ: Question"),
+		 (this,
+		  tr("BiblioteQ: Question"),
 		  tr("You have increased the number of copies. "
 		     "Would you like to modify copy information?"),
-		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
 		  QApplication::processEvents();
@@ -2946,9 +3064,10 @@ void biblioteq_book::slotGo(void)
 	if(!(id.id->text().remove('-').length() == 10 ||
 	     id.isbn13->text().remove('-').length() == 13))
 	  {
-	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				  tr("Please complete the ISBN-10 or "
-				     "the ISBN-13 field."));
+	    QMessageBox::critical
+	      (this,
+	       tr("BiblioteQ: User Error"),
+	       tr("Please complete the ISBN-10 or the ISBN-13 field."));
 	    QApplication::processEvents();
 
 	    if(id.id->text().remove('-').length() != 10)
@@ -2964,7 +3083,8 @@ void biblioteq_book::slotGo(void)
 
       if(id.author->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Authors field."));
 	  QApplication::processEvents();
 	  id.author->setFocus();
@@ -2976,7 +3096,8 @@ void biblioteq_book::slotGo(void)
 
       if(id.title->text().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
 	  QApplication::processEvents();
 	  id.title->setFocus();
@@ -2988,7 +3109,8 @@ void biblioteq_book::slotGo(void)
 
       if(id.publisher->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
 	  QApplication::processEvents();
 	  id.publisher->setFocus();
@@ -3000,9 +3122,10 @@ void biblioteq_book::slotGo(void)
 
       if(id.place->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Place of Publication "
-				   "field."));
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("Please complete the Place of Publication field."));
 	  QApplication::processEvents();
 	  id.place->setFocus();
 	  return;
@@ -3013,7 +3136,8 @@ void biblioteq_book::slotGo(void)
 
       if(id.category->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
 	  QApplication::processEvents();
 	  id.category->setFocus();
@@ -3025,7 +3149,8 @@ void biblioteq_book::slotGo(void)
 
       if(id.description->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
 	  QApplication::processEvents();
 	  id.description->setFocus();
@@ -3040,9 +3165,12 @@ void biblioteq_book::slotGo(void)
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
+	    (this,
+	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
 	  QApplication::processEvents();
 	  return;
@@ -3356,9 +3484,9 @@ void biblioteq_book::slotGo(void)
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy "
-				"data.")),
-		     query.lastError().text(), __FILE__,
+		     QString(tr("Unable to purge unnecessary copy data.")),
+		     query.lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -3370,7 +3498,8 @@ void biblioteq_book::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     qmain->getDB().lastError().text(), __FILE__,
+		     qmain->getDB().lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -3406,7 +3535,9 @@ void biblioteq_book::slotGo(void)
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
-		     errorstr, __FILE__, __LINE__);
+		     errorstr,
+		     __FILE__,
+		     __LINE__);
 		  goto db_rollback;
 		}
 
@@ -3417,7 +3548,8 @@ void biblioteq_book::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     qmain->getDB().lastError().text(), __FILE__,
+		     qmain->getDB().lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -3568,7 +3700,9 @@ void biblioteq_book::slotGo(void)
 			    qmain->addError
 			      (QString(tr("Database Error")),
 			       QString(tr("Retrieving availability.")),
-			       errorstr, __FILE__, __LINE__);
+			       errorstr,
+			       __FILE__,
+			       __LINE__);
 			}
 		      else if(names.at(i) == "Target Audience")
 			qmain->getUI().table->item(m_index->row(), i)->setText
@@ -3643,14 +3777,18 @@ void biblioteq_book::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	  (QString(tr("Database Error")),
+	   QString(tr("Rollback failure.")),
+	   qmain->getDB().lastError().text(),
+	   __FILE__,
+	   __LINE__);
 
       QApplication::restoreOverrideCursor();
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to create or update the entry. "
-			       "Please verify that "
-			       "the entry does not already exist."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to create or update the entry. Please verify that "
+	    "the entry does not already exist."));
       QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
@@ -4200,7 +4338,8 @@ void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
     return;
 
   QMessageBox::critical
-    (this, tr("BiblioteQ: Open Library Query Error"),
+    (this,
+     tr("BiblioteQ: Open Library Query Error"),
      tr("A network error (%1) occurred.").arg(text.trimmed()));
   QApplication::processEvents();
 }
@@ -5078,7 +5217,8 @@ void biblioteq_book::slotSRUQueryError(const QString &text)
     return;
 
   QMessageBox::critical
-    (this, tr("BiblioteQ: SRU Query Error"),
+    (this,
+     tr("BiblioteQ: SRU Query Error"),
      tr("A network error (%1) occurred.").arg(text.trimmed()));
   QApplication::processEvents();
 }
@@ -5322,10 +5462,11 @@ void biblioteq_book::slotZ3950Query(void)
      !m_thread->getZ3950Results().isEmpty())
     {
       if(QMessageBox::question
-	 (this, tr("BiblioteQ: Question"),
+	 (this,
+	  tr("BiblioteQ: Question"),
 	  tr("Replace existing values with those retrieved "
 	     "from the Z39.50 site?"),
-	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No | QMessageBox::Yes,
 	  QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
@@ -5343,7 +5484,8 @@ void biblioteq_book::slotZ3950Query(void)
   else if(errorstr.isEmpty() && m_thread->getZ3950Results().isEmpty())
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	(this,
+	 tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
       QApplication::processEvents();
     }
@@ -5354,10 +5496,14 @@ void biblioteq_book::slotZ3950Query(void)
 
   if(!errorstr.isEmpty())
     {
-      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
-		      __FILE__, __LINE__);
+      qmain->addError(QString(tr("Z39.50 Query Error")),
+		      etype,
+		      errorstr,
+		      __FILE__,
+		      __LINE__);
       QMessageBox::critical
-	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	(this,
+	 tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("The Z39.50 entry could not be retrieved. Please view the "
 	    "error log."));
       QApplication::processEvents();
@@ -5386,11 +5532,11 @@ void biblioteq_book::sruDownloadFinished(void)
 
   if(!m_sruResults.isEmpty())
     {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
 			       tr("Replace existing values with "
-				  "those retrieved "
-				  "from the SRU site?"),
-			       QMessageBox::Yes | QMessageBox::No,
+				  "those retrieved from the SRU site?"),
+			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::Yes)
 	{
 	  QApplication::processEvents();
@@ -5401,11 +5547,13 @@ void biblioteq_book::sruDownloadFinished(void)
     }
   else if(records == 0)
     QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
+      (this,
+       tr("BiblioteQ: SRU Query Error"),
        tr("An SRU entry may not yet exist for the provided ISBN(s)."));
   else
     QMessageBox::critical
-      (this, tr("BiblioteQ: SRU Query Error"),
+      (this,
+       tr("BiblioteQ: SRU Query Error"),
        tr("The SRU query produced invalid results."));
 
   QApplication::processEvents();
@@ -5418,31 +5566,32 @@ void biblioteq_book::updateWindow(const int state)
   if(state == biblioteq::EDITABLE)
     {
       id.attach_files->setEnabled(true);
+      id.backButton->setVisible(true);
+      id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.dwnldBack->setVisible(true);
+      id.dwnldFront->setVisible(true);
+      id.export_files->setEnabled(true);
+      id.frontButton->setVisible(true);
+      id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
+      id.marc_tags_format->setVisible(true);
+      id.okButton->setVisible(true);
+      id.openLibraryQuery->setVisible(true);
+      id.parse_marc_tags->setVisible(true);
+      id.resetButton->setVisible(true);
+      id.showUserButton->setEnabled(true);
+      id.sruQueryButton->setVisible(true);
+      id.target_audience->setEditable(true);
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       id.view_pdf->setEnabled(true);
 #endif
-      id.copiesButton->setEnabled(true);
-      id.delete_files->setEnabled(true);
-      id.export_files->setEnabled(true);
-      id.marc_tags_format->setVisible(true);
-      id.parse_marc_tags->setVisible(true);
-      id.showUserButton->setEnabled(true);
-      id.okButton->setVisible(true);
-      id.openLibraryQuery->setVisible(true);
-      id.sruQueryButton->setVisible(true);
       id.z3950QueryButton->setVisible(true);
-      id.resetButton->setVisible(true);
-      id.frontButton->setVisible(true);
-      id.backButton->setVisible(true);
-      id.dwnldFront->setVisible(true);
-      id.dwnldBack->setVisible(true);
-      id.isbn10to13->setVisible(true);
-      id.isbn13to10->setVisible(true);
-      id.target_audience->setEditable(true);
 
       if(!id.id->text().remove('-').trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-	  id.id->text().trimmed() + tr(")");
+	  id.id->text().trimmed() +
+	  tr(")");
       else
 	str = tr("BiblioteQ: Modify Book Entry");
 
@@ -5451,34 +5600,35 @@ void biblioteq_book::updateWindow(const int state)
   else
     {
       id.attach_files->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      id.view_pdf->setEnabled(true);
-#endif
-      id.isbnAvailableCheckBox->setCheckable(false);
+      id.backButton->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
+      id.dwnldBack->setVisible(false);
+      id.dwnldFront->setVisible(false);
       id.export_files->setEnabled(true);
-
+      id.frontButton->setVisible(false);
+      id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
+      id.isbnAvailableCheckBox->setCheckable(false);
+      id.okButton->setVisible(false);
+      id.openLibraryQuery->setVisible(false);
+      id.resetButton->setVisible(false);
+      
       if(qmain->isGuest())
 	id.showUserButton->setVisible(false);
       else
 	id.showUserButton->setEnabled(true);
 
-      id.okButton->setVisible(false);
-      id.openLibraryQuery->setVisible(false);
       id.sruQueryButton->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
       id.z3950QueryButton->setVisible(false);
-      id.resetButton->setVisible(false);
-      id.frontButton->setVisible(false);
-      id.backButton->setVisible(false);
-      id.dwnldFront->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.isbn10to13->setVisible(false);
-      id.isbn13to10->setVisible(false);
 
       if(!id.id->text().remove('-').trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: View Book Details (")) +
-	  id.id->text().trimmed() + tr(")");
+	  id.id->text().trimmed() +
+	  tr(")");
       else
 	str = tr("BiblioteQ: View Book Details");
 
