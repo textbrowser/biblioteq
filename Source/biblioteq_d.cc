@@ -332,6 +332,14 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
       ab.saveButton->setIcon
 	(QIcon::fromTheme("document-save", QIcon(":/32x32/save.png")));
+      br.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      br.fileButton->setIcon
+	(QIcon::fromTheme("document-open", QIcon(":/16x16/fileopen.png")));
+      br.okButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+      br.resetButton->setIcon
+	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
@@ -355,6 +363,10 @@ void biblioteq::prepareIcons(void)
       ab.deleteButton->setIcon(QIcon(":/32x32/remove.png"));
       ab.reloadButton->setIcon(QIcon(":/32x32/reload.png"));
       ab.saveButton->setIcon(QIcon(":/32x32/save.png"));
+      br.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      br.fileButton->setIcon(QIcon(":/16x16/fileopen.png"));
+      br.okButton->setIcon(QIcon(":/16x16/ok.png"));
+      br.resetButton->setIcon(QIcon(":/16x16/reset.png"));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
 	if(!label->pixmap(Qt::ReturnByValue).isNull())

@@ -99,19 +99,13 @@
         <widget class="QFrame" name="file_frame">
          <layout class="QHBoxLayout">
           <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap resource="../Icons/icons.qrc">:/32x32/fileopen.png</pixmap>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="fileButton">
             <property name="text">
              <string>&amp;Select SQLite Database...</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../Icons/icons.qrc">
+              <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
             </property>
            </widget>
           </item>
