@@ -10,7 +10,7 @@
 8.   Create a configuration file to store values for various pull-down menus.
      (Completed)
 9.   Create a mechanism for determining the uniqueness of members. (Completed)
-10.  Provide support for:
+10.  Provide for:
         Books (Completed)
 	Cassette Tapes (Completed) (Grey Literature)
 	DVDs (Completed)
@@ -199,9 +199,9 @@
      from the main table. (Completed)
 97.  Simplify the branch-selection dialog. (Completed)
      The user should be presented with the following fields:
-	Userid
-	Password
 	Branch Name
+	Password
+	Userid
 98.  Allow editing of copy information during item creation. (Completed)
 99.  Create a statistics panel. (Completed)
      https://www.postgresql.org/docs/current/monitoring-stats.html
@@ -580,4 +580,12 @@
 	Remove local clear() (lists, etc.) (Completed)
 	Sort connect() (TBD)
 	Sort local variables (Completed)
-311. Localized searches fail because of item favorites. (TBD)
+311. Localized searches fail because of favorites:
+        Books (Completed)
+	CDs (Completed)
+	DVDs (TBD)
+	Grey Literature (TBD)
+	Journals (TBD)
+	Magazines (TBD)
+	Photograph Collections (TBD)
+	Video Games (TBD)
