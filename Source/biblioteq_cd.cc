@@ -42,26 +42,22 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QModelIndex &index):
   QMainWindow(), biblioteq_item(index)
 {
-  qmain = parentArg;
-
-  QGraphicsScene *scene1 = nullptr;
-  QGraphicsScene *scene2 = nullptr;
-  QMenu *menu = nullptr;
   QRegularExpression rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
-  QValidator *validator1 = nullptr;
+  auto menu = new QMenu(this);
+  auto validator1 = new QRegularExpressionValidator(rx1, this);
+  auto scene1 = new QGraphicsScene(this);
+  auto scene2 = new QGraphicsScene(this);
 
-  menu = new QMenu(this);
-  m_tracks_diag = new QDialog(this);
-  validator1 = new QRegularExpressionValidator(rx1, this);
-  scene1 = new QGraphicsScene(this);
-  scene2 = new QGraphicsScene(this);
-  m_oid = oidArg;
+  qmain = parentArg;
   m_isQueryEnabled = false;
-  m_parentWid = parentArg;
+  m_oid = oidArg;
   m_oldq = biblioteq_misc_functions::getColumnString
     (qmain->getUI().table,
      m_index->row(),
      qmain->getUI().table->columnNumber("Quantity")).toInt();
+  m_parentWid = parentArg;
+  m_tracks_diag = new QDialog(this);
+  m_tracks_diag->setWindowModality(Qt::WindowModal);
   cd.setupUi(this);
   setQMain(this);
   biblioteq_misc_functions::sortCombinationBox(cd.audio);
@@ -70,7 +66,6 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   cd.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   cd.release_date->setDisplayFormat(qmain->publicationDateFormat("musiccds"));
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
-  m_tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(m_tracks_diag);
   trd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -83,157 +78,238 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 		SLOT(slotGo(void)));
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_tracks_diag));
-  connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
-	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
-  connect(cd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
-  connect(cd.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(cd.showUserButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotShowUsers(void)));
-  connect(cd.queryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotQuery(void)));
-  connect(cd.cancelButton, SIGNAL(clicked(void)), this,
+  connect(cd.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotCancel(void)));
-  connect(cd.copiesButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotPopulateCopiesEditor(void)));
-  connect(cd.resetButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotReset(void)));
-  connect(cd.tracksButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotPopulateTracksBrowser(void)));
-  connect(trd.cancelButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotCloseTracksBrowser(void)));
-  connect(trd.insertButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotInsertTrack(void)));
-  connect(trd.deleteButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotDeleteTrack(void)));
-  connect(trd.saveButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotSaveTracks(void)));
-  connect(cd.computeButton, SIGNAL(clicked(void)), this,
+  connect(cd.computeButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotComputeRuntime(void)));
+  connect(cd.copiesButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPopulateCopiesEditor(void)));
+  connect(cd.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
+  connect(cd.printButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPrint(void)));
+  connect(cd.queryButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotQuery(void)));
+  connect(cd.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(cd.showUserButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowUsers(void)));
+  connect(cd.tracksButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPopulateTracksBrowser(void)));
+  connect(trd.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCloseTracksBrowser(void)));
+  connect(trd.deleteButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteTrack(void)));
+  connect(trd.insertButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotInsertTrack(void)));
+  connect(trd.saveButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSaveTracks(void)));
+  connect(trd.table->horizontalHeader(),
+	  SIGNAL(sectionClicked(int)),
+	  qmain,
+	  SLOT(slotResizeColumnsAfterSort(void)));
   connect(menu->addAction(tr("Reset Front Cover Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Back Cover Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Catalog Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Format")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Artist")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   m_composer_action = menu->addAction(tr("Reset Composer"));
-  connect(m_composer_action, SIGNAL(triggered(void)),
-	  this, SLOT(slotReset(void)));
   m_composer_action->setVisible(false);
+  connect(m_composer_action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Number of Discs")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Runtime")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Audio")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Recording Type")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Title")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Release Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Recording Label")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Categories")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Price")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Language")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Monetary Units")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Copies")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Location")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Abstract")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Keywords")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Accession Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(cd.frontButton,
-	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
   connect(cd.backButton,
-	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
   connect(qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
-  cd.queryButton->setVisible(m_isQueryEnabled);
-  cd.resetButton->setMenu(menu);
-  cd.id->setValidator(validator1);
   cd.composer->setVisible(false);
   cd.composer_label->setVisible(false);
+  cd.id->setValidator(validator1);
+  cd.queryButton->setVisible(m_isQueryEnabled);
+  cd.resetButton->setMenu(menu);
 
   QString errorstr("");
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.language->addItems
-    (biblioteq_misc_functions::getLanguages(qmain->getDB(),
-					    errorstr));
+    (biblioteq_misc_functions::getLanguages(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the languages.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
-						errorstr));
+    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the monetary units.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.location->addItems
-    (biblioteq_misc_functions::getLocations(qmain->getDB(),
-					    "CD",
-					    errorstr));
+    (biblioteq_misc_functions::getLocations(qmain->getDB(), "CD", errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the cd locations.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.format->addItems
-    (biblioteq_misc_functions::getCDFormats(qmain->getDB(),
-					    errorstr));
+    (biblioteq_misc_functions::getCDFormats(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the cd formats.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
-  cd.front_image->setScene(scene1);
   cd.back_image->setScene(scene2);
+  cd.front_image->setScene(scene1);
+
+  if(cd.format->findText(biblioteq::s_unknown) == -1)
+    cd.format->addItem(biblioteq::s_unknown);
 
   if(cd.language->findText(biblioteq::s_unknown) == -1)
     cd.language->addItem(biblioteq::s_unknown);
 
-  if(cd.monetary_units->findText(biblioteq::s_unknown) == -1)
-    cd.monetary_units->addItem(biblioteq::s_unknown);
-
   if(cd.location->findText(biblioteq::s_unknown) == -1)
     cd.location->addItem(biblioteq::s_unknown);
 
-  if(cd.format->findText(biblioteq::s_unknown) == -1)
-    cd.format->addItem(biblioteq::s_unknown);
+  if(cd.monetary_units->findText(biblioteq::s_unknown) == -1)
+    cd.monetary_units->addItem(biblioteq::s_unknown);
 
 #ifndef Q_OS_ANDROID
   if(m_parentWid)
@@ -290,9 +366,10 @@ void biblioteq_cd::closeEvent(QCloseEvent *e)
     if(hasDataChanged(this))
       {
 	if(QMessageBox::
-	   question(this, tr("BiblioteQ: Question"),
+	   question(this,
+		    tr("BiblioteQ: Question"),
 		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
 	  {
 	    QApplication::processEvents();
@@ -491,10 +568,12 @@ void biblioteq_cd::modify(const int state)
       qmain->addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to retrieve the selected CD's data.")),
-	 query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to retrieve the selected CD's "
-			       "data."));
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve the selected CD's data."));
       QApplication::processEvents();
       close();
       return;
@@ -724,7 +803,6 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.tracks_lbl->setVisible(false);
   m_composer_action->setVisible(true);
   m_engWindowTitle = "Search";
-  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -737,8 +815,9 @@ void biblioteq_cd::search(const QString &field, const QString &value)
 	}
 
       cd.coverImages->setVisible(false);
-      setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
       cd.id->setFocus();
+      prepareFavorites();
+      setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
 #ifdef Q_OS_ANDROID
       showMaximized();
 #else
@@ -752,12 +831,12 @@ void biblioteq_cd::search(const QString &field, const QString &value)
     {
       if(field == "artist")
 	cd.artist->setPlainText(value);
-      else if(field == "recording_label")
-	cd.recording_label->setPlainText(value);
       else if(field == "category")
 	cd.category->setPlainText(value);
       else if(field == "keyword")
 	cd.keyword->setPlainText(value);
+      else if(field == "recording_label")
+	cd.recording_label->setPlainText(value);
 
       slotGo();
     }
@@ -867,9 +946,12 @@ void biblioteq_cd::slotGo(void)
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
 			    "the item.")),
-		 errorstr, __FILE__, __LINE__);
+		 errorstr,
+		 __FILE__,
+		 __LINE__);
 	      QMessageBox::critical
-		(this, tr("BiblioteQ: Database Error"),
+		(this,
+		 tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
 	      QApplication::processEvents();
@@ -881,7 +963,8 @@ void biblioteq_cd::slotGo(void)
 	  if(newq < maxcopynumber)
 	    {
 	      QMessageBox::critical
-		(this, tr("BiblioteQ: User Error"),
+		(this,
+		 tr("BiblioteQ: User Error"),
 		 tr("It appears that you are attempting to decrease the "
 		    "number of copies while there are copies "
 		    "that have been reserved."));
@@ -892,10 +975,11 @@ void biblioteq_cd::slotGo(void)
 	  else if(newq > m_oldq)
 	    {
 	      if(QMessageBox::question
-		 (this, tr("BiblioteQ: Question"),
+		 (this,
+		  tr("BiblioteQ: Question"),
 		  tr("You have increased the number of copies. "
 		     "Would you like to modify copy information?"),
-		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
 		  QApplication::processEvents();
@@ -912,7 +996,8 @@ void biblioteq_cd::slotGo(void)
       if(cd.id->text().isEmpty())
 	{
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: User Error"),
+	    (this,
+	     tr("BiblioteQ: User Error"),
 	     tr("Please complete the Catalog Number field."));
 	  QApplication::processEvents();
 	  cd.id->setFocus();
@@ -924,7 +1009,8 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.artist->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Artist field."));
 	  QApplication::processEvents();
 	  cd.artist->setFocus();
@@ -933,7 +1019,8 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.runtime->text() == "00:00:00")
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please provide a valid Runtime."));
 	  QApplication::processEvents();
 	  cd.runtime->setFocus();
@@ -945,7 +1032,8 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.title->text().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
 	  QApplication::processEvents();
 	  cd.title->setFocus();
@@ -957,9 +1045,10 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.recording_label->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Recording Label "
-				   "field."));
+	  QMessageBox::
+	    critical(this,
+		     tr("BiblioteQ: User Error"),
+		     tr("Please complete the Recording Label field."));
 	  QApplication::processEvents();
 	  cd.recording_label->setFocus();
 	  return;
@@ -970,9 +1059,9 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.category->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Categories "
-				   "field."));
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories field."));
 	  QApplication::processEvents();
 	  cd.category->setFocus();
 	  return;
@@ -983,7 +1072,8 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.description->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
 	  QApplication::processEvents();
 	  cd.description->setFocus();
@@ -998,9 +1088,12 @@ void biblioteq_cd::slotGo(void)
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
+	    (this,
+	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
 	  QApplication::processEvents();
 	  return;
@@ -1186,8 +1279,7 @@ void biblioteq_cd::slotGo(void)
 	    query.bindValue(21, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique "
-				       "integer.")),
+			    QString(tr("Unable to generate a unique integer.")),
 			    errorstr);
 	}
 
@@ -1199,7 +1291,9 @@ void biblioteq_cd::slotGo(void)
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
-	     query.lastError().text(), __FILE__, __LINE__);
+	     query.lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  goto db_rollback;
 	}
       else
@@ -1228,9 +1322,10 @@ void biblioteq_cd::slotGo(void)
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy "
-				"data.")),
-		     query.lastError().text(), __FILE__, __LINE__);
+		     QString(tr("Unable to purge unnecessary copy data.")),
+		     query.lastError().text(),
+		     __FILE__,
+		     __LINE__);
 		  goto db_rollback;
 		}
 
@@ -1241,7 +1336,8 @@ void biblioteq_cd::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     qmain->getDB().lastError().text(), __FILE__,
+		     qmain->getDB().lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -1264,7 +1360,9 @@ void biblioteq_cd::slotGo(void)
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
-		     errorstr, __FILE__, __LINE__);
+		     errorstr,
+		     __FILE__,
+		     __LINE__);
 		  goto db_rollback;
 		}
 
@@ -1275,7 +1373,8 @@ void biblioteq_cd::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     qmain->getDB().lastError().text(), __FILE__,
+		     qmain->getDB().lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -1406,7 +1505,9 @@ void biblioteq_cd::slotGo(void)
 			    qmain->addError
 			      (QString(tr("Database Error")),
 			       QString(tr("Retrieving availability.")),
-			       errorstr, __FILE__, __LINE__);
+			       errorstr,
+			       __FILE__,
+			       __LINE__);
 			}
 		      else if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
@@ -1436,13 +1537,16 @@ void biblioteq_cd::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qmain->addError(QString(tr("Database Error")),
-				  QString(tr("Unable to retrieve the CD's "
-					     "OID.")),
-				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to retrieve the CD's "
-					   "OID."));
+		  qmain->addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to retrieve the CD's OID.")),
+		     errorstr,
+		     __FILE__,
+		     __LINE__);
+		  QMessageBox::critical
+		    (this,
+		     tr("BiblioteQ: Database Error"),
+		     tr("Unable to retrieve the CD's OID."));
 		  QApplication::processEvents();
 		}
 	      else
@@ -1471,14 +1575,18 @@ void biblioteq_cd::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	  (QString(tr("Database Error")),
+	   QString(tr("Rollback failure.")),
+	   qmain->getDB().lastError().text(),
+	   __FILE__,
+	   __LINE__);
 
       QApplication::restoreOverrideCursor();
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to create or update the entry. "
-			       "Please verify that "
-			       "the entry does not already exist."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to create or update the entry. Please verify that "
+	    "the entry does not already exist."));
       QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
@@ -1808,10 +1916,12 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 		      QString(tr("Unable to retrieve track data for table "
 				 "populating.")),
 		      query.lastError().text(),
-		      __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to retrieve track data for "
-			       "table populating."));
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to retrieve track data for table populating."));
       QApplication::processEvents();
       return;
     }
@@ -2227,7 +2337,8 @@ void biblioteq_cd::slotSaveTracks(void)
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	  tr(" contains an empty Song Title.");
-	QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: User Error"),
+	QMessageBox::critical(m_tracks_diag,
+			      tr("BiblioteQ: User Error"),
 			      errormsg);
 	QApplication::processEvents();
 	return;
@@ -2240,8 +2351,11 @@ void biblioteq_cd::slotSaveTracks(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: Database Error"),
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(m_tracks_diag,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       QApplication::processEvents();
       return;
@@ -2257,14 +2371,17 @@ void biblioteq_cd::slotSaveTracks(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to purge track data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Rollback failure.")),
 			qmain->getDB().lastError().text(),
-			__FILE__, __LINE__);
+			__FILE__,
+			__LINE__);
 
       QApplication::restoreOverrideCursor();
     }
@@ -2335,7 +2452,9 @@ void biblioteq_cd::slotSaveTracks(void)
 	    {
 	      qmain->addError(QString(tr("Database Error")),
 			      QString(tr("Unable to create track data.")),
-			      query.lastError().text(), __FILE__, __LINE__);
+			      query.lastError().text(),
+			      __FILE__,
+			      __LINE__);
 	      lastError = query.lastError().text();
 	    }
 
@@ -2353,7 +2472,8 @@ void biblioteq_cd::slotSaveTracks(void)
 	{
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Commit failure.")),
-			  qmain->getDB().lastError().text(), __FILE__,
+			  qmain->getDB().lastError().text(),
+			  __FILE__,
 			  __LINE__);
 	  qmain->getDB().rollback();
 	}
@@ -2363,9 +2483,10 @@ void biblioteq_cd::slotSaveTracks(void)
       if(!lastError.isEmpty() ||
 	 qmain->getDB().lastError().isValid())
 	{
-	  QMessageBox::critical(m_tracks_diag, tr("BiblioteQ: Database Error"),
-				tr("Some or all of the track data has not "
-				   "been saved."));
+	  QMessageBox::critical
+	    (m_tracks_diag,
+	     tr("BiblioteQ: Database Error"),
+	     tr("Some or all of the track data has not been saved."));
 	  QApplication::processEvents();
 	}
 
@@ -2373,8 +2494,7 @@ void biblioteq_cd::slotSaveTracks(void)
       ** Update the runtime.
       */
 
-      if(lastError.isEmpty() &&
-	 !qmain->getDB().lastError().isValid())
+      if(lastError.isEmpty() && !qmain->getDB().lastError().isValid())
 	slotComputeRuntime();
     }
 }

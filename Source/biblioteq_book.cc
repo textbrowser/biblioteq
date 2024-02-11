@@ -5613,7 +5613,7 @@ void biblioteq_book::updateWindow(const int state)
       id.okButton->setVisible(false);
       id.openLibraryQuery->setVisible(false);
       id.resetButton->setVisible(false);
-      
+
       if(qmain->isGuest())
 	id.showUserButton->setVisible(false);
       else
