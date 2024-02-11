@@ -580,3 +580,4 @@
 	Remove local clear() (lists, etc.) (Completed)
 	Sort connect() (TBD)
 	Sort local variables (Completed)
+311. Localized searches fail because of item favorites. (TBD)
