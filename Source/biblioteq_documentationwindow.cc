@@ -28,6 +28,7 @@
 #include <QDesktopServices>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QSettings>
 
 #include "biblioteq_documentationwindow.h"
 #include "biblioteq_misc_functions.h"
@@ -50,10 +51,10 @@ biblioteq_documentationwindow::biblioteq_documentationwindow
     menuBar()->setNativeMenuBar(true);
 
   connectSignals();
+  prepareIcons();
 }
 
-biblioteq_documentationwindow::
-~biblioteq_documentationwindow()
+biblioteq_documentationwindow::~biblioteq_documentationwindow()
 {
 }
 
@@ -109,8 +110,40 @@ void biblioteq_documentationwindow::connectSignals(void)
           Qt::UniqueConnection);
 }
 
-void biblioteq_documentationwindow::
-setAllowOpeningOfExternalLinks(const bool state)
+void biblioteq_documentationwindow::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.action_Close->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      m_ui.action_Find->setIcon
+	(QIcon::fromTheme("edit-find", QIcon(":/16x16/find.png")));
+      m_ui.action_Print->setIcon
+	(QIcon::fromTheme("document-print", QIcon(":/16x16/fileprint.png")));
+      m_ui.next->setIcon
+	(QIcon::fromTheme("go-next", QIcon(":/16x16/next.png")));
+      m_ui.previous->setIcon
+	(QIcon::fromTheme("go-previous", QIcon(":/16x16/previous.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.action_Close->setIcon(QIcon(":/16x16/cancel.png"));
+      m_ui.action_Find->setIcon(QIcon(":/16x16/find.png"));
+      m_ui.action_Print->setIcon(QIcon(":/16x16/fileprint.png"));
+      m_ui.next->setIcon(QIcon(":/16x16/next.png"));
+      m_ui.previous->setIcon(QIcon(":/16x16/previous.png"));
+    }
+}
+
+void biblioteq_documentationwindow::setAllowOpeningOfExternalLinks
+(const bool state)
 {
   m_openExternalLinks = state;
 }
@@ -150,7 +183,7 @@ void biblioteq_documentationwindow::slotFind(void)
 void biblioteq_documentationwindow::slotFindText(void)
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-  QTextDocument::FindFlags options = QTextDocument::FindFlags();
+  auto options = QTextDocument::FindFlags();
 #else
   QTextDocument::FindFlags options = 0;
 #endif
@@ -166,7 +199,7 @@ void biblioteq_documentationwindow::slotFindText(void)
   else if(!m_ui.text->find(m_ui.find->text(), options))
     {
       QColor color(240, 128, 128); // Light Coral
-      QPalette palette(m_ui.find->palette());
+      auto palette(m_ui.find->palette());
 
       palette.setColor(m_ui.find->backgroundRole(), color);
       m_ui.find->setPalette(palette);

@@ -29,6 +29,7 @@
 #include "biblioteq_boolean_table_item.h"
 #include "biblioteq_copy_editor.h"
 #include "biblioteq_custom_query.h"
+#include "biblioteq_documentationwindow.h"
 #include "biblioteq_files.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_otheroptions.h"
@@ -4393,8 +4394,31 @@ void biblioteq::slotOtherOptionsSaved(void)
     ui.table->setRowHeight
       (i, qMax(fontMetrics.height() + 10, ui.table->iconSize().height()));
 
+  {
+    QHashIterator<QAction *, QPointer<biblioteq_documentationwindow> > it
+      (m_documentation);
+
+    while(it.hasNext())
+      {
+	it.next();
+	it.value() ? it.value()->prepareIcons() : (void) 0;
+      }
+  }
+
+  {
+    QHashIterator<QAction *, QPointer<biblioteq_documentationwindow> > it
+      (m_releaseNotes);
+
+    while(it.hasNext())
+      {
+	it.next();
+	it.value() ? it.value()->prepareIcons() : (void) 0;
+      }
+  }
+
   db_enumerations ? db_enumerations->prepareIcons() : (void) 0;
   m_batchActivities->prepareIcons();
+  m_contributors ? m_contributors->prepareIcons() : (void) 0;
   m_files ? m_files->prepareIcons() : (void) 0;
   m_import->prepareIcons();
   m_queryHistory ? m_queryHistory->prepareIcons() : (void) 0;

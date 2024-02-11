@@ -40,6 +40,7 @@ class biblioteq_documentationwindow: public QMainWindow
   biblioteq_documentationwindow(QWidget *parent);
   biblioteq_documentationwindow(const QUrl &url, QWidget *parent);
   ~biblioteq_documentationwindow();
+  void prepareIcons(void);
   void setAllowOpeningOfExternalLinks(const bool state);
   void setHtml(const QString &html);
 
