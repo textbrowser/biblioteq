@@ -424,7 +424,7 @@ void biblioteq_batch_activities::prepareIcons(void)
 	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
       m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
       m_ui.close->setIcon
-	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
       m_ui.export_missing->setIcon
 	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));

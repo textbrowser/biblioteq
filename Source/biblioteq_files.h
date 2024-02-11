@@ -41,6 +41,7 @@ class biblioteq_files: public QMainWindow
  public:
   biblioteq_files(biblioteq *biblioteq);
   ~biblioteq_files();
+  void prepareIcons(void);
   void reset(void);
 
  private:

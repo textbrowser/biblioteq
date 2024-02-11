@@ -60,6 +60,7 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRefresh(void)));
+  prepareIcons();
   statusBar()->showMessage(tr("0 Total Files"));
 }
 
@@ -82,6 +83,32 @@ void biblioteq_files::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+void biblioteq_files::prepareIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+
+      m_ui.close->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      m_ui.export_files->setIcon
+	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
+      m_ui.refresh->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
+    }
+  else
+    {
+      // Faenza.
+
+      m_ui.close->setIcon(QIcon(":/16x16/cancel.png"));
+      m_ui.export_files->setIcon(QIcon(":/16x16/fileexport.png"));
+      m_ui.refresh->setIcon(QIcon(":/16x16/reload.png"));
+    }
 }
 
 void biblioteq_files::reset(void)
