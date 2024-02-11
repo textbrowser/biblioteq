@@ -2563,7 +2563,6 @@ void biblioteq_cd::slotSelectImage(void)
 
 void biblioteq_cd::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!cd.okButton->isHidden())
@@ -2571,7 +2570,7 @@ void biblioteq_cd::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  borrowerseditor = new biblioteq_borrowers_editor
+  auto borrowerseditor = new biblioteq_borrowers_editor
     (qobject_cast<QWidget *> (this),
      qmain,
      static_cast<biblioteq_item *> (this),
@@ -2581,6 +2580,7 @@ void biblioteq_cd::slotShowUsers(void)
      font(),
      "CD",
      state);
+
   borrowerseditor->showUsers();
 }
 
@@ -2590,44 +2590,47 @@ void biblioteq_cd::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
-      cd.showUserButton->setEnabled(true);
+      cd.backButton->setVisible(true);
+      cd.computeButton->setVisible(true);
       cd.copiesButton->setEnabled(true);
+      cd.frontButton->setVisible(true);
       cd.okButton->setVisible(true);
       cd.queryButton->setVisible(m_isQueryEnabled);
       cd.resetButton->setVisible(true);
-      cd.computeButton->setVisible(true);
-      trd.saveButton->setVisible(true);
-      trd.insertButton->setVisible(true);
+      cd.showUserButton->setEnabled(true);
       trd.deleteButton->setVisible(true);
-      cd.frontButton->setVisible(true);
-      cd.backButton->setVisible(true);
+      trd.insertButton->setVisible(true);
+      trd.saveButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
-	cd.id->text() + tr(")");
+	cd.id->text() +
+	tr(")");
       m_engWindowTitle = "Modify";
     }
   else
     {
+      cd.backButton->setVisible(false);
+      cd.computeButton->setVisible(false);
+      cd.copiesButton->setVisible(false);
+      cd.frontButton->setVisible(false);
+      cd.okButton->setVisible(false);
+      cd.queryButton->setVisible(false);
+      cd.resetButton->setVisible(false);
+
       if(qmain->isGuest())
 	cd.showUserButton->setVisible(false);
       else
 	cd.showUserButton->setEnabled(true);
 
-      cd.copiesButton->setVisible(false);
-      cd.okButton->setVisible(false);
-      cd.queryButton->setVisible(false);
-      cd.resetButton->setVisible(false);
-      cd.computeButton->setVisible(false);
-      trd.saveButton->setVisible(false);
-      trd.insertButton->setVisible(false);
       trd.deleteButton->setVisible(false);
-      cd.frontButton->setVisible(false);
-      cd.backButton->setVisible(false);
+      trd.insertButton->setVisible(false);
+      trd.saveButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Music CD Details (")) +
-	cd.id->text() + tr(")");
+	cd.id->text() +
+	tr(")");
       m_engWindowTitle = "View";
     }
 
+  cd.tracksButton->setEnabled(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
-  cd.tracksButton->setEnabled(true);
 }
