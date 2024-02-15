@@ -5713,24 +5713,24 @@ void biblioteq::slotSaveUser(void)
   auto row = bb.table->currentRow();
   int i = 0;
 
-  str = userinfo_diag->m_userinfo.memberid->text().trimmed();
-  userinfo_diag->m_userinfo.memberid->setText(str);
+  str = userinfo_diag->m_userinfo.city->text().trimmed();
+  userinfo_diag->m_userinfo.city->setText(str);
+  str = userinfo_diag->m_userinfo.email->text().trimmed();
+  userinfo_diag->m_userinfo.email->setText(str);
   str = userinfo_diag->m_userinfo.firstName->text().trimmed();
   userinfo_diag->m_userinfo.firstName->setText(str);
   str = userinfo_diag->m_userinfo.lastName->text().trimmed();
   userinfo_diag->m_userinfo.lastName->setText(str);
+  str = userinfo_diag->m_userinfo.memberid->text().trimmed();
+  userinfo_diag->m_userinfo.memberid->setText(str);
   str = userinfo_diag->m_userinfo.middle->text().trimmed();
   userinfo_diag->m_userinfo.middle->setText(str);
   str = userinfo_diag->m_userinfo.street->text().trimmed();
   userinfo_diag->m_userinfo.street->setText(str);
-  str = userinfo_diag->m_userinfo.city->text().trimmed();
-  userinfo_diag->m_userinfo.city->setText(str);
-  str = userinfo_diag->m_userinfo.zip->text().trimmed();
-  userinfo_diag->m_userinfo.zip->setText(str);
   str = userinfo_diag->m_userinfo.telephoneNumber->text().trimmed();
   userinfo_diag->m_userinfo.telephoneNumber->setText(str);
-  str = userinfo_diag->m_userinfo.email->text().trimmed();
-  userinfo_diag->m_userinfo.email->setText(str);
+  str = userinfo_diag->m_userinfo.zip->text().trimmed();
+  userinfo_diag->m_userinfo.zip->setText(str);
 
   if(m_engUserinfoTitle.contains("New"))
     {
@@ -5766,6 +5766,16 @@ void biblioteq::slotSaveUser(void)
 	}
     }
 
+  if(userinfo_diag->m_userinfo.city->text().isEmpty())
+    {
+      QMessageBox::critical(userinfo_diag,
+			    tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid City."));
+      QApplication::processEvents();
+      userinfo_diag->m_userinfo.city->setFocus();
+      return;
+    }
+
   if(userinfo_diag->m_userinfo.firstName->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag,
@@ -5796,16 +5806,6 @@ void biblioteq::slotSaveUser(void)
       return;
     }
 
-  if(userinfo_diag->m_userinfo.city->text().isEmpty())
-    {
-      QMessageBox::critical(userinfo_diag,
-			    tr("BiblioteQ: User Error"),
-			    tr("Please provide a valid City."));
-      QApplication::processEvents();
-      userinfo_diag->m_userinfo.city->setFocus();
-      return;
-    }
-
   if(userinfo_diag->m_userinfo.zip->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag,
@@ -5816,15 +5816,15 @@ void biblioteq::slotSaveUser(void)
       return;
     }
 
-  checksum.append(userinfo_diag->m_userinfo.dob->date().
-		  toString(s_databaseDateFormat));
-  checksum.append(userinfo_diag->m_userinfo.sex->currentText());
-  checksum.append(userinfo_diag->m_userinfo.firstName->text());
-  checksum.append(userinfo_diag->m_userinfo.middle->text());
-  checksum.append(userinfo_diag->m_userinfo.lastName->text());
-  checksum.append(userinfo_diag->m_userinfo.street->text());
   checksum.append(userinfo_diag->m_userinfo.city->text());
+  checksum.append
+    (userinfo_diag->m_userinfo.dob->date().toString(s_databaseDateFormat));
+  checksum.append(userinfo_diag->m_userinfo.firstName->text());
+  checksum.append(userinfo_diag->m_userinfo.lastName->text());
+  checksum.append(userinfo_diag->m_userinfo.middle->text());
+  checksum.append(userinfo_diag->m_userinfo.sex->currentText());
   checksum.append(userinfo_diag->m_userinfo.state->currentText());
+  checksum.append(userinfo_diag->m_userinfo.street->text());
   checksum.append(userinfo_diag->m_userinfo.zip->text());
   QApplication::setOverrideCursor(Qt::WaitCursor);
   exists = biblioteq_misc_functions::getMemberMatch
@@ -6241,8 +6241,7 @@ void biblioteq::slotSaveUser(void)
 		(m_members_diag,
 		 tr("BiblioteQ: Information"),
 		 tr("Please notify the new member that their "
-		    "default password has been set "
-		    "to tempPass."));
+		    "default password has been set to tempPass."));
 	      QApplication::processEvents();
 	    }
 

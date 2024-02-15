@@ -1306,11 +1306,16 @@ bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
   auto exists = false;
 
   errorstr = "";
-  querystr = "SELECT EXISTS(SELECT 1 FROM member "
-    "WHERE "
-    "dob || sex || first_name || "
+  querystr = "SELECT EXISTS(SELECT 1 FROM member WHERE "
+    "city || "
+    "dob || "
+    "first_name || "
+    "last_name || "
     "middle_init || "
-    "last_name || street || city || state_abbr || zip = ? "
+    "sex || "
+    "state_abbr || "
+    "street || "
+    "zip = ? "
     "AND memberid != ?)";
   query.prepare(querystr);
   query.bindValue(0, checksum);
