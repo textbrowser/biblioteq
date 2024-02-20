@@ -538,7 +538,7 @@ void biblioteq_dbenumerations::prepareIcons(void)
 	    (QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
 
       m_ui.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
       m_ui.reloadButton->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
       m_ui.saveButton->setIcon

@@ -607,7 +607,7 @@ void biblioteq_copy_editor_book::prepareIcons(void)
       // System.
 
       m_cb.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_cb.deleteButton->setIcon
 	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
       m_cb.saveButton->setIcon

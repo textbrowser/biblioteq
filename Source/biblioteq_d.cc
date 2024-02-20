@@ -325,15 +325,38 @@ void biblioteq::prepareIcons(void)
       ab.addButton->setIcon
 	(QIcon::fromTheme("list-add", QIcon(":/32x32/add.png")));
       ab.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
       ab.deleteButton->setIcon
 	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
       ab.reloadButton->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
       ab.saveButton->setIcon
 	(QIcon::fromTheme("document-save", QIcon(":/32x32/save.png")));
+
+      bb.action_Export->setIcon
+	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
+      bb.addButton->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/32x32/add.png")));
+      bb.cancelButton->setIcon
+	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
+      bb.checkoutButton->setIcon
+	(QIcon::fromTheme("go-home", QIcon(":/32x32/checkout.png")));
+      bb.deleteButton->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
+      bb.grantButton->setIcon(QIcon(":/32x32/permissions.png"));
+      bb.historyButton->setIcon(QIcon(":/32x32/history.png"));
+      bb.listButton->setIcon(QIcon(":/32x32/stamp.png"));
+      bb.modifyButton->setIcon
+	(QIcon::fromTheme("document-edit", QIcon(":/32x32/edit.png")));
+      bb.overdueButton->setIcon(QIcon(":/32x32/date.png"));
+      bb.printButton->setIcon
+	(QIcon::fromTheme("document-print", QIcon(":/32x32/print.png")));
+      bb.reloadButton->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
+      bb.speedy->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
       br.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       br.fileButton->setIcon
 	(QIcon::fromTheme("document-open", QIcon(":/16x16/fileopen.png")));
       br.okButton->setIcon
@@ -341,7 +364,7 @@ void biblioteq::prepareIcons(void)
       br.resetButton->setIcon
 	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
       er.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       er.copyButton->setIcon
 	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
       er.resetButton->setIcon
@@ -371,7 +394,6 @@ void biblioteq::prepareIcons(void)
       ab.saveButton->setIcon(QIcon(":/32x32/save.png"));
       bb.action_Export->setIcon(QIcon(":/16x16/fileexport.png"));
       bb.addButton->setIcon(QIcon(":/32x32/add.png"));
-      bb.cancelButton->setIcon(QIcon(":/32x32/cancel.png"));
       bb.cancelButton->setIcon(QIcon(":/32x32/cancel.png"));
       bb.checkoutButton->setIcon(QIcon(":/32x32/checkout.png"));
       bb.deleteButton->setIcon(QIcon(":/32x32/remove.png"));

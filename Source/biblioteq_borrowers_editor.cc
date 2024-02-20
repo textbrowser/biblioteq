@@ -139,7 +139,7 @@ void biblioteq_borrowers_editor::prepareIcons(void)
       // System.
 
       m_bd.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_bd.eraseButton->setIcon
 	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
       m_bd.saveButton->setIcon

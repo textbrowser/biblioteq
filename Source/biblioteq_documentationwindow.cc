@@ -120,7 +120,7 @@ void biblioteq_documentationwindow::prepareIcons(void)
       // System.
 
       m_ui.action_Close->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_ui.action_Find->setIcon
 	(QIcon::fromTheme("edit-find", QIcon(":/16x16/find.png")));
       m_ui.action_Print->setIcon

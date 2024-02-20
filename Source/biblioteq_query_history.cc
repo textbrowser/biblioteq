@@ -84,7 +84,7 @@ void biblioteq_query_history::prepareIcons(void)
       m_ui.clipboard->setIcon
 	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
       m_ui.close->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
     }
   else
     {

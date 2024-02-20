@@ -95,7 +95,7 @@ void biblioteq_files::prepareIcons(void)
       // System.
 
       m_ui.close->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_ui.export_files->setIcon
 	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
       m_ui.refresh->setIcon

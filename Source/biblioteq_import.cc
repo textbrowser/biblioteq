@@ -796,7 +796,7 @@ void biblioteq_import::prepareIcons(void)
       m_ui.add_row->setIcon
 	(QIcon::fromTheme("list-add", QIcon(":/16x16/add.png")));
       m_ui.close->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/32x32/cancel.png")));
+	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
       m_ui.delete_row->setIcon
 	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
       m_ui.import_csv->setIcon
