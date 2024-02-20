@@ -4306,6 +4306,9 @@ void biblioteq::slotModifyBorrower(void)
   userinfo_diag->m_userinfo.memberid->setPalette
     (userinfo_diag->m_userinfo.telephoneNumber->palette());
   userinfo_diag->updateGeometry();
+  userinfo_diag->resize
+    (userinfo_diag->width(), userinfo_diag->sizeHint().height());
+  biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
 
