@@ -340,6 +340,12 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
       br.resetButton->setIcon
 	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
+      er.cancelButton->setIcon
+	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
+      er.copyButton->setIcon
+	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
+      er.resetButton->setIcon
+	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
@@ -367,6 +373,9 @@ void biblioteq::prepareIcons(void)
       br.fileButton->setIcon(QIcon(":/16x16/fileopen.png"));
       br.okButton->setIcon(QIcon(":/16x16/ok.png"));
       br.resetButton->setIcon(QIcon(":/16x16/reset.png"));
+      er.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      er.copyButton->setIcon(QIcon(":/16x16/editcopy.png"));
+      er.resetButton->setIcon(QIcon(":/16x16/reset.png"));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
