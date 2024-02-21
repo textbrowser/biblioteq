@@ -332,7 +332,6 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
       ab.saveButton->setIcon
 	(QIcon::fromTheme("document-save", QIcon(":/32x32/save.png")));
-
       bb.action_Export->setIcon
 	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
       bb.addButton->setIcon
@@ -379,6 +378,18 @@ void biblioteq::prepareIcons(void)
 	    label->setPixmap(icon.pixmap(QSize(16, 16)));
 	  }
 
+      history.actionExport_As_CSV->setIcon
+	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
+      history.cancelButton->setIcon
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
+      history.nextTool->setIcon
+	(QIcon::fromTheme("go-next", QIcon(":/32x32/next.png")));
+      history.prevTool->setIcon
+	(QIcon::fromTheme("go-previous", QIcon(":/32x32/previous.png")));
+      history.printButton->setIcon
+	(QIcon::fromTheme("document-print", QIcon(":/16x16/fileprint.png")));
+      history.reloadButton->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
       pass.cancelButton->setIcon
 	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
       pass.okButton->setIcon
@@ -428,6 +439,12 @@ void biblioteq::prepareIcons(void)
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
 	  label->setPixmap(QPixmap(":/16x16/ok.png"));
 
+      history.actionExport_As_CSV->setIcon(QIcon(":/16x16/fileexport.png"));
+      history.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
+      history.nextTool->setIcon(QIcon(":/32x32/next.png"));
+      history.prevTool->setIcon(QIcon(":/32x32/previous.png"));
+      history.printButton->setIcon(QIcon(":/16x16/fileprint.png"));
+      history.reloadButton->setIcon(QIcon(":/16x16/reload.png"));
       pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
       userinfo_diag->m_userinfo.cancelButton->setIcon
