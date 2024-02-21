@@ -368,7 +368,7 @@ void biblioteq_otheroptions::prepareIcons(void)
       m_ui.close->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_ui.custom_query_reset->setIcon
-	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
+	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
       m_ui.save->setIcon
 	(QIcon::fromTheme("document-save", QIcon(":/16x16/ok.png")));
     }

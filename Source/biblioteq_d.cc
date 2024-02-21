@@ -362,13 +362,13 @@ void biblioteq::prepareIcons(void)
       br.okButton->setIcon
 	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
       br.resetButton->setIcon
-	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
+	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
       er.cancelButton->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       er.copyButton->setIcon
 	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
       er.resetButton->setIcon
-	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/reset.png")));
+	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
 	if(!label->pixmap(Qt::ReturnByValue).isNull())

@@ -296,7 +296,7 @@ void biblioteq_custom_query::slotPrepareIcons(void)
       cq.close_pb->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       cq.delete_favorite->setIcon
-	(QIcon::fromTheme("edit-clear", QIcon(":/16x16/eraser.png")));
+	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
       cq.execute_pb->setIcon
 	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
       cq.refresh_pb->setIcon
