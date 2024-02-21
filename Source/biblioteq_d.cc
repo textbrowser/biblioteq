@@ -343,7 +343,8 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("go-home", QIcon(":/32x32/checkout.png")));
       bb.deleteButton->setIcon
 	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
-      bb.grantButton->setIcon(QIcon(":/32x32/permissions.png"));
+      bb.grantButton->setIcon
+	(QIcon::fromTheme("dialog-password", QIcon(":/32x32/permissions.png")));
       bb.historyButton->setIcon(QIcon(":/32x32/history.png"));
       bb.listButton->setIcon(QIcon(":/32x32/stamp.png"));
       bb.modifyButton->setIcon
@@ -382,6 +383,16 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
       pass.okButton->setIcon
 	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+      userinfo_diag->m_userinfo.cancelButton->setIcon
+	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
+      userinfo_diag->m_userinfo.menu->setIcon
+	(QIcon::fromTheme("mail-message-new", QIcon(":/32x32/mail.png")));
+      userinfo_diag->m_userinfo.nextTool->setIcon
+	(QIcon::fromTheme("go-next", QIcon(":/32x32/next.png")));
+      userinfo_diag->m_userinfo.okButton->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+      userinfo_diag->m_userinfo.prevTool->setIcon
+	(QIcon::fromTheme("go-previous", QIcon(":/32x32/previous.png")));
     }
   else
     {
@@ -404,7 +415,7 @@ void biblioteq::prepareIcons(void)
       bb.overdueButton->setIcon(QIcon(":/32x32/date.png"));
       bb.printButton->setIcon(QIcon(":/32x32/print.png"));
       bb.reloadButton->setIcon(QIcon(":/32x32/reload.png"));
-      bb.speedy->setIcon(QIcon(":/32x32/ok.png"));      
+      bb.speedy->setIcon(QIcon(":/32x32/ok.png"));
       br.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       br.fileButton->setIcon(QIcon(":/16x16/fileopen.png"));
       br.okButton->setIcon(QIcon(":/16x16/ok.png"));
@@ -419,6 +430,13 @@ void biblioteq::prepareIcons(void)
 
       pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
+      userinfo_diag->m_userinfo.cancelButton->setIcon
+	(QIcon(":/16x16/cancel.png"));
+      userinfo_diag->m_userinfo.menu->setIcon(QIcon(":/32x32/mail.png"));
+      userinfo_diag->m_userinfo.nextTool->setIcon(QIcon(":/32x32/next.png"));
+      userinfo_diag->m_userinfo.okButton->setIcon(QIcon(":/16x16/ok.png"));
+      userinfo_diag->m_userinfo.prevTool->setIcon
+	(QIcon(":/32x32/previous.png"));
     }
 }
 
