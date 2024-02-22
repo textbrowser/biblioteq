@@ -998,77 +998,75 @@ void biblioteq_book::modify(const int state)
   if(state == biblioteq::EDITABLE)
     {
       setReadOnlyFields(this, false);
-      setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
-      m_engWindowTitle = "Modify";
       id.attach_files->setEnabled(true);
+      id.backButton->setVisible(true);
+      id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.dwnldBack->setVisible(true);
+      id.dwnldFront->setVisible(true);
+      id.export_files->setEnabled(true);
+      id.frontButton->setVisible(true);
+      id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
+      id.isbnAvailableCheckBox->setChecked(false);
+      id.marc_tags_format->setVisible(true);
+      id.okButton->setVisible(true);
+      id.openLibraryQuery->setVisible(true);
+      id.parse_marc_tags->setVisible(true);
+      id.resetButton->setVisible(true);
+      id.showUserButton->setEnabled(true);
+      id.sruQueryButton->setVisible(true);
+      id.target_audience->setEditable(true);
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       id.view_pdf->setEnabled(true);
 #endif
-      id.copiesButton->setEnabled(true);
-      id.delete_files->setEnabled(true);
-      id.export_files->setEnabled(true);
-      id.isbnAvailableCheckBox->setChecked(false);
-      id.marc_tags_format->setVisible(true);
-      id.parse_marc_tags->setVisible(true);
-      id.showUserButton->setEnabled(true);
-      id.okButton->setVisible(true);
-      id.openLibraryQuery->setVisible(true);
-      id.sruQueryButton->setVisible(true);
       id.z3950QueryButton->setVisible(true);
-      id.resetButton->setVisible(true);
-      id.frontButton->setVisible(true);
-      id.backButton->setVisible(true);
-      id.dwnldFront->setVisible(true);
-      id.dwnldBack->setVisible(true);
-      id.isbn10to13->setVisible(true);
-      id.isbn13to10->setVisible(true);
-      id.target_audience->setEditable(true);
+      biblioteq_misc_functions::highlightWidget
+	(id.author->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(id.category->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(id.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
 	(id.id, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
 	(id.isbn13, m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(id.title, m_requiredHighlightColor);
+	(id.place->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
 	(id.publisher->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(id.place->viewport(), m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(id.author->viewport(), m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(id.description->viewport(), m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(id.category->viewport(), m_requiredHighlightColor);
+	(id.title, m_requiredHighlightColor);
+      m_engWindowTitle = "Modify";
       m_te_orig_pal = id.id->palette();
+      setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
     }
   else
     {
       setReadOnlyFields(this, true);
-      id.isbnAvailableCheckBox->setCheckable(false);
-      setWindowTitle(tr("BiblioteQ: View Book Details"));
-      m_engWindowTitle = "View";
       id.attach_files->setVisible(false);
-      id.view_pdf->setVisible(true);
+      id.backButton->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
+      id.dwnldBack->setVisible(false);
+      id.dwnldFront->setVisible(false);
       id.export_files->setVisible(true);
+      id.frontButton->setVisible(false);
+      id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
+      id.isbnAvailableCheckBox->setCheckable(false);
+      id.okButton->setVisible(false);
+      id.openLibraryQuery->setVisible(false);
+      id.resetButton->setVisible(false);
 
       if(qmain->isGuest())
 	id.showUserButton->setVisible(false);
       else
 	id.showUserButton->setEnabled(true);
 
-      id.okButton->setVisible(false);
-      id.openLibraryQuery->setVisible(false);
       id.sruQueryButton->setVisible(false);
+      id.view_pdf->setVisible(true);
       id.z3950QueryButton->setVisible(false);
-      id.resetButton->setVisible(false);
-      id.frontButton->setVisible(false);
-      id.backButton->setVisible(false);
-      id.dwnldFront->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.isbn10to13->setVisible(false);
-      id.isbn13to10->setVisible(false);
 
       auto actions = id.resetButton->menu()->actions();
 
@@ -1077,11 +1075,14 @@ void biblioteq_book::modify(const int state)
 	  actions[0]->setVisible(false);
 	  actions[1]->setVisible(false);
 	}
+
+      m_engWindowTitle = "View";
+      setWindowTitle(tr("BiblioteQ: View Book Details"));
     }
 
-  id.quantity->setMinimum(1);
-  id.price->setMinimum(0.00);
   id.okButton->setText(tr("&Save"));
+  id.price->setMinimum(0.00);
+  id.quantity->setMinimum(1);
   str = m_oid;
   query.prepare("SELECT title, "
 		"author, "
@@ -1154,60 +1155,12 @@ void biblioteq_book::modify(const int state)
 
       for(i = 0; i < record.count(); i++)
 	{
-	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
+	  var = record.field(i).value();
 
-	  if(fieldname == "title")
-	    id.title->setText(var.toString().trimmed());
-	  else if(fieldname == "author")
-	    id.author->setMultipleLinks("book_search", "author",
-					var.toString().trimmed());
-	  else if(fieldname == "publisher")
-	    id.publisher->setMultipleLinks("book_search", "publisher",
-					   var.toString().trimmed());
-	  else if(fieldname == "place")
-	    id.place->setMultipleLinks("book_search", "place",
-				       var.toString().trimmed());
-	  else if(fieldname == "pdate")
-	    id.publication_date->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 biblioteq::s_databaseDateFormat));
-	  else if(fieldname == "edition")
-	    {
-	      if(id.edition->findText(var.toString().trimmed()) > -1)
-		id.edition->setCurrentIndex
-		  (id.edition->findText(var.toString().trimmed()));
-	      else
-		id.edition->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "price")
-	    id.price->setValue(var.toDouble());
-	  else if(fieldname == "category")
-	    id.category->setMultipleLinks("book_search", "category",
-					  var.toString().trimmed());
-	  else if(fieldname == "language")
-	    {
-	      if(id.language->findText(var.toString().trimmed()) > -1)
-		id.language->setCurrentIndex
-		  (id.language->findText(var.toString().trimmed()));
-	      else
-		id.language->setCurrentIndex
-		  (id.language->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "quantity")
-	    {
-	      id.quantity->setValue(var.toInt());
-	      m_oldq = id.quantity->value();
-	    }
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(id.monetary_units->findText(var.toString().trimmed()) > -1)
-		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText(var.toString().trimmed()));
-	      else
-		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText(biblioteq::s_unknown));
-	    }
+	  if(fieldname == "author")
+	    id.author->setMultipleLinks
+	      ("book_search", "author", var.toString().trimmed());
 	  else if(fieldname == "binding_type")
 	    {
 	      if(id.binding->findText(var.toString().trimmed()) > -1)
@@ -1216,14 +1169,22 @@ void biblioteq_book::modify(const int state)
 	      else
 		id.binding->setCurrentIndex(0);
 	    }
-	  else if(fieldname == "location")
+	  else if(fieldname == "callnumber")
+	    id.callnum->setText(var.toString().trimmed());
+	  else if(fieldname == "category")
+	    id.category->setMultipleLinks
+	      ("book_search", "category", var.toString().trimmed());
+	  else if(fieldname == "description")
+	    id.description->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "deweynumber")
+	    id.deweynum->setText(var.toString().trimmed());
+	  else if(fieldname == "edition")
 	    {
-	      if(id.location->findText(var.toString().trimmed()) > -1)
-		id.location->setCurrentIndex
-		  (id.location->findText(var.toString().trimmed()));
+	      if(id.edition->findText(var.toString().trimmed()) > -1)
+		id.edition->setCurrentIndex
+		  (id.edition->findText(var.toString().trimmed()));
 	      else
-		id.location->setCurrentIndex
-		  (id.location->findText(biblioteq::s_unknown));
+		id.edition->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "id")
 	    {
@@ -1231,7 +1192,8 @@ void biblioteq_book::modify(const int state)
 		{
 		  if(!var.toString().trimmed().trimmed().isEmpty())
 		    str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-		      var.toString().trimmed() + tr(")");
+		      var.toString().trimmed() +
+		      tr(")");
 		  else
 		    str = tr("BiblioteQ: Modify Book Entry");
 
@@ -1241,7 +1203,8 @@ void biblioteq_book::modify(const int state)
 		{
 		  if(!var.toString().trimmed().trimmed().isEmpty())
 		    str = QString(tr("BiblioteQ: View Book Details (")) +
-		      var.toString().trimmed() + tr(")");
+		      var.toString().trimmed() +
+		      tr(")");
 		  else
 		    str = tr("BiblioteQ: View Book Details");
 
@@ -1254,13 +1217,6 @@ void biblioteq_book::modify(const int state)
 	      if(!query.isNull(i))
 		id.isbnAvailableCheckBox->setChecked(true);
 	    }
-	  else if(fieldname == "description")
-	    id.description->setPlainText(var.toString().trimmed());
-	  else if(fieldname == "marc_tags")
-	    id.marc_tags->setPlainText(var.toString().trimmed());
-	  else if(fieldname == "keyword")
-	    id.keyword->setMultipleLinks("book_search", "keyword",
-					 var.toString().trimmed());
 	  else if(fieldname == "isbn13")
 	    {
 	      id.isbn13->setText
@@ -1269,12 +1225,59 @@ void biblioteq_book::modify(const int state)
 	      if(!query.isNull(i))
 		id.isbnAvailableCheckBox->setChecked(true);
 	    }
+	  else if(fieldname == "keyword")
+	    id.keyword->setMultipleLinks
+	      ("book_search", "keyword", var.toString().trimmed());
+	  else if(fieldname == "language")
+	    {
+	      if(id.language->findText(var.toString().trimmed()) > -1)
+		id.language->setCurrentIndex
+		  (id.language->findText(var.toString().trimmed()));
+	      else
+		id.language->setCurrentIndex
+		  (id.language->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "location")
+	    {
+	      if(id.location->findText(var.toString().trimmed()) > -1)
+		id.location->setCurrentIndex
+		  (id.location->findText(var.toString().trimmed()));
+	      else
+		id.location->setCurrentIndex
+		  (id.location->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "marc_tags")
+	    id.marc_tags->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(id.monetary_units->findText(var.toString().trimmed()) > -1)
+		id.monetary_units->setCurrentIndex
+		  (id.monetary_units->findText(var.toString().trimmed()));
+	      else
+		id.monetary_units->setCurrentIndex
+		  (id.monetary_units->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "pdate")
+	    id.publication_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
+	  else if(fieldname == "place")
+	    id.place->setMultipleLinks
+	      ("book_search", "place", var.toString().trimmed());
+	  else if(fieldname == "price")
+	    id.price->setValue(var.toDouble());
+	  else if(fieldname == "publisher")
+	    id.publisher->setMultipleLinks
+	      ("book_search", "publisher", var.toString().trimmed());
+	  else if(fieldname == "quantity")
+	    {
+	      id.quantity->setValue(var.toInt());
+	      m_oldq = id.quantity->value();
+	    }
+	  else if(fieldname == "title")
+	    id.title->setText(var.toString().trimmed());
 	  else if(fieldname == "lccontrolnumber")
 	    id.lcnum->setText(var.toString().trimmed());
-	  else if(fieldname == "callnumber")
-	    id.callnum->setText(var.toString().trimmed());
-	  else if(fieldname == "deweynumber")
-	    id.deweynum->setText(var.toString().trimmed());
 	  else if(fieldname == "originality")
 	    {
 	      if(id.originality->findText(var.toString().trimmed()) > -1)
