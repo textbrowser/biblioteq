@@ -168,14 +168,18 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
   qmain->addError
     (QString(tr("Database Error")),
      QString(tr("Unable to retrieve the grey literature locations.")),
-     errorstr, __FILE__, __LINE__);
+     errorstr,
+     __FILE__,
+     __LINE__);
   m_ui.type->addItems
     (biblioteq_misc_functions::getGreyLiteratureTypes(qmain->getDB(),
 						      errorstr));
   qmain->addError
     (QString(tr("Database Error")),
      QString(tr("Unable to retrieve the grey literature document types.")),
-     errorstr, __FILE__, __LINE__);
+     errorstr,
+     __FILE__,
+     __LINE__);
 
   if(m_ui.location->findText(biblioteq::s_unknown) == -1)
     m_ui.location->addItem(biblioteq::s_unknown);
@@ -329,7 +333,7 @@ void biblioteq_grey_literature::closeEvent(QCloseEvent *e)
 	   question(this,
 		    tr("BiblioteQ: Question"),
 		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
 	  {
 	    QApplication::processEvents();
@@ -389,7 +393,8 @@ void biblioteq_grey_literature::createFile(const QByteArray &bytes,
        __LINE__);
 }
 
-void biblioteq_grey_literature::duplicate(const QString &p_oid, const int state)
+void biblioteq_grey_literature::duplicate
+(const QString &p_oid, const int state)
 {
   m_duplicate = true;
   modify(state); // Initial population.
@@ -620,7 +625,6 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.attach_files->setVisible(false);
       m_ui.delete_files->setVisible(false);
       m_ui.export_files->setEnabled(true);
-      m_ui.okButton->setVisible(false);
       m_ui.okButton->setVisible(false);
       m_ui.resetButton->setVisible(false);
 
@@ -888,11 +892,11 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.showUserButton->setEnabled(false);
   m_ui.type->insertItem(0, tr("Any"));
   m_ui.type->setCurrentIndex(0);
-  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
       m_ui.title->setFocus();
+      prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Grey Literature Search"));
 #ifdef Q_OS_ANDROID
       showMaximized();
@@ -1014,16 +1018,18 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
   if(list.isEmpty())
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
+	(this,
+	 tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
       QApplication::processEvents();
       return;
     }
 
-  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+  if(QMessageBox::question(this,
+			   tr("BiblioteQ: Question"),
 			   tr("Are you sure that you wish to delete the "
 			      "selected file(s)?"),
-			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
     {
       QApplication::processEvents();
@@ -1856,7 +1862,8 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.resetButton->setVisible(true);
       m_ui.showUserButton->setEnabled(true);
       string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
-	m_ui.id->text() + tr(")");
+	m_ui.id->text() +
+	tr(")");
     }
   else
     {
@@ -1873,7 +1880,8 @@ void biblioteq_grey_literature::updateWindow(const int state)
 	m_ui.showUserButton->setEnabled(true);
 
       string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
-	m_ui.id->text() + tr(")");
+	m_ui.id->text() +
+	tr(")");
     }
 
   setReadOnlyFields(this, state != biblioteq::EDITABLE);

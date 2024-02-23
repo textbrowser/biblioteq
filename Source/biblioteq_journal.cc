@@ -36,10 +36,13 @@ biblioteq_journal::biblioteq_journal(biblioteq *parent,
   m_subType = "Journal";
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("journals"));
-  disconnect(ma.cancelButton, SIGNAL(clicked(void)),
+  disconnect(ma.cancelButton,
+	     SIGNAL(clicked(void)),
 	     static_cast<biblioteq_magazine *> (this),
 	     SLOT(slotCancel(void)));
-  connect(ma.cancelButton, SIGNAL(clicked(void)), this,
+  connect(ma.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotCancel(void)));
 }
 
@@ -73,7 +76,7 @@ void biblioteq_journal::closeEvent(QCloseEvent *event)
 	if(QMessageBox::
 	   question(this, tr("BiblioteQ: Question"),
 		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
 	  {
 	    QApplication::processEvents();
