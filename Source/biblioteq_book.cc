@@ -1721,6 +1721,14 @@ void biblioteq_book::populateAfterSRU
     }
 
   m.parse(text);
+
+  if(id.alternate_id_1->text().trimmed().isEmpty())
+    {
+      id.alternate_id_1->setText(m.sru003());
+      biblioteq_misc_functions::highlightWidget
+	(id.alternate_id_1, m_queryHighlightColor);
+    }
+
   str = m.author();
 
   if(!str.isEmpty())
@@ -1830,13 +1838,6 @@ void biblioteq_book::populateAfterSRU
       id.publisher->setPlainText(str);
       biblioteq_misc_functions::highlightWidget
 	(id.publisher->viewport(), m_queryHighlightColor);
-    }
-
-  if(id.alternate_id_1->text().trimmed().isEmpty())
-    {
-      id.alternate_id_1->setText(m.sru003());
-      biblioteq_misc_functions::highlightWidget
-	(id.alternate_id_1, m_queryHighlightColor);
     }
 
   str = m.targetAudience();
@@ -2520,8 +2521,8 @@ void biblioteq_book::slotDownloadImage(void)
       if(!id.alternate_id_1->text().trimmed().isEmpty())
 	ok = true;
 
-      if(id.isbnAvailableCheckBox->isChecked() &&
-	 id.id->text().remove('-').trimmed().length() == 10)
+      if(id.id->text().remove('-').trimmed().length() == 10 &&
+	 id.isbnAvailableCheckBox->isChecked())
 	ok = true;
 
       if(!ok)
@@ -2810,14 +2811,22 @@ void biblioteq_book::slotDownloadImage(void)
       return;
     }
 
-  connect(reply, SIGNAL(readyRead(void)),
-	  this, SLOT(slotReadyRead(void)));
-  connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
-	  this, SLOT(slotDataTransferProgress(qint64, qint64)));
-  connect(reply, SIGNAL(finished(void)),
-	  dialog, SLOT(deleteLater(void)));
-  connect(reply, SIGNAL(finished(void)),
-	  this, SLOT(slotDownloadFinished(void)));
+  connect(reply,
+	  SIGNAL(downloadProgress(qint64, qint64)),
+	  this,
+	  SLOT(slotDataTransferProgress(qint64, qint64)));
+  connect(reply,
+	  SIGNAL(finished(void)),
+	  dialog,
+	  SLOT(deleteLater(void)));
+  connect(reply,
+	  SIGNAL(finished(void)),
+	  this,
+	  SLOT(slotDownloadFinished(void)));
+  connect(reply,
+	  SIGNAL(readyRead(void)),
+	  this,
+	  SLOT(slotReadyRead(void)));
   reply->ignoreSslErrors();
   QApplication::processEvents();
 }
@@ -3573,16 +3582,16 @@ void biblioteq_book::slotGo(void)
 	  if(id.back_image->m_image.isNull())
 	    id.back_image->m_imageFormat = "";
 
-	  id.author->setMultipleLinks("book_search", "author",
-				      id.author->toPlainText());
-	  id.category->setMultipleLinks("book_search", "category",
-					id.category->toPlainText());
-	  id.publisher->setMultipleLinks("book_search", "publisher",
-					 id.publisher->toPlainText());
-	  id.place->setMultipleLinks("book_search", "place",
-				     id.place->toPlainText());
-	  id.keyword->setMultipleLinks("book_search", "keyword",
-				       id.keyword->toPlainText());
+	  id.author->setMultipleLinks
+	    ("book_search", "author", id.author->toPlainText());
+	  id.category->setMultipleLinks
+	    ("book_search", "category", id.category->toPlainText());
+	  id.keyword->setMultipleLinks
+	    ("book_search", "keyword", id.keyword->toPlainText());
+	  id.place->setMultipleLinks
+	    ("book_search", "place", id.place->toPlainText());
+	  id.publisher->setMultipleLinks
+	    ("book_search", "publisher", id.publisher->toPlainText());
 	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
