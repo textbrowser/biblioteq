@@ -1158,9 +1158,24 @@ void biblioteq_book::modify(const int state)
 	  fieldname = record.fieldName(i);
 	  var = record.field(i).value();
 
-	  if(fieldname == "author")
+	  if(fieldname == "accession_number")
+	    id.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "alternate_id_1")
+	    id.alternate_id_1->setText(var.toString().trimmed());
+	  else if(fieldname == "author")
 	    id.author->setMultipleLinks
 	      ("book_search", "author", var.toString().trimmed());
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  id.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(id.back_image->m_image.isNull())
+		    id.back_image->loadFromData(var.toByteArray());
+		}
+	    }
 	  else if(fieldname == "binding_type")
 	    {
 	      if(id.binding->findText(var.toString().trimmed()) > -1)
@@ -1174,6 +1189,18 @@ void biblioteq_book::modify(const int state)
 	  else if(fieldname == "category")
 	    id.category->setMultipleLinks
 	      ("book_search", "category", var.toString().trimmed());
+	  else if(fieldname == "condition")
+	    {
+	      if(id.condition->findText(var.toString().trimmed()) > -1)
+		id.condition->setCurrentIndex
+		  (id.condition->findText(var.toString().trimmed()));
+	      else
+		id.condition->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "date_of_reform")
+	    id.reform_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "description")
 	    id.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "deweynumber")
@@ -1185,6 +1212,17 @@ void biblioteq_book::modify(const int state)
 		  (id.edition->findText(var.toString().trimmed()));
 	      else
 		id.edition->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  id.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(id.front_image->m_image.isNull())
+		    id.front_image->loadFromData(var.toByteArray());
+		}
 	    }
 	  else if(fieldname == "id")
 	    {
@@ -1237,6 +1275,8 @@ void biblioteq_book::modify(const int state)
 		id.language->setCurrentIndex
 		  (id.language->findText(biblioteq::s_unknown));
 	    }
+	  else if(fieldname == "lccontrolnumber")
+	    id.lcnum->setText(var.toString().trimmed());
 	  else if(fieldname == "location")
 	    {
 	      if(id.location->findText(var.toString().trimmed()) > -1)
@@ -1257,6 +1297,25 @@ void biblioteq_book::modify(const int state)
 		id.monetary_units->setCurrentIndex
 		  (id.monetary_units->findText(biblioteq::s_unknown));
 	    }
+	  else if(fieldname == "multivolume_set_isbn")
+	    {
+	      auto str(var.toString().remove('-').trimmed());
+
+	      if(str.length() <= 10)
+		id.multivolume_set_isbn->setText(qmain->formattedISBN10(str));
+	      else
+		id.multivolume_set_isbn->setText(qmain->formattedISBN13(str));
+	    }
+	  else if(fieldname == "origin")
+	    id.origin->setText(var.toString().trimmed());
+	  else if(fieldname == "originality")
+	    {
+	      if(id.originality->findText(var.toString().trimmed()) > -1)
+		id.originality->setCurrentIndex
+		  (id.originality->findText(var.toString().trimmed()));
+	      else
+		id.originality->setCurrentIndex(2);
+	    }
 	  else if(fieldname == "pdate")
 	    id.publication_date->setDate
 	      (QDate::fromString(var.toString().trimmed(),
@@ -1269,67 +1328,14 @@ void biblioteq_book::modify(const int state)
 	  else if(fieldname == "publisher")
 	    id.publisher->setMultipleLinks
 	      ("book_search", "publisher", var.toString().trimmed());
+	  else if(fieldname == "purchase_date")
+	    id.purchase_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
 	  else if(fieldname == "quantity")
 	    {
 	      id.quantity->setValue(var.toInt());
 	      m_oldq = id.quantity->value();
-	    }
-	  else if(fieldname == "title")
-	    id.title->setText(var.toString().trimmed());
-	  else if(fieldname == "lccontrolnumber")
-	    id.lcnum->setText(var.toString().trimmed());
-	  else if(fieldname == "originality")
-	    {
-	      if(id.originality->findText(var.toString().trimmed()) > -1)
-		id.originality->setCurrentIndex
-		  (id.originality->findText(var.toString().trimmed()));
-	      else
-		id.originality->setCurrentIndex(2);
-	    }
-	  else if(fieldname == "condition")
-	    {
-	      if(id.condition->findText(var.toString().trimmed()) > -1)
-		id.condition->setCurrentIndex
-		  (id.condition->findText(var.toString().trimmed()));
-	      else
-		id.condition->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  id.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(id.front_image->m_image.isNull())
-		    id.front_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  id.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(id.back_image->m_image.isNull())
-		    id.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    id.accession_number->setText(var.toString().trimmed());
-	  else if(fieldname == "url")
-	    id.url->setPlainText(var.toString().trimmed());
-	  else if(fieldname == "alternate_id_1")
-	    id.alternate_id_1->setText(var.toString().trimmed());
-	  else if(fieldname == "multivolume_set_isbn")
-	    {
-	      auto str(var.toString().remove('-').trimmed());
-
-	      if(str.length() <= 10)
-		id.multivolume_set_isbn->setText(qmain->formattedISBN10(str));
-	      else
-		id.multivolume_set_isbn->setText(qmain->formattedISBN13(str));
 	    }
 	  else if(fieldname == "target_audience")
 	    {
@@ -1345,18 +1351,12 @@ void biblioteq_book::modify(const int state)
 		  id.target_audience->setCurrentIndex(0);
 		}
 	    }
+	  else if(fieldname == "title")
+	    id.title->setText(var.toString().trimmed());
+	  else if(fieldname == "url")
+	    id.url->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "volume_number")
 	    id.volume_number->setText(var.toString().trimmed());
-	  else if(fieldname == "date_of_reform")
-	    id.reform_date->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 biblioteq::s_databaseDateFormat));
-	  else if(fieldname == "origin")
-	    id.origin->setText(var.toString().trimmed());
-	  else if(fieldname == "purchase_date")
-	    id.purchase_date->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 biblioteq::s_databaseDateFormat));
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
