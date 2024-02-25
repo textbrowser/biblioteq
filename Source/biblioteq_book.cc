@@ -3620,83 +3620,7 @@ void biblioteq_book::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(names.at(i) == "Authors")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.author->toPlainText());
-		      else if(names.at(i) == "Call Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.callnum->text());
-		      else if(names.at(i) == "Categories")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.category->toPlainText());
-		      else if(names.at(i) == "Edition")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.edition->currentText().trimmed());
-		      else if(names.at(i) == "ISBN-10" ||
-			      names.at(i) == "ID Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.id->text());
-		      else if(names.at(i) == "Place of Publication")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.place->toPlainText());
-		      else if(names.at(i) == "Publication Date")
-			{
-			  if(qmain->getTypeFilterString() == "Books")
-			    qmain->getUI().table->item(m_index->row(), i)->
-			      setText
-			      (id.publication_date->date().
-			       toString(qmain->publicationDateFormat("books")));
-			  else
-			    qmain->getUI().table->item(m_index->row(), i)->
-			      setText(id.publication_date->date().
-				      toString(Qt::ISODate));
-			}
-		      else if(names.at(i) == "Publisher")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.publisher->toPlainText());
-		      else if(names.at(i) == "Title")
-			{
-			  imageColumn = i;
-			  qmain->getUI().table->item(m_index->row(), i)->setText
-			    (id.title->text());
-			}
-		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (QLocale().toString(id.price->value()));
-		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.language->currentText().trimmed());
-		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.monetary_units->currentText().trimmed());
-		      else if(names.at(i) == "Quantity")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.quantity->text());
-		      else if(names.at(i) == "Book Binding Type")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.binding->currentText().trimmed());
-		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.location->currentText().trimmed());
-		      else if(names.at(i) == "ISBN-13")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.isbn13->text());
-		      else if(names.at(i) == "LC Control Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.lcnum->text());
-		      else if(names.at(i) == "Call Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.callnum->text());
-		      else if(names.at(i) == "Dewey Class Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.deweynum->text());
-		      else if(names.at(i) == "Originality")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.originality->currentText().trimmed());
-		      else if(names.at(i) == "Condition")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.condition->currentText().trimmed());
-		      else if(names.at(i) == "Accession Number")
+		      if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.accession_number->text());
 		      else if(names.at(i) == "Alternate Identifier")
@@ -3716,23 +3640,95 @@ void biblioteq_book::slotGo(void)
 			       __FILE__,
 			       __LINE__);
 			}
-		      else if(names.at(i) == "Target Audience")
+		      else if(names.at(i) == "Authors")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.target_audience->currentText().trimmed());
-		      else if(names.at(i) == "Volume Number")
+			  (id.author->toPlainText());
+		      else if(names.at(i) == "Book Binding Type")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.volume_number->text().trimmed());
-		      else if(names.at(i) == "Reform Date")
-			qmain->getUI().table->item(m_index->row(), i)->
-			  setText(id.reform_date->date().
-				  toString(Qt::ISODate));
+			  (id.binding->currentText().trimmed());
+		      else if(names.at(i) == "Call Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.callnum->text());
+		      else if(names.at(i) == "Categories")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.category->toPlainText());
+		      else if(names.at(i) == "Condition")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.condition->currentText().trimmed());
+		      else if(names.at(i) == "Dewey Class Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.deweynum->text());
+		      else if(names.at(i) == "Edition")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.edition->currentText().trimmed());
+		      else if(names.at(i) == "ID Number" ||
+			      names.at(i) == "ISBN-10")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.id->text());
+		      else if(names.at(i) == "ISBN-13")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.isbn13->text());
+		      else if(names.at(i) == "LC Control Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.lcnum->text());
+		      else if(names.at(i) == "Language")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.language->currentText().trimmed());
+		      else if(names.at(i) == "Location")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.location->currentText().trimmed());
+		      else if(names.at(i) == "Monetary Units")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.monetary_units->currentText().trimmed());
 		      else if(names.at(i) == "Origin")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.origin->text().trimmed());
+		      else if(names.at(i) == "Originality")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.originality->currentText().trimmed());
+		      else if(names.at(i) == "Place of Publication")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.place->toPlainText());
+		      else if(names.at(i) == "Price")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (QLocale().toString(id.price->value()));
+		      else if(names.at(i) == "Publication Date")
+			{
+			  if(qmain->getTypeFilterString() == "Books")
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
+			      (id.publication_date->date().
+			       toString(qmain->publicationDateFormat("books")));
+			  else
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText(id.publication_date->date().
+				      toString(Qt::ISODate));
+			}
+		      else if(names.at(i) == "Publisher")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.publisher->toPlainText());
 		      else if(names.at(i) == "Purchase Date")
 			qmain->getUI().table->item(m_index->row(), i)->
-			  setText(id.purchase_date->date().
-				  toString(Qt::ISODate));
+			  setText
+			  (id.purchase_date->date().toString(Qt::ISODate));
+		      else if(names.at(i) == "Quantity")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.quantity->text());
+		      else if(names.at(i) == "Reform Date")
+			qmain->getUI().table->item(m_index->row(), i)->
+			  setText(id.reform_date->date().toString(Qt::ISODate));
+		      else if(names.at(i) == "Target Audience")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.target_audience->currentText().trimmed());
+		      else if(names.at(i) == "Title")
+			{
+			  imageColumn = i;
+			  qmain->getUI().table->item(m_index->row(), i)->setText
+			    (id.title->text());
+			}
+		      else if(names.at(i) == "Volume Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.volume_number->text().trimmed());
 		    }
 
 		  if(imageColumn == -1)
@@ -4319,10 +4315,6 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   if(reply)
     {
       m_openLibraryResults.clear();
-      connect(reply, SIGNAL(readyRead(void)),
-	      this, SLOT(slotOpenLibraryReadyRead(void)));
-      connect(reply, SIGNAL(finished(void)),
-	      this, SLOT(slotOpenLibraryDownloadFinished(void)));
 #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
       connect(reply,
 	      SIGNAL(error(QNetworkReply::NetworkError)),
@@ -4334,8 +4326,18 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 	      this,
 	      SLOT(slotOpenLibraryError(QNetworkReply::NetworkError)));
 #endif
-      connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
-	      this, SLOT(slotOpenLibrarySslErrors(const QList<QSslError> &)));
+      connect(reply,
+	      SIGNAL(finished(void)),
+	      this,
+	      SLOT(slotOpenLibraryDownloadFinished(void)));
+      connect(reply,
+	      SIGNAL(readyRead(void)),
+	      this,
+	      SLOT(slotOpenLibraryReadyRead(void)));
+      connect(reply,
+	      SIGNAL(sslErrors(const QList<QSslError> &)),
+	      this,
+	      SLOT(slotOpenLibrarySslErrors(const QList<QSslError> &)));
     }
   else
     {
@@ -4432,9 +4434,7 @@ void biblioteq_book::slotParseMarcTags(void)
 
 void biblioteq_book::slotPopulateCopiesEditor(void)
 {
-  biblioteq_copy_editor_book *copyeditor = nullptr;
-
-  copyeditor = new biblioteq_copy_editor_book
+  auto copyeditor = new biblioteq_copy_editor_book
     (qobject_cast<QWidget *> (this),
      qmain,
      static_cast<biblioteq_item *> (this),
@@ -4444,6 +4444,7 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
      id.quantity,
      font(),
      id.id->text().remove('-').trimmed());
+
   copyeditor->populateCopiesEditor();
 }
 
@@ -4597,8 +4598,7 @@ void biblioteq_book::slotProxyAuthenticationRequired
   if(authenticator)
     {
       ui_p.messageLabel->setText
-	(QString(tr("The proxy %1:%2 is requesting "
-		    "credentials.").
+	(QString(tr("The proxy %1:%2 is requesting credentials.").
 		 arg(proxy.hostName()).
 		 arg(proxy.port())));
       m_proxyDialog->resize
@@ -4607,8 +4607,8 @@ void biblioteq_book::slotProxyAuthenticationRequired
       if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
 	  QApplication::processEvents();
-	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	  authenticator->setPassword(ui_p.passwordLineEdit->text());
+	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	}
 
       QApplication::processEvents();
@@ -5160,9 +5160,9 @@ void biblioteq_book::slotSRUQuery(void)
 	  quint16 port = 0;
 
 	  host = hash.value("proxy_host");
+	  password = hash.value("proxy_password");
 	  port = hash.value("proxy_port").toUShort();
 	  user = hash.value("proxy_username");
-	  password = hash.value("proxy_password");
 	  proxy.setHostName(host);
 	  proxy.setPort(port);
 
@@ -5198,10 +5198,6 @@ void biblioteq_book::slotSRUQuery(void)
   if(reply)
     {
       m_sruResults.clear();
-      connect(reply, SIGNAL(readyRead(void)),
-	      this, SLOT(slotSRUReadyRead(void)));
-      connect(reply, SIGNAL(finished(void)),
-	      this, SLOT(slotSRUDownloadFinished(void)));
 #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
       connect(reply,
 	      SIGNAL(error(QNetworkReply::NetworkError)),
@@ -5213,8 +5209,18 @@ void biblioteq_book::slotSRUQuery(void)
 	      this,
 	      SLOT(slotSRUError(QNetworkReply::NetworkError)));
 #endif
-      connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
-	      this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
+      connect(reply,
+	      SIGNAL(finished(void)),
+	      this,
+	      SLOT(slotSRUDownloadFinished(void)));
+      connect(reply,
+	      SIGNAL(readyRead(void)),
+	      this,
+	      SLOT(slotSRUReadyRead(void)));
+      connect(reply,
+	      SIGNAL(sslErrors(const QList<QSslError> &)),
+	      this,
+	      SLOT(slotSRUSslErrors(const QList<QSslError> &)));
     }
   else
     {
@@ -5350,7 +5356,6 @@ void biblioteq_book::slotShowPDF(void)
 
 void biblioteq_book::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!id.okButton->isHidden())
@@ -5358,7 +5363,7 @@ void biblioteq_book::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  borrowerseditor = new biblioteq_borrowers_editor
+  auto borrowerseditor = new biblioteq_borrowers_editor
     (qobject_cast<QWidget *> (this),
      qmain,
      static_cast<biblioteq_item *> (this),
@@ -5368,6 +5373,7 @@ void biblioteq_book::slotShowUsers(void)
      font(),
      "Book",
      state);
+
   borrowerseditor->showUsers();
 }
 
