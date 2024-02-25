@@ -3620,25 +3620,25 @@ void biblioteq_book::slotGo(void)
 
 		  for(i = 0; i < names.size(); i++)
 		    {
-		      if(names.at(i) == "Call Number")
+		      if(names.at(i) == "Authors")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.author->toPlainText());
+		      else if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.callnum->text());
+		      else if(names.at(i) == "Categories")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.category->toPlainText());
+		      else if(names.at(i) == "Edition")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.edition->currentText().trimmed());
 		      else if(names.at(i) == "ISBN-10" ||
 			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.id->text());
-		      else if(names.at(i) == "Title")
-			{
-			  imageColumn = i;
-			  qmain->getUI().table->item(m_index->row(), i)->setText
-			    (id.title->text());
-			}
-		      else if(names.at(i) == "Edition")
+		      else if(names.at(i) == "Place of Publication")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.edition->currentText().trimmed());
-		      else if(names.at(i) == "Authors")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.author->toPlainText());
+			  (id.place->toPlainText());
 		      else if(names.at(i) == "Publication Date")
 			{
 			  if(qmain->getTypeFilterString() == "Books")
@@ -3654,12 +3654,12 @@ void biblioteq_book::slotGo(void)
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.publisher->toPlainText());
-		      else if(names.at(i) == "Place of Publication")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.place->toPlainText());
-		      else if(names.at(i) == "Categories")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.category->toPlainText());
+		      else if(names.at(i) == "Title")
+			{
+			  imageColumn = i;
+			  qmain->getUI().table->item(m_index->row(), i)->setText
+			    (id.title->text());
+			}
 		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (QLocale().toString(id.price->value()));
