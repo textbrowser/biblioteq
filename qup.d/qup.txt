@@ -8,18 +8,14 @@ url = https://github.com/textbrowser/biblioteq/tree/master/QupRelease
 [General]
 
 file = Administrator Guide.pdf
-file = BQ@PQ.png
-file = BQ@SQ.png
-file = BiblioteQ.html
 file = BiblioteQ.pdf
-file = Release-Notes.html
 file = TO-DO
-file = Windows Installation-French.pdf
 file_destination = Documentation
 
 [General]
 
 file = postgresql_create_schema.sql
+file = postgresql_destroy_schema.sql
 file = postgresql_update_schema.sql
 file_destination = SQL
 
@@ -38,7 +34,7 @@ local_executable = BiblioteQ.app
 [Windows]
 
 executable = BiblioteQ.exe
-executable:7 = BiblioteQ.exe
+file = Windows Installation-French.pdf
 file = Windows Installation.pdf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
