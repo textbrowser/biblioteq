@@ -447,6 +447,9 @@ void biblioteq::prepareIcons(void)
       history.reloadButton->setIcon(QIcon(":/16x16/reload.png"));
       pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
+      ui.actionChangePassword->setIcon(QIcon(":/32x32/password.png"));
+      ui.actionConfigureAdministratorPrivileges->setIcon
+	(QIcon(":/32x32/identity.png"));
       ui.actionConnect->setIcon(QIcon(":/16x16/connected.png"));
       ui.actionDatabaseSearch->setIcon(QIcon(":/16x16/find.png"));
       ui.actionDeleteEntry->setIcon(QIcon(":/16x16/eraser.png"));
@@ -455,11 +458,13 @@ void biblioteq::prepareIcons(void)
       ui.actionMembersBrowser->setIcon(QIcon(":/16x16/members.png"));
       ui.actionModifyEntry->setIcon(QIcon(":/16x16/edit.png"));
       ui.actionRefreshTable->setIcon(QIcon(":/16x16/reload.png"));
+      ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
       ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
       ui.actionSaveSettings->setIcon(QIcon(":/16x16/filesave.png"));
       ui.actionSetGlobalFonts->setIcon(QIcon(":/16x16/fonts.png"));
       ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
       ui.actionViewDetails->setIcon(QIcon(":/16x16/details.png"));
+      ui.action_New_SQLite_Database->setIcon(QIcon(":/16x16/filenew.png"));
       ui.configTool->setIcon(QIcon(":/32x32/configure.png"));
       ui.connectTool->setIcon(QIcon(":/32x32/connect_established.png"));
       ui.createTool->setIcon(QIcon(":/32x32/add.png"));
