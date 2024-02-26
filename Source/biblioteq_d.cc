@@ -457,13 +457,27 @@ void biblioteq::prepareIcons(void)
       ui.actionRefreshTable->setIcon(QIcon(":/16x16/reload.png"));
       ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
       ui.actionSaveSettings->setIcon(QIcon(":/16x16/filesave.png"));
+      ui.actionSetGlobalFonts->setIcon(QIcon(":/16x16/fonts.png"));
       ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
       ui.actionViewDetails->setIcon(QIcon(":/16x16/details.png"));
+      ui.configTool->setIcon(QIcon(":/32x32/configure.png"));
+      ui.connectTool->setIcon(QIcon(":/32x32/connect_established.png"));
+      ui.createTool->setIcon(QIcon(":/32x32/add.png"));
+      ui.customQueryTool->setIcon(QIcon(":/32x32/customquery.png"));
+      ui.detailsTool->setIcon(QIcon(":/32x32/details.png"));
+      ui.disconnectTool->setIcon(QIcon(":/32x32/connect_no.png"));
+      ui.exitTool->setIcon(QIcon(":/32x32/exit.png"));
       ui.menu_Add_Item->setIcon(QIcon(":/16x16/add.png"));
+      ui.modifyTool->setIcon(QIcon(":/32x32/edit.png"));
       ui.next->setIcon(QIcon(":/16x16/next.png"));
       ui.nextPageButton->setIcon(QIcon(":/16x16/next.png"));
       ui.previousPageButton->setIcon(QIcon(":/16x16/previous.png"));
+      ui.printTool->setIcon(QIcon(":/32x32/print.png"));
+      ui.refreshTool->setIcon(QIcon(":/32x32/reload.png"));
+      ui.reserveTool->setIcon(QIcon(":/32x32/checkout.png"));
       ui.resetAllSearch->setIcon(QIcon(":/16x16/reset.png"));
+      ui.searchTool->setIcon(QIcon(":/32x32/find.png"));
+      ui.userTool->setIcon(QIcon(":/32x32/members.png"));
       userinfo_diag->m_userinfo.cancelButton->setIcon
 	(QIcon(":/16x16/cancel.png"));
       userinfo_diag->m_userinfo.menu->setIcon(QIcon(":/32x32/mail.png"));
