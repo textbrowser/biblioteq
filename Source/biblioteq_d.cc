@@ -447,6 +447,16 @@ void biblioteq::prepareIcons(void)
       history.reloadButton->setIcon(QIcon(":/16x16/reload.png"));
       pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
+      ui.actionConnect->setIcon(QIcon(":/16x16/connected.png"));
+      ui.actionDisconnect->setIcon(QIcon(":/16x16/disconnected.png"));
+      ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
+      ui.actionSaveSettings->setIcon(QIcon(":/16x16/filesave.png"));
+      ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
+      ui.menu_Add_Item->setIcon(QIcon(":/16x16/add.png"));
+      ui.next->setIcon(QIcon(":/16x16/next.png"));
+      ui.nextPageButton->setIcon(QIcon(":/16x16/next.png"));
+      ui.previousPageButton->setIcon(QIcon(":/16x16/previous.png"));
+      ui.resetAllSearch->setIcon(QIcon(":/16x16/reset.png"));
       userinfo_diag->m_userinfo.cancelButton->setIcon
 	(QIcon(":/16x16/cancel.png"));
       userinfo_diag->m_userinfo.menu->setIcon(QIcon(":/32x32/mail.png"));
