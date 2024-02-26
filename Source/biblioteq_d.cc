@@ -448,10 +448,17 @@ void biblioteq::prepareIcons(void)
       pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
       ui.actionConnect->setIcon(QIcon(":/16x16/connected.png"));
+      ui.actionDatabaseSearch->setIcon(QIcon(":/16x16/find.png"));
+      ui.actionDeleteEntry->setIcon(QIcon(":/16x16/eraser.png"));
       ui.actionDisconnect->setIcon(QIcon(":/16x16/disconnected.png"));
+      ui.actionExit->setIcon(QIcon(":/16x16/exit.png"));
+      ui.actionMembersBrowser->setIcon(QIcon(":/16x16/members.png"));
+      ui.actionModifyEntry->setIcon(QIcon(":/16x16/edit.png"));
+      ui.actionRefreshTable->setIcon(QIcon(":/16x16/reload.png"));
       ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
       ui.actionSaveSettings->setIcon(QIcon(":/16x16/filesave.png"));
       ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
+      ui.actionViewDetails->setIcon(QIcon(":/16x16/details.png"));
       ui.menu_Add_Item->setIcon(QIcon(":/16x16/add.png"));
       ui.next->setIcon(QIcon(":/16x16/next.png"));
       ui.nextPageButton->setIcon(QIcon(":/16x16/next.png"));
