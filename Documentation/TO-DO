@@ -593,3 +593,12 @@
 	biblioteq_book.cc (Completed)
 	biblioteq_videogame.cc (Completed)
 313. Status-bar label widgets and system icons. Consider states. (TBD)
+314. System icons:
+	Edit (Completed)
+	Help (Completed)
+	Items (TBD)
+	Mainwindow (TBD)
+	Mainwindow Status Bar (TBD)
+	Options (Completed)
+	Tools (Completed)
+	View (Completed)
