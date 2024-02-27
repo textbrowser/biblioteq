@@ -394,6 +394,63 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
       pass.okButton->setIcon
 	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
+      ui.actionChangePassword->setIcon
+	(QIcon::fromTheme("dialog-password", QIcon(":/32x32/password.png")));
+      ui.actionConfigureAdministratorPrivileges->setIcon
+	(QIcon(":/32x32/identity.png"));
+      ui.actionConnect->setIcon
+	(QIcon::fromTheme("network-idle", QIcon(":/16x16/connected.png")));
+      ui.actionDatabaseSearch->setIcon
+	(QIcon::fromTheme("edit-find", QIcon(":/16x16/find.png")));
+      ui.actionDatabase_Enumerations->setIcon
+	(QIcon::fromTheme("emblem-system", QIcon(":/32x32/settings.png")));
+      ui.actionDeleteEntry->setIcon
+	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
+      ui.actionDisconnect->setIcon
+	(QIcon::
+	 fromTheme("network-offline", QIcon(":/16x16/disconnected.png")));
+      ui.actionDuplicateEntry->setIcon
+	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
+      ui.actionExit->setIcon
+	(QIcon::fromTheme("application-exit", QIcon(":/16x16/exit.png")));
+      ui.actionExport_Current_View->setIcon
+	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
+      ui.actionExport_View_as_PNG->setIcon(QIcon(":/16x16/fileexport.png"));
+      ui.actionImportCSV->setIcon(QIcon(":/32x32/import.png"));
+      ui.actionMembersBrowser->setIcon(QIcon(":/16x16/members.png"));
+      ui.actionModifyEntry->setIcon(QIcon(":/16x16/edit.png"));
+      ui.actionRefreshTable->setIcon(QIcon(":/16x16/reload.png"));
+      ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+      ui.actionReservationHistory->setIcon(QIcon(":/32x32/history.png"));
+      ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
+      ui.actionSaveSettings->setIcon(QIcon(":/16x16/filesave.png"));
+      ui.actionSetGlobalFonts->setIcon(QIcon(":/16x16/fonts.png"));
+      ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
+      ui.actionViewDetails->setIcon(QIcon(":/16x16/details.png"));
+      ui.action_Database_Enumerations->setIcon(QIcon(":/32x32/settings.png"));
+      ui.action_New_SQLite_Database->setIcon(QIcon(":/16x16/filenew.png"));
+      ui.action_Print_Icons_View->setIcon(QIcon(":/16x16/fileprint.png"));
+      ui.configTool->setIcon(QIcon(":/32x32/configure.png"));
+      ui.connectTool->setIcon(QIcon(":/32x32/connect_established.png"));
+      ui.createTool->setIcon(QIcon(":/32x32/add.png"));
+      ui.customQueryTool->setIcon(QIcon(":/32x32/customquery.png"));
+      ui.deleteTool->setIcon(QIcon(":/32x32/remove.png"));
+      ui.detailsTool->setIcon(QIcon(":/32x32/details.png"));
+      ui.disconnectTool->setIcon(QIcon(":/32x32/connect_no.png"));
+      ui.duplicateTool->setIcon(QIcon(":/32x32/duplicate.png"));
+      ui.exitTool->setIcon(QIcon(":/32x32/exit.png"));
+      ui.filesTool->setIcon(QIcon(":/32x32/fileopen.png"));
+      ui.menu_Add_Item->setIcon(QIcon(":/16x16/add.png"));
+      ui.modifyTool->setIcon(QIcon(":/32x32/edit.png"));
+      ui.next->setIcon(QIcon(":/16x16/next.png"));
+      ui.nextPageButton->setIcon(QIcon(":/16x16/next.png"));
+      ui.previousPageButton->setIcon(QIcon(":/16x16/previous.png"));
+      ui.printTool->setIcon(QIcon(":/32x32/print.png"));
+      ui.refreshTool->setIcon(QIcon(":/32x32/reload.png"));
+      ui.reserveTool->setIcon(QIcon(":/32x32/checkout.png"));
+      ui.resetAllSearch->setIcon(QIcon(":/16x16/reset.png"));
+      ui.searchTool->setIcon(QIcon(":/32x32/find.png"));
+      ui.userTool->setIcon(QIcon(":/32x32/members.png"));
       userinfo_diag->m_userinfo.cancelButton->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       userinfo_diag->m_userinfo.menu->setIcon
