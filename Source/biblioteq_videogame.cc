@@ -1265,18 +1265,57 @@ void biblioteq_videogame::slotGo(void)
 			      setIcon(QIcon(":/no_image.png"));
 			}
 
-		      if(names.at(i) == "UPC" ||
-			 names.at(i) == "ID Number")
+		      if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.id->text());
-		      else if(names.at(i) == "Title")
+			  (vg.accession_number->text());
+		      else if(names.at(i) == "Availability")
+			{
+			  qmain->getUI().table->item(m_index->row(), i)->setText
+			    (biblioteq_misc_functions::getAvailability
+			     (m_oid, qmain->getDB(), "Video Game", errorstr));
+
+			  if(!errorstr.isEmpty())
+			    qmain->addError
+			      (QString(tr("Database Error")),
+			       QString(tr("Retrieving availability.")),
+			       errorstr,
+			       __FILE__,
+			       __LINE__);
+			}
+		      else if(names.at(i) == "Categories" ||
+			      names.at(i) == "Genres")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.title->text());
+			  (vg.genre->toPlainText().trimmed());
 		      else if(names.at(i) == "Game Rating")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.rating->currentText().trimmed());
-		      else if(names.at(i) == "Release Date" ||
-			      names.at(i) == "Publication Date")
+		      else if(names.at(i) == "ID Number" ||
+			      names.at(i) == "UPC")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.id->text());
+		      else if(names.at(i) == "Language")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.language->currentText().trimmed());
+		      else if(names.at(i) == "Location")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.location->currentText().trimmed());
+		      else if(names.at(i) == "Mode")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.mode->currentText().trimmed());
+		      else if(names.at(i) == "Monetary Units")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.monetary_units->currentText().trimmed());
+		      else if(names.at(i) == "Place of Publication")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.place->toPlainText());
+		      else if(names.at(i) == "Platform")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (vg.platform->currentText().trimmed());
+		      else if(names.at(i) == "Price")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (QLocale().toString(vg.price->value()));
+		      else if(names.at(i) == "Publication Date" ||
+			      names.at(i) == "Release Date")
 			{
 			  if(qmain->getTypeFilterString() == "Video Games")
 			    qmain->getUI().table->item(m_index->row(), i)->
@@ -1292,52 +1331,12 @@ void biblioteq_videogame::slotGo(void)
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.publisher->toPlainText());
-		      else if(names.at(i) == "Place of Publication")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.place->toPlainText());
-		      else if(names.at(i) == "Genres" ||
-			      names.at(i) == "Categories")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.genre->toPlainText().trimmed());
-		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (QLocale().toString(vg.price->value()));
-		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.language->currentText().trimmed());
-		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.monetary_units->currentText().trimmed());
 		      else if(names.at(i) == "Quantity")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (vg.quantity->text());
-		      else if(names.at(i) == "Platform")
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.platform->currentText().trimmed());
-		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.location->currentText().trimmed());
-		      else if(names.at(i) == "Mode")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.mode->currentText().trimmed());
-		      else if(names.at(i) == "Availability")
-			{
-			  qmain->getUI().table->item(m_index->row(), i)->setText
-			    (biblioteq_misc_functions::getAvailability
-			     (m_oid, qmain->getDB(), "Video Game",
-			      errorstr));
-
-			  if(!errorstr.isEmpty())
-			    qmain->addError
-			      (QString(tr("Database Error")),
-			       QString(tr("Retrieving availability.")),
-			       errorstr,
-			       __FILE__,
-			       __LINE__);
-			}
-		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (vg.accession_number->text());
+			  (vg.title->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
