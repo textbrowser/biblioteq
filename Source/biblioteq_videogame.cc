@@ -43,24 +43,20 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = nullptr;
-  QGraphicsScene *scene2 = nullptr;
-  QMenu *menu = nullptr;
   QRegularExpression rx
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
-  QValidator *validator1 = nullptr;
+  auto menu = new QMenu(this);
+  auto scene1 = new QGraphicsScene(this);
+  auto scene2 = new QGraphicsScene(this);
+  auto validator1 = new QRegularExpressionValidator(rx, this);
 
-  menu = new QMenu(this);
-  scene1 = new QGraphicsScene(this);
-  scene2 = new QGraphicsScene(this);
-  validator1 = new QRegularExpressionValidator(rx, this);
-  m_oid = oidArg;
   m_isQueryEnabled = false;
-  m_parentWid = parentArg;
+  m_oid = oidArg;
   m_oldq = biblioteq_misc_functions::getColumnString
     (qmain->getUI().table,
      m_index->row(),
      qmain->getUI().table->columnNumber("Quantity")).toInt();
+  m_parentWid = parentArg;
   vg.setupUi(this);
   setQMain(this);
   biblioteq_misc_functions::sortCombinationBox(vg.mode);
@@ -77,62 +73,122 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 		SLOT(slotGo(void)));
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
-  connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
-  connect(vg.showUserButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotShowUsers(void)));
-  connect(vg.queryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotQuery(void)));
-  connect(vg.cancelButton, SIGNAL(clicked(void)), this,
+  connect(vg.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotCancel(void)));
-  connect(vg.copiesButton, SIGNAL(clicked()), this,
+  connect(vg.copiesButton,
+	  SIGNAL(clicked()),
+	  this,
 	  SLOT(slotPopulateCopiesEditor(void)));
-  connect(vg.resetButton, SIGNAL(clicked(void)), this,
+  connect(vg.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
+  connect(vg.printButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPrint(void)));
+  connect(vg.queryButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotQuery(void)));
+  connect(vg.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotReset(void)));
-  connect(vg.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(vg.showUserButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowUsers(void)));
   connect(menu->addAction(tr("Reset Front Cover Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Back Cover Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset UPC")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Game Rating")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Developers")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Platform")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Mode")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Title")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Release Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Publisher")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Place of Publication")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Genres")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Price")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Language")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Monetary Units")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Copies")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Location")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Abstract")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Keywords")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Accession Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(vg.frontButton,
-	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
   connect(vg.backButton,
-	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
   vg.id->setValidator(validator1);
   vg.resetButton->setMenu(menu);
 
@@ -140,51 +196,55 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.rating->addItems
-    (biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(),
-						   errorstr));
+    (biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the video game ratings.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.platform->addItems
-    (biblioteq_misc_functions::getVideoGamePlatforms(qmain->getDB(),
-						     errorstr));
+    (biblioteq_misc_functions::getVideoGamePlatforms(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the video game platforms.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.language->addItems
-    (biblioteq_misc_functions::getLanguages(qmain->getDB(),
-					    errorstr));
+    (biblioteq_misc_functions::getLanguages(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the languages.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
-						errorstr));
+    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the monetary units.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.location->addItems
@@ -197,26 +257,28 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the video game locations.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
-  vg.queryButton->setVisible(m_isQueryEnabled);
-  vg.front_image->setScene(scene1);
   vg.back_image->setScene(scene2);
+  vg.front_image->setScene(scene1);
+  vg.queryButton->setVisible(m_isQueryEnabled);
+
+  if(vg.language->findText(biblioteq::s_unknown) == -1)
+    vg.language->addItem(biblioteq::s_unknown);
+
+  if(vg.location->findText(biblioteq::s_unknown) == -1)
+    vg.location->addItem(biblioteq::s_unknown);
+
+  if(vg.monetary_units->findText(biblioteq::s_unknown) == -1)
+    vg.monetary_units->addItem(biblioteq::s_unknown);
 
   if(vg.platform->findText(biblioteq::s_unknown) == -1)
     vg.platform->addItem(biblioteq::s_unknown);
 
   if(vg.rating->findText(biblioteq::s_unknown) == -1)
     vg.rating->addItem(biblioteq::s_unknown);
-
-  if(vg.language->findText(biblioteq::s_unknown) == -1)
-    vg.language->addItem(biblioteq::s_unknown);
-
-  if(vg.monetary_units->findText(biblioteq::s_unknown) == -1)
-    vg.monetary_units->addItem(biblioteq::s_unknown);
-
-  if(vg.location->findText(biblioteq::s_unknown) == -1)
-    vg.location->addItem(biblioteq::s_unknown);
 
   if(m_parentWid)
     resize(qRound(0.95 * m_parentWid->size().width()),
@@ -270,9 +332,10 @@ void biblioteq_videogame::closeEvent(QCloseEvent *event)
     if(hasDataChanged(this))
       {
 	if(QMessageBox::
-	   question(this, tr("BiblioteQ: Question"),
+	   question(this,
+		    tr("BiblioteQ: Question"),
 		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
 	  {
 	    QApplication::processEvents();
@@ -292,11 +355,11 @@ void biblioteq_videogame::closeEvent(QCloseEvent *event)
 void biblioteq_videogame::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
-  vg.copiesButton->setEnabled(false);
-  vg.showUserButton->setEnabled(false);
+  m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
-  m_engWindowTitle = "Create";
+  vg.copiesButton->setEnabled(false);
+  vg.showUserButton->setEnabled(false);
 }
 
 void biblioteq_videogame::insert(void)
@@ -366,45 +429,44 @@ void biblioteq_videogame::modify(const int state)
       setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Video Game Entry"));
       m_engWindowTitle = "Modify";
+      vg.backButton->setVisible(true);
       vg.copiesButton->setEnabled(true);
-      vg.showUserButton->setEnabled(true);
+      vg.frontButton->setVisible(true);
       vg.okButton->setVisible(true);
       vg.queryButton->setVisible(m_isQueryEnabled);
       vg.resetButton->setVisible(true);
-      vg.frontButton->setVisible(true);
-      vg.backButton->setVisible(true);
-      biblioteq_misc_functions::highlightWidget
-	(vg.id, m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(vg.title, m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(vg.publisher->viewport(), m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(vg.developer->viewport(), m_requiredHighlightColor);
+      vg.showUserButton->setEnabled(true);
       biblioteq_misc_functions::highlightWidget
 	(vg.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
+	(vg.developer->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
 	(vg.genre->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
+	(vg.id, m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
 	(vg.place->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(vg.publisher->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(vg.title, m_requiredHighlightColor);
     }
   else
     {
       setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Video Game Details"));
       m_engWindowTitle = "View";
+      vg.backButton->setVisible(false);
       vg.copiesButton->setVisible(false);
+      vg.frontButton->setVisible(false);
+      vg.okButton->setVisible(false);
+      vg.queryButton->setVisible(false);
+      vg.resetButton->setVisible(false);
 
       if(qmain->isGuest())
 	vg.showUserButton->setVisible(false);
       else
 	vg.showUserButton->setEnabled(true);
-
-      vg.okButton->setVisible(false);
-      vg.queryButton->setVisible(false);
-      vg.resetButton->setVisible(false);
-      vg.frontButton->setVisible(false);
-      vg.backButton->setVisible(false);
 
       auto actions = vg.resetButton->menu()->actions();
 
@@ -415,10 +477,10 @@ void biblioteq_videogame::modify(const int state)
 	}
     }
 
+  vg.okButton->setText(tr("&Save"));
+  vg.price->setMinimum(0.00);
   vg.quantity->setMinimum(1);
   vg.queryButton->setEnabled(true);
-  vg.price->setMinimum(0.00);
-  vg.okButton->setText(tr("&Save"));
   str = m_oid;
   query.prepare("SELECT title, "
 		"vgrating, "
@@ -445,8 +507,11 @@ void biblioteq_videogame::modify(const int state)
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to retrieve the selected video "
 				 "game's data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected video "
 			       "game's data."));
       QApplication::processEvents();
@@ -472,77 +537,38 @@ void biblioteq_videogame::modify(const int state)
 	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
 
-	  if(fieldname == "title")
-	    vg.title->setText(var.toString().trimmed());
+	  if(fieldname == "accession_number")
+	    vg.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  vg.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(vg.back_image->m_image.isNull())
+		    vg.back_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "description")
+	    vg.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "developer")
-	    vg.developer->setMultipleLinks("videogame_search", "developer",
-					   var.toString().trimmed());
-	  else if(fieldname == "publisher")
-	    vg.publisher->setMultipleLinks
-	      ("videogame_search", "publisher",
-	       var.toString().trimmed());
-	  else if(fieldname == "rdate")
-	    vg.release_date->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 biblioteq::s_databaseDateFormat));
-	  else if(fieldname == "vgrating")
+	    vg.developer->setMultipleLinks
+	      ("videogame_search", "developer", var.toString().trimmed());
+	  else if(fieldname == "front_cover")
 	    {
-	      if(vg.rating->findText(var.toString().trimmed()) > -1)
-		vg.rating->setCurrentIndex
-		  (vg.rating->findText(var.toString().trimmed()));
-	      else
-		vg.rating->setCurrentIndex
-		  (vg.rating->findText(biblioteq::s_unknown));
+	      if(!record.field(i).isNull())
+		{
+		  vg.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(vg.front_image->m_image.isNull())
+		    vg.front_image->loadFromData(var.toByteArray());
+		}
 	    }
-	  else if(fieldname == "price")
-	    vg.price->setValue(var.toDouble());
-	  else if(fieldname == "place")
-	    vg.place->setMultipleLinks("videogame_search", "place",
-				       var.toString().trimmed());
 	  else if(fieldname == "genre")
-	    vg.genre->setMultipleLinks("videogame_search", "genre",
-				       var.toString().trimmed());
-	  else if(fieldname == "language")
-	    {
-	      if(vg.language->findText(var.toString().trimmed()) > -1)
-		vg.language->setCurrentIndex
-		  (vg.language->findText(var.toString().trimmed()));
-	      else
-		vg.language->setCurrentIndex
-		  (vg.language->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "quantity")
-	    {
-	      vg.quantity->setValue(var.toInt());
-	      m_oldq = vg.quantity->value();
-	    }
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(vg.monetary_units->findText(var.toString().trimmed()) > -1)
-		vg.monetary_units->setCurrentIndex
-		  (vg.monetary_units->findText(var.toString().trimmed()));
-	      else
-		vg.monetary_units->setCurrentIndex
-		  (vg.monetary_units->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "vgplatform")
-	    {
-	      if(vg.platform->findText(var.toString().trimmed()) > -1)
-		vg.platform->setCurrentIndex
-		  (vg.platform->findText(var.toString().trimmed()));
-	      else
-		vg.platform->setCurrentIndex
-		  (vg.platform->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "location")
-	    {
-	      if(vg.location->findText(var.toString().trimmed()) > -1)
-		vg.location->setCurrentIndex
-		  (vg.location->findText(var.toString().trimmed()));
-	      else
-		vg.location->setCurrentIndex
-		  (vg.location->findText(biblioteq::s_unknown));
-	    }
+	    vg.genre->setMultipleLinks
+	      ("videogame_search", "genre", var.toString().trimmed());
 	  else if(fieldname == "id")
 	    {
 	      if(state == biblioteq::EDITABLE)
@@ -561,12 +587,55 @@ void biblioteq_videogame::modify(const int state)
 	      vg.id->setText(var.toString().trimmed());
 	      setWindowTitle(str);
 	    }
-	  else if(fieldname == "description")
-	    vg.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    vg.keyword->setMultipleLinks
-	      ("videogame_search", "keyword",
-	       var.toString().trimmed());
+	      ("videogame_search", "keyword", var.toString().trimmed());
+	  else if(fieldname == "language")
+	    {
+	      if(vg.language->findText(var.toString().trimmed()) > -1)
+		vg.language->setCurrentIndex
+		  (vg.language->findText(var.toString().trimmed()));
+	      else
+		vg.language->setCurrentIndex
+		  (vg.language->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "location")
+	    {
+	      if(vg.location->findText(var.toString().trimmed()) > -1)
+		vg.location->setCurrentIndex
+		  (vg.location->findText(var.toString().trimmed()));
+	      else
+		vg.location->setCurrentIndex
+		  (vg.location->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(vg.monetary_units->findText(var.toString().trimmed()) > -1)
+		vg.monetary_units->setCurrentIndex
+		  (vg.monetary_units->findText(var.toString().trimmed()));
+	      else
+		vg.monetary_units->setCurrentIndex
+		  (vg.monetary_units->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "place")
+	    vg.place->setMultipleLinks
+	      ("videogame_search", "place", var.toString().trimmed());
+	  else if(fieldname == "price")
+	    vg.price->setValue(var.toDouble());
+	  else if(fieldname == "publisher")
+	    vg.publisher->setMultipleLinks
+	      ("videogame_search", "publisher", var.toString().trimmed());
+	  else if(fieldname == "quantity")
+	    {
+	      vg.quantity->setValue(var.toInt());
+	      m_oldq = vg.quantity->value();
+	    }
+	  else if(fieldname == "rdate")
+	    vg.release_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
+	  else if(fieldname == "title")
+	    vg.title->setText(var.toString().trimmed());
 	  else if(fieldname == "vgmode")
 	    {
 	      if(vg.mode->findText(var.toString().trimmed()) > -1)
@@ -575,30 +644,24 @@ void biblioteq_videogame::modify(const int state)
 	      else
 		vg.mode->setCurrentIndex(0);
 	    }
-	  else if(fieldname == "front_cover")
+	  else if(fieldname == "vgplatform")
 	    {
-	      if(!record.field(i).isNull())
-		{
-		  vg.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(vg.front_image->m_image.isNull())
-		    vg.front_image->loadFromData(var.toByteArray());
-		}
+	      if(vg.platform->findText(var.toString().trimmed()) > -1)
+		vg.platform->setCurrentIndex
+		  (vg.platform->findText(var.toString().trimmed()));
+	      else
+		vg.platform->setCurrentIndex
+		  (vg.platform->findText(biblioteq::s_unknown));
 	    }
-	  else if(fieldname == "back_cover")
+	  else if(fieldname == "vgrating")
 	    {
-	      if(!record.field(i).isNull())
-		{
-		  vg.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(vg.back_image->m_image.isNull())
-		    vg.back_image->loadFromData(var.toByteArray());
-		}
+	      if(vg.rating->findText(var.toString().trimmed()) > -1)
+		vg.rating->setCurrentIndex
+		  (vg.rating->findText(var.toString().trimmed()));
+	      else
+		vg.rating->setCurrentIndex
+		  (vg.rating->findText(biblioteq::s_unknown));
 	    }
-	  else if(fieldname == "accession_number")
-	    vg.accession_number->setText(var.toString().trimmed());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -677,7 +740,6 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
   vg.release_date->setDisplayFormat("yyyy");
   vg.showUserButton->setVisible(false);
   vg.title->clear();
-  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -689,6 +751,7 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
 	  actions[1]->setVisible(false);
 	}
 
+      prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
       vg.id->setFocus();
 #ifdef Q_OS_ANDROID
@@ -704,14 +767,14 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
     {
       if(field == "developer")
 	vg.developer->setPlainText(value);
-      else if(field == "publisher")
-	vg.publisher->setPlainText(value);
       else if(field == "genre")
 	vg.genre->setPlainText(value);
-      else if(field == "place")
-	vg.place->setPlainText(value);
       else if(field == "keyword")
 	vg.keyword->setPlainText(value);
+      else if(field == "place")
+	vg.place->setPlainText(value);
+      else if(field == "publisher")
+	vg.publisher->setPlainText(value);
 
       slotGo();
     }
@@ -748,9 +811,12 @@ void biblioteq_videogame::slotGo(void)
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
 			    "the item.")),
-		 errorstr, __FILE__, __LINE__);
+		 errorstr,
+		 __FILE__,
+		 __LINE__);
 	      QMessageBox::critical
-		(this, tr("BiblioteQ: Database Error"),
+		(this,
+		 tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
 	      QApplication::processEvents();
@@ -762,11 +828,11 @@ void biblioteq_videogame::slotGo(void)
 	  if(newq < maxcopynumber)
 	    {
 	      QMessageBox::critical
-		(this, tr("BiblioteQ: User Error"),
-		 tr("It appears that you are attempting to "
-		    "decrease the "
-		    "number of copies while there are copies "
-		    "that have been reserved."));
+		(this,
+		 tr("BiblioteQ: User Error"),
+		 tr("It appears that you are attempting to decrease the "
+		    "number of copies while there are copies that have "
+		    "been reserved."));
 	      QApplication::processEvents();
 	      vg.quantity->setValue(m_oldq);
 	      return;
@@ -774,10 +840,11 @@ void biblioteq_videogame::slotGo(void)
 	  else if(newq > m_oldq)
 	    {
 	      if(QMessageBox::question
-		 (this, tr("BiblioteQ: Question"),
+		 (this,
+		  tr("BiblioteQ: Question"),
 		  tr("You have increased the number of copies. "
 		     "Would you like to modify copy information?"),
-		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
 		  QApplication::processEvents();
@@ -793,7 +860,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.id->text().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the UPC field."));
 	  QApplication::processEvents();
 	  vg.id->setFocus();
@@ -805,7 +873,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.developer->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Developers field."));
 	  QApplication::processEvents();
 	  vg.developer->setFocus();
@@ -817,7 +886,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.title->text().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
 	  QApplication::processEvents();
 	  vg.title->setFocus();
@@ -829,7 +899,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.publisher->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
 	  QApplication::processEvents();
 	  vg.publisher->setFocus();
@@ -841,7 +912,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.place->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Place of Publication "
 				   "field."));
 	  QApplication::processEvents();
@@ -854,7 +926,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.genre->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Genres field."));
 	  QApplication::processEvents();
 	  vg.genre->setFocus();
@@ -866,7 +939,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.description->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
 	  QApplication::processEvents();
 	  vg.description->setFocus();
@@ -881,9 +955,12 @@ void biblioteq_videogame::slotGo(void)
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
+	    (this,
+	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
 	  QApplication::processEvents();
 	  return;
@@ -1033,8 +1110,7 @@ void biblioteq_videogame::slotGo(void)
 	    query.bindValue(20, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique "
-				       "integer.")),
+			    QString(tr("Unable to generate a unique integer.")),
 			    errorstr);
 	}
 
@@ -1045,7 +1121,9 @@ void biblioteq_videogame::slotGo(void)
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Unable to create or update the entry.")),
-			  query.lastError().text(), __FILE__, __LINE__);
+			  query.lastError().text(),
+			  __FILE__,
+			  __LINE__);
 	  goto db_rollback;
 	}
       else
@@ -1074,9 +1152,9 @@ void biblioteq_videogame::slotGo(void)
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy "
-				"data.")),
-		     query.lastError().text(), __FILE__,
+		     QString(tr("Unable to purge unnecessary copy data.")),
+		     query.lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -1088,7 +1166,8 @@ void biblioteq_videogame::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     qmain->getDB().lastError().text(), __FILE__,
+		     qmain->getDB().lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -1112,7 +1191,9 @@ void biblioteq_videogame::slotGo(void)
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
-		     errorstr, __FILE__, __LINE__);
+		     errorstr,
+		     __FILE__,
+		     __LINE__);
 		  goto db_rollback;
 		}
 
@@ -1123,7 +1204,8 @@ void biblioteq_videogame::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     qmain->getDB().lastError().text(), __FILE__,
+		     qmain->getDB().lastError().text(),
+		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
 		}
@@ -1137,17 +1219,16 @@ void biblioteq_videogame::slotGo(void)
 	  if(vg.back_image->m_image.isNull())
 	    vg.back_image->m_imageFormat = "";
 
-	  vg.developer->setMultipleLinks("videogame_search", "developer",
-					 vg.developer->toPlainText());
-	  vg.publisher->setMultipleLinks("videogame_search",
-					 "publisher",
-					 vg.publisher->toPlainText());
-	  vg.place->setMultipleLinks("videogame_search", "place",
-				     vg.place->toPlainText());
-	  vg.genre->setMultipleLinks("videogame_search", "genre",
-				     vg.genre->toPlainText());
-	  vg.keyword->setMultipleLinks("videogame_search", "keyword",
-				       vg.keyword->toPlainText());
+	  vg.developer->setMultipleLinks
+	    ("videogame_search", "developer", vg.developer->toPlainText());
+	  vg.genre->setMultipleLinks
+	    ("videogame_search", "genre", vg.genre->toPlainText());
+	  vg.keyword->setMultipleLinks
+	    ("videogame_search", "keyword", vg.keyword->toPlainText());
+	  vg.place->setMultipleLinks
+	    ("videogame_search", "place", vg.place->toPlainText());
+	  vg.publisher->setMultipleLinks
+	    ("videogame_search", "publisher", vg.publisher->toPlainText());
 	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
@@ -1250,7 +1331,9 @@ void biblioteq_videogame::slotGo(void)
 			    qmain->addError
 			      (QString(tr("Database Error")),
 			       QString(tr("Retrieving availability.")),
-			       errorstr, __FILE__, __LINE__);
+			       errorstr,
+			       __FILE__,
+			       __LINE__);
 			}
 		      else if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
@@ -1284,8 +1367,11 @@ void biblioteq_videogame::slotGo(void)
 		  qmain->addError(QString(tr("Database Error")),
 				  QString(tr("Unable to retrieve the "
 					     "video game's OID.")),
-				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+				  errorstr,
+				  __FILE__,
+				  __LINE__);
+		  QMessageBox::critical(this,
+					tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the "
 					   "video game's OID."));
 		  QApplication::processEvents();
@@ -1317,13 +1403,16 @@ void biblioteq_videogame::slotGo(void)
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	   qmain->getDB().lastError().text(),
+	   __FILE__,
+	   __LINE__);
 
       QApplication::restoreOverrideCursor();
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create or update the entry. "
-			       "Please verify that "
-			       "the entry does not already exist."));
+			       "Please verify that the entry does not "
+			       "already exist."));
       QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
@@ -1743,19 +1832,19 @@ void biblioteq_videogame::slotReset(void)
 	vg.release_date->setDate
 	  (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
 
-      vg.quantity->setValue(vg.quantity->minimum());
-      vg.location->setCurrentIndex(0);
-      vg.rating->setCurrentIndex(0);
-      vg.price->setValue(vg.price->minimum());
+      vg.accession_number->clear();
+      vg.back_image->clear();
+      vg.front_image->clear();
+      vg.id->setFocus();
+      vg.keyword->clear();
       vg.language->setCurrentIndex(0);
+      vg.location->setCurrentIndex(0);
+      vg.mode->setCurrentIndex(0);
       vg.monetary_units->setCurrentIndex(0);
       vg.platform->setCurrentIndex(0);
-      vg.mode->setCurrentIndex(0);
-      vg.front_image->clear();
-      vg.back_image->clear();
-      vg.keyword->clear();
-      vg.accession_number->clear();
-      vg.id->setFocus();
+      vg.price->setValue(vg.price->minimum());
+      vg.quantity->setValue(vg.quantity->minimum());
+      vg.rating->setCurrentIndex(0);
     }
 }
 
@@ -1823,7 +1912,6 @@ void biblioteq_videogame::slotSelectImage(void)
 
 void biblioteq_videogame::slotShowUsers(void)
 {
-  biblioteq_borrowers_editor *borrowerseditor = nullptr;
   int state = 0;
 
   if(!vg.okButton->isHidden())
@@ -1831,7 +1919,7 @@ void biblioteq_videogame::slotShowUsers(void)
   else
     state = biblioteq::VIEW_ONLY;
 
-  borrowerseditor = new biblioteq_borrowers_editor
+  auto borrowerseditor = new biblioteq_borrowers_editor
     (qobject_cast<QWidget *> (this),
      qmain,
      static_cast<biblioteq_item *> (this),
@@ -1841,6 +1929,7 @@ void biblioteq_videogame::slotShowUsers(void)
      font(),
      "Video Game",
      state);
+
   borrowerseditor->showUsers();
 }
 
@@ -1850,33 +1939,35 @@ void biblioteq_videogame::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      vg.backButton->setVisible(true);
       vg.copiesButton->setEnabled(true);
-      vg.showUserButton->setEnabled(true);
+      vg.frontButton->setVisible(true);
       vg.okButton->setVisible(true);
       vg.queryButton->setVisible(m_isQueryEnabled);
       vg.resetButton->setVisible(true);
-      vg.frontButton->setVisible(true);
-      vg.backButton->setVisible(true);
+      vg.showUserButton->setEnabled(true);
       str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
-	vg.id->text() + tr(")");
+	vg.id->text() +
+	tr(")");
       m_engWindowTitle = "Modify";
     }
   else
     {
+      vg.backButton->setVisible(false);
       vg.copiesButton->setVisible(false);
+      vg.frontButton->setVisible(false);
+      vg.okButton->setVisible(false);
+      vg.queryButton->setVisible(false);
+      vg.resetButton->setVisible(false);
 
       if(qmain->isGuest())
 	vg.showUserButton->setVisible(false);
       else
 	vg.showUserButton->setEnabled(true);
 
-      vg.okButton->setVisible(false);
-      vg.queryButton->setVisible(false);
-      vg.resetButton->setVisible(false);
-      vg.frontButton->setVisible(false);
-      vg.backButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Video Game Details (")) +
-	vg.id->text() + tr(")");
+	vg.id->text() +
+	tr(")");
       m_engWindowTitle = "View";
     }
 
