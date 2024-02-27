@@ -415,16 +415,23 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("application-exit", QIcon(":/16x16/exit.png")));
       ui.actionExport_Current_View->setIcon
 	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
-      ui.actionExport_View_as_PNG->setIcon(QIcon(":/16x16/fileexport.png"));
-      ui.actionImportCSV->setIcon(QIcon(":/32x32/import.png"));
+      ui.actionExport_View_as_PNG->setIcon
+	(QIcon::fromTheme("document-export", QIcon(":/16x16/fileexport.png")));
+      ui.actionImportCSV->setIcon
+	(QIcon::fromTheme("document-import", QIcon(":/32x32/import.png")));
       ui.actionMembersBrowser->setIcon(QIcon(":/16x16/members.png"));
-      ui.actionModifyEntry->setIcon(QIcon(":/16x16/edit.png"));
-      ui.actionRefreshTable->setIcon(QIcon(":/16x16/reload.png"));
+      ui.actionModifyEntry->setIcon
+	(QIcon::fromTheme("document-edit", QIcon(":/16x16/edit.png")));
+      ui.actionRefreshTable->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
       ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
       ui.actionReservationHistory->setIcon(QIcon(":/32x32/history.png"));
       ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
-      ui.actionSaveSettings->setIcon(QIcon(":/16x16/filesave.png"));
-      ui.actionSetGlobalFonts->setIcon(QIcon(":/16x16/fonts.png"));
+      ui.actionSaveSettings->setIcon
+	(QIcon::fromTheme("document-save", QIcon(":/16x16/filesave.png")));
+      ui.actionSetGlobalFonts->setIcon
+	(QIcon::fromTheme("preferences-desktop-font",
+			  QIcon(":/16x16/fonts.png")));
       ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
       ui.actionViewDetails->setIcon(QIcon(":/16x16/details.png"));
       ui.action_Database_Enumerations->setIcon(QIcon(":/32x32/settings.png"));
