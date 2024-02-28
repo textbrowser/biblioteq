@@ -2196,7 +2196,9 @@ void biblioteq_photographcollection::slotInsertItem(void)
   pc.page->blockSignals(false);
   showPhotographs(pc.page->currentText().toInt());
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
-  connect(photo.saveButton, SIGNAL(clicked(void)), this,
+  connect(photo.saveButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotModifyItem(void)));
   return;
 
