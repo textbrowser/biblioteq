@@ -433,17 +433,27 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("preferences-desktop-font",
 			  QIcon(":/16x16/fonts.png")));
       ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
-      ui.actionViewDetails->setIcon(QIcon(":/16x16/details.png"));
-      ui.action_Database_Enumerations->setIcon(QIcon(":/32x32/settings.png"));
-      ui.action_New_SQLite_Database->setIcon(QIcon(":/16x16/filenew.png"));
-      ui.action_Print_Icons_View->setIcon(QIcon(":/16x16/fileprint.png"));
+      ui.actionViewDetails->setIcon
+	(QIcon::fromTheme("dialog-information", QIcon(":/16x16/details.png")));
+      ui.action_Database_Enumerations->setIcon
+	(QIcon::fromTheme("system-emblem", QIcon(":/32x32/settings.png")));
+      ui.action_New_SQLite_Database->setIcon
+	(QIcon::fromTheme("document-new", QIcon(":/16x16/filenew.png")));
+      ui.action_Print_Icons_View->setIcon
+	(QIcon::fromTheme("document-print", QIcon(":/16x16/fileprint.png")));
       ui.configTool->setIcon(QIcon(":/32x32/configure.png"));
-      ui.connectTool->setIcon(QIcon(":/32x32/connect_established.png"));
-      ui.createTool->setIcon(QIcon(":/32x32/add.png"));
+      ui.connectTool->setIcon
+	(QIcon::fromTheme("network-idle",
+			  QIcon(":/32x32/connect_established.png")));
+      ui.createTool->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/32x32/add.png")));
       ui.customQueryTool->setIcon(QIcon(":/32x32/customquery.png"));
-      ui.deleteTool->setIcon(QIcon(":/32x32/remove.png"));
-      ui.detailsTool->setIcon(QIcon(":/32x32/details.png"));
-      ui.disconnectTool->setIcon(QIcon(":/32x32/connect_no.png"));
+      ui.deleteTool->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
+      ui.detailsTool->setIcon
+	(QIcon::fromTheme("dialog-information", QIcon(":/32x32/details.png")));
+      ui.disconnectTool->setIcon
+	(QIcon::fromTheme("network-offline", QIcon(":/32x32/connect_no.png")));
       ui.duplicateTool->setIcon(QIcon(":/32x32/duplicate.png"));
       ui.exitTool->setIcon(QIcon(":/32x32/exit.png"));
       ui.filesTool->setIcon(QIcon(":/32x32/fileopen.png"));
