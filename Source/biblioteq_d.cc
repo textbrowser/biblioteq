@@ -344,7 +344,8 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
       bb.grantButton->setIcon
 	(QIcon::fromTheme("dialog-password", QIcon(":/32x32/permissions.png")));
-      bb.historyButton->setIcon(QIcon(":/32x32/history.png"));
+      bb.historyButton->setIcon
+	(QIcon::fromTheme("appointment-new", QIcon(":/32x32/history.png")));
       bb.listButton->setIcon(QIcon(":/32x32/stamp.png"));
       bb.modifyButton->setIcon
 	(QIcon::fromTheme("document-edit", QIcon(":/32x32/edit.png")));
@@ -397,7 +398,8 @@ void biblioteq::prepareIcons(void)
       ui.actionChangePassword->setIcon
 	(QIcon::fromTheme("dialog-password", QIcon(":/32x32/password.png")));
       ui.actionConfigureAdministratorPrivileges->setIcon
-	(QIcon(":/32x32/identity.png"));
+	(QIcon::fromTheme("preferences-desktop-personal",
+			  QIcon(":/32x32/identity.png")));
       ui.actionConnect->setIcon
 	(QIcon::fromTheme("network-idle", QIcon(":/16x16/connected.png")));
       ui.actionDatabaseSearch->setIcon
@@ -407,8 +409,8 @@ void biblioteq::prepareIcons(void)
       ui.actionDeleteEntry->setIcon
 	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
       ui.actionDisconnect->setIcon
-	(QIcon::
-	 fromTheme("network-offline", QIcon(":/16x16/disconnected.png")));
+	(QIcon::fromTheme("network-offline",
+			  QIcon(":/16x16/disconnected.png")));
       ui.actionDuplicateEntry->setIcon
 	(QIcon::fromTheme("edit-copy", QIcon(":/16x16/editcopy.png")));
       ui.actionExit->setIcon
@@ -425,14 +427,16 @@ void biblioteq::prepareIcons(void)
       ui.actionRefreshTable->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
       ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
-      ui.actionReservationHistory->setIcon(QIcon(":/32x32/history.png"));
+      ui.actionReservationHistory->setIcon
+	(QIcon::fromTheme("appointment-new", QIcon(":/32x32/history.png")));
       ui.actionResizeColumns->setIcon(QIcon(":/16x16/resizecol.png"));
       ui.actionSaveSettings->setIcon
 	(QIcon::fromTheme("document-save", QIcon(":/16x16/filesave.png")));
       ui.actionSetGlobalFonts->setIcon
 	(QIcon::fromTheme("preferences-desktop-font",
 			  QIcon(":/16x16/fonts.png")));
-      ui.actionShowErrorDialog->setIcon(QIcon(":/16x16/log.png"));
+      ui.actionShowErrorDialog->setIcon
+	(QIcon::fromTheme("dialog-error", QIcon(":/16x16/log.png")));
       ui.actionViewDetails->setIcon
 	(QIcon::fromTheme("dialog-information", QIcon(":/16x16/details.png")));
       ui.action_Database_Enumerations->setIcon
@@ -447,26 +451,41 @@ void biblioteq::prepareIcons(void)
 			  QIcon(":/32x32/connect_established.png")));
       ui.createTool->setIcon
 	(QIcon::fromTheme("list-add", QIcon(":/32x32/add.png")));
-      ui.customQueryTool->setIcon(QIcon(":/32x32/customquery.png"));
+      ui.customQueryTool->setIcon
+	(QIcon::fromTheme("emblem-favorite",
+			  QIcon(":/32x32/customquery.png")));
       ui.deleteTool->setIcon
 	(QIcon::fromTheme("list-remove", QIcon(":/32x32/remove.png")));
       ui.detailsTool->setIcon
 	(QIcon::fromTheme("dialog-information", QIcon(":/32x32/details.png")));
       ui.disconnectTool->setIcon
 	(QIcon::fromTheme("network-offline", QIcon(":/32x32/connect_no.png")));
-      ui.duplicateTool->setIcon(QIcon(":/32x32/duplicate.png"));
-      ui.exitTool->setIcon(QIcon(":/32x32/exit.png"));
-      ui.filesTool->setIcon(QIcon(":/32x32/fileopen.png"));
-      ui.menu_Add_Item->setIcon(QIcon(":/16x16/add.png"));
-      ui.modifyTool->setIcon(QIcon(":/32x32/edit.png"));
-      ui.next->setIcon(QIcon(":/16x16/next.png"));
-      ui.nextPageButton->setIcon(QIcon(":/16x16/next.png"));
-      ui.previousPageButton->setIcon(QIcon(":/16x16/previous.png"));
-      ui.printTool->setIcon(QIcon(":/32x32/print.png"));
-      ui.refreshTool->setIcon(QIcon(":/32x32/reload.png"));
-      ui.reserveTool->setIcon(QIcon(":/32x32/checkout.png"));
-      ui.resetAllSearch->setIcon(QIcon(":/16x16/reset.png"));
-      ui.searchTool->setIcon(QIcon(":/32x32/find.png"));
+      ui.duplicateTool->setIcon
+	(QIcon::fromTheme("edit-copy", QIcon(":/32x32/duplicate.png")));
+      ui.exitTool->setIcon
+	(QIcon::fromTheme("application-exit", QIcon(":/32x32/exit.png")));
+      ui.filesTool->setIcon
+	(QIcon::fromTheme("document-open", QIcon(":/32x32/fileopen.png")));
+      ui.menu_Add_Item->setIcon
+	(QIcon::fromTheme("list-add", QIcon(":/16x16/add.png")));
+      ui.modifyTool->setIcon
+	(QIcon::fromTheme("document-edit", QIcon(":/32x32/edit.png")));
+      ui.next->setIcon
+	(QIcon::fromTheme("go-next", QIcon(":/16x16/next.png")));
+      ui.nextPageButton->setIcon
+	(QIcon::fromTheme("go-next", QIcon(":/16x16/next.png")));
+      ui.previousPageButton->setIcon
+	(QIcon::fromTheme("go-previous", QIcon(":/16x16/previous.png")));
+      ui.printTool->setIcon
+	(QIcon::fromTheme("document-print", QIcon(":/32x32/print.png")));
+      ui.refreshTool->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
+      ui.reserveTool->setIcon
+	(QIcon::fromTheme("go-home", QIcon(":/32x32/checkout.png")));
+      ui.resetAllSearch->setIcon
+	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
+      ui.searchTool->setIcon
+	(QIcon::fromTheme("edit-find", QIcon(":/32x32/find.png")));
       ui.userTool->setIcon(QIcon(":/32x32/members.png"));
       userinfo_diag->m_userinfo.cancelButton->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
