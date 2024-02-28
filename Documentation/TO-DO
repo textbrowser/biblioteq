@@ -587,10 +587,11 @@
 	Grey Literature (Completed)
 	Journals (Completed)
 	Magazines (TBD)
-	Photograph Collections (TBD)
+	Photograph Collections (Completed)
 	Video Games (Completed)
 312. Beautify:
 	biblioteq_book.cc (Completed)
+	biblioteq_photographcollection.cc (Completed)
 	biblioteq_videogame.cc (Completed)
 313. Status-bar label widgets and system icons. Consider states. (TBD)
 314. System icons:

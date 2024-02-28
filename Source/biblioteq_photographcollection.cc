@@ -49,31 +49,26 @@ biblioteq_photographcollection::biblioteq_photographcollection
 {
   qmain = parentArg;
 
-  QGraphicsScene *scene1 = nullptr;
-  QGraphicsScene *scene2 = nullptr;
-  QGraphicsScene *scene3 = nullptr;
-  QMenu *menu1 = nullptr;
-  QMenu *menu2 = nullptr;
+  auto menu1 = new QMenu(this);
+  auto menu2 = new QMenu(this);
+  auto scene1 = new QGraphicsScene(this);
+  auto scene2 = new QGraphicsScene(this);
+  auto scene3 = new QGraphicsScene(this);
 
-  m_photo_diag = new QDialog(this);
-  menu1 = new QMenu(this);
-  menu2 = new QMenu(this);
-  scene1 = new QGraphicsScene(this);
-  scene2 = new QGraphicsScene(this);
-  scene3 = new QGraphicsScene(this);
   pc.setupUi(this);
   setQMain(this);
   pc.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("photographcollections"));
   pc.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
   pc.thumbnail_item->enableDoubleClickResize(false);
+  m_photo_diag = new QDialog(this);
   m_scene = new biblioteq_bgraphicsscene(pc.graphicsView);
   connect(m_scene,
 	  SIGNAL(selectionChanged(void)),
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
-  m_oid = oidArg;
   m_isQueryEnabled = false;
+  m_oid = oidArg;
   m_parentWid = parentArg;
   photo.setupUi(m_photo_diag);
   photo.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
@@ -84,9 +79,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
 	  this,
 	  SLOT(slotViewContextMenu(const QPoint &)));
-  pc.graphicsView->setScene(m_scene);
   pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
+  pc.graphicsView->setScene(m_scene);
 
   if(photographsPerPage() != -1) // Unlimited.
     pc.graphicsView->setSceneRect
@@ -114,52 +109,96 @@ biblioteq_photographcollection::biblioteq_photographcollection
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_photo_diag->setWindowModality(Qt::WindowModal);
   updateFont(QApplication::font(), qobject_cast<QWidget *> (m_photo_diag));
-  connect(pc.select_image_collection, SIGNAL(clicked(void)),
-	  this, SLOT(slotSelectImage(void)));
-  connect(photo.select_image_item, SIGNAL(clicked(void)),
-	  this, SLOT(slotSelectImage(void)));
-  connect(pc.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
-  connect(pc.cancelButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotCancel(void)));
-  connect(pc.importItems, SIGNAL(clicked(void)), this,
-	  SLOT(slotImportItems(void)));
-  connect(pc.resetButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotReset(void)));
-  connect(pc.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(pc.addItemButton, SIGNAL(clicked(void)), this,
+  connect(pc.addItemButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotAddItem(void)));
-  connect(photo.cancelButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotClosePhoto(void)));
-  connect(menu1->addAction(tr("Reset Collection Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection ID")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection Title")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection Location")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection About")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Collection Notes")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu1->addAction(tr("Reset Accession Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu2->addAction(tr("&All...")),
-	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
-  connect(menu2->addAction(tr("&Current Page...")),
-	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
-  connect(menu2->addAction(tr("&Selected...")),
-	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
-  connect(pc.page, SIGNAL(currentIndexChanged(int)),
-	  this, SLOT(slotPageChanged(int)));
-  connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
-	  this, SLOT(slotViewPhotograph(void)));
-  pc.resetButton->setMenu(menu1);
-  pc.exportPhotographsToolButton->setMenu(menu2);
+  connect(pc.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCancel(void)));
   connect(pc.exportPhotographsToolButton,
 	  SIGNAL(clicked(void)),
 	  pc.exportPhotographsToolButton,
 	  SLOT(showMenu(void)));
+  connect(pc.graphicsView->scene(),
+	  SIGNAL(itemDoubleClicked(void)),
+	  this,
+	  SLOT(slotViewPhotograph(void)));
+  connect(pc.importItems,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotImportItems(void)));
+  connect(pc.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
+  connect(pc.page,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotPageChanged(int)));
+  connect(pc.printButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPrint(void)));
+  connect(pc.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(pc.select_image_collection,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
+  connect(photo.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotClosePhoto(void)));
+  connect(photo.select_image_item,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
+  connect(menu1->addAction(tr("Reset Collection Image")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset Collection ID")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset Collection Title")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset Collection Location")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset Collection About")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset Collection Notes")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset Accession Number")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
+  connect(menu2->addAction(tr("&All...")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportPhotographs(void)));
+  connect(menu2->addAction(tr("&Current Page...")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportPhotographs(void)));
+  connect(menu2->addAction(tr("&Selected...")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportPhotographs(void)));
+  pc.exportPhotographsToolButton->setMenu(menu2);
+  pc.resetButton->setMenu(menu1);
 
   if(menu2->actions().size() >= 3)
     menu2->actions().at(2)->setEnabled(false);
@@ -177,7 +216,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
     qmain->addError
       (QString(tr("Database Error")),
        QString(tr("Unable to retrieve the photograph collection locations.")),
-       errorstr, __FILE__, __LINE__);
+       errorstr,
+       __FILE__,
+       __LINE__);
 
   pc.thumbnail_collection->setScene(scene1);
   pc.thumbnail_item->setScene(scene2);
@@ -210,17 +251,17 @@ biblioteq_photographcollection::biblioteq_photographcollection
   biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
   biblioteq_misc_functions::highlightWidget
-    (photo.id_item, m_requiredHighlightColor);
-  biblioteq_misc_functions::highlightWidget
-    (photo.title_item, m_requiredHighlightColor);
+    (photo.copyright_item->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
     (photo.creators_item->viewport(), m_requiredHighlightColor);
+  biblioteq_misc_functions::highlightWidget
+    (photo.id_item, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
     (photo.medium_item, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
     (photo.reproduction_number_item->viewport(), m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
-    (photo.copyright_item->viewport(), m_requiredHighlightColor);
+    (photo.title_item, m_requiredHighlightColor);
 }
 
 biblioteq_photographcollection::~biblioteq_photographcollection()
@@ -236,7 +277,8 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.id_item->text().isEmpty())
     {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's ID field."));
       QApplication::processEvents();
       photo.id_item->setFocus();
@@ -248,9 +290,9 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.title_item->text().isEmpty())
     {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Title field."));
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's Title field."));
       QApplication::processEvents();
       photo.title_item->setFocus();
       return false;
@@ -261,9 +303,9 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.creators_item->toPlainText().isEmpty())
     {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Creators field."));
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's Creators field."));
       QApplication::processEvents();
       photo.creators_item->setFocus();
       return false;
@@ -274,9 +316,9 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.medium_item->text().isEmpty())
     {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Medium field."));
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's Medium field."));
       QApplication::processEvents();
       photo.medium_item->setFocus();
       return false;
@@ -287,9 +329,10 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.reproduction_number_item->toPlainText().isEmpty())
     {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Reproduction Number field."));
+      QMessageBox::critical
+	(m_photo_diag,
+	 tr("BiblioteQ: User Error"),
+	 tr("Please complete the item's Reproduction Number field."));
       QApplication::processEvents();
       photo.reproduction_number_item->setFocus();
       return false;
@@ -300,9 +343,9 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.copyright_item->toPlainText().isEmpty())
     {
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please complete the item's "
-			       "Copyright field."));
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: User Error"),
+			    tr("Please complete the item's Copyright field."));
       QApplication::processEvents();
       photo.copyright_item->setFocus();
       return false;
@@ -348,9 +391,10 @@ void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
     if(hasDataChanged(this))
       {
 	if(QMessageBox::
-	   question(this, tr("BiblioteQ: Question"),
+	   question(this,
+		    tr("BiblioteQ: Question"),
 		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::Yes | QMessageBox::No,
+		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
 	  {
 	    QApplication::processEvents();
@@ -379,12 +423,12 @@ void biblioteq_photographcollection::duplicate(const QString &p_oid,
 
 void biblioteq_photographcollection::insert(void)
 {
-  pc.okButton->setText(tr("&Save"));
+  pc.accession_number->clear();
   pc.addItemButton->setEnabled(false);
   pc.importItems->setEnabled(false);
+  pc.okButton->setText(tr("&Save"));
   pc.publication_date->setDate
     (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
-  pc.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (pc.id_collection, m_requiredHighlightColor);
   biblioteq_misc_functions::highlightWidget
@@ -606,9 +650,9 @@ void biblioteq_photographcollection::modify(const int state,
 
       setReadOnlyFields(this, false);
       setReadOnlyFieldsOverride();
-      pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
       pc.importItems->setEnabled(true);
+      pc.okButton->setVisible(true);
       pc.resetButton->setVisible(true);
       pc.select_image_collection->setVisible(true);
       biblioteq_misc_functions::highlightWidget
@@ -628,10 +672,10 @@ void biblioteq_photographcollection::modify(const int state,
 
       setReadOnlyFields(this, true);
       setReadOnlyFieldsOverride();
-      pc.okButton->setVisible(false);
-      pc.page->setEnabled(true);
       pc.addItemButton->setVisible(false);
       pc.importItems->setVisible(false);
+      pc.okButton->setVisible(false);
+      pc.page->setEnabled(true);
       pc.resetButton->setVisible(false);
       pc.select_image_collection->setVisible(false);
 
@@ -662,8 +706,11 @@ void biblioteq_photographcollection::modify(const int state,
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to retrieve the selected photograph "
 				 "collection's data.")),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected photograph "
 			       "collection's data."));
       QApplication::processEvents();
@@ -681,7 +728,11 @@ void biblioteq_photographcollection::modify(const int state,
 	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
 
-	  if(fieldname == "id")
+	  if(fieldname == "about")
+	    pc.about_collection->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "accession_number")
+	    pc.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "id")
 	    {
 	      pc.id_collection->setText(var.toString().trimmed());
 
@@ -692,35 +743,22 @@ void biblioteq_photographcollection::modify(const int state,
 		      str = QString
 			(tr("BiblioteQ: Modify Photograph Collection "
 			    "Entry (")) +
-			var.toString().trimmed() + tr(")");
+			var.toString().trimmed() +
+			tr(")");
 		      m_engWindowTitle = "Modify";
 		    }
 		  else
 		    {
 		      str = QString(tr("BiblioteQ: View Photograph "
 				       "Collection Details (")) +
-			var.toString().trimmed() + tr(")");
+			var.toString().trimmed() +
+			tr(")");
 		      m_engWindowTitle = "View";
 		    }
 
 		  setWindowTitle(str);
 		}
 	    }
-	  else if(fieldname == "title")
-	    pc.title_collection->setText(var.toString().trimmed());
-	  else if(fieldname == "location")
-	    {
-	      if(pc.location->findText(var.toString().trimmed()) > -1)
-		pc.location->setCurrentIndex
-		  (pc.location->findText(var.toString().trimmed()));
-	      else
-		pc.location->setCurrentIndex
-		  (pc.location->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "about")
-	    pc.about_collection->setPlainText(var.toString().trimmed());
-	  else if(fieldname == "notes")
-	    pc.notes_collection->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "image")
 	    {
 	      if(!record.field(i).isNull())
@@ -732,8 +770,19 @@ void biblioteq_photographcollection::modify(const int state,
 		    pc.thumbnail_collection->loadFromData(var.toByteArray());
 		}
 	    }
-	  else if(fieldname == "accession_number")
-	    pc.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "location")
+	    {
+	      if(pc.location->findText(var.toString().trimmed()) > -1)
+		pc.location->setCurrentIndex
+		  (pc.location->findText(var.toString().trimmed()));
+	      else
+		pc.location->setCurrentIndex
+		  (pc.location->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "notes")
+	    pc.notes_collection->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "title")
+	    pc.title_collection->setText(var.toString().trimmed());
 	}
 
       int pages = 1;
@@ -802,16 +851,16 @@ void biblioteq_photographcollection::search(const QString &field,
 {
   Q_UNUSED(field);
   Q_UNUSED(value);
+  pc.accession_number->clear();
   pc.addItemButton->setVisible(false);
-  pc.importItems->setVisible(false);
-  pc.thumbnail_collection->setVisible(false);
-  pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
-  pc.itemGroup->setVisible(false);
   pc.exportPhotographsToolButton->setVisible(false);
+  pc.importItems->setVisible(false);
+  pc.itemGroup->setVisible(false);
   pc.location->insertItem(0, tr("Any"));
   pc.location->setCurrentIndex(0);
-  pc.accession_number->clear();
+  pc.select_image_collection->setVisible(false);
+  pc.thumbnail_collection->setVisible(false);
 
   auto actions = pc.resetButton->menu()->actions();
 
@@ -823,8 +872,8 @@ void biblioteq_photographcollection::search(const QString &field,
 
   setWindowTitle(tr("BiblioteQ: Database Photograph Collection Search"));
   m_engWindowTitle = "Search";
-  pc.okButton->setText(tr("&Search"));
   pc.id_collection->setFocus();
+  pc.okButton->setText(tr("&Search"));
 #ifdef Q_OS_ANDROID
   showMaximized();
 #else
@@ -900,10 +949,10 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   if(query.exec())
     {
-      pc.graphicsView->scene()->clear();
-      pc.graphicsView->resetTransform();
-      pc.graphicsView->verticalScrollBar()->setValue(0);
       pc.graphicsView->horizontalScrollBar()->setValue(0);
+      pc.graphicsView->resetTransform();
+      pc.graphicsView->scene()->clear();
+      pc.graphicsView->verticalScrollBar()->setValue(0);
 
       int columnIdx = 0;
       int i = -1;
@@ -970,29 +1019,30 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 void biblioteq_photographcollection::slotAddItem(void)
 {
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
-  connect(photo.saveButton, SIGNAL(clicked(void)), this,
+  connect(photo.saveButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotInsertItem(void)));
-  m_photo_diag->resize(m_photo_diag->width(),
-		       qRound(0.95 * size().height()));
+  m_photo_diag->resize(m_photo_diag->width(), qRound(0.95 * size().height()));
   biblioteq_misc_functions::center(m_photo_diag, this);
-  photo.thumbnail_item->clear();
-  photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
-  photo.title_item->setText("N/A");
+  photo.accession_number_item->clear();
+  photo.call_number_item->clear();
+  photo.copyright_item->setPlainText("N/A");
   photo.creators_item->setPlainText("N/A");
+  photo.format_item->clear();
+  photo.id_item->setFocus();
+  photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
+  photo.medium_item->setText("N/A");
+  photo.notes_item->clear();
+  photo.other_number_item->clear();
   photo.publication_date->setDate
     (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   photo.quantity->setValue(1);
-  photo.medium_item->setText("N/A");
   photo.reproduction_number_item->setPlainText("N/A");
-  photo.copyright_item->setPlainText("N/A");
-  photo.call_number_item->clear();
-  photo.other_number_item->clear();
-  photo.notes_item->clear();
-  photo.subjects_item->clear();
-  photo.format_item->clear();
   photo.scrollArea->ensureVisible(0, 0);
-  photo.accession_number_item->clear();
-  photo.id_item->setFocus();
+  photo.subjects_item->clear();
+  photo.thumbnail_item->clear();
+  photo.title_item->setText("N/A");
   m_photo_diag->show();
 }
 
@@ -1018,11 +1068,12 @@ void biblioteq_photographcollection::slotDeleteItem(void)
     return;
   else
     {
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to permanently "
 				  "delete the selected %1 item(s)?").
 			       arg(items.size()),
-			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
@@ -1035,11 +1086,11 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   QProgressDialog progress(this);
 
   progress.setCancelButton(nullptr);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Deleting the selected item(s)..."));
   progress.setMaximum(items.size());
   progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
   QApplication::processEvents();
@@ -1193,8 +1244,8 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 
   QFileDialog dialog(this);
 
-  dialog.setFileMode(QFileDialog::Directory);
   dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::Directory);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle
     (tr("BiblioteQ: Photograph Collection Photographs Export"));
@@ -1262,9 +1313,10 @@ void biblioteq_photographcollection::slotGo(void)
 
       if(pc.id_collection->text().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the collection's "
-				   "ID field."));
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("Please complete the collection's ID field."));
 	  QApplication::processEvents();
 	  pc.id_collection->setFocus();
 	  return;
@@ -1275,9 +1327,10 @@ void biblioteq_photographcollection::slotGo(void)
 
       if(pc.title_collection->text().isEmpty())
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the collection's "
-				   "Title field."));
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("Please complete the collection's Title field."));
 	  QApplication::processEvents();
 	  pc.title_collection->setFocus();
 	  return;
@@ -1297,9 +1350,12 @@ void biblioteq_photographcollection::slotGo(void)
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
+	    (this,
+	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
 	  QApplication::processEvents();
 	  return;
@@ -1406,10 +1462,10 @@ void biblioteq_photographcollection::slotGo(void)
 	  if(errorstr.isEmpty())
 	    query.bindValue(8, value);
 	  else
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique "
-				       "integer.")),
-			    errorstr);
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("Unable to generate a unique integer.")),
+	       errorstr);
 	}
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1419,7 +1475,9 @@ void biblioteq_photographcollection::slotGo(void)
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Unable to create or update the entry.")),
-			  query.lastError().text(), __FILE__, __LINE__);
+			  query.lastError().text(),
+			  __FILE__,
+			  __LINE__);
 	  goto db_rollback;
 	}
       else
@@ -1431,7 +1489,8 @@ void biblioteq_photographcollection::slotGo(void)
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to commit the current database "
 			    "transaction.")),
-		 qmain->getDB().lastError().text(), __FILE__,
+		 qmain->getDB().lastError().text(),
+		 __FILE__,
 		 __LINE__);
 	      goto db_rollback;
 	    }
@@ -1474,25 +1533,25 @@ void biblioteq_photographcollection::slotGo(void)
 			      setIcon(QIcon(":/no_image.png"));
 			}
 
-		      if(names.at(i) == "Call Number")
+		      if(names.at(i) == "About")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (pc.about_collection->toPlainText().trimmed());
+		      else if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (pc.accession_number->text());
+		      else if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.call_number_item->text());
 		      else if(names.at(i) == "ID" ||
 			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.id_collection->text());
-		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (pc.title_collection->text());
 		      else if(names.at(i) == "Location")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (pc.location->currentText().trimmed());
-		      else if(names.at(i) == "About")
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (pc.about_collection->toPlainText().trimmed());
-		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (pc.accession_number->text());
+			  (pc.title_collection->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -1523,8 +1582,11 @@ void biblioteq_photographcollection::slotGo(void)
 		  qmain->addError(QString(tr("Database Error")),
 				  QString(tr("Unable to retrieve the "
 					     "photograph collection's OID.")),
-				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+				  errorstr,
+				  __FILE__,
+				  __LINE__);
+		  QMessageBox::critical(this,
+					tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the "
 					   "photograph collection's OID."));
 		  QApplication::processEvents();
@@ -1557,10 +1619,13 @@ void biblioteq_photographcollection::slotGo(void)
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	   qmain->getDB().lastError().text(),
+	   __FILE__,
+	   __LINE__);
 
       QApplication::restoreOverrideCursor();
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
 			       "the entry does not already exist."));
@@ -1870,16 +1935,18 @@ void biblioteq_photographcollection::slotImportItems(void)
 	  if(errorstr.isEmpty())
 	    query.bindValue(17, value);
 	  else
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique "
-				       "integer.")),
-			    errorstr);
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("Unable to generate a unique integer.")),
+	       errorstr);
 	}
 
       if(!query.exec())
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to import photograph.")),
-			query.lastError().text(), __FILE__, __LINE__);
+			query.lastError().text(),
+			__FILE__,
+			__LINE__);
       else
 	imported += 1;
     }
@@ -1945,8 +2012,11 @@ void biblioteq_photographcollection::slotInsertItem(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       QApplication::processEvents();
       return;
@@ -2057,8 +2127,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	query.bindValue(17, value);
       else
 	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique "
-				   "integer.")),
+			QString(tr("Unable to generate a unique integer.")),
 			errorstr);
     }
 
@@ -2069,7 +2138,9 @@ void biblioteq_photographcollection::slotInsertItem(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create or update the entry.")),
-		      query.lastError().text(), __FILE__, __LINE__);
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
       goto db_rollback;
     }
   else
@@ -2081,7 +2152,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to commit the current database "
 			"transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__,
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
 	     __LINE__);
 	  goto db_rollback;
 	}
@@ -2135,12 +2207,14 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(!qmain->getDB().rollback())
     qmain->addError
       (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-       qmain->getDB().lastError().text(), __FILE__, __LINE__);
+       qmain->getDB().lastError().text(),
+       __FILE__,
+       __LINE__);
 
   QApplication::restoreOverrideCursor();
-  QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
-			tr("Unable to create the item. "
-			   "Please verify that "
+  QMessageBox::critical(m_photo_diag,
+			tr("BiblioteQ: Database Error"),
+			tr("Unable to create the item. Please verify that "
 			   "the item does not already exist."));
   QApplication::processEvents();
 }
@@ -2148,10 +2222,11 @@ void biblioteq_photographcollection::slotInsertItem(void)
 void biblioteq_photographcollection::slotModifyItem(void)
 {
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
-  connect(photo.saveButton, SIGNAL(clicked(void)), this,
+  connect(photo.saveButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotUpdateItem(void)));
-  m_photo_diag->resize(m_photo_diag->width(),
-		       qRound(0.95 * size().height()));
+  m_photo_diag->resize(m_photo_diag->width(), qRound(0.95 * size().height()));
   biblioteq_misc_functions::center(m_photo_diag, this);
   photo.id_item->setFocus();
   photo.scrollArea->ensureVisible(0, 0);
@@ -2319,7 +2394,9 @@ void biblioteq_photographcollection::slotSaveRotatedImage
       if(!query.exec())
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to update photograph.")),
-			query.lastError().text(), __FILE__, __LINE__);
+			query.lastError().text(),
+			__FILE__,
+			__LINE__);
       else
 	{
 	  auto list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
@@ -2354,27 +2431,28 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
     {
       m_itemOid.clear();
 
+      pc.accession_number_item->clear();
+      pc.call_number_item->clear();
+      pc.copyright_item->clear();
+      pc.creators_item->clear();
+
       if(pc.exportPhotographsToolButton->menu() &&
 	 pc.exportPhotographsToolButton->menu()->actions().size() >= 3)
 	pc.exportPhotographsToolButton->menu()->actions()[2]->
 	  setEnabled(false);
 
-      pc.thumbnail_item->clear();
+      pc.format_item->clear();
       pc.id_item->clear();
-      pc.title_item->clear();
-      pc.creators_item->clear();
+      pc.medium_item->clear();
+      pc.notes_item->clear();
+      pc.other_number_item->clear();
       pc.publication_date->setDate
 	(QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
       pc.quantity->setValue(1);
-      pc.medium_item->clear();
       pc.reproduction_number_item->clear();
-      pc.copyright_item->clear();
-      pc.call_number_item->clear();
-      pc.other_number_item->clear();
-      pc.notes_item->clear();
       pc.subjects_item->clear();
-      pc.format_item->clear();
-      pc.accession_number_item->clear();
+      pc.thumbnail_item->clear();
+      pc.title_item->clear();
       return;
     }
 
@@ -2425,51 +2503,10 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		auto fieldname(record.fieldName(i));
 		auto var(record.field(i).value());
 
-		if(fieldname == "id")
+		if(fieldname == "accession_number")
 		  {
-		    pc.id_item->setText(var.toString().trimmed());
-		    photo.id_item->setText(var.toString().trimmed());
-		  }
-		else if(fieldname == "title")
-		  {
-		    pc.title_item->setText(var.toString().trimmed());
-		    photo.title_item->setText(var.toString().trimmed());
-		  }
-		else if(fieldname == "creators")
-		  {
-		    pc.creators_item->setPlainText(var.toString().trimmed());
-		    photo.creators_item->setPlainText(var.toString().trimmed());
-		  }
-		else if(fieldname == "pdate")
-		  {
-		    pc.publication_date->setDate
-		      (QDate::fromString(var.toString().trimmed(),
-					 biblioteq::s_databaseDateFormat));
-		    photo.publication_date->setDate
-		      (QDate::fromString(var.toString().trimmed(),
-					 biblioteq::s_databaseDateFormat));
-		  }
-		else if(fieldname == "quantity")
-		  {
-		    pc.quantity->setValue(var.toInt());
-		    photo.quantity->setValue(var.toInt());
-		  }
-		else if(fieldname == "medium")
-		  {
-		    pc.medium_item->setText(var.toString().trimmed());
-		    photo.medium_item->setText(var.toString().trimmed());
-		  }
-		else if(fieldname == "reproduction_number")
-		  {
-		    pc.reproduction_number_item->setPlainText
-		      (var.toString().trimmed());
-		    photo.reproduction_number_item->setPlainText
-		      (var.toString().trimmed());
-		  }
-		else if(fieldname == "copyright")
-		  {
-		    pc.copyright_item->setPlainText(var.toString().trimmed());
-		    photo.copyright_item->setPlainText
+		    pc.accession_number_item->setText(var.toString().trimmed());
+		    photo.accession_number_item->setText
 		      (var.toString().trimmed());
 		  }
 		else if(fieldname == "callnumber")
@@ -2477,26 +2514,26 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		    pc.call_number_item->setText(var.toString().trimmed());
 		    photo.call_number_item->setText(var.toString().trimmed());
 		  }
-		else if(fieldname == "other_number")
+		else if(fieldname == "copyright")
 		  {
-		    pc.other_number_item->setText(var.toString().trimmed());
-		    photo.other_number_item->setText(var.toString().trimmed());
-		  }
-		else if(fieldname == "notes")
-		  {
-		    pc.notes_item->setPlainText(var.toString().trimmed());
-		    photo.notes_item->setPlainText(var.toString().trimmed());
-		  }
-		else if(fieldname == "subjects")
-		  {
-		    pc.subjects_item->setPlainText(var.toString().trimmed());
-		    photo.subjects_item->setPlainText
+		    pc.copyright_item->setPlainText(var.toString().trimmed());
+		    photo.copyright_item->setPlainText
 		      (var.toString().trimmed());
+		  }
+		else if(fieldname == "creators")
+		  {
+		    pc.creators_item->setPlainText(var.toString().trimmed());
+		    photo.creators_item->setPlainText(var.toString().trimmed());
 		  }
 		else if(fieldname == "format")
 		  {
 		    pc.format_item->setPlainText(var.toString().trimmed());
 		    photo.format_item->setPlainText(var.toString().trimmed());
+		  }
+		else if(fieldname == "id")
+		  {
+		    pc.id_item->setText(var.toString().trimmed());
+		    photo.id_item->setText(var.toString().trimmed());
 		  }
 		else if(fieldname == "image")
 		  {
@@ -2522,11 +2559,52 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 			photo.thumbnail_item->clear();
 		      }
 		  }
-		else if(fieldname == "accession_number")
+		else if(fieldname == "medium")
 		  {
-		    pc.accession_number_item->setText(var.toString().trimmed());
-		    photo.accession_number_item->setText
+		    pc.medium_item->setText(var.toString().trimmed());
+		    photo.medium_item->setText(var.toString().trimmed());
+		  }
+		else if(fieldname == "notes")
+		  {
+		    pc.notes_item->setPlainText(var.toString().trimmed());
+		    photo.notes_item->setPlainText(var.toString().trimmed());
+		  }
+		else if(fieldname == "other_number")
+		  {
+		    pc.other_number_item->setText(var.toString().trimmed());
+		    photo.other_number_item->setText(var.toString().trimmed());
+		  }
+		else if(fieldname == "pdate")
+		  {
+		    pc.publication_date->setDate
+		      (QDate::fromString(var.toString().trimmed(),
+					 biblioteq::s_databaseDateFormat));
+		    photo.publication_date->setDate
+		      (QDate::fromString(var.toString().trimmed(),
+					 biblioteq::s_databaseDateFormat));
+		  }
+		else if(fieldname == "quantity")
+		  {
+		    pc.quantity->setValue(var.toInt());
+		    photo.quantity->setValue(var.toInt());
+		  }
+		else if(fieldname == "reproduction_number")
+		  {
+		    pc.reproduction_number_item->setPlainText
 		      (var.toString().trimmed());
+		    photo.reproduction_number_item->setPlainText
+		      (var.toString().trimmed());
+		  }
+		else if(fieldname == "subjects")
+		  {
+		    pc.subjects_item->setPlainText(var.toString().trimmed());
+		    photo.subjects_item->setPlainText
+		      (var.toString().trimmed());
+		  }
+		else if(fieldname == "title")
+		  {
+		    pc.title_item->setText(var.toString().trimmed());
+		    photo.title_item->setText(var.toString().trimmed());
 		  }
 	      }
 	  }
@@ -2626,8 +2704,11 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
+		      qmain->getDB().lastError().text(),
+		      __FILE__,
+		      __LINE__);
+      QMessageBox::critical(m_photo_diag,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       QApplication::processEvents();
       return;
@@ -2726,7 +2807,9 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create or update the entry.")),
-		      query.lastError().text(), __FILE__, __LINE__);
+		      query.lastError().text(),
+		      __FILE__,
+		      __LINE__);
       goto db_rollback;
     }
   else
@@ -2738,29 +2821,29 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to commit the current database "
 			"transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__,
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
 	     __LINE__);
 	  goto db_rollback;
 	}
 
       QApplication::restoreOverrideCursor();
-      pc.id_item->setText(photo.id_item->text());
-      pc.title_item->setText(photo.title_item->text());
+      pc.accession_number_item->setText(photo.accession_number_item->text());
+      pc.call_number_item->setText(photo.call_number_item->text());
+      pc.copyright_item->setPlainText(photo.copyright_item->toPlainText());
       pc.creators_item->setPlainText(photo.creators_item->toPlainText());
-      pc.publication_date->setDate
-	(photo.publication_date->date());
-      pc.quantity->setValue(photo.quantity->value());
+      pc.format_item->setPlainText(photo.format_item->toPlainText());
+      pc.id_item->setText(photo.id_item->text());
       pc.medium_item->setText(photo.medium_item->text());
+      pc.notes_item->setPlainText(photo.notes_item->toPlainText());
+      pc.other_number_item->setText(photo.other_number_item->text());
+      pc.publication_date->setDate(photo.publication_date->date());
+      pc.quantity->setValue(photo.quantity->value());
       pc.reproduction_number_item->setPlainText
 	(photo.reproduction_number_item->toPlainText());
-      pc.copyright_item->setPlainText(photo.copyright_item->toPlainText());
-      pc.call_number_item->setText(photo.call_number_item->text());
-      pc.other_number_item->setText(photo.other_number_item->text());
-      pc.notes_item->setPlainText(photo.notes_item->toPlainText());
       pc.subjects_item->setPlainText(photo.subjects_item->toPlainText());
-      pc.format_item->setPlainText(photo.format_item->toPlainText());
       pc.thumbnail_item->setImage(photo.thumbnail_item->m_image);
-      pc.accession_number_item->setText(photo.accession_number_item->text());
+      pc.title_item->setText(photo.title_item->text());
     }
 
   return;
@@ -2772,12 +2855,14 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   if(!qmain->getDB().rollback())
     qmain->addError
       (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-       qmain->getDB().lastError().text(), __FILE__, __LINE__);
+       qmain->getDB().lastError().text(),
+       __FILE__,
+       __LINE__);
 
   QApplication::restoreOverrideCursor();
-  QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
-			tr("Unable to update the item. "
-			   "Please verify that "
+  QMessageBox::critical(m_photo_diag,
+			tr("BiblioteQ: Database Error"),
+			tr("Unable to update the item. Please verify that "
 			   "the item does not already exist."));
   QApplication::processEvents();
 }
@@ -2967,25 +3052,25 @@ void biblioteq_photographcollection::storeData(void)
   QString objectname("");
 
   m_widgetValues.clear();
-  list << pc.thumbnail_collection
+  list << pc.about_collection
+       << pc.accession_number
        << pc.id_collection
-       << pc.title_collection
        << pc.location
-       << pc.about_collection
        << pc.notes_collection
-       << pc.accession_number;
+       << pc.thumbnail_collection
+       << pc.title_collection;
 
   foreach(auto widget, list)
     {
       classname = widget->metaObject()->className();
       objectname = widget->objectName();
 
-      if(classname == "QLineEdit")
-	m_widgetValues[objectname] =
-	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
-      else if(classname == "QComboBox")
+      if(classname == "QComboBox")
 	m_widgetValues[objectname] =
 	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
+      else if(classname == "QLineEdit")
+	m_widgetValues[objectname] =
+	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
       else if(classname == "QTextEdit")
 	m_widgetValues[objectname] =
 	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
@@ -3030,12 +3115,13 @@ void biblioteq_photographcollection::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
-      pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
       pc.importItems->setEnabled(true);
+      pc.okButton->setVisible(true);
       pc.resetButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
-	pc.id_collection->text() + tr(")");
+	pc.id_collection->text() +
+	tr(")");
       m_engWindowTitle = "Modify";
       disconnect(m_scene,
 		 SIGNAL(deleteKeyPressed(void)),
@@ -3048,12 +3134,13 @@ void biblioteq_photographcollection::updateWindow(const int state)
     }
   else
     {
-      pc.okButton->setVisible(false);
       pc.addItemButton->setEnabled(false);
       pc.importItems->setEnabled(false);
+      pc.okButton->setVisible(false);
       pc.resetButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
-	pc.id_collection->text() + tr(")");
+	pc.id_collection->text() +
+	tr(")");
       m_engWindowTitle = "View";
     }
 
