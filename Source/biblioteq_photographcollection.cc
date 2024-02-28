@@ -605,6 +605,8 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 
       auto scene = new QGraphicsScene(mainWindow);
 
+      mainWindow->resize
+	(qRound(0.95 * size().width()), qRound(0.95 * size().height()));
       mainWindow->show();
       biblioteq_misc_functions::center(mainWindow, this);
       mainWindow->hide();
