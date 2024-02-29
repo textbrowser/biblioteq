@@ -27,18 +27,18 @@
 11.  Finish the availability column. (Completed)
 12.  Implement a generic search. (Completed)
      Fields included:
-	a. ID Number (ISBN, ISSN, Catalog Number, UPC, etc.)
-	b. Title
-	c. Publisher
-	d. Publication Date
-	e. Quantity
-	f. Price
-	g. Language
-	h. Monetary Units
-	i. Location
-	j. Type (Removed)
-	k. Availability
-	l. Category
+	Availability
+	Category
+	ID Number (ISBN, ISSN, Catalog Number, UPC, etc.)
+	Language
+	Location
+	Monetary Units
+	Price
+	Publication Date
+	Publisher
+	Quantity
+	Title
+	Type (Removed)
 13.  Provide more detailed error messages. See #22. (Completed)
 14.  Process the configuration files with threads. (Completed)
 15.  Implement the lending of items. (Completed)
@@ -122,15 +122,15 @@
      biblioteq.conf file. (Completed)
 65.  The Library of Congress USMARC data fields for books are as
      follows: (Completed)
-	a. 010 LC Control Number
-	b. 050 Call Number
-	c. 082 Dewey Class Number
-	d. 100 Author
-	e. 245 Title
-	f. 250 Edition
-	g. 260 Publication Date
-	h. 260 Publisher
-	i. 300 Abstract (Description)
+	010 LC Control Number
+	050 Call Number
+	082 Dewey Class Number
+	100 Author
+	245 Title
+	250 Edition
+	260 Publication Date
+	260 Publisher
+	300 Abstract (Description)
 66.  Perform the Library of Congress queries in threads. (Completed)
 67.  Create an initial copy whenever a new item is created. Use the item's
      ID as the copy's Barcode. Refer to #77. (Completed)
@@ -138,13 +138,13 @@
      Retrieve the Notes section from the Library of Congress, if available.
 69.  The Library of Congress USMARC data fields for journals and
      magazines are as follows: (Completed)
-	a. 010 LC Control Number
-	b. 050 Call Number
-	c. 082 Dewey Class Number
-	d. 245 Title
-	e. 260 Publication Date
-	f. 260 Publisher
-	g. 300 Abstract (Description)
+	010 LC Control Number
+	050 Call Number
+	082 Dewey Class Number
+	245 Title
+	260 Publication Date
+	260 Publisher
+	300 Abstract (Description)
 70.  The ISSN is not unique. Use the Issue and Volume Number as part of
      the uniqueness key. Refer to #85. (Completed)
 71.  Prevent an administrator from launching multiple Z39.50 queries
