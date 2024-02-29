@@ -827,6 +827,21 @@ void biblioteq_magazine::modify(const int state)
 	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
 
+	  if(fieldname == "accession_number")
+	    ma.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  ma.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(ma.back_image->m_image.isNull())
+		    ma.back_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "callnumber")
+	    ma.callnum->setText(var.toString().trimmed());
 	  if(fieldname == "category")
 	    {
 	      if(m_subType == "Journal")
@@ -836,68 +851,21 @@ void biblioteq_magazine::modify(const int state)
 		ma.category->setMultipleLinks
 		  ("magazine_search", "category", var.toString().trimmed());
 	    }
-	  else if(fieldname == "issueno")
-	    ma.issue->setValue(var.toInt());
-	  else if(fieldname == "issuevolume")
-	    ma.volume->setValue(var.toInt());
-	  else if(fieldname == "language")
+	  else if(fieldname == "description")
+	    ma.description->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "deweynumber")
+	    ma.deweynum->setText(var.toString().trimmed());
+	  else if(fieldname == "front_cover")
 	    {
-	      if(ma.language->findText(var.toString().trimmed()) > -1)
-		ma.language->setCurrentIndex
-		  (ma.language->findText(var.toString().trimmed()));
-	      else
-		ma.language->setCurrentIndex
-		  (ma.language->findText(biblioteq::s_unknown));
+	      if(!record.field(i).isNull())
+		{
+		  ma.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(ma.front_image->m_image.isNull())
+		    ma.front_image->loadFromData(var.toByteArray());
+		}
 	    }
-	  else if(fieldname == "location")
-	    {
-	      if(ma.location->findText(var.toString().trimmed()) > -1)
-		ma.location->setCurrentIndex
-		  (ma.location->findText(var.toString().trimmed()));
-	      else
-		ma.location->setCurrentIndex
-		  (ma.location->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(ma.monetary_units->findText(var.toString().trimmed()) > -1)
-		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText(var.toString().trimmed()));
-	      else
-		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "pdate")
-	    ma.publication_date->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 biblioteq::s_databaseDateFormat));
-	  else if(fieldname == "place")
-	    {
-	      if(m_subType == "Journal")
-		ma.place->setMultipleLinks
-		  ("journal_search", "place", var.toString().trimmed());
-	      else
-		ma.place->setMultipleLinks
-		  ("magazine_search", "place", var.toString().trimmed());
-	    }
-	  else if(fieldname == "price")
-	    ma.price->setValue(var.toDouble());
-	  else if(fieldname == "publisher")
-	    {
-	      if(m_subType == "Journal")
-		ma.publisher->setMultipleLinks
-		  ("journal_search", "publisher", var.toString().trimmed());
-	      else
-		ma.publisher->setMultipleLinks
-		  ("magazine_search", "publisher", var.toString().trimmed());
-	    }
-	  else if(fieldname == "quantity")
-	    {
-	      ma.quantity->setValue(var.toInt());
-	      m_oldq = ma.quantity->value();
-	    }
-	  else if(fieldname == "title")
-	    ma.title->setText(var.toString().trimmed());
 	  else if(fieldname == "id")
 	    {
 	      if(state == biblioteq::EDITABLE)
@@ -955,10 +923,72 @@ void biblioteq_magazine::modify(const int state)
 	      else
 		ma.issnAvailableCheckBox->setChecked(true);
 	    }
-	  else if(fieldname == "description")
-	    ma.description->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "issueno")
+	    ma.issue->setValue(var.toInt());
+	  else if(fieldname == "issuevolume")
+	    ma.volume->setValue(var.toInt());
+	  else if(fieldname == "language")
+	    {
+	      if(ma.language->findText(var.toString().trimmed()) > -1)
+		ma.language->setCurrentIndex
+		  (ma.language->findText(var.toString().trimmed()));
+	      else
+		ma.language->setCurrentIndex
+		  (ma.language->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "lccontrolnumber")
+	    ma.lcnum->setText(var.toString().trimmed());
+	  else if(fieldname == "location")
+	    {
+	      if(ma.location->findText(var.toString().trimmed()) > -1)
+		ma.location->setCurrentIndex
+		  (ma.location->findText(var.toString().trimmed()));
+	      else
+		ma.location->setCurrentIndex
+		  (ma.location->findText(biblioteq::s_unknown));
+	    }
 	  else if(fieldname == "marc_tags")
 	    ma.marc_tags->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(ma.monetary_units->findText(var.toString().trimmed()) > -1)
+		ma.monetary_units->setCurrentIndex
+		  (ma.monetary_units->findText(var.toString().trimmed()));
+	      else
+		ma.monetary_units->setCurrentIndex
+		  (ma.monetary_units->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "pdate")
+	    ma.publication_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
+	  else if(fieldname == "place")
+	    {
+	      if(m_subType == "Journal")
+		ma.place->setMultipleLinks
+		  ("journal_search", "place", var.toString().trimmed());
+	      else
+		ma.place->setMultipleLinks
+		  ("magazine_search", "place", var.toString().trimmed());
+	    }
+	  else if(fieldname == "price")
+	    ma.price->setValue(var.toDouble());
+	  else if(fieldname == "publisher")
+	    {
+	      if(m_subType == "Journal")
+		ma.publisher->setMultipleLinks
+		  ("journal_search", "publisher", var.toString().trimmed());
+	      else
+		ma.publisher->setMultipleLinks
+		  ("magazine_search", "publisher", var.toString().trimmed());
+	    }
+	  else if(fieldname == "quantity")
+	    {
+	      ma.quantity->setValue(var.toInt());
+	      m_oldq = ma.quantity->value();
+	    }
+	  else if(fieldname == "title")
+	    ma.title->setText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    {
 	      if(m_subType == "Journal")
@@ -968,36 +998,6 @@ void biblioteq_magazine::modify(const int state)
 		ma.keyword->setMultipleLinks
 		  ("magazine_search", "keyword", var.toString().trimmed());
 	    }
-	  else if(fieldname == "lccontrolnumber")
-	    ma.lcnum->setText(var.toString().trimmed());
-	  else if(fieldname == "callnumber")
-	    ma.callnum->setText(var.toString().trimmed());
-	  else if(fieldname == "deweynumber")
-	    ma.deweynum->setText(var.toString().trimmed());
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  ma.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(ma.front_image->m_image.isNull())
-		    ma.front_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  ma.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(ma.back_image->m_image.isNull())
-		    ma.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    ma.accession_number->setText(var.toString().trimmed());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
@@ -2871,16 +2871,58 @@ void biblioteq_magazine::slotGo(void)
 			      setIcon(QIcon(":/no_image.png"));
 			}
 
-		      if(names.at(i) == "Call Number")
+		      if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.accession_number->text());
+		      else if(names.at(i) == "Availability")
+			{
+			  qmain->getUI().table->item(m_index->row(), i)->
+			    setText
+			    (biblioteq_misc_functions::getAvailability
+			     (m_oid, qmain->getDB(), m_subType, errorstr));
+
+			  if(!errorstr.isEmpty())
+			    qmain->addError
+			      (tr("Database Error"),
+			       tr("Retrieving availability."),
+			       errorstr,
+			       __FILE__,
+			       __LINE__);
+			}
+		      else if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.callnum->text());
-		      else if(names.at(i) == "ISSN" ||
-			      names.at(i) == "ID Number")
+		      else if(names.at(i) == "Categories")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.category->toPlainText().trimmed());
+		      else if(names.at(i) == "Dewey Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.deweynum->text());
+		      else if(names.at(i) == "ID Number" ||
+			      names.at(i) == "ISSN")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.id->text().trimmed());
-		      else if(names.at(i) == "Title")
+		      else if(names.at(i) == "Issue")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.title->text());
+			  (ma.issue->text());
+		      else if(names.at(i) == "LC Control Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.lcnum->text());
+		      else if(names.at(i) == "Language")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.language->currentText().trimmed());
+		      else if(names.at(i) == "Location")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.location->currentText().trimmed());
+		      else if(names.at(i) == "Monetary Units")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.monetary_units->currentText().trimmed());
+		      else if(names.at(i) == "Place of Publication")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.place->toPlainText());
+		      else if(names.at(i) == "Price")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (QLocale().toString(ma.price->value()));
 		      else if(names.at(i) == "Publication Date")
 			{
 			  if(qmain->getTypeFilterString() == "Journals")
@@ -2903,61 +2945,15 @@ void biblioteq_magazine::slotGo(void)
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.publisher->toPlainText());
-		      else if(names.at(i) == "Place of Publication")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.place->toPlainText());
-		      else if(names.at(i) == "Categories")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.category->toPlainText().trimmed());
-		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (QLocale().toString(ma.price->value()));
-		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.language->currentText().trimmed());
-		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.monetary_units->currentText().trimmed());
 		      else if(names.at(i) == "Quantity")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.quantity->text());
-		      else if(names.at(i) == "Location")
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.location->currentText().trimmed());
+			  (ma.title->text());
 		      else if(names.at(i) == "Volume")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.volume->text());
-		      else if(names.at(i) == "Issue")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.issue->text());
-		      else if(names.at(i) == "LC Control Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.lcnum->text());
-		      else if(names.at(i) == "Call Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.callnum->text());
-		      else if(names.at(i) == "Dewey Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.deweynum->text());
-		      else if(names.at(i) == "Availability")
-			{
-			  qmain->getUI().table->item(m_index->row(), i)->
-			    setText
-			    (biblioteq_misc_functions::getAvailability
-			     (m_oid, qmain->getDB(), m_subType,
-			      errorstr));
-
-			  if(!errorstr.isEmpty())
-			    qmain->addError
-			      (tr("Database Error"),
-			       tr("Retrieving availability."),
-			       errorstr,
-			       __FILE__,
-			       __LINE__);
-			}
-		      else if(names.at(i) == "Accession Number")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (ma.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
