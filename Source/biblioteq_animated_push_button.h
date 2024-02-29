@@ -41,7 +41,9 @@ class biblioteq_animated_push_button: public QPushButton
   {
     m_animator.setPropertyName("color");
     m_animator.setTargetObject(this);
+    m_negativeColor = QColor(255, 36, 0); // A sprite of green.
     m_originalColor = palette().color(QPalette::Window);
+    m_positiveColor = QColor(0, 177, 64); // A sprite of red.
   }
 
   ~biblioteq_animated_push_button()
@@ -55,15 +57,39 @@ class biblioteq_animated_push_button: public QPushButton
 
   void animate(const int milliseconds)
   {
+    animatePositively(milliseconds);
+  }
+
+  void animateNegatively(const int milliseconds)
+  {
+    animation(m_negativeColor, milliseconds);
+  }
+
+  void animatePositively(const int milliseconds)
+  {
+    animation(m_positiveColor, milliseconds);
+  }
+
+ private:
+  QColor m_negativeColor;
+  QColor m_originalColor;
+  QColor m_positiveColor;
+  QPropertyAnimation m_animator;
+
+  void animation(const QColor &color, const int milliseconds)
+  {
     if(milliseconds <= 0)
-      return;
+      {
+	m_animator.stop();
+	return;
+      }
 
     m_animator.stop();
     m_animator.setDuration(milliseconds);
     m_animator.setEasingCurve(QEasingCurve::OutCubic);
     m_animator.setEndValue(m_originalColor);
     m_animator.setLoopCount(1);
-    m_animator.setStartValue(QColor(0, 177, 64));
+    m_animator.setStartValue(color);
     m_animator.start();
   }
 
@@ -73,10 +99,6 @@ class biblioteq_animated_push_button: public QPushButton
       (QString("background-color: rgb(%1, %2, %3);").
        arg(color.red()).arg(color.green()).arg(color.blue()));
   }
-
- private:
-  QColor m_originalColor;
-  QPropertyAnimation m_animator;
 };
 
 #endif
