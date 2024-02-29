@@ -1868,7 +1868,6 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.volume->setMinimum(-1);
   ma.volume->setValue(-1);
   ma.z3950QueryButton->setVisible(false);
-  prepareFavorites();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1879,6 +1878,8 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 	  actions[0]->setVisible(false);
 	  actions[1]->setVisible(false);
 	}
+
+      prepareFavorites();
 
       if(m_subType == "Journal")
 	setWindowTitle(QString(tr("BiblioteQ: Database Journal Search")));
