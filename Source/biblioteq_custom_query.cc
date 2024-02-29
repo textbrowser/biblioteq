@@ -483,7 +483,7 @@ void biblioteq_custom_query::slotRenameFavoriteQuery(void)
      tr("BiblioteQ: Rename Custom Query Favorite"),
      tr("Query Name"),
      QLineEdit::Normal,
-     cq.favorites->currentText(),&ok).remove('\n').remove('\r').trimmed();
+     cq.favorites->currentText(), &ok).remove('\n').remove('\r').trimmed();
 
   if(!ok || name.isEmpty())
     return;

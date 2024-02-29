@@ -607,3 +607,4 @@
 	Options (Completed)
 	Tools (Completed)
 	View (Completed)
+315. Replace QString(tr()) with tr(). (TBD)
