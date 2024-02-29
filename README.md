@@ -6,6 +6,7 @@ BiblioteQ is free, lovely, and open library software.
 - Administrator roles.
 - Alpha architecture support.
 - Android!
+- Animated confirmations, here and there. Future fun.
 - Anti-censorship through digital content.
 - Apple Silicon.
 - Archive important documents.
