@@ -107,14 +107,14 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordflow">if</span>(!item || !option || !painter)</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;murect = painter-&gt;transform().mapRect(QRectF(0, 0, 1, 1));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;marect = painter-&gt;transform().mapRect(QRectF(0, 0, 1, 1));</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordflow">if</span>(qFuzzyIsNull(qMax(murect.width(), murect.height())))</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordflow">if</span>(qFuzzyIsNull(qMax(marect.height(), marect.width())))</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;mbrect = painter-&gt;transform().mapRect(item-&gt;boundingRect());</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordflow">if</span>(qMin(mbrect.width(), mbrect.height()) &lt; qreal(1.0))</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordflow">if</span>(qMin(mbrect.height(), mbrect.width()) &lt; qreal(1.0))</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">const</span> QColor bgcolor(70, 130, 180);</div>
@@ -158,7 +158,7 @@ $(function() {
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    painter-&gt;drawPixmap</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      (exposed_rect, pixmap(), exposed_rect.translated(-offset()));</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span>(option-&gt;state &amp; (QStyle::State_Selected | QStyle::State_HasFocus))</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span>(option-&gt;state &amp; (QStyle::State_HasFocus | QStyle::State_Selected))</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      qt_graphicsItem_highlightSelected(<span class="keyword">this</span>, painter, option);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div>

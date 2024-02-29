@@ -1,6 +1,6 @@
 <map id="biblioteq_dvd" name="biblioteq_dvd">
-<area shape="rect" id="node1" title=" " alt="" coords="9,247,108,273"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,112,32"/>
-<area shape="rect" id="node4" href="$classbiblioteq.html" title=" " alt="" coords="89,81,159,108"/>
-<area shape="rect" id="node3" href="$classbiblioteq__item.html" title=" " alt="" coords="81,171,183,197"/>
+<area shape="rect" id="node1" title=" " alt="" coords="8,247,119,273"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,121,32"/>
+<area shape="rect" id="node4" href="$classbiblioteq.html" title=" " alt="" coords="95,81,173,108"/>
+<area shape="rect" id="node3" href="$classbiblioteq__item.html" title=" " alt="" coords="85,171,201,197"/>
 </map>
