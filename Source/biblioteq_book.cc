@@ -364,8 +364,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the conditions.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the conditions."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -377,8 +377,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the originality list.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the originality list."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -390,8 +390,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the binding types.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the binding types."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -403,8 +403,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the languages.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the languages."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -416,8 +416,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the monetary units.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -429,8 +429,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the locations.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the locations."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -443,8 +443,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the target audiences.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the target audiences."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -473,12 +473,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   if(id.target_audience->findText(biblioteq::s_unknown) == -1)
     id.target_audience->addItem(biblioteq::s_unknown);
 
-  QActionGroup *actionGroup1 = nullptr;
-  QActionGroup *actionGroup2 = nullptr;
-
-  actionGroup1 = new QActionGroup(this);
-  actionGroup2 = new QActionGroup(this);
-
+  auto actionGroup1 = new QActionGroup(this);
+  auto actionGroup2 = new QActionGroup(this);
   auto found = false;
   auto list(qmain->getSRUNames());
 
@@ -787,15 +783,15 @@ void biblioteq_book::createFile(const QByteArray &digest,
       if(errorstr.isEmpty())
 	query.bindValue(4, value);
       else
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique integer.")),
+	qmain->addError(tr("Database Error"),
+			tr("Unable to generate a unique integer."),
 			errorstr);
     }
 
   if(!query.exec())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to create a database transaction.")),
+      (tr("Database Error"),
+       tr("Unable to create a database transaction."),
        query.lastError().text(),
        __FILE__,
        __LINE__);
@@ -1126,8 +1122,8 @@ void biblioteq_book::modify(const int state)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected book's data.")),
+	(tr("Database Error"),
+	 tr("Unable to retrieve the selected book's data."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -1229,7 +1225,7 @@ void biblioteq_book::modify(const int state)
 	      if(state == biblioteq::EDITABLE)
 		{
 		  if(!var.toString().trimmed().trimmed().isEmpty())
-		    str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		    str = tr("BiblioteQ: Modify Book Entry (") +
 		      var.toString().trimmed() +
 		      tr(")");
 		  else
@@ -1240,7 +1236,7 @@ void biblioteq_book::modify(const int state)
 	      else
 		{
 		  if(!var.toString().trimmed().trimmed().isEmpty())
-		    str = QString(tr("BiblioteQ: View Book Details (")) +
+		    str = tr("BiblioteQ: View Book Details (") +
 		      var.toString().trimmed() +
 		      tr(")");
 		  else
@@ -3001,9 +2997,9 @@ void biblioteq_book::slotGo(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      qmain->addError
-		(QString(tr("Database Error")),
-		 QString(tr("Unable to determine the maximum copy number of "
-			    "the item.")),
+		(tr("Database Error"),
+		 tr("Unable to determine the maximum copy number of "
+		    "the item."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -3175,8 +3171,8 @@ void biblioteq_book::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to create a database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -3452,8 +3448,8 @@ void biblioteq_book::slotGo(void)
 	    }
 	  else
 	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("Unable to generate a unique integer.")),
+	      (tr("Database Error"),
+	       tr("Unable to generate a unique integer."),
 	       errorstr);
 	}
 
@@ -3463,8 +3459,8 @@ void biblioteq_book::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create or update the entry.")),
+	    (tr("Database Error"),
+	     tr("Unable to create or update the entry."),
 	     query.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -3495,8 +3491,8 @@ void biblioteq_book::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy data.")),
+		    (tr("Database Error"),
+		     tr("Unable to purge unnecessary copy data."),
 		     query.lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -3507,9 +3503,8 @@ void biblioteq_book::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -3545,8 +3540,8 @@ void biblioteq_book::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to create initial copies.")),
+		    (tr("Database Error"),
+		     tr("Unable to create initial copies."),
 		     errorstr,
 		     __FILE__,
 		     __LINE__);
@@ -3557,9 +3552,8 @@ void biblioteq_book::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -3597,7 +3591,7 @@ void biblioteq_book::slotGo(void)
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
 	      if(!id.id->text().remove('-').isEmpty())
-		str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		str = tr("BiblioteQ: Modify Book Entry (") +
 		  id.id->text() + tr(")");
 	      else
 		str = tr("BiblioteQ: Modify Book Entry");
@@ -3634,8 +3628,8 @@ void biblioteq_book::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString(tr("Database Error")),
-			       QString(tr("Retrieving availability.")),
+			      (tr("Database Error"),
+			       tr("Retrieving availability."),
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
@@ -3785,8 +3779,8 @@ void biblioteq_book::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   qmain->getDB().lastError().text(),
 	   __FILE__,
 	   __LINE__);
@@ -4598,9 +4592,9 @@ void biblioteq_book::slotProxyAuthenticationRequired
   if(authenticator)
     {
       ui_p.messageLabel->setText
-	(QString(tr("The proxy %1:%2 is requesting credentials.").
-		 arg(proxy.hostName()).
-		 arg(proxy.port())));
+	(tr("The proxy %1:%2 is requesting credentials.").
+	 arg(proxy.hostName()).
+	 arg(proxy.port()));
       m_proxyDialog->resize
 	(QSize(m_proxyDialog->width(), m_proxyDialog->sizeHint().height()));
 
@@ -5514,11 +5508,8 @@ void biblioteq_book::slotZ3950Query(void)
 
   if(!errorstr.isEmpty())
     {
-      qmain->addError(QString(tr("Z39.50 Query Error")),
-		      etype,
-		      errorstr,
-		      __FILE__,
-		      __LINE__);
+      qmain->addError
+	(tr("Z39.50 Query Error"), etype, errorstr, __FILE__, __LINE__);
       QMessageBox::critical
 	(this,
 	 tr("BiblioteQ: Z39.50 Query Error"),
@@ -5607,7 +5598,7 @@ void biblioteq_book::updateWindow(const int state)
       id.z3950QueryButton->setVisible(true);
 
       if(!id.id->text().remove('-').trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+	str = tr("BiblioteQ: Modify Book Entry (") +
 	  id.id->text().trimmed() +
 	  tr(")");
       else
@@ -5644,7 +5635,7 @@ void biblioteq_book::updateWindow(const int state)
       id.z3950QueryButton->setVisible(false);
 
       if(!id.id->text().remove('-').trimmed().isEmpty())
-	str = QString(tr("BiblioteQ: View Book Details (")) +
+	str = tr("BiblioteQ: View Book Details (") +
 	  id.id->text().trimmed() +
 	  tr(")");
       else
