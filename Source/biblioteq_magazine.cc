@@ -3356,8 +3356,8 @@ void biblioteq_magazine::slotProxyAuthenticationRequired
       if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
 	  QApplication::processEvents();
-	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	  authenticator->setPassword(ui_p.passwordLineEdit->text());
+	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	}
 
       QApplication::processEvents();
@@ -3532,10 +3532,6 @@ void biblioteq_magazine::slotReset(void)
       ** Reset all.
       */
 
-      ma.id->clear();
-      ma.id->setCursorPosition(0);
-      ma.title->clear();
-
       if(!m_engWindowTitle.contains("Search"))
 	ma.category->setPlainText("N/A");
       else
@@ -3561,6 +3557,8 @@ void biblioteq_magazine::slotReset(void)
       ma.callnum->clear();
       ma.deweynum->clear();
       ma.front_image->clear();
+      ma.id->clear();
+      ma.id->setCursorPosition(0);
       ma.id->setFocus();
       ma.issue->setValue(ma.issue->minimum());
       ma.keyword->clear();
@@ -3581,6 +3579,7 @@ void biblioteq_magazine::slotReset(void)
 	  (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
 
       ma.quantity->setValue(ma.quantity->minimum());
+      ma.title->clear();
       ma.volume->setValue(ma.volume->minimum());
       resetQueryHighlights();
     }
@@ -3999,11 +3998,11 @@ void biblioteq_magazine::slotZ3950Query(void)
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
   working.setCancelButton(nullptr);
-  working.setModal(true);
-  working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
   working.setLabelText(tr("Downloading..."));
   working.setMaximum(0);
   working.setMinimum(0);
+  working.setModal(true);
+  working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
   working.resize(working.sizeHint());
   working.show();
   working.update();
@@ -4172,22 +4171,22 @@ void biblioteq_magazine::updateWindow(const int state)
   if(state == biblioteq::EDITABLE)
     {
       ma.attach_files->setEnabled(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      ma.view_pdf->setEnabled(true);
-#endif
+      ma.backButton->setVisible(true);
+      ma.copiesButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
-      ma.marc_tags_format->setVisible(true);
-      ma.parse_marc_tags->setVisible(true);
-      ma.showUserButton->setEnabled(true);
-      ma.copiesButton->setEnabled(true);
-      ma.sruQueryButton->setVisible(true);
-      ma.z3950QueryButton->setVisible(true);
-      ma.okButton->setVisible(true);
-      ma.resetButton->setVisible(true);
       ma.frontButton->setVisible(true);
-      ma.backButton->setVisible(true);
+      ma.marc_tags_format->setVisible(true);
+      ma.okButton->setVisible(true);
+      ma.parse_marc_tags->setVisible(true);
+      ma.resetButton->setVisible(true);
+      ma.showUserButton->setEnabled(true);
+      ma.sruQueryButton->setVisible(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      ma.view_pdf->setEnabled(true);
+#endif
+      ma.z3950QueryButton->setVisible(true);
 
       if(!ma.id->text().trimmed().isEmpty())
 	{
@@ -4211,25 +4210,25 @@ void biblioteq_magazine::updateWindow(const int state)
   else
     {
       ma.attach_files->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
-      ma.view_pdf->setEnabled(true);
-#endif
+      ma.backButton->setVisible(false);
+      ma.copiesButton->setVisible(false);
       ma.delete_files->setVisible(false);
       ma.export_files->setEnabled(true);
+      ma.frontButton->setVisible(false);
       ma.issnAvailableCheckBox->setCheckable(false);
+      ma.okButton->setVisible(false);
+      ma.resetButton->setVisible(false);
 
       if(qmain->isGuest())
 	ma.showUserButton->setVisible(false);
       else
 	ma.showUserButton->setEnabled(true);
 
-      ma.copiesButton->setVisible(false);
       ma.sruQueryButton->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      ma.view_pdf->setEnabled(true);
+#endif
       ma.z3950QueryButton->setVisible(false);
-      ma.okButton->setVisible(false);
-      ma.resetButton->setVisible(false);
-      ma.frontButton->setVisible(false);
-      ma.backButton->setVisible(false);
 
       if(!ma.id->text().trimmed().isEmpty())
 	{
