@@ -52,7 +52,6 @@
 #include <QTextCodec>
 #endif
 #include <QTextStream>
-#include <QToolTip>
 #include <QtMath>
 
 #include <limits>
@@ -6229,12 +6228,8 @@ void biblioteq::slotSaveUser(void)
 		  (userinfo_diag->m_userinfo.telephoneNumber->text());
 	    }
 
-	  QToolTip::showText
-	    (QCursor::pos(),
-	     tr("The member's information has been saved!"),
-	     userinfo_diag->m_userinfo.okButton,
-	     QRect());
 	  bb.table->setSortingEnabled(true);
+	  userinfo_diag->m_userinfo.okButton->animate(2500);
 	}
       else
 	{
