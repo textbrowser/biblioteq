@@ -7,7 +7,7 @@ cache()
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 QT		-= webkit

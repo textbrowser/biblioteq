@@ -2135,7 +2135,7 @@ void biblioteq::showMain(void)
 		     QDir::separator() +
 		     "biblioteq.conf");
 #else
-  QFileInfo fileInfo(BIBLIOTEQ_CONFIGFILE);
+  QFileInfo fileInfo(BIBLIOTEQ_CONFIGURATION_FILE);
 #endif
 
   if(!fileInfo.isReadable())

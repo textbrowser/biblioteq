@@ -1614,7 +1614,7 @@ void biblioteq::readGlobalConfiguration(void)
 		     "biblioteq.conf",
 		     QSettings::IniFormat);
 #else
-  QSettings settings(BIBLIOTEQ_CONFIGFILE, QSettings::IniFormat);
+  QSettings settings(BIBLIOTEQ_CONFIGURATION_FILE, QSettings::IniFormat);
 #endif
 
   m_amazonImages.clear();

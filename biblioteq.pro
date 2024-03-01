@@ -5,7 +5,7 @@ doxygen.commands = doxygen biblioteq.doxygen
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
+DEFINES		+= BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'" \
                    QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ

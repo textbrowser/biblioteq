@@ -6,7 +6,7 @@ BIBLIOTEQ_CALLNUM_DEBUG
 
 Display text in biblioteq_callnum_table_item.cc.
 
-BIBLIOTEQ_CONFIGFILE
+BIBLIOTEQ_CONFIGURATION_FILE
 
 Name of BiblioteQ's configuration file.
 
