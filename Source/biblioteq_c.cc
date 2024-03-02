@@ -6143,6 +6143,7 @@ void biblioteq::slotSaveUser(void)
 	}
 
       QApplication::restoreOverrideCursor();
+      userinfo_diag->m_userinfo.okButton->animate(2500);
       userinfo_diag->m_memberProperties["membersince"] =
 	userinfo_diag->m_userinfo.membersince->date().toString
 	(Qt::ISODate);
@@ -6229,7 +6230,6 @@ void biblioteq::slotSaveUser(void)
 	    }
 
 	  bb.table->setSortingEnabled(true);
-	  userinfo_diag->m_userinfo.okButton->animate(2500);
 	}
       else
 	{

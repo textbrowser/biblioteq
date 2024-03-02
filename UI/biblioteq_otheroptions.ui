@@ -854,7 +854,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="save">
+       <widget class="biblioteq_animated_push_button" name="save">
         <property name="minimumSize">
          <size>
           <width>125</width>
@@ -911,6 +911,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>biblioteq_animated_push_button</class>
+   <extends>QPushButton</extends>
+   <header>biblioteq_animated_push_button.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>tabWidget</tabstop>

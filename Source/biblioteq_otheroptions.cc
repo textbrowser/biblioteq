@@ -970,6 +970,12 @@ void biblioteq_otheroptions::slotSave(void)
     (QColor(m_ui.main_window_canvas_background_color->text().remove('&')));
   emit saved();
   prepareIcons();
+
+  if(settings.status() == QSettings::NoError)
+    m_ui.save->animate(2500);
+  else
+    m_ui.save->animateNegatively(2500);
+
   QApplication::restoreOverrideCursor();
 }
 
