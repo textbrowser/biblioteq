@@ -48,6 +48,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
 
 HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_animated_push_button.h \
+		  Source/biblioteq_animated_tool_button.h \
                   Source/biblioteq_batch_activities.h \
                   Source/biblioteq_bgraphicsscene.h \
 		  Source/biblioteq_book.h \

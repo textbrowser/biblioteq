@@ -154,7 +154,10 @@ void biblioteq_custom_query::slotCustomQueryFavorite(bool state)
 void biblioteq_custom_query::slotDeleteFavoriteQuery(void)
 {
   if(cq.favorites->currentText() == tr("(Empty)"))
-    return;
+    {
+      cq.delete_favorite->animateNegatively(2500);
+      return;
+    }
 
   if(QMessageBox::
      question(this,
@@ -176,6 +179,12 @@ void biblioteq_custom_query::slotDeleteFavoriteQuery(void)
     settings.remove("custom_query_favorite");
 
   settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
+
+  if(settings.status() == QSettings::NoError)
+    cq.delete_favorite->animate(2500);
+  else
+    cq.delete_favorite->animateNegatively(2500);
+
   emit favoritesChanged();
   m_parent->populateFavorites();
 }
@@ -473,7 +482,10 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 void biblioteq_custom_query::slotRenameFavoriteQuery(void)
 {
   if(cq.favorites->currentText() == tr("(Empty)"))
-    return;
+    {
+      cq.rename_favorite->animateNegatively(2500);
+      return;
+    }
 
   QString name("");
   auto ok = true;
@@ -501,6 +513,12 @@ void biblioteq_custom_query::slotRenameFavoriteQuery(void)
 
   settings.remove(QString("customqueries/%1").arg(cq.favorites->currentText()));
   settings.setValue(QString("customqueries/%1").arg(name), value);
+
+  if(settings.status() == QSettings::NoError)
+    cq.rename_favorite->animate(2500);
+  else
+    cq.rename_favorite->animateNegatively(2500);
+  
   slotPopulateFavorites();
   emit favoritesChanged();
   m_parent->populateFavorites();
@@ -509,7 +527,10 @@ void biblioteq_custom_query::slotRenameFavoriteQuery(void)
 void biblioteq_custom_query::slotSaveCustomQuery(void)
 {
   if(cq.query_te->toPlainText().trimmed().isEmpty())
-    return;
+    {
+      cq.save->animateNegatively(2500);
+      return;
+    }
 
   QString name("");
   auto ok = true;
@@ -530,6 +551,12 @@ void biblioteq_custom_query::slotSaveCustomQuery(void)
     (QString("customqueries/%1").
      arg(name.mid(0, static_cast<int> (biblioteq::Limits::FAVORITES_LENGTH))),
      cq.query_te->toPlainText().trimmed().toUtf8().toBase64());
+
+  if(settings.status() == QSettings::NoError)
+    cq.save->animate(2500);
+  else
+    cq.save->animateNegatively(2500);
+
   emit favoritesChanged();
   m_parent->populateFavorites();
 }

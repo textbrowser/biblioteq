@@ -964,18 +964,18 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("show_maintable_tooltips", m_ui.show_maintable_tooltips->isChecked());
   settings.sync();
-  m_isbn10Format = m_ui.isbn10_display_format->currentText();
-  m_isbn13Format = m_ui.isbn13_display_format->currentText();
-  emit mainWindowCanvasBackgroundColorChanged
-    (QColor(m_ui.main_window_canvas_background_color->text().remove('&')));
-  emit saved();
-  prepareIcons();
 
   if(settings.status() == QSettings::NoError)
     m_ui.save->animate(2500);
   else
     m_ui.save->animateNegatively(2500);
 
+  m_isbn10Format = m_ui.isbn10_display_format->currentText();
+  m_isbn13Format = m_ui.isbn13_display_format->currentText();
+  emit mainWindowCanvasBackgroundColorChanged
+    (QColor(m_ui.main_window_canvas_background_color->text().remove('&')));
+  emit saved();
+  prepareIcons();
   QApplication::restoreOverrideCursor();
 }
 
