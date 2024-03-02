@@ -204,7 +204,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="saveButton">
+      <widget class="biblioteq_animated_push_button" name="saveButton">
        <property name="minimumSize">
         <size>
          <width>125</width>
@@ -224,7 +224,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="deleteButton">
+      <widget class="biblioteq_animated_push_button" name="deleteButton">
        <property name="minimumSize">
         <size>
          <width>125</width>
@@ -274,6 +274,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>biblioteq_animated_push_button</class>
+   <extends>QPushButton</extends>
+   <header>biblioteq_animated_push_button.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>dueDate</tabstop>
   <tabstop>table</tabstop>

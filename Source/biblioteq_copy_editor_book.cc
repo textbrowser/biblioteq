@@ -695,6 +695,8 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
       QApplication::processEvents();
       return;
     }
+  else
+    m_cb.deleteButton->animate(2500);
 
   m_cb.table->removeRow(m_cb.table->currentRow());
 }
@@ -842,6 +844,8 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       QApplication::processEvents();
       return;
     }
+  else
+    m_cb.saveButton->animate(2500);
 
   auto availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
