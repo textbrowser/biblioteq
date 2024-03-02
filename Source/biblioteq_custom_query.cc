@@ -518,7 +518,7 @@ void biblioteq_custom_query::slotRenameFavoriteQuery(void)
     cq.rename_favorite->animate(2500);
   else
     cq.rename_favorite->animateNegatively(2500);
-  
+
   slotPopulateFavorites();
   emit favoritesChanged();
   m_parent->populateFavorites();

@@ -4333,7 +4333,8 @@ void biblioteq::slotSavePassword(void)
   if(pass.password->text().length() < 8)
     {
       QMessageBox::critical
-	(m_pass_diag, tr("BiblioteQ: User Error"),
+	(m_pass_diag,
+	 tr("BiblioteQ: User Error"),
 	 tr("The password must be at least eight characters long."));
       QApplication::processEvents();
       pass.password->selectAll();
@@ -4343,7 +4344,8 @@ void biblioteq::slotSavePassword(void)
   else if(pass.password->text() != pass.passwordAgain->text())
     {
       QMessageBox::critical
-	(m_pass_diag, tr("BiblioteQ: User Error"),
+	(m_pass_diag,
+	 tr("BiblioteQ: User Error"),
 	 tr("The passwords do not match. Please try again."));
       QApplication::processEvents();
       pass.password->selectAll();
@@ -4368,10 +4370,13 @@ void biblioteq::slotSavePassword(void)
 
   if(!errorstr.isEmpty())
     {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to save the new password.")),
-	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(m_pass_diag, tr("BiblioteQ: Database Error"),
+      addError(tr("Database Error"),
+	       tr("Unable to save the new password."),
+	       errorstr,
+	       __FILE__,
+	       __LINE__);
+      QMessageBox::critical(m_pass_diag,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to save the new password."));
       QApplication::processEvents();
     }
