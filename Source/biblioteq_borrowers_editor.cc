@@ -217,11 +217,11 @@ void biblioteq_borrowers_editor::showUsers(void)
       m_columnHeaderIndexes.append("Copy Due Date");
     }
 
+  m_bd.table->horizontalScrollBar()->setValue(0);
+  m_bd.table->scrollToTop();
   m_bd.table->setColumnCount(list.size());
   m_bd.table->setHorizontalHeaderLabels(list);
   m_bd.table->setRowCount(m_quantity);
-  m_bd.table->scrollToTop();
-  m_bd.table->horizontalScrollBar()->setValue(0);
 
   /*
   ** Hide the OID column.
@@ -254,12 +254,12 @@ void biblioteq_borrowers_editor::showUsers(void)
 	if(j == 6 && m_state == biblioteq::EDITABLE)
 	  {
 	    dateEdit = new QDateEdit();
-	    m_bd.table->setCellWidget(i, j, dateEdit);
 	    dateEdit->setCalendarPopup(true);
 	    dateEdit->setDate
 	      (QDate::fromString("01/01/2000",
 				 biblioteq::s_databaseDateFormat));
 	    dateEdit->setEnabled(false);
+	    m_bd.table->setCellWidget(i, j, dateEdit);
 	  }
 	else
 	  {

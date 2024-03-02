@@ -214,8 +214,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the photograph collection locations.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the photograph collection locations."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -705,12 +705,12 @@ void biblioteq_photographcollection::modify(const int state,
   if(!query.exec() || !query.next())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to retrieve the selected photograph "
-				 "collection's data.")),
-		      query.lastError().text(),
-		      __FILE__,
-		      __LINE__);
+      qmain->addError
+	(tr("Database Error"),
+	 tr("Unable to retrieve the selected photograph collection's data."),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
       QMessageBox::critical(this,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected photograph "
@@ -751,8 +751,8 @@ void biblioteq_photographcollection::modify(const int state,
 		    }
 		  else
 		    {
-		      str = QString(tr("BiblioteQ: View Photograph "
-				       "Collection Details (")) +
+		      str = tr("BiblioteQ: View Photograph "
+			       "Collection Details (") +
 			var.toString().trimmed() +
 			tr(")");
 		      m_engWindowTitle = "View";
@@ -1350,8 +1350,8 @@ void biblioteq_photographcollection::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to create a database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -1465,8 +1465,8 @@ void biblioteq_photographcollection::slotGo(void)
 	    query.bindValue(8, value);
 	  else
 	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("Unable to generate a unique integer.")),
+	      (tr("Database Error"),
+	       tr("Unable to generate a unique integer."),
 	       errorstr);
 	}
 
@@ -1475,8 +1475,8 @@ void biblioteq_photographcollection::slotGo(void)
       if(!query.exec())
 	{
 	  QApplication::restoreOverrideCursor();
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to create or update the entry.")),
+	  qmain->addError(tr("Database Error"),
+			  tr("Unable to create or update the entry."),
 			  query.lastError().text(),
 			  __FILE__,
 			  __LINE__);
@@ -1488,9 +1488,8 @@ void biblioteq_photographcollection::slotGo(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      qmain->addError
-		(QString(tr("Database Error")),
-		 QString(tr("Unable to commit the current database "
-			    "transaction.")),
+		(tr("Database Error"),
+		 tr("Unable to commit the current database transaction."),
 		 qmain->getDB().lastError().text(),
 		 __FILE__,
 		 __LINE__);
@@ -1501,9 +1500,9 @@ void biblioteq_photographcollection::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      str = QString(tr("BiblioteQ: Modify Photograph Collection "
-			       "Entry (")) +
-		pc.id_collection->text() + tr(")");
+	      str = tr("BiblioteQ: Modify Photograph Collection Entry (") +
+		pc.id_collection->text() +
+		tr(")");
 	      setWindowTitle(str);
 	      m_engWindowTitle = "Modify";
 
@@ -1581,12 +1580,12 @@ void biblioteq_photographcollection::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qmain->addError(QString(tr("Database Error")),
-				  QString(tr("Unable to retrieve the "
-					     "photograph collection's OID.")),
-				  errorstr,
-				  __FILE__,
-				  __LINE__);
+		  qmain->addError
+		    (tr("Database Error"),
+		     tr("Unable to retrieve the photograph collection's OID."),
+		     errorstr,
+		     __FILE__,
+		     __LINE__);
 		  QMessageBox::critical(this,
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the "
@@ -1620,7 +1619,8 @@ void biblioteq_photographcollection::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   qmain->getDB().lastError().text(),
 	   __FILE__,
 	   __LINE__);
@@ -1938,14 +1938,14 @@ void biblioteq_photographcollection::slotImportItems(void)
 	    query.bindValue(17, value);
 	  else
 	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("Unable to generate a unique integer.")),
+	      (tr("Database Error"),
+	       tr("Unable to generate a unique integer."),
 	       errorstr);
 	}
 
       if(!query.exec())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to import photograph.")),
+	qmain->addError(tr("Database Error"),
+			tr("Unable to import photograph."),
 			query.lastError().text(),
 			__FILE__,
 			__LINE__);
@@ -2012,8 +2012,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(!qmain->getDB().transaction())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a database transaction.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create a database transaction."),
 		      qmain->getDB().lastError().text(),
 		      __FILE__,
 		      __LINE__);
@@ -2128,8 +2128,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
       if(errorstr.isEmpty())
 	query.bindValue(17, value);
       else
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique integer.")),
+	qmain->addError(tr("Database Error"),
+			tr("Unable to generate a unique integer."),
 			errorstr);
     }
 
@@ -2138,8 +2138,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create or update the entry.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create or update the entry."),
 		      query.lastError().text(),
 		      __FILE__,
 		      __LINE__);
@@ -2151,9 +2151,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to commit the current database "
-			"transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to commit the current database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -2210,7 +2209,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
   if(!qmain->getDB().rollback())
     qmain->addError
-      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+      (tr("Database Error"),
+       tr("Rollback failure."),
        qmain->getDB().lastError().text(),
        __FILE__,
        __LINE__);
@@ -2396,8 +2396,8 @@ void biblioteq_photographcollection::slotSaveRotatedImage
       query.addBindValue(oid);
 
       if(!query.exec())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to update photograph.")),
+	qmain->addError(tr("Database Error"),
+			tr("Unable to update photograph."),
 			query.lastError().text(),
 			__FILE__,
 			__LINE__);
@@ -2706,8 +2706,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   if(!qmain->getDB().transaction())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a database transaction.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create a database transaction."),
 		      qmain->getDB().lastError().text(),
 		      __FILE__,
 		      __LINE__);
@@ -2809,8 +2809,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create or update the entry.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create or update the entry."),
 		      query.lastError().text(),
 		      __FILE__,
 		      __LINE__);
@@ -2822,9 +2822,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to commit the current database "
-			"transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to commit the current database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -2858,7 +2857,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
   if(!qmain->getDB().rollback())
     qmain->addError
-      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+      (tr("Database Error"),
+       tr("Rollback failure."),
        qmain->getDB().lastError().text(),
        __FILE__,
        __LINE__);
@@ -3123,7 +3123,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
       pc.importItems->setEnabled(true);
       pc.okButton->setVisible(true);
       pc.resetButton->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
+      str = tr("BiblioteQ: Modify Photograph Collection Entry (") +
 	pc.id_collection->text() +
 	tr(")");
       m_engWindowTitle = "Modify";
@@ -3142,7 +3142,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
       pc.importItems->setEnabled(false);
       pc.okButton->setVisible(false);
       pc.resetButton->setVisible(false);
-      str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
+      str = tr("BiblioteQ: View Photograph Collection Details (") +
 	pc.id_collection->text() +
 	tr(")");
       m_engWindowTitle = "View";

@@ -201,8 +201,8 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the video game ratings.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the video game ratings."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -214,8 +214,8 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the video game platforms.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the video game platforms."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -227,8 +227,8 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the languages.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the languages."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -240,8 +240,8 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the monetary units.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -255,8 +255,8 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the video game locations.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the video game locations."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -504,9 +504,8 @@ void biblioteq_videogame::modify(const int state)
   if(!query.exec() || !query.next())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to retrieve the selected video "
-				 "game's data.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to retrieve the selected video game's data."),
 		      query.lastError().text(),
 		      __FILE__,
 		      __LINE__);
@@ -573,14 +572,16 @@ void biblioteq_videogame::modify(const int state)
 	    {
 	      if(state == biblioteq::EDITABLE)
 		{
-		  str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
-		    var.toString().trimmed() + tr(")");
+		  str = tr("BiblioteQ: Modify Video Game Entry (") +
+		    var.toString().trimmed() +
+		    tr(")");
 		  m_engWindowTitle = "Modify";
 		}
 	      else
 		{
-		  str = QString(tr("BiblioteQ: View Video Game Details (")) +
-		    var.toString().trimmed() + tr(")");
+		  str = tr("BiblioteQ: View Video Game Details (") +
+		    var.toString().trimmed() +
+		    tr(")");
 		  m_engWindowTitle = "View";
 		}
 
@@ -808,9 +809,8 @@ void biblioteq_videogame::slotGo(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      qmain->addError
-		(QString(tr("Database Error")),
-		 QString(tr("Unable to determine the maximum copy number of "
-			    "the item.")),
+		(tr("Database Error"),
+		 tr("Unable to determine the maximum copy number of the item."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -953,8 +953,8 @@ void biblioteq_videogame::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to create a database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -1109,8 +1109,8 @@ void biblioteq_videogame::slotGo(void)
 	  if(errorstr.isEmpty())
 	    query.bindValue(20, value);
 	  else
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique integer.")),
+	    qmain->addError(tr("Database Error"),
+			    tr("Unable to generate a unique integer."),
 			    errorstr);
 	}
 
@@ -1119,8 +1119,8 @@ void biblioteq_videogame::slotGo(void)
       if(!query.exec())
 	{
 	  QApplication::restoreOverrideCursor();
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to create or update the entry.")),
+	  qmain->addError(tr("Database Error"),
+			  tr("Unable to create or update the entry."),
 			  query.lastError().text(),
 			  __FILE__,
 			  __LINE__);
@@ -1151,8 +1151,8 @@ void biblioteq_videogame::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy data.")),
+		    (tr("Database Error"),
+		     tr("Unable to purge unnecessary copy data."),
 		     query.lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1163,9 +1163,8 @@ void biblioteq_videogame::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1189,8 +1188,8 @@ void biblioteq_videogame::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to create initial copies.")),
+		    (tr("Database Error"),
+		     tr("Unable to create initial copies."),
 		     errorstr,
 		     __FILE__,
 		     __LINE__);
@@ -1201,9 +1200,8 @@ void biblioteq_videogame::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1233,8 +1231,9 @@ void biblioteq_videogame::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
-		vg.id->text() + tr(")");
+	      str = tr("BiblioteQ: Modify Video Game Entry (") +
+		vg.id->text() +
+		tr(")");
 	      setWindowTitle(str);
 	      m_engWindowTitle = "Modify";
 
@@ -1276,8 +1275,8 @@ void biblioteq_videogame::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString(tr("Database Error")),
-			       QString(tr("Retrieving availability.")),
+			      (tr("Database Error"),
+			       tr("Retrieving availability."),
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
@@ -1363,12 +1362,12 @@ void biblioteq_videogame::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qmain->addError(QString(tr("Database Error")),
-				  QString(tr("Unable to retrieve the "
-					     "video game's OID.")),
-				  errorstr,
-				  __FILE__,
-				  __LINE__);
+		  qmain->addError
+		    (tr("Database Error"),
+		     tr("Unable to retrieve the video game's OID."),
+		     errorstr,
+		     __FILE__,
+		     __LINE__);
 		  QMessageBox::critical(this,
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to retrieve the "
@@ -1401,7 +1400,8 @@ void biblioteq_videogame::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   qmain->getDB().lastError().text(),
 	   __FILE__,
 	   __LINE__);
@@ -1945,7 +1945,7 @@ void biblioteq_videogame::updateWindow(const int state)
       vg.queryButton->setVisible(m_isQueryEnabled);
       vg.resetButton->setVisible(true);
       vg.showUserButton->setEnabled(true);
-      str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
+      str = tr("BiblioteQ: Modify Video Game Entry (") +
 	vg.id->text() +
 	tr(")");
       m_engWindowTitle = "Modify";
@@ -1964,7 +1964,7 @@ void biblioteq_videogame::updateWindow(const int state)
       else
 	vg.showUserButton->setEnabled(true);
 
-      str = QString(tr("BiblioteQ: View Video Game Details (")) +
+      str = tr("BiblioteQ: View Video Game Details (") +
 	vg.id->text() +
 	tr(")");
       m_engWindowTitle = "View";
