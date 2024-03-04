@@ -16,14 +16,14 @@ then
 	export LD_LIBRARY_PATH=Lib
     fi
 
-    exec ./BiblioteQ "$@"
+    exec ./BiblioteQ -style=Breeze "$@"
     exit $?
 fi
 
 if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
-    cd /opt/biblioteq && exec ./BiblioteQ "$@"
+    cd /opt/biblioteq && exec ./BiblioteQ -style=Breeze "$@"
     exit $?
 fi
 
@@ -31,7 +31,7 @@ if [ -r /usr/local/biblioteq/BiblioteQ ] &&
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
-    cd /usr/local/biblioteq && exec ./BiblioteQ "$@"
+    cd /usr/local/biblioteq && exec ./BiblioteQ -style=Breeze "$@"
     exit $?
 fi
 
