@@ -1176,14 +1176,8 @@ void biblioteq::addError(const QString &type,
   auto now = QDateTime::currentDateTime();
   int i = 0;
 
-  if(m_error_bar_label != nullptr)
-    {
-      m_error_bar_label->setIcon(QIcon(":/16x16/log.png"));
-      m_error_bar_label->setToolTip(tr("Error Log Active"));
-    }
-
-  er.table->setSortingEnabled(false);
   er.table->setRowCount(er.table->rowCount() + 1);
+  er.table->setSortingEnabled(false);
 
   for(i = 0; i < er.table->columnCount(); i++)
     {
@@ -1193,8 +1187,11 @@ void biblioteq::addError(const QString &type,
 	item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
       else if(i == EVENT_TYPE)
 	item->setText(type.trimmed());
-      else if(i == SUMMARY)
-	item->setText(summary.trimmed());
+      else if(i == FILE)
+	{
+	  if(file)
+	    item->setText(file);
+	}
       else if(i == FULL_DESCRIPTION)
 	{
 	  if(error.simplified().isEmpty())
@@ -1202,11 +1199,8 @@ void biblioteq::addError(const QString &type,
 	  else
 	    item->setText(error.simplified());
 	}
-      else if(i == FILE)
-	{
-	  if(file)
-	    item->setText(file);
-	}
+      else if(i == SUMMARY)
+	item->setText(summary.trimmed());
       else
 	{
 	  str.setNum(line);
@@ -1221,6 +1215,12 @@ void biblioteq::addError(const QString &type,
     er.table->resizeColumnToContents(i);
 
   er.table->setSortingEnabled(true);
+
+  if(m_error_bar_label != nullptr)
+    {
+      m_error_bar_label->setToolTip(tr("Error Log Active"));
+      prepareStatusBarIcons();
+    }
 }
 
 void biblioteq::adminSetup(void)
@@ -1246,8 +1246,6 @@ void biblioteq::adminSetup(void)
 
   if(m_status_bar_label != nullptr)
     {
-      m_status_bar_label->setPixmap(QPixmap(":/16x16/unlock.png"));
-
       if(m_roles.contains("administrator"))
 	m_status_bar_label->setToolTip(tr("Administrator Mode"));
       else if(m_roles == "circulation")
@@ -1258,6 +1256,8 @@ void biblioteq::adminSetup(void)
 	m_status_bar_label->setToolTip(tr("Membership Mode"));
       else
 	m_status_bar_label->setToolTip(tr("Privileged Mode"));
+
+      prepareStatusBarIcons();
     }
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
@@ -2015,11 +2015,9 @@ void biblioteq::showMain(void)
   if(statusBar())
     {
       m_connected_bar_label = new QLabel();
-      m_connected_bar_label->setPixmap(QPixmap(":/16x16/disconnected.png"));
       m_connected_bar_label->setToolTip(tr("Disconnected"));
       statusBar()->addPermanentWidget(m_connected_bar_label);
       m_status_bar_label = new QLabel();
-      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
       m_status_bar_label->setToolTip(tr("Standard User Mode"));
       statusBar()->addPermanentWidget(m_status_bar_label);
       m_error_bar_label = new QToolButton();
@@ -2032,9 +2030,9 @@ void biblioteq::showMain(void)
 	      this,
 	      SLOT(slotShowErrorDialog(void)));
       m_error_bar_label->setAutoRaise(true);
-      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
       m_error_bar_label->setToolTip(tr("Empty Error Log"));
       statusBar()->addPermanentWidget(m_error_bar_label);
+      prepareStatusBarIcons();
     }
 
 #ifdef Q_OS_MACOS
@@ -4264,8 +4262,8 @@ void biblioteq::slotResetErrorLog(void)
 
   if(m_error_bar_label != nullptr)
     {
-      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
       m_error_bar_label->setToolTip(tr("Empty Error Log"));
+      prepareStatusBarIcons();
     }
 }
 

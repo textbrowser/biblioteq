@@ -597,6 +597,49 @@ void biblioteq::prepareIcons(void)
     }
 }
 
+void biblioteq::prepareStatusBarIcons(void)
+{
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      m_connected_bar_label ? m_connected_bar_label->setPixmap
+	(m_db.isOpen() ?
+	 QIcon::fromTheme("network-idle",
+			  QPixmap(":/16x16/connected.png")).
+	 pixmap(QSize(16, 16)) :
+	 QIcon::fromTheme("network-offline",
+			  QPixmap(":/16x16/disconnected.png")).
+	 pixmap(QSize(16, 16))) : (void) 0;
+      m_error_bar_label ? m_error_bar_label->setIcon
+	(er.table->rowCount() > 0 ?
+	 QIcon::fromTheme("dialog-error", QIcon(":/16x16/log.png")) :
+	 QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png"))) : (void) 0;
+      m_status_bar_label ? m_status_bar_label->setPixmap
+	(m_roles.isEmpty() ?
+	 QPixmap(":/16x16/lock.png") :
+	 QPixmap(":/16x16/unlock.png")) : (void) 0;
+    }
+  else
+    {
+      // Faenza.
+
+      m_connected_bar_label ? m_connected_bar_label->setPixmap
+	(m_db.isOpen() ?
+	 QPixmap(":/16x16/connected.png") :
+	 QPixmap(":/16x16/disconnected.png")) : (void) 0;
+      m_error_bar_label ? m_error_bar_label->setIcon
+	(er.table->rowCount() > 0 ?
+	 QIcon(":/16x16/log.png"):
+	 QIcon(":/16x16/ok.png")) : (void) 0;
+      m_status_bar_label ? m_status_bar_label->setPixmap
+	(m_roles.isEmpty() ?
+	 QPixmap(":/16x16/lock.png") :
+	 QPixmap(":/16x16/unlock.png")) : (void) 0;
+    }
+}
+
 void biblioteq::prepareTearOffMenus(void)
 {
   createConfigToolMenu();

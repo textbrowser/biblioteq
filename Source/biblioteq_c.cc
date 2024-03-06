@@ -3031,8 +3031,8 @@ void biblioteq::slotConnectDB(void)
 
   if(m_connected_bar_label != nullptr)
     {
-      m_connected_bar_label->setPixmap(QPixmap(":/16x16/connected.png"));
       m_connected_bar_label->setToolTip(tr("Connected"));
+      prepareStatusBarIcons();
     }
 
   ui.actionDatabaseSearch->setEnabled(true);
@@ -3390,19 +3390,6 @@ void biblioteq::slotDisconnect(void)
   if(!ui.menuEntriesPerPage->actions().isEmpty())
     ui.menuEntriesPerPage->actions().at(0)->setChecked(true);
 
-  if(m_connected_bar_label != nullptr)
-    {
-      m_connected_bar_label->setPixmap
-	(QPixmap(":/16x16/disconnected.png"));
-      m_connected_bar_label->setToolTip(tr("Disconnected"));
-    }
-
-  if(m_status_bar_label != nullptr)
-    {
-      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
-      m_status_bar_label->setToolTip(tr("Standard User Mode"));
-    }
-
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
@@ -3438,6 +3425,18 @@ void biblioteq::slotDisconnect(void)
 
   QApplication::restoreOverrideCursor();
   m_db = QSqlDatabase();
+
+  if(m_connected_bar_label != nullptr)
+    {
+      m_connected_bar_label->setToolTip(tr("Disconnected"));
+      prepareStatusBarIcons();
+    }
+
+  if(m_status_bar_label != nullptr)
+    {
+      m_status_bar_label->setToolTip(tr("Standard User Mode"));
+      prepareStatusBarIcons();
+    }
 
   if(QSqlDatabase::contains("Default"))
     QSqlDatabase::removeDatabase("Default");
@@ -4447,6 +4446,7 @@ void biblioteq::slotOtherOptionsSaved(void)
   m_sqliteMergeDatabases ? m_sqliteMergeDatabases->prepareIcons() : (void) 0;
   prepareCustomQueryFavoriteShortcut();
   prepareIcons();
+  prepareStatusBarIcons();
   QApplication::restoreOverrideCursor();
   emit otherOptionsSaved();
 }

@@ -361,7 +361,6 @@ class biblioteq: public QMainWindow
   void pcSearch(const QString &field, const QString &value);
   void populateFavorites(void);
   void prepareCustomQueryFavoriteShortcut(void);
-  void prepareIcons(void);
   void removeBook(biblioteq_book *book);
   void removeCD(biblioteq_cd *cd);
   void removeDVD(biblioteq_dvd *dvd);
@@ -464,8 +463,6 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> m_openLibraryItems;
   QHash<QString, QString> m_otherImages;
   QHash<QString, QString> m_selectedBranch;
-  QLabel *m_connected_bar_label;
-  QLabel *m_status_bar_label;
   QList<QTableWidgetItem *> m_findList;
   QMainWindow *m_admin_diag;
   QMainWindow *m_all_diag;
@@ -478,8 +475,11 @@ class biblioteq: public QMainWindow
   QMessageBox *m_about;
   QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
   QPair<QColor, QColor> m_aboutColors;
+  QPointer<QLabel> m_connected_bar_label;
+  QPointer<QLabel> m_status_bar_label;
   QPointer<QMenu> m_configToolMenu;
   QPointer<QMenu> m_menu;
+  QPointer<QToolButton> m_error_bar_label;
   QPointer<biblioteq_dbenumerations> db_enumerations;
   QPointer<biblioteq_documentationwindow> m_contributors;
   QPointer<biblioteq_query_history> m_queryHistory;
@@ -496,7 +496,6 @@ class biblioteq: public QMainWindow
   QStringList m_specialExecutablesIcons;
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;
-  QToolButton *m_error_bar_label;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
   QVector<QString> m_historyColumnHeaderIndexes;
@@ -540,9 +539,11 @@ class biblioteq: public QMainWindow
   void prepareContextMenus(void);
   void prepareExternalApplicationsMenu(void);
   void prepareFilter(void);
+  void prepareIcons(void);
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
   void prepareReservationHistoryMenu(void);
+  void prepareStatusBarIcons(void);
   void prepareTearOffMenus(void);
   void prepareUpgradeNotification(void);
   void readConfigurationFile(void);
