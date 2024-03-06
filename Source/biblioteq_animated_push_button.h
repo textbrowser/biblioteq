@@ -39,6 +39,10 @@ class biblioteq_animated_push_button: public QPushButton
  public:
   biblioteq_animated_push_button(QWidget *parent):QPushButton(parent)
   {
+    connect(&m_animator,
+	    SIGNAL(finished(void)),
+	    this,
+	    SLOT(slotAnimationFinished(void)));
     m_animator.setPropertyName("color");
     m_animator.setTargetObject(this);
     m_negativeColor = QColor(255, 36, 0); // A sprite of green.
@@ -98,6 +102,12 @@ class biblioteq_animated_push_button: public QPushButton
     setStyleSheet
       (QString("background-color: rgb(%1, %2, %3);").
        arg(color.red()).arg(color.green()).arg(color.blue()));
+  }
+
+ private slots:
+  void slotAnimationFinished(void)
+  {
+    setStyleSheet("");
   }
 };
 
