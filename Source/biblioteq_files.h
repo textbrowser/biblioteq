@@ -45,7 +45,7 @@ class biblioteq_files: public QMainWindow
   void reset(void);
 
  private:
-  enum Columns
+  enum class Columns
     {
       COMPRESSED_SIZE = 3,
       DESCRIPTION = 1,
