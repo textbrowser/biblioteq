@@ -126,8 +126,9 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 				  "copyid, "
 				  "originality, "
 				  "condition, "
-				  "status) "
-				  "VALUES (?, ?, ?, ?, ?, ?)").arg
+				  "status, "
+				  "notes) "
+				  "VALUES (?, ?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
@@ -137,8 +138,9 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 				  "originality, "
 				  "condition, "
 				  "myoid, "
-				  "status) "
-				  "VALUES (?, ?, ?, ?, ?, ?, ?)").arg
+				  "status, "
+				  "notes) "
+				  "VALUES (?, ?, ?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 
 	  query.addBindValue(copy->m_itemoid);
@@ -175,6 +177,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 	    }
 
 	  query.addBindValue(copy->m_status);
+	  query.addBindValue(copy->m_notes);
 
 	  if(!query.exec())
 	    {
@@ -712,6 +715,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   QTableWidgetItem *item1 = nullptr;
   QTableWidgetItem *item2 = nullptr;
   QTableWidgetItem *item3 = nullptr;
+  QTableWidgetItem *item4 = nullptr;
   copy_class *copy = nullptr;
   int i = 0;
 
@@ -778,8 +782,15 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       item1 = m_cb.table->item(i, BARCODE);
       item2 = m_cb.table->item(i, COPY_NUMBER);
       item3 = m_cb.table->item(i, MYOID);
+      item4 = m_cb.table->item(i, NOTES);
 
-      if(!comboBox1 || !comboBox2 || !comboBox3 || !item1 || !item2 || !item3)
+      if(!comboBox1 ||
+	 !comboBox2 ||
+	 !comboBox3 ||
+	 !item1 ||
+	 !item2 ||
+	 !item3 ||
+	 !item4)
 	continue;
 
       copy = new copy_class

@@ -959,6 +959,7 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   QTableWidgetItem *item1 = nullptr;
   QTableWidgetItem *item2 = nullptr;
   QTableWidgetItem *item3 = nullptr;
+  QTableWidgetItem *item4 = nullptr;
   copy_class *copy = nullptr;
   int i = 0;
 
@@ -1020,12 +1021,14 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       if(comboBox == nullptr ||
 	 item1 == nullptr ||
 	 item2 == nullptr ||
-	 item3 == nullptr)
+	 item3 == nullptr ||
+	 item4 == nullptr)
 	continue;
 
       copy = new copy_class(item1->text().trimmed(),            // Copy ID
 			    item2->text(),                      // Copy Number
 			    item3->text(),                      // Item OID
+			    item4->text(),                      // Notes
 			    comboBox->currentText().trimmed()); // Status
       m_copies.append(copy);
     }

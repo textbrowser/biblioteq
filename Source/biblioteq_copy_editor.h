@@ -63,17 +63,20 @@ class biblioteq_copy_editor: public QDialog
     copy_class(const QString &copyid,
 	       const QString &copynumber,
 	       const QString &itemoid,
+	       const QString &notes,
 	       const QString &status)
     {
       m_copyid = copyid.trimmed();
       m_copynumber = copynumber.trimmed();
       m_itemoid = itemoid.trimmed();
+      m_notes = notes.trimmed();
       m_status = status.trimmed();
     };
 
     QString m_copyid;
     QString m_copynumber;
     QString m_itemoid;
+    QString m_notes;
     QString m_status;
   };
 
@@ -81,8 +84,9 @@ class biblioteq_copy_editor: public QDialog
     {
       AVAILABILITY = 2,
       BARCODE = 1,
-      COPY_NUMBER = 5,
-      MYOID = 4,
+      COPY_NUMBER = 6,
+      MYOID = 5,
+      NOTES = 4,
       STATUS = 3,
       TITLE = 0
     };
