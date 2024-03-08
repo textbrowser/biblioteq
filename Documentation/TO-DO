@@ -135,7 +135,6 @@
 67.  Create an initial copy whenever a new item is created. Use the item's
      ID as the copy's Barcode. Refer to #77. (Completed)
 68.  Add notes sections to both the Copy Editor and individual items. (TBD)
-     Retrieve the Notes section from the Library of Congress, if available.
 69.  The Library of Congress USMARC data fields for journals and
      magazines are as follows: (Completed)
 	010 LC Control Number

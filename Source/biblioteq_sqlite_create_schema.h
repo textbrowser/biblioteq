@@ -74,11 +74,12 @@ CREATE TABLE book							\
 									\
 CREATE TABLE book_copy_info						\
 (									\
+    condition    TEXT,							\
     copy_number	 INTEGER NOT NULL DEFAULT 1,				\
     copyid	 VARCHAR(64) NOT NULL,					\
-    myoid	 BIGINT NOT NULL,					\
-    condition    TEXT,							\
     item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    notes        TEXT,							\
     originality  TEXT,							\
     status       TEXT,							\
     PRIMARY KEY(item_oid, copyid),					\
@@ -135,6 +136,7 @@ CREATE TABLE cd_copy_info						\
     copyid	 VARCHAR(64) NOT NULL,					\
     item_oid	 BIGINT NOT NULL,					\
     myoid	 BIGINT NOT NULL,					\
+    notes        TEXT,							\
     status	 TEXT,							\
     PRIMARY KEY(item_oid, copyid),					\
     FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
@@ -188,6 +190,7 @@ CREATE TABLE dvd_copy_info						\
     copyid	 VARCHAR(64) NOT NULL,					\
     item_oid	 BIGINT NOT NULL,					\
     myoid	 BIGINT NOT NULL,					\
+    notes        TEXT,							\
     status       TEXT,							\
     PRIMARY KEY(item_oid, copyid),					\
     FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE	\
@@ -261,6 +264,7 @@ CREATE TABLE journal_copy_info						\
     copyid	 VARCHAR(64) NOT NULL,					\
     item_oid	 BIGINT NOT NULL,					\
     myoid	 BIGINT NOT NULL,					\
+    notes        TEXT,							\
     status       TEXT,							\
     PRIMARY KEY(item_oid, copyid),					\
     FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE	\
@@ -313,6 +317,7 @@ CREATE TABLE magazine_copy_info						\
     copyid	 VARCHAR(64) NOT NULL,					\
     item_oid	 BIGINT NOT NULL,					\
     myoid	 BIGINT NOT NULL,					\
+    notes        TEXT,							\
     status       TEXT,							\
     PRIMARY KEY(item_oid, copyid),				        \
     FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE	\
@@ -398,10 +403,11 @@ CREATE TABLE videogame							\
 									\
 CREATE TABLE videogame_copy_info					\
 (									\
-    copy_number INTEGER NOT NULL DEFAULT 1,				\
+    copy_number  INTEGER NOT NULL DEFAULT 1,				\
     copyid	 VARCHAR(64) NOT NULL,					\
     item_oid	 BIGINT NOT NULL,					\
     myoid	 BIGINT NOT NULL,					\
+    notes        TEXT,							\
     status       TEXT,							\
     PRIMARY KEY(item_oid, copyid),				        \
     FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON		\

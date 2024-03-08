@@ -55,6 +55,7 @@ CREATE TABLE book_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
 	originality	 TEXT,
 	status		 TEXT,
 	FOREIGN KEY (item_oid) REFERENCES book (myoid) ON DELETE CASCADE,
@@ -106,6 +107,7 @@ CREATE TABLE cd_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
 	status		 TEXT,
 	FOREIGN KEY (item_oid) REFERENCES cd (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (item_oid, copyid)
@@ -159,6 +161,7 @@ CREATE TABLE dvd_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
 	status		 TEXT,
 	FOREIGN KEY (item_oid) REFERENCES dvd (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (item_oid, copyid)
@@ -232,6 +235,7 @@ CREATE TABLE journal_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
 	status		 TEXT,
 	FOREIGN KEY (item_oid) REFERENCES journal (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (item_oid, copyid)
@@ -284,6 +288,7 @@ CREATE TABLE magazine_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
 	status		 TEXT,
 	FOREIGN KEY (item_oid) REFERENCES magazine (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (item_oid, copyid)
@@ -372,6 +377,7 @@ CREATE TABLE videogame_copy_info
 	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
 	status		 TEXT,
 	FOREIGN KEY (item_oid) REFERENCES videogame (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (item_oid, copyid)
