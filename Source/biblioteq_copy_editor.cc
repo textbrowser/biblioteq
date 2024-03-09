@@ -143,9 +143,10 @@ QString biblioteq_copy_editor::saveCopies(void)
 				  "(item_oid, "
 				  "copy_number, "
 				  "copyid, "
-				  "status) "
+				  "status, "
+				  "notes) "
 				  "VALUES "
-				  "(?, ?, ?, ?)").arg
+				  "(?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
@@ -153,8 +154,9 @@ QString biblioteq_copy_editor::saveCopies(void)
 				  "copy_number, "
 				  "copyid, "
 				  "myoid, "
-				  "status) "
-				  "VALUES (?, ?, ?, ?, ?)").
+				  "status, "
+				  "notes) "
+				  "VALUES (?, ?, ?, ?, ?, ?)").
 			  arg(m_itemType.toLower().remove(" ")));
 
 	  query.addBindValue(copy->m_itemoid);
@@ -189,6 +191,7 @@ QString biblioteq_copy_editor::saveCopies(void)
 	    }
 
 	  query.addBindValue(copy->m_status);
+	  query.addBindValue(copy->m_notes);
 
 	  if(!query.exec())
 	    {
@@ -352,6 +355,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   list.append(tr("Barcode"));
   list.append(tr("Availability"));
   list.append(tr("Status"));
+  list.append(tr("Notes"));
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
@@ -359,6 +363,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Barcode");
   m_columnHeaderIndexes.append("Availability");
   m_columnHeaderIndexes.append("Status");
+  m_columnHeaderIndexes.append("Notes");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
   m_cb.table->setColumnCount(0);
@@ -394,7 +399,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     for(j = 0; j < m_cb.table->columnCount(); j++)
       {
-	if(j == STATUS)
+	if(j == static_cast<int> (Columns::STATUS))
 	  {
 	    comboBox = new QComboBox();
 	    comboBox->addItem(tr("Available"));
@@ -411,27 +416,28 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
 	if(m_showForLending)
 	  item->setFlags(Qt::NoItemFlags);
-	else if(j == BARCODE)
+	else if(j == static_cast<int> (Columns::BARCODE) ||
+		j == static_cast<int> (Columns::NOTES))
 	  item->setFlags
 	    (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	else
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-	if(j == BARCODE)
-	  {
-	    if(!m_uniqueIdArg.isEmpty())
-	      item->setText(m_uniqueIdArg + "-" + QString::number(i + 1));
-	    else
-	      item->setText("");
-	  }
-	else if(j == AVAILABILITY)
+	if(j == static_cast<int> (Columns::AVAILABILITY))
 	  {
 	    if(m_showForLending)
 	      item->setText("0");
 	    else
 	      item->setText("1");
 	  }
-	else if(j == MYOID)
+	else if(j == static_cast<int> (Columns::BARCODE))
+	  {
+	    if(!m_uniqueIdArg.isEmpty())
+	      item->setText(m_uniqueIdArg + "-" + QString::number(i + 1));
+	    else
+	      item->setText("");
+	  }
+	else if(j == static_cast<int> (Columns::MYOID))
 	  item->setText(m_ioid);
 	else
 	  item->setText("");
@@ -471,6 +477,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			    "%1_copy_info.copyid, "
 			    "(1 - COUNT(item_borrower.copyid)), "
 			    "%1_copy_info.status, "
+			    "%1_copy_info.notes, "
 			    "%1_copy_info.item_oid, "
 			    "%1_copy_info.copy_number "
 			    "FROM "
@@ -485,6 +492,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			    "GROUP BY %1.title, "
 			    "%1_copy_info.copyid, "
 			    "%1_copy_info.status, "
+			    "%1_copy_info.notes, "
 			    "%1_copy_info.item_oid, "
 			    "%1_copy_info.copy_number "
 			    "ORDER BY %1_copy_info.copy_number").
@@ -561,7 +569,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	      {
 		str = query.value(j).toString().trimmed();
 
-		if(query.value(AVAILABILITY).toString().trimmed() == "0")
+		if(query.value(static_cast<int> (Columns::AVAILABILITY)).
+		   toString().trimmed() == "0")
 		  m_cb.table->item(row, j)->setFlags(Qt::NoItemFlags);
 		else if(m_showForLending)
 		  {
@@ -571,20 +580,21 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		    if(m_cb.table->currentRow() == -1)
 		      m_cb.table->selectRow(row);
 		  }
-		else if(j == BARCODE)
+		else if(j == static_cast<int> (Columns::BARCODE) ||
+			j == static_cast<int> (Columns::NOTES))
 		  m_cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsEditable |
 		     Qt::ItemIsEnabled |
 		     Qt::ItemIsSelectable);
 
-		if(j == AVAILABILITY)
+		if(j == static_cast<int> (Columns::AVAILABILITY))
 		  m_cb.table->item(row, j)->setText
 		    (query.value(j).toString().trimmed());
 		else
 		  {
-		    if(i == 0 && j == TITLE)
+		    if(i == 0 && j == static_cast<int> (Columns::TITLE))
 		      m_cb.table->item(row, j)->setText(str);
-		    else if(j != TITLE)
+		    else if(j != static_cast<int> (Columns::TITLE))
 		      m_cb.table->item(row, j)->setText(str);
 		  }
 	      }
@@ -664,7 +674,8 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   auto duedate = m_cb.dueDate->date().toString(biblioteq::s_databaseDateFormat);
   auto memberrow = qmain->getBB().table->currentRow();
 
-  if(copyrow < 0 || m_cb.table->item(copyrow, BARCODE) == nullptr)
+  if(copyrow < 0 ||
+     m_cb.table->item(copyrow, static_cast<int> (Columns::BARCODE)) == nullptr)
     {
       QMessageBox::critical(this,
 			    tr("BiblioteQ: User Error"),
@@ -672,13 +683,13 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
       QApplication::processEvents();
       return;
     }
-  else if((m_cb.table->item(copyrow, BARCODE)->flags() &
-	   Qt::ItemIsEnabled) == 0)
+  else if((m_cb.table->item(copyrow, static_cast<int> (Columns::BARCODE))->
+	   flags() & Qt::ItemIsEnabled) == 0)
     {
       QMessageBox::critical(this,
 			    tr("BiblioteQ: User Error"),
-			    tr("It appears that the copy you've selected "
-			       "is either unavailable or does not exist."));
+			    tr("It appears that the copy you have selected "
+			       "does not exist or is not available."));
       QApplication::processEvents();
       return;
     }
@@ -723,8 +734,8 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     {
       QMessageBox::critical(this,
 			    tr("BiblioteQ: User Error"),
-			    tr("The copy that you have selected is either "
-			       "unavailable or is reserved."));
+			    tr("The copy that you have selected does "
+			       "not exist or is not available."));
       QApplication::processEvents();
       return;
     }
@@ -913,13 +924,17 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
   if(isCheckedOut)
     {
-      if(m_cb.table->item(row, BARCODE) != nullptr)
-	m_cb.table->item(row, BARCODE)->setFlags(Qt::NoItemFlags);
+      if(m_cb.table->item(row, static_cast<int> (Columns::BARCODE)) != nullptr)
+	m_cb.table->item(row, static_cast<int> (Columns::BARCODE))->setFlags
+	  (Qt::NoItemFlags);
 
-      if(m_cb.table->item(row, AVAILABILITY) != nullptr)
+      if(m_cb.table->item(row, static_cast<int> (Columns::AVAILABILITY)) !=
+	 nullptr)
 	{
-	  m_cb.table->item(row, AVAILABILITY)->setFlags(Qt::NoItemFlags);
-	  m_cb.table->item(row, AVAILABILITY)->setText("0");
+	  m_cb.table->item(row, static_cast<int> (Columns::AVAILABILITY))->
+	    setFlags(Qt::NoItemFlags);
+	  m_cb.table->item(row, static_cast<int> (Columns::AVAILABILITY))->
+	    setText("0");
 	}
 
       QMessageBox::critical(this,
@@ -966,8 +981,9 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   m_cb.table->setFocus();
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
-    if(m_cb.table->item(i, BARCODE) != nullptr &&
-       m_cb.table->item(i, BARCODE)->text().trimmed().isEmpty())
+    if(m_cb.table->item(i, static_cast<int> (Columns::BARCODE)) != nullptr &&
+       m_cb.table->item(i, static_cast<int> (Columns::BARCODE))->
+       text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) +
 	  QString::number(i + 1) +
@@ -976,9 +992,11 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	QApplication::processEvents();
 	return;
       }
-    else if(m_cb.table->item(i, BARCODE) != nullptr)
+    else if(m_cb.table->item(i, static_cast<int> (Columns::BARCODE)) != nullptr)
       {
-	if(duplicates.contains(m_cb.table->item(i, BARCODE)->text()))
+	if(duplicates.
+	   contains(m_cb.table->item(i, static_cast<int> (Columns::BARCODE))->
+		    text()))
 	  {
 	    errormsg = QString(tr("Row number ")) +
 	      QString::number(i + 1) +
@@ -988,7 +1006,8 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	    return;
 	  }
 	else
-	  duplicates.append(m_cb.table->item(i, BARCODE)->text());
+	  duplicates.append
+	    (m_cb.table->item(i, static_cast<int> (Columns::BARCODE))->text());
       }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1013,10 +1032,12 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
-      comboBox = qobject_cast<QComboBox *> (m_cb.table->cellWidget(i, STATUS));
-      item1 = m_cb.table->item(i, BARCODE);
-      item2 = m_cb.table->item(i, COPY_NUMBER);
-      item3 = m_cb.table->item(i, MYOID);
+      comboBox = qobject_cast<QComboBox *>
+	(m_cb.table->cellWidget(i, static_cast<int> (Columns::STATUS)));
+      item1 = m_cb.table->item(i, static_cast<int> (Columns::BARCODE));
+      item2 = m_cb.table->item(i, static_cast<int> (Columns::COPY_NUMBER));
+      item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
+      item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
 
       if(comboBox == nullptr ||
 	 item1 == nullptr ||

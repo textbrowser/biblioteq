@@ -80,7 +80,7 @@ class biblioteq_copy_editor: public QDialog
     QString m_status;
   };
 
-  enum Columns
+  enum class Columns
     {
       AVAILABILITY = 2,
       BARCODE = 1,

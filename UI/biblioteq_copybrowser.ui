@@ -169,6 +169,11 @@
         </column>
         <column>
          <property name="text">
+          <string>Notes</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>MYOID</string>
          </property>
         </column>
