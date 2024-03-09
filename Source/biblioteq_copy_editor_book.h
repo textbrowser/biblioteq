@@ -86,8 +86,9 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
       AVAILABILITY = 2,
       BARCODE = 1,
       CONDITION = 4,
-      COPY_NUMBER = 7,
-      MYOID = 6,
+      COPY_NUMBER = 8,
+      MYOID = 7,
+      NOTES = 6,
       ORIGINALITY = 3,
       STATUS = 5,
       TITLE = 0

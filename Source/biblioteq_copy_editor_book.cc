@@ -315,6 +315,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   list.append(tr("Originality"));
   list.append(tr("Condition"));
   list.append(tr("Status"));
+  list.append(tr("Notes"));
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
@@ -324,6 +325,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Originality");
   m_columnHeaderIndexes.append("Condition");
   m_columnHeaderIndexes.append("Status");
+  m_columnHeaderIndexes.append("Notes");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
   m_cb.table->horizontalScrollBar()->setValue(0);
@@ -413,7 +415,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 	    if(m_showForLending)
 	      item->setFlags(Qt::NoItemFlags);
-	    else if(j == BARCODE)
+	    else if(j == BARCODE || j == NOTES)
 	      item->setFlags(Qt::ItemIsEditable |
 			     Qt::ItemIsEnabled |
 			     Qt::ItemIsSelectable);
@@ -457,6 +459,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.originality, "
 			"%1_copy_info.condition, "
 			"%1_copy_info.status, "
+			"%1.copy_info.notes, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"FROM "
@@ -473,6 +476,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.originality, "
 			"%1_copy_info.condition, "
 			"%1_copy_info.status, "
+			"%1.copy_info.notes, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").arg
@@ -541,7 +545,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 		    if(m_cb.table->currentRow() == -1)
 		      m_cb.table->selectRow(row);
 		  }
-		else if(j == BARCODE)
+		else if(j == BARCODE || j == NOTES)
 		  m_cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsEditable |
 		     Qt::ItemIsEnabled |
@@ -798,6 +802,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 	 item1->text().trimmed(),
 	 item2->text(),
 	 item3->text(),
+	 item4->text(),
 	 comboBox1->currentText().trimmed(),
 	 comboBox3->currentText().trimmed());
       m_copies.append(copy);
