@@ -44,7 +44,7 @@ class biblioteq_import: public QMainWindow
   void show(QMainWindow *parent);
 
  private:
-  enum Columns
+  enum class Columns
     {
       BIBLIOTEQ_TABLE_FIELD_NAME = 2,
       CSV_COLUMN_NUMBER = 0,
@@ -52,7 +52,7 @@ class biblioteq_import: public QMainWindow
       SUBSTITUTE_VALUE = 3
     };
 
-  enum Templates
+  enum class Templates
     {
       // Zero is the literal text Templates.
 

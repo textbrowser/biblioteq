@@ -751,7 +751,8 @@ void biblioteq_import::loadPreview(void)
 	    {
 	      for(int i = 0; i < m_ui.rows->rowCount(); i++)
 		{
-		  auto item = m_ui.rows->item(i, CSV_PREVIEW);
+		  auto item = m_ui.rows->item
+		    (i, static_cast<int> (Columns::CSV_PREVIEW));
 
 		  if(item)
 		    item->setText(list.value(i));
@@ -851,16 +852,19 @@ void biblioteq_import::slotAddRow(void)
 
   item->setText(QString::number(m_ui.rows->rowCount()));
   m_ui.rows->setItem
-    (m_ui.rows->rowCount() - 1, Columns::CSV_COLUMN_NUMBER, item);
+    (m_ui.rows->rowCount() - 1,
+     static_cast<int> (Columns::CSV_COLUMN_NUMBER),
+     item);
   item = new QTableWidgetItem
     (m_previewHeaders.value(m_ui.rows->rowCount() - 1));
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-  m_ui.rows->setItem(m_ui.rows->rowCount() - 1, Columns::CSV_PREVIEW, item);
+  m_ui.rows->setItem
+    (m_ui.rows->rowCount() - 1, static_cast<int> (Columns::CSV_PREVIEW), item);
 
   auto comboBox = new QComboBox();
   auto widget = new QWidget();
 
-  switch(m_ui.templates->currentIndex())
+  switch(static_cast<Templates> (m_ui.templates->currentIndex()))
     {
     case Templates::TEMPLATE_1:
     case Templates::TEMPLATE_2:
@@ -944,11 +948,15 @@ void biblioteq_import::slotAddRow(void)
   layout->addSpacerItem(spacer);
   layout->setContentsMargins(0, 0, 0, 0);
   m_ui.rows->setCellWidget
-    (m_ui.rows->rowCount() - 1, Columns::BIBLIOTEQ_TABLE_FIELD_NAME, widget);
+    (m_ui.rows->rowCount() - 1,
+     static_cast<int> (Columns::BIBLIOTEQ_TABLE_FIELD_NAME),
+     widget);
   item = new QTableWidgetItem();
   item->setText("N/A");
   m_ui.rows->setItem
-    (m_ui.rows->rowCount() - 1, Columns::SUBSTITUTE_VALUE, item);
+    (m_ui.rows->rowCount() - 1,
+     static_cast<int> (Columns::SUBSTITUTE_VALUE),
+     item);
   m_ui.rows->resizeRowsToContents();
 
   if(m_ui.bottom_scroll_on_add->isChecked())
@@ -1018,10 +1026,12 @@ void biblioteq_import::slotImport(void)
 
   for(int i = 0; i < m_ui.rows->rowCount(); i++)
     {
-      auto item1 = m_ui.rows->item(i, Columns::CSV_COLUMN_NUMBER);
-      auto item2 = m_ui.rows->item(i, Columns::SUBSTITUTE_VALUE);
+      auto item1 = m_ui.rows->item
+	(i, static_cast<int> (Columns::CSV_COLUMN_NUMBER));
+      auto item2 = m_ui.rows->item
+	(i, static_cast<int> (Columns::SUBSTITUTE_VALUE));
       auto widget = m_ui.rows->cellWidget
-	(i, Columns::BIBLIOTEQ_TABLE_FIELD_NAME);
+	(i, static_cast<int> (Columns::BIBLIOTEQ_TABLE_FIELD_NAME));
 
       if(!item1 || !item2 || !widget)
 	continue;
@@ -1073,7 +1083,7 @@ void biblioteq_import::slotImport(void)
   qint64 imported = 0;
   qint64 notImported = 0;
 
-  if(index == Templates::TEMPLATE_1)
+  if(index == static_cast<int> (Templates::TEMPLATE_1))
     /*
     ** ID's index is 1-based.
     */
@@ -1084,7 +1094,7 @@ void biblioteq_import::slotImport(void)
 		12, // ISBN-10
 		&imported,
 		&notImported);
-  else if(index == Templates::TEMPLATE_2)
+  else if(index == static_cast<int> (Templates::TEMPLATE_2))
     /*
     ** ID's index is 1-based.
     */
@@ -1095,7 +1105,7 @@ void biblioteq_import::slotImport(void)
 		9, // ISBN-10
 		&imported,
 		&notImported);
-  else if(index == Templates::TEMPLATE_3)
+  else if(index == static_cast<int> (Templates::TEMPLATE_3))
     importPatrons(progress.data(), errors, &imported, &notImported);
 
   progress->close();
@@ -1233,7 +1243,7 @@ void biblioteq_import::slotTemplates(int index)
 
 	QStringList list;
 
-	if(index == Templates::TEMPLATE_1)
+	if(index == static_cast<int> (Templates::TEMPLATE_1))
 	  list << "accession_number"
 	       << "alternate_id_1"
 	       << "author"
@@ -1266,7 +1276,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "title"
 	       << "url"
 	       << "volume_number";
-	else if(index == Templates::TEMPLATE_2)
+	else if(index == static_cast<int> (Templates::TEMPLATE_2))
 	  list << "title"
 	       << "author"
 	       << "publisher"
@@ -1296,7 +1306,7 @@ void biblioteq_import::slotTemplates(int index)
 	       << "date_of_reform"
 	       << "origin"
 	       << "purchase_date";
-	else if(index == Templates::TEMPLATE_3)
+	else if(index == static_cast<int> (Templates::TEMPLATE_3))
 	  list << "city"
 	       << "comments"
 	       << "dob"
@@ -1324,14 +1334,15 @@ void biblioteq_import::slotTemplates(int index)
 
 	    if(list.at(i) == "id" || list.at(i) == "isbn13")
 	      {
-		auto item = m_ui.rows->item(i, Columns::SUBSTITUTE_VALUE);
+		auto item = m_ui.rows->item
+		  (i, static_cast<int> (Columns::SUBSTITUTE_VALUE));
 
 		if(item)
 		  item->setText("");
 	      }
 
 	    auto widget = m_ui.rows->cellWidget
-	      (i, Columns::BIBLIOTEQ_TABLE_FIELD_NAME);
+	      (i, static_cast<int> (Columns::BIBLIOTEQ_TABLE_FIELD_NAME));
 
 	    if(widget)
 	      {
