@@ -81,7 +81,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
     QString m_status;
   };
 
-  enum Columns
+  enum class Columns
     {
       AVAILABILITY = 2,
       BARCODE = 1,
