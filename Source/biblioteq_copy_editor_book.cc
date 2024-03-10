@@ -459,7 +459,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.originality, "
 			"%1_copy_info.condition, "
 			"%1_copy_info.status, "
-			"%1.copy_info.notes, "
+			"%1_copy_info.notes, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"FROM "
@@ -476,7 +476,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.originality, "
 			"%1_copy_info.condition, "
 			"%1_copy_info.status, "
-			"%1.copy_info.notes, "
+			"%1_copy_info.notes, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").arg
