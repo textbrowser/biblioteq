@@ -61,7 +61,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
-  enum Columns
+  enum class Columns
     {
       COMPRESSED_SIZE = 2,
       DESCRIPTION = 3,

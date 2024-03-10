@@ -71,7 +71,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.setupUi(this);
   ui_p.setupUi(m_proxyDialog);
   setQMain(this);
-  id.files->setColumnHidden(Columns::MYOID, true);
+  id.files->setColumnHidden(static_cast<int> (Columns::MYOID), true);
   id.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   id.marc_tags_format->setVisible(false);
   id.parse_marc_tags->setVisible(false);
@@ -2135,7 +2135,7 @@ void biblioteq_book::populateFiles(void)
       }
 
   id.files->horizontalHeader()->setSortIndicator
-    (Columns::FILE, Qt::AscendingOrder);
+    (static_cast<int> (Columns::FILE), Qt::AscendingOrder);
   id.files->setRowCount(totalRows);
   id.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
@@ -2448,7 +2448,9 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
 
 void biblioteq_book::slotDeleteFiles(void)
 {
-  auto list(id.files->selectionModel()->selectedRows(Columns::MYOID));
+  auto list
+    (id.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     {
@@ -2829,7 +2831,9 @@ void biblioteq_book::slotDownloadImage(void)
 
 void biblioteq_book::slotExportFiles(void)
 {
-  auto list(id.files->selectionModel()->selectedRows(Columns::MYOID));
+  auto list
+    (id.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;
@@ -2895,9 +2899,11 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() != Columns::DESCRIPTION || m_engWindowTitle != "Modify")
+  if(item->column() != static_cast<int> (Columns::DESCRIPTION) ||
+     m_engWindowTitle != "Modify")
     {
-      auto item1 = id.files->item(item->row(), Columns::FILE);
+      auto item1 = id.files->item
+	(item->row(), static_cast<int> (Columns::FILE));
 
       if(!item1)
 	return;
@@ -2938,13 +2944,14 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  auto item1 = id.files->item(item->row(), Columns::DESCRIPTION);
+  auto item1 = id.files->item
+    (item->row(), static_cast<int> (Columns::DESCRIPTION));
 
   if(!item1)
     return;
 
   auto description(item1->text());
-  auto item2 = id.files->item(item->row(), Columns::MYOID);
+  auto item2 = id.files->item(item->row(), static_cast<int> (Columns::MYOID));
 
   if(!item2)
     return;
@@ -5323,7 +5330,9 @@ void biblioteq_book::slotSelectImage(void)
 
 void biblioteq_book::slotShowPDF(void)
 {
-  auto list(id.files->selectionModel()->selectedRows(Columns::MYOID));
+  auto list
+    (id.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;
