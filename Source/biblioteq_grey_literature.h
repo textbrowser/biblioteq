@@ -53,7 +53,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void updateWindow(const int state);
 
  private:
-  enum Columns
+  enum class Columns
     {
       COMPRESSED_SIZE = 2,
       DESCRIPTION = 3,

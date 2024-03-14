@@ -154,7 +154,7 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 		SLOT(slotGo(void)));
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_ui.files->setColumnHidden(MYOID, true);
+  m_ui.files->setColumnHidden(static_cast<int> (Columns::MYOID), true);
   m_ui.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
   QString errorstr("");
@@ -831,7 +831,8 @@ void biblioteq_grey_literature::populateFiles(void)
 	row += 1;
       }
 
-  m_ui.files->horizontalHeader()->setSortIndicator(FILE, Qt::AscendingOrder);
+  m_ui.files->horizontalHeader()->setSortIndicator
+    (static_cast<int> (Columns::FILE), Qt::AscendingOrder);
   m_ui.files->setRowCount(totalRows);
   m_ui.files->setSortingEnabled(true);
 
@@ -1013,7 +1014,8 @@ void biblioteq_grey_literature::slotCancel(void)
 
 void biblioteq_grey_literature::slotDeleteFiles(void)
 {
-  auto list(m_ui.files->selectionModel()->selectedRows(MYOID));
+  auto list(m_ui.files->selectionModel()->
+	    selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     {
@@ -1056,7 +1058,8 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 
 void biblioteq_grey_literature::slotExportFiles(void)
 {
-  auto list(m_ui.files->selectionModel()->selectedRows(MYOID));
+  auto list(m_ui.files->selectionModel()->
+	    selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;
@@ -1123,9 +1126,11 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() != DESCRIPTION || m_engWindowTitle != "Modify")
+  if(item->column() != static_cast<int> (Columns::DESCRIPTION) ||
+     m_engWindowTitle != "Modify")
     {
-      auto item1 = m_ui.files->item(item->row(), FILE);
+      auto item1 = m_ui.files->item
+	(item->row(), static_cast<int> (Columns::FILE));
 
       if(!item1)
 	return;
@@ -1166,13 +1171,15 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  auto item1 = m_ui.files->item(item->row(), DESCRIPTION);
+  auto item1 = m_ui.files->item
+    (item->row(), static_cast<int> (Columns::DESCRIPTION));
 
   if(!item1)
     return;
 
   auto description(item1->text());
-  auto item2 = m_ui.files->item(item->row(), MYOID);
+  auto item2 = m_ui.files->item
+    (item->row(), static_cast<int> (Columns::MYOID));
 
   if(!item2)
     return;
