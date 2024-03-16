@@ -383,6 +383,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    comboBox->setSizePolicy
 	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
+	    biblioteq_misc_functions::sortCombinationBox(comboBox);
 	    layout->addWidget(comboBox);
 	    layout->addSpacerItem(spacer);
 	    layout->setContentsMargins(0, 0, 0, 0);
@@ -399,11 +400,14 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
+	    comboBox->addItem(tr("Expired"));
 	    comboBox->addItem(tr("Lost"));
+	    comboBox->addItem(tr("Not Available"));
 	    comboBox->addItem(biblioteq::s_unknown);
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    comboBox->setSizePolicy
 	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
+	    biblioteq_misc_functions::sortCombinationBox(comboBox);
 	    layout->addWidget(comboBox);
 	    layout->addSpacerItem(spacer);
 	    layout->setContentsMargins(0, 0, 0, 0);

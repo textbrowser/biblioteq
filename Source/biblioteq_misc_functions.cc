@@ -2775,8 +2775,10 @@ void biblioteq_misc_functions::sortCombinationBox(QComboBox *comboBox)
     list << comboBox->itemText(i);
 
   std::sort(list.begin(), list.end());
+  comboBox->blockSignals(true);
   comboBox->clear();
   comboBox->addItems(list);
+  comboBox->blockSignals(false);
 }
 
 void biblioteq_misc_functions::updateColumn(QTableWidget *table,
