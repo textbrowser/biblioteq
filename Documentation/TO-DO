@@ -612,3 +612,4 @@
 	Tools (Completed)
 	View (Completed)
 315. Replace QString(tr()) with tr(). (TBD)
+316. Copy editor item status database table. (TBD)
