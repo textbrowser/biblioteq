@@ -1,5 +1,5 @@
-Please verify that translations are consistent. BiblioteQ relies on table
-column headers in order to locate columns. If a translation
+Please verify that translations are consistent. BiblioteQ requires
+correct table column headers in order to locate columns. If a translation
 is not consistent, correct columns will not be located.
 
 https://doc.qt.io/qt-6/linguist-manager.html
