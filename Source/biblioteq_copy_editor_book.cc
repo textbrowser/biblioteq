@@ -403,6 +403,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	    comboBox->addItem(tr("Expired"));
 	    comboBox->addItem(tr("Lost"));
 	    comboBox->addItem(tr("Not Available"));
+	    comboBox->addItem(tr("Recalled"));
 	    comboBox->addItem(biblioteq::s_unknown);
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    comboBox->setSizePolicy
