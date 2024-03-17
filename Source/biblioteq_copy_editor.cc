@@ -404,9 +404,12 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	    comboBox = new QComboBox();
 	    comboBox->addItem(tr("Available"));
 	    comboBox->addItem(tr("Deleted"));
+	    comboBox->addItem(tr("Expired"));
 	    comboBox->addItem(tr("Lost"));
+	    comboBox->addItem(tr("Not Available"));
 	    comboBox->addItem(biblioteq::s_unknown);
 	    comboBox->setEnabled(!m_showForLending);
+	    biblioteq_misc_functions::sortCombinationBox(comboBox);
 	    goto done_label;
 	  }
 	else

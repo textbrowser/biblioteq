@@ -467,24 +467,30 @@ void biblioteq_dbenumerations::populateWidgets(void)
 		   << tr("Music CD")
 		   << tr("Photograph Collection")
 		   << tr("Video Game");
+	      std::sort(list.begin(), list.end());
 	      comboBox->addItems(list);
 
 	      if(pairList.at(j).first == "Book")
-		comboBox->setCurrentIndex(0);
+		comboBox->setCurrentIndex(comboBox->findText(tr("Book")));
 	      else if(pairList.at(j).first == "CD")
-		comboBox->setCurrentIndex(5);
+		comboBox->setCurrentIndex(comboBox->findText(tr("Music CD")));
 	      else if(pairList.at(j).first == "DVD")
-		comboBox->setCurrentIndex(1);
+		comboBox->setCurrentIndex(comboBox->findText(tr("DVD")));
 	      else if(pairList.at(j).first == "Grey Literature")
-		comboBox->setCurrentIndex(2);
+		comboBox->setCurrentIndex
+		  (comboBox->findText(tr("Grey Literature")));
 	      else if(pairList.at(j).first == "Journal")
-		comboBox->setCurrentIndex(3);
+		comboBox->setCurrentIndex(comboBox->findText(tr("Journal")));
 	      else if(pairList.at(j).first == "Magazine")
-		comboBox->setCurrentIndex(4);
+		comboBox->setCurrentIndex(comboBox->findText(tr("Magazine")));
 	      else if(pairList.at(j).first == "Photograph Collection")
-		comboBox->setCurrentIndex(6);
+		comboBox->setCurrentIndex
+		  (comboBox->findText(tr("Photograph Collection")));
 	      else if(pairList.at(j).first == "Video Game")
-		comboBox->setCurrentIndex(7);
+		comboBox->setCurrentIndex(comboBox->findText("Video Game"));
+
+	      if(comboBox->currentIndex() < 0)
+		comboBox->setCurrentIndex(0);
 
 	      comboBox->setSizePolicy
 		(QSizePolicy::Preferred, QSizePolicy::Minimum);
@@ -754,6 +760,7 @@ void biblioteq_dbenumerations::slotAdd(void)
 	   << tr("Music CD")
 	   << tr("Photograph Collection")
 	   << tr("Video Game");
+      std::sort(list.begin(), list.end());
       comboBox->addItems(list);
       comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
       item->setFlags
