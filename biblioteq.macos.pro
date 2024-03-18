@@ -51,6 +51,8 @@ doc2.files		 = Documentation/Contributed/*.docx \
                            Documentation/Contributed/*.html \
                            Documentation/Contributed/*.pdf
 doc2.path		 = BiblioteQ.d/Documentation/Contributed
+installnametool1.extra   = install_name_tool -change @loader_path/../../../../opt/libpng/lib/libpng16.16.dylib @executable_path/../Frameworks/libpng16.16.dylib BiblioteQ.app/Contents/Frameworks/libfreetype.6.dylib
+installnametool1.path    = .
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
 lupdate.extra            = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
@@ -66,11 +68,12 @@ sql.files		 = SQL/*.sql
 sql.path		 = BiblioteQ.d
 
 INSTALLS	= preinstall \
-		  macdeployqt \
+                  macdeployqt \
 		  biblioteq \
                   conf \
                   data \
 		  doc1 \
-		  doc2 \
+                  doc2 \
+                  installnametool1 \
 		  sql \
                   postinstall
