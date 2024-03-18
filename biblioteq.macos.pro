@@ -2,10 +2,10 @@ include(biblioteq-source.pro)
 dmg.commands = hdiutil create BiblioteQ.d.dmg -srcfolder BiblioteQ.d
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
-CONFIG		+= app_bundle qt release thread warn_on
+CONFIG		+= qt release warn_on
 DEFINES		+= QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
-QT		+= network printsupport sql widgets
+QT		+= gui network printsupport sql widgets
 QT		-= webkit
 
 QMAKE_CLEAN	+= BiblioteQ
@@ -47,7 +47,9 @@ data.path		 = BiblioteQ.d/Data
 doc1.files		 = Documentation/*.html Documentation/*.pdf \
                            Documentation/*.txt Documentation/TO-DO
 doc1.path		 = BiblioteQ.d/Documentation
-doc2.files		 = Documentation/Contributed/*.docx Documentation/Contributed/*.html Documentation/Contributed/*.pdf
+doc2.files		 = Documentation/Contributed/*.docx \
+                           Documentation/Contributed/*.html \
+                           Documentation/Contributed/*.pdf
 doc2.path		 = BiblioteQ.d/Documentation/Contributed
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .

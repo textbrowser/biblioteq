@@ -1,7 +1,7 @@
 cache()
 include(biblioteq-source.pro)
 
-CONFIG		+= qt release thread warn_on
+CONFIG		+= qt release warn_on
 LANGUAGE	= C++
 QMAKE_CLEAN	+= BiblioteQ
 QT              += core gui network printsupport sql svg widgets

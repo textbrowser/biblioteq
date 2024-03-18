@@ -3,10 +3,10 @@ include(biblioteq-source.pro)
 
 purge.commands = del /Q *~ && del /Q *\\*~
 
-CONFIG		+= qt release thread warn_on windows
+CONFIG		+= qt release warn_on windows
 DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
 LANGUAGE	= C++
-QT		+= network printsupport sql widgets
+QT		+= gui network printsupport sql widgets
 QT		-= webkit
 
 QMAKE_CLEAN	+= BiblioteQ.exe

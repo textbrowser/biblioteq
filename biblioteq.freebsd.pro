@@ -2,11 +2,11 @@ cache()
 include(biblioteq-source.pro)
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
-CONFIG		+= copy_dir_files qt release thread warn_on
+CONFIG		+= copy_dir_files qt release warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'" \
                    QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
-QT              += network printsupport sql widgets
+QT              += gui network printsupport sql widgets
 QT              -= webkit
 
 exists(/usr/local/include/poppler) {
