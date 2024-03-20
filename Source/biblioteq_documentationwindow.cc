@@ -194,23 +194,37 @@ void biblioteq_documentationwindow::slotFindText(void)
   if(m_ui.find->text().isEmpty())
     {
       m_ui.find->setPalette(m_originalFindPalette);
+      m_ui.find->setProperty("found", true);
       m_ui.text->moveCursor(QTextCursor::Left);
     }
   else if(!m_ui.text->find(m_ui.find->text(), options))
     {
-      QColor color(240, 128, 128); // Light Coral
-      auto palette(m_ui.find->palette());
+      auto found = m_ui.find->property("found").toBool();
 
-      palette.setColor(m_ui.find->backgroundRole(), color);
-      m_ui.find->setPalette(palette);
-
-      if(!options)
-	m_ui.text->moveCursor(QTextCursor::Start);
+      if(found)
+	m_ui.find->setProperty("found", false);
       else
+	{
+	  QColor color(240, 128, 128); // Light Coral
+	  auto palette(m_ui.find->palette());
+
+	  palette.setColor(m_ui.find->backgroundRole(), color);
+	  m_ui.find->setPalette(palette);
+	}
+
+      if(options)
 	m_ui.text->moveCursor(QTextCursor::End);
+      else
+	m_ui.text->moveCursor(QTextCursor::Start);
+
+      if(found)
+	slotFindText();
     }
   else
-    m_ui.find->setPalette(m_originalFindPalette);
+    {
+      m_ui.find->setPalette(m_originalFindPalette);
+      m_ui.find->setProperty("found", true);
+    }
 }
 
 void biblioteq_documentationwindow::slotPrint(void)
