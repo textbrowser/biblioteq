@@ -94,6 +94,7 @@ class biblioteq_item
   bool m_isQueryEnabled;
   int m_oldq;
   bool hasDataChanged(QMainWindow *window) const;
+  void prepareIcons(QMainWindow *window);
   void print(QWidget *parent);
   void setQMain(QMainWindow *window);
   void setReadOnlyFields(QMainWindow *window, const bool state);

@@ -598,6 +598,7 @@
 	biblioteq_callnum_table_item.[cc, h] (Completed)
 	biblioteq_copy_editor_book.[cc, h] (Completed)
 	biblioteq_files.[cc, h] (Completed)
+	biblioteq_item.[cc, h] (Completed)
 	biblioteq_magazine.[cc, h] (Completed)
 	biblioteq_photographcollection.[cc, h] (Completed)
 	biblioteq_videogame.[cc, h] (Completed)

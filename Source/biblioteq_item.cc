@@ -36,6 +36,7 @@
 #include <QLineEdit>
 #include <QPersistentModelIndex>
 #include <QPlainTextEdit>
+#include <QSettings>
 #include <QSpinBox>
 
 biblioteq_item::biblioteq_item(const QModelIndex &index)
@@ -49,15 +50,8 @@ biblioteq_item::biblioteq_item(const QModelIndex &index)
   qmain = nullptr;
 }
 
-biblioteq_item::biblioteq_item(void)
+biblioteq_item::biblioteq_item(void):biblioteq_item(QModelIndex())
 {
-  m_index = new QPersistentModelIndex(QModelIndex());
-  m_isQueryEnabled = false;
-  m_oldq = -1;
-  m_parentWid = nullptr;
-  m_queryHighlightColor = QColor(162, 205, 90);
-  m_requiredHighlightColor = QColor(255, 248, 220);
-  qmain = nullptr;
 }
 
 biblioteq_item::~biblioteq_item()
@@ -91,8 +85,7 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 
       if(classname == "QComboBox")
 	newdata[objectname] =
-	  (qobject_cast<QComboBox *> (widget))->currentText().
-	  trimmed();
+	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
       else if(classname == "QDateEdit")
 	newdata[objectname] =
 	  (qobject_cast<QDateEdit *> (widget))->date().toString
@@ -157,6 +150,34 @@ int biblioteq_item::getRow(void) const
     return -1;
 }
 
+void biblioteq_item::prepareIcons(QMainWindow *window)
+{
+  if(!window)
+    return;
+
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+
+  if(index == 1)
+    {
+      // System.
+    }
+  else
+    {
+      // Faenza.
+
+      foreach(auto pushButton, window->findChildren<QPushButton *> ())
+	{
+	  auto text(pushButton->text());
+	}
+
+      foreach(auto toolButton, window->findChildren<QToolButton *> ())
+	{
+	  auto text(toolButton->text());
+	}
+    }
+}
+
 void biblioteq_item::print(QWidget *parent)
 {
   QPrinter printer;
@@ -192,7 +213,7 @@ void biblioteq_item::setQMain(QMainWindow *window)
 
   foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      const QString &classname(widget->metaObject()->className());
+      const QString classname(widget->metaObject()->className());
 
       if(classname == "biblioteq_hyperlinked_text_edit")
 	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
