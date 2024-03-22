@@ -168,7 +168,18 @@ void biblioteq_item::prepareIcons(QMainWindow *window)
 
       foreach(auto pushButton, window->findChildren<QPushButton *> ())
 	{
-	  auto text(pushButton->text());
+	  auto text(pushButton->text().remove('&'));
+
+	  if(text.startsWith(QObject::tr("Copies")))
+	    pushButton->setIcon(QIcon(":/16x16/editcopy.png"));
+	  else if(text.startsWith(QObject::tr("Download")))
+	    pushButton->setIcon(QIcon(":/16x16/down.png"));
+	  else if(text.startsWith(QObject::tr("From ISBN")))
+	    pushButton->setIcon(QIcon(":/16x16/convert.png"));
+	  else if(text.startsWith(QObject::tr("Reservation Status")))
+	    pushButton->setIcon(QIcon(":/16x16/members.png"));
+	  else if(text.startsWith(QObject::tr("Select")))
+	    pushButton->setIcon(QIcon(":/16x16/fileopen.png"));
 	}
 
       foreach(auto toolButton, window->findChildren<QToolButton *> ())
