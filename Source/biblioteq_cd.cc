@@ -455,6 +455,7 @@ void biblioteq_cd::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_cd::modify(const int state)
@@ -534,6 +535,7 @@ void biblioteq_cd::modify(const int state)
   cd.quantity->setValue(1);
   cd.no_of_discs->setMinimum(1);
   cd.no_of_discs->setValue(1);
+  prepareIcons(this);
   str = m_oid;
   query.prepare("SELECT id, "
 		"title, "
@@ -803,6 +805,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.tracks_lbl->setVisible(false);
   m_composer_action->setVisible(true);
   m_engWindowTitle = "Search";
+  prepareIcons(this);
 
   if(field.isEmpty() && value.isEmpty())
     {

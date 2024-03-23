@@ -63,36 +63,59 @@ biblioteq_item::~biblioteq_item()
 
 QIcon biblioteq_item::iconForText(const QString &text) const
 {
+  QSettings setting;
+  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto system = false;
+
+  if(index == 1)
+    // System
+
+    system = true;
+
   if(text.startsWith(QObject::tr("Add")))
-    return QIcon(":/16x16/add.png");
+    return QIcon::fromTheme
+      (system ? "list-add" : "", QIcon(":/16x16/add.png"));
   else if(text.startsWith(QObject::tr("Close")))
-    return QIcon(":/16x16/cancel.png");
+    return QIcon::fromTheme
+      (system ? "window-close" : "", QIcon(":/16x16/cancel.png"));
   else if(text.startsWith(QObject::tr("Compute")))
     return QIcon(":/16x16/sum.png");
   else if(text.startsWith(QObject::tr("Copies")))
-    return QIcon(":/16x16/editcopy.png");
+    return QIcon::fromTheme
+      (system ? "edit-copy" : "", QIcon(":/16x16/editcopy.png"));
   else if(text.startsWith(QObject::tr("Delete")))
-    return QIcon(":/16x16/eraser.png");
+    return QIcon::fromTheme
+      (system ? "edit-delete" : "", QIcon(":/16x16/eraser.png"));
   else if(text.startsWith(QObject::tr("Download")))
     return QIcon(":/16x16/down.png");
   else if(text.startsWith(QObject::tr("Export")))
-    return QIcon(":/16x16/fileexport.png");
+    return QIcon::fromTheme
+      (system ? "document-export" : "", QIcon(":/16x16/fileexport.png"));
   else if(text.startsWith(QObject::tr("From ISBN")))
     return QIcon(":/16x16/convert.png");
+  else if(text.startsWith(QObject::tr("Insert")))
+    return QIcon::fromTheme
+      (system ? "list-add" : "", QIcon(":/16x16/add.png"));
   else if(text.startsWith(QObject::tr("OK")))
-    return QIcon(":/16x16/ok.png");
+    return QIcon::fromTheme
+      (system ? "dialog-ok" : "", QIcon(":/16x16/ok.png"));
   else if(text.startsWith(QObject::tr("Print")))
-    return QIcon(":/16x16/fileprint.png");
+    return QIcon::fromTheme
+      (system ? "document-print" : "", QIcon(":/16x16/fileprint.png"));
   else if(text.startsWith(QObject::tr("Reservation Status")))
     return QIcon(":/16x16/members.png");
   else if(text.startsWith(QObject::tr("Reset")))
-    return QIcon(":/16x16/reset.png");
+    return QIcon::fromTheme
+      (system ? "edit-reset" : "", QIcon(":/16x16/reset.png"));
   else if(text.startsWith(QObject::tr("Save")))
-    return QIcon(":/16x16/ok.png");
+    return QIcon::fromTheme
+      (system ? "dialog-ok" : "", QIcon(":/16x16/ok.png"));
   else if(text.startsWith(QObject::tr("Search")))
-    return QIcon(":/16x16/ok.png");
+    return QIcon::fromTheme
+      (system ? "dialog-ok" : "", QIcon(":/16x16/ok.png"));
   else if(text.startsWith(QObject::tr("Select")))
-    return QIcon(":/16x16/fileopen.png");
+    return QIcon::fromTheme
+      (system ? "document-open" : "", QIcon(":/16x16/fileopen.png"));
   else if(text.startsWith(QObject::tr("Show Tracks")))
     return QIcon(":/16x16/edittracks.png");
   else
@@ -193,23 +216,11 @@ void biblioteq_item::prepareIcons(QMainWindow *window)
   if(!window)
     return;
 
-  QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  foreach(auto pushButton, window->findChildren<QPushButton *> ())
+    pushButton->setIcon(iconForText(pushButton->text().remove('&')));
 
-  if(index == 1)
-    {
-      // System.
-    }
-  else
-    {
-      // Faenza.
-
-      foreach(auto pushButton, window->findChildren<QPushButton *> ())
-	pushButton->setIcon(iconForText(pushButton->text().remove('&')));
-
-      foreach(auto toolButton, window->findChildren<QToolButton *> ())
-	toolButton->setIcon(iconForText(toolButton->text().remove('&')));
-    }
+  foreach(auto toolButton, window->findChildren<QToolButton *> ())
+    toolButton->setIcon(iconForText(toolButton->text().remove('&')));
 }
 
 void biblioteq_item::print(QWidget *parent)
