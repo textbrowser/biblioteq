@@ -170,7 +170,13 @@ void biblioteq_item::prepareIcons(QMainWindow *window)
 	{
 	  auto text(pushButton->text().remove('&'));
 
-	  if(text.startsWith(QObject::tr("Copies")))
+	  if(text.startsWith(QObject::tr("Add")))
+	    pushButton->setIcon(QIcon(":/16x16/add.png"));
+	  else if(text.startsWith(QObject::tr("Close")))
+	    pushButton->setIcon(QIcon(":/16x16/cancel.png"));
+	  else if(text.startsWith(QObject::tr("Compute")))
+	    pushButton->setIcon(QIcon(":/16x16/sum.png"));
+	  else if(text.startsWith(QObject::tr("Copies")))
 	    pushButton->setIcon(QIcon(":/16x16/editcopy.png"));
 	  else if(text.startsWith(QObject::tr("Delete")))
 	    pushButton->setIcon(QIcon(":/16x16/eraser.png"));
@@ -182,10 +188,16 @@ void biblioteq_item::prepareIcons(QMainWindow *window)
 	    pushButton->setIcon(QIcon(":/16x16/convert.png"));
 	  else if(text.startsWith(QObject::tr("OK")))
 	    pushButton->setIcon(QIcon(":/16x16/ok.png"));
+	  else if(text.startsWith(QObject::tr("Print")))
+	    pushButton->setIcon(QIcon(":/16x16/fileprint.png"));
 	  else if(text.startsWith(QObject::tr("Reservation Status")))
 	    pushButton->setIcon(QIcon(":/16x16/members.png"));
+	  else if(text.startsWith(QObject::tr("Reset")))
+	    pushButton->setIcon(QIcon(":/16x16/reset.png"));
 	  else if(text.startsWith(QObject::tr("Select")))
 	    pushButton->setIcon(QIcon(":/16x16/fileopen.png"));
+	  else if(text.startsWith(QObject::tr("Show Tracks")))
+	    pushButton->setIcon(QIcon(":/16x16/edittracks.png"));
 	}
 
       foreach(auto toolButton, window->findChildren<QToolButton *> ())
