@@ -450,6 +450,7 @@ void biblioteq_dvd::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_dvd::modify(const int state)
@@ -523,6 +524,7 @@ void biblioteq_dvd::modify(const int state)
   dvd.quantity->setValue(1);
   dvd.queryButton->setEnabled(true);
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
+  prepareIcons(this);
   str = m_oid;
   query.prepare("SELECT id, "
 		"title, "
@@ -812,6 +814,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.studio->clear();
   dvd.title->clear();
   m_engWindowTitle = "Search";
+  prepareIcons(this);
 
   if(field.isEmpty() && value.isEmpty())
     {

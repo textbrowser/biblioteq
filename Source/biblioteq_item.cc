@@ -68,13 +68,15 @@ QIcon biblioteq_item::iconForText(const QString &text) const
   auto system = false;
 
   if(index == 1)
-    // System
+    // System.
 
     system = true;
 
   if(text.startsWith(QObject::tr("Add")))
     return QIcon::fromTheme
       (system ? "list-add" : "", QIcon(":/16x16/add.png"));
+  else if(text.startsWith(QObject::tr("Attach")))
+    return QIcon::fromTheme(system ? "document-import" : "", QIcon());
   else if(text.startsWith(QObject::tr("Close")))
     return QIcon::fromTheme
       (system ? "window-close" : "", QIcon(":/16x16/cancel.png"));

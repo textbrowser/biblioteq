@@ -460,6 +460,7 @@ void biblioteq_grey_literature::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_grey_literature::insertDatabase(void)
@@ -633,6 +634,8 @@ void biblioteq_grey_literature::modify(const int state)
       else
 	m_ui.showUserButton->setEnabled(true);
     }
+
+  prepareIcons(this);
 
   QSqlQuery query(qmain->getDB());
 
@@ -893,6 +896,7 @@ void biblioteq_grey_literature::search(const QString &field,
   m_ui.showUserButton->setEnabled(false);
   m_ui.type->insertItem(0, tr("Any"));
   m_ui.type->setCurrentIndex(0);
+  prepareIcons(this);
 
   if(field.isEmpty() && value.isEmpty())
     {

@@ -661,6 +661,7 @@ void biblioteq_magazine::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_magazine::modify(const int state)
@@ -753,6 +754,7 @@ void biblioteq_magazine::modify(const int state)
   ma.price->setMinimum(0.00);
   ma.quantity->setMinimum(1);
   ma.volume->setMinimum(0);
+  prepareIcons(this);
   str = m_oid;
   query.prepare(QString("SELECT title, "
 			"publisher, pdate, place, issuevolume, "
@@ -1940,6 +1942,7 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.volume->setMinimum(-1);
   ma.volume->setValue(-1);
   ma.z3950QueryButton->setVisible(false);
+  prepareIcons(this);
 
   if(field.isEmpty() && value.isEmpty())
     {

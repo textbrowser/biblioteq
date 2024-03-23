@@ -451,6 +451,7 @@ void biblioteq_photographcollection::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_photographcollection::loadPhotographFromItem
@@ -700,6 +701,7 @@ void biblioteq_photographcollection::modify(const int state,
 		"WHERE myoid = ?");
   query.bindValue(0, m_oid);
   pc.okButton->setText(tr("&Save"));
+  prepareIcons(this);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
@@ -884,6 +886,7 @@ void biblioteq_photographcollection::search(const QString &field,
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_photographcollection::setReadOnlyFieldsOverride(void)

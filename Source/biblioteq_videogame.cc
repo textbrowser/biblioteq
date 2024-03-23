@@ -414,6 +414,7 @@ void biblioteq_videogame::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_videogame::modify(const int state)
@@ -481,6 +482,7 @@ void biblioteq_videogame::modify(const int state)
   vg.price->setMinimum(0.00);
   vg.quantity->setMinimum(1);
   vg.queryButton->setEnabled(true);
+  prepareIcons(this);
   str = m_oid;
   query.prepare("SELECT title, "
 		"vgrating, "
@@ -741,6 +743,7 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
   vg.release_date->setDisplayFormat("yyyy");
   vg.showUserButton->setVisible(false);
   vg.title->clear();
+  prepareIcons(this);
 
   if(field.isEmpty() && value.isEmpty())
     {
