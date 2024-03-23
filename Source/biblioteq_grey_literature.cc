@@ -144,6 +144,10 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
@@ -1419,6 +1423,11 @@ void biblioteq_grey_literature::slotGo(void)
 	 biblioteq::NEW_PAGE,
 	 biblioteq::POPULATE_SEARCH);
     }
+}
+
+void biblioteq_grey_literature::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_grey_literature::slotPrint(void)

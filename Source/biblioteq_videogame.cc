@@ -73,6 +73,14 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 		SLOT(slotGo(void)));
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
   connect(vg.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -782,6 +790,19 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
 
       slotGo();
     }
+}
+
+void biblioteq_videogame::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(auto widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
 }
 
 void biblioteq_videogame::slotCancel(void)
@@ -1596,6 +1617,11 @@ void biblioteq_videogame::slotPopulateCopiesEditor(void)
      false);
 
   copyeditor->populateCopiesEditor();
+}
+
+void biblioteq_videogame::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_videogame::slotPrint(void)

@@ -79,6 +79,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void updateTablePhotographCount(const qint64 count);
 
  private slots:
+  void setGlobalFonts(const QFont &font);
   void slotAddItem(void);
   void slotCancel(void);
   void slotClosePhoto(void);
@@ -91,6 +92,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotInsertItem(void);
   void slotModifyItem(void);
   void slotPageChanged(int index);
+  void slotPrepareIcons(void);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);

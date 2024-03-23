@@ -87,6 +87,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void slotExportFiles(void);
   void slotFilesDoubleClicked(QTableWidgetItem *item);
   void slotGo(void);
+  void slotPrepareIcons(void);
   void slotPrint(void);
   void slotPublicationDateEnabled(bool state);
   void slotQuery(void);

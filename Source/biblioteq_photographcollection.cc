@@ -197,6 +197,14 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportPhotographs(void)));
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
   pc.exportPhotographsToolButton->setMenu(menu2);
   pc.resetButton->setMenu(menu1);
 
@@ -887,6 +895,19 @@ void biblioteq_photographcollection::search(const QString &field,
   activateWindow();
   raise();
   prepareIcons(this);
+}
+
+void biblioteq_photographcollection::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(auto widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
 }
 
 void biblioteq_photographcollection::setReadOnlyFieldsOverride(void)
@@ -2245,6 +2266,11 @@ void biblioteq_photographcollection::slotPageChanged(int index)
   pc.page->repaint();
   QApplication::processEvents();
   showPhotographs(index + 1);
+}
+
+void biblioteq_photographcollection::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_photographcollection::slotPrint(void)

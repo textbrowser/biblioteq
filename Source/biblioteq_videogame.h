@@ -60,9 +60,11 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   void prepareFavorites(void);
 
  private slots:
+  void setGlobalFonts(const QFont &font);
   void slotCancel(void);
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
+  void slotPrepareIcons(void);
   void slotPrint(void);
   void slotPublicationDateEnabled(bool state);
   void slotQuery(void);
