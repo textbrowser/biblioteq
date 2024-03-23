@@ -172,10 +172,16 @@ void biblioteq_item::prepareIcons(QMainWindow *window)
 
 	  if(text.startsWith(QObject::tr("Copies")))
 	    pushButton->setIcon(QIcon(":/16x16/editcopy.png"));
+	  else if(text.startsWith(QObject::tr("Delete")))
+	    pushButton->setIcon(QIcon(":/16x16/eraser.png"));
 	  else if(text.startsWith(QObject::tr("Download")))
 	    pushButton->setIcon(QIcon(":/16x16/down.png"));
+	  else if(text.startsWith(QObject::tr("Export")))
+	    pushButton->setIcon(QIcon(":/16x16/fileexport.png"));
 	  else if(text.startsWith(QObject::tr("From ISBN")))
 	    pushButton->setIcon(QIcon(":/16x16/convert.png"));
+	  else if(text.startsWith(QObject::tr("OK")))
+	    pushButton->setIcon(QIcon(":/16x16/ok.png"));
 	  else if(text.startsWith(QObject::tr("Reservation Status")))
 	    pushButton->setIcon(QIcon(":/16x16/members.png"));
 	  else if(text.startsWith(QObject::tr("Select")))
