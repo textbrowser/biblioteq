@@ -83,6 +83,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void slotInsertTrack(void);
   void slotPopulateCopiesEditor(void);
   void slotPopulateTracksBrowser(void);
+  void slotPrepareIcons(void);
   void slotPrint(void);
   void slotPublicationDateEnabled(bool state);
   void slotQuery(void);

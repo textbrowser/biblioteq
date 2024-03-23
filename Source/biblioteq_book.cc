@@ -327,6 +327,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
   connect(this,
 	  SIGNAL(openLibraryQueryError(const QString &)),
 	  this,
@@ -4450,6 +4454,11 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
      id.id->text().remove('-').trimmed());
 
   copyeditor->populateCopiesEditor();
+}
+
+void biblioteq_book::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_book::slotPrint(void)

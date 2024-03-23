@@ -131,6 +131,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotOpenLibrarySslErrors(const QList<QSslError> &list);
   void slotParseMarcTags(void);
   void slotPopulateCopiesEditor(void);
+  void slotPrepareIcons(void);
   void slotPrint(void);
   void slotPrintAuthorTitleDewey(void);
   void slotPrintCallDewey(void);

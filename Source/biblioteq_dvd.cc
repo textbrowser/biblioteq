@@ -199,6 +199,14 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
   dvd.id->setValidator(validator1);
   dvd.queryButton->setVisible(m_isQueryEnabled);
   dvd.resetButton->setMenu(menu);
@@ -853,6 +861,19 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
 
       slotGo();
     }
+}
+
+void biblioteq_dvd::setGlobalFonts(const QFont &font)
+{
+  setFont(font);
+
+  foreach(auto widget, findChildren<QWidget *> ())
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
 }
 
 void biblioteq_dvd::slotCancel(void)
@@ -1766,6 +1787,11 @@ void biblioteq_dvd::slotPopulateCopiesEditor(void)
      false);
 
   copyeditor->populateCopiesEditor();
+}
+
+void biblioteq_dvd::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_dvd::slotPrint(void)

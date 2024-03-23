@@ -266,6 +266,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
   connect(this,
 	  SIGNAL(sruQueryError(const QString &)),
 	  this,
@@ -3290,6 +3294,11 @@ void biblioteq_magazine::slotPopulateCopiesEditor(void)
      false);
 
   copyeditor->populateCopiesEditor();
+}
+
+void biblioteq_magazine::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_magazine::slotPrint(void)

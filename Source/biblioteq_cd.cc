@@ -236,6 +236,10 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(setGlobalFonts(const QFont &)));
+  connect(qmain,
+	  SIGNAL(otherOptionsSaved(void)),
+	  this,
+	  SLOT(slotPrepareIcons(void)));
   cd.composer->setVisible(false);
   cd.composer_label->setVisible(false);
   cd.id->setValidator(validator1);
@@ -2060,6 +2064,11 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     trd.table->resizeColumnToContents(i);
 
   trd.table->resizeRowsToContents();
+}
+
+void biblioteq_cd::slotPrepareIcons(void)
+{
+  prepareIcons(this);
 }
 
 void biblioteq_cd::slotPrint(void)
