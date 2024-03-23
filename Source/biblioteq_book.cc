@@ -981,6 +981,7 @@ void biblioteq_book::insert(void)
 #endif
   activateWindow();
   raise();
+  prepareIcons(this);
 }
 
 void biblioteq_book::modify(const int state)
@@ -1079,6 +1080,7 @@ void biblioteq_book::modify(const int state)
   id.okButton->setText(tr("&Save"));
   id.price->setMinimum(0.00);
   id.quantity->setMinimum(1);
+  prepareIcons(this);
   str = m_oid;
   query.prepare("SELECT title, "
 		"author, "
@@ -2276,6 +2278,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.volume_number->clear();
   id.z3950QueryButton->setVisible(false);
   m_engWindowTitle = "Search";
+  prepareIcons(this);
 
   if(field.isEmpty() && value.isEmpty())
     {

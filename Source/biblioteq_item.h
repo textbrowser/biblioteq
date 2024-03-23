@@ -100,6 +100,9 @@ class biblioteq_item
   void setReadOnlyFields(QMainWindow *window, const bool state);
   void storeData(QMainWindow *window);
   void updateFont(const QFont &font, QWidget *window);
+
+ private:
+  QIcon iconForText(const QString &text) const;
 };
 
 #endif
