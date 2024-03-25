@@ -290,7 +290,7 @@ class biblioteq_otheroptions: public QMainWindow
   void prepareMembersVisibleColumns(QTableWidget *table);
 
  private:
-  enum ItemsColumns
+  enum class ItemsColumns
     {
       AVAILABILITY_COLOR = 1,
       ITEM_TYPE = 0,

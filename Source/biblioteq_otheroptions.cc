@@ -345,15 +345,18 @@ void biblioteq_otheroptions::prepareAvailability(void)
       layout->setContentsMargins(0, 0, 0, 0);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.availability_color->setCellWidget(i, AVAILABILITY_COLOR, widget);
-      m_ui.availability_color->setItem(i, ITEM_TYPE, item);
+      m_ui.availability_color->setCellWidget
+	(i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR), widget);
+      m_ui.availability_color->setItem
+	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       pushButton->setMinimumWidth(135);
       pushButton->setText(list2.at(i));
       pushButton->setStyleSheet
 	(QString("background-color: %1").arg(QString(list2.at(i)).remove('&')));
     }
 
-  m_ui.availability_color->resizeColumnToContents(ITEM_TYPE);
+  m_ui.availability_color->resizeColumnToContents
+    (static_cast<int> (ItemsColumns::ITEM_TYPE));
   m_ui.availability_color->resizeRowsToContents();
   m_ui.availability_color->setSortingEnabled(true);
   m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
@@ -645,15 +648,18 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setItem(i, ITEM_TYPE, item);
+      m_ui.publication_date->setItem
+	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       item = new QTableWidgetItem(str);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setItem(i, PUBLICATION_DATE_FORMAT, item);
+      m_ui.publication_date->setItem
+	(i, static_cast<int> (ItemsColumns::PUBLICATION_DATE_FORMAT), item);
     }
 
-  m_ui.publication_date->resizeColumnToContents(ITEM_TYPE);
+  m_ui.publication_date->resizeColumnToContents
+    (static_cast<int> (ItemsColumns::ITEM_TYPE));
   m_ui.publication_date->resizeRowsToContents();
   m_ui.publication_date->setSortingEnabled(true);
   m_ui.publication_date->sortByColumn(0, Qt::AscendingOrder);
@@ -878,7 +884,8 @@ void biblioteq_otheroptions::slotSave(void)
   for(int i = 0; i < list.size(); i++)
     {
       QString value("");
-      auto widget = m_ui.availability_color->cellWidget(i, AVAILABILITY_COLOR);
+      auto widget = m_ui.availability_color->cellWidget
+	(i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR));
       const auto &key(list.at(i));
 
       if(widget)
@@ -904,7 +911,8 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto item = m_ui.publication_date->item(i, PUBLICATION_DATE_FORMAT);
+      auto item = m_ui.publication_date->item
+	(i, static_cast<int> (ItemsColumns::PUBLICATION_DATE_FORMAT));
       auto value(biblioteq::s_databaseDateFormat);
       const auto &key(list.at(i));
 
