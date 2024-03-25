@@ -51,7 +51,7 @@ doc2.files		 = Documentation/Contributed/*.docx \
                            Documentation/Contributed/*.html \
                            Documentation/Contributed/*.pdf
 doc2.path		 = BiblioteQ.d/Documentation/Contributed
-installnametool1.extra   = install_name_tool -change @loader_path/../../../../opt/libpng/lib/libpng16.16.dylib @executable_path/../Frameworks/libpng16.16.dylib BiblioteQ.app/Contents/Frameworks/libfreetype.6.dylib
+installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/Cellar/libpq/16.2_1/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 installnametool1.path    = .
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
@@ -74,6 +74,6 @@ INSTALLS	= preinstall \
                   data \
 		  doc1 \
                   doc2 \
-                  installnametool1 \
-		  sql \
-                  postinstall
+                  sql \
+                  postinstall \
+                  installnametool1
