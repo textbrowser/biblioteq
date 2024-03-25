@@ -54,7 +54,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
-  enum TracksColumns
+  enum class TracksColumns
     {
       ALBUM_NUMBER = 0,
       ARTIST = 4,

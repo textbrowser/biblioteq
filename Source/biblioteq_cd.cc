@@ -1819,16 +1819,17 @@ void biblioteq_cd::slotInsertTrack(void)
 
   for(i = 0; i < trd.table->columnCount(); i++)
     {
-      if(i == TRACK_NUMBER)
-	str = "1";
-      else if(i == TRACK_TITLE)
-	str = tr("Title");
-      else if(i == ARTIST || i == COMPOSER)
+      if(i == static_cast<int> (TracksColumns::ARTIST) ||
+	 i == static_cast<int> (TracksColumns::COMPOSER))
 	str = biblioteq::s_unknown;
+      else if(i == static_cast<int> (TracksColumns::TRACK_NUMBER))
+	str = "1";
+      else if(i == static_cast<int> (TracksColumns::TRACK_TITLE))
+	str = tr("Title");
       else
 	str.clear();
 
-      if(i == ALBUM_NUMBER)
+      if(i == static_cast<int> (TracksColumns::ALBUM_NUMBER))
 	{
 	  auto layout = new QHBoxLayout();
 	  auto spacer = new QSpacerItem
@@ -1845,14 +1846,14 @@ void biblioteq_cd::slotInsertTrack(void)
 	  widget->setLayout(layout);
 	  trd.table->setCellWidget(trow, i, widget);
 	}
-      else if(i == TRACK_NUMBER)
+      else if(i == static_cast<int> (TracksColumns::TRACK_NUMBER))
 	{
 	  trackEdit = new QSpinBox();
 	  trd.table->setCellWidget(trow, i, trackEdit);
 	  trackEdit->setMinimum(1);
 	  trackEdit->setValue(trd.table->rowCount());
 	}
-      else if(i == TRACK_RUNTIME)
+      else if(i == static_cast<int> (TracksColumns::TRACK_RUNTIME))
 	{
 	  timeEdit = new QTimeEdit();
 	  trd.table->setCellWidget(trow, i, timeEdit);
@@ -1861,9 +1862,10 @@ void biblioteq_cd::slotInsertTrack(void)
       else
 	{
 	  item = new QTableWidgetItem();
-	  item->setText(str);
-	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+	  item->setFlags(Qt::ItemIsSelectable |
+			 Qt::ItemIsEnabled |
 			 Qt::ItemIsEditable);
+	  item->setText(str);
 	  trd.table->setItem(trow, i, item);
 	}
     }
@@ -2001,7 +2003,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 	      if(qmain->getDB().driverName() == "QSQLITE")
 		trd.table->setRowCount(i + 1);
 
-	      if(j == ALBUM_NUMBER)
+	      if(j == static_cast<int> (TracksColumns::ALBUM_NUMBER))
 		{
 		  auto layout = new QHBoxLayout();
 		  auto spacer = new QSpacerItem
@@ -2024,26 +2026,27 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 		  widget->setLayout(layout);
 		  trd.table->setCellWidget(i, j, widget);
 		}
-	      else if(j == TRACK_NUMBER)
+	      else if(j == static_cast<int> (TracksColumns::TRACK_NUMBER))
 		{
 		  trackEdit = new QSpinBox();
-		  trd.table->setCellWidget(i, j, trackEdit);
 		  trackEdit->setMinimum(1);
 		  trackEdit->setValue(str.toInt());
+		  trd.table->setCellWidget(i, j, trackEdit);
 		}
-	      else if(j == TRACK_RUNTIME)
+	      else if(j == static_cast<int> (TracksColumns::TRACK_RUNTIME))
 		{
 		  timeEdit = new QTimeEdit();
-		  trd.table->setCellWidget(i, j, timeEdit);
 		  timeEdit->setDisplayFormat("hh:mm:ss");
 		  timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
+		  trd.table->setCellWidget(i, j, timeEdit);
 		}
 	      else
 		{
 		  item = new QTableWidgetItem();
-		  item->setText(str);
-		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+		  item->setFlags(Qt::ItemIsSelectable |
+				 Qt::ItemIsEnabled |
 				 Qt::ItemIsEditable);
+		  item->setText(str);
 		  trd.table->setItem(i, j, item);
 		}
 	    }
@@ -2344,8 +2347,10 @@ void biblioteq_cd::slotSaveTracks(void)
   int i = 0;
 
   for(i = 0; i < trd.table->rowCount(); i++)
-    if(trd.table->item(i, TRACK_TITLE) != nullptr &&
-       trd.table->item(i, TRACK_TITLE)->text().trimmed().isEmpty())
+    if(trd.table->item(i, static_cast<int> (TracksColumns::TRACK_TITLE)) !=
+       nullptr &&
+       trd.table->item(i, static_cast<int> (TracksColumns::TRACK_TITLE))->
+       text().trimmed().isEmpty())
       {
 	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
 	  tr(" contains an empty Song Title.");
@@ -2426,9 +2431,12 @@ void biblioteq_cd::slotSaveTracks(void)
 			"?, ?, ?, ?, ?, ?)");
 	  query.addBindValue(m_oid);
 
-	  if(trd.table->cellWidget(i, ALBUM_NUMBER) != nullptr)
+	  if(trd.table->
+	     cellWidget(i, static_cast<int> (TracksColumns::ALBUM_NUMBER)) !=
+	     nullptr)
 	    {
-	      auto widget = trd.table->cellWidget(i, ALBUM_NUMBER);
+	      auto widget = trd.table->cellWidget
+		(i, static_cast<int> (TracksColumns::ALBUM_NUMBER));
 
 	      if(widget)
 		{
@@ -2439,26 +2447,41 @@ void biblioteq_cd::slotSaveTracks(void)
 		}
 	    }
 
-	  if(trd.table->cellWidget(i, TRACK_NUMBER) != nullptr)
+	  if(trd.table->
+	     cellWidget(i, static_cast<int> (TracksColumns::TRACK_NUMBER)) !=
+	     nullptr)
 	    query.addBindValue
-	      (qobject_cast<QSpinBox *> (trd.table->
-					 cellWidget(i, TRACK_NUMBER))->value());
+	      (qobject_cast<QSpinBox *>
+	       (trd.table->cellWidget
+		(i, static_cast<int> (TracksColumns::TRACK_NUMBER)))->value());
 
-	  if(trd.table->item(i, TRACK_TITLE) != nullptr)
+	  if(trd.table->
+	     cellWidget(i, static_cast<int> (TracksColumns::TRACK_RUNTIME)) !=
+	     nullptr)
 	    query.addBindValue
-	      (trd.table->item(i, TRACK_TITLE)->text().trimmed());
-
-	  if(trd.table->cellWidget(i, TRACK_RUNTIME) != nullptr)
-	    query.addBindValue
-	      (qobject_cast<QTimeEdit *> (trd.table->
-					  cellWidget(i, TRACK_RUNTIME))->time().
+	      (qobject_cast<QTimeEdit *>
+	       (trd.table->cellWidget
+		(i, static_cast<int> (TracksColumns::TRACK_RUNTIME)))->time().
 	       toString("hh:mm:ss"));
 
-	  if(trd.table->item(i, ARTIST) != nullptr)
-	    query.addBindValue(trd.table->item(i, ARTIST)->text().trimmed());
+	  if(trd.table->item(i, static_cast<int> (TracksColumns::ARTIST)) !=
+	     nullptr)
+	    query.addBindValue
+	      (trd.table->item(i, static_cast<int> (TracksColumns::ARTIST))->
+	       text().trimmed());
 
-	  if(trd.table->item(i, COMPOSER) != nullptr)
-	    query.addBindValue(trd.table->item(i, COMPOSER)->text().trimmed());
+	  if(trd.table->item(i, static_cast<int> (TracksColumns::COMPOSER)) !=
+	     nullptr)
+	    query.addBindValue
+	      (trd.table->item(i, static_cast<int> (TracksColumns::COMPOSER))->
+	       text().trimmed());
+
+	  if(trd.table->
+	     item(i, static_cast<int> (TracksColumns::TRACK_TITLE)) != nullptr)
+	    query.addBindValue
+	      (trd.table->item
+	       (i, static_cast<int> (TracksColumns::TRACK_TITLE))->
+	       text().trimmed());
 
 	  if(!query.exec())
 	    {
