@@ -1704,10 +1704,14 @@ void biblioteq_book::populateAfterSRU
 
   if(recordSyntax == "MARC21")
     m.initialize
-      (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::MARC21);
+      (biblioteq_marc::ITEM_TYPE::BOOK,
+       biblioteq_marc::PROTOCOL::SRU,
+       biblioteq_marc::RECORD_SYNTAX::MARC21);
   else if(recordSyntax == "UNIMARC")
     m.initialize
-      (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::UNIMARC);
+      (biblioteq_marc::ITEM_TYPE::BOOK,
+       biblioteq_marc::PROTOCOL::SRU,
+       biblioteq_marc::RECORD_SYNTAX::UNIMARC);
   else
     {
       /*
@@ -1716,10 +1720,14 @@ void biblioteq_book::populateAfterSRU
 
       if(text.contains("marc21", Qt::CaseInsensitive))
 	m.initialize
-	  (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::MARC21);
+	  (biblioteq_marc::ITEM_TYPE::BOOK,
+	   biblioteq_marc::PROTOCOL::SRU,
+	   biblioteq_marc::RECORD_SYNTAX::MARC21);
       else
 	m.initialize
-	  (biblioteq_marc::BOOK, biblioteq_marc::SRU, biblioteq_marc::UNIMARC);
+	  (biblioteq_marc::ITEM_TYPE::BOOK,
+	   biblioteq_marc::PROTOCOL::SRU,
+	   biblioteq_marc::RECORD_SYNTAX::UNIMARC);
     }
 
   m.parse(text);
@@ -1895,7 +1903,9 @@ void biblioteq_book::populateAfterZ3950
   if(id.isbn13->text().remove('-').trimmed().length() == 13)
     isbn13User = true;
 
-  m.initialize(biblioteq_marc::BOOK, biblioteq_marc::Z3950, recordSyntax);
+  m.initialize(biblioteq_marc::ITEM_TYPE::BOOK,
+	       biblioteq_marc::PROTOCOL::Z3950,
+	       recordSyntax);
   m.parse(text);
   list = text.split("\n");
   id.edition->setCurrentIndex(0);
@@ -4415,26 +4425,26 @@ void biblioteq_book::slotParseMarcTags(void)
 	{
 	  biblioteq_marc m;
 
-	  m.initialize(biblioteq_marc::BOOK,
-		       biblioteq_marc::Z3950,
-		       biblioteq_marc::MARC21);
+	  m.initialize(biblioteq_marc::ITEM_TYPE::BOOK,
+		       biblioteq_marc::PROTOCOL::Z3950,
+		       biblioteq_marc::RECORD_SYNTAX::MARC21);
 	  m.parse(text);
 
 	  if(!m.author().isEmpty())
-	    populateAfterZ3950(text, biblioteq_marc::MARC21);
+	    populateAfterZ3950(text, biblioteq_marc::RECORD_SYNTAX::MARC21);
 	  else
-	    populateAfterZ3950(text, biblioteq_marc::UNIMARC);
+	    populateAfterZ3950(text, biblioteq_marc::RECORD_SYNTAX::UNIMARC);
 
 	  break;
 	}
       case 1:
 	{
-	  populateAfterZ3950(text, biblioteq_marc::MARC21);
+	  populateAfterZ3950(text, biblioteq_marc::RECORD_SYNTAX::MARC21);
 	  break;
 	}
       default:
 	{
-	  populateAfterZ3950(text, biblioteq_marc::UNIMARC);
+	  populateAfterZ3950(text, biblioteq_marc::RECORD_SYNTAX::UNIMARC);
 	  break;
 	}
       }
@@ -5506,10 +5516,12 @@ void biblioteq_book::slotZ3950Query(void)
 
 	  if(recordSyntax == "MARC21")
 	    populateAfterZ3950
-	      (m_thread->getZ3950Results()[0], biblioteq_marc::MARC21);
+	      (m_thread->getZ3950Results()[0],
+	       biblioteq_marc::RECORD_SYNTAX::MARC21);
 	  else
 	    populateAfterZ3950
-	      (m_thread->getZ3950Results()[0], biblioteq_marc::UNIMARC);
+	      (m_thread->getZ3950Results()[0],
+	       biblioteq_marc::RECORD_SYNTAX::UNIMARC);
 	}
 
       QApplication::processEvents();

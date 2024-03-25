@@ -33,19 +33,19 @@
 class biblioteq_marc
 {
  public:
-  enum ITEM_TYPE
+  enum class ITEM_TYPE
     {
       BOOK = 0,
       MAGAZINE
     };
 
-  enum PROTOCOL
+  enum class PROTOCOL
     {
       SRU = 0,
       Z3950
     };
 
-  enum RECORD_SYNTAX
+  enum class RECORD_SYNTAX
     {
       MARC21 = 0,
       UNIMARC

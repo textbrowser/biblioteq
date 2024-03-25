@@ -1392,9 +1392,9 @@ void biblioteq_magazine::populateDisplayAfterZ3950(const QStringList &list,
     {
       biblioteq_marc m;
 
-      m.initialize(biblioteq_marc::MAGAZINE,
-		   biblioteq_marc::Z3950,
-		   biblioteq_marc::UNIMARC);
+      m.initialize(biblioteq_marc::ITEM_TYPE::MAGAZINE,
+		   biblioteq_marc::PROTOCOL::Z3950,
+		   biblioteq_marc::RECORD_SYNTAX::UNIMARC);
       m.parse(str);
       str = m.category();
 
@@ -3253,9 +3253,9 @@ void biblioteq_magazine::slotParseMarcTags(void)
 	{
 	  biblioteq_marc m;
 
-	  m.initialize(biblioteq_marc::MAGAZINE,
-		       biblioteq_marc::Z3950,
-		       biblioteq_marc::UNIMARC);
+	  m.initialize(biblioteq_marc::ITEM_TYPE::MAGAZINE,
+		       biblioteq_marc::PROTOCOL::Z3950,
+		       biblioteq_marc::RECORD_SYNTAX::UNIMARC);
 	  m.parse(text);
 
 	  if(!m.publisher().isEmpty())
