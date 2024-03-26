@@ -75,7 +75,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   ma.setupUi(this);
   setQMain(this);
   biblioteq_misc_functions::sortCombinationBox(ma.marc_tags_format);
-  ma.files->setColumnHidden(MYOID, true);
+  ma.files->setColumnHidden(static_cast<int> (Columns::MYOID), true);
   ma.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   ma.marc_tags_format->setVisible(false);
   ma.parse_marc_tags->setVisible(false);
@@ -1861,7 +1861,8 @@ void biblioteq_magazine::populateFiles(void)
 	row += 1;
       }
 
-  ma.files->horizontalHeader()->setSortIndicator(FILE, Qt::AscendingOrder);
+  ma.files->horizontalHeader()->setSortIndicator
+    (static_cast<int> (Columns::FILE), Qt::AscendingOrder);
   ma.files->setRowCount(totalRows);
   ma.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
@@ -2054,8 +2055,8 @@ void biblioteq_magazine::slotAttachFiles(void)
 	      if(!total.isEmpty())
 		{
 		  total = qCompress(total, 9);
-		  createFile(digest.result(), total,
-			     QFileInfo(fileName).fileName());
+		  createFile
+		    (digest.result(), total, QFileInfo(fileName).fileName());
 		}
 	    }
 
@@ -2082,7 +2083,9 @@ void biblioteq_magazine::slotCancel(void)
 
 void biblioteq_magazine::slotDeleteFiles(void)
 {
-  auto list(ma.files->selectionModel()->selectedRows(MYOID));
+  auto list
+    (ma.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     {
@@ -2130,7 +2133,9 @@ void biblioteq_magazine::slotDeleteFiles(void)
 
 void biblioteq_magazine::slotExportFiles(void)
 {
-  QModelIndexList list(ma.files->selectionModel()->selectedRows(MYOID));
+  QModelIndexList list
+    (ma.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;
@@ -2207,9 +2212,11 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item)
     return;
 
-  if(item->column() != DESCRIPTION || m_engWindowTitle != "Modify")
+  if(item->column() != static_cast<int> (Columns::DESCRIPTION) ||
+     m_engWindowTitle != "Modify")
     {
-      auto item1 = ma.files->item(item->row(), FILE);
+      auto item1 = ma.files->item
+	(item->row(), static_cast<int> (Columns::FILE));
 
       if(!item1)
 	return;
@@ -2256,13 +2263,14 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(m_engWindowTitle != "Modify")
     return;
 
-  auto item1 = ma.files->item(item->row(), DESCRIPTION);
+  auto item1 = ma.files->item
+    (item->row(), static_cast<int> (Columns::DESCRIPTION));
 
   if(!item1)
     return;
 
   auto description(item1->text());
-  auto item2 = ma.files->item(item->row(), MYOID);
+  auto item2 = ma.files->item(item->row(), static_cast<int> (Columns::MYOID));
 
   if(!item2)
     return;
@@ -3923,7 +3931,9 @@ void biblioteq_magazine::slotSelectImage(void)
 
 void biblioteq_magazine::slotShowPDF(void)
 {
-  auto list(ma.files->selectionModel()->selectedRows(MYOID));
+  auto list
+    (ma.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;

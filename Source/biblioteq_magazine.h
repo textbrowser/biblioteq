@@ -64,7 +64,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void updateWindow(const int state);
 
  protected:
-  enum Columns
+  enum class Columns
     {
       COMPRESSED_SIZE = 2,
       DESCRIPTION = 3,
