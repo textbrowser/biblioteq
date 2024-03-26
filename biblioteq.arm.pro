@@ -19,7 +19,8 @@ DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
 }
 else {
-message("The directory /usr/include/poppler/cpp does not exist. Poppler version information will not be available.")
+message("The directory /usr/include/poppler/cpp does not exist. " \
+        "Poppler version information will not be available.")
 }
 
 QMAKE_CLEAN	+= BiblioteQ

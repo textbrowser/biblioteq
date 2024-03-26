@@ -20,7 +20,8 @@ DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/local/include/poppler/cpp
 }
 else {
-message("The directory /usr/local/include/poppler/cpp does not exist. Poppler version information will not be available.")
+message("The directory /usr/local/include/poppler/cpp does not exist. " \
+        "Poppler version information will not be available.")
 }
 
 TEMPLATE	= app
