@@ -2325,7 +2325,7 @@ void biblioteq::slotAddAdmin(void)
   ab.table->setRowCount(ab.table->rowCount() + 1);
 
   for(i = 0; i < ab.table->columnCount(); i++)
-    if(i == AdminSetupColumns::ID)
+    if(i == static_cast<int> (AdminSetupColumns::ID))
       {
 	item = new QTableWidgetItem();
 	item->setFlags(item->flags() | Qt::ItemIsEditable);
@@ -2420,7 +2420,9 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
   int row = -1;
 
   for(i = 0; i < ab.table->rowCount(); i++)
-    for(j = AdminSetupColumns::ADMINISTRATOR; j < ab.table->columnCount(); j++)
+    for(j = static_cast<int> (AdminSetupColumns::ADMINISTRATOR);
+	j < ab.table->columnCount();
+	j++)
       if(ab.table->cellWidget(i, j) == box)
 	{
 	  row = i;
@@ -2430,9 +2432,9 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 
   if(row > -1)
     {
-      if(column == AdminSetupColumns::ADMINISTRATOR)
+      if(column == static_cast<int> (AdminSetupColumns::ADMINISTRATOR))
 	{
-	  for(i = AdminSetupColumns::CIRCULATION;
+	  for(i = static_cast<int> (AdminSetupColumns::CIRCULATION);
 	      i < ab.table->columnCount();
 	      i++)
 	    if(box->isChecked())
@@ -2910,9 +2912,10 @@ void biblioteq::slotDeleteAdmin(void)
       return;
     }
 
-  str = ab.table->item(row, AdminSetupColumns::ID)->text().toLower().trimmed();
+  str = ab.table->item(row, static_cast<int> (AdminSetupColumns::ID))->
+    text().toLower().trimmed();
 
-  if((ab.table->item(row, AdminSetupColumns::ID)->flags() &
+  if((ab.table->item(row, static_cast<int> (AdminSetupColumns::ID))->flags() &
       Qt::ItemIsEditable) == 0 &&
      str == getAdminID())
     {

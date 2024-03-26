@@ -401,7 +401,7 @@ class biblioteq: public QMainWindow
   void slotResizeColumns(void);
 
  private:
-  enum AdminSetupColumns
+  enum class AdminSetupColumns
     {
       ADMINISTRATOR = 1,
       CIRCULATION = 2,

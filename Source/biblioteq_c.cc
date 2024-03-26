@@ -4780,9 +4780,9 @@ void biblioteq::slotRefreshAdminList(void)
 	  item->setText(str);
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	  str = query.value(1).toString().trimmed();
-	  ab.table->setItem(i, AdminSetupColumns::ID, item);
+	  ab.table->setItem(i, static_cast<int> (AdminSetupColumns::ID), item);
 
-	  for(j = AdminSetupColumns::ADMINISTRATOR;
+	  for(j = static_cast<int> (AdminSetupColumns::ADMINISTRATOR);
 	      j < ab.table->columnCount();
 	      j++)
 	    if(query.value(0).toString().trimmed() == getAdminID() &&
@@ -5266,20 +5266,25 @@ void biblioteq::slotSaveAdministrators(void)
 
   for(i = 0; i < ab.table->rowCount(); i++)
     {
-      if(ab.table->item(i, AdminSetupColumns::ID)->text().trimmed().isEmpty())
+      if(ab.table->item(i, static_cast<int> (AdminSetupColumns::ID))->
+	 text().trimmed().isEmpty())
 	continue;
 
       if(!(qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, AdminSetupColumns::ADMINISTRATOR))->
+	   (ab.table->cellWidget
+	    (i, static_cast<int> (AdminSetupColumns::ADMINISTRATOR)))->
 	   isChecked() ||
 	   qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, AdminSetupColumns::CIRCULATION))->
+	   (ab.table->cellWidget
+	    (i, static_cast<int> (AdminSetupColumns::CIRCULATION)))->
 	   isChecked() ||
 	   qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, AdminSetupColumns::LIBRARIAN))->
+	   (ab.table->cellWidget
+	    (i, static_cast<int> (AdminSetupColumns::LIBRARIAN)))->
 	   isChecked() ||
 	   qobject_cast<QCheckBox *>
-	   (ab.table->cellWidget(i, AdminSetupColumns::MEMBERSHIP))->
+	   (ab.table->cellWidget
+	    (i, static_cast<int> (AdminSetupColumns::MEMBERSHIP)))->
 	   isChecked()))
 	{
 	  ab.table->selectRow(i);
@@ -5292,10 +5297,12 @@ void biblioteq::slotSaveAdministrators(void)
 	  return;
 	}
 
-      if(!tmplist.contains(ab.table->item(i, AdminSetupColumns::ID)->
-			   text().toLower().trimmed()))
-	tmplist.append(ab.table->item(i, AdminSetupColumns::ID)->
-		       text().toLower().trimmed());
+      if(!tmplist.contains
+	 (ab.table->item(i, static_cast<int> (AdminSetupColumns::ID))->
+	  text().toLower().trimmed()))
+	tmplist.append
+	  (ab.table->item(i, static_cast<int> (AdminSetupColumns::ID))->
+	   text().toLower().trimmed());
       else
 	{
 	  ab.table->selectRow(i);
@@ -5391,7 +5398,7 @@ void biblioteq::slotSaveAdministrators(void)
   for(i = 0; i < ab.table->rowCount(); i++)
     {
       str = "";
-      adminStr = ab.table->item(i, AdminSetupColumns::ID)->
+      adminStr = ab.table->item(i, static_cast<int> (AdminSetupColumns::ID))->
 	text().toLower().trimmed();
 
       if(i + 1 <= progress.maximum())
@@ -5405,13 +5412,13 @@ void biblioteq::slotSaveAdministrators(void)
       else if(adminStr == getAdminID())
 	continue; // Ignore current administrator.
 
-      if((qobject_cast<QCheckBox *> (ab.table->cellWidget(i,
-							  AdminSetupColumns::
-							  ADMINISTRATOR)))->
+      if((qobject_cast<QCheckBox *>
+	  (ab.table->cellWidget
+	   (i, static_cast<int> (AdminSetupColumns::ADMINISTRATOR))))->
 	 isChecked())
 	str = "administrator";
       else
-	for(j = AdminSetupColumns::CIRCULATION;
+	for(j = static_cast<int> (AdminSetupColumns::CIRCULATION);
 	    j < ab.table->columnCount();
 	    j++)
 	  {
