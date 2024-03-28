@@ -2964,7 +2964,7 @@ void biblioteq::slotConnectDB(void)
 	      if(!query.exec("SET ROLE biblioteq_guest"))
 		{
 		  error = true;
-		  addError(QString(tr("Database Error")),
+		  addError(tr("Database Error"),
 			   tr("Unable to set a guest role."),
 			   errorstr,
 			   __FILE__,
@@ -2983,8 +2983,8 @@ void biblioteq::slotConnectDB(void)
 	      if(!query.exec("SET ROLE biblioteq_patron"))
 		{
 		  error = true;
-		  addError(QString(tr("Database Error")),
-			   QString(tr("Unable to set the role for ")) +
+		  addError(tr("Database Error"),
+			   tr("Unable to set the role for ") +
 			   br.userid->text().trimmed() +
 			   tr("."),
 			   errorstr,
@@ -2993,7 +2993,7 @@ void biblioteq::slotConnectDB(void)
 		  QMessageBox::critical
 		    (parent,
 		     tr("BiblioteQ: Database Error"),
-		     QString(tr("Unable to set the role for ")) +
+		     tr("Unable to set the role for ") +
 		     br.userid->text().trimmed() +
 		     tr("."));
 		  QApplication::processEvents();
@@ -3649,7 +3649,7 @@ void biblioteq::slotDisplaySummary(void)
 	    (ui.table, i, ui.table->columnNumber("File Count"));
 
 	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 File(s)")).arg(tmpstr);
+	    summary += "<br>" + tr("%1 File(s)").arg(tmpstr);
 
 	  summary += "<br>";
 	}
@@ -3716,7 +3716,7 @@ void biblioteq::slotDisplaySummary(void)
 	    (ui.table, i, ui.table->columnNumber("Photograph Count"));
 
 	  if(!tmpstr.isEmpty())
-	    summary += "<br>" + QString(tr("%1 Photograph(s)")).arg(tmpstr);
+	    summary += "<br>" + tr("%1 Photograph(s)").arg(tmpstr);
 
 	  summary += "<br>";
 	}
@@ -4163,9 +4163,8 @@ void biblioteq::slotModifyBorrower(void)
   if(!query.exec() || !query.next())
     {
       QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve the selected member's "
-			  "information.")),
+      addError(tr("Database Error"),
+	       tr("Unable to retrieve the selected member's information."),
 	       query.lastError().text(),
 	       __FILE__,
 	       __LINE__);
@@ -4607,9 +4606,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve member data for table "
-			  "populating.")),
+      addError(tr("Database Error"),
+	       tr("Unable to retrieve member data for table populating."),
 	       query.lastError().text(),
 	       __FILE__,
 	       __LINE__);
@@ -4747,12 +4745,12 @@ void biblioteq::slotRefreshAdminList(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve administrator data for table "
-			  "populating.")),
-	       query.lastError().text(),
-	       __FILE__,
-	       __LINE__);
+      addError
+	(tr("Database Error"),
+	 tr("Unable to retrieve administrator data for table populating."),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
       QMessageBox::critical
 	(m_admin_diag,
 	 tr("BiblioteQ: Database Error"),
@@ -4854,9 +4852,9 @@ void biblioteq::slotRemoveMember(void)
 
   if(!errorstr.isEmpty())
     {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to determine the number of items that "
-			  "are reserved by the selected member.")),
+      addError(tr("Database Error"),
+	       tr("Unable to determine the number of items that "
+		  "are reserved by the selected member."),
 	       errorstr,
 	       __FILE__,
 	       __LINE__);
@@ -4896,8 +4894,8 @@ void biblioteq::slotRemoveMember(void)
     {
       QApplication::restoreOverrideCursor();
       addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to create a database transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to create a database transaction."),
 	 m_db.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -4918,15 +4916,15 @@ void biblioteq::slotRemoveMember(void)
     {
       if(!m_db.rollback())
 	addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   m_db.lastError().text(),
 	   __FILE__,
 	   __LINE__);
 
       QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to remove the selected member.")),
+      addError(tr("Database Error"),
+	       tr("Unable to remove the selected member."),
 	       query.lastError().text(),
 	       __FILE__,
 	       __LINE__);
@@ -4949,8 +4947,8 @@ void biblioteq::slotRemoveMember(void)
       if(!errorstr.isEmpty())
 	{
 	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to remove the patron account ")) +
+	    (tr("Database Error"),
+	     tr("Unable to remove the patron account ") +
 	     memberid +
 	     tr("."),
 	     errorstr,
@@ -4958,18 +4956,17 @@ void biblioteq::slotRemoveMember(void)
 	     __LINE__);
 
 	  if(!m_db.rollback())
-	    addError
-	      (QString(tr("Database Error")),
-	       QString(tr("Rollback failure.")),
-	       m_db.lastError().text(),
-	       __FILE__,
-	       __LINE__);
+	    addError(tr("Database Error"),
+		     tr("Rollback failure."),
+		     m_db.lastError().text(),
+		     __FILE__,
+		     __LINE__);
 
 	  QApplication::restoreOverrideCursor();
 	  QMessageBox::critical
 	    (m_members_diag,
 	     tr("BiblioteQ: Database Error"),
-	     QString(tr("Unable to remove the patron account ")) +
+	     tr("Unable to remove the patron account ") +
 	     memberid +
 	     tr("."));
 	  QApplication::processEvents();
@@ -4979,9 +4976,8 @@ void biblioteq::slotRemoveMember(void)
 	  if(!m_db.commit())
 	    {
 	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("Unable to commit the current database "
-			    "transaction.")),
+		(tr("Database Error"),
+		 tr("Unable to commit the current database transaction."),
 		 m_db.lastError().text(),
 		 __FILE__,
 		 __LINE__);
@@ -5326,8 +5322,8 @@ void biblioteq::slotSaveAdministrators(void)
     {
       QApplication::restoreOverrideCursor();
       addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to create a database transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to create a database transaction."),
 	 m_db.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -5351,11 +5347,10 @@ void biblioteq::slotSaveAdministrators(void)
       if(!query.exec())
 	{
 	  QApplication::restoreOverrideCursor();
-	  addError(QString(tr("Database Error")),
-		   QString(tr("An error occurred while attempting to "
-			      "remove ")) +
+	  addError(tr("Database Error"),
+		   tr("An error occurred while attempting to remove ") +
 		   m_deletedAdmins[i].toLower() +
-		   QString(tr(".")),
+		   tr("."),
 		   query.lastError().text(),
 		   __FILE__,
 		   __LINE__);
@@ -5372,11 +5367,11 @@ void biblioteq::slotSaveAdministrators(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("An error occurred while attempting to "
-			"remove the database account ")) +
+	    (tr("Database Error"),
+	     tr("An error occurred while attempting to "
+		"remove the database account ") +
 	     m_deletedAdmins[i].toLower() +
-	     QString(tr(".")),
+	     tr("."),
 	     errorstr,
 	     __FILE__,
 	     __LINE__);
@@ -5444,12 +5439,11 @@ void biblioteq::slotSaveAdministrators(void)
 	{
 	  progress.close();
 	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("The function biblioteq_misc_functions::"
-			"userExists() failed "
-			"for ")) +
+	    (tr("Database Error"),
+	     tr("The function biblioteq_misc_functions::userExists() failed "
+		"for ") +
 	     adminStr +
-	     QString(tr(".")),
+	     tr("."),
 	     errorstr,
 	     __FILE__,
 	     __LINE__);
@@ -5477,11 +5471,10 @@ void biblioteq::slotSaveAdministrators(void)
 	{
 	  progress.close();
 	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create or update the administrator entry "
-			"for ")) +
+	    (tr("Database Error"),
+	     tr("Unable to create or update the administrator entry for ") +
 	     adminStr +
-	     QString(tr(".")),
+	     tr("."),
 	     query.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -5501,11 +5494,11 @@ void biblioteq::slotSaveAdministrators(void)
 	    {
 	      progress.close();
 	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "create a database account for ")) +
+		(tr("Database Error"),
+		 tr("An error occurred while attempting to "
+		    "create a database account for ") +
 		 adminStr +
-		 QString(tr(".")),
+		 tr("."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -5522,11 +5515,11 @@ void biblioteq::slotSaveAdministrators(void)
 	    {
 	      progress.close();
 	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "revoke privileges from ")) +
+		(tr("Database Error"),
+		 tr("An error occurred while attempting to "
+		    "revoke privileges from ") +
 		 adminStr +
-		 QString(tr(".")),
+		 tr("."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -5539,11 +5532,11 @@ void biblioteq::slotSaveAdministrators(void)
 	    {
 	      progress.close();
 	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "grant privileges to ")) +
+		(tr("Database Error"),
+		 tr("An error occurred while attempting to "
+		    "grant privileges to ") +
 		 adminStr +
-		 QString(tr(".")),
+		 tr("."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -5558,9 +5551,8 @@ void biblioteq::slotSaveAdministrators(void)
   if(!m_db.commit())
     {
       addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to commit the current database "
-		    "transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to commit the current database transaction."),
 	 m_db.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -5595,8 +5587,8 @@ void biblioteq::slotSaveAdministrators(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.rollback())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Rollback failure.")),
+    addError(tr("Database Error"),
+	     tr("Rollback failure."),
 	     m_db.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -5771,9 +5763,9 @@ void biblioteq::slotSaveUser(void)
 	  QMessageBox::critical
 	    (userinfo_diag,
 	     tr("BiblioteQ: User Error"),
-	     QString(tr("The Member ID ")) +
+	     tr("The Member ID ") +
 	     userinfo_diag->m_userinfo.memberid->text() +
-	     QString(tr(" already exists.")));
+	     tr(" already exists."));
 	  QApplication::processEvents();
 	  userinfo_diag->m_userinfo.memberid->setFocus();
 	  return;
@@ -5850,9 +5842,9 @@ void biblioteq::slotSaveUser(void)
 
   if(!errorstr.isEmpty())
     {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to determine the uniqueness of the "
-			  "proposed member.")),
+      addError(tr("Database Error"),
+	       tr("Unable to determine the uniqueness of the "
+		  "proposed member."),
 	       errorstr,
 	       __FILE__,
 	       __LINE__);
@@ -5879,8 +5871,8 @@ void biblioteq::slotSaveUser(void)
     {
       QApplication::restoreOverrideCursor();
       addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to create a database transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to create a database transaction."),
 	 m_db.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -5999,15 +5991,15 @@ void biblioteq::slotSaveUser(void)
     {
       if(!m_db.rollback())
 	addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   m_db.lastError().text(),
 	   __FILE__,
 	   __LINE__);
 
       QApplication::restoreOverrideCursor();
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to save the member's information.")),
+      addError(tr("Database Error"),
+	       tr("Unable to save the member's information."),
 	       query.lastError().text(),
 	       __FILE__,
 	       __LINE__);
@@ -6034,17 +6026,17 @@ void biblioteq::slotSaveUser(void)
 	    {
 	      if(!m_db.rollback())
 		addError
-		  (QString(tr("Database Error")),
-		   QString(tr("Rollback failure.")),
+		  (tr("Database Error"),
+		   tr("Rollback failure."),
 		   m_db.lastError().text(),
 		   __FILE__,
 		   __LINE__);
 
 	      QApplication::restoreOverrideCursor();
 	      addError
-		(QString(tr("Database Error")),
-		 QString(tr("An error occurred while attempting to "
-			    "create a database account for the new member.")),
+		(tr("Database Error"),
+		 tr("An error occurred while attempting to "
+		    "create a database account for the new member."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -6061,9 +6053,8 @@ void biblioteq::slotSaveUser(void)
 	      if(!m_db.commit())
 		{
 		  addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     m_db.lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -6105,19 +6096,18 @@ void biblioteq::slotSaveUser(void)
 	    {
 	      if(!m_db.rollback())
 		addError
-		  (QString(tr("Database Error")),
-		   QString(tr("Rollback failure.")),
+		  (tr("Database Error"),
+		   tr("Rollback failure."),
 		   m_db.lastError().text(),
 		   __FILE__,
 		   __LINE__);
 
 	      QApplication::restoreOverrideCursor();
-	      addError(QString(tr("Database Error")),
-		       QString(tr("An error occurred while attempting to "
-				  "update the database account "
-				  "for ")) +
+	      addError(tr("Database Error"),
+		       tr("An error occurred while attempting to "
+			  "update the database account for ") +
 		       userinfo_diag->m_userinfo.memberid->text() +
-		       QString(tr(".")),
+		       tr("."),
 		       errorstr,
 		       __FILE__,
 		       __LINE__);
@@ -6135,9 +6125,8 @@ void biblioteq::slotSaveUser(void)
 	      if(!m_db.commit())
 		{
 		  addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     m_db.lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -6612,9 +6601,9 @@ void biblioteq::slotShowHistory(void)
       progress->close();
       QApplication::restoreOverrideCursor();
       addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve reservation history data for table "
-		    "populating.")),
+	(tr("Database Error"),
+	 tr("Unable to retrieve reservation history data for table "
+	    "populating."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
