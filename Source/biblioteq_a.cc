@@ -869,10 +869,9 @@ biblioteq::biblioteq(void):QMainWindow()
       QAction *action = nullptr;
 
       if(i == end)
-	action = group1->addAction
-	  (QString(tr("&Unlimited")));
+	action = group1->addAction(tr("&Unlimited"));
       else
-	action = group1->addAction(QString(tr("&%1")).arg(5 * i));
+	action = group1->addAction(tr("&%1").arg(5 * i));
 
       if(!action)
 	continue;
@@ -2682,11 +2681,11 @@ void biblioteq::slotDelete(void)
 
       if(itemType.isEmpty() || oid.isEmpty())
 	{
-	  addError(QString(tr("Error")),
-		   QString(tr("The main table does not contain enough "
-			      "information for item deletion.")),
-		   QString(tr("The main table does not contain enough "
-			      "information for item deletion.")),
+	  addError(tr("Error"),
+		   tr("The main table does not contain enough "
+		      "information for item deletion."),
+		   tr("The main table does not contain enough "
+		      "information for item deletion."),
 		   __FILE__,
 		   __LINE__);
 	  QMessageBox::critical(this,
@@ -2704,9 +2703,8 @@ void biblioteq::slotDelete(void)
 
       if(!errorstr.isEmpty())
 	{
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to determine if the item has been "
-			      "reserved.")),
+	  addError(tr("Database Error"),
+		   tr("Unable to determine if the item has been reserved."),
 		   errorstr,
 		   __FILE__,
 		   __LINE__);
@@ -2734,9 +2732,8 @@ void biblioteq::slotDelete(void)
 
       if(!errorstr.isEmpty())
 	{
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to determine if the item has been "
-			      "requested.")),
+	  addError(tr("Database Error"),
+		   tr("Unable to determine if the item has been requested."),
 		   errorstr,
 		   __FILE__,
 		   __LINE__);
@@ -2823,9 +2820,11 @@ void biblioteq::slotDelete(void)
       if(!query.exec())
 	{
 	  error = true;
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to delete the item.")),
-		   query.lastError().text(), __FILE__, __LINE__);
+	  addError(tr("Database Error"),
+		   tr("Unable to delete the item."),
+		   query.lastError().text(),
+		   __FILE__,
+		   __LINE__);
 	}
       else
 	{
@@ -2895,9 +2894,10 @@ void biblioteq::slotDelete(void)
 
   if(error)
     {
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to delete all or some of the selected "
-			       "items."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Database Error"),
+	 tr("Unable to delete all or some of the selected items."));
       QApplication::processEvents();
     }
 
@@ -3262,13 +3262,14 @@ void biblioteq::slotGrantPrivileges(void)
 	  if(!errorstr.isEmpty())
 	    {
 	      error = true;
-	      addError(QString(tr("Database Error")),
-		       QString(tr("An error occurred while attempting to "
-				  "update the database account "
-				  "for ")) +
+	      addError(tr("Database Error"),
+		       tr("An error occurred while attempting to "
+			  "update the database account for ") +
 		       item->text() +
 		       QString(tr(".")),
-		       errorstr, __FILE__, __LINE__);
+		       errorstr,
+		       __FILE__,
+		       __LINE__);
 	    }
 	}
 
@@ -3918,9 +3919,9 @@ void biblioteq::slotPrintReserved(void)
     }
   else
     {
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to determine the reserved items for "
-			  "the selected member.")),
+      addError(tr("Database Error"),
+	       tr("Unable to determine the reserved items for "
+		  "the selected member."),
 	       errorstr,
 	       __FILE__,
 	       __LINE__);
@@ -4460,8 +4461,8 @@ void biblioteq::slotSearch(void)
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to retrieve the languages.")),
+    addError(tr("Database Error"),
+	     tr("Unable to retrieve the languages."),
 	     errorstr,
 	     __FILE__,
 	     __LINE__);
@@ -4472,8 +4473,8 @@ void biblioteq::slotSearch(void)
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to retrieve the monetary units.")),
+    addError(tr("Database Error"),
+	     tr("Unable to retrieve the monetary units."),
 	     errorstr,
 	     __FILE__,
 	     __LINE__);
@@ -4485,8 +4486,8 @@ void biblioteq::slotSearch(void)
 
   if(!errorstr.isEmpty())
     addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the locations.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the locations."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -5348,10 +5349,12 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to retrieve the number of reserved items "
-			"of the selected member.")),
-	     errorstr, __FILE__, __LINE__);
+    addError(tr("Database Error"),
+	     tr("Unable to retrieve the number of reserved items "
+		"of the selected member."),
+	     errorstr,
+	     __FILE__,
+	     __LINE__);
   else
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -5423,10 +5426,12 @@ void biblioteq::updateMembersBrowser(void)
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to determine the number of reserved items "
-			"for the selected member.")),
-	     errorstr, __FILE__, __LINE__);
+    addError(tr("Database Error"),
+	     tr("Unable to determine the number of reserved items "
+		"for the selected member."),
+	     errorstr,
+	     __FILE__,
+	     __LINE__);
   else
     {
       biblioteq_misc_functions::updateColumn
