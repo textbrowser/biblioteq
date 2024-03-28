@@ -3435,7 +3435,7 @@ int biblioteq::populateTable(const int search_type_arg,
     ui.itemsCountLabel->setText(tr("0 Results"));
   else
     ui.itemsCountLabel->setText
-      (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
+      (tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   QSqlQuery query(m_db);
 
@@ -3467,11 +3467,14 @@ int biblioteq::populateTable(const int search_type_arg,
 	      break;
 	    }
 
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to retrieve the data required for "
-			  "populating the main views.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+      addError(tr("Database Error"),
+	       tr("Unable to retrieve the data required for "
+		  "populating the main views."),
+	       query.lastError().text(),
+	       __FILE__,
+	       __LINE__);
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main views."));
       ui.graphicsView->setSceneRect
@@ -3551,7 +3554,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
       for(qint64 ii = 1; ii <= m_pages; ii++)
 	if(ii == currentPage)
-	  str += QString(tr(" %1 ")).arg(currentPage);
+	  str += tr(" %1 ").arg(currentPage);
 	else
 	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
 
@@ -3574,12 +3577,12 @@ int biblioteq::populateTable(const int search_type_arg,
 
       for(qint64 ii = start; ii <= start + 6; ii++)
 	if(ii == currentPage && ii <= m_pages - 1)
-	  str += QString(tr(" %1 ")).arg(ii);
+	  str += tr(" %1 ").arg(ii);
 	else if(ii <= m_pages - 1)
 	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
 
       if(currentPage == m_pages)
-	str += QString(tr(" ... %1 ")).arg(currentPage);
+	str += tr(" ... %1 ").arg(currentPage);
       else
 	str += QString(" ... <a href=\"%1\">" + tr("%1") + "</a> ").
 	  arg(m_pages);
@@ -4067,7 +4070,7 @@ int biblioteq::populateTable(const int search_type_arg,
     }
 
   ui.itemsCountLabel->setText
-    (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
+    (tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(limit != -1 &&
      !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
@@ -4121,8 +4124,7 @@ int biblioteq::populateTable(const int search_type_arg,
   if(ui.table->rowCount() == 0)
     ui.itemsCountLabel->setText(tr("0 Results"));
   else
-    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-				arg(ui.table->rowCount()));
+    ui.itemsCountLabel->setText(tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(limit == -1)
     ui.nextPageButton->setEnabled(false);
@@ -4284,7 +4286,7 @@ void biblioteq::preparePhotographsPerPageMenu(void)
       if(i == 5)
 	action = group->addAction(tr("&Unlimited"));
       else
-	action = group->addAction(QString(tr("&%1")).arg(25 * i));
+	action = group->addAction(tr("&%1").arg(25 * i));
 
       if(!action)
 	continue;
@@ -4632,9 +4634,9 @@ void biblioteq::slotSaveDnt(bool state)
 
   if(!(query.lastError().text().toLower().contains("duplicate") ||
        query.lastError().text().toLower().contains("unique")))
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to insert into member_history_dnt for "
-			"member %1.").arg(dbUserName())),
+    addError(tr("Database Error"),
+	     tr("Unable to insert into member_history_dnt for "
+		"member %1.").arg(dbUserName()),
 	     query.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -4645,9 +4647,9 @@ void biblioteq::slotSaveDnt(bool state)
   query.exec();
 
   if(query.lastError().isValid())
-    addError(QString(tr("Database Error")),
-	     QString(tr("Unable to update member_history_dnt for "
-			"member %1.").arg(dbUserName())),
+    addError(tr("Database Error"),
+	     tr("Unable to update member_history_dnt for "
+		"member %1.").arg(dbUserName()),
 	     query.lastError().text(),
 	     __FILE__,
 	     __LINE__);

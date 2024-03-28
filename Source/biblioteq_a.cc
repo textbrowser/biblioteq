@@ -3266,7 +3266,7 @@ void biblioteq::slotGrantPrivileges(void)
 		       tr("An error occurred while attempting to "
 			  "update the database account for ") +
 		       item->text() +
-		       QString(tr(".")),
+		       tr("."),
 		       errorstr,
 		       __FILE__,
 		       __LINE__);

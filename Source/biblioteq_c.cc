@@ -444,7 +444,7 @@ int biblioteq::populateTable(QSqlQuery *query,
     ui.itemsCountLabel->setText(tr("0 Results"));
   else
     ui.itemsCountLabel->setText
-      (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
+      (tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   auto ok = true;
 
@@ -478,9 +478,9 @@ int biblioteq::populateTable(QSqlQuery *query,
 	    }
 
       if(m_searchQuery->lastError().isValid())
-	addError(QString(tr("Database Error")),
-		 QString(tr("Unable to retrieve the data required for "
-			    "populating the main views.")),
+	addError(tr("Database Error"),
+		 tr("Unable to retrieve the data required for "
+		    "populating the main views."),
 		 m_searchQuery->lastError().text(),
 		 __FILE__,
 		 __LINE__);
@@ -564,7 +564,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 
       for(qint64 ii = 1; ii <= m_pages; ii++)
 	if(ii == currentPage)
-	  str += QString(tr(" %1 ")).arg(currentPage);
+	  str += tr(" %1 ").arg(currentPage);
 	else
 	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
 
@@ -587,12 +587,12 @@ int biblioteq::populateTable(QSqlQuery *query,
 
       for(qint64 ii = start; ii <= start + 6; ii++)
 	if(ii == currentPage && ii <= m_pages - 1)
-	  str += QString(tr(" %1 ")).arg(ii);
+	  str += tr(" %1 ").arg(ii);
 	else if(ii <= m_pages - 1)
 	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
 
       if(currentPage == m_pages)
-	str += QString(tr(" ... %1 ")).arg(currentPage);
+	str += tr(" ... %1 ").arg(currentPage);
       else
 	str += QString(" ... <a href=\"%1\">" + tr("%1") + "</a> ").
 	  arg(m_pages);
@@ -1065,7 +1065,7 @@ int biblioteq::populateTable(QSqlQuery *query,
     }
 
   ui.itemsCountLabel->setText
-    (QString(tr("%1 Result(s)")).arg(ui.table->rowCount()));
+    (tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(limit != -1 &&
      !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
@@ -1101,8 +1101,7 @@ int biblioteq::populateTable(QSqlQuery *query,
   if(ui.table->rowCount() == 0)
     ui.itemsCountLabel->setText(tr("0 Results"));
   else
-    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
-				arg(ui.table->rowCount()));
+    ui.itemsCountLabel->setText(tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(limit == -1)
     ui.nextPageButton->setEnabled(false);
@@ -2837,9 +2836,9 @@ void biblioteq::slotConnectDB(void)
   if(!m_db.isOpen())
     {
       error = true;
-      addError(QString(tr("Database Error")),
-	       QString(tr("Unable to open a database connection "
-			  "with the provided information.")),
+      addError(tr("Database Error"),
+	       tr("Unable to open a database connection "
+		  "with the provided information."),
 	       m_db.lastError().text(),
 	       __FILE__,
 	       __LINE__);
@@ -2857,10 +2856,10 @@ void biblioteq::slotConnectDB(void)
 	{
 	  error = true;
 	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("The current database driver that you're using "
-			"does not support transactions. "
-			"Please upgrade your database and/or driver.")),
+	    (tr("Database Error"),
+	     tr("The current database driver that you're using "
+		"does not support transactions. "
+		"Please upgrade your database and/or driver."),
 	     m_db.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -2893,9 +2892,9 @@ void biblioteq::slotConnectDB(void)
 		  QMessageBox::critical
 		    (parent,
 		     tr("BiblioteQ: User Error"),
-		     QString(tr("It appears that the user ")) +
+		     tr("It appears that the user ") +
 		     br.userid->text().trimmed() +
-		     QString(tr(" does not have administrator privileges.")));
+		     tr(" does not have administrator privileges."));
 		  QApplication::processEvents();
 		}
 	      else if(br.role->currentIndex() != 0 && !m_roles.isEmpty())
@@ -2923,8 +2922,8 @@ void biblioteq::slotConnectDB(void)
 		  if(!errorstr.isEmpty())
 		    {
 		      error = true;
-		      addError(QString(tr("Database Error")),
-			       QString(tr("Unable to set the role for ")) +
+		      addError(tr("Database Error"),
+			       tr("Unable to set the role for ") +
 			       br.userid->text().trimmed() +
 			       tr("."),
 			       errorstr,
@@ -2933,7 +2932,7 @@ void biblioteq::slotConnectDB(void)
 		      QMessageBox::critical
 			(parent,
 			 tr("BiblioteQ: Database Error"),
-			 QString(tr("Unable to set the role for ")) +
+			 tr("Unable to set the role for ") +
 			 br.userid->text().trimmed() +
 			 tr("."));
 		      QApplication::processEvents();
@@ -2943,8 +2942,8 @@ void biblioteq::slotConnectDB(void)
 	  else if(br.role->currentIndex() == 0) // Administrator
 	    {
 	      error = true;
-	      addError(QString(tr("Database Error")),
-		       QString(tr("Unable to determine the roles of ")) +
+	      addError(tr("Database Error"),
+		       tr("Unable to determine the roles of ") +
 		       br.userid->text().trimmed() +
 		       tr("."),
 		       errorstr,
@@ -2953,7 +2952,7 @@ void biblioteq::slotConnectDB(void)
 	      QMessageBox::critical
 		(parent,
 		 tr("BiblioteQ: Database Error"),
-		 QString(tr("Unable to determine the roles of ")) +
+		 tr("Unable to determine the roles of ") +
 		 br.userid->text().trimmed() +
 		 tr("."));
 	      QApplication::processEvents();
