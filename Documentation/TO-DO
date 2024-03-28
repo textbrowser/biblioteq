@@ -615,4 +615,4 @@
 315. Replace QString(tr()) with tr(). (TBD)
 316. Copy editor item status database table. (TBD)
 317. MacOS: inspect the Homebrew libpq path and display a reminder
-     if it does not refer to the newest version. (TBD)
+     if the path does not refer to the newest version. (TBD)
