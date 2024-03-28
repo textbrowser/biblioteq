@@ -445,7 +445,7 @@ class biblioteq: public QMainWindow
       TYPE = 6
     };
 
-  enum RequestActionItems
+  enum class RequestActionItems
     {
       CANCEL_REQUESTED = 0,
       INACTIVE,

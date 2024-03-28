@@ -3162,7 +3162,8 @@ void biblioteq::slotConnectDB(void)
       */
 
       ui.actionChangePassword->setEnabled(true);
-      ui.actionRequests->setData(RequestActionItems::REQUEST_SELECTED);
+      ui.actionRequests->setData
+	(static_cast<int> (RequestActionItems::REQUEST_SELECTED));
       ui.actionRequests->setEnabled(true);
       ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
       ui.actionReservationHistory->setEnabled(true);
@@ -3349,7 +3350,8 @@ void biblioteq::slotDisconnect(void)
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
-  ui.actionRequests->setData(RequestActionItems::INACTIVE);
+  ui.actionRequests->setData
+    (static_cast<int> (RequestActionItems::INACTIVE));
   ui.actionRequests->setEnabled(false);
   ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
   ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
@@ -5008,7 +5010,8 @@ void biblioteq::slotRequest(void)
   */
 
   auto list(ui.table->selectionModel()->selectedRows());
-  auto task = RequestActionItems(ui.actionRequests->data().toInt());
+  auto task = static_cast<RequestActionItems>
+    (ui.actionRequests->data().toInt());
 
   if(task == RequestActionItems::CANCEL_REQUESTED)
     {

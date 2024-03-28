@@ -575,7 +575,7 @@
 310. Beautify the source:
 	Automatic variables *.cc (TBD)
 	Automatic variables *.h (Completed)
-	Enumerator classes (TBD)
+	Enumerator classes (Completed)
 	Remove local clear() (lists, etc.) (Completed)
 	Sort connect() (TBD)
 	Sort local variables (Completed)

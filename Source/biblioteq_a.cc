@@ -1337,7 +1337,8 @@ void biblioteq::adminSetup(void)
       ui.action_Database_Enumerations->setEnabled(true);
     }
 
-  ui.actionRequests->setData(RequestActionItems::INACTIVE);
+  ui.actionRequests->setData
+    (static_cast<int> (RequestActionItems::INACTIVE));
   ui.actionRequests->setToolTip(tr("Item Requests (PostgreSQL)"));
 
   /*
@@ -1664,7 +1665,8 @@ void biblioteq::prepareFilter(void)
 
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
 {
-  ui.actionRequests->setData(RequestActionItems::INACTIVE);
+  ui.actionRequests->setData
+    (static_cast<int> (RequestActionItems::INACTIVE));
 
   if(m_db.driverName() == "QPSQL" && m_db.isOpen())
     {
@@ -1678,7 +1680,8 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	       m_roles == "circulation") &&
 	      typefilter == "All Requested")
 	{
-	  ui.actionRequests->setData(RequestActionItems::CANCEL_REQUESTED);
+	  ui.actionRequests->setData
+	    (static_cast<int> (RequestActionItems::CANCEL_REQUESTED));
 	  ui.actionRequests->setEnabled(true);
 	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
 	  ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
@@ -1694,14 +1697,16 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	       typefilter == "Music CDs" ||
 	       typefilter == "Video Games"))
 	{
-	  ui.actionRequests->setData(RequestActionItems::REQUEST_SELECTED);
+	  ui.actionRequests->setData
+	    (static_cast<int> (RequestActionItems::REQUEST_SELECTED));
 	  ui.actionRequests->setEnabled(true);
 	  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
 	  ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
 	}
       else if(m_roles.isEmpty() && typefilter == "All Requested")
 	{
-	  ui.actionRequests->setData(RequestActionItems::CANCEL_REQUESTED);
+	  ui.actionRequests->setData
+	    (static_cast<int> (RequestActionItems::CANCEL_REQUESTED));
 	  ui.actionRequests->setEnabled(true);
 	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
 	  ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
@@ -1710,7 +1715,8 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	       m_roles == "circulation") &&
 	      typefilter == "All Reserved")
 	{
-	  ui.actionRequests->setData(RequestActionItems::RETURN_RESERVED);
+	  ui.actionRequests->setData
+	    (static_cast<int> (RequestActionItems::RETURN_RESERVED));
 	  ui.actionRequests->setEnabled(true);
 	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
 	  ui.actionRequests->setToolTip(tr("Return Selected Item(s)"));
@@ -1729,7 +1735,8 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	  m_roles == "circulation") &&
 	 typefilter == "All Reserved")
 	{
-	  ui.actionRequests->setData(RequestActionItems::RETURN_RESERVED);
+	  ui.actionRequests->setData
+	    (static_cast<int> (RequestActionItems::RETURN_RESERVED));
 	  ui.actionRequests->setEnabled(true);
 	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
 	  ui.actionRequests->setToolTip(tr("Return Selected Item(s)"));
