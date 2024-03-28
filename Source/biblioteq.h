@@ -429,7 +429,7 @@ class biblioteq: public QMainWindow
       TITLE_GENERIC_SEARCH_TYPE = 4
     };
 
-  enum HistoryColumns
+  enum class HistoryColumns
     {
       BARCODE = 5,
       DUE_DATE = 8,

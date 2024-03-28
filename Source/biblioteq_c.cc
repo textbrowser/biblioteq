@@ -127,34 +127,36 @@ QString biblioteq::reservationHistoryHtml(void) const
 	if(i == 0)
 	  {
 	    for(int j = 0; j < history.table->columnCount(); j++)
-	      if(j == HistoryColumns::MEMBER_ID)
-		memberid = history.table->item(i, j)->text();
-	      else if(j == HistoryColumns::FIRST_NAME)
+	      if(j == static_cast<int> (HistoryColumns::FIRST_NAME))
 		firstname = history.table->item(i, j)->text();
-	      else if(j == HistoryColumns::LAST_NAME)
+	      else if(j == static_cast<int> (HistoryColumns::LAST_NAME))
 		lastname = history.table->item(i, j)->text();
+	      else if(j == static_cast<int> (HistoryColumns::MEMBER_ID))
+		memberid = history.table->item(i, j)->text();
 	      else
 		break;
 	  }
 
-	information += history.table->item(i, HistoryColumns::TITLE)->text();
+	information += history.table->item
+	  (i, static_cast<int> (HistoryColumns::TITLE))->text();
 	information += endl;
 	information += history.table->item
-	  (i, HistoryColumns::ID_NUMBER)->text();
+	  (i, static_cast<int> (HistoryColumns::ID_NUMBER))->text();
 	information += endl;
-	information += history.table->item(i, HistoryColumns::TYPE)->text();
+	information += history.table->item
+	  (i, static_cast<int> (HistoryColumns::TYPE))->text();
 	information += endl;
 	information += tr("Reservation Date: ");
 	information += history.table->item
-	  (i, HistoryColumns::RESERVATION_DATE)->text();
+	  (i, static_cast<int> (HistoryColumns::RESERVATION_DATE))->text();
 	information += endl;
 	information += tr("Due Date: ");
 	information += history.table->item
-	  (i, HistoryColumns::DUE_DATE)->text();
+	  (i, static_cast<int> (HistoryColumns::DUE_DATE))->text();
 	information += endl;
 	information += tr("Returned Date: ");
 	information += history.table->item
-	  (i, HistoryColumns::RETURNED_DATE)->text();
+	  (i, static_cast<int> (HistoryColumns::RETURNED_DATE))->text();
 
 	if(history.table->rowCount() - 1 != i)
 	  {
