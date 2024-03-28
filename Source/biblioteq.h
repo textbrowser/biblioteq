@@ -410,7 +410,7 @@ class biblioteq: public QMainWindow
       MEMBERSHIP = 4
     };
 
-  enum ErrorDialogColumns
+  enum class ErrorDialogColumns
     {
       EVENT_TIME = 0,
       EVENT_TYPE = 1,

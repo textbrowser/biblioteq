@@ -1183,23 +1183,23 @@ void biblioteq::addError(const QString &type,
     {
       item = new QTableWidgetItem();
 
-      if(i == EVENT_TIME)
+      if(i == static_cast<int> (ErrorDialogColumns::EVENT_TIME))
 	item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
-      else if(i == EVENT_TYPE)
+      else if(i == static_cast<int> (ErrorDialogColumns::EVENT_TYPE))
 	item->setText(type.trimmed());
-      else if(i == FILE)
+      else if(i == static_cast<int> (ErrorDialogColumns::FILE))
 	{
 	  if(file)
 	    item->setText(file);
 	}
-      else if(i == FULL_DESCRIPTION)
+      else if(i == static_cast<int> (ErrorDialogColumns::FULL_DESCRIPTION))
 	{
 	  if(error.simplified().isEmpty())
 	    item->setText(summary);
 	  else
 	    item->setText(error.simplified());
 	}
-      else if(i == SUMMARY)
+      else if(i == static_cast<int> (ErrorDialogColumns::SUMMARY))
 	item->setText(summary.trimmed());
       else
 	{
