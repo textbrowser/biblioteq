@@ -4787,9 +4787,9 @@ void biblioteq::slotSearchBasic(void)
       if(m_db.driverName() != "QSQLITE")
 	E = "E";
 
-      switch(ui.searchType->currentIndex())
+      switch(static_cast<GenericSearchTypes> (ui.searchType->currentIndex()))
 	{
-	case ACCESSION_NUMBER_GENERIC_SEARCH_TYPE:
+	case GenericSearchTypes::ACCESSION_NUMBER_GENERIC_SEARCH_TYPE:
 	  {
 	    if(type != "Grey Literature")
 	      {
@@ -4825,7 +4825,7 @@ void biblioteq::slotSearchBasic(void)
 
 	    break;
 	  }
-	case CATEGORY_GENERIC_SEARCH_TYPE:
+	case GenericSearchTypes::CATEGORY_GENERIC_SEARCH_TYPE:
 	  {
 	    if(type != "Grey Literature" && type != "Photograph Collection")
 	      {
@@ -4882,7 +4882,7 @@ void biblioteq::slotSearchBasic(void)
 
 	    break;
 	  }
-	case ID_GENERIC_SEARCH_TYPE:
+	case GenericSearchTypes::ID_GENERIC_SEARCH_TYPE:
 	  {
 	    if(type == "Grey Literature")
 	      {
@@ -4932,7 +4932,7 @@ void biblioteq::slotSearchBasic(void)
 	    str.append(") ");
 	    break;
 	  }
-	case KEYWORD_GENERIC_SEARCH_TYPE:
+	case GenericSearchTypes::KEYWORD_GENERIC_SEARCH_TYPE:
 	  {
 	    if(type != "Grey Literature" && type != "Photograph Collection")
 	      {

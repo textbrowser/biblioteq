@@ -420,7 +420,7 @@ class biblioteq: public QMainWindow
       SUMMARY = 2
     };
 
-  enum GenericSearchTypes
+  enum class GenericSearchTypes
     {
       ACCESSION_NUMBER_GENERIC_SEARCH_TYPE = 0,
       CATEGORY_GENERIC_SEARCH_TYPE = 1,
