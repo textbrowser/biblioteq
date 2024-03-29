@@ -220,8 +220,8 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the languages.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the languages."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -233,8 +233,8 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the monetary units.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -248,8 +248,8 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the dvd locations.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the dvd locations."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -261,8 +261,8 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the dvd ratings.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the dvd ratings."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -274,8 +274,8 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the dvd aspect ratios.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the dvd aspect ratios."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -287,8 +287,8 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the dvd regions.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the dvd regions."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -567,8 +567,8 @@ void biblioteq_dvd::modify(const int state)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected DVD's data.")),
+	(tr("Database Error"),
+	 tr("Unable to retrieve the selected DVD's data."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -654,14 +654,16 @@ void biblioteq_dvd::modify(const int state)
 	    {
 	      if(state == biblioteq::EDITABLE)
 		{
-		  str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
-		    var.toString().trimmed() + tr(")");
+		  str = tr("BiblioteQ: Modify DVD Entry (") +
+		    var.toString().trimmed() +
+		    tr(")");
 		  m_engWindowTitle = "Modify";
 		}
 	      else
 		{
-		  str = QString(tr("BiblioteQ: View DVD Details (")) +
-		    var.toString().trimmed() + tr(")");
+		  str = tr("BiblioteQ: View DVD Details (") +
+		    var.toString().trimmed() +
+		    tr(")");
 		  m_engWindowTitle = "View";
 		}
 
@@ -904,9 +906,8 @@ void biblioteq_dvd::slotGo(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      qmain->addError
-		(QString(tr("Database Error")),
-		 QString(tr("Unable to determine the maximum copy number of "
-			    "the item.")),
+		(tr("Database Error"),
+		 tr("Unable to determine the maximum copy number of the item."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -1071,8 +1072,8 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to create a database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -1274,8 +1275,8 @@ void biblioteq_dvd::slotGo(void)
 	    query.bindValue(23, value);
 	  else
 	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("Unable to generate a unique integer.")),
+	      (tr("Database Error"),
+	       tr("Unable to generate a unique integer."),
 	       errorstr);
 	}
 
@@ -1285,8 +1286,8 @@ void biblioteq_dvd::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create or update the entry.")),
+	    (tr("Database Error"),
+	     tr("Unable to create or update the entry."),
 	     query.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -1317,8 +1318,8 @@ void biblioteq_dvd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy data.")),
+		    (tr("Database Error"),
+		     tr("Unable to purge unnecessary copy data."),
 		     query.lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1329,9 +1330,8 @@ void biblioteq_dvd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1354,8 +1354,8 @@ void biblioteq_dvd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to create initial copies.")),
+		    (tr("Database Error"),
+		     tr("Unable to create initial copies."),
 		     errorstr,
 		     __FILE__,
 		     __LINE__);
@@ -1366,9 +1366,8 @@ void biblioteq_dvd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1398,8 +1397,9 @@ void biblioteq_dvd::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
-		dvd.id->text() + tr(")");
+	      str = tr("BiblioteQ: Modify DVD Entry (") +
+		dvd.id->text() +
+		tr(")");
 	      setWindowTitle(str);
 	      m_engWindowTitle = "Modify";
 
@@ -1498,8 +1498,8 @@ void biblioteq_dvd::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString(tr("Database Error")),
-			       QString(tr("Retrieving availability.")),
+			      (tr("Database Error"),
+			       tr("Retrieving availability."),
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
@@ -1533,8 +1533,8 @@ void biblioteq_dvd::slotGo(void)
 	      if(!errorstr.isEmpty())
 		{
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to retrieve the DVD's OID.")),
+		    (tr("Database Error"),
+		     tr("Unable to retrieve the DVD's OID."),
 		     errorstr,
 		     __FILE__,
 		     __LINE__);
@@ -1570,8 +1570,8 @@ void biblioteq_dvd::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   qmain->getDB().lastError().text(),
 	   __FILE__,
 	   __LINE__);
@@ -2182,9 +2182,7 @@ void biblioteq_dvd::updateWindow(const int state)
       dvd.queryButton->setVisible(m_isQueryEnabled);
       dvd.resetButton->setVisible(true);
       dvd.showUserButton->setEnabled(true);
-      str = QString(tr("BiblioteQ: Modify DVD Entry (")) +
-	dvd.id->text() +
-	tr(")");
+      str = tr("BiblioteQ: Modify DVD Entry (") + dvd.id->text() + tr(")");
       m_engWindowTitle = "Modify";
     }
   else
@@ -2201,9 +2199,7 @@ void biblioteq_dvd::updateWindow(const int state)
       else
 	dvd.showUserButton->setEnabled(true);
 
-      str = QString(tr("BiblioteQ: View DVD Details (")) +
-	dvd.id->text() +
-	tr(")");
+      str = tr("BiblioteQ: View DVD Details (") + dvd.id->text() + tr(")");
       m_engWindowTitle = "View";
     }
 

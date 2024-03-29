@@ -255,8 +255,8 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the languages.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the languages."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -268,8 +268,8 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the monetary units.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -281,8 +281,8 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the cd locations.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the cd locations."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -294,8 +294,8 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 
   if(!errorstr.isEmpty())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to retrieve the cd formats.")),
+      (tr("Database Error"),
+       tr("Unable to retrieve the cd formats."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -572,8 +572,8 @@ void biblioteq_cd::modify(const int state)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected CD's data.")),
+	(tr("Database Error"),
+	 tr("Unable to retrieve the selected CD's data."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -658,14 +658,16 @@ void biblioteq_cd::modify(const int state)
 	    {
 	      if(state == biblioteq::EDITABLE)
 		{
-		  str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
-		    var.toString() + tr(")");
+		  str = tr("BiblioteQ: Modify Music CD Entry (") +
+		    var.toString() +
+		    tr(")");
 		  m_engWindowTitle = "Modify";
 		}
 	      else
 		{
-		  str = QString(tr("BiblioteQ: View Music CD Details (")) +
-		    var.toString() + tr(")");
+		  str = tr("BiblioteQ: View Music CD Details (") +
+		    var.toString() +
+		    tr(")");
 		  m_engWindowTitle = "View";
 		}
 
@@ -950,9 +952,8 @@ void biblioteq_cd::slotGo(void)
 	    {
 	      QApplication::restoreOverrideCursor();
 	      qmain->addError
-		(QString(tr("Database Error")),
-		 QString(tr("Unable to determine the maximum copy number of "
-			    "the item.")),
+		(tr("Database Error"),
+		 tr("Unable to determine the maximum copy number of the item."),
 		 errorstr,
 		 __FILE__,
 		 __LINE__);
@@ -1093,8 +1094,8 @@ void biblioteq_cd::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to create a database transaction."),
 	     qmain->getDB().lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -1285,8 +1286,8 @@ void biblioteq_cd::slotGo(void)
 	  if(errorstr.isEmpty())
 	    query.bindValue(21, value);
 	  else
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("Unable to generate a unique integer.")),
+	    qmain->addError(tr("Database Error"),
+			    tr("Unable to generate a unique integer."),
 			    errorstr);
 	}
 
@@ -1296,8 +1297,8 @@ void biblioteq_cd::slotGo(void)
 	{
 	  QApplication::restoreOverrideCursor();
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create or update the entry.")),
+	    (tr("Database Error"),
+	     tr("Unable to create or update the entry."),
 	     query.lastError().text(),
 	     __FILE__,
 	     __LINE__);
@@ -1328,8 +1329,8 @@ void biblioteq_cd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to purge unnecessary copy data.")),
+		    (tr("Database Error"),
+		     tr("Unable to purge unnecessary copy data."),
 		     query.lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1340,9 +1341,8 @@ void biblioteq_cd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1365,8 +1365,8 @@ void biblioteq_cd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to create initial copies.")),
+		    (tr("Database Error"),
+		     tr("Unable to create initial copies."),
 		     errorstr,
 		     __FILE__,
 		     __LINE__);
@@ -1377,9 +1377,8 @@ void biblioteq_cd::slotGo(void)
 		{
 		  QApplication::restoreOverrideCursor();
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to commit the current database "
-				"transaction.")),
+		    (tr("Database Error"),
+		     tr("Unable to commit the current database transaction."),
 		     qmain->getDB().lastError().text(),
 		     __FILE__,
 		     __LINE__);
@@ -1409,8 +1408,9 @@ void biblioteq_cd::slotGo(void)
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
-	      str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
-		cd.id->text() + tr(")");
+	      str = tr("BiblioteQ: Modify Music CD Entry (") +
+		cd.id->text() +
+		tr(")");
 	      m_engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
@@ -1510,8 +1510,8 @@ void biblioteq_cd::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString(tr("Database Error")),
-			       QString(tr("Retrieving availability.")),
+			      (tr("Database Error"),
+			       tr("Retrieving availability."),
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
@@ -1545,8 +1545,8 @@ void biblioteq_cd::slotGo(void)
 	      if(!errorstr.isEmpty())
 		{
 		  qmain->addError
-		    (QString(tr("Database Error")),
-		     QString(tr("Unable to retrieve the CD's OID.")),
+		    (tr("Database Error"),
+		     tr("Unable to retrieve the CD's OID."),
 		     errorstr,
 		     __FILE__,
 		     __LINE__);
@@ -1582,8 +1582,8 @@ void biblioteq_cd::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Rollback failure.")),
+	  (tr("Database Error"),
+	   tr("Rollback failure."),
 	   qmain->getDB().lastError().text(),
 	   __FILE__,
 	   __LINE__);
@@ -1921,12 +1921,12 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to retrieve track data for table "
-				 "populating.")),
-		      query.lastError().text(),
-		      __FILE__,
-		      __LINE__);
+      qmain->addError
+	(tr("Database Error"),
+	 tr("Unable to retrieve track data for table populating."),
+	 query.lastError().text(),
+	 __FILE__,
+	 __LINE__);
       QMessageBox::critical
 	(this,
 	 tr("BiblioteQ: Database Error"),
@@ -1956,8 +1956,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   trd.table->horizontalScrollBar()->setValue(0);
   m_tracks_diag->updateGeometry();
   m_tracks_diag->setWindowTitle
-    (QString(tr("BiblioteQ: Album Tracks Browser (")) +
-     cd.id->text() + tr(")"));
+    (tr("BiblioteQ: Album Tracks Browser (") + cd.id->text() + tr(")"));
   m_tracks_diag->show();
   trd.table->setSortingEnabled(false);
 
@@ -2352,7 +2351,7 @@ void biblioteq_cd::slotSaveTracks(void)
        trd.table->item(i, static_cast<int> (TracksColumns::TRACK_TITLE))->
        text().trimmed().isEmpty())
       {
-	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
+	errormsg = tr("Row number ") + QString::number(i + 1) +
 	  tr(" contains an empty Song Title.");
 	QMessageBox::critical(m_tracks_diag,
 			      tr("BiblioteQ: User Error"),
@@ -2366,8 +2365,8 @@ void biblioteq_cd::slotSaveTracks(void)
   if(!qmain->getDB().transaction())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a database transaction.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to create a database transaction."),
 		      qmain->getDB().lastError().text(),
 		      __FILE__,
 		      __LINE__);
@@ -2386,16 +2385,16 @@ void biblioteq_cd::slotSaveTracks(void)
   if(!query.exec())
     {
       QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to purge track data.")),
+      qmain->addError(tr("Database Error"),
+		      tr("Unable to purge track data."),
 		      query.lastError().text(),
 		      __FILE__,
 		      __LINE__);
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Rollback failure.")),
+	qmain->addError(tr("Database Error"),
+			tr("Rollback failure."),
 			qmain->getDB().lastError().text(),
 			__FILE__,
 			__LINE__);
@@ -2485,8 +2484,8 @@ void biblioteq_cd::slotSaveTracks(void)
 
 	  if(!query.exec())
 	    {
-	      qmain->addError(QString(tr("Database Error")),
-			      QString(tr("Unable to create track data.")),
+	      qmain->addError(tr("Database Error"),
+			      tr("Unable to create track data."),
 			      query.lastError().text(),
 			      __FILE__,
 			      __LINE__);
@@ -2505,8 +2504,8 @@ void biblioteq_cd::slotSaveTracks(void)
 
       if(!qmain->getDB().commit())
 	{
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Commit failure.")),
+	  qmain->addError(tr("Database Error"),
+			  tr("Commit failure."),
 			  qmain->getDB().lastError().text(),
 			  __FILE__,
 			  __LINE__);
@@ -2636,9 +2635,7 @@ void biblioteq_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(true);
       trd.insertButton->setVisible(true);
       trd.saveButton->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
-	cd.id->text() +
-	tr(")");
+      str = tr("BiblioteQ: Modify Music CD Entry (") + cd.id->text() + tr(")");
       m_engWindowTitle = "Modify";
     }
   else
@@ -2659,9 +2656,7 @@ void biblioteq_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(false);
       trd.insertButton->setVisible(false);
       trd.saveButton->setVisible(false);
-      str = QString(tr("BiblioteQ: View Music CD Details (")) +
-	cd.id->text() +
-	tr(")");
+      str = tr("BiblioteQ: View Music CD Details (") + cd.id->text() + tr(")");
       m_engWindowTitle = "View";
     }
 

@@ -989,7 +989,7 @@ void biblioteq_copy_editor::slotSaveCopies(void)
        m_cb.table->item(i, static_cast<int> (Columns::BARCODE))->
        text().trimmed().isEmpty())
       {
-	errormsg = QString(tr("Row number ")) +
+	errormsg = tr("Row number ") +
 	  QString::number(i + 1) +
 	  tr(" contains an empty Barcode.");
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"), errormsg);
@@ -1002,7 +1002,7 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	   contains(m_cb.table->item(i, static_cast<int> (Columns::BARCODE))->
 		    text()))
 	  {
-	    errormsg = QString(tr("Row number ")) +
+	    errormsg = tr("Row number ") +
 	      QString::number(i + 1) +
 	      tr(" contains a duplicate Barcode.");
 	    QMessageBox::critical(this, tr("BiblioteQ: User Error"), errormsg);

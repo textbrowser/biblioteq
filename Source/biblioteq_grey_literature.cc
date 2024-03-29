@@ -170,17 +170,17 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 					    "Grey Literature",
 					    errorstr));
   qmain->addError
-    (QString(tr("Database Error")),
-     QString(tr("Unable to retrieve the grey literature locations.")),
+    (tr("Database Error"),
+     tr("Unable to retrieve the grey literature locations."),
      errorstr,
      __FILE__,
      __LINE__);
   m_ui.type->addItems
-    (biblioteq_misc_functions::getGreyLiteratureTypes(qmain->getDB(),
-						      errorstr));
+    (biblioteq_misc_functions::
+     getGreyLiteratureTypes(qmain->getDB(), errorstr));
   qmain->addError
-    (QString(tr("Database Error")),
-     QString(tr("Unable to retrieve the grey literature document types.")),
+    (tr("Database Error"),
+     tr("Unable to retrieve the grey literature document types."),
      errorstr,
      __FILE__,
      __LINE__);
@@ -283,8 +283,8 @@ bool biblioteq_grey_literature::validateWidgets(void)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to create a database transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to create a database transaction."),
 	 qmain->getDB().lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -383,15 +383,15 @@ void biblioteq_grey_literature::createFile(const QByteArray &bytes,
       if(errorstr.isEmpty())
 	query.addBindValue(value);
       else
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique integer.")),
+	qmain->addError(tr("Database Error"),
+			tr("Unable to generate a unique integer."),
 			errorstr);
     }
 
   if(!query.exec())
     qmain->addError
-      (QString(tr("Database Error")),
-       QString(tr("Unable to create a database transaction.")),
+      (tr("Database Error"),
+       tr("Unable to create a database transaction."),
        query.lastError().text(),
        __FILE__,
        __LINE__);
@@ -531,8 +531,8 @@ void biblioteq_grey_literature::insertDatabase(void)
 	  query.addBindValue(value);
 	}
       else
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Unable to generate a unique integer.")),
+	qmain->addError(tr("Database Error"),
+			tr("Unable to generate a unique integer."),
 			errorstr);
     }
 
@@ -542,8 +542,8 @@ void biblioteq_grey_literature::insertDatabase(void)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to create the entry.")),
+	(tr("Database Error"),
+	 tr("Unable to create the entry."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -560,8 +560,8 @@ void biblioteq_grey_literature::insertDatabase(void)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to commit the current database transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to commit the current database transaction."),
 	 qmain->getDB().lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -591,8 +591,8 @@ void biblioteq_grey_literature::insertDatabase(void)
   m_oid.clear();
 
   if(!qmain->getDB().rollback())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Rollback failure.")),
+    qmain->addError(tr("Database Error"),
+		    tr("Rollback failure."),
 		    qmain->getDB().lastError().text(),
 		    __FILE__,
 		    __LINE__);
@@ -663,8 +663,8 @@ void biblioteq_grey_literature::modify(const int state)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to retrieve the selected grey literature's data.")),
+	(tr("Database Error"),
+	 tr("Unable to retrieve the selected grey literature's data."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -1713,8 +1713,8 @@ void biblioteq_grey_literature::updateDatabase(void)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to update the entry.")),
+	(tr("Database Error"),
+	 tr("Unable to update the entry."),
 	 query.lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -1725,8 +1725,8 @@ void biblioteq_grey_literature::updateDatabase(void)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to commit the current database transaction.")),
+	(tr("Database Error"),
+	 tr("Unable to commit the current database transaction."),
 	 qmain->getDB().lastError().text(),
 	 __FILE__,
 	 __LINE__);
@@ -1855,8 +1855,8 @@ void biblioteq_grey_literature::updateDatabase(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().rollback())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Rollback failure.")),
+    qmain->addError(tr("Database Error"),
+		    tr("Rollback failure."),
 		    qmain->getDB().lastError().text(),
 		    __FILE__,
 		    __LINE__);
@@ -1881,7 +1881,7 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.okButton->setVisible(true);
       m_ui.resetButton->setVisible(true);
       m_ui.showUserButton->setEnabled(true);
-      string = QString(tr("BiblioteQ: Modify Grey Literature Entry (")) +
+      string = tr("BiblioteQ: Modify Grey Literature Entry (") +
 	m_ui.id->text() +
 	tr(")");
     }
@@ -1899,7 +1899,7 @@ void biblioteq_grey_literature::updateWindow(const int state)
       else
 	m_ui.showUserButton->setEnabled(true);
 
-      string = QString(tr("BiblioteQ: View Grey Literature Details (")) +
+      string = tr("BiblioteQ: View Grey Literature Details (") +
 	m_ui.id->text() +
 	tr(")");
     }

@@ -410,10 +410,11 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
       if(!errorstr.isEmpty())
 	qmain->addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Unable to retrieve the contents of ")) +
-	   tables.at(i) + tr("."),
-	   errorstr, __FILE__, __LINE__);
+	  (tr("Database Error"),
+	   tr("Unable to retrieve the contents of ") + tables.at(i) + tr("."),
+	   errorstr,
+	   __FILE__,
+	   __LINE__);
       else if(listwidget)
 	{
 	  for(int i = 0; i < list.size(); i++)
@@ -916,8 +917,8 @@ void biblioteq_dbenumerations::slotSave(void)
 	{
 	  error = true;
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
+	    (tr("Database Error"),
+	     tr("Unable to create a database transaction."),
 	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
 	  continue;
 	}
@@ -925,11 +926,12 @@ void biblioteq_dbenumerations::slotSave(void)
       if(!query.exec(querystr))
 	{
 	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("An error occurred while attempting to "
-			"remove entries from the %1 table.").
-		     arg(tables.at(i))),
-	     query.lastError().text(), __FILE__, __LINE__);
+	    (tr("Database Error"),
+	     tr("An error occurred while attempting to "
+		"remove entries from the %1 table.").arg(tables.at(i)),
+	     query.lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  goto db_rollback;
 	}
 
@@ -1015,12 +1017,14 @@ void biblioteq_dbenumerations::slotSave(void)
 		if(!query.exec())
 		  {
 		    qmain->addError
-		      (QString(tr("Database Error")),
-		       QString(tr("Unable to create an entry in ")) +
+		      (tr("Database Error"),
+		       tr("Unable to create an entry in ") +
 		       tables.at(i) + tr("for ") +
 		       listwidget->item(j)->text().trimmed() +
-		       QString(tr(".")),
-		       query.lastError().text(), __FILE__, __LINE__);
+		       tr("."),
+		       query.lastError().text(),
+		       __FILE__,
+		       __LINE__);
 		    goto db_rollback;
 		  }
 	      }
@@ -1110,13 +1114,15 @@ void biblioteq_dbenumerations::slotSave(void)
 		if(!query.exec())
 		  {
 		    qmain->addError
-		      (QString(tr("Database Error")),
-		       QString(tr("Unable to create the location (")) +
+		      (tr("Database Error"),
+		       tr("Unable to create the location (") +
 		       currentText +
 		       tr(", ") +
 		       tablewidget->item(j, 1)->text().trimmed() +
-		       QString(tr(").")),
-		       query.lastError().text(), __FILE__, __LINE__);
+		       tr(")."),
+		       query.lastError().text(),
+		       __FILE__,
+		       __LINE__);
 		    goto db_rollback;
 		  }
 	      }
@@ -1165,13 +1171,15 @@ void biblioteq_dbenumerations::slotSave(void)
 		    {
 		      if(tablewidget->item(j, 0))
 			qmain->addError
-			  (QString(tr("Database Error")),
-			   QString(tr("Unable to create the minimum day (")) +
+			  (tr("Database Error"),
+			   tr("Unable to create the minimum day (") +
 			   tablewidget->item(j, 0)->text() +
 			   tr(", ") +
 			   lineEdit->text() +
-			   QString(tr(").")),
-			   query.lastError().text(), __FILE__, __LINE__);
+			   tr(")."),
+			   query.lastError().text(),
+			   __FILE__,
+			   __LINE__);
 
 		      goto db_rollback;
 		    }
@@ -1181,10 +1189,10 @@ void biblioteq_dbenumerations::slotSave(void)
 
       if(!qmain->getDB().commit())
 	qmain->addError
-	  (QString(tr("Database Error")),
-	   QString(tr("Unable to commit the current database "
-		      "transaction.")),
-	   qmain->getDB().lastError().text(), __FILE__,
+	  (tr("Database Error"),
+	   tr("Unable to commit the current database transaction."),
+	   qmain->getDB().lastError().text(),
+	   __FILE__,
 	   __LINE__);
       else
 	continue;
@@ -1194,10 +1202,11 @@ void biblioteq_dbenumerations::slotSave(void)
       error = true;
 
       if(!qmain->getDB().rollback())
-	qmain->addError(QString(tr("Database Error")),
-			QString(tr("Rollback failure.")),
+	qmain->addError(tr("Database Error"),
+			tr("Rollback failure."),
 			qmain->getDB().lastError().text(),
-			__FILE__, __LINE__);
+			__FILE__,
+			__LINE__);
     }
 
   QApplication::restoreOverrideCursor();
