@@ -684,6 +684,9 @@ void biblioteq::prepareUpgradeNotification(void)
 
 void biblioteq::slotAnimateAbout(void)
 {
+  if(!m_about)
+    return;
+
   if(m_aboutColors.first.lightness() >= 100)
     m_aboutTimer.stop();
   else
