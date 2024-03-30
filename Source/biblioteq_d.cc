@@ -782,6 +782,23 @@ void biblioteq::slotCustomQuery(void)
   executeCustomQuery(this, string);
 }
 
+void biblioteq::slotDelayedPreparation(void)
+{
+#ifdef Q_OS_MACOS
+  QFileInfo fileInfo(BIBLIOTEQ_MACOS_LIBPQ_PATH);
+
+  if(!fileInfo.isReadable())
+    {
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Configuration Error"),
+	 tr("The PostgreSQL library %1 cannot be read. "
+	    "PostgreSQL services will not be functional.").
+	 arg(fileInfo.absoluteFilePath()));
+    }
+#endif
+}
+
 void biblioteq::slotExecuteQuery(const QString &text)
 {
   if(text.trimmed().isEmpty())

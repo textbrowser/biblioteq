@@ -2240,6 +2240,7 @@ void biblioteq::showMain(void)
 	  }
     }
 
+  QTimer::singleShot(1500, this, &biblioteq::slotDelayedPreparation);
   prepareExternalApplicationsMenu();
 }
 

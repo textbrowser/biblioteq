@@ -22,6 +22,10 @@ BIBLIOTEQ_LINKED_WITH_YAZ
 
 Defined if BiblioteQ is linked with the YAZ library.
 
+BIBLIOTEQ_MACOS_LIBPQ_PATH
+
+Location of the libpq library on MacOS.
+
 BIBLIOTEQ_NON_PORTABLE
 
 Define if BiblioteQ should write data to some
