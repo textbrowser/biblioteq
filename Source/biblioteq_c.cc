@@ -3469,10 +3469,6 @@ void biblioteq::slotDisplaySummary(void)
 
       if(ui.stackedWidget->currentIndex() == 1)
 	{
-	  /*
-	  ** This method is also called by slotSceneSelectionChanged().
-	  */
-
 	  QPainterPath painterPath;
 	  auto items(ui.graphicsView->scene()->items());
 	  auto tableItems(ui.table->selectedItems());
@@ -3494,9 +3490,9 @@ void biblioteq::slotDisplaySummary(void)
 		  {
 		    QRectF rect;
 
+		    rect.setHeight(187);
 		    rect.setTopLeft(items.at(jj)->scenePos());
 		    rect.setWidth(126);
-		    rect.setHeight(187);
 		    painterPath.addRect(rect);
 		  }
 		else

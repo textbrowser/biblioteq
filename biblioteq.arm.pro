@@ -44,12 +44,6 @@ QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source
-
-exists(/usr/include/yaz) {
-DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
-LIBS            += -lyaz
-}
-
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 TEMPLATE        = app

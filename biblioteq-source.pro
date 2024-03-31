@@ -1,6 +1,11 @@
+exists(/usr/include/yaz) {
+DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
+LIBS    += -lyaz
+}
+
 qtHaveModule(multimedia) {
-  DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
-  QT += multimedia
+DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
+QT      += multimedia
 }
 
 MOC_DIR     = Temporary/moc
