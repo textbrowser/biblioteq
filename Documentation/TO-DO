@@ -505,7 +505,8 @@
      16 characters. (Completed)
 263. Highlight unavailable items: per-item color. (Completed)
 264. Optional YAZ. (Completed)
-265. Icons Mode and read status. (TBD)
+265. Icons Mode and read status. Read status available in summary.
+     (Completed)
 266. Qt 6.2 LTS:
      QNetworkReply (Completed)
      QSqlQuery (Completed)
