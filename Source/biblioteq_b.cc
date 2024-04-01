@@ -3679,22 +3679,10 @@ int biblioteq::populateTable(const int search_type_arg,
     for(int ii = 0; ii < ui.table->columnCount(); ii++)
       columnNames.append(ui.table->horizontalHeaderItem(ii)->text());
 
-  QString dateFormat("");
-
-  if(typefilter == "Books" ||
-     typefilter == "DVDs" ||
-     typefilter == "Grey Literature" ||
-     typefilter == "Journals" ||
-     typefilter == "Magazines" ||
-     typefilter == "Music CDs" ||
-     typefilter == "Photograph Collections" ||
-     typefilter == "Video Games")
-    dateFormat = publicationDateFormat
-      (QString(typefilter).remove(' ').toLower());
-
   i = -1;
 
   QFontMetrics fontMetrics(ui.table->font());
+  QHash<QString, QString> dateFormats;
   QLocale locale;
   QMap<QByteArray, QImage> images;
   auto availabilityColors = this->availabilityColors();
@@ -3719,6 +3707,12 @@ int biblioteq::populateTable(const int search_type_arg,
 	  QString tooltip("");
 	  QTableWidgetItem *first = nullptr;
 	  auto record(query.record());
+
+	  itemType = record.field("type").value().
+	    toString().remove(' ').toLower().trimmed();
+
+	  if(!dateFormats.contains(itemType))
+	    dateFormats[itemType] = dateFormat(itemType);
 
 	  if(showToolTips)
 	    {
@@ -3800,10 +3794,10 @@ int biblioteq::populateTable(const int search_type_arg,
 			(QDate::fromString(query.value(j).toString(),
 					   s_databaseDateFormat));
 
-		      if(dateFormat.isEmpty())
+		      if(dateFormats.value(itemType).isEmpty())
 			str = date.toString(Qt::ISODate);
 		      else
-			str = date.toString(dateFormat);
+			str = date.toString(dateFormats.value(itemType));
 
 		      if(str.isEmpty())
 			str = query.value(j).toString().trimmed();
@@ -3994,12 +3988,6 @@ int biblioteq::populateTable(const int search_type_arg,
 		    ui.table->setItem(i, j + 1, item);
 		  else
 		    ui.table->setItem(i, j, item);
-
-		  if(fieldName.endsWith("type"))
-		    {
-		      itemType = str;
-		      itemType = itemType.toLower().remove(" ");
-		    }
 
 		  if(fieldName.endsWith("myoid"))
 		    {

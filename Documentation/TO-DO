@@ -554,7 +554,7 @@
 296. Do not disconnect the current database if a future database does not
      have a proper driver. (Completed)
 297. Should databases be listed if drivers are not available? Yes. (Completed)
-298. Interpret Publication Date formats in generic categories. (TBD)
+298. Interpret Publication Date formats in generic categories. (Completed)
 299. Custom queries via View -> Custom Query must be evaluated because
      they may represent DELETE or UPDATE requests. (Completed)
 300. Show an HTML warning icon if a database driver is not available.

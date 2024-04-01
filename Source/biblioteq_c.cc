@@ -71,6 +71,11 @@ QHash<QString, QString> biblioteq::getOpenLibraryItemsHash(void) const
   return m_openLibraryItems;
 }
 
+QString biblioteq::dateFormat(const QString &itemType) const
+{
+  return m_otheroptions->dateFormat(itemType);
+}
+
 QString biblioteq::dbUserName(void) const
 {
   if(m_db.driverName() != "QSQLITE")
@@ -81,7 +86,7 @@ QString biblioteq::dbUserName(void) const
 
 QString biblioteq::publicationDateFormat(const QString &itemType) const
 {
-  return m_otheroptions->publicationDateFormat(itemType);
+  return dateFormat(itemType);
 }
 
 QString biblioteq::reservationHistoryHtml(void) const
@@ -668,10 +673,10 @@ int biblioteq::populateTable(QSqlQuery *query,
     progress->setMaximum(qMin(limit, m_searchQuery->size()));
 
   QFontMetrics fontMetrics(ui.table->font());
+  QHash<QString, QString> dateFormats;
   QLocale locale;
   QMap<QByteArray, QImage> images;
   QSettings settings;
-  QString dateFormat("");
   auto availabilityColors = this->availabilityColors();
   auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
   auto columnNames(ui.table->columnNames());
@@ -680,17 +685,6 @@ int biblioteq::populateTable(QSqlQuery *query,
     typefilter == "Books";
   auto showMainTableImages = m_otheroptions->showMainTableImages();
   auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
-
-  if(typefilter == "Books" ||
-     typefilter == "DVDs" ||
-     typefilter == "Grey Literature" ||
-     typefilter == "Journals" ||
-     typefilter == "Magazines" ||
-     typefilter == "Music CDs" ||
-     typefilter == "Photograph Collections" ||
-     typefilter == "Video Games")
-    dateFormat = publicationDateFormat
-      (QString(typefilter).remove(' ').toLower());
 
   i = -1;
 
@@ -715,6 +709,12 @@ int biblioteq::populateTable(QSqlQuery *query,
 	  QString tooltip("");
 	  QTableWidgetItem *first = nullptr;
 	  auto record(m_searchQuery->record());
+
+	  itemType = record.field("type").value().
+	    toString().remove(' ').toLower().trimmed();
+
+	  if(!dateFormats.contains(itemType))
+	    dateFormats[itemType] = dateFormat(itemType);
 
 	  if(showToolTips)
 	    {
@@ -795,10 +795,10 @@ int biblioteq::populateTable(QSqlQuery *query,
 						  toString().trimmed(),
 						  s_databaseDateFormat));
 
-		      if(dateFormat.isEmpty())
+		      if(dateFormats.value(itemType).isEmpty())
 			str = date.toString(Qt::ISODate);
 		      else
-			str = date.toString(dateFormat);
+			str = date.toString(dateFormats.value(itemType));
 
 		      if(str.isEmpty())
 			str = m_searchQuery->value(j).toString().trimmed();
@@ -985,12 +985,6 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    ui.table->setItem(i, j + 1, item);
 		  else
 		    ui.table->setItem(i, j, item);
-
-		  if(fieldName.endsWith("type"))
-		    {
-		      itemType = str;
-		      itemType = itemType.toLower().remove(" ");
-		    }
 
 		  if(fieldName.endsWith("myoid"))
 		    {
@@ -4368,30 +4362,29 @@ void biblioteq::slotOtherOptionsSaved(void)
   foreach(auto widget, QApplication::topLevelWidgets())
     if(qobject_cast<biblioteq_book *> (widget))
       qobject_cast<biblioteq_book *> (widget)->setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("books"));
+	(m_otheroptions->dateFormat("books"));
     else if(qobject_cast<biblioteq_cd *> (widget))
       qobject_cast<biblioteq_cd *> (widget)->setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("musiccds"));
+	(m_otheroptions->dateFormat("musiccds"));
     else if(qobject_cast<biblioteq_dvd *> (widget))
       qobject_cast<biblioteq_dvd *> (widget)->setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("dvds"));
+	(m_otheroptions->dateFormat("dvds"));
     else if(qobject_cast<biblioteq_grey_literature *> (widget))
       qobject_cast<biblioteq_grey_literature *> (widget)->
-	setPublicationDateFormat(m_otheroptions->
-				 publicationDateFormat("greyliterature"));
+	setPublicationDateFormat(m_otheroptions->dateFormat("greyliterature"));
     else if(qobject_cast<biblioteq_journal *> (widget))
       qobject_cast<biblioteq_journal *> (widget)->setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("journals"));
+	(m_otheroptions->dateFormat("journals"));
     else if(qobject_cast<biblioteq_magazine *> (widget))
       qobject_cast<biblioteq_magazine *> (widget)->setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("magazines"));
+	(m_otheroptions->dateFormat("magazines"));
     else if(qobject_cast<biblioteq_photographcollection *> (widget))
       qobject_cast<biblioteq_photographcollection *> (widget)->
 	setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("photographcollections"));
+	(m_otheroptions->dateFormat("photographcollections"));
     else if(qobject_cast<biblioteq_videogame *> (widget))
       qobject_cast<biblioteq_videogame *> (widget)->setPublicationDateFormat
-	(m_otheroptions->publicationDateFormat("videogames"));
+	(m_otheroptions->dateFormat("videogames"));
 
   for(int i = 0; i < bb.table->columnCount(); i++)
     {

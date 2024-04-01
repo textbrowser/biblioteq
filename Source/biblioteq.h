@@ -312,6 +312,7 @@ class biblioteq: public QMainWindow
   QMainWindow *getMembersBrowser(void) const;
   QMap<QString, QKeySequence> shortcuts(void) const;
   QSqlDatabase getDB(void) const;
+  QString dateFormat(const QString &itemType) const;
   QString formattedISBN10(const QString &str) const;
   QString formattedISBN13(const QString &str) const;
   QString getAdminID(void) const;

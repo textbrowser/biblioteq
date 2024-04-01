@@ -73,7 +73,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  this,
 	  SLOT(slotMainWindowShortcutChanged(void)));
   m_ui.custom_query->setItemDelegateForColumn(1, m_keywordsItemDelegate);
-  m_ui.publication_date->verticalHeader()->setSectionResizeMode
+  m_ui.date_formats->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
   m_ui.shortcuts->setItemDelegateForColumn(1, m_shortcutsItemDelegate);
   prepareSQLKeywords();
@@ -164,34 +164,34 @@ QMap<QString, QColor> biblioteq_otheroptions::customQueryColors(void) const
   return map;
 }
 
-QString biblioteq_otheroptions::publicationDateFormat(const QString &it) const
+QString biblioteq_otheroptions::dateFormat(const QString &it) const
 {
   QSettings settings;
   QString format("");
   auto itemType(it.toLower().trimmed());
 
-  if(itemType == "books")
+  if(itemType.contains("book"))
     format = settings.value
       ("otheroptions/book_publication_date_format").toString();
-  else if(itemType == "dvds")
-    format = settings.value
-      ("otheroptions/dvd_publication_date_format").toString();
-  else if(itemType == "greyliterature")
-    format = settings.value
-      ("otheroptions/grey_literature_date_format").toString();
-  else if(itemType == "journals")
-    format = settings.value
-      ("otheroptions/journal_publication_date_format").toString();
-  else if(itemType == "magazines")
-    format = settings.value
-      ("otheroptions/magazine_publication_date_format").toString();
-  else if(itemType == "musiccds")
+  else if(itemType.contains("cd") || itemType.contains("musiccds"))
     format = settings.value
       ("otheroptions/cd_publication_date_format").toString();
-  else if(itemType == "photographcollections")
+  else if(itemType.contains("dvd"))
+    format = settings.value
+      ("otheroptions/dvd_publication_date_format").toString();
+  else if(itemType.contains("greyliterature"))
+    format = settings.value
+      ("otheroptions/grey_literature_date_format").toString();
+  else if(itemType.contains("journal"))
+    format = settings.value
+      ("otheroptions/journal_publication_date_format").toString();
+  else if(itemType.contains("magazine"))
+    format = settings.value
+      ("otheroptions/magazine_publication_date_format").toString();
+  else if(itemType.contains("photographcollection"))
     format = settings.value
       ("otheroptions/photograph_publication_date_format").toString();
-  else if(itemType == "videogames")
+  else if(itemType.contains("videogame"))
     format = settings.value
       ("otheroptions/videogame_publication_date_format").toString();
 
@@ -634,8 +634,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.item_query_result_color->setStyleSheet
     (QString("background-color: %1").arg(color.name()));
   m_ui.item_query_result_color->setText(color.name());
-  m_ui.publication_date->setRowCount(list1.size());
-  m_ui.publication_date->setSortingEnabled(false);
+  m_ui.date_formats->setRowCount(list1.size());
+  m_ui.date_formats->setSortingEnabled(false);
 
   for(int i = 0; i < list1.size(); i++)
     {
@@ -648,21 +648,21 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setItem
+      m_ui.date_formats->setItem
 	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       item = new QTableWidgetItem(str);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.publication_date->setItem
-	(i, static_cast<int> (ItemsColumns::PUBLICATION_DATE_FORMAT), item);
+      m_ui.date_formats->setItem
+	(i, static_cast<int> (ItemsColumns::DATE_FORMAT), item);
     }
 
-  m_ui.publication_date->resizeColumnToContents
+  m_ui.date_formats->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
-  m_ui.publication_date->resizeRowsToContents();
-  m_ui.publication_date->setSortingEnabled(true);
-  m_ui.publication_date->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.date_formats->resizeRowsToContents();
+  m_ui.date_formats->setSortingEnabled(true);
+  m_ui.date_formats->sortByColumn(0, Qt::AscendingOrder);
   color = QColor
     (settings.value("mainwindow_canvas_background_color").
      toString().remove('&').trimmed());
@@ -744,7 +744,7 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
       widget->update();
     }
 
-  m_ui.publication_date->resizeRowsToContents();
+  m_ui.date_formats->resizeRowsToContents();
   update();
 }
 
@@ -911,8 +911,8 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto item = m_ui.publication_date->item
-	(i, static_cast<int> (ItemsColumns::PUBLICATION_DATE_FORMAT));
+      auto item = m_ui.date_formats->item
+	(i, static_cast<int> (ItemsColumns::DATE_FORMAT));
       auto value(biblioteq::s_databaseDateFormat);
       const auto &key(list.at(i));
 

@@ -279,7 +279,7 @@ class biblioteq_otheroptions: public QMainWindow
     return isbnDisplayFormat(m_isbn13Format, str);
   }
 
-  QString publicationDateFormat(const QString &it) const;
+  QString dateFormat(const QString &it) const;
   bool isMembersColumnVisible(const QString &text) const;
   bool showBookReadStatus(void) const;
   bool showMainTableImages(void) const;
@@ -293,8 +293,8 @@ class biblioteq_otheroptions: public QMainWindow
   enum class ItemsColumns
     {
       AVAILABILITY_COLOR = 1,
-      ITEM_TYPE = 0,
-      PUBLICATION_DATE_FORMAT = 1
+      DATE_FORMAT = 1,
+      ITEM_TYPE = 0
     };
 
   Ui_otheroptions m_ui;

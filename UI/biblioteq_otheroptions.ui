@@ -382,7 +382,7 @@
             <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>Please note that the publication date formats are applied to item details and the main window for the specific categories. Please review Qt documentation for proper formats.</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please note that the date formats are applied to item details and the main window. Date formats are applied to all database fields whose names contain &amp;quot;date&amp;quot; or &amp;quot;membersince&amp;quot;. Please review Qt documentation for proper formats.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
@@ -390,7 +390,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QTableWidget" name="publication_date">
+             <widget class="QTableWidget" name="date_formats">
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -428,7 +428,7 @@
               </column>
               <column>
                <property name="text">
-                <string>Publication Date Format</string>
+                <string>Date Format</string>
                </property>
               </column>
              </widget>
@@ -594,7 +594,7 @@
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall be shown during the populating of data on the main table / view. Dialogs may be interrupted by the F8 key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>&amp;Show Progress Dialogs</string>
+               <string>Show Progress Dialogs</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -604,7 +604,7 @@
             <item>
              <widget class="QCheckBox" name="show_maintable_images">
               <property name="text">
-               <string>&amp;Show Table / View Images</string>
+               <string>Show Table / View Images</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -614,7 +614,7 @@
             <item>
              <widget class="QCheckBox" name="show_maintable_tooltips">
               <property name="text">
-               <string>&amp;Show Table Tool Tips</string>
+               <string>Show Table Tool Tips</string>
               </property>
              </widget>
             </item>
@@ -928,7 +928,7 @@
   <tabstop>isbn13_display_format</tabstop>
   <tabstop>item_mandatory_field_color</tabstop>
   <tabstop>item_query_result_color</tabstop>
-  <tabstop>publication_date</tabstop>
+  <tabstop>date_formats</tabstop>
   <tabstop>availability_colors</tabstop>
   <tabstop>availability_color</tabstop>
   <tabstop>book_read_status</tabstop>
