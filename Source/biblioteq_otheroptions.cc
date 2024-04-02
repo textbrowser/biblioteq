@@ -73,8 +73,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  this,
 	  SLOT(slotMainWindowShortcutChanged(void)));
   m_ui.custom_query->setItemDelegateForColumn(1, m_keywordsItemDelegate);
-  m_ui.date_formats->verticalHeader()->setSectionResizeMode
-    (QHeaderView::Fixed);
+  m_ui.date_formats->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ui.shortcuts->setItemDelegateForColumn(1, m_shortcutsItemDelegate);
   prepareSQLKeywords();
   prepareSettings();
@@ -171,29 +170,22 @@ QString biblioteq_otheroptions::dateFormat(const QString &it) const
   auto itemType(it.toLower().trimmed());
 
   if(itemType.contains("book"))
-    format = settings.value
-      ("otheroptions/book_publication_date_format").toString();
+    format = settings.value("otheroptions/book_date_format").toString();
   else if(itemType.contains("cd") || itemType.contains("musiccds"))
-    format = settings.value
-      ("otheroptions/cd_publication_date_format").toString();
+    format = settings.value("otheroptions/cd_date_format").toString();
   else if(itemType.contains("dvd"))
-    format = settings.value
-      ("otheroptions/dvd_publication_date_format").toString();
+    format = settings.value("otheroptions/dvd_date_format").toString();
   else if(itemType.contains("greyliterature"))
     format = settings.value
       ("otheroptions/grey_literature_date_format").toString();
   else if(itemType.contains("journal"))
-    format = settings.value
-      ("otheroptions/journal_publication_date_format").toString();
+    format = settings.value("otheroptions/journal_date_format").toString();
   else if(itemType.contains("magazine"))
-    format = settings.value
-      ("otheroptions/magazine_publication_date_format").toString();
+    format = settings.value("otheroptions/magazine_date_format").toString();
   else if(itemType.contains("photographcollection"))
-    format = settings.value
-      ("otheroptions/photograph_publication_date_format").toString();
+    format = settings.value("otheroptions/photograph_date_format").toString();
   else if(itemType.contains("videogame"))
-    format = settings.value
-      ("otheroptions/videogame_publication_date_format").toString();
+    format = settings.value("otheroptions/videogame_date_format").toString();
 
   format = format.trimmed();
 
@@ -567,19 +559,14 @@ void biblioteq_otheroptions::prepareSettings(void)
 	<< tr("Music CDs")
 	<< tr("Photograph Collections")
 	<< tr("Video Games");
-  list2 << settings.value("otheroptions/book_publication_date_format").
-           toString()
-	<< settings.value("otheroptions/dvd_publication_date_format").toString()
+  list2 << settings.value("otheroptions/book_date_format").toString()
+	<< settings.value("otheroptions/dvd_date_format").toString()
 	<< settings.value("otheroptions/grey_literature_date_format").toString()
-	<< settings.value("otheroptions/journal_publication_date_format").
-           toString()
-	<< settings.value("otheroptions/magazine_publication_date_format").
-           toString()
-    	<< settings.value("otheroptions/cd_publication_date_format").toString()
-	<< settings.value("otheroptions/photograph_publication_date_format").
-           toString()
-	<< settings.value("otheroptions/videogame_publication_date_format").
-           toString();
+	<< settings.value("otheroptions/journal_date_format").toString()
+	<< settings.value("otheroptions/magazine_date_format").toString()
+    	<< settings.value("otheroptions/cd_date_format").toString()
+	<< settings.value("otheroptions/photograph_date_format").toString()
+	<< settings.value("otheroptions/videogame_date_format").toString();
   list3 << "books"
 	<< "dvds"
 	<< "greyliterature"
@@ -903,14 +890,14 @@ void biblioteq_otheroptions::slotSave(void)
     }
 
   list.clear();
-  list << "otheroptions/book_publication_date_format"
-       << "otheroptions/dvd_publication_date_format"
+  list << "otheroptions/book_date_format"
+       << "otheroptions/dvd_date_format"
        << "otheroptions/grey_literature_date_format"
-       << "otheroptions/journal_publication_date_format"
-       << "otheroptions/magazine_publication_date_format"
-       << "otheroptions/cd_publication_date_format"
-       << "otheroptions/photograph_publication_date_format"
-       << "otheroptions/videogame_publication_date_format";
+       << "otheroptions/journal_date_format"
+       << "otheroptions/magazine_date_format"
+       << "otheroptions/cd_date_format"
+       << "otheroptions/photograph_date_format"
+       << "otheroptions/videogame_date_format";
 
   for(int i = 0; i < list.size(); i++)
     {

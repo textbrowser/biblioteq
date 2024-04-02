@@ -125,6 +125,13 @@ int main(int argc, char *argv[])
   settings.remove("automatically_resize_columns");
   settings.remove("column_settings_cleared_v6_51");
   settings.remove("entries_per_page");
+  settings.remove("otheroptions/book_publication_date_format");
+  settings.remove("otheroptions/cd_publication_date_format");
+  settings.remove("otheroptions/dvd_publication_date_format");
+  settings.remove("otheroptions/journal_publication_date_format");
+  settings.remove("otheroptions/magazine_publication_date_format");
+  settings.remove("otheroptions/photograph_publication_date_format");
+  settings.remove("otheroptions/videogame_publication_date_format");
   settings.remove("sqlite_db");
   biblioteq::s_appTranslator = new QTranslator(nullptr);
   biblioteq::s_locale = settings.value("locale").toString();
