@@ -188,7 +188,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-73</y>
+            <y>0</y>
             <width>599</width>
             <height>424</height>
            </rect>
@@ -579,23 +579,6 @@
      </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>700</width>
-     <height>34</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_Help">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_Documentation"/>
-   </widget>
-   <addaction name="menu_Help"/>
   </widget>
   <action name="action_Documentation">
    <property name="text">

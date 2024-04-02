@@ -237,7 +237,7 @@
                <string>Hide or show the password.</string>
               </property>
               <property name="text">
-               <string>&amp;Show</string>
+               <string>Show</string>
               </property>
              </widget>
             </item>
@@ -287,7 +287,7 @@
         </size>
        </property>
        <property name="text">
-        <string>&amp;Connect</string>
+        <string>Connect</string>
        </property>
        <property name="icon">
         <iconset resource="../Icons/icons.qrc">

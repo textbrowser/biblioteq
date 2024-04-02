@@ -312,7 +312,7 @@
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>Export As CSV...</string>
+    <string>&amp;Export As CSV...</string>
    </property>
   </action>
  </widget>

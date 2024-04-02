@@ -459,7 +459,7 @@
             <item>
              <widget class="QCheckBox" name="availability_colors">
               <property name="text">
-               <string>&amp;Availability Colors</string>
+               <string>Availability Colors</string>
               </property>
              </widget>
             </item>

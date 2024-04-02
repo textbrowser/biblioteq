@@ -40,10 +40,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>View &amp;Size</string>
-           </property>
-           <property name="buddy">
-            <cstring>view_size</cstring>
+            <string>&amp;View Size</string>
            </property>
           </widget>
          </item>

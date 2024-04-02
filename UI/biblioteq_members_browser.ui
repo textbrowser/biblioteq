@@ -63,10 +63,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>&amp;Filter</string>
-           </property>
-           <property name="buddy">
-            <cstring>filtertype</cstring>
+            <string>Filter</string>
            </property>
           </widget>
          </item>
