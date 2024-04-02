@@ -445,8 +445,8 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
        << "HAVING"
        << "IN"
        << "INNER JOIN"
-       << "IS NULL"
        << "IS NOT NULL"
+       << "IS NULL"
        << "JOIN"
        << "LEFT JOIN"
        << "LIKE"
@@ -594,6 +594,35 @@ void biblioteq_otheroptions::prepareSettings(void)
     (qBound(0,
 	    settings.value("otheroptions/books_accession_number_index").toInt(),
 	    m_ui.books_accession_number->count() - 1));
+  m_ui.date_formats->setRowCount(list1.size());
+  m_ui.date_formats->setSortingEnabled(false);
+
+  for(int i = 0; i < list1.size(); i++)
+    {
+      auto str(list2.at(i).trimmed());
+
+      if(str.isEmpty())
+	str = biblioteq::s_databaseDateFormat;
+
+      auto item = new QTableWidgetItem(list1.at(i));
+
+      item->setData(Qt::UserRole, list3.at(i));
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.date_formats->setItem
+	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
+      item = new QTableWidgetItem(str);
+      item->setData(Qt::UserRole, list3.at(i));
+      item->setFlags
+	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+      m_ui.date_formats->setItem
+	(i, static_cast<int> (ItemsColumns::DATE_FORMAT), item);
+    }
+
+  m_ui.date_formats->resizeColumnToContents
+    (static_cast<int> (ItemsColumns::ITEM_TYPE));
+  m_ui.date_formats->resizeRowsToContents();
+  m_ui.date_formats->setSortingEnabled(true);
+  m_ui.date_formats->sortByColumn(0, Qt::AscendingOrder);
   m_ui.display_icon_set->setCurrentIndex
     (qBound(0,
 	    settings.value("otheroptions/display_icon_set_index", 0).toInt(),
@@ -634,35 +663,6 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.item_query_result_color->setStyleSheet
     (QString("background-color: %1").arg(color.name()));
   m_ui.item_query_result_color->setText(color.name());
-  m_ui.date_formats->setRowCount(list1.size());
-  m_ui.date_formats->setSortingEnabled(false);
-
-  for(int i = 0; i < list1.size(); i++)
-    {
-      auto str(list2.at(i).trimmed());
-
-      if(str.isEmpty())
-	str = biblioteq::s_databaseDateFormat;
-
-      auto item = new QTableWidgetItem(list1.at(i));
-
-      item->setData(Qt::UserRole, list3.at(i));
-      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.date_formats->setItem
-	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
-      item = new QTableWidgetItem(str);
-      item->setData(Qt::UserRole, list3.at(i));
-      item->setFlags
-	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.date_formats->setItem
-	(i, static_cast<int> (ItemsColumns::DATE_FORMAT), item);
-    }
-
-  m_ui.date_formats->resizeColumnToContents
-    (static_cast<int> (ItemsColumns::ITEM_TYPE));
-  m_ui.date_formats->resizeRowsToContents();
-  m_ui.date_formats->setSortingEnabled(true);
-  m_ui.date_formats->sortByColumn(0, Qt::AscendingOrder);
   color = QColor
     (settings.value("mainwindow_canvas_background_color").
      toString().remove('&').trimmed());
@@ -688,7 +688,10 @@ void biblioteq_otheroptions::prepareShortcuts(void)
   m_ui.shortcuts->setRowCount(0);
 
   if(!qmain)
-    return;
+    {
+      QApplication::restoreOverrideCursor();
+      return;
+    }
 
   m_ui.shortcuts->setRowCount(qmain->shortcuts().size());
   m_ui.shortcuts->setSortingEnabled(false);
