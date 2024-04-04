@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-157</y>
          <width>967</width>
          <height>899</height>
         </rect>
@@ -96,7 +96,7 @@
               <item>
                <widget class="QPushButton" name="frontButton">
                 <property name="text">
-                 <string>&amp;Select...</string>
+                 <string>Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -153,7 +153,7 @@
               <item>
                <widget class="QPushButton" name="backButton">
                 <property name="text">
-                 <string>&amp;Select...</string>
+                 <string>Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -582,7 +582,7 @@
                 <item row="0" column="0">
                  <widget class="QPushButton" name="copiesButton">
                   <property name="text">
-                   <string>&amp;Copies...</string>
+                   <string>Copies...</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Icons/icons.qrc">
@@ -593,7 +593,7 @@
                 <item row="1" column="0">
                  <widget class="QPushButton" name="showUserButton">
                   <property name="text">
-                   <string>&amp;Reservation Status...</string>
+                   <string>Reservation Status...</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Icons/icons.qrc">

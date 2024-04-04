@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-321</y>
+         <y>0</y>
          <width>617</width>
          <height>1063</height>
         </rect>
@@ -100,7 +100,7 @@
           <item>
            <widget class="QPushButton" name="showUserButton">
             <property name="text">
-             <string>&amp;Reservation Status...</string>
+             <string>Reservation Status...</string>
             </property>
             <property name="icon">
              <iconset resource="../Icons/icons.qrc">

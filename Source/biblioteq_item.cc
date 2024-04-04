@@ -75,7 +75,8 @@ QIcon biblioteq_item::iconForText(const QString &text) const
   if(text.startsWith(QObject::tr("Add")))
     return QIcon::fromTheme
       (system ? "list-add" : "", QIcon(":/16x16/add.png"));
-  else if(text.startsWith(QObject::tr("Attach")))
+  else if(text.startsWith(QObject::tr("Attach")) ||
+	  text.startsWith(QObject::tr("Import")))
     return QIcon::fromTheme(system ? "document-import" : "", QIcon());
   else if(text.startsWith(QObject::tr("Close")))
     return QIcon::fromTheme
