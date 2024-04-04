@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-1049</y>
+         <y>-555</y>
          <width>1230</width>
          <height>1543</height>
         </rect>
@@ -93,7 +93,7 @@
                  <string>Download the book's front cover image.</string>
                 </property>
                 <property name="text">
-                 <string>&amp;Download</string>
+                 <string>Download</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -116,7 +116,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>&amp;Select...</string>
+                 <string>Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -182,7 +182,7 @@
                  <string>Download the book's back cover image.</string>
                 </property>
                 <property name="text">
-                 <string>&amp;Download</string>
+                 <string>Download</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -205,7 +205,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>&amp;Select...</string>
+                 <string>Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -663,7 +663,7 @@
                        <item row="0" column="0">
                         <widget class="QPushButton" name="copiesButton">
                          <property name="text">
-                          <string>&amp;Copies...</string>
+                          <string>Copies...</string>
                          </property>
                          <property name="icon">
                           <iconset resource="../Icons/icons.qrc">
@@ -674,7 +674,7 @@
                        <item row="1" column="0">
                         <widget class="QPushButton" name="showUserButton">
                          <property name="text">
-                          <string>&amp;Reservation Status...</string>
+                          <string>Reservation Status...</string>
                          </property>
                          <property name="icon">
                           <iconset resource="../Icons/icons.qrc">
@@ -919,7 +919,7 @@
                       <item>
                        <widget class="QPushButton" name="isbn10to13">
                         <property name="text">
-                         <string>From &amp;ISBN-10</string>
+                         <string>From ISBN-1&amp;0</string>
                         </property>
                         <property name="icon">
                          <iconset resource="../Icons/icons.qrc">
@@ -947,7 +947,7 @@
                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Convert the 13-digit ISBN to its 10-digit equivalent.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                         <property name="text">
-                         <string>From &amp;ISBN-13</string>
+                         <string>From ISBN-1&amp;3</string>
                         </property>
                         <property name="icon">
                          <iconset resource="../Icons/icons.qrc">
@@ -1483,7 +1483,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;OK</string>
+         <string>OK</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
