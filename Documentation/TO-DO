@@ -619,3 +619,4 @@
 317. MacOS: inspect the Homebrew libpq path and display a reminder
      if the path does not refer to the newest version. (Completed)
 318. Remove duplicate mnemonics. (Completed)
+319. Allow a photograph to be moved to another set via a context menu. (TBD)
