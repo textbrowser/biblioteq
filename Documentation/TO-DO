@@ -496,7 +496,11 @@
 256. Compress attachments. (Completed)
 257. Foreign constraints are not enabled on SQLite. Remove child
      table entries upon item removal. (Completed)
-258. Enumerate database fields and table columns. (TBD)
+258. Enumerate database fields and table columns: (TBD)
+	biblioteq_batch_activities_browser (Completed)
+        biblioteq_book (Completed)
+	biblioteq_cd (Completed)
+	biblioteq_copy_editor_book (Completed)
 259. Backup script for FreeBSD. (Completed)
 260. Replace Poppler with QtPDF. QtPDF is sometimes free! QtPDF is
      very limited. (Completed)
