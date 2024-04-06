@@ -501,6 +501,7 @@
         biblioteq_book (Completed)
 	biblioteq_cd (Completed)
 	biblioteq_copy_editor_book (Completed)
+	biblioteq_dbenumerations (Completed)
 259. Backup script for FreeBSD. (Completed)
 260. Replace Poppler with QtPDF. QtPDF is sometimes free! QtPDF is
      very limited. (Completed)

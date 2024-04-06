@@ -222,17 +222,14 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.drs_favorite->clear();
   m_ui.gldt_favorite->clear();
   m_ui.language_favorite->clear();
+  m_ui.locationsTable->clearContents();
+  m_ui.minimumDaysTable->clearSelection();
   m_ui.monetary_units_favorite->clear();
   m_ui.vgp_favorite->clear();
   m_ui.vgr_favorite->clear();
 
   foreach(auto listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
-
-  while(m_ui.locationsTable->rowCount() > 0)
-    m_ui.locationsTable->removeRow(0);
-
-  m_ui.minimumDaysTable->clearSelection();
 }
 
 void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
@@ -448,9 +445,20 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	{
 	  m_ui.locationsTable->setRowCount(pairList.size());
 
+	  QStringList list;
+
+	  list << tr("Book")
+	       << tr("DVD")
+	       << tr("Grey Literature")
+	       << tr("Journal")
+	       << tr("Magazine")
+	       << tr("Music CD")
+	       << tr("Photograph Collection")
+	       << tr("Video Game");
+	  std::sort(list.begin(), list.end());
+
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      QStringList list;
 	      auto comboBox = new QComboBox();
 	      auto item = new QTableWidgetItem(pairList.at(j).second);
 	      auto layout = new QHBoxLayout();
@@ -461,15 +469,6 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	      layout->addWidget(comboBox);
 	      layout->addSpacerItem(spacer);
 	      layout->setContentsMargins(0, 0, 0, 0);
-	      list << tr("Book")
-		   << tr("DVD")
-		   << tr("Grey Literature")
-		   << tr("Journal")
-		   << tr("Magazine")
-		   << tr("Music CD")
-		   << tr("Photograph Collection")
-		   << tr("Video Game");
-	      std::sort(list.begin(), list.end());
 	      comboBox->addItems(list);
 
 	      if(pairList.at(j).first == "Book")
@@ -494,6 +493,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	      if(comboBox->currentIndex() < 0)
 		comboBox->setCurrentIndex(0);
 
+	      comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	      comboBox->setSizePolicy
 		(QSizePolicy::Preferred, QSizePolicy::Minimum);
 	      item->setFlags
@@ -767,6 +767,7 @@ void biblioteq_dbenumerations::slotAdd(void)
 	   << tr("Video Game");
       std::sort(list.begin(), list.end());
       comboBox->addItems(list);
+      comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
       comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
