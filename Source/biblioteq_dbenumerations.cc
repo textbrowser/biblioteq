@@ -183,7 +183,8 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 
       lineEdit->setToolTip("[1, 1000]");
       lineEdit->setValidator(new QIntValidator(1, 1000, this));
-      m_ui.minimumDaysTable->setCellWidget(i, 1, lineEdit);
+      m_ui.minimumDaysTable->setCellWidget
+	(i, static_cast<int> (MinimumDaysTable::Days), lineEdit);
     }
 
   prepareIcons();
@@ -498,8 +499,10 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	      item->setFlags
 		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	      widget->setLayout(layout);
-	      m_ui.locationsTable->setCellWidget(j, 0, widget);
-	      m_ui.locationsTable->setItem(j, 1, item);
+	      m_ui.locationsTable->setCellWidget
+		(j, static_cast<int> (LocationsTable::Type), widget);
+	      m_ui.locationsTable->setItem
+		(j, static_cast<int> (LocationsTable::Location), item);
 	    }
 
 	  m_ui.locationsTable->resizeColumnToContents(0);
@@ -510,7 +513,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	  for(int j = 0; j < list.size(); j++)
 	    {
 	      auto lineEdit = qobject_cast<QLineEdit *>
-		(tablewidget->cellWidget(j, 1));
+		(tablewidget->
+		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
 
 	      if(lineEdit)
 		lineEdit->setText
@@ -769,12 +773,16 @@ void biblioteq_dbenumerations::slotAdd(void)
       widget->setLayout(layout);
       m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
       m_ui.locationsTable->setCellWidget
-	(m_ui.locationsTable->rowCount() - 1, 0, widget);
-      m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
-				   1,
-				   item);
+	(m_ui.locationsTable->rowCount() - 1,
+	 static_cast<int> (LocationsTable::Type),
+	 widget);
+      m_ui.locationsTable->setItem
+	(m_ui.locationsTable->rowCount() - 1,
+	 static_cast<int> (LocationsTable::Location),
+	 item);
       m_ui.locationsTable->setCurrentCell
-	(m_ui.locationsTable->rowCount() - 1, 0);
+	(m_ui.locationsTable->rowCount() - 1,
+	 static_cast<int> (LocationsTable::Type));
       m_ui.locationsTable->resizeColumnToContents(0);
       m_ui.locationsTable->resizeRowsToContents();
     }
@@ -1037,11 +1045,15 @@ void biblioteq_dbenumerations::slotSave(void)
       else if(tablewidget && tablewidget == m_ui.locationsTable)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
-	    if(tablewidget->cellWidget(j, 0) && tablewidget->item(j, 1))
+	    if(tablewidget->cellWidget(j, 0) &&
+	       tablewidget->item(j, 1))
 	      {
 		QString currentText("");
-		auto comboBox = tablewidget->cellWidget(j, 0)->
+		auto comboBox = tablewidget->
+		  cellWidget(j, static_cast<int> (LocationsTable::Type))->
 		  findChild<QComboBox *> ();
+		auto locationIndex = static_cast<int>
+		  (LocationsTable::Location);
 		auto index = comboBox ? comboBox->currentIndex() : -1;
 
 		currentText = comboBox ? comboBox->currentText() : "N/A";
@@ -1051,16 +1063,18 @@ void biblioteq_dbenumerations::slotSave(void)
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'Book')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 1)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'DVD')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 2)
 		  {
@@ -1068,47 +1082,53 @@ void biblioteq_dbenumerations::slotSave(void)
 				  "(location, type) VALUES "
 				  "(?, 'Grey Literature')");
 		    query.bindValue
-		      (0, tablewidget->item(j, 1)->text().trimmed());
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 3)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'Journal')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 4)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'Magazine')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 5)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'CD')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 6)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'Photograph Collection')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 		else if(index == 7)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
 				  "(?, 'Video Game')");
-		    query.bindValue(0,
-				    tablewidget->item(j, 1)->text().trimmed());
+		    query.bindValue
+		      (0,
+		       tablewidget->item(j, locationIndex)->text().trimmed());
 		  }
 
 		if(!query.exec())
@@ -1118,7 +1138,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		       tr("Unable to create the location (") +
 		       currentText +
 		       tr(", ") +
-		       tablewidget->item(j, 1)->text().trimmed() +
+		       tablewidget->item(j, locationIndex)->text().trimmed() +
 		       tr(")."),
 		       query.lastError().text(),
 		       __FILE__,
@@ -1132,7 +1152,8 @@ void biblioteq_dbenumerations::slotSave(void)
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
 	    {
 	      auto lineEdit = qobject_cast<QLineEdit *>
-		(tablewidget->cellWidget(j, 1));
+		(tablewidget->
+		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
 
 	      if(lineEdit)
 		{
@@ -1169,11 +1190,14 @@ void biblioteq_dbenumerations::slotSave(void)
 
 		  if(!query.exec())
 		    {
-		      if(tablewidget->item(j, 0))
+		      if(tablewidget->
+			 item(j, static_cast<int> (MinimumDaysTable::Type)))
 			qmain->addError
 			  (tr("Database Error"),
 			   tr("Unable to create the minimum day (") +
-			   tablewidget->item(j, 0)->text() +
+			   tablewidget->
+			   item(j, static_cast<int> (MinimumDaysTable::Type))->
+			   text() +
 			   tr(", ") +
 			   lineEdit->text() +
 			   tr(")."),

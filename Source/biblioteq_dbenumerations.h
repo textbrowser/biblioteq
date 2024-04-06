@@ -39,10 +39,22 @@ class biblioteq_dbenumerations: public QMainWindow
   Q_OBJECT
 
  public:
+  enum class LocationsTable
+    {
+      Location = 1,
+      Type = 0
+    };
+
+  enum class MinimumDaysTable
+    {
+      Days = 1,
+      Type = 0
+    };
+
   enum class Page
-  {
-    ReservationMinimumDays = 12
-  };
+    {
+      ReservationMinimumDays = 12
+    };
 
   biblioteq_dbenumerations(biblioteq *parent);
   void clear(void);
