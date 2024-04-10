@@ -30,7 +30,6 @@
 
 #include "biblioteq.h"
 #include "biblioteq_dbenumerations.h"
-#include "biblioteq_misc_functions.h"
 
 biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
   QMainWindow(parent)
@@ -172,6 +171,8 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	    this,
 	    SLOT(setGlobalFonts(const QFont &)));
 
+  m_ui.locationsTable->setItemDelegateForColumn
+    (0, new biblioteq_dbenumerations_item_delegate(this));
   m_ui.locationsTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
   m_ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
@@ -228,8 +229,8 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.vgp_favorite->clear();
   m_ui.vgr_favorite->clear();
 
-  foreach(auto listwidget, findChildren<QListWidget *> ())
-    listwidget->clear();
+  foreach(auto listWidget, findChildren<QListWidget *> ())
+    listWidget->clear();
 }
 
 void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
@@ -292,116 +293,116 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
   for(int i = 0; i < tables.size(); i++)
     {
-      QComboBox *combobox = nullptr;
+      QComboBox *comboBox = nullptr;
       QList<QPair<QString, QString> > pairList;
-      QListWidget *listwidget = nullptr;
-      QTableWidget *tablewidget = nullptr;
+      QListWidget *listWidget = nullptr;
+      QTableWidget *tableWidget = nullptr;
       const auto &str(tables.at(i));
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(str == "book_binding_types")
 	{
-	  combobox = m_ui.bbt_favorite;
+	  comboBox = m_ui.bbt_favorite;
 	  list = biblioteq_misc_functions::getBookBindingTypes
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.bookBindingsList;
+	  listWidget = m_ui.bookBindingsList;
 	}
       else if(str == "book_conditions")
 	{
-	  combobox = m_ui.bc_favorite;
+	  comboBox = m_ui.bc_favorite;
 	  list = biblioteq_misc_functions::getBookConditions
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.bookConditionsList;
+	  listWidget = m_ui.bookConditionsList;
 	}
       else if(str == "book_originality")
 	{
-	  combobox = m_ui.bo_favorite;
+	  comboBox = m_ui.bo_favorite;
 	  list = biblioteq_misc_functions::getBookOriginality
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.bookOriginalityList;
+	  listWidget = m_ui.bookOriginalityList;
 	}
       else if(str == "book_target_audiences")
 	{
-	  combobox = m_ui.bta_favorite;
+	  comboBox = m_ui.bta_favorite;
 	  list = biblioteq_misc_functions::getBookTargetAudiences
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.bookTargetAudiences;
+	  listWidget = m_ui.bookTargetAudiences;
 	}
       else if(str == "cd_formats")
 	{
-	  combobox = m_ui.cf_favorite;
+	  comboBox = m_ui.cf_favorite;
 	  list = biblioteq_misc_functions::getCDFormats
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.cdFormatsList;
+	  listWidget = m_ui.cdFormatsList;
 	}
       else if(str == "dvd_aspect_ratios")
 	{
-	  combobox = m_ui.dar_favorite;
+	  comboBox = m_ui.dar_favorite;
 	  list = biblioteq_misc_functions::getDVDAspectRatios
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.dvdAspectRatiosList;
+	  listWidget = m_ui.dvdAspectRatiosList;
 	}
       else if(str == "dvd_ratings")
 	{
-	  combobox = m_ui.dr_favorite;
+	  comboBox = m_ui.dr_favorite;
 	  list = biblioteq_misc_functions::getDVDRatings
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.dvdRatingsList;
+	  listWidget = m_ui.dvdRatingsList;
 	}
       else if(str == "dvd_regions")
 	{
-	  combobox = m_ui.drs_favorite;
+	  comboBox = m_ui.drs_favorite;
 	  list = biblioteq_misc_functions::getDVDRegions
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.dvdRegionsList;
+	  listWidget = m_ui.dvdRegionsList;
 	}
       else if(str == "grey_literature_types")
 	{
-	  combobox = m_ui.gldt_favorite;
+	  comboBox = m_ui.gldt_favorite;
 	  list = biblioteq_misc_functions::getGreyLiteratureTypes
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.greyLiteratureTypes;
+	  listWidget = m_ui.greyLiteratureTypes;
 	}
       else if(str == "languages")
 	{
-	  combobox = m_ui.language_favorite;
+	  comboBox = m_ui.language_favorite;
 	  list = biblioteq_misc_functions::getLanguages
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.languagesList;
+	  listWidget = m_ui.languagesList;
 	}
       else if(str == "locations")
 	{
 	  pairList = biblioteq_misc_functions::getLocations
 	    (qmain->getDB(), errorstr);
-	  tablewidget = m_ui.locationsTable;
+	  tableWidget = m_ui.locationsTable;
 	}
       else if(str == "minimum_days")
 	{
 	  list = biblioteq_misc_functions::getMinimumDays
 	    (qmain->getDB(), errorstr);
-	  tablewidget = m_ui.minimumDaysTable;
+	  tableWidget = m_ui.minimumDaysTable;
 	}
       else if(str == "monetary_units")
 	{
-	  combobox = m_ui.monetary_units_favorite;
+	  comboBox = m_ui.monetary_units_favorite;
 	  list = biblioteq_misc_functions::getMonetaryUnits
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.monetaryUnitsList;
+	  listWidget = m_ui.monetaryUnitsList;
 	}
       else if(str == "videogame_platforms")
 	{
-	  combobox = m_ui.vgp_favorite;
+	  comboBox = m_ui.vgp_favorite;
 	  list = biblioteq_misc_functions::getVideoGamePlatforms
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.videoGamePlatformsList;
+	  listWidget = m_ui.videoGamePlatformsList;
 	}
       else if(str == "videogame_ratings")
 	{
-	  combobox = m_ui.vgr_favorite;
+	  comboBox = m_ui.vgr_favorite;
 	  list = biblioteq_misc_functions::getVideoGameRatings
 	    (qmain->getDB(), errorstr);
-	  listwidget = m_ui.videoGameRatingsList;
+	  listWidget = m_ui.videoGameRatingsList;
 	}
 
       QApplication::restoreOverrideCursor();
@@ -413,7 +414,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	   errorstr,
 	   __FILE__,
 	   __LINE__);
-      else if(listwidget)
+      else if(listWidget)
 	{
 	  for(int i = 0; i < list.size(); i++)
 	    {
@@ -422,98 +423,53 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	      item = new QListWidgetItem(list.at(i));
 	      item->setFlags
 		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      listwidget->addItem(item);
+	      listWidget->addItem(item);
 	    }
 
-	  if(combobox)
+	  if(comboBox)
 	    {
-	      combobox->addItems(list);
-	      combobox->insertItem(0, "");
-	      combobox->setCurrentIndex
-		(combobox->
+	      comboBox->addItems(list);
+	      comboBox->insertItem(0, "");
+	      comboBox->setCurrentIndex
+		(comboBox->
 		 findText(settings.value(QString("%1_favorite").arg(str)).
 			  toString()));
 
-	      if(combobox->currentIndex() < 0)
+	      if(comboBox->currentIndex() < 0)
 		{
-		  combobox->setCurrentIndex(0);
+		  comboBox->setCurrentIndex(0);
 		  settings.remove(QString("%1_favorite").arg(str));
 		}
 	    }
 	}
-      else if(m_ui.locationsTable == tablewidget && tablewidget)
+      else if(m_ui.locationsTable == tableWidget && tableWidget)
 	{
 	  m_ui.locationsTable->setRowCount(pairList.size());
 
-	  QStringList list;
-
-	  list << tr("Book")
-	       << tr("DVD")
-	       << tr("Grey Literature")
-	       << tr("Journal")
-	       << tr("Magazine")
-	       << tr("Music CD")
-	       << tr("Photograph Collection")
-	       << tr("Video Game");
-	  std::sort(list.begin(), list.end());
-
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      auto comboBox = new QComboBox();
-	      auto item = new QTableWidgetItem(pairList.at(j).second);
-	      auto layout = new QHBoxLayout();
-	      auto spacer = new QSpacerItem
-		(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-	      auto widget = new QWidget();
+	      auto item1 = new QTableWidgetItem(pairList.at(j).first);
+	      auto item2 = new QTableWidgetItem(pairList.at(j).second);
 
-	      layout->addWidget(comboBox);
-	      layout->addSpacerItem(spacer);
-	      layout->setContentsMargins(0, 0, 0, 0);
-	      comboBox->addItems(list);
-
-	      if(pairList.at(j).first == "Book")
-		comboBox->setCurrentIndex(comboBox->findText(tr("Book")));
-	      else if(pairList.at(j).first == "CD")
-		comboBox->setCurrentIndex(comboBox->findText(tr("Music CD")));
-	      else if(pairList.at(j).first == "DVD")
-		comboBox->setCurrentIndex(comboBox->findText(tr("DVD")));
-	      else if(pairList.at(j).first == "Grey Literature")
-		comboBox->setCurrentIndex
-		  (comboBox->findText(tr("Grey Literature")));
-	      else if(pairList.at(j).first == "Journal")
-		comboBox->setCurrentIndex(comboBox->findText(tr("Journal")));
-	      else if(pairList.at(j).first == "Magazine")
-		comboBox->setCurrentIndex(comboBox->findText(tr("Magazine")));
-	      else if(pairList.at(j).first == "Photograph Collection")
-		comboBox->setCurrentIndex
-		  (comboBox->findText(tr("Photograph Collection")));
-	      else if(pairList.at(j).first == "Video Game")
-		comboBox->setCurrentIndex(comboBox->findText("Video Game"));
-
-	      if(comboBox->currentIndex() < 0)
-		comboBox->setCurrentIndex(0);
-
-	      comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
-	      comboBox->setSizePolicy
-		(QSizePolicy::Preferred, QSizePolicy::Minimum);
-	      item->setFlags
+	      item1->setFlags
 		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      widget->setLayout(layout);
-	      m_ui.locationsTable->setCellWidget
-		(j, static_cast<int> (LocationsTable::Type), widget);
+	      item2->setFlags
+		(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	      m_ui.locationsTable->setItem
-		(j, static_cast<int> (LocationsTable::Location), item);
+		(j, static_cast<int> (LocationsTable::Location), item2);
+	      m_ui.locationsTable->setItem
+		(j, static_cast<int> (LocationsTable::Type), item1);
 	    }
 
 	  m_ui.locationsTable->resizeColumnToContents(0);
 	  m_ui.locationsTable->resizeRowsToContents();
 	}
-      else if(tablewidget == m_ui.minimumDaysTable && tablewidget)
+      else if(tableWidget == m_ui.minimumDaysTable && tableWidget)
 	{
 	  for(int j = 0; j < list.size(); j++)
 	    {
 	      auto lineEdit = qobject_cast<QLineEdit *>
-		(tablewidget->
+		(tableWidget->
 		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
 
 	      if(lineEdit)
@@ -746,46 +702,25 @@ void biblioteq_dbenumerations::slotAdd(void)
     }
   else if(toolButton == m_ui.addLocation)
     {
-      QStringList list;
-      auto comboBox = new QComboBox();
-      auto item = new QTableWidgetItem();
-      auto layout = new QHBoxLayout();
-      auto spacer = new QSpacerItem
-	(40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
-      auto widget = new QWidget();
+      auto item1 = new QTableWidgetItem(tr("Book"));
+      auto item2 = new QTableWidgetItem();
 
-      layout->addWidget(comboBox);
-      layout->addSpacerItem(spacer);
-      layout->setContentsMargins(0, 0, 0, 0);
-      list << tr("Book")
-	   << tr("DVD")
-	   << tr("Grey Literature")
-	   << tr("Journal")
-	   << tr("Magazine")
-	   << tr("Music CD")
-	   << tr("Photograph Collection")
-	   << tr("Video Game");
-      std::sort(list.begin(), list.end());
-      comboBox->addItems(list);
-      comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
-      comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-      item->setFlags
+      item1->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      widget->setLayout(layout);
+      item2->setFlags
+	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
-      m_ui.locationsTable->setCellWidget
-	(m_ui.locationsTable->rowCount() - 1,
-	 static_cast<int> (LocationsTable::Type),
-	 widget);
       m_ui.locationsTable->setItem
 	(m_ui.locationsTable->rowCount() - 1,
 	 static_cast<int> (LocationsTable::Location),
-	 item);
-      m_ui.locationsTable->setCurrentCell
+	 item2);
+      m_ui.locationsTable->setItem
 	(m_ui.locationsTable->rowCount() - 1,
-	 static_cast<int> (LocationsTable::Type));
+	 static_cast<int> (LocationsTable::Type),
+	 item1);
       m_ui.locationsTable->resizeColumnToContents(0);
       m_ui.locationsTable->resizeRowsToContents();
+      m_ui.locationsTable->scrollToBottom();
     }
   else if(toolButton == m_ui.addMonetaryUnit)
     {
@@ -810,6 +745,7 @@ void biblioteq_dbenumerations::slotAdd(void)
       list->addItem(listItem);
       list->setCurrentItem(listItem);
       list->editItem(listItem);
+      list->scrollToBottom();
     }
   else
     delete listItem;
@@ -890,13 +826,13 @@ void biblioteq_dbenumerations::slotSave(void)
   if(!qmain)
     return;
 
-  QComboBox *combobox = nullptr;
-  QListWidget *listwidget = nullptr;
+  QComboBox *comboBox = nullptr;
+  QListWidget *listWidget = nullptr;
   QSettings settings;
   QSqlQuery query(qmain->getDB());
   QString querystr("");
   QStringList tables;
-  QTableWidget *tablewidget = nullptr;
+  QTableWidget *tableWidget = nullptr;
   auto error = false;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -918,9 +854,9 @@ void biblioteq_dbenumerations::slotSave(void)
 
   for(int i = 0; i < tables.size(); i++)
     {
-      listwidget = nullptr;
+      listWidget = nullptr;
       querystr = QString("DELETE FROM %1").arg(tables.at(i));
-      tablewidget = nullptr;
+      tableWidget = nullptr;
 
       if(!qmain->getDB().transaction())
 	{
@@ -946,82 +882,82 @@ void biblioteq_dbenumerations::slotSave(void)
 
       if(tables.at(i) == "book_binding_types")
 	{
-	  combobox = m_ui.bbt_favorite;
-	  listwidget = m_ui.bookBindingsList;
+	  comboBox = m_ui.bbt_favorite;
+	  listWidget = m_ui.bookBindingsList;
 	}
       else if(tables.at(i) == "book_conditions")
 	{
-	  combobox = m_ui.bc_favorite;
-	  listwidget = m_ui.bookConditionsList;
+	  comboBox = m_ui.bc_favorite;
+	  listWidget = m_ui.bookConditionsList;
 	}
       else if(tables.at(i) == "book_originality")
 	{
-	  combobox = m_ui.bo_favorite;
-	  listwidget = m_ui.bookOriginalityList;
+	  comboBox = m_ui.bo_favorite;
+	  listWidget = m_ui.bookOriginalityList;
 	}
       else if(tables.at(i) == "book_target_audiences")
 	{
-	  combobox = m_ui.bta_favorite;
-	  listwidget = m_ui.bookTargetAudiences;
+	  comboBox = m_ui.bta_favorite;
+	  listWidget = m_ui.bookTargetAudiences;
 	}
       else if(tables.at(i) == "cd_formats")
 	{
-	  combobox = m_ui.cf_favorite;
-	  listwidget = m_ui.cdFormatsList;
+	  comboBox = m_ui.cf_favorite;
+	  listWidget = m_ui.cdFormatsList;
 	}
       else if(tables.at(i) == "dvd_aspect_ratios")
 	{
-	  combobox = m_ui.dar_favorite;
-	  listwidget = m_ui.dvdAspectRatiosList;
+	  comboBox = m_ui.dar_favorite;
+	  listWidget = m_ui.dvdAspectRatiosList;
 	}
       else if(tables.at(i) == "dvd_ratings")
 	{
-	  combobox = m_ui.dr_favorite;
-	  listwidget = m_ui.dvdRatingsList;
+	  comboBox = m_ui.dr_favorite;
+	  listWidget = m_ui.dvdRatingsList;
 	}
       else if(tables.at(i) == "dvd_regions")
 	{
-	  combobox = m_ui.drs_favorite;
-	  listwidget = m_ui.dvdRegionsList;
+	  comboBox = m_ui.drs_favorite;
+	  listWidget = m_ui.dvdRegionsList;
 	}
       else if(tables.at(i) == "grey_literature_types")
 	{
-	  combobox = m_ui.gldt_favorite;
-	  listwidget = m_ui.greyLiteratureTypes;
+	  comboBox = m_ui.gldt_favorite;
+	  listWidget = m_ui.greyLiteratureTypes;
 	}
       else if(tables.at(i) == "languages")
 	{
-	  combobox = m_ui.language_favorite;
-	  listwidget = m_ui.languagesList;
+	  comboBox = m_ui.language_favorite;
+	  listWidget = m_ui.languagesList;
 	}
       else if(tables.at(i) == "locations")
-	tablewidget = m_ui.locationsTable;
+	tableWidget = m_ui.locationsTable;
       else if(tables.at(i) == "minimum_days")
-	tablewidget = m_ui.minimumDaysTable;
+	tableWidget = m_ui.minimumDaysTable;
       else if(tables.at(i) == "monetary_units")
 	{
-	  combobox = m_ui.monetary_units_favorite;
-	  listwidget = m_ui.monetaryUnitsList;
+	  comboBox = m_ui.monetary_units_favorite;
+	  listWidget = m_ui.monetaryUnitsList;
 	}
       else if(tables.at(i) == "videogame_platforms")
 	{
-	  combobox = m_ui.vgp_favorite;
-	  listwidget = m_ui.videoGamePlatformsList;
+	  comboBox = m_ui.vgp_favorite;
+	  listWidget = m_ui.videoGamePlatformsList;
 	}
       else if(tables.at(i) == "videogame_ratings")
 	{
-	  combobox = m_ui.vgr_favorite;
-	  listwidget = m_ui.videoGameRatingsList;
+	  comboBox = m_ui.vgr_favorite;
+	  listWidget = m_ui.videoGameRatingsList;
 	}
 
-      if(listwidget)
+      if(listWidget)
 	{
-	  for(int j = 0; j < listwidget->count(); j++)
-	    if(listwidget->item(j))
+	  for(int j = 0; j < listWidget->count(); j++)
+	    if(listWidget->item(j))
 	      {
 		query.prepare
 		  (QString("INSERT INTO %1 VALUES (?)").arg(tables.at(i)));
-		query.bindValue(0, listwidget->item(j)->text().trimmed());
+		query.bindValue(0, listWidget->item(j)->text().trimmed());
 
 		if(!query.exec())
 		  {
@@ -1029,7 +965,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		      (tr("Database Error"),
 		       tr("Unable to create an entry in ") +
 		       tables.at(i) + tr("for ") +
-		       listwidget->item(j)->text().trimmed() +
+		       listWidget->item(j)->text().trimmed() +
 		       tr("."),
 		       query.lastError().text(),
 		       __FILE__,
@@ -1038,108 +974,35 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 
-	  if(combobox)
+	  if(comboBox)
 	    settings.setValue
 	      (QString("%1_favorite").arg(tables.at(i)),
-	       combobox->currentText());
+	       comboBox->currentText());
 	}
-      else if(tablewidget && tablewidget == m_ui.locationsTable)
+      else if(tableWidget && tableWidget == m_ui.locationsTable)
 	{
-	  for(int j = 0; j < tablewidget->rowCount(); j++)
-	    if(tablewidget->cellWidget(j, 0) &&
-	       tablewidget->item(j, 1))
+	  for(int j = 0; j < tableWidget->rowCount(); j++)
+	    if(tableWidget->item(j, 0) && tableWidget->item(j, 1))
 	      {
-		QString currentText("");
-		auto comboBox = tablewidget->
-		  cellWidget(j, static_cast<int> (LocationsTable::Type))->
-		  findChild<QComboBox *> ();
 		auto locationIndex = static_cast<int>
 		  (LocationsTable::Location);
-		auto index = comboBox ? comboBox->currentIndex() : -1;
+		auto typeIndex = static_cast<int>(LocationsTable::Type);
 
-		currentText = comboBox ? comboBox->currentText() : "N/A";
-
-		if(index == 0)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'Book')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 1)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'DVD')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 2)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'Grey Literature')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 3)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'Journal')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 4)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'Magazine')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 5)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'CD')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 6)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'Photograph Collection')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
-		else if(index == 7)
-		  {
-		    query.prepare("INSERT INTO locations "
-				  "(location, type) VALUES "
-				  "(?, 'Video Game')");
-		    query.bindValue
-		      (0,
-		       tablewidget->item(j, locationIndex)->text().trimmed());
-		  }
+		query.prepare
+		  ("INSERT INTO locations (location, type) VALUES (?, ?)");
+		query.addBindValue
+		  (tableWidget->item(j, locationIndex)->text().trimmed());
+		query.addBindValue
+		  (tableWidget->item(j, typeIndex)->text().trimmed());
 
 		if(!query.exec())
 		  {
 		    qmain->addError
 		      (tr("Database Error"),
 		       tr("Unable to create the location (") +
-		       currentText +
+		       tableWidget->item(j, typeIndex)->text().trimmed() +
 		       tr(", ") +
-		       tablewidget->item(j, locationIndex)->text().trimmed() +
+		       tableWidget->item(j, locationIndex)->text().trimmed() +
 		       tr(")."),
 		       query.lastError().text(),
 		       __FILE__,
@@ -1148,12 +1011,12 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget && tablewidget == m_ui.minimumDaysTable)
+      else if(tableWidget && tableWidget == m_ui.minimumDaysTable)
 	{
-	  for(int j = 0; j < tablewidget->rowCount(); j++)
+	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    {
 	      auto lineEdit = qobject_cast<QLineEdit *>
-		(tablewidget->
+		(tableWidget->
 		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
 
 	      if(lineEdit)
@@ -1191,12 +1054,12 @@ void biblioteq_dbenumerations::slotSave(void)
 
 		  if(!query.exec())
 		    {
-		      if(tablewidget->
+		      if(tableWidget->
 			 item(j, static_cast<int> (MinimumDaysTable::Type)))
 			qmain->addError
 			  (tr("Database Error"),
 			   tr("Unable to create the minimum day (") +
-			   tablewidget->
+			   tableWidget->
 			   item(j, static_cast<int> (MinimumDaysTable::Type))->
 			   text() +
 			   tr(", ") +

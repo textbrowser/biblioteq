@@ -29,7 +29,9 @@
 #define _BIBLIOTEQ_DBENUMERATIONS_H_
 
 #include <QPointer>
+#include <QStyledItemDelegate>
 
+#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_dbenumerations.h"
 
 class biblioteq;
@@ -81,6 +83,94 @@ class biblioteq_dbenumerations: public QMainWindow
   void slotRemove(void);
   void slotSave(void);
   void slotScrollToSection(int index);
+};
+
+class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
+{
+  Q_OBJECT
+
+ public:
+  biblioteq_dbenumerations_item_delegate(QObject *parent):
+    QStyledItemDelegate(parent)
+  {
+  }
+
+  QWidget *createEditor(QWidget *parent,
+			const QStyleOptionViewItem &option,
+			const QModelIndex &index) const
+  {
+    switch(index.column())
+      {
+      case static_cast<int> (biblioteq_dbenumerations::LocationsTable::Type):
+	{
+	  auto comboBox = new QComboBox(parent);
+	  auto value(index.data().toString());
+
+	  comboBox->addItem(tr("Book"));
+	  comboBox->addItem(tr("DVD"));
+	  comboBox->addItem(tr("Grey Literature"));
+	  comboBox->addItem(tr("Journal"));
+	  comboBox->addItem(tr("Magazine"));
+	  comboBox->addItem(tr("Music CD"));
+	  comboBox->addItem(tr("Photograph Collection"));
+	  comboBox->addItem(tr("Video Game"));
+	  connect(comboBox,
+		  SIGNAL(currentIndexChanged(int)),
+		  this,
+		  SLOT(slotCurrentIndexChanged(int))
+#ifdef Q_OS_MACOS
+		  , Qt::QueuedConnection
+#endif
+		  );
+	  biblioteq_misc_functions::sortCombinationBox(comboBox);
+
+	  if(value == tr("Book"))
+	    comboBox->setCurrentIndex(comboBox->findText(tr("Book")));
+	  else if(value == tr("CD"))
+	    comboBox->setCurrentIndex(comboBox->findText(tr("Music CD")));
+	  else if(value == tr("DVD"))
+	    comboBox->setCurrentIndex(comboBox->findText(tr("DVD")));
+	  else if(value == tr("Grey Literature"))
+	    comboBox->setCurrentIndex
+	      (comboBox->findText(tr("Grey Literature")));
+	  else if(value == tr("Journal"))
+	    comboBox->setCurrentIndex(comboBox->findText(tr("Journal")));
+	  else if(value == tr("Magazine"))
+	    comboBox->setCurrentIndex(comboBox->findText(tr("Magazine")));
+	  else if(value == tr("Photograph Collection"))
+	    comboBox->setCurrentIndex
+	      (comboBox->findText(tr("Photograph Collection")));
+	  else if(value == tr("Video Game"))
+	    comboBox->setCurrentIndex(comboBox->findText(tr("Video Game")));
+
+	  if(comboBox->currentIndex() < 0)
+	    comboBox->setCurrentIndex(0);
+
+	  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	  return comboBox;
+	}
+      default:
+	{
+	  break;
+	}
+      }
+
+    return QStyledItemDelegate::createEditor(parent, option, index);
+  }
+
+ private slots:
+  void slotCurrentIndexChanged(int index)
+  {
+    Q_UNUSED(index);
+
+    auto comboBox = qobject_cast<QComboBox *> (sender());
+
+    if(comboBox)
+      {
+	emit commitData(comboBox);
+	emit closeEditor(comboBox); // Order is crucial.
+      }
+  }
 };
 
 #endif
