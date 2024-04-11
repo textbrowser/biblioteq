@@ -115,7 +115,7 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 	  comboBox->addItem(tr("Photograph Collection"));
 	  comboBox->addItem(tr("Video Game"));
 	  connect(comboBox,
-		  SIGNAL(currentIndexChanged(int)),
+		  SIGNAL(activated(int)),
 		  this,
 		  SLOT(slotCurrentIndexChanged(int))
 #ifdef Q_OS_MACOS
