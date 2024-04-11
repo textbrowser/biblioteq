@@ -626,4 +626,6 @@
 318. Remove duplicate mnemonics. (Completed)
 319. Allow a photograph to be moved to another set via a context menu. (TBD)
 320. "edit: editing failed" and Locations table in Database Enumerations
-     Browser. (Completed)
+     Browser. The warning appears during a tab-key transition from an
+     editable QTableWidgetItem to cell which houses an editable QWidget.
+     (Completed)
