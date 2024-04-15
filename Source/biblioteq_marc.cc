@@ -1559,6 +1559,28 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		}
 	    }
 	}
+      else if(str.startsWith("676 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Number
+	  ** $v - Edition
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$v";
+
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.contains(subfields.at(i)))
+	      str = str.mid(0, str.indexOf(subfields.at(i))).trimmed();
+
+	  m_deweynum = str.trimmed();
+	}
     }
 }
 
