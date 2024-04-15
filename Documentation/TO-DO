@@ -608,6 +608,7 @@
 	biblioteq_magazine.[cc, h] (Completed)
 	biblioteq_marc.[cc, h] (Completed)
 	biblioteq_otheroptions.[cc, h] (Completed)
+	biblioteq_photograph_view.[cc, h] (Completed)
 	biblioteq_photographcollection.[cc, h] (Completed)
 	biblioteq_query_history.[cc, h] (Completed)
 	biblioteq_sql_syntax_highlighter.[cc, h] (Completed)
