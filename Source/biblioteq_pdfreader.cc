@@ -440,8 +440,10 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
     return;
 
   QProgressDialog progress(this);
+  auto preview = false;
   auto widget = qobject_cast<QWidget *> (sender());
-  auto preview = !widget || !widget->isVisible();
+
+  preview = !widget || !widget->isVisible();
 
   if(preview)
     progress.setLabelText(tr("Preparing preview..."));
@@ -634,8 +636,8 @@ void biblioteq_pdfreader::slotSearchNext(void)
       page += 1;
     }
 
-  m_ui.page->setValue(1);
   m_ui.find->setFocus();
+  m_ui.page->setValue(1);
   QApplication::restoreOverrideCursor();
 #endif
 }
@@ -698,8 +700,8 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
       page -= 1;
     }
 
-  m_ui.page->setValue(1);
   m_ui.find->setFocus();
+  m_ui.page->setValue(1);
   QApplication::restoreOverrideCursor();
 #endif
 }
@@ -717,7 +719,7 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       m_searchLocation = QRectF();
       return;
     }
-  else if(value <= 0 || value > m_document->numPages())
+  else if(m_document->numPages() < value || value <= 0)
     {
       m_searchLocation = QRectF();
       return;
@@ -736,9 +738,8 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       return;
     }
 
-  m_ui.page->setToolTip(tr("Page %1 of %2.").
-			arg(value).
-			arg(m_ui.page->maximum()));
+  m_ui.page->setToolTip
+    (tr("Page %1 of %2.").arg(value).arg(m_ui.page->maximum()));
 
   QImage image;
   auto pX = qMax(72, m_ui.page_1->physicalDpiX());
@@ -780,10 +781,9 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       painter.end();
     }
 
-  m_ui.page_1->setPixmap(QPixmap::fromImage(image));
   m_ui.page_1->setFocus();
+  m_ui.page_1->setPixmap(QPixmap::fromImage(image));
   delete page;
-
   page = m_document->page(value);
 
   if(!page)
@@ -810,20 +810,20 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 
 void biblioteq_pdfreader::slotSliderTriggerAction(int action)
 {
-  if(action == QAbstractSlider::SliderSingleStepSub &&
+  if(action == QAbstractSlider::SliderSingleStepAdd &&
+     m_ui.scrollArea->verticalScrollBar()->maximum() ==
+     m_ui.scrollArea->verticalScrollBar()->value())
+    {
+      m_ui.page->setValue(m_ui.page->value() + 2);
+      m_ui.scrollArea->verticalScrollBar()->setValue
+	(m_ui.scrollArea->verticalScrollBar()->maximum());
+    }
+  else if(action == QAbstractSlider::SliderSingleStepSub &&
      m_ui.scrollArea->verticalScrollBar()->minimum() ==
      m_ui.scrollArea->verticalScrollBar()->value())
     {
       m_ui.page->setValue(m_ui.page->value() - 2);
       m_ui.scrollArea->verticalScrollBar()->setValue
 	(m_ui.scrollArea->verticalScrollBar()->minimum());
-    }
-  else if(action == QAbstractSlider::SliderSingleStepAdd &&
-	  m_ui.scrollArea->verticalScrollBar()->maximum() ==
-	  m_ui.scrollArea->verticalScrollBar()->value())
-    {
-      m_ui.page->setValue(m_ui.page->value() + 2);
-      m_ui.scrollArea->verticalScrollBar()->setValue
-	(m_ui.scrollArea->verticalScrollBar()->maximum());
     }
 }
