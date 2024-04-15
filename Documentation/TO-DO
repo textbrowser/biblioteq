@@ -609,7 +609,9 @@
 	biblioteq_marc[cc, h] (Completed)
 	biblioteq_otheroptions.[cc, h] (Completed)
 	biblioteq_photographcollection.[cc, h] (Completed)
+	biblioteq_swifty.h (Completed)
 	biblioteq_videogame.[cc, h] (Completed)
+	biblioteq_woody.h (Completed)
 	biblioteq_z3950results.[cc, h] (Completed)
 313. Status-bar label widgets and system icons. Consider states. (Completed)
 314. System icons:
