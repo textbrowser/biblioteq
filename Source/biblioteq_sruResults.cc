@@ -83,15 +83,16 @@ biblioteq_sruresults::biblioteq_sruresults
 	      }
 	  }
 
-      if(row == -1)
-	if(m_magazine)
-	  if(issn == m_magazine->dialog().id->text())
-	    row = i;
-
       if(!issn.isEmpty())
 	m_ui.list->addItem(issn);
       else
 	m_ui.list->addItem(tr("Record #%1").arg(i + 1));
+
+      if(!m_magazine)
+	continue;
+
+      if(issn == m_magazine->dialog().id->text() && row == -1)
+	row = i;
     }
 
   connect(m_ui.cancelButton,
@@ -125,7 +126,6 @@ biblioteq_sruresults::biblioteq_sruresults
 
 biblioteq_sruresults::~biblioteq_sruresults()
 {
-  m_records.clear();
 }
 
 void biblioteq_sruresults::changeEvent(QEvent *event)
@@ -147,7 +147,7 @@ void biblioteq_sruresults::changeEvent(QEvent *event)
 
 void biblioteq_sruresults::closeEvent(QCloseEvent *event)
 {
-  Q_UNUSED(event);
+  QDialog::closeEvent(event);
   slotClose();
 }
 
