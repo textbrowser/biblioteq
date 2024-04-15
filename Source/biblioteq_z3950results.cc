@@ -114,7 +114,6 @@ biblioteq_z3950results::biblioteq_z3950results
 
 biblioteq_z3950results::~biblioteq_z3950results()
 {
-  m_records.clear();
 }
 
 void biblioteq_z3950results::changeEvent(QEvent *event)
@@ -136,7 +135,7 @@ void biblioteq_z3950results::changeEvent(QEvent *event)
 
 void biblioteq_z3950results::closeEvent(QCloseEvent *event)
 {
-  Q_UNUSED(event);
+  QDialog::closeEvent(event);
   slotClose();
 }
 
@@ -171,11 +170,6 @@ void biblioteq_z3950results::prepareIcons(void)
     }
 }
 
-void biblioteq_z3950results::slotClose(void)
-{
-  deleteLater();
-}
-
 void biblioteq_z3950results::setGlobalFonts(const QFont &font)
 {
   setFont(font);
@@ -187,6 +181,11 @@ void biblioteq_z3950results::setGlobalFonts(const QFont &font)
     }
 
   update();
+}
+
+void biblioteq_z3950results::slotClose(void)
+{
+  deleteLater();
 }
 
 void biblioteq_z3950results::slotSelectRecord(void)
