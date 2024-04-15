@@ -224,6 +224,7 @@ void biblioteq_dbenumerations::clear(void)
   m_ui.gldt_favorite->clear();
   m_ui.language_favorite->clear();
   m_ui.locationsTable->clearContents();
+  m_ui.locationsTable->setRowCount(0);
   m_ui.minimumDaysTable->clearSelection();
   m_ui.monetary_units_favorite->clear();
   m_ui.vgp_favorite->clear();

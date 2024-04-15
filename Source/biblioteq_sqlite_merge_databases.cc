@@ -42,10 +42,13 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
   m_ui.setupUi(this);
   m_ui.splitter->setStretchFactor(0, 1);
   m_ui.splitter->setStretchFactor(1, 0);
-  connect(m_qmain,
-	  SIGNAL(fontChanged(const QFont &)),
-	  this,
-	  SLOT(slotSetGlobalFonts(const QFont &)));
+
+  if(m_qmain)
+    connect(m_qmain,
+	    SIGNAL(fontChanged(const QFont &)),
+	    this,
+	    SLOT(slotSetGlobalFonts(const QFont &)));
+
   connect(m_ui.add_row,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -379,18 +382,18 @@ void biblioteq_sqlite_merge_databases::slotSelect(void)
       for(int i = 0; i < m_ui.databases->rowCount(); i++)
 	if(m_ui.databases->
 	   cellWidget(i, static_cast<int> (Columns::SELECT_COLUMN)) ==
-	   pushButton)
-	  if(m_ui.databases->
-	     item(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN)))
-	    {
-	      m_ui.databases->item
-		(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN))->
-		setText(dialog.selectedFiles().value(0));
-	      m_ui.databases->item
-		(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN))->
-		setToolTip(dialog.selectedFiles().value(0));
-	      break;
-	    }
+	   pushButton &&
+	   m_ui.databases->
+	   item(i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN)))
+	  {
+	    m_ui.databases->item
+	      (i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN))->
+	      setText(dialog.selectedFiles().value(0));
+	    m_ui.databases->item
+	      (i, static_cast<int> (Columns::SQLITE_DATABASE_COLUMN))->
+	      setToolTip(dialog.selectedFiles().value(0));
+	    break;
+	  }
 
       QApplication::restoreOverrideCursor();
     }

@@ -45,7 +45,8 @@ void biblioteq_sql_syntax_highlighter::highlightBlock(const QString &text)
 	{
 	  QRegularExpressionMatch match(matchIterator.next());
 
-	  setFormat(match.capturedStart(), match.capturedLength(), rule.format);
+	  setFormat
+	    (match.capturedStart(), match.capturedLength(), rule.format);
         }
     }
 }
