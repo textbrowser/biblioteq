@@ -601,7 +601,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto str = list[i];
+      auto str(list[i]);
 
       if(str.startsWith("010 "))
 	{
@@ -888,7 +888,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  QString tmpstr = "";
+	  QString tmpstr("");
 
 	  if(str.indexOf("$a") > -1)
 	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -1145,7 +1145,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto str = list[i];
+      auto str(list[i]);
 
       if(str.startsWith("003 "))
 	m_z3950Unimarc003 = str.trimmed();
@@ -1305,7 +1305,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  ** $h - Date of Manufacture
 	  */
 
-	  QString tmpstr = "";
+	  QString tmpstr("");
 
 	  if(str.indexOf("$a") > -1)
 	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -1577,7 +1577,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto str = list[i];
+      auto str(list[i]);
 
       if(str.startsWith("200 "))
 	{
@@ -1640,7 +1640,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	  ** $h - Date of Manufacture
 	  */
 
-	  QString tmpstr = "";
+	  QString tmpstr("");
 
 	  if(str.indexOf("$a") > -1)
 	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
