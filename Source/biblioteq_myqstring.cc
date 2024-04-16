@@ -35,8 +35,8 @@ biblioteq_myqstring::biblioteq_myqstring(const char *str):QString(str)
 {
 }
 
-QString biblioteq_myqstring::escape(const QString &str,
-				    const bool caseinsensitive)
+QString biblioteq_myqstring::escape
+(const QString &str, const bool caseInsensitive)
 {
   auto mystr(str);
 
@@ -44,20 +44,20 @@ QString biblioteq_myqstring::escape(const QString &str,
   mystr = mystr.replace("'", "''");
 #endif
 
-  if(caseinsensitive)
+  if(caseInsensitive)
     mystr = mystr.toLower();
 
   return mystr.trimmed();
 }
 
-QString biblioteq_myqstring::prepConfigString
-(const QString &str, const bool ignore_embedded_comments)
+QString biblioteq_myqstring::prepareConfigurationString
+(const QString &str, const bool ignoreEmbeddedComments)
 {
-  auto mystr = str;
+  auto mystr(str);
 
   if(mystr.trimmed().startsWith("#"))
     return mystr.trimmed();
-  else if(mystr.contains("#") && !ignore_embedded_comments)
+  else if(!ignoreEmbeddedComments && mystr.contains("#"))
     mystr.resize(mystr.indexOf('#'));
 
   return mystr.trimmed();

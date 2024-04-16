@@ -117,7 +117,8 @@ void biblioteq_generic_thread::run(void)
 
 	while(!qts.atEnd())
 	  {
-	    str = str.prepConfigString(qts.readLine().trimmed(), true);
+	    str = str.prepareConfigurationString
+	      (qts.readLine().trimmed(), true);
 	    m_list.append(str);
 	  }
 

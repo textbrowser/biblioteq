@@ -608,6 +608,8 @@
 	biblioteq_item.[cc, h] (Completed)
 	biblioteq_magazine.[cc, h] (Completed)
 	biblioteq_marc.[cc, h] (Completed)
+	biblioteq_myqstring.[cc, h] (Completed)
+	biblioteq_numeric_table_item.[cc, h] (Completed)
 	biblioteq_open_library.[cc, h] (Completed)
 	biblioteq_otheroptions.[cc, h] (Completed)
 	biblioteq_pdfreader.[cc, h] (Completed)
