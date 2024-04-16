@@ -42,8 +42,7 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
   auto image = QImage();
   auto type(typeArg.toLower());
 
-  if(type == "grey literature" ||
-     type == "photograph collection")
+  if(type == "grey literature" || type == "photograph collection")
     type = type.replace(" ", "_");
   else
     type = type.remove(" ");
@@ -129,7 +128,7 @@ QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
 {
   QMap<QString, qint64> counts;
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
 
   errorstr = "";
   querystr =
@@ -278,8 +277,8 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QSqlDatabase &db)
 {
   QSqlQuery query(db);
-  QString querystr = "";
-  QString str = "";
+  QString querystr("");
+  QString str("");
   auto type(typeArg.toLower());
 
   if(type == "book" ||
@@ -322,9 +321,9 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 						  QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
-  QString str = "";
+  QString itemType("");
+  QString querystr("");
+  QString str("");
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -383,10 +382,10 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 						  const int row,
 						  const QString &columnName)
 {
-  if(columnName.isEmpty() || row < 0 || !table)
+  if(!table || columnName.isEmpty() || row < 0)
     return "";
 
-  QString str = "";
+  QString str("");
   QTableWidgetItem *column = nullptr;
   int i = 0;
 
@@ -412,7 +411,7 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 						  const int row,
 						  const int column)
 {
-  if(column < 0 || row < 0 || !table)
+  if(!table || column < 0 || row < 0)
     return "";
 
   QTableWidgetItem *item = nullptr;
@@ -428,8 +427,8 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
 						QString &errorstr)
 {
   QSqlQuery query(db);
-  QString querystr = "";
-  QString str = "";
+  QString querystr("");
+  QString str("");
 
   errorstr = "";
   querystr = "SELECT last_name, first_name FROM member WHERE memberid = ?";
@@ -523,10 +522,10 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 					 QString &errorstr)
 {
   QSqlQuery query(db);
-  QString id = "";
-  QString itemType = "";
-  QString oid = "";
-  QString querystr = "";
+  QString id("");
+  QString itemType("");
+  QString oid("");
+  QString querystr("");
   int i = 0;
 
   id = idArg;
@@ -601,8 +600,8 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
 					   QString &errorstr)
 {
   QSqlQuery query(db);
-  QString querystr = "";
-  QString roles = "";
+  QString querystr("");
+  QString roles("");
 
   errorstr = "";
   querystr = "SELECT LOWER(roles) FROM admin WHERE LOWER(username) = LOWER(?)";
@@ -629,9 +628,9 @@ QString biblioteq_misc_functions::getTotalReserved(const QSqlDatabase &db,
 						   const QString &oid)
 {
   QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
-  QString str = "";
+  QString itemType("");
+  QString querystr("");
+  QString str("");
 
   itemType = itemTypeArg.toLower();
 
@@ -1097,8 +1096,8 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
 						       QString &errorstr)
 {
   QSqlQuery query(db);
-  QString querystr = "";
-  QString str = "";
+  QString querystr("");
+  QString str("");
   QStringList list;
 
   errorstr = "";
@@ -1302,7 +1301,7 @@ bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
 					      QString &errorstr)
 {
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
   auto exists = false;
 
   errorstr = "";
@@ -1406,7 +1405,7 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 					    QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType = "";
+  QString itemType("");
   auto isCheckedOut = false;
 
   errorstr = "";
@@ -1436,8 +1435,8 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
 					       QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
+  QString itemType("");
+  QString querystr("");
   auto isAvailable = false;
 
   errorstr = "";
@@ -1493,7 +1492,7 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 						QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType = "";
+  QString itemType("");
   auto isCheckedOut = false;
 
   errorstr = "";
@@ -1652,7 +1651,7 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
     return isRequested; // Requests are not supported.
 
   QSqlQuery query(db);
-  QString itemType = "";
+  QString itemType("");
 
   itemType = itemTypeArg;
   query.prepare("SELECT EXISTS(SELECT 1 FROM item_request "
@@ -1739,7 +1738,7 @@ int biblioteq_misc_functions::getCopyNumber(const QSqlDatabase &db,
 					    QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType(itemTypeArg.toLower().trimmed());
+  auto itemType(itemTypeArg.toLower().trimmed());
   int copyNumber = -1;
 
   errorstr.clear();
@@ -1768,7 +1767,7 @@ int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 					       QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType = "";
+  QString itemType("");
   int copy_number = -1;
 
   errorstr = "";
@@ -1820,7 +1819,7 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
     return 0;
 
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
 
   if(type.toLower() == "book")
     querystr = "SELECT maximum_reserved_books FROM member WHERE memberid = ?";
@@ -1838,7 +1837,7 @@ int biblioteq_misc_functions::quantity
 (const QSqlDatabase &db, const QString &oid, const QString &t)
 {
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
   auto type(QString(t).remove(' ').toLower());
 
   if(type == "greyliterature")
@@ -1999,7 +1998,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
     return; // Users are not supported.
 
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
   QStringList objectlist;
   auto exists = false;
 
@@ -2017,8 +2016,8 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
 	  if(str.contains("administrator") || str.contains("membership"))
 	    querystr = QString
-	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
-	       "CREATEROLE").arg(userid);
+	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' CREATEROLE").
+	      arg(userid);
 	  else
 	    querystr = QString
 	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
@@ -2031,7 +2030,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	  if(!errorstr.isEmpty())
 	    return;
 
-	  if(str.isEmpty() || str == "none")
+	  if(str == "none" || str.isEmpty())
 	    str = "biblioteq_patron";
 	  else
 	    {
@@ -2049,14 +2048,12 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
 	  if(str.contains("membership"))
 	    {
-	      (void) query.exec(QString("GRANT %1 "
-					"TO %2 WITH ADMIN OPTION").
+	      (void) query.exec(QString("GRANT %1 TO %2 WITH ADMIN OPTION").
 				arg(str).arg(userid));
 	      goto done_label;
 	    }
 
-	  (void) query.exec(QString("GRANT %1 "
-				    "TO %2").arg(str).arg(userid));
+	  (void) query.exec(QString("GRANT %1 TO %2").arg(str).arg(userid));
 
 	done_label:
 
@@ -2073,7 +2070,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
     {
       auto str(roles);
 
-      if(str.isEmpty() || str == "none")
+      if(str == "none" || str.isEmpty())
 	str = "biblioteq_patron";
       else
 	{
@@ -2111,8 +2108,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	    }
 	  else if(str.contains("membership"))
 	    {
-	      (void) query.exec(QString("GRANT %1 "
-					"TO %2 WITH ADMIN OPTION").
+	      (void) query.exec(QString("GRANT %1 TO %2 WITH ADMIN OPTION").
 				arg(str).arg(userid));
 
 	      if(!query.lastError().isValid())
@@ -2122,8 +2118,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 		}
 	    }
 	  else
-	    (void) query.exec(QString("GRANT %1 "
-				      "TO %2").arg(str).arg(userid));
+	    (void) query.exec(QString("GRANT %1 TO %2").arg(str).arg(userid));
 
 	  if(query.lastError().isValid())
 	    errorstr = query.lastError().text();
@@ -2240,9 +2235,9 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 						   QString &errorstr)
 {
   QSqlQuery query(db);
-  QString id = "";
-  QString itemType = "";
-  QString itemoid = "";
+  QString id("");
+  QString itemType("");
+  QString itemoid("");
   auto copies = qBound
     (0, numCopies, static_cast<int> (biblioteq::Limits::QUANTITY));
   int i = 0;
@@ -2259,7 +2254,17 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
   if(!errorstr.isEmpty())
     return;
 
-  if(itemType == "journal" || itemType == "magazine")
+  if(itemType == "book")
+    {
+      if(itemoid.isEmpty())
+	/*
+	** If the id from getOID() is empty, createInitialCopies() was called
+	** with an oid.
+	*/
+
+	itemoid = id;
+    }
+  else if(itemType == "journal" || itemType == "magazine")
     {
       if(itemoid.isEmpty())
 	/*
@@ -2270,16 +2275,6 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 	id = itemoid = id.split(",").value(0);
       else
 	id = id.split(",").value(0);
-    }
-  else if(itemType == "book")
-    {
-      if(itemoid.isEmpty())
-	/*
-	** If the id from getOID() is empty, createInitialCopies() was called
-	** with an oid.
-	*/
-
-	itemoid = id;
     }
 
   if(!itemoid.isEmpty())
@@ -2491,10 +2486,10 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
     return; // Users are not supported.
 
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
   auto str(roles);
 
-  if(str.isEmpty() || str == "none")
+  if(str == "none" || str.isEmpty())
     str = "biblioteq_patron";
   else
     {
@@ -2504,9 +2499,9 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
 
   if(str.contains("administrator"))
     {
-      (void) query.exec(QString("GRANT biblioteq_administrator "
-				"TO %1 WITH ADMIN OPTION").
-			arg(userid));
+      (void) query.exec
+	(QString("GRANT biblioteq_administrator TO %1 WITH ADMIN OPTION").
+	 arg(userid));
 
       if(!query.lastError().isValid())
 	{
@@ -2519,8 +2514,7 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
 
   if(str.contains("membership"))
     {
-      (void) query.exec(QString("GRANT %1 "
-				"TO %2 WITH ADMIN OPTION").
+      (void) query.exec(QString("GRANT %1 TO %2 WITH ADMIN OPTION").
 			arg(str).arg(userid));
 
       if(!query.lastError().isValid())
@@ -2532,8 +2526,7 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
       goto done_label;
     }
 
-  (void) query.exec(QString("GRANT %1 "
-			    "TO %2").arg(str).arg(userid));
+  (void) query.exec(QString("GRANT %1 TO %2").arg(str).arg(userid));
 
  done_label:
 
@@ -2547,44 +2540,43 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
   if(!window)
     return;
 
-  QString str = "";
+  QString str("");
   auto showWidgets = true;
 
   if(roles.isEmpty())
     showWidgets = false;
-  else if(roles.contains("administrator") ||
-	  roles.contains("librarian"))
+  else if(roles.contains("administrator") || roles.contains("librarian"))
     showWidgets = true;
   else
     showWidgets = false;
-
-  foreach(auto widget, window->findChildren<QWidget *> ())
-    {
-      str = widget->objectName().toLower();
-
-      if(str.contains("price") || str.contains("monetary"))
-	widget->setVisible(showWidgets);
-    }
 
   foreach(auto widget, window->findChildren<QLabel *> ())
     {
       str = widget->text().toLower();
 
-      if(str.contains("price") || str.contains("monetary"))
+      if(str.contains("monetary") || str.contains("price"))
 	widget->setVisible(showWidgets);
     }
 
-  foreach(auto button, window->findChildren<QToolButton *> ())
-    if(button->menu())
+  foreach(auto widget, window->findChildren<QToolButton *> ())
+    if(widget->menu())
       {
-	foreach(auto action, button->menu()->findChildren<QAction *> ())
+	foreach(auto action, widget->menu()->findChildren<QAction *> ())
 	  {
 	    str = action->text().toLower();
 
-	    if(str.contains("price") || str.contains("monetary"))
+	    if(str.contains("monetary") || str.contains("price"))
 	      action->setVisible(showWidgets);
 	  }
       }
+
+  foreach(auto widget, window->findChildren<QWidget *> ())
+    {
+      str = widget->objectName().toLower();
+
+      if(str.contains("monetary") || str.contains("price"))
+	widget->setVisible(showWidgets);
+    }
 }
 
 void biblioteq_misc_functions::highlightWidget(QWidget *widget,
@@ -2610,7 +2602,7 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
     return; // Users are not supported.
 
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
   QStringList objectlist;
   auto exists = userExists(userid, db, errorstr);
 
@@ -2659,11 +2651,11 @@ void biblioteq_misc_functions::savePassword(const QString &userid,
     return; // Users are not supported.
 
   QSqlQuery query(db);
-  QString querystr = "";
+  QString querystr("");
 
   query.exec("SET ROLE NONE");
-  querystr = QString("ALTER USER %1 WITH ENCRYPTED "
-		     "PASSWORD '%2'").arg(userid).arg(password);
+  querystr = QString("ALTER USER %1 WITH ENCRYPTED PASSWORD '%2'").
+    arg(userid).arg(password);
 
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
@@ -2676,8 +2668,8 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
 					    QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType = "";
-  QString querystr = "";
+  QString itemType("");
+  QString querystr("");
 
   errorstr = "";
   itemType = itemTypeArg.toLower().remove(" ");
@@ -2786,7 +2778,7 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 					    int column,
 					    const QString &value)
 {
-  if(column < 0 || row < 0 || !table || !table->item(row, column))
+  if(!table || !table->item(row, column) || column < 0 || row < 0)
     return;
 
   auto sortingEnabled = false;
@@ -2811,7 +2803,7 @@ void biblioteq_misc_functions::updateColumnColor(QTableWidget *table,
 						 int column,
 						 const QColor &color)
 {
-  if(column < 0 || row < 0 || !table || !table->item(row, column))
+  if(!table || !table->item(row, column) || column < 0 || row < 0)
     return;
 
   table->item(row, column)->setBackground(color);
