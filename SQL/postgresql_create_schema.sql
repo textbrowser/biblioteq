@@ -4,8 +4,8 @@ CREATE SEQUENCE book_sequence START 1;
 
 CREATE TABLE admin
 (
-	roles		 TEXT NOT NULL,
-	username	 VARCHAR(128) NOT NULL PRIMARY KEY
+	roles	 TEXT NOT NULL,
+	username VARCHAR(128) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE book
@@ -50,14 +50,14 @@ CREATE TABLE book
 
 CREATE TABLE book_copy_info
 (
-	condition	 TEXT,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	notes		 TEXT,
-	originality	 TEXT,
-	status		 TEXT,
+	condition    TEXT,
+	copy_number INTEGER NOT NULL DEFAULT 1,
+	copyid	    VARCHAR(64) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL UNIQUE,
+	notes	    TEXT,
+	originality TEXT,
+	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES book (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (item_oid, copyid)
 );

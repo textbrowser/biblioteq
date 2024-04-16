@@ -617,6 +617,7 @@
 	biblioteq_photographcollection.[cc, h] (Completed)
 	biblioteq_query_history.[cc, h] (Completed)
 	biblioteq_sql_syntax_highlighter.[cc, h] (Completed)
+	biblioteq_sqlite_create_schema.h (Completed)
 	biblioteq_sqlite_merge_databases.[cc, h] (Completed)
 	biblioteq_sruResults.[cc, h] (Completed)
 	biblioteq_swifty.h (Completed)
