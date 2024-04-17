@@ -35,12 +35,12 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
   m_qmain = nullptr;
-  setAcceptDrops(false);
-  setDragEnabled(false);
   horizontalHeader()->setSectionsMovable(true);
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   horizontalHeader()->setStretchLastSection(true);
+  setAcceptDrops(false);
+  setDragEnabled(false);
   verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
 
@@ -77,10 +77,10 @@ bool biblioteq_main_table::isColumnHidden
 (const int index, const QString &type, const QString &username) const
 {
   QString indexstr("");
-  auto l_type(type);
+  auto lType(type);
 
   indexstr.append(username);
-  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append(lType.replace(" ", "_"));
   indexstr.append("_header_state");
   return m_hiddenColumns.value(indexstr).contains(index);
 }
@@ -162,10 +162,10 @@ void biblioteq_main_table::recordColumnHidden(const QString &username,
 					      const bool hidden)
 {
   QString indexstr("");
-  auto l_type(type);
+  auto lType(type);
 
   indexstr.append(username);
-  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append(lType.replace(" ", "_"));
   indexstr.append("_header_state");
 
   if(hidden)
@@ -181,11 +181,11 @@ void biblioteq_main_table::resetTable(const QString &username,
 				      const QString &type,
 				      const QString &roles)
 {
-  setColumnCount(0);
-  setRowCount(0);
-  scrollToTop();
   horizontalScrollBar()->setValue(0);
+  scrollToTop();
+  setColumnCount(0);
   setColumns(username, type, roles);
+  setRowCount(0);
 
   if(m_qmain && m_qmain->setting("automatically_resize_column_widths").toBool())
     {
@@ -652,10 +652,10 @@ void biblioteq_main_table::setColumns(const QString &username,
     }
 
   QString indexstr("");
-  auto l_type(type);
+  auto lType(type);
 
   indexstr.append(username);
-  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append(lType.replace(" ", "_"));
   indexstr.append("_header_state");
 
   for(int i = 0; i < m_hiddenColumns[indexstr].size(); i++)
@@ -673,7 +673,8 @@ void biblioteq_main_table::updateToolTips(const int row)
     return;
 
   QSettings settings;
-  auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+  auto showToolTips = settings.value
+    ("show_maintable_tooltips", false).toBool();
 
   if(!showToolTips)
     return;
