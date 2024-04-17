@@ -646,3 +646,5 @@
      Browser. The warning appears during a tab-key transition from an
      editable QTableWidgetItem to a cell which houses an editable QWidget.
      (Completed)
+321. PostgreSQL notifications: PostgreSQL::notify() and
+     QSqlDriver::subscribeToNotification(). (TBD)
