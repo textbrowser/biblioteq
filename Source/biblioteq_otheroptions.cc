@@ -73,7 +73,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  this,
 	  SLOT(slotMainWindowShortcutChanged(void)));
   m_ui.custom_query->setItemDelegateForColumn(1, m_keywordsItemDelegate);
-  m_ui.date_formats->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  m_ui.date_format->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ui.shortcuts->setItemDelegateForColumn(1, m_shortcutsItemDelegate);
   prepareSQLKeywords();
   prepareSettings();
@@ -303,13 +303,13 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	<< settings.value("otheroptions/cd_availability_color").toString()
 	<< settings.value("otheroptions/videogame_availability_color").
            toString();
-  list3 << "books"
-	<< "dvds"
-	<< "greyliterature"
-	<< "journals"
-	<< "magazines"
-	<< "musiccds"
-	<< "videogames";
+  list3 << "otheroptions/book_availability_color"
+	<< "otheroptions/dvd_availability_color"
+	<< "otheroptions/grey_literature_availability_color"
+	<< "otheroptions/journal_availability_color"
+	<< "otheroptions/magazine_availability_color"
+	<< "otheroptions/cd_availability_color"
+	<< "otheroptions/videogame_availability_color";
   m_ui.availability_color->setRowCount(list1.size());
   m_ui.availability_color->setSortingEnabled(false);
   m_ui.availability_colors->setChecked
@@ -342,6 +342,7 @@ void biblioteq_otheroptions::prepareAvailability(void)
       m_ui.availability_color->setItem
 	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       pushButton->setMinimumWidth(135);
+      pushButton->setProperty("key", list3.at(i));
       pushButton->setText(list2.at(i));
       pushButton->setStyleSheet
 	(QString("background-color: %1").arg(QString(list2.at(i)).remove('&')));
@@ -581,8 +582,8 @@ void biblioteq_otheroptions::prepareSettings(void)
     (qBound(0,
 	    settings.value("otheroptions/books_accession_number_index").toInt(),
 	    m_ui.books_accession_number->count() - 1));
-  m_ui.date_formats->setRowCount(list1.size());
-  m_ui.date_formats->setSortingEnabled(false);
+  m_ui.date_format->setRowCount(list1.size());
+  m_ui.date_format->setSortingEnabled(false);
 
   for(int i = 0; i < list1.size(); i++)
     {
@@ -595,21 +596,21 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.date_formats->setItem
+      m_ui.date_format->setItem
 	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       item = new QTableWidgetItem(str);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags
 	(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.date_formats->setItem
+      m_ui.date_format->setItem
 	(i, static_cast<int> (ItemsColumns::DATE_FORMAT), item);
     }
 
-  m_ui.date_formats->resizeColumnToContents
+  m_ui.date_format->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
-  m_ui.date_formats->resizeRowsToContents();
-  m_ui.date_formats->setSortingEnabled(true);
-  m_ui.date_formats->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.date_format->resizeRowsToContents();
+  m_ui.date_format->setSortingEnabled(true);
+  m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
   m_ui.display_icon_set->setCurrentIndex
     (qBound(0,
 	    settings.value("otheroptions/display_icon_set_index", 0).toInt(),
@@ -734,7 +735,7 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
       widget->update();
     }
 
-  m_ui.date_formats->resizeRowsToContents();
+  m_ui.date_format->resizeRowsToContents();
   update();
 }
 
@@ -861,37 +862,25 @@ void biblioteq_otheroptions::slotSave(void)
       ("otheroptions/members_visible_columns",
        string.mid(0, string.length() - 1));
 
-  QStringList list;
-
-  list << "otheroptions/book_availability_color"
-       << "otheroptions/dvd_availability_color"
-       << "otheroptions/grey_literature_availability_color"
-       << "otheroptions/journal_availability_color"
-       << "otheroptions/magazine_availability_color"
-       << "otheroptions/cd_availability_color"
-       << "otheroptions/videogame_availability_color";
-
-  for(int i = 0; i < list.size(); i++)
+  for(int i = 0; i < m_ui.availability_color->rowCount(); i++)
     {
-      QString value("");
       auto widget = m_ui.availability_color->cellWidget
 	(i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR));
-      const auto &key(list.at(i));
 
       if(widget)
 	{
 	  auto pushButton = widget->findChild<QPushButton *> ();
 
 	  if(pushButton)
-	    value = pushButton->text().trimmed().toLatin1();
+	    settings.setValue
+	      (pushButton->property("key").toString(),
+	       pushButton->text().trimmed().toLatin1());
 	}
-
-      settings.setValue(key, value);
     }
 
-  for(int i = 0; i < list.size(); i++)
+  for(int i = 0; i < m_ui.date_format->rowCount(); i++)
     {
-      auto item = m_ui.date_formats->item
+      auto item = m_ui.date_format->item
 	(i, static_cast<int> (ItemsColumns::DATE_FORMAT));
 
       if(item)

@@ -390,7 +390,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QTableWidget" name="date_formats">
+             <widget class="QTableWidget" name="date_format">
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
@@ -928,7 +928,7 @@
   <tabstop>isbn13_display_format</tabstop>
   <tabstop>item_mandatory_field_color</tabstop>
   <tabstop>item_query_result_color</tabstop>
-  <tabstop>date_formats</tabstop>
+  <tabstop>date_format</tabstop>
   <tabstop>availability_colors</tabstop>
   <tabstop>availability_color</tabstop>
   <tabstop>book_read_status</tabstop>
