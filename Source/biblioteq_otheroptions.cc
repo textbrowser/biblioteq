@@ -567,14 +567,14 @@ void biblioteq_otheroptions::prepareSettings(void)
     	<< settings.value("otheroptions/cd_date_format").toString()
 	<< settings.value("otheroptions/photograph_date_format").toString()
 	<< settings.value("otheroptions/videogame_date_format").toString();
-  list3 << "books"
-	<< "dvds"
-	<< "greyliterature"
-	<< "journals"
-	<< "magazines"
-	<< "musiccds"
-	<< "photographcollections"
-	<< "videogames";
+  list3 << "otheroptions/book_date_format"
+	<< "otheroptions/dvd_date_format"
+	<< "otheroptions/grey_literature_date_format"
+	<< "otheroptions/journal_date_format"
+	<< "otheroptions/magazine_date_format"
+    	<< "otheroptions/cd_date_format"
+	<< "otheroptions/photograph_date_format"
+	<< "otheroptions/videogame_date_format";
   m_ui.book_read_status->setChecked
     (settings.value("otheroptions/book_read_status", false).toBool());
   m_ui.books_accession_number->setCurrentIndex
@@ -889,27 +889,23 @@ void biblioteq_otheroptions::slotSave(void)
       settings.setValue(key, value);
     }
 
-  list.clear();
-  list << "otheroptions/book_date_format"
-       << "otheroptions/dvd_date_format"
-       << "otheroptions/grey_literature_date_format"
-       << "otheroptions/journal_date_format"
-       << "otheroptions/magazine_date_format"
-       << "otheroptions/cd_date_format"
-       << "otheroptions/photograph_date_format"
-       << "otheroptions/videogame_date_format";
-
   for(int i = 0; i < list.size(); i++)
     {
       auto item = m_ui.date_formats->item
 	(i, static_cast<int> (ItemsColumns::DATE_FORMAT));
-      auto value(biblioteq::s_databaseDateFormat);
-      const auto &key(list.at(i));
 
       if(item)
-	value = item->text().trimmed();
+	{
+	  auto str(item->text().trimmed());
 
-      settings.setValue(key, value);
+	  if(str.isEmpty())
+	    {
+	      item->setText(biblioteq::s_databaseDateFormat);
+	      str = item->text();
+	    }
+
+	  settings.setValue(item->data(Qt::UserRole).toString(), str);
+	}
     }
 
   for(int i = 0; i < m_ui.shortcuts->rowCount(); i++)
