@@ -115,7 +115,7 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   auto color(QColor(value.remove('&')));
 
   if(!color.isValid())
-    color = QColor(Qt::green);
+    color = QColor(Qt::white);
 
   return color;
 }
@@ -330,7 +330,6 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	      SIGNAL(clicked(void)),
 	      this,
 	      SLOT(slotSelectAvailabilityColor(void)));
-      widget->setLayout(layout);
       layout->addSpacerItem(spacer1);
       layout->addWidget(pushButton);
       layout->addSpacerItem(spacer2);
@@ -343,9 +342,10 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       pushButton->setMinimumWidth(135);
       pushButton->setProperty("key", list3.at(i));
-      pushButton->setText(list2.at(i));
       pushButton->setStyleSheet
 	(QString("background-color: %1").arg(QString(list2.at(i)).remove('&')));
+      pushButton->setText(QString(list2.at(i)).remove('&'));
+      widget->setLayout(layout);
     }
 
   m_ui.availability_color->resizeColumnToContents
@@ -874,7 +874,7 @@ void biblioteq_otheroptions::slotSave(void)
 	  if(pushButton)
 	    settings.setValue
 	      (pushButton->property("key").toString(),
-	       pushButton->text().trimmed().toLatin1());
+	       pushButton->text().trimmed());
 	}
     }
 
@@ -912,7 +912,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   settings.setValue
     ("mainwindow_canvas_background_color",
-     m_ui.main_window_canvas_background_color->text().remove('&').toLatin1());
+     m_ui.main_window_canvas_background_color->text().remove('&'));
   settings.setValue
     ("otheroptions/book_read_status", m_ui.book_read_status->isChecked());
   settings.setValue
@@ -935,10 +935,10 @@ void biblioteq_otheroptions::slotSave(void)
      m_ui.isbn13_display_format->currentIndex());
   settings.setValue
     ("otheroptions/item_mandatory_field_color",
-     m_ui.item_mandatory_field_color->text().remove('&').toLatin1());
+     m_ui.item_mandatory_field_color->text().remove('&'));
   settings.setValue
     ("otheroptions/item_query_result_color",
-     m_ui.item_query_result_color->text().remove('&').toLatin1());
+     m_ui.item_query_result_color->text().remove('&'));
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue
