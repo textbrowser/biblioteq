@@ -874,7 +874,7 @@ void biblioteq_otheroptions::slotSave(void)
 	  if(pushButton)
 	    settings.setValue
 	      (pushButton->property("key").toString(),
-	       pushButton->text().trimmed());
+	       pushButton->text().remove('&').trimmed());
 	}
     }
 
