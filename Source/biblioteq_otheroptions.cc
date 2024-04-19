@@ -90,25 +90,25 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   QString value("white");
   auto itemType(QString(it).remove(" ").toLower().trimmed());
 
-  if(itemType == "book" || itemType == "books")
+  if(itemType.contains("book"))
     value = settings.value
       ("otheroptions/book_availability_color").toString();
-  else if(itemType == "cd" || itemType == "musiccds")
+  else if(itemType.contains("cd") || itemType.contains("music"))
     value = settings.value
       ("otheroptions/cd_availability_color").toString();
-  else if(itemType == "dvd" || itemType == "dvds")
+  else if(itemType.contains("dvd"))
     value = settings.value
       ("otheroptions/dvd_availability_color").toString();
-  else if(itemType == "greyliterature")
+  else if(itemType.contains("grey"))
     value = settings.value
       ("otheroptions/grey_literature_availability_color").toString();
-  else if(itemType == "journal" || itemType == "journals")
+  else if(itemType.contains("journal"))
     value = settings.value
       ("otheroptions/journal_availability_color").toString();
-  else if(itemType == "magazine" || itemType == "magazines")
+  else if(itemType.contains("magazine"))
     value = settings.value
       ("otheroptions/magazine_availability_color").toString();
-  else if(itemType == "videogame" || itemType == "videogames")
+  else if(itemType.contains("video"))
     value = settings.value
       ("otheroptions/videogame_availability_color").toString();
 
