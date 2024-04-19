@@ -32,6 +32,16 @@ biblioteq_numeric_table_item::biblioteq_numeric_table_item
 {
 }
 
+biblioteq_numeric_table_item::biblioteq_numeric_table_item
+(const int value):QTableWidgetItem(QString::number(value))
+{
+}
+
+QVariant biblioteq_numeric_table_item::value(void) const
+{
+  return text();
+}
+
 bool biblioteq_numeric_table_item::operator <
 (const QTableWidgetItem &other) const
 {
@@ -40,9 +50,4 @@ bool biblioteq_numeric_table_item::operator <
   */
 
   return text().toDouble() < other.text().toDouble();
-}
-
-double biblioteq_numeric_table_item::value(void) const
-{
-  return text().toDouble();
 }

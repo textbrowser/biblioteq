@@ -34,8 +34,9 @@ class biblioteq_numeric_table_item: public QTableWidgetItem
 {
  public:
   biblioteq_numeric_table_item(const double value);
+  biblioteq_numeric_table_item(const int value);
+  QVariant value(void) const;
   bool operator <(const QTableWidgetItem &other) const;
-  double value(void) const;
 };
 
 #endif
