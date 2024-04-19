@@ -88,7 +88,7 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 {
   QSettings settings;
   QString value("white");
-  auto itemType(QString(it).remove(" ").toLower().trimmed());
+  auto itemType(QString(it).remove(' ').toLower().trimmed());
 
   if(itemType.contains("book"))
     value = settings.value
