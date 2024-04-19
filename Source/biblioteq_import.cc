@@ -373,7 +373,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    {
 		      QLocale locale;
 		      auto ok = true;
-		      double price = locale.toDouble
+		      auto price = locale.toDouble
 			(str.remove(locale.currencySymbol()), &ok);
 
 		      if(ok)
@@ -1015,6 +1015,7 @@ void biblioteq_import::slotImport(void)
 	   tr("BiblioteQ: Error"),
 	   tr("The file %1 is not readable.").arg(fileInfo.absolutePath()));
 
+      QApplication::processEvents();
       return;
     }
 
@@ -1049,6 +1050,7 @@ void biblioteq_import::slotImport(void)
 	     tr("BiblioteQ: Error"),
 	     tr("Duplicate mapping discovered in the table. Please "
 		"review row %1.").arg(item1->row()));
+	  QApplication::processEvents();
 	  return;
 	}
 
@@ -1062,6 +1064,7 @@ void biblioteq_import::slotImport(void)
 	(this,
 	 tr("BiblioteQ: Error"),
 	 tr("Please define column mappings."));
+      QApplication::processEvents();
       return;
     }
 
@@ -1155,9 +1158,9 @@ void biblioteq_import::slotRefreshPreview(void)
 
 void biblioteq_import::slotReset(void)
 {
-  if(m_ui.rows->rowCount() > 0 ||
-     !m_ui.csv_file->text().isEmpty() ||
-     m_ui.delimiter->text() != ",")
+  if(!m_ui.csv_file->text().isEmpty() ||
+     m_ui.delimiter->text() != "," ||
+     m_ui.rows->rowCount() > 0)
     if(sender())
       if(QMessageBox::question(this,
 			       tr("BiblioteQ: Question"),

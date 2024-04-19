@@ -606,6 +606,7 @@
 	biblioteq_copy_editor_book.[cc, h] (Completed)
 	biblioteq_files.[cc, h] (Completed)
 	biblioteq_item.[cc, h] (Completed)
+	biblioteq_magic.[cc, h] (Completed)
 	biblioteq_magazine.[cc, h] (Completed)
 	biblioteq_main_table.[cc, h] (Completed)
 	biblioteq_marc.[cc, h] (Completed)
