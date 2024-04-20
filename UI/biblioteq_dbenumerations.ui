@@ -155,9 +155,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-148</y>
+              <y>-3192</y>
               <width>497</width>
-              <height>4054</height>
+              <height>4082</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
@@ -1859,6 +1859,13 @@
                  </property>
                  <property name="text">
                   <string>Reservations Minimum Days</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_12">
+                 <property name="text">
+                  <string>Type is not translated.</string>
                  </property>
                 </widget>
                </item>
