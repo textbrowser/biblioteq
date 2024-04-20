@@ -75,6 +75,82 @@
         <source>The method biblioteq_misc_functions::getOID() did not discover a valid OID.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>Compute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Αντίτυπα</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From ISBN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Αναζήτηση</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Tracks</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -2464,6 +2540,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Create Books</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Configuration Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PostgreSQL library %1 cannot be read. PostgreSQL services will not be functional.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_batch_activities</name>
@@ -4085,7 +4169,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation type="unfinished">Δεν είναι δυνατή η επιλογή του αντίτυπου γιατί είτε είναι μη διαθέσιμο είτε δεν υπάρχει.</translation>
+        <translation type="obsolete">Δεν είναι δυνατή η επιλογή του αντίτυπου γιατί είτε είναι μη διαθέσιμο είτε δεν υπάρχει.</translation>
     </message>
     <message>
         <source>Please select a future Due Date.</source>
@@ -4097,7 +4181,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation type="unfinished">Το αντίτυπο που επιλέχθηκε δεν είναι διαθέσιμο ή είναι ήδη δανεισμένο.</translation>
+        <translation type="obsolete">Το αντίτυπο που επιλέχθηκε δεν είναι διαθέσιμο ή είναι ήδη δανεισμένο.</translation>
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
@@ -4186,6 +4270,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>UNKNOWN</source>
         <translation type="obsolete">Άγνωστο</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expired</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the copy you have selected does not exist or is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The copy that you have selected does not exist or is not available.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4358,6 +4466,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Lost</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expired</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recalled</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_custom_query</name>
@@ -4422,23 +4546,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">Εφημερίδα</translation>
+        <translation type="obsolete">Εφημερίδα</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">Περιοδικό</translation>
+        <translation type="obsolete">Περιοδικό</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">Μουσικό CD</translation>
+        <translation type="obsolete">Μουσικό CD</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">Ηλεκτρονικό παιχνίδι</translation>
+        <translation type="obsolete">Ηλεκτρονικό παιχνίδι</translation>
     </message>
     <message>
         <source>CD Format</source>
@@ -4513,14 +4637,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Your changes have not been saved. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4563,6 +4679,45 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>Reservations Minimum Days</source>
         <translation type="unfinished">Ελάχιστες ημέρες δανεισμού</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_dbenumerations_item_delegate</name>
+    <message>
+        <source>Book</source>
+        <translation type="unfinished">Βιβλίο</translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <source>Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Journal</source>
+        <translation type="unfinished">Εφημερίδα</translation>
+    </message>
+    <message>
+        <source>Magazine</source>
+        <translation type="unfinished">Περιοδικό</translation>
+    </message>
+    <message>
+        <source>Music CD</source>
+        <translation type="unfinished">Μουσικό CD</translation>
+    </message>
+    <message>
+        <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game</source>
+        <translation type="unfinished">Ηλεκτρονικό παιχνίδι</translation>
+    </message>
+    <message>
+        <source>CD</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5523,15 +5678,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Copies</source>
         <translation type="unfinished">Αντίτυπα</translation>
     </message>
     <message>
         <source>Single copies only, please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7458,7 +7613,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">Ημερομηνία λήξης δανεισμού</translation>
+        <translation type="unfinished">Ημερομηνία λήξης δανεισμού</translation>
     </message>
     <message>
         <source>Title</source>
@@ -7506,10 +7661,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Save new due dates.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Due &amp;Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7688,7 +7839,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation type="unfinished">&amp;Σύνδεση</translation>
+        <translation type="obsolete">&amp;Σύνδεση</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -7739,16 +7890,20 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Show</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Missing Qt database driver! Please contact your system administrator!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;html&gt;&amp;#9888;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished">Σύνδεση</translation>
     </message>
 </context>
 <context>
@@ -7803,7 +7958,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Compute</source>
-        <translation type="unfinished">&amp;Υπολογισμός</translation>
+        <translation type="obsolete">&amp;Υπολογισμός</translation>
     </message>
     <message>
         <source>Audio</source>
@@ -7924,15 +8079,7 @@ URL</source>
         <translation type="unfinished">Λέξεις κλειδιά</translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Artists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Show Tracks...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7945,14 +8092,6 @@ URL</source>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7969,6 +8108,26 @@ URL</source>
     </message>
     <message>
         <source>Compute the runtime from the available tracks.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Tracks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8357,7 +8516,7 @@ URL</source>
     </message>
     <message>
         <source>Due Date</source>
-        <translation type="obsolete">Ημερομηνία λήξης δανεισμού</translation>
+        <translation type="unfinished">Ημερομηνία λήξης δανεισμού</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -8400,10 +8559,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Due &amp;Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Copies are ordered by copy numbers.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8413,6 +8568,10 @@ URL</source>
     </message>
     <message>
         <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8785,6 +8944,10 @@ URL</source>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Type is not translated.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>dbenumerations</name>
@@ -9126,10 +9289,6 @@ URL</source>
         <translation type="unfinished">Λέξεις κλειδιά</translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Directors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9139,14 +9298,6 @@ URL</source>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9163,6 +9314,18 @@ URL</source>
     </message>
     <message>
         <source>Actors / Actresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9405,10 +9568,6 @@ URL</source>
         <translation type="unfinished">&amp;Αρχείο</translation>
     </message>
     <message>
-        <source>Export As CSV...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This window will attempt to remain on top of other windows.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9418,6 +9577,10 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export As CSV...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9541,7 +9704,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished">&amp;Βοήθεια</translation>
+        <translation type="obsolete">&amp;Βοήθεια</translation>
     </message>
     <message>
         <source>&amp;Documentation...</source>
@@ -9572,7 +9735,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished">Κατέβασ&amp;μα</translation>
+        <translation type="obsolete">Κατέβασ&amp;μα</translation>
     </message>
     <message>
         <source>&amp;Select</source>
@@ -9802,7 +9965,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
@@ -9822,11 +9985,11 @@ URL</source>
     </message>
     <message>
         <source>From &amp;ISBN-13</source>
-        <translation type="unfinished">Από ISBN-1&amp;3</translation>
+        <translation type="obsolete">Από ISBN-1&amp;3</translation>
     </message>
     <message>
         <source>From &amp;ISBN-10</source>
-        <translation type="unfinished">Από ISBN-1&amp;0</translation>
+        <translation type="obsolete">Από ISBN-1&amp;0</translation>
     </message>
     <message>
         <source>MARC Tags</source>
@@ -9853,10 +10016,6 @@ URL</source>
         <translation type="unfinished">MYOID</translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Authors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9866,14 +10025,6 @@ URL</source>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9995,6 +10146,34 @@ URL</source>
     <message>
         <source>Purchase Date</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From ISBN-1&amp;0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From ISBN-1&amp;3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished">OK</translation>
     </message>
 </context>
 <context>
@@ -10192,19 +10371,7 @@ URL</source>
         <translation type="unfinished">MYOID</translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Issue Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10273,6 +10440,18 @@ URL</source>
     </message>
     <message>
         <source>Parse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11018,14 +11197,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Table Find</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If an item contains the specified text, the row housing it will be selected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11135,6 +11306,10 @@ URL</source>
     </message>
     <message>
         <source>Query History...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. A pattern-matching query is performed. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11520,10 +11695,6 @@ URL</source>
         <translation type="obsolete">Ctrl+Ω</translation>
     </message>
     <message>
-        <source>&amp;Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Grey Literatures Reserved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11666,10 +11837,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Publication Date Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+S</source>
         <translation type="unfinished">Ctrl+Θ</translation>
     </message>
@@ -11687,14 +11854,6 @@ URL</source>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Show Table Tool Tips</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Availability Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11770,14 +11929,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Show Progress Dialogs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Show Table / View Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sort options are considered per category. For example, BiblioteQ must be in the Books state in order for the Accession Number sort algorithm to be applied.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11810,10 +11961,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please note that the publication date formats are applied to item details and the main window for the specific categories. Please review Qt documentation for proper formats.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Members</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11843,6 +11990,46 @@ URL</source>
     </message>
     <message>
         <source>Shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Faenza</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please note that the date formats are applied to item details and the main window. Date formats are applied to all database fields whose names contain &amp;quot;date&amp;quot; or &amp;quot;membersince&amp;quot;. Please review Qt documentation for proper formats.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Availability Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Progress Dialogs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Table / View Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Table Tool Tips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12003,10 +12190,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12084,6 +12267,10 @@ URL</source>
     </message>
     <message>
         <source>Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12237,10 +12424,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Creators</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12274,6 +12457,10 @@ URL</source>
     </message>
     <message>
         <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12336,15 +12523,15 @@ URL</source>
         <translation type="unfinished">Απ&amp;οθήκευση</translation>
     </message>
     <message>
-        <source>View &amp;Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Size</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -16717,10 +16904,6 @@ URL</source>
         <translation type="unfinished">Λέξεις κλειδιά</translation>
     </message>
     <message>
-        <source>&amp;Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Developers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16733,14 +16916,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Copies...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Reservation Status...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16750,6 +16925,18 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Status...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
