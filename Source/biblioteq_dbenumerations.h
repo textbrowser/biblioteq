@@ -82,6 +82,9 @@ class biblioteq_dbenumerations: public QMainWindow
   void slotRemove(void);
   void slotSave(void);
   void slotScrollToSection(int index);
+
+ signals:
+  void committed(void);
 };
 
 class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate

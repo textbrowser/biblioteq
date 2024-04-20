@@ -1086,7 +1086,10 @@ void biblioteq_dbenumerations::slotSave(void)
       QApplication::processEvents();
     }
   else
-    populateWidgets();
+    {
+      populateWidgets();
+      emit committed();
+    }
 }
 
 void biblioteq_dbenumerations::slotScrollToSection(int index)
