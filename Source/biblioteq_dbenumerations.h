@@ -122,7 +122,6 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 		  , Qt::QueuedConnection
 #endif
 		  );
-	  biblioteq_misc_functions::sortCombinationBox(comboBox);
 	  comboBox->setCurrentIndex(comboBox->findText(value));
 
 	  if(comboBox->currentIndex() < 0)
