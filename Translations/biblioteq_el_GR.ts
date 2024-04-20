@@ -4542,7 +4542,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Βιβλίο</translation>
+        <translation type="obsolete">Βιβλίο</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -4685,39 +4685,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_dbenumerations_item_delegate</name>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Βιβλίο</translation>
+        <translation type="obsolete">Βιβλίο</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">Εφημερίδα</translation>
+        <translation type="obsolete">Εφημερίδα</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">Περιοδικό</translation>
+        <translation type="obsolete">Περιοδικό</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">Μουσικό CD</translation>
-    </message>
-    <message>
-        <source>Photograph Collection</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Μουσικό CD</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">Ηλεκτρονικό παιχνίδι</translation>
-    </message>
-    <message>
-        <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ηλεκτρονικό παιχνίδι</translation>
     </message>
 </context>
 <context>
@@ -8722,23 +8710,23 @@ URL</source>
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished">Βιβλία</translation>
+        <translation type="obsolete">Βιβλία</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation type="unfinished">Εφημερίδες</translation>
+        <translation type="obsolete">Εφημερίδες</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="unfinished">Περιοδικά</translation>
+        <translation type="obsolete">Περιοδικά</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="unfinished">Μουσικά CDs</translation>
+        <translation type="obsolete">Μουσικά CDs</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="unfinished">Ηλεκτρονικά παιχνίδια</translation>
+        <translation type="obsolete">Ηλεκτρονικά παιχνίδια</translation>
     </message>
     <message>
         <source>DVD Ratings</source>
@@ -8802,7 +8790,7 @@ URL</source>
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">DVDs</translation>
+        <translation type="obsolete">DVDs</translation>
     </message>
     <message>
         <source>Add Video Game Rating</source>
@@ -8913,10 +8901,6 @@ URL</source>
         <translation type="unfinished">7</translation>
     </message>
     <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8945,7 +8929,7 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Type is not translated.</source>
+        <source>The Type field is not translated in the database and in the interface.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -4522,7 +4522,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Boek</translation>
+        <translation type="obsolete">Boek</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -4665,39 +4665,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_dbenumerations_item_delegate</name>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Boek</translation>
+        <translation type="obsolete">Boek</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">Krant</translation>
+        <translation type="obsolete">Krant</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">Tijdschrift</translation>
+        <translation type="obsolete">Tijdschrift</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">Muziek CD</translation>
-    </message>
-    <message>
-        <source>Photograph Collection</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Muziek CD</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">Video Game</translation>
-    </message>
-    <message>
-        <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Video Game</translation>
     </message>
 </context>
 <context>
@@ -8668,7 +8656,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">DVD&apos;s</translation>
+        <translation type="obsolete">DVD&apos;s</translation>
     </message>
     <message>
         <source>Days</source>
@@ -8680,11 +8668,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished">Boeken</translation>
+        <translation type="obsolete">Boeken</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="unfinished">Video Games</translation>
+        <translation type="obsolete">Video Games</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Enumerations Browser</source>
@@ -8744,7 +8732,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Journals</source>
-        <translation type="unfinished">Kranten</translation>
+        <translation type="obsolete">Kranten</translation>
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
@@ -8784,7 +8772,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="unfinished">Muziek CD&apos;s</translation>
+        <translation type="obsolete">Muziek CD&apos;s</translation>
     </message>
     <message>
         <source>Save Changes</source>
@@ -8804,7 +8792,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="unfinished">Tijdschriften</translation>
+        <translation type="obsolete">Tijdschriften</translation>
     </message>
     <message>
         <source>Add Monetary Unit</source>
@@ -8871,10 +8859,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">7</translation>
     </message>
     <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8903,7 +8887,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Type is not translated.</source>
+        <source>The Type field is not translated in the database and in the interface.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

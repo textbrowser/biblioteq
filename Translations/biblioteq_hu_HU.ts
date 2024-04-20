@@ -4585,7 +4585,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Könvy</translation>
+        <translation type="obsolete">Könvy</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -4736,39 +4736,31 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_dbenumerations_item_delegate</name>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Könvy</translation>
+        <translation type="obsolete">Könvy</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">Folyóirat</translation>
+        <translation type="obsolete">Folyóirat</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">Magazin</translation>
+        <translation type="obsolete">Magazin</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">Zene CD</translation>
+        <translation type="obsolete">Zene CD</translation>
     </message>
     <message>
         <source>Photograph Collection</source>
-        <translation type="unfinished">Fénykép Gyüjtemény</translation>
+        <translation type="obsolete">Fénykép Gyüjtemény</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">Videójáték</translation>
-    </message>
-    <message>
-        <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Videójáték</translation>
     </message>
 </context>
 <context>
@@ -8743,27 +8735,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished">Könyvek</translation>
+        <translation type="obsolete">Könyvek</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">DVDk</translation>
+        <translation type="obsolete">DVDk</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation type="unfinished">Folyóiratok</translation>
+        <translation type="obsolete">Folyóiratok</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="unfinished">Magazinok</translation>
+        <translation type="obsolete">Magazinok</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="unfinished">Zene CDk</translation>
+        <translation type="obsolete">Zene CDk</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="unfinished">Videójátékok</translation>
+        <translation type="obsolete">Videójátékok</translation>
     </message>
     <message>
         <source>Video Game Platforms</source>
@@ -8858,10 +8850,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8890,7 +8878,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Type is not translated.</source>
+        <source>The Type field is not translated in the database and in the interface.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

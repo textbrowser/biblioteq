@@ -4552,7 +4552,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. MÃ
     </message>
     <message>
         <source>Book</source>
-        <translation>Buch</translation>
+        <translation type="vanished">Buch</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -4707,39 +4707,35 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. MÃ
     <name>biblioteq_dbenumerations_item_delegate</name>
     <message>
         <source>Book</source>
-        <translation type="unfinished">Buch</translation>
+        <translation type="obsolete">Buch</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished">Graue Literatur</translation>
+        <translation type="obsolete">Graue Literatur</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">Journal</translation>
+        <translation type="obsolete">Journal</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">Magazin</translation>
+        <translation type="obsolete">Magazin</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">Musik-CD</translation>
+        <translation type="obsolete">Musik-CD</translation>
     </message>
     <message>
         <source>Photograph Collection</source>
-        <translation type="unfinished">Fotosammlung</translation>
+        <translation type="obsolete">Fotosammlung</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">Videospiel</translation>
-    </message>
-    <message>
-        <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Videospiel</translation>
     </message>
 </context>
 <context>
@@ -8612,27 +8608,27 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>BÃ¼cher</translation>
+        <translation type="vanished">BÃ¼cher</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVDs</translation>
+        <translation type="vanished">DVDs</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Journals</translation>
+        <translation type="vanished">Journals</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Magazine</translation>
+        <translation type="vanished">Magazine</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Musik-CDs</translation>
+        <translation type="vanished">Musik-CDs</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Videospiele</translation>
+        <translation type="vanished">Videospiele</translation>
     </message>
     <message>
         <source>Video Game Ratings</source>
@@ -8780,7 +8776,7 @@ Web-Adresse</translation>
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished">Graue Literatur</translation>
+        <translation type="obsolete">Graue Literatur</translation>
     </message>
     <message>
         <source>F5</source>
@@ -8811,7 +8807,7 @@ Web-Adresse</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Type is not translated.</source>
+        <source>The Type field is not translated in the database and in the interface.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

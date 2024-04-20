@@ -4561,10 +4561,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Your changes have not been saved. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4646,45 +4642,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Reservations Minimum Days</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>biblioteq_dbenumerations_item_delegate</name>
-    <message>
-        <source>Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Journal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Magazine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Music CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Video Game</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CD</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8663,27 +8620,27 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished">Knihy</translation>
+        <translation type="obsolete">Knihy</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">DVD disky</translation>
+        <translation type="obsolete">DVD disky</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation type="unfinished">Časopisy</translation>
+        <translation type="obsolete">Časopisy</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="unfinished">Magazíny</translation>
+        <translation type="obsolete">Magazíny</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="unfinished">Hudební CD</translation>
+        <translation type="obsolete">Hudební CD</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="unfinished">Videohry</translation>
+        <translation type="obsolete">Videohry</translation>
     </message>
     <message>
         <source>Monetary Units</source>
@@ -8790,10 +8747,6 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
         <translation type="unfinished">7</translation>
     </message>
     <message>
-        <source>Grey Literature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8822,7 +8775,7 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Type is not translated.</source>
+        <source>The Type field is not translated in the database and in the interface.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

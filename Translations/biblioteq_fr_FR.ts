@@ -35,66 +35,66 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_misc_functions.cc" line="516"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1379"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1378"/>
         <source>QSqlQuery::next() was false.</source>
         <translation>QSqlQuery::next() était faux.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1203"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1202"/>
         <source>#</source>
         <translation>n°</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1205"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1204"/>
         <source>Barcode: </source>
         <translation>Code barres : </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1207"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1206"/>
         <source> Location: </source>
         <translation> Emplacement : </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1209"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1208"/>
         <source>Type: </source>
         <translation>Type : </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1211"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1210"/>
         <source>Title: </source>
         <translation>Titre : </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1213"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1212"/>
         <source>Due Date: </source>
         <translation>Date limite : </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1895"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1924"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1894"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1923"/>
         <source>Database Error</source>
         <translation>Erreur de la base de données</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1896"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1925"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1895"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1924"/>
         <source>Unable to determine the query size.</source>
         <translation>Impossible de déterminer la taille de la requête.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2187"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2186"/>
         <source>The method biblioteq_misc_functions::getOID() did not discover a valid OID.</source>
         <translation>La méthode biblioteq_misc_functions::getOID() n&apos;a pas découvert un OID valide.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2343"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2404"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2342"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2403"/>
         <source>Exporting image(s)...</source>
         <translation>Exportation de(s) image(s)...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2347"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2407"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2346"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2406"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>BiblioteQ : dialogue de progression</translation>
     </message>
@@ -5989,9 +5989,9 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../Source/biblioteq_dbenumerations.cc" line="875"/>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="966"/>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="1002"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1061"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1081"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1094"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1038"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1058"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1071"/>
         <source>Database Error</source>
         <translation>Erreur de la base de données</translation>
     </message>
@@ -6007,9 +6007,8 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation>.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="706"/>
         <source>Book</source>
-        <translation>Livre</translation>
+        <translation type="vanished">Livre</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -6136,38 +6135,38 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     </message>
     <message>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="1005"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1066"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1043"/>
         <source>, </source>
         <translation>, </translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="1007"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1068"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1045"/>
         <source>).</source>
         <translation>).</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1062"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1039"/>
         <source>Unable to create the minimum day (</source>
         <translation>Impossible de créer le nombre minimal de jours (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1082"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1059"/>
         <source>Unable to commit the current database transaction.</source>
         <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1095"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1072"/>
         <source>Rollback failure.</source>
         <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1106"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1083"/>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ&#xa0;: erreur de la base de données</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="1107"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="1084"/>
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation>Une erreur est survenue lors d&apos;une tentative d&apos;enregistrer les énumérations de la base de données.</translation>
     </message>
@@ -6175,64 +6174,40 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
 <context>
     <name>biblioteq_dbenumerations_item_delegate</name>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="109"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="127"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="128"/>
         <source>Book</source>
-        <translation type="unfinished">Livre</translation>
+        <translation type="obsolete">Livre</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="110"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="131"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="132"/>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="111"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="133"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="135"/>
         <source>Grey Literature</source>
-        <translation type="unfinished">Littérature grise</translation>
+        <translation type="obsolete">Littérature grise</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="112"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="136"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="137"/>
         <source>Journal</source>
-        <translation type="unfinished">Journal</translation>
+        <translation type="obsolete">Journal</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="113"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="138"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="139"/>
         <source>Magazine</source>
-        <translation type="unfinished">Magazine</translation>
+        <translation type="obsolete">Magazine</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="114"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="130"/>
         <source>Music CD</source>
-        <translation type="unfinished">CD de musique</translation>
+        <translation type="obsolete">CD de musique</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="115"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="140"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="142"/>
         <source>Photograph Collection</source>
-        <translation type="unfinished">Collection photographiques</translation>
+        <translation type="obsolete">Collection photographiques</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="116"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="143"/>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="144"/>
         <source>Video Game</source>
-        <translation type="unfinished">Jeu vidéo</translation>
+        <translation type="obsolete">Jeu vidéo</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.h" line="129"/>
         <source>CD</source>
-        <translation type="unfinished">CD</translation>
+        <translation type="obsolete">CD</translation>
     </message>
 </context>
 <context>
@@ -10609,281 +10584,275 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation>Section</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="57"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="175"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="60"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="178"/>
         <source>Book Binding Types</source>
         <translation>Types de reliure</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="62"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="316"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="65"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="319"/>
         <source>Book Conditions</source>
         <translation>Etat des livres</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="67"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="457"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="70"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="460"/>
         <source>Book Originality</source>
         <translation>Origine du livre</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="72"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="598"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="75"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="601"/>
         <source>Book Target Audiences</source>
         <translation>Publics cible pour les livres</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="77"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="739"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="80"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="742"/>
         <source>CD Formats</source>
         <translation>Formats de CD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="82"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="880"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="85"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="883"/>
         <source>DVD Aspect Ratios</source>
         <translation>Rapports hauteur&#xa0;/&#xa0;largeur de DVD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="87"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1021"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="90"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1024"/>
         <source>DVD Ratings</source>
         <translation>Classification de DVD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="92"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1162"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="95"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1165"/>
         <source>DVD Regions</source>
         <translation>Régions de DVD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="97"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1303"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="100"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1306"/>
         <source>Grey Literature Document Types</source>
         <translation>Type de document Littérature grise</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="102"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1444"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="105"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1447"/>
         <source>Languages</source>
         <translation>Langues</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="107"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1585"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="110"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1588"/>
         <source>Locations</source>
         <translation>Emplacements</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="112"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1720"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="115"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1730"/>
         <source>Monetary Units</source>
         <translation>Unités monétaires</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="117"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1861"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="120"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1871"/>
         <source>Reservations Minimum Days</source>
         <translation>Nombre de jours minimal d&apos;emprunt</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="122"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2083"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="125"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2090"/>
         <source>Video Game Platforms</source>
         <translation>Plates formes de jeux vidéo</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="127"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2224"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="130"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2231"/>
         <source>Video Game Ratings</source>
         <translation>Classifications des jeux vidéo</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="184"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="325"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="466"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="607"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="748"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="889"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1030"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1171"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1312"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1453"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1729"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2092"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2233"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="187"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="328"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="469"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="610"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="751"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="892"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1033"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1174"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1315"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1456"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1739"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2099"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2240"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="250"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="391"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="532"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="673"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="814"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="955"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1096"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1237"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1378"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1519"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1654"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1795"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2158"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2299"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="253"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="394"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="535"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="676"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="817"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="958"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1099"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1240"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1381"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1522"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1664"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1805"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2165"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2306"/>
         <source>Add</source>
         <translation>Ajouter</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="267"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="408"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="549"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="690"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="831"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="972"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1113"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1254"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1395"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1536"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1671"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1812"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2175"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2316"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="270"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="411"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="552"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="693"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="834"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="975"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1116"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1257"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1398"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1539"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1681"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1822"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2182"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2323"/>
         <source>Remove</source>
         <translation>Enlever</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1626"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1947"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1595"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1878"/>
+        <source>The Type field is not translated in the database and in the interface.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1636"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1954"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1631"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1641"/>
         <source>Location</source>
         <translation>Emplacement</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1868"/>
-        <source>Type is not translated.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1912"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1919"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1917"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1929"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1922"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1934"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1927"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1939"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1932"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1944"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1937"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1924"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1942"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1949"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1952"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1959"/>
         <source>Days</source>
         <translation>Jours</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1957"/>
         <source>Books</source>
-        <translation>Livres</translation>
+        <translation type="vanished">Livres</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1965"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2007"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2023"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1972"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2030"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2046"/>
         <source>21</source>
         <translation>21</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1973"/>
         <source>DVDs</source>
-        <translation>DVDs</translation>
+        <translation type="vanished">DVDs</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1981"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1994"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2039"/>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2055"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="1988"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2004"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2017"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2062"/>
         <source>14</source>
         <translation>14</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1989"/>
         <source>Grey Literature</source>
-        <translation>Littérature grise</translation>
+        <translation type="vanished">Littérature grise</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="1999"/>
         <source>Journals</source>
-        <translation>Journaux</translation>
+        <translation type="vanished">Journaux</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2015"/>
         <source>Magazines</source>
-        <translation>Magazines</translation>
+        <translation type="vanished">Magazines</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2031"/>
         <source>Music CDs</source>
-        <translation>CD de musique</translation>
+        <translation type="vanished">CD de musique</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2047"/>
         <source>Video Games</source>
-        <translation>Jeux vidéo</translation>
+        <translation type="vanished">Jeux vidéo</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2356"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2363"/>
         <source>Save Changes</source>
         <translation>Enregistrer les changements</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2369"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2376"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2386"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2393"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2399"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2406"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2422"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2429"/>
         <source>Close Browser</source>
         <translation>Fermer l&apos;explorateur</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_dbenumerations.ui" line="2435"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="2442"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>

@@ -4736,7 +4736,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book</source>
-        <translation type="unfinished">الكتب</translation>
+        <translation type="obsolete">الكتب</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -4884,39 +4884,35 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_dbenumerations_item_delegate</name>
     <message>
         <source>Book</source>
-        <translation type="unfinished">الكتب</translation>
+        <translation type="obsolete">الكتب</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished">أقراص الديفيدي</translation>
+        <translation type="obsolete">أقراص الديفيدي</translation>
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished">الأدب الرمادي</translation>
+        <translation type="obsolete">الأدب الرمادي</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished">الدوريات المتخصصة</translation>
+        <translation type="obsolete">الدوريات المتخصصة</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished">الدوريات العامة</translation>
+        <translation type="obsolete">الدوريات العامة</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished">أقراص السيدي الموسيقية</translation>
+        <translation type="obsolete">أقراص السيدي الموسيقية</translation>
     </message>
     <message>
         <source>Photograph Collection</source>
-        <translation type="unfinished">مجموعات الصور</translation>
+        <translation type="obsolete">مجموعات الصور</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished">ألعاب الفيديو</translation>
-    </message>
-    <message>
-        <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">ألعاب الفيديو</translation>
     </message>
 </context>
 <context>
@@ -8643,7 +8639,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Books</source>
-        <translation type="unfinished">الكتب</translation>
+        <translation type="obsolete">الكتب</translation>
     </message>
     <message>
         <source>21</source>
@@ -8651,7 +8647,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">أقراص الديفيدي</translation>
+        <translation type="obsolete">أقراص الديفيدي</translation>
     </message>
     <message>
         <source>14</source>
@@ -8659,19 +8655,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Journals</source>
-        <translation type="unfinished">الدوريات المتخصصة</translation>
+        <translation type="obsolete">الدوريات المتخصصة</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="unfinished">الدوريات العامة</translation>
+        <translation type="obsolete">الدوريات العامة</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="unfinished">أقراص السيدي الموسيقية</translation>
+        <translation type="obsolete">أقراص السيدي الموسيقية</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="unfinished">ألعاب الفيديو</translation>
+        <translation type="obsolete">ألعاب الفيديو</translation>
     </message>
     <message>
         <source>Video Game Platforms</source>
@@ -8739,7 +8735,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Grey Literature</source>
-        <translation type="unfinished">الأدب الرمادي</translation>
+        <translation type="obsolete">الأدب الرمادي</translation>
     </message>
     <message>
         <source>F5</source>
@@ -8770,7 +8766,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Type is not translated.</source>
+        <source>The Type field is not translated in the database and in the interface.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
