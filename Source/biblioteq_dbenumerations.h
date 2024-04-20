@@ -31,7 +31,6 @@
 #include <QPointer>
 #include <QStyledItemDelegate>
 
-#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_dbenumerations.h"
 
 class biblioteq;
