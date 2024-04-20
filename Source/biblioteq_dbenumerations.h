@@ -142,6 +142,8 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 	      (comboBox->findText(tr("Photograph Collection")));
 	  else if(value == tr("Video Game"))
 	    comboBox->setCurrentIndex(comboBox->findText(tr("Video Game")));
+	  else // Final attempt.
+	    comboBox->setCurrentIndex(comboBox->findText(value));
 
 	  if(comboBox->currentIndex() < 0)
 	    comboBox->setCurrentIndex(0);
