@@ -703,7 +703,7 @@ void biblioteq_dbenumerations::slotAdd(void)
     }
   else if(toolButton == m_ui.addLocation)
     {
-      auto item1 = new QTableWidgetItem(tr("Book"));
+      auto item1 = new QTableWidgetItem("Book");
       auto item2 = new QTableWidgetItem();
 
       item1->setFlags
@@ -1016,42 +1016,19 @@ void biblioteq_dbenumerations::slotSave(void)
 	{
 	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    {
+	      auto item = tableWidget->item
+		(j, static_cast<int> (MinimumDaysTable::Type));
 	      auto lineEdit = qobject_cast<QLineEdit *>
 		(tableWidget->
 		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
 
-	      if(lineEdit)
+	      if(item && lineEdit)
 		{
-		  if(j == 0)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'Book')");
-		  else if(j == 1)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'DVD')");
-		  else if(j == 2)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'Grey Literature')");
-		  else if(j == 3)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'Journal')");
-		  else if(j == 4)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'Magazine')");
-		  else if(j == 5)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'CD')");
-		  else if(j == 6)
-		    query.prepare("INSERT INTO minimum_days "
-				  "(days, type) VALUES "
-				  "(?, 'Video Game')");
-
-		  query.bindValue(0, lineEdit->text());
+		  query.prepare("INSERT INTO minimum_days "
+				"(days, type) VALUES "
+				"(?, ?)");
+		  query.addBindValue(lineEdit->text().toInt());
+		  query.addBindValue(item->text());
 
 		  if(!query.exec())
 		    {

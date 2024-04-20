@@ -1029,8 +1029,7 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT type, days FROM minimum_days "
-    "WHERE LENGTH(TRIM(type)) > 0 "
-    "ORDER BY type";
+    "WHERE LENGTH(TRIM(type)) > 0 ORDER BY type";
 
   if(query.exec(querystr))
     while(query.next())

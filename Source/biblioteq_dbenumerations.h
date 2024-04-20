@@ -106,14 +106,14 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 	  auto comboBox = new QComboBox(parent);
 	  auto value(index.data().toString());
 
-	  comboBox->addItem(tr("Book"));
-	  comboBox->addItem(tr("DVD"));
-	  comboBox->addItem(tr("Grey Literature"));
-	  comboBox->addItem(tr("Journal"));
-	  comboBox->addItem(tr("Magazine"));
-	  comboBox->addItem(tr("Music CD"));
-	  comboBox->addItem(tr("Photograph Collection"));
-	  comboBox->addItem(tr("Video Game"));
+	  comboBox->addItem("Book");
+	  comboBox->addItem("CD");
+	  comboBox->addItem("DVD");
+	  comboBox->addItem("Grey Literature");
+	  comboBox->addItem("Journal");
+	  comboBox->addItem("Magazine");
+	  comboBox->addItem("Photograph Collection");
+	  comboBox->addItem("Video Game");
 	  connect(comboBox,
 		  SIGNAL(activated(int)),
 		  this,
@@ -123,30 +123,10 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 #endif
 		  );
 	  biblioteq_misc_functions::sortCombinationBox(comboBox);
-
-	  if(value == tr("Book"))
-	    comboBox->setCurrentIndex(comboBox->findText(tr("Book")));
-	  else if(value == tr("CD"))
-	    comboBox->setCurrentIndex(comboBox->findText(tr("Music CD")));
-	  else if(value == tr("DVD"))
-	    comboBox->setCurrentIndex(comboBox->findText(tr("DVD")));
-	  else if(value == tr("Grey Literature"))
-	    comboBox->setCurrentIndex
-	      (comboBox->findText(tr("Grey Literature")));
-	  else if(value == tr("Journal"))
-	    comboBox->setCurrentIndex(comboBox->findText(tr("Journal")));
-	  else if(value == tr("Magazine"))
-	    comboBox->setCurrentIndex(comboBox->findText(tr("Magazine")));
-	  else if(value == tr("Photograph Collection"))
-	    comboBox->setCurrentIndex
-	      (comboBox->findText(tr("Photograph Collection")));
-	  else if(value == tr("Video Game"))
-	    comboBox->setCurrentIndex(comboBox->findText(tr("Video Game")));
-	  else // Final attempt.
-	    comboBox->setCurrentIndex(comboBox->findText(value));
+	  comboBox->setCurrentIndex(comboBox->findText(value));
 
 	  if(comboBox->currentIndex() < 0)
-	    comboBox->setCurrentIndex(0);
+	    comboBox->setCurrentIndex(0); // Book?
 
 	  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	  return comboBox;
