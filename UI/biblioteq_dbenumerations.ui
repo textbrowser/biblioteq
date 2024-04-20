@@ -49,6 +49,9 @@
          </item>
          <item>
           <widget class="QComboBox" name="section">
+           <property name="maxVisibleItems">
+            <number>15</number>
+           </property>
            <property name="sizeAdjustPolicy">
             <enum>QComboBox::AdjustToContents</enum>
            </property>
@@ -155,7 +158,7 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-3348</y>
+              <y>0</y>
               <width>497</width>
               <height>4110</height>
              </rect>
