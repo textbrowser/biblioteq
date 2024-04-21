@@ -4414,6 +4414,10 @@ void biblioteq::slotCDSearch(void)
     {
       cd = new biblioteq_cd(this, "search", QModelIndex());
       cd->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      cd,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID

@@ -3179,6 +3179,10 @@ void biblioteq::slotDuplicate(void)
 	{
 	  cd = new biblioteq_cd(this, oid, index);
 	  cd->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  cd,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -3336,6 +3340,10 @@ void biblioteq::slotInsertCD(void)
   id = QString("insert_%1").arg(m_idCt);
   cd = new biblioteq_cd(this, id, QModelIndex());
   cd->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  cd,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotInsertDVD(void)
@@ -3560,6 +3568,10 @@ void biblioteq::slotModify(void)
 	    cd = new biblioteq_cd(this, oid, index);
 
 	  cd->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  cd,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -5068,6 +5080,10 @@ void biblioteq::slotViewDetails(void)
 	    cd = new biblioteq_cd(this, oid, index);
 
 	  cd->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  cd,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "dvd")
 	{

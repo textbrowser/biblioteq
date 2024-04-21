@@ -78,6 +78,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void slotCancel(void);
   void slotCloseTracksBrowser(void);
   void slotComputeRuntime(void);
+  void slotDatabaseEnumerationsCommitted(void);
   void slotDeleteTrack(void);
   void slotGo(void);
   void slotInsertTrack(void);
