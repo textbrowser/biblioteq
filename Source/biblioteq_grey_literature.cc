@@ -1020,6 +1020,57 @@ void biblioteq_grey_literature::slotCancel(void)
   close();
 }
 
+void biblioteq_grey_literature::slotDatabaseEnumerationsCommitted(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QComboBox *> widgets;
+
+  widgets << m_ui.location
+	  << m_ui.type;
+
+  for(int i = 0; i < widgets.size(); i++)
+    {
+      QString errorstr("");
+      auto str(widgets.at(i)->currentText());
+
+      widgets.at(i)->clear();
+
+      switch(i)
+	{
+	case 0:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::getLocations(qmain->getDB(),
+						      "Grey Literature",
+						      errorstr));
+	    break;
+	  }
+	case 1:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getGreyLiteratureTypes(qmain->getDB(), errorstr));
+	    break;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
+
+      if(widgets.at(i)->findText(biblioteq::s_unknown) == -1)
+	widgets.at(i)->addItem(biblioteq::s_unknown);
+
+      widgets.at(i)->setCurrentIndex(widgets.at(i)->findText(str));
+
+      if(widgets.at(i)->currentIndex() < 0)
+	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown.
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_grey_literature::slotDeleteFiles(void)
 {
   auto list(m_ui.files->selectionModel()->

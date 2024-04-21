@@ -3197,6 +3197,10 @@ void biblioteq::slotDuplicate(void)
 	{
 	  gl = new biblioteq_grey_literature(this, oid, index);
 	  gl->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  gl,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "journal")
 	{
@@ -3620,6 +3624,10 @@ void biblioteq::slotModify(void)
 	    gl = new biblioteq_grey_literature(this, oid, index);
 
 	  gl->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  gl,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "journal")
 	{
@@ -5136,6 +5144,10 @@ void biblioteq::slotViewDetails(void)
 	    gl = new biblioteq_grey_literature(this, oid, index);
 
 	  gl->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  gl,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "journal")
 	{

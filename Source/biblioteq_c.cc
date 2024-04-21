@@ -4013,6 +4013,10 @@ void biblioteq::slotGreyLiteratureSearch(void)
     {
       gl = new biblioteq_grey_literature(this, "search", QModelIndex());
       gl->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      gl,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID
@@ -4033,6 +4037,10 @@ void biblioteq::slotInsertGreyLiterature(void)
   id = QString("insert_%1").arg(m_idCt);
   gl = new biblioteq_grey_literature(this, id, QModelIndex());
   gl->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  gl,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotItemChanged(QTableWidgetItem *item)
