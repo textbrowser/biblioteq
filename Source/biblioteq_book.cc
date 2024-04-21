@@ -2463,6 +2463,96 @@ void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
   Q_UNUSED(totalbytes);
 }
 
+void biblioteq_book::slotDatabaseEnumerationsCommitted(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QComboBox *> widgets;
+
+  widgets << id.binding
+	  << id.condition
+	  << id.language
+	  << id.location
+	  << id.monetary_units
+	  << id.originality
+	  << id.target_audience;
+
+  for(int i = 0; i < widgets.size(); i++)
+    {
+      QString errorstr("");
+      auto str(widgets.at(i)->currentText());
+
+      widgets.at(i)->clear();
+
+      switch(i)
+	{
+	case 0:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getBookBindingTypes(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 1:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getBookConditions(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 2:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getLanguages(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 3:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getLocations(qmain->getDB(), "Book", errorstr));
+	    break;
+	  }
+	case 4:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getMonetaryUnits(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 5:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getBookOriginality(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 6:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getBookTargetAudiences(qmain->getDB(), errorstr));
+	    break;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
+
+      if(widgets.at(i)->findText(biblioteq::s_unknown) == -1)
+	widgets.at(i)->addItem(biblioteq::s_unknown);
+
+      widgets.at(i)->setCurrentIndex(widgets.at(i)->findText(str));
+
+      if(widgets.at(i)->currentIndex() < 0)
+	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown.
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_book::slotDeleteFiles(void)
 {
   auto list

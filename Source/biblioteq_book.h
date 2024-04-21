@@ -115,6 +115,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotConvertISBN10to13(void);
   void slotConvertISBN13to10(void);
   void slotDataTransferProgress(qint64 bytesread, qint64 totalbytes);
+  void slotDatabaseEnumerationsCommitted(void);
   void slotDeleteFiles(void);
   void slotDownloadFinished(void);
   void slotDownloadImage(void);

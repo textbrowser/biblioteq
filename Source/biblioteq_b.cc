@@ -4380,6 +4380,10 @@ void biblioteq::slotBookSearch(void)
     {
       book = new biblioteq_book(this, "search", QModelIndex());
       book->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      book,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID

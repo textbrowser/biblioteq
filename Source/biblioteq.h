@@ -698,6 +698,7 @@ class biblioteq: public QMainWindow
   void slotViewFullOrNormalScreen(void);
 
  signals:
+  void databaseEnumerationsCommitted(void);
   void favoritesChanged(void);
   void fontChanged(const QFont &font);
   void newFavorite(void);

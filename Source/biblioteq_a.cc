@@ -3170,6 +3170,10 @@ void biblioteq::slotDuplicate(void)
 	{
 	  book = new biblioteq_book(this, oid, index);
 	  book->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  book,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "cd")
 	{
@@ -3302,13 +3306,13 @@ void biblioteq::slotGrantPrivileges(void)
 void biblioteq::slotInsertBook(void)
 {
   auto ok = false;
-  auto p = QInputDialog::getInt
+  auto integer = QInputDialog::getInt
     (this, tr("BiblioteQ"), tr("Create Books"), 1, 1, 10, 1, &ok);
 
   if(!ok)
     return;
 
-  for(int i = 0; i < p; i++)
+  for(int i = 0; i < integer; i++)
     {
       m_idCt += 1;
 
@@ -3316,6 +3320,10 @@ void biblioteq::slotInsertBook(void)
 	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
 
       book->insert();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      book,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 }
 
@@ -3530,6 +3538,10 @@ void biblioteq::slotModify(void)
 	    book = new biblioteq_book(this, oid, index);
 
 	  book->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  book,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "cd")
 	{
@@ -4642,7 +4654,13 @@ void biblioteq::slotShowCustomQuery(void)
 void biblioteq::slotShowDbEnumerations(void)
 {
   if(!db_enumerations)
-    db_enumerations = new biblioteq_dbenumerations(this);
+    {
+      db_enumerations = new biblioteq_dbenumerations(this);
+      connect(db_enumerations,
+	      SIGNAL(committed(void)),
+	      this,
+	      SIGNAL(databaseEnumerationsCommitted(void)));
+    }
 
   db_enumerations->show
     (this,
@@ -5028,6 +5046,10 @@ void biblioteq::slotViewDetails(void)
 	    book = new biblioteq_book(this, oid, index);
 
 	  book->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  book,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "cd")
 	{
