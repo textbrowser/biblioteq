@@ -4454,6 +4454,10 @@ void biblioteq::slotDVDSearch(void)
     {
       dvd = new biblioteq_dvd(this, "search", QModelIndex());
       dvd->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      dvd,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID

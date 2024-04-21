@@ -883,6 +883,89 @@ void biblioteq_dvd::slotCancel(void)
   close();
 }
 
+void biblioteq_dvd::slotDatabaseEnumerationsCommitted(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QComboBox *> widgets;
+
+  widgets << dvd.aspectratio
+	  << dvd.language
+	  << dvd.location
+	  << dvd.monetary_units
+	  << dvd.rating
+	  << dvd.region;
+
+  for(int i = 0; i < widgets.size(); i++)
+    {
+      QString errorstr("");
+      auto str(widgets.at(i)->currentText());
+
+      widgets.at(i)->clear();
+
+      switch(i)
+	{
+	case 0:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getDVDAspectRatios(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 1:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getLanguages(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 2:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::getLocations(qmain->getDB(),
+						      "DVD",
+						      errorstr));
+	    break;
+	  }
+	case 3:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getMonetaryUnits(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 4:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getDVDRatings(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 5:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getDVDRegions(qmain->getDB(), errorstr));
+	    break;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
+
+      if(widgets.at(i)->findText(biblioteq::s_unknown) == -1)
+	widgets.at(i)->addItem(biblioteq::s_unknown);
+
+      widgets.at(i)->setCurrentIndex(widgets.at(i)->findText(str));
+
+      if(widgets.at(i)->currentIndex() < 0)
+	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown.
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_dvd::slotGo(void)
 {
   QString errorstr = "";

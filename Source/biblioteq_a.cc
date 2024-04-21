@@ -3188,6 +3188,10 @@ void biblioteq::slotDuplicate(void)
 	{
 	  dvd = new biblioteq_dvd(this, oid, index);
 	  dvd->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  dvd,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -3355,6 +3359,10 @@ void biblioteq::slotInsertDVD(void)
   id = QString("insert_%1").arg(m_idCt);
   dvd = new biblioteq_dvd(this, id, QModelIndex());
   dvd->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  dvd,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotInsertJourn(void)
@@ -3590,6 +3598,10 @@ void biblioteq::slotModify(void)
 	    dvd = new biblioteq_dvd(this, oid, index);
 
 	  dvd->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  dvd,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -5102,6 +5114,10 @@ void biblioteq::slotViewDetails(void)
 	    dvd = new biblioteq_dvd(this, oid, index);
 
 	  dvd->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  dvd,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "grey literature")
 	{
