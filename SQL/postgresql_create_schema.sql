@@ -50,7 +50,7 @@ CREATE TABLE book
 
 CREATE TABLE book_copy_info
 (
-	condition    TEXT,
+	condition   TEXT,
 	copy_number INTEGER NOT NULL DEFAULT 1,
 	copyid	    VARCHAR(64) NOT NULL,
 	item_oid    BIGINT NOT NULL,
@@ -59,17 +59,17 @@ CREATE TABLE book_copy_info
 	originality TEXT,
 	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES book (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, copyid)
+	PRIMARY KEY (copyid, item_oid)
 );
 
 CREATE TABLE book_files
 (
-	description	TEXT,
-	file		BYTEA NOT NULL,
-	file_digest	TEXT NOT NULL,
-	file_name	TEXT NOT NULL,
-	item_oid	BIGINT NOT NULL,
-	myoid		BIGSERIAL NOT NULL,
+	description TEXT,
+	file	    BYTEA NOT NULL,
+	file_digest TEXT NOT NULL,
+	file_name   TEXT NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL NOT NULL,
 	FOREIGN KEY (item_oid) REFERENCES book (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (file_digest, item_oid)
 );
@@ -103,27 +103,27 @@ CREATE TABLE cd
 
 CREATE TABLE cd_copy_info
 (
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	notes		 TEXT,
-	status		 TEXT,
+	copy_number INTEGER NOT NULL DEFAULT 1,
+	copyid	    VARCHAR(64) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL UNIQUE,
+	notes	    TEXT,
+	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES cd (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, copyid)
+	PRIMARY KEY (copyid, item_oid)
 );
 
 CREATE TABLE cd_songs
 (
-	albumnum	 INTEGER NOT NULL DEFAULT 1,
-	artist		 TEXT NOT NULL DEFAULT 'UNKNOWN',
-	composer	 TEXT NOT NULL DEFAULT 'UNKNOWN',
-	item_oid	 BIGINT NOT NULL,
-	runtime		 VARCHAR(32) NOT NULL,
-	songnum		 INTEGER NOT NULL DEFAULT 1,
-	songtitle	 VARCHAR(256) NOT NULL,
+	albumnum  INTEGER NOT NULL DEFAULT 1,
+	artist	  TEXT NOT NULL DEFAULT 'UNKNOWN',
+	composer  TEXT NOT NULL DEFAULT 'UNKNOWN',
+	item_oid  BIGINT NOT NULL,
+	runtime	  VARCHAR(32) NOT NULL,
+	songnum	  INTEGER NOT NULL DEFAULT 1,
+	songtitle VARCHAR(256) NOT NULL,
 	FOREIGN KEY (item_oid) REFERENCES cd (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, albumnum, songnum)
+	PRIMARY KEY (albumnum, item_oid, songnum)
 );
 
 CREATE TABLE dvd
@@ -157,14 +157,14 @@ CREATE TABLE dvd
 
 CREATE TABLE dvd_copy_info
 (
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	notes		 TEXT,
-	status		 TEXT,
+	copy_number INTEGER NOT NULL DEFAULT 1,
+	copyid	    VARCHAR(64) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL UNIQUE,
+	notes	    TEXT,
+	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES dvd (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, copyid)
+	PRIMARY KEY (copyid, item_oid)
 );
 
 CREATE TABLE grey_literature
@@ -189,12 +189,12 @@ CREATE TABLE grey_literature
 
 CREATE TABLE grey_literature_files
 (
-	description	TEXT,
-	file		BYTEA NOT NULL,
-	file_digest	TEXT NOT NULL,
-	file_name	TEXT NOT NULL,
-	item_oid	BIGINT NOT NULL,
-	myoid		BIGSERIAL NOT NULL,
+	description TEXT,
+	file	    BYTEA NOT NULL,
+	file_digest TEXT NOT NULL,
+	file_name   TEXT NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL NOT NULL,
 	FOREIGN KEY (item_oid) REFERENCES grey_literature (myoid)
 		    	       ON DELETE CASCADE,
 	PRIMARY KEY (file_digest, item_oid)
@@ -226,29 +226,29 @@ CREATE TABLE journal
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	title		 TEXT NOT NULL,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
-	UNIQUE (id, issuevolume, issueno)
+	UNIQUE (id, issueno, issuevolume)
 );
 
 CREATE TABLE journal_copy_info
 (
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	notes		 TEXT,
-	status		 TEXT,
+	copy_number INTEGER NOT NULL DEFAULT 1,
+	copyid	    VARCHAR(64) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL UNIQUE,
+	notes	    TEXT,
+	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES journal (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, copyid)
+	PRIMARY KEY (copyid, item_oid)
 );
 
 CREATE TABLE journal_files
 (
-	description	TEXT,
-	file		BYTEA NOT NULL,
-	file_digest	TEXT NOT NULL,
-	file_name	TEXT NOT NULL,
-	item_oid	BIGINT NOT NULL,
-	myoid		BIGSERIAL NOT NULL,
+	description TEXT,
+	file	    BYTEA NOT NULL,
+	file_digest TEXT NOT NULL,
+	file_name   TEXT NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL NOT NULL,
 	FOREIGN KEY (item_oid) REFERENCES journal (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (file_digest, item_oid)
 );
@@ -279,29 +279,29 @@ CREATE TABLE magazine
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	title		 TEXT NOT NULL,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
-	UNIQUE (id, issuevolume, issueno)
+	UNIQUE (id, issueno, issuevolume)
 );
 
 CREATE TABLE magazine_copy_info
 (
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	notes		 TEXT,
-	status		 TEXT,
+	copy_number INTEGER NOT NULL DEFAULT 1,
+	copyid	    VARCHAR(64) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL UNIQUE,
+	notes	    TEXT,
+	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES magazine (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, copyid)
+	PRIMARY KEY (copyid, item_oid)
 );
 
 CREATE TABLE magazine_files
 (
-	description	TEXT,
-	file		BYTEA NOT NULL,
-	file_digest	TEXT NOT NULL,
-	file_name	TEXT NOT NULL,
-	item_oid	BIGINT NOT NULL,
-	myoid		BIGSERIAL NOT NULL,
+	description TEXT,
+	file	    BYTEA NOT NULL,
+	file_digest TEXT NOT NULL,
+	file_name   TEXT NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL NOT NULL,
 	FOREIGN KEY (item_oid) REFERENCES magazine (myoid) ON DELETE CASCADE,
 	PRIMARY KEY (file_digest, item_oid)
 );
@@ -322,27 +322,27 @@ CREATE TABLE photograph_collection
 
 CREATE TABLE photograph
 (
-	accession_number TEXT,
-	callnumber		  VARCHAR(64),
-	collection_oid		  BIGINT NOT NULL,
-	copyright		  TEXT NOT NULL,
-	creators		  TEXT NOT NULL,
-	format			  TEXT,
-	id			  TEXT NOT NULL,
-	image			  BYTEA,
-	image_scaled		  BYTEA,
-	medium			  TEXT NOT NULL,
-	myoid			  BIGSERIAL UNIQUE,
-	notes			  TEXT,
-	other_number		  TEXT,
-	pdate			  VARCHAR(32) NOT NULL,
-	quantity		  INTEGER NOT NULL DEFAULT 1,
-	reproduction_number  	  TEXT NOT NULL,
-	subjects		  TEXT,
-	title			  TEXT NOT NULL,
+	accession_number   TEXT,
+	callnumber	    VARCHAR(64),
+	collection_oid	    BIGINT NOT NULL,
+	copyright	    TEXT NOT NULL,
+	creators	    TEXT NOT NULL,
+	format		    TEXT,
+	id		    TEXT NOT NULL,
+	image		    BYTEA,
+	image_scaled	    BYTEA,
+	medium		    TEXT NOT NULL,
+	myoid		    BIGSERIAL UNIQUE,
+	notes		    TEXT,
+	other_number	    TEXT,
+	pdate		    VARCHAR(32) NOT NULL,
+	quantity	    INTEGER NOT NULL DEFAULT 1,
+	reproduction_number TEXT NOT NULL,
+	subjects	    TEXT,
+	title		    TEXT NOT NULL,
 	FOREIGN KEY (collection_oid) REFERENCES photograph_collection (myoid)
 		    		     ON DELETE CASCADE,
-	PRIMARY KEY (id, collection_oid)
+	PRIMARY KEY (collection_oid, id)
 );
 
 CREATE TABLE videogame
@@ -373,82 +373,82 @@ CREATE TABLE videogame
 
 CREATE TABLE videogame_copy_info
 (
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	notes		 TEXT,
-	status		 TEXT,
+	copy_number INTEGER NOT NULL DEFAULT 1,
+	copyid	    VARCHAR(64) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	myoid	    BIGSERIAL UNIQUE,
+	notes	    TEXT,
+	status	    TEXT,
 	FOREIGN KEY (item_oid) REFERENCES videogame (myoid) ON DELETE CASCADE,
-	PRIMARY KEY (item_oid, copyid)
+	PRIMARY KEY (copyid, item_oid)
 );
 
 CREATE TABLE member
 (
-	city		 VARCHAR(256) NOT NULL,
-	comments	 TEXT,
-	dob		 VARCHAR(32) NOT NULL,
-	email		 VARCHAR(128),
-	expiration_date	 VARCHAR(32) NOT NULL,
-	first_name	 VARCHAR(128) NOT NULL,
-	general_registration_number	 TEXT,
-	last_name	 VARCHAR(128) NOT NULL,
-	maximum_reserved_books INTEGER NOT NULL DEFAULT 0,
-	memberclass	 TEXT,
-	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
-	membership_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	membersince	 VARCHAR(32) NOT NULL,
-	middle_init	 VARCHAR(1),
-	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	sex		 VARCHAR(32) NOT NULL DEFAULT 'Private',
-	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
-	street		 VARCHAR(256) NOT NULL,
-	telephone_num	 VARCHAR(32),
-	zip		 VARCHAR(16) NOT NULL DEFAULT 'N/A'
+	city			    VARCHAR(256) NOT NULL,
+	comments	  	    TEXT,
+	dob			    VARCHAR(32) NOT NULL,
+	email		 	    VARCHAR(128),
+	expiration_date		    VARCHAR(32) NOT NULL,
+	first_name	 	    VARCHAR(128) NOT NULL,
+	general_registration_number TEXT,
+	last_name		    VARCHAR(128) NOT NULL,
+	maximum_reserved_books 	    INTEGER NOT NULL DEFAULT 0,
+	memberclass	 	    TEXT,
+	memberid		    VARCHAR(16) NOT NULL PRIMARY KEY,
+	membership_fees	 	    NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	membersince	 	    VARCHAR(32) NOT NULL,
+	middle_init	 	    VARCHAR(1),
+	overdue_fees	 	    NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	sex		 	    VARCHAR(32) NOT NULL DEFAULT 'Private',
+	state_abbr	 	    VARCHAR(16) NOT NULL DEFAULT 'N/A',
+	street		 	    VARCHAR(256) NOT NULL,
+	telephone_num	 	    VARCHAR(32),
+	zip		 	    VARCHAR(16) NOT NULL DEFAULT 'N/A'
 );
 
 CREATE TABLE member_history
 (
-	copyid		 VARCHAR(64) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	reserved_by	 VARCHAR(128) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	returned_date	 VARCHAR(32) NOT NULL,
-	type		 VARCHAR(16) NOT NULL,
+	copyid	      VARCHAR(64) NOT NULL,
+	duedate	      VARCHAR(32) NOT NULL,
+	item_oid      BIGINT NOT NULL,
+	memberid      VARCHAR(16) NOT NULL,
+	myoid	      BIGSERIAL PRIMARY KEY,
+	reserved_by   VARCHAR(128) NOT NULL,
+	reserved_date VARCHAR(32) NOT NULL,
+	returned_date VARCHAR(32) NOT NULL,
+	type	      VARCHAR(16) NOT NULL,
 	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE member_history_dnt
 (
-	dnt		INTEGER NOT NULL DEFAULT 1,
-	memberid	VARCHAR(16) NOT NULL PRIMARY KEY,
+	dnt	 INTEGER NOT NULL DEFAULT 1,
+	memberid VARCHAR(16) NOT NULL PRIMARY KEY,
 	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE item_borrower
 (
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	copyid		 VARCHAR(64) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	reserved_by	 VARCHAR(128) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	type		 VARCHAR(16) NOT NULL,
+	copy_number   INTEGER NOT NULL DEFAULT 1,
+	copyid	      VARCHAR(64) NOT NULL,
+	duedate	      VARCHAR(32) NOT NULL,
+	item_oid      BIGINT NOT NULL,
+	memberid      VARCHAR(16) NOT NULL,
+	myoid	      BIGSERIAL PRIMARY KEY,
+	reserved_by   VARCHAR(128) NOT NULL,
+	reserved_date VARCHAR(32) NOT NULL,
+	type	      VARCHAR(16) NOT NULL,
 	FOREIGN KEY (memberid) REFERENCES member ON DELETE RESTRICT
 );
 
 CREATE TABLE item_request
 (
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	myoid		 BIGSERIAL NOT NULL,
-	requestdate	 VARCHAR(32) NOT NULL,
-	type		 VARCHAR(16) NOT NULL,
+	item_oid    BIGINT NOT NULL,
+	memberid    VARCHAR(16) NOT NULL,
+	myoid	    BIGSERIAL NOT NULL,
+	requestdate VARCHAR(32) NOT NULL,
+	type	    VARCHAR(16) NOT NULL,
 	PRIMARY KEY (item_oid, memberid, type),
 	FOREIGN KEY (memberid) REFERENCES member (memberid) ON DELETE CASCADE
 );
@@ -542,17 +542,17 @@ FOR EACH row EXECUTE PROCEDURE delete_request();
 
 CREATE TABLE book_binding_types
 (
-	binding_type	 TEXT NOT NULL PRIMARY KEY
+	binding_type TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE book_conditions
 (
-	condition	TEXT NOT NULL PRIMARY KEY
+	condition TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE book_originality
 (
-	originality	TEXT NOT NULL PRIMARY KEY
+	originality TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE book_target_audiences
@@ -562,60 +562,60 @@ CREATE TABLE book_target_audiences
 
 CREATE TABLE cd_formats
 (
-	cd_format	 TEXT NOT NULL PRIMARY KEY
+	cd_format TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE dvd_aspect_ratios
 (
-	dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY
+	dvd_aspect_ratio TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE dvd_ratings
 (
-	dvd_rating	 TEXT NOT NULL PRIMARY KEY
+	dvd_rating TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE dvd_regions
 (
-	dvd_region	 TEXT NOT NULL PRIMARY KEY
+	dvd_region TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE grey_literature_types
 (
-	document_type	 TEXT NOT NULL PRIMARY KEY
+	document_type TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE languages
 (
-	language	 TEXT NOT NULL PRIMARY KEY
+	language TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE locations
 (
-	location	 TEXT NOT NULL,
-	type		 VARCHAR(32) NOT NULL,
+	location TEXT NOT NULL,
+	type	 VARCHAR(32) NOT NULL,
 	PRIMARY KEY (location, type)
 );
 
 CREATE TABLE monetary_units
 (
-	monetary_unit	 TEXT NOT NULL PRIMARY KEY
+	monetary_unit TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE minimum_days
 (
-	days		 INTEGER NOT NULL,
-	type		 VARCHAR(16) NOT NULL PRIMARY KEY
+	days INTEGER NOT NULL,
+	type VARCHAR(16) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE videogame_platforms
 (
-	videogame_platform	 TEXT NOT NULL PRIMARY KEY
+	videogame_platform TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE videogame_ratings
 (
-	videogame_rating	 TEXT NOT NULL PRIMARY KEY
+	videogame_rating TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
