@@ -83,6 +83,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotAddItem(void);
   void slotCancel(void);
   void slotClosePhoto(void);
+  void slotDatabaseEnumerationsCommitted(void);
   void slotDeleteItem(void);
   void slotExportItem(void);
   void slotExportPhotographs(void);

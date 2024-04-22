@@ -3224,6 +3224,10 @@ void biblioteq::slotDuplicate(void)
 	{
 	  photograph = new biblioteq_photographcollection(this, oid, index);
 	  photograph->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  photograph,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "video game")
 	{
@@ -3416,6 +3420,10 @@ void biblioteq::slotInsertPhotograph(void)
   id = QString("insert_%1").arg(m_idCt);
   photograph = new biblioteq_photographcollection(this, id, QModelIndex());
   photograph->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  photograph,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotInsertVideoGame(void)
@@ -3711,6 +3719,10 @@ void biblioteq::slotModify(void)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
 
 	  photograph->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  photograph,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "video game")
 	{
@@ -5239,6 +5251,10 @@ void biblioteq::slotViewDetails(void)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
 
 	  photograph->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  photograph,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "video game")
 	{

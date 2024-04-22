@@ -4563,6 +4563,10 @@ void biblioteq::slotPhotographSearch(void)
       photograph = new biblioteq_photographcollection
 	(this, "search", QModelIndex());
       photograph->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      photograph,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID
