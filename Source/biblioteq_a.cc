@@ -3206,11 +3206,19 @@ void biblioteq::slotDuplicate(void)
 	{
 	  journal = new biblioteq_journal(this, oid, index);
 	  journal->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  journal,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "magazine")
 	{
 	  magazine = new biblioteq_magazine(this, oid, index, "magazine");
 	  magazine->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  magazine,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -3378,6 +3386,10 @@ void biblioteq::slotInsertJourn(void)
   id = QString("insert_%1").arg(m_idCt);
   journal = new biblioteq_journal(this, id, QModelIndex());
   journal->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  journal,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotInsertMag(void)
@@ -3389,6 +3401,10 @@ void biblioteq::slotInsertMag(void)
   id = QString("insert_%1").arg(m_idCt);
   magazine = new biblioteq_magazine(this, id, QModelIndex(), "magazine");
   magazine->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  magazine,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotInsertPhotograph(void)
@@ -3646,6 +3662,10 @@ void biblioteq::slotModify(void)
 	    journal = new biblioteq_journal(this, oid, index);
 
 	  journal->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  journal,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -3669,6 +3689,10 @@ void biblioteq::slotModify(void)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
 	  magazine->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  magazine,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -5166,6 +5190,10 @@ void biblioteq::slotViewDetails(void)
 	    journal = new biblioteq_journal(this, oid, index);
 
 	  journal->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  journal,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -5189,6 +5217,10 @@ void biblioteq::slotViewDetails(void)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
 	  magazine->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  magazine,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else if(type.toLower() == "photograph collection")
 	{

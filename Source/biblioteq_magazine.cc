@@ -588,7 +588,7 @@ void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
   ma.showUserButton->setEnabled(false);
   ma.view_pdf->setEnabled(false);
 
-  if(m_subType.toLower() == "journal")
+  if(m_subType == "Journal")
     setWindowTitle(tr("BiblioteQ: Duplicate Journal Entry"));
   else
     setWindowTitle(tr("BiblioteQ: Duplicate Magazine Entry"));
@@ -2079,6 +2079,64 @@ void biblioteq_magazine::slotAttachFiles(void)
 void biblioteq_magazine::slotCancel(void)
 {
   close();
+}
+
+void biblioteq_magazine::slotDatabaseEnumerationsCommitted(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QComboBox *> widgets;
+
+  widgets << ma.language
+	  << ma.location
+	  << ma.monetary_units;
+
+  for(int i = 0; i < widgets.size(); i++)
+    {
+      QString errorstr("");
+      auto str(widgets.at(i)->currentText());
+
+      widgets.at(i)->clear();
+
+      switch(i)
+	{
+	case 0:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getLanguages(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 1:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getLocations(qmain->getDB(), m_subType, errorstr));
+	    break;
+	  }
+	case 2:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getMonetaryUnits(qmain->getDB(), errorstr));
+	    break;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
+
+      if(widgets.at(i)->findText(biblioteq::s_unknown) == -1)
+	widgets.at(i)->addItem(biblioteq::s_unknown);
+
+      widgets.at(i)->setCurrentIndex(widgets.at(i)->findText(str));
+
+      if(widgets.at(i)->currentIndex() < 0)
+	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown.
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_magazine::slotDeleteFiles(void)

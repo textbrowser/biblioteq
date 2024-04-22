@@ -101,6 +101,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void setGlobalFonts(const QFont &font);
   void slotAttachFiles(void);
   void slotCancel(void);
+  void slotDatabaseEnumerationsCommitted(void);
   void slotDeleteFiles(void);
   void slotExportFiles(void);
   void slotFilesDoubleClicked(QTableWidgetItem *item);

@@ -4488,6 +4488,10 @@ void biblioteq::slotJournSearch(void)
     {
       journal = new biblioteq_journal(this, "search", QModelIndex());
       journal->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      journal,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID
@@ -4524,6 +4528,10 @@ void biblioteq::slotMagSearch(void)
       magazine = new biblioteq_magazine
 	(this, "search", QModelIndex(), "magazine");
       magazine->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      magazine,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID
