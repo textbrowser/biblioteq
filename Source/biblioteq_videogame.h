@@ -62,6 +62,7 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
  private slots:
   void setGlobalFonts(const QFont &font);
   void slotCancel(void);
+  void slotDatabaseEnumerationsCommitted(void);
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
   void slotPrepareIcons(void);

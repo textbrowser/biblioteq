@@ -810,6 +810,81 @@ void biblioteq_videogame::slotCancel(void)
   close();
 }
 
+void biblioteq_videogame::slotDatabaseEnumerationsCommitted(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QList<QComboBox *> widgets;
+
+  widgets << vg.language
+	  << vg.location
+	  << vg.monetary_units
+	  << vg.platform
+	  << vg.rating;
+
+  for(int i = 0; i < widgets.size(); i++)
+    {
+      QString errorstr("");
+      auto str(widgets.at(i)->currentText());
+
+      widgets.at(i)->clear();
+
+      switch(i)
+	{
+	case 0:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getLanguages(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 1:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::getLocations(qmain->getDB(),
+						      "Video Game",
+						      errorstr));
+	    break;
+	  }
+	case 2:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getMonetaryUnits(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 3:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getVideoGamePlatforms(qmain->getDB(), errorstr));
+	    break;
+	  }
+	case 4:
+	  {
+	    widgets.at(i)->addItems
+	      (biblioteq_misc_functions::
+	       getVideoGameRatings(qmain->getDB(), errorstr));
+	    break;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
+
+      if(widgets.at(i)->findText(biblioteq::s_unknown) == -1)
+	widgets.at(i)->addItem(biblioteq::s_unknown);
+
+      widgets.at(i)->setCurrentIndex(widgets.at(i)->findText(str));
+
+      if(widgets.at(i)->currentIndex() < 0)
+	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown.
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_videogame::slotGo(void)
 {
   QString errorstr = "";

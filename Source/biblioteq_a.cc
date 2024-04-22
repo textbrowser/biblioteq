@@ -3120,7 +3120,7 @@ void biblioteq::slotDuplicate(void)
   biblioteq_magazine *magazine = nullptr;
   biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
-  biblioteq_videogame *video_game = nullptr;
+  biblioteq_videogame *videogame = nullptr;
   int i = 0;
 
   if(list.isEmpty())
@@ -3231,8 +3231,12 @@ void biblioteq::slotDuplicate(void)
 	}
       else if(type.toLower() == "video game")
 	{
-	  video_game = new biblioteq_videogame(this, oid, index);
-	  video_game->duplicate(id, EDITABLE);
+	  videogame = new biblioteq_videogame(this, oid, index);
+	  videogame->duplicate(id, EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  videogame,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else
 	{
@@ -3435,6 +3439,10 @@ void biblioteq::slotInsertVideoGame(void)
   id = QString("insert_%1").arg(m_idCt);
   videogame = new biblioteq_videogame(this, id, QModelIndex());
   videogame->insert();
+  connect(this,
+	  SIGNAL(databaseEnumerationsCommitted(void)),
+	  videogame,
+	  SLOT(slotDatabaseEnumerationsCommitted(void)));
 }
 
 void biblioteq::slotLanguageChanged(void)
@@ -3741,6 +3749,10 @@ void biblioteq::slotModify(void)
 	    videogame = new biblioteq_videogame(this, oid, index);
 
 	  videogame->modify(EDITABLE);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  videogame,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else
 	{
@@ -5273,6 +5285,10 @@ void biblioteq::slotViewDetails(void)
 	    videogame = new biblioteq_videogame(this, oid, index);
 
 	  videogame->modify(VIEW_ONLY);
+	  connect(this,
+		  SIGNAL(databaseEnumerationsCommitted(void)),
+		  videogame,
+		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
       else
 	{

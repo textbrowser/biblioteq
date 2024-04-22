@@ -5619,6 +5619,10 @@ void biblioteq::slotVideoGameSearch(void)
     {
       videogame = new biblioteq_videogame(this, "search", QModelIndex());
       videogame->search();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      videogame,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
 
 #ifdef Q_OS_ANDROID

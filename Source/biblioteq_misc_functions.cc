@@ -997,7 +997,7 @@ QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
 
   errorstr = "";
 
-  if(type.isEmpty())
+  if(type.trimmed().isEmpty())
     query.prepare("SELECT DISTINCT(location) FROM locations "
 		  "WHERE LENGTH(TRIM(location)) > 0 "
 		  "ORDER BY location");
@@ -1006,7 +1006,7 @@ QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
       query.prepare("SELECT location FROM locations WHERE type = ? AND "
 		    "LENGTH(TRIM(location)) > 0 "
 		    "ORDER BY location");
-      query.bindValue(0, type);
+      query.addBindValue(type.trimmed());
     }
 
   if(query.exec())
