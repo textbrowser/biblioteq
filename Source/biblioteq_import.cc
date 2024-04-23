@@ -270,19 +270,6 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			  query.exec();
 			}
 		    }
-		  else if(m_mappings.value(i).first == "originality")
-		    {
-		      if(!str.isEmpty())
-			{
-			  QSqlQuery query(m_qmain->getDB());
-
-			  query.prepare
-			    ("INSERT INTO book_originality "
-			     "(originality) VALUES(?)");
-			  query.addBindValue(str);
-			  query.exec();
-			}
-		    }
 		  else if(m_mappings.value(i).first == "id")
 		    {
 		      str.remove('-');
@@ -346,6 +333,19 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 			  query.prepare
 			    ("INSERT INTO monetary_units "
 			     "(monetary_unit) VALUES(?)");
+			  query.addBindValue(str);
+			  query.exec();
+			}
+		    }
+		  else if(m_mappings.value(i).first == "originality")
+		    {
+		      if(!str.isEmpty())
+			{
+			  QSqlQuery query(m_qmain->getDB());
+
+			  query.prepare
+			    ("INSERT INTO book_originality "
+			     "(originality) VALUES(?)");
 			  query.addBindValue(str);
 			  query.exec();
 			}
@@ -1061,9 +1061,7 @@ void biblioteq_import::slotImport(void)
   if(map.isEmpty())
     {
       QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: Error"),
-	 tr("Please define column mappings."));
+	(this, tr("BiblioteQ: Error"), tr("Please define column mappings."));
       QApplication::processEvents();
       return;
     }
