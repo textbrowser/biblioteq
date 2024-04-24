@@ -42,7 +42,7 @@ biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   QGraphicsView(parent)
 {
   m_doubleClickResizeEnabled = true;
-  m_doubleclicked = false;
+  m_doubleClicked = false;
   m_image = QImage();
   m_imageFormat = "";
   m_readOnly = false;
@@ -82,7 +82,7 @@ QString biblioteq_image_drop_site::determineFormat
 
 void biblioteq_image_drop_site::clear(void)
 {
-  m_doubleclicked = false;
+  m_doubleClicked = false;
   m_image = QImage();
   m_imageFormat.clear();
   scene()->clear();
@@ -99,7 +99,7 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
       return;
     }
 
-  QString filename = "";
+  QString filename("");
 
 #if defined(Q_OS_WIN)
   if(event)
@@ -143,9 +143,9 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
       return;
     }
 
-  QString filename = "";
-
   QGraphicsView::dragMoveEvent(event);
+
+  QString filename("");
 
 #if defined(Q_OS_WIN)
   if(event)
@@ -217,14 +217,13 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
       if(event)
 	event->acceptProposedAction();
 
-      m_doubleclicked = false;
+      m_doubleClicked = false;
       m_imageFormat = imgf;
       scene()->clear();
 
       QPixmap pixmap;
 
-      if(m_image.width() > width() ||
-	 m_image.height() > height())
+      if(height() < m_image.height() || m_image.width() > width())
 	{
 	  pixmap = QPixmap::fromImage(m_image);
 
@@ -288,12 +287,11 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 {
   QPixmap pixmap;
 
-  m_doubleclicked = false;
+  m_doubleClicked = false;
   m_imageFormat = determineFormat(bytes);
   m_image.loadFromData(bytes, m_imageFormat.toLatin1().data());
 
-  if(m_image.width() > width() ||
-     m_image.height() > height())
+  if(height() < m_image.height() || m_image.width() > width())
     {
       pixmap = QPixmap::fromImage(m_image);
 
@@ -331,7 +329,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 
   scene()->clear();
 
-  if(!m_doubleclicked)
+  if(!m_doubleClicked)
     {
       auto pixmap(QPixmap::fromImage(m_image));
 
@@ -354,7 +352,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
       scene()->addPixmap(pixmap);
     }
 
-  m_doubleclicked = !m_doubleclicked;
+  m_doubleClicked = !m_doubleClicked;
 
   if(acceptDrops())
     if(!scene()->items().isEmpty())
@@ -369,13 +367,12 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
   QBuffer buffer(&bytes);
   QPixmap pixmap;
 
-  m_doubleclicked = false;
+  m_doubleClicked = false;
   m_image = image;
   m_image.save(&buffer);
   m_imageFormat = determineFormat(bytes);
 
-  if(m_image.width() > width() ||
-     m_image.height() > height())
+  if(height() < m_image.height() || m_image.width() > width())
     {
       pixmap = QPixmap::fromImage(m_image);
 
