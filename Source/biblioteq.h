@@ -75,11 +75,11 @@ class userinfo_diag_class: public QDialog
   userinfo_diag_class(QMainWindow *parent):QDialog(parent)
   {
     m_userinfo.setupUi(this);
+    m_userinfo.expirationdatefuture->setMenu(new QMenu(this));
     connect(m_userinfo.expirationdatefuture,
 	    SIGNAL(clicked(void)),
 	    m_userinfo.expirationdatefuture,
 	    SLOT(showMenu(void)));
-    m_userinfo.expirationdatefuture->setMenu(new QMenu(this));
     connect
       (m_userinfo.expirationdatefuture->menu()->addAction(tr("Year's End")),
        SIGNAL(triggered(void)),
@@ -133,8 +133,7 @@ class userinfo_diag_class: public QDialog
       list << "city";
 
     if(m_memberProperties.value("comments") !=
-       m_userinfo.comments->toPlainText().
-       trimmed())
+       m_userinfo.comments->toPlainText().trimmed())
       list << "comments";
 
     if(m_memberProperties.value("dob") !=
@@ -148,16 +147,16 @@ class userinfo_diag_class: public QDialog
        m_userinfo.expirationdate->date().toString(Qt::ISODate))
       list << "expiration_date";
 
-    if(m_memberProperties.value("first_name") != m_userinfo.firstName->text().
-       trimmed())
+    if(m_memberProperties.value("first_name") !=
+       m_userinfo.firstName->text().trimmed())
       list << "first_name";
 
     if(m_memberProperties.value("general_registration_number") !=
        m_userinfo.generalregistrationnumber->text().trimmed())
       list << "general_registration_number";
 
-    if(m_memberProperties.value("last_name") != m_userinfo.lastName->text().
-       trimmed())
+    if(m_memberProperties.value("last_name") !=
+       m_userinfo.lastName->text().trimmed())
       list << "last_name";
 
     if(m_memberProperties.value("maximum_reserved_books") !=
@@ -176,8 +175,8 @@ class userinfo_diag_class: public QDialog
        m_userinfo.membersince->date().toString(Qt::ISODate))
       list << "membersince";
 
-    if(m_memberProperties.value("middle_init") != m_userinfo.middle->text().
-       trimmed())
+    if(m_memberProperties.value("middle_init") !=
+       m_userinfo.middle->text().trimmed())
       list << "middle_init";
 
     if(m_memberProperties.value("overdue_fees") !=
@@ -203,6 +202,7 @@ class userinfo_diag_class: public QDialog
       list << "zip";
 
     std::sort(list.begin(), list.end());
+    str.clear();
 
     for(int i = 0; i < list.size(); i++)
       str += list.at(i) + ", ";
@@ -246,8 +246,8 @@ class userinfo_diag_class: public QDialog
       if(QMessageBox::
 	 question(this,
 		  tr("BiblioteQ: Question"),
-		  tr("Your changes have not been saved. Continue "
-		     "closing?\n%1").arg(str),
+		  tr("Your changes have not been committed. "
+		     "Continue closing?\n%1").arg(str),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
 	{
