@@ -57,9 +57,7 @@ void biblioteq_hyperlinked_text_edit::keyReleaseEvent(QKeyEvent *event)
 }
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
-(const QString &searchType,
- const QString &searchField,
- const QString &str)
+(const QString &searchType, const QString &searchField, const QString &str)
 {
   if(!qmain)
     return;
