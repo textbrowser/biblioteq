@@ -49,6 +49,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wundef \
                           -fPIE \
                           -fstack-protector-all \
+                          -funroll-loops \
                           -fwrapv \
                           -pedantic \
                           -pie \

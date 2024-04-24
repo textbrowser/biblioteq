@@ -21,6 +21,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wstack-protector \
                           -fPIE \
                           -fstack-protector-all \
+                          -funroll-loops \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
