@@ -1,6 +1,31 @@
 <html>
   <body>
-  <p><u>March 25, 2024.</u></p>
+    <p><u>30 avril 2024.</u></p>
+    <ul>
+      <li>259 réalisations de BiblioteQ ; ici et là. Un rapprochement agréable.</li>
+      <li>Afficher les dates formatées pour toutes les requêtes dans la fenêtre principale.</li>
+      <li>Afficher tous les éléments dans le navigateur d'énumération de bases de données -> Section widget boîte à combinaisons.</li>
+      <li>Afficher un message d'erreur si la bibliothèque PostgreSQL fournie par Homebrew n'est pas disponible sur MacOS.</li>
+      <li>Ajout de sslcompression=1 à connection_options dans biblioteq.conf. PostgreSQL uniquement.</li>
+      <li>Analyseur Z39.50 Unimarc : unimarc 676 pour numéro dewey. <b>GitHub ticket #344.</b></li>
+      <li>Autres Options : n'enregistrez pas les couleurs en latin dans l'INI. Enregistrez plutôt les couleurs telles qu'elles apparaissent.</li>
+      <li>Classes d'énumérateurs C++ terminées. Veuillez découvrir les erreurs.</li>
+      <li>Correction de l'enregistrement INI des couleurs de disponibilité dans Autres options -> Fenêtre principale. Ne pas négliger les colonnes triées ! <b>Ticket GitHub #357.</b></li>
+      <li>Correction de l'enregistrement INI des formats de date dans Autres options -> Éléments. Ne pas négliger les colonnes triées ! <b>Ticket GitHub #357.</b></li>
+      <li>Déactiver le tri dans le navigateur d'énumération de bases de données ->	Réservations Jours minimums. <b>Ticket GitHub #362.</b></li>
+      <li>Défilement vers le bas des widgets de liste et de tableau chaque fois que de nouvelles entrées sont créées dans le navigateur d'énumérations de la base de données..</li>
+      <li>Les données du navigateur d'énumérations de la base de données correctement engagées entraîneront la population automatique des interfaces existantes. Veuillez noter que BiblioteQ s'efforcera de préserver les valeurs actuelles des interfaces existantes.</li>
+      <li>Navigateur d'énumération de bases de données : remplacement des widgets de boîtes de combinaison dans la table des lieux par des délégués d'éléments. La révision résout un avertissement Qt particulier « edit : editing failed ». Le problème est rencontré lors de la navigation avec les touches de tabulation. Veuillez également lire le document TO-DO.</li>
+      <li>Ne traduisez pas les champs de type dans les jours minimums de localisation et de réservation du navigateur d'énumération de bases de données. Le champ Type représente une valeur de la base de données et les éléments sont localisés grâce à lui. <b>Ticket GitHub #360.</b></li>
+      <li>Remplace QString(tr()) par tr().</li>
+      <li>Renommer certaines clés INI : otheroptions/book_date_format -> otheroptions/date_format. Please review Other Options -> Items.</li>
+      <li>Rétablir un curseur normal si qmain n'est pas disponible en biblioteq_otheroptions::prepareShortcuts(). Très terrible et très improbable.</li>
+      <li>Source organisée. Veuillez réviser et soumettre les corrections.</li>
+      <li>Suppression des mnémoniques en double dans toutes les interfaces.</li>
+      <li>Suppression du menu d'aide inactif du navigateur d'importation CSV. Sérieux !</li>
+      <li>Il s'agit d'une publication heureuse dans un monde de calamités.</li>
+    </ul>
+  <p><u>25 mars 2024.</u></p>
     <ul>
       <li>Amélioration de la recherche de texte dans la classe de documentation.</li>
       <li>Bloquer les signaux dans biblioteq_misc_functions::sortCombinationBox() avant de modifier le contenu du widget de la boîte de combinaison.</li>
