@@ -5703,7 +5703,6 @@ void biblioteq::slotSaveConfig(void)
        friendlyStates().value(ui.table->friendlyStates().keys().at(i)));
 
   settings.setValue("tearOffMenus", ui.actionTearOffMenus->isChecked());
-  settings.sync();
 }
 
 void biblioteq::slotSaveUser(void)

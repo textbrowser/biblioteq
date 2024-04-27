@@ -3262,7 +3262,6 @@ void biblioteq::slotExit(void)
   QSettings settings;
 
   settings.setValue("mainwindowState", saveState());
-  settings.sync();
   slotLastWindowClosed();
   quit();
 }

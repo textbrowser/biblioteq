@@ -946,7 +946,6 @@ void biblioteq_otheroptions::slotSave(void)
      m_ui.show_maintable_progress_dialogs->isChecked());
   settings.setValue
     ("show_maintable_tooltips", m_ui.show_maintable_tooltips->isChecked());
-  settings.sync();
 
   if(settings.status() == QSettings::NoError)
     m_ui.save->animate(2500);
