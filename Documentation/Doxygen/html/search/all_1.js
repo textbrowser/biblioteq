@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cocoainitializer_48',['CocoaInitializer',['../classCocoaInitializer.html',1,'']]]
+  ['cocoainitializer_0',['CocoaInitializer',['../classCocoaInitializer.html',1,'']]]
 ];
