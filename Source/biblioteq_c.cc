@@ -994,7 +994,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		}
 	    }
 
-	  if(availabilityItem && availabilityItem->value() > 0.0)
+	  if(availabilityItem && availabilityItem->value().toInt() > 0)
 	    availabilityItem->setBackground(availabilityColor(itemType));
 
 	  if(first && showMainTableImages)

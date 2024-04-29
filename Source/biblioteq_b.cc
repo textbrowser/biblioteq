@@ -3997,7 +3997,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		}
 	    }
 
-	  if(availabilityItem && availabilityItem->value() > 0.0)
+	  if(availabilityItem && availabilityItem->value().toInt() > 0)
 	    availabilityItem->setBackground(availabilityColor(itemType));
 
 	  if(first && showMainTableImages)
