@@ -119,6 +119,57 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>April 30, 2024.</p>
+	<ul>
+	  <li>259 releases of BiblioteQ; here and there.
+	    A pleasant approximation.</li>
+	  <li>676 Dewey Number and Z39.50 Unimarc. GitHub ticket #344.</li>
+	  <li>Added sslcompression=1 to connection_options in biblioteq.conf.
+	    PostgreSQL only.</li>
+	  <li>Completed C++ enumerator classes. Please discover errors.</li>
+	  <li>Corrected INI recording of availability colors in
+	    Other Options -> Main Window. Do not neglect sorted columns!
+	    GitHub ticket #357.</li>
+	  <li>Corrected INI recording of date formats in Other Options -> Items.
+	    Do not neglect sorted columns! GitHub ticket #357.</li>
+	  <li>Correctly committed Database Enumerations Browser data will cause
+	    automatic population of existing interfaces. Please note that
+	    BiblioteQ will make a best effort at preserving current values of
+	    existing interfaces.</li>
+	  <li>Database Enumerations Browser: replaced combination box widgets
+	    in the Locations table with item delegates. The revision resolves
+	    a peculiar Qt warning "edit: editing failed". The problem
+	    is encountered during tab-key navigation. Please also read the
+	    TO-DO document.</li>
+	  <li>Disabled sorting in Database Enumerations Browser ->
+	    Reservations Minimum Days. GitHub ticket #362.</li>
+	  <li>Display all items in Database Enumerations Browser -> Section
+	    combination box widget.</li>
+	  <li>Display an error message if the PostgreSQL library provided
+	    by Homebrew is not available on MacOS.</li>
+	  <li>Display formatted dates for all queries in the main window.</li>
+	  <li>Do not translate Type fields in the Database Enumeration
+	    Browser's Locations and Reservations Minimum Days. The Type field
+	    represents a database value and items are located through it.
+	    GitHub ticket #360.</li>
+	  <li>Introduced loop-unrolling in project files for some
+	distributions.</li>
+	  <li>Organized source. Please review and submit corrections.</li>
+	  <li>Other Options: do not record colors names as Latin in the INI file.
+	    Instead, record colors names as presented.</li>
+	  <li>Removed all QSettings::sync() instances.</li>
+	  <li>Removed duplicate mnemonics from all interfaces.</li>
+	  <li>Removed inactive Help menu from CSV Import Browser. Seriously!</li>
+	  <li>Renamed some INI keys: otheroptions/book_date_format ->
+	    otheroptions/date_format. Please review Other Options -> Items.</li>
+	  <li>Replaced QString(tr()) with tr().</li>
+	  <li>Restore a normal cursor if qmain is not available in
+	    biblioteq_otheroptions::prepareShortcuts(). Very awful and very
+	    unlikely.</li>
+	  <li>Scroll to the bottom of the list and table widgets whenever new
+	    entries are created in the Database Enumerations Browser.</li>
+	  <li>This is a happy release in a world of calamity.</li>
+	</ul>
 	<p>March 25, 2024.</p>
 	<ul>
 	  <li>A style of Breeze is the preferred style of biblioteq.sh.</li>
