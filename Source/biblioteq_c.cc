@@ -5065,7 +5065,7 @@ void biblioteq::slotRequest(void)
   QString itemType("");
   QString oid("");
   auto error = false;
-  auto now(QDate::currentDate());
+  auto now(QDateTime::currentDateTime());
   int ct = 0;
   int i = 0;
   int numcompleted = 0;
@@ -5123,7 +5123,10 @@ void biblioteq::slotRequest(void)
 			    "VALUES (?, ?, ?, ?)");
 	      query.addBindValue(oid);
 	      query.addBindValue(dbUserName());
-	      query.addBindValue(now.toString(s_databaseDateFormat));
+	      query.addBindValue
+		(now.toString(s_databaseDateFormat +
+			      " " +
+			      s_databaseTimeFormat));
 	      query.addBindValue(itemType);
 	    }
 	  else

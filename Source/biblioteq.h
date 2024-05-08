@@ -284,6 +284,7 @@ class biblioteq: public QMainWindow
     };
 
   static QString s_databaseDateFormat;
+  static QString s_databaseTimeFormat;
   static QString s_locale;
   static QString s_unknown;
   static QTranslator *s_appTranslator;

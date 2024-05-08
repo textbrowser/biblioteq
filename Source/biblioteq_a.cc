@@ -73,6 +73,7 @@ extern "C"
 */
 
 QString biblioteq::s_databaseDateFormat = "MM/dd/yyyy";
+QString biblioteq::s_databaseTimeFormat = "hh:mm:ss";
 QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = "UNKNOWN";
 QTranslator *biblioteq::s_appTranslator = nullptr;
