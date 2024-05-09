@@ -372,7 +372,11 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
+#else
+	if(label->pixmap() && label->pixmap()->isNull() == false)
+#endif
 	  {
 	    QIcon icon(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/ok.png")));
 
@@ -529,7 +533,11 @@ void biblioteq::prepareIcons(void)
       er.resetButton->setIcon(QIcon(":/16x16/reset.png"));
 
       foreach(auto label, ab.frame->findChildren<QLabel *> ())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 	if(!label->pixmap(Qt::ReturnByValue).isNull())
+#else
+	if(label->pixmap() && label->pixmap()->isNull() == false)
+#endif
 	  label->setPixmap(QPixmap(":/16x16/ok.png"));
 
       history.actionExport_As_CSV->setIcon(QIcon(":/16x16/fileexport.png"));
