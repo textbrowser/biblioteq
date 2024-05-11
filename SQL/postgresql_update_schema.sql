@@ -26,3 +26,7 @@ ALTER TABLE dvd_copy_info ADD notes TEXT;
 ALTER TABLE journal_copy_info ADD notes TEXT;
 ALTER TABLE magazine_copy_info ADD notes TEXT;
 ALTER TABLE videogame_copy_info ADD notes TEXT;
+
+/* Release 2024.05.30 */
+
+DROP FUNCTION delete_request CASCADE;

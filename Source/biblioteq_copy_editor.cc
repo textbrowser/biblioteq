@@ -778,6 +778,22 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
       QApplication::processEvents();
       return;
     }
+  else
+    {
+      /*
+      ** Delete the request.
+      */
+
+      QSqlQuery query(qmain->getDB());
+
+      query.prepare
+	("DELETE FROM item_request WHERE "
+	 "item_oid = ? AND memberid = ? and type = ?");
+      query.addBindValue(m_ioid);
+      query.addBindValue(memberid);
+      query.addBindValue(m_itemType);
+      query.exec();
+    }
 
   /*
   ** Record the reservation in the member's history table.

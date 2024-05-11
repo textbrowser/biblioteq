@@ -530,16 +530,6 @@ END;
 CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
 FOR EACH row EXECUTE PROCEDURE delete_videogame();
 
-CREATE OR REPLACE FUNCTION delete_request() RETURNS trigger AS '
-BEGIN
-	DELETE FROM item_request WHERE item_oid = new.item_oid AND
-	type = new.type;
-	RETURN NULL;
-END;
-' LANGUAGE plpgsql;
-CREATE TRIGGER item_request_trigger AFTER INSERT ON item_borrower
-FOR EACH row EXECUTE PROCEDURE delete_request();
-
 CREATE TABLE book_binding_types
 (
 	binding_type TEXT NOT NULL PRIMARY KEY
