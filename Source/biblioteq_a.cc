@@ -4231,8 +4231,36 @@ void biblioteq::slotReserveCopy(void)
       QApplication::processEvents();
     }
 
-  if(bb.table->currentRow() < 0)
-    bb.table->selectRow(0);
+  auto memberId
+    (biblioteq_misc_functions::getColumnString(ui.table,
+					       ui.table->currentRow(),
+					       "Member ID"));
+
+  if(memberId.isEmpty())
+    {
+      if(bb.table->currentRow() < 0)
+	bb.table->selectRow(0);
+    }
+  else
+    {
+      auto column = biblioteq_misc_functions::getColumnNumber
+	(bb.table, "Member ID");
+
+      if(column > -1)
+	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+	  for(int i = 0; i < bb.table->rowCount(); i++)
+	    if(bb.table->item(i, column) &&
+	       bb.table->item(i, column)->text() == memberId)
+	      {
+		bb.table->selectRow(i);
+		break;
+	      }
+
+	  QApplication::restoreOverrideCursor();
+	}
+    }
 }
 
 void biblioteq::slotReset(void)
