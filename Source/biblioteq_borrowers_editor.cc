@@ -465,7 +465,8 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
     }
 
   QApplication::processEvents();
-  query.prepare("DELETE FROM item_borrower WHERE myoid = ? AND type = ?");
+  query.prepare
+    ("DELETE FROM item_borrower WHERE myoid = ? AND type = ?");
   query.bindValue(0, oid);
   query.bindValue(1, m_itemType);
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -577,6 +578,19 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 						   qmain->getUI().table->
 						   columnNumber("Type")))
 	qmain->slotDisplaySummary();
+
+      if(biblioteq_misc_functions::isRequested(qmain->getDB(),
+					       m_ioid,
+					       m_itemType,
+					       errorstr))
+	{
+	  QMessageBox::information
+	    (this,
+	     tr("BiblioteQ: Information"),
+	     tr("Please set the item aside as another patron has requested "
+		"it."));
+	  QApplication::processEvents();
+	}
     }
 }
 

@@ -18,7 +18,7 @@ ALTER TABLE book ADD date_of_reform VARCHAR(32);
 ALTER TABLE book ADD origin TEXT;
 ALTER TABLE book ADD purchase_date VARCHAR(32);
 
-/* Release 2024.00.00 */
+/* Release 2024.03.25 */
 
 ALTER TABLE book_copy_info ADD notes TEXT;
 ALTER TABLE cd_copy_info ADD notes TEXT;

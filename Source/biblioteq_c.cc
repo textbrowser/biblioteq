@@ -4997,7 +4997,7 @@ void biblioteq::slotRemoveMember(void)
 void biblioteq::slotRequest(void)
 {
   /*
-  ** This method is used for canceling request(s), requesting item(s), or
+  ** This method is used for canceling request(s), requesting item(s), and
   ** returning selected item(s).
   */
 
