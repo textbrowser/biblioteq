@@ -333,6 +333,20 @@ void biblioteq_batch_activities::borrow(void)
 	  copyIdentifier->setData(Qt::BackgroundRole, QVariant());
 	  results->setBackground(s_okColor);
 	  results->setText(tr("Reserved!"));
+
+	  /*
+	  ** Delete the request.
+	  */
+
+	  QSqlQuery query(m_qmain->getDB());
+
+	  query.prepare
+	    ("DELETE FROM item_request WHERE "
+	     "item_oid = ? AND memberid = ? and type = ?");
+	  query.addBindValue(itemOid);
+	  query.addBindValue(memberId);
+	  query.addBindValue(type);
+	  query.exec();
 	}
       else
 	{
