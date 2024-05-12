@@ -656,3 +656,5 @@
 322. Include time in item-request date. (Completed)
 323. Select the appropriate member during a reservation process.
      (All Requested -> Home -> Members Browser) (Completed)
+324. Provide a reminder if an item has been returned which is also
+     requested (biblioteq::slotRequest()). (TBD)
