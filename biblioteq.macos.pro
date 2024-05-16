@@ -61,7 +61,15 @@ doc2.files		 = Documentation/Contributed/*.docx \
                            Documentation/Contributed/*.html \
                            Documentation/Contributed/*.pdf
 doc2.path		 = BiblioteQ.d/Documentation/Contributed
-installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/Cellar/libpq/16.2_1/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+
+exists(/opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib) {
+installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+}
+
+exists(/usr/local/Cellar/libpq/16.3/lib/libpq.dylib) {
+installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/Cellar/libpq/16.3/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+}
+
 installnametool1.path    = .
 lrelease.extra           = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path            = .
