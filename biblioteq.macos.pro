@@ -3,7 +3,15 @@ dmg.commands = hdiutil create BiblioteQ.d.dmg -srcfolder BiblioteQ.d
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= qt release warn_on
-DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/16.2_1/lib/libpq.dylib\"'"
+
+exists(/opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib) {
+DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib\"'"
+}
+
+exists(/usr/local/Cellar/libpq/16.3/lib/libpq.dylib) {
+DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/16.3/lib/libpq.dylib\"'"
+}
+
 DEFINES		+= QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
 QT		+= gui network printsupport sql widgets
