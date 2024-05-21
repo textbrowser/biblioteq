@@ -606,10 +606,12 @@
 	biblioteq_callnum_table_item.[cc, h] (Completed)
 	biblioteq_copy_editor_book.[cc, h] (Completed)
 	biblioteq_files.[cc, h] (Completed)
+	biblioteq_graphicsitempixmap.h (Completed)
 	biblioteq_hyperlinked_text_edit.[cc, h] (Completed)
 	biblioteq_image_drop_site.[cc, h] (Completed)
 	biblioteq_import.[cc, h] (Completed)
 	biblioteq_item.[cc, h] (Completed)
+	biblioteq_journal.cc (Completed)
 	biblioteq_magazine.[cc, h] (Completed)
 	biblioteq_magic.[cc, h] (Completed)
 	biblioteq_main_table.[cc, h] (Completed)
@@ -660,3 +662,4 @@
      requested (biblioteq::slotRequest()). (TBD)
 325. Apple Silicon and biblioteq.macos.pro: BIBLIOTEQ_MACOS_LIBPQ_PATH.
      (Completed)
+326. Qt 6 statistics. (TBD)
