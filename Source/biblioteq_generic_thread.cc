@@ -38,9 +38,8 @@ extern "C"
 #endif
 }
 
-biblioteq_generic_thread::biblioteq_generic_thread(QObject *parent,
-						   biblioteq *biblioteq):
-  QThread(parent)
+biblioteq_generic_thread::biblioteq_generic_thread
+(QObject *parent, biblioteq *biblioteq):QThread(parent)
 {
   m_eType = "";
   m_errorStr = "";
@@ -95,16 +94,17 @@ void biblioteq_generic_thread::run(void)
       {
 	QFile qf;
 	QTextStream qts;
-	biblioteq_myqstring str = "";
+	biblioteq_myqstring str("");
 
 	if(!m_filename.trimmed().isEmpty())
 	  qf.setFileName(m_filename);
 
-	if(m_filename.trimmed().isEmpty() || !qf.open(QIODevice::ReadOnly))
+	if(!qf.open(QIODevice::ReadOnly) || m_filename.trimmed().isEmpty())
 	  {
 	    if(m_filename.trimmed().isEmpty())
-	      m_errorStr = tr("The configuration file "
-			      "(typically biblioteq.conf) cannot be read.");
+	      m_errorStr = tr
+		("The configuration file (typically biblioteq.conf) "
+		 "cannot be read.");
 	    else
 	      m_errorStr = tr
 		("Unable to read %1. This file is required by BiblioteQ.").
@@ -202,7 +202,7 @@ void biblioteq_generic_thread::run(void)
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection, m_z3950SearchStr.toLatin1().constData());
 
-	auto format = hash.value("Format").trimmed().toLower();
+	auto format(hash.value("Format").trimmed().toLower());
 
 	if(format.isEmpty())
 	  format = "render";
@@ -257,9 +257,7 @@ void biblioteq_generic_thread::setFilename(const QString &filename)
 
 void biblioteq_generic_thread::setOutputList(const QList<bool> &list)
 {
-  int i = 0;
-
-  for(i = 0; i < list.size(); i++)
+  for(int i = 0; i < list.size(); i++)
     m_outputListBool.append(list.at(i));
 }
 
