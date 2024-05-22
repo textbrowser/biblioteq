@@ -10,7 +10,7 @@ postgresql=postgresql.zip
 rm -f $postgresql
 wget --output-document=$postgresql \
      --progress=bar \
-     "https://get.enterprisedb.com/postgresql/postgresql-15.6-1-windows-x64-binaries.zip"
+     "https://get.enterprisedb.com/postgresql/postgresql-15.7-1-windows-x64-binaries.zip"
 
 if [ -r $postgresql ]; then
     unzip -q $postgresql
