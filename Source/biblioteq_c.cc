@@ -5064,6 +5064,8 @@ void biblioteq::slotRequest(void)
   QProgressDialog progress(this);
   QString itemType("");
   QString oid("");
+  QString str("");
+  QString title("");
   auto error = false;
   auto now(QDateTime::currentDateTime());
   int ct = 0;
@@ -5096,6 +5098,8 @@ void biblioteq::slotRequest(void)
       i = index.row();
       itemType = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("Type"));
+      title = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Title"));
 
       if(task == RequestActionItems::CANCEL_REQUESTED)
 	{
@@ -5169,7 +5173,18 @@ void biblioteq::slotRequest(void)
 		  error = true;
 		}
 	      else
-		numcompleted += 1;
+		{
+		  numcompleted += 1;
+
+		  QString errorstr("");
+
+		  if(biblioteq_misc_functions::isRequested(m_db,
+							   oid,
+							   itemType,
+							   errorstr))
+		    str += tr("The item %1 is requested by another patron. "
+			      "Please set it aside.\n").arg(title);
+		}
 
 	      goto progress_label;
 	    }
@@ -5231,9 +5246,15 @@ void biblioteq::slotRequest(void)
   QApplication::processEvents();
 
   if(numcompleted > 0)
-    if(task == RequestActionItems::CANCEL_REQUESTED ||
-       task == RequestActionItems::RETURN_RESERVED)
-      slotRefresh();
+    {
+      if(str.isEmpty() == false)
+	{
+	}
+
+      if(task == RequestActionItems::CANCEL_REQUESTED ||
+	 task == RequestActionItems::RETURN_RESERVED)
+	slotRefresh();
+    }
 }
 
 void biblioteq::slotSaveAdministrators(void)
