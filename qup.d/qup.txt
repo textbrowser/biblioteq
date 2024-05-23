@@ -1,9 +1,5 @@
 # Qup definitions file.
-# https://github.com/textbrowser/qup
-
-[Download]
-
-url = https://github.com/textbrowser/biblioteq/tree/master/QupRelease
+# Visit https://github.com/textbrowser/qup.
 
 [General]
 
@@ -11,6 +7,7 @@ file = Administrator Guide.pdf
 file = BiblioteQ.pdf
 file = TO-DO
 file_destination = Documentation
+url =
 
 [General]
 
@@ -18,23 +15,27 @@ file = postgresql_create_schema.sql
 file = postgresql_destroy_schema.sql
 file = postgresql_update_schema.sql
 file_destination = SQL
+url =
 
-[Linux]
+[Linux Debian x86-64]
 
 executable:amd64 = BiblioteQ_amd64
 executable:armhf = BiblioteQ_armhf
 executable:powerpc = BiblioteQ_powerpc
 local_executable = BiblioteQ
+url =
 
-[MacOS]
+[MacOS x86-64]
 
 executable = BiblioteQ.app.zip
 local_executable = BiblioteQ.app
+url =
 
-[Windows]
+[Windows x86-64]
 
 executable = BiblioteQ.exe
 file = Windows Installation-French.pdf
 file = Windows Installation.pdf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
+url =
