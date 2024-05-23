@@ -187,7 +187,7 @@ void biblioteq_files::slotExport(void)
 
   query.setForwardOnly(true);
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i += 1;
       progress.setValue(i);

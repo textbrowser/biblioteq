@@ -388,7 +388,7 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
   QMap<QString, bool> map;
   QSettings settings;
 
-  foreach(const auto &string,
+  foreach(auto const &string,
 	  settings.value("otheroptions/members_visible_columns", "").
 	  toString().split(','))
     {
@@ -499,7 +499,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   {
     QMap<QString, QColor> map;
 
-    foreach(const auto &string,
+    foreach(auto const &string,
 	    settings.value("otheroptions/custom_query_colors", "").
 	    toString().split(','))
       {
@@ -526,7 +526,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   {
     QMap<QString, bool> map;
 
-    foreach(const auto &string,
+    foreach(auto const &string,
 	    settings.value("otheroptions/members_visible_columns", "").
 	    toString().split(','))
       {

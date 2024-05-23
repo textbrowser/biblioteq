@@ -2273,7 +2273,7 @@ void biblioteq::slotAbout(void)
     }
 
   QString qversion("");
-  const auto tmp = qVersion();
+  auto const tmp = qVersion();
 
   if(tmp)
     qversion = tmp;
@@ -2625,7 +2625,7 @@ void biblioteq::slotCopyError(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
 
@@ -2676,7 +2676,7 @@ void biblioteq::slotDelete(void)
 
   col = ui.table->columnNumber("MYOID");
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
 
@@ -2792,7 +2792,7 @@ void biblioteq::slotDelete(void)
   progress.repaint();
   QApplication::processEvents();
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
 
@@ -2998,7 +2998,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 #endif
 							));
 
-	    foreach(const auto &string, list)
+	    foreach(auto const &string, list)
 	      if(!query.exec("CREATE " + string))
 		{
 		  error = true;
@@ -3157,7 +3157,7 @@ void biblioteq::slotDuplicate(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -3560,7 +3560,7 @@ void biblioteq::slotModify(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString
@@ -5124,7 +5124,7 @@ void biblioteq::slotViewDetails(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       i = index.row();
       oid = biblioteq_misc_functions::getColumnString

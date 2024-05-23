@@ -255,7 +255,7 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
   cq.favorites->clear();
   settings.beginGroup("customqueries");
 
-  foreach(const auto &key, settings.childKeys())
+  foreach(auto const &key, settings.childKeys())
     if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
       {
 	auto k(key.mid(0, static_cast<int> (biblioteq::Limits::

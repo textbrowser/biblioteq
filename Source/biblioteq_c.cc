@@ -2738,7 +2738,7 @@ void biblioteq::slotConnectDB(void)
   else if(tmphash.value("database_type") == "sqlite")
     str = "QSQLITE";
 
-  foreach(const auto &driver, QSqlDatabase::drivers())
+  foreach(auto const &driver, QSqlDatabase::drivers())
     drivers += driver + ", ";
 
   if(drivers.endsWith(", "))
@@ -2747,7 +2747,7 @@ void biblioteq::slotConnectDB(void)
   if(drivers.isEmpty())
     drivers = "N/A";
 
-  foreach(const auto &path, QApplication::libraryPaths())
+  foreach(auto const &path, QApplication::libraryPaths())
     if(path.contains("plugin", Qt::CaseInsensitive))
       {
 	plugins = path;
@@ -3884,7 +3884,7 @@ void biblioteq::slotExportMembersAsCSV(void)
 	  QString str("");
 	  QTextStream stream(&file);
 
-	  foreach(const auto &f, QStringList()
+	  foreach(auto const &f, QStringList()
 		  << tr("City")
 		  << tr("Comments")
 		  << tr("Date of Birth")
@@ -5088,7 +5088,7 @@ void biblioteq::slotRequest(void)
   progress.repaint();
   QApplication::processEvents();
 
-  foreach(const auto &index, list)
+  foreach(auto const &index, list)
     {
       QSqlQuery query(m_db);
 
