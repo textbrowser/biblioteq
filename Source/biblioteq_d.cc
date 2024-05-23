@@ -87,7 +87,7 @@ QStringList biblioteq::selectedISBN10s(void) const
 {
   QStringList list;
 
-  foreach(const auto &index, ui.table->selectionModel()->selectedRows())
+  foreach(auto const &index, ui.table->selectionModel()->selectedRows())
     {
       auto string = biblioteq_misc_functions::getColumnString
 	(ui.table, index.row(), ui.table->columnNumber("ISBN-10")).trimmed();
@@ -105,8 +105,7 @@ bool biblioteq::canAccessDatabaseEnumerations(void) const
     return false;
   else if(m_db.driverName() == "QSQLITE")
     return true;
-  else if(m_roles.contains("administrator") ||
-	  m_roles.contains("librarian"))
+  else if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     return true;
   else
     return false;
@@ -136,14 +135,14 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 
   if(querystr.isEmpty())
     {
-      QMessageBox::critical(widget,
+      QMessageBox::critical(widget == nullptr ? this : widget,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid SQL statement."));
       QApplication::processEvents();
       return;
     }
 
-  const auto &q(querystr.toLower());
+  auto const &q(querystr.toLower());
 
   if(q.startsWith("alter ") ||
      q.startsWith("cluster ") ||
@@ -156,7 +155,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
      q.startsWith("truncate "))
     {
       QMessageBox::critical
-	(widget,
+	(widget == nullptr ? this : widget,
 	 tr("BiblioteQ: User Error"),
 	 tr("Please provide a non-destructive SQL statement."));
       QApplication::processEvents();
@@ -164,7 +163,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
   else if(q.startsWith("delete "))
     {
       if(QMessageBox::
-	 question(widget,
+	 question(widget == nullptr ? this : widget,
 		  tr("BiblioteQ: Question"),
 		  tr("Are you sure that you wish to execute the statement?"),
 		  QMessageBox::No | QMessageBox::Yes,
@@ -184,7 +183,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
   else if(q.startsWith("update "))
     {
       if(QMessageBox::
-	 question(widget,
+	 question(widget == nullptr ? this : widget,
 		  tr("BiblioteQ: Question"),
 		  tr("Are you sure that you wish to execute the statement?"),
 		  QMessageBox::No | QMessageBox::Yes,
@@ -210,7 +209,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 
 	  auto column = ui.table->columnNumber("MYOID");
 
-	  foreach(const auto &index, list)
+	  foreach(auto const &index, list)
 	    {
 	      auto item = ui.table->item(index.row(), column);
 
@@ -246,7 +245,7 @@ void biblioteq::populateFavorites(void)
 
   settings.beginGroup("customqueries");
 
-  foreach(const auto &key, settings.childKeys())
+  foreach(auto const &key, settings.childKeys())
     if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
       {
 	QAction *action = nullptr;
@@ -999,7 +998,7 @@ void biblioteq::slotSetMembershipFees(void)
     }
   else
     {
-      foreach(const auto &index, list)
+      foreach(auto const &index, list)
 	{
 	  auto str(index.data().toString());
 
@@ -1180,6 +1179,6 @@ void biblioteq::slotSwifty(void)
       statusBar()->showMessage
 	(tr("A new version %1 of BiblioteQ is available!").
 	 arg(m_swifty->newest_version().trimmed()),
-	 7500);
+	 10000);
     }
 }

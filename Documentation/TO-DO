@@ -605,6 +605,7 @@
 	biblioteq_borrowers_editor.[cc, h] (Completed)
 	biblioteq_callnum_table_item.[cc, h] (Completed)
 	biblioteq_copy_editor_book.[cc, h] (Completed)
+	biblioteq_d.cc (Completed)
 	biblioteq_files.[cc, h] (Completed)
 	biblioteq_generic_thread.[cc, h] (Completed)
 	biblioteq_graphicsitempixmap.h (Completed)
@@ -660,7 +661,7 @@
 323. Select the appropriate member during a reservation process.
      (All Requested -> Home -> Members Browser) (Completed)
 324. Provide a reminder if an item has been returned which is also
-     requested (biblioteq::slotRequest()). (TBD)
+     requested (biblioteq::slotRequest()). (Completed)
 325. Apple Silicon and biblioteq.macos.pro: BIBLIOTEQ_MACOS_LIBPQ_PATH.
      (Completed)
 326. Qt 6 statistics. (TBD)
