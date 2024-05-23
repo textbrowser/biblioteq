@@ -387,10 +387,9 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
 
   QString str("");
   QTableWidgetItem *column = nullptr;
-  int i = 0;
 
   if(row >= 0 && row < table->rowCount())
-    for(i = 0; i < table->columnCount(); i++)
+    for(int i = 0; i < table->columnCount(); i++)
       {
 	column = table->horizontalHeaderItem(i);
 
@@ -526,7 +525,6 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
   QString itemType("");
   QString oid("");
   QString querystr("");
-  int i = 0;
 
   id = idArg;
   itemType = itemTypeArg.toLower();
@@ -576,7 +574,7 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 	{
 	  auto list(id.split(","));
 
-	  for(i = 0; i < list.size(); i++)
+	  for(int i = 0; i < list.size(); i++)
 	    query.bindValue(i, list[i].trimmed());
 	}
       else
@@ -1709,10 +1707,9 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
     return -1;
 
   QTableWidgetItem *column = nullptr;
-  int i = 0;
   int num = -1;
 
-  for(i = 0; i < table->columnCount(); i++)
+  for(int i = 0; i < table->columnCount(); i++)
     {
       column = table->horizontalHeaderItem(i);
 
@@ -2239,7 +2236,6 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
   QString itemoid("");
   auto copies = qBound
     (0, numCopies, static_cast<int> (biblioteq::Limits::QUANTITY));
-  int i = 0;
 
   /*
   ** Retrieve the item's OID. Use the OID to create initial copies.
@@ -2277,7 +2273,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
     }
 
   if(!itemoid.isEmpty())
-    for(i = 0; i < copies; i++)
+    for(int i = 0; i < copies; i++)
       {
 	if(db.driverName() != "QSQLITE")
 	  {
