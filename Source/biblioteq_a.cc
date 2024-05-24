@@ -4829,6 +4829,13 @@ void biblioteq::slotShowMembersBrowser(void)
 	bb.table->resizeColumnToContents(i);
     }
 
+  static auto resized = false;
+
+  if(!resized)
+    m_members_diag->resize(qRound(0.95 * size().width()),
+			   qRound(0.95 * size().height()));
+
+  resized = true;
   biblioteq_misc_functions::center(m_members_diag, this);
   m_members_diag->showNormal();
   m_members_diag->activateWindow();
