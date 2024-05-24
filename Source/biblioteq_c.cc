@@ -38,6 +38,7 @@
 #include "biblioteq_sql_syntax_highlighter.h"
 #include "biblioteq_sqlite_merge_databases.h"
 #include "biblioteq_woody.h"
+#include "ui_biblioteq_generalmessagediag.h"
 
 #include <QActionGroup>
 #include <QDesktopServices>
@@ -5097,9 +5098,10 @@ void biblioteq::slotRequest(void)
       ct += 1;
       i = index.row();
       itemType = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Type"));
+	(ui.table, i, ui.table->columnNumber("Type")).trimmed();
       title = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("Title"));
+	(ui.table, i, ui.table->columnNumber("Title")).trimmed();
+      title = title.isEmpty() ? tr("(unknown title)") : title;
 
       if(task == RequestActionItems::CANCEL_REQUESTED)
 	{
@@ -5249,6 +5251,19 @@ void biblioteq::slotRequest(void)
     {
       if(str.isEmpty() == false)
 	{
+	  QDialog dialog(this);
+	  Ui_generalmessagediag ui;
+
+	  ui.setupUi(&dialog);
+	  ui.text->setText(str);
+	  connect(ui.cancelButton,
+		  SIGNAL(clicked(void)),
+		  &dialog,
+		  SLOT(close(void)));
+	  dialog.resize(500, 500);
+	  dialog.setWindowTitle(tr("BiblioteQ: Information"));
+	  dialog.exec();
+	  QApplication::processEvents();
 	}
 
       if(task == RequestActionItems::CANCEL_REQUESTED ||
@@ -6759,8 +6774,8 @@ void biblioteq::slotShowHistory(void)
       if(!resized)
 	{
 	  m_history_diag->resize
-	    (qRound(0.85 * m_members_diag->size().width()),
-	     qRound(0.85 * m_members_diag->size().height()));
+	    (qRound(0.95 * m_members_diag->size().width()),
+	     qRound(0.95 * m_members_diag->size().height()));
 	  biblioteq_misc_functions::center(m_history_diag, m_members_diag);
 	}
 
@@ -6772,8 +6787,8 @@ void biblioteq::slotShowHistory(void)
 
       if(!resized)
 	{
-	  m_history_diag->resize(qRound(0.85 * size().width()),
-				 qRound(0.85 * size().height()));
+	  m_history_diag->resize(qRound(0.95 * size().width()),
+				 qRound(0.95 * size().height()));
 	  biblioteq_misc_functions::center(m_history_diag, this);
 	}
 

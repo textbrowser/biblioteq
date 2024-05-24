@@ -4646,7 +4646,7 @@ void biblioteq::slotSearch(void)
 
   if(!resized)
     m_all_diag->resize
-      (qRound(0.85 * size().width()), qRound(0.85 * size().height()));
+      (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
 
   resized = true;
 
@@ -4719,8 +4719,8 @@ void biblioteq::slotShowAdminDialog(void)
   static auto resized = false;
 
   if(!resized)
-    m_admin_diag->resize(qRound(0.85 * size().width()),
-			 qRound(0.85 * size().height()));
+    m_admin_diag->resize(qRound(0.95 * size().width()),
+			 qRound(0.95 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_admin_diag, this);
@@ -4757,7 +4757,7 @@ void biblioteq::slotShowCustomQuery(void)
 	  dialog,
 	  SLOT(slotPrepareIcons(void)));
   dialog->resize
-    (qRound(0.50 * size().width()), qRound(0.85 * size().height()));
+    (qRound(0.50 * size().width()), qRound(0.95 * size().height()));
   biblioteq_misc_functions::center(dialog, this);
   dialog->show();
 }
@@ -4792,8 +4792,8 @@ void biblioteq::slotShowErrorDialog(void)
   static auto resized = false;
 
   if(!resized)
-    m_error_diag->resize(qRound(0.85 * size().width()),
-			 qRound(0.85 * size().height()));
+    m_error_diag->resize(qRound(0.95 * size().width()),
+			 qRound(0.95 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_error_diag, this);

@@ -79,8 +79,8 @@ void biblioteq_magic::show(QMainWindow *parent, const bool center)
   static auto resized = false;
 
   if(!resized && parent)
-    resize(qRound(0.70 * parent->size().width()),
-	   qRound(0.80 * parent->size().height()));
+    resize(qRound(0.95 * parent->size().width()),
+	   qRound(0.95 * parent->size().height()));
 
   resized = true;
 

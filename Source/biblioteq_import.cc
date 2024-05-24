@@ -833,8 +833,8 @@ void biblioteq_import::show(QMainWindow *parent)
   static auto resized = false;
 
   if(parent && !resized)
-    resize(qRound(0.50 * parent->size().width()),
-	   qRound(0.80 * parent->size().height()));
+    resize(qRound(0.95 * parent->size().width()),
+	   qRound(0.95 * parent->size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(this, parent);
