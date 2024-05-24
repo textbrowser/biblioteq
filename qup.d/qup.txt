@@ -39,3 +39,5 @@ file = Windows Installation.pdf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
 url =
+
+# End of file. Required comment.
