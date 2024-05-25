@@ -5,9 +5,8 @@
 
 file = Administrator Guide.pdf
 file = BiblioteQ.pdf
-file = TO-DO
 file_destination = Documentation
-url =
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
 
@@ -15,7 +14,7 @@ file = postgresql_create_schema.sql
 file = postgresql_destroy_schema.sql
 file = postgresql_update_schema.sql
 file_destination = SQL
-url =
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [Linux Debian x86-64]
 
@@ -23,7 +22,7 @@ executable:amd64 = BiblioteQ_amd64
 executable:armhf = BiblioteQ_armhf
 executable:powerpc = BiblioteQ_powerpc
 local_executable = BiblioteQ
-url =
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [MacOS x86-64]
 
@@ -34,7 +33,6 @@ url =
 [Windows x86-64]
 
 executable = BiblioteQ.exe
-file = Windows Installation-French.pdf
 file = Windows Installation.pdf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
