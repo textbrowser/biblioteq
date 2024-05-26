@@ -3,12 +3,16 @@
 
 [General]
 
+# Order of keys is required.
+
 file = Administrator Guide.pdf
 file = BiblioteQ.pdf
 file_destination = Documentation
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
+
+# Order of keys is required.
 
 file = postgresql_create_schema.sql
 file = postgresql_destroy_schema.sql
@@ -18,6 +22,8 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [Linux Debian x86-64]
 
+# Order of keys is required.
+
 executable:amd64 = BiblioteQ_amd64
 executable:armhf = BiblioteQ_armhf
 executable:powerpc = BiblioteQ_powerpc
@@ -26,11 +32,15 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [MacOS x86-64]
 
+# Order of keys is required.
+
 executable = BiblioteQ.app.zip
 local_executable = BiblioteQ.app
 url =
 
 [Windows x86-64]
+
+# Order of keys is required.
 
 executable = BiblioteQ.exe
 file = Windows Installation.pdf
