@@ -6,7 +6,7 @@
 
 [General]
 
-file = Administrator Guide.pdf
+file = Administrator-Guide.pdf
 file = BiblioteQ.pdf
 file_destination = Documentation
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
@@ -36,7 +36,7 @@ url =
 [Windows x86-64]
 
 executable = BiblioteQ.exe
-file = Windows Installation.pdf
+file = Windows-Installation.pdf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
 url =
