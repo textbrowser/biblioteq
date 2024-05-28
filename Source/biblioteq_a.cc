@@ -2291,7 +2291,7 @@ void biblioteq::slotAbout(void)
   m_about->setStandardButtons(QMessageBox::Close);
   m_about->setText
     (tr("<html>BiblioteQ Version %1<br>"
-	"Architecture %4.<br>"
+	"Compilation Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
 	"Made with love by textbrower.<br>"
 	"Software for and from the margins.<br>"
