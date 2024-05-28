@@ -176,8 +176,8 @@ void biblioteq_documentationwindow::slotAnchorClicked(const QUrl &url)
 
 void biblioteq_documentationwindow::slotFind(void)
 {
-  m_ui.find->setFocus();
   m_ui.find->selectAll();
+  m_ui.find->setFocus();
 }
 
 void biblioteq_documentationwindow::slotFindText(void)
@@ -188,7 +188,7 @@ void biblioteq_documentationwindow::slotFindText(void)
   QTextDocument::FindFlags options = 0;
 #endif
 
-  if(qobject_cast<QPushButton *> (sender()) == m_ui.previous)
+  if(m_ui.previous == qobject_cast<QPushButton *> (sender()))
     options = QTextDocument::FindBackward;
 
   if(m_ui.find->text().isEmpty())
