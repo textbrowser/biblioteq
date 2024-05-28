@@ -33,6 +33,7 @@
 #include <QPrintPreviewDialog>
 #include <QScrollBar>
 #include <QSettings>
+#include <QSysInfo>
 #include <QTranslator>
 #include <QtDebug>
 
@@ -60,7 +61,6 @@ extern "C"
 }
 
 #include "biblioteq.h"
-#include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_custom_query.h"
 #include "biblioteq_otheroptions.h"
@@ -2311,7 +2311,7 @@ void biblioteq::slotAbout(void)
      arg(BIBLIOTEQ_VERSION).
      arg(__DATE__).
      arg(__TIME__).
-     arg(BIBLIOTEQ_ARCHITECTURE_STR).
+     arg(QSysInfo::buildCpuArchitecture()).
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
      arg(POPPLER_VERSION).
 #else

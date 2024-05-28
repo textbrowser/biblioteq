@@ -1,4 +1,5 @@
-BiblioteQ is free, lovely, and open library software.
+BiblioteQ is free, lovely, and open library software. A minimum version
+of Qt 5.5.1 is required. Qt 4.x is deprecated.
 
 ## Features
 
