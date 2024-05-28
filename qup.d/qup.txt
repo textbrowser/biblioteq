@@ -19,7 +19,7 @@ file = postgresql_update_schema.sql
 file_destination = SQL
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
-[Linux Debian x86-64]
+[Linux Debian]
 
 executable:amd64 = BiblioteQ_amd64
 executable:armhf = BiblioteQ_armhf
