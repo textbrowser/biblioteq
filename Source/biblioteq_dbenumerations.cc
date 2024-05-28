@@ -651,57 +651,57 @@ void biblioteq_dbenumerations::slotAdd(void)
   QListWidgetItem *listItem = nullptr;
   auto toolButton = qobject_cast<QToolButton *> (sender());
 
-  if(toolButton == m_ui.addBookBinding)
+  if(m_ui.addBookBinding == toolButton)
     {
       list = m_ui.bookBindingsList;
       listItem = new QListWidgetItem(tr("Book Binding"));
     }
-  else if(toolButton == m_ui.addBookCondition)
+  else if(m_ui.addBookCondition == toolButton)
     {
       list = m_ui.bookConditionsList;
       listItem = new QListWidgetItem(tr("Book Condition"));
     }
-  else if(toolButton == m_ui.addBookOriginality)
+  else if(m_ui.addBookOriginality == toolButton)
     {
       list = m_ui.bookOriginalityList;
       listItem = new QListWidgetItem(tr("Book Originality"));
     }
-  else if(toolButton == m_ui.addBookTargetAudience)
+  else if(m_ui.addBookTargetAudience == toolButton)
     {
       list = m_ui.bookTargetAudiences;
       listItem = new QListWidgetItem(tr("Book Target Audience"));
     }
-  else if(toolButton == m_ui.addCdFormat)
+  else if(m_ui.addCdFormat == toolButton)
     {
       list = m_ui.cdFormatsList;
       listItem = new QListWidgetItem(tr("CD Format"));
     }
-  else if(toolButton == m_ui.addDvdAspectRatio)
+  else if(m_ui.addDvdAspectRatio == toolButton)
     {
       list = m_ui.dvdAspectRatiosList;
       listItem = new QListWidgetItem(tr("DVD Aspect Ratio"));
     }
-  else if(toolButton == m_ui.addDvdRating)
+  else if(m_ui.addDvdRating == toolButton)
     {
       list = m_ui.dvdRatingsList;
       listItem = new QListWidgetItem(tr("DVD Rating"));
     }
-  else if(toolButton == m_ui.addDvdRegion)
+  else if(m_ui.addDvdRegion == toolButton)
     {
       list = m_ui.dvdRegionsList;
       listItem = new QListWidgetItem(tr("DVD Region"));
     }
-  else if(toolButton == m_ui.addGreyLiteratureType)
+  else if(m_ui.addGreyLiteratureType == toolButton)
     {
       list = m_ui.greyLiteratureTypes;
       listItem = new QListWidgetItem(tr("Document Type"));
     }
-  else if(toolButton == m_ui.addLanguage)
+  else if(m_ui.addLanguage == toolButton)
     {
       list = m_ui.languagesList;
       listItem = new QListWidgetItem(tr("Language"));
     }
-  else if(toolButton == m_ui.addLocation)
+  else if(m_ui.addLocation == toolButton)
     {
       auto item1 = new QTableWidgetItem("Book");
       auto item2 = new QTableWidgetItem();
@@ -723,17 +723,17 @@ void biblioteq_dbenumerations::slotAdd(void)
       m_ui.locationsTable->resizeRowsToContents();
       m_ui.locationsTable->scrollToBottom();
     }
-  else if(toolButton == m_ui.addMonetaryUnit)
+  else if(m_ui.addMonetaryUnit == toolButton)
     {
       list = m_ui.monetaryUnitsList;
       listItem = new QListWidgetItem(tr("Monetary Unit"));
     }
-  else if(toolButton == m_ui.addVideoGamePlatform)
+  else if(m_ui.addVideoGamePlatform == toolButton)
     {
       list = m_ui.videoGamePlatformsList;
       listItem = new QListWidgetItem(tr("Video Game Platform"));
     }
-  else if(toolButton == m_ui.addVideoGameRating)
+  else if(m_ui.addVideoGameRating == toolButton)
     {
       list = m_ui.videoGameRatingsList;
       listItem = new QListWidgetItem(tr("Video Game Rating"));
@@ -764,8 +764,7 @@ void biblioteq_dbenumerations::slotReload(void)
 
   saveData(listData, tableData);
 
-  if(listData != m_listData ||
-     tableData != m_tableData)
+  if(listData != m_listData || m_tableData != tableData)
     {
       if(QMessageBox::
 	 question(this,
@@ -789,33 +788,33 @@ void biblioteq_dbenumerations::slotRemove(void)
   QListWidget *list = nullptr;
   auto toolButton = qobject_cast<QToolButton *> (sender());
 
-  if(toolButton == m_ui.removeBookBinding)
+  if(m_ui.removeBookBinding == toolButton)
     list = m_ui.bookBindingsList;
-  else if(toolButton == m_ui.removeBookCondition)
+  else if(m_ui.removeBookCondition == toolButton)
     list = m_ui.bookConditionsList;
-  else if(toolButton == m_ui.removeBookOriginality)
+  else if(m_ui.removeBookOriginality == toolButton)
     list = m_ui.bookOriginalityList;
-  else if(toolButton == m_ui.removeBookTargetAudience)
+  else if(m_ui.removeBookTargetAudience == toolButton)
     list = m_ui.bookTargetAudiences;
-  else if(toolButton == m_ui.removeCdFormat)
+  else if(m_ui.removeCdFormat == toolButton)
     list = m_ui.cdFormatsList;
-  else if(toolButton == m_ui.removeDvdAspectRatio)
+  else if(m_ui.removeDvdAspectRatio == toolButton)
     list = m_ui.dvdAspectRatiosList;
-  else if(toolButton == m_ui.removeDvdRating)
+  else if(m_ui.removeDvdRating == toolButton)
     list = m_ui.dvdRatingsList;
-  else if(toolButton == m_ui.removeDvdRegion)
+  else if(m_ui.removeDvdRegion == toolButton)
     list = m_ui.dvdRegionsList;
-  else if(toolButton == m_ui.removeGreyLiteratureType)
+  else if(m_ui.removeGreyLiteratureType == toolButton)
     list = m_ui.greyLiteratureTypes;
-  else if(toolButton == m_ui.removeLanguage)
+  else if(m_ui.removeLanguage == toolButton)
     list = m_ui.languagesList;
-  else if(toolButton == m_ui.removeLocation)
+  else if(m_ui.removeLocation == toolButton)
     m_ui.locationsTable->removeRow(m_ui.locationsTable->currentRow());
-  else if(toolButton == m_ui.removeMonetaryUnit)
+  else if(m_ui.removeMonetaryUnit == toolButton)
     list = m_ui.monetaryUnitsList;
-  else if(toolButton == m_ui.removeVideoGamePlatform)
+  else if(m_ui.removeVideoGamePlatform == toolButton)
     list = m_ui.videoGamePlatformsList;
-  else if(toolButton == m_ui.removeVideoGameRating)
+  else if(m_ui.removeVideoGameRating == toolButton)
     list = m_ui.videoGameRatingsList;
 
   if(list && list->item(list->currentRow()))
@@ -865,7 +864,9 @@ void biblioteq_dbenumerations::slotSave(void)
 	  qmain->addError
 	    (tr("Database Error"),
 	     tr("Unable to create a database transaction."),
-	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	     qmain->getDB().lastError().text(),
+	     __FILE__,
+	     __LINE__);
 	  continue;
 	}
 
@@ -980,7 +981,7 @@ void biblioteq_dbenumerations::slotSave(void)
 	      (QString("%1_favorite").arg(tables.at(i)),
 	       comboBox->currentText());
 	}
-      else if(tableWidget && tableWidget == m_ui.locationsTable)
+      else if(m_ui.locationsTable == tableWidget && tableWidget)
 	{
 	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    if(tableWidget->item(j, 0) && tableWidget->item(j, 1))
@@ -1012,7 +1013,7 @@ void biblioteq_dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tableWidget && tableWidget == m_ui.minimumDaysTable)
+      else if(m_ui.minimumDaysTable == tableWidget && tableWidget)
 	{
 	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    {
