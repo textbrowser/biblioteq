@@ -22,7 +22,8 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 [Linux Debian]
 
 executable:amd64 = BiblioteQ_amd64
-executable:armhf = BiblioteQ_armhf
+executable:arm = BiblioteQ_arm
+executable:arm64 = BiblioteQ_arm64
 executable:powerpc = BiblioteQ_powerpc
 local_executable = BiblioteQ
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
