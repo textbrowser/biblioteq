@@ -338,8 +338,6 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
   QStringList list;
   QTreeWidgetItem *item1 = nullptr;
   QTreeWidgetItem *item2 = nullptr;
-  int i = 0;
-  int j = 0;
 
   cq.tables_t->clear();
 
@@ -426,15 +424,15 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 	 << "videogame_ratings";
 
   list.sort();
-  cq.tables_t->setSortingEnabled(false);
-  cq.tables_t->setColumnCount(3);
+  cq.tables_t->setColumnCount(4);
   cq.tables_t->setHeaderLabels(QStringList()
 			       << tr("Table Name")
 			       << tr("Column")
 			       << tr("Column Type")
 			       << tr("NULL"));
+  cq.tables_t->setSortingEnabled(false);
 
-  for(i = 0; i < list.size(); i++)
+  for(int i = 0; i < list.size(); i++)
     {
       item1 = new QTreeWidgetItem(cq.tables_t);
       item1->setText(0, list[i]);
@@ -442,12 +440,12 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 
       QStringList names;
 
-      for(j = 0; j < rec.count(); j++)
+      for(int j = 0; j < rec.count(); j++)
 	names << rec.fieldName(j);
 
       std::sort(names.begin(), names.end());
 
-      for(j = 0; j < names.size(); j++)
+      for(int j = 0; j < names.size(); j++)
 	{
 	  field = rec.field(names.at(j));
 	  item2 = new QTreeWidgetItem(item1);
@@ -465,7 +463,7 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 	}
     }
 
-  for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
+  for(int i = 0; i < cq.tables_t->columnCount() - 1; i++)
     cq.tables_t->resizeColumnToContents(i);
 
   cq.tables_t->setSortingEnabled(true);
