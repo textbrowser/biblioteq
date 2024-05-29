@@ -13,6 +13,13 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
 
+file = biblioteq.conf
+file = book.png
+file_destination = .
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
+
+[General]
+
 file = postgresql_create_schema.sql
 file = postgresql_destroy_schema.sql
 file = postgresql_update_schema.sql
@@ -25,6 +32,8 @@ executable:arm = BiblioteQ_arm
 executable:arm64 = BiblioteQ_arm64
 executable:powerpc = BiblioteQ_powerpc
 executable:x86_64 = BiblioteQ_x86_64
+file = biblioteq.desktop
+file_destination = .
 local_executable = BiblioteQ
 shell = biblioteq.sh
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
