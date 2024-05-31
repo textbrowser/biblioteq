@@ -26,7 +26,13 @@ file = postgresql_update_schema.sql
 file_destination = SQL
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
-[Linux Debian]
+[MacOS x86-64]
+
+executable = BiblioteQ.app.zip
+local_executable = BiblioteQ.app
+url =
+
+[Unix]
 
 executable:arm = BiblioteQ_arm
 executable:arm64 = BiblioteQ_arm64
@@ -36,12 +42,6 @@ file = ./biblioteq.desktop
 local_executable = BiblioteQ
 shell = ./biblioteq.sh
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
-
-[MacOS x86-64]
-
-executable = BiblioteQ.app.zip
-local_executable = BiblioteQ.app
-url =
 
 [Windows x86-64]
 
