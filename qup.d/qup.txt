@@ -6,16 +6,22 @@
 
 [General]
 
-file = Administrator-Guide.pdf
-file = BiblioteQ.pdf
-file_destination = Documentation
+file = biblioteq.conf
+file = book.png
+file_destination = .
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
 
-file = biblioteq.conf
-file = book.png
-file_destination = .
+file = BiblioteQ.sqlite
+file_destination = Data
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
+
+[General]
+
+file = Administrator-Guide.pdf
+file = BiblioteQ.pdf
+file_destination = Documentation
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
