@@ -40,10 +40,10 @@ url =
 
 [Unix]
 
-executable:arm = BiblioteQ_arm
-executable:arm64 = BiblioteQ_arm64
-executable:powerpc = BiblioteQ_powerpc
-executable:x86_64 = BiblioteQ_x86_64_Ubuntu_24_04
+executable = BiblioteQ_PiOS_12_arm
+executable = BiblioteQ_PiOS_12_arm64
+executable = BiblioteQ_Ubuntu_16_04_powerpc
+executable = BiblioteQ_Ubuntu_24_04_amd64
 file = ./biblioteq.desktop
 local_executable = BiblioteQ
 shell = ./biblioteq.sh
