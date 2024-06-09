@@ -1,0 +1,12 @@
+Apple Silicon requires signed software and therefore a bundled
+package will be considered tarnished. We recommend a Homebrew
+solution. Please visit https://brew.sh and install Homebrew.
+
+> brew install git
+> brew install qt
+> cd
+> git clone https://github.com/textbrowser/biblioteq biblioteq.d
+> cd biblioteq.d
+> qmake -o Makefile biblioteq.macos.pro
+> make -j 5
+> open ./BiblioteQ.app

@@ -35,6 +35,10 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
   m_qmain = nullptr;
+  connect(this,
+	  SIGNAL(cellChanged(int, int)),
+	  this,
+	  SLOT(slotCellChanged(int, int)));
   horizontalHeader()->setSectionsMovable(true);
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
@@ -665,6 +669,12 @@ void biblioteq_main_table::setColumns(const QString &username,
 void biblioteq_main_table::setQMain(biblioteq *biblioteq)
 {
   m_qmain = biblioteq;
+}
+
+void biblioteq_main_table::slotCellChanged(int row, int column)
+{
+  if(column < 0 || row < 0)
+    return;
 }
 
 void biblioteq_main_table::updateToolTips(const int row)

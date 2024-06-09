@@ -77,6 +77,9 @@ class biblioteq_main_table: public QTableWidget
 		  const QString &type,
 		  const QString &roles);
 
+ private slots:
+  void slotCellChanged(int row, int column);
+
  signals:
   void deleteKeyPressed(void);
   void enterKeyPressed(void);

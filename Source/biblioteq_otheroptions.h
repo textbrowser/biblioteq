@@ -88,7 +88,8 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   enum class ParentTypes
     {
       Keywords = 0,
-      Shortcuts
+      Shortcuts,
+      SpecialValueColors
     };
 
   biblioteq_otheroptions_item_delegate
@@ -104,10 +105,12 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
     switch(m_type)
       {
       case ParentTypes::Keywords:
+      case ParentTypes::SpecialValueColors:
 	{
 	  switch(index.column())
 	    {
 	    case 1:
+	    case 2:
 	      {
 		auto pushButton = new QPushButton(parent);
 
@@ -286,8 +289,8 @@ class biblioteq_otheroptions: public QMainWindow
   bool showMainTableProgressDialogs(void) const;
   int booksAccessionNumberIndex(void) const;
   int iconsViewColumnCount(void) const;
-  void prepareSettings(void);
   void prepareMembersVisibleColumns(QTableWidget *table);
+  void prepareSettings(void);
 
  private:
   enum class ItemsColumns
@@ -297,10 +300,23 @@ class biblioteq_otheroptions: public QMainWindow
       ITEM_TYPE = 0
     };
 
+  enum class Limits
+    {
+      SpecialValueColorsRows = 5
+    };
+
+  enum class SpecialColorsColumns
+    {
+      CellText = 0,
+      Color = 2,
+      ColumnTitle = 1
+    };
+
   Ui_otheroptions m_ui;
   biblioteq *qmain;
   biblioteq_otheroptions_item_delegate *m_keywordsItemDelegate;
   biblioteq_otheroptions_item_delegate *m_shortcutsItemDelegate;
+  biblioteq_otheroptions_item_delegate *m_specialValueColorsItemDelegate;
   mutable QString m_isbn10Format;
   mutable QString m_isbn13Format;
 
@@ -333,6 +349,7 @@ class biblioteq_otheroptions: public QMainWindow
   void prepareIcons(void);
   void prepareSQLKeywords(void);
   void prepareShortcuts(void);
+  void prepareSpecialColors(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);

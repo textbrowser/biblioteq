@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>700</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>688</width>
-         <height>642</height>
+         <height>742</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -618,6 +618,74 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_6">
+              <property name="title">
+               <string>Special Value Colors</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_15">
+               <item>
+                <widget class="QLabel" name="label_16">
+                 <property name="text">
+                  <string>Five rows are allowed. Please note that inspecting table cells may burden BiblioteQ.</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="special_value_colors">
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
+                 </property>
+                 <property name="selectionBehavior">
+                  <enum>QAbstractItemView::SelectRows</enum>
+                 </property>
+                 <property name="verticalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="horizontalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="sortingEnabled">
+                  <bool>true</bool>
+                 </property>
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>175</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>175</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Cell Text</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Column Title</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Color</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="page_members">
@@ -937,6 +1005,7 @@
   <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
+  <tabstop>special_value_colors</tabstop>
   <tabstop>generated_letter</tabstop>
   <tabstop>members_visible_columns</tabstop>
   <tabstop>shortcuts</tabstop>

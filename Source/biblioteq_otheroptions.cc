@@ -68,6 +68,9 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
     (biblioteq_otheroptions_item_delegate::ParentTypes::Keywords, this);
   m_shortcutsItemDelegate = new biblioteq_otheroptions_item_delegate
     (biblioteq_otheroptions_item_delegate::ParentTypes::Shortcuts, this);
+  m_specialValueColorsItemDelegate = new biblioteq_otheroptions_item_delegate
+    (biblioteq_otheroptions_item_delegate::ParentTypes::SpecialValueColors,
+     this);
   connect(m_shortcutsItemDelegate,
 	  SIGNAL(changed(void)),
 	  this,
@@ -75,9 +78,13 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
   m_ui.custom_query->setItemDelegateForColumn(1, m_keywordsItemDelegate);
   m_ui.date_format->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ui.shortcuts->setItemDelegateForColumn(1, m_shortcutsItemDelegate);
+  m_ui.special_value_colors->setItemDelegateForColumn
+    (static_cast<int> (SpecialColorsColumns::Color),
+     m_specialValueColorsItemDelegate);
   prepareSQLKeywords();
   prepareSettings();
   prepareShortcuts();
+  prepareSpecialColors();
 }
 
 biblioteq_otheroptions::~biblioteq_otheroptions()
@@ -720,6 +727,26 @@ void biblioteq_otheroptions::prepareShortcuts(void)
   m_ui.shortcuts->sortByColumn(0, Qt::AscendingOrder);
   slotMainWindowShortcutChanged();
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_otheroptions::prepareSpecialColors(void)
+{
+  m_ui.special_value_colors->setRowCount
+    (static_cast<int> (Limits::SpecialValueColorsRows));
+  m_ui.special_value_colors->setSortingEnabled(false);
+
+  for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
+    for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
+      {
+	auto item = new QTableWidgetItem();
+
+	item->setFlags
+	  (Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
+	m_ui.special_value_colors->setItem(i, j, item);
+      }
+
+  m_ui.special_value_colors->setSortingEnabled(true);
+  m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
 }
 
 void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
