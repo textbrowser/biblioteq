@@ -731,6 +731,8 @@ void biblioteq_otheroptions::prepareShortcuts(void)
 
 void biblioteq_otheroptions::prepareSpecialColors(void)
 {
+  QSettings settings;
+
   m_ui.special_value_colors->setRowCount
     (static_cast<int> (Limits::SpecialValueColorsRows));
   m_ui.special_value_colors->setSortingEnabled(false);
@@ -738,7 +740,17 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
   for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
     for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
       {
-	auto item = new QTableWidgetItem();
+	auto item = new QTableWidgetItem
+	  (qUtf8Printable(settings.value(QString("special_value_colors_%1_%2").
+					 arg(i).arg(j)).toString().trimmed()));
+
+	if(j == static_cast<int> (SpecialColorsColumns::Color))
+	  {
+	    auto const &color(QColor(item->text().remove('&')));
+
+	    if(color.isValid())
+	      item->setData(Qt::DecorationRole, color);
+	  }
 
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
@@ -978,6 +990,17 @@ void biblioteq_otheroptions::slotSave(void)
     m_ui.save->animate(2500);
   else
     m_ui.save->animateNegatively(2500);
+
+  for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
+    for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
+      {
+	auto item = m_ui.special_value_colors->item(i, j);
+
+	if(item)
+	  settings.setValue
+	    (QString("special_value_colors_%1_%2").arg(i).arg(j),
+	     qUtf8Printable(item->text().trimmed()));
+      }
 
   m_isbn10Format = m_ui.isbn10_display_format->currentText();
   m_isbn13Format = m_ui.isbn13_display_format->currentText();
