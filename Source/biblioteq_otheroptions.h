@@ -109,8 +109,8 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 	{
 	  switch(index.column())
 	    {
-	    case 1:
-	    case 2:
+	    case 1: // Keyword Color
+	    case 2: // Special Value Color
 	      {
 		auto pushButton = new QPushButton(parent);
 
@@ -126,6 +126,22 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		pushButton->setText(index.data().toString().trimmed());
 		return pushButton;
 	      }
+	    case 3: // Special Value Reset
+	      {
+		auto pushButton = new QPushButton(parent);
+
+		connect(pushButton,
+			SIGNAL(clicked(void)),
+			this,
+			SLOT(slotResetRow(void))
+#ifdef Q_OS_MACOS
+			, Qt::QueuedConnection
+#endif
+			);
+		m_index = index;
+		pushButton->setText(tr("Reset Row"));
+		return pushButton;
+	      }
 	    default:
 	      {
 		break;
@@ -138,7 +154,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 	{
 	  switch(index.column())
 	    {
-	    case 1:
+	    case 1: // Shortcut
 	      {
 		auto lineEdit = new biblioteq_otheroptions_shortcut_lineedit
 		  (parent);
@@ -175,6 +191,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
     if(model && pushButton)
       {
 	pushButton->setText(model->data(index).toString().trimmed());
+	QTimer::singleShot(1000, this, SIGNAL(changed(void))); // Constness.
 	return;
       }
 
@@ -186,6 +203,26 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   mutable QModelIndex m_index;
 
  private slots:
+  void slotResetRow(void)
+  {
+    if(!m_index.isValid())
+      return;
+
+    auto model = const_cast<QAbstractItemModel *> (m_index.model());
+
+    if(model)
+      for(int i = 0; i < model->columnCount(); i++)
+	if(i != 3) // Reset.
+	  {
+	    model->setData
+	      (model->sibling(m_index.row(), i, m_index), QVariant());
+	    model->setData
+	      (model->sibling(m_index.row(), i, m_index),
+	       QVariant(),
+	       Qt::DecorationRole);
+	  }
+  }
+
   void slotSelectColor(void)
   {
     auto pushButton = qobject_cast<QPushButton *> (sender());
@@ -201,6 +238,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
       {
 	if(m_index.isValid() && m_index.model())
 	  {
+	    auto model = const_cast<QAbstractItemModel *> (m_index.model());
 	    auto sortingEnabled = false;
 	    auto table = qobject_cast<QTableWidget *>
 	      (m_index.model()->parent());
@@ -211,10 +249,12 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		table->setSortingEnabled(false);
 	      }
 
-	    const_cast<QAbstractItemModel *> (m_index.model())->setData
-	      (m_index, dialog.selectedColor(), Qt::DecorationRole);
-	    const_cast<QAbstractItemModel *> (m_index.model())->setData
-	      (m_index, dialog.selectedColor().name());
+	    if(model)
+	      {
+		model->setData(m_index, dialog.selectedColor().name());
+		model->setData
+		  (m_index, dialog.selectedColor(), Qt::DecorationRole);
+	      }
 
 	    if(table)
 	      table->setSortingEnabled(sortingEnabled);
@@ -309,7 +349,8 @@ class biblioteq_otheroptions: public QMainWindow
     {
       CellText = 0,
       Color = 2,
-      ColumnTitle = 1
+      ColumnTitle = 1,
+      Reset = 3
     };
 
   Ui_otheroptions m_ui;

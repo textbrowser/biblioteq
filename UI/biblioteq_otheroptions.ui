@@ -681,6 +681,11 @@
                    <string>Color</string>
                   </property>
                  </column>
+                 <column>
+                  <property name="text">
+                   <string>Reset</string>
+                  </property>
+                 </column>
                 </widget>
                </item>
               </layout>

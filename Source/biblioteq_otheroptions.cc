@@ -81,6 +81,9 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
   m_ui.special_value_colors->setItemDelegateForColumn
     (static_cast<int> (SpecialColorsColumns::Color),
      m_specialValueColorsItemDelegate);
+  m_ui.special_value_colors->setItemDelegateForColumn
+    (static_cast<int> (SpecialColorsColumns::Reset),
+     m_specialValueColorsItemDelegate);
   prepareSQLKeywords();
   prepareSettings();
   prepareShortcuts();
@@ -751,6 +754,8 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
 	    if(color.isValid())
 	      item->setData(Qt::DecorationRole, color);
 	  }
+	else if(j == static_cast<int> (SpecialColorsColumns::Reset))
+	  item->setText(tr("Reset Row"));
 
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
@@ -993,14 +998,15 @@ void biblioteq_otheroptions::slotSave(void)
 
   for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
     for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
-      {
-	auto item = m_ui.special_value_colors->item(i, j);
+      if(j != static_cast<int> (SpecialColorsColumns::Reset))
+	{
+	  auto item = m_ui.special_value_colors->item(i, j);
 
-	if(item)
-	  settings.setValue
-	    (QString("special_value_colors_%1_%2").arg(i).arg(j),
-	     qUtf8Printable(item->text().trimmed()));
-      }
+	  if(item)
+	    settings.setValue
+	      (QString("special_value_colors_%1_%2").arg(i).arg(j),
+	       qUtf8Printable(item->text().trimmed()));
+	}
 
   m_isbn10Format = m_ui.isbn10_display_format->currentText();
   m_isbn13Format = m_ui.isbn13_display_format->currentText();
