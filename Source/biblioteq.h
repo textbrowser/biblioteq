@@ -311,6 +311,7 @@ class biblioteq: public QMainWindow
   QHash<QString, QString> getZ3950Hash(const QString &name) const;
   QHash<QString, QString> otherImagesHash(void) const;
   QMainWindow *getMembersBrowser(void) const;
+  QMap<QPair<QString, QString>, QColor> specialValueColors(void) const;
   QMap<QString, QKeySequence> shortcuts(void) const;
   QSqlDatabase getDB(void) const;
   QString dateFormat(const QString &itemType) const;
@@ -513,7 +514,7 @@ class biblioteq: public QMainWindow
   biblioteq_files *m_files;
   biblioteq_import *m_import;
   biblioteq_magic *m_magic;
-  biblioteq_otheroptions *m_otheroptions;
+  biblioteq_otheroptions *m_otherOptions;
   bool m_allSearchShown;
   bool m_membersWasRefreshed;
   int m_lastSearchType;

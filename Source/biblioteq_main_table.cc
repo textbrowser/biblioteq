@@ -673,8 +673,26 @@ void biblioteq_main_table::setQMain(biblioteq *biblioteq)
 
 void biblioteq_main_table::slotCellChanged(int row, int column)
 {
-  if(column < 0 || row < 0)
+  if(Q_UNLIKELY(column < 0 || m_qmain == nullptr || row < 0))
     return;
+
+  auto header = horizontalHeaderItem(column);
+
+  if(Q_UNLIKELY(!header))
+    return;
+
+  auto item = this->item(row, column);
+
+  if(Q_UNLIKELY(!item))
+    return;
+
+  QColor color;
+  auto const &map(m_qmain->specialValueColors());
+
+  color = map.value(qMakePair(item->text(), header->text()));
+
+  if(color.isValid())
+    item->setBackground(color);
 }
 
 void biblioteq_main_table::updateToolTips(const int row)

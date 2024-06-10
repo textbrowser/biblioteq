@@ -130,7 +130,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QString type = "";
   QStringList tmplist; // Used for custom queries.
   QTableWidgetItem *item = nullptr;
-  auto columns = m_otheroptions->iconsViewColumnCount();
+  auto columns = m_otherOptions->iconsViewColumnCount();
   auto now(QDate::currentDate());
   auto offset = m_queryOffset;
   auto search_type = search_type_arg;
@@ -190,7 +190,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QString photographCollectionFrontCover("'' AS image_scaled ");
   QString videoGameFrontCover("'' AS front_cover ");
 
-  if(m_otheroptions->showMainTableImages())
+  if(m_otherOptions->showMainTableImages())
     {
       bookFrontCover = "book.front_cover ";
       cdFrontCover = "cd.front_cover ";
@@ -202,7 +202,7 @@ int biblioteq::populateTable(const int search_type_arg,
       videoGameFrontCover = "videogame.front_cover ";
     }
 
-  if(m_otheroptions->showMainTableProgressDialogs())
+  if(m_otherOptions->showMainTableProgressDialogs())
     {
       auto closeButton = new QPushButton(tr("Interrupt"));
 
@@ -3076,7 +3076,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	    QString frontCover("'' AS front_cover ");
 
-	    if(m_otheroptions->showMainTableImages())
+	    if(m_otherOptions->showMainTableImages())
 	      {
 		if(type == "Journal")
 		  frontCover = "journal.front_cover ";
@@ -3686,11 +3686,11 @@ int biblioteq::populateTable(const int search_type_arg,
   QLocale locale;
   QMap<QByteArray, QImage> images;
   auto availabilityColors = this->availabilityColors();
-  auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
+  auto booksAccessionNumberIndex = m_otherOptions->booksAccessionNumberIndex();
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
-    m_otheroptions->showBookReadStatus() &&
+    m_otherOptions->showBookReadStatus() &&
     typefilter == "Books";
-  auto showMainTableImages = m_otheroptions->showMainTableImages();
+  auto showMainTableImages = m_otherOptions->showMainTableImages();
 
   while(i++, query.next())
     {
@@ -3757,9 +3757,9 @@ int biblioteq::populateTable(const int search_type_arg,
 		      auto str(query.value(j).toString().trimmed());
 
 		      if(fieldName == "id")
-			str = m_otheroptions->isbn10DisplayFormat(str);
+			str = m_otherOptions->isbn10DisplayFormat(str);
 		      else
-			str = m_otheroptions->isbn13DisplayFormat(str);
+			str = m_otherOptions->isbn13DisplayFormat(str);
 
 		      tooltip.append(str);
 		    }
@@ -3821,9 +3821,9 @@ int biblioteq::populateTable(const int search_type_arg,
 #endif
 		{
 		  if(fieldName == "id")
-		    str = m_otheroptions->isbn10DisplayFormat(str);
+		    str = m_otherOptions->isbn10DisplayFormat(str);
 		  else
-		    str = m_otheroptions->isbn13DisplayFormat(str);
+		    str = m_otherOptions->isbn13DisplayFormat(str);
 
 		  item = new QTableWidgetItem(str);
 		}
@@ -4592,7 +4592,7 @@ void biblioteq::slotPhotographsPerPageChanged(void)
 
 void biblioteq::slotReloadBiblioteqConf(void)
 {
-  m_otheroptions->prepareSettings();
+  m_otherOptions->prepareSettings();
   readGlobalConfiguration();
 }
 
@@ -4699,7 +4699,7 @@ void biblioteq::slotSearchBasic(void)
   types.append("Photograph Collection");
   types.append("Video Game");
 
-  if(m_otheroptions->showMainTableImages())
+  if(m_otherOptions->showMainTableImages())
     {
       bookFrontCover = "book.front_cover ";
       cdFrontCover = "cd.front_cover ";

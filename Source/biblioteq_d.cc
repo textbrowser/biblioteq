@@ -45,17 +45,22 @@
 
 QColor biblioteq::itemMandatoryFieldColor(void) const
 {
-  return m_otheroptions->itemMandatoryFieldColor();
+  return m_otherOptions->itemMandatoryFieldColor();
 }
 
 QColor biblioteq::itemQueryResultColor(void) const
 {
-  return m_otheroptions->itemQueryResultColor();
+  return m_otherOptions->itemQueryResultColor();
 }
 
 QHash<QString, QString> biblioteq::otherImagesHash(void) const
 {
   return m_otherImages;
+}
+
+QMap<QPair<QString, QString>, QColor> biblioteq::specialValueColors(void) const
+{
+  return m_otherOptions->specialValueColors();
 }
 
 QMap<QString, QKeySequence> biblioteq::shortcuts(void) const
@@ -75,12 +80,12 @@ QMap<QString, QKeySequence> biblioteq::shortcuts(void) const
 
 QString biblioteq::formattedISBN10(const QString &str) const
 {
-  return m_otheroptions->isbn10DisplayFormat(str);
+  return m_otherOptions->isbn10DisplayFormat(str);
 }
 
 QString biblioteq::formattedISBN13(const QString &str) const
 {
-  return m_otheroptions->isbn13DisplayFormat(str);
+  return m_otherOptions->isbn13DisplayFormat(str);
 }
 
 QStringList biblioteq::selectedISBN10s(void) const
@@ -121,12 +126,12 @@ bool biblioteq::isCurrentItemAPhotograph(void) const
 
 bool biblioteq::showBookReadStatus(void) const
 {
-  return m_otheroptions->showBookReadStatus();
+  return m_otherOptions->showBookReadStatus();
 }
 
 bool biblioteq::showMainTableImages(void) const
 {
-  return m_otheroptions->showMainTableImages();
+  return m_otherOptions->showMainTableImages();
 }
 
 void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)

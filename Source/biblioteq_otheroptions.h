@@ -282,6 +282,12 @@ class biblioteq_otheroptions: public QMainWindow
   QColor availabilityColor(const QString &it) const;
   QColor itemMandatoryFieldColor(void) const;
   QColor itemQueryResultColor(void) const;
+
+  QMap<QPair<QString, QString>, QColor> specialValueColors(void) const
+  {
+    return m_specialValueColors;
+  }
+
   QMap<QString, QColor> customQueryColors(void) const;
 
   QString isbn10DisplayFormat(const QString &str) const
@@ -353,6 +359,7 @@ class biblioteq_otheroptions: public QMainWindow
       Reset = 3
     };
 
+  QMap<QPair<QString, QString>, QColor> m_specialValueColors;
   Ui_otheroptions m_ui;
   biblioteq *qmain;
   biblioteq_otheroptions_item_delegate *m_keywordsItemDelegate;

@@ -741,26 +741,40 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
   m_ui.special_value_colors->setSortingEnabled(false);
 
   for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
-    for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
-      {
-	auto item = new QTableWidgetItem
-	  (qUtf8Printable(settings.value(QString("special_value_colors_%1_%2").
-					 arg(i).arg(j)).toString().trimmed()));
+    {
+      QColor color;
+      QString text("");
+      QString title("");
 
-	if(j == static_cast<int> (SpecialColorsColumns::Color))
-	  {
-	    auto const &color(QColor(item->text().remove('&')));
+      for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
+	{
+	  auto item = new QTableWidgetItem
+	    (qUtf8Printable(settings.
+			    value(QString("special_value_colors_%1_%2").
+				  arg(i).arg(j)).toString().trimmed()));
 
-	    if(color.isValid())
-	      item->setData(Qt::DecorationRole, color);
-	  }
-	else if(j == static_cast<int> (SpecialColorsColumns::Reset))
-	  item->setText(tr("Reset Row"));
+	  if(j == static_cast<int> (SpecialColorsColumns::CellText))
+	    text = item->text();
+	  else if(j == static_cast<int> (SpecialColorsColumns::Color))
+	    {
+	      color = QColor(item->text().remove('&'));
 
-	item->setFlags
-	  (Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
-	m_ui.special_value_colors->setItem(i, j, item);
-      }
+	      if(color.isValid())
+		item->setData(Qt::DecorationRole, color);
+	    }
+	  else if(j == static_cast<int> (SpecialColorsColumns::ColumnTitle))
+	    title = item->text();
+	  else if(j == static_cast<int> (SpecialColorsColumns::Reset))
+	    item->setText(tr("Reset Row"));
+
+	  item->setFlags
+	    (Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
+	  m_ui.special_value_colors->setItem(i, j, item);
+	}
+
+      if(color.isValid() && text.isEmpty() == false && title.isEmpty() == false)
+	m_specialValueColors[qMakePair(text, title)] = color;
+    }
 
   m_ui.special_value_colors->setSortingEnabled(true);
   m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
@@ -996,17 +1010,40 @@ void biblioteq_otheroptions::slotSave(void)
   else
     m_ui.save->animateNegatively(2500);
 
-  for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
-    for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
-      if(j != static_cast<int> (SpecialColorsColumns::Reset))
-	{
-	  auto item = m_ui.special_value_colors->item(i, j);
+  m_specialValueColors.clear();
 
-	  if(item)
-	    settings.setValue
-	      (QString("special_value_colors_%1_%2").arg(i).arg(j),
-	       qUtf8Printable(item->text().trimmed()));
-	}
+  for(int i = 0; i < m_ui.special_value_colors->rowCount(); i++)
+    {
+      QColor color;
+      QString text("");
+      QString title("");
+
+      for(int j = 0; j < m_ui.special_value_colors->columnCount(); j++)
+	if(j != static_cast<int> (SpecialColorsColumns::Reset))
+	  {
+	    auto item = m_ui.special_value_colors->item(i, j);
+
+	    if(item)
+	      {
+		item->setText(item->text().trimmed());
+
+		if(j == static_cast<int> (SpecialColorsColumns::CellText))
+		  text = item->text();
+		else if(j == static_cast<int> (SpecialColorsColumns::Color))
+		  color = QColor(item->text().remove('&'));
+		else if(j == static_cast<int> (SpecialColorsColumns::
+					       ColumnTitle))
+		  title = item->text();
+
+		settings.setValue
+		  (QString("special_value_colors_%1_%2").arg(i).arg(j),
+		   qUtf8Printable(item->text()));
+	      }
+	  }
+
+      if(color.isValid() && text.isEmpty() == false && title.isEmpty() == false)
+	m_specialValueColors[qMakePair(text, title)] = color;
+    }
 
   m_isbn10Format = m_ui.isbn10_display_format->currentText();
   m_isbn13Format = m_ui.isbn13_display_format->currentText();

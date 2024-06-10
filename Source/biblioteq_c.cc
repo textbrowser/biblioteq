@@ -59,7 +59,7 @@
 
 QColor biblioteq::availabilityColor(const QString &itemType) const
 {
-  return m_otheroptions->availabilityColor(itemType);
+  return m_otherOptions->availabilityColor(itemType);
 }
 
 QHash<QString, QString> biblioteq::getOpenLibraryImagesHash(void) const
@@ -74,7 +74,7 @@ QHash<QString, QString> biblioteq::getOpenLibraryItemsHash(void) const
 
 QString biblioteq::dateFormat(const QString &itemType) const
 {
-  return m_otheroptions->dateFormat(itemType);
+  return m_otherOptions->dateFormat(itemType);
 }
 
 QString biblioteq::dbUserName(void) const
@@ -391,7 +391,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 
   QScopedPointer<QProgressDialog> progress;
 
-  if(m_otheroptions->showMainTableProgressDialogs())
+  if(m_otherOptions->showMainTableProgressDialogs())
     {
       auto closeButton = new QPushButton(tr("Interrupt"));
 
@@ -404,7 +404,7 @@ int biblioteq::populateTable(QSqlQuery *query,
   QTableWidgetItem *item = nullptr;
   QString itemType("");
   QString str("");
-  auto columns = m_otheroptions->iconsViewColumnCount();
+  auto columns = m_otherOptions->iconsViewColumnCount();
   auto limit = pageLimit();
   auto offset = m_queryOffset;
   int i = -1;
@@ -679,12 +679,12 @@ int biblioteq::populateTable(QSqlQuery *query,
   QMap<QByteArray, QImage> images;
   QSettings settings;
   auto availabilityColors = this->availabilityColors();
-  auto booksAccessionNumberIndex = m_otheroptions->booksAccessionNumberIndex();
+  auto booksAccessionNumberIndex = m_otherOptions->booksAccessionNumberIndex();
   auto columnNames(ui.table->columnNames());
   auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
-    m_otheroptions->showBookReadStatus() &&
+    m_otherOptions->showBookReadStatus() &&
     typefilter == "Books";
-  auto showMainTableImages = m_otheroptions->showMainTableImages();
+  auto showMainTableImages = m_otherOptions->showMainTableImages();
   auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
 
   i = -1;
@@ -759,9 +759,9 @@ int biblioteq::populateTable(QSqlQuery *query,
 		      auto str(m_searchQuery->value(j).toString().trimmed());
 
 		      if(fieldName == "id")
-			str = m_otheroptions->isbn10DisplayFormat(str);
+			str = m_otherOptions->isbn10DisplayFormat(str);
 		      else
-			str = m_otheroptions->isbn13DisplayFormat(str);
+			str = m_otherOptions->isbn13DisplayFormat(str);
 
 		      tooltip.append(str);
 		    }
@@ -816,9 +816,9 @@ int biblioteq::populateTable(QSqlQuery *query,
 #endif
 		{
 		  if(fieldName == "id")
-		    str = m_otheroptions->isbn10DisplayFormat(str);
+		    str = m_otherOptions->isbn10DisplayFormat(str);
 		  else
-		    str = m_otheroptions->isbn13DisplayFormat(str);
+		    str = m_otherOptions->isbn13DisplayFormat(str);
 
 		  item = new QTableWidgetItem(str);
 		}
@@ -1873,7 +1873,7 @@ void biblioteq::slotAllGo(void)
   auto caseinsensitive = al.caseinsensitive->isChecked();
   auto query = new QSqlQuery(m_db);
 
-  if(m_otheroptions->showMainTableImages())
+  if(m_otherOptions->showMainTableImages())
     {
       bookFrontCover = "book.front_cover ";
       cdFrontCover = "cd.front_cover ";
@@ -4371,29 +4371,29 @@ void biblioteq::slotOtherOptionsSaved(void)
   foreach(auto widget, QApplication::topLevelWidgets())
     if(qobject_cast<biblioteq_book *> (widget))
       qobject_cast<biblioteq_book *> (widget)->setPublicationDateFormat
-	(m_otheroptions->dateFormat("books"));
+	(m_otherOptions->dateFormat("books"));
     else if(qobject_cast<biblioteq_cd *> (widget))
       qobject_cast<biblioteq_cd *> (widget)->setPublicationDateFormat
-	(m_otheroptions->dateFormat("musiccds"));
+	(m_otherOptions->dateFormat("musiccds"));
     else if(qobject_cast<biblioteq_dvd *> (widget))
       qobject_cast<biblioteq_dvd *> (widget)->setPublicationDateFormat
-	(m_otheroptions->dateFormat("dvds"));
+	(m_otherOptions->dateFormat("dvds"));
     else if(qobject_cast<biblioteq_grey_literature *> (widget))
       qobject_cast<biblioteq_grey_literature *> (widget)->
-	setPublicationDateFormat(m_otheroptions->dateFormat("greyliterature"));
+	setPublicationDateFormat(m_otherOptions->dateFormat("greyliterature"));
     else if(qobject_cast<biblioteq_journal *> (widget))
       qobject_cast<biblioteq_journal *> (widget)->setPublicationDateFormat
-	(m_otheroptions->dateFormat("journals"));
+	(m_otherOptions->dateFormat("journals"));
     else if(qobject_cast<biblioteq_magazine *> (widget))
       qobject_cast<biblioteq_magazine *> (widget)->setPublicationDateFormat
-	(m_otheroptions->dateFormat("magazines"));
+	(m_otherOptions->dateFormat("magazines"));
     else if(qobject_cast<biblioteq_photographcollection *> (widget))
       qobject_cast<biblioteq_photographcollection *> (widget)->
 	setPublicationDateFormat
-	(m_otheroptions->dateFormat("photographcollections"));
+	(m_otherOptions->dateFormat("photographcollections"));
     else if(qobject_cast<biblioteq_videogame *> (widget))
       qobject_cast<biblioteq_videogame *> (widget)->setPublicationDateFormat
-	(m_otheroptions->dateFormat("videogames"));
+	(m_otherOptions->dateFormat("videogames"));
 
   for(int i = 0; i < bb.table->columnCount(); i++)
     {
@@ -4401,10 +4401,10 @@ void biblioteq::slotOtherOptionsSaved(void)
 
       if(item)
 	bb.table->setColumnHidden
-	  (i, !m_otheroptions->isMembersColumnVisible(item->text()));
+	  (i, !m_otherOptions->isMembersColumnVisible(item->text()));
     }
 
-  if(m_otheroptions->showMainTableImages())
+  if(m_otherOptions->showMainTableImages())
     ui.table->setIconSize(QSize(64, 94));
   else
     ui.table->setIconSize(QSize(0, 0));
@@ -6807,10 +6807,10 @@ void biblioteq::slotShowImport(void)
 
 void biblioteq::slotShowOtherOptions(void)
 {
-  biblioteq_misc_functions::center(m_otheroptions, this);
-  m_otheroptions->showNormal();
-  m_otheroptions->activateWindow();
-  m_otheroptions->raise();
+  biblioteq_misc_functions::center(m_otherOptions, this);
+  m_otherOptions->showNormal();
+  m_otherOptions->activateWindow();
+  m_otherOptions->raise();
 }
 
 void biblioteq::slotShowPassword(bool state)

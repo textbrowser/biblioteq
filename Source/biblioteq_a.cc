@@ -211,7 +211,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_branch_diag = new QDialog(this);
   m_menuCategoryActionGroup = new QActionGroup(this);
   m_menuCategoryActionGroup->setExclusive(true);
-  m_otheroptions = new biblioteq_otheroptions(this);
+  m_otherOptions = new biblioteq_otheroptions(this);
   m_pass_diag = new QDialog(this);
   m_printPreview = new QTextBrowser(this);
   m_printPreview->setVisible(false);
@@ -442,7 +442,7 @@ biblioteq::biblioteq(void):QMainWindow()
   pass.setupUi(m_pass_diag);
   al.setupUi(m_all_diag);
   al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
-  m_otheroptions->prepareMembersVisibleColumns(bb.table);
+  m_otherOptions->prepareMembersVisibleColumns(bb.table);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);
   ab.splitter->setStretchFactor(0, 0);
@@ -676,15 +676,15 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotSavePassword(void)));
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClosePasswordDialog(void)));
-  connect(m_otheroptions,
+  connect(m_otherOptions,
 	  SIGNAL(mainWindowCanvasBackgroundColorChanged(const QColor &)),
 	  this,
 	  SLOT(slotMainWindowCanvasBackgroundColorChanged(const QColor &)));
-  connect(m_otheroptions,
+  connect(m_otherOptions,
 	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)),
 	  this,
 	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
-  connect(m_otheroptions,
+  connect(m_otherOptions,
 	  SIGNAL(saved(void)),
 	  this,
 	  SLOT(slotOtherOptionsSaved(void)));
@@ -831,7 +831,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.summary->setVisible(false);
   ui.table->resetTable(dbUserName(), m_lastCategory, m_roles);
 
-  if(m_otheroptions->showMainTableImages())
+  if(m_otherOptions->showMainTableImages())
     ui.table->setIconSize(QSize(64, 94));
   else
     ui.table->setIconSize(QSize(0, 0));
@@ -1971,7 +1971,7 @@ void biblioteq::resetMembersBrowser(void)
 
       if(item)
 	bb.table->setColumnHidden
-	  (i, !m_otheroptions->isMembersColumnVisible(item->text()));
+	  (i, !m_otherOptions->isMembersColumnVisible(item->text()));
 
       if(i < bb.table->columnCount() - 1)
 	bb.table->resizeColumnToContents(i);
@@ -4750,7 +4750,7 @@ void biblioteq::slotShowConnectionDB(void)
 
 void biblioteq::slotShowCustomQuery(void)
 {
-  auto dialog = new biblioteq_custom_query(m_otheroptions, this);
+  auto dialog = new biblioteq_custom_query(m_otherOptions, this);
 
   connect(this,
 	  SIGNAL(otherOptionsSaved(void)),
@@ -4823,7 +4823,7 @@ void biblioteq::slotShowMembersBrowser(void)
 
       if(item)
 	bb.table->setColumnHidden
-	  (i, !m_otheroptions->isMembersColumnVisible(item->text()));
+	  (i, !m_otherOptions->isMembersColumnVisible(item->text()));
 
       if(i < bb.table->columnCount() - 1)
 	bb.table->resizeColumnToContents(i);
