@@ -619,9 +619,12 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_6">
+             <widget class="QGroupBox" name="special_value_colors_group_box">
               <property name="title">
                <string>Special Value Colors</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_15">
                <item>
