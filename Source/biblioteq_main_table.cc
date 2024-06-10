@@ -691,7 +691,7 @@ void biblioteq_main_table::slotCellChanged(int row, int column)
 
   auto header = horizontalHeaderItem(column);
 
-  if(Q_UNLIKELY(!header))
+  if(Q_UNLIKELY(!header)) // Custom query?
     return;
 
   auto item = this->item(row, column);
