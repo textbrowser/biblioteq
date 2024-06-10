@@ -57,6 +57,7 @@ class biblioteq_main_table: public QTableWidget
   bool isColumnHidden(int index) const;
   int columnNumber(const QString &name) const;
   void parseStates(const QHash<QString, QString> &states);
+  void prepareConnections(void);
   void recordColumnHidden(const QString &username,
 			  const QString &type,
 			  const int index,

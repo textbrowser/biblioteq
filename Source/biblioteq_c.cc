@@ -4447,6 +4447,7 @@ void biblioteq::slotOtherOptionsSaved(void)
   prepareCustomQueryFavoriteShortcut();
   prepareIcons();
   prepareStatusBarIcons();
+  ui.table->prepareConnections();
   QApplication::restoreOverrideCursor();
   emit otherOptionsSaved();
 }

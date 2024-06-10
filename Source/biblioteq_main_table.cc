@@ -35,14 +35,11 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
   m_qmain = nullptr;
-  connect(this,
-	  SIGNAL(cellChanged(int, int)),
-	  this,
-	  SLOT(slotCellChanged(int, int)));
   horizontalHeader()->setSectionsMovable(true);
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   horizontalHeader()->setStretchLastSection(true);
+  prepareConnections();
   setAcceptDrops(false);
   setDragEnabled(false);
   verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
@@ -158,6 +155,22 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 
       m_hiddenColumns[states.keys().at(i)] = intList;
     }
+}
+
+void biblioteq_main_table::prepareConnections(void)
+{
+  disconnect(this,
+	     SIGNAL(cellChanged(int, int)),
+	     this,
+	     SLOT(slotCellChanged(int, int)));
+
+  QSettings settings;
+
+  if(settings.value("otheroptions/enable_special_values_colors").toBool())
+    connect(this,
+	    SIGNAL(cellChanged(int, int)),
+	    this,
+	    SLOT(slotCellChanged(int, int)));
 }
 
 void biblioteq_main_table::recordColumnHidden(const QString &username,
