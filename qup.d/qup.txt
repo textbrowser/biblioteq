@@ -32,11 +32,11 @@ file = postgresql_update_schema.sql
 file_destination = SQL
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
-[MacOS x86-64]
+[MacOS]
 
-executable = BiblioteQ.app.zip
+executable = BiblioteQ_Intel.app.zip
 local_executable = BiblioteQ.app
-url =
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [Unix]
 
@@ -49,12 +49,12 @@ local_executable = BiblioteQ
 shell = ./biblioteq.sh
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
-[Windows x86-64]
+[Windows]
 
-executable = BiblioteQ.exe
+executable = BiblioteQ_Intel.exe
 file = Windows-Installation.pdf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
-url =
+url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 # End of file. Required comment.
