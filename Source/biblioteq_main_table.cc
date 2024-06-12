@@ -640,7 +640,7 @@ void biblioteq_main_table::setColumns(const QString &username,
     }
 
   setColumnCount(list.size());
-  setHorizontalHeaderLabels(list);
+  QTableWidget::setHorizontalHeaderLabels(list);
 
   if(type != "All" &&
      type != "All Available" &&
@@ -703,7 +703,7 @@ void biblioteq_main_table::setHorizontalHeaderLabels(const QStringList &labels)
 
       auto pair(it.key());
 
-      if(pair.first.isEmpty() || pair.second.isEmpty())
+      if(Q_UNLIKELY(pair.first.isEmpty() || pair.second.isEmpty()))
 	continue;
 
       for(int i = 0; i < columnCount(); i++)
