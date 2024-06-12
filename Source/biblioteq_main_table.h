@@ -66,6 +66,7 @@ class biblioteq_main_table: public QTableWidget
 		  const QString &t,
 		  const QString &roles);
   void setColumnNames(const QStringList &list);
+  void setHorizontalHeaderLabels(const QStringList &labels);
   void setQMain(biblioteq *biblioteq);
   void updateToolTips(const int row);
 

@@ -679,6 +679,56 @@ void biblioteq_main_table::setColumns(const QString &username,
     setColumnHidden(m_hiddenColumns[indexstr][i], true);
 }
 
+void biblioteq_main_table::setHorizontalHeaderLabels(const QStringList &labels)
+{
+  QTableWidget::setHorizontalHeaderLabels(labels);
+
+  if(Q_UNLIKELY(!m_qmain))
+    return;
+
+  QSettings settings;
+
+  if(!settings.value("otheroptions/enable_special_values_colors").toBool())
+    return;
+
+  QMapIterator<QPair<QString, QString>, QColor> it
+    (m_qmain->specialValueColors());
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(Q_UNLIKELY(!it.value().isValid()))
+	continue;
+
+      auto pair(it.key());
+
+      if(pair.first.isEmpty() || pair.second.isEmpty())
+	continue;
+
+      for(int i = 0; i < columnCount(); i++)
+	{
+	  auto header = horizontalHeaderItem(i);
+
+	  if(Q_UNLIKELY(!header))
+	    continue;
+
+	  if(header->text() == pair.second) // Column title.
+	    {
+	      for(int j = 0; j < rowCount(); j++)
+		{
+		  auto item = this->item(j, i);
+
+		  if(Q_LIKELY(item) && item->text() == pair.first)
+		    item->setBackground(it.value());
+		}
+
+	      break;
+	    }
+	}
+    }
+}
+
 void biblioteq_main_table::setQMain(biblioteq *biblioteq)
 {
   m_qmain = biblioteq;
