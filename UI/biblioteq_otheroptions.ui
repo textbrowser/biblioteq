@@ -619,21 +619,22 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="special_value_colors_group_box">
+             <widget class="QGroupBox" name="groupBox_6">
               <property name="title">
                <string>Special Value Colors</string>
               </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
               <layout class="QVBoxLayout" name="verticalLayout_15">
+               <item>
+                <widget class="QCheckBox" name="special_value_colors_check_box">
+                 <property name="text">
+                  <string>Special Value Colors</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QLabel" name="label_16">
                  <property name="text">
-                  <string>Five rows are allowed. Please note that inspecting table cells may burden BiblioteQ.</string>
+                  <string>Five rows are allowed. Please note that inspecting table cells may burden BiblioteQ. Items are discovered via equality comparisons. Text values are trimmed.</string>
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>
@@ -1016,6 +1017,7 @@
   <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
+  <tabstop>special_value_colors_check_box</tabstop>
   <tabstop>special_value_colors</tabstop>
   <tabstop>generated_letter</tabstop>
   <tabstop>members_visible_columns</tabstop>

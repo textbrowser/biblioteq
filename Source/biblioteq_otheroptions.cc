@@ -761,6 +761,8 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
 
 	      if(color.isValid())
 		item->setData(Qt::DecorationRole, color);
+	      else
+		item->setData(Qt::DecorationRole, QBrush());
 	    }
 	  else if(j == static_cast<int> (SpecialColorsColumns::ColumnTitle))
 	    title = item->text();
@@ -778,7 +780,7 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
 
   m_ui.special_value_colors->setSortingEnabled(true);
   m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
-  m_ui.special_value_colors_group_box->setChecked
+  m_ui.special_value_colors_check_box->setChecked
     (settings.value("otheroptions/enable_special_values_colors").toBool());
 }
 
@@ -902,7 +904,7 @@ void biblioteq_otheroptions::slotSave(void)
 
   settings.setValue
     ("otheroptions/enable_special_values_colors",
-     m_ui.special_value_colors_group_box->isChecked());
+     m_ui.special_value_colors_check_box->isChecked());
   string.clear();
 
   for(int i = 0; i < m_ui.members_visible_columns->count(); i++)
