@@ -99,7 +99,9 @@ int biblioteq_main_table::columnNumber(const QString &name) const
     return index;
 
   for(int i = 0; i < m_columnHeaderIndexes.size(); i++)
-    if(m_columnHeaderIndexes.at(i).toLower() == name.toLower())
+    if(QString::compare(m_columnHeaderIndexes.at(i),
+			name,
+			Qt::CaseInsensitive) == 0)
       {
 	index = i;
 	break;
@@ -719,7 +721,7 @@ void biblioteq_main_table::setHorizontalHeaderLabels(const QStringList &labels)
 		{
 		  auto item = this->item(j, i);
 
-		  if(Q_LIKELY(item) && item->text() == pair.first)
+		  if(Q_LIKELY(item) && item->text().trimmed() == pair.first)
 		    item->setBackground(it.value());
 		}
 
@@ -752,7 +754,7 @@ void biblioteq_main_table::slotCellChanged(int row, int column)
   QColor color;
   auto const &map(m_qmain->specialValueColors());
 
-  color = map.value(qMakePair(item->text(), header->text()));
+  color = map.value(qMakePair(item->text().trimmed(), header->text()));
 
   if(color.isValid())
     item->setBackground(color);
