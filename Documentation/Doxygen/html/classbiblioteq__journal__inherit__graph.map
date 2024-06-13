@@ -1,0 +1,9 @@
+<map id="biblioteq_journal" name="biblioteq_journal">
+<area shape="rect" id="Node000001" title=" " alt="" coords="67,152,198,177"/>
+<area shape="rect" id="Node000002" href="$classbiblioteq__magazine.html" title=" " alt="" coords="57,79,208,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,118,135,152,130,152,130,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,121,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,39,123,77,120,80,82,43"/>
+<area shape="rect" id="Node000004" href="$classbiblioteq__item.html" title=" " alt="" coords="145,5,261,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="184,43,146,80,142,77,180,39"/>
+</map>
