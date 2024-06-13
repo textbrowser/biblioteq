@@ -715,7 +715,7 @@ void biblioteq_main_table::setHorizontalHeaderLabels(const QStringList &labels)
 	  if(Q_UNLIKELY(!header))
 	    continue;
 
-	  if(header->text() == pair.second) // Column title.
+	  if(header->text().trimmed() == pair.second) // Column title.
 	    {
 	      for(int j = 0; j < rowCount(); j++)
 		{
@@ -754,7 +754,8 @@ void biblioteq_main_table::slotCellChanged(int row, int column)
   QColor color;
   auto const &map(m_qmain->specialValueColors());
 
-  color = map.value(qMakePair(item->text().trimmed(), header->text()));
+  color = map.value
+    (qMakePair(item->text().trimmed(), header->text().trimmed()));
 
   if(color.isValid())
     item->setBackground(color);
