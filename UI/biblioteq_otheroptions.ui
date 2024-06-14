@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
+    <width>800</width>
     <height>800</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>688</width>
+         <width>788</width>
          <height>742</height>
         </rect>
        </property>
@@ -634,7 +634,7 @@
                <item>
                 <widget class="QLabel" name="label_16">
                  <property name="text">
-                  <string>Five rows are allowed. Please note that inspecting table cells may burden BiblioteQ. Items are discovered via equality comparisons. Text values are trimmed.</string>
+                  <string>Five rows are allowed. Please note that inspecting table cells may burden BiblioteQ. Items are discovered via equality comparisons. Text values are trimmed. Please do not combine with other color monitors such as Availability Colors.</string>
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>
