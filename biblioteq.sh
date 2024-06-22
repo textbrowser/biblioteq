@@ -20,20 +20,6 @@ then
     exit $?
 fi
 
-if [ -r ~/opt/biblioteq/BiblioteQ ] && [ -x ~/opt/biblioteq/BiblioteQ ]
-then
-    cd ~/opt/biblioteq
-    echo "Launching a local BiblioteQ."
-
-    if [ -r ./Lib ]
-    then
-	export LD_LIBRARY_PATH=Lib
-    fi
-
-    exec ./BiblioteQ -style=Breeze "$@"
-    exit $?
-fi
-
 if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
