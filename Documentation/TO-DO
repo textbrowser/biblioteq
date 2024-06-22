@@ -606,6 +606,7 @@
 	biblioteq_boolean_table_item.[cc, h] (Completed)
 	biblioteq_borrowers_editor.[cc, h] (Completed)
 	biblioteq_callnum_table_item.[cc, h] (Completed)
+	biblioteq_copy_editor.[cc, h] (Completed)
 	biblioteq_copy_editor_book.[cc, h] (Completed)
 	biblioteq_custom_query.[cc, h] (Completed)
 	biblioteq_d.cc (Completed)

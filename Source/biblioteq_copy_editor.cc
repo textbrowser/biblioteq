@@ -90,7 +90,7 @@ biblioteq_copy_editor::~biblioteq_copy_editor()
 QString biblioteq_copy_editor::saveCopies(void)
 {
   QSqlQuery query(qmain->getDB());
-  QString lastError = "";
+  QString lastError("");
   copy_class *copy = nullptr;
   int i = 0;
 
@@ -271,13 +271,11 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   int j = 0;
   int row = 0;
 
-  m_cb.deleteButton->setVisible(!m_showForLending);
   m_cb.deleteButton->setVisible(false);
   m_cb.dueDateFrame->setVisible(m_showForLending);
 
   if(!m_showForLending)
     {
-      m_cb.saveButton->setText(tr("&Save"));
       disconnect(m_cb.deleteButton, SIGNAL(clicked(void)));
       disconnect(m_cb.saveButton, SIGNAL(clicked(void)));
       connect(m_cb.deleteButton,
@@ -288,6 +286,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	      SIGNAL(clicked(void)),
 	      this,
 	      SLOT(slotSaveCopies(void)));
+      m_cb.saveButton->setText(tr("&Save"));
     }
   else
     {
@@ -366,13 +365,13 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Notes");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
+  m_cb.table->horizontalScrollBar()->setValue(0);
   m_cb.table->setColumnCount(0);
   m_cb.table->setColumnCount(list.size());
   m_cb.table->setHorizontalHeaderLabels(list);
   m_cb.table->setRowCount(0);
   m_cb.table->setRowCount(m_quantity);
   m_cb.table->scrollToTop();
-  m_cb.table->horizontalScrollBar()->setValue(0);
 
   /*
   ** Hide the Copy Number and ITEM_OID columns.
@@ -706,14 +705,14 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
       return;
     }
 
-  memberid = biblioteq_misc_functions::getColumnString
-    (qmain->getBB().table,
-     memberrow,
-     qmain->getBBColumnIndexes().indexOf("Member ID"));
   copyid = biblioteq_misc_functions::getColumnString
     (m_cb.table, copyrow, m_columnHeaderIndexes.indexOf("Barcode"));
   copynumber = biblioteq_misc_functions::getColumnString
     (m_cb.table, copyrow, m_columnHeaderIndexes.indexOf("Copy Number"));
+  memberid = biblioteq_misc_functions::getColumnString
+    (qmain->getBB().table,
+     memberrow,
+     qmain->getBBColumnIndexes().indexOf("Member ID"));
   QApplication::setOverrideCursor(Qt::WaitCursor);
   available = biblioteq_misc_functions::isCopyAvailable
     (qmain->getDB(), m_ioid, copyid, m_itemType, errorstr);
@@ -905,10 +904,6 @@ void biblioteq_copy_editor::slotCloseCopyEditor(void)
 
 void biblioteq_copy_editor::slotDeleteCopy(void)
 {
-  /*
-  ** Method is ignored.
-  */
-
   QString copyid = "";
   QString errorstr = "";
   auto isCheckedOut = false;

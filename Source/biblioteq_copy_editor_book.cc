@@ -641,10 +641,6 @@ void biblioteq_copy_editor_book::prepareIcons(void)
 
 void biblioteq_copy_editor_book::slotDeleteCopy(void)
 {
-  /*
-  ** Method is ignored.
-  */
-
   QString copyid = "";
   QString errorstr = "";
   auto isCheckedOut = false;
