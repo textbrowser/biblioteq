@@ -34,7 +34,7 @@ file = yaz_cond5.dll
 file = yaz_icu5.dll
 file_destination = .
 operating_system = Windows
-url = https://github.com/textbrowser/biblioteq/blob/master/Distributions/Windows/Libraries.64
+url = https://raw.githubusercontent.com/textbrowser/biblioteq/master/Distributions/Windows/Libraries.64
 
 [General]
 
