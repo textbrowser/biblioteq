@@ -6,6 +6,38 @@
 
 [General]
 
+file = Qt6Concurrent.dll
+file = Qt6Core.dll
+file = Qt6Gui.dll
+file = Qt6Multimedia.dll
+file = Qt6Network.dll
+file = Qt6PrintSupport.dll
+file = Qt6Sql.dll
+file = Qt6Widgets.dll
+file = Qt6Xml.dll
+file = icudt68.dll
+file = icuin68.dll
+file = icuuc68.dll
+file = libcrypto-3-x64.dll
+file = libgcc_s_seh-1.dll
+file = libiconv-2.dll
+file = libintl-9.dll
+file = libpq.dll
+file = libssl-3-x64.dll
+file = libstdc++-6.dll
+file = libwinpthread-1.dll
+file = libxml2.dll
+file = libxslt.dll
+file = yaz4j.dll
+file = yaz5.dll
+file = yaz_cond5.dll
+file = yaz_icu5.dll
+file_destination = .
+operating_system = Windows
+url = https://github.com/textbrowser/biblioteq/tree/master/Distributions/Windows/Libraries.64
+
+[General]
+
 file = biblioteq.conf
 file = book.png
 file_destination = .
