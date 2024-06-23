@@ -47,11 +47,10 @@ documentation.files = Documentation\\*.html \
                       Documentation\\Contributed \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
-libraries.files = Distributions\\Windows\\Libraries.64\\postgresql\\*.dll \
-                  Distributions\\Windows\\Libraries.64\\postgresql\\*.manifest \
-                  Distributions\\Windows\\Libraries.64\\yaz\\*.dll \
-                  Distributions\\Windows\\Libraries.64\\yaz\\*.exe \
-                  Distributions\\Windows\\Libraries.64\\*.exe
+libraries.files = Distributions\\Windows\\Libraries.64\\*.dll \
+                  Distributions\\Windows\\Libraries.64\\*.exe \
+                  Distributions\\Windows\\Libraries.64\\*.manifest \
+                  Distributions\\Windows\\Libraries.64\\yaz\\*.exe
 libraries.path = release\\.
 plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins1.path = release\\plugins\\.
