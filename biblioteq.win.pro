@@ -29,8 +29,7 @@ QMAKE_EXTRA_TARGETS = purge
 ICON		= Icons\\book.png
 INCLUDEPATH	+= Distributions\\Windows\\Include.64 Source
 LIBS		+= -L"." \
-                   -L"Distributions\\Windows\\Libraries.64\\yaz" \
-                   -lyaz5
+                   -L"Distributions\\Windows\\Libraries.64" -lyaz5
 RC_FILE		= Distributions\\Windows\\biblioteq.win.rc
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
@@ -48,9 +47,7 @@ documentation.files = Documentation\\*.html \
                       Documentation\\TO-DO
 documentation.path = release\\Documentation\\.
 libraries.files = Distributions\\Windows\\Libraries.64\\*.dll \
-                  Distributions\\Windows\\Libraries.64\\*.exe \
-                  Distributions\\Windows\\Libraries.64\\*.manifest \
-                  Distributions\\Windows\\Libraries.64\\yaz\\*.exe
+                  Distributions\\Windows\\Libraries.64\\*.exe
 libraries.path = release\\.
 plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins1.path = release\\plugins\\.
