@@ -33,8 +33,8 @@ file = yaz5.dll
 file = yaz_cond5.dll
 file = yaz_icu5.dll
 file_destination = .
-url = https://raw.githubusercontent.com/textbrowser/\
-      biblioteq/master/Distributions/Windows/Libraries.64
+url = https://raw.githubusercontent.com/textbrowser/\     # First Part
+      biblioteq/master/Distributions/Windows/Libraries.64 # Second Part
 
 [General]
 
