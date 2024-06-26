@@ -2326,8 +2326,11 @@ void biblioteq::slotAbout(void)
 #endif
   m_about->setTextFormat(Qt::RichText);
   m_about->setWindowIcon(windowIcon());
+  m_about->setWindowModality(Qt::NonModal);
   m_about->setWindowTitle(tr("BiblioteQ: About"));
-  m_about->exec();
+  m_about->showNormal();
+  m_about->activateWindow();
+  m_about->raise();
   QApplication::processEvents();
 }
 
