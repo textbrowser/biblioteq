@@ -45,6 +45,49 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
 
+file = plugins/designer/qaxwidget.dll
+file = plugins/designer/qquickwidget.dll
+file = plugins/generic/qtuiotouchplugin.dll
+file = plugins/iconengines/qsvgicon.dll
+file = plugins/imageformats/qgif.dll
+file = plugins/imageformats/qicns.dll
+file = plugins/imageformats/qico.dll
+file = plugins/imageformats/qjpeg.dll
+file = plugins/imageformats/qsvg.dll
+file = plugins/imageformats/qtga.dll
+file = plugins/imageformats/qtiff.dll
+file = plugins/imageformats/qwbmp.dll
+file = plugins/imageformats/qwebp.dll
+file = plugins/multimedia/ffmpegmediaplugin.dll
+file = plugins/multimedia/windowsmediaplugin.dll
+file = plugins/networkinformation/qnetworklistmanager.dll
+file = plugins/platforms/qdirect2d.dll
+file = plugins/platforms/qminimal.dll
+file = plugins/platforms/qoffscreen.dll
+file = plugins/platforms/qwindows.dll
+file = plugins/position/qtposition_nmea.dll
+file = plugins/position/qtposition_positionpoll.dll
+file = plugins/qmllint/quicklintplugin.dll
+file = plugins/qmltooling/qmldbg_debugger.dll
+file = plugins/qmltooling/qmldbg_inspector.dll
+file = plugins/qmltooling/qmldbg_local.dll
+file = plugins/qmltooling/qmldbg_messages.dll
+file = plugins/qmltooling/qmldbg_native.dll
+file = plugins/qmltooling/qmldbg_nativedebugger.dll
+file = plugins/qmltooling/qmldbg_preview.dll
+file = plugins/qmltooling/qmldbg_profiler.dll
+file = plugins/qmltooling/qmldbg_quickprofiler.dll
+file = plugins/qmltooling/qmldbg_server.dll
+file = plugins/qmltooling/qmldbg_tcp.dll
+file = plugins/sqldrivers/qsqlite.dll
+file = plugins/sqldrivers/qsqlpsql.dll
+file = plugins/styles/qwindowsvistastyle.dll
+file_destination = .
+url = https://raw.githubusercontent.com/textbrowser/\     # First Part
+      biblioteq/master/Distributions/Windows/Libraries.64 # Second Part
+
+[General]
+
 file = BiblioteQ.sqlite
 file_destination = Data
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
@@ -85,6 +128,7 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 executable = BiblioteQ_Intel.exe
 file = Windows-Installation.pdf
+file = qt.conf
 file_destination = Documentation
 local_executable = BiblioteQ.exe
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
