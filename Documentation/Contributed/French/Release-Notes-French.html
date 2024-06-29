@@ -1,5 +1,21 @@
 <html>
   <body>
+    <p><u>30 juin 2024.</u></p>
+    <ul>
+      <li>260 version de BiblioteQ !</li>
+      <li>Archivage de biblioteq_architecture.h et remplacement par QSysInfo::buildCpuArchitecture().</li>
+      <li>Couleurs des cellules. Voir Autres options -> Fenêtre principale -> Couleurs des valeurs spéciales. <b>Ticket GitHub #369.</b> TDes comparaisons de qualité réelle sont effectuées. Rapide, super rapide.</li>
+      <li>Considération de l'emplacement de la librairie libpq de PostgreSQL sur le silicium d'Apple.</li>
+      <li>Correction de la réservation d'articles pour PostgreSQL. Veuillez abandonner la fonction delete_request() car elle est incomplète.</li>
+      <li>Affiche un rappel si un élément demandé a été retourné. PostgreSQL pour l'instan. <b>Ticket GitHub #350.</b></li>
+      <li>Dernière version traditionnelle. Les prochaines versions seront fournies par l'intermédiaire de Qup.</li>
+      <li>Première LTS de 2024 ?</li>
+      <li>Inclure hh:mm:ss dans la date de la demande d'article.</li>
+      <li>Dialogue non modal pour "A propos".</li>
+      <li>PostgreSQL 15.7.2 pour Windows.</li>
+      <li>Redimensionner les autres fenêtres à environ 95% de la taille de la fenêtre principale.</li>
+      <li>Sélectionnez le membre approprié dans le navigateur des membres lorsqu'un élément est préparé pour la réservation. Par exemple, un article est sélectionné dans la fenêtre principale et le bouton Réserver l'article sélectionné est cliqué.</li>
+    </ul>
     <p><u>30 avril 2024.</u></p>
     <ul>
       <li>259 réalisations de BiblioteQ ; ici et là. Un rapprochement agréable.</li>
@@ -14,6 +30,7 @@
       <li>Correction de l'enregistrement INI des formats de date dans Autres options -> Éléments. Ne pas négliger les colonnes triées ! <b>Ticket GitHub #357.</b></li>
       <li>Déactiver le tri dans le navigateur d'énumération de bases de données ->	Réservations Jours minimums. <b>Ticket GitHub #362.</b></li>
       <li>Défilement vers le bas des widgets de liste et de tableau chaque fois que de nouvelles entrées sont créées dans le navigateur d'énumérations de la base de données..</li>
+      <li>Introduction d'un "loop-unrolling" dans les fichiers de projet pour certaines distributions.'.</li>
       <li>Les données du navigateur d'énumérations de la base de données correctement engagées entraîneront la population automatique des interfaces existantes. Veuillez noter que BiblioteQ s'efforcera de préserver les valeurs actuelles des interfaces existantes.</li>
       <li>Navigateur d'énumération de bases de données : remplacement des widgets de boîtes de combinaison dans la table des lieux par des délégués d'éléments. La révision résout un avertissement Qt particulier « edit : editing failed ». Le problème est rencontré lors de la navigation avec les touches de tabulation. Veuillez également lire le document TO-DO.</li>
       <li>Ne traduisez pas les champs de type dans les jours minimums de localisation et de réservation du navigateur d'énumération de bases de données. Le champ Type représente une valeur de la base de données et les éléments sont localisés grâce à lui. <b>Ticket GitHub #360.</b></li>
@@ -23,6 +40,7 @@
       <li>Source organisée. Veuillez réviser et soumettre les corrections.</li>
       <li>Suppression des mnémoniques en double dans toutes les interfaces.</li>
       <li>Suppression du menu d'aide inactif du navigateur d'importation CSV. Sérieux !</li>
+      <li>Suppression de toutes les instances de QSettings::sync().</li>
       <li>Il s'agit d'une publication heureuse dans un monde de calamités.</li>
     </ul>
   <p><u>25 mars 2024.</u></p>
