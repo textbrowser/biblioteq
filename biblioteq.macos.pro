@@ -1,5 +1,6 @@
 include(biblioteq-source.pro)
-dmg.commands = hdiutil create BiblioteQ.d.dmg -srcfolder BiblioteQ.d
+dmg.commands = make install && \
+               hdiutil create BiblioteQ.d.dmg -srcfolder BiblioteQ.d
 purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= qt release warn_on
