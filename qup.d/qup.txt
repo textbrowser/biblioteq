@@ -15,17 +15,23 @@ file = Qt6PrintSupport.dll
 file = Qt6Sql.dll
 file = Qt6Widgets.dll
 file = Qt6Xml.dll
+file = libgcc_s_seh-1.dll
+file = libstdc++-6.dll
+file = libwinpthread-1.dll
+file_destination = .
+url = https://raw.githubusercontent.com/textbrowser/\ # First Part
+      qt-products/master/6.5_LTS/Windows              # Second Part
+
+[General]
+
 file = icudt68.dll
 file = icuin68.dll
 file = icuuc68.dll
 file = libcrypto-3-x64.dll
-file = libgcc_s_seh-1.dll
 file = libiconv-2.dll
 file = libintl-9.dll
 file = libpq.dll
 file = libssl-3-x64.dll
-file = libstdc++-6.dll
-file = libwinpthread-1.dll
 file = libxml2.dll
 file = libxslt.dll
 file = yaz4j.dll
@@ -82,8 +88,8 @@ file = plugins/qmltooling/qmldbg_tcp.dll
 file = plugins/sqldrivers/qsqlite.dll
 file = plugins/sqldrivers/qsqlpsql.dll
 file = plugins/styles/qwindowsvistastyle.dll
-url = https://raw.githubusercontent.com/textbrowser/\     # First Part
-      biblioteq/master/Distributions/Windows/Libraries.64 # Second Part
+url = https://raw.githubusercontent.com/textbrowser/\ # First Part
+      qt-products/master/6.5_LTS/Windows              # Second Part
 
 [General]
 
