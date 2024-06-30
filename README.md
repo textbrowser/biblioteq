@@ -72,7 +72,7 @@ of Qt 5.5.1 is required. Qt 4.x is deprecated.
 ### Debian Installation
 
 ```
-wget https://github.com/textbrowser/biblioteq/releases/download/2023.12.30/BiblioteQ-2023.12.30_amd64.deb
-sudo dpkg -i BiblioteQ-2023.12.30_amd64.deb
+wget https://github.com/textbrowser/biblioteq/releases/download/2024.06.30/BiblioteQ-2024.06.30_amd64.deb
+sudo dpkg -i BiblioteQ-2024.06.30_amd64.deb
 sudo apt install -f
 ```
