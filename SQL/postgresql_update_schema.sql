@@ -23,6 +23,6 @@ ALTER TABLE journal_copy_info ADD notes TEXT;
 ALTER TABLE magazine_copy_info ADD notes TEXT;
 ALTER TABLE videogame_copy_info ADD notes TEXT;
 
-/* Version 2024.05.30 */
+/* Version 2024.06.30 */
 
 DROP FUNCTION delete_request CASCADE;
