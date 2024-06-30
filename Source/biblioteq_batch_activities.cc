@@ -1062,28 +1062,32 @@ void biblioteq_batch_activities::slotBorrowItemChanged(QTableWidgetItem *item)
 
 void biblioteq_batch_activities::slotBorrowerMemberIdEdited(const QString &text)
 {
-  auto model = findChild<QSqlQueryModel *> ("borrow_member_id_completer_model");
+  if(text.trimmed().isEmpty())
+    return;
 
-  if(model)
-    {
-      model->clear();
+  auto model = findChild<QSqlQueryModel *>
+    ("borrow_member_id_completer_model");
 
-      if(text.trimmed().isEmpty())
-	return;
+  if(!model)
+    return;
 
-      QSqlQuery query(m_qmain->getDB());
-      QString E("");
+  QSqlQuery query(m_qmain->getDB());
+  QString E("");
 
-      if(m_qmain->getDB().driverName() != "QSQLITE")
-	E = "E";
+  if(m_qmain->getDB().driverName() != "QSQLITE")
+    E = "E";
 
-      query.prepare
-	("SELECT memberid FROM member WHERE "
-	 "LOWER(memberid) LIKE " + E + "'%' || ? || '%'");
-      query.addBindValue(text.toLower().trimmed());
-      query.exec();
-      model->setQuery(query);
-    }
+  query.prepare
+    ("SELECT memberid FROM member WHERE "
+     "LOWER(memberid) LIKE " + E + "'%' || ? || '%'");
+  query.addBindValue(text.toLower().trimmed());
+  query.exec();
+  model->clear();
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 2, 0))
+  model->setQuery(std::move(query));
+#else
+  model->setQuery(query);
+#endif
 }
 
 void biblioteq_batch_activities::slotClose(void)
