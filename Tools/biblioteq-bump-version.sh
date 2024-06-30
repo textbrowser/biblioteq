@@ -33,4 +33,5 @@ sed -i \
 sed -i \
     's/\(android:versionName="\)[0-9]\+\(\.[0-9]\+\)*"/\1'"$VERSION"'"/' \
     $FILE
+echo "Please remember README.md!"
 echo "Please remember the release notes!"
