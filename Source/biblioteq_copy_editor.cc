@@ -767,13 +767,13 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
     {
       QApplication::restoreOverrideCursor();
       qmain->addError(tr("Database Error"),
-		      tr("Unable to create a reserve record."),
+		      tr("Unable to create an item_borrower record."),
 		      query.lastError().text(),
 		      __FILE__,
 		      __LINE__);
       QMessageBox::critical(this,
 			    tr("BiblioteQ: Database Error"),
-			    tr("Unable to create a reserve record."));
+			    tr("Unable to create an item_borrower record."));
       QApplication::processEvents();
       return;
     }
@@ -823,7 +823,7 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 
       if(!query.exec())
 	qmain->addError(tr("Database Error"),
-			tr("Unable to create a history record."),
+			tr("Unable to create a member_history entry."),
 			query.lastError().text(),
 			__FILE__,
 			__LINE__);

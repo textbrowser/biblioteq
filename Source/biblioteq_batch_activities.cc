@@ -353,6 +353,41 @@ void biblioteq_batch_activities::borrow(void)
 	  results->setBackground(s_notSoOkColor);
 	  results->setText
 	    (tr("Reservation problem (%1).").arg(query.lastError().text()));
+	  continue;
+	}
+
+      auto dnt = biblioteq_misc_functions::dnt
+	(m_qmain->getDB(), memberId, errorstr);
+
+      if(!dnt)
+	{
+	  query.prepare("INSERT INTO member_history "
+			"(memberid, "
+			"item_oid, "
+			"copyid, "
+			"reserved_date, "
+			"duedate, "
+			"returned_date, "
+			"reserved_by, "
+			"type) "
+			"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	  query.addBindValue(memberId);
+	  query.addBindValue(itemOid);
+	  query.addBindValue(copyIdentifier->text());
+	  query.addBindValue
+	    (QDate::currentDate().toString(biblioteq::s_databaseDateFormat));
+	  query.addBindValue
+	    (dueDate.toString(biblioteq::s_databaseDateFormat));
+	  query.addBindValue(QString("N/A"));
+	  query.addBindValue(m_qmain->getAdminID());
+	  query.addBindValue(type);
+
+	  if(!query.exec())
+	    m_qmain->addError(tr("Database Error"),
+			      tr("Unable to create a member_history entry."),
+			      query.lastError().text(),
+			      __FILE__,
+			      __LINE__);
 	}
     }
 
