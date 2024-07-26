@@ -615,7 +615,6 @@
     <addaction name="actionAutomatically_Resize_Column_Widths"/>
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
     <addaction name="actionShowGrid"/>
-    <addaction name="actionPatron_Reservation_History"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
     <addaction name="actionPopulate_Database_Enumerations_Browser_on_Display"/>
     <addaction name="actionPopulate_Members_Browser_Table_on_Display"/>
@@ -1454,14 +1453,6 @@
   <action name="actionQuery_History">
    <property name="text">
     <string>Query History...</string>
-   </property>
-  </action>
-  <action name="actionPatron_Reservation_History">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Patron Reservation History</string>
    </property>
   </action>
  </widget>
