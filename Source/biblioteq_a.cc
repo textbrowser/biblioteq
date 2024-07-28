@@ -786,6 +786,8 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionMagic->setVisible(false);
   ui.actionMembersBrowser->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
+  ui.actionPatron_Reservation_History->setChecked(false);
+  ui.actionPatron_Reservation_History->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
