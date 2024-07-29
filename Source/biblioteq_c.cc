@@ -3159,6 +3159,8 @@ void biblioteq::slotConnectDB(void)
       */
 
       ui.actionChangePassword->setEnabled(true);
+      ui.actionPatron_Reservation_History->setChecked
+	(!biblioteq_misc_functions::dnt(m_db, dbUserName(), errorstr));
       ui.actionRequests->setData
 	(static_cast<int> (RequestActionItems::REQUEST_SELECTED));
       ui.actionRequests->setEnabled(true);
@@ -6371,10 +6373,9 @@ void biblioteq::slotShowHistory(void)
       else
 	{
 	  history.dnt->setChecked(true);
-	  history.dnt->setEnabled(false);
+	  history.dnt->setEnabled(true);
 	  history.dnt->setToolTip
-	    (tr("The option is not available because an error "
-		"occurred while attempting to retrieve its value."));
+	    (tr("An error occurred with biblioteq_misc_functions::dnt()."));
 	}
 
       connect(history.dnt,

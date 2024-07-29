@@ -1270,7 +1270,7 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
     {
       QSettings settings;
 
-      errorstr = "";
+      errorstr.clear();
       return settings.value("dnt", true).toBool();
     }
 
@@ -1278,7 +1278,7 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
   QString querystr("");
   auto dnt = true;
 
-  errorstr = "";
+  errorstr.clear();
   querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
   query.prepare(querystr);
   query.addBindValue(memberid);
