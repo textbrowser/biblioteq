@@ -3049,6 +3049,9 @@ void biblioteq::slotConnectDB(void)
     {
       ui.actionChangePassword->setEnabled(false);
       ui.actionImportCSV->setEnabled(true);
+      ui.actionPatron_Reservation_History->setChecked
+	(!settings.value("dnt").toBool());
+      ui.actionPatron_Reservation_History->setEnabled(true);
       ui.action_Merge_SQLite_Databases->setEnabled(true);
       ui.action_Upgrade_SQLite_SchemaAll->setEnabled(true);
       ui.action_Upgrade_SQLite_SchemaRecent->setEnabled(true);

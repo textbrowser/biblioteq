@@ -301,6 +301,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowBatchActivitiesBrowser(void)));
+  connect(ui.actionPatron_Reservation_History,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveDnt(bool)));
   connect(ui.action_Book,
 	  SIGNAL(triggered(void)),
 	  this,

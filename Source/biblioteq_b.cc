@@ -4629,18 +4629,40 @@ void biblioteq::slotRoleChanged(int index)
 
 void biblioteq::slotSaveDnt(bool state)
 {
+  if(history.dnt == sender())
+    {
+      ui.actionPatron_Reservation_History->blockSignals(true);
+      ui.actionPatron_Reservation_History->setChecked(!state);
+      ui.actionPatron_Reservation_History->blockSignals(false);
+    }
+  else
+    {
+      history.dnt->blockSignals(true);
+      history.dnt->setChecked(!state);
+      history.dnt->blockSignals(false);
+    }
+
   if(m_db.driverName() == "QSQLITE")
     {
       QSettings settings;
 
-      settings.setValue("dnt", state);
+      if(history.dnt == sender())
+	settings.setValue("dnt", state);
+      else
+	settings.setValue("dnt", !state);
+
       return;
     }
 
   QSqlQuery query(m_db);
 
   query.prepare("INSERT INTO member_history_dnt (dnt, memberid) VALUES (?, ?)");
-  query.addBindValue(QVariant(state).toInt());
+
+  if(history.dnt == sender())
+    query.addBindValue(QVariant(state).toInt());
+  else
+    query.addBindValue(QVariant(!state).toInt());
+
   query.addBindValue(dbUserName());
   query.exec();
 
@@ -4654,7 +4676,12 @@ void biblioteq::slotSaveDnt(bool state)
 	     __LINE__);
 
   query.prepare("UPDATE member_history_dnt SET dnt = ? WHERE memberid = ?");
-  query.addBindValue(QVariant(state).toInt());
+
+  if(history.dnt == sender())
+    query.addBindValue(QVariant(state).toInt());
+  else
+    query.addBindValue(QVariant(!state).toInt());
+
   query.addBindValue(dbUserName());
   query.exec();
 
