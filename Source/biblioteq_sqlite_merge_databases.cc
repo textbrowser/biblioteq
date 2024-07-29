@@ -142,6 +142,7 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 	  auto progress = new QProgressBar();
 
 	  m_ui.databases->setCellWidget(row, i, progress);
+	  progress->setAttribute(Qt::WA_TransparentForMouseEvents);
 	  break;
 	}
       case Columns::SELECT_COLUMN:

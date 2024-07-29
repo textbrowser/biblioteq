@@ -3310,6 +3310,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionMagic->setEnabled(false);
   ui.actionMembersBrowser->setEnabled(false);
   ui.actionModifyEntry->setEnabled(false);
+  ui.actionPatron_Reservation_History->setEnabled(false);
   ui.actionQuery_History->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
