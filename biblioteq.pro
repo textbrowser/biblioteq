@@ -34,7 +34,6 @@ LIBS            += -lpoppler-qt5
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
-                          -Wdangling-reference \
                           -Wdouble-promotion \
                           -Werror=format-security \
                           -Wextra \
