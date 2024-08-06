@@ -2036,7 +2036,7 @@ void biblioteq_magazine::slotAttachFiles(void)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	  QFile file;
-	  auto const &fileName(files.at(i));
+	  auto const fileName(files.at(i));
 
 	  file.setFileName(fileName);
 

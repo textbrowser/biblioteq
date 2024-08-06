@@ -147,7 +147,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
       return;
     }
 
-  auto const &q(querystr.toLower());
+  auto const q(querystr.toLower());
 
   if(q.startsWith("alter ") ||
      q.startsWith("cluster ") ||

@@ -752,7 +752,7 @@ void biblioteq_main_table::slotCellChanged(int row, int column)
     return;
 
   QColor color;
-  auto const &map(m_qmain->specialValueColors());
+  auto const map(m_qmain->specialValueColors());
 
   color = map.value
     (qMakePair(item->text().trimmed(), header->text().trimmed()));

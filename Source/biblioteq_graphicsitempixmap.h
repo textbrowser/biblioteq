@@ -36,12 +36,12 @@ static void qt_graphicsItem_highlightSelected
   if(!item || !option || !painter)
     return;
 
-  auto const &marect = painter->transform().mapRect(QRectF(0, 0, 1, 1));
+  auto const marect = painter->transform().mapRect(QRectF(0, 0, 1, 1));
 
   if(qFuzzyIsNull(qMax(marect.height(), marect.width())))
     return;
 
-  auto const &mbrect = painter->transform().mapRect(item->boundingRect());
+  auto const mbrect = painter->transform().mapRect(item->boundingRect());
 
   if(qMin(mbrect.height(), mbrect.width()) < qreal(1.0))
     return;

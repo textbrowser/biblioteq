@@ -1434,7 +1434,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 
   while(!keys.isEmpty())
     {
-      auto const &key(keys.takeFirst());
+      auto const key(keys.takeFirst());
       auto index = m_openLibraryResults.indexOf(key.toUtf8());
 
       if(index > -1)
@@ -2377,7 +2377,7 @@ void biblioteq_book::slotAttachFiles(void)
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	  QFile file;
-	  auto const &fileName(files.at(i));
+	  auto const fileName(files.at(i));
 
 	  file.setFileName(fileName);
 

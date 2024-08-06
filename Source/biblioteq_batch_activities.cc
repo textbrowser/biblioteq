@@ -1367,7 +1367,7 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
   for(int i = 0; i < types.size(); i++)
     {
       QString str("");
-      auto const &type(types.at(i));
+      auto const type(types.at(i));
 
       if(type == "Grey Literature")
 	{

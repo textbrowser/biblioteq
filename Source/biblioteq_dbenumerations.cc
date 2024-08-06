@@ -298,7 +298,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
       QList<QPair<QString, QString> > pairList;
       QListWidget *listWidget = nullptr;
       QTableWidget *tableWidget = nullptr;
-      auto const &str(tables.at(i));
+      auto const str(tables.at(i));
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
