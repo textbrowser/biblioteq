@@ -42,6 +42,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wformat=2 \
                           -Wlogical-op \
                           -Wno-deprecated-declarations \
+                          -Wold-style-cast \
                           -Woverloaded-virtual \
                           -Wpointer-arith \
                           -Wstack-protector \
