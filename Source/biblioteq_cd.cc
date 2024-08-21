@@ -249,6 +249,19 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
   QString errorstr("");
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  cd.format->addItems
+    (biblioteq_misc_functions::getCDFormats(qmain->getDB(), errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (tr("Database Error"),
+       tr("Unable to retrieve the cd formats."),
+       errorstr,
+       __FILE__,
+       __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.language->addItems
     (biblioteq_misc_functions::getLanguages(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
@@ -257,19 +270,6 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
     qmain->addError
       (tr("Database Error"),
        tr("Unable to retrieve the languages."),
-       errorstr,
-       __FILE__,
-       __LINE__);
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  cd.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    qmain->addError
-      (tr("Database Error"),
-       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -288,14 +288,14 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
        __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  cd.format->addItems
-    (biblioteq_misc_functions::getCDFormats(qmain->getDB(), errorstr));
+  cd.monetary_units->addItems
+    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
       (tr("Database Error"),
-       tr("Unable to retrieve the cd formats."),
+       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -394,11 +394,11 @@ void biblioteq_cd::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
   cd.copiesButton->setEnabled(false);
-  cd.tracksButton->setEnabled(false);
   cd.showUserButton->setEnabled(false);
+  cd.tracksButton->setEnabled(false);
+  m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
-  m_engWindowTitle = "Create";
 }
 
 void biblioteq_cd::insert(void)
@@ -472,54 +472,49 @@ void biblioteq_cd::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      m_engWindowTitle = "Modify";
       setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Music CD Entry"));
-      m_engWindowTitle = "Modify";
-      cd.showUserButton->setEnabled(true);
+      cd.backButton->setVisible(true);
+      cd.computeButton->setVisible(true);
       cd.copiesButton->setEnabled(true);
+      cd.frontButton->setVisible(true);
       cd.okButton->setVisible(true);
       cd.queryButton->setVisible(m_isQueryEnabled);
       cd.resetButton->setVisible(true);
-      cd.computeButton->setVisible(true);
-      trd.saveButton->setVisible(true);
-      trd.insertButton->setVisible(true);
+      cd.showUserButton->setEnabled(true);
       trd.deleteButton->setVisible(true);
-      cd.frontButton->setVisible(true);
-      cd.backButton->setVisible(true);
-      biblioteq_misc_functions::highlightWidget
-	(cd.id, m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(cd.title, m_requiredHighlightColor);
-      biblioteq_misc_functions::highlightWidget
-	(cd.recording_label->viewport(), m_requiredHighlightColor);
+      trd.insertButton->setVisible(true);
+      trd.saveButton->setVisible(true);
       biblioteq_misc_functions::highlightWidget
 	(cd.artist->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
+	(cd.category->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
 	(cd.description->viewport(), m_requiredHighlightColor);
       biblioteq_misc_functions::highlightWidget
-	(cd.category->viewport(), m_requiredHighlightColor);
+	(cd.id, m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(cd.recording_label->viewport(), m_requiredHighlightColor);
+      biblioteq_misc_functions::highlightWidget
+	(cd.title, m_requiredHighlightColor);
     }
   else
     {
+      m_engWindowTitle = "View";
       setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Music CD Details"));
-      m_engWindowTitle = "View";
-
-      if(qmain->isGuest())
-	cd.showUserButton->setVisible(false);
-      else
-	cd.showUserButton->setEnabled(true);
-
+      cd.backButton->setVisible(false);
+      cd.computeButton->setVisible(false);
       cd.copiesButton->setVisible(false);
+      cd.frontButton->setVisible(false);
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
       cd.resetButton->setVisible(false);
-      cd.computeButton->setVisible(false);
-      trd.saveButton->setVisible(false);
-      trd.insertButton->setVisible(false);
+      cd.showUserButton->setVisible(qmain->isGuest() ? false : true);
       trd.deleteButton->setVisible(false);
-      cd.frontButton->setVisible(false);
-      cd.backButton->setVisible(false);
+      trd.insertButton->setVisible(false);
+      trd.saveButton->setVisible(false);
 
       auto actions = cd.resetButton->menu()->actions();
 
@@ -530,15 +525,15 @@ void biblioteq_cd::modify(const int state)
 	}
     }
 
-  cd.tracksButton->setEnabled(true);
-  cd.queryButton->setEnabled(true);
+  cd.no_of_discs->setMinimum(1);
+  cd.no_of_discs->setValue(1);
   cd.okButton->setText(tr("&Save"));
-  cd.runtime->setMinimumTime(QTime(0, 0, 1));
   cd.price->setMinimum(0.00);
   cd.quantity->setMinimum(1);
   cd.quantity->setValue(1);
-  cd.no_of_discs->setMinimum(1);
-  cd.no_of_discs->setValue(1);
+  cd.queryButton->setEnabled(true);
+  cd.runtime->setMinimumTime(QTime(0, 0, 1));
+  cd.tracksButton->setEnabled(true);
   prepareIcons(this);
   str = m_oid;
   query.prepare("SELECT id, "
@@ -603,121 +598,10 @@ void biblioteq_cd::modify(const int state)
 	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
 
-	  if(fieldname == "title")
-	    cd.title->setText(var.toString());
-	  else if(fieldname == "recording_label")
-	    cd.recording_label->setMultipleLinks
-	      ("cd_search", "recording_label",
-	       var.toString());
-	  else if(fieldname == "rdate")
-	    cd.release_date->setDate
-	      (QDate::fromString(var.toString(),
-				 biblioteq::s_databaseDateFormat));
-	  else if(fieldname == "price")
-	    cd.price->setValue(var.toDouble());
-	  else if(fieldname == "category")
-	    cd.category->setMultipleLinks("cd_search", "category",
-					  var.toString());
-	  else if(fieldname == "language")
-	    {
-	      if(cd.language->findText(var.toString()) > -1)
-		cd.language->setCurrentIndex
-		  (cd.language->findText(var.toString()));
-	      else
-		cd.language->setCurrentIndex
-		  (cd.language->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "quantity")
-	    {
-	      cd.quantity->setValue(var.toInt());
-	      m_oldq = cd.quantity->value();
-	    }
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(cd.monetary_units->findText(var.toString()) > -1)
-		cd.monetary_units->setCurrentIndex
-		  (cd.monetary_units->findText(var.toString()));
-	      else
-		cd.monetary_units->setCurrentIndex
-		  (cd.monetary_units->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "cddiskcount")
-	    cd.no_of_discs->setValue(var.toInt());
-	  else if(fieldname == "cdruntime")
-	    cd.runtime->setTime(QTime::fromString(var.toString(), "hh:mm:ss"));
-	  else if(fieldname == "location")
-	    {
-	      if(cd.location->findText(var.toString()) > -1)
-		cd.location->setCurrentIndex
-		  (cd.location->findText(var.toString()));
-	      else
-		cd.location->setCurrentIndex
-		  (cd.location->findText(biblioteq::s_unknown));
-	    }
-	  else if(fieldname == "id")
-	    {
-	      if(state == biblioteq::EDITABLE)
-		{
-		  str = tr("BiblioteQ: Modify Music CD Entry (") +
-		    var.toString() +
-		    tr(")");
-		  m_engWindowTitle = "Modify";
-		}
-	      else
-		{
-		  str = tr("BiblioteQ: View Music CD Details (") +
-		    var.toString() +
-		    tr(")");
-		  m_engWindowTitle = "View";
-		}
-
-	      setWindowTitle(str);
-	      cd.id->setText(var.toString());
-	    }
-	  else if(fieldname == "description")
-	    cd.description->setPlainText(var.toString());
-	  else if(fieldname == "keyword")
-	    cd.keyword->setMultipleLinks("cd_search", "keyword",
-					 var.toString());
-	  else if(fieldname == "cdformat")
-	    {
-	      if(cd.format->findText(var.toString()) > -1)
-		cd.format->setCurrentIndex
-		  (cd.format->findText(var.toString()));
-	      else
-		cd.format->setCurrentIndex
-		  (cd.format->findText(biblioteq::s_unknown));
-	    }
+	  if(fieldname == "accession_number")
+	    cd.accession_number->setText(var.toString());
 	  else if(fieldname == "artist")
-	    cd.artist->setMultipleLinks
-	      ("cd_search", "artist", var.toString());
-	  else if(fieldname == "cdaudio")
-	    {
-	      if(cd.audio->findText(var.toString()) > -1)
-		cd.audio->setCurrentIndex
-		  (cd.audio->findText(var.toString()));
-	      else
-		cd.audio->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "cdrecording")
-	    {
-	      if(cd.recording_type->findText(var.toString()) > -1)
-		cd.recording_type->setCurrentIndex
-		  (cd.recording_type->findText(var.toString()));
-	      else
-		cd.recording_type->setCurrentIndex(0);
-	    }
-	  else if(fieldname == "front_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  cd.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(cd.front_image->m_image.isNull())
-		    cd.front_image->loadFromData(var.toByteArray());
-		}
-	    }
+	    cd.artist->setMultipleLinks("cd_search", "artist", var.toString());
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!record.field(i).isNull())
@@ -729,8 +613,117 @@ void biblioteq_cd::modify(const int state)
 		    cd.back_image->loadFromData(var.toByteArray());
 		}
 	    }
-	  else if(fieldname == "accession_number")
-	    cd.accession_number->setText(var.toString());
+	  else if(fieldname == "category")
+	    cd.category->setMultipleLinks
+	      ("cd_search", "category", var.toString());
+	  else if(fieldname == "cdaudio")
+	    {
+	      if(cd.audio->findText(var.toString()) > -1)
+		cd.audio->setCurrentIndex
+		  (cd.audio->findText(var.toString()));
+	      else
+		cd.audio->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "cddiskcount")
+	    cd.no_of_discs->setValue(var.toInt());
+	  else if(fieldname == "cdformat")
+	    {
+	      if(cd.format->findText(var.toString()) > -1)
+		cd.format->setCurrentIndex
+		  (cd.format->findText(var.toString()));
+	      else
+		cd.format->setCurrentIndex
+		  (cd.format->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "cdrecording")
+	    {
+	      if(cd.recording_type->findText(var.toString()) > -1)
+		cd.recording_type->setCurrentIndex
+		  (cd.recording_type->findText(var.toString()));
+	      else
+		cd.recording_type->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "cdruntime")
+	    cd.runtime->setTime(QTime::fromString(var.toString(), "hh:mm:ss"));
+	  else if(fieldname == "description")
+	    cd.description->setPlainText(var.toString());
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  cd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(cd.front_image->m_image.isNull())
+		    cd.front_image->loadFromData(var.toByteArray());
+		}
+	    }
+	  else if(fieldname == "id")
+	    {
+	      if(state == biblioteq::EDITABLE)
+		{
+		  m_engWindowTitle = "Modify";
+		  str = tr("BiblioteQ: Modify Music CD Entry (") +
+		    var.toString() +
+		    tr(")");
+		}
+	      else
+		{
+		  m_engWindowTitle = "View";
+		  str = tr("BiblioteQ: View Music CD Details (") +
+		    var.toString() +
+		    tr(")");
+		}
+
+	      cd.id->setText(var.toString());
+	      setWindowTitle(str);
+	    }
+	  else if(fieldname == "keyword")
+	    cd.keyword->setMultipleLinks
+	      ("cd_search", "keyword", var.toString());
+	  else if(fieldname == "language")
+	    {
+	      if(cd.language->findText(var.toString()) > -1)
+		cd.language->setCurrentIndex
+		  (cd.language->findText(var.toString()));
+	      else
+		cd.language->setCurrentIndex
+		  (cd.language->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "location")
+	    {
+	      if(cd.location->findText(var.toString()) > -1)
+		cd.location->setCurrentIndex
+		  (cd.location->findText(var.toString()));
+	      else
+		cd.location->setCurrentIndex
+		  (cd.location->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "monetary_units")
+	    {
+	      if(cd.monetary_units->findText(var.toString()) > -1)
+		cd.monetary_units->setCurrentIndex
+		  (cd.monetary_units->findText(var.toString()));
+	      else
+		cd.monetary_units->setCurrentIndex
+		  (cd.monetary_units->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "price")
+	    cd.price->setValue(var.toDouble());
+	  else if(fieldname == "quantity")
+	    {
+	      cd.quantity->setValue(var.toInt());
+	      m_oldq = cd.quantity->value();
+	    }
+	  else if(fieldname == "rdate")
+	    cd.release_date->setDate
+	      (QDate::fromString(var.toString(),
+				 biblioteq::s_databaseDateFormat));
+	  else if(fieldname == "recording_label")
+	    cd.recording_label->setMultipleLinks
+	      ("cd_search", "recording_label", var.toString());
+	  else if(fieldname == "title")
+	    cd.title->setText(var.toString());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
