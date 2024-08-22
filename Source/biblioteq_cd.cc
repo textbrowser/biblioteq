@@ -865,14 +865,14 @@ void biblioteq_cd::slotCancel(void)
 
 void biblioteq_cd::slotCloseTracksBrowser(void)
 {
-  trd.table->setCurrentItem(nullptr);
-  trd.table->setColumnCount(0);
-  trd.table->setRowCount(0);
 #ifdef Q_OS_ANDROID
   m_tracks_diag->hide();
 #else
   m_tracks_diag->close();
 #endif
+  trd.table->setColumnCount(0);
+  trd.table->setCurrentItem(nullptr);
+  trd.table->setRowCount(0);
 }
 
 void biblioteq_cd::slotComputeRuntime(void)
@@ -1447,30 +1447,30 @@ void biblioteq_cd::slotGo(void)
 
 	  m_oldq = cd.quantity->value();
 
-	  if(cd.front_image->m_image.isNull())
-	    cd.front_image->m_imageFormat = "";
-
 	  if(cd.back_image->m_image.isNull())
 	    cd.back_image->m_imageFormat = "";
 
+	  if(cd.front_image->m_image.isNull())
+	    cd.front_image->m_imageFormat = "";
+
 	  cd.artist->setMultipleLinks
-	    ("cd_search", "artist",
-	     cd.artist->toPlainText());
+	    ("cd_search", "artist", cd.artist->toPlainText());
+	  cd.category->setMultipleLinks
+	    ("cd_search", "category", cd.category->toPlainText());
+	  cd.keyword->setMultipleLinks
+	    ("cd_search", "keyword", cd.keyword->toPlainText());
 	  cd.recording_label->setMultipleLinks
-	    ("cd_search", "recording_label",
+	    ("cd_search",
+	     "recording_label",
 	     cd.recording_label->toPlainText());
-	  cd.category->setMultipleLinks("cd_search", "category",
-					cd.category->toPlainText());
-	  cd.keyword->setMultipleLinks("cd_search", "keyword",
-				       cd.keyword->toPlainText());
 	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
+	      m_engWindowTitle = "Modify";
 	      str = tr("BiblioteQ: Modify Music CD Entry (") +
 		cd.id->text() +
 		tr(")");
-	      m_engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
 	      if(m_index->isValid() &&
@@ -1500,64 +1500,12 @@ void biblioteq_cd::slotGo(void)
 			      setIcon(QIcon(":/no_image.png"));
 			}
 
-		      if(names.at(i) == "Catalog Number" ||
-			 names.at(i) == "ID Number")
+		      if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.id->text());
-		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.title->text());
-		      else if(names.at(i) == "Format")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.format->currentText().trimmed());
+			  (cd.accession_number->text());
 		      else if(names.at(i) == "Artist")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.artist->toPlainText());
-		      else if(names.at(i) == "Number of Discs")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.no_of_discs->text());
-		      else if(names.at(i) == "Runtime")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.runtime->text());
-		      else if(names.at(i) == "Release Date" ||
-			      names.at(i) == "Publication Date")
-			{
-			  if(qmain->getTypeFilterString() == "Music CDs")
-			    qmain->getUI().table->item(m_index->row(), i)->
-			      setText
-			      (cd.release_date->date().
-			       toString(qmain->
-					publicationDateFormat("musiccds")));
-			  else
-			    qmain->getUI().table->item(m_index->row(), i)->
-			      setText
-			      (cd.release_date->date().toString(Qt::ISODate));
-			}
-		      else if(names.at(i) == "Recording Label" ||
-			      names.at(i) == "Publisher")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.recording_label->toPlainText());
-		      else if(names.at(i) == "Categories")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.category->toPlainText());
-		      else if(names.at(i) == "Price")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (QLocale().toString(cd.price->value()));
-		      else if(names.at(i) == "Language")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.language->currentText().trimmed());
-		      else if(names.at(i) == "Monetary Units")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.monetary_units->currentText().trimmed());
-		      else if(names.at(i) == "Quantity")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.quantity->text());
-		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.location->currentText().trimmed());
-		      else if(names.at(i) == "Recording Type")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.recording_type->currentText().trimmed());
 		      else if(names.at(i) == "Audio")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (cd.audio->currentText().trimmed());
@@ -1575,9 +1523,61 @@ void biblioteq_cd::slotGo(void)
 			       __FILE__,
 			       __LINE__);
 			}
-		      else if(names.at(i) == "Accession Number")
+		      else if(names.at(i) == "Catalog Number" ||
+			      names.at(i) == "ID Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (cd.accession_number->text());
+			  (cd.id->text());
+		      else if(names.at(i) == "Categories")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.category->toPlainText());
+		      else if(names.at(i) == "Format")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.format->currentText().trimmed());
+		      else if(names.at(i) == "Language")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.language->currentText().trimmed());
+		      else if(names.at(i) == "Location")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.location->currentText().trimmed());
+		      else if(names.at(i) == "Monetary Units")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.monetary_units->currentText().trimmed());
+		      else if(names.at(i) == "Number of Discs")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.no_of_discs->text());
+		      else if(names.at(i) == "Price")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (QLocale().toString(cd.price->value()));
+		      else if(names.at(i) == "Publication Date" ||
+			      names.at(i) == "Release Date")
+			{
+			  if(qmain->getTypeFilterString() == "Music CDs")
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
+			      (cd.release_date->date().
+			       toString(qmain->
+					publicationDateFormat("musiccds")));
+			  else
+			    qmain->getUI().table->item(m_index->row(), i)->
+			      setText
+			      (cd.release_date->date().toString(Qt::ISODate));
+			}
+		      else if(names.at(i) == "Publisher" ||
+			      names.at(i) == "Recording Label")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.recording_label->toPlainText());
+		      else if(names.at(i) == "Quantity")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.quantity->text());
+		      else if(names.at(i) == "Recording Type")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.recording_type->currentText().trimmed());
+		      else if(names.at(i) == "Runtime")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.runtime->text());
+		      else if(names.at(i) == "Title")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (cd.title->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -1999,8 +1999,8 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   for(i = 1; i <= cd.no_of_discs->value(); i++)
     comboBoxList.append(QString::number(i));
 
-  trd.table->setCurrentItem(nullptr);
   trd.table->setColumnCount(0);
+  trd.table->setCurrentItem(nullptr);
   trd.table->setRowCount(0);
   list.append(tr("Album Number"));
   list.append(tr("Track Number"));
@@ -2008,24 +2008,21 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   list.append(tr("Track Runtime"));
   list.append(tr("Artist"));
   list.append(tr("Composer"));
+  trd.table->horizontalScrollBar()->setValue(0);
+  trd.table->scrollToTop();
   trd.table->setColumnCount(list.size());
   trd.table->setHorizontalHeaderLabels(list);
   trd.table->setRowCount(0);
-  trd.table->scrollToTop();
-  trd.table->horizontalScrollBar()->setValue(0);
-  m_tracks_diag->updateGeometry();
   m_tracks_diag->setWindowTitle
     (tr("BiblioteQ: Album Tracks Browser (") + cd.id->text() + tr(")"));
+  m_tracks_diag->updateGeometry();
   m_tracks_diag->show();
   trd.table->setSortingEnabled(false);
 
   if(qmain->getDB().driverName() != "QSQLITE")
     trd.table->setRowCount(query.size());
 
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
-  progress.setMinimum(0);
 
   if(qmain->getDB().driverName() == "QSQLITE")
     {
@@ -2043,6 +2040,9 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   else
     progress.setMaximum(query.size());
 
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
   QApplication::processEvents();
@@ -2135,43 +2135,83 @@ void biblioteq_cd::slotPrepareIcons(void)
 void biblioteq_cd::slotPrint(void)
 {
   m_html = "<html>";
-  m_html += "<b>" + tr("Catalog Number:") + "</b> " +
-    cd.id->text().trimmed() + "<br>";
+  m_html += "<b>" +
+    tr("Catalog Number:") +
+    "</b> " +
+    cd.id->text().trimmed() +
+    "<br>";
   m_html += "<b>" + tr("Format:") + "</b> " + cd.format->currentText() + "<br>";
-  m_html += "<b>" + tr("Artist:") + "</b> " +
-    cd.artist->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Number of Discs:") + "</b> " +
-    cd.no_of_discs->text() + "<br>";
+  m_html += "<b>" +
+    tr("Artist:") +
+    "</b> " +
+    cd.artist->toPlainText().trimmed() +
+    "<br>";
+  m_html += "<b>" +
+    tr("Number of Discs:") +
+    "</b> " +
+    cd.no_of_discs->text() +
+    "<br>";
   m_html += "<b>" + tr("Runtime:") + "</b> " + cd.runtime->text() + "<br>";
   m_html += "<b>" + tr("Audio:") + "</b> " + cd.audio->currentText() + "<br>";
-  m_html += "<b>" + tr("Recording Type:") + "</b> " +
+  m_html += "<b>" +
+    tr("Recording Type:") +
+    "</b> " +
     cd.recording_type->currentText() + "<br>";
 
   /*
   ** General information.
   */
 
-  m_html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() +
+  m_html += "<b>" +
+    tr("Title:") +
+    "</b> " +
+    cd.title->text().trimmed() +
     "<br>";
-  m_html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
-    toString(Qt::ISODate) + "<br>";
-  m_html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->
-    toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Categories:") + "</b> " +
-    cd.category->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" +
+    tr("Release Date:") +
+    "</b> " +
+    cd.release_date->date().toString(Qt::ISODate) +
+    "<br>";
+  m_html += "<b>" +
+    tr("Recording Label:") +
+    "</b> " +
+    cd.recording_label->toPlainText().trimmed() +
+    "<br>";
+  m_html += "<b>" +
+    tr("Categories:") +
+    "</b> " +
+    cd.category->toPlainText().trimmed() +
+    "<br>";
   m_html += "<b>"+ tr("Price:") + "</b> " + cd.price->cleanText() + "<br>";
-  m_html += "<b>" + tr("Language:") + "</b> " +
-    cd.language->currentText() + "<br>";
-  m_html += "<b>" + tr("Monetary Units:") + "</b> " +
-    cd.monetary_units->currentText() + "<br>";
+  m_html += "<b>" +
+    tr("Language:") +
+    "</b> " +
+    cd.language->currentText() +
+    "<br>";
+  m_html += "<b>" +
+    tr("Monetary Units:") +
+    "</b> " +
+    cd.monetary_units->currentText() +
+    "<br>";
   m_html += "<b>" + tr("Copies:") + "</b> " + cd.quantity->text() + "<br>";
-  m_html += "<b>" + tr("Location:") + "</b> " +
-    cd.location->currentText() + "<br>";
-  m_html += "<b>" + tr("Abstract:") + "</b> " +
-    cd.description->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Keywords:") + "</b> " +
-    cd.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b> " +
+  m_html += "<b>" +
+    tr("Location:") +
+    "</b> " +
+    cd.location->currentText() +
+    "<br>";
+  m_html += "<b>" +
+    tr("Abstract:") +
+    "</b> " +
+    cd.description->toPlainText().trimmed() +
+    "<br>";
+  m_html += "<b>" +
+    tr("Keywords:") +
+    "</b> " +
+    cd.keyword->toPlainText().trimmed() +
+    "<br>";
+  m_html += "<b>" +
+    tr("Accession Number:") +
+    "</b> " +
     cd.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);
@@ -2231,17 +2271,17 @@ void biblioteq_cd::slotReset(void)
 	}
       else if(action == actions[6])
 	{
-	  cd.no_of_discs->setValue(cd.no_of_discs->minimum());
 	  cd.no_of_discs->setFocus();
+	  cd.no_of_discs->setValue(cd.no_of_discs->minimum());
 	}
       else if(action == actions[7])
 	{
+	  cd.runtime->setFocus();
+
 	  if(m_engWindowTitle.contains("Search"))
 	    cd.runtime->setTime(QTime(0, 0, 0));
 	  else
 	    cd.runtime->setTime(QTime(0, 0, 1));
-
-	  cd.runtime->setFocus();
 	}
       else if(action == actions[8])
 	{
@@ -2292,8 +2332,8 @@ void biblioteq_cd::slotReset(void)
 	}
       else if(action == actions[14])
 	{
-	  cd.price->setValue(cd.price->minimum());
 	  cd.price->setFocus();
+	  cd.price->setValue(cd.price->minimum());
 	}
       else if(action == actions[15])
 	{
@@ -2307,8 +2347,8 @@ void biblioteq_cd::slotReset(void)
 	}
       else if(action == actions[17])
 	{
-	  cd.quantity->setValue(cd.quantity->minimum());
 	  cd.quantity->setFocus();
+	  cd.quantity->setValue(cd.quantity->minimum());
 	}
       else if(action == actions[18])
 	{
@@ -2349,11 +2389,6 @@ void biblioteq_cd::slotReset(void)
 	cd.artist->setPlainText("N/A");
 
       if(m_engWindowTitle.contains("Search"))
-	cd.recording_label->clear();
-      else
-	cd.recording_label->setPlainText("N/A");
-
-      if(m_engWindowTitle.contains("Search"))
 	cd.category->clear();
       else
 	cd.category->setPlainText("N/A");
@@ -2364,35 +2399,40 @@ void biblioteq_cd::slotReset(void)
 	cd.description->setPlainText("N/A");
 
       if(m_engWindowTitle.contains("Search"))
+	cd.recording_label->clear();
+      else
+	cd.recording_label->setPlainText("N/A");
+
+      if(m_engWindowTitle.contains("Search"))
 	{
 	  cd.publication_date_enabled->setChecked(false);
-	  cd.runtime->setTime(QTime(0, 0, 0));
 	  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+	  cd.runtime->setTime(QTime(0, 0, 0));
 	}
       else
 	{
-	  cd.runtime->setTime(QTime(0, 0, 1));
 	  cd.release_date->setDate
 	    (QDate::fromString("01/01/2000",
 			       biblioteq::s_databaseDateFormat));
+	  cd.runtime->setTime(QTime(0, 0, 1));
 	}
 
-      cd.id->clear();
-      cd.price->setValue(cd.price->minimum());
-      cd.quantity->setValue(cd.quantity->minimum());
-      cd.no_of_discs->setValue(cd.no_of_discs->minimum());
+      cd.accession_number->clear();
       cd.audio->setCurrentIndex(0);
-      cd.location->setCurrentIndex(0);
-      cd.language->setCurrentIndex(0);
-      cd.monetary_units->setCurrentIndex(0);
-      cd.recording_type->setCurrentIndex(0);
+      cd.back_image->clear();
+      cd.composer->clear();
       cd.format->setCurrentIndex(0);
       cd.front_image->clear();
-      cd.back_image->clear();
-      cd.keyword->clear();
-      cd.composer->clear();
-      cd.accession_number->clear();
+      cd.id->clear();
       cd.id->setFocus();
+      cd.keyword->clear();
+      cd.language->setCurrentIndex(0);
+      cd.location->setCurrentIndex(0);
+      cd.monetary_units->setCurrentIndex(0);
+      cd.no_of_discs->setValue(cd.no_of_discs->minimum());
+      cd.price->setValue(cd.price->minimum());
+      cd.quantity->setValue(cd.quantity->minimum());
+      cd.recording_type->setCurrentIndex(0);
     }
 }
 
@@ -2464,11 +2504,11 @@ void biblioteq_cd::slotSaveTracks(void)
     {
       QApplication::restoreOverrideCursor();
       progress.setCancelButton(nullptr);
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the track data..."));
       progress.setMaximum(trd.table->rowCount());
       progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
       progress.update();
       progress.repaint();
@@ -2479,14 +2519,13 @@ void biblioteq_cd::slotSaveTracks(void)
 	  query.prepare("INSERT INTO cd_songs ("
 			"item_oid, "
 			"albumnum, "
-			"songnum, "
-			"songtitle, "
-			"runtime, "
 			"artist, "
-			"composer "
+			"composer, "
+			"songnum, "
+			"runtime, "
+			"songtitle "
 			") "
-			"VALUES (?, "
-			"?, ?, ?, ?, ?, ?)");
+			"VALUES (?, ?, ?, ?, ?, ?, ?)");
 	  query.addBindValue(m_oid);
 
 	  if(trd.table->
@@ -2505,6 +2544,18 @@ void biblioteq_cd::slotSaveTracks(void)
 		}
 	    }
 
+	  if(trd.table->item(i, static_cast<int> (TracksColumns::ARTIST)) !=
+	     nullptr)
+	    query.addBindValue
+	      (trd.table->item(i, static_cast<int> (TracksColumns::ARTIST))->
+	       text().trimmed());
+
+	  if(trd.table->item(i, static_cast<int> (TracksColumns::COMPOSER)) !=
+	     nullptr)
+	    query.addBindValue
+	      (trd.table->item(i, static_cast<int> (TracksColumns::COMPOSER))->
+	       text().trimmed());
+
 	  if(trd.table->
 	     cellWidget(i, static_cast<int> (TracksColumns::TRACK_NUMBER)) !=
 	     nullptr)
@@ -2521,18 +2572,6 @@ void biblioteq_cd::slotSaveTracks(void)
 	       (trd.table->cellWidget
 		(i, static_cast<int> (TracksColumns::TRACK_RUNTIME)))->time().
 	       toString("hh:mm:ss"));
-
-	  if(trd.table->item(i, static_cast<int> (TracksColumns::ARTIST)) !=
-	     nullptr)
-	    query.addBindValue
-	      (trd.table->item(i, static_cast<int> (TracksColumns::ARTIST))->
-	       text().trimmed());
-
-	  if(trd.table->item(i, static_cast<int> (TracksColumns::COMPOSER)) !=
-	     nullptr)
-	    query.addBindValue
-	      (trd.table->item(i, static_cast<int> (TracksColumns::COMPOSER))->
-	       text().trimmed());
 
 	  if(trd.table->
 	     item(i, static_cast<int> (TracksColumns::TRACK_TITLE)) != nullptr)
@@ -2691,11 +2730,11 @@ void biblioteq_cd::updateWindow(const int state)
       cd.queryButton->setVisible(m_isQueryEnabled);
       cd.resetButton->setVisible(true);
       cd.showUserButton->setEnabled(true);
+      m_engWindowTitle = "Modify";
+      str = tr("BiblioteQ: Modify Music CD Entry (") + cd.id->text() + tr(")");
       trd.deleteButton->setVisible(true);
       trd.insertButton->setVisible(true);
       trd.saveButton->setVisible(true);
-      str = tr("BiblioteQ: Modify Music CD Entry (") + cd.id->text() + tr(")");
-      m_engWindowTitle = "Modify";
     }
   else
     {
@@ -2706,17 +2745,12 @@ void biblioteq_cd::updateWindow(const int state)
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
       cd.resetButton->setVisible(false);
-
-      if(qmain->isGuest())
-	cd.showUserButton->setVisible(false);
-      else
-	cd.showUserButton->setEnabled(true);
-
+      cd.showUserButton->setVisible(qmain->isGuest() ? false : true);
+      m_engWindowTitle = "View";
+      str = tr("BiblioteQ: View Music CD Details (") + cd.id->text() + tr(")");
       trd.deleteButton->setVisible(false);
       trd.insertButton->setVisible(false);
       trd.saveButton->setVisible(false);
-      str = tr("BiblioteQ: View Music CD Details (") + cd.id->text() + tr(")");
-      m_engWindowTitle = "View";
     }
 
   cd.tracksButton->setEnabled(true);

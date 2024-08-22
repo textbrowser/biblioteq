@@ -609,7 +609,7 @@
 	biblioteq_borrowers_editor.[cc, h] (Completed)
 	biblioteq_c.cc (TBD)
 	biblioteq_callnum_table_item.[cc, h] (Completed)
-	biblioteq_cd.[cc, h] (TBD)
+	biblioteq_cd.[cc, h] (Completed)
 	biblioteq_copy_editor.[cc, h] (Completed)
 	biblioteq_copy_editor_book.[cc, h] (Completed)
 	biblioteq_custom_query.[cc, h] (Completed)

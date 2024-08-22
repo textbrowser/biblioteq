@@ -602,8 +602,7 @@ void biblioteq_dvd::modify(const int state)
 	    dvd.title->setText(var.toString().trimmed());
 	  else if(fieldname == "studio")
 	    dvd.studio->setMultipleLinks
-	      ("dvd_search", "studio",
-	       var.toString().trimmed());
+	      ("dvd_search", "studio", var.toString().trimmed());
 	  else if(fieldname == "rdate")
 	    dvd.release_date->setDate
 	      (QDate::fromString(var.toString().trimmed(),
@@ -611,8 +610,8 @@ void biblioteq_dvd::modify(const int state)
 	  else if(fieldname == "price")
 	    dvd.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
-	    dvd.category->setMultipleLinks("dvd_search", "category",
-					   var.toString().trimmed());
+	    dvd.category->setMultipleLinks
+	      ("dvd_search", "category", var.toString().trimmed());
 	  else if(fieldname == "language")
 	    {
 	      if(dvd.language->findText(var.toString().trimmed()) > -1)
@@ -673,17 +672,16 @@ void biblioteq_dvd::modify(const int state)
 	  else if(fieldname == "description")
 	    dvd.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
-	    dvd.keyword->setMultipleLinks("dvd_search",
-					  "keyword",
-					  var.toString().trimmed());
+	    dvd.keyword->setMultipleLinks
+	      ("dvd_search", "keyword", var.toString().trimmed());
 	  else if(fieldname == "dvdformat")
 	    dvd.format->setText(var.toString().trimmed());
 	  else if(fieldname == "dvdactor")
-	    dvd.actors->setMultipleLinks("dvd_search", "actors",
-					 var.toString().trimmed());
+	    dvd.actors->setMultipleLinks
+	      ("dvd_search", "actors", var.toString().trimmed());
 	  else if(fieldname == "dvddirector")
-	    dvd.directors->setMultipleLinks("dvd_search", "directors",
-					    var.toString().trimmed());
+	    dvd.directors->setMultipleLinks
+	      ("dvd_search", "directors", var.toString().trimmed());
 	  else if(fieldname == "dvdrating")
 	    {
 	      if(dvd.rating->findText(var.toString().trimmed()) > -1)
@@ -1466,16 +1464,16 @@ void biblioteq_dvd::slotGo(void)
 	  if(dvd.back_image->m_image.isNull())
 	    dvd.back_image->m_imageFormat = "";
 
-	  dvd.actors->setMultipleLinks("dvd_search", "actors",
-				       dvd.actors->toPlainText());
-	  dvd.directors->setMultipleLinks("dvd_search", "directors",
-					  dvd.directors->toPlainText());
-	  dvd.studio->setMultipleLinks("dvd_search", "studio",
-				       dvd.studio->toPlainText());
-	  dvd.category->setMultipleLinks("dvd_search", "category",
-					 dvd.category->toPlainText());
-	  dvd.keyword->setMultipleLinks("dvd_search", "keyword",
-					dvd.keyword->toPlainText());
+	  dvd.actors->setMultipleLinks
+	    ("dvd_search", "actors", dvd.actors->toPlainText());
+	  dvd.directors->setMultipleLinks
+	    ("dvd_search", "directors", dvd.directors->toPlainText());
+	  dvd.studio->setMultipleLinks
+	    ("dvd_search", "studio", dvd.studio->toPlainText());
+	  dvd.category->setMultipleLinks
+	    ("dvd_search", "category", dvd.category->toPlainText());
+	  dvd.keyword->setMultipleLinks
+	    ("dvd_search", "keyword", dvd.keyword->toPlainText());
 	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
