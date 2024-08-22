@@ -1,7 +1,6 @@
 # Qup definitions file.
 # Visit https://github.com/textbrowser/qup.
 
-# Please do not terminate URLs with slashes.
 # Sorted order of keys is required.
 
 [General]
