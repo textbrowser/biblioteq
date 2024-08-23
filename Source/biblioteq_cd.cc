@@ -516,7 +516,7 @@ void biblioteq_cd::modify(const int state)
       trd.insertButton->setVisible(false);
       trd.saveButton->setVisible(false);
 
-      auto actions = cd.resetButton->menu()->actions();
+      auto const actions = cd.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -591,7 +591,7 @@ void biblioteq_cd::modify(const int state)
       activateWindow();
       raise();
 
-      auto record(query.record());
+      auto const record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -808,7 +808,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      auto actions = cd.resetButton->menu()->actions();
+      auto const actions = cd.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -931,7 +931,7 @@ void biblioteq_cd::slotDatabaseEnumerationsCommitted(void)
   for(int i = 0; i < widgets.size(); i++)
     {
       QString errorstr("");
-      auto str(widgets.at(i)->currentText());
+      auto const str(widgets.at(i)->currentText());
 
       widgets.at(i)->clear();
 
@@ -1339,7 +1339,7 @@ void biblioteq_cd::slotGo(void)
 	query.bindValue(21, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  auto value = biblioteq_misc_functions::getSqliteUniqueId
+	  auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
@@ -1483,13 +1483,13 @@ void biblioteq_cd::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  auto names(qmain->getUI().table->columnNames());
+		  auto const names(qmain->getUI().table->columnNames());
 
 		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(i == 0 && qmain->showMainTableImages())
 			{
-			  auto pixmap
+			  auto const pixmap
 			    (QPixmap::fromImage(cd.front_image->m_image));
 
 			  if(!pixmap.isNull())
@@ -1693,7 +1693,7 @@ void biblioteq_cd::slotGo(void)
 	("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
-      auto UNACCENT(qmain->unaccent());
+      auto const UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -2052,7 +2052,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     {
       if(query.isValid())
 	{
-	  auto record(query.record());
+	  auto const record(query.record());
 
 	  for(j = 0; j < record.count(); j++)
 	    {
@@ -2235,7 +2235,7 @@ void biblioteq_cd::slotReset(void)
 
   if(action != nullptr)
     {
-      auto actions = cd.resetButton->menu()->actions();
+      auto const actions = cd.resetButton->menu()->actions();
 
       if(actions.size() < 22)
 	{

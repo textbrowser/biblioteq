@@ -94,7 +94,7 @@ QStringList biblioteq::selectedISBN10s(void) const
 
   foreach(auto const &index, ui.table->selectionModel()->selectedRows())
     {
-      auto string = biblioteq_misc_functions::getColumnString
+      auto const string = biblioteq_misc_functions::getColumnString
 	(ui.table, index.row(), ui.table->columnNumber("ISBN-10")).trimmed();
 
       if(!string.isEmpty())
@@ -201,7 +201,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 	QApplication::processEvents();
 
       QSqlQuery query(m_db);
-      auto list(ui.table->selectionModel()->selectedRows());
+      auto const list(ui.table->selectionModel()->selectedRows());
 
       if(list.isEmpty())
 	{
@@ -212,7 +212,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 	{
 	  querystr.append(" WHERE myoid IN (");
 
-	  auto column = ui.table->columnNumber("MYOID");
+	  auto const column = ui.table->columnNumber("MYOID");
 
 	  foreach(auto const &index, list)
 	    {
@@ -244,8 +244,9 @@ void biblioteq::populateFavorites(void)
   ui.menu_Custom_Query->clear();
 
   QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
-  auto shortcut
+  auto const favorite
+    (settings.value("custom_query_favorite").toString().trimmed());
+  auto const shortcut
     (settings.value("custom_query_favorite_shortcut").toString().trimmed());
 
   settings.beginGroup("customqueries");
@@ -255,8 +256,8 @@ void biblioteq::populateFavorites(void)
       {
 	QAction *action = nullptr;
 	QString summary("");
-	auto k(key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
-	       remove('\n').remove('\r'));
+	auto const k(key.mid(0, static_cast<int> (Limits::FAVORITES_LENGTH)).
+		     remove('\n').remove('\r'));
 
 	action = ui.menu_Custom_Query->addAction
 	  (k, this, SLOT(slotCustomQuery(void)));
@@ -284,8 +285,9 @@ void biblioteq::populateFavorites(void)
 void biblioteq::prepareCustomQueryFavoriteShortcut(void)
 {
   QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
-  auto shortcut
+  auto const favorite
+    (settings.value("custom_query_favorite").toString().trimmed());
+  auto const shortcut
     (settings.value("custom_query_favorite_shortcut").toString().trimmed());
 
   foreach(auto action, ui.menu_Custom_Query->actions())
@@ -320,7 +322,8 @@ void biblioteq::prepareExternalApplicationsMenu(void)
 void biblioteq::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -612,7 +615,8 @@ void biblioteq::prepareIcons(void)
 void biblioteq::prepareStatusBarIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -671,7 +675,7 @@ void biblioteq::prepareUpgradeNotification(void)
   ** Display an error if the current database's schema is not current.
   */
 
-  auto record(m_db.record("book_copy_info"));
+  auto const record(m_db.record("book_copy_info"));
 
   if(!(record.indexOf("notes") >= 0))
     {
@@ -782,8 +786,8 @@ void biblioteq::slotCustomQuery(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
-  QString text(action->property("name").toString());
-  auto string
+  auto const text(action->property("name").toString());
+  auto const string
     (QString::
      fromUtf8(QByteArray::
 	      fromBase64(settings.
@@ -976,7 +980,7 @@ void biblioteq::slotSetMembershipFees(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSqlQuery query(m_db);
-  auto list(bb.table->selectionModel()->selectedRows(0));
+  auto const list(bb.table->selectionModel()->selectedRows(0));
 
   if(list.isEmpty())
     {
@@ -1005,7 +1009,7 @@ void biblioteq::slotSetMembershipFees(void)
     {
       foreach(auto const &index, list)
 	{
-	  auto str(index.data().toString());
+	  auto const str(index.data().toString());
 
 	  query.prepare
 	    ("UPDATE member SET membership_fees = ? WHERE memberid = ?");
@@ -1175,8 +1179,9 @@ void biblioteq::slotSwifty(void)
   if(!statusBar())
     return;
 
-  auto version1(QString(BIBLIOTEQ_VERSION).remove('.').toLong());
-  auto version2(m_swifty->newest_version().remove('.').trimmed().toLong());
+  auto const version1(QString(BIBLIOTEQ_VERSION).remove('.').toLong());
+  auto const version2
+    (m_swifty->newest_version().remove('.').trimmed().toLong());
 
   if(version1 < version2)
     {

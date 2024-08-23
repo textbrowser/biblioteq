@@ -616,7 +616,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 void biblioteq_copy_editor_book::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -643,8 +644,8 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 {
   QString copyid = "";
   QString errorstr = "";
+  auto const row = m_cb.table->currentRow();
   auto isCheckedOut = false;
-  auto row = m_cb.table->currentRow();
 
   if(row < 0)
     {
@@ -882,9 +883,9 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   else
     m_cb.saveButton->animate(2500);
 
-  auto availability = biblioteq_misc_functions::getAvailability
+  auto const availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
-  auto reserved = biblioteq_misc_functions::getTotalReserved
+  auto const reserved = biblioteq_misc_functions::getTotalReserved
     (qmain->getDB(), m_itemType, m_ioid);
 
   QApplication::restoreOverrideCursor();

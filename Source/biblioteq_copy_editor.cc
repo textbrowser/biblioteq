@@ -296,12 +296,12 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
       QString errorstr1("");
       QString errorstr2("");
-      auto duedate = QDate::currentDate();
-      auto memberid
+      auto const memberid
 	(biblioteq_misc_functions::
 	 getColumnString(qmain->getBB().table,
 			 qmain->getBB().table->currentRow(),
 			 qmain->getBBColumnIndexes().indexOf("Member ID")));
+      auto duedate = QDate::currentDate();
       int maximumReserved = 0;
       qint64 totalReserved = 0;
 
@@ -626,7 +626,8 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 void biblioteq_copy_editor::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -671,11 +672,12 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
   QString errorstr = "";
   QString memberid = "";
   auto available = false;
-  auto checkedout = now.toString(biblioteq::s_databaseDateFormat);
-  auto copyrow = m_cb.table->currentRow();
+  auto const checkedout = now.toString(biblioteq::s_databaseDateFormat);
+  auto const copyrow = m_cb.table->currentRow();
+  auto const duedate = m_cb.dueDate->date().toString
+    (biblioteq::s_databaseDateFormat);
+  auto const memberrow = qmain->getBB().table->currentRow();
   auto dnt = true;
-  auto duedate = m_cb.dueDate->date().toString(biblioteq::s_databaseDateFormat);
-  auto memberrow = qmain->getBB().table->currentRow();
 
   if(copyrow < 0 ||
      m_cb.table->item(copyrow, static_cast<int> (Columns::BARCODE)) == nullptr)
@@ -842,9 +844,9 @@ void biblioteq_copy_editor::slotCheckoutCopy(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  auto availability = biblioteq_misc_functions::getAvailability
+  auto const availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
-  auto reserved = biblioteq_misc_functions::getTotalReserved
+  auto const reserved = biblioteq_misc_functions::getTotalReserved
     (qmain->getDB(), m_itemType, m_ioid);
 
   QApplication::restoreOverrideCursor();
@@ -906,8 +908,8 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 {
   QString copyid = "";
   QString errorstr = "";
+  auto const row = m_cb.table->currentRow();
   auto isCheckedOut = false;
-  auto row = m_cb.table->currentRow();
 
   if(row < 0)
     {
@@ -1126,9 +1128,9 @@ void biblioteq_copy_editor::slotSaveCopies(void)
   else
     m_cb.saveButton->animate(2500);
 
-  auto availability = biblioteq_misc_functions::getAvailability
+  auto const availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(), m_itemType, errorstr);
-  auto reserved = biblioteq_misc_functions::getTotalReserved
+  auto const reserved = biblioteq_misc_functions::getTotalReserved
     (qmain->getDB(), m_itemType, m_ioid);
 
   QApplication::restoreOverrideCursor();

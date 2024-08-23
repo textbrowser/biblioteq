@@ -205,7 +205,8 @@ void biblioteq_custom_query::slotLoadFavorite(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
+  auto const favorite
+    (settings.value("custom_query_favorite").toString().trimmed());
 
   cq.query_te->setPlainText
     (QString::
@@ -228,7 +229,8 @@ void biblioteq_custom_query::slotLoadFavorite(void)
 void biblioteq_custom_query::slotNewFavorite(void)
 {
   QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
+  auto const favorite
+    (settings.value("custom_query_favorite").toString().trimmed());
 
   cq.favorite->blockSignals(true);
   cq.favorite->setChecked(cq.favorites->currentText() == favorite);
@@ -248,9 +250,9 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
 
   QSettings settings;
   QStringList list;
-  auto shortcut
+  auto const shortcut
     (settings.value("custom_query_favorite_shortcut").toString().trimmed());
-  auto text(cq.favorites->currentText());
+  auto const text(cq.favorites->currentText());
 
   cq.favorites->clear();
   settings.beginGroup("customqueries");
@@ -258,9 +260,9 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
   foreach(auto const &key, settings.childKeys())
     if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
       {
-	auto k(key.mid(0, static_cast<int> (biblioteq::Limits::
-					    FAVORITES_LENGTH)).
-	       remove('\n').remove('\r'));
+	auto const k(key.mid(0, static_cast<int> (biblioteq::Limits::
+						  FAVORITES_LENGTH)).
+		     remove('\n').remove('\r'));
 
 	list << k;
       }
@@ -294,7 +296,8 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
 void biblioteq_custom_query::slotPrepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -501,8 +504,9 @@ void biblioteq_custom_query::slotRenameFavoriteQuery(void)
   name = name.mid(0, static_cast<int> (biblioteq::Limits::FAVORITES_LENGTH));
 
   QSettings settings;
-  auto favorite(settings.value("custom_query_favorite").toString().trimmed());
-  auto value
+  auto const favorite
+    (settings.value("custom_query_favorite").toString().trimmed());
+  auto const value
     (settings.
      value(QString("customqueries/%1").arg(cq.favorites->currentText())));
 

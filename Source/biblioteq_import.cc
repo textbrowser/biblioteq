@@ -170,13 +170,14 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
   QHash<QString, int> isbns;
   QTextStream in(&file);
-  auto list(m_ui.ignored_rows->text().trimmed().split(' ',
+  auto const list
+    (m_ui.ignored_rows->text().trimmed().split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-						      Qt::SkipEmptyParts
+					       Qt::SkipEmptyParts
 #else
-						      QString::SkipEmptyParts
+					       QString::SkipEmptyParts
 #endif
-						      ));
+					       ));
   qint64 ct = 0;
 
   while(ct++, !in.atEnd())
@@ -189,7 +190,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	  QApplication::processEvents();
 	}
 
-      auto data(in.readLine().trimmed());
+      auto const data(in.readLine().trimmed());
 
       if(list.contains(QString::number(ct)))
 	continue;
@@ -200,7 +201,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	  ** Separate by the delimiter.
 	  */
 
-	  auto list
+	  auto const list
 	    (data.split
 	     (QRegularExpression(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 				 arg(m_ui.delimiter->text()))));
@@ -373,7 +374,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 		    {
 		      QLocale locale;
 		      auto ok = true;
-		      auto price = locale.toDouble
+		      auto const price = locale.toDouble
 			(str.remove(locale.currencySymbol()), &ok);
 
 		      if(ok)
@@ -557,13 +558,14 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
     *notImported = 0;
 
   QTextStream in(&file);
-  auto list(m_ui.ignored_rows->text().trimmed().split(' ',
+  auto const list
+    (m_ui.ignored_rows->text().trimmed().split(' ',
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-						      Qt::SkipEmptyParts
+					       Qt::SkipEmptyParts
 #else
-						      QString::SkipEmptyParts
+					       QString::SkipEmptyParts
 #endif
-						      ));
+					       ));
   qint64 ct = 0;
 
   while(ct++, !in.atEnd())
@@ -576,7 +578,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 	  QApplication::processEvents();
 	}
 
-      auto data(in.readLine().trimmed());
+      auto const data(in.readLine().trimmed());
 
       if(list.contains(QString::number(ct)))
 	continue;
@@ -587,7 +589,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 	  ** Separate by the delimiter.
 	  */
 
-	  auto list
+	  auto const list
 	    (data.split
 	     (QRegularExpression(QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 				 arg(m_ui.delimiter->text()))));
@@ -735,13 +737,13 @@ void biblioteq_import::loadPreview(void)
 	  progress->repaint();
 	  QApplication::processEvents();
 
-	  auto data(in.readLine().trimmed());
+	  auto const data(in.readLine().trimmed());
 	  auto headers
 	    (data.split
 	     (QRegularExpression
 	      (QString("%1(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 	       arg(m_ui.delimiter->text()))));
-	  auto list(headers);
+	  auto const list(headers);
 
 	  for(int i = 0; i < headers.size(); i++)
 	    headers.replace
@@ -788,7 +790,8 @@ void biblioteq_import::loadPreview(void)
 void biblioteq_import::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -978,7 +981,7 @@ void biblioteq_import::slotDeleteRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  auto rows(biblioteq_misc_functions::selectedRows(m_ui.rows));
+  auto const rows(biblioteq_misc_functions::selectedRows(m_ui.rows));
 
   for(int i = rows.size() - 1; i >= 0; i--)
     m_ui.rows->removeRow(rows.at(i));
@@ -1080,7 +1083,7 @@ void biblioteq_import::slotImport(void)
   m_mappings = map;
 
   QStringList errors;
-  auto index = m_ui.templates->currentIndex();
+  auto const index = m_ui.templates->currentIndex();
   qint64 imported = 0;
   qint64 notImported = 0;
 

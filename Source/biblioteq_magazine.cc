@@ -531,7 +531,7 @@ void biblioteq_magazine::createFile(const QByteArray &digest,
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       QString errorstr("");
-      auto value = biblioteq_misc_functions::getSqliteUniqueId
+      auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -826,7 +826,7 @@ void biblioteq_magazine::modify(const int state)
       activateWindow();
       raise();
 
-      auto record(query.record());
+      auto const record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -1034,7 +1034,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
     if(reader.readNextStartElement())
       if(reader.name().toString().toLower().trimmed() == "datafield")
 	{
-	  auto tag(reader.attributes().value("tag").toString().trimmed());
+	  auto const tag
+	    (reader.attributes().value("tag").toString().trimmed());
 
 	  if(tag == "260")
 	    ma.place->clear();
@@ -1050,7 +1051,8 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
       {
 	if(reader.name().toString().toLower().trimmed() == "datafield")
 	  {
-	    auto tag(reader.attributes().value("tag").toString().trimmed());
+	    auto const tag
+	      (reader.attributes().value("tag").toString().trimmed());
 
 	    if(tag == "010")
 	      {
@@ -1835,7 +1837,7 @@ void biblioteq_magazine::populateFiles(void)
       {
 	totalRows += 1;
 
-	auto record(query.record());
+	auto const record(query.record());
 
 	for(int i = 0; i < record.count(); i++)
 	  {
@@ -1951,7 +1953,7 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      auto actions = ma.resetButton->menu()->actions();
+      auto const actions = ma.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -2021,7 +2023,7 @@ void biblioteq_magazine::slotAttachFiles(void)
       QApplication::processEvents();
 
       QProgressDialog progress(this);
-      auto files(fileDialog.selectedFiles());
+      auto const files(fileDialog.selectedFiles());
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
@@ -2094,7 +2096,7 @@ void biblioteq_magazine::slotDatabaseEnumerationsCommitted(void)
   for(int i = 0; i < widgets.size(); i++)
     {
       QString errorstr("");
-      auto str(widgets.at(i)->currentText());
+      auto const str(widgets.at(i)->currentText());
 
       widgets.at(i)->clear();
 
@@ -2141,7 +2143,7 @@ void biblioteq_magazine::slotDatabaseEnumerationsCommitted(void)
 
 void biblioteq_magazine::slotDeleteFiles(void)
 {
-  auto list
+  auto const list
     (ma.files->selectionModel()->
      selectedRows(static_cast<int> (Columns::MYOID)));
 
@@ -2327,14 +2329,14 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item1)
     return;
 
-  auto description(item1->text());
+  auto const description(item1->text());
   auto item2 = ma.files->item(item->row(), static_cast<int> (Columns::MYOID));
 
   if(!item2)
     return;
 
   auto ok = true;
-  auto text
+  auto const text
     (QInputDialog::getText(this,
 			   tr("BiblioteQ: File Description"),
 			   tr("Description"),
@@ -2345,7 +2347,7 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
     return;
 
   QSqlQuery query(qmain->getDB());
-  auto myoid(item2->text());
+  auto const myoid(item2->text());
 
   if(m_subType == "Journal")
     query.prepare("UPDATE journal_files SET description = ? "
@@ -2732,7 +2734,7 @@ void biblioteq_magazine::slotGo(void)
       if(m_engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
 	  {
-	    auto value = biblioteq_misc_functions::getSqliteUniqueId
+	    auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	      (qmain->getDB(), errorstr);
 
 	    if(errorstr.isEmpty())
@@ -2927,13 +2929,13 @@ void biblioteq_magazine::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  auto names(qmain->getUI().table->columnNames());
+		  auto const names(qmain->getUI().table->columnNames());
 
 		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(i == 0 && qmain->showMainTableImages())
 			{
-			  auto pixmap
+			  auto const pixmap
 			    (QPixmap::fromImage(ma.front_image->m_image));
 
 			  if(!pixmap.isNull())
@@ -3141,7 +3143,7 @@ void biblioteq_magazine::slotGo(void)
 	}
 
       QString ESCAPE("");
-      auto UNACCENT(qmain->unaccent());
+      auto const UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -3308,7 +3310,7 @@ void biblioteq_magazine::slotGo(void)
 
 void biblioteq_magazine::slotParseMarcTags(void)
 {
-  auto text(ma.marc_tags->toPlainText().trimmed());
+  auto const text(ma.marc_tags->toPlainText().trimmed());
 
   if(text.endsWith("</record>") && text.startsWith("<record"))
     populateDisplayAfterSRU(text.toUtf8());
@@ -3452,7 +3454,7 @@ void biblioteq_magazine::slotReset(void)
 
   if(action != nullptr)
     {
-      auto actions = ma.resetButton->menu()->actions();
+      auto const actions = ma.resetButton->menu()->actions();
 
       if(actions.size() < 22)
 	{
@@ -3715,7 +3717,7 @@ void biblioteq_magazine::slotSRUError(QNetworkReply::NetworkError error)
 
   if(reply)
     {
-      auto error(reply->errorString());
+      auto const error(reply->errorString());
 
       reply->deleteLater();
       emit sruQueryError(error);
@@ -3766,7 +3768,7 @@ void biblioteq_magazine::slotSRUQuery(void)
     name = qmain->getPreferredSRUSite();
 
   QString searchstr("");
-  auto hash(qmain->getSRUHash(name));
+  auto const hash(qmain->getSRUHash(name));
   auto issn(ma.id->text().remove('-').trimmed());
 
   issn = issn.mid(0, 4) + "-" + issn.mid(4);
@@ -3775,7 +3777,7 @@ void biblioteq_magazine::slotSRUQuery(void)
 
   QNetworkProxy proxy;
   QString type("none");
-  auto url(QUrl::fromUserInput(searchstr));
+  auto const url(QUrl::fromUserInput(searchstr));
 
   if(hash.contains("proxy_type"))
     type = hash.value("proxy_type").toLower().trimmed();
@@ -3839,7 +3841,7 @@ void biblioteq_magazine::slotSRUQuery(void)
       else if(type == "system")
 	{
 	  QNetworkProxyQuery query(url);
-	  auto list(QNetworkProxyFactory::systemProxyForQuery(query));
+	  auto const list(QNetworkProxyFactory::systemProxyForQuery(query));
 
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
@@ -3989,7 +3991,7 @@ void biblioteq_magazine::slotSelectImage(void)
 
 void biblioteq_magazine::slotShowPDF(void)
 {
-  auto list
+  auto const list
     (ma.files->selectionModel()->
      selectedRows(static_cast<int> (Columns::MYOID)));
 
@@ -4121,7 +4123,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       m_thread->msleep(100UL);
     }
 
-  auto canceled = working.wasCanceled(); // QProgressDialog::close()!
+  auto const canceled = working.wasCanceled(); // QProgressDialog::close()!
 
   working.close();
   working.reset(); // Qt 5.5.x adjustment.

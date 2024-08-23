@@ -88,7 +88,8 @@ void biblioteq_files::changeEvent(QEvent *event)
 void biblioteq_files::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -138,7 +139,7 @@ void biblioteq_files::slotClose(void)
 
 void biblioteq_files::slotExport(void)
 {
-  auto list(m_ui.files_table->selectionModel()->selectedRows());
+  auto const list(m_ui.files_table->selectionModel()->selectedRows());
 
   if(biblioteq::MAXIMUM_DEVICES_CONFIRMATION <= list.size())
     {
@@ -197,8 +198,8 @@ void biblioteq_files::slotExport(void)
       if(progress.wasCanceled())
 	break;
 
-      auto fileName(index.data().toString());
-      auto oid = index.sibling(index.row(), 6).data().toLongLong();
+      auto const fileName(index.data().toString());
+      auto const oid = index.sibling(index.row(), 6).data().toLongLong();
       auto tableName(index.sibling(index.row(), 5).data().toString());
 
       query.prepare
@@ -263,7 +264,7 @@ void biblioteq_files::slotRefresh(void)
 
   if(query.exec() && query.next())
     {
-      auto pages = qCeil
+      auto const pages = qCeil
 	(query.value(0).toDouble() / static_cast<double> (m_ui.pages->value()));
 
       for(int i = 0; i < pages; i++)

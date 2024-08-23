@@ -111,7 +111,7 @@ void biblioteq_magic::slotDownloadImages(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  auto list(m_qmain->selectedISBN10s());
+  auto const list(m_qmain->selectedISBN10s());
 
   if(list.isEmpty())
     {

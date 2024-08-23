@@ -131,9 +131,9 @@ void biblioteq_generic_thread::run(void)
 	QHashIterator<QString, QString> it(qmain->getZ3950Hash(m_z3950Name));
 	ZOOM_connection zoomConnection = nullptr;
 	ZOOM_resultset zoomResultSet = nullptr;
-	auto hash(qmain->getZ3950Hash(m_z3950Name));
+	auto const hash(qmain->getZ3950Hash(m_z3950Name));
+	auto const recordSyntax(hash.value("RecordSyntax").trimmed());
 	auto options = ZOOM_options_create();
-	auto recordSyntax(hash.value("RecordSyntax").trimmed());
 	const char *rec = nullptr;
 	size_t i = 0;
 
@@ -159,9 +159,9 @@ void biblioteq_generic_thread::run(void)
 	if(!hash.value("proxy_host").isEmpty() &&
 	   !hash.value("proxy_port").isEmpty())
 	  {
-	    auto value(QString("%1:%2").
-		       arg(hash.value("proxy_host")).
-		       arg(hash.value("proxy_port")));
+	    auto const value(QString("%1:%2").
+			     arg(hash.value("proxy_host")).
+			     arg(hash.value("proxy_port")));
 
 	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }
@@ -181,8 +181,8 @@ void biblioteq_generic_thread::run(void)
 
 	    if(it.key().startsWith("yaz_"))
 	      {
-		auto option(it.key().mid(4));
-		auto value(it.value());
+		auto const option(it.key().mid(4));
+		auto const value(it.value());
 
 		if(!option.isEmpty() && !value.isEmpty())
 		  ZOOM_options_set

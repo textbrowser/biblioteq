@@ -377,7 +377,7 @@ void biblioteq_grey_literature::createFile(const QByteArray &bytes,
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       QString errorstr("");
-      auto value = biblioteq_misc_functions::getSqliteUniqueId
+      auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -522,7 +522,7 @@ void biblioteq_grey_literature::insertDatabase(void)
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       QString errorstr("");
-      auto value = biblioteq_misc_functions::getSqliteUniqueId
+      auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -685,12 +685,12 @@ void biblioteq_grey_literature::modify(const int state)
       activateWindow();
       raise();
 
-      auto record(query.record());
+      auto const record(query.record());
 
       for(int i = 0; i < record.count(); i++)
 	{
-	  auto fieldName(record.fieldName(i));
-	  auto variant(record.field(i).value());
+	  auto const fieldName(record.fieldName(i));
+	  auto const variant(record.field(i).value());
 
 	  if(fieldName == "author")
 	    m_ui.author->setMultipleLinks
@@ -808,7 +808,7 @@ void biblioteq_grey_literature::populateFiles(void)
       {
 	totalRows += 1;
 
-	auto record(query.record());
+	auto const record(query.record());
 
 	for(int i = 0; i < record.count(); i++)
 	  {
@@ -849,7 +849,7 @@ void biblioteq_grey_literature::populateFiles(void)
     {
       qmain->getUI().table->setSortingEnabled(false);
 
-      auto names(qmain->getUI().table->columnNames());
+      auto const names(qmain->getUI().table->columnNames());
 
       for(int i = 0; i < names.size(); i++)
 	if(names.at(i) == "File Count")
@@ -956,7 +956,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       QApplication::processEvents();
 
       QProgressDialog progress(this);
-      auto files(fileDialog.selectedFiles());
+      auto const files(fileDialog.selectedFiles());
 
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
@@ -1028,7 +1028,7 @@ void biblioteq_grey_literature::slotDatabaseEnumerationsCommitted(void)
   for(int i = 0; i < widgets.size(); i++)
     {
       QString errorstr("");
-      auto str(widgets.at(i)->currentText());
+      auto const str(widgets.at(i)->currentText());
 
       widgets.at(i)->clear();
 
@@ -1069,8 +1069,8 @@ void biblioteq_grey_literature::slotDatabaseEnumerationsCommitted(void)
 
 void biblioteq_grey_literature::slotDeleteFiles(void)
 {
-  auto list(m_ui.files->selectionModel()->
-	    selectedRows(static_cast<int> (Columns::MYOID)));
+  auto const list(m_ui.files->selectionModel()->
+		  selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     {
@@ -1232,7 +1232,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
   if(!item1)
     return;
 
-  auto description(item1->text());
+  auto const description(item1->text());
   auto item2 = m_ui.files->item
     (item->row(), static_cast<int> (Columns::MYOID));
 
@@ -1253,7 +1253,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
     return;
 
   QSqlQuery query(qmain->getDB());
-  auto myoid(item2->text());
+  auto const myoid(item2->text());
 
   query.prepare("UPDATE grey_literature_files SET description = ? "
 		"WHERE item_oid = ? AND myoid = ?");
@@ -1312,7 +1312,7 @@ void biblioteq_grey_literature::slotGo(void)
 	"WHERE ";
 
       QString ESCAPE("");
-      auto UNACCENT(qmain->unaccent());
+      auto const UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -1536,7 +1536,7 @@ void biblioteq_grey_literature::slotReset(void)
 
   if(action != nullptr)
     {
-      auto actions = m_ui.resetButton->menu()->actions();
+      auto const actions = m_ui.resetButton->menu()->actions();
 
       if(actions.size() < 12)
 	{
@@ -1807,7 +1807,7 @@ void biblioteq_grey_literature::updateDatabase(void)
     {
       qmain->getUI().table->setSortingEnabled(false);
 
-      auto names(qmain->getUI().table->columnNames());
+      auto const names(qmain->getUI().table->columnNames());
 
       for(int i = 0; i < names.size(); i++)
 	{

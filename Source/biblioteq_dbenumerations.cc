@@ -491,7 +491,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
 void biblioteq_dbenumerations::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -986,9 +987,9 @@ void biblioteq_dbenumerations::slotSave(void)
 	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    if(tableWidget->item(j, 0) && tableWidget->item(j, 1))
 	      {
-		auto locationIndex = static_cast<int>
+		auto const locationIndex = static_cast<int>
 		  (LocationsTable::Location);
-		auto typeIndex = static_cast<int>(LocationsTable::Type);
+		auto const typeIndex = static_cast<int>(LocationsTable::Type);
 
 		query.prepare
 		  ("INSERT INTO locations (location, type) VALUES (?, ?)");

@@ -68,7 +68,7 @@ QString biblioteq_image_drop_site::determineFormat
 
   if(imgf.isEmpty())
     {
-      auto ext(QFileInfo(filename).suffix());
+      auto const ext(QFileInfo(filename).suffix());
 
       if(ext.isEmpty())
 	imgf = "JPG";
@@ -121,7 +121,7 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 
   if(event)
     {
-      auto f(determineFormat(filename));
+      auto const f(determineFormat(filename));
 
       if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
 	event->acceptProposedAction();
@@ -167,7 +167,7 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
   if(event)
     {
-      auto f(determineFormat(filename));
+      auto const f(determineFormat(filename));
 
       if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
 	event->acceptProposedAction();

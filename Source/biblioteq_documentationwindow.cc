@@ -113,7 +113,8 @@ void biblioteq_documentationwindow::connectSignals(void)
 void biblioteq_documentationwindow::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -199,7 +200,7 @@ void biblioteq_documentationwindow::slotFindText(void)
     }
   else if(!m_ui.text->find(m_ui.find->text(), options))
     {
-      auto found = m_ui.find->property("found").toBool();
+      auto const found = m_ui.find->property("found").toBool();
 
       if(found)
 	m_ui.find->setProperty("found", false);
