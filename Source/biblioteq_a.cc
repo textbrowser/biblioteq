@@ -1186,7 +1186,7 @@ void biblioteq::addError(const QString &type,
 
   QString str = "";
   QTableWidgetItem *item = nullptr;
-  auto now = QDateTime::currentDateTime();
+  auto const now = QDateTime::currentDateTime();
   int i = 0;
 
   er.table->setRowCount(er.table->rowCount() + 1);
@@ -1467,7 +1467,7 @@ void biblioteq::createSqliteMenuActions(void)
 {
   QSettings settings;
   QStringList dups;
-  auto allKeys(settings.allKeys());
+  auto const allKeys(settings.allKeys());
 
   ui.menu_Recent_SQLite_Files->clear();
 
@@ -1476,7 +1476,7 @@ void biblioteq::createSqliteMenuActions(void)
       if(!allKeys[i].startsWith("sqlite_db_"))
 	continue;
 
-      auto str(settings.value(allKeys[i], "").toString().trimmed());
+      auto const str(settings.value(allKeys[i], "").toString().trimmed());
 
       if(str.isEmpty())
 	{
@@ -1484,7 +1484,7 @@ void biblioteq::createSqliteMenuActions(void)
 	  continue;
 	}
 
-      QFileInfo fileInfo(str);
+      QFileInfo const fileInfo(str);
 
       if(!dups.contains(str) && fileInfo.isReadable() && fileInfo.isWritable())
 	dups.append(str);
@@ -2142,18 +2142,18 @@ void biblioteq::showMain(void)
   QApplication::processEvents();
 
 #if defined(Q_OS_ANDROID)
-  QFileInfo fileInfo("assets:/biblioteq.conf");
+  QFileInfo const fileInfo("assets:/biblioteq.conf");
 #elif defined(Q_OS_MACOS)
-  QFileInfo fileInfo
+  QFileInfo const fileInfo
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_OS2)
-  QFileInfo fileInfo(qgetenv("unixroot") + "/usr/local/biblioteq.conf");
+  QFileInfo const fileInfo(qgetenv("unixroot") + "/usr/local/biblioteq.conf");
 #elif defined(Q_OS_WIN)
-  QFileInfo fileInfo(QCoreApplication::applicationDirPath() +
-		     QDir::separator() +
-		     "biblioteq.conf");
+  QFileInfo const fileInfo(QCoreApplication::applicationDirPath() +
+			   QDir::separator() +
+			   "biblioteq.conf");
 #else
-  QFileInfo fileInfo(BIBLIOTEQ_CONFIGURATION_FILE);
+  QFileInfo const fileInfo(BIBLIOTEQ_CONFIGURATION_FILE);
 #endif
 
   if(!fileInfo.isReadable())
@@ -2169,7 +2169,7 @@ void biblioteq::showMain(void)
   if(!(QSqlDatabase::isDriverAvailable("QPSQL") ||
        QSqlDatabase::isDriverAvailable("QSQLITE")))
     {
-      QFileInfo fileInfo("qt.conf");
+      QFileInfo const fileInfo("qt.conf");
       QString str("");
 
       if(fileInfo.isReadable() && fileInfo.size() > 0)
@@ -2187,7 +2187,7 @@ void biblioteq::showMain(void)
     }
   else
     {
-      auto list(QApplication::arguments());
+      auto const list(QApplication::arguments());
       auto openDatabase = false;
 
       for(int i = 0; i < list.size(); i++)
@@ -2200,7 +2200,7 @@ void biblioteq::showMain(void)
 
 	    if(!openDatabase)
 	      {
-		auto index = br.branch_name->findText(list.at(i));
+		auto const index = br.branch_name->findText(list.at(i));
 
 		if(index >= 0)
 		  {
@@ -2367,8 +2367,8 @@ void biblioteq::slotAddAdmin(void)
 
 void biblioteq::slotAddBorrower(void)
 {
-  auto now = QDate::currentDate();
-  auto nowTime = QDateTime::currentDateTime();
+  auto const now = QDate::currentDate();
+  auto const nowTime = QDateTime::currentDateTime();
 
   biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.memberid,
 					    QColor(255, 248, 220));
@@ -2518,7 +2518,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotBranchChanged(void)
 {
-  auto tmphash(m_branches[br.branch_name->currentText()]);
+  auto const tmphash(m_branches[br.branch_name->currentText()]);
 
   if(tmphash.value("database_type") == "sqlite")
     {
@@ -2578,7 +2578,7 @@ void biblioteq::slotClearSqliteMenu(bool state)
   ui.menu_Recent_SQLite_Files->clear();
 
   QSettings settings;
-  auto allKeys(settings.allKeys());
+  auto const allKeys(settings.allKeys());
 
   for(int i = 0; i < allKeys.size(); i++)
     if(allKeys[i].startsWith("sqlite_db_"))
@@ -2618,7 +2618,7 @@ void biblioteq::slotCopyError(void)
 {
   QString text = "";
   auto clipboard = QApplication::clipboard();
-  auto list(er.table->selectionModel()->selectedRows());
+  auto const list(er.table->selectionModel()->selectedRows());
   int i = 0;
   int j = 0;
 
@@ -2667,10 +2667,10 @@ void biblioteq::slotDelete(void)
   QString itemType = "";
   QString oid = "";
   QString str = "";
+  auto const list(ui.table->selectionModel()->selectedRows());
   auto error = false;
   auto isCheckedOut = false;
   auto isRequested = false;
-  auto list(ui.table->selectionModel()->selectedRows());
   int col = -1;
   int i = 0;
   int numdeleted = 0;
@@ -2927,7 +2927,7 @@ void biblioteq::slotDelete(void)
 void biblioteq::slotDeleteAdmin(void)
 {
   QString str = "";
-  auto row = ab.table->currentRow();
+  auto const row = ab.table->currentRow();
 
   if(row < 0)
     {
@@ -2999,7 +2999,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	if(db.open())
 	  {
 	    QSqlQuery query(db);
-	    auto list
+	    auto const list
 	      (QString(sqlite_create_schema_text).split("CREATE",
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 							Qt::SkipEmptyParts
@@ -3347,7 +3347,7 @@ void biblioteq::slotGrantPrivileges(void)
 void biblioteq::slotInsertBook(void)
 {
   auto ok = false;
-  auto integer = QInputDialog::getInt
+  auto const integer = QInputDialog::getInt
     (this, tr("BiblioteQ"), tr("Create Books"), 1, 1, 10, 1, &ok);
 
   if(!ok)
@@ -3479,7 +3479,7 @@ void biblioteq::slotLanguageChanged(void)
 void biblioteq::slotListOverdueItems(void)
 {
   QString memberid = "";
-  auto row = bb.table->currentRow();
+  auto const row = bb.table->currentRow();
 
   if(m_members_diag->isVisible())
     memberid = biblioteq_misc_functions::getColumnString
@@ -3501,7 +3501,7 @@ void biblioteq::slotListReservedItems(const QString &id)
 void biblioteq::slotListReservedItems(void)
 {
   QString memberid = "";
-  auto row = bb.table->currentRow();
+  auto const row = bb.table->currentRow();
 
   if(row < 0)
     {
@@ -3934,7 +3934,7 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
 
 void biblioteq::slotPrintReserved(void)
 {
-  auto row = bb.table->currentRow();
+  auto const row = bb.table->currentRow();
 
   if(row < 0)
     {
@@ -4134,7 +4134,7 @@ void biblioteq::slotReserveCopy(void)
   QString errorstr = "";
   QString oid = "";
   QString type = "";
-  auto row = ui.table->currentRow();
+  auto const row = ui.table->currentRow();
   int availability = 0;
 
   if(row < 0)
@@ -4241,7 +4241,7 @@ void biblioteq::slotReserveCopy(void)
       QApplication::processEvents();
     }
 
-  auto memberId
+  auto const memberId
     (biblioteq_misc_functions::getColumnString(ui.table,
 					       ui.table->currentRow(),
 					       "Member ID"));
@@ -4253,7 +4253,7 @@ void biblioteq::slotReserveCopy(void)
     }
   else
     {
-      auto column = biblioteq_misc_functions::getColumnNumber
+      auto const column = biblioteq_misc_functions::getColumnNumber
 	(bb.table, "Member ID");
 
       if(column > -1)
@@ -4281,7 +4281,7 @@ void biblioteq::slotReset(void)
 
       if(action != nullptr)
 	{
-	  auto actions(al.resetButton->menu()->actions());
+	  auto const actions(al.resetButton->menu()->actions());
 
 	  if(actions.size() < 14)
 	    {
@@ -4869,7 +4869,7 @@ void biblioteq::slotShowMenu(void)
     {
       createConfigToolMenu();
 
-      auto typefilter = ui.menu_Category->defaultAction() ?
+      auto const typefilter = ui.menu_Category->defaultAction() ?
 	ui.menu_Category->defaultAction()->data().toString() : "All";
 
       addConfigOptions(typefilter);
@@ -5404,8 +5404,8 @@ void biblioteq::updateItemWindows(void)
 void biblioteq::updateRows
 (const QString &oid, const QTableWidgetItem *item, const QString &it)
 {
-  auto index = ui.table->indexFromItem(item);
-  auto itemType(it.toLower().remove(" ").trimmed());
+  auto const index = ui.table->indexFromItem(item);
+  auto const itemType(it.toLower().remove(" ").trimmed());
 
   if(itemType == "book")
     {
@@ -5692,7 +5692,7 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {
-		auto date
+		auto const date
 		  (QDate::fromString(returnedDate, s_databaseDateFormat));
 
 		biblioteq_misc_functions::updateColumn
@@ -5712,7 +5712,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 				const QImage &image)
 {
   QGraphicsPixmapItem *item = nullptr;
-  auto items(ui.graphicsView->scene()->items());
+  auto const items(ui.graphicsView->scene()->items());
 
   for(int i = 0; i < items.size(); i++)
     if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
@@ -5724,7 +5724,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 	    l_image = l_image.scaled
 	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	  auto pixmap(QPixmap::fromImage(l_image));
+	  auto const pixmap(QPixmap::fromImage(l_image));
 
 	  if(!pixmap.isNull())
 	    item->setPixmap(pixmap);

@@ -1003,7 +1003,7 @@ void biblioteq_import::slotImport(void)
   ** Test if the specified file is readable.
   */
 
-  QFileInfo fileInfo(m_ui.csv_file->text());
+  QFileInfo const fileInfo(m_ui.csv_file->text());
 
   if(!fileInfo.isReadable())
     {

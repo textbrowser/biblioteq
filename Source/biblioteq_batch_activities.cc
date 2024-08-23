@@ -142,7 +142,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 
 void biblioteq_batch_activities::borrow(void)
 {
-  auto memberId(m_ui.borrow_member_id->text().trimmed());
+  auto const memberId(m_ui.borrow_member_id->text().trimmed());
 
   if(memberId.isEmpty())
     {
@@ -163,9 +163,9 @@ void biblioteq_batch_activities::borrow(void)
   progress.repaint();
 
   QString error("");
-  auto expired = biblioteq_misc_functions::hasMemberExpired
+  auto const expired = biblioteq_misc_functions::hasMemberExpired
     (m_qmain->getDB(), memberId, error);
-  auto maximumReserved = biblioteq_misc_functions::maximumReserved
+  auto const maximumReserved = biblioteq_misc_functions::maximumReserved
     (m_qmain->getDB(), memberId, "book"); // Only books offer maximums.
 
   for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
@@ -186,11 +186,11 @@ void biblioteq_batch_activities::borrow(void)
       if(widget)
 	category = widget->findChild<QComboBox *> ();
 
-      auto copyIdentifier = m_ui.borrow_table->item
+      auto const copyIdentifier = m_ui.borrow_table->item
 	(i, static_cast<int> (BorrowTableColumns::COPY_IDENTIFIER_COLUMN));
-      auto identifier = m_ui.borrow_table->item
+      auto const identifier = m_ui.borrow_table->item
 	(i, static_cast<int> (BorrowTableColumns::IDENTIFIER_COLUMN));
-      auto results = m_ui.borrow_table->item
+      auto const results = m_ui.borrow_table->item
 	(i, static_cast<int> (BorrowTableColumns::RESULTS_COLUMN));
 
       if(!category || !copyIdentifier || !identifier || !results)
@@ -250,7 +250,7 @@ void biblioteq_batch_activities::borrow(void)
       else if(category && category->currentText() == tr("Video Game"))
 	type = "Video Game";
 
-      auto available = biblioteq_misc_functions::isItemAvailable
+      auto const available = biblioteq_misc_functions::isItemAvailable
 	(error,
 	 m_qmain->getDB(),
 	 identifier->text(),
@@ -272,7 +272,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(maximumReserved > 0)
 	{
-	  auto totalReserved = biblioteq_misc_functions::
+	  auto const totalReserved = biblioteq_misc_functions::
 	    getItemsReservedCounts(m_qmain->getDB(), memberId, error).
 	    value("numbooks");
 
@@ -293,9 +293,9 @@ void biblioteq_batch_activities::borrow(void)
       QSqlQuery query(m_qmain->getDB());
       QString errorstr("");
       auto dueDate(QDate::currentDate());
-      auto itemOid = biblioteq_misc_functions::getOID
+      auto const itemOid = biblioteq_misc_functions::getOID
 	(identifier->text(), type, m_qmain->getDB(), errorstr);
-      int copyNumber = biblioteq_misc_functions::getCopyNumber
+      auto const copyNumber = biblioteq_misc_functions::getCopyNumber
 	(m_qmain->getDB(), copyIdentifier->text(), itemOid, type, errorstr);
 
       if(copyNumber == -1)
@@ -356,7 +356,7 @@ void biblioteq_batch_activities::borrow(void)
 	  continue;
 	}
 
-      auto dnt = biblioteq_misc_functions::dnt
+      auto const dnt = biblioteq_misc_functions::dnt
 	(m_qmain->getDB(), memberId, errorstr);
 
       if(!dnt)
@@ -461,7 +461,8 @@ void biblioteq_batch_activities::play(const QString &file)
 void biblioteq_batch_activities::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -1018,7 +1019,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
   if(m_ui.bottom_scroll_on_add->isChecked())
     m_ui.borrow_table->scrollToBottom();
 
-  auto row = m_ui.borrow_table->rowCount() - 1;
+  auto const row = m_ui.borrow_table->rowCount() - 1;
 
   for(int i = 0; i < m_ui.borrow_table->columnCount(); i++)
     if(i == static_cast<int> (BorrowTableColumns::CATEGORY_COLUMN))
@@ -1138,7 +1139,7 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  auto rows(biblioteq_misc_functions::selectedRows(m_ui.borrow_table));
+  auto const rows(biblioteq_misc_functions::selectedRows(m_ui.borrow_table));
 
   for(auto i = rows.size() - 1; i >= 0; i--)
     m_ui.borrow_table->removeRow(rows.at(i));
@@ -1153,10 +1154,10 @@ void biblioteq_batch_activities::slotDiscoverMemberName(void)
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       QString errorstr("");
-      auto name(biblioteq_misc_functions::
-		getMemberName(m_qmain->getDB(),
-			      m_ui.borrow_member_id->text(),
-			      errorstr));
+      auto const name(biblioteq_misc_functions::
+		      getMemberName(m_qmain->getDB(),
+				    m_ui.borrow_member_id->text(),
+				    errorstr));
 
       m_ui.borrow_member_name->setText(name);
       m_ui.borrow_member_name->setCursorPosition(0);
@@ -1193,7 +1194,8 @@ void biblioteq_batch_activities::slotExportMissing(void)
 	{
 	  QString str("");
 	  QTextStream stream(&file);
-	  auto i = static_cast<int> (DiscoverTableColumns::IDENTIFIER_COLUMN);
+	  auto const i = static_cast<int>
+	    (DiscoverTableColumns::IDENTIFIER_COLUMN);
 
 	  if(m_ui.discover_table->horizontalHeaderItem(i))
 	    {
@@ -1227,7 +1229,7 @@ void biblioteq_batch_activities::slotExportMissing(void)
 					CATEGORY_COLUMN))->text().length() > 0)
 		continue;
 
-	      auto c = static_cast<int>
+	      auto const c = static_cast<int>
 		(DiscoverTableColumns::IDENTIFIER_COLUMN);
 
 	      if(!m_ui.discover_table->item(i, c))
@@ -1665,7 +1667,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
       slotAddBorrowingRow();
 
       QString field("");
-      auto copyIdentifier = m_ui.borrow_table->item
+      auto const copyIdentifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
 	 static_cast<int> (BorrowTableColumns::COPY_IDENTIFIER_COLUMN));
 
@@ -1689,12 +1691,12 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	    type = "Video Game";
 
 	  auto ok = true;
-	  auto str(biblioteq_misc_functions::
-		   getNextCopy(field,
-			       ok,
-			       m_qmain->getDB(),
-			       m_ui.borrow_scan->text(),
-			       type).trimmed());
+	  auto const str(biblioteq_misc_functions::
+			 getNextCopy(field,
+				     ok,
+				     m_qmain->getDB(),
+				     m_ui.borrow_scan->text(),
+				     type).trimmed());
 
 	  m_ui.borrow_table->blockSignals(true);
 
@@ -1825,7 +1827,7 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
     }
 
   QSqlQuery query(m_qmain->getDB());
-  auto id(m_ui.return_scan->text().remove('-').trimmed());
+  auto const id(m_ui.return_scan->text().remove('-').trimmed());
 
   query.setForwardOnly(true);
   query.prepare("SELECT "

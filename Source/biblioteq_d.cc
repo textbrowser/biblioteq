@@ -801,7 +801,7 @@ void biblioteq::slotCustomQuery(void)
 void biblioteq::slotDelayedPreparation(void)
 {
 #ifdef Q_OS_MACOS
-  QFileInfo fileInfo(BIBLIOTEQ_MACOS_LIBPQ_PATH);
+  QFileInfo const fileInfo(BIBLIOTEQ_MACOS_LIBPQ_PATH);
 
   if(!fileInfo.isReadable())
     {

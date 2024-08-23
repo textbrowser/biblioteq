@@ -130,10 +130,10 @@ int biblioteq::populateTable(const int search_type_arg,
   QString type = "";
   QStringList tmplist; // Used for custom queries.
   QTableWidgetItem *item = nullptr;
-  auto columns = m_otherOptions->iconsViewColumnCount();
-  auto now(QDate::currentDate());
+  auto const columns = m_otherOptions->iconsViewColumnCount();
+  auto const now(QDate::currentDate());
+  auto const search_type = search_type_arg;
   auto offset = m_queryOffset;
-  auto search_type = search_type_arg;
   int i = -1;
   int limit = 0;
 
@@ -3644,7 +3644,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(limit == -1)
     {
-      auto size = biblioteq_misc_functions::sqliteQuerySize
+      auto const size = biblioteq_misc_functions::sqliteQuerySize
 	(searchstr, m_db, __FILE__, __LINE__, this);
 
       if(size > 0)
@@ -3665,11 +3665,12 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QSettings settings;
   QStringList columnNames;
-  auto showToolTips = settings.value("show_maintable_tooltips", false).toBool();
+  auto const showToolTips = settings.value
+    ("show_maintable_tooltips", false).toBool();
 
   if(search_type == CUSTOM_QUERY)
     {
-      auto record(query.record());
+      auto const record(query.record());
 
       for(int ii = 0; ii < record.count(); ii++)
 	if(!columnNames.contains(record.fieldName(ii)))
@@ -3685,12 +3686,13 @@ int biblioteq::populateTable(const int search_type_arg,
   QHash<QString, QString> dateFormats;
   QLocale locale;
   QMap<QByteArray, QImage> images;
-  auto availabilityColors = this->availabilityColors();
-  auto booksAccessionNumberIndex = m_otherOptions->booksAccessionNumberIndex();
-  auto showBookReadStatus = m_db.driverName() == "QSQLITE" &&
+  auto const availabilityColors = this->availabilityColors();
+  auto const booksAccessionNumberIndex =
+    m_otherOptions->booksAccessionNumberIndex();
+  auto const showBookReadStatus = m_db.driverName() == "QSQLITE" &&
     m_otherOptions->showBookReadStatus() &&
     typefilter == "Books";
-  auto showMainTableImages = m_otherOptions->showMainTableImages();
+  auto const showMainTableImages = m_otherOptions->showMainTableImages();
 
   while(i++, query.next())
     {
@@ -3706,7 +3708,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	{
 	  QString tooltip("");
 	  QTableWidgetItem *first = nullptr;
-	  auto record(query.record());
+	  auto const record(query.record());
 
 	  itemType = record.field("type").value().
 	    toString().remove(' ').toLower().trimmed();
@@ -3720,7 +3722,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	      for(int j = 0; j < record.count(); j++)
 		{
-		  auto fieldName(record.fieldName(j));
+		  auto const fieldName(record.fieldName(j));
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 		  if(QMetaType::Type(record.field(j).metaType().id()) ==
@@ -3782,7 +3784,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    {
 	      item = nullptr;
 
-	      auto fieldName(record.fieldName(j));
+	      auto const fieldName(record.fieldName(j));
 
 	      if(!fieldName.endsWith("front_cover") &&
 		 !fieldName.endsWith("image_scaled"))
@@ -3790,7 +3792,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(fieldName.contains("date") ||
 		     fieldName.contains("membersince"))
 		    {
-		      auto date
+		      auto const date
 			(QDate::fromString(query.value(j).toString(),
 					   s_databaseDateFormat));
 
@@ -3880,7 +3882,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  item = new QTableWidgetItem
 		    (query.value(j).toString().trimmed());
 
-		  auto duedate
+		  auto const duedate
 		    (QDateTime::fromString(query.value(j).toString().trimmed(),
 					   s_databaseDateFormat));
 
@@ -4079,7 +4081,7 @@ int biblioteq::populateTable(const int search_type_arg,
     {
       if(tmplist.isEmpty())
 	{
-	  auto record(query.record());
+	  auto const record(query.record());
 
 	  for(int ii = 0; ii < record.count(); ii++)
 	    if(!tmplist.contains(record.fieldName(ii)))
@@ -4161,7 +4163,7 @@ void biblioteq::prepareContextMenus()
   else
     m_menu = new QMenu(this);
 
-  auto getTypeFilterString = this->getTypeFilterString();
+  auto const getTypeFilterString = this->getTypeFilterString();
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
@@ -4714,8 +4716,8 @@ void biblioteq::slotSearchBasic(void)
   QString type("");
   QString videoGameFrontCover("'' AS front_cover ");
   QStringList types;
+  auto const text(ui.search->text().trimmed());
   auto query = new QSqlQuery(m_db);
-  auto text(ui.search->text().trimmed());
 
   types.append("Book");
   types.append("CD");

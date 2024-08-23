@@ -48,7 +48,7 @@ biblioteq_z3950results::biblioteq_z3950results
   for(int i = 0; i < list.size(); i++)
     {
       QString issn("");
-      auto parsedList(list.at(i).split("\n"));
+      auto const parsedList(list.at(i).split("\n"));
 
       for(int j = 0; j < parsedList.size(); j++)
 	if(parsedList.at(j).startsWith("022 "))
@@ -150,7 +150,8 @@ void biblioteq_z3950results::keyPressEvent(QKeyEvent *event)
 void biblioteq_z3950results::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -192,7 +193,7 @@ void biblioteq_z3950results::slotSelectRecord(void)
 {
   if(m_magazine)
     {
-      auto list(m_ui.textarea->toPlainText().split("\n"));
+      auto const list(m_ui.textarea->toPlainText().split("\n"));
 
       m_magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
     }
@@ -203,7 +204,7 @@ void biblioteq_z3950results::slotSelectRecord(void)
 void biblioteq_z3950results::slotUpdateQueryText(void)
 {
   QString title("");
-  auto list(m_records.value(m_ui.list->currentRow()).split("\n"));
+  auto const list(m_records.value(m_ui.list->currentRow()).split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     if(list.at(i).startsWith("245 "))

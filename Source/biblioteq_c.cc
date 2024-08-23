@@ -2711,7 +2711,7 @@ void biblioteq::slotConnectDB(void)
 
   if(tmphash.value("database_type") == "sqlite")
     {
-      QFileInfo fileInfo(br.filename->text());
+      QFileInfo const fileInfo(br.filename->text());
 
       if(!fileInfo.exists() || !fileInfo.isReadable() || !fileInfo.isWritable())
 	{
@@ -2763,7 +2763,7 @@ void biblioteq::slotConnectDB(void)
 
   if(!QSqlDatabase::isDriverAvailable(str))
     {
-      QFileInfo fileInfo("qt.conf");
+      QFileInfo const fileInfo("qt.conf");
       QString str("");
 
       if(fileInfo.isReadable() && fileInfo.size() > 0)
