@@ -56,8 +56,8 @@ static int callnum_lt(const QString &m, const QString &n)
 
   QRegExp match1(lc_regexp);
   QRegExp match2(match1); // Copy constructor should be faster.
-  auto res1 = match1.exactMatch(m);
-  auto res2 = match2.exactMatch(n);
+  auto const res1 = match1.exactMatch(m);
+  auto const res2 = match2.exactMatch(n);
 
 #ifdef BIBLIOTEQ_CALLNUM_DEBUG
   qDebug() << "result: " << res1 << " " << res2 << endl;
@@ -100,10 +100,10 @@ static int callnum_lt(const QString &m, const QString &n)
 #else
   QRegularExpression match1(QRegularExpression::anchoredPattern(lc_regexp));
   QRegularExpression match2(match1); // Copy constructor should be faster.
-  auto m1(match1.match(m));
-  auto n1(match2.match(n));
-  auto res1 = m1.hasMatch();
-  auto res2 = n1.hasMatch();
+  auto const m1(match1.match(m));
+  auto const n1(match2.match(n));
+  auto const res1 = m1.hasMatch();
+  auto const res2 = n1.hasMatch();
 
   if(res1 && res2)
     {

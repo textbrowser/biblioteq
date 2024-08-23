@@ -132,7 +132,8 @@ void biblioteq_borrowers_editor::keyPressEvent(QKeyEvent *event)
 void biblioteq_borrowers_editor::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -427,9 +428,9 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
   QString copyid = "";
   QString memberid = "";
   QString oid = "";
-  auto returnedDate = QDateTime::currentDateTime().toString
+  auto const returnedDate = QDateTime::currentDateTime().toString
     (biblioteq::s_databaseDateFormat);
-  auto row = m_bd.table->currentRow();
+  auto const row = m_bd.table->currentRow();
 
   if(row < 0)
     {
@@ -600,8 +601,8 @@ void biblioteq_borrowers_editor::slotSave(void)
   QProgressDialog progress(this);
   QSqlQuery query(qmain->getDB());
   QString oid = "";
+  auto const now = QDate::currentDate();
   auto error = false;
-  auto now = QDate::currentDate();
   int i = 0;
 
   progress.setCancelButton(nullptr);
