@@ -143,7 +143,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
   for(int i = 0; i < states.keys().size(); i++)
     {
       QList<int> intList;
-      auto strList
+      auto const strList
 	(states[states.keys().at(i)].split(",",
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 					   Qt::SkipEmptyParts
@@ -703,7 +703,7 @@ void biblioteq_main_table::setHorizontalHeaderLabels(const QStringList &labels)
       if(Q_UNLIKELY(!it.value().isValid()))
 	continue;
 
-      auto pair(it.key());
+      auto const pair(it.key());
 
       if(Q_UNLIKELY(pair.first.isEmpty() || pair.second.isEmpty()))
 	continue;
@@ -767,7 +767,7 @@ void biblioteq_main_table::updateToolTips(const int row)
     return;
 
   QSettings settings;
-  auto showToolTips = settings.value
+  auto const showToolTips = settings.value
     ("show_maintable_tooltips", false).toBool();
 
   if(!showToolTips)

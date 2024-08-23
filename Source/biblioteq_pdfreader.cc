@@ -400,9 +400,9 @@ void biblioteq_pdfreader::slotPrint(void)
 	  if(!page)
 	    break;
 
-	  auto image
+	  auto const image
 	    (page->renderToImage(printer.resolution(), printer.resolution()));
-	  auto rect(painter.viewport());
+	  auto const rect(painter.viewport());
 	  auto size(image.size());
 
 	  size.scale(rect.size(), Qt::KeepAspectRatio);
@@ -490,9 +490,9 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
       if(!page)
 	break;
 
-      auto image
+      auto const image
 	(page->renderToImage(printer->resolution(), printer->resolution()));
-      auto rect(painter.viewport());
+      auto const rect(painter.viewport());
       auto size(image.size());
 
       size.scale(rect.size(), Qt::KeepAspectRatio);
@@ -598,14 +598,14 @@ void biblioteq_pdfreader::slotSearchNext(void)
   if(!m_searchLocation.isNull())
     m_searchLocation.setX(m_searchLocation.right());
 
-  auto page = m_ui.page->value() - 1;
+  auto const page = m_ui.page->value() - 1;
 
   while(page < m_document->numPages())
     {
-      auto bottom = m_searchLocation.bottom();
-      auto left = m_searchLocation.left();
-      auto right = m_searchLocation.right();
-      auto top = m_searchLocation.top();
+      auto const bottom = m_searchLocation.bottom();
+      auto const left = m_searchLocation.left();
+      auto const right = m_searchLocation.right();
+      auto const top = m_searchLocation.top();
 
       if(m_document->page(page)->
 	 search(m_ui.find->text(),
@@ -657,14 +657,14 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
   if(!m_searchLocation.isNull())
     m_searchLocation.setX(m_searchLocation.right() - m_searchLocation.left());
 
-  auto page = m_ui.page->value() - 1;
+  auto const page = m_ui.page->value() - 1;
 
   while(page >= 0)
     {
-      auto bottom = m_searchLocation.bottom();
-      auto left = m_searchLocation.left();
-      auto right = m_searchLocation.right();
-      auto top = m_searchLocation.top();
+      auto const bottom = m_searchLocation.bottom();
+      auto const left = m_searchLocation.left();
+      auto const right = m_searchLocation.right();
+      auto const top = m_searchLocation.top();
 
       if(m_document->page(page)->
 	 search(m_ui.find->text(),
@@ -742,9 +742,10 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
     (tr("Page %1 of %2.").arg(value).arg(m_ui.page->maximum()));
 
   QImage image;
-  auto pX = qMax(72, m_ui.page_1->physicalDpiX());
-  auto pY = qMax(72, m_ui.page_1->physicalDpiY());
-  auto scaleFactor = m_ui.view_size->currentText().remove("%").toInt() / 100.0;
+  auto const pX = qMax(72, m_ui.page_1->physicalDpiX());
+  auto const pY = qMax(72, m_ui.page_1->physicalDpiY());
+  auto const scaleFactor = m_ui.view_size->currentText().remove("%").toInt() /
+    100.0;
 
   if(m_ui.view_size->currentIndex() == 4)
     image = page->renderToImage(pX, pY);
@@ -758,22 +759,22 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       ** Highlight the discovered text.
       */
 
-      QMatrix matrix(m_ui.view_size->currentIndex() != 4 ?
-		     scaleFactor * physicalDpiX() / 72.0 :
-		     physicalDpiX() / 72.0,
-		     0,
-		     0,
-		     m_ui.view_size->currentIndex() != 4 ?
-		     scaleFactor * physicalDpiY() / 72.0 :
-		     physicalDpiY() / 72.0,
-		     0,
-		     0);
+      QMatrix const matrix(m_ui.view_size->currentIndex() != 4 ?
+			   scaleFactor * physicalDpiX() / 72.0 :
+			   physicalDpiX() / 72.0,
+			   0,
+			   0,
+			   m_ui.view_size->currentIndex() != 4 ?
+			   scaleFactor * physicalDpiY() / 72.0 :
+			   physicalDpiY() / 72.0,
+			   0,
+			   0);
       auto highlightRect(matrix.mapRect(location).toRect());
 
       highlightRect.adjust(-2, -2, 2, 2);
 
       QPainter painter;
-      auto imageHighlight(image.copy(highlightRect));
+      auto const imageHighlight(image.copy(highlightRect));
 
       painter.begin(&image);
       painter.fillRect(image.rect(), QColor(0, 0, 0, 32));

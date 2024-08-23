@@ -98,7 +98,7 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 {
   QSettings settings;
   QString value("white");
-  auto itemType(QString(it).remove(' ').toLower().trimmed());
+  auto const itemType(QString(it).remove(' ').toLower().trimmed());
 
   if(itemType.contains("book"))
     value = settings.value
@@ -177,7 +177,7 @@ QString biblioteq_otheroptions::dateFormat(const QString &it) const
 {
   QSettings settings;
   QString format("");
-  auto itemType(it.toLower().trimmed());
+  auto const itemType(it.toLower().trimmed());
 
   if(itemType.contains("book"))
     format = settings.value("otheroptions/book_date_format").toString();
@@ -402,7 +402,7 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
 	  settings.value("otheroptions/members_visible_columns", "").
 	  toString().split(','))
     {
-      auto list(string.split('='));
+      auto const list(string.split('='));
 
       if(list.size() == 2)
 	map[list.at(0).mid(0, 128).trimmed()] =
@@ -513,7 +513,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 	    settings.value("otheroptions/custom_query_colors", "").
 	    toString().split(','))
       {
-	auto list(string.split('='));
+	auto const list(string.split('='));
 
 	if(list.size() == 2)
 	  map[list.at(0).mid(0, 64).toUpper().trimmed()] =
@@ -540,7 +540,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 	    settings.value("otheroptions/members_visible_columns", "").
 	    toString().split(','))
       {
-	auto list(string.split('='));
+	auto const list(string.split('='));
 
 	if(list.size() == 2)
 	  map[list.at(0).mid(0, 128).trimmed()] =
@@ -822,7 +822,7 @@ void biblioteq_otheroptions::slotMainWindowShortcutChanged(void)
     return;
 
   QMap<QString, int> map;
-  static auto color(m_ui.shortcuts->item(0, 0)->background());
+  static auto const color(m_ui.shortcuts->item(0, 0)->background());
 
   for(int i = 0; i < m_ui.shortcuts->rowCount(); i++)
     {
@@ -1090,7 +1090,7 @@ void biblioteq_otheroptions::slotSelectColor(void)
   if(!pushButton)
     return;
 
-  QColor color(pushButton->text().remove('&').trimmed());
+  QColor const color(pushButton->text().remove('&').trimmed());
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(color);
@@ -1108,7 +1108,8 @@ void biblioteq_otheroptions::slotSelectColor(void)
 
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 {
-  QColor color(m_ui.main_window_canvas_background_color->text().remove('&'));
+  QColor const color
+    (m_ui.main_window_canvas_background_color->text().remove('&'));
   QColorDialog dialog(this);
 
   dialog.setCurrentColor(color);

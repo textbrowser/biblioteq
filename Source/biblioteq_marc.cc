@@ -100,7 +100,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
       {
 	if(reader.name().toString().toLower().trimmed() == "datafield")
 	  {
-	    auto tag
+	    auto const tag
 	      (reader.attributes().value("tag").toString().toLower().trimmed());
 
 	    if(tag == "010")
@@ -570,7 +570,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 	  }
 	else if(reader.name().toString().toLower().trimmed() == "controlfield")
 	  {
-	    auto tag
+	    auto const tag
 	      (reader.attributes().value("tag").toString().toLower().trimmed());
 
 	    if(tag == "003")
@@ -579,7 +579,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		str.append(reader.readElementText());
 
-		auto index = str.indexOf("ark:/");
+		auto const index = str.indexOf("ark:/");
 
 		if(index >= 0)
 		  m_sru003 = str.mid(index);
@@ -597,7 +597,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 {
   clear();
 
-  auto list(m_data.split("\n"));
+  auto const list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
@@ -917,7 +917,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    if(tmpstr.contains(subfields.at(i)))
 	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
-	  auto tmplist(tmpstr.split("$a"));
+	  auto const tmplist(tmpstr.split("$a"));
 
 	  for(int j = 0; j < tmplist.size(); j++)
 	    {
@@ -1141,7 +1141,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 {
   clear();
 
-  auto list(m_data.split("\n"));
+  auto const list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
@@ -1325,7 +1325,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	    if(tmpstr.contains(subfields.at(i)))
 	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
-	  auto tmplist(tmpstr.split("$a"));
+	  auto const tmplist(tmpstr.split("$a"));
 
 	  for(int j = 0; j < tmplist.size(); j++)
 	    {
@@ -1595,7 +1595,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 {
   clear();
 
-  auto list(m_data.split("\n"));
+  auto const list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
@@ -1682,7 +1682,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	    if(tmpstr.contains(subfields.at(i)))
 	      tmpstr = tmpstr.mid(0, tmpstr.indexOf(subfields.at(i))).trimmed();
 
-	  auto tmplist(tmpstr.split("$a"));
+	  auto const tmplist(tmpstr.split("$a"));
 
 	  for(int j = 0; j < tmplist.size(); j++)
 	    {

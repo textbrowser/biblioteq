@@ -114,7 +114,7 @@ QList<int> biblioteq_misc_functions::selectedRows(QTableWidget *table)
   if(!table)
     return rows;
 
-  auto indexes(table->selectionModel()->selectedRows(0));
+  auto const indexes(table->selectionModel()->selectedRows(0));
 
   for(int i = 0; i < indexes.size(); i++)
     rows << indexes.at(i).row();
@@ -164,7 +164,7 @@ QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
   if(query.exec())
     while(query.next())
       {
-	auto count = query.value(0).toLongLong();
+	auto const count = query.value(0).toLongLong();
 
 	if(counts.isEmpty())
 	  counts["numbooks"] = count;
@@ -572,7 +572,7 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
     {
       if(id.contains(","))
 	{
-	  auto list(id.split(","));
+	  auto const list(id.split(","));
 
 	  for(int i = 0; i < list.size(); i++)
 	    query.bindValue(i, list[i].trimmed());
@@ -720,7 +720,7 @@ QString biblioteq_misc_functions::isbn13to10(const QString &text)
     return text;
 
   QString z("");
-  auto str(QString(text).remove('-').trimmed().mid(3, 9));
+  auto const str(QString(text).remove('-').trimmed().mid(3, 9));
   int total = 0;
 
   for(int i = 0; i < 9; i++)
@@ -1354,7 +1354,7 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
 	{
 	  if(db.driverName() == "QSQLITE")
 	    {
-	      auto date
+	      auto const date
 		(QDate::
 		 fromString(query.value(0).toString().trimmed(),
 			    biblioteq::s_databaseDateFormat));
@@ -1516,7 +1516,7 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 
 bool biblioteq_misc_functions::isGnome(void)
 {
-  auto session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
+  auto const session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
 
   if(session == "gnome" || session == "ubuntu")
     return true;
@@ -1834,7 +1834,7 @@ int biblioteq_misc_functions::quantity
 {
   QSqlQuery query(db);
   QString querystr("");
-  auto type(QString(t).remove(' ').toLower());
+  auto const type(QString(t).remove(' ').toLower());
 
   if(type == "greyliterature")
     querystr = "SELECT quantity FROM grey_literature WHERE myoid = ?";
@@ -1871,9 +1871,9 @@ int biblioteq_misc_functions::sqliteQuerySize
 
   QSqlQuery query(db);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-  auto list(boundValues.values());
+  auto const list(boundValues.values());
 #else
-  auto list(boundValues);
+  auto const list(boundValues);
 #endif
 
   query.prepare(querystr);
@@ -1958,7 +1958,7 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 
   if(query.exec("INSERT INTO sequence VALUES (NULL)"))
     {
-      auto variant(query.lastInsertId());
+      auto const variant(query.lastInsertId());
 
       if(variant.isValid())
 	{
@@ -2202,7 +2202,7 @@ void biblioteq_misc_functions::createBookCopy(const QString &idArg,
 
       if(db.driverName() == "QSQLITE")
 	{
-	  auto value = getSqliteUniqueId(db, errorstr);
+	  auto const value = getSqliteUniqueId(db, errorstr);
 
 	  if(errorstr.isEmpty())
 	    query.addBindValue(value);
@@ -2234,7 +2234,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
   QString id("");
   QString itemType("");
   QString itemoid("");
-  auto copies = qBound
+  auto const copies = qBound
     (0, numCopies, static_cast<int> (biblioteq::Limits::QUANTITY));
 
   /*
@@ -2310,7 +2310,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 
 	if(db.driverName() == "QSQLITE")
 	  {
-	    auto value = getSqliteUniqueId(db, errorstr);
+	    auto const value = getSqliteUniqueId(db, errorstr);
 
 	    if(errorstr.isEmpty())
 	      query.bindValue(3, value);
@@ -2370,10 +2370,10 @@ void biblioteq_misc_functions::exportPhotographs
       if(query.exec() && query.next())
 	{
 	  QImage image;
-	  auto bytes
+	  auto const bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
-	  auto format(imageFormatGuess(bytes));
-	  auto id = QDateTime::currentMSecsSinceEpoch();
+	  auto const format(imageFormatGuess(bytes));
+	  auto const id = QDateTime::currentMSecsSinceEpoch();
 
 	  image.loadFromData(bytes, format.toLatin1().constData());
 
@@ -2431,7 +2431,7 @@ void biblioteq_misc_functions::exportPhotographs
       else
 	progress.setMaximum(0);
 
-      auto id = QDateTime::currentMSecsSinceEpoch();
+      auto const id = QDateTime::currentMSecsSinceEpoch();
       int i = 0;
       int j = -1;
 
@@ -2452,9 +2452,9 @@ void biblioteq_misc_functions::exportPhotographs
 	    break;
 
 	  QImage image;
-	  auto bytes
+	  auto const bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
-	  auto format(imageFormatGuess(bytes));
+	  auto const format(imageFormatGuess(bytes));
 
 	  image.loadFromData(bytes, format.toLatin1().constData());
 
@@ -2599,7 +2599,7 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
   QSqlQuery query(db);
   QString querystr("");
   QStringList objectlist;
-  auto exists = userExists(userid, db, errorstr);
+  auto const exists = userExists(userid, db, errorstr);
 
   if(exists)
     {
