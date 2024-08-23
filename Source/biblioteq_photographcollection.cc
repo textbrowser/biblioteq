@@ -485,7 +485,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
       {
 	QImage image;
 	auto bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
-	auto format(biblioteq_misc_functions::imageFormatGuess(bytes));
+	auto const format(biblioteq_misc_functions::imageFormatGuess(bytes));
 
 	image.loadFromData(bytes);
 
@@ -690,7 +690,7 @@ void biblioteq_photographcollection::modify(const int state,
       pc.resetButton->setVisible(false);
       pc.select_image_collection->setVisible(false);
 
-      auto actions = pc.resetButton->menu()->actions();
+      auto const actions = pc.resetButton->menu()->actions();
 
       if(!actions.isEmpty())
 	actions[0]->setVisible(false);
@@ -733,7 +733,7 @@ void biblioteq_photographcollection::modify(const int state,
     {
       QApplication::restoreOverrideCursor();
 
-      auto record(query.record());
+      auto const record(query.record());
 
       for(int i = 0; i < record.count(); i++)
 	{
@@ -813,7 +813,7 @@ void biblioteq_photographcollection::modify(const int state,
 		pc.statistics->setText
 		  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 
-		auto i = photographsPerPage();
+		auto const i = photographsPerPage();
 
 		if(i == -1) // Unlimited.
 		  {
@@ -874,7 +874,7 @@ void biblioteq_photographcollection::search(const QString &field,
   pc.select_image_collection->setVisible(false);
   pc.thumbnail_collection->setVisible(false);
 
-  auto actions = pc.resetButton->menu()->actions();
+  auto const actions = pc.resetButton->menu()->actions();
 
   if(!actions.isEmpty())
     actions[0]->setVisible(false);
@@ -1097,7 +1097,7 @@ void biblioteq_photographcollection::slotDatabaseEnumerationsCommitted(void)
   for(int i = 0; i < widgets.size(); i++)
     {
       QString errorstr("");
-      auto str(widgets.at(i)->currentText());
+      auto const str(widgets.at(i)->currentText());
 
       widgets.at(i)->clear();
 
@@ -1131,7 +1131,7 @@ void biblioteq_photographcollection::slotDatabaseEnumerationsCommitted(void)
 
 void biblioteq_photographcollection::slotDeleteItem(void)
 {
-  auto items(pc.graphicsView->scene()->selectedItems());
+  auto const items(pc.graphicsView->scene()->selectedItems());
 
   if(items.isEmpty())
     return;
@@ -1177,7 +1177,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
 	{
 	  QSqlQuery query(qmain->getDB());
-	  auto itemOid(item->data(0).toString());
+	  auto const itemOid(item->data(0).toString());
 
 	  query.prepare("DELETE FROM photograph WHERE "
 			"collection_oid = ? AND myoid = ?");
@@ -1207,7 +1207,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 	updateTablePhotographCount(query.value(0).toLongLong());
 
-	auto i = photographsPerPage();
+	auto const i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
 	  {
@@ -1525,7 +1525,7 @@ void biblioteq_photographcollection::slotGo(void)
 	query.bindValue(8, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  auto value = biblioteq_misc_functions::getSqliteUniqueId
+	  auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
@@ -1583,13 +1583,13 @@ void biblioteq_photographcollection::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  auto names(qmain->getUI().table->columnNames());
+		  auto const names(qmain->getUI().table->columnNames());
 
 		  for(int i = 0; i < names.size(); i++)
 		    {
 		      if(i == 0 && qmain->showMainTableImages())
 			{
-			  auto pixmap
+			  auto const pixmap
 			    (QPixmap::
 			     fromImage(pc.thumbnail_collection->m_image));
 
@@ -1723,7 +1723,7 @@ void biblioteq_photographcollection::slotGo(void)
 	"WHERE ";
 
       QString ESCAPE("");
-      auto UNACCENT(qmain->unaccent());
+      auto const UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
@@ -1891,7 +1891,7 @@ void biblioteq_photographcollection::slotImportItems(void)
   repaint();
   QApplication::processEvents();
 
-  auto files(dialog.selectedFiles());
+  auto const files(dialog.selectedFiles());
 
   if(files.isEmpty())
     return;
@@ -1978,7 +1978,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       QBuffer buffer;
       QByteArray bytes2;
-      auto format(biblioteq_misc_functions::imageFormatGuess(bytes1));
+      auto const format(biblioteq_misc_functions::imageFormatGuess(bytes1));
 
       buffer.setBuffer(&bytes2);
       buffer.open(QIODevice::WriteOnly);
@@ -1998,7 +1998,7 @@ void biblioteq_photographcollection::slotImportItems(void)
       if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  QString errorstr("");
-	  auto value = biblioteq_misc_functions::getSqliteUniqueId
+	  auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
@@ -2039,7 +2039,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 	updateTablePhotographCount(query.value(0).toLongLong());
 
-	auto i = photographsPerPage();
+	auto const i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
 	  {
@@ -2189,7 +2189,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
   if(qmain->getDB().driverName() == "QSQLITE")
     {
-      auto value = biblioteq_misc_functions::getSqliteUniqueId
+      auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
@@ -2242,7 +2242,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	  (tr("%1 Image(s)").arg(query.value(0).toLongLong()));
 	updateTablePhotographCount(query.value(0).toLongLong());
 
-	auto i = photographsPerPage();
+	auto const i = photographsPerPage();
 
 	if(i == -1) // Unlimited.
 	  {
@@ -2371,7 +2371,7 @@ void biblioteq_photographcollection::slotReset(void)
 
   if(action != nullptr)
     {
-      auto actions = pc.resetButton->menu()->actions();
+      auto const actions = pc.resetButton->menu()->actions();
 
       if(actions.size() < 7)
 	{
@@ -2475,7 +2475,7 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 			__LINE__);
       else
 	{
-	  auto list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
+	  auto const list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
 
 	  for(int i = 0; i < list.size(); i++)
 	    if(list.at(i)->data(0).toLongLong() == oid)
@@ -2501,7 +2501,7 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 
 void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 {
-  auto items(pc.graphicsView->scene()->selectedItems());
+  auto const items(pc.graphicsView->scene()->selectedItems());
 
   if(items.isEmpty())
     {
@@ -2572,12 +2572,12 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
       if(query.exec())
 	if(query.next())
 	  {
-	    auto record(query.record());
+	    auto const record(query.record());
 
 	    for(int i = 0; i < record.count(); i++)
 	      {
-		auto fieldname(record.fieldName(i));
-		auto var(record.field(i).value());
+		auto const fieldname(record.fieldName(i));
+		auto const var(record.field(i).value());
 
 		if(fieldname == "accession_number")
 		  {
@@ -3005,7 +3005,8 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
     return;
 
   auto comboBox = parent->findChild<QComboBox *> ();
-  auto percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
+  auto const percent = comboBox ?
+    comboBox->currentText().remove("%").toInt() : 100;
   auto scene = parent->findChild<QGraphicsScene *> ();
   auto text = parent->findChild<QTextBrowser *> ();
 
@@ -3018,7 +3019,7 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 	{
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-	  auto list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
+	  auto const list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
 	  int idx = -1;
 
 	  for(int i = 0; i < list.size(); i++)
@@ -3083,7 +3084,8 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
     return;
 
   auto comboBox = parent->findChild<QComboBox *> ();
-  auto percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
+  auto const percent = comboBox ?
+    comboBox->currentText().remove("%").toInt() : 100;
   auto scene = parent->findChild<QGraphicsScene *> ();
   auto text = parent->findChild<QTextBrowser *> ();
 
@@ -3096,7 +3098,7 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 	{
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-	  auto list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
+	  auto const list(pc.graphicsView->scene()->items(Qt::AscendingOrder));
 	  int idx = -1;
 
 	  for(int i = 0; i < list.size(); i++)
@@ -3169,7 +3171,7 @@ void biblioteq_photographcollection::updateTablePhotographCount
     {
       qmain->getUI().table->setSortingEnabled(false);
 
-      auto names(qmain->getUI().table->columnNames());
+      auto const names(qmain->getUI().table->columnNames());
 
       for(int i = 0; i < names.size(); i++)
 	if(names.at(i) == "Photograph Count")

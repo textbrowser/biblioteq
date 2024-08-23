@@ -477,7 +477,7 @@ void biblioteq_videogame::modify(const int state)
       else
 	vg.showUserButton->setEnabled(true);
 
-      auto actions = vg.resetButton->menu()->actions();
+      auto const actions = vg.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -755,7 +755,7 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      auto actions = vg.resetButton->menu()->actions();
+      auto const actions = vg.resetButton->menu()->actions();
 
       if(actions.size() >= 2)
 	{
@@ -1762,7 +1762,7 @@ void biblioteq_videogame::slotReset(void)
 
   if(action != nullptr)
     {
-      auto actions = vg.resetButton->menu()->actions();
+      auto const actions = vg.resetButton->menu()->actions();
 
       if(actions.size() < 20)
 	{

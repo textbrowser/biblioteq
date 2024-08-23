@@ -75,7 +75,8 @@ void biblioteq_query_history::changeEvent(QEvent *event)
 void biblioteq_query_history::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -122,12 +123,12 @@ void biblioteq_query_history::slotCopy(void)
 
 void biblioteq_query_history::slotExecuteQuery(const QModelIndex &index)
 {
-  auto query(index.sibling(index.row(), 1).data().toString().trimmed());
+  auto const query(index.sibling(index.row(), 1).data().toString().trimmed());
 
   if(query.isEmpty())
     return;
 
-  auto q(query.toLower());
+  auto const q(query.toLower());
 
   if(q.startsWith("alter ") ||
      q.startsWith("cluster ") ||
