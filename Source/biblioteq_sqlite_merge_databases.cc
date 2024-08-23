@@ -94,7 +94,8 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
 void biblioteq_sqlite_merge_databases::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -132,7 +133,7 @@ void biblioteq_sqlite_merge_databases::slotAddRow(void)
 {
   m_ui.databases->setRowCount(m_ui.databases->rowCount() + 1);
 
-  auto row = m_ui.databases->rowCount() - 1;
+  auto const row = m_ui.databases->rowCount() - 1;
 
   for(int i = 0; i < m_ui.databases->columnCount(); i++)
     switch(static_cast<Columns> (i))
@@ -174,7 +175,7 @@ void biblioteq_sqlite_merge_databases::slotDeleteRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  auto rows(biblioteq_misc_functions::selectedRows(m_ui.databases));
+  auto const rows(biblioteq_misc_functions::selectedRows(m_ui.databases));
 
   for(auto i = rows.size() - 1; i >= 0; i--)
     m_ui.databases->removeRow(rows.at(i));
@@ -199,47 +200,47 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
   QApplication::processEvents();
 
   QString errors("<html>");
-  auto tables(QStringList()
-	      << "book"
-	      << "book_binding_types"
-	      << "book_conditions"
-	      << "book_copy_info"
-	      << "book_files"
-	      << "book_originality"
-	      << "book_sequence"
-	      << "book_target_audiences"
-	      << "cd"
-	      << "cd_copy_info"
-	      << "cd_formats"
-	      << "cd_songs"
-	      << "dvd"
-	      << "dvd_aspect_ratios"
-	      << "dvd_copy_info"
-	      << "dvd_ratings"
-	      << "dvd_regions"
-	      << "grey_literature"
-	      << "grey_literature_files"
-	      << "grey_literature_types"
-	      << "item_borrower"
-	      << "journal"
-	      << "journal_copy_info"
-	      << "journal_files"
-	      << "languages"
-	      << "locations"
-	      << "magazine"
-	      << "magazine_copy_info"
-	      << "magazine_files"
-	      << "member"
-	      << "member_history"
-	      << "minimum_days"
-	      << "monetary_units"
-	      << "photograph"
-	      << "photograph_collection"
-	      << "sequence"
-	      << "videogame"
-	      << "videogame_copy_info"
-	      << "videogame_platforms"
-	      << "videogame_ratings");
+  auto const tables(QStringList()
+		    << "book"
+		    << "book_binding_types"
+		    << "book_conditions"
+		    << "book_copy_info"
+		    << "book_files"
+		    << "book_originality"
+		    << "book_sequence"
+		    << "book_target_audiences"
+		    << "cd"
+		    << "cd_copy_info"
+		    << "cd_formats"
+		    << "cd_songs"
+		    << "dvd"
+		    << "dvd_aspect_ratios"
+		    << "dvd_copy_info"
+		    << "dvd_ratings"
+		    << "dvd_regions"
+		    << "grey_literature"
+		    << "grey_literature_files"
+		    << "grey_literature_types"
+		    << "item_borrower"
+		    << "journal"
+		    << "journal_copy_info"
+		    << "journal_files"
+		    << "languages"
+		    << "locations"
+		    << "magazine"
+		    << "magazine_copy_info"
+		    << "magazine_files"
+		    << "member"
+		    << "member_history"
+		    << "minimum_days"
+		    << "monetary_units"
+		    << "photograph"
+		    << "photograph_collection"
+		    << "sequence"
+		    << "videogame"
+		    << "videogame_copy_info"
+		    << "videogame_platforms"
+		    << "videogame_ratings");
   int ct = 0;
 
   for(int i = 0; i < m_ui.databases->rowCount(); i++)
@@ -262,7 +263,7 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
       progressBar->setMaximum(tables.size());
       progressBar->setMinimum(0);
 
-      auto dbName(item->text());
+      auto const dbName(item->text());
 
       {
 	auto db = QSqlDatabase::addDatabase("QSQLITE", dbName);
@@ -287,7 +288,7 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
 		      QString str2("");
 		      QVariant myoid;
 
-		      auto record(query.record());
+		      auto const record(query.record());
 
 		      for(int k = 0; k < record.count(); k++)
 			{
