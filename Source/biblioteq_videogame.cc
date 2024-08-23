@@ -539,7 +539,7 @@ void biblioteq_videogame::modify(const int state)
       activateWindow();
       raise();
 
-      auto record(query.record());
+      auto const record(query.record());
 
       for(i = 0; i < record.count(); i++)
 	{
@@ -825,7 +825,7 @@ void biblioteq_videogame::slotDatabaseEnumerationsCommitted(void)
   for(int i = 0; i < widgets.size(); i++)
     {
       QString errorstr("");
-      auto str(widgets.at(i)->currentText());
+      auto const str(widgets.at(i)->currentText());
 
       widgets.at(i)->clear();
 
@@ -1202,7 +1202,7 @@ void biblioteq_videogame::slotGo(void)
 	query.bindValue(20, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  auto value = biblioteq_misc_functions::getSqliteUniqueId
+	  auto const value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
@@ -1346,13 +1346,13 @@ void biblioteq_videogame::slotGo(void)
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  auto names(qmain->getUI().table->columnNames());
+		  auto const names(qmain->getUI().table->columnNames());
 
 		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(i == 0 && qmain->showMainTableImages())
 			{
-			  auto pixmap
+			  auto const pixmap
 			    (QPixmap::fromImage(vg.front_image->m_image));
 
 			  if(!pixmap.isNull())
@@ -1544,7 +1544,7 @@ void biblioteq_videogame::slotGo(void)
       searchstr.append("LOWER(id) LIKE LOWER('%' || ? || '%') AND ");
 
       QString ESCAPE("");
-      auto UNACCENT(qmain->unaccent());
+      auto const UNACCENT(qmain->unaccent());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	ESCAPE = "E";
