@@ -68,14 +68,14 @@ biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteFiles(void)));
-  connect(m_ui.files,
-	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	  this,
-	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(m_ui.export_files,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportFiles(void)));
+  connect(m_ui.files,
+	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(m_ui.okButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -632,11 +632,7 @@ void biblioteq_grey_literature::modify(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setVisible(false);
       m_ui.resetButton->setVisible(false);
-
-      if(qmain->isGuest())
-	m_ui.showUserButton->setEnabled(false);
-      else
-	m_ui.showUserButton->setEnabled(true);
+      m_ui.showUserButton->setEnabled(qmain->isGuest() ? false : true);
     }
 
   prepareIcons(this);
@@ -1117,8 +1113,8 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 
 void biblioteq_grey_literature::slotExportFiles(void)
 {
-  auto list(m_ui.files->selectionModel()->
-	    selectedRows(static_cast<int> (Columns::MYOID)));
+  auto const list(m_ui.files->selectionModel()->
+		  selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;
@@ -1549,14 +1545,14 @@ void biblioteq_grey_literature::slotReset(void)
       else if(action == actions[0])
 	{
 	  m_ui.title->clear();
-	  m_ui.title->setPalette(m_te_orig_pal);
 	  m_ui.title->setFocus();
+	  m_ui.title->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[1])
 	{
 	  m_ui.id->clear();
-	  m_ui.id->setPalette(m_te_orig_pal);
 	  m_ui.id->setFocus();
+	  m_ui.id->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[2])
 	{
@@ -1794,7 +1790,8 @@ void biblioteq_grey_literature::updateDatabase(void)
 
   if(!m_ui.id->text().isEmpty())
     string = tr("BiblioteQ: Modify Grey Literature Entry (") +
-      m_ui.id->text() + tr(")");
+      m_ui.id->text() +
+      tr(")");
   else
     string = tr("BiblioteQ: Modify Grey Literature Entry");
 
@@ -1944,12 +1941,7 @@ void biblioteq_grey_literature::updateWindow(const int state)
       m_ui.export_files->setEnabled(true);
       m_ui.okButton->setVisible(false);
       m_ui.resetButton->setVisible(false);
-
-      if(qmain->isGuest())
-	m_ui.showUserButton->setEnabled(false);
-      else
-	m_ui.showUserButton->setEnabled(true);
-
+      m_ui.showUserButton->setEnabled(qmain->isGuest() ? false : true);
       string = tr("BiblioteQ: View Grey Literature Details (") +
 	m_ui.id->text() +
 	tr(")");
