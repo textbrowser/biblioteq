@@ -55,7 +55,7 @@ biblioteq_sruresults::biblioteq_sruresults
 	  {
 	    if(reader.name().toString().toLower().trimmed() == "datafield")
 	      {
-		auto tag
+		auto const tag
 		  (reader.attributes().value("tag").toString().trimmed());
 
 		if(tag == "022")
@@ -162,7 +162,8 @@ void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
 void biblioteq_sruresults::prepareIcons(void)
 {
   QSettings setting;
-  auto index = setting.value("otheroptions/display_icon_set_index", 0).toInt();
+  auto const index = setting.value
+    ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
     {
@@ -233,7 +234,8 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
     if(reader.readNextStartElement())
       if(reader.name().toString().toLower().trimmed() == "datafield")
 	{
-	  auto tag(reader.attributes().value("tag").toString().trimmed());
+	  auto const tag
+	    (reader.attributes().value("tag").toString().trimmed());
 
 	  if(tag == "245")
 	    {
