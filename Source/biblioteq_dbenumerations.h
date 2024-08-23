@@ -106,7 +106,7 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
       case static_cast<int> (biblioteq_dbenumerations::LocationsTable::Type):
 	{
 	  auto comboBox = new QComboBox(parent);
-	  auto value(index.data().toString().trimmed());
+	  auto const value(index.data().toString().trimmed());
 
 	  comboBox->addItem("Book");
 	  comboBox->addItem("CD");

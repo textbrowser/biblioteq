@@ -52,7 +52,7 @@ class biblioteq_otheroptions_shortcut_lineedit: public QLineEdit
 
     if(event)
       {
-	auto key = static_cast<Qt::Key> (event->key());
+	auto const key = static_cast<Qt::Key> (event->key());
 
 	if(key == Qt::Key_Alt ||
 	   key == Qt::Key_Control ||
@@ -60,8 +60,8 @@ class biblioteq_otheroptions_shortcut_lineedit: public QLineEdit
 	   key == Qt::Key_Shift)
 	  return;
 
+	auto const modifiers = event->modifiers();
 	auto integer = event->key();
-	auto modifiers = event->modifiers();
 
 	if(modifiers & Qt::AltModifier)
 	  integer += Qt::ALT;
@@ -298,7 +298,7 @@ class biblioteq_otheroptions: public QMainWindow
     if(m_isbn10Format.isEmpty())
       {
 	QSettings settings;
-	auto index = qBound
+	auto const index = qBound
 	  (0,
 	   settings.value("otheroptions/isbn10_display_format_index").toInt(),
 	   m_ui.isbn10_display_format->count() - 1);
@@ -317,7 +317,7 @@ class biblioteq_otheroptions: public QMainWindow
     if(m_isbn13Format.isEmpty())
       {
 	QSettings settings;
-	auto index = qBound
+	auto const index = qBound
 	  (0,
 	   settings.value("otheroptions/isbn13_display_format_index").toInt(),
 	   m_ui.isbn13_display_format->count() - 1);
@@ -370,13 +370,13 @@ class biblioteq_otheroptions: public QMainWindow
 
   QString isbnDisplayFormat(const QString &format, const QString &s) const
   {
-    auto str(QString(s).remove('-'));
+    auto const str(QString(s).remove('-'));
 
     if(!(str.length() == 10 || str.length() == 13))
       return s;
 
     QString text("");
-    auto list(format.split('-'));
+    auto const list(format.split('-'));
 
     for(int i = 0, j = 0; i < list.size(); i++)
       {
