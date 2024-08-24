@@ -1,6 +1,23 @@
+exists(/usr/include/poppler/cpp) {
+DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
+INCLUDEPATH += /usr/include/poppler/cpp
+} else {
+message("The directory /usr/include/poppler/cpp does not exist. " \
+        "Poppler version information will not be available.")
+}
+
 exists(/usr/include/yaz) {
 DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
 LIBS    += -lyaz
+}
+
+greaterThan(QT_MAJOR_VERSION, 5) {
+exists(/usr/include/poppler/qt6) {
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER6
+INCLUDEPATH += /usr/include/poppler/qt6
+LIBS        += -lpoppler-qt6
+}
 }
 
 qtHaveModule(multimedia) {

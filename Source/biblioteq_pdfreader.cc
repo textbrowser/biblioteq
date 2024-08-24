@@ -29,6 +29,9 @@
 #include "biblioteq_pdfreader.h"
 
 #include <QFileDialog>
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#include <QMatrix4x4>
+#endif
 #include <QPainter>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
@@ -135,8 +138,11 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 
 biblioteq_pdfreader::~biblioteq_pdfreader()
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   delete m_document;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+  m_document ? m_document.reset() : static_cast<void> (0);
 #endif
 }
 
@@ -214,7 +220,12 @@ void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
 void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 {
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   delete m_document;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+  m_document ? m_document.reset() : static_cast<void> (0);
+#endif
   m_document = Poppler::Document::loadFromData(data);
 
   if(!m_document)
@@ -249,8 +260,13 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 
 void biblioteq_pdfreader::load(const QString &fileName)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   delete m_document;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+  m_document ? m_document.reset() : static_cast<void> (0);
+#endif
   m_document = Poppler::Document::load(fileName);
 
   if(!m_document)
@@ -284,7 +300,7 @@ void biblioteq_pdfreader::load(const QString &fileName)
 
 void biblioteq_pdfreader::prepareContents(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     return;
 
@@ -345,7 +361,7 @@ void biblioteq_pdfreader::slotContentsDoubleClicked(QListWidgetItem *item)
 
 void biblioteq_pdfreader::slotPrint(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     return;
 
@@ -409,7 +425,12 @@ void biblioteq_pdfreader::slotPrint(void)
 	  painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
 	  painter.setWindow(image.rect());
 	  painter.drawImage(QPoint(0, 0), image);
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
 	  delete page;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+	  page.reset();
+#endif
 
 	  if(i == end)
 	    break;
@@ -435,7 +456,7 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
   if(!printer)
     return;
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     return;
 
@@ -499,7 +520,12 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
       painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
       painter.setWindow(image.rect());
       painter.drawImage(QPoint(0, 0), image);
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
       delete page;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+      page.reset();
+#endif
 
       if(i == end)
 	break;
@@ -519,7 +545,7 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
 
 void biblioteq_pdfreader::slotPrintPreview(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     return;
 
@@ -546,7 +572,7 @@ void biblioteq_pdfreader::slotPrintPreview(void)
 
 void biblioteq_pdfreader::slotSaveAs(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     return;
 
@@ -575,7 +601,12 @@ void biblioteq_pdfreader::slotSaveAs(void)
 
       converter->setOutputFileName(dialog.selectedFiles().value(0));
       converter->convert();
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
       delete converter;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+      converter.reset();
+#endif
       QApplication::restoreOverrideCursor();
     }
 
@@ -585,7 +616,7 @@ void biblioteq_pdfreader::slotSaveAs(void)
 
 void biblioteq_pdfreader::slotSearchNext(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document || m_ui.find->text().isEmpty())
     {
       m_searchLocation = QRectF();
@@ -598,14 +629,14 @@ void biblioteq_pdfreader::slotSearchNext(void)
   if(!m_searchLocation.isNull())
     m_searchLocation.setX(m_searchLocation.right());
 
-  auto const page = m_ui.page->value() - 1;
+  auto page = m_ui.page->value() - 1;
 
   while(page < m_document->numPages())
     {
-      auto const bottom = m_searchLocation.bottom();
-      auto const left = m_searchLocation.left();
-      auto const right = m_searchLocation.right();
-      auto const top = m_searchLocation.top();
+      auto bottom = m_searchLocation.bottom();
+      auto left = m_searchLocation.left();
+      auto right = m_searchLocation.right();
+      auto top = m_searchLocation.top();
 
       if(m_document->page(page)->
 	 search(m_ui.find->text(),
@@ -644,7 +675,7 @@ void biblioteq_pdfreader::slotSearchNext(void)
 
 void biblioteq_pdfreader::slotSearchPrevious(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document || m_ui.find->text().isEmpty())
     {
       m_searchLocation = QRectF();
@@ -657,14 +688,14 @@ void biblioteq_pdfreader::slotSearchPrevious(void)
   if(!m_searchLocation.isNull())
     m_searchLocation.setX(m_searchLocation.right() - m_searchLocation.left());
 
-  auto const page = m_ui.page->value() - 1;
+  auto page = m_ui.page->value() - 1;
 
   while(page >= 0)
     {
-      auto const bottom = m_searchLocation.bottom();
-      auto const left = m_searchLocation.left();
-      auto const right = m_searchLocation.right();
-      auto const top = m_searchLocation.top();
+      auto bottom = m_searchLocation.bottom();
+      auto right = m_searchLocation.right();
+      auto top = m_searchLocation.top();
+      auto left = m_searchLocation.left();
 
       if(m_document->page(page)->
 	 search(m_ui.find->text(),
@@ -713,7 +744,7 @@ void biblioteq_pdfreader::slotShowContents(bool state)
 
 void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     {
       m_searchLocation = QRectF();
@@ -759,16 +790,16 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       ** Highlight the discovered text.
       */
 
-      QMatrix const matrix(m_ui.view_size->currentIndex() != 4 ?
-			   scaleFactor * physicalDpiX() / 72.0 :
-			   physicalDpiX() / 72.0,
-			   0,
-			   0,
-			   m_ui.view_size->currentIndex() != 4 ?
-			   scaleFactor * physicalDpiY() / 72.0 :
-			   physicalDpiY() / 72.0,
-			   0,
-			   0);
+      QTransform const matrix(m_ui.view_size->currentIndex() != 4 ?
+			      scaleFactor * physicalDpiX() / 72.0 :
+			      physicalDpiX() / 72.0,
+			      0,
+			      0,
+			      m_ui.view_size->currentIndex() != 4 ?
+			      scaleFactor * physicalDpiY() / 72.0 :
+			      physicalDpiY() / 72.0,
+			      0,
+			      0);
       auto highlightRect(matrix.mapRect(location).toRect());
 
       highlightRect.adjust(-2, -2, 2, 2);
@@ -784,7 +815,12 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
 
   m_ui.page_1->setFocus();
   m_ui.page_1->setPixmap(QPixmap::fromImage(image));
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   delete page;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+  page.reset();
+#endif
   page = m_document->page(value);
 
   if(!page)
@@ -800,7 +836,12 @@ void biblioteq_pdfreader::slotShowPage(int value, const QRectF &location)
       m_ui.page_2->setPixmap(QPixmap::fromImage(image));
     }
 
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   delete page;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+  page.reset();
+#endif
   m_ui.contents->setCurrentRow(value - 1);
   QApplication::restoreOverrideCursor();
 #else

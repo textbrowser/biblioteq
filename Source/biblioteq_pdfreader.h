@@ -30,8 +30,12 @@
 
 #include "ui_biblioteq_pdfreader.h"
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER5
 #include <poppler-qt5.h>
+#endif
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER6
+#include <poppler-qt6.h>
 #endif
 
 class QPrinter;
@@ -47,8 +51,11 @@ class biblioteq_pdfreader: public QMainWindow
   void load(const QString &fileName);
 
  private:
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   Poppler::Document *m_document;
+#endif
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
+  std::unique_ptr<Poppler::Document> m_document;
 #endif
   QRectF m_searchLocation;
   QString m_fileName;

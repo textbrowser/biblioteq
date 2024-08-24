@@ -10,16 +10,16 @@ QT              += gui network printsupport sql widgets
 QT              -= webkit
 
 exists(/usr/local/include/poppler) {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/local/include/poppler/qt5
-LIBS    +=      -lpoppler-qt5
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
+INCLUDEPATH += /usr/local/include/poppler/qt5
+LIBS        += -lpoppler-qt5
 }
 
 exists(/usr/local/include/poppler/cpp) {
-DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
+DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/local/include/poppler/cpp
-}
-else {
+} else {
 message("The directory /usr/local/include/poppler/cpp does not exist. " \
         "Poppler version information will not be available.")
 }

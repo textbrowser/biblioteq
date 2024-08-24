@@ -14,26 +14,19 @@ QT		-= webkit
 
 lessThan(QT_MAJOR_VERSION, 5) {
 exists(/usr/include/poppler/qt4) {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt4
-LIBS    +=      -lpoppler-qt4
+DEFINES                += BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES                += BIBLIOTEQ_LINKED_WITH_POPPLER4
+INCLUDEPATH            += /usr/include/poppler/qt4
+LIBS                   += -lpoppler-qt4
 QMAKE_CXXFLAGS_RELEASE += -Wno-deprecated-declarations
 }
-}
-else {
+} else {
 exists(/usr/include/poppler/qt5) {
-DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt5
-LIBS    +=      -lpoppler-qt5
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
+INCLUDEPATH += /usr/include/poppler/qt5
+LIBS        += -lpoppler-qt5
 }
-}
-
-exists(/usr/include/poppler/cpp) {
-DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
-INCLUDEPATH += /usr/include/poppler/cpp
-}
-else {
-message("The directory /usr/include/poppler/cpp does not exist. Poppler version information will not be available.")
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
