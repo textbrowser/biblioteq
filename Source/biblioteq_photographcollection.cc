@@ -2768,6 +2768,10 @@ void biblioteq_photographcollection::slotSelectImage(void)
     }
 }
 
+void biblioteq_photographcollection::slotShowMoveCollectionPanel(void)
+{
+}
+
 void biblioteq_photographcollection::slotUpdateItem(void)
 {
   if(!verifyItemFields())

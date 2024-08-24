@@ -103,6 +103,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotSceneSelectionChanged(void);
   void slotSelectAll(void);
   void slotSelectImage(void);
+  void slotShowMoveCollectionPanel(void);
   void slotUpdateItem(void);
   void slotViewContextMenu(const QPoint &pos);
   void slotViewNextPhotograph(void);
