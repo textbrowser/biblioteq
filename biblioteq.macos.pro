@@ -5,12 +5,12 @@ purge.commands = find . -name '*~*' -exec rm -f {} \;
 
 CONFIG		+= qt release warn_on
 
-exists(/opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib) {
-DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib\"'"
+exists(/opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib) {
+DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib\"'"
 }
 
-exists(/usr/local/Cellar/libpq/16.3/lib/libpq.dylib) {
-DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/16.3/lib/libpq.dylib\"'"
+exists(/usr/local/Cellar/libpq/16.4/lib/libpq.dylib) {
+DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/16.4/lib/libpq.dylib\"'"
 }
 
 DEFINES		+= QT_DEPRECATED_WARNINGS
@@ -68,12 +68,12 @@ doc2.files		 = Documentation/Contributed/*.docx \
                            Documentation/Contributed/*.pdf
 doc2.path		 = BiblioteQ.d/Documentation/Contributed
 
-exists(/opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib) {
-installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/Cellar/libpq/16.3/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+exists(/opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib) {
+installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
-exists(/usr/local/Cellar/libpq/16.3/lib/libpq.dylib) {
-installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/Cellar/libpq/16.3/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+exists(/usr/local/Cellar/libpq/16.4/lib/libpq.dylib) {
+installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/Cellar/libpq/16.4/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
 installnametool1.path    = .
