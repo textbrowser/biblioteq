@@ -1,13 +1,11 @@
 Qt 4 is not supported.
 Qt 5.5.1 LTS is supported for PowerPC only.
-Qt 5.15 LTS is supported until it is not.
-Qt 6.5 LTS is supported.
 
 For Android, MacOS, and Windows, the newest Qt LTS is required.
 
 > qmake -o Makefile biblioteq.platform.pro
 > gmake or make or mingw32-make
-> make install or mingw32-make install
+> gmake install or make install or mingw32-make install
 
 MacOS
 
@@ -15,5 +13,4 @@ A. Install the newest Qt LTS via Qt's online installer.
 B. https://formulae.brew.sh/formula/libpq
 C. > qmake -o Makefile biblioteq.macos.pro
 D. > make -j 5
-E. > make install
-F. > make dmg
+E. > make dmg
