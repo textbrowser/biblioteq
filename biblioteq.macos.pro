@@ -7,10 +7,14 @@ CONFIG		+= qt release warn_on
 
 exists(/opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib) {
 DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib\"'"
+} else {
+warning("/opt/homebrew/Cellar/libpq/16.4/lib/libpq.dylib does not exist.")
 }
 
 exists(/usr/local/Cellar/libpq/16.4/lib/libpq.dylib) {
 DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/16.4/lib/libpq.dylib\"'"
+} else {
+warning("/usr/local/Cellar/libpq/16.4/lib/libpq.dylib does not exist.")
 }
 
 DEFINES		+= QT_DEPRECATED_WARNINGS
