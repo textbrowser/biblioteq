@@ -26,6 +26,7 @@
 */
 
 #include "biblioteq.h"
+#include "biblioteq_misc_functions.h"
 #include "biblioteq_otheroptions.h"
 
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
@@ -350,10 +351,10 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	(i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR), widget);
       m_ui.availability_color->setItem
 	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
+      biblioteq_misc_functions::assignImage
+	(pushButton, QColor(QString(list2.at(i)).remove('&')));
       pushButton->setMinimumWidth(135);
       pushButton->setProperty("key", list3.at(i));
-      pushButton->setStyleSheet
-	(QString("background-color: %1").arg(QString(list2.at(i)).remove('&')));
       pushButton->setText(QString(list2.at(i)).remove('&'));
       widget->setLayout(layout);
     }
@@ -648,8 +649,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   if(!color.isValid())
     color = QColor(255, 248, 220);
 
-  m_ui.item_mandatory_field_color->setStyleSheet
-    (QString("background-color: %1").arg(color.name()));
+  biblioteq_misc_functions::assignImage
+    (m_ui.item_mandatory_field_color, color);
   m_ui.item_mandatory_field_color->setText(color.name());
   color = QColor
     (settings.value("otheroptions/item_query_result_color").
@@ -658,8 +659,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   if(!color.isValid())
     color = QColor(162, 205, 90);
 
-  m_ui.item_query_result_color->setStyleSheet
-    (QString("background-color: %1").arg(color.name()));
+  biblioteq_misc_functions::assignImage(m_ui.item_query_result_color, color);
   m_ui.item_query_result_color->setText(color.name());
   color = QColor
     (settings.value("mainwindow_canvas_background_color").
@@ -668,8 +668,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   if(!color.isValid())
     color = Qt::white;
 
-  m_ui.main_window_canvas_background_color->setStyleSheet
-    (QString("background-color: %1").arg(color.name()));
+  biblioteq_misc_functions::assignImage
+    (m_ui.main_window_canvas_background_color, color);
   m_ui.main_window_canvas_background_color->setText(color.name());
   m_ui.show_maintable_images->setChecked
     (settings.value("show_maintable_images", true).toBool());
@@ -847,8 +847,8 @@ void biblioteq_otheroptions::slotMainWindowShortcutChanged(void)
 void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
 (const QColor &color)
 {
-  m_ui.main_window_canvas_background_color->setStyleSheet
-    (QString("background-color: %1").arg(color.name()));
+  biblioteq_misc_functions::assignImage
+    (m_ui.main_window_canvas_background_color, color);
   m_ui.main_window_canvas_background_color->setText(color.name());
 }
 
@@ -1075,8 +1075,8 @@ void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
   if(dialog.exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
-      pushButton->setStyleSheet
-	(QString("background-color: %1").arg(dialog.selectedColor().name()));
+      biblioteq_misc_functions::assignImage
+	(pushButton, dialog.selectedColor());
       pushButton->setText(dialog.selectedColor().name());
     }
   else
@@ -1097,10 +1097,10 @@ void biblioteq_otheroptions::slotSelectColor(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      pushButton->setStyleSheet
-	(QString("background-color: %1").arg(dialog.selectedColor().name()));
-      pushButton->setText(dialog.selectedColor().name());
       QApplication::processEvents();
+      biblioteq_misc_functions::assignImage
+	(pushButton, dialog.selectedColor());
+      pushButton->setText(dialog.selectedColor().name());
     }
   else
     QApplication::processEvents();
@@ -1125,17 +1125,17 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
   if(dialog.exec() == QDialog::Accepted)
     {
       QApplication::processEvents();
-      m_ui.main_window_canvas_background_color->setStyleSheet
-	(QString("background-color: %1").arg(dialog.selectedColor().name()));
+      biblioteq_misc_functions::assignImage
+	(m_ui.main_window_canvas_background_color, dialog.selectedColor());
       m_ui.main_window_canvas_background_color->setText
 	(dialog.selectedColor().name());
     }
   else
     {
       QApplication::processEvents();
+      biblioteq_misc_functions::assignImage
+	(m_ui.main_window_canvas_background_color, color);
       emit mainWindowCanvasBackgroundColorChanged(QColor());
-      m_ui.main_window_canvas_background_color->setStyleSheet
-	(QString("background-color: %1").arg(color.name()));
       m_ui.main_window_canvas_background_color->setText(color.name());
     }
 }

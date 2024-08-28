@@ -2133,6 +2133,19 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
     }
 }
 
+void biblioteq_misc_functions::assignImage
+(QPushButton *button, const QColor &color)
+{
+  if(!button)
+    return;
+
+  QImage image(QSize(16, 16), QImage::Format_ARGB32);
+  QPainter painter(&image);
+
+  image.fill(color);
+  button->setIcon(QPixmap::fromImage(image));
+}
+
 void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
 {
   if(!child || !parent)

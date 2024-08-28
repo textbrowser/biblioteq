@@ -36,6 +36,7 @@
 
 class QComboBox;
 class QMainWindow;
+class QPushButton;
 class biblioteq;
 
 class biblioteq_misc_functions
@@ -203,6 +204,7 @@ class biblioteq_misc_functions
 			const int,
 			QString &,
 			const QString & = "");
+  static void assignImage(QPushButton *button, const QColor &color);
   static void center(QWidget *, QMainWindow *);
   static void createBookCopy(const QString &idArg,
 			     const int copyNumber,
