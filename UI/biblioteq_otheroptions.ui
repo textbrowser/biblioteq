@@ -717,6 +717,9 @@
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dear Last Name (%1), First Name (%2),&lt;/p&gt;&lt;p&gt;Your Membership Fees of %3 are currently due.&lt;/p&gt;&lt;p&gt;Thank you for your continued support.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="plainText">
                <string/>
               </property>
@@ -730,6 +733,9 @@
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
                 <widget class="QListWidget" name="members_visible_columns">
+                 <property name="tabKeyNavigation">
+                  <bool>true</bool>
+                 </property>
                  <property name="alternatingRowColors">
                   <bool>true</bool>
                  </property>
@@ -757,6 +763,9 @@
             </item>
             <item>
              <widget class="QPlainTextEdit" name="sqlite_reminders">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="placeholderText">
                <string>One entry per line please.</string>
               </property>

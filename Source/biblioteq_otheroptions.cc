@@ -1005,6 +1005,9 @@ void biblioteq_otheroptions::slotSave(void)
     ("otheroptions/item_query_result_color",
      m_ui.item_query_result_color->text().remove('&'));
   settings.setValue
+    ("otheroptions/sqlite_return_reminders",
+     m_ui.sqlite_reminders->toPlainText());
+  settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue
     ("show_maintable_progress_dialogs",
