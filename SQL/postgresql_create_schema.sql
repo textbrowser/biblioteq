@@ -623,21 +623,30 @@ GRANT DELETE, INSERT, SELECT ON item_request TO biblioteq_patron;
 GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO
+      biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO biblioteq_librarian;
@@ -645,27 +654,39 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON cd_songs TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_songs TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_copy_info TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_copy_info TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_files TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature_types TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO biblioteq_circulation;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO biblioteq_librarian;
@@ -673,30 +694,44 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_membership;
-GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_circulation;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO
+      biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO
+      biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO
+      biblioteq_librarian;
 GRANT DELETE, SELECT ON item_request TO biblioteq_administrator;
 GRANT DELETE, SELECT ON item_request TO biblioteq_circulation;
 GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
@@ -930,7 +965,8 @@ GRANT SELECT ON videogame_ratings TO biblioteq_circulation;
 GRANT SELECT ON videogame_ratings TO biblioteq_guest;
 GRANT SELECT ON videogame_ratings TO biblioteq_membership;
 GRANT SELECT ON videogame_ratings TO biblioteq_patron;
-GRANT SELECT, UPDATE, USAGE ON book_copy_info_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON book_copy_info_myoid_seq TO
+      biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_librarian;
@@ -938,78 +974,119 @@ GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON book_sequence TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_sequence TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO
+      biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO
+      biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO biblioteq_circulation;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_files_myoid_seq TO
+      biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO
+      biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO
+      biblioteq_circulation;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_circulation;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_patron;
-GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO
+      biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO
+      biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO
+      biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO
+      biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON magazine_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON magazine_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO biblioteq_circulation;
-GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO
+      biblioteq_circulation;
+GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO
+      biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO biblioteq_administrator;
-GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO
+      biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO
+      biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON videogame_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON videogame_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, USAGE ON item_request_myoid_seq TO biblioteq_administrator;
 GRANT biblioteq_circulation TO biblioteq_administrator WITH ADMIN OPTION;
-GRANT biblioteq_circulation TO biblioteq_circulation_librarian WITH ADMIN OPTION;
-GRANT biblioteq_circulation TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
-GRANT biblioteq_circulation TO biblioteq_circulation_membership WITH ADMIN OPTION;
+GRANT biblioteq_circulation TO biblioteq_circulation_librarian
+      WITH ADMIN OPTION;
+GRANT biblioteq_circulation TO biblioteq_circulation_librarian_membership
+      WITH ADMIN OPTION;
+GRANT biblioteq_circulation TO biblioteq_circulation_membership
+      WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_circulation_librarian WITH ADMIN OPTION;
-GRANT biblioteq_librarian TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_circulation_librarian_membership
+      WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_membership TO biblioteq_administrator WITH ADMIN OPTION;
-GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
-GRANT biblioteq_membership TO biblioteq_circulation_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership
+      WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_circulation_membership
+      WITH ADMIN OPTION;
 GRANT biblioteq_membership TO biblioteq_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_patron TO biblioteq_administrator WITH ADMIN OPTION;
 REVOKE ALL ON admin FROM biblioteq_guest;
 REVOKE ALL ON admin FROM biblioteq_patron;
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
-CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE biblioteq_guest;
+CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE
+       biblioteq_guest;
 GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
 INSERT INTO admin (username, roles) VALUES ('xbook_admin', 'administrator');
 ALTER TABLE item_borrower ENABLE ROW LEVEL SECURITY;
 ALTER TABLE item_request ENABLE ROW LEVEL SECURITY;
 ALTER TABLE member_history ENABLE ROW LEVEL SECURITY;
 ALTER TABLE member_history_dnt ENABLE ROW LEVEL SECURITY;
-CREATE POLICY item_borrower_biblioteq_patron_policy ON item_borrower TO biblioteq_patron USING (memberid = session_user);
-CREATE POLICY item_borrower_policy ON item_borrower TO biblioteq_administrator, biblioteq_circulation USING (true);
-CREATE POLICY item_request_biblioteq_patron_policy ON item_request TO biblioteq_patron USING (memberid = session_user);
-CREATE POLICY item_request_policy ON item_request TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian USING (true);
-CREATE POLICY member_history_biblioteq_patron_policy ON member_history TO biblioteq_patron USING (memberid = session_user);
-CREATE POLICY member_history_policy ON member_history TO biblioteq_administrator, biblioteq_circulation, biblioteq_librarian, biblioteq_membership USING (true);
-CREATE POLICY member_history_dnt_biblioteq_patron_policy ON member_history_dnt TO biblioteq_patron USING (memberid = session_user);
-CREATE POLICY member_history_dnt_policy ON member_history_dnt TO biblioteq_administrator, biblioteq_circulation, biblioteq_membership USING (true);
+CREATE POLICY item_borrower_biblioteq_patron_policy ON item_borrower TO
+       biblioteq_patron USING (memberid = session_user);
+CREATE POLICY item_borrower_policy ON item_borrower TO
+       biblioteq_administrator, biblioteq_circulation USING (true);
+CREATE POLICY item_request_biblioteq_patron_policy ON item_request TO
+       biblioteq_patron USING (memberid = session_user);
+CREATE POLICY item_request_policy ON item_request TO
+       biblioteq_administrator, biblioteq_circulation, biblioteq_librarian
+       USING (true);
+CREATE POLICY member_history_biblioteq_patron_policy ON member_history TO
+       biblioteq_patron USING (memberid = session_user);
+CREATE POLICY member_history_policy ON member_history TO
+       biblioteq_administrator,
+       biblioteq_circulation,
+       biblioteq_librarian,
+       biblioteq_membership USING (true);
+CREATE POLICY member_history_dnt_biblioteq_patron_policy ON
+       member_history_dnt TO biblioteq_patron USING (memberid = session_user);
+CREATE POLICY member_history_dnt_policy ON member_history_dnt TO
+       biblioteq_administrator,
+       biblioteq_circulation,
+       biblioteq_membership USING (true);
 
 /* PostgreSQL 14 or newer is required. */
 
