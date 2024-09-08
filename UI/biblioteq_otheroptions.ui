@@ -740,6 +740,30 @@
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="page_sqlite">
+           <attribute name="title">
+            <string>SQLite</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_16">
+            <item>
+             <widget class="QLabel" name="label_17">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only. For example, ISBN := 1234567890, member_identifier. The member_identifier value is optional. The string is stored in the local INI file. &lt;span style=&quot; font-weight:600;&quot;&gt;Please be mindful of the string's length.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="sqlite_reminders">
+              <property name="placeholderText">
+               <string>One entry per line please.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="page_shortcuts">
            <attribute name="title">
             <string>Shortcuts</string>
@@ -1021,6 +1045,7 @@
   <tabstop>special_value_colors</tabstop>
   <tabstop>generated_letter</tabstop>
   <tabstop>members_visible_columns</tabstop>
+  <tabstop>sqlite_reminders</tabstop>
   <tabstop>shortcuts</tabstop>
   <tabstop>books_accession_number</tabstop>
   <tabstop>save</tabstop>
