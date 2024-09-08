@@ -677,6 +677,9 @@ void biblioteq_otheroptions::prepareSettings(void)
     (settings.value("show_maintable_progress_dialogs", true).toBool());
   m_ui.show_maintable_tooltips->setChecked
     (settings.value("show_maintable_tooltips", false).toBool());
+  m_ui.sqlite_reminders->setPlainText
+    (settings.value("otheroptions/sqlite_return_reminders").
+     toString().trimmed());
   QApplication::restoreOverrideCursor();
 }
 
