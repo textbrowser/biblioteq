@@ -55,10 +55,10 @@ class biblioteq_misc_functions
   static QMap<QString, qint64> getItemsReservedCounts(const QSqlDatabase &,
 						      const QString &,
 						      QString &);
-  static QString accessionNumberAsSpecialText(const qint64 integer);
-  static QString categories(QHash<QString, QString> &hash,
-			    const QSqlDatabase &db,
-			    const QString &id);
+  static QString accessionNumberAsSpecialText(const qint64);
+  static QString categories(QHash<QString, QString> &,
+			    const QSqlDatabase &,
+			    const QString &);
   static QString getAbstractInfo(const QString &,
 				 const QString &,
 				 const QSqlDatabase &);
@@ -73,11 +73,11 @@ class biblioteq_misc_functions
   static QString getMemberName(const QSqlDatabase &,
 			       const QString &,
 			       QString &);
-  static QString getNextCopy(QString &field,
-			     bool &ok,
-			     const QSqlDatabase &db,
-			     const QString &id,
-			     const QString &type);
+  static QString getNextCopy(QString &,
+			     bool &,
+			     const QSqlDatabase &,
+			     const QString &,
+			     const QString &);
   static QString getOID(const QString &,
 			const QString &,
 			const QSqlDatabase &,
@@ -86,11 +86,11 @@ class biblioteq_misc_functions
   static QString getTotalReserved(const QSqlDatabase &,
 				  const QString &,
 				  const QString &);
-  static QString imageFormatGuess(const QByteArray &bytes);
-  static QString isbn10to13(const QString &text);
-  static QString isbn13to10(const QString &text);
-  static QString linearizeString(const QString &text);
-  static QString queryString(QSqlQuery *query);
+  static QString imageFormatGuess(const QByteArray &);
+  static QString isbn10to13(const QString &);
+  static QString isbn13to10(const QString &);
+  static QString linearizeString(const QString &);
+  static QString queryString(QSqlQuery *);
   static QString sqliteReturnReminders(const QSqlDatabase &);
   static QStringList getBookBindingTypes(const QSqlDatabase &, QString &);
   static QStringList getBookConditions(const QSqlDatabase &, QString &);
@@ -100,8 +100,7 @@ class biblioteq_misc_functions
   static QStringList getDVDAspectRatios(const QSqlDatabase &, QString &);
   static QStringList getDVDRatings(const QSqlDatabase &, QString &);
   static QStringList getDVDRegions(const QSqlDatabase &, QString &);
-  static QStringList getGreyLiteratureTypes(const QSqlDatabase &db,
-					    QString &errorstr);
+  static QStringList getGreyLiteratureTypes(const QSqlDatabase &, QString &);
   static QStringList getLanguages(const QSqlDatabase &, QString &);
   static QStringList getLocations(const QSqlDatabase &,
 				  const QString &,
@@ -156,23 +155,23 @@ class biblioteq_misc_functions
 			       QString &);
   static bool isGnome(void);
   static bool isItemAvailable
-    (QString &error,
-     const QSqlDatabase &db,
-     const QString &id,
-     const QString &copyId,
-     const QString &t,
-     const bool emptyCopyIdAllowed = false);
+    (QString &,
+     const QSqlDatabase &,
+     const QString &,
+     const QString &,
+     const QString &,
+     const bool = false);
   static bool isRequested(const QSqlDatabase &,
 			  const QString &,
 			  const QString &,
 			  QString &);
   static bool userExists(const QString &, const QSqlDatabase &, QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
-  static int getCopyNumber(const QSqlDatabase &db,
-			   const QString &copyId,
-			   const QString &itemOid,
-			   const QString &itemTypeArg,
-			   QString &errorstr);
+  static int getCopyNumber(const QSqlDatabase &,
+			   const QString &,
+			   const QString &,
+			   const QString &,
+			   QString &);
   static int getMaxCopyNumber(const QSqlDatabase &,
 			      const QString &,
 			      const QString &,
@@ -181,8 +180,7 @@ class biblioteq_misc_functions
   static int maximumReserved(const QSqlDatabase &,
 			     const QString &,
 			     const QString &);
-  static int quantity
-    (const QSqlDatabase &db, const QString &oid, const QString &t);
+  static int quantity(const QSqlDatabase &, const QString &, const QString &);
   static int sqliteQuerySize(const QString &,
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 			     const QMap<QString, QVariant> &,
@@ -205,12 +203,12 @@ class biblioteq_misc_functions
 			const int,
 			QString &,
 			const QString & = "");
-  static void assignImage(QPushButton *button, const QColor &color);
+  static void assignImage(QPushButton *, const QColor &);
   static void center(QWidget *, QMainWindow *);
-  static void createBookCopy(const QString &idArg,
-			     const int copyNumber,
-			     const QSqlDatabase &db,
-			     QString &errorstr);
+  static void createBookCopy(const QString &,
+			     const int,
+			     const QSqlDatabase &,
+			     QString &);
   static void createInitialCopies(QString const &,
 				  const int,
 				  const QSqlDatabase &,
@@ -243,9 +241,10 @@ class biblioteq_misc_functions
 			   const int,
 			   const QString &,
 			   QString &);
+  static void saveSqliteReturnReminders(const QSqlDatabase &, const QString &);
   static void setBookRead(const QSqlDatabase &, const bool, const quint64);
   static void setRole(const QSqlDatabase &, QString &, const QString &);
-  static void sortCombinationBox(QComboBox *comboBox);
+  static void sortCombinationBox(QComboBox *);
   static void updateColumn(QTableWidget *,
 			   const int,
 			   const int,

@@ -867,6 +867,8 @@ void biblioteq_otheroptions::slotResetCustomQueryColors(void)
 void biblioteq_otheroptions::slotSave(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  biblioteq_misc_functions::saveSqliteReturnReminders
+    (m_qmain->getDB(), m_ui.sqlite_reminders->toPlainText());
 
   QSettings settings;
   QString string("");

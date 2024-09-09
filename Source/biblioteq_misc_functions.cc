@@ -784,13 +784,34 @@ QString biblioteq_misc_functions::sqliteReturnReminders(const QSqlDatabase &db)
        ")");
   }
 
+  QString string("");
+
   {
     QSqlQuery query(db);
 
     query.setForwardOnly(true);
+
+    if(query.exec("SELECT item_identifier, "
+		  "item_type, "
+		  "member_identifier "
+		  "FROM return_reminders "
+		  "ORDER BY 2, 1"))
+      while(query.next())
+	{
+	  auto const v1(query.value(0).toString().trimmed());
+	  auto const v2(query.value(1).toString().trimmed());
+	  auto const v3(query.value(2).toString().trimmed());
+
+	  string.append(v2.toUpper());
+	  string.append(" := ");
+	  string.append(v1);
+	  string.append(" ");
+	  string.append(v3);
+	  string.append("\n");
+	}
   }
 
-  return "";
+  return string.trimmed();
 }
 
 QStringList biblioteq_misc_functions::getBookBindingTypes
@@ -2727,6 +2748,33 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
+}
+
+void biblioteq_misc_functions::saveSqliteReturnReminders
+(const QSqlDatabase &db, const QString &string)
+{
+  if(db.driverName() != "QSQLITE" || db.isOpen() == false)
+    return;
+
+  QSqlQuery query(db);
+
+  query.exec("DELETE FROM return_reminders");
+
+  foreach(auto const &str, string.split('\n'))
+    {
+      // ISBN := 1234567890 member_identifier
+      // 0    1  2          3
+      auto const list(str.simplified().trimmed().split(' '));
+
+      query.prepare
+	("INSERT INTO return_reminders "
+	 "(item_identifier, item_type, member_identifier) "
+	 "VALUES (?, ?, ?)");
+      query.addBindValue(list.value(2));
+      query.addBindValue(list.value(0));
+      query.addBindValue(list.value(3));
+      query.exec();
+    }
 }
 
 void biblioteq_misc_functions::setBookRead(const QSqlDatabase &db,

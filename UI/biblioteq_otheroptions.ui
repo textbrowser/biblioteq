@@ -754,7 +754,7 @@
             <item>
              <widget class="QLabel" name="label_17">
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only. For example, ISBN := 1234567890, member_identifier. The member_identifier value is optional.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only. For example, &amp;quot;ISBN := 1234567890 member_identifier&amp;quot; (ISBN := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
