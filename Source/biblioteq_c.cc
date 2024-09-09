@@ -3034,6 +3034,7 @@ void biblioteq::slotConnectDB(void)
       prepareStatusBarIcons();
     }
 
+  m_otherOptions->sqliteConnected();
   ui.actionDatabaseSearch->setEnabled(true);
   ui.actionDisconnect->setEnabled(true);
   ui.actionQuery_History->setEnabled(true);

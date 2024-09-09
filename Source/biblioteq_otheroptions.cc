@@ -25,8 +25,6 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "biblioteq.h"
-#include "biblioteq_misc_functions.h"
 #include "biblioteq_otheroptions.h"
 
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()

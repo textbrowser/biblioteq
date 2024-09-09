@@ -34,6 +34,8 @@
 #include <QStyledItemDelegate>
 #include <QTimer>
 
+#include "biblioteq.h"
+#include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_otheroptions.h"
 
 class biblioteq_otheroptions_shortcut_lineedit: public QLineEdit
@@ -270,8 +272,6 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   void changed(void);
 };
 
-class biblioteq;
-
 class biblioteq_otheroptions: public QMainWindow
 {
   Q_OBJECT
@@ -337,6 +337,14 @@ class biblioteq_otheroptions: public QMainWindow
   int iconsViewColumnCount(void) const;
   void prepareMembersVisibleColumns(QTableWidget *table);
   void prepareSettings(void);
+
+  void sqliteConnected(void)
+  {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    m_ui.sqlite_reminders->setPlainText
+      (biblioteq_misc_functions::sqliteReturnReminders(m_qmain->getDB()));
+    QApplication::restoreOverrideCursor();
+  }
 
  private:
   enum class ItemsColumns
