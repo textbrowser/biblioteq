@@ -361,7 +361,7 @@ class biblioteq_otheroptions: public QMainWindow
 
   QMap<QPair<QString, QString>, QColor> m_specialValueColors;
   Ui_otheroptions m_ui;
-  biblioteq *qmain;
+  biblioteq *m_qmain;
   biblioteq_otheroptions_item_delegate *m_keywordsItemDelegate;
   biblioteq_otheroptions_item_delegate *m_shortcutsItemDelegate;
   biblioteq_otheroptions_item_delegate *m_specialValueColorsItemDelegate;

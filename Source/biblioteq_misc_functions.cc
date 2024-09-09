@@ -766,6 +766,33 @@ QString biblioteq_misc_functions::queryString(QSqlQuery *query)
   return str;
 }
 
+QString biblioteq_misc_functions::sqliteReturnReminders(const QSqlDatabase &db)
+{
+  if(db.driverName() != "QSQLITE" || db.isOpen() == false)
+    return "";
+
+  {
+    QSqlQuery query(db);
+
+    query.exec
+      ("CREATE TABLE IF NOT EXISTS return_reminders "
+       "("
+       "item_identifier TEXT NOT NULL, "
+       "item_type TEXT NOT NULL, "
+       "member_identifier TEXT, "
+       "PRIMARY KEY(item_identifier, item_type) "
+       ")");
+  }
+
+  {
+    QSqlQuery query(db);
+
+    query.setForwardOnly(true);
+  }
+
+  return "";
+}
+
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {

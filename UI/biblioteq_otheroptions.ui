@@ -754,7 +754,7 @@
             <item>
              <widget class="QLabel" name="label_17">
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only. For example, ISBN := 1234567890, member_identifier. The member_identifier value is optional. The string is stored in the local INI file. &lt;span style=&quot; font-weight:600;&quot;&gt;Please be mindful of the string's length.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only. For example, ISBN := 1234567890, member_identifier. The member_identifier value is optional.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>

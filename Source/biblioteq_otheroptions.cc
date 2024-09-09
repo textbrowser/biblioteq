@@ -31,9 +31,13 @@
 
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 {
+  m_qmain = parent;
   m_ui.setupUi(this);
   biblioteq_misc_functions::sortCombinationBox(m_ui.books_accession_number);
-  qmain = parent;
+  connect(m_qmain,
+	  SIGNAL(fontChanged(const QFont &)),
+	  this,
+	  SLOT(setGlobalFonts(const QFont &)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -58,13 +62,6 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSave(void)));
-
-  if(qmain)
-    connect(qmain,
-	    SIGNAL(fontChanged(const QFont &)),
-	    this,
-	    SLOT(setGlobalFonts(const QFont &)));
-
   m_keywordsItemDelegate = new biblioteq_otheroptions_item_delegate
     (biblioteq_otheroptions_item_delegate::ParentTypes::Keywords, this);
   m_shortcutsItemDelegate = new biblioteq_otheroptions_item_delegate
@@ -678,8 +675,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.show_maintable_tooltips->setChecked
     (settings.value("show_maintable_tooltips", false).toBool());
   m_ui.sqlite_reminders->setPlainText
-    (settings.value("otheroptions/sqlite_return_reminders").
-     toString().trimmed());
+    (biblioteq_misc_functions::sqliteReturnReminders(m_qmain->getDB()));
   QApplication::restoreOverrideCursor();
 }
 
@@ -687,20 +683,13 @@ void biblioteq_otheroptions::prepareShortcuts(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.shortcuts->setRowCount(0);
-
-  if(!qmain)
-    {
-      QApplication::restoreOverrideCursor();
-      return;
-    }
-
-  m_ui.shortcuts->setRowCount(qmain->shortcuts().size());
+  m_ui.shortcuts->setRowCount(m_qmain->shortcuts().size());
   m_ui.shortcuts->setSortingEnabled(false);
 
   QSettings settings;
   QString shortcut
     (settings.value("custom_query_favorite_shortcut").toString().trimmed());
-  auto map(qmain->shortcuts());
+  auto map(m_qmain->shortcuts());
 
   map[tr("Custom Query Favorite")] = shortcut;
 
@@ -1007,9 +996,6 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/item_query_result_color",
      m_ui.item_query_result_color->text().remove('&'));
-  settings.setValue
-    ("otheroptions/sqlite_return_reminders",
-     m_ui.sqlite_reminders->toPlainText());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue
