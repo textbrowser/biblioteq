@@ -5189,6 +5189,7 @@ void biblioteq::slotRequest(void)
 	      else
 		{
 		  QString errorstr("");
+		  QString member("");
 		  auto const identifier
 		    (biblioteq_misc_functions::
 		     getColumnString(ui.table,
@@ -5201,11 +5202,21 @@ void biblioteq::slotRequest(void)
 							   oid,
 							   itemType,
 							   errorstr) ||
-		     biblioteq_misc_functions::sqliteReturnReminder(m_db,
+		     biblioteq_misc_functions::sqliteReturnReminder(member,
+								    m_db,
 								    identifier,
 								    itemType))
-		    str += tr("The item %1 is requested by another patron. "
-			      "Please set it aside.\n").arg(title);
+		    {
+		      if(member.trimmed().isEmpty())
+			str += tr("The item %1 is requested by "
+				  "another patron. "
+				  "Please set it aside.\n").arg(title);
+		      else
+			str += tr("The item %1 is requested by "
+				  "another patron (%2). "
+				  "Please set it aside.\n").
+			  arg(title).arg(member.trimmed());
+		    }
 		}
 
 	      goto progress_label;

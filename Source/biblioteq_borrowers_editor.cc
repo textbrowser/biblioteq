@@ -46,6 +46,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
   m_bd.setupUi(this);
   m_bitem = bitemArg;
   m_ioid = ioidArg;
+  m_identifier = uniqueidArg;
   m_itemType = itemTypeArg;
   m_quantity = quantityArg;
   m_state = stateArg;
@@ -520,6 +521,7 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 
       QString availability = "";
       QString errorstr = "";
+      QString member = "";
       QString reserved = "";
 
       availability = biblioteq_misc_functions::getAvailability
@@ -583,13 +585,25 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
       if(biblioteq_misc_functions::isRequested(qmain->getDB(),
 					       m_ioid,
 					       m_itemType,
-					       errorstr))
+					       errorstr) ||
+	 biblioteq_misc_functions::sqliteReturnReminder(member,
+							qmain->getDB(),
+							m_identifier,
+							m_itemType))
 	{
-	  QMessageBox::information
-	    (this,
-	     tr("BiblioteQ: Information"),
-	     tr("Please set the item aside as another patron has requested "
-		"it."));
+	  if(member.trimmed().isEmpty())
+	    QMessageBox::information
+	      (this,
+	       tr("BiblioteQ: Information"),
+	       tr("Please set the item aside as another patron has requested "
+		  "it."));
+	  else
+	    QMessageBox::information
+	      (this,
+	       tr("BiblioteQ: Information"),
+	       tr("Please set the item aside as another patron (%1) "
+		  "has requested it.").arg(member));
+
 	  QApplication::processEvents();
 	}
     }

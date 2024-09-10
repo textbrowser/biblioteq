@@ -165,7 +165,8 @@ class biblioteq_misc_functions
 			  const QString &,
 			  const QString &,
 			  QString &);
-  static bool sqliteReturnReminder(const QSqlDatabase &,
+  static bool sqliteReturnReminder(QString &,
+				   const QSqlDatabase &,
 				   const QString &,
 				   const QString &);
   static bool userExists(const QString &, const QSqlDatabase &, QString &);

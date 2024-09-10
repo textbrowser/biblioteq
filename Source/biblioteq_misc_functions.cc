@@ -1718,35 +1718,31 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
 }
 
 bool biblioteq_misc_functions::sqliteReturnReminder
-(const QSqlDatabase &db,
+(QString &memberIdentifier,
+ const QSqlDatabase &db,
  const QString &identifier,
  const QString &t)
 {
+  memberIdentifier.clear();
+
   if(db.driverName() != "QSQLITE" || db.isOpen() == false)
     return false;
 
   QSqlQuery query(db);
-  auto const type(QString(t).replace('_', ' ').toLower().trimmed());
+  auto const type(QString(t).replace('_', ' ').toUpper().trimmed());
 
   query.prepare
-    ("SELECT EXISTS(SELECT 1 FROM return_reminders "
+    ("SELECT member_identifier FROM return_reminders "
      "WHERE REPLACE(UPPER(item_identifier), '-', '') = ? AND "
-     "UPPER(item_type) = ?)");
+     "UPPER(item_type) = ?");
   query.addBindValue(QString(identifier).remove('-').toUpper().trimmed());
-
-  if(type == "book")
-    query.addBindValue("ISBN");
-  else if(type == "cd")
-    query.addBindValue("CN");
-  else if(type == "grey literature")
-    query.addBindValue("ID");
-  else if(type == "journal" || type == "magazine")
-    query.addBindValue("ISSN");
-  else
-    query.addBindValue("UPC");
+  query.addBindValue(type);
 
   if(query.exec() && query.next())
-    return query.value(0).toBool();
+    {
+      memberIdentifier = query.value(0).toString().trimmed();
+      return memberIdentifier.size() > 0;
+    }
   else
     return false;
 }
@@ -2796,7 +2792,7 @@ void biblioteq_misc_functions::saveSqliteReturnReminders
 
   foreach(auto const &str, string.split('\n'))
     {
-      // ISBN := 1234567890 member_identifier
+      // BOOK := 1234567890 member_identifier
       // 0    1  2          3
       auto const list(str.simplified().trimmed().split(' '));
 

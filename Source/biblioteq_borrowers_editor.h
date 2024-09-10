@@ -54,6 +54,7 @@ class biblioteq_borrowers_editor: public QDialog
 
  private:
   QPointer<biblioteq> qmain;
+  QString m_identifier;
   QString m_ioid;
   QString m_itemType;
   QVector<QString> m_columnHeaderIndexes;
