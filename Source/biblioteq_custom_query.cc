@@ -379,6 +379,7 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 	 << "monetary_units"
 	 << "photograph"
 	 << "photograph_collection"
+	 << "return_reminders"
 	 << "videogame"
 	 << "videogame_copy_info"
 	 << "videogame_platforms"
