@@ -5188,14 +5188,22 @@ void biblioteq::slotRequest(void)
 		}
 	      else
 		{
-		  numcompleted += 1;
-
 		  QString errorstr("");
+		  auto const identifier
+		    (biblioteq_misc_functions::
+		     getColumnString(ui.table,
+				     i,
+				     ui.table->columnNumber("ID Number")));
+
+		  numcompleted += 1;
 
 		  if(biblioteq_misc_functions::isRequested(m_db,
 							   oid,
 							   itemType,
-							   errorstr))
+							   errorstr) ||
+		     biblioteq_misc_functions::sqliteReturnReminder(m_db,
+								    identifier,
+								    itemType))
 		    str += tr("The item %1 is requested by another patron. "
 			      "Please set it aside.\n").arg(title);
 		}
@@ -5261,6 +5269,8 @@ void biblioteq::slotRequest(void)
 
   if(numcompleted > 0)
     {
+      str = str.trimmed();
+
       if(str.isEmpty() == false)
 	{
 	  QDialog dialog(this);

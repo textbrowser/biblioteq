@@ -1717,6 +1717,40 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
   return isRequested;
 }
 
+bool biblioteq_misc_functions::sqliteReturnReminder
+(const QSqlDatabase &db,
+ const QString &identifier,
+ const QString &t)
+{
+  if(db.driverName() != "QSQLITE" || db.isOpen() == false)
+    return false;
+
+  QSqlQuery query(db);
+  auto const type(QString(t).replace('_', ' ').toLower().trimmed());
+
+  query.prepare
+    ("SELECT EXISTS(SELECT 1 FROM return_reminders "
+     "WHERE REPLACE(UPPER(item_identifier), '-', '') = ? AND "
+     "UPPER(item_type) = ?)");
+  query.addBindValue(QString(identifier).remove('-').toUpper().trimmed());
+
+  if(type == "book")
+    query.addBindValue("ISBN");
+  else if(type == "cd")
+    query.addBindValue("CN");
+  else if(type == "grey literature")
+    query.addBindValue("ID");
+  else if(type == "journal" || type == "magazine")
+    query.addBindValue("ISSN");
+  else
+    query.addBindValue("UPC");
+
+  if(query.exec() && query.next())
+    return query.value(0).toBool();
+  else
+    return false;
+}
+
 bool biblioteq_misc_functions::userExists(const QString &userid,
 					  const QSqlDatabase &db,
 					  QString &errorstr)

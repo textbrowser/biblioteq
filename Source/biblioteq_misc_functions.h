@@ -165,6 +165,9 @@ class biblioteq_misc_functions
 			  const QString &,
 			  const QString &,
 			  QString &);
+  static bool sqliteReturnReminder(const QSqlDatabase &,
+				   const QString &,
+				   const QString &);
   static bool userExists(const QString &, const QSqlDatabase &, QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
   static int getCopyNumber(const QSqlDatabase &,
