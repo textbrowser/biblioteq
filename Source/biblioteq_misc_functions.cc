@@ -715,7 +715,7 @@ QString biblioteq_misc_functions::isbn10to13(const QString &text)
 QString biblioteq_misc_functions::isbn13to10(const QString &text)
 {
   if(!text.trimmed().startsWith("978"))
-    return "";
+    return text;
   else if(QString(text).remove('-').trimmed().length() != 13)
     return text;
 
