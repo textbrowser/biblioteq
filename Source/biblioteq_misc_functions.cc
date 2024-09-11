@@ -1720,7 +1720,7 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
 bool biblioteq_misc_functions::sqliteReturnReminder
 (QString &memberIdentifier,
  const QSqlDatabase &db,
- const QString &identifier,
+ const QString &id,
  const QString &t)
 {
   memberIdentifier.clear();
@@ -1729,19 +1729,34 @@ bool biblioteq_misc_functions::sqliteReturnReminder
     return false;
 
   QSqlQuery query(db);
+  auto const identifier(QString(id).remove('-').toUpper().trimmed());
   auto const type(QString(t).replace('_', ' ').toUpper().trimmed());
 
-  query.prepare
-    ("SELECT member_identifier FROM return_reminders "
-     "WHERE REPLACE(UPPER(item_identifier), '-', '') = ? AND "
-     "UPPER(item_type) = ?");
-  query.addBindValue(QString(identifier).remove('-').toUpper().trimmed());
+  if(type == "BOOK")
+    {
+      query.prepare
+	("SELECT member_identifier FROM return_reminders "
+	 "WHERE (REPLACE(UPPER(item_identifier), '-', '') = ? OR "
+	 "REPLACE(UPPER(item_identifier), '-', '') = ?) AND "
+	 "UPPER(item_type) = ?");
+      query.addBindValue(isbn10to13(identifier));
+      query.addBindValue(isbn13to10(identifier));
+    }
+  else
+    {
+      query.prepare
+	("SELECT member_identifier FROM return_reminders "
+	 "WHERE REPLACE(UPPER(item_identifier), '-', '') = ? AND "
+	 "UPPER(item_type) = ?");
+      query.addBindValue(identifier);
+    }
+
   query.addBindValue(type);
 
   if(query.exec() && query.next())
     {
       memberIdentifier = query.value(0).toString().trimmed();
-      return memberIdentifier.size() > 0;
+      return true;
     }
   else
     return false;
