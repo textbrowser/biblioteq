@@ -6461,9 +6461,9 @@ void biblioteq::slotShowHistory(void)
 
   if(!m_roles.isEmpty())
     memberid = biblioteq_misc_functions::getColumnString
-      (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+      (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID")).trimmed();
   else
-    memberid = dbUserName();
+    memberid = dbUserName().trimmed();
 
   if(!m_roles.isEmpty())
     for(i = 0; i < list.size(); i++)
@@ -6829,6 +6829,10 @@ void biblioteq::slotShowHistory(void)
       resized = true;
     }
 
+  m_history_diag->setWindowTitle
+    (memberid.isEmpty() ?
+     tr("BiblioteQ: Member's Reservation History") :
+     tr("BiblioteQ: Member's Reservation History (%1)").arg(memberid));
   m_history_diag->showNormal();
   m_history_diag->activateWindow();
   m_history_diag->raise();
