@@ -519,7 +519,6 @@ void biblioteq_batch_activities::returnItems(void)
   QString magazineFrontCover("'' AS front_cover ");
   QString searchstr("");
   QString videoGameFrontCover("'' AS front_cover ");
-  auto query = new QSqlQuery(m_qmain->getDB());
 
   if(m_qmain->showMainTableImages())
     {
@@ -547,6 +546,16 @@ void biblioteq_batch_activities::returnItems(void)
 	  values << item->text();
 	}
     }
+
+  if(values.isEmpty())
+    {
+      QApplication::restoreOverrideCursor();
+      (void) m_qmain->populateTable
+	(biblioteq::POPULATE_ALL, "All Reserved", "");
+      return;
+    }
+
+  auto query = new QSqlQuery(m_qmain->getDB());
 
   in = in.mid(0, in.length() - 2); // Remove the last two characters.
   in.append(")");
