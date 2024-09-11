@@ -46,7 +46,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
   m_bd.setupUi(this);
   m_bitem = bitemArg;
   m_ioid = ioidArg;
-  m_identifier = uniqueidArg;
+  m_identifier = QString(uniqueidArg).remove('-').trimmed();
   m_itemType = itemTypeArg;
   m_quantity = quantityArg;
   m_state = stateArg;
@@ -88,9 +88,9 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
   setGlobalFonts(font);
   setWindowModality(Qt::ApplicationModal);
 
-  if(!uniqueidArg.isEmpty())
+  if(!m_identifier.isEmpty())
     setWindowTitle
-      (tr("BiblioteQ: Item Reservation Status (") + uniqueidArg + tr(")"));
+      (tr("BiblioteQ: Item Reservation Status (") + m_identifier + tr(")"));
   else
     setWindowTitle(tr("BiblioteQ: Item Reservation Status"));
 }

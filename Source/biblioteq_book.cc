@@ -5485,7 +5485,7 @@ void biblioteq_book::slotShowUsers(void)
      static_cast<biblioteq_item *> (this),
      id.quantity->value(),
      m_oid,
-     id.id->text().remove('-').trimmed(),
+     id.id->text().trimmed().isEmpty() ? id.isbn13->text() : id.id->text(),
      font(),
      "Book",
      state);
