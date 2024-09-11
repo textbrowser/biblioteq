@@ -52,13 +52,13 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
     biblioteq_misc_functions::quantity(biblioteq->getDB(), m_ioid, m_itemType);
   m_showForLending = showForLendingArg;
   m_spinbox = spinboxArg;
-  m_uniqueIdArg = uniqueIdArg.trimmed();
+  m_uniqueIdArg = QString(uniqueIdArg).remove('-').trimmed();
   prepareIcons();
   qmain = biblioteq;
   setGlobalFonts(font);
   setWindowModality(Qt::ApplicationModal);
 
-  if(!m_uniqueIdArg.trimmed().isEmpty())
+  if(!m_uniqueIdArg.isEmpty())
     setWindowTitle(tr("BiblioteQ: Copy Browser (%1)").arg(m_uniqueIdArg));
   else
     setWindowTitle(tr("BiblioteQ: Copy Browser"));

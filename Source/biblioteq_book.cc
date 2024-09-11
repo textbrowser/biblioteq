@@ -4552,7 +4552,7 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
      m_oid,
      id.quantity,
      font(),
-     id.id->text().remove('-').trimmed());
+     id.id->text().trimmed().isEmpty() ? id.isbn13->text() : id.id->text());
 
   copyeditor->populateCopiesEditor();
 }
