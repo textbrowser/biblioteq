@@ -747,17 +747,22 @@ QString biblioteq_misc_functions::queryString(QSqlQuery *query)
   if(!query)
     return "";
 
-  int index = -1;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-  auto list(query->boundValues());
+  auto const list(query->boundValues());
 #else
-  auto list(query->boundValues().values());
+  auto const list(query->boundValues().values());
 #endif
   auto str(query->executedQuery());
+  int index = -1;
 
-  while((index = str.indexOf('?')) >= 0 && list.size() > 0)
+  for(int i = 0; i < list.size(); i++)
     {
-      QString value(list.takeFirst().toString().toUtf8().data());
+      index = str.indexOf('?');
+
+      if(index < 0)
+	break;
+
+      QString const value(list.at(i).toString().toUtf8().data());
 
       str.replace
 	(index, 1, value.isEmpty() ? "'%'" : QString("'%1'").arg(value));
@@ -2242,6 +2247,11 @@ void biblioteq_misc_functions::assignImage
 void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
 {
   if(!child || !parent)
+    return;
+
+  QSettings settings;
+
+  if(settings.value("center_child_windows", true).toBool() == false)
     return;
 
   QPoint p(0, 0);
