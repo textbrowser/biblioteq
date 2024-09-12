@@ -52,6 +52,7 @@ class biblioteq_animated_push_button: public QPushButton
 
   ~biblioteq_animated_push_button()
   {
+    m_animator.stop();
   }
 
   QColor color(void) const

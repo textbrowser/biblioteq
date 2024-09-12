@@ -48,6 +48,7 @@ class biblioteq_animated_tool_button: public QToolButton
 
   ~biblioteq_animated_tool_button()
   {
+    m_animator.stop();
   }
 
   QColor color(void) const
