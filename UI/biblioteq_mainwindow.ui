@@ -614,6 +614,7 @@
     </widget>
     <addaction name="actionAutomatically_Resize_Column_Widths"/>
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
+    <addaction name="actionCenter_Child_Windows"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionPatron_Reservation_History"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
@@ -1462,6 +1463,17 @@
    </property>
    <property name="text">
     <string>Patron Reservation History</string>
+   </property>
+  </action>
+  <action name="actionCenter_Child_Windows">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Center Child Windows</string>
    </property>
   </action>
  </widget>

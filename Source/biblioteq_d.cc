@@ -698,6 +698,18 @@ void biblioteq::prepareUpgradeNotification(void)
     }
 }
 
+void biblioteq::slotActionToggled(void)
+{
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  QSettings settings;
+
+  if(action == ui.actionCenter_Child_Windows)
+    settings.setValue("center_child_windows", action->isChecked());
+}
 void biblioteq::slotAnimateAbout(void)
 {
   if(!m_about)

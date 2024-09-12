@@ -556,6 +556,7 @@ class biblioteq: public QMainWindow
 
  private slots:
   void slotAbout(void);
+  void slotActionToggled(void);
   void slotAddAdmin(void);
   void slotAddBorrower(void);
   void slotAdminCheckBoxClicked(int state);

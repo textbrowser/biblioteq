@@ -345,6 +345,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotPrintIconsView(void)));
+  connect(ui.actionCenter_Child_Windows,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotActionToggled(void)));
   connect(ui.actionImportCSV,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -830,6 +834,8 @@ biblioteq::biblioteq(void):QMainWindow()
   typefilter = m_lastCategory =
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
+  ui.actionCenter_Child_Windows->setChecked
+    (settings.value("center_child_windows", true).toBool());
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionTearOffMenus->setChecked
     (settings.value("tearOffMenus", true).toBool());
