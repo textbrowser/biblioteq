@@ -823,6 +823,7 @@ void biblioteq::slotDelayedPreparation(void)
 	 tr("The PostgreSQL library %1 cannot be read. "
 	    "PostgreSQL services will not be functional.").
 	 arg(fileInfo.absoluteFilePath()));
+      QApplication::processEvents();
     }
 #endif
 }
