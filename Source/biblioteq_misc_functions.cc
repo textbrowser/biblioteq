@@ -43,9 +43,9 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
   auto type(typeArg.toLower());
 
   if(type == "grey literature" || type == "photograph collection")
-    type = type.replace(" ", "_");
+    type = type.replace(' ', '_');
   else
-    type = type.remove(" ");
+    type = type.remove(' ');
 
   if(type == "book" ||
      type == "cd" ||
@@ -288,18 +288,18 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
      type == "magazine" ||
      type == "video game")
     {
-      type = type.remove(" ");
+      type = type.remove(' ');
       querystr = QString("SELECT description FROM %1 WHERE myoid = ?").arg
 	(type);
     }
   else if(type == "grey literature")
     {
-      type = type.replace(" ", "_");
+      type = type.replace(' ', '_');
       querystr = QString("SELECT notes FROM %1 WHERE myoid = ?").arg(type);
     }
   else if(type == "photograph collection")
     {
-      type = type.replace(" ", "_");
+      type = type.replace(' ', '_');
       querystr = QString("SELECT about FROM %1 WHERE myoid = ?").arg(type);
     }
   else
@@ -343,7 +343,7 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 		       "WHERE "
 		       "%1.myoid = ? "
 		       "GROUP BY %1.quantity, "
-		       "%1.myoid").arg(itemType.toLower().remove(" ")).arg
+		       "%1.myoid").arg(itemType.toLower().remove(' ')).arg
       (itemType);
   else if(itemType.toLower() == "grey literature")
     querystr = "SELECT 1 - COUNT(item_borrower.item_oid) "
@@ -498,7 +498,7 @@ QString biblioteq_misc_functions::getNextCopy(QString &field,
 	(QString("SELECT copyid FROM %1_copy_info WHERE "
 		 "copyid NOT IN (SELECT copyid FROM item_borrower) AND "
 		 "item_oid IN (SELECT myoid FROM %1 WHERE id = ?)").
-	 arg(QString(type).remove(" ").toLower()));
+	 arg(QString(type).remove(' ').toLower()));
       query.addBindValue(id);
 
       if(query.exec() && query.next())
@@ -530,9 +530,9 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
   itemType = itemTypeArg.toLower();
 
   if(itemType == "grey literature" || itemType == "photograph collection")
-    itemType = itemType.replace(" ", "_");
+    itemType = itemType.replace(' ', '_');
   else
-    itemType = itemType.remove(" ");
+    itemType = itemType.remove(' ');
 
   if(itemType == "book")
     querystr = "SELECT myoid FROM book WHERE "
@@ -1503,7 +1503,7 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
        "WHERE copyid = ? AND item_oid = ? "
        "AND copyid NOT IN (SELECT copyid FROM item_borrower "
        "WHERE item_oid = ? AND type = '%2'))").arg(itemType.
-						   toLower().remove(" ")).
+						   toLower().remove(' ')).
       arg(itemType);
   else if(itemType.toLower() == "grey literature")
     querystr = "SELECT NOT EXISTS(SELECT 1 FROM item_borrower "
@@ -1638,7 +1638,7 @@ bool biblioteq_misc_functions::isItemAvailable
   else
     {
       if(type == "video game")
-	type = type.remove(" ");
+	type = type.remove(' ');
 
       if(copyId.trimmed().isEmpty() && emptyCopyIdAllowed)
 	{
@@ -1651,7 +1651,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	     "WHERE "
 	     "%1.id = ? "
 	     "GROUP BY %1.quantity, "
-	     "%1.myoid").arg(type.replace(" ", "_")).arg(t);
+	     "%1.myoid").arg(type.replace(' ', '_')).arg(t);
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 
@@ -1669,7 +1669,7 @@ bool biblioteq_misc_functions::isItemAvailable
 	     "WHERE "
 	     "%1.id = ? AND item_borrower.copyid = ? "
 	     "GROUP BY %1.quantity, "
-	     "%1.myoid").arg(type.replace(" ", "_")).arg(t);
+	     "%1.myoid").arg(type.replace(' ', '_')).arg(t);
 	  query.prepare(querystr);
 	  query.addBindValue(id.trimmed());
 	  query.addBindValue(copyId.trimmed());
@@ -1832,14 +1832,14 @@ int biblioteq_misc_functions::getCopyNumber(const QSqlDatabase &db,
 					    QString &errorstr)
 {
   QSqlQuery query(db);
-  auto itemType(itemTypeArg.toLower().trimmed());
+  auto const itemType(itemTypeArg.toLower().trimmed());
   int copyNumber = -1;
 
   errorstr.clear();
   query.prepare
     (QString("SELECT copy_number FROM %1_copy_info "
 	     "WHERE copyid = ? AND item_oid = ?").
-     arg(itemType.replace(" ", "_")));
+     arg(QString(itemType).replace(' ', '_')));
   query.addBindValue(copyId.trimmed());
   query.addBindValue(itemOid);
 
@@ -2128,7 +2128,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	    str = "biblioteq_patron";
 	  else
 	    {
-	      str.replace(" ", "_");
+	      str.replace(' ', '_');
 	      str.prepend("biblioteq_");
 	    }
 
@@ -2168,7 +2168,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	str = "biblioteq_patron";
       else
 	{
-	  str.replace(" ", "_");
+	  str.replace(' ', '_');
 	  str.prepend("biblioteq_");
 	}
 
@@ -2359,7 +2359,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 
   errorstr = "";
   id = idArg;
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg.toLower().remove(' ');
   itemoid = getOID(id, itemType, db, errorstr);
 
   if(!errorstr.isEmpty())
@@ -2604,7 +2604,7 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
     str = "biblioteq_patron";
   else
     {
-      str.replace(" ", "_");
+      str.replace(' ', '_');
       str.prepend("biblioteq_");
     }
 
@@ -2783,7 +2783,7 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
   QString querystr("");
 
   errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg.toLower().remove(' ');
 
   if(itemType == "book" ||
      itemType == "cd" ||

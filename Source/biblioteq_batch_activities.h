@@ -106,6 +106,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotMediaError(QMediaPlayer::Error error, const QString &errorString);
   void slotMediaStatusChanged(QMediaPlayer::MediaStatus status);
 #endif
+  void slotPageIndexChanged(int index);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);

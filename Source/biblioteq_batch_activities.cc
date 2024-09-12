@@ -137,7 +137,12 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedReturn(void)));
+  connect(m_ui.tab,
+	  SIGNAL(currentChanged(int)),
+	  this,
+	  SLOT(slotPageIndexChanged(int)));
   prepareIcons();
+  slotPageIndexChanged(m_ui.tab->currentIndex());
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -1621,6 +1626,11 @@ void biblioteq_batch_activities::slotMediaStatusChanged
     player->deleteLater();
 }
 #endif
+
+void biblioteq_batch_activities::slotPageIndexChanged(int index)
+{
+  m_ui.go->setEnabled(index != static_cast<int> (Pages::Discover));
+}
 
 void biblioteq_batch_activities::slotReset(void)
 {
