@@ -214,6 +214,19 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
   QString errorstr("");
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  dvd.aspectratio->addItems
+    (biblioteq_misc_functions::getDVDAspectRatios(qmain->getDB(), errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (tr("Database Error"),
+       tr("Unable to retrieve the dvd aspect ratios."),
+       errorstr,
+       __FILE__,
+       __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.language->addItems
     (biblioteq_misc_functions::getLanguages(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
@@ -222,19 +235,6 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
     qmain->addError
       (tr("Database Error"),
        tr("Unable to retrieve the languages."),
-       errorstr,
-       __FILE__,
-       __LINE__);
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  dvd.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    qmain->addError
-      (tr("Database Error"),
-       tr("Unable to retrieve the monetary units."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -255,6 +255,19 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
        __LINE__);
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  dvd.monetary_units->addItems
+    (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(), errorstr));
+  QApplication::restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (tr("Database Error"),
+       tr("Unable to retrieve the monetary units."),
+       errorstr,
+       __FILE__,
+       __LINE__);
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.rating->addItems
     (biblioteq_misc_functions::getDVDRatings(qmain->getDB(), errorstr));
   QApplication::restoreOverrideCursor();
@@ -263,19 +276,6 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
     qmain->addError
       (tr("Database Error"),
        tr("Unable to retrieve the dvd ratings."),
-       errorstr,
-       __FILE__,
-       __LINE__);
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-  dvd.aspectratio->addItems
-    (biblioteq_misc_functions::getDVDAspectRatios(qmain->getDB(), errorstr));
-  QApplication::restoreOverrideCursor();
-
-  if(!errorstr.isEmpty())
-    qmain->addError
-      (tr("Database Error"),
-       tr("Unable to retrieve the dvd aspect ratios."),
        errorstr,
        __FILE__,
        __LINE__);
@@ -598,56 +598,74 @@ void biblioteq_dvd::modify(const int state)
 	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
 
-	  if(fieldname == "title")
-	    dvd.title->setText(var.toString().trimmed());
-	  else if(fieldname == "studio")
-	    dvd.studio->setMultipleLinks
-	      ("dvd_search", "studio", var.toString().trimmed());
-	  else if(fieldname == "rdate")
-	    dvd.release_date->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 biblioteq::s_databaseDateFormat));
-	  else if(fieldname == "price")
-	    dvd.price->setValue(var.toDouble());
+	  if(fieldname == "accession_number")
+	    dvd.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  dvd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(dvd.back_image->m_image.isNull())
+		    dvd.back_image->loadFromData(var.toByteArray());
+		}
+	    }
 	  else if(fieldname == "category")
 	    dvd.category->setMultipleLinks
 	      ("dvd_search", "category", var.toString().trimmed());
-	  else if(fieldname == "language")
+	  else if(fieldname == "description")
+	    dvd.description->setPlainText(var.toString().trimmed());
+	  else if(fieldname == "dvdactor")
+	    dvd.actors->setMultipleLinks
+	      ("dvd_search", "actors", var.toString().trimmed());
+	  else if(fieldname == "dvdaspectratio")
 	    {
-	      if(dvd.language->findText(var.toString().trimmed()) > -1)
-		dvd.language->setCurrentIndex
-		  (dvd.language->findText(var.toString().trimmed()));
+	      if(dvd.aspectratio->findText(var.toString().trimmed()) > -1)
+		dvd.aspectratio->setCurrentIndex
+		  (dvd.aspectratio->findText(var.toString().trimmed()));
 	      else
-		dvd.language->setCurrentIndex
-		  (dvd.language->findText(biblioteq::s_unknown));
+		dvd.aspectratio->setCurrentIndex
+		  (dvd.aspectratio->findText(biblioteq::s_unknown));
 	    }
-	  else if(fieldname == "quantity")
-	    {
-	      dvd.quantity->setValue(var.toInt());
-	      m_oldq = dvd.quantity->value();
-	    }
-	  else if(fieldname == "monetary_units")
-	    {
-	      if(dvd.monetary_units->findText(var.toString().trimmed()) > -1)
-		dvd.monetary_units->setCurrentIndex
-		  (dvd.monetary_units->findText(var.toString().trimmed()));
-	      else
-		dvd.monetary_units->setCurrentIndex
-		  (dvd.monetary_units->findText(biblioteq::s_unknown));
-	    }
+	  else if(fieldname == "dvddirector")
+	    dvd.directors->setMultipleLinks
+	      ("dvd_search", "directors", var.toString().trimmed());
 	  else if(fieldname == "dvddiskcount")
 	    dvd.no_of_discs->setValue(var.toInt());
-	  else if(fieldname == "dvdruntime")
-	    dvd.runtime->setTime(QTime::fromString(var.toString().trimmed(),
-						   "hh:mm:ss"));
-	  else if(fieldname == "location")
+	  else if(fieldname == "dvdformat")
+	    dvd.format->setText(var.toString().trimmed());
+	  else if(fieldname == "dvdrating")
 	    {
-	      if(dvd.location->findText(var.toString().trimmed()) > -1)
-		dvd.location->setCurrentIndex
-		  (dvd.location->findText(var.toString().trimmed()));
+	      if(dvd.rating->findText(var.toString().trimmed()) > -1)
+		dvd.rating->setCurrentIndex
+		  (dvd.rating->findText(var.toString().trimmed()));
 	      else
-		dvd.location->setCurrentIndex
-		  (dvd.location->findText(biblioteq::s_unknown));
+		dvd.rating->setCurrentIndex
+		  (dvd.rating->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "dvdregion")
+	    {
+	      if(dvd.region->findText(var.toString().trimmed()) > -1)
+		dvd.region->setCurrentIndex
+		  (dvd.region->findText(var.toString().trimmed()));
+	      else
+		dvd.region->setCurrentIndex
+		  (dvd.region->findText(biblioteq::s_unknown));
+	    }
+	  else if(fieldname == "dvdruntime")
+	    dvd.runtime->setTime
+	      (QTime::fromString(var.toString().trimmed(), "hh:mm:ss"));
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!record.field(i).isNull())
+		{
+		  dvd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(dvd.front_image->m_image.isNull())
+		    dvd.front_image->loadFromData(var.toByteArray());
+		}
 	    }
 	  else if(fieldname == "id")
 	    {
@@ -669,70 +687,52 @@ void biblioteq_dvd::modify(const int state)
 	      setWindowTitle(str);
 	      dvd.id->setText(var.toString().trimmed());
 	    }
-	  else if(fieldname == "description")
-	    dvd.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "keyword")
 	    dvd.keyword->setMultipleLinks
 	      ("dvd_search", "keyword", var.toString().trimmed());
-	  else if(fieldname == "dvdformat")
-	    dvd.format->setText(var.toString().trimmed());
-	  else if(fieldname == "dvdactor")
-	    dvd.actors->setMultipleLinks
-	      ("dvd_search", "actors", var.toString().trimmed());
-	  else if(fieldname == "dvddirector")
-	    dvd.directors->setMultipleLinks
-	      ("dvd_search", "directors", var.toString().trimmed());
-	  else if(fieldname == "dvdrating")
+	  else if(fieldname == "language")
 	    {
-	      if(dvd.rating->findText(var.toString().trimmed()) > -1)
-		dvd.rating->setCurrentIndex
-		  (dvd.rating->findText(var.toString().trimmed()));
+	      if(dvd.language->findText(var.toString().trimmed()) > -1)
+		dvd.language->setCurrentIndex
+		  (dvd.language->findText(var.toString().trimmed()));
 	      else
-		dvd.rating->setCurrentIndex
-		  (dvd.rating->findText(biblioteq::s_unknown));
+		dvd.language->setCurrentIndex
+		  (dvd.language->findText(biblioteq::s_unknown));
 	    }
-	  else if(fieldname == "dvdregion")
+	  else if(fieldname == "location")
 	    {
-	      if(dvd.region->findText(var.toString().trimmed()) > -1)
-		dvd.region->setCurrentIndex
-		  (dvd.region->findText(var.toString().trimmed()));
+	      if(dvd.location->findText(var.toString().trimmed()) > -1)
+		dvd.location->setCurrentIndex
+		  (dvd.location->findText(var.toString().trimmed()));
 	      else
-		dvd.region->setCurrentIndex
-		  (dvd.region->findText(biblioteq::s_unknown));
+		dvd.location->setCurrentIndex
+		  (dvd.location->findText(biblioteq::s_unknown));
 	    }
-	  else if(fieldname == "dvdaspectratio")
+	  else if(fieldname == "monetary_units")
 	    {
-	      if(dvd.aspectratio->findText(var.toString().trimmed()) > -1)
-		dvd.aspectratio->setCurrentIndex
-		  (dvd.aspectratio->findText(var.toString().trimmed()));
+	      if(dvd.monetary_units->findText(var.toString().trimmed()) > -1)
+		dvd.monetary_units->setCurrentIndex
+		  (dvd.monetary_units->findText(var.toString().trimmed()));
 	      else
-		dvd.aspectratio->setCurrentIndex
-		  (dvd.aspectratio->findText(biblioteq::s_unknown));
+		dvd.monetary_units->setCurrentIndex
+		  (dvd.monetary_units->findText(biblioteq::s_unknown));
 	    }
-	  else if(fieldname == "front_cover")
+	  else if(fieldname == "price")
+	    dvd.price->setValue(var.toDouble());
+	  else if(fieldname == "quantity")
 	    {
-	      if(!record.field(i).isNull())
-		{
-		  dvd.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(dvd.front_image->m_image.isNull())
-		    dvd.front_image->loadFromData(var.toByteArray());
-		}
+	      dvd.quantity->setValue(var.toInt());
+	      m_oldq = dvd.quantity->value();
 	    }
-	  else if(fieldname == "back_cover")
-	    {
-	      if(!record.field(i).isNull())
-		{
-		  dvd.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(dvd.back_image->m_image.isNull())
-		    dvd.back_image->loadFromData(var.toByteArray());
-		}
-	    }
-	  else if(fieldname == "accession_number")
-	    dvd.accession_number->setText(var.toString().trimmed());
+	  else if(fieldname == "rdate")
+	    dvd.release_date->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 biblioteq::s_databaseDateFormat));
+	  else if(fieldname == "studio")
+	    dvd.studio->setMultipleLinks
+	      ("dvd_search", "studio", var.toString().trimmed());
+	  else if(fieldname == "title")
+	    dvd.title->setText(var.toString().trimmed());
 	}
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
