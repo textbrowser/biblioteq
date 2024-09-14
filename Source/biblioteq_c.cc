@@ -6698,8 +6698,8 @@ void biblioteq::slotShowHistory(void)
     }
 
   QApplication::restoreOverrideCursor();
-  history.table->setCurrentItem(nullptr);
   history.table->setColumnCount(0);
+  history.table->setCurrentItem(nullptr);
   history.table->setRowCount(0);
   list.clear();
   list.append(tr("Member ID"));
@@ -6730,8 +6730,8 @@ void biblioteq::slotShowHistory(void)
   m_historyColumnHeaderIndexes.append("Lender");
   m_historyColumnHeaderIndexes.append("MYOID");
   history.table->setColumnCount(list.size());
-  history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnHidden(history.table->columnCount() - 1, true);
+  history.table->setHorizontalHeaderLabels(list);
   history.table->setSortingEnabled(false);
 
   if(m_db.driverName() != "QSQLITE")
@@ -6745,13 +6745,13 @@ void biblioteq::slotShowHistory(void)
 						 __LINE__,
 						 this));
 
-  history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
+  history.table->scrollToTop();
+  progress->setLabelText(tr("Populating the table..."));
+  progress->setMaximum(history.table->rowCount());
+  progress->setMinimum(0);
   progress->setModal(true);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress->setLabelText(tr("Populating the table..."));
-  progress->setMinimum(0);
-  progress->setMaximum(history.table->rowCount());
   progress->show();
   progress->repaint();
   QApplication::processEvents();
@@ -6791,9 +6791,9 @@ void biblioteq::slotShowHistory(void)
     }
 
   progress->close();
+  history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   history.table->setRowCount(i); // Support cancellation.
   history.table->setSortingEnabled(true);
-  history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
 
   for(int i = 0; i < history.table->columnCount() - 1; i++)
     history.table->resizeColumnToContents(i);
@@ -6943,7 +6943,7 @@ void biblioteq::slotVacuum(void)
     statusBar()->clearMessage();
 
   progress.close();
-  QApplication::restoreOverrideCursor();
+  QApplication::processEvents();
 }
 
 void biblioteq::vgSearch(const QString &field, const QString &value)
