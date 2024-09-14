@@ -81,7 +81,7 @@ bool biblioteq_main_table::isColumnHidden
   auto lType(type);
 
   indexstr.append(username);
-  indexstr.append(lType.replace(" ", "_"));
+  indexstr.append(lType.replace(' ', '_'));
   indexstr.append("_header_state");
   return m_hiddenColumns.value(indexstr).contains(index);
 }
@@ -93,7 +93,7 @@ bool biblioteq_main_table::isColumnHidden(int index) const
 
 int biblioteq_main_table::columnNumber(const QString &name) const
 {
-  auto index = m_columnHeaderIndexes.indexOf(name);
+  auto const index = m_columnHeaderIndexes.indexOf(name);
 
   if(index >= 0)
     return index;
@@ -102,10 +102,7 @@ int biblioteq_main_table::columnNumber(const QString &name) const
     if(QString::compare(m_columnHeaderIndexes.at(i),
 			name,
 			Qt::CaseInsensitive) == 0)
-      {
-	index = i;
-	break;
-      }
+      return i;
 
   return index;
 }
