@@ -4314,6 +4314,8 @@ void biblioteq::slotModifyBorrower(void)
   userinfo_diag->m_userinfo.membersince->setFocus();
   userinfo_diag->m_userinfo.memberid->setPalette
     (userinfo_diag->m_userinfo.telephoneNumber->palette());
+  userinfo_diag->m_userinfo.scrollArea->horizontalScrollBar()->setValue(0);
+  userinfo_diag->m_userinfo.scrollArea->verticalScrollBar()->setValue(0);
   userinfo_diag->updateGeometry();
   userinfo_diag->resize
     (userinfo_diag->width(), userinfo_diag->sizeHint().height());
@@ -6212,45 +6214,44 @@ void biblioteq::slotSaveUser(void)
 
       QApplication::restoreOverrideCursor();
       userinfo_diag->m_userinfo.okButton->animate(2500);
-      userinfo_diag->m_memberProperties["membersince"] =
-	userinfo_diag->m_userinfo.membersince->date().toString(Qt::ISODate);
-      userinfo_diag->m_memberProperties["dob"] =
-	userinfo_diag->m_userinfo.dob->date().toString(Qt::ISODate);
-      userinfo_diag->m_memberProperties["sex"] =
-	userinfo_diag->m_userinfo.sex->currentText();
-      userinfo_diag->m_memberProperties["first_name"] =
-	userinfo_diag->m_userinfo.firstName->text().trimmed();
-      userinfo_diag->m_memberProperties["middle_init"] =
-	userinfo_diag->m_userinfo.middle->text().trimmed();
-      userinfo_diag->m_memberProperties["last_name"] =
-	userinfo_diag->m_userinfo.lastName->text().trimmed();
-      userinfo_diag->m_memberProperties["telephone_num"] =
-	userinfo_diag->m_userinfo.telephoneNumber->text();
-      userinfo_diag->m_memberProperties["street"] =
-	userinfo_diag->m_userinfo.street->text().trimmed();
       userinfo_diag->m_memberProperties["city"] =
 	userinfo_diag->m_userinfo.city->text().trimmed();
-      userinfo_diag->m_memberProperties["state_abbr"] =
-	userinfo_diag->m_userinfo.state->currentText();
-      userinfo_diag->m_memberProperties["zip"] =
-	userinfo_diag->m_userinfo.zip->text();
+      userinfo_diag->m_memberProperties["comments"] =
+	userinfo_diag->m_userinfo.comments->toPlainText().trimmed();
+      userinfo_diag->m_memberProperties["dob"] =
+	userinfo_diag->m_userinfo.dob->date().toString(Qt::ISODate);
       userinfo_diag->m_memberProperties["email"] =
 	userinfo_diag->m_userinfo.email->text().trimmed();
       userinfo_diag->m_memberProperties["expiration_date"] =
-	userinfo_diag->m_userinfo.expirationdate->date().toString
-	(Qt::ISODate);
-      userinfo_diag->m_memberProperties["overdue_fees"] =
-	userinfo_diag->m_userinfo.overduefees->text();
-      userinfo_diag->m_memberProperties["comments"] =
-	userinfo_diag->m_userinfo.comments->toPlainText().trimmed();
+	userinfo_diag->m_userinfo.expirationdate->date().toString(Qt::ISODate);
+      userinfo_diag->m_memberProperties["first_name"] =
+	userinfo_diag->m_userinfo.firstName->text().trimmed();
       userinfo_diag->m_memberProperties["general_registration_number"] =
 	userinfo_diag->m_userinfo.generalregistrationnumber->text().trimmed();
-      userinfo_diag->m_memberProperties["memberclass"] =
-	userinfo_diag->m_userinfo.memberclass->text().trimmed();
+      userinfo_diag->m_memberProperties["last_name"] =
+	userinfo_diag->m_userinfo.lastName->text().trimmed();
       userinfo_diag->m_memberProperties["maximum_reserved_books"] =
 	userinfo_diag->m_userinfo.maximum_reserved_books->text();
+      userinfo_diag->m_memberProperties["memberclass"] =
+	userinfo_diag->m_userinfo.memberclass->text().trimmed();
       userinfo_diag->m_memberProperties["membership_fees"] =
 	userinfo_diag->m_userinfo.membershipfees->text();
+      userinfo_diag->m_memberProperties["membersince"] =
+	userinfo_diag->m_userinfo.membersince->date().toString(Qt::ISODate);
+      userinfo_diag->m_memberProperties["middle_init"] =
+	userinfo_diag->m_userinfo.middle->text().trimmed();
+      userinfo_diag->m_memberProperties["overdue_fees"] =
+	userinfo_diag->m_userinfo.overduefees->text();
+      userinfo_diag->m_memberProperties["sex"] =
+	userinfo_diag->m_userinfo.sex->currentText();
+      userinfo_diag->m_memberProperties["state_abbr"] =
+	userinfo_diag->m_userinfo.state->currentText();
+      userinfo_diag->m_memberProperties["street"] =
+	userinfo_diag->m_userinfo.street->text().trimmed();
+      userinfo_diag->m_memberProperties["telephone_num"] =
+	userinfo_diag->m_userinfo.telephoneNumber->text();
+      userinfo_diag->m_memberProperties["zip"] =
+	userinfo_diag->m_userinfo.zip->text();
 
       if(m_engUserinfoTitle.contains("Modify"))
 	{

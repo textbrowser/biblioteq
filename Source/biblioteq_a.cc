@@ -2433,6 +2433,8 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.memberid->selectAll();
   userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->m_userinfo.memberid->setFocus();
+  userinfo_diag->m_userinfo.scrollArea->horizontalScrollBar()->setValue(0);
+  userinfo_diag->m_userinfo.scrollArea->verticalScrollBar()->setValue(0);
   userinfo_diag->updateGeometry();
   userinfo_diag->resize(userinfo_diag->width(),
 			userinfo_diag->sizeHint().height());
