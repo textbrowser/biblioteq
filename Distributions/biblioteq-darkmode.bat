@@ -1,3 +1,4 @@
+:: Alexis Megas.
 :: Windows only.
 
 @echo "Launching BiblioteQ."
