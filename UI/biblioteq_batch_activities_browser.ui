@@ -208,7 +208,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Field column is completed by scanner queries.</string>
+              <string>The Field column is completed by scanner queries.</string>
              </property>
             </widget>
            </item>
@@ -517,7 +517,7 @@
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table.</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table. &lt;span style=&quot; font-weight:600;&quot;&gt;Press the Go! button to list the discovered items in the main window's table where you'll be able to complete the return(s).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
