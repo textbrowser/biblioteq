@@ -87,6 +87,9 @@ file = plugins/qmltooling/qmldbg_tcp.dll
 file = plugins/sqldrivers/qsqlite.dll
 file = plugins/sqldrivers/qsqlpsql.dll
 file = plugins/styles/qwindowsvistastyle.dll
+file = plugins/tls/qcertonlybackend.dll
+file = plugins/tls/qopensslbackend.dll
+file = plugins/tls/qschannelbackend.dll
 url = https://raw.githubusercontent.com/textbrowser/\ # First Part
       qt-products/master/6.5_LTS/Windows              # Second Part
 
