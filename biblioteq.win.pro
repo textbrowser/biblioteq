@@ -57,6 +57,8 @@ plugins3.files = $$[QT_INSTALL_PLUGINS]\\platforms\\qdirect2d.dll
 plugins3.path = release\\plugins\\platforms\\.
 plugins4.files = $$[QT_INSTALL_PLUGINS]\\renderplugins\\scene2d.dll
 plugins4.path = release\\plugins\\renderplugins\\.
+plugins5.files = $$[QT_INSTALL_PLUGINS]\\tls\\*.dll
+plugins5.path = release\\plugins\\tls\\.
 pluginspurge1.extra = del /Q /S *.debug
 pluginspurge1.path = release\\plugins\\.
 pluginspurge2.extra = del /Q /S *d.dll
@@ -92,6 +94,7 @@ INSTALLS = biblioteq \
            plugins2 \
            plugins3 \
            plugins4 \
+           plugins5 \
            qt \
            qtlibraries \
            sql1 \
