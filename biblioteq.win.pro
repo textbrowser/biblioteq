@@ -49,10 +49,10 @@ documentation.path = release\\Documentation\\.
 libraries.files = Distributions\\Windows\\Libraries.64\\*.dll \
                   Distributions\\Windows\\Libraries.64\\*.exe
 libraries.path = release\\.
-plugins1.files = $$[QT_INSTALL_PLUGINS]\\*
-plugins1.path = release\\plugins\\.
-pluginspurge1.extra = del /Q /S *.debug
-pluginspurge1.path = release\\plugins\\.
+plugins.files = $$[QT_INSTALL_PLUGINS]\\*
+plugins.path = release\\plugins\\.
+pluginspurge.extra = del /Q /S *.debug
+pluginspurge.path = release\\plugins\\.
 qt.files = Qt\\qt.conf
 qt.path = release\\.
 qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt6Concurrent.dll \
@@ -78,8 +78,8 @@ INSTALLS = biblioteq \
            data \
            documentation \
            libraries \
-           plugins1 \
-           pluginspurge1 \
+           plugins \
+           pluginspurge \
            qt \
            qtlibraries \
            sql1 \
