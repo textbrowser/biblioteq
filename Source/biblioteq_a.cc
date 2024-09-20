@@ -2303,7 +2303,7 @@ void biblioteq::slotAbout(void)
   m_about->setStandardButtons(QMessageBox::Close);
   m_about->setText
     (tr("<html>BiblioteQ Version %1<br>"
-	"Compilation Architecture %4.<br>"
+	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
 	"Made with love by textbrower.<br>"
 	"Software for and from the margins.<br>"
@@ -2323,7 +2323,7 @@ void biblioteq::slotAbout(void)
      arg(BIBLIOTEQ_VERSION).
      arg(__DATE__).
      arg(__TIME__).
-     arg(QSysInfo::buildCpuArchitecture()).
+     arg(QSysInfo::currentCpuArchitecture()).
 #ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
      arg(POPPLER_VERSION).
 #else
