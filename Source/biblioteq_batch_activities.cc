@@ -50,10 +50,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   m_ui.audio->setChecked(false);
   m_ui.audio->setEnabled(false);
 #else
-  QSettings settings;
-
   m_ui.audio->setChecked
-    (settings.value("otheroptions/batch_activities_audio", false).toBool());
+    (QSettings().value("otheroptions/batch_activities_audio", false).toBool());
 #endif
 
   QAction *action1 = nullptr;
@@ -1090,9 +1088,7 @@ void biblioteq_batch_activities::slotAddBorrowingRow(void)
 
 void biblioteq_batch_activities::slotAudioEnabled(void)
 {
-  QSettings settings;
-
-  settings.setValue
+  QSettings().setValue
     ("otheroptions/batch_activities_audio", m_ui.audio->isChecked());
 }
 
@@ -1786,6 +1782,20 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
     return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto const id(m_ui.discover_scan->text().trimmed());
+
+  for(int i = 0; i < m_ui.discover_table->rowCount(); i++)
+    {
+      auto item = m_ui.discover_table->item
+	(i, static_cast<int> (DiscoverTableColumns::IDENTIFIER_COLUMN));
+
+      if((item ? item->text() : "") == id)
+	{
+	  QApplication::restoreOverrideCursor();
+	  return;
+	}
+    }
 
   QHash<QString, QString> hash;
   auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
