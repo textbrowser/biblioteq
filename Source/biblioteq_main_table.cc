@@ -766,11 +766,9 @@ void biblioteq_main_table::slotCellChanged(int row, int column)
   if(Q_UNLIKELY(!item))
     return;
 
-  QColor color;
-  auto const map(m_qmain->specialValueColors());
-
-  color = map.value
-    (qMakePair(item->text().trimmed(), header->text().trimmed()));
+  auto const color
+    (m_qmain->specialValueColors().
+     value(qMakePair(item->text().trimmed(), header->text().trimmed())));
 
   if(color.isValid())
     item->setBackground(color);
