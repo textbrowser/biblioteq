@@ -537,7 +537,7 @@
 280. See release notes and add names of contributors. (Completed)
 281. Remove special characters from text which is sent to the main table
      whenever an item's information is saved via its details. See
-     qUtf8Printable(). (TBD)
+     qUtf8Printable(). (Completed)
 282. The artificial read-status column has broken the recording of
      visible columns. The status should not be a separate column.
      Not a problem. (Completed)

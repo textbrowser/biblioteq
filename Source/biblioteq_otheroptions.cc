@@ -666,6 +666,8 @@ void biblioteq_otheroptions::prepareSettings(void)
   biblioteq_misc_functions::assignImage
     (m_ui.main_window_canvas_background_color, color);
   m_ui.main_window_canvas_background_color->setText(color.name());
+  m_ui.only_utf8_printable_text->setChecked
+    (settings.value("otheroptions/only_utf8_printable_text", false).toBool());
   m_ui.show_maintable_images->setChecked
     (settings.value("show_maintable_images", true).toBool());
   m_ui.show_maintable_progress_dialogs->setChecked
@@ -996,6 +998,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/item_query_result_color",
      m_ui.item_query_result_color->text().remove('&'));
+  settings.setValue
+    ("otheroptions/only_utf8_printable_text",
+     m_ui.only_utf8_printable_text->isChecked());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue

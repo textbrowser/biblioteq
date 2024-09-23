@@ -589,6 +589,40 @@
              </layout>
             </item>
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QCheckBox" name="only_utf8_printable_text">
+                <property name="text">
+                 <string>Only UTF-8 Printable Text</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>The text in the main table's cells will contain only UTF-8 printable characters. Cell text is modified in a separate event and therefore this option may introduce some delay during the preparation of a cell's contents.</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
              <widget class="QCheckBox" name="show_maintable_progress_dialogs">
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Progress dialogs shall be shown during the populating of data on the main table / view. Dialogs may be interrupted by the F8 key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1047,6 +1081,7 @@
   <tabstop>book_read_status</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
   <tabstop>icons_view_column_count</tabstop>
+  <tabstop>only_utf8_printable_text</tabstop>
   <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>

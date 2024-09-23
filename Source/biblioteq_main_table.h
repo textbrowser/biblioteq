@@ -56,6 +56,7 @@ class biblioteq_main_table: public QTableWidget
 		      const QString &username) const;
   bool isColumnHidden(int index) const;
   int columnNumber(const QString &name) const;
+  void allowUtf8Printable(const bool state);
   void parseStates(const QHash<QString, QString> &states);
   void prepareConnections(void);
   void recordColumnHidden(const QString &username,
@@ -81,6 +82,7 @@ class biblioteq_main_table: public QTableWidget
 
  private slots:
   void slotCellChanged(int row, int column);
+  void slotItemChanged(QTableWidgetItem *item);
 
  signals:
   void deleteKeyPressed(void);

@@ -4459,6 +4459,9 @@ void biblioteq::slotOtherOptionsSaved(void)
   prepareCustomQueryFavoriteShortcut();
   prepareIcons();
   prepareStatusBarIcons();
+  ui.table->allowUtf8Printable
+    (QSettings().value("otheroptions/only_utf8_printable_text", false).
+     toBool());
   ui.table->prepareConnections();
   QApplication::restoreOverrideCursor();
   emit otherOptionsSaved();

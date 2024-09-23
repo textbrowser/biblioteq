@@ -34,6 +34,9 @@
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
+  allowUtf8Printable
+    (QSettings().value("otheroptions/only_utf8_printable_text", false).
+     toBool());
   m_qmain = nullptr;
   horizontalHeader()->setSectionsMovable(true);
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -105,6 +108,21 @@ int biblioteq_main_table::columnNumber(const QString &name) const
       return i;
 
   return index;
+}
+
+void biblioteq_main_table::allowUtf8Printable(const bool state)
+{
+  if(state)
+    connect(this,
+	    SIGNAL(itemChanged(QTableWidgetItem *)),
+	    this,
+	    SLOT(slotItemChanged(QTableWidgetItem *)),
+	    Qt::UniqueConnection);
+  else
+    disconnect(this,
+	       SIGNAL(itemChanged(QTableWidgetItem *)),
+	       this,
+	       SLOT(slotItemChanged(QTableWidgetItem *)));
 }
 
 void biblioteq_main_table::keyPressEvent(QKeyEvent *event)
@@ -756,6 +774,16 @@ void biblioteq_main_table::slotCellChanged(int row, int column)
 
   if(color.isValid())
     item->setBackground(color);
+}
+
+void biblioteq_main_table::slotItemChanged(QTableWidgetItem *item)
+{
+  if(Q_UNLIKELY(!item))
+    return;
+
+  blockSignals(true);
+  item->setText(qUtf8Printable(item->text()));
+  blockSignals(false);
 }
 
 void biblioteq_main_table::updateToolTips(const int row)
