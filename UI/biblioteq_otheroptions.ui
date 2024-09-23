@@ -788,7 +788,7 @@
             <item>
              <widget class="QLabel" name="label_17">
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only.&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only.&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required. The Type value is recorded in English.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>

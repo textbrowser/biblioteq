@@ -2820,13 +2820,30 @@ void biblioteq_misc_functions::saveSqliteReturnReminders
       // BOOK := 1234567890 member_identifier
       // 0    1  2          3
       auto const list(str.simplified().trimmed().split(' '));
+      auto const type(list.value(0).toUpper().trimmed());
 
       query.prepare
 	("INSERT INTO return_reminders "
 	 "(item_identifier, item_type, member_identifier) "
 	 "VALUES (?, ?, ?)");
       query.addBindValue(list.value(2));
-      query.addBindValue(list.value(0));
+
+      if(type == "BOOK" || type == QObject::tr("BOOK"))
+	query.addBindValue("BOOK");
+      else if(type == "CD" || type == QObject::tr("CD"))
+	query.addBindValue("CD");
+      else if(type == "DVD" || type == QObject::tr("DVD"))
+	query.addBindValue("DVD");
+      else if(type == "GREY LITERATURE" ||
+	      type == QObject::tr("GREY LITERATURE"))
+	query.addBindValue("GREY LITERATURE");
+      else if(type == "JOURNAL" || type == QObject::tr("JOURNAL"))
+	query.addBindValue("JOURNAL");
+      else if(type == "MAGAZINE" || type == QObject::tr("MAGAZINE"))
+	query.addBindValue("MAGAZINE");
+      else if(type == "VIDEO GAME" || type == QObject::tr("VIDEO GAME"))
+	query.addBindValue("VIDEO GAME");
+
       query.addBindValue(list.value(3));
       query.exec();
     }
