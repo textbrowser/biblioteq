@@ -1150,6 +1150,19 @@ void biblioteq_import::slotImport(void)
        tr("Imported: %1. Not imported: %2.").arg(imported).arg(notImported));
 
   QApplication::processEvents();
+
+  if(imported > 0 && (index == static_cast<int> (Templates::TEMPLATE_1) ||
+		      index == static_cast<int> (Templates::TEMPLATE_2)))
+    {
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
+			       tr("Refresh the main window's view?"),
+			       QMessageBox::No | QMessageBox::Yes,
+			       QMessageBox::Yes) == QMessageBox::Yes)
+	m_qmain->refresh(tr("Books"));
+
+      QApplication::processEvents();
+    }
 }
 
 void biblioteq_import::slotRefreshPreview(void)

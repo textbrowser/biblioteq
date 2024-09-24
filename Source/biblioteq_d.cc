@@ -698,6 +698,16 @@ void biblioteq::prepareUpgradeNotification(void)
     }
 }
 
+void biblioteq::refresh(const QString &filter)
+{
+  foreach(auto action, ui.menu_Category->actions())
+    if(action->text() == filter)
+      {
+	action->trigger();
+	break;
+      }
+}
+
 void biblioteq::slotActionToggled(void)
 {
   auto action = qobject_cast<QAction *> (sender());
