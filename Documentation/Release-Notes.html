@@ -3,13 +3,15 @@
     <p><u>September 30, 2024.</u></p>
     <ul>
       <li>261 releases of BiblioteQ!</li>
-      <li>Abundant constants.</li>
+      <li>Abundant constants. Please report weird events.</li>
       <li>Added DROP statements in postgresql_destroy_schema.sql. Not a
 	single sprite ushered a complaint.</li>
       <li>Allow only unique items in Batch Activities Browser ->
 	Discover. Uniqueness is defined via the Identifier column.</li>
-      <li>Awesome button colors.</li>
+      <li>Awesome button colors. The previous edition featured buttons
+	having full colors.</li>
       <li>Batch Activities is incomplete regarding reservation histories.
+	That is, history entries were not created for borrowed items.
 	<b>GitHub ticket #373.</b></li>
       <li>Corrected biblioteq.win.pro. Deleting debug plugins may
 	delete required plugins files in the install target. Qt 6.5 LTS
@@ -20,19 +22,21 @@
 	page is Discover.</li>
       <li>Display a reminder if a requested item has been returned on SQLite.
 	Other Options -> SQLite. <b>GitHub ticket #350.</b></li>
-      <li>Display all reserved items in the main table if
-	Batch Activities Browser -> Return is empty during a Go!
+      <li>Display all reserved items in the main table if the
+	Batch Activities Browser -> Return table is empty during a Go!
 	event.</li>
       <li>Include the member's identifier in Member's Reservation History
 	window title.</li>
-      <li>Missing Qt TLS libraries on Windows.
+      <li>Missing Qt TLS libraries / plugins on Windows. Also read
+	item covering biblioteq.win.pro.
 	<b>GitHub tickets #374, #375.</b></li>
       <li>New Options -> Center Child Windows. Windows only, not dialogs.</li>
       <li>New Options -> Patron Reservation History.</li>
       <li>New Other Options -> Main Window -> Only UTF-8 Printable Text.
 	If enabled, cell text in the main window will only contain printable
 	UTF-8 characters.</li>
-      <li>Poppler and Qt 6.</li>
+      <li>Poppler and Qt 6. Poppler is an exterior product covering PDF
+	documents.</li>
       <li>PostgreSQL 15.8.1; Windows.</li>
       <li>SRU@France is now HTTPS in biblioteq.conf.</li>
       <li>The method biblioteq_misc_functions::isbn13to10() will now
