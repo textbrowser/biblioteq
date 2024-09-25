@@ -3,6 +3,12 @@
 
 # Must be executed in the top-level source directory.
 
+if [ "$(which wget)" = "" ]
+then
+    echo "Could not locate wget."
+    exit 1
+fi
+
 # PostgreSQL
 
 postgresql=postgresql.zip
