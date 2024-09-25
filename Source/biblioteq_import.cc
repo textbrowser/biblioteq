@@ -745,19 +745,20 @@ void biblioteq_import::loadPreview(void)
 	       arg(m_ui.delimiter->text()))));
 	  auto const list(headers);
 
-	  for(int i = 0; i < headers.size(); i++)
-	    headers.replace
-	      (i, QString("(%1) %2").arg(i + 1).arg(headers.at(i)));
-
 	  if(row == 0)
 	    {
+	      for(int i = 0; i < headers.size(); i++)
+		headers.replace
+		  (i,
+		   QString("(%1) %2").arg(i + 1).arg(headers.at(i).trimmed()));
+
 	      for(int i = 0; i < m_ui.rows->rowCount(); i++)
 		{
 		  auto item = m_ui.rows->item
 		    (i, static_cast<int> (Columns::CSV_PREVIEW));
 
 		  if(item)
-		    item->setText(list.value(i));
+		    item->setText(list.value(i).trimmed());
 		}
 
 	      m_previewHeaders = list;
@@ -859,7 +860,7 @@ void biblioteq_import::slotAddRow(void)
      static_cast<int> (Columns::CSV_COLUMN_NUMBER),
      item);
   item = new QTableWidgetItem
-    (m_previewHeaders.value(m_ui.rows->rowCount() - 1));
+    (m_previewHeaders.value(m_ui.rows->rowCount() - 1).trimmed());
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   m_ui.rows->setItem
     (m_ui.rows->rowCount() - 1, static_cast<int> (Columns::CSV_PREVIEW), item);
