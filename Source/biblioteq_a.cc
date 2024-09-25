@@ -3071,7 +3071,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 		      tr("BiblioteQ: Question"),
 		      tr("It appears that you are already "
 			 "connected to a database. Do you "
-			 "want to terminate the current connection "
+			 "wish to terminate the current connection "
 			 "and connect to the new SQLite database?"),
 		      QMessageBox::Yes | QMessageBox::No,
 		      QMessageBox::No) == QMessageBox::Yes)
@@ -3144,7 +3144,8 @@ void biblioteq::slotDuplicate(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select at least one item to "
 			       "duplicate."));
       QApplication::processEvents();
@@ -3551,7 +3552,8 @@ void biblioteq::slotModify(void)
   if(list.isEmpty())
     {
       QMessageBox::critical
-	(this, tr("BiblioteQ: User Error"),
+	(this,
+	 tr("BiblioteQ: User Error"),
 	 tr("Please select at least one item to modify."));
       QApplication::processEvents();
       return;
@@ -4488,12 +4490,13 @@ void biblioteq::slotSavePassword(void)
 {
   QString errorstr = "";
 
-  if(pass.password->text().length() < 8)
+  if(pass.password->text().length() < 8 ||
+     pass.passwordAgain->text().length() < 8)
     {
       QMessageBox::critical
 	(m_pass_diag,
 	 tr("BiblioteQ: User Error"),
-	 tr("The password must be at least eight characters long."));
+	 tr("The password must contain at least eight characters."));
       QApplication::processEvents();
       pass.password->selectAll();
       pass.password->setFocus();
@@ -5122,7 +5125,8 @@ void biblioteq::slotViewDetails(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(this,
+			    tr("BiblioteQ: User Error"),
 			    tr("Please select at least one item to view."));
       QApplication::processEvents();
       return;

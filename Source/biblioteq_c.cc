@@ -5818,7 +5818,7 @@ void biblioteq::slotSaveUser(void)
 	  QMessageBox::critical
 	    (userinfo_diag,
 	     tr("BiblioteQ: User Error"),
-	     tr("The Member ID must be at least five characters long."));
+	     tr("The Member ID must contain at least five characters."));
 	  QApplication::processEvents();
 	  userinfo_diag->m_userinfo.memberid->setFocus();
 	  return;
