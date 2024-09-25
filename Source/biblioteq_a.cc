@@ -2240,6 +2240,26 @@ void biblioteq::showMain(void)
 		      }
 	      }
 	  }
+	else if(list.at(i) == "--open-sqlite-database-index")
+	  {
+	    i += 1;
+
+	    if(i >= list.size())
+	      continue;
+
+	    if(!openDatabase)
+	      {
+		for(int j = 0;
+		    j < ui.menu_Recent_SQLite_Files->actions().size() - 2;
+		    j++)
+		  if(j + 1 == list.at(i).toInt())
+		    {
+		      openDatabase = true;
+		      ui.menu_Recent_SQLite_Files->actions().at(j)->trigger();
+		      break;
+		    }
+	      }
+	  }
 	else if(list.at(i) == "--special-executable")
 	  {
 	    i += 1;
