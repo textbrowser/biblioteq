@@ -417,6 +417,14 @@ void biblioteq_batch_activities::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
+void biblioteq_batch_activities::closeEvent(QCloseEvent *event)
+{
+  isVisible() ?
+    QSettings().setValue("batch_activities_geometry", saveGeometry()) :
+    (void) 0;
+  QMainWindow::closeEvent(event);
+}
+
 void biblioteq_batch_activities::discover(void)
 {
 }
@@ -988,13 +996,8 @@ void biblioteq_batch_activities::returnItems(void)
 
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
-  static auto resized = false;
-
-  if(!resized && parent)
-    resize(qRound(0.95 * parent->size().width()),
-	   qRound(0.95 * parent->size().height()));
-
-  resized = true;
+  restoreGeometry
+    (QSettings().value("batch_activities_geometry").toByteArray());
 
   if(center)
     biblioteq_misc_functions::center(this, parent);

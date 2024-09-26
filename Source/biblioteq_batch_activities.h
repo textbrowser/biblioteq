@@ -85,6 +85,7 @@ class biblioteq_batch_activities: public QMainWindow
   static QColor s_okColor;
   void borrow(void);
   void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
   void discover(void);
   void play(const QString &file);
   void returnItems(void);

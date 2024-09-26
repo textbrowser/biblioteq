@@ -2398,68 +2398,65 @@ void biblioteq::slotAddBorrower(void)
   auto const now = QDate::currentDate();
   auto const nowTime = QDateTime::currentDateTime();
 
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.memberid,
-					    QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.memberid, QColor(255, 248, 220));
   userinfo_diag->m_memberProperties.clear();
-  userinfo_diag->m_userinfo.memberid->setReadOnly(false);
-  userinfo_diag->m_userinfo.memberid->setText
-    ("m" + nowTime.toString("yyyyMMddhhmmss"));
-  userinfo_diag->m_userinfo.membersince->setDate(now);
-  userinfo_diag->m_userinfo.membersince->setMaximumDate(now);
-  userinfo_diag->m_userinfo.firstName->clear();
-  userinfo_diag->m_userinfo.lastName->clear();
-  userinfo_diag->m_userinfo.middle->clear();
-  userinfo_diag->m_userinfo.dob->setDate(now.addYears(-25));
-  userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
-  userinfo_diag->m_userinfo.street->clear();
   userinfo_diag->m_userinfo.city->clear();
-  userinfo_diag->m_userinfo.state->setCurrentIndex(0);
-  userinfo_diag->m_userinfo.zip->setText("N/A");
-  userinfo_diag->m_userinfo.zip->setCursorPosition(0);
-  userinfo_diag->m_userinfo.telephoneNumber->clear();
+  userinfo_diag->m_userinfo.comments->clear();
+  userinfo_diag->m_userinfo.dob->setDate(now.addYears(-25));
   userinfo_diag->m_userinfo.email->clear();
   userinfo_diag->m_userinfo.expirationdate->setDate
     (QDate::fromString("01/01/3000", s_databaseDateFormat));
-  userinfo_diag->m_userinfo.membershipfees->setValue(0.00);
-  userinfo_diag->m_userinfo.overduefees->setValue(0.00);
-  userinfo_diag->m_userinfo.comments->clear();
-  userinfo_diag->m_userinfo.memberclass->clear();
+  userinfo_diag->m_userinfo.firstName->clear();
   userinfo_diag->m_userinfo.generalregistrationnumber->clear();
-  userinfo_diag->m_memberProperties["membersince"] =
-    userinfo_diag->m_userinfo.membersince->date().toString
-    (Qt::ISODate);
+  userinfo_diag->m_userinfo.lastName->clear();
+  userinfo_diag->m_userinfo.memberclass->clear();
+  userinfo_diag->m_userinfo.memberid->setReadOnly(false);
+  userinfo_diag->m_userinfo.memberid->setText
+    ("m" + nowTime.toString("yyyyMMddhhmmss"));
+  userinfo_diag->m_userinfo.membershipfees->setValue(0.00);
+  userinfo_diag->m_userinfo.membersince->setDate(now);
+  userinfo_diag->m_userinfo.membersince->setMaximumDate(now);
+  userinfo_diag->m_userinfo.middle->clear();
+  userinfo_diag->m_userinfo.overduefees->setValue(0.00);
+  userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
+  userinfo_diag->m_userinfo.state->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.street->clear();
+  userinfo_diag->m_userinfo.telephoneNumber->clear();
+  userinfo_diag->m_userinfo.zip->setCursorPosition(0);
+  userinfo_diag->m_userinfo.zip->setText("N/A");
   userinfo_diag->m_memberProperties["dob"] =
-    userinfo_diag->m_userinfo.dob->date().toString
-    (Qt::ISODate);
+    userinfo_diag->m_userinfo.dob->date().toString(Qt::ISODate);
+  userinfo_diag->m_memberProperties["expiration_date"] =
+    userinfo_diag->m_userinfo.expirationdate->date().toString(Qt::ISODate);
+  userinfo_diag->m_memberProperties["maximum_reserved_books"] =
+    userinfo_diag->m_userinfo.maximum_reserved_books->text();
+  userinfo_diag->m_memberProperties["membership_fees"] =
+    userinfo_diag->m_userinfo.membershipfees->text();
+  userinfo_diag->m_memberProperties["membersince"] =
+    userinfo_diag->m_userinfo.membersince->date().toString(Qt::ISODate);
+  userinfo_diag->m_memberProperties["overdue_fees"] =
+    userinfo_diag->m_userinfo.overduefees->text();
   userinfo_diag->m_memberProperties["sex"] =
     userinfo_diag->m_userinfo.sex->currentText();
   userinfo_diag->m_memberProperties["state_abbr"] =
     userinfo_diag->m_userinfo.state->currentText();
-  userinfo_diag->m_memberProperties["zip"] = userinfo_diag->m_userinfo.zip->
-    text();
   userinfo_diag->m_memberProperties["telephone_num"] =
     userinfo_diag->m_userinfo.telephoneNumber->text();
-  userinfo_diag->m_memberProperties["expiration_date"] =
-    userinfo_diag->m_userinfo.expirationdate->date().toString
-    (Qt::ISODate);
-  userinfo_diag->m_memberProperties["membership_fees"] =
-    userinfo_diag->m_userinfo.membershipfees->text();
-  userinfo_diag->m_memberProperties["overdue_fees"] =
-    userinfo_diag->m_userinfo.overduefees->text();
-  userinfo_diag->m_memberProperties["maximum_reserved_books"] =
-    userinfo_diag->m_userinfo.maximum_reserved_books->text();
+  userinfo_diag->m_memberProperties["zip"] = userinfo_diag->m_userinfo.zip->
+    text();
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   m_engUserinfoTitle = "Create New Member";
-  userinfo_diag->m_userinfo.prevTool->setVisible(false);
-  userinfo_diag->m_userinfo.nextTool->setVisible(false);
   userinfo_diag->m_userinfo.memberid->selectAll();
-  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->m_userinfo.memberid->setFocus();
+  userinfo_diag->m_userinfo.nextTool->setVisible(false);
+  userinfo_diag->m_userinfo.prevTool->setVisible(false);
   userinfo_diag->m_userinfo.scrollArea->horizontalScrollBar()->setValue(0);
   userinfo_diag->m_userinfo.scrollArea->verticalScrollBar()->setValue(0);
+  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->updateGeometry();
-  userinfo_diag->resize(userinfo_diag->width(),
-			userinfo_diag->sizeHint().height());
+  userinfo_diag->resize
+    (userinfo_diag->width(), userinfo_diag->sizeHint().height());
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
@@ -2565,8 +2562,8 @@ void biblioteq::slotBranchChanged(void)
     }
 
   m_branch_diag->update();
-  m_branch_diag->resize(m_branch_diag->width(),
-			m_branch_diag->minimumSize().height());
+  m_branch_diag->resize
+    (m_branch_diag->width(), m_branch_diag->minimumSize().height());
   m_branch_diag->show();
 }
 
