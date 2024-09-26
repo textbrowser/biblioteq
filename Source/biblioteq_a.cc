@@ -2249,10 +2249,12 @@ void biblioteq::showMain(void)
 
 	    if(!openDatabase)
 	      {
+		auto const index = list.at(i).toInt();
+
 		for(int j = 0;
 		    j < ui.menu_Recent_SQLite_Files->actions().size() - 2;
 		    j++)
-		  if(j + 1 == list.at(i).toInt())
+		  if(index == j + 1)
 		    {
 		      openDatabase = true;
 		      ui.menu_Recent_SQLite_Files->actions().at(j)->trigger();
