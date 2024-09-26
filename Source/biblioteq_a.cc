@@ -3324,11 +3324,11 @@ void biblioteq::slotGrantPrivileges(void)
   auto error = false;
 
   progress.setCancelButton(nullptr);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Granting privileges..."));
   progress.setMaximum(bb.table->rowCount());
   progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
   QApplication::processEvents();
@@ -3368,7 +3368,8 @@ void biblioteq::slotGrantPrivileges(void)
 
   if(error)
     {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_members_diag,
+			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to grant privileges to all of "
 			       "the members."));
       QApplication::processEvents();
