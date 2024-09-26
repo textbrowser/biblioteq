@@ -2877,7 +2877,7 @@ void biblioteq::slotConnectDB(void)
 	{
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  m_roles = biblioteq_misc_functions::getRoles
-	    (m_db, br.userid->text().trimmed(), errorstr).toLower();
+	    (m_db, br.userid->text().trimmed(), errorstr).toLower().trimmed();
 	  m_unaccent = biblioteq_misc_functions::hasUnaccentExtension(m_db) ?
 	    "unaccent" : "";
 	  QApplication::restoreOverrideCursor();
@@ -3105,9 +3105,14 @@ void biblioteq::slotConnectDB(void)
       ** Set the window's title.
       */
 
-      setWindowTitle(tr("BiblioteQ: ") + m_selectedBranch.
-		     value("branch_name") +
-		     QString(" (%1)").arg(dbUserName()));
+      if(m_roles.isEmpty())
+	setWindowTitle
+	  (tr("BiblioteQ: %1 (%2)").
+	   arg(m_db.databaseName()).arg(dbUserName()));
+      else
+      	setWindowTitle
+	  (tr("BiblioteQ: %1 (%2) (%3)").
+	   arg(m_db.databaseName()).arg(dbUserName()).arg(m_roles));
     }
 
   prepareFilter();
