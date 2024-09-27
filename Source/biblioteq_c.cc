@@ -6819,7 +6819,8 @@ void biblioteq::slotShowHistory(void)
 	  m_history_diag->resize
 	    (qRound(0.95 * m_members_diag->size().width()),
 	     qRound(0.95 * m_members_diag->size().height()));
-	  biblioteq_misc_functions::center(m_history_diag, m_members_diag);
+	  biblioteq_misc_functions::center
+	    (m_history_diag, m_members_diag, true);
 	}
 
       resized = true;
@@ -6830,9 +6831,9 @@ void biblioteq::slotShowHistory(void)
 
       if(!resized)
 	{
-	  m_history_diag->resize(qRound(0.95 * size().width()),
-				 qRound(0.95 * size().height()));
-	  biblioteq_misc_functions::center(m_history_diag, this);
+	  m_history_diag->resize
+	    (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
+	  biblioteq_misc_functions::center(m_history_diag, this, true);
 	}
 
       resized = true;
@@ -6854,8 +6855,8 @@ void biblioteq::slotShowImport(void)
 
 void biblioteq::slotShowOtherOptions(void)
 {
-  biblioteq_misc_functions::center(m_otherOptions, this);
   m_otherOptions->showNormal();
+  biblioteq_misc_functions::center(m_otherOptions, this);
   m_otherOptions->activateWindow();
   m_otherOptions->raise();
 }

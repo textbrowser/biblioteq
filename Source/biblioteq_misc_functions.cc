@@ -2244,21 +2244,19 @@ void biblioteq_misc_functions::assignImage
   button->setIcon(QPixmap::fromImage(image));
 }
 
-void biblioteq_misc_functions::center(QWidget *child, QMainWindow *parent)
+void biblioteq_misc_functions::center
+(QWidget *child, QMainWindow *parent, const bool force)
 {
   if(!child || !parent)
     return;
 
-  QSettings settings;
-
-  if(settings.value("center_child_windows", true).toBool() == false)
+  if(QSettings().value("center_child_windows", true).toBool() == false &&
+     force == false)
     return;
 
-  QPoint p(0, 0);
+  auto const p(parent->pos());
   int X = 0;
   int Y = 0;
-
-  p = parent->pos();
 
   if(parent->width() >= child->width())
     X = p.x() + (parent->width() - child->width()) / 2;
