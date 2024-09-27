@@ -3298,12 +3298,7 @@ void biblioteq::slotDuplicate(void)
 
 void biblioteq::slotExit(void)
 {
-  {
-    QSettings settings;
-
-    settings.setValue("mainwindowState", saveState());
-  }
-
+  QSettings().setValue("mainwindowState", saveState());
   slotLastWindowClosed();
   quit();
 }

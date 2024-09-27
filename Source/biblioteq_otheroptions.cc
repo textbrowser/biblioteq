@@ -27,7 +27,8 @@
 
 #include "biblioteq_otheroptions.h"
 
-biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
+biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
+  QMainWindow(parent)
 {
   m_qmain = parent;
   m_ui.setupUi(this);
@@ -88,6 +89,8 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):QMainWindow()
 
 biblioteq_otheroptions::~biblioteq_otheroptions()
 {
+  isVisible() ?
+    QSettings().setValue("otheroptions_geometry", saveGeometry()) : (void) 0;
 }
 
 QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
@@ -272,6 +275,13 @@ void biblioteq_otheroptions::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+void biblioteq_otheroptions::closeEvent(QCloseEvent *event)
+{
+  isVisible() ?
+    QSettings().setValue("otheroptions_geometry", saveGeometry()) : (void) 0;
+  QMainWindow::closeEvent(event);
 }
 
 void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
@@ -796,6 +806,7 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 void biblioteq_otheroptions::showNormal(void)
 {
   prepareSettings();
+  restoreGeometry(QSettings().value("otheroptions_geometry").toByteArray());
   QMainWindow::showNormal();
 }
 
