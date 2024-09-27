@@ -3337,7 +3337,6 @@ void biblioteq::slotGrantPrivileges(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      error = true;
 	      addError(tr("Database Error"),
 		       tr("An error occurred while attempting to "
 			  "update the database account for ") +
@@ -3346,6 +3345,7 @@ void biblioteq::slotGrantPrivileges(void)
 		       errorstr,
 		       __FILE__,
 		       __LINE__);
+	      error = true;
 	    }
 	}
 
