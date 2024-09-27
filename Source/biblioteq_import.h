@@ -39,6 +39,7 @@ class biblioteq_import: public QMainWindow
 
  public:
   biblioteq_import(biblioteq *parent);
+  ~biblioteq_import();
   void prepareIcons(void);
   void reset(void);
   void show(QMainWindow *parent);
@@ -66,6 +67,7 @@ class biblioteq_import: public QMainWindow
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
   void importBooks(QProgressDialog *progress,
 		   QStringList &errors,
 		   const Templates importTemplate,

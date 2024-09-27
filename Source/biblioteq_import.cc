@@ -78,6 +78,12 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
   prepareIcons();
 }
 
+biblioteq_import::~biblioteq_import()
+{
+  isVisible() ?
+    QSettings().setValue("import_geometry", saveGeometry()) : (void) 0;
+}
+
 void biblioteq_import::changeEvent(QEvent *event)
 {
   if(event)
@@ -95,6 +101,13 @@ void biblioteq_import::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+void biblioteq_import::closeEvent(QCloseEvent *event)
+{
+  isVisible() ?
+    QSettings().setValue("import_geometry", saveGeometry()) : (void) 0;
+  QMainWindow::closeEvent(event);
 }
 
 void biblioteq_import::importBooks(QProgressDialog *progress,
@@ -834,13 +847,7 @@ void biblioteq_import::reset(void)
 
 void biblioteq_import::show(QMainWindow *parent)
 {
-  static auto resized = false;
-
-  if(parent && !resized)
-    resize(qRound(0.95 * parent->size().width()),
-	   qRound(0.95 * parent->size().height()));
-
-  resized = true;
+  restoreGeometry(QSettings().value("import_geometry").toByteArray());
   biblioteq_misc_functions::center(this, parent);
   showNormal();
   activateWindow();
