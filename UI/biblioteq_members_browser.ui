@@ -524,7 +524,7 @@
       <item>
        <widget class="QToolButton" name="grantButton">
         <property name="toolTip">
-         <string>Grant Privileges (PostgreSQL)</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Assign all of the patrons to the biblioteq_patron PostgreSQL role. The role is required for accessing database tables. This widget was added after the biblioteq_patron role was defined and is therefore a relic.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
