@@ -143,6 +143,13 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   slotPageIndexChanged(m_ui.tab->currentIndex());
 }
 
+biblioteq_batch_activities::~biblioteq_batch_activities()
+{
+  isVisible() ?
+    QSettings().setValue("batch_activities_geometry", saveGeometry()) :
+    (void) 0;
+}
+
 void biblioteq_batch_activities::borrow(void)
 {
   auto const memberId(m_ui.borrow_member_id->text().trimmed());

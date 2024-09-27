@@ -192,6 +192,12 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
   setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
+biblioteq_dbenumerations::~biblioteq_dbenumerations()
+{
+  isVisible() ?
+    QSettings().setValue("dbenumerations_geometry", saveGeometry()) : (void) 0;
+}
+
 void biblioteq_dbenumerations::changeEvent(QEvent *event)
 {
   if(event)
@@ -241,7 +247,7 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 
   saveData(listData, tableData);
 
-  if(listData != m_listData || tableData != m_tableData)
+  if(listData != m_listData || m_tableData != tableData)
     {
       if(QMessageBox::
 	 question(this,
@@ -261,6 +267,8 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
       QApplication::processEvents();
     }
 
+  isVisible() ?
+    QSettings().setValue("dbenumerations_geometry", saveGeometry()) : (void) 0;
   QMainWindow::closeEvent(event);
 }
 
@@ -619,7 +627,9 @@ void biblioteq_dbenumerations::setPage(const Page page)
 
 void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 {
-  auto wasVisible = isVisible();
+  restoreGeometry(QSettings().value("dbenumerations_geometry").toByteArray());
+
+  auto const wasVisible = isVisible();
 
 #ifdef Q_OS_ANDROID
   Q_UNUSED(parent);

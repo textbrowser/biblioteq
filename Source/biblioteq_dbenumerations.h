@@ -58,6 +58,7 @@ class biblioteq_dbenumerations: public QMainWindow
     };
 
   biblioteq_dbenumerations(biblioteq *parent);
+  ~biblioteq_dbenumerations();
   void clear(void);
   void closeEvent(QCloseEvent *event);
   void prepareIcons(void);
