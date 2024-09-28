@@ -9,6 +9,8 @@ then
     exit 1
 fi
 
+rc=0
+
 # PostgreSQL
 
 postgresql=postgresql.zip
@@ -39,6 +41,7 @@ then
     rm -fr pgsql
 else
     echo "Cannot read $postgresql."
+    rc=1
 fi
 
-exit 0
+exit $rc
