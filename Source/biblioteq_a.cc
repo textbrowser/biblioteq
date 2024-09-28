@@ -1503,10 +1503,13 @@ void biblioteq::createSqliteMenuActions(void)
 	  continue;
 	}
 
-      auto action = new QAction(str, ui.menu_Recent_SQLite_Files);
+      auto action = new QAction
+	(fileInfo.absoluteFilePath(), ui.menu_Recent_SQLite_Files);
 
-      action->setData(str);
-      connect(action, SIGNAL(triggered(bool)), this,
+      action->setData(fileInfo.absoluteFilePath());
+      connect(action,
+	      SIGNAL(triggered(bool)),
+	      this,
 	      SLOT(slotSqliteFileSelected(bool)));
       ui.menu_Recent_SQLite_Files->addAction(action);
     }
