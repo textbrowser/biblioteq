@@ -99,7 +99,7 @@ QString biblioteq::reservationHistoryHtml(void) const
   QString information("");
   QString lastname("");
   QString memberid("");
-  static QString endl("<br>");
+  static QString const endl("<br>");
 
   for(int i = 0; i < history.table->rowCount(); i++)
     if(m_roles.isEmpty())
@@ -206,8 +206,7 @@ QString biblioteq::viewHtml(void) const
 
   for(int i = 0; i < ui.table->columnCount(); i++)
     if(!ui.table->isColumnHidden(i))
-      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() +
-	"</th>";
+      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() + "</th>";
 
   html += "</tr>";
 

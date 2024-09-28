@@ -720,11 +720,15 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(ab.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveAdministrators(void)));
 #ifdef Q_OS_ANDROID
-  connect(ab.cancelButton, SIGNAL(clicked(void)),
-	  m_admin_diag, SLOT(hide(void)));
+  connect(ab.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_admin_diag,
+	  SLOT(hide(void)));
 #else
-  connect(ab.cancelButton, SIGNAL(clicked(void)),
-	  m_admin_diag, SLOT(close(void)));
+  connect(ab.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_admin_diag,
+	  SLOT(close(void)));
 #endif
   connect(ui.action_New_SQLite_Database,
 	  SIGNAL(triggered(void)),
@@ -1424,20 +1428,19 @@ void biblioteq::changeEvent(QEvent *event)
 	  pass.retranslateUi(m_pass_diag);
 	  s_unknown = QObject::tr("UNKNOWN");
 	  ui.retranslateUi(this);
-	  ui.graphicsView->scene()->clear();
-	  ui.graphicsView->resetTransform();
 	  ui.graphicsView->horizontalScrollBar()->setValue(0);
+	  ui.graphicsView->resetTransform();
+	  ui.graphicsView->scene()->clear();
 	  ui.graphicsView->verticalScrollBar()->setValue(0);
+	  ui.itemsCountLabel->setText(tr("0 Results"));
 	  ui.nextPageButton->setEnabled(false);
 	  ui.pagesLabel->setText(tr("1"));
 	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
 	    (dbUserName(),
 	     ui.menu_Category->defaultAction() ?
-	     ui.menu_Category->defaultAction()->data().toString() :
-	     "All",
+	     ui.menu_Category->defaultAction()->data().toString() : "All",
 	     m_roles);
-	  ui.itemsCountLabel->setText(tr("0 Results"));
 	  addConfigOptions(m_lastCategory);
 	  prepareFilter();
 	  QMessageBox::information
@@ -2959,7 +2962,8 @@ void biblioteq::slotDeleteAdmin(void)
   if(row < 0)
     {
       QMessageBox::critical
-	(m_admin_diag, tr("BiblioteQ: User Error"),
+	(m_admin_diag,
+	 tr("BiblioteQ: User Error"),
 	 tr("To delete an entry, you must first select it."));
       QApplication::processEvents();
       return;
