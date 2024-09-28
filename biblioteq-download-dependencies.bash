@@ -40,3 +40,5 @@ then
 else
     echo "Cannot read $postgresql."
 fi
+
+exit 0
