@@ -45,7 +45,7 @@ QMAKE_DISTCLEAN += -r \
                    BiblioteQ.d \
                    Temporary
 QMAKE_EXTRA_TARGETS = dmg purge
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.0
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= Source
