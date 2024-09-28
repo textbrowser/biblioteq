@@ -1501,8 +1501,7 @@ void biblioteq::readConfigurationFile(void)
 
   font = QApplication::font();
 
-  if(settings.contains("global_font") &&
-     !settings.value("global_font", "").toString().trimmed().isEmpty())
+  if(!settings.value("global_font", "").toString().trimmed().isEmpty())
     if(!font.fromString(settings.value("global_font", "").toString().trimmed()))
       font = QApplication::font();
 
