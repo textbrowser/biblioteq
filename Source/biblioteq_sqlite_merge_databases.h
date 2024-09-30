@@ -52,6 +52,7 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
   Ui_mergeSQLiteDatabases m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotAddRow(void);

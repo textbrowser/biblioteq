@@ -91,6 +91,14 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
+void biblioteq_sqlite_merge_databases::closeEvent(QCloseEvent *event)
+{
+  isVisible() ?
+    QSettings().setValue("sqlite_merge_databases_geometry", saveGeometry()) :
+    (void) 0;
+  QMainWindow::closeEvent(event);
+}
+
 void biblioteq_sqlite_merge_databases::prepareIcons(void)
 {
   QSettings setting;

@@ -2275,7 +2275,8 @@ void biblioteq::showMain(void)
 	    if(i >= list.size())
 	      continue;
 
-	    m_specialExecutables[list.at(i).trimmed()] = 0;
+	    m_specialExecutables
+	      [QFileInfo(list.at(i).trimmed()).absoluteFilePath()] = 0;
 	  }
 	else if(list.at(i) == "--special-executable-icon")
 	  {
@@ -2284,7 +2285,8 @@ void biblioteq::showMain(void)
 	    if(i >= list.size())
 	      continue;
 
-	    m_specialExecutablesIcons << list.at(i).trimmed();
+	    m_specialExecutablesIcons <<
+	      QFileInfo(list.at(i).trimmed()).absoluteFilePath();
 	  }
     }
 
