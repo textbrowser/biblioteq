@@ -38,6 +38,7 @@ class biblioteq_sqlite_merge_databases: public QMainWindow
 
  public:
   biblioteq_sqlite_merge_databases(biblioteq *parent);
+  ~biblioteq_sqlite_merge_databases();
   void prepareIcons(void);
   void reset(void);
 

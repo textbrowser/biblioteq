@@ -72,6 +72,13 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
   prepareIcons();
 }
 
+biblioteq_sqlite_merge_databases::~biblioteq_sqlite_merge_databases()
+{
+  isVisible() ?
+    QSettings().setValue("sqlite_merge_databases_geometry", saveGeometry()) :
+    (void) 0;
+}
+
 void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
 {
   if(event)

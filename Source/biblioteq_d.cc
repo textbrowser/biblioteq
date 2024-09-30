@@ -937,6 +937,8 @@ void biblioteq::slotMergeSQLiteDatabases(void)
   if(!m_sqliteMergeDatabases)
     m_sqliteMergeDatabases = new biblioteq_sqlite_merge_databases(this);
 
+  m_sqliteMergeDatabases->restoreGeometry
+    (QSettings().value("sqlite_merge_databases_geometry").toByteArray());
 #ifdef Q_OS_ANDROID
   m_sqliteMergeDatabases->showMaximized();
 #else
