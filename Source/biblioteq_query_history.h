@@ -48,6 +48,7 @@ class biblioteq_query_history: public QDialog
   QPointer<biblioteq> m_biblioteq;
   Ui_queryHistory m_ui;
   void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotClose(void);

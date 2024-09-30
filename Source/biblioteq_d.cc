@@ -1118,6 +1118,8 @@ void biblioteq::slotShowMagic(void)
 
 void biblioteq::slotShowQueryHistory(void)
 {
+  m_queryHistory->restoreGeometry
+    (QSettings().value("query_history_geometry").toByteArray());
 #ifdef Q_OS_ANDROID
   m_queryHistory->showMaximized();
 #else

@@ -53,6 +53,8 @@ biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
 
 biblioteq_query_history::~biblioteq_query_history()
 {
+  isVisible() ?
+    QSettings().setValue("query_history_geometry", saveGeometry()) : (void) 0;
 }
 
 void biblioteq_query_history::changeEvent(QEvent *event)
@@ -70,6 +72,13 @@ void biblioteq_query_history::changeEvent(QEvent *event)
       }
 
   QDialog::changeEvent(event);
+}
+
+void biblioteq_query_history::closeEvent(QCloseEvent *event)
+{
+  isVisible() ?
+    QSettings().setValue("query_history_geometry", saveGeometry()) : (void) 0;
+  QDialog::closeEvent(event);
 }
 
 void biblioteq_query_history::prepareIcons(void)
