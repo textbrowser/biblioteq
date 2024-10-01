@@ -771,7 +771,13 @@ void biblioteq_import::loadPreview(void)
 		    (i, static_cast<int> (Columns::CSV_PREVIEW));
 
 		  if(item)
-		    item->setText(list.value(i).trimmed());
+		    {
+		      item->setBackground
+			(list.value(i).trimmed().isEmpty() ?
+			 QColor(255, 114, 118) :
+			 QColor(144, 238, 144));
+		      item->setText(list.value(i).trimmed());
+		    }
 		}
 
 	      m_previewHeaders = list;
@@ -868,6 +874,9 @@ void biblioteq_import::slotAddRow(void)
      item);
   item = new QTableWidgetItem
     (m_previewHeaders.value(m_ui.rows->rowCount() - 1).trimmed());
+  item->setBackground
+    (item->text().trimmed().isEmpty() ?
+     QColor(255, 114, 118) : QColor(144, 238, 144));
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   m_ui.rows->setItem
     (m_ui.rows->rowCount() - 1, static_cast<int> (Columns::CSV_PREVIEW), item);
