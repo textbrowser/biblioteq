@@ -804,7 +804,21 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    str = m_searchQuery->value(j).toString().trimmed();
 		}
 
-	      if(fieldName.endsWith("accession_number"))
+#if QT_VERSION > 0x050501
+	      if((fieldName == "id" || fieldName == "isbn13") &&
+		 record.field(j).tableName() == "book")
+#else
+	      if(fieldName == "id" || fieldName == "isbn13")
+#endif
+		{
+		  if(fieldName == "id")
+		    str = m_otherOptions->isbn10DisplayFormat(str);
+		  else
+		    str = m_otherOptions->isbn13DisplayFormat(str);
+
+		  item = new QTableWidgetItem(str);
+		}
+	      else if(fieldName.endsWith("accession_number"))
 		{
 		  if(typefilter == "Books")
 		    {
@@ -947,20 +961,6 @@ int biblioteq::populateTable(QSqlQuery *query,
 		      iconTableColumnIdx = 0;
 		      iconTableRowIdx += 1;
 		    }
-		}
-#if QT_VERSION > 0x050501
-	      else if(record.field(j).tableName() == "book" &&
-		      (fieldName == "id" || fieldName == "isbn13"))
-#else
-	      else if(fieldName == "id" || fieldName == "isbn13")
-#endif
-		{
-		  if(fieldName == "id")
-		    str = m_otherOptions->isbn10DisplayFormat(str);
-		  else
-		    str = m_otherOptions->isbn13DisplayFormat(str);
-
-		  item = new QTableWidgetItem(str);
 		}
 	      else
 		item = new QTableWidgetItem();
