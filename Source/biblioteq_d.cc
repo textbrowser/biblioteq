@@ -808,12 +808,12 @@ void biblioteq::slotCustomQuery(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSettings settings;
-  auto const text(action->property("name").toString());
+  auto const name(action->property("name").toString());
   auto const string
     (QString::
      fromUtf8(QByteArray::
 	      fromBase64(settings.
-			 value(QString("customqueries/%1").arg(text)).
+			 value(QString("customqueries/%1").arg(name)).
 			 toByteArray()).constData()));
 
   QApplication::restoreOverrideCursor();

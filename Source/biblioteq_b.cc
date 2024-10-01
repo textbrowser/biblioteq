@@ -3682,7 +3682,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   i = -1;
 
-  QFontMetrics fontMetrics(ui.table->font());
+  QFontMetrics const fontMetrics(ui.table->font());
   QHash<QString, QString> dateFormats;
   QLocale locale;
   QMap<QByteArray, QImage> images;

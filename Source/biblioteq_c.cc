@@ -460,7 +460,7 @@ int biblioteq::populateTable(QSqlQuery *query,
   else if(pagingType < 0)
     ok = m_searchQuery->seek(limit * qAbs(pagingType + 1));
 
-  if(m_searchQuery->lastError().isValid() || !ok)
+  if(!ok || m_searchQuery->lastError().isValid())
     {
       if(progress)
 	progress->close();
@@ -469,8 +469,7 @@ int biblioteq::populateTable(QSqlQuery *query,
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
-	for(int ii = 0; ii < ui.menu_Category->actions().size();
-	    ii++)
+	for(int ii = 0; ii < ui.menu_Category->actions().size(); ii++)
 	  if(m_previousTypeFilter ==
 	     ui.menu_Category->actions().at(ii)->data().toString())
 	    {
@@ -553,9 +552,9 @@ int biblioteq::populateTable(QSqlQuery *query,
   if(pagingType == NEW_PAGE)
     m_pages = 0;
 
-  if(pagingType >= 0 &&
+  if(currentPage > m_pages &&
      pagingType != PREVIOUS_PAGE &&
-     currentPage > m_pages)
+     pagingType >= 0)
     m_pages += 1;
 
   if(limit == -1)
@@ -607,27 +606,22 @@ int biblioteq::populateTable(QSqlQuery *query,
     }
 
   m_lastSearchType = searchType;
-  ui.table->scrollToTop();
-  ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
+  ui.table->horizontalScrollBar()->setValue(0);
+  ui.table->scrollToTop();
   ui.table->setCurrentItem(nullptr);
   slotDisplaySummary();
-  ui.graphicsView->scene()->clear();
-  ui.graphicsView->resetTransform();
-  ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
 
   if(progress)
     {
       QApplication::restoreOverrideCursor();
       progress->setLabelText(tr("Populating the views..."));
-
-      if(limit == -1)
-	progress->setMaximum(0);
-      else
-	progress->setMaximum(limit);
-
+      progress->setMaximum(limit == -1 ? 0 : limit);
       progress->setMinimum(0);
       progress->setModal(true);
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -672,7 +666,7 @@ int biblioteq::populateTable(QSqlQuery *query,
      progress)
     progress->setMaximum(qMin(limit, m_searchQuery->size()));
 
-  QFontMetrics fontMetrics(ui.table->font());
+  QFontMetrics const fontMetrics(ui.table->font());
   QHash<QString, QString> dateFormats;
   QLocale locale;
   QMap<QByteArray, QImage> images;
@@ -810,21 +804,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    str = m_searchQuery->value(j).toString().trimmed();
 		}
 
-#if QT_VERSION > 0x050501
-	      if(record.field(j).tableName() == "book" &&
-		 (fieldName == "id" || fieldName == "isbn13"))
-#else
-	      if(fieldName == "id" || fieldName == "isbn13")
-#endif
-		{
-		  if(fieldName == "id")
-		    str = m_otherOptions->isbn10DisplayFormat(str);
-		  else
-		    str = m_otherOptions->isbn13DisplayFormat(str);
-
-		  item = new QTableWidgetItem(str);
-		}
-	      else if(fieldName.endsWith("accession_number"))
+	      if(fieldName.endsWith("accession_number"))
 		{
 		  if(typefilter == "Books")
 		    {
@@ -854,7 +834,8 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    {
 		      item = new biblioteq_numeric_table_item
 			(m_searchQuery->value(j).toDouble());
-		      str = locale.toString(m_searchQuery->value(j).toDouble());
+		      str = locale.toString
+			(m_searchQuery->value(j).toDouble());
 		    }
 		  else
 		    {
@@ -942,7 +923,9 @@ int biblioteq::populateTable(QSqlQuery *query,
 
 		  if(!image.isNull())
 		    image = image.scaled
-		      (126, 187, Qt::KeepAspectRatio,
+		      (126,
+		       187,
+		       Qt::KeepAspectRatio,
 		       Qt::SmoothTransformation);
 
 		  pixmapItem = new biblioteq_graphicsitempixmap
@@ -954,26 +937,40 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    pixmapItem->setPos(140.0 * iconTableColumnIdx,
 				       200.0 * iconTableRowIdx + 15.0);
 
+		  iconTableColumnIdx += 1;
 		  pixmapItem->setFlag
 		    (QGraphicsItem::ItemIsSelectable, true);
 		  ui.graphicsView->scene()->addItem(pixmapItem);
-		  iconTableColumnIdx += 1;
 
 		  if(columns <= iconTableColumnIdx)
 		    {
-		      iconTableRowIdx += 1;
 		      iconTableColumnIdx = 0;
+		      iconTableRowIdx += 1;
 		    }
+		}
+#if QT_VERSION > 0x050501
+	      else if(record.field(j).tableName() == "book" &&
+		      (fieldName == "id" || fieldName == "isbn13"))
+#else
+	      else if(fieldName == "id" || fieldName == "isbn13")
+#endif
+		{
+		  if(fieldName == "id")
+		    str = m_otherOptions->isbn10DisplayFormat(str);
+		  else
+		    str = m_otherOptions->isbn13DisplayFormat(str);
+
+		  item = new QTableWidgetItem(str);
 		}
 	      else
 		item = new QTableWidgetItem();
 
 	      if(item != nullptr)
 		{
+		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		  item->setText
 		    (str.simplified().replace("<br>", " ").
 		     simplified().trimmed());
-		  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 		  if(j == 0)
 		    {
@@ -1064,8 +1061,8 @@ int biblioteq::populateTable(QSqlQuery *query,
   ui.itemsCountLabel->setText
     (tr("%1 Result(s)").arg(ui.table->rowCount()));
 
-  if(limit != -1 &&
-     !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+  if(!m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+     limit != -1 &&
      progress)
     progress->setValue(limit);
 
@@ -1508,14 +1505,14 @@ void biblioteq::readConfigurationFile(void)
   QApplication::setFont(font);
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", true).toBool());
-  ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
-    (settings.value("automatically_populate_members_list_on_display", true).
-     toBool());
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_admin_list_on_display", true).
      toBool());
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setChecked
     (settings.value("automatically_populate_enum_list_on_display", true).
+     toBool());
+  ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
+    (settings.value("automatically_populate_members_list_on_display", true).
      toBool());
 
   QHash<QString, QString> states;
@@ -2349,8 +2346,7 @@ void biblioteq::slotAllGo(void)
 	    }
 
 	  if(al.quantity->value() != 0)
-	    str.append("AND quantity = " +
-		       al.quantity->text() + " ");
+	    str.append("AND quantity = " + al.quantity->text() + " ");
 
 	  if(al.location->currentIndex() != 0)
 	    {
@@ -2543,7 +2539,7 @@ void biblioteq::slotCheckout(void)
 		 __FILE__,
 		 __LINE__);
 
-      if(expired || !errorstr.isEmpty())
+      if(!errorstr.isEmpty() || expired)
 	{
 	  QMessageBox::critical
 	    (m_members_diag,
@@ -2603,7 +2599,7 @@ void biblioteq::slotCheckout(void)
 		 __FILE__,
 		 __LINE__);
 
-      if(availability < 1 || !errorstr.isEmpty())
+      if(!errorstr.isEmpty() || availability < 1)
 	{
 	  QMessageBox::critical
 	    (m_members_diag,
@@ -2615,7 +2611,7 @@ void biblioteq::slotCheckout(void)
 	}
     }
 
-  if(row1 < 0 || !row2.isValid())
+  if(!row2.isValid() || row1 < 0)
     {
       QMessageBox::critical(m_members_diag,
 			    tr("BiblioteQ: User Error"),
@@ -2639,6 +2635,9 @@ void biblioteq::slotCheckout(void)
 	    itemid = biblioteq_misc_functions::getColumnString
 	      (ui.table, row2.row(), ui.table->columnNumber("ISBN-13"));
 	}
+      else if(type.toLower() == "cd")
+	itemid = biblioteq_misc_functions::getColumnString
+	  (ui.table, row2.row(), ui.table->columnNumber("Catalog Number"));
       else if(type.toLower() == "dvd")
 	itemid = biblioteq_misc_functions::getColumnString
 	  (ui.table, row2.row(), ui.table->columnNumber("UPC"));
@@ -2648,13 +2647,9 @@ void biblioteq::slotCheckout(void)
 	    (ui.table, row2.row(), ui.table->columnNumber("Document ID"));
 	  quantity = 1;
 	}
-      else if(type.toLower() == "journal" ||
-	      type.toLower() == "magazine")
+      else if(type.toLower() == "journal" || type.toLower() == "magazine")
 	itemid = biblioteq_misc_functions::getColumnString
 	  (ui.table, row2.row(), ui.table->columnNumber("ISSN"));
-      else if(type.toLower() == "cd")
-	itemid = biblioteq_misc_functions::getColumnString
-	  (ui.table, row2.row(), ui.table->columnNumber("Catalog Number"));
       else if(type.toLower() == "video game")
 	itemid = biblioteq_misc_functions::getColumnString
 	  (ui.table, row2.row(), ui.table->columnNumber("UPC"));
@@ -2797,8 +2792,8 @@ void biblioteq::slotConnectDB(void)
     m_db.setDatabaseName(br.filename->text());
   else
     {
-      m_db.setHostName(tmphash.value("hostname"));
       m_db.setDatabaseName(br.branch_name->currentText());
+      m_db.setHostName(tmphash.value("hostname"));
       m_db.setPort(static_cast<int> (tmphash.value("port").toUShort()));
     }
 
@@ -2888,12 +2883,12 @@ void biblioteq::slotConnectDB(void)
 		  QMessageBox::critical
 		    (parent,
 		     tr("BiblioteQ: User Error"),
-		     tr("It appears that the user ") +
+		     tr("It appears that the account ") +
 		     br.userid->text().trimmed() +
 		     tr(" does not have administrator privileges."));
 		  QApplication::processEvents();
 		}
-	      else if(br.role->currentIndex() != 0 && !m_roles.isEmpty())
+	      else if(!m_roles.isEmpty() && br.role->currentIndex() != 0)
 		{
 		  error = true;
 		  QMessageBox::critical
@@ -2906,11 +2901,9 @@ void biblioteq::slotConnectDB(void)
 	      else
 		{
 		  if(br.role->currentIndex() == 0) // Administrator
-		    biblioteq_misc_functions::setRole
-		      (m_db, errorstr, m_roles);
+		    biblioteq_misc_functions::setRole(m_db, errorstr, m_roles);
 		  else if(br.role->currentIndex() == 1) // Guest
-		    biblioteq_misc_functions::setRole
-		      (m_db, errorstr, "guest");
+		    biblioteq_misc_functions::setRole(m_db, errorstr, "guest");
 		  else
 		    biblioteq_misc_functions::setRole
 		      (m_db, errorstr, "patron");
@@ -3088,15 +3081,21 @@ void biblioteq::slotConnectDB(void)
 	  (ui.menuEntriesPerPage->actions().size() - 1)->setEnabled(true);
 
       ui.actionChangePassword->setEnabled(true);
-      disconnect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
-		 SLOT(slotViewDetails(void)));
       disconnect(ui.graphicsView->scene(),
 		 SIGNAL(itemDoubleClicked(void)),
 		 this,
 		 SLOT(slotViewDetails(void)));
-      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+      disconnect(ui.table,
+		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this,
+		 SLOT(slotViewDetails(void)));
+      connect(ui.graphicsView->scene(),
+	      SIGNAL(itemDoubleClicked(void)),
+	      this,
 	      SLOT(slotViewDetails(void)));
-      connect(ui.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)), this,
+      connect(ui.table,
+	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this,
 	      SLOT(slotViewDetails(void)));
 
       /*
@@ -3268,10 +3267,7 @@ void biblioteq::slotDisconnect(void)
   m_queryOffset = 0;
   delete m_searchQuery;
   m_searchQuery = nullptr;
-
-  if(m_sqliteMergeDatabases)
-    m_sqliteMergeDatabases->reset();
-
+  m_sqliteMergeDatabases ? m_sqliteMergeDatabases->reset() : (void) 0;
   userinfo_diag->m_memberProperties.clear();
 #ifdef Q_OS_ANDROID
   m_admin_diag->hide();
@@ -3281,9 +3277,7 @@ void biblioteq::slotDisconnect(void)
   m_import->hide();
   m_members_diag->hide();
   m_queryHistory->hide();
-
-  if(m_sqliteMergeDatabases)
-    m_sqliteMergeDatabases->hide();
+  m_sqliteMergeDatabases ? (void) m_sqliteMergeDatabases->hide() : (void) 0;
 #else
   m_admin_diag->close();
   m_all_diag->close();
@@ -3292,9 +3286,7 @@ void biblioteq::slotDisconnect(void)
   m_import->close();
   m_members_diag->close();
   m_queryHistory->close();
-
-  if(m_sqliteMergeDatabases)
-    m_sqliteMergeDatabases->close();
+  m_sqliteMergeDatabases ? (void) m_sqliteMergeDatabases->close() : (void) 0;
 #endif
 
   foreach(auto dialog, findChildren<biblioteq_custom_query *> ())
@@ -3405,15 +3397,15 @@ void biblioteq::slotDisconnect(void)
     slotResetErrorLog();
 
   m_findList.clear();
-  ui.graphicsView->scene()->clear();
-  ui.graphicsView->resetTransform();
-  ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
+  ui.itemsCountLabel->setText(tr("0 Results"));
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
   ui.table->resetTable(dbUserName(), m_previousTypeFilter, m_roles);
-  ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
   for(int i = 0; i < ui.menu_Category->actions().size(); i++)
@@ -3847,8 +3839,8 @@ void biblioteq::slotDisplaySummary(void)
 	{
 	  if(!backImage.isNull())
 	    {
-	      ui.backImage->setVisible(true);
 	      ui.backImage->setPixmap(QPixmap::fromImage(backImage));
+	      ui.backImage->setVisible(true);
 	    }
 	  else
 	    ui.backImage->clear();
@@ -4148,12 +4140,7 @@ void biblioteq::slotMembersContextMenu(const QPoint &point)
 
 void biblioteq::slotModifyBorrower(void)
 {
-  QSqlQuery query(m_db);
-  QString fieldname = "";
-  QString str = "";
-  QVariant var;
   auto const row = bb.table->currentRow();
-  int i = 0;
 
   if(row < 0)
     {
@@ -4164,6 +4151,12 @@ void biblioteq::slotModifyBorrower(void)
       QApplication::processEvents();
       return;
     }
+
+  QSqlQuery query(m_db);
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
 
   str = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
@@ -4203,21 +4196,54 @@ void biblioteq::slotModifyBorrower(void)
 
       for(i = 0; i < record.count(); i++)
 	{
+	  fieldname = record.fieldName(i);
 	  str = query.value(i).toString().trimmed();
 	  var = record.field(i).value();
-	  fieldname = record.fieldName(i);
 
-	  if(fieldname == "memberid")
-	    userinfo_diag->m_userinfo.memberid->setText
+	  if(fieldname == "city")
+	    userinfo_diag->m_userinfo.city->setText(var.toString().trimmed());
+	  else if(fieldname == "comments")
+	    userinfo_diag->m_userinfo.comments->setPlainText
 	      (var.toString().trimmed());
-	  else if(fieldname == "membersince")
-	    userinfo_diag->m_userinfo.membersince->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 s_databaseDateFormat));
 	  else if(fieldname == "dob")
 	    userinfo_diag->m_userinfo.dob->setDate
 	      (QDate::fromString(var.toString().trimmed(),
 				 s_databaseDateFormat));
+	  else if(fieldname == "email")
+	    userinfo_diag->m_userinfo.email->setText(var.toString().trimmed());
+	  else if(fieldname == "expiration_date")
+	    userinfo_diag->m_userinfo.expirationdate->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 s_databaseDateFormat));
+	  else if(fieldname == "first_name")
+	    userinfo_diag->m_userinfo.firstName->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "general_registration_number")
+	    userinfo_diag->m_userinfo.generalregistrationnumber->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "last_name")
+	    userinfo_diag->m_userinfo.lastName->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "maximum_reserved_books")
+	    userinfo_diag->m_userinfo.maximum_reserved_books->setValue
+	      (var.toInt());
+	  else if(fieldname == "memberclass")
+	    userinfo_diag->m_userinfo.memberclass->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "memberid")
+	    userinfo_diag->m_userinfo.memberid->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "membership_fees")
+	    userinfo_diag->m_userinfo.membershipfees->setValue(var.toDouble());
+	  else if(fieldname == "membersince")
+	    userinfo_diag->m_userinfo.membersince->setDate
+	      (QDate::fromString(var.toString().trimmed(),
+				 s_databaseDateFormat));
+	  else if(fieldname == "middle_init")
+	    userinfo_diag->m_userinfo.middle->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "overdue_fees")
+	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
 	  else if(fieldname == "sex")
 	    {
 	      if(userinfo_diag->m_userinfo.sex->
@@ -4228,23 +4254,6 @@ void biblioteq::slotModifyBorrower(void)
 	      else
 		userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
 	    }
-	  else if(fieldname == "first_name")
-	    userinfo_diag->m_userinfo.firstName->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "middle_init")
-	    userinfo_diag->m_userinfo.middle->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "last_name")
-	    userinfo_diag->m_userinfo.lastName->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "telephone_num")
-	    userinfo_diag->m_userinfo.telephoneNumber->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "street")
-	    userinfo_diag->m_userinfo.street->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "city")
-	    userinfo_diag->m_userinfo.city->setText(var.toString().trimmed());
 	  else if(fieldname == "state_abbr")
 	    {
 	      if(userinfo_diag->m_userinfo.state->
@@ -4255,46 +4264,30 @@ void biblioteq::slotModifyBorrower(void)
 		  (userinfo_diag->m_userinfo.state->
 		   findText(var.toString().trimmed()));
 	    }
+	  else if(fieldname == "street")
+	    userinfo_diag->m_userinfo.street->setText
+	      (var.toString().trimmed());
+	  else if(fieldname == "telephone_num")
+	    userinfo_diag->m_userinfo.telephoneNumber->setText
+	      (var.toString().trimmed());
 	  else if(fieldname == "zip")
 	    userinfo_diag->m_userinfo.zip->setText(var.toString().trimmed());
-	  else if(fieldname == "email")
-	    userinfo_diag->m_userinfo.email->setText(var.toString().trimmed());
-	  else if(fieldname == "expiration_date")
-	    userinfo_diag->m_userinfo.expirationdate->setDate
-	      (QDate::fromString(var.toString().trimmed(),
-				 s_databaseDateFormat));
-	  else if(fieldname == "overdue_fees")
-	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
-	  else if(fieldname == "comments")
-	    userinfo_diag->m_userinfo.comments->setPlainText
-	      (var.toString().trimmed());
-	  else if(fieldname == "general_registration_number")
-	    userinfo_diag->m_userinfo.generalregistrationnumber->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "memberclass")
-	    userinfo_diag->m_userinfo.memberclass->setText
-	      (var.toString().trimmed());
-	  else if(fieldname == "maximum_reserved_books")
-	    userinfo_diag->m_userinfo.maximum_reserved_books->setValue
-	      (var.toInt());
-	  else if(fieldname == "membership_fees")
-	    userinfo_diag->m_userinfo.membershipfees->setValue(var.toDouble());
 
-	  if(fieldname.contains("dob") ||
-	     fieldname.contains("date") ||
+	  if(fieldname.contains("date") ||
+	     fieldname.contains("dob") ||
 	     fieldname.contains("membersince"))
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      QDate::fromString(var.toString().trimmed(), s_databaseDateFormat).
 	      toString(Qt::ISODate);
+	  else if(fieldname == "maximum_reserved_books")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_books->text();
 	  else if(fieldname == "membership_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.membershipfees->text();
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.overduefees->text();
-	  else if(fieldname == "maximum_reserved_books")
-	    userinfo_diag->m_memberProperties[fieldname] =
-	      userinfo_diag->m_userinfo.maximum_reserved_books->text();
 	  else
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      var.toString().trimmed();
@@ -4304,21 +4297,21 @@ void biblioteq::slotModifyBorrower(void)
 	textfield->setCursorPosition(0);
     }
 
-  userinfo_diag->m_userinfo.memberid->setReadOnly(true);
-  userinfo_diag->m_userinfo.prevTool->setVisible(true);
-  userinfo_diag->m_userinfo.nextTool->setVisible(true);
-  userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   m_engUserinfoTitle = "Modify Member";
+  userinfo_diag->m_userinfo.memberid->setPalette
+    (userinfo_diag->m_userinfo.telephoneNumber->palette());
+  userinfo_diag->m_userinfo.memberid->setReadOnly(true);
+  userinfo_diag->m_userinfo.membersince->setFocus();
   userinfo_diag->m_userinfo.membersince->setMaximumDate(QDate::currentDate());
+  userinfo_diag->m_userinfo.nextTool->setVisible(true);
+  userinfo_diag->m_userinfo.prevTool->setVisible(true);
+  userinfo_diag->m_userinfo.scrollArea->horizontalScrollBar()->setValue(0);
+  userinfo_diag->m_userinfo.scrollArea->verticalScrollBar()->setValue(0);
 
   if(!userinfo_diag->isVisible())
     userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
 
-  userinfo_diag->m_userinfo.membersince->setFocus();
-  userinfo_diag->m_userinfo.memberid->setPalette
-    (userinfo_diag->m_userinfo.telephoneNumber->palette());
-  userinfo_diag->m_userinfo.scrollArea->horizontalScrollBar()->setValue(0);
-  userinfo_diag->m_userinfo.scrollArea->verticalScrollBar()->setValue(0);
+  userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   userinfo_diag->updateGeometry();
   userinfo_diag->resize
     (userinfo_diag->width(), userinfo_diag->sizeHint().height());
@@ -4424,7 +4417,7 @@ void biblioteq::slotOtherOptionsSaved(void)
   else
     ui.table->setIconSize(QSize(0, 0));
 
-  QFontMetrics fontMetrics(ui.table->font());
+  QFontMetrics const fontMetrics(ui.table->font());
 
   for(int i = 0; i < ui.table->rowCount(); i++)
     ui.table->setRowHeight
@@ -4703,8 +4696,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
 		str = QString::number(total);
 
 	      item = new QTableWidgetItem();
-	      item->setText(str);
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+	      item->setText(str);
 	      bb.table->setItem(i, j, item);
 	    }
 	}
@@ -4780,11 +4773,11 @@ void biblioteq::slotRefreshAdminList(void)
   QApplication::restoreOverrideCursor();
   resetAdminBrowser();
   ab.table->setRowCount(query.size());
-  progress->setModal(true);
-  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->setLabelText(tr("Populating the table..."));
   progress->setMaximum(query.size());
   progress->setMinimum(0);
+  progress->setModal(true);
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();
   progress->repaint();
   QApplication::processEvents();
@@ -4796,8 +4789,8 @@ void biblioteq::slotRefreshAdminList(void)
 	{
 	  item = new QTableWidgetItem();
 	  str = query.value(0).toString().trimmed();
-	  item->setText(str);
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	  item->setText(str);
 	  str = query.value(1).toString().trimmed();
 	  ab.table->setItem(i, static_cast<int> (AdminSetupColumns::ID), item);
 
@@ -4823,7 +4816,9 @@ void biblioteq::slotRefreshAdminList(void)
 		if(query.value(0).toString().trimmed() == getAdminID())
 		  checkBox->setEnabled(false);
 		else
-		  connect(checkBox, SIGNAL(stateChanged(int)), this,
+		  connect(checkBox,
+			  SIGNAL(stateChanged(int)),
+			  this,
 			  SLOT(slotAdminCheckBoxClicked(int)));
 	      }
 	}
@@ -4846,10 +4841,6 @@ void biblioteq::slotRefreshAdminList(void)
 
 void biblioteq::slotRemoveMember(void)
 {
-  QMap<QString, qint64> counts;
-  QSqlQuery query(m_db);
-  QString errorstr = "";
-  QString memberid = "";
   auto const row = bb.table->currentRow();
 
   if(row < 0)
@@ -4860,6 +4851,11 @@ void biblioteq::slotRemoveMember(void)
       QApplication::processEvents();
       return;
     }
+
+  QMap<QString, qint64> counts;
+  QSqlQuery query(m_db);
+  QString errorstr = "";
+  QString memberid = "";
 
   memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
@@ -5458,11 +5454,11 @@ void biblioteq::slotSaveAdministrators(void)
 
   QApplication::restoreOverrideCursor();
   progress.setCancelButton(nullptr);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Saving administrator information..."));
   progress.setMaximum(ab.table->rowCount());
   progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
   QApplication::processEvents();
