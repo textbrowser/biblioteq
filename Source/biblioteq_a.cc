@@ -1777,15 +1777,21 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 
 void biblioteq::quit(const char *msg, const char *file, const int line)
 {
-  if(msg != nullptr && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
+  if(file && msg && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
     qDebug() << tr(msg)
 	     << tr(" in file ")
-	     << file << tr(", line ") << line
+	     << file
+	     << tr(", line ")
+	     << line
+	     << tr(".");
+  else if(file)
+    qDebug() << tr("An unknown error occurred in file ")
+	     << file
+	     << tr(", line ")
+	     << line
 	     << tr(".");
   else
-    qDebug() << tr("An unknown error occurred in file ")
-	     << file << tr(", line ")
-	     << line << tr(".");
+    qDebug() << tr("An unknown error occurred in an unknown file.");
 
   exit(EXIT_FAILURE);
 #ifdef Q_OS_ANDROID
