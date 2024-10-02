@@ -1006,6 +1006,21 @@ void biblioteq_import::slotDeleteRow(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_import::slotDetectFields(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  for(int i = 0; i < m_ui.rows->rowCount(); i++)
+    {
+      auto item = m_ui.rows->item(i, static_cast<int> (Columns::CSV_PREVIEW));
+
+      if(!item)
+	continue;
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_import::slotImport(void)
 {
   if(m_ui.csv_file->text().trimmed().isEmpty() ||

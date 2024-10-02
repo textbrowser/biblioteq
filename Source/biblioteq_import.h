@@ -84,6 +84,7 @@ class biblioteq_import: public QMainWindow
   void slotAddRow(void);
   void slotClose(void);
   void slotDeleteRow(void);
+  void slotDetectFields(void);
   void slotImport(void);
   void slotRefreshPreview(void);
   void slotReset(void);
