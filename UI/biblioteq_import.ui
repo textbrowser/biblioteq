@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
+    <width>800</width>
     <height>700</height>
    </rect>
   </property>
@@ -192,8 +192,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>599</width>
-            <height>424</height>
+            <width>699</width>
+            <height>426</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -262,6 +262,16 @@
                  <string>Template 3 (BiblioteQ Patrons)</string>
                 </property>
                </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="detect">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prepare BiblioteQ Table Field Name values according to the contents of the CSV file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>?</string>
+               </property>
               </widget>
              </item>
              <item>
@@ -597,6 +607,7 @@
   <tabstop>delimiter</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>templates</tabstop>
+  <tabstop>detect</tabstop>
   <tabstop>rows</tabstop>
   <tabstop>add_row</tabstop>
   <tabstop>bottom_scroll_on_add</tabstop>

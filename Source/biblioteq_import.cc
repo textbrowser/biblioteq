@@ -55,6 +55,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteRow(void)));
+  connect(m_ui.detect,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDetectFields(void)));
   connect(m_ui.import_csv,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -1013,9 +1017,64 @@ void biblioteq_import::slotDetectFields(void)
   for(int i = 0; i < m_ui.rows->rowCount(); i++)
     {
       auto item = m_ui.rows->item(i, static_cast<int> (Columns::CSV_PREVIEW));
+      auto widget = m_ui.rows->cellWidget
+	(i, static_cast<int> (Columns::BIBLIOTEQ_TABLE_FIELD_NAME));
 
-      if(!item)
+      if(!item || !widget)
 	continue;
+
+      auto comboBox = widget->findChild<QComboBox *> ();
+      auto const text(item->text().toLower());
+
+      if(comboBox == nullptr || text.isEmpty())
+	continue;
+
+      int index = -1;
+
+      if(text.contains("accession"))
+	index = comboBox->findText("accession_number");
+      else if(text.contains("alternate"))
+	index = comboBox->findText("alternate_id_1");
+      else if(text.contains("author"))
+	index = comboBox->findText("author");
+      else if(text.contains("binding"))
+	index = comboBox->findText("binding_type");
+      else if(text.contains("cate"))
+	index = comboBox->findText("category");
+      else if(text.contains("dewey"))
+	index = comboBox->findText("deweynumber");
+      else if(text.contains("id"))
+	index = comboBox->findText("id");
+      else if(text.contains("isbn"))
+	{
+	  if(text.contains("10"))
+	    index = comboBox->findText("id");
+	  else if(text.contains("13"))
+	    index = comboBox->findText("isbn13");
+	  else
+	    index = comboBox->findText("id");	    
+	}
+      else if(text.contains("monetary"))
+	index = comboBox->findText("monetary_units");
+      else if(text.contains("place"))
+	index = comboBox->findText("place");
+      else if(text.contains("publication"))
+	index = comboBox->findText("pdate");
+      else if(text.contains("purchase"))
+	index = comboBox->findText("purchase_date");
+      else if(text.contains("reform"))
+	index = comboBox->findText("date_of_reform");
+      else if(text.contains("target"))
+	index = comboBox->findText("target_audience");
+      else if(text.contains("volume"))
+	index = comboBox->findText("volume_number");
+      else
+	index = comboBox->findText(text);
+
+      if(index >= 0)
+	comboBox->setCurrentIndex(index);
+      else
+	comboBox->setCurrentIndex(comboBox->findText("<ignored>"));
     }
 
   QApplication::restoreOverrideCursor();
