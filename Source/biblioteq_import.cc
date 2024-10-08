@@ -858,7 +858,7 @@ void biblioteq_import::reset(void)
 void biblioteq_import::show(QMainWindow *parent)
 {
   restoreGeometry(QSettings().value("import_geometry").toByteArray());
-  biblioteq_misc_functions::center(this, parent);
+  biblioteq_misc_functions::center(this, parent, false);
   showNormal();
   activateWindow();
   raise();

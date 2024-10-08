@@ -635,7 +635,7 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
   Q_UNUSED(parent);
   showMaximized();
 #else
-  biblioteq_misc_functions::center(this, parent);
+  biblioteq_misc_functions::center(this, parent, false);
   showNormal();
 #endif
   activateWindow();

@@ -1003,12 +1003,10 @@ void biblioteq_batch_activities::returnItems(void)
 
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
+  Q_UNUSED(center);
   restoreGeometry
     (QSettings().value("batch_activities_geometry").toByteArray());
-
-  if(center)
-    biblioteq_misc_functions::center(this, parent);
-
+  biblioteq_misc_functions::center(this, parent, false);
   showNormal();
   activateWindow();
   raise();

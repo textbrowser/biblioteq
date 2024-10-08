@@ -66,6 +66,9 @@
       <li>SRU@France is now HTTPS in biblioteq.conf.</li>
       <li>Set QMAKE_MACOSX_DEPLOYMENT_TARGET to 12.0 in
 	biblioteq.macos.pro.</li>
+      <li>Set the height of the member dialog as
+	maximum(-100 + m_members_diag->height(),
+	        userinfo_diag->sizeHint().height()).</li>
       <li>The method biblioteq_misc_functions::isbn13to10() will now
 	produce the original string if the string does not begin with
 	978. <b>GitHub ticket #350.</b></li>

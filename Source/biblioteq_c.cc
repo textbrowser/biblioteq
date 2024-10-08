@@ -4314,7 +4314,8 @@ void biblioteq::slotModifyBorrower(void)
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   userinfo_diag->updateGeometry();
   userinfo_diag->resize
-    (userinfo_diag->width(), userinfo_diag->sizeHint().height());
+    (userinfo_diag->width(), qMax(-100 + m_members_diag->height(),
+				  userinfo_diag->sizeHint().height()));
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
@@ -6850,7 +6851,7 @@ void biblioteq::slotShowImport(void)
 void biblioteq::slotShowOtherOptions(void)
 {
   m_otherOptions->showNormal();
-  biblioteq_misc_functions::center(m_otherOptions, this);
+  biblioteq_misc_functions::center(m_otherOptions, this, false);
   m_otherOptions->activateWindow();
   m_otherOptions->raise();
 }

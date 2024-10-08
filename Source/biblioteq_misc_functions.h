@@ -208,7 +208,7 @@ class biblioteq_misc_functions
 			QString &,
 			const QString & = "");
   static void assignImage(QPushButton *, const QColor &);
-  static void center(QWidget *, QMainWindow *, const bool = false);
+  static void center(QWidget *, QMainWindow *, const bool = true);
   static void createBookCopy(const QString &,
 			     const int,
 			     const QSqlDatabase &,

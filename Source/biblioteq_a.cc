@@ -2470,7 +2470,8 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->updateGeometry();
   userinfo_diag->resize
-    (userinfo_diag->width(), userinfo_diag->sizeHint().height());
+    (userinfo_diag->width(), qMax(-100 + m_members_diag->height(),
+				  userinfo_diag->sizeHint().height()));
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }

@@ -942,7 +942,7 @@ void biblioteq::slotMergeSQLiteDatabases(void)
 #ifdef Q_OS_ANDROID
   m_sqliteMergeDatabases->showMaximized();
 #else
-  biblioteq_misc_functions::center(m_sqliteMergeDatabases, this);
+  biblioteq_misc_functions::center(m_sqliteMergeDatabases, this, false);
   m_sqliteMergeDatabases->showNormal();
 #endif
   m_sqliteMergeDatabases->activateWindow();
@@ -1123,7 +1123,7 @@ void biblioteq::slotShowQueryHistory(void)
 #ifdef Q_OS_ANDROID
   m_queryHistory->showMaximized();
 #else
-  biblioteq_misc_functions::center(m_queryHistory, this);
+  biblioteq_misc_functions::center(m_queryHistory, this, false);
   m_queryHistory->showNormal();
 #endif
   m_queryHistory->activateWindow();
