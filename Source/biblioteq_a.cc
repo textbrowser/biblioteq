@@ -4699,7 +4699,7 @@ void biblioteq::slotSearch(void)
 #ifdef Q_OS_ANDROID
   m_all_diag->showMaximized();
 #else
-  static auto resized = false;
+  auto static resized = false;
 
   if(!resized)
     m_all_diag->resize
@@ -4773,7 +4773,7 @@ void biblioteq::slotSetFonts(void)
 
 void biblioteq::slotShowAdminDialog(void)
 {
-  static auto resized = false;
+  auto static resized = false;
 
   if(!resized)
     m_admin_diag->resize(qRound(0.95 * size().width()),
@@ -4846,7 +4846,7 @@ void biblioteq::slotShowErrorDialog(void)
   for(int i = 0; i < er.table->columnCount() - 1; i++)
     er.table->resizeColumnToContents(i);
 
-  static auto resized = false;
+  auto static resized = false;
 
   if(!resized)
     m_error_diag->resize(qRound(0.95 * size().width()),
@@ -4886,7 +4886,7 @@ void biblioteq::slotShowMembersBrowser(void)
 	bb.table->resizeColumnToContents(i);
     }
 
-  static auto resized = false;
+  auto static resized = false;
 
   if(!resized)
     m_members_diag->resize

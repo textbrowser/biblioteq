@@ -76,17 +76,15 @@ void biblioteq_magic::reset(void)
 
 void biblioteq_magic::show(QMainWindow *parent, const bool center)
 {
-  static auto resized = false;
+  Q_UNUSED(center);
+  auto static resized = false;
 
   if(!resized && parent)
     resize(qRound(0.95 * parent->size().width()),
 	   qRound(0.95 * parent->size().height()));
 
   resized = true;
-
-  if(center)
-    biblioteq_misc_functions::center(this, parent);
-
+  biblioteq_misc_functions::center(this, parent);
   showNormal();
   activateWindow();
   raise();

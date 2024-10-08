@@ -6782,28 +6782,27 @@ void biblioteq::slotShowHistory(void)
 
   if(m_members_diag->isVisible())
     {
-      static auto resized = false;
+      auto static resized = false;
 
       if(!resized)
 	{
 	  m_history_diag->resize
 	    (qRound(0.95 * m_members_diag->size().width()),
 	     qRound(0.95 * m_members_diag->size().height()));
-	  biblioteq_misc_functions::center
-	    (m_history_diag, m_members_diag, true);
+	  biblioteq_misc_functions::center(m_history_diag, m_members_diag);
 	}
 
       resized = true;
     }
   else
     {
-      static auto resized = false;
+      auto static resized = false;
 
       if(!resized)
 	{
 	  m_history_diag->resize
 	    (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
-	  biblioteq_misc_functions::center(m_history_diag, this, true);
+	  biblioteq_misc_functions::center(m_history_diag, this);
 	}
 
       resized = true;

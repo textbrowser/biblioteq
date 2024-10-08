@@ -825,7 +825,7 @@ void biblioteq_otheroptions::slotMainWindowShortcutChanged(void)
     return;
 
   QMap<QString, int> map;
-  static auto const color(m_ui.shortcuts->item(0, 0)->background());
+  auto const static color(m_ui.shortcuts->item(0, 0)->background());
 
   for(int i = 0; i < m_ui.shortcuts->rowCount(); i++)
     {
