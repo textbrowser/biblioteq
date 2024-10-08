@@ -267,7 +267,7 @@
              <item>
               <widget class="QPushButton" name="detect">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prepare BiblioteQ Table Field Name values according to the contents of the CSV file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Guess BiblioteQ Table Field Name values according to the contents of the CSV file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
                 <string>?</string>
