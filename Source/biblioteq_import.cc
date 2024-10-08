@@ -1035,12 +1035,18 @@ void biblioteq_import::slotDetectFields(void)
 	index = comboBox->findText("accession_number");
       else if(text.contains("alternate"))
 	index = comboBox->findText("alternate_id_1");
+      else if(text.contains("audience"))
+	index = comboBox->findText("target_audience");
       else if(text.contains("author"))
 	index = comboBox->findText("author");
       else if(text.contains("binding"))
 	index = comboBox->findText("binding_type");
+      else if(text.contains("call"))
+	index = comboBox->findText("callnumber");
       else if(text.contains("cate"))
 	index = comboBox->findText("category");
+      else if(text.contains("control"))
+	index = comboBox->findText("lccontrolnumber");
       else if(text.contains("dewey"))
 	index = comboBox->findText("deweynumber");
       else if(text.contains("id"))
@@ -1056,6 +1062,8 @@ void biblioteq_import::slotDetectFields(void)
 	}
       else if(text.contains("monetary"))
 	index = comboBox->findText("monetary_units");
+      else if(text.contains("origin"))
+	index = comboBox->findText("originality");
       else if(text.contains("place"))
 	index = comboBox->findText("place");
       else if(text.contains("publication"))

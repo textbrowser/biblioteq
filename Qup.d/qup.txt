@@ -122,11 +122,11 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [Unix]
 
+desktop = ./biblioteq.desktop
 executable = BiblioteQ_PiOS_12_ARM
 executable = BiblioteQ_PiOS_12_ARM64
 executable = BiblioteQ_Ubuntu_16_04_PowerPC
 executable = BiblioteQ_Ubuntu_24_04_AMD64
-file = ./biblioteq.desktop
 local_executable = BiblioteQ
 shell = ./biblioteq.sh
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
