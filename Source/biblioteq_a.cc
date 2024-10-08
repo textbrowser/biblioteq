@@ -3518,7 +3518,7 @@ void biblioteq::slotLanguageChanged(void)
 
 void biblioteq::slotListOverdueItems(void)
 {
-  QString memberid = "";
+  QString memberid("");
   auto const row = bb.table->currentRow();
 
   if(m_members_diag->isVisible())
@@ -3540,20 +3540,24 @@ void biblioteq::slotListReservedItems(const QString &id)
 
 void biblioteq::slotListReservedItems(void)
 {
-  QString memberid = "";
   auto const row = bb.table->currentRow();
 
   if(row < 0)
     {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag,
+			    tr("BiblioteQ: User Error"),
 			    tr("In order to list a member's reserved items, "
 			       "you must first select the member."));
       QApplication::processEvents();
       return;
     }
 
-  memberid = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  auto const memberid
+    (biblioteq_misc_functions::
+     getColumnString(bb.table,
+		     row,
+		     m_bbColumnHeaderIndexes.indexOf("Member ID")));
+
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
   m_members_diag->showNormal();
   m_members_diag->activateWindow();
@@ -3980,7 +3984,8 @@ void biblioteq::slotPrintReserved(void)
   if(row < 0)
     {
       QMessageBox::critical
-	(m_members_diag, tr("BiblioteQ: User Error"),
+	(m_members_diag,
+	 tr("BiblioteQ: User Error"),
 	 tr("In order to print a member's reserved items, "
 	    "you must first select the member."));
       QApplication::processEvents();
@@ -4016,10 +4021,10 @@ void biblioteq::slotPrintReserved(void)
 
   if(itemsReserved < 1)
     {
-      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag,
+			    tr("BiblioteQ: User Error"),
 			    tr("The member (%1) that you selected "
-			       "does not have reserved items.").
-			    arg(memberid));
+			       "does not have reserved items.").arg(memberid));
       QApplication::processEvents();
       return;
     }
@@ -4884,8 +4889,8 @@ void biblioteq::slotShowMembersBrowser(void)
   static auto resized = false;
 
   if(!resized)
-    m_members_diag->resize(qRound(0.95 * size().width()),
-			   qRound(0.95 * size().height()));
+    m_members_diag->resize
+      (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_members_diag, this);

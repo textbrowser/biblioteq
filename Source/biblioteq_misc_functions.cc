@@ -1567,16 +1567,6 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
   return isCheckedOut;
 }
 
-bool biblioteq_misc_functions::isGnome(void)
-{
-  auto const session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
-
-  if(session == "gnome" || session == "ubuntu")
-    return true;
-  else
-    return false;
-}
-
 bool biblioteq_misc_functions::isItemAvailable
 (QString &error,
  const QSqlDatabase &db,

@@ -153,7 +153,6 @@ class biblioteq_misc_functions
 			       const QString &,
 			       const QString &,
 			       QString &);
-  static bool isGnome(void);
   static bool isItemAvailable
     (QString &,
      const QSqlDatabase &,
