@@ -28,6 +28,7 @@
 #ifndef _BIBLIOTEQ_HYPERLINKED_TEXT_EDIT_H_
 #define _BIBLIOTEQ_HYPERLINKED_TEXT_EDIT_H_
 
+#include <QPointer>
 #include <QTextBrowser>
 
 class biblioteq;
@@ -44,7 +45,7 @@ class biblioteq_hyperlinked_text_edit: public QTextBrowser
   void setQMain(biblioteq *biblioteq);
 
  private:
-  biblioteq *qmain;
+  QPointer<biblioteq> m_qmain;
   int m_readOnly;
   void keyPressEvent(QKeyEvent *event);
   void keyReleaseEvent(QKeyEvent *event);

@@ -35,8 +35,8 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 	  SIGNAL(anchorClicked(const QUrl &)),
 	  this,
 	  SLOT(slotAnchorClicked(const QUrl &)));
+  m_qmain = nullptr;
   m_readOnly = -1;
-  qmain = nullptr;
 }
 
 void biblioteq_hyperlinked_text_edit::keyPressEvent(QKeyEvent *event)
@@ -59,7 +59,7 @@ void biblioteq_hyperlinked_text_edit::keyReleaseEvent(QKeyEvent *event)
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
 (const QString &searchType, const QString &searchField, const QString &str)
 {
-  if(!qmain)
+  if(!m_qmain)
     return;
 
   QString html("");
@@ -88,17 +88,14 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
 
 void biblioteq_hyperlinked_text_edit::setQMain(biblioteq *biblioteq)
 {
-  qmain = biblioteq;
+  m_qmain = biblioteq;
 }
 
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 {
-  if(!qmain)
+  if(!m_qmain)
     return;
 
-  QString searchKey("");
-  QString searchType("");
-  QString searchValue("");
   QStringList tmplist;
   auto const path(url.toString());
 
@@ -106,23 +103,23 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
 
   if(tmplist.size() >= 3)
     {
-      searchKey = tmplist[1];
-      searchType = tmplist[0];
-      searchValue = tmplist[2];
+      auto const searchKey(tmplist[1]);
+      auto const searchType(tmplist[0]);
+      auto const searchValue(tmplist[2]);
 
       if(searchType == "book_search")
-	qmain->bookSearch(searchKey, searchValue);
+	m_qmain->bookSearch(searchKey, searchValue);
       else if(searchType == "cd_search")
-	qmain->cdSearch(searchKey, searchValue);
+	m_qmain->cdSearch(searchKey, searchValue);
       else if(searchType == "dvd_search")
-	qmain->dvdSearch(searchKey, searchValue);
+	m_qmain->dvdSearch(searchKey, searchValue);
       else if(searchType == "greyliterature_search")
-	qmain->greyLiteratureSearch(searchKey, searchValue);
+	m_qmain->greyLiteratureSearch(searchKey, searchValue);
       else if(searchType == "journal_search")
-	qmain->journSearch(searchKey, searchValue);
+	m_qmain->journSearch(searchKey, searchValue);
       else if(searchType == "magazine_search")
-	qmain->magSearch(searchKey, searchValue);
+	m_qmain->magSearch(searchKey, searchValue);
       else if(searchType == "videogame_search")
-	qmain->vgSearch(searchKey, searchValue);
+	m_qmain->vgSearch(searchKey, searchValue);
     }
 }
