@@ -1088,7 +1088,7 @@ void biblioteq_import::slotDetectFields(void)
       else if(text.contains("volume"))
 	index = comboBox->findText("volume_number");
       else
-	index = comboBox->findText(text);
+	index = comboBox->findText(text, Qt::MatchContains);
 
       if(index >= 0)
 	comboBox->setCurrentIndex(index);
