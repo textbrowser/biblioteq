@@ -109,9 +109,9 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
-             <widget class="QLabel" name="lines">
+             <widget class="QLabel" name="about_csv">
               <property name="text">
-               <string>Lines</string>
+               <string>About</string>
               </property>
              </widget>
             </item>
@@ -198,7 +198,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-67</y>
             <width>699</width>
             <height>426</height>
            </rect>
@@ -366,6 +366,13 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="about_templates">
+               <property name="text">
+                <string>About</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <widget class="QPushButton" name="add_row">
                <property name="minimumSize">

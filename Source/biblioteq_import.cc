@@ -39,7 +39,7 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
   m_qmain = parent;
   m_ui.setupUi(this);
-  m_ui.lines->setText(tr("0 Lines"));
+  m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -725,7 +725,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
 void biblioteq_import::loadPreview(void)
 {
-  m_ui.lines->setText(tr("0 Lines"));
+  m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
 
   if(m_ui.csv_file->text().trimmed().isEmpty())
     return;
@@ -806,7 +806,8 @@ void biblioteq_import::loadPreview(void)
 	    }
 
 	  row += 1;
-	  m_ui.lines->setText(tr("%1 Line(s)").arg(row));
+	  m_ui.about_csv->setText
+	    (tr("%1 Column(s) | %2 Line(s)").arg(headers.size()).arg(row));
 	}
     }
 
@@ -1291,10 +1292,10 @@ void biblioteq_import::slotReset(void)
 
   m_mappings.clear();
   m_previewHeaders.clear();
+  m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
-  m_ui.lines->setText(tr("0 Lines"));
   m_ui.preview->clear();
   m_ui.preview->setColumnCount(0);
   m_ui.preview->setRowCount(0);
