@@ -109,6 +109,13 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
+             <widget class="QLabel" name="lines">
+              <property name="text">
+               <string>Lines</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="horizontalSpacer_3">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
