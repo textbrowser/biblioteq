@@ -1035,7 +1035,7 @@ void biblioteq_import::slotDetectFields(void)
 	continue;
 
       auto comboBox = widget->findChild<QComboBox *> ();
-      auto const text(item->text().toLower());
+      auto const text(item->text().remove('"').remove('\'').toLower());
 
       if(comboBox == nullptr || text.isEmpty())
 	continue;
@@ -1088,7 +1088,7 @@ void biblioteq_import::slotDetectFields(void)
       else if(text.contains("volume"))
 	index = comboBox->findText("volume_number");
       else
-	index = comboBox->findText(text, Qt::MatchContains);
+	index = comboBox->findText(text);
 
       if(index >= 0)
 	comboBox->setCurrentIndex(index);
