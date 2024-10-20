@@ -1065,7 +1065,7 @@ void biblioteq_import::slotDetectFields(void)
 	  else if(text.contains("13"))
 	    index = comboBox->findText("isbn13");
 	  else
-	    index = comboBox->findText("id");	    
+	    index = comboBox->findText("id");
 	}
       else if(text.contains("monetary"))
 	index = comboBox->findText("monetary_units");
