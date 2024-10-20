@@ -204,6 +204,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	break;
       else
 	{
+	  progress->setLabelText
+	    (tr("Importing the CSV file. Processing line %1.").arg(ct));
 	  progress->repaint();
 	  QApplication::processEvents();
 	}
@@ -592,6 +594,8 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 	break;
       else
 	{
+	  progress->setLabelText
+	    (tr("Importing the CSV file. Processing line %1.").arg(ct));
 	  progress->repaint();
 	  QApplication::processEvents();
 	}
