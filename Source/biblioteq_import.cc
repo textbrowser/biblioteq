@@ -991,6 +991,7 @@ void biblioteq_import::slotAddRow(void)
   if(m_ui.bottom_scroll_on_add->isChecked())
     m_ui.rows->scrollToBottom();
 
+  m_ui.about_templates->setText(tr("%1 Column(s)").arg(m_ui.rows->rowCount()));
   QApplication::restoreOverrideCursor();
 }
 
@@ -1012,6 +1013,7 @@ void biblioteq_import::slotDeleteRow(void)
   for(int i = rows.size() - 1; i >= 0; i--)
     m_ui.rows->removeRow(rows.at(i));
 
+  m_ui.about_templates->setText(tr("%1 Column(s)").arg(m_ui.rows->rowCount()));
   QApplication::restoreOverrideCursor();
 }
 
@@ -1293,6 +1295,7 @@ void biblioteq_import::slotReset(void)
   m_mappings.clear();
   m_previewHeaders.clear();
   m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
+  m_ui.about_templates->setText(tr("0 Columns"));
   m_ui.csv_file->clear();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
@@ -1480,6 +1483,7 @@ void biblioteq_import::slotTemplates(int index)
 	      }
 	  }
 
+	m_ui.about_templates->setText(tr("%1 Column(s)").arg(list.size()));
 	break;
       }
     }
