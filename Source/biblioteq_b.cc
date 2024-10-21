@@ -5162,17 +5162,17 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   QString message("");
 
   if(sender() == ui.action_Upgrade_SQLite_SchemaAll)
-    message = tr("Please note that BiblioteQ will execute all of the upgrade "
-		 "statements since the upgrade tool was introduced.");
+    message = tr("Please note that BiblioteQ will execute all of the SQL "
+		 "statements since the tool was introduced.");
   else
-    message = tr("Please note that BiblioteQ will execute this version's "
-		 "upgrade statements.");
+    message = tr("Please note that BiblioteQ will execute the newest "
+		 "SQL statements.");
 
   if(QMessageBox::question(this,
 			   tr("BiblioteQ: Question"),
 			   tr("You are about to upgrade the "
 			      "SQLite database %1. "
-			      "Please verify that you have made a "
+			      "Please verify that you have created a "
 			      "copy of this database. %2 "
 			      "Are you sure that you wish to continue?").
 			   arg(m_db.databaseName()).arg(message),
