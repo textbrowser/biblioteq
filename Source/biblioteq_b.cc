@@ -41,14 +41,12 @@
 #include <QSqlRecord>
 #include <QStandardPaths>
 
-#include <limits>
-
 QString biblioteq::homePath(void)
 {
 #ifdef BIBLIOTEQ_NON_PORTABLE
   return QStandardPaths::writableLocation
     (QStandardPaths::StandardLocation::AppConfigLocation);
-#elif defined(Q_OS_WIN)
+#elif defined(Q_OS_WINDOWS)
   return QDir::currentPath() + QDir::separator() + ".biblioteq";
 #else
   return QDir::homePath() + QDir::separator() + ".biblioteq";
@@ -100,16 +98,11 @@ bool biblioteq::isPatron(void) const
 
 int biblioteq::pageLimit(void) const
 {
-  int limit = 25;
-
   for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
     if(ui.menuEntriesPerPage->actions().at(i)->isChecked())
-      {
-	limit = ui.menuEntriesPerPage->actions().at(i)->data().toInt();
-	break;
-      }
+      return ui.menuEntriesPerPage->actions().at(i)->data().toInt();
 
-  return limit;
+  return 25;
 }
 
 int biblioteq::populateTable(const int search_type_arg,
@@ -227,16 +220,15 @@ int biblioteq::populateTable(const int search_type_arg,
 	if(m_configToolMenu)
 	  m_configToolMenu->deleteLater();
 
+	searchstr = searchstrArg;
 	ui.configTool->setEnabled(false);
 	ui.configTool->setToolTip(tr("Disabled for custom queries."));
-	searchstr = searchstrArg;
 
 	while(searchstr.endsWith(';'))
 	  searchstr = searchstr.mid(0, searchstr.length() - 1);
 
 	if(searchstr.lastIndexOf("LIMIT") != -1)
-	  searchstr.remove(searchstr.lastIndexOf("LIMIT"),
-			   searchstr.length());
+	  searchstr.remove(searchstr.lastIndexOf("LIMIT"), searchstr.length());
 
 	searchstr += limitStr + offsetStr;
 	break;
@@ -2767,57 +2759,6 @@ int biblioteq::populateTable(const int search_type_arg,
 		searchstr.append(limitStr + offsetStr);
 	      }
 	  }
-	else if(typefilter == "Video Games")
-	  {
-	    searchstr = "SELECT DISTINCT videogame.title, "
-	      "videogame.vgrating, "
-	      "videogame.vgplatform, "
-	      "videogame.vgmode, "
-	      "videogame.publisher, "
-	      "videogame.rdate, "
-	      "videogame.place, "
-	      "videogame.genre, "
-	      "videogame.language, "
-	      "videogame.id, "
-	      "videogame.price, "
-	      "videogame.monetary_units, "
-	      "videogame.quantity, "
-	      "videogame.location, "
-	      "videogame.quantity - "
-	      "COUNT(item_borrower.item_oid) "
-	      "AS availability, "
-	      "COUNT(item_borrower.item_oid) AS total_reserved, "
-	      "videogame.accession_number, "
-	      "videogame.type, "
-	      "videogame.myoid, " +
-	      videoGameFrontCover +
-	      "FROM "
-	      "videogame LEFT JOIN item_borrower ON "
-	      "videogame.myoid = item_borrower.item_oid "
-	      "AND item_borrower.type = 'Video Game' "
-	      "GROUP BY "
-	      "videogame.title, "
-	      "videogame.vgrating, "
-	      "videogame.vgplatform, "
-	      "videogame.vgmode, "
-	      "videogame.publisher, "
-	      "videogame.rdate, "
-	      "videogame.place, "
-	      "videogame.genre, "
-	      "videogame.language, "
-	      "videogame.id, "
-	      "videogame.price, "
-	      "videogame.monetary_units, "
-	      "videogame.quantity, "
-	      "videogame.location, "
-	      "videogame.accession_number, "
-	      "videogame.type, "
-	      "videogame.myoid, "
-	      "videogame.front_cover "
-	      "ORDER BY "
-	      "videogame.title" +
-	      limitStr + offsetStr;
-	  }
 	else if(typefilter == "Books")
 	  {
 	    searchstr = "SELECT DISTINCT book.title, "
@@ -2985,6 +2926,72 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "grey_literature.author" +
 	      limitStr + offsetStr;
 	  }
+	else if(typefilter == "Journals" || typefilter == "Magazines")
+	  {
+	    if(typefilter == "Journals")
+	      type = "Journal";
+	    else
+	      type = "Magazine";
+
+	    QString frontCover("'' AS front_cover ");
+
+	    if(m_otherOptions->showMainTableImages())
+	      {
+		if(type == "Journal")
+		  frontCover = "journal.front_cover ";
+		else
+		  frontCover = "magazine.front_cover ";
+	      }
+
+	    searchstr = QString("SELECT DISTINCT %1.title, "
+				"%1.publisher, %1.pdate, "
+				"%1.place, "
+				"%1.issuevolume, %1.issueno, "
+				"%1.category, %1.language, "
+				"%1.id, "
+				"%1.price, %1.monetary_units, "
+				"%1.quantity, "
+				"%1.location, "
+				"%1.lccontrolnumber, "
+				"%1.callnumber, "
+				"%1.deweynumber, "
+				"%1.quantity - "
+				"COUNT(item_borrower.item_oid) AS "
+				"availability, "
+				"COUNT(item_borrower.item_oid) AS "
+				"total_reserved, "
+				"%1.accession_number, "
+				"%1.type, "
+				"%1.myoid, " +
+				frontCover +
+				"FROM "
+				"%1 LEFT JOIN item_borrower ON "
+				"%1.myoid = "
+				"item_borrower.item_oid "
+				"AND item_borrower.type = %1.type "
+				"WHERE "
+				"%1.type = '%1' "
+				"GROUP BY "
+				"%1.title, "
+				"%1.publisher, %1.pdate, "
+				"%1.place, "
+				"%1.issuevolume, %1.issueno, "
+				"%1.category, %1.language, "
+				"%1.id, "
+				"%1.price, %1.monetary_units, "
+				"%1.quantity, "
+				"%1.location, "
+				"%1.lccontrolnumber, "
+				"%1.callnumber, "
+				"%1.deweynumber, "
+				"%1.accession_number, "
+				"%1.type, "
+				"%1.myoid, "
+				"%1.front_cover "
+				"ORDER BY "
+				"%1.title").arg(type);
+	    searchstr += limitStr + offsetStr;
+	  }
 	else if(typefilter == "Music CDs")
 	  {
 	    searchstr = "SELECT DISTINCT cd.title, "
@@ -3067,71 +3074,56 @@ int biblioteq::populateTable(const int search_type_arg,
 	      "photograph_collection.title" +
 	      limitStr + offsetStr;
 	  }
-	else if(typefilter == "Journals" || typefilter == "Magazines")
+	else if(typefilter == "Video Games")
 	  {
-	    if(typefilter == "Journals")
-	      type = "Journal";
-	    else
-	      type = "Magazine";
-
-	    QString frontCover("'' AS front_cover ");
-
-	    if(m_otherOptions->showMainTableImages())
-	      {
-		if(type == "Journal")
-		  frontCover = "journal.front_cover ";
-		else
-		  frontCover = "magazine.front_cover ";
-	      }
-
-	    searchstr = QString("SELECT DISTINCT %1.title, "
-				"%1.publisher, %1.pdate, "
-				"%1.place, "
-				"%1.issuevolume, %1.issueno, "
-				"%1.category, %1.language, "
-				"%1.id, "
-				"%1.price, %1.monetary_units, "
-				"%1.quantity, "
-				"%1.location, "
-				"%1.lccontrolnumber, "
-				"%1.callnumber, "
-				"%1.deweynumber, "
-				"%1.quantity - "
-				"COUNT(item_borrower.item_oid) AS "
-				"availability, "
-				"COUNT(item_borrower.item_oid) AS "
-				"total_reserved, "
-				"%1.accession_number, "
-				"%1.type, "
-				"%1.myoid, " +
-				frontCover +
-				"FROM "
-				"%1 LEFT JOIN item_borrower ON "
-				"%1.myoid = "
-				"item_borrower.item_oid "
-				"AND item_borrower.type = %1.type "
-				"WHERE "
-				"%1.type = '%1' "
-				"GROUP BY "
-				"%1.title, "
-				"%1.publisher, %1.pdate, "
-				"%1.place, "
-				"%1.issuevolume, %1.issueno, "
-				"%1.category, %1.language, "
-				"%1.id, "
-				"%1.price, %1.monetary_units, "
-				"%1.quantity, "
-				"%1.location, "
-				"%1.lccontrolnumber, "
-				"%1.callnumber, "
-				"%1.deweynumber, "
-				"%1.accession_number, "
-				"%1.type, "
-				"%1.myoid, "
-				"%1.front_cover "
-				"ORDER BY "
-				"%1.title").arg(type);
-	    searchstr += limitStr + offsetStr;
+	    searchstr = "SELECT DISTINCT videogame.title, "
+	      "videogame.vgrating, "
+	      "videogame.vgplatform, "
+	      "videogame.vgmode, "
+	      "videogame.publisher, "
+	      "videogame.rdate, "
+	      "videogame.place, "
+	      "videogame.genre, "
+	      "videogame.language, "
+	      "videogame.id, "
+	      "videogame.price, "
+	      "videogame.monetary_units, "
+	      "videogame.quantity, "
+	      "videogame.location, "
+	      "videogame.quantity - "
+	      "COUNT(item_borrower.item_oid) "
+	      "AS availability, "
+	      "COUNT(item_borrower.item_oid) AS total_reserved, "
+	      "videogame.accession_number, "
+	      "videogame.type, "
+	      "videogame.myoid, " +
+	      videoGameFrontCover +
+	      "FROM "
+	      "videogame LEFT JOIN item_borrower ON "
+	      "videogame.myoid = item_borrower.item_oid "
+	      "AND item_borrower.type = 'Video Game' "
+	      "GROUP BY "
+	      "videogame.title, "
+	      "videogame.vgrating, "
+	      "videogame.vgplatform, "
+	      "videogame.vgmode, "
+	      "videogame.publisher, "
+	      "videogame.rdate, "
+	      "videogame.place, "
+	      "videogame.genre, "
+	      "videogame.language, "
+	      "videogame.id, "
+	      "videogame.price, "
+	      "videogame.monetary_units, "
+	      "videogame.quantity, "
+	      "videogame.location, "
+	      "videogame.accession_number, "
+	      "videogame.type, "
+	      "videogame.myoid, "
+	      "videogame.front_cover "
+	      "ORDER BY "
+	      "videogame.title" +
+	      limitStr + offsetStr;
 	  }
 
 	break;
@@ -3538,9 +3530,9 @@ int biblioteq::populateTable(const int search_type_arg,
   if(pagingType == NEW_PAGE)
     m_pages = 0;
 
-  if(pagingType >= 0 &&
+  if(currentPage > m_pages &&
      pagingType != PREVIOUS_PAGE &&
-     currentPage > m_pages)
+     pagingType >= 0)
     m_pages += 1;
 
   if(limit == -1)
@@ -3603,27 +3595,22 @@ int biblioteq::populateTable(const int search_type_arg,
     m_lastSearchStr = searchstrArg;
 
   m_lastSearchType = search_type;
-  ui.table->scrollToTop();
-  ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
+  ui.table->horizontalScrollBar()->setValue(0);
+  ui.table->scrollToTop();
   ui.table->setCurrentItem(nullptr);
   slotDisplaySummary();
-  ui.graphicsView->scene()->clear();
-  ui.graphicsView->resetTransform();
-  ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
 
   if(progress)
     {
       QApplication::restoreOverrideCursor();
       progress->setLabelText(tr("Populating the views..."));
-
-      if(limit == -1)
-	progress->setMaximum(0);
-      else
-	progress->setMaximum(limit);
-
+      progress->setMaximum(limit == -1 ? 0 : limit);
       progress->setMinimum(0);
       progress->setModal(true);
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -4062,8 +4049,8 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.itemsCountLabel->setText
     (tr("%1 Result(s)").arg(ui.table->rowCount()));
 
-  if(limit != -1 &&
-     !m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+  if(!m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
+     limit != -1 &&
      progress)
     progress->setValue(limit);
 

@@ -81,7 +81,7 @@ QTranslator *biblioteq::s_qtTranslator = nullptr;
 
 int main(int argc, char *argv[])
 {
-#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+#if defined(Q_OS_MACOS) || defined(Q_OS_WINDOWS)
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
   QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
@@ -2166,7 +2166,7 @@ void biblioteq::showMain(void)
     (QCoreApplication::applicationDirPath() + "/../../../biblioteq.conf");
 #elif defined(Q_OS_OS2)
   QFileInfo const fileInfo(qgetenv("unixroot") + "/usr/local/biblioteq.conf");
-#elif defined(Q_OS_WIN)
+#elif defined(Q_OS_WINDOWS)
   QFileInfo const fileInfo(QCoreApplication::applicationDirPath() +
 			   QDir::separator() +
 			   "biblioteq.conf");
