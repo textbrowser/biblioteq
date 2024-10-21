@@ -1073,8 +1073,10 @@ void biblioteq_import::slotDetectFields(void)
 	}
       else if(text.contains("monetary"))
 	index = comboBox->findText("monetary_units");
-      else if(text.contains("origin"))
+      else if(text.contains("original"))
 	index = comboBox->findText("originality");
+      else if(text.contains("origin"))
+	index = comboBox->findText("origin");
       else if(text.contains("place"))
 	index = comboBox->findText("place");
       else if(text.contains("publication"))
