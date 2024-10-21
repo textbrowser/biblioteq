@@ -77,7 +77,7 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  this,
 	  SLOT(slotSelectCSVFile(void)));
   connect(m_ui.templates,
-	  SIGNAL(currentIndexChanged(int)),
+	  SIGNAL(activated(int)),
 	  this,
 	  SLOT(slotTemplates(int)));
   prepareIcons();
