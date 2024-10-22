@@ -1355,22 +1355,7 @@ void biblioteq_import::slotTemplates(int index)
       }
     default:
       {
-	if(m_ui.rows->rowCount() > 0)
-	  {
-	    if(QMessageBox::question(this,
-				     tr("BiblioteQ: Question"),
-				     tr("Populate the table with "
-					"Template %1 values?").arg(index),
-				     QMessageBox::No | QMessageBox::Yes,
-				     QMessageBox::No) == QMessageBox::No)
-	      {
-		QApplication::processEvents();
-		break;
-	      }
-	  }
-
-	m_ui.ignored_rows->setText("1");
-	m_ui.rows->setRowCount(0);
+	QApplication::setOverrideCursor(Qt::WaitCursor);
 
 	QStringList list;
 
@@ -1458,6 +1443,41 @@ void biblioteq_import::slotTemplates(int index)
 	       << "street"
 	       << "telephone_num"
 	       << "zip";
+
+	QStringList other;
+
+	for(int i = 0; i < m_ui.rows->rowCount(); i++)
+	  {
+	    auto widget = m_ui.rows->cellWidget
+	      (i, static_cast<int> (Columns::BIBLIOTEQ_TABLE_FIELD_NAME));
+
+	    if(!widget)
+	      continue;
+
+	    auto comboBox = widget->findChild<QComboBox *> ();
+
+	    if(comboBox)
+	      other << comboBox->currentText();
+	  }
+
+	QApplication::restoreOverrideCursor();
+
+	if(list != other && other.size() > 0)
+	  {
+	    if(QMessageBox::question(this,
+				     tr("BiblioteQ: Question"),
+				     tr("Populate the table with "
+					"Template %1 values?").arg(index),
+				     QMessageBox::No | QMessageBox::Yes,
+				     QMessageBox::No) == QMessageBox::No)
+	      {
+		QApplication::processEvents();
+		break;
+	      }
+	  }
+
+	m_ui.ignored_rows->setText("1");
+	m_ui.rows->setRowCount(0);
 
 	for(int i = 0; i < list.size(); i++)
 	  {
