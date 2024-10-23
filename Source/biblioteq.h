@@ -125,7 +125,7 @@ class userinfo_diag_class: public QDialog
   QHash<QString, QString> m_memberProperties;
   Ui_UserInfo m_userinfo;
 
-  bool haveMemberChanges(QString &str)
+  bool haveMemberChanges(QString &str) const
   {
     QStringList list;
 
@@ -247,7 +247,7 @@ class userinfo_diag_class: public QDialog
 	 question(this,
 		  tr("BiblioteQ: Question"),
 		  tr("Your changes have not been committed. "
-		     "Continue closing?\n%1").arg(str),
+		     "Continue closing?\n%1").arg(str.trimmed()),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
 	{

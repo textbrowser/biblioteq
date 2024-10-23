@@ -3108,7 +3108,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 			 "connected to a database. Do you "
 			 "wish to terminate the current connection "
 			 "and connect to the new SQLite database?"),
-		      QMessageBox::Yes | QMessageBox::No,
+		      QMessageBox::No | QMessageBox::Yes,
 		      QMessageBox::No) == QMessageBox::Yes)
 		    {
 		      QApplication::processEvents();
@@ -3188,16 +3188,14 @@ void biblioteq::slotDuplicate(void)
     }
   else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
-      if(QMessageBox::question(this,
-			       tr("BiblioteQ: Question"),
-			       tr("Are you sure that you wish to duplicate "
-				  "the ") +
-			       QString::number(list.size()) +
-			       tr(" selected items? BiblioteQ will exit if "
-				  "it's unable "
-				  "to acquire resources."),
-			       QMessageBox::No | QMessageBox::Yes,
-			       QMessageBox::No) == QMessageBox::No)
+      if(QMessageBox::
+	 question(this,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to duplicate the "
+		     "%1 selected item(s)? BiblioteQ will terminate if "
+		     "it's unable to acquire resources.").arg(list.size()),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
 	  return;
@@ -3595,15 +3593,14 @@ void biblioteq::slotModify(void)
     }
   else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
-      if(QMessageBox::question
-	 (this,
-	  tr("BiblioteQ: Question"),
-	  tr("Are you sure that you wish to modify the ") +
-	  QString::number(list.size()) +
-	  tr(" selected items? BiblioteQ will exit if it's unable "
-	     "to acquire resources."),
-	  QMessageBox::No | QMessageBox::Yes,
-	  QMessageBox::No) == QMessageBox::No)
+      if(QMessageBox::
+	 question(this,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to modify the %1 "
+		     "selected item(s)? BiblioteQ will terminate "
+		     "if it's unable to acquire resources.").arg(list.size()),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
 	  return;
@@ -5034,11 +5031,13 @@ void biblioteq::slotShowNext(void)
 
       if(userinfo_diag->haveMemberChanges(str))
 	{
-	  if(QMessageBox::question
-	     (userinfo_diag, tr("BiblioteQ: Question"),
-	      tr("Your changes have not been saved. Continue?\n%1").arg(str),
-	      QMessageBox::Yes | QMessageBox::No,
-	      QMessageBox::No) == QMessageBox::No)
+	  if(QMessageBox::
+	     question(userinfo_diag,
+		      tr("BiblioteQ: Question"),
+		      tr("Your changes have not been saved. Continue?"
+			 "\n%1").arg(str.trimmed()),
+		      QMessageBox::No | QMessageBox::Yes,
+		      QMessageBox::No) == QMessageBox::No)
 	    {
 	      QApplication::processEvents();
 	      return;
@@ -5081,11 +5080,13 @@ void biblioteq::slotShowPrev(void)
 
       if(userinfo_diag->haveMemberChanges(str))
 	{
-	  if(QMessageBox::question
-	     (userinfo_diag, tr("BiblioteQ: Question"),
-	      tr("Your changes have not been saved. Continue?\n%1").arg(str),
-	      QMessageBox::Yes | QMessageBox::No,
-	      QMessageBox::No) == QMessageBox::No)
+	  if(QMessageBox::
+	     question(userinfo_diag,
+		      tr("BiblioteQ: Question"),
+		      tr("Your changes have not been saved. Continue?"
+			 "\n%1").arg(str.trimmed()),
+		      QMessageBox::No | QMessageBox::Yes,
+		      QMessageBox::No) == QMessageBox::No)
 	    {
 	      QApplication::processEvents();
 	      return;
@@ -5169,15 +5170,14 @@ void biblioteq::slotViewDetails(void)
     }
   else if(list.size() >= MAXIMUM_DEVICES_CONFIRMATION)
     {
-      if(QMessageBox::question(this,
-			       tr("BiblioteQ: Question"),
-			       tr("Are you sure that you wish to view the ") +
-			       QString::number(list.size()) +
-			       tr(" selected items? BiblioteQ will exit if "
-				  "it's unable "
-				  "to acquire resources."),
-			       QMessageBox::No | QMessageBox::Yes,
-			       QMessageBox::No) == QMessageBox::No)
+      if(QMessageBox::
+	 question(this,
+		  tr("BiblioteQ: Question"),
+		  tr("Are you sure that you wish to view the %1 "
+		     "selected item(s)? BiblioteQ will terminate if "
+		     "it's unable to acquire resources.").arg(list.size()),
+		  QMessageBox::No | QMessageBox::Yes,
+		  QMessageBox::No) == QMessageBox::No)
 	{
 	  QApplication::processEvents();
 	  return;
