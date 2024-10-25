@@ -44,8 +44,7 @@
 QString biblioteq::homePath(void)
 {
 #ifdef BIBLIOTEQ_NON_PORTABLE
-  return QStandardPaths::writableLocation
-    (QStandardPaths::StandardLocation::AppConfigLocation);
+  return QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
 #elif defined(Q_OS_WINDOWS)
   return QDir::currentPath() + QDir::separator() + ".biblioteq";
 #else
