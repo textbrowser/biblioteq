@@ -27,4 +27,6 @@ ALTER TABLE videogame_copy_info ADD notes TEXT;
 
 DROP FUNCTION delete_request CASCADE;
 
+/* Version 2024.10.30 */
+
 GRANT DELETE, SELECT ON item_borrower TO biblioteq_librarian;
