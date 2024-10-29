@@ -732,6 +732,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO
       biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO
       biblioteq_librarian;
+GRANT DELETE, SELECT ON item_borrower TO biblioteq_librarian;
 GRANT DELETE, SELECT ON item_request TO biblioteq_administrator;
 GRANT DELETE, SELECT ON item_request TO biblioteq_circulation;
 GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
@@ -856,7 +857,6 @@ GRANT SELECT ON grey_literature_types TO biblioteq_membership;
 GRANT SELECT ON grey_literature_types TO biblioteq_patron;
 GRANT SELECT ON item_borrower TO biblioteq_administrator;
 GRANT SELECT ON item_borrower TO biblioteq_circulation;
-GRANT SELECT ON item_borrower TO biblioteq_librarian;
 GRANT SELECT ON item_borrower TO biblioteq_membership;
 GRANT SELECT ON item_borrower TO biblioteq_patron;
 GRANT SELECT ON item_request TO biblioteq_librarian;
@@ -1055,7 +1055,6 @@ GRANT biblioteq_membership TO biblioteq_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_patron TO biblioteq_administrator WITH ADMIN OPTION;
 REVOKE ALL ON admin FROM biblioteq_guest;
 REVOKE ALL ON admin FROM biblioteq_patron;
-
 CREATE EXTENSION IF NOT EXISTS unaccent;
 CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE
        biblioteq_guest;
