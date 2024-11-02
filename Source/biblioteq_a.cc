@@ -5574,18 +5574,16 @@ void biblioteq::updateRows
 
 void biblioteq::updateMembersBrowser(const QString &memberid)
 {
-  QMap<QString, qint64> counts;
-  QString errorstr = "";
-  QString str = "";
-  int i = 0;
-
   /*
   ** Called from the Borrowers Editor when an item has been updated.
   */
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  counts = biblioteq_misc_functions::getItemsReservedCounts
+
+  QString errorstr = "";
+  auto const counts = biblioteq_misc_functions::getItemsReservedCounts
     (m_db, memberid, errorstr);
+
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -5599,41 +5597,51 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      for(i = 0; i < bb.table->rowCount(); i++)
+      for(int i = 0; i < bb.table->rowCount(); i++)
 	{
-	  str = biblioteq_misc_functions::getColumnString
+	  auto const str = biblioteq_misc_functions::getColumnString
 	    (bb.table, i, m_bbColumnHeaderIndexes.indexOf("Member ID"));
 
-	  if(str == memberid)
+	  if(memberid == str)
 	    {
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
+		(bb.table,
+		 i,
 		 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
 		 QString::number(counts.value("numbooks")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
+		(bb.table,
+		 i,
+		 m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
 		 QString::number(counts.value("numcds")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
+		(bb.table,
+		 i,
+		 m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
 		 QString::number(counts.value("numdvds")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
+		(bb.table,
+		 i,
 		 m_bbColumnHeaderIndexes.indexOf("Grey Literatures Reserved"),
 		 QString::number(counts.value("numgreyliteratures")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
+		(bb.table,
+		 i,
 		 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
 		 QString::number(counts.value("numjournals")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
+		(bb.table,
+		 i,
 		 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
 		 QString::number(counts.value("nummagazines")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
+		(bb.table,
+		 i,
 		 m_bbColumnHeaderIndexes.indexOf("Total Reserved"),
 		 QString::number(counts.value("numtotal")));
 	      biblioteq_misc_functions::updateColumn
-		(bb.table, i,
+		(bb.table,
+		 i,
 		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
 		 QString::number(counts.value("numvideogames")));
 	      break;
@@ -5646,9 +5654,6 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 
 void biblioteq::updateMembersBrowser(void)
 {
-  QMap<QString, qint64> counts;
-  QString errorstr = "";
-  QString memberid = "";
   int row = 0;
 
   /*
@@ -5658,11 +5663,15 @@ void biblioteq::updateMembersBrowser(void)
   if((row = bb.table->currentRow()) < 0)
     return;
 
-  memberid = biblioteq_misc_functions::getColumnString
+  auto const memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  counts = biblioteq_misc_functions::getItemsReservedCounts
+
+  QString errorstr = "";
+  auto const counts = biblioteq_misc_functions::getItemsReservedCounts
     (m_db, memberid, errorstr);
+
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -5675,29 +5684,43 @@ void biblioteq::updateMembersBrowser(void)
   else
     {
       biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
+	(bb.table,
+	 row,
+	 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
 	 QString::number(counts.value("numbooks")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
+	(bb.table,
+	 row,
+	 m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
 	 QString::number(counts.value("numcds")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
+	(bb.table,
+	 row,
+	 m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
 	 QString::number(counts.value("numdvds")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row,
+	(bb.table,
+	 row,
 	 m_bbColumnHeaderIndexes.indexOf("Grey Literatures Reserved"),
 	 QString::number(counts.value("numgreyliteratures")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
+	(bb.table,
+	 row,
+	 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
 	 QString::number(counts.value("numjournals")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
+	(bb.table,
+	 row,
+	 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
 	 QString::number(counts.value("nummagazines")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Total Reserved"),
+	(bb.table,
+	 row,
+	 m_bbColumnHeaderIndexes.indexOf("Total Reserved"),
 	 QString::number(counts.value("numtotal")));
       biblioteq_misc_functions::updateColumn
-	(bb.table, row,
+	(bb.table,
+	 row,
 	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
 	 QString::number(counts.value("numvideogames")));
 
@@ -5712,53 +5735,52 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 						const QString &itemType,
 						const QString &returnedDate)
 {
-  QString value1 = "";
-  QString value2 = "";
-  QString value3 = "";
-  int i = 0;
-
   /*
   ** Called from the Borrowers Editor when an item has been updated.
   */
 
-  if(m_history_diag->isVisible())
-    if(history.table->rowCount() > 0 &&
-       biblioteq_misc_functions::getColumnString
-       (history.table, 0,
-	m_historyColumnHeaderIndexes.
-	indexOf("Member ID")) ==
-       memberid)
-      {
-	QApplication::setOverrideCursor(Qt::WaitCursor);
+  if(biblioteq_misc_functions::
+     getColumnString(history.table,
+		     0,
+		     m_historyColumnHeaderIndexes.
+		     indexOf("Member ID")) == memberid &&
+     history.table->rowCount() > 0 &&
+     m_history_diag->isVisible())
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
-	for(i = 0; i < history.table->rowCount(); i++)
-	  {
-	    value1 = biblioteq_misc_functions::getColumnString
-	      (history.table, i,
-	       m_historyColumnHeaderIndexes.indexOf("MYOID"));
-	    value2 = biblioteq_misc_functions::getColumnString
-	      (history.table, i,
-	       m_historyColumnHeaderIndexes.indexOf("Barcode"));
-	    value3 = biblioteq_misc_functions::getColumnString
-	      (history.table, i,
-	       m_historyColumnHeaderIndexes.indexOf("Type")).
-	      toLower().remove(" ");
+      for(int i = 0; i < history.table->rowCount(); i++)
+	{
+	  auto const barcode = biblioteq_misc_functions::getColumnString
+	    (history.table,
+	     i,
+	     m_historyColumnHeaderIndexes.indexOf("Barcode"));
+	  auto const myoid = biblioteq_misc_functions::getColumnString
+	    (history.table,
+	     i,
+	     m_historyColumnHeaderIndexes.indexOf("MYOID"));
+	  auto const type = biblioteq_misc_functions::getColumnString
+	    (history.table,
+	     i,
+	     m_historyColumnHeaderIndexes.indexOf("Type")).
+	    toLower().remove(" ");
 
-	    if(value1 == ioid && value2 == copyid && value3 == itemType)
-	      {
-		auto const date
-		  (QDate::fromString(returnedDate, s_databaseDateFormat));
+	  if(barcode == copyid && ioid == myoid && itemType == type)
+	    {
+	      auto const date
+		(QDate::fromString(returnedDate, s_databaseDateFormat));
 
-		biblioteq_misc_functions::updateColumn
-		  (history.table, i,
-		   m_historyColumnHeaderIndexes.indexOf("Returned Date"),
-		   date.toString(Qt::ISODate));
-		break;
-	      }
-	  }
+	      biblioteq_misc_functions::updateColumn
+		(history.table,
+		 i,
+		 m_historyColumnHeaderIndexes.indexOf("Returned Date"),
+		 date.toString(Qt::ISODate));
+	      break;
+	    }
+	}
 
-	QApplication::restoreOverrideCursor();
-      }
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 void biblioteq::updateSceneItem(const QString &oid,
