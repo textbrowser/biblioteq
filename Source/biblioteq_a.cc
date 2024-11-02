@@ -5151,8 +5151,6 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotViewDetails(void)
 {
-  QString oid = "";
-  QString type = "";
   auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
   auto table = ui.table;
@@ -5164,7 +5162,6 @@ void biblioteq::slotViewDetails(void)
   biblioteq_magazine *magazine = nullptr;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
-  int i = 0;
 
   if(list.isEmpty())
     {
@@ -5197,11 +5194,12 @@ void biblioteq::slotViewDetails(void)
 
   foreach(auto const &index, list)
     {
-      i = index.row();
-      oid = biblioteq_misc_functions::getColumnString
+      auto const i = index.row();
+      auto const oid = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("MYOID"));
-      type = biblioteq_misc_functions::getColumnString
+      auto const type = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("Type"));
+
       book = nullptr;
       cd = nullptr;
       dvd = nullptr;
