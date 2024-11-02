@@ -1474,6 +1474,8 @@ void biblioteq::closeEvent(QCloseEvent *e)
 
 void biblioteq::createSqliteMenuActions(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   QSettings settings;
   QStringList dups;
   auto const allKeys(settings.allKeys());
@@ -1498,11 +1500,14 @@ void biblioteq::createSqliteMenuActions(void)
       if(!dups.contains(str) && fileInfo.isReadable() && fileInfo.isWritable())
 	dups.append(str);
       else
-	{
-	  settings.remove(allKeys[i]);
-	  continue;
-	}
+	settings.remove(allKeys[i]);
+    }
 
+  std::sort(dups.begin(), dups.end());
+
+  foreach(auto const &str, dups)
+    {
+      QFileInfo const fileInfo(str);
       auto action = new QAction
 	(fileInfo.absoluteFilePath(), ui.menu_Recent_SQLite_Files);
 
@@ -1525,6 +1530,7 @@ void biblioteq::createSqliteMenuActions(void)
     ui.menu_Recent_SQLite_Files->addSeparator();
 
   ui.menu_Recent_SQLite_Files->addAction(action);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::initialUpdate(void)

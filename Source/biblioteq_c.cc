@@ -1570,15 +1570,16 @@ void biblioteq::readConfigurationFile(void)
   else
     ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-  QColor color(settings.value("mainwindow_canvas_background_color").
-	       toString().remove('&').trimmed());
+  QColor color
+    (settings.value("mainwindow_canvas_background_color").
+     toString().remove('&').trimmed());
 
   if(!color.isValid())
     color = Qt::white;
 
   ui.graphicsView->scene()->setBackgroundBrush(color);
-  slotResizeColumns();
   createSqliteMenuActions();
+  slotResizeColumns();
 }
 
 void biblioteq::readGlobalConfiguration(void)
