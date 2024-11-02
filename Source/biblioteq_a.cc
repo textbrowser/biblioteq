@@ -4683,16 +4683,16 @@ void biblioteq::slotSearch(void)
        __FILE__,
        __LINE__);
 
-  al.language->insertItem(0, tr("Any"));
-  al.monetary_units->insertItem(0, tr("Any"));
-  al.location->insertItem(0, tr("Any"));
-  al.language->addItem(s_unknown);
-  al.monetary_units->addItem(s_unknown);
-  al.location->addItem(s_unknown);
-  al.location->setCurrentIndex(0);
-  al.language->setCurrentIndex(0);
-  al.monetary_units->setCurrentIndex(0);
   al.idnumber->setFocus();
+  al.language->addItem(s_unknown);
+  al.language->insertItem(0, tr("Any"));
+  al.language->setCurrentIndex(0);
+  al.location->addItem(s_unknown);
+  al.location->insertItem(0, tr("Any"));
+  al.location->setCurrentIndex(0);
+  al.monetary_units->addItem(s_unknown);
+  al.monetary_units->insertItem(0, tr("Any"));
+  al.monetary_units->setCurrentIndex(0);
  done_label:
   m_allSearchShown = true;
 
@@ -4779,8 +4779,8 @@ void biblioteq::slotShowAdminDialog(void)
   auto static resized = false;
 
   if(!resized)
-    m_admin_diag->resize(qRound(0.95 * size().width()),
-			 qRound(0.95 * size().height()));
+    m_admin_diag->resize
+      (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_admin_diag, this);
@@ -4930,25 +4930,39 @@ void biblioteq::slotShowMenu(void)
       QMenu menu(this);
 
       connect(menu.addAction(tr("Add &Book...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertBook(void)));
       // menu.addAction(tr("Add &Cassette Tape..."));
       connect(menu.addAction(tr("Add &DVD...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertDVD(void)));
       connect(menu.addAction(tr("Add &Grey Literature...")),
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotInsertGreyLiterature(void)));
       connect(menu.addAction(tr("Add &Journal...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertJourn(void)));
       connect(menu.addAction(tr("Add &Magazine...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertMag(void)));
       connect(menu.addAction(tr("Add Music &CD...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertCD(void)));
       // menu.addAction(tr("Add &Newspaper..."));
       connect(menu.addAction(tr("Add &Photograph Collection...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertPhotograph(void)));
       connect(menu.addAction(tr("Add &Video Game...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotInsertVideoGame(void)));
       // menu.addAction(tr("Add &VHS..."));
       // menu.addAction(tr("Add &Vinyl Record..."));
       menu.exec(point);
@@ -4972,28 +4986,44 @@ void biblioteq::slotShowMenu(void)
       QMenu menu(this);
 
       connect(menu.addAction(tr("General &Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotSearch(void)));
       menu.addSeparator();
       connect(menu.addAction(tr("&Book Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotBookSearch(void)));
       connect(menu.addAction(tr("&DVD Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotDVDSearch(void)));
       connect(menu.addAction(tr("&Grey Literature Search...")),
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotGreyLiteratureSearch(void)));
       connect(menu.addAction(tr("&Journal Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotJournSearch(void)));
       connect(menu.addAction(tr("&Magazine Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotMagSearch(void)));
       connect(menu.addAction(tr("Music &CD Search...")),
-	      SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotCDSearch(void)));
       connect
 	(menu.addAction(tr("&Photograph Collection Search...")),
-	 SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
+	 SIGNAL(triggered(void)),
+	 this,
+	 SLOT(slotPhotographSearch(void)));
       connect
 	(menu.addAction(tr("&Video Game Search...")),
-	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
+	 SIGNAL(triggered(void)),
+	 this,
+	 SLOT(slotVideoGameSearch(void)));
       menu.exec(point);
     }
   else if(sender() == userinfo_diag->m_userinfo.menu)
