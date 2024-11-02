@@ -4512,9 +4512,9 @@ void biblioteq::slotResizeColumnsAfterSort(void)
 
   if(object != nullptr && object->parent() != nullptr)
     {
-      if(object->parent() == ui.table)
-	if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
-	  return;
+      if(!ui.actionAutomatically_Resize_Column_Widths->isChecked() &&
+	 object->parent() == ui.table)
+	return;
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       parent = object->parent();
