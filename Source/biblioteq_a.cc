@@ -4160,21 +4160,19 @@ void biblioteq::slotRefresh(void)
     {
       QApplication::processEvents();
 
-      QString str = "";
-      QVariant data(ui.menu_Category->defaultAction() ?
-		    ui.menu_Category->defaultAction()->data().
-		    toString() : "All");
+      QString str("%");
+      auto const data
+	(ui.menu_Category->defaultAction() ?
+	 ui.menu_Category->defaultAction()->data().toString() : "All");
 
-      if(data.toString() == "All Overdue" && m_roles.isEmpty())
+      if(data == "All Overdue" && m_roles.isEmpty())
 	str = dbUserName();
-      else if(data.toString() == "All Requested" && m_roles.isEmpty())
+      else if(data == "All Requested" && m_roles.isEmpty())
 	str = dbUserName();
-      else if(data.toString() == "All Reserved" && m_roles.isEmpty())
+      else if(data == "All Reserved" && m_roles.isEmpty())
 	str = dbUserName();
-      else if(data.toString() == "All Reserved")
-	str = "%";
 
-      (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
+      (void) populateTable(POPULATE_ALL, data, str.trimmed());
     }
 }
 
