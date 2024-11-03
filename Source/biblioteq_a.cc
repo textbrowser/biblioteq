@@ -4180,11 +4180,7 @@ void biblioteq::slotRefresh(void)
 
 void biblioteq::slotReserveCopy(void)
 {
-  QString errorstr = "";
-  QString oid = "";
-  QString type = "";
   auto const row = ui.table->currentRow();
-  int availability = 0;
 
   if(row < 0)
     {
@@ -4203,7 +4199,7 @@ void biblioteq::slotReserveCopy(void)
       return;
     }
 
-  type = biblioteq_misc_functions::getColumnString
+  auto const type = biblioteq_misc_functions::getColumnString
     (ui.table, row, ui.table->columnNumber("Type"));
 
   if(type == "Photograph Collection")
@@ -4221,11 +4217,15 @@ void biblioteq::slotReserveCopy(void)
       return;
     }
 
-  oid = biblioteq_misc_functions::getColumnString
+  auto const oid = biblioteq_misc_functions::getColumnString
     (ui.table, row, ui.table->columnNumber("MYOID"));
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  availability = biblioteq_misc_functions::getAvailability
+
+  QString errorstr = "";
+  auto const availability = biblioteq_misc_functions::getAvailability
     (oid, m_db, type, errorstr).toInt();
+
   QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -4365,8 +4365,8 @@ void biblioteq::slotReset(void)
 	    }
 	  else if(action == actions[5])
 	    {
-	      al.price->setValue(-0.01);
 	      al.price->setFocus();
+	      al.price->setValue(-0.01);
 	    }
 	  else if(action == actions[6])
 	    {
@@ -4386,8 +4386,8 @@ void biblioteq::slotReset(void)
 	    }
 	  else if(action == actions[9])
 	    {
-	      al.quantity->setValue(0);
 	      al.quantity->setFocus();
+	      al.quantity->setValue(0);
 	    }
 	  else if(action == actions[10])
 	    {
