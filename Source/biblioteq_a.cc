@@ -4448,15 +4448,14 @@ void biblioteq::slotResetErrorLog(void)
   list.append(tr("Full Description"));
   list.append(tr("File"));
   list.append(tr("Line Number"));
-  er.table->setCurrentItem(nullptr);
-  er.table->setColumnCount(0);
-  er.table->setRowCount(0);
-  er.table->setColumnCount(0);
-  er.table->scrollToTop();
-  er.table->horizontalScrollBar()->setValue(0);
-  er.table->setColumnCount(list.size());
-  er.table->setHorizontalHeaderLabels(list);
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  er.table->horizontalScrollBar()->setValue(0);
+  er.table->scrollToTop();
+  er.table->setColumnCount(0);
+  er.table->setColumnCount(list.size());
+  er.table->setCurrentItem(nullptr);
+  er.table->setHorizontalHeaderLabels(list);
+  er.table->setRowCount(0);
 
   for(int i = 0; i < er.table->columnCount() - 1; i++)
     er.table->resizeColumnToContents(i);
@@ -4477,9 +4476,7 @@ void biblioteq::slotResetLoginDialog(void)
   br.userid->setText(BIBLIOTEQ_GUEST_ACCOUNT);
 
   QSettings settings;
-  int index = 0;
-
-  index = br.branch_name->findText
+  auto const index = br.branch_name->findText
     (settings.value("previous_branch_name").toString());
 
   if(index >= 0)
