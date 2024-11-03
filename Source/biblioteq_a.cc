@@ -4099,8 +4099,8 @@ void biblioteq::slotPrintView(void)
 {
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
-  QString html(viewHtml());
   QTextDocument document;
+  auto const html(viewHtml());
 
   printer.setColorMode(QPrinter::GrayScale);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
