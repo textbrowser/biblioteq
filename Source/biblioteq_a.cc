@@ -3155,7 +3155,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
       else
 	{
 	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
+	    (this,
+	     tr("BiblioteQ: Database Error"),
 	     tr("An error (%1) occurred while attempting "
 		"to create the specified SQLite database.").arg(errorstr));
 	  QApplication::processEvents();
@@ -3168,8 +3169,6 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  QString oid = "";
-  QString type = "";
   auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
   biblioteq_book *book = nullptr;
@@ -3181,14 +3180,13 @@ void biblioteq::slotDuplicate(void)
   biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
-  int i = 0;
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this,
-			    tr("BiblioteQ: User Error"),
-			    tr("Please select at least one item to "
-			       "duplicate."));
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: User Error"),
+	 tr("Please select at least one item to duplicate."));
       QApplication::processEvents();
       return;
     }
@@ -3210,20 +3208,19 @@ void biblioteq::slotDuplicate(void)
       QApplication::processEvents();
     }
 
-  QString id("");
-
   QApplication::setOverrideCursor(Qt::WaitCursor);
   std::stable_sort(list.begin(), list.end());
 
   foreach(auto const &index, list)
     {
-      i = index.row();
-      oid = biblioteq_misc_functions::getColumnString
-	(table, i, table->columnNumber("MYOID"));
-      type = biblioteq_misc_functions::getColumnString
-	(table, i, table->columnNumber("Type"));
       m_idCt += 1;
-      id = QString("duplicate_%1").arg(m_idCt);
+
+      auto const i = index.row();
+      auto const id = QString("duplicate_%1").arg(m_idCt);
+      auto const oid = biblioteq_misc_functions::getColumnString
+	(table, i, table->columnNumber("MYOID"));
+      auto const type = biblioteq_misc_functions::getColumnString
+	(table, i, table->columnNumber("Type"));
 
       if(type.toLower() == "book")
 	{
@@ -3357,14 +3354,13 @@ void biblioteq::slotGrantPrivileges(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      addError(tr("Database Error"),
-		       tr("An error occurred while attempting to "
-			  "update the database account for ") +
-		       item->text() +
-		       tr("."),
-		       errorstr,
-		       __FILE__,
-		       __LINE__);
+	      addError
+		(tr("Database Error"),
+		 tr("An error occurred while attempting to "
+		    "update the database account for %1.").arg(item->text()),
+		 errorstr,
+		 __FILE__,
+		 __LINE__);
 	      error = true;
 	    }
 	}
@@ -3995,31 +3991,36 @@ void biblioteq::slotPrintReserved(void)
       return;
     }
 
-  QString memberid = "";
-  int itemsReserved = 0;
-
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  itemsReserved = biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved")).
-    toInt() +
+
+  auto const itemsReserved = biblioteq_misc_functions::getColumnString
+    (bb.table,
+     row,
+     m_bbColumnHeaderIndexes.indexOf("Books Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.
+    (bb.table,
+     row,
+     m_bbColumnHeaderIndexes.
      indexOf("Grey Literatures Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved")).
-    toInt() +
+    (bb.table,
+     row,
+     m_bbColumnHeaderIndexes.indexOf("Journals Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved")).
-    toInt() +
+    (bb.table,
+     row,
+     m_bbColumnHeaderIndexes.indexOf("Magazines Reserved")).toInt() +
     biblioteq_misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).
-    toInt();
-  memberid = biblioteq_misc_functions::getColumnString
+    (bb.table,
+     row,
+     m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).toInt();
+  auto const memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+
   QApplication::restoreOverrideCursor();
 
   if(itemsReserved < 1)
@@ -4038,25 +4039,31 @@ void biblioteq::slotPrintReserved(void)
     (new QPrintDialog(&printer, m_members_diag));
   QString errorstr = "";
   QString str = "";
-  QStringList itemsList;
   QTextDocument document;
 
   memberinfo["firstname"] = biblioteq_misc_functions::getColumnString
-    (bb.table, row,
+    (bb.table,
+     row,
      m_bbColumnHeaderIndexes.indexOf("First Name"));
   memberinfo["lastname"] = biblioteq_misc_functions::getColumnString
-    (bb.table, row,
+    (bb.table,
+     row,
      m_bbColumnHeaderIndexes.indexOf("Last Name"));
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  itemsList = biblioteq_misc_functions::getReservedItems
+
+  const auto itemsList = biblioteq_misc_functions::getReservedItems
     (memberid, m_db, errorstr);
+
   QApplication::restoreOverrideCursor();
 
   if(errorstr.isEmpty())
     {
       str = "<html>\n";
-      str += tr("Reserved Items for ") + memberinfo.value("lastname") +
-	tr(", ") + memberinfo.value("firstname") + "<br><br>";
+      str += tr("Reserved Items for ") +
+	memberinfo.value("lastname") +
+	tr(", ") +
+	memberinfo.value("firstname") +
+	"<br><br>";
 
       for(int i = 0; i < itemsList.size(); i++)
 	str += itemsList[i] + "<br><br>";
@@ -4847,8 +4854,8 @@ void biblioteq::slotShowErrorDialog(void)
   auto static resized = false;
 
   if(!resized)
-    m_error_diag->resize(qRound(0.95 * size().width()),
-			 qRound(0.95 * size().height()));
+    m_error_diag->resize
+      (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
 
   resized = true;
   biblioteq_misc_functions::center(m_error_diag, this);
@@ -5815,7 +5822,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 
   for(int i = 0; i < items.size(); i++)
     if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.at(i))))
-      if(oid == item->data(0).toString() && type == item->data(1).toString())
+      if(item->data(0).toString() == oid && item->data(1).toString() == type)
 	{
 	  auto l_image(image);
 
