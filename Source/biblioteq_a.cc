@@ -195,44 +195,27 @@ biblioteq::biblioteq(void):QMainWindow()
     menuBar()->setNativeMenuBar(true);
 
   m_about = nullptr;
-  m_allSearchShown = false;
-  m_connected_bar_label = nullptr;
-  m_error_bar_label = nullptr;
-  m_files = nullptr;
-  m_idCt = 0;
-  m_lastSearchType = POPULATE_ALL;
-  m_membersWasRefreshed = false;
-  m_pages = 0;
-  m_previousTypeFilter = "";
-  m_queryOffset = 0;
-  m_searchQuery = nullptr;
-  m_status_bar_label = nullptr;
-  m_swifty->download();
-  m_branch_diag = new QDialog(this);
-  m_menuCategoryActionGroup = new QActionGroup(this);
-  m_menuCategoryActionGroup->setExclusive(true);
-  m_otherOptions = new biblioteq_otheroptions(this);
-  m_pass_diag = new QDialog(this);
-  m_printPreview = new QTextBrowser(this);
-  m_printPreview->setVisible(false);
-  m_queryHistory = new biblioteq_query_history(this);
-#ifdef Q_OS_ANDROID
-  m_all_diag = new QMainWindow(this);
-#else
-  m_all_diag = new QMainWindow();
-#endif
 #ifdef Q_OS_ANDROID
   m_admin_diag = new QMainWindow(this);
 #else
   m_admin_diag = new QMainWindow();
 #endif
+  m_allSearchShown = false;
 #ifdef Q_OS_ANDROID
-  m_members_diag = new QMainWindow(this);
+  m_all_diag = new QMainWindow(this);
 #else
-  m_members_diag = new QMainWindow();
-  m_members_diag->setWindowFlags
-    (Qt::WindowStaysOnTopHint | m_members_diag->windowFlags());
+  m_all_diag = new QMainWindow();
 #endif
+  m_batchActivities = new biblioteq_batch_activities(this);
+  m_branch_diag = new QDialog(this);
+  m_connected_bar_label = nullptr;
+  m_error_bar_label = nullptr;
+#ifdef Q_OS_ANDROID
+  m_error_diag = new QMainWindow(this);
+#else
+  m_error_diag = new QMainWindow();
+#endif
+  m_files = nullptr;
 #ifdef Q_OS_ANDROID
   m_history_diag = new QMainWindow(this);
 #else
@@ -240,13 +223,36 @@ biblioteq::biblioteq(void):QMainWindow()
   m_history_diag->setWindowFlags
     (Qt::WindowStaysOnTopHint | m_history_diag->windowFlags());
 #endif
-  userinfo_diag = new userinfo_diag_class(m_members_diag);
+  m_idCt = 0;
+  m_import = new biblioteq_import(this);
+  m_lastSearchType = POPULATE_ALL;
+  m_magic = new biblioteq_magic(this);
+  m_membersWasRefreshed = false;
 #ifdef Q_OS_ANDROID
-  m_error_diag = new QMainWindow(this);
+  m_members_diag = new QMainWindow(this);
 #else
-  m_error_diag = new QMainWindow();
+  m_members_diag = new QMainWindow();
+  m_members_diag->setWindowFlags
+    (Qt::WindowStaysOnTopHint | m_members_diag->windowFlags());
 #endif
-  m_batchActivities = new biblioteq_batch_activities(this);
+  m_menuCategoryActionGroup = new QActionGroup(this);
+  m_menuCategoryActionGroup->setExclusive(true);
+  m_otherOptions = new biblioteq_otheroptions(this);
+  m_pages = 0;
+  m_pass_diag = new QDialog(this);
+  m_previousTypeFilter = "";
+  m_printPreview = new QTextBrowser(this);
+  m_printPreview->setVisible(false);
+  m_queryHistory = new biblioteq_query_history(this);
+  m_queryOffset = 0;
+  m_searchQuery = nullptr;
+  m_status_bar_label = nullptr;
+  m_swifty->download();
+  userinfo_diag = new userinfo_diag_class(m_members_diag);
+  connect(QCoreApplication::instance(),
+	  SIGNAL(lastWindowClosed(void)),
+	  this,
+	  SLOT(slotLastWindowClosed(void)));
   connect(m_batchActivities,
 	  SIGNAL(listMembersReservedItems(const QString &)),
 	  this,
@@ -259,41 +265,63 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(queryCompleted(const QString &)),
 	  m_queryHistory,
 	  SLOT(slotQueryCompleted(const QString &)));
-  m_import = new biblioteq_import(this);
-  m_magic = new biblioteq_magic(this);
   menu1 = new QMenu(this);
-  connect(QCoreApplication::instance(),
-	  SIGNAL(lastWindowClosed(void)),
-	  this,
-	  SLOT(slotLastWindowClosed(void)));
   connect(menu1->addAction(tr("Reset ID Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Title")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Publication Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Publisher")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Categories")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Price")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Language")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Monetary Units")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Abstract")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Copies")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Location")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Keywords")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Availability")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Case-Insensitive")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   ui.action_Open_PDF_File->setEnabled(false);
 #endif
@@ -883,10 +911,8 @@ biblioteq::biblioteq(void):QMainWindow()
   setUpdatesEnabled(true);
   userinfo_diag->m_userinfo.expirationdate->setMaximumDate(QDate(3000, 1, 1));
 
-  QActionGroup *group1 = nullptr;
-  int end = 21;
-
-  group1 = new QActionGroup(this);
+  auto group1 = new QActionGroup(this);
+  const int end = 21;
 
   for(int i = 1; i <= end; i++)
     {
@@ -922,21 +948,22 @@ biblioteq::biblioteq(void):QMainWindow()
   prepareReservationHistoryMenu();
 
   QAction *action = nullptr;
-  QActionGroup *group2 = nullptr;
+  auto group2 = new QActionGroup(this);
 
-  group2 = new QActionGroup(this);
-  group2->setObjectName("ViewModeMenu");
   group2->setExclusive(true);
-  (action = group2->addAction(tr("Icons Mode")))->setCheckable(true);
+  group2->setObjectName("ViewModeMenu");
+  action = group2->addAction(tr("Icons Mode"));
+  action->setCheckable(true);
   action->setData(0);
   connect(action,
 	  SIGNAL(triggered(bool)),
 	  this,
 	  SLOT(slotChangeView(bool)));
   ui.menu_View->addAction(action);
-  (action = group2->addAction(tr("Table Mode")))->setCheckable(true);
-  action->setData(1);
+  action = group2->addAction(tr("Table Mode"));
+  action->setCheckable(true);
   action->setChecked(true);
+  action->setData(1);
   connect(action,
 	  SIGNAL(triggered(bool)),
 	  this,
@@ -1010,8 +1037,8 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.menu_Language->setStyleSheet("QMenu {menu-scrollable: 1;}");
   populateFavorites();
 
-  QRegularExpression rx1("\\w+");
-  auto validator1 = new QRegularExpressionValidator(rx1, this);
+  auto validator1 = new QRegularExpressionValidator
+    (QRegularExpression("\\w+"), this);
 
   userinfo_diag->m_userinfo.memberid->setValidator(validator1);
 
@@ -1019,16 +1046,16 @@ biblioteq::biblioteq(void):QMainWindow()
   ** Highlight userinfo_diag->userinfo required widgets.
   */
 
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.firstName,
-					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.lastName,
-					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.street,
-					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.city,
-					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.zip,
-					    QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.city, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.firstName, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.lastName, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.street, QColor(255, 248, 220));
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.zip, QColor(255, 248, 220));
   ui.splitter->restoreState
     (settings.value("main_splitter_state").toByteArray());
   ui.splitter->setCollapsible(1, false);
@@ -1146,13 +1173,10 @@ QVector<QString> biblioteq::getBBColumnIndexes(void) const
 
 void biblioteq::addConfigOptions(const QString &typefilter)
 {
-  QAction *action = nullptr;
-  int i = 0;
-
   createConfigToolMenu();
   m_configToolMenu->clear();
 
-  for(i = 0; i < ui.table->columnCount(); i++)
+  for(int i = 0; i < ui.table->columnCount(); i++)
     {
       if(typefilter != "Custom")
 	{
@@ -1171,17 +1195,18 @@ void biblioteq::addConfigOptions(const QString &typefilter)
 	    continue;
 	}
 
-      action = new QAction
+      auto action = new QAction
 	(ui.table->horizontalHeaderItem(i)->text(), ui.configTool);
+
       action->setCheckable(true);
       action->setChecked
 	(!ui.table->isColumnHidden(i, typefilter, dbUserName()));
       action->setData(typefilter);
-      m_configToolMenu->addAction(action);
       connect(action,
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotSetColumns(void)));
+      m_configToolMenu->addAction(action);
     }
 }
 
@@ -1195,16 +1220,14 @@ void biblioteq::addError(const QString &type,
     return;
 
   QString str = "";
-  QTableWidgetItem *item = nullptr;
   auto const now = QDateTime::currentDateTime();
-  int i = 0;
 
   er.table->setRowCount(er.table->rowCount() + 1);
   er.table->setSortingEnabled(false);
 
-  for(i = 0; i < er.table->columnCount(); i++)
+  for(int i = 0; i < er.table->columnCount(); i++)
     {
-      item = new QTableWidgetItem();
+      auto item = new QTableWidgetItem();
 
       if(i == static_cast<int> (ErrorDialogColumns::EVENT_TIME))
 	item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
