@@ -3130,15 +3130,15 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 
 	      if(found)
 		{
-		  if(QMessageBox::question
-		     (this,
-		      tr("BiblioteQ: Question"),
-		      tr("It appears that you are already "
-			 "connected to a database. Do you "
-			 "wish to terminate the current connection "
-			 "and connect to the new SQLite database?"),
-		      QMessageBox::No | QMessageBox::Yes,
-		      QMessageBox::No) == QMessageBox::Yes)
+		  if(QMessageBox::
+		     question(this,
+			      tr("BiblioteQ: Question"),
+			      tr("It appears that you are already "
+				 "connected to a database. Do you "
+				 "wish to terminate the current connection "
+				 "and connect to the new SQLite database?"),
+			      QMessageBox::No | QMessageBox::Yes,
+			      QMessageBox::No) == QMessageBox::Yes)
 		    {
 		      QApplication::processEvents();
 		      br.filename->setText(dialog.selectedFiles().value(0));
