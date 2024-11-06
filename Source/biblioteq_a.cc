@@ -1361,9 +1361,9 @@ void biblioteq::adminSetup(void)
     {
       ui.actionConfigureAdministratorPrivileges->setEnabled
 	(m_roles.contains("administrator"));
-      ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
-	(m_roles.contains("administrator"));
       ui.actionDatabase_Enumerations->setEnabled
+	(m_roles.contains("administrator"));
+      ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
 	(m_roles.contains("administrator"));
       ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
 	(m_roles.contains("administrator"));
@@ -1389,18 +1389,18 @@ void biblioteq::adminSetup(void)
 
   if(m_roles == "membership")
     {
+      bb.checkoutButton->setEnabled(false);
       bb.historyButton->setEnabled(false);
       bb.listButton->setEnabled(false);
-      bb.printButton->setEnabled(false);
-      bb.checkoutButton->setEnabled(false);
       bb.overdueButton->setEnabled(false);
+      bb.printButton->setEnabled(false);
     }
 
   if(m_roles == "circulation" || m_roles == "librarian")
     {
       bb.addButton->setEnabled(false);
-      bb.grantButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
+      bb.grantButton->setEnabled(false);
       bb.modifyButton->setEnabled(false);
 
       if(m_roles == "librarian")
@@ -1487,8 +1487,8 @@ void biblioteq::cleanup(void)
 
 void biblioteq::closeEvent(QCloseEvent *e)
 {
-  slotExit();
   Q_UNUSED(e);
+  slotExit();
 }
 
 void biblioteq::createSqliteMenuActions(void)
