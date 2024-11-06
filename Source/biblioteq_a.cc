@@ -2570,9 +2570,6 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
     slotRefresh();
   else
     {
-      QString typefilter("");
-
-      typefilter = action->data().toString();
       m_findList.clear();
       ui.graphicsView->horizontalScrollBar()->setValue(0);
       ui.graphicsView->resetTransform();
@@ -2582,7 +2579,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
       ui.nextPageButton->setEnabled(false);
       ui.pagesLabel->setText(tr("1"));
       ui.previousPageButton->setEnabled(false);
-      ui.table->resetTable(dbUserName(), typefilter, "");
+      ui.table->resetTable(dbUserName(), action->data().toString(), "");
     }
 }
 
@@ -2686,11 +2683,7 @@ void biblioteq::slotClosePasswordDialog(void)
 
 void biblioteq::slotCopyError(void)
 {
-  QString text = "";
-  auto clipboard = QApplication::clipboard();
   auto const list(er.table->selectionModel()->selectedRows());
-  int i = 0;
-  int j = 0;
 
   if(list.isEmpty())
     {
@@ -2705,11 +2698,14 @@ void biblioteq::slotCopyError(void)
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  QString text = "";
+  auto clipboard = QApplication::clipboard();
+
   foreach(auto const &index, list)
     {
-      i = index.row();
+      auto const i = index.row();
 
-      for(j = 0; j < er.table->columnCount(); j++)
+      for(int j = 0; j < er.table->columnCount(); j++)
 	{
 	  text += er.table->item(i, j)->text();
 
@@ -2732,18 +2728,7 @@ void biblioteq::slotDelete(void)
   if(!m_db.isOpen())
     return;
 
-  QSqlQuery query(m_db);
-  QString errorstr = "";
-  QString itemType = "";
-  QString oid = "";
-  QString str = "";
   auto const list(ui.table->selectionModel()->selectedRows());
-  auto error = false;
-  auto isCheckedOut = false;
-  auto isRequested = false;
-  int col = -1;
-  int i = 0;
-  int numdeleted = 0;
 
   if(list.isEmpty())
     {
@@ -2754,19 +2739,25 @@ void biblioteq::slotDelete(void)
       return;
     }
 
-  col = ui.table->columnNumber("MYOID");
+  QSqlQuery query(m_db);
+  QString errorstr = "";
+  auto const col = ui.table->columnNumber("MYOID");
+  auto error = false;
+  auto isCheckedOut = false;
+  auto isRequested = false;
+  int numdeleted = 0;
 
   foreach(auto const &index, list)
     {
-      i = index.row();
+      auto const i = index.row();
 
       if(ui.table->item(i, col) == nullptr)
 	continue;
 
-      oid = biblioteq_misc_functions::getColumnString
-	(ui.table, i, ui.table->columnNumber("MYOID"));
-      itemType = biblioteq_misc_functions::getColumnString
+      auto const itemType = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("Type"));
+      auto const oid = biblioteq_misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
 
       if(itemType.isEmpty() || oid.isEmpty())
 	{
@@ -2863,18 +2854,18 @@ void biblioteq::slotDelete(void)
   QProgressDialog progress(this);
 
   progress.setCancelButton(nullptr);
-  progress.setModal(true);
-  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Deleting the selected item(s)..."));
   progress.setMaximum(list.size());
   progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
   QApplication::processEvents();
 
   foreach(auto const &index, list)
     {
-      i = index.row();
+      auto const i = index.row();
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
@@ -2885,8 +2876,8 @@ void biblioteq::slotDelete(void)
       if(ui.table->item(i, col) == nullptr)
 	continue;
 
-      str = ui.table->item(i, col)->text();
-      itemType = biblioteq_misc_functions::getColumnString
+      auto const str = ui.table->item(i, col)->text();
+      auto itemType = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("Type")).toLower();
 
       if(itemType == "grey literature" || itemType == "photograph collection")
@@ -2996,7 +2987,6 @@ void biblioteq::slotDelete(void)
 
 void biblioteq::slotDeleteAdmin(void)
 {
-  QString str = "";
   auto const row = ab.table->currentRow();
 
   if(row < 0)
@@ -3009,8 +2999,8 @@ void biblioteq::slotDeleteAdmin(void)
       return;
     }
 
-  str = ab.table->item(row, static_cast<int> (AdminSetupColumns::ID))->
-    text().toLower().trimmed();
+  auto const str = ab.table->item
+    (row, static_cast<int> (AdminSetupColumns::ID))->text().toLower().trimmed();
 
   if((ab.table->item(row, static_cast<int> (AdminSetupColumns::ID))->flags() &
       Qt::ItemIsEditable) == 0 &&
@@ -3025,7 +3015,7 @@ void biblioteq::slotDeleteAdmin(void)
     }
   else
     {
-      if(!str.isEmpty() && !m_deletedAdmins.contains(str))
+      if(!m_deletedAdmins.contains(str) && !str.isEmpty())
 	m_deletedAdmins.append(str);
 
       ab.table->removeRow(row);
