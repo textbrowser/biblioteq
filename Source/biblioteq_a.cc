@@ -1286,9 +1286,9 @@ void biblioteq::adminSetup(void)
   else
     ui.actionChangePassword->setEnabled(true);
 
+  ui.actionViewDetails->setEnabled(true);
   ui.action_VacuumDatabase->setEnabled(true);
   ui.detailsTool->setEnabled(true);
-  ui.actionViewDetails->setEnabled(true);
 
   if(m_status_bar_label != nullptr)
     {
@@ -1308,12 +1308,16 @@ void biblioteq::adminSetup(void)
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
-      ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
-      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotModify(void)));
       ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
-      connect(ui.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
-	      this, SLOT(slotModify(void)));
+      ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+      connect(ui.graphicsView->scene(),
+	      SIGNAL(itemDoubleClicked(void)),
+	      this,
+	      SLOT(slotModify(void)));
+      connect(ui.table,
+	      SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this,
+	      SLOT(slotModify(void)));
       updateItemWindows();
     }
 
