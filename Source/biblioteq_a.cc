@@ -1599,8 +1599,7 @@ void biblioteq::prepareFilter(void)
 	       << tr("Photograph Collections")
 	       << tr("Video Games");
     }
-  else if(m_roles.contains("administrator") ||
-	  m_roles.contains("circulation"))
+  else if(m_roles.contains("administrator") || m_roles.contains("circulation"))
     {
       tmplist1 << "All"
 	       << "All Available"
@@ -1687,7 +1686,9 @@ void biblioteq::prepareFilter(void)
 	}
     }
 
-  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+  disconnect(ui.menu_Category,
+	     SIGNAL(triggered(QAction *)),
+	     this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
   ui.menu_Category->clear();
 
@@ -1761,8 +1762,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	  ui.actionRequests->setIcon(QIcon(":/32x32/remove_request.png"));
 	  ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	}
-      else if((m_roles == "administrator" ||
-	       m_roles == "circulation") &&
+      else if((m_roles == "administrator" || m_roles == "circulation") &&
 	      typefilter == "All Reserved")
 	{
 	  ui.actionRequests->setData
@@ -1781,8 +1781,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 
   if(m_db.driverName() == "QSQLITE")
     {
-      if((m_roles == "administrator" ||
-	  m_roles == "circulation") &&
+      if((m_roles == "administrator" || m_roles == "circulation") &&
 	 typefilter == "All Reserved")
 	{
 	  ui.actionRequests->setData
@@ -1944,11 +1943,11 @@ void biblioteq::resetAdminBrowser(void)
 {
   QStringList list;
 
-  ab.table->setCurrentItem(nullptr);
-  ab.table->setColumnCount(0);
-  ab.table->setRowCount(0);
-  ab.table->scrollToTop();
   ab.table->horizontalScrollBar()->setValue(0);
+  ab.table->scrollToTop();
+  ab.table->setColumnCount(0);
+  ab.table->setCurrentItem(nullptr);
+  ab.table->setRowCount(0);
   list.append(tr("ID"));
   list.append(tr("Administrator"));
   list.append(tr("Circulation"));
@@ -1968,11 +1967,11 @@ void biblioteq::resetMembersBrowser(void)
 {
   QStringList list;
 
-  bb.table->setCurrentItem(nullptr);
-  bb.table->setColumnCount(0);
-  bb.table->setRowCount(0);
-  bb.table->scrollToTop();
   bb.table->horizontalScrollBar()->setValue(0);
+  bb.table->scrollToTop();
+  bb.table->setColumnCount(0);
+  bb.table->setCurrentItem(nullptr);
+  bb.table->setRowCount(0);
   m_bbColumnHeaderIndexes.clear();
   list.append(tr("Member ID"));
   list.append(tr("First Name"));
@@ -2010,9 +2009,9 @@ void biblioteq::resetMembersBrowser(void)
   m_bbColumnHeaderIndexes.append("Magazines Reserved");
   m_bbColumnHeaderIndexes.append("Video Games Reserved");
   m_bbColumnHeaderIndexes.append("Total Reserved");
+  bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
-  bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
 
   for(int i = 0; i < bb.table->columnCount(); i++)
     {
@@ -2051,8 +2050,10 @@ void biblioteq::setGlobalFonts(const QFont &font)
       mb->setFont(font);
 
       foreach(auto menu, mb->findChildren<QMenu *> ())
-	foreach(auto action, menu->actions())
-	  action->setFont(font);
+	{
+	  foreach(auto action, menu->actions())
+	    action->setFont(font);
+	}
 
       mb->update();
     }
@@ -2079,9 +2080,9 @@ void biblioteq::showMain(void)
     {
       m_connected_bar_label = new QLabel();
       m_connected_bar_label->setToolTip(tr("Disconnected"));
-      statusBar()->addPermanentWidget(m_connected_bar_label);
       m_status_bar_label = new QLabel();
       m_status_bar_label->setToolTip(tr("Standard User Mode"));
+      statusBar()->addPermanentWidget(m_connected_bar_label);
       statusBar()->addPermanentWidget(m_status_bar_label);
       m_error_bar_label = new QToolButton();
       disconnect(m_error_bar_label,
@@ -2202,7 +2203,8 @@ void biblioteq::showMain(void)
   if(!fileInfo.isReadable())
     {
       QMessageBox::warning
-	(this, tr("BiblioteQ: Warning"),
+	(this,
+	 tr("BiblioteQ: Warning"),
 	 tr("BiblioteQ was not able to discover the biblioteq.conf "
 	    "file. Default values will be assumed. The expected absolute "
 	    "path of biblioteq.conf is %1.").arg(fileInfo.absolutePath()));
@@ -2410,22 +2412,20 @@ void biblioteq::slotAbout(void)
 
 void biblioteq::slotAddAdmin(void)
 {
-  QCheckBox *checkBox = nullptr;
-  QTableWidgetItem *item = nullptr;
-  int i = 0;
-
   ab.table->setRowCount(ab.table->rowCount() + 1);
 
-  for(i = 0; i < ab.table->columnCount(); i++)
+  for(int i = 0; i < ab.table->columnCount(); i++)
     if(i == static_cast<int> (AdminSetupColumns::ID))
       {
-	item = new QTableWidgetItem();
+	auto item = new QTableWidgetItem();
+
 	item->setFlags(item->flags() | Qt::ItemIsEditable);
 	ab.table->setItem(ab.table->rowCount() - 1, i, item);
       }
     else
       {
-	checkBox = new QCheckBox();
+	auto checkBox = new QCheckBox();
+
 	ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
 	connect(checkBox, SIGNAL(stateChanged(int)), this,
 		SLOT(slotAdminCheckBoxClicked(int)));
@@ -2495,8 +2495,9 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->updateGeometry();
   userinfo_diag->resize
-    (userinfo_diag->width(), qMax(-100 + m_members_diag->height(),
-				  userinfo_diag->sizeHint().height()));
+    (userinfo_diag->width(),
+     qMax(-100 + m_members_diag->height(),
+	  userinfo_diag->sizeHint().height()));
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
@@ -2507,12 +2508,10 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
 
   auto box = qobject_cast<QCheckBox *> (sender());
   int column = -1;
-  int i = 0;
-  int j = 0;
   int row = -1;
 
-  for(i = 0; i < ab.table->rowCount(); i++)
-    for(j = static_cast<int> (AdminSetupColumns::ADMINISTRATOR);
+  for(int i = 0; i < ab.table->rowCount(); i++)
+    for(int j = static_cast<int> (AdminSetupColumns::ADMINISTRATOR);
 	j < ab.table->columnCount();
 	j++)
       if(ab.table->cellWidget(i, j) == box)
@@ -2526,7 +2525,7 @@ void biblioteq::slotAdminCheckBoxClicked(int state)
     {
       if(column == static_cast<int> (AdminSetupColumns::ADMINISTRATOR))
 	{
-	  for(i = static_cast<int> (AdminSetupColumns::CIRCULATION);
+	  for(int i = static_cast<int> (AdminSetupColumns::CIRCULATION);
 	      i < ab.table->columnCount();
 	      i++)
 	    if(box->isChecked())
@@ -2545,11 +2544,15 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
   if(!action)
     return;
 
-  disconnect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+  disconnect(ui.menu_Category,
+	     SIGNAL(triggered(QAction *)),
+	     this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
   action->setChecked(true);
   ui.menu_Category->setDefaultAction(action);
-  connect(ui.menu_Category, SIGNAL(triggered(QAction *)), this,
+  connect(ui.menu_Category,
+	  SIGNAL(triggered(QAction *)),
+	  this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   ui.categoryLabel->setText(action->text());
   prepareRequestToolButton(action->data().toString());
@@ -2571,15 +2574,15 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
       typefilter = action->data().toString();
       m_findList.clear();
-      ui.graphicsView->scene()->clear();
-      ui.graphicsView->resetTransform();
-      ui.graphicsView->verticalScrollBar()->setValue(0);
       ui.graphicsView->horizontalScrollBar()->setValue(0);
+      ui.graphicsView->resetTransform();
+      ui.graphicsView->scene()->clear();
+      ui.graphicsView->verticalScrollBar()->setValue(0);
+      ui.itemsCountLabel->setText(tr("0 Results"));
       ui.nextPageButton->setEnabled(false);
       ui.pagesLabel->setText(tr("1"));
       ui.previousPageButton->setEnabled(false);
       ui.table->resetTable(dbUserName(), typefilter, "");
-      ui.itemsCountLabel->setText(tr("0 Results"));
     }
 }
 
