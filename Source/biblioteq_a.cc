@@ -3111,8 +3111,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 		    if(m_branches[br.branch_name->itemText(i)].
 		       value("database_type") == "sqlite")
 		      {
-			found = true;
 			br.branch_name->setCurrentIndex(i);
+			found = true;
 			break;
 		      }
 		}
@@ -3151,8 +3151,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 		    if(m_branches[br.branch_name->itemText(i)].
 		       value("database_type") == "sqlite")
 		      {
-			found = true;
 			br.branch_name->setCurrentIndex(i);
+			found = true;
 			break;
 		      }
 		}
