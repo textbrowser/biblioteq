@@ -1322,28 +1322,20 @@ void biblioteq::adminSetup(void)
     }
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))
-    ui.deleteTool->setEnabled(true);
-
-  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
       ui.actionDeleteEntry->setEnabled(true);
       ui.actionDuplicateEntry->setEnabled(true);
       ui.actionImportCSV->setEnabled(true);
+      ui.actionMagic->setEnabled(true);
+      ui.actionModifyEntry->setEnabled(true);
+      ui.actionViewDetails->setEnabled(false);
       ui.createTool->setEnabled(true);
+      ui.deleteTool->setEnabled(true);
+      ui.detailsTool->setEnabled(false);
       ui.duplicateTool->setEnabled(true);
       ui.menu_Add_Item->setEnabled(true);
       ui.modifyTool->setEnabled(true);
     }
-
-  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
-    {
-      ui.actionMagic->setEnabled(true);
-      ui.actionViewDetails->setEnabled(false);
-      ui.detailsTool->setEnabled(false);
-    }
-
-  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
-    ui.actionModifyEntry->setEnabled(true);
 
   if(m_roles.contains("administrator") ||
      m_roles.contains("circulation") ||
