@@ -329,10 +329,38 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowBatchActivitiesBrowser(void)));
+  connect(ui.actionCenter_Child_Windows,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotActionToggled(void)));
+  connect(ui.actionImportCSV,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowImport(void)));
+  connect(ui.actionMagic,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMagic(void)));
+  connect(ui.actionMusic_CD,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertCD(void)));
+  connect(ui.actionOther_Options,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowOtherOptions(void)));
   connect(ui.actionPatron_Reservation_History,
 	  SIGNAL(toggled(bool)),
 	  this,
 	  SLOT(slotSaveDnt(bool)));
+  connect(ui.actionQuery_History,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowQueryHistory(void)));
+  connect(ui.actionTearOffMenus,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotTearOffMenus(void)));
   connect(ui.action_Book,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -373,26 +401,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotPrintIconsView(void)));
-  connect(ui.actionCenter_Child_Windows,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotActionToggled(void)));
-  connect(ui.actionImportCSV,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowImport(void)));
-  connect(ui.actionMagic,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowMagic(void)));
-  connect(ui.actionOther_Options,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowOtherOptions(void)));
-  connect(ui.actionMusic_CD,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotInsertCD(void)));
   connect(ui.action_DVD,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -425,14 +433,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotUpgradeSqliteScheme(void)));
-  connect(ui.actionQuery_History,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowQueryHistory(void)));
-  connect(ui.actionTearOffMenus,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotTearOffMenus(void)));
   connect(ui.action_VacuumDatabase,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -468,27 +468,24 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   ui.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   ui.graphicsView->setScene(scene);
-  bb.setupUi(m_members_diag);
-
-  if(bb.menuBar)
-    bb.menuBar->setNativeMenuBar(true);
-
-  history.setupUi(m_history_diag);
-  br.setupUi(m_branch_diag);
-  pass.setupUi(m_pass_diag);
-  al.setupUi(m_all_diag);
-  al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
-  m_otherOptions->prepareMembersVisibleColumns(bb.table);
-  er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);
+  al.setupUi(m_all_diag);
+  bb.setupUi(m_members_diag);
+  br.setupUi(m_branch_diag);
+  er.setupUi(m_error_diag);
+  history.setupUi(m_history_diag);
+  pass.setupUi(m_pass_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
+  al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
+  bb.menuBar ? bb.menuBar->setNativeMenuBar(true) : (void) 0;
+  m_branch_diag->setModal(true);
+  m_otherOptions->prepareMembersVisibleColumns(bb.table);
+  m_pass_diag->setModal(true);
 #ifdef Q_OS_ANDROID
   ui.action_Full_Screen->setEnabled(false);
 #endif
-  m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
-  m_branch_diag->setModal(true);
   connect(bb.action_Set_Membership_Fees,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -510,13 +507,13 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotMainTableEnterKeyPressed(void)));
   connect(ui.table->horizontalHeader(),
-	  SIGNAL(sectionPressed(int)),
-	  this,
-	  SLOT(slotResizeColumnsAfterSort(void)));
-  connect(ui.table->horizontalHeader(),
 	  SIGNAL(sectionClicked(int)),
 	  this,
 	  SLOT(slotUpdateIndicesAfterSort(int)));
+  connect(ui.table->horizontalHeader(),
+	  SIGNAL(sectionPressed(int)),
+	  this,
+	  SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(),
 	  SIGNAL(sectionResized(int, int, int)),
 	  this,
