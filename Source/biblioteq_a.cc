@@ -486,10 +486,50 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.action_Full_Screen->setEnabled(false);
 #endif
   userinfo_diag->setModal(true);
+  connect(bb.action_Export,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportMembersAsCSV(void)));
   connect(bb.action_Set_Membership_Fees,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotSetMembershipFees(void)));
+  connect(bb.database_enumerations_browser_label,
+	  SIGNAL(linkActivated(const QString &)),
+	  this,
+	  SLOT(slotShowDbEnumerations(void)));
+  connect(bb.historyButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowHistory(void)));
+  connect(bb.modifyButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotModifyBorrower(void)));
+  connect(bb.pages,
+	  SIGNAL(valueChanged(int)),
+	  this,
+	  SLOT(slotMembersPagesChanged(int)));
+  connect(bb.table->horizontalHeader(),
+	  SIGNAL(sectionClicked(int)),
+	  this,
+	  SLOT(slotResizeColumnsAfterSort(void)));
+  connect(er.copyButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCopyError(void)));
+  connect(er.table->horizontalHeader(),
+	  SIGNAL(sectionClicked(int)),
+	  this,
+	  SLOT(slotResizeColumnsAfterSort(void)));
+  connect(history.actionExport_As_CSV,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportMembersHistoryAsCSV(void)));
+  connect(history.table->horizontalHeader(),
+	  SIGNAL(sectionClicked(int)),
+	  this,
+	  SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.graphicsView->scene(),
 	  SIGNAL(deleteKeyPressed(void)),
 	  this,
@@ -506,6 +546,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
 	  SLOT(slotMainTableEnterKeyPressed(void)));
+  connect(ui.table,
+	  SIGNAL(itemSelectionChanged(void)),
+	  this,
+	  SLOT(slotDisplaySummary(void)));
   connect(ui.table->horizontalHeader(),
 	  SIGNAL(sectionClicked(int)),
 	  this,
@@ -518,50 +562,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(sectionResized(int, int, int)),
 	  this,
 	  SLOT(slotSectionResized(int, int, int)));
-  connect(er.table->horizontalHeader(),
-	  SIGNAL(sectionClicked(int)),
-	  this,
-	  SLOT(slotResizeColumnsAfterSort(void)));
-  connect(er.copyButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotCopyError(void)));
-  connect(bb.action_Export,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotExportMembersAsCSV(void)));
-  connect(bb.database_enumerations_browser_label,
-	  SIGNAL(linkActivated(const QString &)),
-	  this,
-	  SLOT(slotShowDbEnumerations(void)));
-  connect(bb.pages,
-	  SIGNAL(valueChanged(int)),
-	  this,
-	  SLOT(slotMembersPagesChanged(int)));
-  connect(bb.table->horizontalHeader(),
-	  SIGNAL(sectionClicked(int)),
-	  this,
-	  SLOT(slotResizeColumnsAfterSort(void)));
-  connect(history.actionExport_As_CSV,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotExportMembersHistoryAsCSV(void)));
-  connect(history.table->horizontalHeader(),
-	  SIGNAL(sectionClicked(int)),
-	  this,
-	  SLOT(slotResizeColumnsAfterSort(void)));
-  connect(ui.table,
-	  SIGNAL(itemSelectionChanged(void)),
-	  this,
-	  SLOT(slotDisplaySummary(void)));
-  connect(bb.modifyButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotModifyBorrower(void)));
-  connect(bb.historyButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowHistory(void)));
   connect(history.reloadButton,
 	  SIGNAL(clicked(void)),
 	  this,
