@@ -1,6 +1,6 @@
 <html>
   <body>
-    <p><u>30 Septembre 2024.</u></p>
+    <p><u>30 Octobre 2024.</u></p>
     <ul>
       <li>261 version de BiblioteQ !</li>
       <li>Constantes abondantes. Veuillez signaler les événements bizarres.</li>
@@ -8,7 +8,10 @@
       <li>N'autoriser que les éléments uniques dans le navigateur d'activités par lots -> Découvrir. L'unicité est définie par la colonne Identifiant.</li>
       <li>De superbes couleurs pour les boutons. L'édition précédente proposait des boutons de toutes les couleurs.</li>
       <li>Les activités par lot sont incomplètes en ce qui concerne l'historique des réservations. En effet, les entrées d'historique n'ont pas été créées pour les articles empruntés. <b>Ticjet GitHub #373.</b></li>
+      <li>Navigateur d'importation CSV : deviner les valeurs des noms de champs de la table BiblioteQ en fonction du contenu du fichier CSV. <b>Ticket GitHub #376.</b></li>
+      <li>Navigateur d'importation CSV :  met en évidence les cellules de l'aperçu CSV dans le tableau Templates. Les cellules sont surlignées si les valeurs sont absentes ou présentes.	<b>Ticket GitHub #376.</b></li>
       <li>Navigateur d'importation CSV : optionnellement, rafraîchir la vue de la fenêtre principale après un événement d'importation du Modèle 1 et du Modèle 2. Une invite s'affiche si au moins un élément est importé. Catégorie de livres.</li>
+      <li>Navigateur d'importation CSV : remplacement du signal current-index-changed() des modèles par activated().</li>
       <li>Navigateur d'importation CSV : widget de fichier CSV inscriptible.</li>
       <li>Correction de biblioteq.win.pro. La suppression des plugins de débogage peut supprimer les fichiers de plugins requis dans la cible d'installation. Qt 6.5 LTS a séparé les fichiers debug et release et la logique supplémentaire dans biblioteq.win.pro n'est pas nécessaire. <b>Tickets GitHub #374, #375.</b></li>
       <li>Désactiver le bouton « Go ! » dans le navigateur d'activités par lots si l'onglet est "Découvrir".</li>
@@ -16,18 +19,24 @@
       <li>Afficher tous les éléments réservés dans la table principale si la table Batch Activities Browser -> Retour est vide lors d'un événement Go !.</li>
       <li>Inclure le rôle de base de données du compte dans le titre de la fenêtre principale pour une connexion PostgreSQL.</li>
       <li>Inclure l'identifiant du membre dans le titre de la fenêtre Historique des réservations du membre.</li>
+      <li>Vers un avenir sans fin avec Poppler et Qt.</li>
+      <li>Liste du nombre de lignes dans le CSV ; Navigateur d'importation CSV.</li>
       <li>Bibliothèques / plugins Qt TLS manquants sous Windows. Lire aussi l'article couvrant biblioteq.win.pro. <b>Ticket GitHub #374, #375.</b></li>
-      <li>Nouvelle options -> Centrer les fenêtres enfant. Fenêtres uniquement, pas les dialogues.</li>
+      <li>Nouvelle options -> Centrer les fenêtres enfant. La plupart des fenêtres et certaines boîtes de dialogue.</li>
       <li>Nouvelle options -> Historique des réservations de l'utilisateur.</li>
       <li>Nouvelle Autres options -> Fenêtre principale -> Texte imprimable UTF-8 uniquement. Si cette option est activée, le texte des cellules de la fenêtre principale ne contiendra que des caractères UTF-8 imprimables.</li>
       <li>Nouvelle option de terminal --open-sqlite-database-index index, où index est l'index de l'entrée dans le menu Recent SQLite Files.</li>
+      <li>Q_OS_WIN -> Q_OS_WINDOWS.</li>
       <li>Poppler et Qt 6. Poppler est un produit extérieur qui couvre les documents PDF.</li>
       <li>Remplir les entrées du menu Fichiers SQLite récents avec des valeurs ajustées avec QFileInfo.</li>
       <li>PostgreSQL 15.8.1; Windows.</li>
-      <li>Enregistrement et restauration des géométries de fenêtres : Navigateur d'activités par lots, Navigateur d'importation CSV, Navigateur d'énumérations de bases de données, Fusionner des bases de données SQLite, Autres options, Historique des requêtes.	Les géométries sont restaurées avant que les fenêtres ne soient éventuellement centrées.</li>
+      <li>QSqlQueryModel::setQuery() a une nouvelle signature depuis Qt 6.2.</li>
+      <li>Enregistrement et restauration des géométries de fenêtres : Navigateur d'activités par lots, navigateur d'importation CSV, navigateur d'énumérations de bases de données, fusion de bases de données SQLite, autres options, historique des requêtes. Les géométries sont restaurées avant que les fenêtres ne soient éventuellement centrées.</li>
+      <li>Suppression des instructions de géométrie spécifiques à GNOME.</li>
       <li>Récupère les chemins d'accès absolus aux fichiers pour les arguments de --special-executable et --special-executable-icon.</li>
       <li>SRU@France est maintenant avec HTTPS dans biblioteq.conf.</li>
       <li>Définisser QMAKE_MACOSX_DEPLOYMENT_TARGET à 12.0 dans	biblioteq.macos.pro.</li>
+      <li>Définir la hauteur de la boîte de dialogue des membres comme maximum(-100 + m_members_diag->height(), userinfo_diag->sizeHint().height()).</li>
       <li>La méthode biblioteq_misc_functions::isbn13to10() produira désormais la chaîne originale si la chaîne ne commence pas par 978. <b>Ticket GitHub #350.</b></li>
       <li>Le fichier CSV d'exemple (Data/BiblioteQ.csv) reflète maintenant la base de données SQLite d'exemple (Data/BiblioteQ.sqlite) en ce qui concerne les livres.</li>
       <li>Découpe des chaînes d'en-tête dans le navigateur d'importation CSV. Les chaînes sont coupées à la fois pour l'aperçu CSV et pour les tables de modèles.</li>
