@@ -486,6 +486,14 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.action_Full_Screen->setEnabled(false);
 #endif
   userinfo_diag->setModal(true);
+  connect(al.caseinsensitive,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveGeneralSearchCaseSensitivity(bool)));
+  connect(al.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAllGo(void)));
   connect(bb.action_Export,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -526,10 +534,46 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportMembersHistoryAsCSV(void)));
+  connect(history.printButton,
+	  SIGNAL(clicked(void)),
+	  history.printButton,
+	  SLOT(showMenu(void)));
+  connect(history.reloadButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowHistory(void)));
   connect(history.table->horizontalHeader(),
 	  SIGNAL(sectionClicked(int)),
 	  this,
 	  SLOT(slotResizeColumnsAfterSort(void)));
+  connect(ui.actionDeleteEntry,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDelete(void)));
+  connect(ui.actionDuplicateEntry,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDuplicate(void)));
+  connect(ui.actionExit,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExit(void)));
+  connect(ui.actionSetGlobalFonts,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotSetFonts(void)));
+  connect(ui.deleteTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDelete(void)));
+  connect(ui.duplicateTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDuplicate(void)));
+  connect(ui.exitTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExit(void)));
   connect(ui.graphicsView->scene(),
 	  SIGNAL(deleteKeyPressed(void)),
 	  this,
@@ -538,6 +582,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
 	  SLOT(slotGraphicsSceneEnterKeyPressed(void)));
+  connect(ui.refreshTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotRefresh(void)));
   connect(ui.table,
 	  SIGNAL(deleteKeyPressed(void)),
 	  this,
@@ -562,54 +610,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(sectionResized(int, int, int)),
 	  this,
 	  SLOT(slotSectionResized(int, int, int)));
-  connect(history.reloadButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowHistory(void)));
-  connect(history.printButton,
-	  SIGNAL(clicked(void)),
-	  history.printButton,
-	  SLOT(showMenu(void)));
-  connect(al.caseinsensitive,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotSaveGeneralSearchCaseSensitivity(bool)));
-  connect(al.okButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAllGo(void)));
-  connect(ui.exitTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotExit(void)));
-  connect(ui.actionExit,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotExit(void)));
-  connect(ui.actionSetGlobalFonts,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotSetFonts(void)));
-  connect(ui.deleteTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDelete(void)));
-  connect(ui.duplicateTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDuplicate(void)));
-  connect(ui.actionDeleteEntry,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDelete(void)));
-  connect(ui.actionDuplicateEntry,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDuplicate(void)));
-  connect(ui.refreshTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotRefresh(void)));
   connect(ui.actionRefreshTable,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -702,14 +702,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowPrev(void)));
-  connect(history.nextTool,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowNext(void)));
-  connect(history.prevTool,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowPrev(void)));
 #ifdef Q_OS_ANDROID
   connect(history.cancelButton,
 	  SIGNAL(clicked(void)),
@@ -725,6 +717,14 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(toggled(bool)),
 	  this,
 	  SLOT(slotSaveDnt(bool)));
+  connect(history.nextTool,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowNext(void)));
+  connect(history.prevTool,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowPrev(void)));
   connect(br.okButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -965,12 +965,12 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowDbEnumerations(void)));
+  ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
   ab.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  bb.table->setContextMenuPolicy(Qt::CustomContextMenu);
   bb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-  ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
-  bb.table->setContextMenuPolicy(Qt::CustomContextMenu);
   ui.table->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(ab.table,
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
@@ -1061,12 +1061,8 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
   ui.table->resetTable(dbUserName(), m_lastCategory, m_roles);
-
-  if(m_otherOptions->showMainTableImages())
-    ui.table->setIconSize(QSize(64, 94));
-  else
-    ui.table->setIconSize(QSize(0, 0));
-
+  ui.table->setIconSize
+    (m_otherOptions->showMainTableImages() ? QSize(64, 94) : QSize(0, 0));
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
   prepareTearOffMenus();
@@ -1208,7 +1204,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
   foreach(auto action, ui.menu_Language->actions())
     {
-      if(s_locale == action->data().toString())
+      if(action->data().toString() == s_locale)
 	action->setChecked(true);
 
       connect(action,
