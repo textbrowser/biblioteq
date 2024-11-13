@@ -1402,7 +1402,6 @@ void biblioteq::addError(const QString &type,
   if(error.trimmed().isEmpty())
     return;
 
-  QString str = "";
   auto const now = QDateTime::currentDateTime();
 
   er.table->setRowCount(er.table->rowCount() + 1);
@@ -1431,10 +1430,7 @@ void biblioteq::addError(const QString &type,
       else if(i == static_cast<int> (ErrorDialogColumns::SUMMARY))
 	item->setText(summary.trimmed());
       else
-	{
-	  str.setNum(line);
-	  item->setText(str);
-	}
+	item->setText(QString::number(line));
 
       item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
       er.table->setItem(er.table->rowCount() - 1, i, item);
@@ -1447,7 +1443,7 @@ void biblioteq::addError(const QString &type,
 
   if(m_error_bar_label != nullptr)
     {
-      m_error_bar_label->setToolTip(tr("Error Log Active"));
+      m_error_bar_label->setToolTip(tr("Non-Empty Error Log"));
       prepareStatusBarIcons();
     }
 }
