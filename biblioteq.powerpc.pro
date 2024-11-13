@@ -4,7 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 cache()
 }
 
-purge.commands = find . -name '*~*' -exec rm -f {} \;
+purge.commands = find . -name \'*~*\' -exec rm -f {} \;
 
 CONFIG		+= copy_dir_files qt release warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'"
