@@ -1325,7 +1325,7 @@ QString biblioteq::getPreferredZ3950Site(void) const
 QString biblioteq::getRoles(void) const
 {
   /*
-  ** Empty roles suggest that the user is a guest or a patron.
+  ** If m_roles is empty, the user is a guest or a patron.
   */
 
   return m_roles;
@@ -1489,6 +1489,14 @@ void biblioteq::adminSetup(void)
     {
       ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
       ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+      disconnect(ui.graphicsView->scene(),
+		 SIGNAL(itemDoubleClicked(void)),
+		 this,
+		 SLOT(slotModify(void)));
+      disconnect(ui.table,
+		 SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this,
+		 SLOT(slotModify(void)));
       connect(ui.graphicsView->scene(),
 	      SIGNAL(itemDoubleClicked(void)),
 	      this,
@@ -5243,21 +5251,17 @@ void biblioteq::slotShowMenu(void)
 
 void biblioteq::slotShowNext(void)
 {
-  QTableWidget *table = nullptr;
-  int row = -1;
+  auto row = bb.table->currentRow();
 
-  table = bb.table;
-  row = table->currentRow();
-
-  if(row == (table->rowCount() - 1))
+  if(row == (bb.table->rowCount() - 1))
     row = 0;
   else
     row += 1;
 
   if(m_history_diag->isVisible())
     {
-      table->clearSelection();
-      table->selectRow(row);
+      bb.table->clearSelection();
+      bb.table->selectRow(row);
       slotShowHistory();
     }
   else
@@ -5281,22 +5285,18 @@ void biblioteq::slotShowNext(void)
 	  QApplication::processEvents();
 	}
 
-      table->clearSelection();
-      table->selectRow(row);
+      bb.table->clearSelection();
+      bb.table->selectRow(row);
       slotModifyBorrower();
     }
 }
 
 void biblioteq::slotShowPrev(void)
 {
-  QTableWidget *table = nullptr;
-  int row = -1;
-
-  table = bb.table;
-  row = table->currentRow();
+  auto row = bb.table->currentRow();
 
   if(row == 0)
-    row = table->rowCount() - 1;
+    row = bb.table->rowCount() - 1;
   else
     row -= 1;
 
@@ -5305,8 +5305,8 @@ void biblioteq::slotShowPrev(void)
 
   if(m_history_diag->isVisible())
     {
-      table->clearSelection();
-      table->selectRow(row);
+      bb.table->clearSelection();
+      bb.table->selectRow(row);
       slotShowHistory();
     }
   else
@@ -5330,8 +5330,8 @@ void biblioteq::slotShowPrev(void)
 	  QApplication::processEvents();
 	}
 
-      table->clearSelection();
-      table->selectRow(row);
+      bb.table->clearSelection();
+      bb.table->selectRow(row);
       slotModifyBorrower();
     }
 }
