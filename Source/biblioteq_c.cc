@@ -4805,7 +4805,7 @@ void biblioteq::slotRefreshAdminList(void)
 		if(str.contains(columnname, Qt::CaseInsensitive))
 		  checkBox->setChecked(true);
 
-		if(query.value(0).toString().trimmed() == getAdminID())
+		if(getAdminID() == query.value(0).toString().trimmed())
 		  checkBox->setEnabled(false);
 		else
 		  connect(checkBox,

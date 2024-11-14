@@ -5140,7 +5140,6 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotInsertBook(void)));
-      // menu.addAction(tr("Add &Cassette Tape..."));
       connect(menu.addAction(tr("Add &DVD...")),
 	      SIGNAL(triggered(void)),
 	      this,
@@ -5161,7 +5160,6 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotInsertCD(void)));
-      // menu.addAction(tr("Add &Newspaper..."));
       connect(menu.addAction(tr("Add &Photograph Collection...")),
 	      SIGNAL(triggered(void)),
 	      this,
@@ -5170,8 +5168,6 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotInsertVideoGame(void)));
-      // menu.addAction(tr("Add &VHS..."));
-      // menu.addAction(tr("Add &Vinyl Record..."));
       menu.exec(point);
     }
   else if(sender() == ui.printTool)
