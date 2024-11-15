@@ -1,6 +1,8 @@
 BiblioteQ is awesome, open library software. A minimum version
 of Qt 5.5.1 is required. Qt 4.x is deprecated.
 
+Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.txt.
+
 ## Features
 
 - ARM architecture support.
