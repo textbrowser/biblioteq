@@ -333,6 +333,18 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotActionToggled(void)));
+  connect(ui.actionChangePassword,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowChangePassword(void)));
+  connect(ui.actionConnect,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowConnectionDB(void)));
+  connect(ui.actionDisconnect,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDisconnect(void)));
   connect(ui.actionImportCSV,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -357,6 +369,14 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowQueryHistory(void)));
+  connect(ui.actionRequests,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotRequest(void)));
+  connect(ui.actionSaveSettings,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotSaveConfig()));
   connect(ui.actionTearOffMenus,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -441,6 +461,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertVideoGame(void)));
+  connect(ui.disconnectTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDisconnect(void)));
   connect(ui.find,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -486,6 +510,44 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.action_Full_Screen->setEnabled(false);
 #endif
   userinfo_diag->setModal(true);
+  connect(ab.addButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAddAdmin(void)));
+#ifdef Q_OS_ANDROID
+  connect(ab.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_admin_diag,
+	  SLOT(hide(void)));
+#else
+  connect(ab.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_admin_diag,
+	  SLOT(close(void)));
+#endif
+  connect(ab.deleteButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteAdmin(void)));
+  connect(ab.reloadButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRefreshAdminList(void)));
+  connect(ab.saveButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSaveAdministrators(void)));
+#ifdef Q_OS_ANDROID
+  connect(al.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_all_diag,
+	  SLOT(hide(void)));
+#else
+  connect(al.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_all_diag,
+	  SLOT(close(void)));
+#endif
   connect(al.caseinsensitive,
 	  SIGNAL(toggled(bool)),
 	  this,
@@ -494,6 +556,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAllGo(void)));
+  connect(al.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(bb.action_Export,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -502,30 +568,120 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotSetMembershipFees(void)));
+  connect(bb.addButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAddBorrower(void)));
+  connect(bb.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCloseMembersBrowser(void)));
+  connect(bb.checkoutButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCheckout(void)));
   connect(bb.database_enumerations_browser_label,
 	  SIGNAL(linkActivated(const QString &)),
 	  this,
 	  SLOT(slotShowDbEnumerations(void)));
+  connect(bb.deleteButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemoveMember(void)));
+  connect(bb.filter,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotPopulateMembersBrowser(void)));
+  connect(bb.grantButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGrantPrivileges(void)));
   connect(bb.historyButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowHistory(void)));
+  connect(bb.listButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotListReservedItems(void)));
   connect(bb.modifyButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotModifyBorrower(void)));
+  connect(bb.overdueButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotListOverdueItems(void)));
   connect(bb.pages,
 	  SIGNAL(valueChanged(int)),
 	  this,
 	  SLOT(slotMembersPagesChanged(int)));
+  connect(bb.printButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPrintReserved(void)));
+  connect(bb.reloadButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPopulateMembersBrowser(void)));
   connect(bb.table->horizontalHeader(),
 	  SIGNAL(sectionClicked(int)),
 	  this,
 	  SLOT(slotResizeColumnsAfterSort(void)));
+  connect(br.branch_name,
+	  SIGNAL(activated(int)),
+	  this,
+	  SLOT(slotBranchChanged(void)));
+#ifdef Q_OS_ANDROID
+  connect(br.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_branch_diag,
+	  SLOT(hide(void)));
+#else
+  connect(br.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_branch_diag,
+	  SLOT(close(void)));
+#endif
+  connect(br.fileButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectDatabaseFile(void)));
+  connect(br.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotConnectDB(void)));
+  connect(br.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetLoginDialog(void)));
+  connect(br.role,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotRoleChanged(int)));
+  connect(br.show_password,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotShowPassword(bool)));
+#ifdef Q_OS_ANDROID
+  connect(er.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_error_diag,
+	  SLOT(hide(void)));
+#else
+  connect(er.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_error_diag,
+	  SLOT(close(void)));
+#endif
   connect(er.copyButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotCopyError(void)));
+  connect(er.resetButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetErrorLog(void)));
   connect(er.table->horizontalHeader(),
 	  SIGNAL(sectionClicked(int)),
 	  this,
@@ -534,6 +690,29 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportMembersHistoryAsCSV(void)));
+#ifdef Q_OS_ANDROID
+  connect(history.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_history_diag,
+	  SLOT(hide(void)));
+#else
+  connect(history.cancelButton,
+	  SIGNAL(clicked(void)),
+	  m_history_diag,
+	  SLOT(close(void)));
+#endif
+  connect(history.dnt,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveDnt(bool)));
+  connect(history.nextTool,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowNext(void)));
+  connect(history.prevTool,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowPrev(void)));
   connect(history.printButton,
 	  SIGNAL(clicked(void)),
 	  history.printButton,
@@ -546,6 +725,54 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(sectionClicked(int)),
 	  this,
 	  SLOT(slotResizeColumnsAfterSort(void)));
+  connect(m_otherOptions,
+	  SIGNAL(mainWindowCanvasBackgroundColorChanged(const QColor &)),
+	  this,
+	  SLOT(slotMainWindowCanvasBackgroundColorChanged(const QColor &)));
+  connect(m_otherOptions,
+	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)),
+	  this,
+	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
+  connect(m_otherOptions,
+	  SIGNAL(saved(void)),
+	  this,
+	  SLOT(slotOtherOptionsSaved(void)));
+  connect(m_pass_diag,
+	  SIGNAL(finished(int)),
+	  this,
+	  SLOT(slotClosePasswordDialog(void)));
+  connect(pass.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotClosePasswordDialog(void)));
+  connect(pass.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSavePassword(void)));
+  connect(ui.actionAbout,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotAbout(void)));
+  connect(ui.actionConfigureAdministratorPrivileges,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowAdminDialog(void)));
+  connect(ui.actionDatabase_Enumerations,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowDbEnumerations(void)));
+  connect(ui.actionDatabaseSearch,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotSearch(void)));
+  connect(ui.actionExport_Current_View,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportAsCSV(void)));
+  connect(ui.actionExport_View_as_PNG,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportAsPNG(void)));
   connect(ui.actionDeleteEntry,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -558,14 +785,78 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExit(void)));
+  connect(ui.actionMembersBrowser,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMembersBrowser(void)));
+  connect(ui.actionModifyEntry,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotModify(void)));
+  connect(ui.actionRefreshTable,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotRefresh(void)));
+  connect(ui.actionReload_biblioteq_conf,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReloadBiblioteqConf(void)));
+  connect(ui.actionReservationHistory,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowHistory(void)));
+  connect(ui.actionResizeColumns,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotResizeColumns(void)));
   connect(ui.actionSetGlobalFonts,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotSetFonts(void)));
+  connect(ui.actionShowErrorDialog,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowErrorDialog(void)));
+  connect(ui.actionShowGrid,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowGrid(void)));
+  connect(ui.actionViewDetails,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotViewDetails(void)));
+  connect(ui.action_Database_Enumerations,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowDbEnumerations(void)));
+  connect(ui.action_New_SQLite_Database,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDisplayNewSqliteDialog(void)));
+  connect(ui.configTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMenu(void)));
+  connect(ui.connectTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowConnectionDB(void)));
+  connect(ui.createTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMenu(void)));
+  connect(ui.customQueryTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowCustomQuery(void)));
   connect(ui.deleteTool,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDelete(void)));
+  connect(ui.detailsTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotViewDetails(void)));
   connect(ui.duplicateTool,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -574,6 +865,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExit(void)));
+  connect(ui.filesTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowFiles(void)));
   connect(ui.graphicsView->scene(),
 	  SIGNAL(deleteKeyPressed(void)),
 	  this,
@@ -582,10 +877,46 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
 	  SLOT(slotGraphicsSceneEnterKeyPressed(void)));
+  connect(ui.menu_Category,
+	  SIGNAL(triggered(QAction *)),
+	  this,
+	  SLOT(slotAutoPopOnFilter(QAction *)));
+  connect(ui.modifyTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotModify(void)));
+  connect(ui.nextPageButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotNextPage(void)));
+  connect(ui.pagesLabel,
+	  SIGNAL(linkActivated(const QString &)),
+	  this,
+	  SLOT(slotPageClicked(const QString &)));
+  connect(ui.previousPageButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotPreviousPage(void)));
+  connect(ui.printTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMenu(void)));
   connect(ui.refreshTool,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotRefresh(void)));
+  connect(ui.reserveTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReserveCopy(void)));
+  connect(ui.search,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotSearchBasic(void)));
+  connect(ui.searchTool,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowMenu(void)));
   connect(ui.table,
 	  SIGNAL(deleteKeyPressed(void)),
 	  this,
@@ -610,90 +941,22 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(sectionResized(int, int, int)),
 	  this,
 	  SLOT(slotSectionResized(int, int, int)));
-  connect(ui.actionRefreshTable,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotRefresh(void)));
-  connect(ui.actionReload_biblioteq_conf,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotReloadBiblioteqConf(void)));
-  connect(ui.menu_Category,
-	  SIGNAL(triggered(QAction *)),
-	  this,
-	  SLOT(slotAutoPopOnFilter(QAction *)));
-  connect(ui.modifyTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotModify(void)));
-  connect(ui.actionModifyEntry,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotModify(void)));
-  connect(ui.actionShowErrorDialog,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowErrorDialog(void)));
-  connect(ui.actionAbout,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotAbout(void)));
-  connect(ui.actionShowGrid,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowGrid(void)));
-  connect(ui.actionResizeColumns,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotResizeColumns(void)));
   connect(ui.userTool,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowMembersBrowser(void)));
-  connect(ui.reserveTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotReserveCopy(void)));
-  connect(ui.actionMembersBrowser,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowMembersBrowser(void)));
-  connect(userinfo_diag->m_userinfo.okButton,
+  connect(userinfo_diag->m_userinfo.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,
-	  SLOT(slotSaveUser(void)));
-  connect(ui.actionChangePassword,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowChangePassword(void)));
-  connect(ui.actionSaveSettings,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotSaveConfig()));
-  connect(ui.actionRequests,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotRequest(void)));
-  connect(ui.connectTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowConnectionDB(void)));
-  connect(ui.actionConnect,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowConnectionDB(void)));
-  connect(ui.disconnectTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDisconnect(void)));
-  connect(ui.actionDisconnect,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDisconnect(void)));
+	  SLOT(slotCancelAddUser(void)));
   connect(userinfo_diag->m_userinfo.menu,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowMenu(void)));
+  connect(userinfo_diag->m_userinfo.okButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSaveUser(void)));
   connect(userinfo_diag->m_userinfo.nextTool,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -702,269 +965,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowPrev(void)));
-#ifdef Q_OS_ANDROID
-  connect(history.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_history_diag,
-	  SLOT(hide(void)));
-#else
-  connect(history.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_history_diag,
-	  SLOT(close(void)));
-#endif
-  connect(history.dnt,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotSaveDnt(bool)));
-  connect(history.nextTool,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowNext(void)));
-  connect(history.prevTool,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotShowPrev(void)));
-  connect(br.okButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotConnectDB(void)));
-  connect(br.branch_name,
-	  SIGNAL(activated(int)),
-	  this,
-	  SLOT(slotBranchChanged(void)));
-  connect(br.role,
-	  SIGNAL(currentIndexChanged(int)),
-	  this,
-	  SLOT(slotRoleChanged(int)));
-  connect(br.show_password,
-	  SIGNAL(toggled(bool)),
-	  this,
-	  SLOT(slotShowPassword(bool)));
-  connect(bb.printButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotPrintReserved(void)));
-  connect(bb.addButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAddBorrower(void)));
-  connect(bb.reloadButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotPopulateMembersBrowser(void)));
-  connect(bb.deleteButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRemoveMember(void)));
-  connect(userinfo_diag->m_userinfo.cancelButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotCancelAddUser(void)));
-  connect(bb.cancelButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotCloseMembersBrowser(void)));
-  connect(bb.checkoutButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotCheckout(void)));
-  connect(bb.listButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotListReservedItems(void)));
-  connect(bb.overdueButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotListOverdueItems(void)));
-  connect(al.resetButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotReset(void)));
-#ifdef Q_OS_ANDROID
-  connect(al.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_all_diag,
-	  SLOT(hide(void)));
-#else
-  connect(al.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_all_diag,
-	  SLOT(close(void)));
-#endif
-  connect(ui.actionReservationHistory,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowHistory(void)));
-  connect(ui.filesTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowFiles(void)));
-  connect(ui.searchTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowMenu(void)));
-  connect(ui.customQueryTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowCustomQuery(void)));
-  connect(ui.actionDatabaseSearch,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotSearch(void)));
-  connect(ui.actionViewDetails,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotViewDetails(void)));
-  connect(ui.detailsTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotViewDetails(void)));
-  connect(ui.createTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowMenu(void)));
-  connect(ui.search,
-	  SIGNAL(returnPressed(void)),
-	  this,
-	  SLOT(slotSearchBasic(void)));
-  connect(er.resetButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotResetErrorLog(void)));
-#ifdef Q_OS_ANDROID
-  connect(er.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_error_diag,
-	  SLOT(hide(void)));
-#else
-  connect(er.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_error_diag,
-	  SLOT(close(void)));
-#endif
-  connect(bb.filter,
-	  SIGNAL(returnPressed(void)),
-	  this,
-	  SLOT(slotPopulateMembersBrowser(void)));
-  connect(bb.grantButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotGrantPrivileges(void)));
-  connect(ui.configTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowMenu(void)));
-  connect(ui.printTool,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowMenu(void)));
-  connect(ui.previousPageButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotPreviousPage(void)));
-  connect(ui.nextPageButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotNextPage(void)));
-  connect(ui.pagesLabel,
-	  SIGNAL(linkActivated(const QString &)),
-	  this,
-	  SLOT(slotPageClicked(const QString &)));
-  connect(pass.okButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotSavePassword(void)));
-  connect(pass.cancelButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotClosePasswordDialog(void)));
-  connect(m_otherOptions,
-	  SIGNAL(mainWindowCanvasBackgroundColorChanged(const QColor &)),
-	  this,
-	  SLOT(slotMainWindowCanvasBackgroundColorChanged(const QColor &)));
-  connect(m_otherOptions,
-	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)),
-	  this,
-	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
-  connect(m_otherOptions,
-	  SIGNAL(saved(void)),
-	  this,
-	  SLOT(slotOtherOptionsSaved(void)));
-  connect(m_pass_diag,
-	  SIGNAL(finished(int)),
-	  this,
-	  SLOT(slotClosePasswordDialog(void)));
-  connect(br.resetButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotResetLoginDialog(void)));
-  connect(br.fileButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotSelectDatabaseFile(void)));
-#ifdef Q_OS_ANDROID
-  connect(br.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_branch_diag,
-	  SLOT(hide(void)));
-#else
-  connect(br.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_branch_diag,
-	  SLOT(close(void)));
-#endif
-  connect(ui.actionConfigureAdministratorPrivileges,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowAdminDialog(void)));
-  connect(ab.reloadButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotRefreshAdminList(void)));
-  connect(ab.addButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotAddAdmin(void)));
-  connect(ab.deleteButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotDeleteAdmin(void)));
-  connect(ab.saveButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotSaveAdministrators(void)));
-#ifdef Q_OS_ANDROID
-  connect(ab.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_admin_diag,
-	  SLOT(hide(void)));
-#else
-  connect(ab.cancelButton,
-	  SIGNAL(clicked(void)),
-	  m_admin_diag,
-	  SLOT(close(void)));
-#endif
-  connect(ui.action_New_SQLite_Database,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotDisplayNewSqliteDialog(void)));
-  connect(ui.actionDatabase_Enumerations,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowDbEnumerations(void)));
-  connect(ui.actionExport_Current_View,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotExportAsCSV(void)));
-  connect(ui.actionExport_View_as_PNG,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotExportAsPNG(void)));
-  connect(ui.action_Database_Enumerations,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotShowDbEnumerations(void)));
   ab.table->setContextMenuPolicy(Qt::CustomContextMenu);
   ab.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   bb.table->setContextMenuPolicy(Qt::CustomContextMenu);

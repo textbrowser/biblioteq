@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>700</height>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,6 +22,16 @@
     <item>
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Consider inserting &lt;br&gt; tags in text which will be hyperlinked.</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+        </widget>
+       </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
@@ -198,7 +208,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-67</y>
+            <y>0</y>
             <width>699</width>
             <height>426</height>
            </rect>
