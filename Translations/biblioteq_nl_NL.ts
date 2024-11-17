@@ -151,6 +151,34 @@
         <source>Show Tracks</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BOOK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <source>GREY LITERATURE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JOURNAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAGAZINE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VIDEO GAME</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -800,10 +828,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Field column is completed by scanner queries.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
@@ -860,10 +884,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Go! (Current Page)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -893,6 +913,14 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A database query will be performed after editing of the Member ID has completed. For example, after Member ID has lost input focus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Field column is completed by scanner queries.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table. &lt;span style=&quot; font-weight:600;&quot;&gt;Press the Go! button to list the discovered items in the main window&apos;s table where you&apos;ll be able to complete the return(s).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1100,7 +1128,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to modify the </source>
-        <translation type="unfinished">Bent U zeker dat U volgende wilt wijzigen</translation>
+        <translation type="obsolete">Bent U zeker dat U volgende wilt wijzigen</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -1116,7 +1144,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to view the </source>
-        <translation type="unfinished">Bent U zeker dat U volgende wilt bekijken </translation>
+        <translation type="obsolete">Bent U zeker dat U volgende wilt bekijken </translation>
     </message>
     <message>
         <source>Please select an item to delete.</source>
@@ -1172,7 +1200,7 @@
     </message>
     <message>
         <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished">De Klant-ID moet minsten uit vijf karakters bestaan.</translation>
+        <translation type="obsolete">De Klant-ID moet minsten uit vijf karakters bestaan.</translation>
     </message>
     <message>
         <source>The Member ID </source>
@@ -1300,7 +1328,7 @@
     </message>
     <message>
         <source>It appears that the user </source>
-        <translation type="unfinished">Het lijkt dat de gebruiker</translation>
+        <translation type="obsolete">Het lijkt dat de gebruiker</translation>
     </message>
     <message>
         <source> does not have administrator privileges.</source>
@@ -1324,7 +1352,7 @@
     </message>
     <message>
         <source>BiblioteQ: </source>
-        <translation type="unfinished">BiblioteQ: </translation>
+        <translation type="obsolete">BiblioteQ: </translation>
     </message>
     <message>
         <source>Request Selected Item(s)</source>
@@ -1460,7 +1488,7 @@
     </message>
     <message>
         <source>Error Log Active</source>
-        <translation type="unfinished">Fouten Logboek Actief</translation>
+        <translation type="obsolete">Fouten Logboek Actief</translation>
     </message>
     <message>
         <source>Memory failure in addError()!</source>
@@ -1668,7 +1696,7 @@
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
-        <translation type="unfinished">Het paswoord moet uit minstens acht tekens bestaan.</translation>
+        <translation type="obsolete">Het paswoord moet uit minstens acht tekens bestaan.</translation>
     </message>
     <message>
         <source>The passwords do not match. Please try again.</source>
@@ -1832,7 +1860,7 @@
     </message>
     <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation type="unfinished">U bent al verbonden met een database. Wilt U uw huidige connectie verbreken en met een nieuwe SQLite database verder gaan?</translation>
+        <translation type="obsolete">U bent al verbonden met een database. Wilt U uw huidige connectie verbreken en met een nieuwe SQLite database verder gaan?</translation>
     </message>
     <message>
         <source>CSV (*.csv)</source>
@@ -1848,7 +1876,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to duplicate the </source>
-        <translation type="unfinished">Weet U zeker Dat U Het Volgende Wilt Kopieren </translation>
+        <translation type="obsolete">Weet U zeker Dat U Het Volgende Wilt Kopieren </translation>
     </message>
     <message>
         <source>%1 Result(s)</source>
@@ -1940,10 +1968,6 @@
     </message>
     <message>
         <source>BiblioteQ: Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2058,10 +2082,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Video Game Search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The option is not available because an error occurred while attempting to retrieve its value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2437,18 +2457,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please note that BiblioteQ will execute all of the upgrade statements since the upgrade tool was introduced.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please note that BiblioteQ will execute this version&apos;s upgrade statements.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You are about to upgrade the SQLite database %1. Please verify that you have made a copy of this database. %2 Are you sure that you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Executing %1 statement(s).&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2581,16 +2589,93 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Compilation Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>(unknown title)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The item %1 is requested by another patron. Please set it aside.
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Non-Empty Error Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error occurred in an unknown file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that you are already connected to a database. Do you wish to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to duplicate the %1 selected item(s)? BiblioteQ will terminate if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to update the database account for %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to modify the %1 selected item(s)? BiblioteQ will terminate if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The password must contain at least eight characters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to view the %1 selected item(s)? BiblioteQ will terminate if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that BiblioteQ will execute all of the SQL statements since the tool was introduced.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that BiblioteQ will execute the newest SQL statements.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are about to upgrade the SQLite database %1. Please verify that you have created a copy of this database. %2 Are you sure that you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the account </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: %1 (%2) (%3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The item %1 is requested by another patron (%2). Please set it aside.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Member ID must contain at least five characters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred with biblioteq_misc_functions::dnt().</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Member&apos;s Reservation History</source>
+        <translation type="unfinished">BiblioteQ: Uitleengeschiedenis van Kl</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Member&apos;s Reservation History (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2734,6 +2819,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Item OID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to create a member_history entry.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3658,6 +3751,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Please set the item aside as another patron has requested it.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please set the item aside as another patron (%1) has requested it.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_cd</name>
@@ -4266,11 +4363,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
-        <translation type="unfinished">Niet mogelijk om een uitleen-record aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een uitleen-record aan te maken.</translation>
     </message>
     <message>
         <source>Unable to create a history record.</source>
-        <translation type="unfinished">Niet mogelijk om een geschiedenis-record aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een geschiedenis-record aan te maken.</translation>
     </message>
     <message>
         <source>Row number </source>
@@ -4386,6 +4483,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The copy that you have selected does not exist or is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an item_borrower record.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a member_history entry.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5887,6 +5992,34 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Populate the table with Template %1 values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0 Columns | 0 Lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing the CSV file. Processing line %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Column(s) | %2 Line(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Column(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh the main window&apos;s view?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Boeken</translation>
+    </message>
+    <message>
+        <source>0 Columns</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9855,6 +9988,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Bottom-Scroll On Add</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Consider inserting &lt;br&gt; tags in text which will be hyperlinked.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV File Absolute File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished">Over</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Guess BiblioteQ Table Field Name values according to the contents of the CSV file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>informationDialog</name>
@@ -11291,6 +11444,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. A pattern-matching query is performed. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Patron Reservation History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Child Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -11662,10 +11823,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Grant Privileges (PostgreSQL)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11707,6 +11864,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>This window will attempt to remain on top of other windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Assign all of the patrons to the biblioteq_patron PostgreSQL role. The role is required for accessing database tables. This widget is considered a relic because a newly-created patron is granted the required permissions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11989,6 +12150,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Column Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only UTF-8 Printable Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The text in the main table&apos;s cells will contain only UTF-8 printable characters. Cell text is modified in a separate event and therefore this option may introduce some delay during the preparation of a cell&apos;s contents.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQLite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only.&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required. The type is recorded in English.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One entry per line please.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

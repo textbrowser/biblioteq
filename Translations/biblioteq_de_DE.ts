@@ -151,6 +151,34 @@
         <source>Show Tracks</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BOOK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <source>GREY LITERATURE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JOURNAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAGAZINE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VIDEO GAME</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -820,10 +848,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Field column is completed by scanner queries.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Category</source>
         <translation type="unfinished">Kategorie</translation>
     </message>
@@ -880,10 +904,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Go! (Current Page)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -913,6 +933,14 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A database query will be performed after editing of the Member ID has completed. For example, after Member ID has lost input focus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Field column is completed by scanner queries.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table. &lt;span style=&quot; font-weight:600;&quot;&gt;Press the Go! button to list the discovered items in the main window&apos;s table where you&apos;ll be able to complete the return(s).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -988,7 +1016,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to modify the </source>
-        <translation>Best√§tigung der √Ñnderung von </translation>
+        <translation type="vanished">Best√§tigung der √Ñnderung von </translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -1004,7 +1032,7 @@
     </message>
     <message>
         <source>Are you sure that you wish to view the </source>
-        <translation>Best√§tigung der Anzeige von </translation>
+        <translation type="vanished">Best√§tigung der Anzeige von </translation>
     </message>
     <message>
         <source>Please select an item to delete.</source>
@@ -1164,7 +1192,7 @@
     </message>
     <message>
         <source>It appears that the user </source>
-        <translation>Es scheint, als wenn der Benutzer </translation>
+        <translation type="vanished">Es scheint, als wenn der Benutzer </translation>
     </message>
     <message>
         <source> does not have administrator privileges.</source>
@@ -1264,7 +1292,7 @@
     </message>
     <message>
         <source>Error Log Active</source>
-        <translation>Fehler-Aufzeichnung aktiv</translation>
+        <translation type="vanished">Fehler-Aufzeichnung aktiv</translation>
     </message>
     <message>
         <source>Memory failure in addError()!</source>
@@ -1412,7 +1440,7 @@
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
-        <translation>Das Passwort muss mindestens acht Zeichen umfassen.</translation>
+        <translation type="vanished">Das Passwort muss mindestens acht Zeichen umfassen.</translation>
     </message>
     <message>
         <source>The passwords do not match. Please try again.</source>
@@ -1680,7 +1708,7 @@
     </message>
     <message>
         <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
-        <translation> ausgew√§hlte Objekte? BiblioteQ beendet sich, falls es keine Ressourcen anfragen kann.</translation>
+        <translation type="vanished"> ausgew√§hlte Objekte? BiblioteQ beendet sich, falls es keine Ressourcen anfragen kann.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
@@ -1692,7 +1720,7 @@
     </message>
     <message>
         <source>The Member ID must be at least five characters long.</source>
-        <translation>Die Mitglieds-ID muss mindestens f√ºnf Zeichen lang sein.</translation>
+        <translation type="vanished">Die Mitglieds-ID muss mindestens f√ºnf Zeichen lang sein.</translation>
     </message>
     <message>
         <source>Please provide a ZIP Code.</source>
@@ -1756,7 +1784,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>BiblioteQ: </source>
-        <translation>BiblioteQ: </translation>
+        <translation type="vanished">BiblioteQ: </translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -1904,7 +1932,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>The option is not available because an error occurred while attempting to retrieve its value.</source>
-        <translation>Diese Option ist nicht verf√ºgbar, da beim Abruf des Wertes ein Fehler aufgetreten ist.</translation>
+        <translation type="vanished">Diese Option ist nicht verf√ºgbar, da beim Abruf des Wertes ein Fehler aufgetreten ist.</translation>
     </message>
     <message>
         <source>The option is only available for patrons.</source>
@@ -2004,7 +2032,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation>Es sieht so aus, als besteht bereits eine Verbindung zu einer Datenbank. Soll die aktuelle Verbindung beendet und eine Verbindung zur neuen SQLite-Datenbank aufgebaut werden?</translation>
+        <translation type="vanished">Es sieht so aus, als besteht bereits eine Verbindung zu einer Datenbank. Soll die aktuelle Verbindung beendet und eine Verbindung zur neuen SQLite-Datenbank aufgebaut werden?</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create the specified SQLite database.</source>
@@ -2024,7 +2052,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Are you sure that you wish to duplicate the </source>
-        <translation>Wirklich Duplikat erstellen von </translation>
+        <translation type="vanished">Wirklich Duplikat erstellen von </translation>
     </message>
     <message>
         <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
@@ -2439,18 +2467,6 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please note that BiblioteQ will execute all of the upgrade statements since the upgrade tool was introduced.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please note that BiblioteQ will execute this version&apos;s upgrade statements.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You are about to upgrade the SQLite database %1. Please verify that you have made a copy of this database. %2 Are you sure that you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Executing %1 statement(s).&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2583,16 +2599,93 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Compilation Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>(unknown title)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The item %1 is requested by another patron. Please set it aside.
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Non-Empty Error Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error occurred in an unknown file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished">Strg+W</translation>
+    </message>
+    <message>
+        <source>It appears that you are already connected to a database. Do you wish to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to duplicate the %1 selected item(s)? BiblioteQ will terminate if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to update the database account for %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to modify the %1 selected item(s)? BiblioteQ will terminate if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The password must contain at least eight characters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to view the %1 selected item(s)? BiblioteQ will terminate if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that BiblioteQ will execute all of the SQL statements since the tool was introduced.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please note that BiblioteQ will execute the newest SQL statements.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are about to upgrade the SQLite database %1. Please verify that you have created a copy of this database. %2 Are you sure that you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the account </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: %1 (%2) (%3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The item %1 is requested by another patron (%2). Please set it aside.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Member ID must contain at least five characters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred with biblioteq_misc_functions::dnt().</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Member&apos;s Reservation History</source>
+        <translation type="unfinished">BiblioteQ: Reservierungs-Historie des Nutzers</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Member&apos;s Reservation History (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2736,6 +2829,14 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Item OID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a member_history entry.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3596,6 +3697,10 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <source>Please set the item aside as another patron has requested it.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please set the item aside as another patron (%1) has requested it.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_cd</name>
@@ -4124,11 +4229,11 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
-        <translation>Die Reservierungseingabe kann nicht erstellt werden.</translation>
+        <translation type="vanished">Die Reservierungseingabe kann nicht erstellt werden.</translation>
     </message>
     <message>
         <source>Unable to create a history record.</source>
-        <translation>Die Eingabe zur Historie kann nicht erstellt werden.</translation>
+        <translation type="vanished">Die Eingabe zur Historie kann nicht erstellt werden.</translation>
     </message>
     <message>
         <source>Row number </source>
@@ -4272,6 +4377,14 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>The copy that you have selected does not exist or is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an item_borrower record.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a member_history entry.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5781,6 +5894,34 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
     </message>
     <message>
         <source>Populate the table with Template %1 values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0 Columns | 0 Lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing the CSV file. Processing line %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Column(s) | %2 Line(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Column(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh the main window&apos;s view?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0 Columns</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9520,6 +9661,26 @@ URL</source>
         <source>Bottom-Scroll On Add</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Consider inserting &lt;br&gt; tags in text which will be hyperlinked.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV File Absolute File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished">√úber</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Guess BiblioteQ Table Field Name values according to the contents of the CSV file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>informationDialog</name>
@@ -11188,6 +11349,14 @@ URL</source>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press the Enter key to execute the query. A pattern-matching query is performed. The wildcard character is %.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Patron Reservation History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Child Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -11603,10 +11772,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Grant Privileges (PostgreSQL)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>F5</source>
         <translation type="unfinished">F5</translation>
     </message>
@@ -11648,6 +11813,10 @@ URL</source>
     </message>
     <message>
         <source>This window will attempt to remain on top of other windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Assign all of the patrons to the biblioteq_patron PostgreSQL role. The role is required for accessing database tables. This widget is considered a relic because a newly-created patron is granted the required permissions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11946,6 +12115,26 @@ URL</source>
     </message>
     <message>
         <source>Column Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only UTF-8 Printable Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The text in the main table&apos;s cells will contain only UTF-8 printable characters. Cell text is modified in a separate event and therefore this option may introduce some delay during the preparation of a cell&apos;s contents.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQLite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only.&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required. The type is recorded in English.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One entry per line please.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
