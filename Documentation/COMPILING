@@ -7,7 +7,7 @@ For Android, MacOS, and Windows, the newest Qt LTS is required.
 > gmake or make or mingw32-make
 > gmake install or make install or mingw32-make install
 
-MacOS
+MacOS Intel
 
 A. Install the newest Qt LTS via Qt's online installer.
 B. https://formulae.brew.sh/formula/libpq
