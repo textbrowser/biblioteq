@@ -4016,6 +4016,7 @@ void biblioteq::slotGreyLiteratureSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      gl,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(gl);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4040,6 +4041,7 @@ void biblioteq::slotInsertGreyLiterature(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  gl,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(gl);
 }
 
 void biblioteq::slotItemChanged(QTableWidgetItem *item)

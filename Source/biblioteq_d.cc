@@ -142,7 +142,10 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   auto const index = ui.tab->indexOf(window);
 
   if(index >= 0)
-    return;
+    {
+      ui.tab->setCurrentIndex(index);
+      return;
+    }
 
   auto const title(window->windowTitle().trimmed());
 

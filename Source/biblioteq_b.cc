@@ -4372,6 +4372,7 @@ void biblioteq::slotBookSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      book,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(book);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4406,6 +4407,7 @@ void biblioteq::slotCDSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      cd,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(cd);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4446,6 +4448,7 @@ void biblioteq::slotDVDSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      dvd,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(dvd);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4480,6 +4483,7 @@ void biblioteq::slotJournSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      journal,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(journal);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4520,6 +4524,7 @@ void biblioteq::slotMagSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      magazine,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(magazine);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4555,6 +4560,7 @@ void biblioteq::slotPhotographSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      photograph,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(photograph);
     }
 
 #ifdef Q_OS_ANDROID
@@ -5638,6 +5644,7 @@ void biblioteq::slotVideoGameSearch(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      videogame,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(videogame);
     }
 
 #ifdef Q_OS_ANDROID
