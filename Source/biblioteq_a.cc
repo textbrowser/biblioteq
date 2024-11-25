@@ -377,6 +377,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotSaveConfig()));
+  connect(ui.actionTabbed_Item_Windows,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotTabbedItemWindows(bool)));
   connect(ui.actionTearOffMenus,
 	  SIGNAL(triggered(void)),
 	  this,

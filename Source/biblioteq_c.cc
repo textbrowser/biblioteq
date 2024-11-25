@@ -1504,6 +1504,8 @@ void biblioteq::readConfigurationFile(void)
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_members_list_on_display", true).
      toBool());
+  ui.actionTabbed_Item_Windows->setChecked
+    (settings.value("tabbedItemWindows", true).toBool());
 
   QHash<QString, QString> states;
 

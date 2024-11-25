@@ -691,6 +691,7 @@ class biblioteq: public QMainWindow
   void slotSpecialApplication(void);
   void slotSqliteFileSelected(bool state);
   void slotSwifty(void);
+  void slotTabbedItemWindows(bool state);
   void slotTableFindNext(void);
   void slotTableFindTextCleared(const QString &text);
   void slotTearOffMenus(void);

@@ -1169,6 +1169,11 @@ void biblioteq::slotSpecialApplication(void)
   qunsetenv("BIBLIOTEQ_DATABASE_NAME");
 }
 
+void biblioteq::slotTabbedItemWindows(bool state)
+{
+  QSettings().setValue("tabbedItemWindows", state);
+}
+
 void biblioteq::slotTableFindNext(void)
 {
   if(!m_db.isOpen() || ui.stackedWidget->currentIndex() != 1)
