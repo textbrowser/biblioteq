@@ -104,6 +104,19 @@ QStringList biblioteq::selectedISBN10s(void) const
   return list;
 }
 
+biblioteq_item *biblioteq::findItemInTab(const QString &oid) const
+{
+  for(int i = 1; i < ui.tab->count(); i++)
+    {
+      auto item = dynamic_cast<biblioteq_item *> (ui.tab->widget(i));
+
+      if(item && item->getID() == oid)
+	return item;
+    }
+
+  return nullptr;
+}
+
 bool biblioteq::canAccessDatabaseEnumerations(void) const
 {
   if(!m_db.isOpen())

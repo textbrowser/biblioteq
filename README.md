@@ -61,6 +61,7 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 - Sparc64 support.
 - Support for multiple SRU and Z39.50 sites.
 - Support for requesting unavailable items.
+- Tabbed item windows. Optional.
 - Threaded data retrieval via the standard Z39.50 protocol for books,
   journals, and magazines.
 - Transactional database queries.

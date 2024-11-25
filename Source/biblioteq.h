@@ -528,6 +528,7 @@ class biblioteq: public QMainWindow
   QString reservationHistoryHtml(void) const;
   QString viewHtml(void) const;
   QWidget *widgetForAction(QAction *action) const;
+  biblioteq_item *findItemInTab(const QString &oid) const;
   bool emptyContainers(void);
   bool isCurrentItemAPhotograph(void) const;
   void addConfigOptions(const QString &typefilter);

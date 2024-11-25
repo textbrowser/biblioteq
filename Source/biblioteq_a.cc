@@ -3797,8 +3797,6 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  QString oid = "";
-  QString type = "";
   auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
   auto table = ui.table;
@@ -3810,7 +3808,6 @@ void biblioteq::slotModify(void)
   biblioteq_magazine *magazine = nullptr;
   biblioteq_photographcollection *photograph = nullptr;
   biblioteq_videogame *videogame = nullptr;
-  int i = 0;
 
   if(list.isEmpty())
     {
@@ -3844,11 +3841,12 @@ void biblioteq::slotModify(void)
 
   foreach(auto const &index, list)
     {
-      i = index.row();
-      oid = biblioteq_misc_functions::getColumnString
+      auto const i = index.row();
+      auto const oid = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("MYOID"));
-      type = biblioteq_misc_functions::getColumnString
+      auto const type = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("Type"));
+
       book = nullptr;
       cd = nullptr;
       dvd = nullptr;
@@ -3870,6 +3868,9 @@ void biblioteq::slotModify(void)
 		  break;
 		}
 	    }
+
+	  if(!book)
+	    book = dynamic_cast<biblioteq_book *> (findItemInTab(oid));
 
 	  if(!book)
 	    book = new biblioteq_book(this, oid, index);
@@ -3895,6 +3896,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!cd)
+	    cd = dynamic_cast<biblioteq_cd *> (findItemInTab(oid));
+
+	  if(!cd)
 	    cd = new biblioteq_cd(this, oid, index);
 
 	  cd->modify(EDITABLE);
@@ -3916,6 +3920,9 @@ void biblioteq::slotModify(void)
 		  break;
 		}
 	    }
+
+	  if(!dvd)
+	    dvd = dynamic_cast<biblioteq_dvd *> (findItemInTab(oid));
 
 	  if(!dvd)
 	    dvd = new biblioteq_dvd(this, oid, index);
@@ -3941,6 +3948,10 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!gl)
+	    gl = dynamic_cast<biblioteq_grey_literature *>
+	      (findItemInTab(oid));
+
+	  if(!gl)
 	    gl = new biblioteq_grey_literature(this, oid, index);
 
 	  gl->modify(EDITABLE);
@@ -3962,6 +3973,9 @@ void biblioteq::slotModify(void)
 		  break;
 		}
 	    }
+
+	  if(!journal)
+	    journal = dynamic_cast<biblioteq_journal *> (findItemInTab(oid));
 
 	  if(!journal)
 	    journal = new biblioteq_journal(this, oid, index);
@@ -3992,6 +4006,9 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!magazine)
+	    magazine = dynamic_cast<biblioteq_magazine *> (findItemInTab(oid));
+
+	  if(!magazine)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
 	  magazine->modify(EDITABLE);
@@ -4015,6 +4032,10 @@ void biblioteq::slotModify(void)
 	    }
 
 	  if(!photograph)
+	    photograph = dynamic_cast<biblioteq_photographcollection *>
+	      (findItemInTab(oid));
+
+	  if(!photograph)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
 
 	  photograph->modify(EDITABLE);
@@ -4036,6 +4057,10 @@ void biblioteq::slotModify(void)
 		  break;
 		}
 	    }
+
+	  if(!videogame)
+	    videogame = dynamic_cast<biblioteq_videogame *>
+	      (findItemInTab(oid));
 
 	  if(!videogame)
 	    videogame = new biblioteq_videogame(this, oid, index);
@@ -5479,6 +5504,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!book)
+	    book = dynamic_cast<biblioteq_book *> (findItemInTab(oid));
+
+	  if(!book)
 	    book = new biblioteq_book(this, oid, index);
 
 	  book->modify(VIEW_ONLY);
@@ -5500,6 +5528,9 @@ void biblioteq::slotViewDetails(void)
 		  break;
 		}
 	    }
+
+	  if(!cd)
+	    cd = dynamic_cast<biblioteq_cd *> (findItemInTab(oid));
 
 	  if(!cd)
 	    cd = new biblioteq_cd(this, oid, index);
@@ -5525,6 +5556,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!dvd)
+	    dvd = dynamic_cast<biblioteq_dvd *> (findItemInTab(oid));
+
+	  if(!dvd)
 	    dvd = new biblioteq_dvd(this, oid, index);
 
 	  dvd->modify(VIEW_ONLY);
@@ -5548,6 +5582,10 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!gl)
+	    gl = dynamic_cast<biblioteq_grey_literature *>
+	      (findItemInTab(oid));
+
+	  if(!gl)
 	    gl = new biblioteq_grey_literature(this, oid, index);
 
 	  gl->modify(VIEW_ONLY);
@@ -5569,6 +5607,9 @@ void biblioteq::slotViewDetails(void)
 		  break;
 		}
 	    }
+
+	  if(!journal)
+	    journal = dynamic_cast<biblioteq_journal *> (findItemInTab(oid));
 
 	  if(!journal)
 	    journal = new biblioteq_journal(this, oid, index);
@@ -5599,6 +5640,9 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!magazine)
+	    magazine = dynamic_cast<biblioteq_magazine *> (findItemInTab(oid));
+
+	  if(!magazine)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
 	  magazine->modify(VIEW_ONLY);
@@ -5622,6 +5666,10 @@ void biblioteq::slotViewDetails(void)
 	    }
 
 	  if(!photograph)
+	    photograph = dynamic_cast<biblioteq_photographcollection *>
+	      (findItemInTab(oid));
+
+	  if(!photograph)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
 
 	  photograph->modify(VIEW_ONLY);
@@ -5643,6 +5691,10 @@ void biblioteq::slotViewDetails(void)
 		  break;
 		}
 	    }
+
+	  if(!videogame)
+	    videogame = dynamic_cast<biblioteq_videogame *>
+	      (findItemInTab(oid));
 
 	  if(!videogame)
 	    videogame = new biblioteq_videogame(this, oid, index);
