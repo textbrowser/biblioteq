@@ -819,9 +819,6 @@
    <property name="text">
     <string>&amp;Save Settings</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
   </action>
   <action name="actionPopulateOnStart">
    <property name="checkable">
