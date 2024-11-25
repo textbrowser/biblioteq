@@ -921,6 +921,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowMenu(void)));
+  connect(ui.tab,
+	  SIGNAL(tabCloseRequested(int)),
+	  this,
+	  SLOT(slotTabClosed(int)));
   connect(ui.table,
 	  SIGNAL(deleteKeyPressed(void)),
 	  this,
@@ -3439,6 +3443,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(book);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -3448,6 +3453,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(cd);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -3457,6 +3463,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(dvd);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -3466,6 +3473,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(gl);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -3475,6 +3483,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(journal);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -3484,6 +3493,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(magazine);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -3493,6 +3503,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(photograph);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -3502,6 +3513,7 @@ void biblioteq::slotDuplicate(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  videogame,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(videogame);
 	}
       else
 	{
@@ -3614,6 +3626,7 @@ void biblioteq::slotInsertBook(void)
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      book,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+      addItemWindowToTab(book);
     }
 }
 
@@ -3630,6 +3643,7 @@ void biblioteq::slotInsertCD(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  cd,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(cd);
 }
 
 void biblioteq::slotInsertDVD(void)
@@ -3645,6 +3659,7 @@ void biblioteq::slotInsertDVD(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  dvd,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(dvd);
 }
 
 void biblioteq::slotInsertJourn(void)
@@ -3660,6 +3675,7 @@ void biblioteq::slotInsertJourn(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  journal,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(journal);
 }
 
 void biblioteq::slotInsertMag(void)
@@ -3675,6 +3691,7 @@ void biblioteq::slotInsertMag(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  magazine,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(magazine);
 }
 
 void biblioteq::slotInsertPhotograph(void)
@@ -3690,6 +3707,7 @@ void biblioteq::slotInsertPhotograph(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  photograph,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(photograph);
 }
 
 void biblioteq::slotInsertVideoGame(void)
@@ -3705,6 +3723,7 @@ void biblioteq::slotInsertVideoGame(void)
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  videogame,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
+  addItemWindowToTab(videogame);
 }
 
 void biblioteq::slotLanguageChanged(void)
@@ -3860,6 +3879,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(book);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -3882,6 +3902,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(cd);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -3904,6 +3925,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(dvd);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -3926,6 +3948,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(gl);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -3948,6 +3971,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(journal);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -3975,6 +3999,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(magazine);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -3997,6 +4022,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(photograph);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -4019,6 +4045,7 @@ void biblioteq::slotModify(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  videogame,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(videogame);
 	}
       else
 	{
@@ -5459,6 +5486,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(book);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -5481,6 +5509,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(cd);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -5503,6 +5532,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(dvd);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -5525,6 +5555,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(gl);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -5547,6 +5578,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(journal);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -5574,6 +5606,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(magazine);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -5596,6 +5629,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(photograph);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -5618,6 +5652,7 @@ void biblioteq::slotViewDetails(void)
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  videogame,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+	  addItemWindowToTab(videogame);
 	}
       else
 	{

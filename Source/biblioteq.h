@@ -531,6 +531,7 @@ class biblioteq: public QMainWindow
   bool emptyContainers(void);
   bool isCurrentItemAPhotograph(void) const;
   void addConfigOptions(const QString &typefilter);
+  void addItemWindowToTab(QMainWindow *window);
   void adminSetup(void);
   void changeEvent(QEvent *event);
   void cleanup(void);
@@ -548,6 +549,7 @@ class biblioteq: public QMainWindow
   void prepareRequestToolButton(const QString &typefilter);
   void prepareReservationHistoryMenu(void);
   void prepareStatusBarIcons(void);
+  void prepareTabWidgetCloseButtons(void);
   void prepareTearOffMenus(void);
   void prepareUpgradeNotification(void);
   void readConfigurationFile(void);
@@ -608,6 +610,7 @@ class biblioteq: public QMainWindow
   void slotInsertPhotograph(void);
   void slotInsertVideoGame(void);
   void slotItemChanged(QTableWidgetItem *item);
+  void slotItemWindowClosed(void);
   void slotJournSearch(void);
   void slotLanguageChanged(void);
   void slotLastWindowClosed(void);
@@ -691,6 +694,7 @@ class biblioteq: public QMainWindow
   void slotSpecialApplication(void);
   void slotSqliteFileSelected(bool state);
   void slotSwifty(void);
+  void slotTabClosed(int index);
   void slotTabbedItemWindows(bool state);
   void slotTableFindNext(void);
   void slotTableFindTextCleared(const QString &text);

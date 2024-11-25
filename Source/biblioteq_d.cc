@@ -134,6 +134,28 @@ bool biblioteq::showMainTableImages(void) const
   return m_otherOptions->showMainTableImages();
 }
 
+void biblioteq::addItemWindowToTab(QMainWindow *window)
+{
+  if(!QSettings().value("tabbedItemWindows", true).toBool() || !window)
+    return;
+
+  auto const index = ui.tab->indexOf(window);
+
+  if(index >= 0)
+    return;
+
+  auto const title(window->windowTitle().trimmed());
+
+  connect(window,
+	  SIGNAL(destroyed(void)),
+	  this,
+	  SLOT(slotItemWindowClosed(void)));
+  ui.tab->addTab(window, title.mid(title.indexOf(':') + 1).trimmed());
+  ui.tab->setCurrentIndex(ui.tab->indexOf(window));
+  ui.tab->setTabsClosable(true);
+  prepareTabWidgetCloseButtons();
+}
+
 void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 {
   auto querystr(text.trimmed());
@@ -656,6 +678,27 @@ void biblioteq::prepareStatusBarIcons(void)
     }
 }
 
+void biblioteq::prepareTabWidgetCloseButtons(void)
+{
+  ui.tab->setTabsClosable(ui.tab->count() > 1);
+
+  static QList<QTabBar::ButtonPosition> const list
+    (QList<QTabBar::ButtonPosition> ()
+     << QTabBar::LeftSide
+     << QTabBar::RightSide);
+  static const int index = 0;
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      ui.tab->tabBar()->tabButton(index, list.at(i)) ?
+	ui.tab->tabBar()->tabButton(index, list.at(i))->deleteLater() :
+	(void) 0;
+      ui.tab->tabBar()->setTabButton(index, list.at(i), nullptr);
+    }
+
+  QApplication::processEvents();
+}
+
 void biblioteq::prepareTearOffMenus(void)
 {
   createConfigToolMenu();
@@ -905,6 +948,21 @@ void biblioteq::slotGenerateAndCopyMemberLetter(void)
   str.replace("%2", userinfo_diag->m_userinfo.firstName->text().trimmed());
   str.replace("%3", userinfo_diag->m_userinfo.membershipfees->text());
   clipboard->setText(str);
+}
+
+void biblioteq::slotItemWindowClosed(void)
+{
+  auto widget = qobject_cast<QWidget *> (sender());
+
+  if(widget)
+    {
+      auto const index = ui.tab->indexOf(widget);
+
+      if(index > 0)
+	ui.tab->removeTab(index);
+    }
+
+  prepareTabWidgetCloseButtons();
 }
 
 void biblioteq::slotLaunchEmailSoftware(void)
@@ -1167,6 +1225,19 @@ void biblioteq::slotSpecialApplication(void)
   qputenv("BIBLIOTEQ_DATABASE_NAME", m_db.databaseName().toUtf8());
   QProcess::startDetached(action->text(), QStringList());
   qunsetenv("BIBLIOTEQ_DATABASE_NAME");
+}
+
+void biblioteq::slotTabClosed(int index)
+{
+  if(index > 0)
+    {
+      auto widget = ui.tab->widget(index);
+
+      widget ? widget->deleteLater() : (void) 0;
+      ui.tab->removeTab(index);
+    }
+
+  prepareTabWidgetCloseButtons();
 }
 
 void biblioteq::slotTabbedItemWindows(bool state)
