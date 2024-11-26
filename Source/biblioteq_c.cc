@@ -4519,6 +4519,38 @@ void biblioteq::slotOtherOptionsSaved(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  for(int i = 1; i < ui.tab->count(); i++)
+    {
+      auto widget = ui.tab->widget(i);
+
+      if(dynamic_cast<biblioteq_book *> (widget))
+	dynamic_cast<biblioteq_book *> (widget)->setPublicationDateFormat
+	  (m_otherOptions->dateFormat("books"));
+      else if(dynamic_cast<biblioteq_cd *> (widget))
+	dynamic_cast<biblioteq_cd *> (widget)->setPublicationDateFormat
+	  (m_otherOptions->dateFormat("musiccds"));
+      else if(dynamic_cast<biblioteq_dvd *> (widget))
+	dynamic_cast<biblioteq_dvd *> (widget)->setPublicationDateFormat
+	  (m_otherOptions->dateFormat("dvds"));
+      else if(dynamic_cast<biblioteq_grey_literature *> (widget))
+	dynamic_cast<biblioteq_grey_literature *> (widget)->
+	  setPublicationDateFormat
+	  (m_otherOptions->dateFormat("greyliterature"));
+      else if(dynamic_cast<biblioteq_journal *> (widget))
+	dynamic_cast<biblioteq_journal *> (widget)->setPublicationDateFormat
+	  (m_otherOptions->dateFormat("journals"));
+      else if(dynamic_cast<biblioteq_magazine *> (widget))
+	dynamic_cast<biblioteq_magazine *> (widget)->setPublicationDateFormat
+	  (m_otherOptions->dateFormat("magazines"));
+      else if(dynamic_cast<biblioteq_photographcollection *> (widget))
+	dynamic_cast<biblioteq_photographcollection *> (widget)->
+	  setPublicationDateFormat
+	  (m_otherOptions->dateFormat("photographcollections"));
+      else if(dynamic_cast<biblioteq_videogame *> (widget))
+	dynamic_cast<biblioteq_videogame *> (widget)->setPublicationDateFormat
+	  (m_otherOptions->dateFormat("videogames"));
+    }
+
   foreach(auto widget, QApplication::topLevelWidgets())
     if(qobject_cast<biblioteq_book *> (widget))
       qobject_cast<biblioteq_book *> (widget)->setPublicationDateFormat
