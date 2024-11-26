@@ -166,7 +166,10 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
       return;
     }
 
-  auto const title(window->windowTitle().trimmed());
+  auto title(window->windowTitle().trimmed());
+
+  if(title.isEmpty())
+    title = tr("BiblioteQ: Item");
 
   connect(window,
 	  SIGNAL(destroyed(void)),
@@ -174,6 +177,8 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  SLOT(slotItemWindowClosed(void)));
   ui.tab->addTab(window, title.mid(title.indexOf(':') + 1).trimmed());
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
+  ui.tab->setTabToolTip
+    (ui.tab->count() - 1, ui.tab->tabText(ui.tab->count() - 1));
   ui.tab->setTabsClosable(true);
   prepareTabWidgetCloseButtons();
 }
@@ -1253,18 +1258,97 @@ void biblioteq::slotSpecialApplication(void)
 
 void biblioteq::slotTabClosed(int index)
 {
+  auto deleted = false;
+
   if(index > 0)
     {
       auto book = dynamic_cast<biblioteq_book *> (ui.tab->widget(index));
 
       if(book && book->close())
 	{
-	  book ? book->deleteLater() : (void) 0;
-	  ui.tab->removeTab(index);
+	  book->deleteLater();
+	  deleted = true;
+	  goto done_label;
+	}
+
+      auto cd = dynamic_cast<biblioteq_cd *> (ui.tab->widget(index));
+
+      if(cd && cd->close())
+	{
+	  cd->deleteLater();
+	  deleted = true;
+	  goto done_label;
+	}
+
+      auto dvd = dynamic_cast<biblioteq_dvd *> (ui.tab->widget(index));
+
+      if(dvd && dvd->close())
+	{
+	  deleted = true;
+	  dvd->deleteLater();
+	  goto done_label;
+	}
+
+      auto gl = dynamic_cast<biblioteq_grey_literature *>
+	(ui.tab->widget(index));
+
+      if(gl && gl->close())
+	{
+	  deleted = true;
+	  gl->deleteLater();
+	  goto done_label;
+	}
+
+      auto journal = dynamic_cast<biblioteq_journal *> (ui.tab->widget(index));
+
+      if(journal && journal->close())
+	{
+	  deleted = true;
+	  journal->deleteLater();
+	  goto done_label;
+	}
+
+      if(!dynamic_cast<biblioteq_journal *> (ui.tab->widget(index)))
+	{
+	  auto magazine = dynamic_cast<biblioteq_magazine *>
+	    (ui.tab->widget(index));
+
+	  if(magazine && magazine->close())
+	    {
+	      deleted = true;
+	      magazine->deleteLater();
+	      goto done_label;
+	    }
+	}
+
+      auto photograph = dynamic_cast<biblioteq_photographcollection *>
+	(ui.tab->widget(index));
+
+      if(photograph && photograph->close())
+	{
+	  deleted = true;
+	  photograph->deleteLater();
+	  goto done_label;
+	}
+
+      auto videogame = dynamic_cast<biblioteq_videogame *>
+	(ui.tab->widget(index));
+
+      if(videogame && videogame->close())
+	{
+	  deleted = true;
+	  videogame->deleteLater();
+	  goto done_label;
 	}
     }
 
-  prepareTabWidgetCloseButtons();
+ done_label:
+
+  if(deleted)
+    {
+      ui.tab->removeTab(index);
+      prepareTabWidgetCloseButtons();
+    }
 }
 
 void biblioteq::slotTabbedItemWindows(bool state)
