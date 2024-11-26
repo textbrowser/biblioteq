@@ -1361,7 +1361,6 @@ void biblioteq::slotTabClosed(int index)
 
       if(book && book->close())
 	{
-	  book->deleteLater();
 	  deleted = true;
 	  goto done_label;
 	}
@@ -1370,7 +1369,6 @@ void biblioteq::slotTabClosed(int index)
 
       if(cd && cd->close())
 	{
-	  cd->deleteLater();
 	  deleted = true;
 	  goto done_label;
 	}
@@ -1380,7 +1378,6 @@ void biblioteq::slotTabClosed(int index)
       if(dvd && dvd->close())
 	{
 	  deleted = true;
-	  dvd->deleteLater();
 	  goto done_label;
 	}
 
@@ -1390,7 +1387,6 @@ void biblioteq::slotTabClosed(int index)
       if(gl && gl->close())
 	{
 	  deleted = true;
-	  gl->deleteLater();
 	  goto done_label;
 	}
 
@@ -1399,7 +1395,6 @@ void biblioteq::slotTabClosed(int index)
       if(journal && journal->close())
 	{
 	  deleted = true;
-	  journal->deleteLater();
 	  goto done_label;
 	}
 
@@ -1411,7 +1406,6 @@ void biblioteq::slotTabClosed(int index)
 	  if(magazine && magazine->close())
 	    {
 	      deleted = true;
-	      magazine->deleteLater();
 	      goto done_label;
 	    }
 	}
@@ -1422,7 +1416,6 @@ void biblioteq::slotTabClosed(int index)
       if(photograph && photograph->close())
 	{
 	  deleted = true;
-	  photograph->deleteLater();
 	  goto done_label;
 	}
 
@@ -1432,7 +1425,6 @@ void biblioteq::slotTabClosed(int index)
       if(videogame && videogame->close())
 	{
 	  deleted = true;
-	  videogame->deleteLater();
 	  goto done_label;
 	}
     }
