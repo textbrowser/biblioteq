@@ -5729,6 +5729,48 @@ void biblioteq::updateItemWindows(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  for(int i = 1; i < ui.tab->count(); i++)
+    {
+      auto w = dynamic_cast<biblioteq_item *> (ui.tab->widget(i));
+
+      if(!w)
+	continue;
+
+      auto book = dynamic_cast<biblioteq_book *> (w);
+      auto cd = dynamic_cast<biblioteq_cd *> (w);
+      auto dvd = dynamic_cast<biblioteq_dvd *> (w);
+      auto gl = dynamic_cast<biblioteq_grey_literature *> (w);
+      auto journal = dynamic_cast<biblioteq_journal *> (w);
+      auto magazine = dynamic_cast<biblioteq_magazine *> (w);
+      auto photograph = dynamic_cast<biblioteq_photographcollection *> (w);
+      auto videogame = dynamic_cast<biblioteq_videogame *> (w);
+
+      if(book)
+	book->updateWindow(EDITABLE);
+
+      if(cd)
+	cd->updateWindow(EDITABLE);
+
+      if(dvd)
+	dvd->updateWindow(EDITABLE);
+
+      if(gl)
+	gl->updateWindow(EDITABLE);
+
+      if(journal)
+	journal->updateWindow(EDITABLE);
+
+      if(!dynamic_cast<biblioteq_journal *> (w))
+	if(magazine)
+	  magazine->updateWindow(EDITABLE);
+
+      if(photograph)
+	photograph->updateWindow(EDITABLE);
+
+      if(videogame)
+	videogame->updateWindow(EDITABLE);
+    }
+
   foreach(auto w, QApplication::topLevelWidgets())
     {
       auto book = qobject_cast<biblioteq_book *> (w);

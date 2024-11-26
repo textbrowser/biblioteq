@@ -106,14 +106,20 @@ QStringList biblioteq::selectedISBN10s(void) const
 
 biblioteq_item *biblioteq::findItemInTab(const QString &oid) const
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   for(int i = 1; i < ui.tab->count(); i++)
     {
       auto item = dynamic_cast<biblioteq_item *> (ui.tab->widget(i));
 
       if(item && item->getID() == oid)
-	return item;
+	{
+	  QApplication::restoreOverrideCursor();
+	  return item;
+	}
     }
 
+  QApplication::restoreOverrideCursor();
   return nullptr;
 }
 
@@ -696,6 +702,7 @@ void biblioteq::prepareStatusBarIcons(void)
 
 void biblioteq::prepareTabWidgetCloseButtons(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ui.tab->setTabsClosable(ui.tab->count() > 1);
 
   static QList<QTabBar::ButtonPosition> const list
@@ -713,6 +720,7 @@ void biblioteq::prepareTabWidgetCloseButtons(void)
     }
 
   QApplication::processEvents();
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::prepareTearOffMenus(void)
