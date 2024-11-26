@@ -1251,110 +1251,170 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
   if(itemType == "book")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto book = qobject_cast<biblioteq_book *> (w);
+      auto item = dynamic_cast<biblioteq_book *> (findItemInTab(oid));
 
-	  if(book && book->getID() == oid)
+      if(item)
+	removeBook(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removeBook(book);
-	      break;
+	      auto book = qobject_cast<biblioteq_book *> (w);
+
+	      if(book && book->getID() == oid)
+		{
+		  removeBook(book);
+		  break;
+		}
 	    }
 	}
     }
   else if(itemType == "cd")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto cd = qobject_cast<biblioteq_cd *> (w);
+      auto item = dynamic_cast<biblioteq_cd *> (findItemInTab(oid));
 
-	  if(cd && cd->getID() == oid)
+      if(item)
+	removeCD(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removeCD(cd);
-	      break;
+	      auto cd = qobject_cast<biblioteq_cd *> (w);
+
+	      if(cd && cd->getID() == oid)
+		{
+		  removeCD(cd);
+		  break;
+		}
 	    }
 	}
     }
   else if(itemType == "dvd")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto dvd = qobject_cast<biblioteq_dvd *> (w);
+      auto item = dynamic_cast<biblioteq_dvd *> (findItemInTab(oid));
 
-	  if(dvd && dvd->getID() == oid)
+      if(item)
+	removeDVD(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removeDVD(dvd);
-	      break;
+	      auto dvd = qobject_cast<biblioteq_dvd *> (w);
+
+	      if(dvd && dvd->getID() == oid)
+		{
+		  removeDVD(dvd);
+		  break;
+		}
 	    }
 	}
     }
   else if(itemType == "grey_literature")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto gl = qobject_cast<biblioteq_grey_literature *> (w);
+      auto item = dynamic_cast<biblioteq_grey_literature *>
+	(findItemInTab(oid));
 
-	  if(gl && gl->getID() == oid)
+      if(item)
+	removeGreyLiterature(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removeGreyLiterature(gl);
-	      break;
+	      auto gl = qobject_cast<biblioteq_grey_literature *> (w);
+
+	      if(gl && gl->getID() == oid)
+		{
+		  removeGreyLiterature(gl);
+		  break;
+		}
 	    }
 	}
     }
   else if(itemType == "journal")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto journal = qobject_cast<biblioteq_journal *> (w);
+      auto item = dynamic_cast<biblioteq_journal *> (findItemInTab(oid));
 
-	  if(journal && journal->getID() == oid)
+      if(item)
+	removeJournal(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removeJournal(journal);
-	      break;
+	      auto journal = qobject_cast<biblioteq_journal *> (w);
+
+	      if(journal && journal->getID() == oid)
+		{
+		  removeJournal(journal);
+		  break;
+		}
 	    }
 	}
     }
   else if(itemType == "magazine")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
+      auto item = dynamic_cast<biblioteq_magazine *> (findItemInTab(oid));
+
+      if(item)
+	removeMagazine(item);
+      else
 	{
-	  auto magazine = qobject_cast<biblioteq_magazine *> (w);
+	  foreach(auto w, QApplication::topLevelWidgets())
+	    {
+	      auto magazine = qobject_cast<biblioteq_magazine *> (w);
 
-	  /*
-	  ** The class biblioteq_journal inherits biblioteq_magazine.
-	  */
+	      /*
+	      ** The class biblioteq_journal inherits biblioteq_magazine.
+	      */
 
-	  if(!qobject_cast<biblioteq_journal *> (w))
-	    if(magazine && magazine->getID() == oid)
-	      {
-		removeMagazine(magazine);
-		break;
-	      }
+	      if(!qobject_cast<biblioteq_journal *> (w))
+		if(magazine && magazine->getID() == oid)
+		  {
+		    removeMagazine(magazine);
+		    break;
+		  }
+	    }
 	}
     }
   else if(itemType == "photograph_collection")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
+      auto item = dynamic_cast<biblioteq_photographcollection *>
+	(findItemInTab(oid));
 
-	  if(photograph && photograph->getID() == oid)
+      if(item)
+	removePhotographCollection(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removePhotographCollection(photograph);
-	      break;
+	      auto photograph = qobject_cast<biblioteq_photographcollection *>
+		(w);
+
+	      if(photograph && photograph->getID() == oid)
+		{
+		  removePhotographCollection(photograph);
+		  break;
+		}
 	    }
 	}
     }
   else if(itemType == "videogame")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto videogame = qobject_cast<biblioteq_videogame *> (w);
+      auto item = dynamic_cast<biblioteq_videogame *>
+	(findItemInTab(oid));
 
-	  if(videogame && videogame->getID() == oid)
+      if(item)
+	removeVideoGame(item);
+      else
+	{
+	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
-	      removeVideoGame(videogame);
-	      break;
+	      auto videogame = qobject_cast<biblioteq_videogame *> (w);
+
+	      if(videogame && videogame->getID() == oid)
+		{
+		  removeVideoGame(videogame);
+		  break;
+		}
 	    }
 	}
     }
