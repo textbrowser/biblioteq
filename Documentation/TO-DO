@@ -93,7 +93,7 @@
 46.  Empty the members list after a disconnect from the database. (Completed)
 47.  Do not allow an item to be deleted if it has been reserved. (Completed)
 48.  Allow normal users to view an item's details. (Completed)
-49.  Class-ify the items. This will require an extensive overhaul. (Completed)
+49.  Classify the items. This will require an extensive overhaul. (Completed)
 50.  Add an item's ID to its window's title. (Completed)
 51.  Empty containers after a database disconnect. (Completed)
 52.  Update the items' windows after administrator authentication. (Completed)
