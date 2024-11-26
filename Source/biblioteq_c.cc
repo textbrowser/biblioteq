@@ -281,7 +281,7 @@ bool biblioteq::emptyContainers(void)
 
       if(book)
 	{
-	  if(book->isVisible() && !book->close())
+	  if(!book->close())
 	    return false;
 	  else
 	    book->deleteLater();
@@ -289,7 +289,7 @@ bool biblioteq::emptyContainers(void)
 
       if(cd)
 	{
-	  if(cd->isVisible() && !cd->close())
+	  if(!cd->close())
 	    return false;
 	  else
 	    cd->deleteLater();
@@ -297,7 +297,7 @@ bool biblioteq::emptyContainers(void)
 
       if(dvd)
 	{
-	  if(dvd->isVisible() && !dvd->close())
+	  if(!dvd->close())
 	    return false;
 	  else
 	    dvd->deleteLater();
@@ -305,7 +305,7 @@ bool biblioteq::emptyContainers(void)
 
       if(gl)
 	{
-	  if(gl->isVisible() && !gl->close())
+	  if(!gl->close())
 	    return false;
 	  else
 	    gl->deleteLater();
@@ -313,7 +313,7 @@ bool biblioteq::emptyContainers(void)
 
       if(journal)
 	{
-	  if(journal->isVisible() && !journal->close())
+	  if(!journal->close())
 	    return false;
 	  else
 	    journal->deleteLater();
@@ -322,7 +322,7 @@ bool biblioteq::emptyContainers(void)
       if(!dynamic_cast<biblioteq_journal *> (w))
 	if(magazine)
 	  {
-	    if(magazine->isVisible() && !magazine->close())
+	    if(!magazine->close())
 	      return false;
 	    else
 	      magazine->deleteLater();
@@ -330,7 +330,7 @@ bool biblioteq::emptyContainers(void)
 
       if(photograph)
 	{
-	  if(photograph->isVisible() && !photograph->close())
+	  if(!photograph->close())
 	    return false;
 	  else
 	    photograph->deleteLater();
@@ -338,7 +338,7 @@ bool biblioteq::emptyContainers(void)
 
       if(videogame)
 	{
-	  if(videogame->isVisible() && !videogame->close())
+	  if(!videogame->close())
 	    return false;
 	  else
 	    videogame->deleteLater();
