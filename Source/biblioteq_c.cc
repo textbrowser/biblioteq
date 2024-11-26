@@ -4077,22 +4077,27 @@ void biblioteq::slotGraphicsSceneEnterKeyPressed(void)
 
 void biblioteq::slotGreyLiteratureSearch(void)
 {
-  biblioteq_grey_literature *gl = nullptr;
+  auto gl = dynamic_cast<biblioteq_grey_literature *>
+    (findItemInTab("search-grey-literature"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!gl)
     {
-      auto g = qobject_cast<biblioteq_grey_literature *> (w);
-
-      if(g && g->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  gl = g;
-	  break;
+	  auto g = qobject_cast<biblioteq_grey_literature *> (w);
+
+	  if(g && g->getID() == "search-grey-literature")
+	    {
+	      gl = g;
+	      break;
+	    }
 	}
     }
 
   if(!gl)
     {
-      gl = new biblioteq_grey_literature(this, "search", QModelIndex());
+      gl = new biblioteq_grey_literature
+	(this, "search-grey-literature", QModelIndex());
       gl->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),

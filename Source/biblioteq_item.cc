@@ -255,6 +255,11 @@ void biblioteq_item::setOldQ(const int q)
   m_oldq = q;
 }
 
+void biblioteq_item::setPublicationDateFormat(const QString &dateFormat)
+{
+  Q_UNUSED(dateFormat);
+}
+
 void biblioteq_item::setQMain(QMainWindow *window)
 {
   if(!window)

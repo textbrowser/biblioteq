@@ -5819,112 +5819,155 @@ void biblioteq::updateRows
 
   if(itemType == "book")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto book = qobject_cast<biblioteq_book *> (w);
+      auto item = dynamic_cast<biblioteq_book *> (findItemInTab(oid));
 
-	  if(book && book->getID() == oid)
-	    {
-	      book->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto book = qobject_cast<biblioteq_book *> (w);
+
+	    if(book && book->getID() == oid)
+	      {
+		book->updateRow(index);
+		break;
+	      }
+	  }
     }
   else if(itemType == "cd")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto cd = qobject_cast<biblioteq_cd *> (w);
+      auto item = dynamic_cast<biblioteq_cd *> (findItemInTab(oid));
 
-	  if(cd && cd->getID() == oid)
-	    {
-	      cd->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto cd = qobject_cast<biblioteq_cd *> (w);
+
+	    if(cd && cd->getID() == oid)
+	      {
+		cd->updateRow(index);
+		break;
+	      }
+	  }
     }
   else if(itemType == "dvd")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto dvd = qobject_cast<biblioteq_dvd *> (w);
+      auto item = dynamic_cast<biblioteq_dvd *> (findItemInTab(oid));
 
-	  if(dvd && dvd->getID() == oid)
-	    {
-	      dvd->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto dvd = qobject_cast<biblioteq_dvd *> (w);
+
+	    if(dvd && dvd->getID() == oid)
+	      {
+		dvd->updateRow(index);
+		break;
+	      }
+	  }
     }
   else if(itemType == "greyliterature")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto gl = qobject_cast<biblioteq_grey_literature *> (w);
+      auto item = dynamic_cast<biblioteq_grey_literature *>
+	(findItemInTab(oid));
 
-	  if(gl && gl->getID() == oid)
-	    {
-	      gl->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto gl = qobject_cast<biblioteq_grey_literature *> (w);
+
+	    if(gl && gl->getID() == oid)
+	      {
+		gl->updateRow(index);
+		break;
+	      }
+	  }
     }
   else if(itemType == "journal")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto journal = qobject_cast<biblioteq_journal *> (w);
+      auto item = dynamic_cast<biblioteq_journal *> (findItemInTab(oid));
 
-	  if(journal && journal->getID() == oid)
-	    {
-	      journal->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto journal = qobject_cast<biblioteq_journal *> (w);
+
+	    if(journal && journal->getID() == oid)
+	      {
+		journal->updateRow(index);
+		break;
+	      }
+	  }
     }
   else if(itemType == "magazine")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto magazine = qobject_cast<biblioteq_magazine *> (w);
+      auto item = dynamic_cast<biblioteq_magazine *> (findItemInTab(oid));
 
-	  /*
-	  ** The class biblioteq_journal inherits biblioteq_magazine.
-	  */
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto magazine = qobject_cast<biblioteq_magazine *> (w);
 
-	  if(!qobject_cast<biblioteq_journal *> (w))
-	    if(magazine && magazine->getID() == oid)
-	      {
-		magazine->updateRow(index);
-		break;
-	      }
-	}
+	    /*
+	    ** The class biblioteq_journal inherits biblioteq_magazine.
+	    */
+
+	    if(!qobject_cast<biblioteq_journal *> (w))
+	      if(magazine && magazine->getID() == oid)
+		{
+		  magazine->updateRow(index);
+		  break;
+		}
+	  }
     }
   else if(itemType == "photographcollection")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto photograph = qobject_cast<biblioteq_photographcollection *> (w);
+      auto item = dynamic_cast<biblioteq_photographcollection *>
+	(findItemInTab(oid));
 
-	  if(photograph && photograph->getID() == oid)
-	    {
-	      photograph->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto photograph = qobject_cast<biblioteq_photographcollection *>
+	      (w);
+
+	    if(photograph && photograph->getID() == oid)
+	      {
+		photograph->updateRow(index);
+		break;
+	      }
+	  }
     }
   else if(itemType == "videogame")
     {
-      foreach(auto w, QApplication::topLevelWidgets())
-	{
-	  auto videogame = qobject_cast<biblioteq_videogame *> (w);
+      auto item = dynamic_cast<biblioteq_videogame *> (findItemInTab(oid));
 
-	  if(videogame && videogame->getID() == oid)
-	    {
-	      videogame->updateRow(index);
-	      break;
-	    }
-	}
+      if(item)
+	item->updateRow(index);
+      else
+	foreach(auto w, QApplication::topLevelWidgets())
+	  {
+	    auto videogame = qobject_cast<biblioteq_videogame *> (w);
+
+	    if(videogame && videogame->getID() == oid)
+	      {
+		videogame->updateRow(index);
+		break;
+	      }
+	  }
     }
 }
 

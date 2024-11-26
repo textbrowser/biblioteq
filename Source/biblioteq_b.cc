@@ -4351,22 +4351,25 @@ void biblioteq::slotAllowAnyUserEmail(bool state)
 
 void biblioteq::slotBookSearch(void)
 {
-  biblioteq_book *book = nullptr;
+  auto book = dynamic_cast<biblioteq_book *> (findItemInTab("search-book"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!book)
     {
-      auto b = qobject_cast<biblioteq_book *> (w);
-
-      if(b && b->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  book = b;
-	  break;
+	  auto b = qobject_cast<biblioteq_book *> (w);
+
+	  if(b && b->getID() == "search-book")
+	    {
+	      book = b;
+	      break;
+	    }
 	}
     }
 
   if(!book)
     {
-      book = new biblioteq_book(this, "search", QModelIndex());
+      book = new biblioteq_book(this, "search-book", QModelIndex());
       book->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
@@ -4386,22 +4389,25 @@ void biblioteq::slotBookSearch(void)
 
 void biblioteq::slotCDSearch(void)
 {
-  biblioteq_cd *cd = nullptr;
+  auto cd = dynamic_cast<biblioteq_cd *> (findItemInTab("search-cd"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!cd)
     {
-      auto c = qobject_cast<biblioteq_cd *> (w);
-
-      if(c && c->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  cd = c;
-	  break;
+	  auto c = qobject_cast<biblioteq_cd *> (w);
+
+	  if(c && c->getID() == "search-cd")
+	    {
+	      cd = c;
+	      break;
+	    }
 	}
     }
 
   if(!cd)
     {
-      cd = new biblioteq_cd(this, "search", QModelIndex());
+      cd = new biblioteq_cd(this, "search-cd", QModelIndex());
       cd->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
@@ -4427,22 +4433,25 @@ void biblioteq::slotContextMenu(const QPoint &point)
 
 void biblioteq::slotDVDSearch(void)
 {
-  biblioteq_dvd *dvd = nullptr;
+  auto dvd = dynamic_cast<biblioteq_dvd *> (findItemInTab("search-dvd"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!dvd)
     {
-      auto d = qobject_cast<biblioteq_dvd *> (w);
-
-      if(d && d->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  dvd = d;
-	  break;
+	  auto d = qobject_cast<biblioteq_dvd *> (w);
+
+	  if(d && d->getID() == "search-dvd")
+	    {
+	      dvd = d;
+	      break;
+	    }
 	}
     }
 
   if(!dvd)
     {
-      dvd = new biblioteq_dvd(this, "search", QModelIndex());
+      dvd = new biblioteq_dvd(this, "search-dvd", QModelIndex());
       dvd->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
@@ -4462,22 +4471,26 @@ void biblioteq::slotDVDSearch(void)
 
 void biblioteq::slotJournSearch(void)
 {
-  biblioteq_journal *journal = nullptr;
+  auto journal = dynamic_cast<biblioteq_journal *>
+    (findItemInTab("search-journal"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!journal)
     {
-      auto j = qobject_cast<biblioteq_journal *> (w);
-
-      if(j && j->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  journal = j;
-	  break;
+	  auto j = qobject_cast<biblioteq_journal *> (w);
+
+	  if(j && j->getID() == "search-journal")
+	    {
+	      journal = j;
+	      break;
+	    }
 	}
     }
 
   if(!journal)
     {
-      journal = new biblioteq_journal(this, "search", QModelIndex());
+      journal = new biblioteq_journal(this, "search-journal", QModelIndex());
       journal->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
@@ -4497,28 +4510,32 @@ void biblioteq::slotJournSearch(void)
 
 void biblioteq::slotMagSearch(void)
 {
-  biblioteq_magazine *magazine = nullptr;
+  auto magazine = dynamic_cast<biblioteq_magazine *>
+    (findItemInTab("search-magazine"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!magazine)
     {
-      auto m = qobject_cast<biblioteq_magazine *> (w);
+      foreach(auto w, QApplication::topLevelWidgets())
+	{
+	  auto m = qobject_cast<biblioteq_magazine *> (w);
 
-      /*
-      ** The class biblioteq_journal inherits biblioteq_magazine.
-      */
+	  /*
+	  ** The class biblioteq_journal inherits biblioteq_magazine.
+	  */
 
-      if(!qobject_cast<biblioteq_journal *> (w))
-	if(m && m->getID() == "search")
-	  {
-	    magazine = m;
-	    break;
-	  }
+	  if(!qobject_cast<biblioteq_journal *> (w))
+	    if(m && m->getID() == "search-magazine")
+	      {
+		magazine = m;
+		break;
+	      }
+	}
     }
 
   if(!magazine)
     {
       magazine = new biblioteq_magazine
-	(this, "search", QModelIndex(), "magazine");
+	(this, "search-magazine", QModelIndex(), "magazine");
       magazine->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
@@ -4538,23 +4555,27 @@ void biblioteq::slotMagSearch(void)
 
 void biblioteq::slotPhotographSearch(void)
 {
-  biblioteq_photographcollection *photograph = nullptr;
+  auto photograph = dynamic_cast<biblioteq_photographcollection *>
+    (findItemInTab("search-photograph"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!photograph)
     {
-      auto p = qobject_cast<biblioteq_photographcollection *> (w);
-
-      if(p && p->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  photograph = p;
-	  break;
+	  auto p = qobject_cast<biblioteq_photographcollection *> (w);
+
+	  if(p && p->getID() == "search-photograph")
+	    {
+	      photograph = p;
+	      break;
+	    }
 	}
     }
 
   if(!photograph)
     {
       photograph = new biblioteq_photographcollection
-	(this, "search", QModelIndex());
+	(this, "search-photograph", QModelIndex());
       photograph->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
@@ -5623,22 +5644,27 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
 void biblioteq::slotVideoGameSearch(void)
 {
-  biblioteq_videogame *videogame = nullptr;
+  auto videogame = dynamic_cast<biblioteq_videogame *>
+    (findItemInTab("search-videogame"));
 
-  foreach(auto w, QApplication::topLevelWidgets())
+  if(!videogame)
     {
-      auto v = qobject_cast<biblioteq_videogame *> (w);
-
-      if(v && v->getID() == "search")
+      foreach(auto w, QApplication::topLevelWidgets())
 	{
-	  videogame = v;
-	  break;
+	  auto v = qobject_cast<biblioteq_videogame *> (w);
+
+	  if(v && v->getID() == "search-videogame")
+	    {
+	      videogame = v;
+	      break;
+	    }
 	}
     }
 
   if(!videogame)
     {
-      videogame = new biblioteq_videogame(this, "search", QModelIndex());
+      videogame = new biblioteq_videogame
+	(this, "search-videogame", QModelIndex());
       videogame->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
