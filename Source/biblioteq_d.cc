@@ -180,6 +180,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   ui.tab->setTabToolTip
     (ui.tab->count() - 1, ui.tab->tabText(ui.tab->count() - 1));
   ui.tab->setTabsClosable(true);
+  prepareItemPagesMenu();
   prepareTabWidgetCloseButtons();
 }
 
@@ -661,6 +662,34 @@ void biblioteq::prepareIcons(void)
     }
 }
 
+void biblioteq::prepareItemPagesMenu(void)
+{
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  ui.menuItem_Pages->clear();
+
+  auto group = ui.menuItem_Pages->findChild<QActionGroup *> ();
+
+  if(!group)
+    group = new QActionGroup(ui.menuItem_Pages);
+
+  for(int i = 0; i < ui.tab->count(); i++)
+    {
+      auto action = new QAction(ui.tab->tabText(i));
+
+      action->setCheckable(true);
+      action->setChecked(i == ui.tab->currentIndex());
+      action->setData(i);
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotSelectItemTab(void)));
+      group->addAction(action);
+      ui.menuItem_Pages->addAction(action);
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq::prepareStatusBarIcons(void)
 {
   QSettings setting;
@@ -988,10 +1017,12 @@ void biblioteq::slotItemWindowClosed(void)
       auto const index = ui.tab->indexOf(widget);
 
       if(index > 0)
-	ui.tab->removeTab(index);
+	{
+	  ui.tab->removeTab(index);
+	  prepareItemPagesMenu();
+	  prepareTabWidgetCloseButtons();
+	}
     }
-
-  prepareTabWidgetCloseButtons();
 }
 
 void biblioteq::slotLaunchEmailSoftware(void)
@@ -1070,6 +1101,17 @@ void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
   QSettings settings;
 
   settings.setValue("generalSearchCaseSensitivity", state);
+}
+
+void biblioteq::slotSelectItemTab(void)
+{
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  ui.tab->setCurrentIndex
+    (qBound(0, action->data().toInt(), ui.tab->count() - 1));
 }
 
 void biblioteq::slotSetMembershipFees(void)
@@ -1347,6 +1389,7 @@ void biblioteq::slotTabClosed(int index)
   if(deleted)
     {
       ui.tab->removeTab(index);
+      prepareItemPagesMenu();
       prepareTabWidgetCloseButtons();
     }
 }

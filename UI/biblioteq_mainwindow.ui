@@ -654,8 +654,14 @@
     <addaction name="separator"/>
     <addaction name="actionReload_biblioteq_conf"/>
    </widget>
+   <widget class="QMenu" name="menuItem_Pages">
+    <property name="title">
+     <string>Item &amp;Pages</string>
+    </property>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
+   <addaction name="menuItem_Pages"/>
    <addaction name="menu_View"/>
    <addaction name="menu_Tools"/>
    <addaction name="menu_Options"/>

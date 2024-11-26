@@ -1073,6 +1073,7 @@ biblioteq::biblioteq(void):QMainWindow()
     (m_otherOptions->showMainTableImages() ? QSize(64, 94) : QSize(0, 0));
   m_previousTypeFilter = m_lastCategory;
   prepareFilter();
+  prepareItemPagesMenu();
   prepareTearOffMenus();
 
   auto found = false;

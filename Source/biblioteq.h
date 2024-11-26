@@ -546,6 +546,7 @@ class biblioteq: public QMainWindow
   void prepareExternalApplicationsMenu(void);
   void prepareFilter(void);
   void prepareIcons(void);
+  void prepareItemPagesMenu(void);
   void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
   void prepareReservationHistoryMenu(void);
@@ -668,6 +669,7 @@ class biblioteq: public QMainWindow
   void slotSearchBasic(void);
   void slotSectionResized(int logicalIndex, int oldSize, int newSize);
   void slotSelectDatabaseFile(void);
+  void slotSelectItemTab(void);
   void slotSetColumns(void);
   void slotSetFonts(void);
   void slotSetMembershipFees(void);
