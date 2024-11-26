@@ -158,6 +158,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
  signals:
   void openLibraryQueryError(const QString &text);
   void sruQueryError(const QString &text);
+  void windowTitleChanged(const QString &text);
 };
 
 #endif

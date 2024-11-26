@@ -4265,7 +4265,8 @@ void biblioteq_book::slotOpenLibraryError(QNetworkReply::NetworkError error)
       emit openLibraryQueryError(error);
     }
   else
-    emit openLibraryQueryError(tr("A network error (%1) occurred.").arg(error));
+    emit openLibraryQueryError
+      (tr("A network error (%1) occurred.").arg(error));
 }
 
 void biblioteq_book::slotOpenLibraryQuery(void)

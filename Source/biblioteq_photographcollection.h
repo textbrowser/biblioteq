@@ -109,6 +109,9 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotViewNextPhotograph(void);
   void slotViewPhotograph(void);
   void slotViewPreviousPhotograph(void);
+
+ signals:
+  void windowTitleChanged(const QString &text);
 };
 
 #endif

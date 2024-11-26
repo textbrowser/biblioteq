@@ -92,6 +92,9 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void slotSaveTracks(void);
   void slotSelectImage(void);
   void slotShowUsers(void);
+
+ signals:
+  void windowTitleChanged(const QString &text);
 };
 
 #endif

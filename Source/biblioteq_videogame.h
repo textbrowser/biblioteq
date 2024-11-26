@@ -72,6 +72,9 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   void slotReset(void);
   void slotSelectImage(void);
   void slotShowUsers(void);
+
+ signals:
+  void windowTitleChanged(const QString &text);
 };
 
 #endif

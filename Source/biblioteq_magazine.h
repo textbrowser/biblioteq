@@ -130,6 +130,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
 
  signals:
   void sruQueryError(const QString &text);
+  void windowTitleChanged(const QString &text);
 };
 
 class biblioteq_journal: public biblioteq_magazine

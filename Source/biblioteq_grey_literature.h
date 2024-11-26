@@ -94,6 +94,9 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void slotQuery(void);
   void slotReset(void);
   void slotShowUsers(void);
+
+ signals:
+  void windowTitleChanged(const QString &text);
 };
 
 #endif
