@@ -8,5 +8,5 @@ solution. Please visit https://brew.sh and install Homebrew.
 > git clone https://github.com/textbrowser/biblioteq biblioteq.d
 > cd biblioteq.d
 > qmake -o Makefile biblioteq.macos.pro
-> make -j 5
+> make
 > open ./BiblioteQ.app
