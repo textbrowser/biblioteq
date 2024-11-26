@@ -96,7 +96,7 @@ QSize biblioteq_tab_tabbar::tabSizeHint(int index) const
 	   qMax(size.width(), rect().width() / qMax(1, count())),
 	   preferred);
 
-      size.setHeight(5 + size.height());
+      size.setHeight(10 + size.height());
       size.setWidth(preferredTabWidth);
     }
 

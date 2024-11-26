@@ -689,6 +689,15 @@ void biblioteq::prepareItemPagesMenu(void)
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   ui.menuItem_Pages->clear();
 
+  auto action = ui.menuItem_Pages->addAction(tr("&Close All"));
+
+  action->setData(-1);
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotSelectItemTab(void)));
+  ui.menuItem_Pages->addSeparator();
+
   auto group = ui.menuItem_Pages->findChild<QActionGroup *> ();
 
   if(!group)
@@ -1148,9 +1157,14 @@ void biblioteq::slotSelectItemTab(void)
 
   if(!action)
     return;
-
-  ui.tab->setCurrentIndex
-    (qBound(0, action->data().toInt(), ui.tab->count() - 1));
+  else if(action->data().toInt() < 0)
+    {
+      for(int i = ui.tab->count() - 1; i > 0; i--)
+	slotTabClosed(i);
+    }
+  else
+    ui.tab->setCurrentIndex
+      (qBound(0, action->data().toInt(), ui.tab->count() - 1));
 }
 
 void biblioteq::slotSetMembershipFees(void)
