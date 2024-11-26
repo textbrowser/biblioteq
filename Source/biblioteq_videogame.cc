@@ -366,6 +366,7 @@ void biblioteq_videogame::duplicate(const QString &p_oid, const int state)
   m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
+  emit windowTitleChanged(windowTitle());
   vg.copiesButton->setEnabled(false);
   vg.showUserButton->setEnabled(false);
 }
@@ -412,6 +413,7 @@ void biblioteq_videogame::insert(void)
   m_engWindowTitle = "Create";
   prepareFavorites();
   setWindowTitle(tr("BiblioteQ: Create Video Game Entry"));
+  emit windowTitleChanged(windowTitle());
   vg.id->setFocus();
   storeData(this);
 #ifdef Q_OS_ANDROID
@@ -437,6 +439,7 @@ void biblioteq_videogame::modify(const int state)
     {
       setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Video Game Entry"));
+      emit windowTitleChanged(windowTitle());
       m_engWindowTitle = "Modify";
       vg.backButton->setVisible(true);
       vg.copiesButton->setEnabled(true);
@@ -464,6 +467,7 @@ void biblioteq_videogame::modify(const int state)
     {
       setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Video Game Details"));
+      emit windowTitleChanged(windowTitle());
       m_engWindowTitle = "View";
       vg.backButton->setVisible(false);
       vg.copiesButton->setVisible(false);
@@ -597,6 +601,7 @@ void biblioteq_videogame::modify(const int state)
 
 	      vg.id->setText(var.toString().trimmed());
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	    }
 	  else if(fieldname == "keyword")
 	    vg.keyword->setMultipleLinks
@@ -765,6 +770,7 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
 
       prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
+      emit windowTitleChanged(windowTitle());
       vg.id->setFocus();
 #ifdef Q_OS_ANDROID
       showMaximized();
@@ -1334,6 +1340,7 @@ void biblioteq_videogame::slotGo(void)
 		vg.id->text() +
 		tr(")");
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	      m_engWindowTitle = "Modify";
 
 	      if(m_index->isValid() &&
@@ -2077,4 +2084,5 @@ void biblioteq_videogame::updateWindow(const int state)
   vg.coverImages->setVisible(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
+  emit windowTitleChanged(windowTitle());
 }

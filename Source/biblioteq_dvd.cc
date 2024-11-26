@@ -393,6 +393,7 @@ void biblioteq_dvd::duplicate(const QString &p_oid, const int state)
   dvd.showUserButton->setEnabled(false);
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
+  emit windowTitleChanged(windowTitle());
   m_engWindowTitle = "Create";
 }
 
@@ -446,6 +447,7 @@ void biblioteq_dvd::insert(void)
   biblioteq_misc_functions::highlightWidget
     (dvd.title, m_requiredHighlightColor);
   setWindowTitle(tr("BiblioteQ: Create DVD Entry"));
+  emit windowTitleChanged(windowTitle());
   m_engWindowTitle = "Create";
   dvd.id->setFocus();
   prepareFavorites();
@@ -474,6 +476,7 @@ void biblioteq_dvd::modify(const int state)
       m_engWindowTitle = "Modify";
       setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify DVD Entry"));
+      emit windowTitleChanged(windowTitle());
       dvd.backButton->setVisible(true);
       dvd.copiesButton->setEnabled(true);
       dvd.frontButton->setVisible(true);
@@ -503,6 +506,7 @@ void biblioteq_dvd::modify(const int state)
       m_engWindowTitle = "View";
       setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View DVD Details"));
+      emit windowTitleChanged(windowTitle());
       dvd.backButton->setVisible(false);
       dvd.copiesButton->setVisible(false);
       dvd.frontButton->setVisible(false);
@@ -685,6 +689,7 @@ void biblioteq_dvd::modify(const int state)
 		}
 
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	      dvd.id->setText(var.toString().trimmed());
 	    }
 	  else if(fieldname == "keyword")
@@ -837,6 +842,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
       dvd.id->setFocus();
       prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database DVD Search"));
+      emit windowTitleChanged(windowTitle());
 #ifdef Q_OS_ANDROID
       showMaximized();
 #else
@@ -1482,6 +1488,7 @@ void biblioteq_dvd::slotGo(void)
 		dvd.id->text() +
 		tr(")");
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	      m_engWindowTitle = "Modify";
 
 	      if(m_index->isValid() &&
@@ -2332,4 +2339,5 @@ void biblioteq_dvd::updateWindow(const int state)
   dvd.coverImages->setVisible(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
+  emit windowTitleChanged(windowTitle());
 }

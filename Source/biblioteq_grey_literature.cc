@@ -410,6 +410,7 @@ void biblioteq_grey_literature::duplicate
   m_ui.export_files->setEnabled(false);
   m_ui.showUserButton->setEnabled(false);
   setWindowTitle(tr("BiblioteQ: Duplicate Grey Literature Entry"));
+  emit windowTitleChanged(windowTitle());
 }
 
 void biblioteq_grey_literature::highlightRequiredWidgets(void)
@@ -453,6 +454,7 @@ void biblioteq_grey_literature::insert(void)
   m_ui.type->setCurrentIndex(0);
   highlightRequiredWidgets();
   setWindowTitle(tr("BiblioteQ: Create Grey Literature Entry"));
+  emit windowTitleChanged(windowTitle());
   prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
@@ -612,6 +614,7 @@ void biblioteq_grey_literature::modify(const int state)
       highlightRequiredWidgets();
       setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Grey Literature Entry"));
+      emit windowTitleChanged(windowTitle());
       m_engWindowTitle = "Modify";
       m_te_orig_pal = m_ui.id->palette();
       m_ui.attach_files->setEnabled(true);
@@ -626,6 +629,7 @@ void biblioteq_grey_literature::modify(const int state)
     {
       setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Grey Literature Details"));
+      emit windowTitleChanged(windowTitle());
       m_engWindowTitle = "View";
       m_ui.attach_files->setVisible(false);
       m_ui.delete_files->setVisible(false);
@@ -731,6 +735,7 @@ void biblioteq_grey_literature::modify(const int state)
 
 	      m_ui.id->setText(variant.toString().trimmed());
 	      setWindowTitle(string);
+	      emit windowTitleChanged(windowTitle());
 	    }
 	  else if(fieldName == "document_status")
 	    m_ui.status->setText(variant.toString().trimmed());
@@ -903,6 +908,7 @@ void biblioteq_grey_literature::search(const QString &field,
       m_ui.title->setFocus();
       prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Grey Literature Search"));
+      emit windowTitleChanged(windowTitle());
 #ifdef Q_OS_ANDROID
       showMaximized();
 #else
@@ -1796,6 +1802,7 @@ void biblioteq_grey_literature::updateDatabase(void)
     string = tr("BiblioteQ: Modify Grey Literature Entry");
 
   setWindowTitle(string);
+  emit windowTitleChanged(windowTitle());
 
   if(m_index->isValid() &&
      (qmain->getTypeFilterString() == "All" ||
@@ -1949,4 +1956,5 @@ void biblioteq_grey_literature::updateWindow(const int state)
 
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(string);
+  emit windowTitleChanged(windowTitle());
 }

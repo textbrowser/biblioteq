@@ -427,6 +427,7 @@ void biblioteq_photographcollection::duplicate(const QString &p_oid,
   pc.importItems->setEnabled(false);
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Photograph Collection Entry"));
+  emit windowTitleChanged(windowTitle());
 }
 
 void biblioteq_photographcollection::insert(void)
@@ -442,6 +443,7 @@ void biblioteq_photographcollection::insert(void)
   biblioteq_misc_functions::highlightWidget
     (pc.title_collection, m_requiredHighlightColor);
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
+  emit windowTitleChanged(windowTitle());
   m_engWindowTitle = "Create";
   pc.id_collection->setFocus();
   pc.id_collection->setText
@@ -654,6 +656,7 @@ void biblioteq_photographcollection::modify(const int state,
       if(behavior.isEmpty())
 	{
 	  setWindowTitle(tr("BiblioteQ: Modify Photograph Collection Entry"));
+	  emit windowTitleChanged(windowTitle());
 	  m_engWindowTitle = "Modify";
 	}
       else
@@ -676,6 +679,7 @@ void biblioteq_photographcollection::modify(const int state,
       if(behavior.isEmpty())
 	{
 	  setWindowTitle(tr("BiblioteQ: View Photograph Collection Details"));
+	  emit windowTitleChanged(windowTitle());
 	  m_engWindowTitle = "View";
 	}
       else
@@ -769,6 +773,7 @@ void biblioteq_photographcollection::modify(const int state,
 		    }
 
 		  setWindowTitle(str);
+		  emit windowTitleChanged(windowTitle());
 		}
 	    }
 	  else if(fieldname == "image")
@@ -883,6 +888,7 @@ void biblioteq_photographcollection::search(const QString &field,
     actions.at(i)->setVisible(false);
 
   setWindowTitle(tr("BiblioteQ: Database Photograph Collection Search"));
+  emit windowTitleChanged(windowTitle());
   m_engWindowTitle = "Search";
   pc.id_collection->setFocus();
   pc.okButton->setText(tr("&Search"));
@@ -1571,6 +1577,7 @@ void biblioteq_photographcollection::slotGo(void)
 		pc.id_collection->text() +
 		tr(")");
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	      m_engWindowTitle = "Modify";
 
 	      if(m_index->isValid() &&
@@ -3229,5 +3236,6 @@ void biblioteq_photographcollection::updateWindow(const int state)
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setReadOnlyFieldsOverride();
   setWindowTitle(str);
+  emit windowTitleChanged(windowTitle());
   pc.page->setEnabled(true);
 }

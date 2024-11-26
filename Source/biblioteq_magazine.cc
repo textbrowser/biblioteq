@@ -592,6 +592,8 @@ void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
     setWindowTitle(tr("BiblioteQ: Duplicate Journal Entry"));
   else
     setWindowTitle(tr("BiblioteQ: Duplicate Magazine Entry"));
+
+  emit windowTitleChanged(windowTitle());
 }
 
 void biblioteq_magazine::insert(void)
@@ -654,6 +656,7 @@ void biblioteq_magazine::insert(void)
   else
     setWindowTitle(tr("BiblioteQ: Create Magazine Entry"));
 
+  emit windowTitleChanged(windowTitle());
   m_engWindowTitle = "Create";
   ma.id->setFocus();
   storeData(this);
@@ -683,6 +686,7 @@ void biblioteq_magazine::modify(const int state)
       else
 	setWindowTitle(tr("BiblioteQ: Modify Magazine Entry"));
 
+      emit windowTitleChanged(windowTitle());
       m_engWindowTitle = "Modify";
       ma.attach_files->setEnabled(true);
       ma.backButton->setVisible(true);
@@ -722,6 +726,7 @@ void biblioteq_magazine::modify(const int state)
       else
 	setWindowTitle(tr("BiblioteQ: View Magazine Details"));
 
+      emit windowTitleChanged(windowTitle());
       m_engWindowTitle = "Modify";
       ma.attach_files->setVisible(false);
       ma.backButton->setVisible(false);
@@ -922,6 +927,7 @@ void biblioteq_magazine::modify(const int state)
 		}
 
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	      ma.id->setText(var.toString().trimmed());
 
 	      if(query.isNull(i))
@@ -1968,6 +1974,7 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
       else
 	setWindowTitle(tr("BiblioteQ: Database Magazine Search"));
 
+      emit windowTitleChanged(windowTitle());
       ma.id->setFocus();
 #ifdef Q_OS_ANDROID
       showMaximized();
@@ -2916,6 +2923,7 @@ void biblioteq_magazine::slotGo(void)
 		}
 
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	      m_engWindowTitle = "Modify";
 
 	      if(m_index->isValid() &&
@@ -4331,4 +4339,5 @@ void biblioteq_magazine::updateWindow(const int state)
   ma.coverImages->setVisible(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
+  emit windowTitleChanged(windowTitle());
 }

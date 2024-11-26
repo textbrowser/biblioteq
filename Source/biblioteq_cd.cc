@@ -399,6 +399,7 @@ void biblioteq_cd::duplicate(const QString &p_oid, const int state)
   m_engWindowTitle = "Create";
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
+  emit windowTitleChanged(windowTitle());
 }
 
 void biblioteq_cd::insert(void)
@@ -450,6 +451,7 @@ void biblioteq_cd::insert(void)
   m_engWindowTitle = "Create";
   prepareFavorites();
   setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
+  emit windowTitleChanged(windowTitle());
   storeData(this);
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -475,6 +477,7 @@ void biblioteq_cd::modify(const int state)
       m_engWindowTitle = "Modify";
       setReadOnlyFields(this, false);
       setWindowTitle(tr("BiblioteQ: Modify Music CD Entry"));
+      emit windowTitleChanged(windowTitle());
       cd.backButton->setVisible(true);
       cd.computeButton->setVisible(true);
       cd.copiesButton->setEnabled(true);
@@ -504,6 +507,7 @@ void biblioteq_cd::modify(const int state)
       m_engWindowTitle = "View";
       setReadOnlyFields(this, true);
       setWindowTitle(tr("BiblioteQ: View Music CD Details"));
+      emit windowTitleChanged(windowTitle());
       cd.backButton->setVisible(false);
       cd.computeButton->setVisible(false);
       cd.copiesButton->setVisible(false);
@@ -677,6 +681,7 @@ void biblioteq_cd::modify(const int state)
 
 	      cd.id->setText(var.toString());
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 	    }
 	  else if(fieldname == "keyword")
 	    cd.keyword->setMultipleLinks
@@ -820,6 +825,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
       cd.id->setFocus();
       prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
+      emit windowTitleChanged(windowTitle());
 #ifdef Q_OS_ANDROID
       showMaximized();
 #else
@@ -1472,6 +1478,7 @@ void biblioteq_cd::slotGo(void)
 		cd.id->text() +
 		tr(")");
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 
 	      if(m_index->isValid() &&
 		 (qmain->getTypeFilterString() == "All" ||
@@ -2756,4 +2763,5 @@ void biblioteq_cd::updateWindow(const int state)
   cd.tracksButton->setEnabled(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
+  emit windowTitleChanged(windowTitle());
 }

@@ -908,6 +908,7 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
   m_duplicate = false;
+  emit windowTitleChanged(windowTitle());
 }
 
 void biblioteq_book::insert(void)
@@ -975,6 +976,7 @@ void biblioteq_book::insert(void)
   m_engWindowTitle = "Create";
   m_te_orig_pal = id.id->palette();
   setWindowTitle(tr("BiblioteQ: Create Book Entry"));
+  emit windowTitleChanged(windowTitle());
   prepareFavorites();
   storeData(this);
 #ifdef Q_OS_ANDROID
@@ -1041,6 +1043,7 @@ void biblioteq_book::modify(const int state)
       m_engWindowTitle = "Modify";
       m_te_orig_pal = id.id->palette();
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
+      emit windowTitleChanged(windowTitle());
     }
   else
     {
@@ -1079,6 +1082,7 @@ void biblioteq_book::modify(const int state)
 
       m_engWindowTitle = "View";
       setWindowTitle(tr("BiblioteQ: View Book Details"));
+      emit windowTitleChanged(windowTitle());
     }
 
   id.okButton->setText(tr("&Save"));
@@ -1253,6 +1257,7 @@ void biblioteq_book::modify(const int state)
 
 	      id.id->setText(qmain->formattedISBN10(var.toString().trimmed()));
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 
 	      if(!query.isNull(i))
 		id.isbnAvailableCheckBox->setChecked(true);
@@ -2306,6 +2311,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
 
       prepareFavorites();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
+      emit windowTitleChanged(windowTitle());
       id.isbn13->setFocus();
 #ifdef Q_OS_ANDROID
       showMaximized();
@@ -3712,6 +3718,7 @@ void biblioteq_book::slotGo(void)
 
 	      m_engWindowTitle = "Modify";
 	      setWindowTitle(str);
+	      emit windowTitleChanged(windowTitle());
 
 	      if(m_index->isValid() &&
 		 (qmain->getTypeFilterString() == "All" ||
@@ -5772,4 +5779,5 @@ void biblioteq_book::updateWindow(const int state)
   id.coverImages->setVisible(true);
   setReadOnlyFields(this, state != biblioteq::EDITABLE);
   setWindowTitle(str);
+  emit windowTitleChanged(windowTitle());
 }
