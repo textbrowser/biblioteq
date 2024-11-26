@@ -156,7 +156,23 @@ bool biblioteq::showMainTableImages(void) const
 void biblioteq::addItemWindowToTab(QMainWindow *window)
 {
   if(!QSettings().value("tabbedItemWindows", true).toBool() || !window)
-    return;
+    {
+      if(window)
+	{
+	  auto const index = ui.tab->indexOf(window);
+
+	  if(index > 0)
+	    {
+	      ui.tab->removeTab(index);
+	      prepareItemPagesMenu();
+	      prepareTabWidgetCloseButtons();
+	      window->setParent(nullptr, window->windowFlags());
+	      QTimer::singleShot(250, window, SLOT(show(void)));
+	    }
+	}
+
+      return;
+    }
 
   auto const index = ui.tab->indexOf(window);
 
@@ -1025,6 +1041,7 @@ void biblioteq::slotItemTitleChanged(const QString &t)
   if(title.isEmpty())
     title = tr("Item");
 
+  prepareItemPagesMenu();
   ui.tab->setTabText(ui.tab->indexOf(widget), title);
   ui.tab->setTabToolTip(ui.tab->indexOf(widget), title);
 }
