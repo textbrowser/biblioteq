@@ -1255,10 +1255,13 @@ void biblioteq::slotTabClosed(int index)
 {
   if(index > 0)
     {
-      auto widget = ui.tab->widget(index);
+      auto book = dynamic_cast<biblioteq_book *> (ui.tab->widget(index));
 
-      widget ? widget->deleteLater() : (void) 0;
-      ui.tab->removeTab(index);
+      if(book && book->close())
+	{
+	  book ? book->deleteLater() : (void) 0;
+	  ui.tab->removeTab(index);
+	}
     }
 
   prepareTabWidgetCloseButtons();

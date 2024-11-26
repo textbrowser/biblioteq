@@ -263,6 +263,88 @@ bool biblioteq::availabilityColors(void) const
 
 bool biblioteq::emptyContainers(void)
 {
+  for(int i = 1; i < ui.tab->count(); i++)
+    {
+      auto w = dynamic_cast<biblioteq_item *> (ui.tab->widget(i));
+
+      if(!w)
+	continue;
+
+      auto book = dynamic_cast<biblioteq_book *> (w);
+      auto cd = dynamic_cast<biblioteq_cd *> (w);
+      auto dvd = dynamic_cast<biblioteq_dvd *> (w);
+      auto gl = dynamic_cast<biblioteq_grey_literature *> (w);
+      auto journal = dynamic_cast<biblioteq_journal *> (w);
+      auto magazine = dynamic_cast<biblioteq_magazine *> (w);
+      auto photograph = dynamic_cast<biblioteq_photographcollection *> (w);
+      auto videogame = dynamic_cast<biblioteq_videogame *> (w);
+
+      if(book)
+	{
+	  if(book->isVisible() && !book->close())
+	    return false;
+	  else
+	    book->deleteLater();
+	}
+
+      if(cd)
+	{
+	  if(cd->isVisible() && !cd->close())
+	    return false;
+	  else
+	    cd->deleteLater();
+	}
+
+      if(dvd)
+	{
+	  if(dvd->isVisible() && !dvd->close())
+	    return false;
+	  else
+	    dvd->deleteLater();
+	}
+
+      if(gl)
+	{
+	  if(gl->isVisible() && !gl->close())
+	    return false;
+	  else
+	    gl->deleteLater();
+	}
+
+      if(journal)
+	{
+	  if(journal->isVisible() && !journal->close())
+	    return false;
+	  else
+	    journal->deleteLater();
+	}
+
+      if(!dynamic_cast<biblioteq_journal *> (w))
+	if(magazine)
+	  {
+	    if(magazine->isVisible() && !magazine->close())
+	      return false;
+	    else
+	      magazine->deleteLater();
+	  }
+
+      if(photograph)
+	{
+	  if(photograph->isVisible() && !photograph->close())
+	    return false;
+	  else
+	    photograph->deleteLater();
+	}
+
+      if(videogame)
+	{
+	  if(videogame->isVisible() && !videogame->close())
+	    return false;
+	  else
+	    videogame->deleteLater();
+	}
+    }
+
   foreach(auto w, QApplication::topLevelWidgets())
     {
       auto book = qobject_cast<biblioteq_book *> (w);
