@@ -612,13 +612,14 @@ class biblioteq: public QMainWindow
   void slotInsertPhotograph(void);
   void slotInsertVideoGame(void);
   void slotItemChanged(QTableWidgetItem *item);
+  void slotItemTitleChanged(const QString &t);
   void slotItemWindowClosed(void);
   void slotJournSearch(void);
   void slotLanguageChanged(void);
   void slotLastWindowClosed(void);
   void slotLaunchEmailSoftware(void);
   void slotListOverdueItems(void);
-  void slotListReservedItems(const QString &);
+  void slotListReservedItems(const QString &id);
   void slotListReservedItems(void);
   void slotMagSearch(void);
   void slotMainTableDeleteKeyPressed(void);

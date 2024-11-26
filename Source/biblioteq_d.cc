@@ -168,17 +168,22 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 
   auto title(window->windowTitle().trimmed());
 
+  title = title.mid(title.indexOf(':') + 1).trimmed();
+
   if(title.isEmpty())
-    title = tr("BiblioteQ: Item");
+    title = tr("Item");
 
   connect(window,
 	  SIGNAL(destroyed(void)),
 	  this,
 	  SLOT(slotItemWindowClosed(void)));
-  ui.tab->addTab(window, title.mid(title.indexOf(':') + 1).trimmed());
+  connect(window,
+	  SIGNAL(windowTitleChanged(const QString &)),
+	  this,
+	  SLOT(slotItemTitleChanged(const QString &)));
+  ui.tab->addTab(window, title);
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
-  ui.tab->setTabToolTip
-    (ui.tab->count() - 1, ui.tab->tabText(ui.tab->count() - 1));
+  ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
   prepareItemPagesMenu();
   prepareTabWidgetCloseButtons();
@@ -1006,6 +1011,22 @@ void biblioteq::slotGenerateAndCopyMemberLetter(void)
   str.replace("%2", userinfo_diag->m_userinfo.firstName->text().trimmed());
   str.replace("%3", userinfo_diag->m_userinfo.membershipfees->text());
   clipboard->setText(str);
+}
+
+void biblioteq::slotItemTitleChanged(const QString &t)
+{
+  auto widget = qobject_cast<QWidget *> (sender());
+
+  if(!widget)
+    return;
+
+  auto title(t.mid(t.indexOf(':') + 1).trimmed());
+
+  if(title.isEmpty())
+    title = tr("Item");
+
+  ui.tab->setTabText(ui.tab->indexOf(widget), title);
+  ui.tab->setTabToolTip(ui.tab->indexOf(widget), title);
 }
 
 void biblioteq::slotItemWindowClosed(void)
