@@ -3443,82 +3443,82 @@ void biblioteq::slotDuplicate(void)
       if(type.toLower() == "book")
 	{
 	  book = new biblioteq_book(this, oid, index);
+	  addItemWindowToTab(book);
 	  book->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(book);
 	}
       else if(type.toLower() == "cd")
 	{
 	  cd = new biblioteq_cd(this, oid, index);
+	  addItemWindowToTab(cd);
 	  cd->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(cd);
 	}
       else if(type.toLower() == "dvd")
 	{
 	  dvd = new biblioteq_dvd(this, oid, index);
+	  addItemWindowToTab(dvd);
 	  dvd->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(dvd);
 	}
       else if(type.toLower() == "grey literature")
 	{
 	  gl = new biblioteq_grey_literature(this, oid, index);
+	  addItemWindowToTab(gl);
 	  gl->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(gl);
 	}
       else if(type.toLower() == "journal")
 	{
 	  journal = new biblioteq_journal(this, oid, index);
+	  addItemWindowToTab(journal);
 	  journal->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(journal);
 	}
       else if(type.toLower() == "magazine")
 	{
 	  magazine = new biblioteq_magazine(this, oid, index, "magazine");
+	  addItemWindowToTab(magazine);
 	  magazine->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(magazine);
 	}
       else if(type.toLower() == "photograph collection")
 	{
 	  photograph = new biblioteq_photographcollection(this, oid, index);
+	  addItemWindowToTab(photograph);
 	  photograph->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(photograph);
 	}
       else if(type.toLower() == "video game")
 	{
 	  videogame = new biblioteq_videogame(this, oid, index);
+	  addItemWindowToTab(videogame);
 	  videogame->duplicate(id, EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  videogame,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(videogame);
 	}
       else
 	{
@@ -3626,12 +3626,12 @@ void biblioteq::slotInsertBook(void)
       auto book = new biblioteq_book
 	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
 
+      addItemWindowToTab(book);
       book->insert();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      book,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(book);
     }
 }
 
@@ -3643,12 +3643,12 @@ void biblioteq::slotInsertCD(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   cd = new biblioteq_cd(this, id, QModelIndex());
+  addItemWindowToTab(cd);
   cd->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  cd,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(cd);
 }
 
 void biblioteq::slotInsertDVD(void)
@@ -3659,12 +3659,12 @@ void biblioteq::slotInsertDVD(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   dvd = new biblioteq_dvd(this, id, QModelIndex());
+  addItemWindowToTab(dvd);
   dvd->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  dvd,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(dvd);
 }
 
 void biblioteq::slotInsertJourn(void)
@@ -3675,12 +3675,12 @@ void biblioteq::slotInsertJourn(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   journal = new biblioteq_journal(this, id, QModelIndex());
+  addItemWindowToTab(journal);
   journal->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  journal,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(journal);
 }
 
 void biblioteq::slotInsertMag(void)
@@ -3691,12 +3691,12 @@ void biblioteq::slotInsertMag(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   magazine = new biblioteq_magazine(this, id, QModelIndex(), "magazine");
+  addItemWindowToTab(magazine);
   magazine->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  magazine,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(magazine);
 }
 
 void biblioteq::slotInsertPhotograph(void)
@@ -3707,12 +3707,12 @@ void biblioteq::slotInsertPhotograph(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   photograph = new biblioteq_photographcollection(this, id, QModelIndex());
+  addItemWindowToTab(photograph);
   photograph->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  photograph,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(photograph);
 }
 
 void biblioteq::slotInsertVideoGame(void)
@@ -3723,12 +3723,12 @@ void biblioteq::slotInsertVideoGame(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   videogame = new biblioteq_videogame(this, id, QModelIndex());
+  addItemWindowToTab(videogame);
   videogame->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  videogame,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(videogame);
 }
 
 void biblioteq::slotLanguageChanged(void)
@@ -3880,12 +3880,12 @@ void biblioteq::slotModify(void)
 	  if(!book)
 	    book = new biblioteq_book(this, oid, index);
 
+	  addItemWindowToTab(book);
 	  book->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(book);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -3906,12 +3906,12 @@ void biblioteq::slotModify(void)
 	  if(!cd)
 	    cd = new biblioteq_cd(this, oid, index);
 
+	  addItemWindowToTab(cd);
 	  cd->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(cd);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -3932,12 +3932,12 @@ void biblioteq::slotModify(void)
 	  if(!dvd)
 	    dvd = new biblioteq_dvd(this, oid, index);
 
+	  addItemWindowToTab(dvd);
 	  dvd->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(dvd);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -3959,12 +3959,12 @@ void biblioteq::slotModify(void)
 	  if(!gl)
 	    gl = new biblioteq_grey_literature(this, oid, index);
 
+	  addItemWindowToTab(gl);
 	  gl->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(gl);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -3985,12 +3985,12 @@ void biblioteq::slotModify(void)
 	  if(!journal)
 	    journal = new biblioteq_journal(this, oid, index);
 
+	  addItemWindowToTab(journal);
 	  journal->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(journal);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -4016,12 +4016,12 @@ void biblioteq::slotModify(void)
 	  if(!magazine)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
+	  addItemWindowToTab(magazine);
 	  magazine->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(magazine);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -4043,12 +4043,12 @@ void biblioteq::slotModify(void)
 	  if(!photograph)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
 
+	  addItemWindowToTab(photograph);
 	  photograph->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(photograph);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -4070,12 +4070,12 @@ void biblioteq::slotModify(void)
 	  if(!videogame)
 	    videogame = new biblioteq_videogame(this, oid, index);
 
+	  addItemWindowToTab(videogame);
 	  videogame->modify(EDITABLE);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  videogame,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(videogame);
 	}
       else
 	{
@@ -5514,12 +5514,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!book)
 	    book = new biblioteq_book(this, oid, index);
 
+	  addItemWindowToTab(book);
 	  book->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(book);
 	}
       else if(type.toLower() == "cd")
 	{
@@ -5540,12 +5540,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!cd)
 	    cd = new biblioteq_cd(this, oid, index);
 
+	  addItemWindowToTab(cd);
 	  cd->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(cd);
 	}
       else if(type.toLower() == "dvd")
 	{
@@ -5566,12 +5566,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!dvd)
 	    dvd = new biblioteq_dvd(this, oid, index);
 
+	  addItemWindowToTab(dvd);
 	  dvd->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(dvd);
 	}
       else if(type.toLower() == "grey literature")
 	{
@@ -5593,12 +5593,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!gl)
 	    gl = new biblioteq_grey_literature(this, oid, index);
 
+	  addItemWindowToTab(gl);
 	  gl->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(gl);
 	}
       else if(type.toLower() == "journal")
 	{
@@ -5619,12 +5619,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!journal)
 	    journal = new biblioteq_journal(this, oid, index);
 
+	  addItemWindowToTab(journal);
 	  journal->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(journal);
 	}
       else if(type.toLower() == "magazine")
 	{
@@ -5650,12 +5650,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!magazine)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
 
+	  addItemWindowToTab(magazine);
 	  magazine->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(magazine);
 	}
       else if(type.toLower() == "photograph collection")
 	{
@@ -5677,12 +5677,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!photograph)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
 
+	  addItemWindowToTab(photograph);
 	  photograph->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(photograph);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -5704,12 +5704,12 @@ void biblioteq::slotViewDetails(void)
 	  if(!videogame)
 	    videogame = new biblioteq_videogame(this, oid, index);
 
+	  addItemWindowToTab(videogame);
 	  videogame->modify(VIEW_ONLY);
 	  connect(this,
 		  SIGNAL(databaseEnumerationsCommitted(void)),
 		  videogame,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
-	  addItemWindowToTab(videogame);
 	}
       else
 	{

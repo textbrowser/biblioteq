@@ -4158,12 +4158,12 @@ void biblioteq::slotGreyLiteratureSearch(void)
     {
       gl = new biblioteq_grey_literature
 	(this, "search-grey-literature", QModelIndex());
+      addItemWindowToTab(gl);
       gl->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      gl,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(gl);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4183,12 +4183,12 @@ void biblioteq::slotInsertGreyLiterature(void)
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
   gl = new biblioteq_grey_literature(this, id, QModelIndex());
+  addItemWindowToTab(gl);
   gl->insert();
   connect(this,
 	  SIGNAL(databaseEnumerationsCommitted(void)),
 	  gl,
 	  SLOT(slotDatabaseEnumerationsCommitted(void)));
-  addItemWindowToTab(gl);
 }
 
 void biblioteq::slotItemChanged(QTableWidgetItem *item)

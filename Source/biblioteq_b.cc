@@ -4370,12 +4370,12 @@ void biblioteq::slotBookSearch(void)
   if(!book)
     {
       book = new biblioteq_book(this, "search-book", QModelIndex());
+      addItemWindowToTab(book);
       book->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      book,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(book);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4408,12 +4408,12 @@ void biblioteq::slotCDSearch(void)
   if(!cd)
     {
       cd = new biblioteq_cd(this, "search-cd", QModelIndex());
+      addItemWindowToTab(cd);
       cd->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      cd,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(cd);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4452,12 +4452,12 @@ void biblioteq::slotDVDSearch(void)
   if(!dvd)
     {
       dvd = new biblioteq_dvd(this, "search-dvd", QModelIndex());
+      addItemWindowToTab(dvd);
       dvd->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      dvd,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(dvd);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4491,12 +4491,12 @@ void biblioteq::slotJournSearch(void)
   if(!journal)
     {
       journal = new biblioteq_journal(this, "search-journal", QModelIndex());
+      addItemWindowToTab(journal);
       journal->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      journal,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(journal);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4536,12 +4536,12 @@ void biblioteq::slotMagSearch(void)
     {
       magazine = new biblioteq_magazine
 	(this, "search-magazine", QModelIndex(), "magazine");
+      addItemWindowToTab(magazine);
       magazine->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      magazine,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(magazine);
     }
 
 #ifdef Q_OS_ANDROID
@@ -4576,12 +4576,12 @@ void biblioteq::slotPhotographSearch(void)
     {
       photograph = new biblioteq_photographcollection
 	(this, "search-photograph", QModelIndex());
+      addItemWindowToTab(photograph);
       photograph->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      photograph,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(photograph);
     }
 
 #ifdef Q_OS_ANDROID
@@ -5665,12 +5665,12 @@ void biblioteq::slotVideoGameSearch(void)
     {
       videogame = new biblioteq_videogame
 	(this, "search-videogame", QModelIndex());
+      addItemWindowToTab(videogame);
       videogame->search();
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      videogame,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
-      addItemWindowToTab(videogame);
     }
 
 #ifdef Q_OS_ANDROID
