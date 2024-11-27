@@ -165,7 +165,6 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  if(index > 0)
 	    {
 	      ui.tab->removeTab(index);
-	      prepareItemPagesMenu();
 	      prepareTabWidgetCloseButtons();
 	      window->setParent(nullptr, window->windowFlags());
 	      QTimer::singleShot(250, window, SLOT(show(void)));
@@ -202,7 +201,6 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
-  prepareItemPagesMenu();
   prepareTabWidgetCloseButtons();
 }
 
@@ -840,6 +838,11 @@ void biblioteq::refresh(const QString &filter)
       }
 }
 
+void biblioteq::slotAboutToShowItemsPagesMenu(void)
+{
+  prepareItemPagesMenu();
+}
+
 void biblioteq::slotActionToggled(void)
 {
   auto action = qobject_cast<QAction *> (sender());
@@ -1053,7 +1056,6 @@ void biblioteq::slotItemTitleChanged(const QString &t)
 
   ui.tab->setTabText(ui.tab->indexOf(widget), title);
   ui.tab->setTabToolTip(ui.tab->indexOf(widget), title);
-  prepareItemPagesMenu();
 }
 
 void biblioteq::slotItemWindowClosed(void)
@@ -1067,7 +1069,6 @@ void biblioteq::slotItemWindowClosed(void)
       if(index > 0)
 	{
 	  ui.tab->removeTab(index);
-	  prepareItemPagesMenu();
 	  prepareTabWidgetCloseButtons();
 	}
     }
@@ -1170,7 +1171,6 @@ void biblioteq::slotSelectItemTab(void)
       for(int i = ui.tab->count() - 1; i > 0; i--)
 	slotTabClosed(i);
 
-      prepareItemPagesMenu();
       prepareTabWidgetCloseButtons();
     }
   else
@@ -1447,10 +1447,7 @@ void biblioteq::slotTabClosed(int index)
       ui.tab->removeTab(index);
 
       if(sender()) // Avoid iterations.
-	{
-	  prepareItemPagesMenu();
-	  prepareTabWidgetCloseButtons();
-	}
+	prepareTabWidgetCloseButtons();
     }
 }
 

@@ -881,6 +881,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
 	  SLOT(slotGraphicsSceneEnterKeyPressed(void)));
+  connect(ui.menuItem_Pages,
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotAboutToShowItemsPagesMenu(void)));
   connect(ui.menu_Category,
 	  SIGNAL(triggered(QAction *)),
 	  this,

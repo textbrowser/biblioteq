@@ -561,6 +561,7 @@ class biblioteq: public QMainWindow
 
  private slots:
   void slotAbout(void);
+  void slotAboutToShowItemsPagesMenu(void);
   void slotActionToggled(void);
   void slotAddAdmin(void);
   void slotAddBorrower(void);
