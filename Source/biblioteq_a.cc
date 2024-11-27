@@ -926,10 +926,6 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotShowMenu(void)));
   connect(ui.tab,
-	  SIGNAL(currentChanged(int)),
-	  this,
-	  SLOT(slotPageSelected(int)));
-  connect(ui.tab,
 	  SIGNAL(tabCloseRequested(int)),
 	  this,
 	  SLOT(slotTabClosed(int)));

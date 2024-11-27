@@ -1116,14 +1116,6 @@ void biblioteq::slotMergeSQLiteDatabases(void)
   m_sqliteMergeDatabases->raise();
 }
 
-void biblioteq::slotPageSelected(int index)
-{
-  auto action = ui.menuItem_Pages->actions().value(index + 2);
-
-  if(action)
-    action->setChecked(true);
-}
-
 void biblioteq::slotPrintIconsView(void)
 {
   if(menuBar())
