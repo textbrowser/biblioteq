@@ -1115,6 +1115,14 @@ void biblioteq::slotMergeSQLiteDatabases(void)
   m_sqliteMergeDatabases->raise();
 }
 
+void biblioteq::slotPageSelected(int index)
+{
+  auto action = ui.menuItem_Pages->actions().value(index + 2);
+
+  if(action)
+    action->setChecked(true);
+}
+
 void biblioteq::slotPrintIconsView(void)
 {
   if(menuBar())
@@ -1161,6 +1169,9 @@ void biblioteq::slotSelectItemTab(void)
     {
       for(int i = ui.tab->count() - 1; i > 0; i--)
 	slotTabClosed(i);
+
+      prepareItemPagesMenu();
+      prepareTabWidgetCloseButtons();
     }
   else
     ui.tab->setCurrentIndex
@@ -1434,8 +1445,12 @@ void biblioteq::slotTabClosed(int index)
   if(deleted)
     {
       ui.tab->removeTab(index);
-      prepareItemPagesMenu();
-      prepareTabWidgetCloseButtons();
+
+      if(sender()) // Avoid iterations.
+	{
+	  prepareItemPagesMenu();
+	  prepareTabWidgetCloseButtons();
+	}
     }
 }
 
