@@ -1051,9 +1051,9 @@ void biblioteq::slotItemTitleChanged(const QString &t)
   if(title.isEmpty())
     title = tr("Item");
 
-  prepareItemPagesMenu();
   ui.tab->setTabText(ui.tab->indexOf(widget), title);
   ui.tab->setTabToolTip(ui.tab->indexOf(widget), title);
+  prepareItemPagesMenu();
 }
 
 void biblioteq::slotItemWindowClosed(void)
