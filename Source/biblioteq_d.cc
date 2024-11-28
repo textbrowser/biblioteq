@@ -690,6 +690,7 @@ void biblioteq::prepareItemPagesMenu(void)
   auto action = ui.menuItem_Pages->addAction(tr("&Close All"));
 
   action->setData(-1);
+  action->setEnabled(ui.tab->count() > 1);
   connect(action,
 	  SIGNAL(triggered(void)),
 	  this,
