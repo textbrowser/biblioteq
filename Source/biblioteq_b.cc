@@ -3927,12 +3927,14 @@ int biblioteq::populateTable(const int search_type_arg,
 		    }
 
 		  /*
-		  ** The size of no_image.png is 126x187.
+		  ** The size of no_image.png is AxB.
 		  */
 
 		  if(!image.isNull())
 		    image = image.scaled
-		      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+		      (s_noImageResize,
+		       Qt::KeepAspectRatio,
+		       Qt::SmoothTransformation);
 
 		  pixmapItem = new biblioteq_graphicsitempixmap
 		    (QPixmap::fromImage(image), nullptr);
@@ -4298,7 +4300,7 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
     }
 
   /*
-  ** The size of no_image.png is 126x187.
+  ** The size of no_image.png is AxB.
   */
 
   auto b(back);
@@ -4308,7 +4310,8 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
     b = QImage(":/no_image.png");
 
   if(!b.isNull())
-    b = b.scaled(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    b = b.scaled
+      (s_noImageResize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
   if(!b.isNull())
     {
@@ -4322,7 +4325,8 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
     f = QImage(":/no_image.png");
 
   if(!f.isNull())
-    f = f.scaled(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    f = f.scaled
+      (s_noImageResize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
   if(!f.isNull())
     {

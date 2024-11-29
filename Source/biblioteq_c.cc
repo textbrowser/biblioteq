@@ -1014,13 +1014,12 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    }
 
 		  /*
-		  ** The size of no_image.png is 126x187.
+		  ** The size of no_image.png is AxB.
 		  */
 
 		  if(!image.isNull())
 		    image = image.scaled
-		      (126,
-		       187,
+		      (s_noImageResize,
 		       Qt::KeepAspectRatio,
 		       Qt::SmoothTransformation);
 
@@ -1087,8 +1086,9 @@ int biblioteq::populateTable(QSqlQuery *query,
 		first->setIcon(QIcon(":/no_image.png"));
 
 	      ui.table->setRowHeight
-		(i, qMax(fontMetrics.height() + 10,
-			 ui.table->iconSize().height()));
+		(i,
+		 qMax(fontMetrics.height() + 10,
+		      ui.table->iconSize().height()));
 	    }
 
 	  if(showBookReadStatus)
@@ -3625,9 +3625,9 @@ void biblioteq::slotDisplaySummary(void)
 		  {
 		    QRectF rect;
 
-		    rect.setHeight(187);
+		    rect.setHeight(s_noImageResize.height());
 		    rect.setTopLeft(items.at(jj)->scenePos());
-		    rect.setWidth(126);
+		    rect.setWidth(s_noImageResize.width());
 		    painterPath.addRect(rect);
 		  }
 		else
@@ -3940,7 +3940,7 @@ void biblioteq::slotDisplaySummary(void)
       QApplication::restoreOverrideCursor();
 
       /*
-      ** The size of no_image.png is 126x187.
+      ** The size of no_image.png is AxB.
       */
 
       if(frontImage.isNull())
@@ -3948,7 +3948,7 @@ void biblioteq::slotDisplaySummary(void)
 
       if(!frontImage.isNull())
 	frontImage = frontImage.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	  (s_noImageResize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(type != "Grey Literature" &&
 	 type != "Photograph Collection")
@@ -3958,7 +3958,7 @@ void biblioteq::slotDisplaySummary(void)
 
 	  if(!backImage.isNull())
 	    backImage = backImage.scaled
-	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	      (s_noImageResize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	}
 
       if(!frontImage.isNull())

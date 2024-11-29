@@ -1013,12 +1013,14 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	    image = QImage(":/no_image.png");
 
 	  /*
-	  ** The size of no_image.png is 126x187.
+	  ** The size of no_image.png is AxB.
 	  */
 
 	  if(!image.isNull())
 	    image = image.scaled
-	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	      (biblioteq::s_noImageResize,
+	       Qt::KeepAspectRatio,
+	       Qt::SmoothTransformation);
 
 	  pixmapItem = new biblioteq_graphicsitempixmap
 	    (QPixmap::fromImage(image), nullptr);
@@ -1497,7 +1499,9 @@ void biblioteq_photographcollection::slotGo(void)
 
 	  if(!image.isNull())
 	    image = image.scaled
-	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	      (biblioteq::s_noImageResize,
+	       Qt::KeepAspectRatio,
+	       Qt::SmoothTransformation);
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
@@ -1992,7 +1996,9 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       if(!image.isNull())
 	image = image.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	  (biblioteq::s_noImageResize,
+	   Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
 
       if(image.isNull() || !image.save(&buffer,
 				       format.toLatin1().constData(),
@@ -2165,7 +2171,9 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
       if(!image.isNull())
 	image = image.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	  (biblioteq::s_noImageResize,
+	   Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
@@ -2464,7 +2472,10 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 
       buffer.setBuffer(&bytes2);
       buffer.open(QIODevice::WriteOnly);
-      i = i.scaled(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      i = i.scaled
+	(biblioteq::s_noImageResize,
+	 Qt::KeepAspectRatio,
+	 Qt::SmoothTransformation);
 
       if(i.isNull() || !i.save(&buffer,
 			       format.toUpper().toLatin1().constData(),
@@ -2493,8 +2504,7 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 		if(item)
 		  item->setPixmap
 		    (QPixmap::
-		     fromImage(image.scaled(126,
-					    187,
+		     fromImage(image.scaled(biblioteq::s_noImageResize,
 					    Qt::KeepAspectRatio,
 					    Qt::SmoothTransformation)));
 
@@ -2857,7 +2867,9 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
       if(!image.isNull())
 	image = image.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	  (biblioteq::s_noImageResize,
+	   Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{

@@ -72,6 +72,7 @@ extern "C"
 ** -- Global Variables --
 */
 
+QSize biblioteq::s_noImageResize = QSize(126, 187);
 QString biblioteq::s_databaseDateFormat = "MM/dd/yyyy";
 QString biblioteq::s_databaseTimeFormat = "hh:mm:ss";
 QString biblioteq::s_locale = "";
@@ -6202,7 +6203,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 
 	  if(!l_image.isNull())
 	    l_image = l_image.scaled
-	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	      (s_noImageResize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	  auto const pixmap(QPixmap::fromImage(l_image));
 
@@ -6214,7 +6215,9 @@ void biblioteq::updateSceneItem(const QString &oid,
 
 	      if(!l_image.isNull())
 		l_image = l_image.scaled
-		  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+		  (s_noImageResize,
+		   Qt::KeepAspectRatio,
+		   Qt::SmoothTransformation);
 
 	      item->setPixmap(QPixmap::fromImage(l_image));
 	    }
