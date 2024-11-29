@@ -40,6 +40,17 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
 		      const QString &oidArg,
 		      const QModelIndex &index);
   ~biblioteq_videogame();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(vg.title->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else
+      return QString(tr("Video Game (%1)").arg(title));
+  }
+
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state);

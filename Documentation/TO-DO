@@ -684,3 +684,5 @@
 330. Page-selection menu in main window. (Completed)
 331. Review QApplication::topLevelWidgets() and tabbed item windows.
      (Completed)
+332. Type (Title) for tabbed items. If not available, windowTitle().
+     (Completed)

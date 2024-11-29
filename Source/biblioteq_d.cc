@@ -182,9 +182,13 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
       return;
     }
 
-  auto title(window->windowTitle().trimmed());
+  QString title("");
+  auto item = dynamic_cast<biblioteq_item *> (window);
 
-  title = title.mid(title.indexOf(':') + 1).trimmed();
+  if(item)
+    title = item->fancyTitleForTab().trimmed();
+  else
+    title = window->windowTitle().trimmed();
 
   if(title.isEmpty())
     title = tr("Item");
@@ -196,7 +200,8 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   connect(window,
 	  SIGNAL(windowTitleChanged(const QString &)),
 	  this,
-	  SLOT(slotItemTitleChanged(const QString &)));
+	  SLOT(slotItemTitleChanged(const QString &)),
+	  Qt::QueuedConnection);
   ui.tab->addTab(window, title);
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
@@ -1050,7 +1055,11 @@ void biblioteq::slotItemTitleChanged(const QString &t)
   if(!widget)
     return;
 
-  auto title(t.mid(t.indexOf(':') + 1).trimmed());
+  auto item = dynamic_cast<biblioteq_item *> (widget);
+  auto title(t.trimmed());
+
+  if(item)
+    title = item->fancyTitleForTab().trimmed();
 
   if(title.isEmpty())
     title = tr("Item");

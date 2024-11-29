@@ -41,6 +41,17 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
 	       const QString &oidArg,
 	       const QModelIndex &index);
   ~biblioteq_cd();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(cd.title->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else
+      return QString(tr("Music CD (%1)").arg(title));
+  }
+
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state);

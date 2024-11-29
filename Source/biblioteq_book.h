@@ -48,6 +48,17 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 		 const QString &oidArg,
 		 const QModelIndex &index);
   ~biblioteq_book();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(id.title->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else
+      return QString(tr("Book (%1)").arg(title));
+  }
+
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state);

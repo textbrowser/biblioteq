@@ -77,6 +77,12 @@ class biblioteq_item
   QString getID(void) const;
   int getOldQ(void) const;
   int getRow(void) const;
+
+  virtual QString fancyTitleForTab(void) const
+  {
+    return "";
+  }
+
   virtual void setPublicationDateFormat(const QString &dateFormat);
   void setOldQ(const int q);
   void updateQuantity(const int q);

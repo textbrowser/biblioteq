@@ -40,6 +40,17 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
 		const QString &oidArg,
 		const QModelIndex &index);
   ~biblioteq_dvd();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(dvd.title->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else
+      return QString(tr("DVD (%1)").arg(title));
+  }
+
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state);

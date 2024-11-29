@@ -44,6 +44,17 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 				 const QString &oidArg,
 				 const QModelIndex &index);
   ~biblioteq_photographcollection();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(pc.title_collection->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else
+      return QString(tr("Photograph Collection (%1)").arg(title));
+  }
+
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state, const QString &behavior = "");

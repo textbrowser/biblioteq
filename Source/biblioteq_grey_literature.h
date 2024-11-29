@@ -40,6 +40,17 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
 			    const QString &oidArg,
 			    const QModelIndex &index);
   ~biblioteq_grey_literature();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(m_ui.title->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else
+      return QString(tr("Grey Literature (%1)").arg(title));
+  }
+
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state);

@@ -47,6 +47,19 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
 		     const QModelIndex &index,
 		     const QString &subTypeArg);
   virtual ~biblioteq_magazine();
+
+  QString fancyTitleForTab(void) const
+  {
+    auto const title(ma.title->text().trimmed());
+
+    if(title.isEmpty())
+      return windowTitle();
+    else if(m_subType == "Journal")
+      return QString(tr("Journal (%1)").arg(title));
+    else
+      return QString(tr("Magazine (%1)").arg(title));
+  }
+
   Ui_magDialog dialog(void) const;
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
