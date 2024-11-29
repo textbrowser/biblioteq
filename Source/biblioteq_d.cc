@@ -710,10 +710,13 @@ void biblioteq::prepareItemPagesMenu(void)
   for(int i = 0; i < ui.tab->count(); i++)
     {
       auto action = new QAction(ui.tab->tabText(i));
+      auto font(action->font());
 
+      font.setBold(i == ui.tab->currentIndex());
       action->setCheckable(true);
       action->setChecked(i == ui.tab->currentIndex());
       action->setData(i);
+      action->setFont(font);
       connect(action,
 	      SIGNAL(triggered(void)),
 	      this,
