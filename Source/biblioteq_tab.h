@@ -48,7 +48,7 @@ class biblioteq_tab: public QTabWidget
 
   int addTab(QWidget *widget, const QString &title)
   {
-    return QTabWidget::addTab(widget, windowIcon(), title.trimmed());
+    return QTabWidget::addTab(widget, title.trimmed());
   }
 
  private:

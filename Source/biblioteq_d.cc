@@ -202,7 +202,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  this,
 	  SLOT(slotItemTitleChanged(const QString &)),
 	  Qt::QueuedConnection);
-  ui.tab->addTab(window, windowIcon(), title);
+  ui.tab->addTab(window, title);
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
