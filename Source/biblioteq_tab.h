@@ -41,9 +41,14 @@ class biblioteq_tab: public QTabWidget
   ~biblioteq_tab();
   QTabBar *tabBar(void) const;
 
+  int addTab(QWidget *widget, const QIcon &icon, const QString &title)
+  {
+    return QTabWidget::addTab(widget, icon, title.trimmed());
+  }
+
   int addTab(QWidget *widget, const QString &title)
   {
-    return QTabWidget::addTab(widget, title.trimmed());
+    return QTabWidget::addTab(widget, windowIcon(), title.trimmed());
   }
 
  private:

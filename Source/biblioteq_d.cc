@@ -202,7 +202,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  this,
 	  SLOT(slotItemTitleChanged(const QString &)),
 	  Qt::QueuedConnection);
-  ui.tab->addTab(window, title);
+  ui.tab->addTab(window, windowIcon(), title);
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
@@ -717,6 +717,7 @@ void biblioteq::prepareItemPagesMenu(void)
       action->setChecked(i == ui.tab->currentIndex());
       action->setData(i);
       action->setFont(font);
+      action->setIcon(ui.tab->tabIcon(i));
       connect(action,
 	      SIGNAL(triggered(void)),
 	      this,
