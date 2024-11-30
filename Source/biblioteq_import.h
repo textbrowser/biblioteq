@@ -42,6 +42,7 @@ class biblioteq_import: public QMainWindow
   ~biblioteq_import();
   void prepareIcons(void);
   void reset(void);
+  void setImportFile(const QString &fileName);
   void show(QMainWindow *parent);
 
  private:

@@ -2506,6 +2506,16 @@ void biblioteq::showMain(void)
 		    }
 	      }
 	  }
+	else if(list.at(i) == "--prepare-csv-import-file")
+	  {
+	    i += 1;
+
+	    if(i >= list.size())
+	      continue;
+
+	    m_import->setImportFile
+	      (QFileInfo(list.at(i).trimmed()).absoluteFilePath());
+	  }
 	else if(list.at(i) == "--special-executable")
 	  {
 	    i += 1;

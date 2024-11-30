@@ -890,6 +890,11 @@ void biblioteq_import::reset(void)
   slotReset();
 }
 
+void biblioteq_import::setImportFile(const QString &fileName)
+{
+  m_ui.csv_file->setText(fileName);
+}
+
 void biblioteq_import::show(QMainWindow *parent)
 {
   restoreGeometry(QSettings().value("import_geometry").toByteArray());
