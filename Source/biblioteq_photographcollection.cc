@@ -574,10 +574,9 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 {
   if(item)
     {
-      QMainWindow *mainWindow = nullptr;
       Ui_photographView ui;
+      auto mainWindow = new QMainWindow(this);
 
-      mainWindow = new QMainWindow(this);
       mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
       ui.setupUi(mainWindow);
       connect(ui.closeButton,
@@ -619,7 +618,8 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
       mainWindow->resize
 	(qRound(0.95 * size().width()), qRound(0.95 * size().height()));
       mainWindow->show();
-      biblioteq_misc_functions::center(mainWindow, this);
+      biblioteq_misc_functions::center
+	(mainWindow, parentWidget() ? m_parentWid : this);
       mainWindow->hide();
       scene->setProperty("view_size", ui.view->viewport()->size());
       ui.notes->setPlainText("");
@@ -1058,7 +1058,8 @@ void biblioteq_photographcollection::slotAddItem(void)
 	  this,
 	  SLOT(slotInsertItem(void)));
   m_photo_diag->resize(m_photo_diag->width(), qRound(0.95 * size().height()));
-  biblioteq_misc_functions::center(m_photo_diag, this);
+  biblioteq_misc_functions::center
+    (m_photo_diag, parentWidget() ? m_parentWid : this);
   photo.accession_number_item->clear();
   photo.call_number_item->clear();
   photo.copyright_item->setPlainText("N/A");
@@ -2313,7 +2314,8 @@ void biblioteq_photographcollection::slotModifyItem(void)
 	  this,
 	  SLOT(slotUpdateItem(void)));
   m_photo_diag->resize(m_photo_diag->width(), qRound(0.95 * size().height()));
-  biblioteq_misc_functions::center(m_photo_diag, this);
+  biblioteq_misc_functions::center
+    (m_photo_diag, parentWidget() ? m_parentWid : this);
   photo.id_item->setFocus();
   photo.scrollArea->ensureVisible(0, 0);
   m_photo_diag->show();

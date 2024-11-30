@@ -2316,7 +2316,8 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 	      auto reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
-	      biblioteq_misc_functions::center(reader, this);
+	      biblioteq_misc_functions::center
+		(reader, parentWidget() ? m_parentWid : this);
 	      reader->show();
 	    }
 
