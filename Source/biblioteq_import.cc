@@ -887,12 +887,19 @@ void biblioteq_import::prepareIcons(void)
 
 void biblioteq_import::reset(void)
 {
+  if(property("setImportFile").toBool())
+    {
+      setProperty("setImportFile", false);
+      return;
+    }
+
   slotReset();
 }
 
 void biblioteq_import::setImportFile(const QString &fileName)
 {
   m_ui.csv_file->setText(fileName);
+  setProperty("setImportFile", true);
 }
 
 void biblioteq_import::show(QMainWindow *parent)
