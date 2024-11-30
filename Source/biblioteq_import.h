@@ -88,6 +88,7 @@ class biblioteq_import: public QMainWindow
   void slotImport(void);
   void slotRefreshPreview(void);
   void slotReset(void);
+  void slotSaveOption(void);
   void slotSelectCSVFile(void);
   void slotSetGlobalFonts(const QFont &font);
   void slotTemplates(int index);

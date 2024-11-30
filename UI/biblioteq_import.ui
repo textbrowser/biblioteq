@@ -33,6 +33,19 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="show_progress_dialogs">
+         <property name="toolTip">
+          <string>Saved in the INI file. An import of a large file may not be gently canceled.</string>
+         </property>
+         <property name="text">
+          <string>Show Progress Dialogs</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLabel" name="label_105">
@@ -209,8 +222,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>699</width>
-            <height>426</height>
+            <width>714</width>
+            <height>395</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -624,6 +637,7 @@
   </action>
  </widget>
  <tabstops>
+  <tabstop>show_progress_dialogs</tabstop>
   <tabstop>csv_file</tabstop>
   <tabstop>select_csv_file</tabstop>
   <tabstop>preview</tabstop>

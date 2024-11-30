@@ -40,6 +40,8 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
   m_qmain = parent;
   m_ui.setupUi(this);
   m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
+  m_ui.show_progress_dialogs->setChecked
+    (QSettings().value("show_progress_dialogs_csv_import", true).toBool());
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -76,6 +78,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectCSVFile(void)));
+  connect(m_ui.show_progress_dialogs,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveOption(void)));
   connect(m_ui.templates,
 	  SIGNAL(activated(int)),
 	  this,
@@ -122,7 +128,7 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 				   qint64 *imported,
 				   qint64 *notImported)
 {
-  if(!progress || m_ui.csv_file->text().trimmed().isEmpty())
+  if(m_ui.csv_file->text().trimmed().isEmpty())
     return;
 
   QFile file(m_ui.csv_file->text());
@@ -200,13 +206,17 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
   while(ct++, !in.atEnd())
     {
-      if(progress->wasCanceled())
+      if(progress && progress->wasCanceled())
 	break;
       else
 	{
-	  progress->setLabelText
-	    (tr("Importing the CSV file. Processing line %1.").arg(ct));
-	  progress->repaint();
+	  if(progress)
+	    {
+	      progress->setLabelText
+		(tr("Importing the CSV file. Processing line %1.").arg(ct));
+	      progress->repaint();
+	    }
+
 	  QApplication::processEvents();
 	}
 
@@ -535,7 +545,7 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 				     qint64 *imported,
 				     qint64 *notImported)
 {
-  if(!progress || m_ui.csv_file->text().trimmed().isEmpty())
+  if(m_ui.csv_file->text().trimmed().isEmpty())
     return;
 
   QFile file(m_ui.csv_file->text());
@@ -590,13 +600,17 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 
   while(ct++, !in.atEnd())
     {
-      if(progress->wasCanceled())
+      if(progress && progress->wasCanceled())
 	break;
       else
 	{
-	  progress->setLabelText
-	    (tr("Importing the CSV file. Processing line %1.").arg(ct));
-	  progress->repaint();
+	  if(progress)
+	    {
+	      progress->setLabelText
+		(tr("Importing the CSV file. Processing line %1.").arg(ct));
+	      progress->repaint();
+	    }
+
 	  QApplication::processEvents();
 	}
 
@@ -734,17 +748,22 @@ void biblioteq_import::loadPreview(void)
   if(m_ui.csv_file->text().trimmed().isEmpty())
     return;
 
-  QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
+  QScopedPointer<QProgressDialog> progress(nullptr);
 
-  progress->setLabelText(tr("Reading the CSV file..."));
-  progress->setMaximum(0);
-  progress->setMinimum(0);
-  progress->setModal(true);
-  progress->setValue(0);
-  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress->show();
-  progress->repaint();
-  QApplication::processEvents();
+  if(m_ui.show_progress_dialogs->isChecked())
+    {
+      progress.reset(new QProgressDialog(this));
+      progress->setLabelText(tr("Reading the CSV file..."));
+      progress->setMaximum(0);
+      progress->setMinimum(0);
+      progress->setModal(true);
+      progress->setValue(0);
+      progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress->show();
+      progress->repaint();
+      QApplication::processEvents();
+    }
+
   m_ui.preview->clear();
   m_ui.preview->setColumnCount(0);
   m_ui.preview->setRowCount(0);
@@ -756,9 +775,16 @@ void biblioteq_import::loadPreview(void)
       QTextStream in(&file);
       int row = 0;
 
-      while(!in.atEnd() && !progress->wasCanceled())
+      while(!in.atEnd())
 	{
-	  progress->repaint();
+	  if(progress)
+	    {
+	      if(progress->wasCanceled())
+		break;
+
+	      progress->repaint();
+	    }
+
 	  QApplication::processEvents();
 
 	  auto const data(in.readLine().trimmed());
@@ -816,7 +842,7 @@ void biblioteq_import::loadPreview(void)
     }
 
   file.close();
-  progress->close();
+  progress ? (void) progress->close() : (void) 0;
   QApplication::processEvents();
 }
 
@@ -1181,17 +1207,23 @@ void biblioteq_import::slotImport(void)
       return;
     }
 
-  QScopedPointer<QProgressDialog> progress(new QProgressDialog(this));
+  QScopedPointer<QProgressDialog> progress(nullptr);
 
-  progress->setLabelText(tr("Importing the CSV file..."));
-  progress->setMaximum(0);
-  progress->setMinimum(0);
-  progress->setModal(true);
-  progress->setValue(0);
-  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress->show();
-  progress->repaint();
-  QApplication::processEvents();
+  if(m_ui.show_progress_dialogs->isChecked())
+    {
+      progress.reset(new QProgressDialog(this));
+      progress->setLabelText(tr("Importing the CSV file..."));
+      progress->setMaximum(0);
+      progress->setMinimum(0);
+      progress->setModal(true);
+      progress->setValue(0);
+      progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress->show();
+      progress->repaint();
+      QApplication::processEvents();
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   m_mappings = map;
 
   QStringList errors;
@@ -1224,7 +1256,8 @@ void biblioteq_import::slotImport(void)
   else if(index == static_cast<int> (Templates::TEMPLATE_3))
     importPatrons(progress.data(), errors, &imported, &notImported);
 
-  progress->close();
+  QApplication::restoreOverrideCursor();
+  progress ? (void) progress->close() : (void) 0;
   QApplication::processEvents();
 
   if(!errors.isEmpty())
@@ -1310,6 +1343,15 @@ void biblioteq_import::slotReset(void)
   m_ui.preview->setRowCount(0);
   m_ui.rows->setRowCount(0);
   m_ui.templates->setCurrentIndex(0);
+}
+
+void biblioteq_import::slotSaveOption(void)
+{
+  QSettings settings;
+
+  settings.setValue
+    ("show_progress_dialogs_csv_import",
+     m_ui.show_progress_dialogs->isChecked());
 }
 
 void biblioteq_import::slotSelectCSVFile(void)
