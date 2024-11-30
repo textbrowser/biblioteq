@@ -1094,6 +1094,8 @@ void biblioteq_import::slotDetectFields(void)
 	    index = comboBox->findText("id");
 	  else if(text.contains("13"))
 	    index = comboBox->findText("isbn13");
+	  else if(text.contains("multi"))
+	    index = comboBox->findText("multivolume_set_isbn");
 	  else
 	    index = comboBox->findText("id");
 	}
@@ -1114,7 +1116,12 @@ void biblioteq_import::slotDetectFields(void)
       else if(text.contains("target"))
 	index = comboBox->findText("target_audience");
       else if(text.contains("volume"))
-	index = comboBox->findText("volume_number");
+	{
+	  if(text.contains("multi"))
+	    index = comboBox->findText("multivolume_set_isbn");
+	  else
+	    index = comboBox->findText("volume_number");
+	}
       else
 	index = comboBox->findText(text);
 
