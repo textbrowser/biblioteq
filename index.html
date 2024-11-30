@@ -111,6 +111,7 @@
 	  <li>Sparc64 support.</li>
 	  <li>Support for multiple SRU and Z39.50 sites.</li>
 	  <li>Support for requesting unavailable items.</li>
+	  <li>Tabbed item panels!</li>
 	  <li>Threaded data retrieval via the standard Z39.50 protocol for books, journals, and magazines.</li>
 	  <li>Transactional database queries.</li>
 	  <li>True PostgreSQL and SQLite pagination.</li>
@@ -119,6 +120,102 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>December 1, 2024.</p>
+	<ul>
+	  <li>261 releases of BiblioteQ!</li>
+	  <li>Abundant constants. Please report weird events.</li>
+	  <li>Added DROP statements in postgresql_destroy_schema.sql. Not a
+	    single sprite ushered a complaint.</li>
+	  <li>Allow only unique items in Batch Activities Browser ->
+	    Discover. Uniqueness is defined via the Identifier column.</li>
+	  <li>Awesome button colors. The previous edition featured buttons
+	    having full colors.</li>
+	  <li>Batch Activities is incomplete regarding reservation histories.
+	    That is, history entries were not created for borrowed items.
+	    GitHub ticket #373.</li>
+	  <li>CSV Import Browser: guess BiblioteQ Table Field Name values
+	    according to the contents of the CSV file.
+	    GitHub ticket #376.</li>
+	  <li>CSV Import Browser: highlight CSV Preview cells in Templates
+	    table. Cells are highlighted if values are missing or present.
+	    GitHub ticket #376.</li>
+	  <li>CSV Import Browser: optionally refresh the main window's view
+	    after an import event of Template 1 and Template 2. A prompt
+	    is displayed if at least one item is imported. Books category.</li>
+	  <li>CSV Import Browser: replaced Templates signal
+	    current-index-changed() with activated().</li>
+	  <li>CSV Import Browser: writable CSV File widget.</li>
+	  <li>Corrected biblioteq.win.pro. Deleting debug plugins may
+	    delete required plugins files in the install target. Qt 6.5 LTS
+	    has separated the debug and release files and the additional logic
+	    in biblioteq.win.pro is not necessary.
+	    GitHub tickets #374, #375.</li>
+	  <li>Disable the Go! button in Batch Activities Browser if the current
+	    page is Discover.</li>
+	  <li>Display a reminder if a requested item has been returned on SQLite.
+	    Other Options -> SQLite. GitHub ticket #350.</li>
+	  <li>Display all reserved items in the main table if the
+	    Batch Activities Browser -> Return table is empty during a Go!
+	    event.</li>
+	  <li>Include the account's database role in the main window's title
+	    for a PostgreSQL connection.</li>
+	  <li>Include the member's identifier in Member's Reservation History
+	    window title.</li>
+	  <li>Into the never-future with Poppler and Qt.</li>
+	  <li>List number of lines in CSV; CSV Import Browser.</li>
+	  <li>Missing Qt TLS libraries / plugins on Windows. Also read
+	    item covering biblioteq.win.pro.
+	    GitHub tickets #374, #375.</li>
+	  <li>New Options -> Center Child Windows.
+	    Most windows and some dialogs.</li>
+	  <li>New Options -> Patron Reservation History.</li>
+	  <li>New Options -> Tabbed Item Windows. Enabled. New windows
+	    only.</li>
+	  <li>New Other Options -> Main Window -> Only UTF-8 Printable Text.
+	    If enabled, cell text in the main window will only contain printable
+	    UTF-8 characters.</li>
+	  <li>New no_image.png image.</li>
+	  <li>New terminal option --open-sqlite-database-index index, where
+	    index is the index of the entry in the Recent SQLite Files
+	    menu. First index is one.</li>
+	  <li>Optional progress dialogs in CSV Import Browser.
+	    GitHub ticket #384.</li>
+	  <li>Q_OS_WIN -> Q_OS_WINDOWS.</li>
+	  <li>Poppler and Qt 6. Poppler is an exterior product covering PDF
+	    documents.</li>
+	  <li>Populate entries in the Recent SQLite Files menu with values
+	    adjusted with QFileInfo.</li>
+	  <li>PostgreSQL 15.10.1; Windows.</li>
+	  <li>PostgreSQL: grant delete on item_borrower to
+	    biblioteq_librarian.</li>
+	  <li>QSqlQueryModel::setQuery() has a new signature since Qt 6.2.</li>
+	  <li>Record and restore window geometries: Batch Activity Browser,
+	    CSV Import Browser, Database Enumerations Browser, Merge SQLite
+	    Databases, Other Options, Query History.
+	    Geometries are restored before windows are optionally centered.</li>
+	  <li>Removed GNOME-specific geometry instructions.</li>
+	  <li>Retrieve the absolute file paths for arguments of
+	    --special-executable and --special-executable-icon.</li>
+	  <li>SRU@France is now HTTPS in biblioteq.conf.</li>
+	  <li>Set QMAKE_MACOSX_DEPLOYMENT_TARGET to 13.0 in
+	    biblioteq.macos.pro.</li>
+	  <li>Set the height of the member dialog as
+	    maximum(-100 + m_members_diag->height(),
+	    userinfo_diag->sizeHint().height()).</li>
+	  <li>Sort Recent SQLite Files entries.</li>
+	  <li>Spelling corrections in this document.</li>
+	  <li>Tabbed item windows! Please report glitches.</li>
+	  <li>The method biblioteq_misc_functions::isbn13to10() will now
+	    produce the original string if the string does not begin with
+	    978. GitHub ticket #350.</li>
+	  <li>The sample CSV file (Data/BiblioteQ.csv) now reflects the
+	    sample SQLite database (Data/BiblioteQ.sqlite) with respect to
+	    books.</li>
+	  <li>Trim header strings in CSV Import Browser. The strings are
+	    trimmed for both the CSV Preview and Templates tables.</li>
+	  <li>Utilize either ISBN-10 or ISBN-13 for Copy Browser and
+	    Item Reservation Status; first available value.</li>
+	</ul>
 	<p>June 30, 2024.</p>
 	<ul>
 	  <li>260 releases of BiblioteQ!</li>
