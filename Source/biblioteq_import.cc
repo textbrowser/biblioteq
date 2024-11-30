@@ -40,8 +40,8 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
   m_qmain = parent;
   m_ui.setupUi(this);
   m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
-  m_ui.show_progress_dialogs->setChecked
-    (QSettings().value("show_progress_dialogs_csv_import", true).toBool());
+  m_ui.show_progress_dialogs->setChecked(true);
+  m_ui.show_progress_dialogs->setVisible(false);
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -1233,10 +1233,13 @@ void biblioteq_import::slotImport(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_mappings = map;
 
+  QElapsedTimer elapsed;
   QStringList errors;
   auto const index = m_ui.templates->currentIndex();
   qint64 imported = 0;
   qint64 notImported = 0;
+
+  elapsed.start();
 
   if(index == static_cast<int> (Templates::TEMPLATE_1))
     /*
@@ -1275,9 +1278,11 @@ void biblioteq_import::slotImport(void)
       QString errorstr("");
       Ui_generalmessagediag ui;
 
-      errors.prepend(tr("Imported: %1. Not imported: %2.\n").
-		     arg(imported).
-		     arg(notImported));
+      errors.prepend
+	(tr("Imported: %1. Not imported: %2. Elapsed second(s): %3.\n").
+	 arg(imported).
+	 arg(notImported).
+	 arg(elapsed.elapsed() / 1000));
 
       for(int i = 0; i < errors.size(); i++)
 	{
@@ -1299,7 +1304,8 @@ void biblioteq_import::slotImport(void)
     QMessageBox::information
       (this,
        tr("BiblioteQ: Information"),
-       tr("Imported: %1. Not imported: %2.").arg(imported).arg(notImported));
+       tr("Imported: %1. Not imported: %2. Elapsed second(s): %3.").
+       arg(imported).arg(notImported).arg(elapsed.elapsed() / 1000));
 
   QApplication::processEvents();
 
