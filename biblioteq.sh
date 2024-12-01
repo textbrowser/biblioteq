@@ -6,11 +6,11 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # Disable https://en.wikipedia.org/wiki/MIT-SHM.
 
 export QT_X11_NO_MITSHM=1
-kubuntu="$(env | grep -i kubuntu &>/dev/null)"
+kde="$(env | grep -i kde &>/dev/null)"
 
-if [ ! -z "$kubuntu" ]
+if [ ! -z "$kde" ]
 then
-    echo "Kubuntu!"
+    echo "KDE!"
     style="-style=Breeze"
 else
     style="-style=Fusion"
