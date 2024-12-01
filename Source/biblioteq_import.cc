@@ -756,6 +756,7 @@ void biblioteq_import::loadPreview(void)
       progress->setLabelText(tr("Reading the CSV file..."));
       progress->setMaximum(0);
       progress->setMinimum(0);
+      progress->setMinimumWidth(2 * progress->sizeHint().width());
       progress->setModal(true);
       progress->setValue(0);
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -1234,6 +1235,7 @@ void biblioteq_import::slotImport(void)
       progress->setLabelText(tr("Importing the CSV file..."));
       progress->setMaximum(0);
       progress->setMinimum(0);
+      progress->setMinimumWidth(2 * progress->sizeHint().width());
       progress->setModal(true);
       progress->setValue(0);
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
