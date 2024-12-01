@@ -1,6 +1,6 @@
 <html>
   <body>
-    <p><u>30 Octobre 2024.</u></p>
+    <p><u>1 Décembre 2024.</u></p>
     <ul>
       <li>261 version de BiblioteQ !</li>
       <li>Constantes abondantes. Veuillez signaler les événements bizarres.</li>
@@ -24,12 +24,15 @@
       <li>Bibliothèques / plugins Qt TLS manquants sous Windows. Lire aussi l'article couvrant biblioteq.win.pro. <b>Ticket GitHub #374, #375.</b></li>
       <li>Nouvelle options -> Centrer les fenêtres enfant. La plupart des fenêtres et certaines boîtes de dialogue.</li>
       <li>Nouvelle options -> Historique des réservations de l'utilisateur.</li>
+      <li>Nouvelles options -> Fenêtres d'éléments à onglets. Activé. Nouvelles fenêtres uniquement.</li>
       <li>Nouvelle Autres options -> Fenêtre principale -> Texte imprimable UTF-8 uniquement. Si cette option est activée, le texte des cellules de la fenêtre principale ne contiendra que des caractères UTF-8 imprimables.</li>
+      <li>Nouvelle image no_image.png.</li>
       <li>Nouvelle option de terminal --open-sqlite-database-index index, où index est l'index de l'entrée dans le menu Recent SQLite Files.</li>
       <li>Q_OS_WIN -> Q_OS_WINDOWS.</li>
       <li>Poppler et Qt 6. Poppler est un produit extérieur qui couvre les documents PDF.</li>
       <li>Remplir les entrées du menu Fichiers SQLite récents avec des valeurs ajustées avec QFileInfo.</li>
-      <li>PostgreSQL 15.8.1; Windows.</li>
+      <li>PostgreSQL 15.10.1; Windows.</li>
+      <li>PostgreSQL : accorder la suppression sur item_borrower à biblioteq_librarian.</li>
       <li>QSqlQueryModel::setQuery() a une nouvelle signature depuis Qt 6.2.</li>
       <li>Enregistrement et restauration des géométries de fenêtres : Navigateur d'activités par lots, navigateur d'importation CSV, navigateur d'énumérations de bases de données, fusion de bases de données SQLite, autres options, historique des requêtes. Les géométries sont restaurées avant que les fenêtres ne soient éventuellement centrées.</li>
       <li>Suppression des instructions de géométrie spécifiques à GNOME.</li>
@@ -37,6 +40,9 @@
       <li>SRU@France est maintenant avec HTTPS dans biblioteq.conf.</li>
       <li>Définisser QMAKE_MACOSX_DEPLOYMENT_TARGET à 12.0 dans	biblioteq.macos.pro.</li>
       <li>Définir la hauteur de la boîte de dialogue des membres comme maximum(-100 + m_members_diag->height(), userinfo_diag->sizeHint().height()).</li>
+      <li>Trier les entrées récentes des fichiers SQLite.</li>
+      <li>Corrections orthographiques dans ce document.</li>
+      <li>Fenêtres d'éléments à onglets ! Merci de nous signaler les problèmes.</li>
       <li>La méthode biblioteq_misc_functions::isbn13to10() produira désormais la chaîne originale si la chaîne ne commence pas par 978. <b>Ticket GitHub #350.</b></li>
       <li>Le fichier CSV d'exemple (Data/BiblioteQ.csv) reflète maintenant la base de données SQLite d'exemple (Data/BiblioteQ.sqlite) en ce qui concerne les livres.</li>
       <li>Découpe des chaînes d'en-tête dans le navigateur d'importation CSV. Les chaînes sont coupées à la fois pour l'aperçu CSV et pour les tables de modèles.</li>
