@@ -31,6 +31,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QTimer>
+#include <QtMath>
 
 biblioteq_copy_editor::biblioteq_copy_editor
 (QWidget *parent, biblioteq *biblioteq):QDialog(parent)
@@ -120,6 +121,9 @@ QString biblioteq_copy_editor::saveCopies(void)
       progress.setLabelText(tr("Saving the copy data..."));
       progress.setMaximum(m_copies.size());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
@@ -389,6 +393,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
+  progress1.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress1.sizeHint().width()));
   progress1.setModal(true);
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.show();
@@ -517,6 +524,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   QApplication::restoreOverrideCursor();
   progress2.setLabelText(tr("Retrieving copy information..."));
   progress2.setMinimum(0);
+  progress2.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress2.sizeHint().width()));
   progress2.setModal(true);
   progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 

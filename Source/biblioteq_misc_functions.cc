@@ -32,6 +32,7 @@
 #include <QDir>
 #include <QProgressDialog>
 #include <QSettings>
+#include <QtMath>
 
 QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QString &which,
@@ -2442,6 +2443,9 @@ void biblioteq_misc_functions::exportPhotographs
   progress.setLabelText(QObject::tr("Exporting image(s)..."));
   progress.setMaximum(items.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -2502,6 +2506,9 @@ void biblioteq_misc_functions::exportPhotographs
 
   progress.setLabelText(QObject::tr("Exporting image(s)..."));
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
   progress.show();

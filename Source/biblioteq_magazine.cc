@@ -48,6 +48,7 @@
 #include <QSqlRecord>
 #include <QTimer>
 #include <QXmlStreamReader>
+#include <QtMath>
 
 biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 				       const QString &oidArg,
@@ -2035,6 +2036,9 @@ void biblioteq_magazine::slotAttachFiles(void)
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
@@ -2231,6 +2235,9 @@ void biblioteq_magazine::slotExportFiles(void)
       progress.setLabelText(tr("Exporting file(s)..."));
       progress.setMaximum(list.size());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();

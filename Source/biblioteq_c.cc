@@ -705,6 +705,9 @@ int biblioteq::populateTable(QSqlQuery *query,
       progress->setLabelText(tr("Populating the views..."));
       progress->setMaximum(limit == -1 ? 0 : limit);
       progress->setMinimum(0);
+      progress->setMinimumWidth
+	(qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress->sizeHint().width()));
       progress->setModal(true);
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       raise();
@@ -4821,6 +4824,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   progress->setLabelText(tr("Populating the table..."));
   progress->setMinimum(0);
+  progress->setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress->sizeHint().width()));
   progress->setModal(true);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
@@ -4951,6 +4956,8 @@ void biblioteq::slotRefreshAdminList(void)
   progress->setLabelText(tr("Populating the table..."));
   progress->setMaximum(query.size());
   progress->setMinimum(0);
+  progress->setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress->sizeHint().width()));
   progress->setModal(true);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();
@@ -5276,6 +5283,8 @@ void biblioteq::slotRequest(void)
 
   progress.setMaximum(list.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -5632,6 +5641,8 @@ void biblioteq::slotSaveAdministrators(void)
   progress.setLabelText(tr("Saving administrator information..."));
   progress.setMaximum(ab.table->rowCount());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -6913,6 +6924,8 @@ void biblioteq::slotShowHistory(void)
   progress->setLabelText(tr("Populating the table..."));
   progress->setMaximum(history.table->rowCount());
   progress->setMinimum(0);
+  progress->setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress->sizeHint().width()));
   progress->setModal(true);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();
@@ -7043,6 +7056,8 @@ void biblioteq::slotVacuum(void)
   progress.setCancelButton(nullptr);
   progress.setMaximum(0);
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Vacuuming Database"));
   progress.show();

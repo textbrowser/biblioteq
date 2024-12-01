@@ -31,6 +31,7 @@
 #include <QPushButton>
 #include <QSettings>
 #include <QSqlRecord>
+#include <QtMath>
 
 #include "biblioteq.h"
 #include "biblioteq_sqlite_merge_databases.h"
@@ -208,6 +209,9 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
   progress->setLabelText(tr("Merging databases..."));
   progress->setMaximum(0);
   progress->setMinimum(0);
+  progress->setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress->sizeHint().width()));
   progress->setModal(true);
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();

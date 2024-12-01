@@ -31,6 +31,7 @@
 
 #include <QScrollBar>
 #include <QSettings>
+#include <QtMath>
 
 biblioteq_borrowers_editor::biblioteq_borrowers_editor
 (QWidget *parent,
@@ -244,6 +245,9 @@ void biblioteq_borrowers_editor::showUsers(void)
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
+  progress1.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress1.sizeHint().width()));
   progress1.setModal(true);
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.show();
@@ -326,6 +330,9 @@ void biblioteq_borrowers_editor::showUsers(void)
   QApplication::restoreOverrideCursor();
   progress2.setLabelText(tr("Retrieving borrower data..."));
   progress2.setMinimum(0);
+  progress2.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress2.sizeHint().width()));
   progress2.setModal(true);
   progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
@@ -623,6 +630,9 @@ void biblioteq_borrowers_editor::slotSave(void)
   progress.setLabelText(tr("Updating the due dates..."));
   progress.setMaximum(m_bd.table->rowCount());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();

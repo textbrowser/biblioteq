@@ -36,6 +36,7 @@
 #include <QShortcut>
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QtMath>
 
 biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QString &oidArg,
@@ -2049,6 +2050,9 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
   progress.setMinimum(0);
   progress.setModal(true);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
   progress.repaint();
@@ -2514,6 +2518,9 @@ void biblioteq_cd::slotSaveTracks(void)
       progress.setLabelText(tr("Saving the track data..."));
       progress.setMaximum(trd.table->rowCount());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();

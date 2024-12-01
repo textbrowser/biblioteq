@@ -38,7 +38,7 @@
 #include <QSqlRecord>
 #include <QTextBrowser>
 #include <QUuid>
-#include <QtCore/qmath.h>
+#include <QtMath>
 
 #include <limits>
 
@@ -948,6 +948,9 @@ void biblioteq_photographcollection::showPhotographs(const int page)
   progress.setLabelText(tr("Loading image(s)..."));
   progress.setMaximum(0);
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -1167,6 +1170,9 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   progress.setLabelText(tr("Deleting the selected item(s)..."));
   progress.setMaximum(items.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -1913,6 +1919,9 @@ void biblioteq_photographcollection::slotImportItems(void)
   progress.setLabelText(tr("Importing image(s)..."));
   progress.setMaximum(files.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();

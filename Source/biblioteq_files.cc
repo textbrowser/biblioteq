@@ -177,6 +177,9 @@ void biblioteq_files::slotExport(void)
   progress.setLabelText(tr("Exporting file(s)..."));
   progress.setMaximum(list.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -237,6 +240,9 @@ void biblioteq_files::slotRefresh(void)
   progress.setLabelText(tr("Populating..."));
   progress.setMaximum(0);
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();

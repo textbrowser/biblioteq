@@ -36,6 +36,7 @@
 #include <QSysInfo>
 #include <QTranslator>
 #include <QtDebug>
+#include <QtMath>
 
 #include <limits>
 
@@ -79,6 +80,7 @@ QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = "UNKNOWN";
 QTranslator *biblioteq::s_appTranslator = nullptr;
 QTranslator *biblioteq::s_qtTranslator = nullptr;
+qreal biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER = 2.5;
 
 int main(int argc, char *argv[])
 {
@@ -3074,6 +3076,8 @@ void biblioteq::slotDelete(void)
   progress.setLabelText(tr("Deleting the selected item(s)..."));
   progress.setMaximum(list.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
@@ -3573,6 +3577,8 @@ void biblioteq::slotGrantPrivileges(void)
   progress.setLabelText(tr("Granting privileges..."));
   progress.setMaximum(bb.table->rowCount());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER * progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();

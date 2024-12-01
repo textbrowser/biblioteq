@@ -39,6 +39,7 @@
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QUuid>
+#include <QtMath>
 
 biblioteq_grey_literature::biblioteq_grey_literature(biblioteq *parentArg,
 						     const QString &oidArg,
@@ -967,6 +968,9 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
@@ -1145,6 +1149,9 @@ void biblioteq_grey_literature::slotExportFiles(void)
   progress.setLabelText(tr("Exporting file(s)..."));
   progress.setMaximum(list.size());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();

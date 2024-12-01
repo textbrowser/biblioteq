@@ -40,6 +40,7 @@
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QStandardPaths>
+#include <QtMath>
 
 QString biblioteq::homePath(void)
 {
@@ -3611,6 +3612,9 @@ int biblioteq::populateTable(const int search_type_arg,
       progress->setLabelText(tr("Populating the views..."));
       progress->setMaximum(limit == -1 ? 0 : limit);
       progress->setMinimum(0);
+      progress->setMinimumWidth
+	(qCeil(PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress->sizeHint().width()));
       progress->setModal(true);
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       raise();

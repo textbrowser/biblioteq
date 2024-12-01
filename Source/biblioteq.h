@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2024.12.01"
+#define BIBLIOTEQ_VERSION "2024.12.20"
 
 #include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
@@ -300,6 +300,7 @@ class biblioteq: public QMainWindow
   static const int POPULATE_SEARCH_BASIC = 3;
   static const int PREVIOUS_PAGE = 2;
   static const int VIEW_ONLY = 1;
+  static qreal PROGRESS_DIALOG_WIDTH_MULTIPLIER;
   biblioteq(void);
   ~biblioteq();
   QColor availabilityColor(const QString &itemType) const;

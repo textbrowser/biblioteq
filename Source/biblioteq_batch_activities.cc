@@ -32,6 +32,7 @@
 #include <QSettings>
 #include <QSqlQueryModel>
 #include <QTextStream>
+#include <QtMath>
 
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
@@ -167,6 +168,9 @@ void biblioteq_batch_activities::borrow(void)
   progress.setLabelText(tr("Borrowing item(s)..."));
   progress.setMaximum(m_ui.borrow_table->rowCount());
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();

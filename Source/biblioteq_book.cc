@@ -44,6 +44,7 @@
 #include <QSqlRecord>
 #include <QTimer>
 #include <QXmlStreamReader>
+#include <QtMath>
 
 biblioteq_book::biblioteq_book(biblioteq *parentArg,
 			       const QString &oidArg,
@@ -684,6 +685,9 @@ biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
   dialog->setLabelText(tr("Downloading..."));
   dialog->setMaximum(0);
   dialog->setMinimum(0);
+  dialog->setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   dialog->sizeHint().width()));
   dialog->setModal(true);
 
   if(downloadType.contains("back"))
@@ -812,6 +816,9 @@ void biblioteq_book::createOpenLibraryDialog(void)
   m_openLibraryWorking->setLabelText(tr("Downloading..."));
   m_openLibraryWorking->setMaximum(0);
   m_openLibraryWorking->setMinimum(0);
+  m_openLibraryWorking->setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   m_openLibraryWorking->sizeHint().width()));
   m_openLibraryWorking->setModal(true);
   m_openLibraryWorking->setWindowTitle
     (tr("BiblioteQ: Open Library Data Retrieval"));
@@ -836,6 +843,9 @@ void biblioteq_book::createSRUDialog(void)
   m_sruWorking->setLabelText(tr("Downloading..."));
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
+  m_sruWorking->setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   m_sruWorking->sizeHint().width()));
   m_sruWorking->setModal(true);
   m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
   connect(m_sruWorking,
@@ -2373,6 +2383,9 @@ void biblioteq_book::slotAttachFiles(void)
       progress.setLabelText(tr("Uploading files..."));
       progress.setMaximum(files.size());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
@@ -2970,6 +2983,9 @@ void biblioteq_book::slotExportFiles(void)
       progress.setLabelText(tr("Exporting file(s)..."));
       progress.setMaximum(list.size());
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.show();
@@ -5531,11 +5547,14 @@ void biblioteq_book::slotZ3950Query(void)
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
   working.setCancelButton(nullptr);
-  working.setModal(true);
-  working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
   working.setLabelText(tr("Downloading..."));
   working.setMaximum(0);
   working.setMinimum(0);
+  working.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   working.sizeHint().width()));
+  working.setModal(true);
+  working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
   working.resize(working.sizeHint());
   working.show();
   working.update();

@@ -25,6 +25,7 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include "biblioteq.h"
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_pdfreader.h"
 
@@ -39,6 +40,7 @@
 #include <QProgressDialog>
 #include <QResizeEvent>
 #include <QScrollBar>
+#include <QtMath>
 
 #include <limits>
 
@@ -387,6 +389,9 @@ void biblioteq_pdfreader::slotPrint(void)
       progress.setLabelText(tr("Printing PDF..."));
       progress.setMaximum(0);
       progress.setMinimum(0);
+      progress.setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress.sizeHint().width()));
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       biblioteq_misc_functions::center
@@ -473,6 +478,9 @@ void biblioteq_pdfreader::slotPrintPreview(QPrinter *printer)
 
   progress.setMaximum(0);
   progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   biblioteq_misc_functions::center
