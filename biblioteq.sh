@@ -7,6 +7,15 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 export QT_X11_NO_MITSHM=1
 
+$(lsb_release -a | grep -i kubuntu 2>/dev/null)
+
+if [ $? -eq 0 ]
+then
+    style="-style=Breeze"
+else
+    style="-style=Fusion"
+fi
+
 if [ -r ./BiblioteQ ] && [ -x ./BiblioteQ ]
 then
     echo "Launching a local BiblioteQ."
@@ -16,14 +25,14 @@ then
 	export LD_LIBRARY_PATH=Lib
     fi
 
-    exec ./BiblioteQ -style=Breeze "$@"
+    exec ./BiblioteQ "$style" "$@"
     exit $?
 fi
 
 if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
-    cd /opt/biblioteq && exec ./BiblioteQ -style=Breeze "$@"
+    cd /opt/biblioteq && exec ./BiblioteQ "$style" "$@"
     exit $?
 fi
 
@@ -31,7 +40,7 @@ if [ -r /usr/local/biblioteq/BiblioteQ ] &&
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
-    cd /usr/local/biblioteq && exec ./BiblioteQ -style=Breeze "$@"
+    cd /usr/local/biblioteq && exec ./BiblioteQ "$style" "$@"
     exit $?
 fi
 
