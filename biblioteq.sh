@@ -6,9 +6,9 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # Disable https://en.wikipedia.org/wiki/MIT-SHM.
 
 export QT_X11_NO_MITSHM=1
-kde="$(env | grep -i kde &>/dev/null)"
+kde=$(env | grep -ci kde 2>/dev/null)
 
-if [ ! -z "$kde" ]
+if [ $kde -gt 0 ]
 then
     echo "KDE!"
     style="-style=Breeze"
