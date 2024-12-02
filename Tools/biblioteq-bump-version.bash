@@ -23,6 +23,8 @@ FILE="Source/biblioteq.h"
 
 sed -i 's/\(BIBLIOTEQ_VERSION "\)[0-9]\+\(\.[0-9]\+\)*"/\1'"$VERSION"'"/' \
     $FILE
+sed -i 's/\(BIBLIOTEQ_VERSION_LTS "\)[0-9]\+\(\.[0-9]\+\)*"/\1'"$VERSION"'"/' \
+    $FILE
 
 # Android manifest file.
 

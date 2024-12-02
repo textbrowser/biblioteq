@@ -180,7 +180,7 @@ biblioteq::biblioteq(void):QMainWindow()
 {
   m_swifty = new swifty
     (BIBLIOTEQ_VERSION,
-     "#define BIBLIOTEQ_VERSION",
+     "#define BIBLIOTEQ_VERSION_LTS",
      QUrl::fromUserInput("https://raw.githubusercontent.com/"
 			 "textbrowser/biblioteq/master/Source/biblioteq.h"),
      this);
@@ -2582,7 +2582,8 @@ void biblioteq::slotAbout(void)
 				  Qt::SmoothTransformation));
   m_about->setStandardButtons(QMessageBox::Close);
   m_about->setText
-    (tr("<html>BiblioteQ Version %1<br>"
+    (tr("<html>BiblioteQ Local Version %1<br>"
+	"BiblioteQ Official Version %9<br>"
 	"Architecture %4.<br>"
 	"Compiled on %2, %3.<br>"
 	"Made with love by textbrower.<br>"
@@ -2612,10 +2613,11 @@ void biblioteq::slotAbout(void)
      arg(QT_VERSION_STR).
      arg(qversion).
 #ifdef BIBLIOTEQ_LINKED_WITH_YAZ
-     arg(YAZ_VERSION));
+     arg(YAZ_VERSION).
 #else
-     arg(tr("is not available")));
+     arg(tr("is not available")).
 #endif
+     arg(BIBLIOTEQ_VERSION_LTS));
   m_about->button(QMessageBox::Close)->setShortcut(tr("Ctrl+W"));
   m_about->setTextFormat(Qt::RichText);
   m_about->setWindowIcon(windowIcon());

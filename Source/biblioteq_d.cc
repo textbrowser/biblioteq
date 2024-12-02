@@ -1500,10 +1500,11 @@ void biblioteq::slotSwifty(void)
     return;
 
   auto const version1(QString(BIBLIOTEQ_VERSION).remove('.').toLong());
-  auto const version2
+  auto const version2(QString(BIBLIOTEQ_VERSION_LTS).remove('.').toLong());
+  auto const version3
     (m_swifty->newest_version().remove('.').trimmed().toLong());
 
-  if(version1 < version2)
+  if(version1 < version3 || version2 < version3)
     {
       QTimer::singleShot(10000, this, SLOT(slotSwifty(void)));
       statusBar()->showMessage
