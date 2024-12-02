@@ -1499,16 +1499,15 @@ void biblioteq::slotSwifty(void)
   if(!statusBar())
     return;
 
-  auto const version1(QString(BIBLIOTEQ_VERSION).remove('.').toLong());
-  auto const version2(QString(BIBLIOTEQ_VERSION_LTS).remove('.').toLong());
-  auto const version3
+  auto const version1(QString(BIBLIOTEQ_VERSION_LTS).remove('.').toLong());
+  auto const version2
     (m_swifty->newest_version().remove('.').trimmed().toLong());
 
-  if(version1 < version3 || version2 < version3)
+  if(version1 < version2)
     {
       QTimer::singleShot(10000, this, SLOT(slotSwifty(void)));
       statusBar()->showMessage
-	(tr("A new version %1 of BiblioteQ is available!").
+	(tr("A new official version %1 of BiblioteQ is available!").
 	 arg(m_swifty->newest_version().trimmed()),
 	 10000);
     }
