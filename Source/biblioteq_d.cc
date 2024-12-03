@@ -164,10 +164,22 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 
 	  if(index > 0)
 	    {
+	      m_attachedWindows << window;
 	      ui.tab->removeTab(index);
 	      prepareTabWidgetCloseButtons();
 	      window->setParent(nullptr, window->windowFlags());
-	      QTimer::singleShot(250, window, SLOT(show(void)));
+	      QTimer::singleShot(150, this, SLOT(slotDetachTabbed(void)));
+	    }
+	  else
+	    {
+#ifdef Q_OS_ANDROID
+	      window->showMaximized();
+#else
+	      biblioteq_misc_functions::center(window, this);
+	      window->showNormal();
+#endif
+	      window->activateWindow();
+	      window->raise();
 	    }
 	}
 
@@ -981,6 +993,26 @@ void biblioteq::slotDelayedPreparation(void)
       QApplication::processEvents();
     }
 #endif
+}
+
+void biblioteq::slotDetachTabbed(void)
+{
+  for(int i = m_attachedWindows.size() - 1; i >=0; i--)
+    {
+      auto window = m_attachedWindows.takeAt(i);
+
+      if(window)
+	{
+#ifdef Q_OS_ANDROID
+	  window->showMaximized();
+#else
+	  biblioteq_misc_functions::center(window, this);
+	  window->showNormal();
+#endif
+	  window->activateWindow();
+	  window->raise();
+	}
+    }
 }
 
 void biblioteq::slotExecuteQuery(const QString &text)

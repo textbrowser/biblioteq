@@ -503,6 +503,7 @@ class biblioteq: public QMainWindow
   QStringList m_specialExecutablesIcons;
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;
+  QVector<QPointer<QMainWindow> > m_attachedWindows;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
   QVector<QString> m_historyColumnHeaderIndexes;
@@ -592,6 +593,7 @@ class biblioteq: public QMainWindow
   void slotDelayedPreparation(void);
   void slotDelete(void);
   void slotDeleteAdmin(void);
+  void slotDetachTabbed(void);
   void slotDisconnect(void);
   void slotDisplayNewSqliteDialog(void);
   void slotDuplicate(void);

@@ -3392,11 +3392,9 @@ void biblioteq::slotDisconnect(void)
 
   br.show_password->setChecked(false);
   m_allSearchShown = false;
+  m_attachedWindows.clear();
   m_batchActivities->reset();
-
-  if(m_files)
-    m_files->reset();
-
+  m_files ? m_files->reset() : (void) 0;
   m_import->reset();
   m_membersWasRefreshed = false;
   m_roles = "";
@@ -4168,14 +4166,8 @@ void biblioteq::slotGreyLiteratureSearch(void)
 	      gl,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  gl->showMaximized();
-#else
-  gl->showNormal();
-#endif
-  gl->activateWindow();
-  gl->raise();
+  else
+    addItemWindowToTab(gl);
 }
 
 void biblioteq::slotInsertGreyLiterature(void)

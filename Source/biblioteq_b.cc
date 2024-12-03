@@ -4385,14 +4385,8 @@ void biblioteq::slotBookSearch(void)
 	      book,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  book->showMaximized();
-#else
-  book->showNormal();
-#endif
-  book->activateWindow();
-  book->raise();
+  else
+    addItemWindowToTab(book);
 }
 
 void biblioteq::slotCDSearch(void)
@@ -4423,14 +4417,8 @@ void biblioteq::slotCDSearch(void)
 	      cd,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  cd->showMaximized();
-#else
-  cd->showNormal();
-#endif
-  cd->activateWindow();
-  cd->raise();
+  else
+    addItemWindowToTab(cd);
 }
 
 void biblioteq::slotContextMenu(const QPoint &point)
@@ -4467,14 +4455,8 @@ void biblioteq::slotDVDSearch(void)
 	      dvd,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  dvd->showMaximized();
-#else
-  dvd->showNormal();
-#endif
-  dvd->activateWindow();
-  dvd->raise();
+  else
+    addItemWindowToTab(dvd);
 }
 
 void biblioteq::slotJournSearch(void)
@@ -4506,14 +4488,8 @@ void biblioteq::slotJournSearch(void)
 	      journal,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  journal->showMaximized();
-#else
-  journal->showNormal();
-#endif
-  journal->activateWindow();
-  journal->raise();
+  else
+    addItemWindowToTab(journal);
 }
 
 void biblioteq::slotMagSearch(void)
@@ -4551,14 +4527,8 @@ void biblioteq::slotMagSearch(void)
 	      magazine,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  magazine->showMaximized();
-#else
-  magazine->showNormal();
-#endif
-  magazine->activateWindow();
-  magazine->raise();
+  else
+    addItemWindowToTab(magazine);
 }
 
 void biblioteq::slotPhotographSearch(void)
@@ -4591,14 +4561,8 @@ void biblioteq::slotPhotographSearch(void)
 	      photograph,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  photograph->showMaximized();
-#else
-  photograph->showNormal();
-#endif
-  photograph->activateWindow();
-  photograph->raise();
+  else
+    addItemWindowToTab(photograph);
 }
 
 void biblioteq::slotPhotographsPerPageChanged(void)
@@ -5680,14 +5644,8 @@ void biblioteq::slotVideoGameSearch(void)
 	      videogame,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
-
-#ifdef Q_OS_ANDROID
-  videogame->showMaximized();
-#else
-  videogame->showNormal();
-#endif
-  videogame->activateWindow();
-  videogame->raise();
+  else
+    addItemWindowToTab(videogame);
 }
 
 void biblioteq::slotViewFullOrNormalScreen(void)
