@@ -34,6 +34,8 @@ LIBS		+=
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/Android
+
 DISTFILES += Android/AndroidManifest.xml \
              Android/build.gradle \
              Android/gradle.properties \
@@ -51,9 +53,5 @@ deployment.files = Data/*.csv \
 deployment.path = /assets
 
 INSTALLS += deployment
-
-contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/Android
-}
 
 android: include(/home/saturn/Android/Sdk/android_openssl/openssl.pri)
