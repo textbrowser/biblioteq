@@ -3925,13 +3925,13 @@ int biblioteq::populateTable(const int search_type_arg,
 			image = images.value(QByteArray());
 		      else
 			{
-			  image = QImage(":/no_image.png");
+			  image = QImage(":/missing_image.png");
 			  images[QByteArray()] = image;
 			}
 		    }
 
 		  /*
-		  ** The size of no_image.png is AxB.
+		  ** The size of missing_image.png is AxB.
 		  */
 
 		  if(!image.isNull())
@@ -3999,7 +3999,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	      if(pixmapItem)
 		first->setIcon(pixmapItem->pixmap());
 	      else
-		first->setIcon(QIcon(":/no_image.png"));
+		first->setIcon(QIcon(":/missing_image.png"));
 
 	      ui.table->setRowHeight
 		(i, qMax(fontMetrics.height() + 10,
@@ -4304,14 +4304,14 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
     }
 
   /*
-  ** The size of no_image.png is AxB.
+  ** The size of missing_image.png is AxB.
   */
 
   auto b(back);
   auto f(front);
 
   if(b.isNull())
-    b = QImage(":/no_image.png");
+    b = QImage(":/missing_image.png");
 
   if(!b.isNull())
     b = b.scaled
@@ -4326,7 +4326,7 @@ void biblioteq::setSummaryImages(const QImage &back, const QImage &front)
     ui.backImage->clear();
 
   if(f.isNull())
-    f = QImage(":/no_image.png");
+    f = QImage(":/missing_image.png");
 
   if(!f.isNull())
     f = f.scaled

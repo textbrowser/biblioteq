@@ -1505,7 +1505,7 @@ void biblioteq_cd::slotGo(void)
 			      setIcon(pixmap);
 			  else
 			    qmain->getUI().table->item(m_index->row(), i)->
-			      setIcon(QIcon(":/no_image.png"));
+			      setIcon(QIcon(":/missing_image.png"));
 			}
 
 		      if(names.at(i) == "Accession Number")

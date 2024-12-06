@@ -1,9 +1,7 @@
 <RCC>
     <qresource prefix="/">
-	<file>book.png</file>
-	<file>no_image.png</file>
-        <file>16x16/add.png</file>
-        <file>16x16/cancel.png</file>
+	<file>16x16/add.png</file>
+	<file>16x16/cancel.png</file>
         <file>16x16/connected.png</file>
         <file>16x16/convert.png</file>
         <file>16x16/details.png</file>
@@ -70,5 +68,7 @@
 	<file>32x32/save.png</file>
 	<file>32x32/settings.png</file>
 	<file>32x32/stamp.png</file>
+	<file>book.png</file>
+	<file>missing_image.png</file>
     </qresource>
 </RCC>

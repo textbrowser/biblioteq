@@ -44,7 +44,7 @@ biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   m_doubleClickResizeEnabled = true;
   m_doubleClicked = false;
   m_image = QImage();
-  m_imageFormat = "";
+  m_imageFormat.clear();
   m_readOnly = false;
   setAcceptDrops(true);
 }
@@ -203,7 +203,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 #else
   if(event)
     {
-      QUrl url(event->mimeData()->text());
+      QUrl const url(event->mimeData()->text());
 
       filename = url.toLocalFile().trimmed();
     }
@@ -238,9 +238,9 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 
       if(pixmap.isNull())
 	{
-	  m_image = QImage(":/no_image.png");
+	  m_image = QImage(":/missing_image.png");
 	  m_imageFormat = "PNG";
-	  pixmap = QPixmap(":/no_image.png");
+	  pixmap = QPixmap(":/missing_image.png");
 	}
 
       scene()->addPixmap(pixmap);
@@ -260,27 +260,12 @@ void biblioteq_image_drop_site::enableDoubleClickResize(const bool state)
 
 void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 {
-  if(acceptDrops())
-    if(event)
-      {
-	if((QGuiApplication::keyboardModifiers() & Qt::ControlModifier) &&
-	   event->key() == Qt::Key_V)
-	  {
-	    if(!m_readOnly)
-	      {
-		auto clipboard = QApplication::clipboard();
+  if(event && m_readOnly == false)
+    if(event->key() == Qt::Key_Backspace || event->key() == Qt::Key_Delete)
+      if(scene()->selectedItems().isEmpty() == false)
+	clear();
 
-		if(clipboard)
-		  setImage(clipboard->image());
-	      }
-	  }
-	else if(event->key() == Qt::Key_Backspace ||
-		event->key() == Qt::Key_Delete)
-	  {
-	    if(!m_readOnly && !scene()->selectedItems().isEmpty())
-	      clear();
-	  }
-      }
+  QGraphicsView::keyPressEvent(event);
 }
 
 void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
@@ -306,9 +291,9 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 
   if(pixmap.isNull())
     {
-      m_image = QImage(":/no_image.png");
+      m_image = QImage(":/missing_image.png");
       m_imageFormat = "PNG";
-      pixmap = QPixmap(":/no_image.png");
+      pixmap = QPixmap(":/missing_image.png");
     }
 
   scene()->addPixmap(pixmap);
@@ -334,7 +319,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
       auto pixmap(QPixmap::fromImage(m_image));
 
       if(pixmap.isNull())
-	pixmap = QPixmap(":/no_image.png");
+	pixmap = QPixmap(":/missing_image.png");
 
       scene()->addPixmap(pixmap);
     }
@@ -347,7 +332,7 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 	  (size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(pixmap.isNull())
-	pixmap = QPixmap(":/no_image.png");
+	pixmap = QPixmap(":/missing_image.png");
 
       scene()->addPixmap(pixmap);
     }
@@ -387,9 +372,9 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
 
   if(pixmap.isNull())
     {
-      m_image = QImage(":/no_image.png");
+      m_image = QImage(":/missing_image.png");
       m_imageFormat = "PNG";
-      pixmap = QPixmap(":/no_image.png");
+      pixmap = QPixmap(":/missing_image.png");
     }
 
   scene()->addPixmap(pixmap);

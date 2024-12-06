@@ -1011,13 +1011,13 @@ int biblioteq::populateTable(QSqlQuery *query,
 			image = images.value(QByteArray());
 		      else
 			{
-			  image = QImage(":/no_image.png");
+			  image = QImage(":/missing_image.png");
 			  images[QByteArray()] = image;
 			}
 		    }
 
 		  /*
-		  ** The size of no_image.png is AxB.
+		  ** The size of missing_image.png is AxB.
 		  */
 
 		  if(!image.isNull())
@@ -1086,7 +1086,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 	      if(pixmapItem)
 		first->setIcon(pixmapItem->pixmap());
 	      else
-		first->setIcon(QIcon(":/no_image.png"));
+		first->setIcon(QIcon(":/missing_image.png"));
 
 	      ui.table->setRowHeight
 		(i,
@@ -3941,11 +3941,11 @@ void biblioteq::slotDisplaySummary(void)
       QApplication::restoreOverrideCursor();
 
       /*
-      ** The size of no_image.png is AxB.
+      ** The size of missing_image.png is AxB.
       */
 
       if(frontImage.isNull())
-	frontImage = QImage(":/no_image.png");
+	frontImage = QImage(":/missing_image.png");
 
       if(!frontImage.isNull())
 	frontImage = frontImage.scaled
@@ -3955,7 +3955,7 @@ void biblioteq::slotDisplaySummary(void)
 	 type != "Photograph Collection")
 	{
 	  if(backImage.isNull())
-	    backImage = QImage(":/no_image.png");
+	    backImage = QImage(":/missing_image.png");
 
 	  if(!backImage.isNull())
 	    backImage = backImage.scaled

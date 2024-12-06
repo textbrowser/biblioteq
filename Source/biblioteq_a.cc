@@ -6229,7 +6229,7 @@ void biblioteq::updateSceneItem(const QString &oid,
 	    item->setPixmap(pixmap);
 	  else
 	    {
-	      QImage l_image(":/no_image.png");
+	      QImage l_image(":/missing_image.png");
 
 	      if(!l_image.isNull())
 		l_image = l_image.scaled

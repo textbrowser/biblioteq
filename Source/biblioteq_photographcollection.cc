@@ -498,7 +498,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	  }
 
 	if(image.isNull())
-	  image = QImage(":/no_image.png");
+	  image = QImage(":/missing_image.png");
 
 	QSize size;
 
@@ -1013,10 +1013,10 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	    image.loadFromData(query.value(0).toByteArray());
 
 	  if(image.isNull())
-	    image = QImage(":/no_image.png");
+	    image = QImage(":/missing_image.png");
 
 	  /*
-	  ** The size of no_image.png is AxB.
+	  ** The size of missing_image.png is AxB.
 	  */
 
 	  if(!image.isNull())
@@ -1616,7 +1616,7 @@ void biblioteq_photographcollection::slotGo(void)
 			      setIcon(pixmap);
 			  else
 			    qmain->getUI().table->item(m_index->row(), i)->
-			      setIcon(QIcon(":/no_image.png"));
+			      setIcon(QIcon(":/missing_image.png"));
 			}
 
 		      if(names.at(i) == "About")

@@ -3877,7 +3877,7 @@ void biblioteq_book::slotGo(void)
 		      else
 			qmain->getUI().table->item
 			  (m_index->row(), imageColumn)->setIcon
-			  (QIcon(":/no_image.png"));
+			  (QIcon(":/missing_image.png"));
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
