@@ -572,7 +572,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
      SLOT(slotPasteImage(void)))->setProperty("type", "back");
   id.action_back->menu()->addSeparator();
   id.action_back->menu()->addAction
-    (tr("Select Image"),
+    (tr("Select Image..."),
      this,
      SLOT(slotSelectImage(void)))->setProperty("type", "back");
   id.action_front->menu()->addSeparator();
@@ -582,7 +582,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
      SLOT(slotPasteImage(void)))->setProperty("type", "front");
   id.action_front->menu()->addSeparator();
   id.action_front->menu()->addAction
-    (tr("Select Image"),
+    (tr("Select Image..."),
      this,
      SLOT(slotSelectImage(void)))->setProperty("type", "front");
 

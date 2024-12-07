@@ -220,6 +220,9 @@ void biblioteq_item::prepareIcons(QMainWindow *window)
   if(!window)
     return;
 
+  foreach(auto action, window->findChildren<QAction *> ())
+    action->setIcon(iconForText(action->text().remove('&')));
+
   foreach(auto pushButton, window->findChildren<QPushButton *> ())
     pushButton->setIcon(iconForText(pushButton->text().remove('&')));
 
