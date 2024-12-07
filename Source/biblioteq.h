@@ -30,6 +30,9 @@
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
 #define BIBLIOTEQ_VERSION "2024.12.20"
+#define BIBLIOTEQ_VERSION_FILE_URL			\
+  "https://raw.githubusercontent.com/"			\
+  "textbrowser/biblioteq/master/Source/biblioteq.h"
 #define BIBLIOTEQ_VERSION_LTS "2024.12.20"
 
 #include "biblioteq_batch_activities.h"

@@ -1616,6 +1616,8 @@ void biblioteq::readConfigurationFile(void)
     (settings.value("automatically_populate_on_create", false).toBool());
   ui.actionAutomatically_Resize_Column_Widths->setChecked
     (settings.value("automatically_resize_column_widths", false).toBool());
+  ui.actionDownload_Version_Information->setChecked
+    (settings.value("download_version_information", false).toBool());
   ui.actionPopulateOnStart->setChecked
     (settings.value("populate_table_on_connect", false).toBool());
   ui.actionResetErrorLogOnDisconnect->setChecked

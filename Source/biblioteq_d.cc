@@ -876,6 +876,8 @@ void biblioteq::slotActionToggled(void)
 
   if(action == ui.actionCenter_Child_Windows)
     settings.setValue("center_child_windows", action->isChecked());
+  else if(action == ui.actionDownload_Version_Information)
+    settings.setValue("download_version_information", action->isChecked());
 }
 void biblioteq::slotAnimateAbout(void)
 {

@@ -181,8 +181,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_swifty = new swifty
     (BIBLIOTEQ_VERSION,
      "#define BIBLIOTEQ_VERSION_LTS",
-     QUrl::fromUserInput("https://raw.githubusercontent.com/"
-			 "textbrowser/biblioteq/master/Source/biblioteq.h"),
+     QUrl::fromUserInput(BIBLIOTEQ_VERSION_FILE_URL),
      this);
   connect(m_swifty,
 	  SIGNAL(different(const QString &)),
@@ -250,7 +249,6 @@ biblioteq::biblioteq(void):QMainWindow()
   m_queryOffset = 0;
   m_searchQuery = nullptr;
   m_status_bar_label = nullptr;
-  m_swifty->download();
   userinfo_diag = new userinfo_diag_class(m_members_diag);
   connect(QCoreApplication::instance(),
 	  SIGNAL(lastWindowClosed(void)),
@@ -348,6 +346,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDisconnect(void)));
+  connect(ui.actionDownload_Version_Information,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotActionToggled(void)));
   connect(ui.actionImportCSV,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -2541,6 +2543,8 @@ void biblioteq::showMain(void)
     }
 
   QTimer::singleShot(1500, this, &biblioteq::slotDelayedPreparation);
+  ui.actionDownload_Version_Information->isChecked() ?
+    QTimer::singleShot(1500, m_swifty, &swifty::slot_download) : (void) 0;
   prepareExternalApplicationsMenu();
 }
 
