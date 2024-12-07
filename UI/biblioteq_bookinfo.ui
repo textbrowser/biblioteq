@@ -34,8 +34,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-555</y>
-         <width>1230</width>
+         <y>-513</y>
+         <width>1167</width>
          <height>1543</height>
         </rect>
        </property>
@@ -82,7 +82,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QToolButton" name="dwnldFront">
+               <widget class="QToolButton" name="action_front">
                 <property name="minimumSize">
                  <size>
                   <width>145</width>
@@ -93,34 +93,13 @@
                  <string>Download the book's front cover image.</string>
                 </property>
                 <property name="text">
-                 <string>Download</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../Icons/icons.qrc">
-                  <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
+                 <string>Action</string>
                 </property>
                 <property name="popupMode">
                  <enum>QToolButton::MenuButtonPopup</enum>
                 </property>
                 <property name="toolButtonStyle">
                  <enum>Qt::ToolButtonTextBesideIcon</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="frontButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>145</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Select...</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../Icons/icons.qrc">
-                  <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
@@ -171,7 +150,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QToolButton" name="dwnldBack">
+               <widget class="QToolButton" name="action_back">
                 <property name="minimumSize">
                  <size>
                   <width>145</width>
@@ -182,34 +161,13 @@
                  <string>Download the book's back cover image.</string>
                 </property>
                 <property name="text">
-                 <string>Download</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../Icons/icons.qrc">
-                  <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
+                 <string>Action</string>
                 </property>
                 <property name="popupMode">
                  <enum>QToolButton::MenuButtonPopup</enum>
                 </property>
                 <property name="toolButtonStyle">
                  <enum>Qt::ToolButtonTextBesideIcon</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="backButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>145</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Select...</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../Icons/icons.qrc">
-                  <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
@@ -1636,11 +1594,9 @@
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>front_image</tabstop>
-  <tabstop>dwnldFront</tabstop>
-  <tabstop>frontButton</tabstop>
+  <tabstop>action_front</tabstop>
   <tabstop>back_image</tabstop>
-  <tabstop>dwnldBack</tabstop>
-  <tabstop>backButton</tabstop>
+  <tabstop>action_back</tabstop>
   <tabstop>title</tabstop>
   <tabstop>author</tabstop>
   <tabstop>publisher</tabstop>

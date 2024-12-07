@@ -384,6 +384,14 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
+void biblioteq_image_drop_site::setImageFromClipboard(void)
+{
+  auto clipboard = QApplication::clipboard();
+
+  if(clipboard)
+    setImage(clipboard->image());
+}
+
 void biblioteq_image_drop_site::setReadOnly(const bool readOnly)
 {
   m_readOnly = readOnly;

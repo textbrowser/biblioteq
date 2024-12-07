@@ -42,6 +42,7 @@ class biblioteq_image_drop_site: public QGraphicsView
   void enableDoubleClickResize(const bool state);
   void loadFromData(const QByteArray &bytes);
   void setImage(const QImage &image);
+  void setImageFromClipboard(void);
   void setReadOnly(const bool readOnly);
 
  private:

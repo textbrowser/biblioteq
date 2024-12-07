@@ -72,6 +72,8 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.setupUi(this);
   ui_p.setupUi(m_proxyDialog);
   setQMain(this);
+  id.action_back->setMenu(new QMenu(this));
+  id.action_front->setMenu(new QMenu(this));
   id.files->setColumnHidden(static_cast<int> (Columns::MYOID), true);
   id.files->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   id.marc_tags_format->setVisible(false);
@@ -102,14 +104,18 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   biblioteq_misc_functions::sortCombinationBox(id.marc_tags_format);
   biblioteq_misc_functions::sortCombinationBox(id.originality);
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
+  connect(id.action_back,
+	  SIGNAL(clicked(void)),
+	  id.action_back,
+	  SLOT(showMenu(void)));
+  connect(id.action_front,
+	  SIGNAL(clicked(void)),
+	  id.action_front,
+	  SLOT(showMenu(void)));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAttachFiles(void)));
-  connect(id.backButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotSelectImage(void)));
   connect(id.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -122,14 +128,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteFiles(void)));
-  connect(id.dwnldBack,
-	  SIGNAL(clicked(void)),
-	  id.dwnldBack,
-	  SLOT(showMenu(void)));
-  connect(id.dwnldFront,
-	  SIGNAL(clicked(void)),
-	  id.dwnldFront,
-	  SLOT(showMenu(void)));
   connect(id.export_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -138,10 +136,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this,
 	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
-  connect(id.frontButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotSelectImage(void)));
   connect(id.isbn10to13,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -510,17 +504,17 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   for(int i = 1; i <= 2; i++)
     {
-      auto action = new QAction(tr("&Amazon"), this);
+      auto action = new QAction(tr("Download &Amazon"), this);
 
       if(i == 1)
 	{
 	  action->setProperty("download_type", "amazon_front");
-	  id.dwnldFront->addAction(action);
+	  id.action_front->menu()->addAction(action);
 	}
       else
 	{
 	  action->setProperty("download_type", "amazon_back");
-	  id.dwnldBack->addAction(action);
+	  id.action_back->menu()->addAction(action);
 	}
 
       connect(action,
@@ -531,17 +525,17 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   for(int i = 1; i <= 2; i++)
     {
-      auto action = new QAction(tr("&Open Library"), this);
+      auto action = new QAction(tr("Download Open &Library"), this);
 
       if(i == 1)
 	{
 	  action->setProperty("download_type", "open_library_front");
-	  id.dwnldFront->addAction(action);
+	  id.action_front->menu()->addAction(action);
 	}
       else
 	{
 	  action->setProperty("download_type", "open_library_back");
-	  id.dwnldBack->addAction(action);
+	  id.action_back->menu()->addAction(action);
 	}
 
       connect(action,
@@ -552,17 +546,17 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 
   for(int i = 1; i <= 2; i++)
     {
-      auto action = new QAction(tr("&Other"), this);
+      auto action = new QAction(tr("Download &Other"), this);
 
       if(i == 1)
 	{
 	  action->setProperty("download_type", "other_front");
-	  id.dwnldFront->addAction(action);
+	  id.action_front->menu()->addAction(action);
 	}
       else
 	{
 	  action->setProperty("download_type", "other_back");
-	  id.dwnldBack->addAction(action);
+	  id.action_back->menu()->addAction(action);
 	}
 
       connect(action,
@@ -570,6 +564,27 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	      this,
 	      SLOT(slotDownloadImage(void)));
     }
+
+  id.action_back->menu()->addSeparator();
+  id.action_back->menu()->addAction
+    (tr("Paste Image"),
+     this,
+     SLOT(slotPasteImage(void)))->setProperty("type", "back");
+  id.action_back->menu()->addSeparator();
+  id.action_back->menu()->addAction
+    (tr("Select Image"),
+     this,
+     SLOT(slotSelectImage(void)))->setProperty("type", "back");
+  id.action_front->menu()->addSeparator();
+  id.action_front->menu()->addAction
+    (tr("Paste Image"),
+     this,
+     SLOT(slotPasteImage(void)))->setProperty("type", "front");
+  id.action_front->menu()->addSeparator();
+  id.action_front->menu()->addAction
+    (tr("Select Image"),
+     this,
+     SLOT(slotSelectImage(void)))->setProperty("type", "front");
 
   auto action = new QAction(tr("All..."), this);
 
@@ -1012,13 +1027,9 @@ void biblioteq_book::modify(const int state)
     {
       setReadOnlyFields(this, false);
       id.attach_files->setEnabled(true);
-      id.backButton->setVisible(true);
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
-      id.dwnldBack->setVisible(true);
-      id.dwnldFront->setVisible(true);
       id.export_files->setEnabled(true);
-      id.frontButton->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
       id.isbnAvailableCheckBox->setChecked(false);
@@ -1059,13 +1070,9 @@ void biblioteq_book::modify(const int state)
     {
       setReadOnlyFields(this, true);
       id.attach_files->setVisible(false);
-      id.backButton->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.dwnldFront->setVisible(false);
       id.export_files->setVisible(true);
-      id.frontButton->setVisible(false);
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
       id.isbnAvailableCheckBox->setCheckable(false);
@@ -4566,6 +4573,19 @@ void biblioteq_book::slotParseMarcTags(void)
       }
 }
 
+void biblioteq_book::slotPasteImage(void)
+{
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  if(action->property("type").toString() == "back")
+    id.back_image->setImageFromClipboard();
+  else
+    id.front_image->setImageFromClipboard();
+}
+
 void biblioteq_book::slotPopulateCopiesEditor(void)
 {
   auto copyeditor = new biblioteq_copy_editor_book
@@ -5406,44 +5426,28 @@ void biblioteq_book::slotSRUSslErrors(const QList<QSslError> &list)
 
 void biblioteq_book::slotSelectImage(void)
 {
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
   QFileDialog dialog(this);
-  auto button = qobject_cast<QPushButton *> (sender());
 
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
 
-  if(button == id.frontButton)
-    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
-  else
+  if(action->property("type").toString() == "back")
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
+  else
+    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
 
   dialog.exec();
   QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
-      if(button == id.frontButton)
-	{
-	  id.front_image->clear();
-	  id.front_image->m_image = QImage(dialog.selectedFiles().value(0));
-
-	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
-	    id.front_image->m_imageFormat = dialog.selectedFiles().value(0).mid
-	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
-	      toUpper();
-
-	  id.front_image->scene()->addPixmap
-	    (QPixmap::fromImage(id.front_image->m_image));
-
-	  if(!id.front_image->scene()->items().isEmpty())
-	    id.front_image->scene()->items().at(0)->setFlags
-	      (QGraphicsItem::ItemIsSelectable);
-
-	  id.front_image->scene()->setSceneRect
-	    (id.front_image->scene()->itemsBoundingRect());
-	}
-      else
+      if(action->property("type").toString() == "back")
 	{
 	  id.back_image->clear();
 	  id.back_image->m_image = QImage(dialog.selectedFiles().value(0));
@@ -5462,6 +5466,26 @@ void biblioteq_book::slotSelectImage(void)
 
 	  id.back_image->scene()->setSceneRect
 	    (id.back_image->scene()->itemsBoundingRect());
+	}
+      else
+	{
+	  id.front_image->clear();
+	  id.front_image->m_image = QImage(dialog.selectedFiles().value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    id.front_image->m_imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
+	  id.front_image->scene()->addPixmap
+	    (QPixmap::fromImage(id.front_image->m_image));
+
+	  if(!id.front_image->scene()->items().isEmpty())
+	    id.front_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
+
+	  id.front_image->scene()->setSceneRect
+	    (id.front_image->scene()->itemsBoundingRect());
 	}
     }
 }
@@ -5727,13 +5751,9 @@ void biblioteq_book::updateWindow(const int state)
   if(state == biblioteq::EDITABLE)
     {
       id.attach_files->setEnabled(true);
-      id.backButton->setVisible(true);
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
-      id.dwnldBack->setVisible(true);
-      id.dwnldFront->setVisible(true);
       id.export_files->setEnabled(true);
-      id.frontButton->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
       id.marc_tags_format->setVisible(true);
@@ -5761,13 +5781,9 @@ void biblioteq_book::updateWindow(const int state)
   else
     {
       id.attach_files->setVisible(false);
-      id.backButton->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
-      id.dwnldBack->setVisible(false);
-      id.dwnldFront->setVisible(false);
       id.export_files->setEnabled(true);
-      id.frontButton->setVisible(false);
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
       id.isbnAvailableCheckBox->setCheckable(false);

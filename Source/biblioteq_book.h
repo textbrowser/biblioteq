@@ -142,13 +142,14 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotOpenLibraryReadyRead(void);
   void slotOpenLibrarySslErrors(const QList<QSslError> &list);
   void slotParseMarcTags(void);
+  void slotPasteImage(void);
   void slotPopulateCopiesEditor(void);
   void slotPrepareIcons(void);
   void slotPrint(void);
   void slotPrintAuthorTitleDewey(void);
   void slotPrintCallDewey(void);
-  void slotProxyAuthenticationRequired(const QNetworkProxy &proxy,
-				       QAuthenticator *authenticator);
+  void slotProxyAuthenticationRequired
+    (const QNetworkProxy &proxy, QAuthenticator *authenticator);
   void slotPublicationDateEnabled(bool state);
   void slotReadyRead(void);
   void slotReset(void);
