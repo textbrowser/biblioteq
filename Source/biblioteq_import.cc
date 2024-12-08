@@ -1249,7 +1249,6 @@ void biblioteq_import::slotImport(void)
       QApplication::processEvents();
     }
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
   m_mappings = map;
 
   QElapsedTimer elapsed;
@@ -1285,7 +1284,6 @@ void biblioteq_import::slotImport(void)
   else if(index == static_cast<int> (Templates::TEMPLATE_3))
     importPatrons(progress.data(), errors, &imported, &notImported);
 
-  QApplication::restoreOverrideCursor();
   progress ? (void) progress->close() : (void) 0;
   QApplication::processEvents();
 
