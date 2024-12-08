@@ -3607,19 +3607,21 @@ void biblioteq::slotDisplaySummary(void)
 
       if(ui.stackedWidget->currentIndex() == 1)
 	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
+
 	  QPainterPath painterPath;
 	  auto const items(ui.graphicsView->scene()->items());
-	  auto const tableItems(ui.table->selectedItems());
+	  auto const tableItems(ui.table->selectionModel()->selectedRows());
 
 	  for(int ii = 0; ii < tableItems.size(); ii++)
 	    {
 	      auto const oid = biblioteq_misc_functions::getColumnString
 		(ui.table,
-		 tableItems.at(ii)->row(),
+		 tableItems.at(ii).row(),
 		 ui.table->columnNumber("MYOID"));
 	      auto const type =  biblioteq_misc_functions::getColumnString
 		(ui.table,
-		 tableItems.at(ii)->row(),
+		 tableItems.at(ii).row(),
 		 ui.table->columnNumber("Type")).remove(' ').toLower();
 
 	      for(int jj = 0; jj < items.size(); jj++)
@@ -3638,6 +3640,7 @@ void biblioteq::slotDisplaySummary(void)
 	    }
 
 	  ui.graphicsView->scene()->setSelectionArea(painterPath);
+	  QApplication::restoreOverrideCursor();
 	}
 
       type = biblioteq_misc_functions::getColumnString
