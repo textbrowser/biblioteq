@@ -3627,14 +3627,9 @@ void biblioteq::slotDisplaySummary(void)
 	      for(int jj = 0; jj < items.size(); jj++)
 		if(oid == items.at(jj)->data(0).toString() &&
 		   type == items.at(jj)->data(1).toString())
-		  {
-		    QRectF rect;
-
-		    rect.setHeight(s_noImageResize.height());
-		    rect.setTopLeft(items.at(jj)->scenePos());
-		    rect.setWidth(s_noImageResize.width());
-		    painterPath.addRect(rect);
-		  }
+		  painterPath.addRect
+		    (items.at(jj)->
+		     mapRectToScene(items.at(jj)->boundingRect()));
 		else
 		  items.at(jj)->setSelected(false);
 	    }
