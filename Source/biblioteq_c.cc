@@ -3454,6 +3454,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionQuery_History->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
+  ui.actionSelect_All->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);
   ui.action_Upgrade_SQLite_SchemaAll->setEnabled(false);
