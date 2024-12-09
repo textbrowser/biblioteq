@@ -1202,15 +1202,15 @@ void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
 
 void biblioteq::slotSelectAll(void)
 {
-  if(ui.stackedWidget->currentIndex() == 0) // Icons Mode
-    {
-      QPainterPath path;
+  QPainterPath path;
 
-      path.addRect(ui.graphicsView->sceneRect());
-      ui.graphicsView->scene()->setSelectionArea(path);
-    }
-  else
-    ui.table->selectAll();
+  path.addRect(ui.graphicsView->sceneRect());
+  ui.graphicsView->scene()->blockSignals(true);
+  ui.graphicsView->scene()->setSelectionArea(path);
+  ui.graphicsView->scene()->blockSignals(false);
+  ui.table->blockSignals(true);
+  ui.table->selectAll();
+  ui.table->blockSignals(false);
 }
 
 void biblioteq::slotSelectItemTab(void)

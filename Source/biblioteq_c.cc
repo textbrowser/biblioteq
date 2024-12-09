@@ -6497,26 +6497,26 @@ void biblioteq::slotSceneSelectionChanged(void)
   if(!items.isEmpty())
     {
       QGraphicsItem *item = nullptr;
-      QStringList oids;
-      QStringList types;
+      QMap<QString, char> oids;
+      QMap<QString, char> types;
 
       for(int i = 0; i < items.size(); i++)
 	if((item = items.at(i)))
 	  {
-	    oids.append(item->data(0).toString());
-	    types.append(item->data(1).toString());
+	    oids[item->data(0).toString()] = 0;
+	    types[item->data(1).toString()] = 0;
 	  }
 
       auto const column1 = ui.table->columnNumber("MYOID");
       auto const column2 = ui.table->columnNumber("Type");
 
       for(int i = 0; i < ui.table->rowCount(); i++)
-	if(ui.table->item(i, column1) &&
-	   oids.contains(ui.table->item(i, column1)->text()) &&
-	   ui.table->item(i, column2) &&
-	   types.contains(ui.table->
-			  item(i, column2)->text().remove(' ').toLower()))
-	  ui.table->selectRow(i);
+	if(ui.table->item(i, column1) && ui.table->item(i, column2))
+	  if(oids.
+	     contains(ui.table->item(i, column1)->text()) &&
+	     types.contains
+	     (ui.table->item(i, column2)->text().remove(' ').toLower()))
+	    ui.table->selectRow(i);
     }
 }
 
