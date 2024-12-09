@@ -678,6 +678,7 @@ class biblioteq: public QMainWindow
   void slotSearch(void);
   void slotSearchBasic(void);
   void slotSectionResized(int logicalIndex, int oldSize, int newSize);
+  void slotSelectAll(void);
   void slotSelectDatabaseFile(void);
   void slotSelectItemTab(void);
   void slotSetColumns(void);

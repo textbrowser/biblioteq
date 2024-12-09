@@ -3170,6 +3170,7 @@ void biblioteq::slotConnectDB(void)
   ui.actionDisconnect->setEnabled(true);
   ui.actionQuery_History->setEnabled(true);
   ui.actionRefreshTable->setEnabled(true);
+  ui.actionSelect_All->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
   ui.configTool->setEnabled(true);
   ui.customQueryTool->setEnabled(true);
@@ -3587,13 +3588,38 @@ void biblioteq::slotDisconnect(void)
 
 void biblioteq::slotDisplaySummary(void)
 {
-  QImage backImage;
-  QImage frontImage;
-  QString oid = "";
-  QString summary = "";
-  QString tmpstr = "";
-  QString type = "";
-  int i = 0;
+  if(ui.stackedWidget->currentIndex() == 1) // Table Mode
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QPainterPath painterPath;
+      auto const items(ui.graphicsView->scene()->items());
+      auto const tableItems(ui.table->selectionModel()->selectedRows());
+
+      for(int ii = 0; ii < tableItems.size(); ii++)
+	{
+	  auto const oid = biblioteq_misc_functions::getColumnString
+	    (ui.table,
+	     tableItems.at(ii).row(),
+	     ui.table->columnNumber("MYOID"));
+	  auto const type =  biblioteq_misc_functions::getColumnString
+	    (ui.table,
+	     tableItems.at(ii).row(),
+	     ui.table->columnNumber("Type")).remove(' ').toLower();
+
+	  for(int jj = 0; jj < items.size(); jj++)
+	    if(oid == items.at(jj)->data(0).toString() &&
+	       type == items.at(jj)->data(1).toString())
+	      painterPath.addRect
+		(items.at(jj)->
+		 mapRectToScene(items.at(jj)->boundingRect()));
+	    else
+	      items.at(jj)->setSelected(false);
+	}
+
+      ui.graphicsView->scene()->setSelectionArea(painterPath);
+      QApplication::restoreOverrideCursor();
+    }
 
   /*
   ** Display a preview.
@@ -3601,45 +3627,16 @@ void biblioteq::slotDisplaySummary(void)
 
   if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
     {
-      i = ui.table->currentRow();
-      oid = biblioteq_misc_functions::getColumnString
+      QImage backImage;
+      QImage frontImage;
+      QString summary("");
+      QString tmpstr("");
+      auto const i = ui.table->currentRow();
+      auto const oid = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("MYOID"));
-
-      if(ui.stackedWidget->currentIndex() == 1)
-	{
-	  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-	  QPainterPath painterPath;
-	  auto const items(ui.graphicsView->scene()->items());
-	  auto const tableItems(ui.table->selectionModel()->selectedRows());
-
-	  for(int ii = 0; ii < tableItems.size(); ii++)
-	    {
-	      auto const oid = biblioteq_misc_functions::getColumnString
-		(ui.table,
-		 tableItems.at(ii).row(),
-		 ui.table->columnNumber("MYOID"));
-	      auto const type =  biblioteq_misc_functions::getColumnString
-		(ui.table,
-		 tableItems.at(ii).row(),
-		 ui.table->columnNumber("Type")).remove(' ').toLower();
-
-	      for(int jj = 0; jj < items.size(); jj++)
-		if(oid == items.at(jj)->data(0).toString() &&
-		   type == items.at(jj)->data(1).toString())
-		  painterPath.addRect
-		    (items.at(jj)->
-		     mapRectToScene(items.at(jj)->boundingRect()));
-		else
-		  items.at(jj)->setSelected(false);
-	    }
-
-	  ui.graphicsView->scene()->setSelectionArea(painterPath);
-	  QApplication::restoreOverrideCursor();
-	}
-
-      type = biblioteq_misc_functions::getColumnString
+      auto const type = biblioteq_misc_functions::getColumnString
 	(ui.table, i, ui.table->columnNumber("Type"));
+
       summary = "<html>";
 
       if(type == "Book")

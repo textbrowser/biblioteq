@@ -1200,6 +1200,19 @@ void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
   settings.setValue("generalSearchCaseSensitivity", state);
 }
 
+void biblioteq::slotSelectAll(void)
+{
+  if(ui.stackedWidget->currentIndex() == 0) // Icons Mode
+    {
+      QPainterPath path;
+
+      path.addRect(ui.graphicsView->sceneRect());
+      ui.graphicsView->scene()->setSelectionArea(path);
+    }
+  else
+    ui.table->selectAll();
+}
+
 void biblioteq::slotSelectItemTab(void)
 {
   auto action = qobject_cast<QAction *> (sender());
