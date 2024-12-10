@@ -106,12 +106,12 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(id.action_back,
 	  SIGNAL(clicked(void)),
-	  id.action_back,
-	  SLOT(showMenu(void)));
+	  this,
+	  SLOT(slotPasteImage(void)));
   connect(id.action_front,
 	  SIGNAL(clicked(void)),
-	  id.action_front,
-	  SLOT(showMenu(void)));
+	  this,
+	  SLOT(slotPasteImage(void)));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -4577,13 +4577,23 @@ void biblioteq_book::slotPasteImage(void)
 {
   auto action = qobject_cast<QAction *> (sender());
 
-  if(!action)
-    return;
+  if(action)
+    {
+      if(action->property("type").toString() == "back")
+	id.back_image->setImageFromClipboard();
+      else
+	id.front_image->setImageFromClipboard();
+    }
 
-  if(action->property("type").toString() == "back")
-    id.back_image->setImageFromClipboard();
-  else
-    id.front_image->setImageFromClipboard();
+  auto widget = qobject_cast<QWidget *> (sender());
+
+  if(widget)
+    {
+      if(id.action_back == widget)
+	id.back_image->setImageFromClipboard();
+      else
+	id.front_image->setImageFromClipboard();
+    }
 }
 
 void biblioteq_book::slotPopulateCopiesEditor(void)

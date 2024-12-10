@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-513</y>
+         <y>-1028</y>
          <width>1167</width>
          <height>1543</height>
         </rect>
@@ -93,7 +93,7 @@
                  <string>Download the book's front cover image.</string>
                 </property>
                 <property name="text">
-                 <string>Action</string>
+                 <string>Menu or Paste</string>
                 </property>
                 <property name="popupMode">
                  <enum>QToolButton::MenuButtonPopup</enum>
@@ -161,7 +161,7 @@
                  <string>Download the book's back cover image.</string>
                 </property>
                 <property name="text">
-                 <string>Action</string>
+                 <string>Menu Or Paste</string>
                 </property>
                 <property name="popupMode">
                  <enum>QToolButton::MenuButtonPopup</enum>
