@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>850</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -93,6 +93,51 @@
            <property name="icon">
             <iconset resource="../Icons/icons.qrc">
              <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_110">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+ border: 1px solid gray;
+ background-color: lightblue;
+ margin: 2px;
+ padding: 2px;
+ }</string>
+           </property>
+           <property name="text">
+            <string>1a</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Post-Import Script</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="post_import_script">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the trimmed text is not empty, a confirmation prompt will be displayed after the import completes. If confirmed, the specified script is executed as a new process. The first argument is the absolute file path of the script. Optional arguments follow. The arguments must be separated by single spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Post-Import Script Absolute File Path</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -222,8 +267,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>714</width>
-            <height>395</height>
+            <width>699</width>
+            <height>426</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -640,6 +685,7 @@
   <tabstop>show_progress_dialogs</tabstop>
   <tabstop>csv_file</tabstop>
   <tabstop>select_csv_file</tabstop>
+  <tabstop>post_import_script</tabstop>
   <tabstop>preview</tabstop>
   <tabstop>refresh_preview</tabstop>
   <tabstop>delimiter</tabstop>

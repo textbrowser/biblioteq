@@ -43,6 +43,14 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
   m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
   m_ui.show_progress_dialogs->setChecked(true);
   m_ui.show_progress_dialogs->setVisible(false);
+  connect(&m_process,
+	  SIGNAL(readyReadStandardError(void)),
+	  this,
+	  SLOT(slotPostImportProcessStandardStream(void)));
+  connect(&m_process,
+	  SIGNAL(readyReadStandardOutput(void)),
+	  this,
+	  SLOT(slotPostImportProcessStandardStream(void)));
   connect(m_qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -94,6 +102,8 @@ biblioteq_import::~biblioteq_import()
 {
   isVisible() ?
     QSettings().setValue("import_geometry", saveGeometry()) : (void) 0;
+  m_process.kill();
+  m_process.waitForFinished();
 }
 
 void biblioteq_import::changeEvent(QEvent *event)
@@ -840,8 +850,14 @@ void biblioteq_import::loadPreview(void)
 	    }
 
 	  row += 1;
-	  m_ui.about_csv->setText
-	    (tr("%1 Column(s) | %2 Line(s)").arg(headers.size()).arg(row));
+
+	  if(progress && progress->wasCanceled())
+	    m_ui.about_csv->setText
+	      (tr("%1 Column(s) | %2 Line(s) (Preview Interrupted)").
+	       arg(headers.size()).arg(row));
+	  else
+	    m_ui.about_csv->setText
+	      (tr("%1 Column(s) | %2 Line(s)").arg(headers.size()).arg(row));
 	}
     }
 
@@ -1326,6 +1342,31 @@ void biblioteq_import::slotImport(void)
 
   QApplication::processEvents();
 
+  if(imported > 0 &&
+     m_ui.post_import_script->text().trimmed().isEmpty() == false)
+    {
+      if(QMessageBox::question(this,
+			       tr("BiblioteQ: Question"),
+			       tr("Would you like to execute the post-import "
+				  "script? If another script is alive, it "
+				  "will not be interrupted."),
+			       QMessageBox::No | QMessageBox::Yes,
+			       QMessageBox::No) == QMessageBox::Yes)
+	{
+	  QApplication::processEvents();
+
+	  auto const list
+	    (m_ui.post_import_script->text().trimmed().
+	     split(QRegularExpression(QString("%1"
+					      "(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
+				      arg(" "))));
+
+	  m_process.start(list.value(0), list.mid(1));
+	}
+
+      QApplication::processEvents();
+    }
+
   if(imported > 0 && (index == static_cast<int> (Templates::TEMPLATE_1) ||
 		      index == static_cast<int> (Templates::TEMPLATE_2)))
     {
@@ -1338,6 +1379,49 @@ void biblioteq_import::slotImport(void)
 
       QApplication::processEvents();
     }
+}
+
+void biblioteq_import::slotPostImportProcessStandardStream(void)
+{
+  auto dialog = findChild<QDialog *> ("biblioteq_post_import_process");
+
+  if(!dialog)
+    {
+      m_postImportDialogUi.setupUi(dialog = new QDialog(this));
+      connect(m_postImportDialogUi.cancelButton,
+	      SIGNAL(clicked(void)),
+	      dialog,
+	      SLOT(close(void)));
+      dialog->resize(500, 500);
+      dialog->setObjectName("biblioteq_post_import_process");
+      dialog->setWindowTitle(tr("BiblioteQ: Post-Import Script Results"));
+    }
+
+  QByteArray d1;
+  QByteArray d2;
+
+  do
+    {
+      d1 = m_process.readAllStandardError().trimmed();
+
+      if(!d1.isEmpty())
+	d2.append(d1);
+    }
+  while(!d1.isEmpty());
+
+  do
+    {
+      d1 = m_process.readAllStandardOutput().trimmed();
+
+      if(!d1.isEmpty())
+	d2.append(d1);
+    }
+  while(!d1.isEmpty());
+
+  if(!d2.isEmpty())
+    m_postImportDialogUi.text->append(d2);
+
+  dialog->show();
 }
 
 void biblioteq_import::slotRefreshPreview(void)
@@ -1366,8 +1450,10 @@ void biblioteq_import::slotReset(void)
   m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
   m_ui.about_templates->setText(tr("0 Columns"));
   m_ui.csv_file->clear();
+  m_ui.csv_file->setFocus();
   m_ui.delimiter->setText(",");
   m_ui.ignored_rows->clear();
+  m_ui.post_import_script->clear();
   m_ui.preview->clear();
   m_ui.preview->setColumnCount(0);
   m_ui.preview->setRowCount(0);

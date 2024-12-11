@@ -28,6 +28,9 @@
 #ifndef _BIBLIOTEQ_IMPORT_H_
 #define _BIBLIOTEQ_IMPORT_H_
 
+#include <QProcess>
+
+#include "ui_biblioteq_generalmessagediag.h"
 #include "ui_biblioteq_import.h"
 
 class QProgressDialog;
@@ -64,7 +67,9 @@ class biblioteq_import: public QMainWindow
     };
 
   QMap<int, QPair<QString, QString> > m_mappings;
+  QProcess m_process;
   QStringList m_previewHeaders; // Ignore QTableWidget.
+  Ui_generalmessagediag m_postImportDialogUi;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
   void changeEvent(QEvent *event);
@@ -87,6 +92,7 @@ class biblioteq_import: public QMainWindow
   void slotDeleteRow(void);
   void slotDetectFields(void);
   void slotImport(void);
+  void slotPostImportProcessStandardStream(void);
   void slotRefreshPreview(void);
   void slotReset(void);
   void slotSaveOption(void);
