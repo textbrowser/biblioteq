@@ -99,28 +99,17 @@
         </layout>
        </item>
        <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the trimmed text is not empty, a confirmation prompt will be displayed after the import completes. If confirmed, the specified script is executed as a new process. The first argument is the absolute file path of the script. Optional arguments follow. The arguments must be separated by single spaces. Surround text with double-quotes if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QLabel" name="label_110">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel {
- border: 1px solid gray;
- background-color: lightblue;
- margin: 2px;
- padding: 2px;
- }</string>
-           </property>
-           <property name="text">
-            <string>1a</string>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="QLabel" name="label_7">
            <property name="text">
@@ -130,11 +119,8 @@
          </item>
          <item>
           <widget class="QLineEdit" name="post_import_script">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the trimmed text is not empty, a confirmation prompt will be displayed after the import completes. If confirmed, the specified script is executed as a new process. The first argument is the absolute file path of the script. Optional arguments follow. The arguments must be separated by single spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
            <property name="placeholderText">
-            <string>Post-Import Script Absolute File Path</string>
+            <string>Post-Import Script Absolute File Path And Arguments</string>
            </property>
            <property name="clearButtonEnabled">
             <bool>true</bool>
