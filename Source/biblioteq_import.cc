@@ -1355,11 +1355,14 @@ void biblioteq_import::slotImport(void)
 	{
 	  QApplication::processEvents();
 
-	  auto const list
+	  auto list
 	    (m_ui.post_import_script->text().trimmed().
 	     split(QRegularExpression(QString("%1"
 					      "(?=([^\"]*\"[^\"]*\")*[^\"]*$)").
 				      arg(" "))));
+
+	  for(int i = 0; i < list.size(); i++)
+	    list.replace(i, QString(list.at(i)).remove('"'));
 
 	  m_process.start(list.value(0), list.mid(1));
 	}
