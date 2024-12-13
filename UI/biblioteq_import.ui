@@ -101,7 +101,7 @@
        <item>
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the trimmed text is not empty, a confirmation prompt will be displayed after the import completes. If confirmed, the specified script is executed as a new process. The first argument is the absolute file path of the script. Optional arguments follow. The arguments must be separated by single spaces. Surround text with double-quotes if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the trimmed text is not empty, a confirmation prompt will be displayed after the import completes. If confirmed, the specified script is executed as a new process. The first argument is the absolute file path of the script. Optional arguments follow. The arguments must be separated by single spaces. Enclose text with double-quotes if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
