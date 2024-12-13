@@ -815,7 +815,7 @@
             <item>
              <widget class="QLabel" name="label_19">
               <property name="text">
-               <string>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary.</string>
+               <string>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
