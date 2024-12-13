@@ -332,6 +332,7 @@ class biblioteq: public QMainWindow
   QString unaccent(void) const;
   QStringList getSRUNames(void) const;
   QStringList getZ3950Names(void) const;
+  QStringList scripts(void) const;
   QStringList selectedISBN10s(void) const;
   QVariant setting(const QString &name) const;
   QVector<QString> getBBColumnIndexes(void) const;
@@ -568,6 +569,7 @@ class biblioteq: public QMainWindow
 
  private slots:
   void slotAbout(void);
+  void slotAboutToShowExternalApplicationsMenu(void);
   void slotAboutToShowItemsPagesMenu(void);
   void slotActionToggled(void);
   void slotAddAdmin(void);

@@ -89,6 +89,18 @@ QString biblioteq::formattedISBN13(const QString &str) const
   return m_otherOptions->isbn13DisplayFormat(str);
 }
 
+QStringList biblioteq::scripts(void) const
+{
+  auto list
+    (QSettings().value("otheroptions/scripts", "").
+     toString().trimmed().split('\n') +
+     m_specialExecutables.keys());
+
+  list = list.toSet().toList(); // List of unique elements.
+  std::sort(list.begin(), list.end());
+  return list;
+}
+
 QStringList biblioteq::selectedISBN10s(void) const
 {
   QStringList list;
@@ -386,24 +398,22 @@ void biblioteq::prepareCustomQueryFavoriteShortcut(void)
 
 void biblioteq::prepareExternalApplicationsMenu(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ui.menuExternal_Applications->clear();
 
-  QMapIterator<QString, char> it(m_specialExecutables);
-  int i = -1;
+  auto const list(scripts());
 
-  while(it.hasNext())
-    {
-      i += 1;
-      it.next();
-      ui.menuExternal_Applications->addAction
-	(QIcon(m_specialExecutablesIcons.value(i, " ")),
-	 it.key(),
-	 this,
-	 SLOT(slotSpecialApplication(void)));
-    }
+  for(int i = 0; i < list.size(); i++)
+    ui.menuExternal_Applications->addAction
+      (QIcon(m_specialExecutablesIcons.value(i, " ")),
+       list.at(i),
+       this,
+       SLOT(slotSpecialApplication(void)));
 
   if(ui.menuExternal_Applications->isEmpty())
-    ui.menuExternal_Applications->addAction(tr("Empty"));
+    ui.menuExternal_Applications->addAction(tr("(Empty)"));
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq::prepareIcons(void)
@@ -858,6 +868,11 @@ void biblioteq::refresh(const QString &filter)
 	action->trigger();
 	break;
       }
+}
+
+void biblioteq::slotAboutToShowExternalApplicationsMenu(void)
+{
+  prepareExternalApplicationsMenu();
 }
 
 void biblioteq::slotAboutToShowItemsPagesMenu(void)
@@ -1410,8 +1425,12 @@ void biblioteq::slotSpecialApplication(void)
   if(!action)
     return;
 
+  auto text(action->text());
+
+  text = m_db.driverName() == "QPSQL" ?
+    text : text.replace("%1", m_db.databaseName());
   qputenv("BIBLIOTEQ_DATABASE_NAME", m_db.databaseName().toUtf8());
-  QProcess::startDetached(action->text(), QStringList());
+  QProcess::startDetached(text, QStringList());
   qunsetenv("BIBLIOTEQ_DATABASE_NAME");
 }
 

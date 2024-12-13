@@ -127,6 +127,26 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QToolButton" name="scripts">
+           <property name="toolTip">
+            <string>Other Options -&gt; Scripts</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../Icons/icons.qrc">
+             <normaloff>:/32x32/details.png</normaloff>:/32x32/details.png</iconset>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::MenuButtonPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -672,6 +692,7 @@
   <tabstop>csv_file</tabstop>
   <tabstop>select_csv_file</tabstop>
   <tabstop>post_import_script</tabstop>
+  <tabstop>scripts</tabstop>
   <tabstop>preview</tabstop>
   <tabstop>refresh_preview</tabstop>
   <tabstop>delimiter</tabstop>

@@ -92,6 +92,8 @@ class biblioteq_import: public QMainWindow
   void slotDeleteRow(void);
   void slotDetectFields(void);
   void slotImport(void);
+  void slotPopulateScript(void);
+  void slotPopulateScripts(void);
   void slotPostImportProcessStandardStream(void);
   void slotRefreshPreview(void);
   void slotReset(void);

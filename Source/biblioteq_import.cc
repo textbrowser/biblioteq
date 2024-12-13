@@ -41,6 +41,8 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
   m_qmain = parent;
   m_ui.setupUi(this);
   m_ui.about_csv->setText(tr("0 Columns | 0 Lines"));
+  m_ui.scripts->setMenu(new QMenu(this));
+  m_ui.scripts->menu()->setStyleSheet("QMenu {menu-scrollable: 1;}");
   m_ui.show_progress_dialogs->setChecked(true);
   m_ui.show_progress_dialogs->setVisible(false);
   connect(&m_process,
@@ -83,6 +85,14 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(m_ui.scripts,
+	  SIGNAL(clicked(void)),
+	  m_ui.scripts,
+	  SLOT(showMenu(void)));
+  connect(m_ui.scripts->menu(),
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotPopulateScripts(void)));
   connect(m_ui.select_csv_file,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -1382,6 +1392,36 @@ void biblioteq_import::slotImport(void)
 
       QApplication::processEvents();
     }
+}
+
+void biblioteq_import::slotPopulateScript(void)
+{
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(action)
+    {
+      m_qmain->getDB().driverName() == "QPSQL" ?
+	m_ui.post_import_script->setText(action->text()) :
+	m_ui.post_import_script->setText
+	(action->text().
+	 replace("%1", m_qmain->getDB().databaseName().toUtf8()));
+      m_ui.post_import_script->setCursorPosition(0);
+      m_ui.post_import_script->setToolTip(m_ui.post_import_script->text());
+    }
+}
+
+void biblioteq_import::slotPopulateScripts(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.scripts->menu()->clear();
+
+  foreach(auto const &str, m_qmain->scripts())
+    m_ui.scripts->menu()->addAction(str, this, SLOT(slotPopulateScript(void)));
+
+  if(m_ui.scripts->menu()->actions().isEmpty())
+    m_ui.scripts->menu()->addAction(tr("(Empty)"))->setEnabled(false);
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_import::slotPostImportProcessStandardStream(void)

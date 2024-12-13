@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>900</width>
     <height>800</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>788</width>
+         <width>888</width>
          <height>742</height>
         </rect>
        </property>
@@ -807,6 +807,30 @@
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="page_scripts">
+           <attribute name="title">
+            <string>Scripts</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_17">
+            <item>
+             <widget class="QLabel" name="label_19">
+              <property name="text">
+               <string>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double quotes if necessary.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="scripts">
+              <property name="placeholderText">
+               <string>Scripts</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="page_shortcuts">
            <attribute name="title">
             <string>Shortcuts</string>
@@ -1090,6 +1114,7 @@
   <tabstop>generated_letter</tabstop>
   <tabstop>members_visible_columns</tabstop>
   <tabstop>sqlite_reminders</tabstop>
+  <tabstop>scripts</tabstop>
   <tabstop>shortcuts</tabstop>
   <tabstop>books_accession_number</tabstop>
   <tabstop>save</tabstop>

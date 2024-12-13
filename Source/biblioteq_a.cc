@@ -890,6 +890,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(enterKeyPressed(void)),
 	  this,
 	  SLOT(slotGraphicsSceneEnterKeyPressed(void)));
+  connect(ui.menuExternal_Applications,
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotAboutToShowExternalApplicationsMenu(void)));
   connect(ui.menuItem_Pages,
 	  SIGNAL(aboutToShow(void)),
 	  this,
@@ -2550,7 +2554,6 @@ void biblioteq::showMain(void)
   QTimer::singleShot(1500, this, &biblioteq::slotDelayedPreparation);
   ui.actionDownload_Version_Information->isChecked() ?
     QTimer::singleShot(1500, m_swifty, &swifty::slot_download) : (void) 0;
-  prepareExternalApplicationsMenu();
 }
 
 void biblioteq::slotAbout(void)
