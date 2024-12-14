@@ -100,6 +100,7 @@ class biblioteq_import: public QMainWindow
   void slotSaveOption(void);
   void slotSelectCSVFile(void);
   void slotSetGlobalFonts(const QFont &font);
+  void slotTableFieldNameActivated(int index);
   void slotTemplates(int index);
 };
 

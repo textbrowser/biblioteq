@@ -1040,6 +1040,10 @@ void biblioteq_import::slotAddRow(void)
 
   comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
   comboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+  connect(comboBox,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotTableFieldNameActivated(int)));
 
   auto layout = new QHBoxLayout(widget);
   auto spacer = new QSpacerItem
@@ -1543,6 +1547,36 @@ void biblioteq_import::slotSetGlobalFonts(const QFont &font)
 
   m_ui.rows->resizeRowsToContents();
   update();
+}
+
+void biblioteq_import::slotTableFieldNameActivated(int index)
+{
+  auto comboBox = qobject_cast<QComboBox *> (sender());
+
+  if(!comboBox)
+    return;
+
+  QTableWidgetItem *item = nullptr;
+  auto const text(comboBox->itemText(index));
+
+  for(int i = 0; i < m_ui.rows->rowCount(); i++)
+    if(comboBox ==
+       m_ui.rows->
+       cellWidget(i, static_cast<int> (Columns::BIBLIOTEQ_TABLE_FIELD_NAME))->
+       findChild<QComboBox *> ())
+      {
+	item = m_ui.rows->item(i, static_cast<int> (Columns::CSV_PREVIEW));
+	break;
+      }
+
+  if(!item)
+    return;
+
+  item->text() != text ?
+    comboBox->setStyleSheet(QString("background-color: %1").
+			    arg(QColor(255, 114, 118).name())) :
+    comboBox->setStyleSheet(QString("background-color: %1").
+			    arg(QColor(144, 238, 144).name()));
 }
 
 void biblioteq_import::slotTemplates(int index)
