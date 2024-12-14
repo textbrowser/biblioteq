@@ -2556,9 +2556,10 @@ void biblioteq::showMain(void)
 	    if(i - 2 < 0 || i >= list.size())
 	      continue;
 
-	    if(m_specialExecutables.contains(list.at(i - 2)))
-	      m_specialExecutablesIcons
-		[QFileInfo(list.at(i - 2).trimmed()).absoluteFilePath()] =
+	    QFileInfo const fileInfo(list.at(i - 2).trimmed());
+
+	    if(m_specialExecutables.contains(fileInfo.absoluteFilePath()))
+	      m_specialExecutablesIcons[fileInfo.absoluteFilePath()] =
 		QFileInfo(list.at(i).trimmed()).absoluteFilePath();
 	  }
     }
