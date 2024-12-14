@@ -405,7 +405,7 @@ void biblioteq::prepareExternalApplicationsMenu(void)
 
   for(int i = 0; i < list.size(); i++)
     ui.menuExternal_Applications->addAction
-      (QIcon(m_specialExecutablesIcons.value(i, " ")),
+      (QIcon(m_specialExecutablesIcons.value(list.at(i))),
        list.at(i),
        this,
        SLOT(slotSpecialApplication(void)));

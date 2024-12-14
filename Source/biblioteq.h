@@ -482,6 +482,7 @@ class biblioteq: public QMainWindow
   QMainWindow *m_members_diag;
   QMap<QString, QHash<QString, QString> > m_branches;
   QMap<QString, QHash<QString, QString> > m_sruMaps;
+  QMap<QString, QString> m_specialExecutablesIcons;
   QMap<QString, char> m_specialExecutables;
   QMessageBox *m_about;
   QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
@@ -504,7 +505,6 @@ class biblioteq: public QMainWindow
   QString m_roles;
   QString m_unaccent;
   QStringList m_deletedAdmins;
-  QStringList m_specialExecutablesIcons;
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;
   QVector<QPointer<QMainWindow> > m_attachedWindows;

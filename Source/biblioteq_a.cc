@@ -38,6 +38,7 @@
 #include <QtDebug>
 #include <QtMath>
 
+#include <iostream>
 #include <limits>
 
 #ifdef Q_OS_ANDROID
@@ -2454,7 +2455,16 @@ void biblioteq::showMain(void)
       auto openDatabase = false;
 
       for(int i = 0; i < list.size(); i++)
-	if(list.at(i) == "--open-postgresql-database")
+	if(list.at(i) == "--help")
+	  std::cout << "BiblioteQ:" << std::endl
+		    << " [--help]" << std::endl
+		    << " [--open-postgresql-database]" << std::endl
+		    << " [--open-sqlite-database]" << std::endl
+		    << " [--open-sqlite-database-index]" << std::endl
+		    << " [--prepare-csv-import-file]" << std::endl
+		    << " [--special-executable]" << std::endl
+		    << " [--special-executable-icon]" << std::endl;
+	else if(list.at(i) == "--open-postgresql-database")
 	  {
 	    i += 1;
 
@@ -2543,11 +2553,13 @@ void biblioteq::showMain(void)
 	  {
 	    i += 1;
 
-	    if(i >= list.size())
+	    if(i - 2 < 0 || i >= list.size())
 	      continue;
 
-	    m_specialExecutablesIcons <<
-	      QFileInfo(list.at(i).trimmed()).absoluteFilePath();
+	    if(m_specialExecutables.contains(list.at(i - 2)))
+	      m_specialExecutablesIcons
+		[QFileInfo(list.at(i - 2).trimmed()).absoluteFilePath()] =
+		QFileInfo(list.at(i).trimmed()).absoluteFilePath();
 	  }
     }
 
