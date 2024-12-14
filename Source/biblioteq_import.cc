@@ -1406,7 +1406,6 @@ void biblioteq_import::slotPopulateScript(void)
 	(action->text().
 	 replace("%1", m_qmain->getDB().databaseName().toUtf8()));
       m_ui.post_import_script->setCursorPosition(0);
-      m_ui.post_import_script->setToolTip(m_ui.post_import_script->text());
     }
 }
 

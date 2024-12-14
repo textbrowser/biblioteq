@@ -2586,7 +2586,7 @@ void biblioteq::slotAbout(void)
       m_aboutColors.first = m_aboutColors.first.darker(10000);
       m_aboutColors.second = QColor(254, 221, 0);
       m_aboutColors.second = m_aboutColors.second.darker(10000);
-      m_aboutTimer.start(50);
+      m_aboutTimer.start(150);
     }
 
   QString qversion("");
