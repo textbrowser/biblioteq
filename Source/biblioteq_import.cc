@@ -872,6 +872,7 @@ void biblioteq_import::loadPreview(void)
     }
 
   file.close();
+  m_ui.detect->click();
   progress ? (void) progress->close() : (void) 0;
   QApplication::processEvents();
 }
@@ -1170,6 +1171,8 @@ void biblioteq_import::slotDetectFields(void)
 	}
       else
 	index = comboBox->findText(text);
+
+      comboBox->setCurrentIndex(-1); // Fire a currentIndexChanged() signal.
 
       if(index >= 0)
 	comboBox->setCurrentIndex(index);
