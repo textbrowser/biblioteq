@@ -77,6 +77,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotImport(void)));
+  connect(m_ui.post_import_script,
+	  SIGNAL(textEdited(const QString &)),
+	  this,
+	  SLOT(slotPostImportScriptTextEdited(const QString &)));
   connect(m_ui.refresh_preview,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -872,7 +876,7 @@ void biblioteq_import::loadPreview(void)
     }
 
   file.close();
-  m_ui.detect->click();
+  m_ui.detect->click(); // Highlight, if necessary.
   progress ? (void) progress->close() : (void) 0;
   QApplication::processEvents();
 }
@@ -1044,7 +1048,7 @@ void biblioteq_import::slotAddRow(void)
   connect(comboBox,
 	  SIGNAL(currentIndexChanged(int)),
 	  this,
-	  SLOT(slotTableFieldNameActivated(int)));
+	  SLOT(slotTableFieldNameChanged(int)));
 
   auto layout = new QHBoxLayout(widget);
   auto spacer = new QSpacerItem
@@ -1413,6 +1417,8 @@ void biblioteq_import::slotPopulateScript(void)
 	(action->text().
 	 replace("%1", m_qmain->getDB().databaseName().toUtf8()));
       m_ui.post_import_script->setCursorPosition(0);
+      m_ui.post_import_script->setToolTip
+	(m_ui.post_import_script->text().trimmed());
     }
 }
 
@@ -1471,6 +1477,11 @@ void biblioteq_import::slotPostImportProcessStandardStream(void)
     m_postImportDialogUi.text->append(d2);
 
   dialog->show();
+}
+
+void biblioteq_import::slotPostImportScriptTextEdited(const QString &text)
+{
+  m_ui.post_import_script->setToolTip(text.trimmed());
 }
 
 void biblioteq_import::slotRefreshPreview(void)
@@ -1552,7 +1563,7 @@ void biblioteq_import::slotSetGlobalFonts(const QFont &font)
   update();
 }
 
-void biblioteq_import::slotTableFieldNameActivated(int index)
+void biblioteq_import::slotTableFieldNameChanged(int index)
 {
   auto comboBox = qobject_cast<QComboBox *> (sender());
 

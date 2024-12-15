@@ -95,12 +95,13 @@ class biblioteq_import: public QMainWindow
   void slotPopulateScript(void);
   void slotPopulateScripts(void);
   void slotPostImportProcessStandardStream(void);
+  void slotPostImportScriptTextEdited(const QString &text);
   void slotRefreshPreview(void);
   void slotReset(void);
   void slotSaveOption(void);
   void slotSelectCSVFile(void);
   void slotSetGlobalFonts(const QFont &font);
-  void slotTableFieldNameActivated(int index);
+  void slotTableFieldNameChanged(int index);
   void slotTemplates(int index);
 };
 
