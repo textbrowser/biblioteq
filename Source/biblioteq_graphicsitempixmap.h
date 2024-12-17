@@ -46,13 +46,18 @@ static void qt_graphicsItem_highlightSelected
   if(qMin(mbrect.height(), mbrect.width()) < qreal(1.0))
     return;
 
-  const QColor bgcolor(70, 130, 180);
+  QColor const color(8, 255, 8); // Neon for YOU!
+  QPen pen;
   const qreal pad = 0.0;
-  const qreal penWidth = 2.5;
 
+  pen.setColor(color);
+  pen.setJoinStyle(Qt::RoundJoin);
+  pen.setStyle(Qt::SolidLine);
+  pen.setWidthF(3.5);
   painter->setBrush(Qt::NoBrush);
-  painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
-  painter->drawRect(item->boundingRect().adjusted(pad, pad, -pad, -pad));
+  painter->setPen(pen);
+  painter->drawRoundedRect
+    (item->boundingRect().adjusted(pad, pad, -pad, -pad), 5.0, 5.0);
 }
 
 class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
@@ -69,23 +74,24 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
 
   void paint(QPainter *painter,
 	     const QStyleOptionGraphicsItem *option,
-	     QWidget *widget = nullptr)
+	     QWidget *widget)
   {
-    Q_UNUSED(widget);
-
     if(!option || !painter)
-      return;
+      {
+	QGraphicsPixmapItem::paint(painter, option, widget);
+	return;
+      }
 
-    painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
+    QPen pen;
 
-    auto exposed_rect(option->exposedRect.adjusted(-1, -1, 1, 1));
-
-    exposed_rect &= QRectF(offset().x(),
-			   offset().y(),
-			   pixmap().width(),
-			   pixmap().height());
-    painter->drawPixmap
-      (exposed_rect, pixmap(), exposed_rect.translated(-offset()));
+    pen.setColor(QColor(70, 130, 180));
+    pen.setJoinStyle(Qt::RoundJoin);
+    pen.setStyle(Qt::SolidLine);
+    pen.setWidthF(1.5);
+    painter->setBrush(QBrush(pixmap()));
+    painter->setPen(pen);
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->drawRoundedRect(boundingRect(), 5.0, 5.0); // Order.
 
     if(option->state & (QStyle::State_HasFocus | QStyle::State_Selected))
       qt_graphicsItem_highlightSelected(this, painter, option);
