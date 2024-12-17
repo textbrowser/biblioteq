@@ -92,16 +92,10 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
   pc.thumbnail_item->setReadOnly(true);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_A),
-		this,
-		SLOT(slotSelectAll(void)));
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
 #else
-  new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_A),
-		this,
-		SLOT(slotSelectAll(void)));
   new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_S),
 		this,
 		SLOT(slotGo(void)));
