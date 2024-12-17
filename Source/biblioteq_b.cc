@@ -3955,8 +3955,8 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		  if(columns <= iconTableColumnIdx)
 		    {
-		      iconTableRowIdx += 1;
 		      iconTableColumnIdx = 0;
+		      iconTableRowIdx += 1;
 		    }
 		}
 	      else
