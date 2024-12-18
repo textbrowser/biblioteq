@@ -1724,7 +1724,7 @@ void biblioteq::readConfigurationFile(void)
      toString().remove('&').trimmed());
 
   if(!color.isValid())
-    color = Qt::white;
+    color = QColor(Qt::white);
 
   ui.graphicsView->scene()->setBackgroundBrush(color);
   createSqliteMenuActions();
@@ -4235,7 +4235,7 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 		   toString().remove('&').trimmed());
 
       if(!color.isValid())
-	color = Qt::white;
+	color = QColor(Qt::white);
 
       ui.graphicsView->scene()->setBackgroundBrush(color);
     }

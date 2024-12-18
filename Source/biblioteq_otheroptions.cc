@@ -671,7 +671,7 @@ void biblioteq_otheroptions::prepareSettings(void)
      toString().remove('&').trimmed());
 
   if(!color.isValid())
-    color = Qt::white;
+    color = QColor(Qt::white);
 
   biblioteq_misc_functions::assignImage
     (m_ui.main_window_canvas_background_color, color);

@@ -28,6 +28,9 @@
 #ifndef _BIBLIOTEQ_GRAPHICSITEMPIXMAP_H_
 #define _BIBLIOTEQ_GRAPHICSITEMPIXMAP_H_
 
+#include <QGraphicsDropShadowEffect>
+#include <QGraphicsPixmapItem>
+
 static void qt_graphicsItem_highlightSelected
 (QGraphicsItem *item,
  QPainter *painter,
@@ -66,6 +69,12 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
   biblioteq_graphicsitempixmap(const QPixmap &pixmap, QGraphicsItem *parent):
     QGraphicsPixmapItem(pixmap, parent)
   {
+    auto effect = new QGraphicsDropShadowEffect();
+
+    effect->setBlurRadius(10.0);
+    effect->setColor(QColor(Qt::gray));
+    effect->setOffset(2.5, 2.5);
+    setGraphicsEffect(effect);
   }
 
   ~biblioteq_graphicsitempixmap()
@@ -84,10 +93,10 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
 
     QPen pen;
 
-    pen.setColor(QColor(70, 130, 180));
+    pen.setColor(Qt::transparent);
     pen.setJoinStyle(Qt::RoundJoin);
     pen.setStyle(Qt::SolidLine);
-    pen.setWidthF(1.5);
+    pen.setWidthF(0.0);
     painter->setBrush(QBrush(pixmap()));
     painter->setPen(pen);
     painter->setRenderHint(QPainter::Antialiasing, true);
