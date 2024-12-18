@@ -41,24 +41,16 @@ static void qt_graphicsItem_highlightSelected
   if(!item || !painter)
     return;
 
-  auto rect(item->boundingRect());
-  const qreal radius = 30.0;
-
-  rect.setX(rect.x() + 1.0);
-  rect.setY(rect.y() + 1.0);
-
-  QPen pen;
-
-  pen.setColor(QColor(199, 21, 133));
-  pen.setWidthF(1.5);
-  painter->setPen(pen);
-  painter->drawEllipse(rect.topLeft().x(), rect.topLeft().y(), radius, radius);
-
   QPainterPath path;
+  auto rect(item->boundingRect());
+  const qreal offset = 5.0;
 
-  path.addEllipse
-    (rect.topLeft().x(), rect.topLeft().y(), radius - 1.0, radius - 1.0);
-  painter->fillPath(path, QColor(222, 141, 174));
+  rect.setHeight(offset + rect.height());
+  rect.setWidth(offset + rect.width());
+  rect.setX(-offset + rect.x());
+  rect.setY(-offset + rect.y());
+  path.addRoundedRect(rect, 5.0, 5.0);
+  painter->fillPath(path, QColor(222, 141, 174, 100)); // Sassy Pink
 }
 
 class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
