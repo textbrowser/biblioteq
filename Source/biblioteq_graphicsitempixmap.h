@@ -36,31 +36,29 @@ static void qt_graphicsItem_highlightSelected
  QPainter *painter,
  const QStyleOptionGraphicsItem *option)
 {
-  if(!item || !option || !painter)
+  Q_UNUSED(option);
+
+  if(!item || !painter)
     return;
 
-  auto const marect = painter->transform().mapRect(QRectF(0, 0, 1, 1));
+  auto rect(item->boundingRect());
+  const qreal radius = 30.0;
 
-  if(qFuzzyIsNull(qMax(marect.height(), marect.width())))
-    return;
+  rect.setX(rect.x() + 1.0);
+  rect.setY(rect.y() + 1.0);
 
-  auto const mbrect = painter->transform().mapRect(item->boundingRect());
-
-  if(qMin(mbrect.height(), mbrect.width()) < qreal(1.0))
-    return;
-
-  QColor const color(8, 255, 8); // Neon for YOU!
   QPen pen;
-  const qreal pad = 0.0;
 
-  pen.setColor(color);
-  pen.setJoinStyle(Qt::RoundJoin);
-  pen.setStyle(Qt::SolidLine);
-  pen.setWidthF(3.5);
-  painter->setBrush(Qt::NoBrush);
+  pen.setColor(QColor(199, 21, 133));
+  pen.setWidthF(1.5);
   painter->setPen(pen);
-  painter->drawRoundedRect
-    (item->boundingRect().adjusted(pad, pad, -pad, -pad), 5.0, 5.0);
+  painter->drawEllipse(rect.topLeft().x(), rect.topLeft().y(), radius, radius);
+
+  QPainterPath path;
+
+  path.addEllipse
+    (rect.topLeft().x(), rect.topLeft().y(), radius - 1.0, radius - 1.0);
+  painter->fillPath(path, QColor(222, 141, 174));
 }
 
 class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
@@ -91,6 +89,14 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
 	return;
       }
 
+    painter->setRenderHints(QPainter::Antialiasing |
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 13, 0))
+			    QPainter::LosslessImageRendering |
+#endif
+			    QPainter::SmoothPixmapTransform |
+			    QPainter::TextAntialiasing,
+			    true);
+
     QPen pen;
 
     pen.setColor(Qt::transparent);
@@ -99,7 +105,6 @@ class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
     pen.setWidthF(0.0);
     painter->setBrush(QBrush(pixmap()));
     painter->setPen(pen);
-    painter->setRenderHint(QPainter::Antialiasing, true);
     painter->drawRoundedRect(boundingRect(), 5.0, 5.0); // Order.
 
     if(option->state & (QStyle::State_HasFocus | QStyle::State_Selected))
