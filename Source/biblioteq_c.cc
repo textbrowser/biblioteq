@@ -1038,6 +1038,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		  iconTableColumnIdx += 1;
 		  pixmapItem->setFlag
 		    (QGraphicsItem::ItemIsSelectable, true);
+		  pixmapItem->setToolTip(tooltip);
 		  ui.graphicsView->scene()->addItem(pixmapItem);
 
 		  if(columns <= iconTableColumnIdx)

@@ -3950,6 +3950,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				       200.0 * iconTableRowIdx + 15.0);
 
 		  pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+		  pixmapItem->setToolTip(tooltip);
 		  ui.graphicsView->scene()->addItem(pixmapItem);
 		  iconTableColumnIdx += 1;
 
