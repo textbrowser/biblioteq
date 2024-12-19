@@ -91,14 +91,16 @@ QString biblioteq::formattedISBN13(const QString &str) const
 
 QStringList biblioteq::scripts(void) const
 {
+  QMap<QString, char> map;
   auto list
     (QSettings().value("otheroptions/scripts", "").
      toString().trimmed().split('\n') +
      m_specialExecutables.keys());
 
-  list = list.toSet().toList(); // List of unique elements.
-  std::sort(list.begin(), list.end());
-  return list;
+  foreach(auto const &str, list)
+    map[str] = 0;
+
+  return map.keys();
 }
 
 QStringList biblioteq::selectedISBN10s(void) const
