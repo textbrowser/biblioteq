@@ -2501,15 +2501,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Empty</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The current PostgreSQL schema must be updated. Please execute the statement(s) in %1 for version %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A new version %1 of BiblioteQ is available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2606,10 +2598,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;BiblioteQ Version %1&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2676,6 +2664,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Member&apos;s Reservation History (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;BiblioteQ Local Version %1&lt;br&gt;BiblioteQ Official Version %9&lt;br&gt;Architecture %4.&lt;br&gt;Compiled on %2, %3.&lt;br&gt;Made with love by textbrower.&lt;br&gt;Software for and from the margins.&lt;br&gt;Faenza icons.&lt;br&gt;Poppler version %5.&lt;br&gt;%5&lt;br&gt;Qt version %6 (runtime %7).&lt;br&gt;YAZ version %8.&lt;br&gt;&lt;br&gt;Please visit &lt;a href=&quot;https://biblioteq.sourceforge.io&quot;&gt;https://biblioteq.sourceforge.io&lt;/a&gt; or &lt;a href=&quot;https://textbrowser.github.io/biblioteq/&quot;&gt;https://textbrowser.github.io/biblioteq&lt;/a&gt; for project information.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new official version %1 of BiblioteQ is available!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3473,14 +3477,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Amazon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Open Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Open Library Data Retrieval</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3542,10 +3538,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to retrieve the target audiences.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3614,6 +3606,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Purchase Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download &amp;Amazon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Open &amp;Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download &amp;Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Paste Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select Image...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4268,6 +4284,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music CD (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5431,6 +5451,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>BiblioteQ: Duplicate DVD Entry</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>DVD (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_files</name>
@@ -5756,6 +5780,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Unable to update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Grey Literature (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_greyliteratureinfo</name>
@@ -5938,21 +5966,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Imported: %1. Not imported: %2.
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Import Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Informatie</translation>
-    </message>
-    <message>
-        <source>Imported: %1. Not imported: %2.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Are you sure that you wish to reset?</source>
@@ -6020,6 +6039,31 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>0 Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Column(s) | %2 Line(s) (Preview Interrupted)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2. Elapsed second(s): %3.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imported: %1. Not imported: %2. Elapsed second(s): %3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Would you like to execute the post-import script? If another script is alive, it will not be interrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Empty)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Post-Import Script Results</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6642,6 +6686,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The YAZ library is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Journal (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magazine (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7435,6 +7487,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>%1 Image(s)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Photograph Collection (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_query_history</name>
@@ -7909,6 +7965,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10008,6 +10068,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saved in the INI file. An import of a large file may not be gently canceled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Progress Dialogs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the trimmed text is not empty, a confirmation prompt will be displayed after the import completes. If confirmed, the specified script is executed as a new process. The first argument is the absolute file path of the script. Optional arguments follow. The arguments must be separated by single spaces. Enclose text with double-quotes if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Post-Import Script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Post-Import Script Absolute File Path And Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other Options -&gt; Scripts</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>informationDialog</name>
@@ -10324,14 +10408,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Copies...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10350,6 +10426,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <source>Menu or Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Menu Or Paste</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -10802,7 +10886,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished">Ctrl+S</translation>
+        <translation type="obsolete">Ctrl+S</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
@@ -11450,6 +11534,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Center Child Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Primary Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item &amp;Pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tabbed Item Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Version Information After Launch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12170,6 +12278,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>One entry per line please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scripts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
