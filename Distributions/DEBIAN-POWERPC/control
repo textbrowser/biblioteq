@@ -11,7 +11,7 @@ Depends: libpoppler-qt5-1,
 	 libqt5sql5-sqlite,
 	 libqt5widgets5,
 	 libsqlite3-0,
-	 libyaz4,
+	 libyaz4
 Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
 Priority: optional
