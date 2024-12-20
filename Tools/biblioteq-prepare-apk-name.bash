@@ -13,4 +13,9 @@ do
     then
 	mv $i ~/BiblioteQ-"$VERSION"_arm64.apk
     fi
+
+    if [[ "$i" == *"armeabi"* ]]
+    then
+	mv $i ~/BiblioteQ-"$VERSION"_arm32.apk
+    fi
 done
