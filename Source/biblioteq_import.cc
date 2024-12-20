@@ -25,6 +25,7 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QElapsedTimer>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressDialog>
