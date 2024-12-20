@@ -13,7 +13,8 @@ fi
 for FOLDER in Distributions/DEBIAN \
 	      Distributions/DEBIAN-POWERPC \
 	      Distributions/RASPBIAN \
-	      Distributions/PIOS64; do
+	      Distributions/PIOS64
+do
     sed -i "s/Version: .*/Version: $VERSION/" $FOLDER/control
 done
 
