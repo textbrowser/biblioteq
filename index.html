@@ -615,23 +615,31 @@
 	<p>March 10, 2023.</p>
 	<ul>
 	  <li>Options -> Select Global Font is now available on MacOS.</li>
-	  <li>Visible Members Browser columns: Other Options -> Members -> Visible Columns. GitHub ticket #246.</li>
+	  <li>Visible Members Browser columns: Other Options -> Members ->
+	    Visible Columns. GitHub ticket #246.</li>
 	</ul>
 	<p>March 3, 2023.</p>
 	<ul>
-	  <li>Initialize Other Options -> Items -> Item Fields. GitHub ticket #276.</li>
+	  <li>Initialize Other Options -> Items -> Item Fields. GitHub ticket
+	    #276.</li>
 	  <li>New biblioteq-darkmode.bat Windows file.</li>
 	</ul>
 	<p>February 25, 2023.</p>
 	<ul>
-	  <li>Improved processing of duplicate cover images. Decreased memory consumption.</li>
-	  <li>Improved recording of SQL syntax colors. Example INI value: keyword=color. Existing values will not be ported. Apologies!</li>
+	  <li>Improved processing of duplicate cover images. Decreased memory
+	    consumption.</li>
+	  <li>Improved recording of SQL syntax colors. Example INI value:
+	    keyword=color. Existing values will not be ported. Apologies!</li>
 	  <li>Intelligent woody trees.</li>
 	  <li>Preserve boldness of fonts, if possible.</li>
-	  <li>Remove trailing semicolons from custom-query search strings. The semicolons produce errors in SQLite.</li>
-	  <li>Reviewed all UNION statements. Replaced UNION with UNION ALL. Separate sets do not require pruning.</li>
-	  <li>Show query completion time in the main window's status bar. Not all queries are measured.</li>
-	  <li>Validate Reservations Minimum Days integer input in Database Enumerations Browser.</li>
+	  <li>Remove trailing semicolons from custom-query search strings.
+	    The semicolons produce errors in SQLite.</li>
+	  <li>Reviewed all UNION statements. Replaced UNION with UNION ALL.
+	    Separate sets do not require pruning.</li>
+	  <li>Show query completion time in the main window's status bar.
+	    Not all queries are measured.</li>
+	  <li>Validate Reservations Minimum Days integer input in Database
+	    Enumerations Browser.</li>
 	</ul>
 	<p>February 20, 2023.</p>
 	<ul>
@@ -641,25 +649,44 @@
 	</ul>
 	<p>January 25, 2023.</p>
 	<ul>
-	  <li>Ability to export member history as a CSV file. GitHub discussion.</li>
+	  <li>Ability to export member history as a CSV file. GitHub
+	    discussion.</li>
 	</ul>
 	<p>January 16, 2023.</p>
 	<ul>
 	  <li>Allow renaming of Custom Query favorites. GitHub discussion.</li>
-	  <li>Batch Activities Browser: do not display a file dialog if an export would be empty.</li>
-	  <li>Book SRU query results: set Alternate Identifier to control field 003's ark value if Alternate Identifier is empty. GitHub discussion.</li>
-	  <li>CSV Import Browser: empty ISBN-10 and ISBN-13 substitutions. Values may be prepared manually.</li>
-	  <li>Completed GitHub ticket #228. Allow UPDATE queries on selected items.</li>
-	  <li>Custom queries executed via the Custom Query menu will be executed through the same logic as the Custom Query browser.</li>
-	  <li>Do not convert ISBN-13 to ISBN-10 unless the prefix is 978 (biblioteq_misc_functions::isbn13to10()). GitHub ticket #269.</li>
-	  <li>Do not disconnect the current database if a future database does not have a database driver.</li>
+	  <li>Batch Activities Browser: do not display a file dialog if an
+	    export would be empty.</li>
+	  <li>Book SRU query results: set Alternate Identifier to control
+	    field 003's ark value if Alternate Identifier is empty. GitHub
+	    discussion.</li>
+	  <li>CSV Import Browser: empty ISBN-10 and ISBN-13 substitutions.
+	    Values may be prepared manually.</li>
+	  <li>Completed GitHub ticket #228. Allow UPDATE queries on selected
+	    items.</li>
+	  <li>Custom queries executed via the Custom Query menu will be
+	    executed through the same logic as the Custom Query browser.</li>
+	  <li>Do not convert ISBN-13 to ISBN-10 unless the prefix is 978
+	    (biblioteq_misc_functions::isbn13to10()). GitHub ticket #269.</li>
+	  <li>Do not disconnect the current database if a future database does
+	    not have a database driver.</li>
 	  <li>Happy New Year!</li>
-	  <li>Item field colors. New options in Other Options. GitHub ticket #272.</li>
-	  <li>Publication Date Formats are now open. Correct formats are expected. See Other Options. GitHub ticket #270.</li>
-	  <li>Replaced all instaces of MM/dd/yyyy with biblioteq::s_databaseDateFormat. GitHub ticket #270.</li>
-	  <li>Show a warning label if the selected database's driver does not exist in Branch Selection.</li>
-	  <li>Some operators believe that BiblioteQ should correct their malformed data regardless of the effort, interest, and time. Modified the import mechanism such that it attempts to correct publication dates. GitHub ticket #270.</li>
-	  <li>Source-only release! Preparing release files requires a significant effort and an interest. Requests for release files will be ignored! Apologies. The tar bundle for Linux is created in Ubuntu 20.04.</li>
+	  <li>Item field colors. New options in Other Options. GitHub ticket
+	    #272.</li>
+	  <li>Publication Date Formats are now open. Correct formats are
+	    expected. See Other Options. GitHub ticket #270.</li>
+	  <li>Replaced all instaces of MM/dd/yyyy with biblioteq::
+	    s_databaseDateFormat. GitHub ticket #270.</li>
+	  <li>Show a warning label if the selected database's driver does not
+	    exist in Branch Selection.</li>
+	  <li>Some operators believe that BiblioteQ should correct their
+	    malformed data regardless of the effort, interest, and time.
+	    Modified the import mechanism such that it attempts to correct
+	    publication dates. GitHub ticket #270.</li>
+	  <li>Source-only release! Preparing release files requires a
+	    significant effort and an interest. Requests for release files
+	    will be ignored! Apologies. The tar bundle for Linux is created
+	    in Ubuntu 20.04.</li>
 	</ul>
 	<p>December 25, 2022.</p>
 	<ul>
@@ -667,31 +694,54 @@
 	  <li>Added book_target_audiences to Merge SQLite Databases.</li>
 	  <li>Added member_history_dnt to Custom Query tree widget.</li>
 	  <li>Allow null ISBN book searches.</li>
-	  <li>Audio and Batch Activities Browser. Multimedia system required.</li>
-	  <li>Avoid searching of duplicate items in Batch Activities Browser.</li>
-	  <li>Bottom-scroll-on-add added to Batch Activities Browser. Setting is ephemeral.</li>
-	  <li>Close and reset the Merge SQLite Databases window upon a database disconnect.</li>
-	  <li>Completed Qt 6.2 LTS regular expressions. Some glitches may remain.</li>
-	  <li>Corrected discovery of grey literature items in the Batch Activities Browser. Problem caused by referencing incorrect database field.</li>
-	  <li>Corrected grey literature searches. The query was missing fields.</li>
-	  <li>Corrected magazine searches. The query was missing a space character.</li>
-	  <li>Corrected queries which include single quotes for SQLite and PostgreSQL.</li>
-	  <li>Corrected section scrolling order in Database Enumerations Browser.</li>
-	  <li>Custom queries and favorites. Please see Custom Query and View menu.</li>
-	  <li>Do not include empty myoid information in the Merge SQLite Databases utility during error reporting.</li>
-	  <li>Export missing items function in Batch Activities Browser's Discover panel.</li>
-	  <li>Hyperlinks for SQLite. Please activate a link by pressing and holding the Alt key while clicking on the link. Also functional on editable PostgreSQL entries.</li>
+	  <li>Audio and Batch Activities Browser. Multimedia system required.
+	  </li>
+	  <li>Avoid searching of duplicate items in Batch Activities Browser.
+	  </li>
+	  <li>Bottom-scroll-on-add added to Batch Activities Browser. Setting
+	    is ephemeral.</li>
+	  <li>Close and reset the Merge SQLite Databases window upon a database
+	    disconnect.</li>
+	  <li>Completed Qt 6.2 LTS regular expressions. Some glitches may
+	    remain.</li>
+	  <li>Corrected discovery of grey literature items in the Batch
+	    Activities Browser. Problem caused by referencing incorrect
+	    database field.</li>
+	  <li>Corrected grey literature searches. The query was missing
+	    fields.</li>
+	  <li>Corrected magazine searches. The query was missing a space
+	    character.</li>
+	  <li>Corrected queries which include single quotes for SQLite and
+	    PostgreSQL.</li>
+	  <li>Corrected section scrolling order in Database Enumerations
+	    Browser.</li>
+	  <li>Custom queries and favorites. Please see Custom Query and View
+	    menu.</li>
+	  <li>Do not include empty myoid information in the Merge SQLite
+	    Databases utility during error reporting.</li>
+	  <li>Export missing items function in Batch Activities Browser's
+	    Discover panel.</li>
+	  <li>Hyperlinks for SQLite. Please activate a link by pressing and
+	    holding the Alt key while clicking on the link. Also functional
+	    on editable PostgreSQL entries.</li>
 	  <li>Ignore empty scanned input in Batch Activities Browser.</li>
-	  <li>Improved error reporting of biblioteq_misc_functions::getNextCopy().</li>
-	  <li>Include item title in the Discover portion of the Batch Activities Browser.</li>
-	  <li>New database tables book_conditions, book_originality. Please upgrade the databases. Static values have been removed from relevant widgets.</li>
+	  <li>Improved error reporting of biblioteq_misc_functions::
+	    getNextCopy().</li>
+	  <li>Include item title in the Discover portion of the Batch
+	    Activities Browser.</li>
+	  <li>New database tables book_conditions, book_originality. Please
+	    upgrade the databases. Static values have been removed from
+	    relevant widgets.</li>
 	  <li>Removed Poppler (PDF), PostgreSQL, and YAZ from MacOS.</li>
-	  <li>Removed SQLite libraries and source. Qt provides sufficient SQLite services.</li>
+	  <li>Removed SQLite libraries and source. Qt provides sufficient
+	    SQLite services.</li>
 	  <li>Removed duplicate tool tips from Other Options.</li>
 	  <li>Reset numerous panels after a database is closed.</li>
 	  <li>Revised text on numerous menu items.</li>
-	  <li>Save tear-off menus setting only if Automatically Save Settings On Exit is active or the settings are explicitly saved.</li>
-	  <li>This will be the final package release. Future releases will include source only. Good luck!</li>
+	  <li>Save tear-off menus setting only if Automatically Save Settings
+	    On Exit is active or the settings are explicitly saved.</li>
+	  <li>This will be the final package release. Future releases will
+	    include source only. Good luck!</li>
 	  <li>Woody tree widgets. Collapse / expand trees.</li>
 	</ul>
 	<p>November 25, 2022.</p>
@@ -710,7 +760,8 @@
 	</ul>
 	<p>September 15, 2022.</p>
 	<ul>
-	  <li>As requested, display the Alternate Identifier for books category.</li>
+	  <li>As requested, display the Alternate Identifier for books
+	    category.</li>
 	  <li>Corrected book import and copy generation.</li>
 	  <li>Corrected order of widgets in Database Enumerations Browser.</li>
 	  <li>Import locale-specific prices. Thank you meteos77.</li>
@@ -722,100 +773,141 @@
 	  <li>Scroll-to-section for Database Enumerations Browser.</li>
 	  <li>Sort some combination box entries.</li>
 	  <li>Standard optimization (O2).</li>
-	  <li>Version information in About is incorrect for Debian and MacOS. Will be corrected in the next release.</li>
+	  <li>Version information in About is incorrect for Debian and MacOS.
+	    Will be corrected in the next release.</li>
 	  <li>YAZ 5.31.1; Windows.</li>
 	</ul>
 	<p>May 30, 2022.</p>
 	<ul>
-	  <li>Added alternate_id_1, description, and multivolume_set_isbn fields to all-fields book import.</li>
+	  <li>Added alternate_id_1, description, and multivolume_set_isbn
+	    fields to all-fields book import.</li>
 	  <li>Adding living application links.</li>
-	  <li>Basic search (main window) is now exact, per request. The wildcard character is %.</li>
-	  <li>Book imports will now create copies upon discovering duplicate ISBNs.</li>
-	  <li>Check ISBNs checkbox widget if either ISBN is available; book panel.</li>
-	  <li>Corrected export-as-PNG function. A scene's render() function must be provided the scene's bounding rectangle. Thank you meteos77 for the report.</li>
-	  <li>Corrected next and previous actions of photograph collections. Problem caused by type() override.</li>
+	  <li>Basic search (main window) is now exact, per request. The
+	    wildcard character is %.</li>
+	  <li>Book imports will now create copies upon discovering duplicate
+	    ISBNs.</li>
+	  <li>Check ISBNs checkbox widget if either ISBN is available; book
+	    panel.</li>
+	  <li>Corrected export-as-PNG function. A scene's render() function
+	    must be provided the scene's bounding rectangle. Thank you
+	    meteos77 for the report.</li>
+	  <li>Corrected next and previous actions of photograph collections.
+	    Problem caused by type() override.</li>
 	  <li>Corrected photograph Qt signals.</li>
 	  <li>Improved detection of book binding types for MARC queries.</li>
 	  <li>Include multi-volume ISBNs in book prints.</li>
-	  <li>New book target audience field. Please upgrade your databases.</li>
+	  <li>New book target audience field. Please upgrade your databases.
+	  </li>
 	  <li>Other book image retrieval.</li>
 	  <li>PostgreSQL 10.20.2; Windows.</li>
 	  <li>Qt 6.2 LTS is more complete!</li>
-	  <li>Remove ampersands from color buttons. Ampersands may be added by environments to denote mnemonics.</li>
-	  <li>Removed UNIQUE constraint from multivolume_set_isbn. See March 30, 2022 release notes for SQLite.</li>
+	  <li>Remove ampersands from color buttons. Ampersands may be added by
+	    environments to denote mnemonics.</li>
+	  <li>Removed UNIQUE constraint from multivolume_set_isbn. See March
+	    30, 2022 release notes for SQLite.</li>
 	  <li>SQLite 3.38.5; Android and Windows.</li>
 	</ul>
 	<p>March 30, 2022.</p>
 	<ul>
-	  <li>Copy contents of book_sequence and sequence tables during Merge SQLite Databases.</li>
-	  <li>Display a warning if the current database schema is not current.</li>
+	  <li>Copy contents of book_sequence and sequence tables during Merge
+	    SQLite Databases.</li>
+	  <li>Display a warning if the current database schema is not current.
+	  </li>
 	  <li>French release notes. Thank you meteos77.</li>
-	  <li>Limit Files Per Page (Files Browser) and Members Per Page (Members Browser) to 2500.</li>
+	  <li>Limit Files Per Page (Files Browser) and Members Per Page
+	    (Members Browser) to 2500.</li>
 	  <li>Limit copies to 1000.</li>
-	  <li>New multivolume_set_isbn database field. For SQLite databases, the field cannot be added with a UNIQUE constraint per https://www.sqlite.org/lang_altertable.html. Consider merging the existing database with a newly-created database. See https://github.com/textbrowser/biblioteq/discussions/191.</li>
+	  <li>New multivolume_set_isbn database field. For SQLite databases,
+	    the field cannot be added with a UNIQUE constraint per
+	    https://www.sqlite.org/lang_altertable.html. Consider merging the
+	    existing database with a newly-created database. See
+	    https://github.com/textbrowser/biblioteq/discussions/191.</li>
 	  <ol>
 	    <li>Create a new SQLite database: File -> New SQLite Database.</li>
-	    <li>Open Merge SQLite Databases: Tools -> Merge SQLite Databases.</li>
+	    <li>Open Merge SQLite Databases: Tools -> Merge SQLite Databases.
+	    </li>
 	    <li>Press Add Row.</li>
 	    <li>Select the legacy SQLite database file.</li>
 	    <li>Press the Merge button.</li>
 	  </ol>
 	  <li>PostgreSQL 10.20.1; Windows.</li>
 	  <li>Qt 6.2.4 LTS for Android.</li>
-	  <li>Retain SQLite upgrade statements of previous release (2022.02.30) only. All other statements have been archived in the source.</li>
-	  <li>Revised BiblioteQ.odt: new information, new sections, replaced images, spelling corrections.</li>
+	  <li>Retain SQLite upgrade statements of previous release
+	    (2022.02.30) only. All other statements have been archived in the
+	    source.</li>
+	  <li>Revised BiblioteQ.odt: new information, new sections, replaced
+	    images, spelling corrections.</li>
 	  <li>SQLite 3.38.2; Android and Windows.</li>
 	</ul>
 	<p>February 30, 2022.</p>
 	<ul>
 	  <li>Generate e-mail patron reminders.</li>
 	  <li>New Mokka information. Thank you tamascz.</li>
-	  <li>New alternate_id_1 and membership_fees database fields. Please upgrade database schemas.</li>
+	  <li>New alternate_id_1 and membership_fees database fields. Please
+	    upgrade database schemas.</li>
 	  <li>Open Library queries via alternate identifiers.</li>
 	  <li>Overdue Fees in Members Browser.</li>
-	  <li>Sort basic search (main window) results by titles. Thank you tamascz.</li>
+	  <li>Sort basic search (main window) results by titles. Thank you
+	    tamascz.</li>
 	</ul>
 	<p>January 30, 2022.</p>
 	<ul>
 	  <li>BiblioteQ @ 20! Happy New Year!</li>
 	  <li>Configurable YAZ options.</li>
 	  <li>Corrected case-insensitive searches. Thank you meteos77.</li>
-	  <li>Corrected revisions of the main view via item details; persistent indices.</li>
-	  <li>Database Enumerations (binding types, languages, locations, monetary units) are now included in the book import.</li>
-	  <li>Disable the Reserve Selected Item context menu action if the current item is a photograph.</li>
-	  <li>Display import preview header strings in the import template table. For example, the preview table's column 1 text may be set to "Title" and the item at (0, 1) in the template table will have its text also set to "Title". Thank you meteos77.</li>
+	  <li>Corrected revisions of the main view via item details;
+	    persistent indices.</li>
+	  <li>Database Enumerations (binding types, languages, locations,
+	    monetary units) are now included in the book import.</li>
+	  <li>Disable the Reserve Selected Item context menu action if the
+	    current item is a photograph.</li>
+	  <li>Display import preview header strings in the import template
+	    table. For example, the preview table's column 1 text may be set
+	    to "Title" and the item at (0, 1) in the template table will have
+	    its text also set to "Title". Thank you meteos77.</li>
 	  <li>Display optimizations of large content.</li>
-	  <li>Do not disable database-connection widgets if a connection is already present.</li>
+	  <li>Do not disable database-connection widgets if a connection is
+	    already present.</li>
 	  <li>Enable case-sensitive-like for general SQLite searches.</li>
 	  <li>Export Icons View as PNG.</li>
-	  <li>Group returns of selected items via the All Reserved category.</li>
+	  <li>Group returns of selected items via the All Reserved category.
+	  </li>
 	  <li>ISBN display format options. Please see Other Options.</li>
 	  <li>Initialize empty barcodes in copy editors.</li>
 	  <li>Members Browser pagination.</li>
-	  <li>New Other Options for setting the number of Icons Mode columns.</li>
+	  <li>New Other Options for setting the number of Icons Mode columns.
+	  </li>
 	  <li>New import template. Thank you meteos77.</li>
 	  <li>New open-postgresql-database terminal option.</li>
 	  <li>Print Icons View.</li>
 	  <li>Remove hyphens from ISBN fields within conditionals.</li>
 	  <li>SQLite 3.37.2; Android and Windows.</li>
-	  <li>Simplify text before displaying it in the main table and associated tool tips. Thank you meteos77.</li>
+	  <li>Simplify text before displaying it in the main table and
+	    associated tool tips. Thank you meteos77.</li>
 	</ul>
 	<p>December 15, 2021.</p>
 	<ul>
 	  <li>Accession Number query; available from the main window.</li>
-	  <li>Allow for the SQL delete statement to be issued for custom queries.</li>
+	  <li>Allow for the SQL delete statement to be issued for custom
+	    queries.</li>
 	  <li>Automatically convert ISBN-10 to ISBN-13 during imports.</li>
-	  <li>Column-configuration option will be disabled for custom queries as the queries describe the desired columns.</li>
+	  <li>Column-configuration option will be disabled for custom queries
+	    as the queries describe the desired columns.</li>
 	  <li>Corrected book read-status and custom queries for SQLite.</li>
 	  <li>Corrected column-configuration menu. Thank you meteos77.</li>
-	  <li>Corrected generation of CSV files from custom queries. Thank you meteos77.</li>
+	  <li>Corrected generation of CSV files from custom queries. Thank
+	    you meteos77.</li>
 	  <li>Corrected translations. New translation files.</li>
 	  <li>Embedded documentation and release notes.</li>
-	  <li>Inspect the font created from the global_font setting. If the font cannot be recreated, assign a default font.</li>
-	  <li>Introduced the timeout option for YAZ. The actual timeout varies.</li>
-	  <li>More complete lists of available database tables in Custom Query.</li>
+	  <li>Inspect the font created from the global_font setting. If the
+	    font cannot be recreated, assign a default font.</li>
+	  <li>Introduced the timeout option for YAZ. The actual timeout
+	    varies.</li>
+	  <li>More complete lists of available database tables in Custom
+	    Query.</li>
 	  <li>New open-sqlite-database terminal option.</li>
-	  <li>Optional main window images and progress dialogs. Please see Other Options.</li>
+	  <li>Optional main window images and progress dialogs. Please see
+	    Other Options.</li>
 	  <li>Patron export and import.</li>
 	  <li>PostgreSQL 10.19; Windows.</li>
 	  <li>Qt 5.12.12 LTS; Windows.</li>
@@ -829,9 +921,11 @@
 	<ul>
 	  <li>Android release! SQLite only.</li>
 	  <li>Avoid duplicate signals in Branch Selection.</li>
-	  <li>Corrected setting of book images with respect to the read-only column.</li>
+	  <li>Corrected setting of book images with respect to the read-only
+	    column.</li>
 	  <li>Embedded translation files.</li>
-	  <li>Maximum reserved books. Please upgrade the database schemas. Limits are not enforced.</li>
+	  <li>Maximum reserved books. Please upgrade the database schemas.
+	    Limits are not enforced.</li>
 	  <li>New Total Reserved column in Members Browser.</li>
 	  <li>PostgreSQL 10.18.2, Windows.</li>
 	  <li>Qt 6.2 LTS. Incomplete.</li>
@@ -843,7 +937,8 @@
 	<p>September 10, 2021.</p>
 	<ul>
 	  <li>New column added to the CSV Import browser.</li>
-	  <li>New column added to the main table denoting read status. SQLite only.</li>
+	  <li>New column added to the main table denoting read status.
+	    SQLite only.</li>
 	  <li>PostgreSQL 10.18, Windows.</li>
 	</ul>
 	<p>August 8, 2021.</p>
@@ -855,23 +950,29 @@
 	</ul>
 	<p>June 12, 2021.</p>
 	<ul>
-	  <li>Corrected copy-editor browser caused by incorrect C++ protected method. Thank you tamascz.</li>
+	  <li>Corrected copy-editor browser caused by incorrect C++ protected
+	    method. Thank you tamascz.</li>
 	  <li>PostgreSQL 10.17 for Windows.</li>
 	  <li>Qt 5.12.11 for Windows.</li>
 	</ul>
 	<p>May 15, 2021.</p>
 	<ul>
-	  <li>Details: https://github.com/textbrowser/biblioteq/compare/2021.04/10...master.</li>
-	  <li>Grey Literature reservations. Please upgrade your database schemas.</li>
+	  <li>Details:
+	    https://github.com/textbrowser/biblioteq/compare/2021.04/10...
+	    master.</li>
+	  <li>Grey Literature reservations. Please upgrade your database
+	    schemas.</li>
 	  <li>PostgreSQL 10.16 for Windows.</li>
 	  <li>SQLite 3.35.5 for Windows.</li>
 	  <li>YAZ 5.31 for Windows.</li>
 	</ul>
 	<p>April 10, 2021.</p>
 	<ul>
-	  <li>Configurable sort algorithm for book accession numbers. See Other Options.</li>
+	  <li>Configurable sort algorithm for book accession numbers. See
+	    Other Options.</li>
 	  <li>High DPI support.</li>
-	  <li>New URL field for book items. Please update your database schemas.</li>
+	  <li>New URL field for book items. Please update your database
+	    schemas.</li>
 	  <li>Optional item images. See Other Options.</li>
 	  <li>Portuguese translation. Thank you a12554.</li>
 	  <li>PostgreSQL 9.6.21; Windows.</li>
@@ -880,9 +981,11 @@
 	<p>February 12, 2021.</p>
 	<ul>
 	  <li>Copies management enhancements. Please report errors.</li>
-	  <li>Corrected UTF-8 conversions of Open Library data. Thank you jferby.</li>
+	  <li>Corrected UTF-8 conversions of Open Library data. Thank you
+	    jferby.</li>
 	  <li>New Polish translation. Thank you jerzyPL.</li>
-	  <li>Poppler has been removed from the Windows build as it's outdated. Will be replacing the library with QtPDF.</li>
+	  <li>Poppler has been removed from the Windows build as it's
+	    outdated. Will be replacing the library with QtPDF.</li>
 	</ul>
 	<p>February 2, 2021.</p>
 	<ul>
@@ -892,7 +995,8 @@
 	  <li>New Files Browser.</li>
 	  <li>New enumerators; internal objects. Please report all errors.</li>
 	  <li>New status database fields. Please update your databases!</li>
-	  <li>Purge SQLite database entries upon removal of parent entries.</li>
+	  <li>Purge SQLite database entries upon removal of parent entries.
+	  </li>
 	  <li>Qt 5.12.10 on Windows.</li>
 	  <li>Qt 5.15.2 on OS X.</li>
 	  <li>SQLite 3.34.1.</li>
@@ -900,9 +1004,12 @@
 	<p>September 9, 2020.</p>
 	<ul>
 	  <li>Allow opening of multiple PDF files.</li>
-	  <li>Hid the Delete button in Copy Browser. The widget is not necessary and neither is its function. The number of copies is controlled by the parent window.</li>
+	  <li>Hid the Delete button in Copy Browser. The widget is not
+	    necessary and neither is its function. The number of copies is
+	    controlled by the parent window.</li>
 	  <li>New book layout, per request.</li>
-	  <li>New mechanisms for parsing MARC tags for books, journals, magazines.</li>
+	  <li>New mechanisms for parsing MARC tags for books, journals,
+	    magazines.</li>
 	  <li>OpenBSD corrections.</li>
 	  <li>PostgreSQL 9.6.19 for W32.</li>
 	  <li>Synchronize current page with page index in PDF reader.</li>
@@ -916,8 +1023,10 @@
 	</ul>
 	<p>July 11, 2020.</p>
 	<ul>
-	  <li>Corrected Database Enumerations furnishing. Thank you jerzyPL.</li>
-	  <li>Corrected main table tool tips with respect to binary data. Thank you jerzyPL.</li>
+	  <li>Corrected Database Enumerations furnishing. Thank you
+	    jerzyPL.</li>
+	  <li>Corrected main table tool tips with respect to binary data.
+	    Thank you jerzyPL.</li>
 	  <li>Introduced various shortcuts.</li>
 	</ul>
 	<p>July 4, 2020.</p>
