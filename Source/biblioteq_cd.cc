@@ -2024,7 +2024,11 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   m_tracks_diag->setWindowTitle
     (tr("BiblioteQ: Album Tracks Browser (") + cd.id->text() + tr(")"));
   m_tracks_diag->updateGeometry();
+#ifdef Q_OS_ANDROID
+  m_tracks_diag->showMaximized();
+#else
   m_tracks_diag->show();
+#endif
   trd.table->setSortingEnabled(false);
 
   if(qmain->getDB().driverName() != "QSQLITE")

@@ -146,9 +146,11 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 
 biblioteq_batch_activities::~biblioteq_batch_activities()
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("batch_activities_geometry", saveGeometry()) :
     (void) 0;
+#endif
 }
 
 void biblioteq_batch_activities::borrow(void)
@@ -430,9 +432,11 @@ void biblioteq_batch_activities::changeEvent(QEvent *event)
 
 void biblioteq_batch_activities::closeEvent(QCloseEvent *event)
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("batch_activities_geometry", saveGeometry()) :
     (void) 0;
+#endif
   QMainWindow::closeEvent(event);
 }
 
@@ -1008,10 +1012,14 @@ void biblioteq_batch_activities::returnItems(void)
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
   Q_UNUSED(center);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   restoreGeometry
     (QSettings().value("batch_activities_geometry").toByteArray());
   biblioteq_misc_functions::center(this, parent, false);
   showNormal();
+#endif
   activateWindow();
   raise();
   m_ui.borrow_member_id->setFocus();

@@ -1611,8 +1611,10 @@ void biblioteq::readConfigurationFile(void)
 
   al.caseinsensitive->setChecked
     (settings.value("generalSearchCaseSensitivity", false).toBool());
+#ifndef Q_OS_ANDROID
   m_members_diag->restoreGeometry
     (settings.value("members_window_geometry").toByteArray());
+#endif
   ui.actionAutoPopulateOnCreation->setChecked
     (settings.value("automatically_populate_on_create", false).toBool());
   ui.actionAutomatically_Resize_Column_Widths->setChecked
@@ -4449,11 +4451,15 @@ void biblioteq::slotModifyBorrower(void)
 
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   userinfo_diag->updateGeometry();
+#ifdef Q_OS_ANDROID
+  userinfo_diag->showMaximized();
+#else
   userinfo_diag->resize
     (userinfo_diag->width(), qMax(-100 + m_members_diag->height(),
 				  userinfo_diag->sizeHint().height()));
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
+#endif
 }
 
 void biblioteq::slotOpenOnlineDocumentation(void)
@@ -4499,7 +4505,11 @@ void biblioteq::slotOpenPDFFiles(void)
 
 	  reader->load(dialog.selectedFiles().at(i));
 	  biblioteq_misc_functions::center(reader, this);
+#ifdef Q_OS_ANDROID
+	  reader->showMaximized();
+#else
 	  reader->show();
+#endif
 	}
 
       QApplication::restoreOverrideCursor();
@@ -5873,7 +5883,9 @@ void biblioteq::slotSaveConfig(void)
   settings.setValue("last_category", getTypeFilterString());
   settings.setValue("locale", s_locale);
   settings.setValue("main_splitter_state", ui.splitter->saveState());
+#ifndef Q_OS_ANDROID
   settings.setValue("members_window_geometry", m_members_diag->saveGeometry());
+#endif
   settings.setValue("populate_table_on_connect",
 		    ui.actionPopulateOnStart->isChecked());
   settings.setValue("reset_error_log_on_disconnect",
@@ -6968,6 +6980,7 @@ void biblioteq::slotShowHistory(void)
   history.nextTool->setVisible(!m_roles.isEmpty());
   history.prevTool->setVisible(!m_roles.isEmpty());
 
+#ifndef Q_OS_ANDROID
   if(m_members_diag->isVisible())
     {
       auto static resized = false;
@@ -6995,12 +7008,17 @@ void biblioteq::slotShowHistory(void)
 
       resized = true;
     }
+#endif
 
   m_history_diag->setWindowTitle
     (memberid.isEmpty() ?
      tr("BiblioteQ: Member's Reservation History") :
      tr("BiblioteQ: Member's Reservation History (%1)").arg(memberid));
+#ifdef Q_OS_ANDROID
+  m_history_diag->showMaximized();
+#else
   m_history_diag->showNormal();
+#endif
   m_history_diag->activateWindow();
   m_history_diag->raise();
 }
@@ -7012,8 +7030,12 @@ void biblioteq::slotShowImport(void)
 
 void biblioteq::slotShowOtherOptions(void)
 {
-  m_otherOptions->showNormal();
+#ifdef Q_OS_ANDROID
+  m_otherOptions->showMaximized();
+#else
   biblioteq_misc_functions::center(m_otherOptions, this, false);
+  m_otherOptions->showNormal();
+#endif
   m_otherOptions->activateWindow();
   m_otherOptions->raise();
 }

@@ -343,7 +343,11 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 1, true);
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 2, true);
   updateGeometry();
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   show();
+#endif
   QApplication::processEvents();
 
   QProgressDialog progress1(this);

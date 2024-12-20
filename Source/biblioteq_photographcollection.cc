@@ -611,10 +611,12 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 
       mainWindow->resize
 	(qRound(0.95 * size().width()), qRound(0.95 * size().height()));
-      mainWindow->show();
+#ifndef Q_OS_ANDROID
       biblioteq_misc_functions::center
 	(mainWindow, parentWidget() ? m_parentWid : this);
+      mainWindow->show();
       mainWindow->hide();
+#endif
       scene->setProperty("view_size", ui.view->viewport()->size());
       ui.notes->setPlainText("");
       ui.notes->setVisible(false);
@@ -624,7 +626,11 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 	 scene,
 	 ui.notes,
 	 ui.view_size->currentText().remove("%").toInt());
+#ifdef Q_OS_ANDROID
+      mainWindow->showMaximized();
+#else
       mainWindow->show();
+#endif
     }
 }
 
@@ -1075,7 +1081,11 @@ void biblioteq_photographcollection::slotAddItem(void)
   photo.subjects_item->clear();
   photo.thumbnail_item->clear();
   photo.title_item->setText("N/A");
+#ifdef Q_OS_ANDROID
+  m_photo_diag->showMaximized();
+#else
   m_photo_diag->show();
+#endif
 }
 
 void biblioteq_photographcollection::slotCancel(void)
@@ -2317,11 +2327,15 @@ void biblioteq_photographcollection::slotModifyItem(void)
 	  this,
 	  SLOT(slotUpdateItem(void)));
   m_photo_diag->resize(m_photo_diag->width(), qRound(0.95 * size().height()));
-  biblioteq_misc_functions::center
-    (m_photo_diag, parentWidget() ? m_parentWid : this);
   photo.id_item->setFocus();
   photo.scrollArea->ensureVisible(0, 0);
+#ifdef Q_OS_ANDROID
+  m_photo_diag->showMaximized();
+#else
+  biblioteq_misc_functions::center
+    (m_photo_diag, parentWidget() ? m_parentWid : this);
   m_photo_diag->show();
+#endif
 }
 
 void biblioteq_photographcollection::slotPageChanged(int index)

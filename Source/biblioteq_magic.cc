@@ -77,6 +77,9 @@ void biblioteq_magic::reset(void)
 void biblioteq_magic::show(QMainWindow *parent, const bool center)
 {
   Q_UNUSED(center);
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   auto static resized = false;
 
   if(!resized && parent)
@@ -86,6 +89,7 @@ void biblioteq_magic::show(QMainWindow *parent, const bool center)
   resized = true;
   biblioteq_misc_functions::center(this, parent);
   showNormal();
+#endif
   activateWindow();
   raise();
 }

@@ -115,8 +115,10 @@ biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 
 biblioteq_import::~biblioteq_import()
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("import_geometry", saveGeometry()) : (void) 0;
+#endif
   m_process.kill();
   m_process.waitForFinished();
 }
@@ -142,8 +144,10 @@ void biblioteq_import::changeEvent(QEvent *event)
 
 void biblioteq_import::closeEvent(QCloseEvent *event)
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("import_geometry", saveGeometry()) : (void) 0;
+#endif
   QMainWindow::closeEvent(event);
 }
 
@@ -940,9 +944,13 @@ void biblioteq_import::setImportFile(const QString &fileName)
 
 void biblioteq_import::show(QMainWindow *parent)
 {
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   restoreGeometry(QSettings().value("import_geometry").toByteArray());
   biblioteq_misc_functions::center(this, parent, false);
   showNormal();
+#endif
   activateWindow();
   raise();
 }
@@ -1477,7 +1485,11 @@ void biblioteq_import::slotPostImportProcessStandardStream(void)
   if(!d2.isEmpty())
     m_postImportDialogUi.text->append(d2);
 
+#ifdef Q_OS_ANDROID
+  dialog->showMaximized();
+#else
   dialog->show();
+#endif
 }
 
 void biblioteq_import::slotPostImportScriptTextEdited(const QString &text)

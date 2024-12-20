@@ -1225,9 +1225,13 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 	      auto reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
+#ifdef Q_OS_ANDROID
+	      reader->showMaximized();
+#else
 	      biblioteq_misc_functions::center
 		(reader, parentWidget() ? m_parentWid : this);
 	      reader->show();
+#endif
 	    }
 
 	  QApplication::restoreOverrideCursor();

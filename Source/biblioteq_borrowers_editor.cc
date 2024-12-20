@@ -236,7 +236,11 @@ void biblioteq_borrowers_editor::showUsers(void)
   if(!isVisible())
     updateGeometry();
 
+#ifdef Q_OS_ANDROID
+  showMaximized();
+#else
   show();
+#endif
   QApplication::processEvents();
 
   QProgressDialog progress1(this);

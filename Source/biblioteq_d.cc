@@ -1169,8 +1169,10 @@ void biblioteq::slotMergeSQLiteDatabases(void)
   if(!m_sqliteMergeDatabases)
     m_sqliteMergeDatabases = new biblioteq_sqlite_merge_databases(this);
 
+#ifndef Q_OS_ANDROID
   m_sqliteMergeDatabases->restoreGeometry
     (QSettings().value("sqlite_merge_databases_geometry").toByteArray());
+#endif
 #ifdef Q_OS_ANDROID
   m_sqliteMergeDatabases->showMaximized();
 #else
@@ -1381,8 +1383,10 @@ void biblioteq::slotShowMagic(void)
 
 void biblioteq::slotShowQueryHistory(void)
 {
+#ifndef Q_OS_ANDROID
   m_queryHistory->restoreGeometry
     (QSettings().value("query_history_geometry").toByteArray());
+#endif
 #ifdef Q_OS_ANDROID
   m_queryHistory->showMaximized();
 #else

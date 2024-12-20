@@ -75,9 +75,11 @@ biblioteq_sqlite_merge_databases::biblioteq_sqlite_merge_databases
 
 biblioteq_sqlite_merge_databases::~biblioteq_sqlite_merge_databases()
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("sqlite_merge_databases_geometry", saveGeometry()) :
     (void) 0;
+#endif
 }
 
 void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
@@ -101,9 +103,11 @@ void biblioteq_sqlite_merge_databases::changeEvent(QEvent *event)
 
 void biblioteq_sqlite_merge_databases::closeEvent(QCloseEvent *event)
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("sqlite_merge_databases_geometry", saveGeometry()) :
     (void) 0;
+#endif
   QMainWindow::closeEvent(event);
 }
 

@@ -53,8 +53,10 @@ biblioteq_query_history::biblioteq_query_history(biblioteq *biblioteq):
 
 biblioteq_query_history::~biblioteq_query_history()
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("query_history_geometry", saveGeometry()) : (void) 0;
+#endif
 }
 
 void biblioteq_query_history::changeEvent(QEvent *event)
@@ -76,8 +78,10 @@ void biblioteq_query_history::changeEvent(QEvent *event)
 
 void biblioteq_query_history::closeEvent(QCloseEvent *event)
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("query_history_geometry", saveGeometry()) : (void) 0;
+#endif
   QDialog::closeEvent(event);
 }
 

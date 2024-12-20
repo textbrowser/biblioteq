@@ -89,8 +89,10 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
 
 biblioteq_otheroptions::~biblioteq_otheroptions()
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("otheroptions_geometry", saveGeometry()) : (void) 0;
+#endif
 }
 
 QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
@@ -279,8 +281,10 @@ void biblioteq_otheroptions::changeEvent(QEvent *event)
 
 void biblioteq_otheroptions::closeEvent(QCloseEvent *event)
 {
+#ifndef Q_OS_ANDROID
   isVisible() ?
     QSettings().setValue("otheroptions_geometry", saveGeometry()) : (void) 0;
+#endif
   QMainWindow::closeEvent(event);
 }
 
@@ -808,7 +812,9 @@ void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 void biblioteq_otheroptions::showNormal(void)
 {
   prepareSettings();
+#ifndef Q_OS_ANDROID
   restoreGeometry(QSettings().value("otheroptions_geometry").toByteArray());
+#endif
   QMainWindow::showNormal();
 }
 

@@ -2740,12 +2740,16 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.scrollArea->verticalScrollBar()->setValue(0);
   userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->updateGeometry();
+#ifdef Q_OS_ANDROID
+  userinfo_diag->showMaximized();
+#else
   userinfo_diag->resize
     (userinfo_diag->width(),
      qMax(-100 + m_members_diag->height(),
 	  userinfo_diag->sizeHint().height()));
   biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
+#endif
 }
 
 void biblioteq::slotAdminCheckBoxClicked(int state)
@@ -2848,9 +2852,13 @@ void biblioteq::slotBranchChanged(void)
     }
 
   m_branch_diag->update();
+#ifdef Q_OS_ANDROID
+  m_branch_diag->showMaximized();
+#else
   m_branch_diag->resize
     (m_branch_diag->width(), m_branch_diag->minimumSize().height());
   m_branch_diag->show();
+#endif
 }
 
 void biblioteq::slotCancelAddUser(void)
@@ -3805,7 +3813,11 @@ void biblioteq::slotListOverdueItems(void)
     memberid = dbUserName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
+#ifdef Q_OS_ANDROID
+  m_members_diag->showMaximized();
+#else
   m_members_diag->showNormal();
+#endif
   m_members_diag->activateWindow();
   m_members_diag->raise();
 }
@@ -3836,7 +3848,11 @@ void biblioteq::slotListReservedItems(void)
 		     m_bbColumnHeaderIndexes.indexOf("Member ID")));
 
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
+#ifdef Q_OS_ANDROID
+  m_members_diag->showMaximized();
+#else
   m_members_diag->showNormal();
+#endif
   m_members_diag->activateWindow();
   m_members_diag->raise();
 }
@@ -4274,7 +4290,11 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
 	  SLOT(slotPrintPreview(QPrinter *)));
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   m_printPreview->setHtml(reservationHistoryHtml());
+#ifdef Q_OS_ANDROID
+  printDialog->showMaximized();
+#else
   printDialog->show();
+#endif
   QApplication::restoreOverrideCursor();
 
   if(printDialog->exec() == QDialog::Accepted)
@@ -4459,7 +4479,11 @@ void biblioteq::slotPrintViewPreview(void)
 	  SLOT(slotPrintPreview(QPrinter *)));
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   m_printPreview->setHtml(viewHtml());
+#ifdef Q_OS_ANDROID
+  printDialog->showMaximized();
+#else
   printDialog->show();
+#endif
   QApplication::restoreOverrideCursor();
 
   if(printDialog->exec() == QDialog::Accepted)
@@ -5088,6 +5112,9 @@ void biblioteq::slotSetFonts(void)
 
 void biblioteq::slotShowAdminDialog(void)
 {
+#ifdef Q_OS_ANDROID
+  m_admin_diag->showMaximized();
+#else
   auto static resized = false;
 
   if(!resized)
@@ -5097,6 +5124,7 @@ void biblioteq::slotShowAdminDialog(void)
   resized = true;
   biblioteq_misc_functions::center(m_admin_diag, this);
   m_admin_diag->showNormal();
+#endif
   m_admin_diag->activateWindow();
   m_admin_diag->raise();
 
@@ -5112,7 +5140,11 @@ void biblioteq::slotShowChangePassword(void)
   pass.passwordAgain->setText(QString(1024, '0'));
   pass.passwordAgain->clear();
   pass.password->setFocus();
+#ifdef Q_OS_ANDROID
+  m_pass_diag->showMaximized();
+#else
   m_pass_diag->show();
+#endif
 }
 
 void biblioteq::slotShowConnectionDB(void)
@@ -5128,10 +5160,14 @@ void biblioteq::slotShowCustomQuery(void)
 	  SIGNAL(otherOptionsSaved(void)),
 	  dialog,
 	  SLOT(slotPrepareIcons(void)));
+#ifdef Q_OS_ANDROID
+  dialog->showMaximized();
+#else
   dialog->resize
     (qRound(0.50 * size().width()), qRound(0.95 * size().height()));
   biblioteq_misc_functions::center(dialog, this);
   dialog->show();
+#endif
 }
 
 void biblioteq::slotShowDbEnumerations(void)
@@ -5161,6 +5197,9 @@ void biblioteq::slotShowErrorDialog(void)
   for(int i = 0; i < er.table->columnCount() - 1; i++)
     er.table->resizeColumnToContents(i);
 
+#ifdef Q_OS_ANDROID
+  m_error_diag->showMaximized();
+#else
   auto static resized = false;
 
   if(!resized)
@@ -5170,6 +5209,7 @@ void biblioteq::slotShowErrorDialog(void)
   resized = true;
   biblioteq_misc_functions::center(m_error_diag, this);
   m_error_diag->showNormal();
+#endif
   m_error_diag->activateWindow();
   m_error_diag->raise();
 }
@@ -5201,6 +5241,9 @@ void biblioteq::slotShowMembersBrowser(void)
 	bb.table->resizeColumnToContents(i);
     }
 
+#ifdef Q_OS_ANDROID
+  m_members_diag->showMaximized();
+#else
   auto static resized = false;
 
   if(!resized)
@@ -5210,6 +5253,7 @@ void biblioteq::slotShowMembersBrowser(void)
   resized = true;
   biblioteq_misc_functions::center(m_members_diag, this);
   m_members_diag->showNormal();
+#endif
   m_members_diag->activateWindow();
   m_members_diag->raise();
 
