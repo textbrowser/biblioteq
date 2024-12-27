@@ -75,7 +75,7 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 ### Debian Installation
 
 ```
-wget https://github.com/textbrowser/biblioteq/releases/download/2024.06.30/BiblioteQ-2024.06.30_amd64.deb
-sudo dpkg -i BiblioteQ-2024.06.30_amd64.deb
+wget https://github.com/textbrowser/biblioteq/releases/download/2024.12.20/BiblioteQ-2024.12.20_amd64.deb
+sudo dpkg -i BiblioteQ-2024.12.20_amd64.deb
 sudo apt install -f
 ```
