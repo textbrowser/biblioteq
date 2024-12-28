@@ -21,7 +21,7 @@ LIBS        += -lpoppler-qt5
 }
 }
 
-freebsd-* {
+freebsd-* | openbsd-* {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
