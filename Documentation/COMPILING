@@ -11,8 +11,9 @@ C. Build.
 MacOS Intel
 
 A. Install the newest Qt LTS via Qt's online installer.
-B. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
-C. > qmake -o Makefile biblioteq.macos.pro
+B. Install Homebrew via https://brew.sh.
+C. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
+D. > qmake -o Makefile biblioteq.macos.pro
    > make
    > make dmg
 
