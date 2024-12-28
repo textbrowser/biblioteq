@@ -21,6 +21,24 @@ LIBS        += -lpoppler-qt5
 }
 }
 
+freebsd-* {
+QMAKE_CXXFLAGS_RELEASE += -Wall \
+                          -Wcast-align \
+                          -Wcast-qual \
+                          -Wdouble-promotion \
+                          -Wextra \
+                          -Wformat=2 \
+			  -Wno-deprecated-declarations \
+                          -Woverloaded-virtual \
+                          -Wpointer-arith \
+                          -Wstack-protector \
+                          -fPIE \
+                          -fstack-protector-all \
+                          -funroll-loops \
+                          -fwrapv \
+                          -pedantic \
+                          -std=c++17
+} else {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
@@ -45,6 +63,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -pie \
                           -std=c++17
+}
+
 QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash Temporary
 QMAKE_EXTRA_TARGETS = purge
 
