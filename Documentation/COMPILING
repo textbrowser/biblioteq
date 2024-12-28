@@ -1,16 +1,22 @@
 Qt 4 is not supported.
 Qt 5.5.1 LTS is supported for PowerPC only.
-
-For Android, MacOS, and Windows, the newest Qt LTS is required.
-
-> qmake -o Makefile biblioteq.platform.pro
-> gmake or make or mingw32-make
-> gmake install or make install or mingw32-make install
+Qt LTS is required.
 
 MacOS Intel
 
 A. Install the newest Qt LTS via Qt's online installer.
-B. https://formulae.brew.sh/formula/libpq
+B. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
 C. > qmake -o Makefile biblioteq.macos.pro
    > make
    > make dmg
+
+Unix Terminal
+
+> qmake -o Makefile biblioteq.pro
+> gmake or make
+
+Windows Qt MinGW Terminal
+
+> qmake -o Makefile biblioteq.windows.pro
+> mingw32-make
+> mingw32-make install
