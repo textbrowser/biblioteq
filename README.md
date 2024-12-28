@@ -1,8 +1,10 @@
 BiblioteQ is awesome, open library software. Local and network.
 Archiving for a very long time.
 
-As of now, Android, MacOS, and Windows will be manufactured. Everyone
-else should delegate themselves in the source. For YOU!
+As of now, Android, MacOS, and Windows bundles will be manufactured.
+Everyone else should delegate themselves in the source.
+There are far too many variations of Debian distributions.
+For YOU!
 
 Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.txt.
 
