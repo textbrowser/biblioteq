@@ -66,6 +66,22 @@ LIBS        += -lpoppler-qt8
 }
 }
 
+lessThan(QT_MAJOR_VERSION, 6) {
+exists(/usr/include/poppler/qt5) {
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
+INCLUDEPATH += /usr/include/poppler/qt5
+LIBS        += -lpoppler-qt5
+}
+
+exists(/usr/local/include/poppler/qt5) {
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
+INCLUDEPATH += /usr/local/include/poppler/qt5
+LIBS        += -lpoppler-qt5
+}
+}
+
 qtHaveModule(multimedia) {
 DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
 QT      += multimedia

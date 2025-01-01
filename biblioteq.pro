@@ -12,15 +12,6 @@ QT              += gui network printsupport sql widgets
 QT              -= webkit
 TEMPLATE	= app
 
-lessThan(QT_MAJOR_VERSION, 6) {
-exists(/usr/include/poppler/qt5) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
-INCLUDEPATH += /usr/include/poppler/qt5
-LIBS        += -lpoppler-qt5
-}
-}
-
 freebsd-* | openbsd-* {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
