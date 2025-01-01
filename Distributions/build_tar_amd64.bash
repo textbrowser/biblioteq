@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Alexis Megas.
 
-if [ ! -r biblioteq.pro ]; then
+if [ ! -r biblioteq.pro ]
+then
     echo "Please execute $0 from the primary directory."
     exit 1
 fi
