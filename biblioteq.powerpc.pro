@@ -9,18 +9,6 @@ LANGUAGE	= C++
 QT		+= gui network printsupport sql widgets
 QT		-= webkit
 
-exists(/usr/include/poppler/qt5) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
-INCLUDEPATH += /usr/include/poppler/qt5
-LIBS        += -lpoppler-qt5
-}
-
-exists(/usr/include/yaz) {
-DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
-LIBS            += -lyaz
-}
-
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
