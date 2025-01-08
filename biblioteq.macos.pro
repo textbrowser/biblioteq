@@ -6,13 +6,13 @@ purge.commands = find . -name \'*~*\' -exec rm -f {} \;
 CONFIG		+= qt release warn_on
 
 exists(/opt/homebrew/Cellar/libpq/17.2/lib/libpq.dylib) {
-DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/Cellar/libpq/17.2/lib/libpq.dylib\"'"
+DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/Cellar/libpq/17.2/lib/libpq.dylib\"'"
 } else {
 warning("/opt/homebrew/Cellar/libpq/17.2/lib/libpq.dylib does not exist.")
 }
 
 exists(/usr/local/Cellar/libpq/17.2/lib/libpq.dylib) {
-DEFINES         += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/17.2/lib/libpq.dylib\"'"
+DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/17.2/lib/libpq.dylib\"'"
 } else {
 warning("/usr/local/Cellar/libpq/17.2/lib/libpq.dylib does not exist.")
 }
