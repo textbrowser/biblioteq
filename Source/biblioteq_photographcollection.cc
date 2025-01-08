@@ -2547,7 +2547,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 {
   auto const items(pc.graphicsView->scene()->selectedItems());
 
-  if(items.isEmpty())
+  if(items.size() > 1)
     {
       m_itemOid.clear();
       pc.accession_number_item->clear();
