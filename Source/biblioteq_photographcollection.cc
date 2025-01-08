@@ -139,6 +139,10 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(pc.selectAllButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectAll(void)));
   connect(pc.select_image_collection,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -456,6 +460,7 @@ void biblioteq_photographcollection::insert(void)
   activateWindow();
   raise();
   prepareIcons(this);
+  pc.selectAllButton->setIcon(QIcon());
 }
 
 void biblioteq_photographcollection::loadPhotographFromItem
@@ -714,6 +719,7 @@ void biblioteq_photographcollection::modify(const int state,
   query.bindValue(0, m_oid);
   pc.okButton->setText(tr("&Save"));
   prepareIcons(this);
+  pc.selectAllButton->setIcon(QIcon());
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
@@ -901,6 +907,7 @@ void biblioteq_photographcollection::search(const QString &field,
   activateWindow();
   raise();
   prepareIcons(this);
+  pc.selectAllButton->setIcon(QIcon());
 }
 
 void biblioteq_photographcollection::setGlobalFonts(const QFont &font)
@@ -2348,6 +2355,7 @@ void biblioteq_photographcollection::slotPageChanged(int index)
 void biblioteq_photographcollection::slotPrepareIcons(void)
 {
   prepareIcons(this);
+  pc.selectAllButton->setIcon(QIcon());
 }
 
 void biblioteq_photographcollection::slotPrint(void)
@@ -2542,7 +2550,6 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
   if(items.isEmpty())
     {
       m_itemOid.clear();
-
       pc.accession_number_item->clear();
       pc.call_number_item->clear();
       pc.copyright_item->clear();

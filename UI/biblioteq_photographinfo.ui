@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
+    <width>1228</width>
     <height>800</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
         <rect>
          <x>0</x>
          <y>-404</y>
-         <width>1067</width>
+         <width>1195</width>
          <height>1146</height>
         </rect>
        </property>
@@ -797,6 +797,19 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="selectAllButton">
+        <property name="minimumSize">
+         <size>
+          <width>145</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Select Images</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
@@ -874,6 +887,7 @@
   <tabstop>exportPhotographsToolButton</tabstop>
   <tabstop>importItems</tabstop>
   <tabstop>printButton</tabstop>
+  <tabstop>selectAllButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
