@@ -422,7 +422,7 @@
 222. UNACCENT(). (Completed)
 223. Save custom queries in a favorites system. (Completed)
 224. Query Open Library for book cover images. (Completed)
-225. Query Open Library for journals / magazines cover images. (TBD)
+225. Query Open Library for journals / magazines cover images. (Soon)
 226. Improve performance of Custom Query's refresh. Not a problem. (Completed)
 227. Query Open Library. (Completed)
 228. Format changes (sort members and methods):
@@ -496,7 +496,7 @@
 256. Compress attachments. (Completed)
 257. Foreign constraints are not enabled on SQLite. Remove child
      table entries upon item removal. (Completed)
-258. Enumerate database fields and table columns: (TBD)
+258. Enumerate database fields and table columns: (Soon)
 	biblioteq_batch_activities_browser (Completed)
         biblioteq_book (Completed)
 	biblioteq_cd (Completed)
@@ -524,15 +524,15 @@
      Configuration Menu (Completed)
      Exit (Completed)
      Menu Icons (Completed)
-     PostgreSQL (TBD)
+     PostgreSQL (Soon)
 271. Export/import patron information. (Completed)
 272. Members Browser pagination. (Completed)
 273. Optional images in the main views. (Completed)
 274. Replace tr("UNKNOWN") with single instance. (Completed)
-275. Special Unimarc import. (TBD)
+275. Special Unimarc import. (Soon)
 276. Improve reservation processes. Batch reservations. (Completed)
 277. Include release notes with the releases. (Completed)
-278. Preserve order of columns in the main table. Nearly impossible. (TBD)
+278. Preserve order of columns in the main table. Nearly impossible. (Soon)
 279. MARC parsing (books). (Completed)
 280. See release notes and add names of contributors. (Completed)
 281. Remove special characters from text which is sent to the main table
@@ -556,7 +556,7 @@
 293. Guard SQL queries. Limit strings in queries. Source may be refactored,
      neglecting the revisions. (Completed)
 294. Remote query for version information. (Completed)
-295. Create unique myoid values on SQLite merge. (TBD)
+295. Create unique myoid values on SQLite merge. (Soon)
 296. Do not disconnect the current database if a future database does not
      have a proper driver. (Completed)
 297. Should databases be listed if drivers are not available? Yes. (Completed)
@@ -659,17 +659,17 @@
 	Tools (Completed)
 	View (Completed)
 315. Replace QString(tr()) with tr(). (Completed)
-316. Copy editor item status database table. (TBD)
+316. Copy editor item status database table. (Soon)
 317. MacOS: inspect the Homebrew libpq path and display a reminder
      if the path does not refer to the newest version. (Completed)
 318. Remove duplicate mnemonics. (Completed)
-319. Allow a photograph to be moved to another set via a new panel. (TBD)
+319. Allow a photograph to be moved to another set via a new panel. (Soon)
 320. "edit: editing failed" and Locations table in Database Enumerations
      Browser. The warning appears during a tab-key transition from an
      editable QTableWidgetItem to a cell which houses an editable QWidget.
      (Completed)
 321. PostgreSQL notifications: PostgreSQL::notify() and
-     QSqlDriver::subscribeToNotification(). (TBD)
+     QSqlDriver::subscribeToNotification(). (Soon)
 322. Include time in item-request date. (Completed)
 323. Select the appropriate member during a reservation process.
      (All Requested -> Home -> Members Browser) (Completed)
@@ -677,7 +677,7 @@
      requested (biblioteq::slotRequest()). (Completed)
 325. Apple Silicon and biblioteq.macos.pro: BIBLIOTEQ_MACOS_LIBPQ_PATH.
      (Completed)
-326. Qt 6 statistics. (TBD)
+326. Qt 6 statistics. (Soon)
 327. Attempt to duplicate return-reminders for SQLite. Much work. (Completed)
 328. Cell colors and custom queries. Must be rapid! (Completed)
 329. Set new tab title if an item's title is revised. (Completed)
@@ -691,6 +691,6 @@
 335. Highlight combination boxes in import if mismatches occur. (Completed)
 336. Select-all shortcut for icon view in main table. Edit -> Select All.
      (Completed)
-337. Maybe icons on tabs of paged items. (TDB)
-338. Photographs and select-all click. (TBD)
-339. Test Android and correct. (TBD)
+337. Maybe icons on tabs of paged items. (Soon)
+338. Photographs and select-all click. (Soon)
+339. Test Android and correct. (Soon)
