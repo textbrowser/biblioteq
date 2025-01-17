@@ -1524,8 +1524,8 @@ void biblioteq::exportAsCSV
 
 		    auto cleaned(table->item(i, j)->text());
 
-		    cleaned.replace("\n", " ");
-		    cleaned.replace("\r\n", " ");
+		    cleaned.replace('\n', "<br>");
+		    cleaned.replace("\r\n", "<br>");
 		    cleaned = cleaned.trimmed();
 
 		    if(cleaned.contains(","))
