@@ -123,6 +123,68 @@ biblioteq_import::~biblioteq_import()
   m_process.waitForFinished();
 }
 
+QString biblioteq_import::fieldNameFromColumnTitle(const QString &t)
+{
+  auto const text(QString(t).remove('"').remove('\'').toLower());
+
+  if(text.contains("accession"))
+    return "accession_number";
+  else if(text.contains("alternate"))
+    return "alternate_id_1";
+  else if(text.contains("audience"))
+    return "target_audience";
+  else if(text.contains("author"))
+    return "author";
+  else if(text.contains("binding"))
+    return "binding_type";
+  else if(text.contains("call"))
+    return "callnumber";
+  else if(text.contains("cate"))
+    return "category";
+  else if(text.contains("control"))
+    return "lccontrolnumber";
+  else if(text.contains("dewey"))
+    return "deweynumber";
+  else if(text.contains("id"))
+    return "id";
+  else if(text.contains("isbn"))
+    {
+      if(text.contains("10"))
+	return "id";
+      else if(text.contains("13"))
+	return "isbn13";
+      else if(text.contains("multi"))
+	return "multivolume_set_isbn";
+      else
+	return "id";
+    }
+  else if(text.contains("monetary"))
+    return "monetary_units";
+  else if(text.contains("original"))
+    return "originality";
+  else if(text.contains("origin"))
+    return "origin";
+  else if(text.contains("place"))
+    return "place";
+  else if(text.contains("publication"))
+    return "pdate";
+  else if(text.contains("purchase"))
+    return "purchase_date";
+  else if(text.contains("reform"))
+    return "date_of_reform";
+  else if(text.contains("target"))
+    return "target_audience";
+  else if(text.contains("volume"))
+    {
+      if(text.contains("multi"))
+	return "multivolume_set_isbn";
+      else
+	return "volume_number";
+    }
+  else
+    return text;
+}
+
 void biblioteq_import::changeEvent(QEvent *event)
 {
   if(event)
@@ -1126,64 +1188,7 @@ void biblioteq_import::slotDetectFields(void)
       if(comboBox == nullptr || text.isEmpty())
 	continue;
 
-      int index = -1;
-
-      if(text.contains("accession"))
-	index = comboBox->findText("accession_number");
-      else if(text.contains("alternate"))
-	index = comboBox->findText("alternate_id_1");
-      else if(text.contains("audience"))
-	index = comboBox->findText("target_audience");
-      else if(text.contains("author"))
-	index = comboBox->findText("author");
-      else if(text.contains("binding"))
-	index = comboBox->findText("binding_type");
-      else if(text.contains("call"))
-	index = comboBox->findText("callnumber");
-      else if(text.contains("cate"))
-	index = comboBox->findText("category");
-      else if(text.contains("control"))
-	index = comboBox->findText("lccontrolnumber");
-      else if(text.contains("dewey"))
-	index = comboBox->findText("deweynumber");
-      else if(text.contains("id"))
-	index = comboBox->findText("id");
-      else if(text.contains("isbn"))
-	{
-	  if(text.contains("10"))
-	    index = comboBox->findText("id");
-	  else if(text.contains("13"))
-	    index = comboBox->findText("isbn13");
-	  else if(text.contains("multi"))
-	    index = comboBox->findText("multivolume_set_isbn");
-	  else
-	    index = comboBox->findText("id");
-	}
-      else if(text.contains("monetary"))
-	index = comboBox->findText("monetary_units");
-      else if(text.contains("original"))
-	index = comboBox->findText("originality");
-      else if(text.contains("origin"))
-	index = comboBox->findText("origin");
-      else if(text.contains("place"))
-	index = comboBox->findText("place");
-      else if(text.contains("publication"))
-	index = comboBox->findText("pdate");
-      else if(text.contains("purchase"))
-	index = comboBox->findText("purchase_date");
-      else if(text.contains("reform"))
-	index = comboBox->findText("date_of_reform");
-      else if(text.contains("target"))
-	index = comboBox->findText("target_audience");
-      else if(text.contains("volume"))
-	{
-	  if(text.contains("multi"))
-	    index = comboBox->findText("multivolume_set_isbn");
-	  else
-	    index = comboBox->findText("volume_number");
-	}
-      else
-	index = comboBox->findText(text);
+      auto const index = comboBox->findText(fieldNameFromColumnTitle(text));
 
       comboBox->setCurrentIndex(-1); // Fire a currentIndexChanged() signal.
 
@@ -1584,7 +1589,6 @@ void biblioteq_import::slotTableFieldNameChanged(int index)
     return;
 
   QTableWidgetItem *item = nullptr;
-  auto const text(comboBox->itemText(index));
 
   for(int i = 0; i < m_ui.rows->rowCount(); i++)
     if(comboBox ==
@@ -1599,11 +1603,16 @@ void biblioteq_import::slotTableFieldNameChanged(int index)
   if(!item)
     return;
 
-  item->text() != text ?
+  auto const text(comboBox->itemText(index));
+
+  fieldNameFromColumnTitle(item->text()) != text ?
     comboBox->setStyleSheet(QString("background-color: %1").
 			    arg(QColor(255, 114, 118).name())) :
     comboBox->setStyleSheet(QString("background-color: %1").
 			    arg(QColor(144, 238, 144).name()));
+  comboBox->currentText() == "<ignored>" ?
+    comboBox->setStyleSheet("") :
+    comboBox->setStyleSheet(comboBox->styleSheet());
 }
 
 void biblioteq_import::slotTemplates(int index)

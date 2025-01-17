@@ -72,6 +72,7 @@ class biblioteq_import: public QMainWindow
   Ui_generalmessagediag m_postImportDialogUi;
   Ui_importBrowser m_ui;
   biblioteq *m_qmain;
+  static QString fieldNameFromColumnTitle(const QString &t);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void importBooks(QProgressDialog *progress,
