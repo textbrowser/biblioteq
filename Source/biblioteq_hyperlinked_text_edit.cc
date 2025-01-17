@@ -63,18 +63,19 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
     return;
 
   QString html("");
-  QStringList tmplist;
+  auto const tmpList(str.trimmed().split("\n"));
   int i = 0;
 
-  tmplist = str.trimmed().split("\n");
-
-  for(i = 0; i < tmplist.size(); i++)
+  for(i = 0; i < tmpList.size(); i++)
     {
-      html += QString
-	("<a href=\"%1?%2?%3\">" + tmplist[i] + "</a>").arg
-	(searchType).arg(searchField).arg(tmplist[i].trimmed());
+      if(tmpList[i].trimmed().isEmpty())
+	continue;
 
-      if(i != tmplist.size() - 1)
+      html += QString
+	("<a href=\"%1?%2?%3\">" + tmpList[i] + "</a>").arg
+	(searchType).arg(searchField).arg(tmpList[i].trimmed());
+
+      if(i != tmpList.size() - 1)
 	html += "<br>";
     }
 
@@ -96,16 +97,13 @@ void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)
   if(!m_qmain)
     return;
 
-  QStringList tmplist;
-  auto const path(url.toString());
+  auto const tmpList(url.toString().split("?"));
 
-  tmplist = path.split("?");
-
-  if(tmplist.size() >= 3)
+  if(tmpList.size() >= 3)
     {
-      auto const searchKey(tmplist[1]);
-      auto const searchType(tmplist[0]);
-      auto const searchValue(tmplist[2]);
+      auto const searchKey(tmpList[1]);
+      auto const searchType(tmpList[0]);
+      auto const searchValue(tmpList[2]);
 
       if(searchType == "book_search")
 	m_qmain->bookSearch(searchKey, searchValue);
