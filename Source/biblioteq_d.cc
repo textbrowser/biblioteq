@@ -750,6 +750,9 @@ void biblioteq::prepareItemPagesMenu(void)
       ui.menuItem_Pages->addAction(action);
     }
 
+  if(group->actions().isEmpty())
+    group->deleteLater();
+
   QApplication::restoreOverrideCursor();
 }
 
