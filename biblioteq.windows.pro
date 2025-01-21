@@ -44,7 +44,7 @@ data.path = release\\Data\\.
 documentation.files = Documentation\\*.html \
                       Documentation\\*.pdf \
                       Documentation\\Contributed \
-                      Documentation\\TO-DO
+                      Documentation\\REMINDERS
 documentation.path = release\\Documentation\\.
 libraries.files = Distributions\\Windows\\Libraries.64\\*.dll \
                   Distributions\\Windows\\Libraries.64\\*.exe
