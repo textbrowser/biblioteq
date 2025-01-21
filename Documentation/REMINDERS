@@ -1,31 +1,31 @@
-1.   Allow the user to hide the main table's columns. (Completed)
-2.   Save major settings to a configuration file. (Completed)
-3.   Implement the Library of Congress query. (Completed)
-4.   Allow for image storage of front and back covers. (Completed)
-5.   Port to Windows XP. (Completed) Test on FreeBSD (Completed),
-     Linux (Completed), MacOS (Completed), and Solaris (Completed).
+Completed
+
+1.   Allow the user to hide the main table's columns.
+2.   Save major settings to a configuration file.
+3.   Implement the Library of Congress query.
+4.   Allow for image storage of front and back covers.
+5.   Port to Windows XP. Test on FreeBSD, Linux, MacOS, and Solaris.
 6.   Allow searching of library members. This feature should only be
-     available to administrators. (Completed)
-7.   Perform the database queries in threads. Not necessary. (Completed)
+     available to administrators.
+7.   Perform the database queries in threads. Not necessary.
 8.   Create a configuration file to store values for various pull-down menus.
-     (Completed)
-9.   Create a mechanism for determining the uniqueness of members. (Completed)
+9.   Create a mechanism for determining the uniqueness of members.
 10.  Provide for:
-        Books (Completed)
-	Cassette Tapes (Completed) (Grey Literature)
-	DVDs (Completed)
-	Grey Literature (Completed)
-	Journals (Completed)
-	Magazines (Completed)
-	Music CDs (Completed)
-	Newspapers (Completed) (Grey Literature)
-	Photograph Collections (Completed)
-	Plants (Completed) (Grey Literature)
-	VHS (Completed) (Grey Literature)
-	Video Games (Completed)
-	Vinyl Records (Completed) (Grey Literature)
-11.  Finish the availability column. (Completed)
-12.  Implement a generic search. (Completed)
+     	Books
+	Cassette Tapes (Grey Literature)
+	DVDs
+	Grey Literature
+	Journals
+	Magazines
+	Music CDs
+	Newspapers (Grey Literature)
+	Photograph Collections
+	Plants (Grey Literature)
+	VHS (Grey Literature)
+	Video Games
+	Vinyl Records (Grey Literature)
+11.  Finish the availability column.
+12.  Implement a generic search.
      Fields included:
 	Availability
 	Category
@@ -39,89 +39,83 @@
 	Quantity
 	Title
 	Type (Removed)
-13.  Provide more detailed error messages. See #22. (Completed)
-14.  Process the configuration files with threads. (Completed)
-15.  Implement the lending of items. (Completed)
-16.  Implement the Copy Editor. (Completed)
-17.  Sort numeric columns. (Completed)
+13.  Provide more detailed error messages. See #22.
+14.  Process the configuration files with threads.
+15.  Implement the lending of items.
+16.  Implement the Copy Editor.
+17.  Sort numeric columns.
 18.  If selected, automatically resize column headers after sorting.
-     (Completed)
-19.  Provide improved reset mechanisms. (Completed)
-20.  Set focus on appropriate widget after a widget reset. (Completed)
-21.  SQL queries must be compatible with PostgreSQL. (Completed)
+19.  Provide improved reset mechanisms.
+20.  Set focus on appropriate widget after a widget reset.
+21.  SQL queries must be compatible with PostgreSQL.
 22.  Create a dialog that'll provide a complete record of
-     a session's errors. (Completed)
-23.  Include the day in the publication date. (Completed)
+     a session's errors.
+23.  Include the day in the publication date.
 24.  Record an error, if one occurs, in the getAvailability() method.
-     (Completed)
-25.  Separate the application into three tiers. Not necessary. (Completed)
-26.  Implement a close() slot for the Copy Editor. (Completed)
-27.  Provide a mechanism for displaying items that are overdue. (Completed)
+25.  Separate the application into three tiers. Not necessary.
+26.  Implement a close() slot for the Copy Editor.
+27.  Provide a mechanism for displaying items that are overdue.
 28.  Update the availability column after an item has been reserved and
-     after it has been returned. (Completed)
+     after it has been returned.
 29.  Do not allow an administrator to delete a copy that has been
-     reserved. (Completed)
+     reserved.
 30.  Prevent the administrator from decreasing the quantity of an item
-     if the action would delete copies that have been reserved. (Completed)
-31.  Complement the toolbar with menus. (Completed)
+     if the action would delete copies that have been reserved.
+31.  Complement the toolbar with menus.
 32.  Add null default icons for pull-down menus and for buttons that
-     lack icons. (Completed)
+     lack icons.
 33.  Pressing the Enter key on the Members Borrowers's Filter textfield
-     should activate the Refresh slot. (Completed)
-34.  Preserve the display status of the main table's columns. (Completed)
+     should activate the Refresh slot.
+34.  Preserve the display status of the main table's columns.
 35.  Add the line number and the file where the error occurred
-     to the error log. (Completed)
-36.  Escape special characters in search routines. (Completed)
+     to the error log.
+36.  Escape special characters in search routines.
 37.  Allow the user to copy the error dialog's contents to the copyboard
-     buffer. (Completed)
+     buffer.
 38.  Do not allow multiple identical barcodes for a particular item.
-     (Completed)
 39.  The total runtime of a CD's tracks should equal the runtime specified
      for the CD. Provide the user with a mechanism to calculate the
-     runtime based on the runtimes of the tracks. (Completed)
+     runtime based on the runtimes of the tracks.
 40.  The uniqueness of a song should be determined by the CD's OID,
-     album number, and song number. (Completed)
+     album number, and song number.
 41.  Do not allow an administrator to remove a member if that member has items
-     reserved. (Completed)
+     reserved.
 42.  Do not allow an administrator to modify barcodes of items that have been
-     reserved. (Completed)
+     reserved.
 43.  Provide a mechanism to list the items that have been reserved
-     by a member. (Completed)
-44.  Allow an administrator to modify a copy's due date. (Completed)
+     by a member.
+44.  Allow an administrator to modify a copy's due date.
 45.  Reorder the reset pull-down values so that they match the layout order
-     of the widgets. (Completed)
-46.  Empty the members list after a disconnect from the database. (Completed)
-47.  Do not allow an item to be deleted if it has been reserved. (Completed)
-48.  Allow normal users to view an item's details. (Completed)
-49.  Classify the items. This will require an extensive overhaul. (Completed)
-50.  Add an item's ID to its window's title. (Completed)
-51.  Empty containers after a database disconnect. (Completed)
-52.  Update the items' windows after administrator authentication. (Completed)
+     of the widgets.
+46.  Empty the members list after a disconnect from the database.
+47.  Do not allow an item to be deleted if it has been reserved.
+48.  Allow normal users to view an item's details.
+49.  Classify the items. This will require an extensive overhaul.
+50.  Add an item's ID to its window's title.
+51.  Empty containers after a database disconnect.
+52.  Update the items' windows after administrator authentication.
 53.  Prevent the administrator from reserving a copy that no longer
      exists, has been reserved, or had its name changed.
-     (Completed)
 54.  Perform an immediate status check of an item upon a reservation request.
      That is, verify that the copy is available by querying the database.
-     (Completed)
 55.  Verify a copy's status via a database query prior to saving it.
-     (Completed)
 56.  Only allow digits, or other applicable characters, in the ID
-     (ISBN, etc.) fields. (Completed)
-57.  Replace all references of qtbook with biblioteq. (Completed)
-58.  Add "create" and "search" displays to appropriate containers. (Completed)
-59.  Remove modality from "create" and "search" displays. (Completed)
+     (ISBN, etc.) fields.
+57.  Replace all references of qtbook with biblioteq.
+58.  Add "create" and "search" displays to appropriate containers.
+59.  Remove modality from "create" and "search" displays.
 60.  Update the Items Reserved column in the Members Browser after an
-     item has been reserved or returned. (Completed)
+     item has been reserved or returned.
 61.  If an item has been returned and the items list is displaying a member's
      reserved items that includes the returned item, update the Due Date
-     to "Returned." (Completed)
+     to "Returned."
 62.  Add an indicator to the main window's statusbar to inform the user if
-     the error log contains entries. (Completed)
-63.  Provide per-item print support. (Completed)
+     the error log contains entries.
+63.  Provide per-item print support.
 64.  Obtain the Library of Congress connection information from the
-     biblioteq.conf file. (Completed)
+     biblioteq.conf file.
 65.  The Library of Congress USMARC data fields for books are as
-     follows: (Completed)
+     follows:
 	010 LC Control Number
 	050 Call Number
 	082 Dewey Class Number
@@ -131,12 +125,12 @@
 	260 Publication Date
 	260 Publisher
 	300 Abstract (Description)
-66.  Perform the Library of Congress queries in threads. (Completed)
+66.  Perform the Library of Congress queries in threads.
 67.  Create an initial copy whenever a new item is created. Use the item's
-     ID as the copy's Barcode. Refer to #77. (Completed)
-68.  Add notes sections to copy editors. (Completed)
+     ID as the copy's Barcode. Refer to #77.
+68.  Add notes sections to copy editors.
 69.  The Library of Congress USMARC data fields for journals and
-     magazines are as follows: (Completed)
+     magazines are as follows:
 	010 LC Control Number
 	050 Call Number
 	082 Dewey Class Number
@@ -145,129 +139,124 @@
 	260 Publisher
 	300 Abstract (Description)
 70.  The ISSN is not unique. Use the Issue and Volume Number as part of
-     the uniqueness key. Refer to #85. (Completed)
+     the uniqueness key. Refer to #85.
 71.  Prevent an administrator from launching multiple Z39.50 queries
-     from the same item. (Completed)
+     from the same item.
 72.  Should an administrator be allowed to delete an item during a Z39.50
-     query? No. (Completed)
+     query? No.
 73.  Do not allow the administrator to set a member's "Member Since" date
-     beyond the current date. (Completed)
-74.  Allow the user to set a global font. (Completed)
+     beyond the current date.
+74.  Allow the user to set a global font.
 75.  Change the font for the Administrator Browser, Borrowers Browser,
      Copy Editor, Custom Query Dialog, Error Log,
      Library of Congress Query Results, Member's Reservation History,
-     and the Tracks Editor after a global font change. (Completed)
+     and the Tracks Editor after a global font change.
 76.  Save the selected global font to the user's configuration file.
-     (Completed)
 77.  Create as many initial copies as necessary when a new item is created.
      The number of copies to create is to be determined by the quantity.
-     Refer to #67. (Completed)
+     Refer to #67.
 78.  Read the saved global font from the user's configuration file during
-     program initialization. (Completed)
+     program initialization.
 79.  Set focus on the widget that caused a completion-requirement error.
-     (Completed)
-80.  Create a view of a restricted version of the borrower tables. (Completed)
+80.  Create a view of a restricted version of the borrower tables.
      See #114.
-81.  Create an administrator table. (Completed)
-82.  Provide a mechanism for granting administrator privileges. (Completed)
+81.  Create an administrator table.
+82.  Provide a mechanism for granting administrator privileges.
 83.  Verify that all failed database queries are logged and, if necessary,
-     the user is notified. (Completed)
-84.  Each type should have its own table. (Completed)
+     the user is notified.
+84.  Each type should have its own table.
 85.  Create uniqueness keys for the magazine table based on the ISSN,
-     Issue Number, and Volume Number. Refer to #70. (Completed)
+     Issue Number, and Volume Number. Refer to #70.
 86.  Prompt the user if they wish to modify copy information
-     after a quantity increase. (Completed)
+     after a quantity increase.
 87.  Verify that modifying an item updates the main table correctly.
-     (Completed)
-88.  Update the indices after a table sort. (Completed)
-89.  Create a borrowers table for each of the item types. (Completed)
-90.  Display the Member ID where appropriate. (Completed)
+88.  Update the indices after a table sort.
+89.  Create a borrowers table for each of the item types.
+90.  Display the Member ID where appropriate.
 91.  Notify the user that an item is unavailable before displaying
-     the Members Browser. (Completed)
+     the Members Browser.
 92.  The Copy Due Date in the Borrowers Browser should reflect the actual
      date while also preventing the user from setting it to an invalid
-     value. (Completed)
-93.  Allow SSL connections to the database server. (Completed)
-94.  Do not allow runtimes of 00:00:00. (Completed)
-95.  Implement roles: (Completed)
+     value.
+93.  Allow SSL connections to the database server.
+94.  Do not allow runtimes of 00:00:00.
+95.  Implement roles:
 	Role		Abilities
 	Administrator	All
 	Circulation	Reservation, Returns
 	Standard	Browse
 96.  Provide a mechanism that allows the user to print information
-     from the main table. (Completed)
-97.  Simplify the branch-selection dialog. (Completed)
+     from the main table.
+97.  Simplify the branch-selection dialog.
      The user should be presented with the following fields:
 	Branch Name
 	Password
 	Userid
-98.  Allow editing of copy information during item creation. (Completed)
-99.  Create a statistics panel. (Completed)
+98.  Allow editing of copy information during item creation.
+99.  Create a statistics panel.
      https://www.postgresql.org/docs/current/monitoring-stats.html
-100. Release a version for Windows XP. (Completed)
+100. Release a version for Windows XP.
 101. Create a Journal category. The new class should inherit from the
-     Magazine class. (Completed)
+     Magazine class.
 102. Store information regarding anonymous connections in the
-     biblioteq.conf file . This is no longer applicable. (Completed)
-103. Allow for custom queries. (Completed)
-104. The database searches should be case-insensitive. (Completed)
-105. Prepare the application for translations. (Completed)
-106. Provide a graphical representation of the database layout. (Completed)
+     biblioteq.conf file . This is no longer applicable.
+103. Allow for custom queries.
+104. The database searches should be case-insensitive.
+105. Prepare the application for translations.
+106. Provide a graphical representation of the database layout.
      Images were created via https://dbschema.com.
-107. Create an elegant display of a member's reserved items. (Completed)
+107. Create an elegant display of a member's reserved items.
 108. Update the Returned Date in the member_history table after an item
-     has been returned. (Completed)
-109. Provide print support for the Member's Reservation History. (Completed)
-110. Display the application icon in the About dialog. (Completed)
+     has been returned.
+109. Provide print support for the Member's Reservation History.
+110. Display the application icon in the About dialog.
 111. If necessary, update the Member's Reservation History panel
-     whenever an item has been returned. (Completed)
+     whenever an item has been returned.
 112. Verify the member's age prior to reserving an age-restricted item.
-113. Implement OFFSYSTEM's Off-Link-URL. (Completed)
+113. Implement OFFSYSTEM's Off-Link-URL.
 114. Create a mechanism that allows members to log in. Members should
-     also be allowed to view their reservation histories. (Completed)
-115. Create compact views for the borrower tables. See #80. (Completed)
+     also be allowed to view their reservation histories.
+115. Create compact views for the borrower tables. See #80.
 116. Drop the member's database account during member removal.
-     Must first revoke all privileges. (Completed)
-117. Reload the image summary after an item has been updated. (Completed)
-118. Provide support for SQLite. (Completed)
-119. Allow for dropping of images from external applications. (Completed)
-120. Remove "green" informational dialogs. (Completed)
+     Must first revoke all privileges.
+117. Reload the image summary after an item has been updated.
+118. Provide support for SQLite.
+119. Allow for dropping of images from external applications.
+120. Remove "green" informational dialogs.
 121. Provide hyperlinks in text browsers. Once a link is clicked,
      the application should perform a query using the text that's referenced
-     in the hyperlink. (Completed)
-122. Fix NULL QVariant bind values. (Completed)
+     in the hyperlink.
+122. Fix NULL QVariant bind values.
 123. Notify the administrator to remind a new member of the default
-     password. (Completed)
+     password.
 124. Use the COALESCE function when injecting NULL values in WHERE clauses.
-     (Completed)
 125. If an item has been deleted, remove its entry from the member history
-     table. (Completed)
-126. Do not allow duplicate administrator ids. (Completed)
-127. Highlight required fields. (Completed)
+     table.
+126. Do not allow duplicate administrator ids.
+127. Highlight required fields.
 128. Properly reset highlighted fields to their original colors
-     after a reset. (Completed)
+     after a reset.
 129. Fields should have their hyperlinks activated only after a successful
-     save. (Completed)
-130. Devise an intelligent widget-centering algorithm. (Completed)
-131. Reset the Administrator Browser after a database disconnect. (Completed)
+     save.
+130. Devise an intelligent widget-centering algorithm.
+131. Reset the Administrator Browser after a database disconnect.
 132. Key fields should have non-empty default values. This currently applies
-     to the Book category. (Completed)
-133. Provide a mechanism for generating unique ISBNs. (Completed)
+     to the Book category.
+133. Provide a mechanism for generating unique ISBNs.
 134. Non-administrators should not be presented with price and monetary
-     units information. (Completed)
-135. Must support reservation requests. (Completed)
+     units information.
+135. Must support reservation requests.
 136. Replace all borrower tables with one table that also contains item
-     types. (Completed)
+     types.
 137. Update an item's oldq variable whenever the copy data has been saved.
-     (Completed)
-138. Remove the database disconnect confirmation question. (Completed)
-139. Allow generation of random ISBNs for PostgreSQL databases. (Completed)
-140. Do not allow requested items to be deleted. (Completed)
+138. Remove the database disconnect confirmation question.
+139. Allow generation of random ISBNs for PostgreSQL databases.
+140. Do not allow requested items to be deleted.
 141. Only members should me able to request items. Administrators
      should be able to view all requested items while members should only
-     be allowed to view the items that they have requested. (Completed)
-142. SQLite databases do not require request systems. (Completed)
-143. Enable selection options based on privileges: (Completed)
+     be allowed to view the items that they have requested.
+142. SQLite databases do not require request systems.
+143. Enable selection options based on privileges:
 	Administrator / Circulation / Member
 		All
 		All Overdue
@@ -281,416 +270,406 @@
 		All
 		Items
 144. A request should be removed once it has been approved (reserved).
-     (Completed)
-145. Notify administrators of requests? No. (Completed)
-146. Do not allow multiple requests of identical items. (Completed)
+145. Notify administrators of requests? No.
+146. Do not allow multiple requests of identical items.
 147. Allow members to view their overdue items, requests, and reservations.
-     (Completed)
 148. Canceling a custom query that references images is difficult.
-     Must resolve. Inform the user of potential issue. (Completed)
-149. Remove requested items after a member has been deleted. (Completed)
-150. Drop image format columns from the various item tables. (Completed)
+     Must resolve. Inform the user of potential issue.
+149. Remove requested items after a member has been deleted.
+150. Drop image format columns from the various item tables.
 151. The program should display a different icon for the request action
-     when an administrator is logged on. (Completed)
-152. Create an MacOS installation package. (Completed)
-153. Create a Journal table. (Completed)
-154. Allow for multiple categories (labels). (Completed)
-155. Download front cover images from Amazon. (Completed)
-156. Close HTTP sockets after an Amazon query. (Completed)
+     when an administrator is logged on.
+152. Create an MacOS installation package.
+153. Create a Journal table.
+154. Allow for multiple categories (labels).
+155. Download front cover images from Amazon.
+156. Close HTTP sockets after an Amazon query.
 157. Style sheets are not fully supported in MacOS (Edition,
-     Publication Date). (Completed)
-158. Resolve resource competition for Amazon and Z39.50 queries. (Completed)
-159. Provide documentation for administrator privileges. (Completed)
-160. Provide a status dialog for the Library of Congress query. (Completed)
-161. Allow the user to cancel an image download. (Completed)
+     Publication Date).
+158. Resolve resource competition for Amazon and Z39.50 queries.
+159. Provide documentation for administrator privileges.
+160. Provide a status dialog for the Library of Congress query.
+161. Allow the user to cancel an image download.
 162. Integrate the administrator privileges documentation into the
-     application. (Completed)
-163. Provide an option for downloading OFFSYSTEM files. (No)
-164. Warn the user of unsaved changes in the Members Browser. (Completed)
+     application.
+163. Provide an option for downloading OFFSYSTEM files. No.
+164. Warn the user of unsaved changes in the Members Browser.
 165. Implement the closeEvent for progress dialogs that must not be
-     dismissed. (Completed)
-166. Allow members to cancel their reserved items. (Completed)
-167. Warn the user of unsaved changes for new items. (Completed)
-168. Add the Abstract information to the summary panel. (Completed)
-169. Add e-mail addresses to patron accounts. (Completed)
-170. Allow prices of 0.00. Search routines require review. (Completed)
-171. The UPC should be a 13-digit number. (Completed)
-172. Remove "Library of Congress" references. (Completed)
-173. The e-mail address format should be abc@def.xyz. (Completed)
-174. Investigate the privileges in misc_functions.cc. (Completed)
+     dismissed.
+166. Allow members to cancel their reserved items.
+167. Warn the user of unsaved changes for new items.
+168. Add the Abstract information to the summary panel.
+169. Add e-mail addresses to patron accounts.
+170. Allow prices of 0.00. Search routines require review.
+171. The UPC should be a 13-digit number.
+172. Remove "Library of Congress" references.
+173. The e-mail address format should be abc@def.xyz.
+174. Investigate the privileges in misc_functions.cc.
 175. Update the memberProperties container when a member's information
-     has been saved. (Completed)
-176. Be consistent when enabling and / or hiding widgets. (Completed)
+     has been saved.
+176. Be consistent when enabling and / or hiding widgets.
 177. Resolve "do not delete object" warnings that appear after
-     various search dialogs are dismissed. (Completed)
-178. Investigate the widget-centering algorithm. (Completed)
+     various search dialogs are dismissed.
+178. Investigate the widget-centering algorithm.
 179. The "request" toolbutton's icon is incorrect under some
-     circumstances. (Completed)
+     circumstances.
 180. Fix the incorrect question regarding changes when attempting to
-     create a new member. (Completed)
-181. Regular members do not require access to the admin table. (Completed)
+     create a new member.
+181. Regular members do not require access to the admin table.
 182. The Membership account is unable to access the Members Browser.
-     (Completed)
 183. Grant the createuser privilege to the Membership account correctly.
-     Remove the privilege accordingly. (Completed)
-184. Fix the administrator privileges functionality. (Completed)
+     Remove the privilege accordingly.
+184. Fix the administrator privileges functionality.
 185. Improve the misc_functions::updateColumn method. It should locate
-     all appropriate matches. Functions correctly. (Completed)
+     all appropriate matches. Functions correctly.
 186. Removing an item via the database will not remove corresponding
      entries in the item_borrower table. Should item removal be prevented
      if an item is reserved? This is the current behavior of BiblioteQ,
      however, the database schema does not enforce this. Deleting an item
-     will now delete reservation histories and statuses. (Completed)
-187. Add the Place of Publication to Video Games. (Completed)
+     will now delete reservation histories and statuses.
+187. Add the Place of Publication to Video Games.
 188. Video Games should have default values of N/A for some mandatory
-     fields. (Completed)
+     fields.
 189. CDs and DVDs should have default values of N/A for some mandatory
-     fields. (Completed)
+     fields.
 190. Review all source files for contains:
-     borrowers_editor.cc (Completed)
-     copy_editor.cc (Completed)
-     image_drop_site.cc (Completed)
-     main_table.cc (Completed)
-     misc_functions.cc (Completed)
-     myqstring.cc (Completed)
-     qtbook_book.cc (Completed)
-     qtbook.cc (Completed)
-     qtbook_cd.cc (Completed)
-     qtbook_dvd.cc (Completed)
-     qtbook_journal.cc (Completed)
-     qtbook_magazine.cc (Completed)
-     qtbook_videogame.cc (Completed)
+     borrowers_editor.cc
+     copy_editor.cc
+     image_drop_site.cc
+     main_table.cc
+     misc_functions.cc
+     myqstring.cc
+     qtbook_book.cc
+     qtbook.cc
+     qtbook_cd.cc
+     qtbook_dvd.cc
+     qtbook_journal.cc
+     qtbook_magazine.cc
+     qtbook_videogame.cc
 191. Pressing the escape key on a QDialog window will not trigger a
      close event. As a result, "dirty data" warning may be displayed.
-     (Completed)
-192. Remove OFFSYSTEM support. The project appears abandoned. (Completed)
+192. Remove OFFSYSTEM support. The project appears abandoned.
 193. All QFileDialog instances should have their current directory set
-     to the user's home directory. (Completed)
-194. Allow patrons to opt-out of reservation histories. (Completed)
+     to the user's home directory.
+194. Allow patrons to opt-out of reservation histories.
 195. Dates should not be retrieved from local services. PostgreSQL only.
-     Not necessary. (Completed)
+     Not necessary.
 196. Users should only be allowed to view their reservation histories.
-     Create temporary views? No. Row-level privacy. (Completed)
+     Create temporary views? No. Row-level privacy.
 197. After an item has been added, the item's row must be updated. One
      issue with this requirement is that the item may not be listed
      in the main table. Thus, its row number will not be available.
      Item rows are updated on data retrieval. If an item is updated,
      its table / view representation is changed if the representation has
-     the same OID as the item. (Completed)
+     the same OID as the item.
 198. Bind values in SQL queries:
-     biblioteq_a.cc (Completed)
-     biblioteq_b.cc (Completed)
-     biblioteq_book.cc (Completed) (Searching, Done)
-     biblioteq_borrowers_editor.cc (Completed)
-     biblioteq_cd.cc (Completed) (Searching, Done)
-     biblioteq_copy_editor.cc (Completed)
-     biblioteq_copy_editor_book.cc (Completed)
-     biblioteq_dbenumerations.cc (Completed)
-     biblioteq_dvd.cc (Completed) (Searching, Done)
-     biblioteq_grey_literature.cc (Completed) (Searching, Done)
-     biblioteq_magazine.cc (Completed) (Searching, Done)
-     biblioteq_misc_functions.cc (Completed)
-     biblioteq_photographcollection.cc (Completed) (Searching, Done)
-     biblioteq_videogame.cc (Completed) (Searching, Done)
-199. Settings panel, per Csanád Baksay. Rich options. (Completed)
-200. Remove OFFSET? No. (Completed)
-201. Deleting NULL pointers is redundant, save for deleteLater(). (Completed)
-202. SQL injections. See item #198. (Completed)
-203. Warn the user if there are stale photograph item data. (Completed)
-204. item_borrower and item_request privacy. PostgreSQL >= 9.5. (Completed)
+     biblioteq_a.cc
+     biblioteq_b.cc
+     biblioteq_book.cc (Searching)
+     biblioteq_borrowers_editor.cc
+     biblioteq_cd.cc (Searching)
+     biblioteq_copy_editor.cc
+     biblioteq_copy_editor_book.cc
+     biblioteq_dbenumerations.cc
+     biblioteq_dvd.cc (Searching)
+     biblioteq_grey_literature.cc (Searching)
+     biblioteq_magazine.cc (Searching)
+     biblioteq_misc_functions.cc
+     biblioteq_photographcollection.cc (Searching)
+     biblioteq_videogame.cc (Searching)
+199. Settings panel, per Csanád Baksay. Rich options.
+200. Remove OFFSET? No.
+201. Deleting NULL pointers is redundant, save for deleteLater().
+202. SQL injections. See item #198.
+203. Warn the user if there are stale photograph item data.
+204. item_borrower and item_request privacy. PostgreSQL >= 9.5.
 205. Can BiblioteQ benefit from EXISTS()? Replaced most COUNT()
-     instances. (Completed)
+     instances.
 206. Include Poppler and YAZ version information in the About dialog.
-     (Completed)
 207. biblioteq_misc_functions::getSqliteUniqueId() should return the
-     lastInsertId() instead of using an additional query. (Completed)
-208. Retranslate the Language menu. (Completed)
-209. Tab-key navigation. (Completed)
-210. Anti-aliasing in scene widgets. (Completed)
-211. Redo / undo in large text editors. (Completed)
+     lastInsertId() instead of using an additional query.
+208. Retranslate the Language menu.
+209. Tab-key navigation.
+210. Anti-aliasing in scene widgets.
+211. Redo / undo in large text editors.
 212. Do not clear the fields of the General Search panel after
-     a post-search reset is performed. (Completed)
-213. Context menus. (Completed)
-214. Improve PDF pagination. (Completed)
-215. Documentation. (Completed)
-216. Bar scanner. Functional with USB scanners. (Completed)
-217. Database import of books. (Completed)
-218. Translation files are not properly generated on MacOS. (Completed)
-219. Portuguese translation. (Completed)
-220. Update item icon in main table after item update. (Completed)
-221. ILIKE, or case-insensitive search. (Completed)
-222. UNACCENT(). (Completed)
-223. Save custom queries in a favorites system. (Completed)
-224. Query Open Library for book cover images. (Completed)
-225. Query Open Library for journals / magazines cover images. (Soon)
-226. Improve performance of Custom Query's refresh. Not a problem. (Completed)
-227. Query Open Library. (Completed)
+     a post-search reset is performed.
+213. Context menus.
+214. Improve PDF pagination.
+215. Documentation.
+216. Bar scanner. Functional with USB scanners.
+217. Database import of books.
+218. Translation files are not properly generated on MacOS.
+219. Portuguese translation.
+220. Update item icon in main table after item update.
+221. ILIKE, or case-insensitive search.
+222. UNACCENT().
+223. Save custom queries in a favorites system.
+224. Query Open Library for book cover images.
+225. Photographs and select-all click.
+226. Improve performance of Custom Query's refresh. Not a problem.
+227. Query Open Library.
 228. Format changes (sort members and methods):
-	_a (Completed)
-	_b (Completed)
-	_book (Completed)
-	_c (Completed)
-	_cd (Completed)
-	_dvd (Completed)
-	_grey_literature (Completed)
-        _magazine (Completed)
-	_misc_functions (Completed)
+	_a
+	_b
+	_book
+	_c
+	_cd
+	_dvd
+	_grey_literature
+	_magazine
+	_misc_functions
 229. Review all included files and remove extraneous instances:
-	*.cc (Completed)
-	*.h (Completed)
-230. Remove qmain singleton. (Completed)
-231. Review and remove Q_UNUSED. (Completed)
-232. Propagate qmain to biblioteq_hyperlinked_text_edit. (Completed)
-233. Best View in photographs. (Completed)
-234. Resize photograph on container resize. (Completed)
-235. Photograph rotations. (Completed)
-236. Display notes in photograph views. (Completed)
-237. Display contact information in Members Browser. (Completed)
+	*.cc
+	*.h
+230. Remove qmain singleton.
+231. Review and remove Q_UNUSED.
+232. Propagate qmain to biblioteq_hyperlinked_text_edit.
+233. Best View in photographs.
+234. Resize photograph on container resize.
+235. Photograph rotations.
+236. Display notes in photograph views.
+237. Display contact information in Members Browser.
 238. Issue QApplication::processEvents() after dialogs are dismissed:
-	Source/biblioteq_a.cc (Completed)
-	Source/biblioteq_b.cc (Completed)
-	Source/biblioteq_book.cc (Completed)
-	Source/biblioteq_borrowers_editor.cc (Completed)
-	Source/biblioteq_c.cc (Completed)
-	Source/biblioteq_cd.cc (Completed)
-	Source/biblioteq_copy_editor_book.cc (Completed)
-	Source/biblioteq_copy_editor.cc (Completed)
-	Source/biblioteq_dbenumerations.cc (Completed)
-	Source/biblioteq_dvd.cc (Completed)
-	Source/biblioteq_grey_literature.cc (Completed)
-	Source/biblioteq_item.cc (Completed)
-	Source/biblioteq_magazine.cc (Completed)
-	Source/biblioteq_misc_functions.cc (Completed)
-	Source/biblioteq_otheroptions.cc (Completed)
-	Source/biblioteq_pdfreader.cc (Completed)
-	Source/biblioteq_photographcollection.cc (Completed)
-	Source/biblioteq_sruResults.cc (Completed)
-	Source/biblioteq_videogame.cc (Completed)
-	Source/biblioteq_z3950results.cc (Completed)
+	Source/biblioteq_a.cc
+	Source/biblioteq_b.cc
+	Source/biblioteq_book.cc
+	Source/biblioteq_borrowers_editor.cc
+	Source/biblioteq_c.cc
+	Source/biblioteq_cd.cc
+	Source/biblioteq_copy_editor_book.cc
+	Source/biblioteq_copy_editor.cc
+	Source/biblioteq_dbenumerations.cc
+	Source/biblioteq_dvd.cc
+	Source/biblioteq_grey_literature.cc
+	Source/biblioteq_item.cc
+	Source/biblioteq_magazine.cc
+	Source/biblioteq_misc_functions.cc
+	Source/biblioteq_otheroptions.cc
+	Source/biblioteq_pdfreader.cc
+	Source/biblioteq_photographcollection.cc
+	Source/biblioteq_sruResults.cc
+	Source/biblioteq_videogame.cc
+	Source/biblioteq_z3950results.cc
 239. Google Books API: https://developers.google.com/books/docs/v1/using.
-     May require authentication. (Completed)
-240. Report import results. (Completed)
-241. Remove std::nothrow. (Completed)
-242. Replace first(). The file biblioteq_c.cc is fine. (Completed)
-243. Press Enter key on main table to access selected items. (Completed)
-244. Re-introduce MySQL. No. (Completed)
-245. Press Enter key main scene to access selected items. (Completed)
-246. Do not show progress dialogs unless necessary. (Completed)
-247. C++2011. (Completed)
-248. Print previews. (Completed)
-249. Redesign reservation history print layout. (Completed)
-250. Parse MARC tags for books. (Completed)
-251. Parse MARC tags for journals and magazines. (Completed)
-252. Synchronize page selection in PDF reader. (Completed)
+     May require authentication.
+240. Report import results.
+241. Remove std::nothrow.
+242. Replace first(). The file biblioteq_c.cc is fine.
+243. Press Enter key on main table to access selected items.
+244. Re-introduce MySQL. No.
+245. Press Enter key main scene to access selected items.
+246. Do not show progress dialogs unless necessary.
+247. C++2011.
+248. Print previews.
+249. Redesign reservation history print layout.
+250. Parse MARC tags for books.
+251. Parse MARC tags for journals and magazines.
+252. Synchronize page selection in PDF reader.
 253. Parameterize all SQL search queries:
-	Source/biblioteq_book.cc (Completed)
-	Source/biblioteq_c.cc (Completed)
-	Source/biblioteq_cd.cc (Completed)
-	Source/biblioteq_dvd.cc (Completed)
-	Source/biblioteq_grey_literature.cc (Completed)
-	Source/biblioteq_magazine.cc (Completed)
-	Source/biblioteq_photographcollection.cc (Completed)
-	Source/biblioteq_videogame.cc (Completed)
-254. Qt 5.15 LTS warnings. (Completed)
-255. Display all files in a separate container. (Completed)
-256. Compress attachments. (Completed)
+	Source/biblioteq_book.cc
+	Source/biblioteq_c.cc
+	Source/biblioteq_cd.cc
+	Source/biblioteq_dvd.cc
+	Source/biblioteq_grey_literature.cc
+	Source/biblioteq_magazine.cc
+	Source/biblioteq_photographcollection.cc
+	Source/biblioteq_videogame.cc
+254. Qt 5.15 LTS warnings.
+255. Display all files in a separate container.
+256. Compress attachments.
 257. Foreign constraints are not enabled on SQLite. Remove child
-     table entries upon item removal. (Completed)
-258. Enumerate database fields and table columns: (Soon)
-	biblioteq_batch_activities_browser (Completed)
-        biblioteq_book (Completed)
-	biblioteq_cd (Completed)
-	biblioteq_copy_editor_book (Completed)
-	biblioteq_dbenumerations (Completed)
-259. Backup script for FreeBSD. (Completed)
+     table entries upon item removal.
+258. Select-all shortcut for icon view in main table. Edit -> Select All.
+259. Backup script for FreeBSD.
 260. Replace Poppler with QtPDF. QtPDF is sometimes free! QtPDF is
-     very limited. (Completed)
-261. Read status for books. SQLite only. (Completed)
+     very limited.
+261. Read status for books. SQLite only.
 262. Should memberid be wider? Not necessary. The memberid allows for
-     16 characters. (Completed)
-263. Highlight unavailable items: per-item color. (Completed)
-264. Optional YAZ. (Completed)
+     16 characters.
+263. Highlight unavailable items: per-item color.
+264. Optional YAZ.
 265. Icons Mode and read status. Read status available in summary.
-     (Completed)
 266. Qt 6.2 LTS:
-     QNetworkReply (Completed)
-     QSqlQuery (Completed)
-     QSqlQuery Copy (Completed)
-267. Qt 6.2 LTS regular expressions. (Completed)
-268. Prepare Database Enumerations during an import. (Completed)
-269. Embed translation files. (Completed)
+     QNetworkReply
+     QSqlQuery
+     QSqlQuery Copy
+267. Qt 6.2 LTS regular expressions.
+268. Prepare Database Enumerations during an import.
+269. Embed translation files.
 270. Android:
-     Close Panels (Completed)
-     Configuration Menu (Completed)
-     Exit (Completed)
-     Menu Icons (Completed)
+     Close Panels
+     Configuration Menu
+     Exit
+     Menu Icons
      PostgreSQL (Soon)
-271. Export/import patron information. (Completed)
-272. Members Browser pagination. (Completed)
-273. Optional images in the main views. (Completed)
-274. Replace tr("UNKNOWN") with single instance. (Completed)
-275. Special Unimarc import. (Soon)
-276. Improve reservation processes. Batch reservations. (Completed)
-277. Include release notes with the releases. (Completed)
-278. Preserve order of columns in the main table. Nearly impossible. (Soon)
-279. MARC parsing (books). (Completed)
-280. See release notes and add names of contributors. (Completed)
+271. Export/import patron information.
+272. Members Browser pagination.
+273. Optional images in the main views.
+274. Replace tr("UNKNOWN") with single instance.
+275. Highlight combination boxes in import if mismatches occur.
+276. Improve reservation processes. Batch reservations.
+277. Include release notes with the releases.
+278. LTS release version information in About.
+279. MARC parsing (books).
+280. See release notes and add names of contributors.
 281. Remove special characters from text which is sent to the main table
      whenever an item's information is saved via its details. See
-     qUtf8Printable(). (Completed)
+     qUtf8Printable().
 282. The artificial read-status column has broken the recording of
      visible columns. The status should not be a separate column.
-     Not a problem. (Completed)
+     Not a problem.
 283. QSqlField::tableName() and Qt 5.5.1. PowerPC and Ubuntu 16.04.
-     Field is not available in legacy Qt. (Completed)
-284. Alternate identifier and Open Library image query. (Completed)
-285. Viewable Members Browser columns. (Completed)
+     Field is not available in legacy Qt.
+284. Alternate identifier and Open Library image query.
+285. Viewable Members Browser columns.
 286. Double-clicking on the main table should activate the cell for
-     copying. This will confuse some people. No. (Completed)
-287. Non-database local find from the main window. (Completed)
-288. Book target audience. (Completed)
-289. Book x of y. Volume number. (Completed)
-290. Add ESCAPE and UNACCENT to search strings. Already completed. (Completed)
-291. Sort book condition combination box values for non-English. (Completed)
-292. Syntax highlighting for custom SQL queries. (Completed)
+     copying. This will confuse some people. No.
+287. Non-database local find from the main window.
+288. Book target audience.
+289. Book x of y. Volume number.
+290. Add ESCAPE and UNACCENT to search strings. Already completed.
+291. Sort book condition combination box values for non-English.
+292. Syntax highlighting for custom SQL queries.
 293. Guard SQL queries. Limit strings in queries. Source may be refactored,
-     neglecting the revisions. (Completed)
-294. Remote query for version information. (Completed)
-295. Create unique myoid values on SQLite merge. (Soon)
+     neglecting the revisions.
+294. Remote query for version information.
+295. Wider progress dialogs.
 296. Do not disconnect the current database if a future database does not
-     have a proper driver. (Completed)
-297. Should databases be listed if drivers are not available? Yes. (Completed)
-298. Interpret Publication Date formats in generic categories. (Completed)
+     have a proper driver.
+297. Should databases be listed if drivers are not available? Yes.
+298. Interpret Publication Date formats in generic categories.
 299. Custom queries via View -> Custom Query must be evaluated because
-     they may represent DELETE or UPDATE requests. (Completed)
+     they may represent DELETE or UPDATE requests.
 300. Show an HTML warning icon if a database driver is not available.
-     (Completed)
-301. Execute lupdate and lrelease before creating a release file. (Completed)
+301. Execute lupdate and lrelease before creating a release file.
 302. Paste buttons for Back and Front cover images. Drag-and-drop.
-     Paste (Ctrl + V). Not necessary otherwise. (Completed)
+     Paste (Ctrl + V). Not necessary otherwise.
 303. Add member_history_dnt for SQLite. The table is not required. Allow
-     administrator to disable histories for all patrons. (Completed)
+     administrator to disable histories for all patrons.
 304. Main table context menu requires some intelligence. Not necessary.
-     (Completed)
 305. Describe in enum. browser that existing item windows do not reflect
-     revisions. (Completed)
-306. Deprecate Windows x86. (Completed)
-307. Document special-executable option. (Completed)
-308. Android image. (Completed)
+     revisions.
+306. Deprecate Windows x86.
+307. Document special-executable option.
+308. Android image.
 309. Curtail heights of graphic scenes. Resize scenes according to their
-     contents. (Completed)
+     contents.
 310. Beautify the source:
-	Automatic variables *.cc (Completed)
-	Automatic variables *.h (Completed)
-	Enumerator classes (Completed)
-	Remove local clear() (lists, etc.) (Completed)
-	Sort connect() (Completed)
-	Sort local variables (Completed)
+	Automatic variables *.cc
+	Automatic variables *.h
+	Enumerator classes
+	Remove local clear() (lists, etc.)
+	Sort connect()
+	Sort local variables
 311. Localized searches fail because of favorites:
-        Books (Completed)
-	CDs (Completed)
-	DVDs (Completed)
-	Grey Literature (Completed)
-	Journals (Completed)
-	Magazines (Completed)
-	Photograph Collections (Completed)
-	Video Games (Completed)
+     	Books
+	CDs
+	DVDs
+	Grey Literature
+	Journals
+	Magazines
+	Photograph Collections
+	Video Games
 312. Beautify:
-	CocoaInitializer.[h, mm] (Completed)
-	biblioteq.h (Completed)
-	biblioteq_a.cc (Completed)
-	biblioteq_animated_push_button.h (Completed)
-	biblioteq_animated_tool_button.h (Completed)
-	biblioteq_b.cc (Completed)
-	biblioteq_batch_activities.[cc, h] (Completed)
-	biblioteq_bgraphicsscene.[cc, h] (Completed)
-	biblioteq_book.[cc, h] (Completed)
-	biblioteq_boolean_table_item.[cc, h] (Completed)
-	biblioteq_borrowers_editor.[cc, h] (Completed)
-	biblioteq_c.cc (Completed)
-	biblioteq_callnum_table_item.[cc, h] (Completed)
-	biblioteq_cd.[cc, h] (Completed)
-	biblioteq_copy_editor.[cc, h] (Completed)
-	biblioteq_copy_editor_book.[cc, h] (Completed)
-	biblioteq_custom_query.[cc, h] (Completed)
-	biblioteq_d.cc (Completed)
-	biblioteq_dbenumerations.[cc, h] (Completed)
-	biblioteq_documentationwindow.[cc, h] (Completed)
-	biblioteq_dvd.[cc, h] (Completed)
-	biblioteq_files.[cc, h] (Completed)
-	biblioteq_filesize_table_item.[cc, h] (Completed)
-	biblioteq_generic_thread.[cc, h] (Completed)
-	biblioteq_graphicsitempixmap.h (Completed)
-	biblioteq_grey_literature.[cc, h] (Completed)
-	biblioteq_hyperlinked_text_edit.[cc, h] (Completed)
-	biblioteq_image_drop_site.[cc, h] (Completed)
-	biblioteq_import.[cc, h] (Completed)
-	biblioteq_item.[cc, h] (Completed)
-	biblioteq_journal.cc (Completed)
-	biblioteq_magazine.[cc, h] (Completed)
-	biblioteq_magic.[cc, h] (Completed)
-	biblioteq_main_table.[cc, h] (Completed)
-	biblioteq_marc.[cc, h] (Completed)
-	biblioteq_misc_functions.[cc, h] (Completed)
-	biblioteq_myqstring.[cc, h] (Completed)
-	biblioteq_numeric_table_item.[cc, h] (Completed)
-	biblioteq_open_library.[cc, h] (Completed)
-	biblioteq_otheroptions.[cc, h] (Completed)
-	biblioteq_pdfreader.[cc, h] (Completed)
-	biblioteq_photograph_view.[cc, h] (Completed)
-	biblioteq_photographcollection.[cc, h] (Completed)
-	biblioteq_query_history.[cc, h] (Completed)
-	biblioteq_sql_syntax_highlighter.[cc, h] (Completed)
-	biblioteq_sqlite_create_schema.h (Completed)
-	biblioteq_sqlite_merge_databases.[cc, h] (Completed)
-	biblioteq_sruResults.[cc, h] (Completed)
-	biblioteq_swifty.h (Completed)
-	biblioteq_videogame.[cc, h] (Completed)
-	biblioteq_woody.h (Completed)
-	biblioteq_z3950results.[cc, h] (Completed)
-313. Status-bar label widgets and system icons. Consider states. (Completed)
+	CocoaInitializer.[h, mm]
+	biblioteq.h
+	biblioteq_a.cc
+	biblioteq_animated_push_button.h
+	biblioteq_animated_tool_button.h
+	biblioteq_b.cc
+	biblioteq_batch_activities.[cc, h]
+	biblioteq_bgraphicsscene.[cc, h]
+	biblioteq_book.[cc, h]
+	biblioteq_boolean_table_item.[cc, h]
+	biblioteq_borrowers_editor.[cc, h]
+	biblioteq_c.cc
+	biblioteq_callnum_table_item.[cc, h]
+	biblioteq_cd.[cc, h]
+	biblioteq_copy_editor.[cc, h]
+	biblioteq_copy_editor_book.[cc, h]
+	biblioteq_custom_query.[cc, h]
+	biblioteq_d.cc
+	biblioteq_dbenumerations.[cc, h]
+	biblioteq_documentationwindow.[cc, h]
+	biblioteq_dvd.[cc, h]
+	biblioteq_files.[cc, h]
+	biblioteq_filesize_table_item.[cc, h]
+	biblioteq_generic_thread.[cc, h]
+	biblioteq_graphicsitempixmap.h
+	biblioteq_grey_literature.[cc, h]
+	biblioteq_hyperlinked_text_edit.[cc, h]
+	biblioteq_image_drop_site.[cc, h]
+	biblioteq_import.[cc, h]
+	biblioteq_item.[cc, h]
+	biblioteq_journal.cc
+	biblioteq_magazine.[cc, h]
+	biblioteq_magic.[cc, h]
+	biblioteq_main_table.[cc, h]
+	biblioteq_marc.[cc, h]
+	biblioteq_misc_functions.[cc, h]
+	biblioteq_myqstring.[cc, h]
+	biblioteq_numeric_table_item.[cc, h]
+	biblioteq_open_library.[cc, h]
+	biblioteq_otheroptions.[cc, h]
+	biblioteq_pdfreader.[cc, h]
+	biblioteq_photograph_view.[cc, h]
+	biblioteq_photographcollection.[cc, h]
+	biblioteq_query_history.[cc, h]
+	biblioteq_sql_syntax_highlighter.[cc, h]
+	biblioteq_sqlite_create_schema.h
+	biblioteq_sqlite_merge_databases.[cc, h]
+	biblioteq_sruResults.[cc, h]
+	biblioteq_swifty.h
+	biblioteq_videogame.[cc, h]
+	biblioteq_woody.h
+	biblioteq_z3950results.[cc, h]
+313. Status-bar label widgets and system icons. Consider states.
 314. System icons:
-	Edit (Completed)
-	Help (Completed)
-	Items (Completed)
-	Mainwindow (Completed)
-	Mainwindow Status Bar (Completed)
-	Options (Completed)
-	Tools (Completed)
-	View (Completed)
-315. Replace QString(tr()) with tr(). (Completed)
-316. Copy editor item status database table. (Soon)
+	Edit
+	Help
+	Items
+	Mainwindow
+	Mainwindow Status Bar
+	Options
+	Tools
+	View
+315. Replace QString(tr()) with tr().
+316. Type (Title) for tabbed items. If not available, windowTitle().
 317. MacOS: inspect the Homebrew libpq path and display a reminder
-     if the path does not refer to the newest version. (Completed)
-318. Remove duplicate mnemonics. (Completed)
-319. Allow a photograph to be moved to another set via a new panel. (Soon)
+     if the path does not refer to the newest version.
+318. Remove duplicate mnemonics.
+319. Page-selection menu in main window.
 320. "edit: editing failed" and Locations table in Database Enumerations
      Browser. The warning appears during a tab-key transition from an
      editable QTableWidgetItem to a cell which houses an editable QWidget.
-     (Completed)
-321. PostgreSQL notifications: PostgreSQL::notify() and
-     QSqlDriver::subscribeToNotification(). (Soon)
-322. Include time in item-request date. (Completed)
+321. Set new tab title if an item's title is revised.
+322. Include time in item-request date.
 323. Select the appropriate member during a reservation process.
-     (All Requested -> Home -> Members Browser) (Completed)
+     (All Requested -> Home -> Members Browser)
 324. Provide a reminder if an item has been returned which is also
-     requested (biblioteq::slotRequest()). (Completed)
+     requested (biblioteq::slotRequest()).
 325. Apple Silicon and biblioteq.macos.pro: BIBLIOTEQ_MACOS_LIBPQ_PATH.
-     (Completed)
-326. Qt 6 statistics. (Soon)
-327. Attempt to duplicate return-reminders for SQLite. Much work. (Completed)
-328. Cell colors and custom queries. Must be rapid! (Completed)
-329. Set new tab title if an item's title is revised. (Completed)
-330. Page-selection menu in main window. (Completed)
-331. Review QApplication::topLevelWidgets() and tabbed item windows.
-     (Completed)
-332. Type (Title) for tabbed items. If not available, windowTitle().
-     (Completed)
-333. Wider progress dialogs. (Completed)
-334. LTS release version information in About. (Completed)
-335. Highlight combination boxes in import if mismatches occur. (Completed)
-336. Select-all shortcut for icon view in main table. Edit -> Select All.
-     (Completed)
-337. Maybe icons on tabs of paged items. (Soon)
-338. Photographs and select-all click. (Completed)
-339. Test Android and correct. (Soon)
+326. Review QApplication::topLevelWidgets() and tabbed item windows.
+327. Attempt to duplicate return-reminders for SQLite. Much work.
+328. Cell colors and custom queries. Must be rapid!
+329. Enumerate database fields and table columns:
+	biblioteq_batch_activities_browser
+	biblioteq_book
+	biblioteq_cd
+	biblioteq_copy_editor_book
+	biblioteq_dbenumerations
+
+Remaining
+
+1.  Query Open Library for journals / magazines cover images.
+2.  Qt 6 statistics.
+3.  Special Unimarc import.
+4.  Preserve order of columns in the main table. Nearly impossible.
+5.  Create unique myoid values on SQLite merge.
+6.  Copy editor item status database table.
+7.  Test Android and correct.
+8.   Maybe icons on tabs of paged items.
+9.   Allow a photograph to be moved to another set via a new panel.
+10.  PostgreSQL notifications: PostgreSQL::notify() and
+     QSqlDriver::subscribeToNotification().
