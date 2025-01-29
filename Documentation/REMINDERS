@@ -11,7 +11,7 @@ Completed
 8.   Create a configuration file to store values for various pull-down menus.
 9.   Create a mechanism for determining the uniqueness of members.
 10.  Provide for:
-     	Books
+	Books
 	Cassette Tapes (Grey Literature)
 	DVDs
 	Grey Literature
@@ -563,7 +563,7 @@ Completed
 	Sort connect()
 	Sort local variables
 311. Localized searches fail because of favorites:
-     	Books
+	Books
 	CDs
 	DVDs
 	Grey Literature
