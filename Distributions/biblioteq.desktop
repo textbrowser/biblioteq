@@ -4,7 +4,6 @@ Comment=BiblioteQ
 Exec=/opt/biblioteq/biblioteq.sh
 GenericName=BiblioteQ
 Icon=/opt/biblioteq/book.png
-MimeType=text/html;/text/xml;application/xhtml_xml;
 Name=BiblioteQ
 StartupNotify=true
 Terminal=false
