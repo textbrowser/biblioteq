@@ -27,6 +27,7 @@
 
 #include <QStyle>
 #include <QToolButton>
+#include <QtMath>
 
 #include "biblioteq_tab.h"
 #include "biblioteq_tab_tabbar.h"
@@ -67,15 +68,11 @@ QSize biblioteq_tab_tabbar::tabSizeHint(int index) const
     {
       auto preferredTabHeight = 175;
 
-      if(parentWidget() &&
-	 count() * rect().height() < parentWidget()->size().height())
-	preferredTabHeight = 175;
-      else
-	preferredTabHeight = qBound
-	  (125,
-	   qMax(size.height(), rect().height() / qMax(1, count())),
-	   175);
-
+      preferredTabHeight = qBound
+	(125,
+	 qMax(rect().height() / qMax(1, count()), size.height()),
+	 175);
+      preferredTabHeight = 5 * qCeil(preferredTabHeight / 5.0);
       size.setHeight(preferredTabHeight);
     }
   else
@@ -87,15 +84,11 @@ QSize biblioteq_tab_tabbar::tabSizeHint(int index) const
 #endif
       auto preferredTabWidth = 0;
 
-      if(parentWidget() &&
-	 count() * rect().width() < parentWidget()->size().width())
-	preferredTabWidth = preferred;
-      else
-	preferredTabWidth = qBound
-	  (125,
-	   qMax(size.width(), rect().width() / qMax(1, count())),
-	   preferred);
-
+      preferredTabWidth = qBound
+	(125,
+	 qMax(rect().width() / qMax(1, count()), size.width()),
+	 preferred);
+      preferredTabWidth = 5 * qCeil(preferredTabWidth / 5.0);
       size.setHeight(10 + size.height());
       size.setWidth(preferredTabWidth);
     }
