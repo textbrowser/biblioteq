@@ -189,14 +189,18 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-  connect(vg.frontButton,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotSelectImage(void)));
   connect(vg.backButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectImage(void)));
+  connect(vg.frontButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectImage(void)));
+  connect(vg.front_image,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SIGNAL(imageChanged(const QImage &)));
   vg.id->setValidator(validator1);
   vg.resetButton->setMenu(menu);
 

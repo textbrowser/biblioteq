@@ -121,6 +121,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectImage(void)));
+  connect(ma.front_image,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SIGNAL(imageChanged(const QImage &)));
   connect(ma.issnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  ma.sruQueryButton,

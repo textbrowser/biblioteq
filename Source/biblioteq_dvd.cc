@@ -87,6 +87,10 @@ biblioteq_dvd::biblioteq_dvd(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectImage(void)));
+  connect(dvd.front_image,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SIGNAL(imageChanged(const QImage &)));
   connect(dvd.okButton,
 	  SIGNAL(clicked(void)),
 	  this,

@@ -85,6 +85,7 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
   void slotShowUsers(void);
 
  signals:
+  void imageChanged(const QImage &image);
   void windowTitleChanged(const QString &text);
 };
 

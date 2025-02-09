@@ -303,6 +303,7 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 
   scene()->setSceneRect(scene()->itemsBoundingRect());
+  emit imageChanged(m_image);
 }
 
 void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
@@ -382,6 +383,8 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
   if(acceptDrops())
     if(!scene()->items().isEmpty())
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+  emit imageChanged(m_image);
 }
 
 void biblioteq_image_drop_site::setImageFromClipboard(void)

@@ -122,6 +122,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotViewPreviousPhotograph(void);
 
  signals:
+  void imageChanged(const QImage &image);
   void windowTitleChanged(const QString &text);
 };
 

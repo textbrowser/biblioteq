@@ -136,6 +136,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 	  this,
 	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
+  connect(id.front_image,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SIGNAL(imageChanged(const QImage &)));
   connect(id.isbn10to13,
 	  SIGNAL(clicked(void)),
 	  this,

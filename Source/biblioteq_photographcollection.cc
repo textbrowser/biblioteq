@@ -147,6 +147,10 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectImage(void)));
+  connect(pc.thumbnail_collection,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SIGNAL(imageChanged(const QImage &)));
   connect(photo.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,

@@ -222,7 +222,13 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   connect(window,
 	  SIGNAL(destroyed(void)),
 	  this,
-	  SLOT(slotItemWindowClosed(void)));
+	  SLOT(slotItemWindowClosed(void)),
+	  Qt::UniqueConnection);
+  connect(window,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SLOT(slotItemImageChanged(const QImage &)),
+	  Qt::UniqueConnection);
   connect(window,
 	  SIGNAL(windowTitleChanged(const QString &)),
 	  this,
@@ -1104,6 +1110,16 @@ void biblioteq::slotGenerateAndCopyMemberLetter(void)
   str.replace("%2", userinfo_diag->m_userinfo.firstName->text().trimmed());
   str.replace("%3", userinfo_diag->m_userinfo.membershipfees->text());
   clipboard->setText(str);
+}
+
+void biblioteq::slotItemImageChanged(const QImage &image)
+{
+  auto widget = qobject_cast<QWidget *> (sender());
+
+  if(!widget)
+    return;
+
+  ui.tab->setTabIcon(ui.tab->indexOf(widget), QPixmap::fromImage(image));
 }
 
 void biblioteq::slotItemTitleChanged(const QString &t)

@@ -659,6 +659,7 @@ Completed
 	biblioteq_cd
 	biblioteq_copy_editor_book
 	biblioteq_dbenumerations
+330. Maybe icons on tabs of paged items.
 
 Remaining
 
@@ -669,7 +670,6 @@ Remaining
 5.   Create unique myoid values on SQLite merge.
 6.   Copy editor item status database table.
 7.   Test Android and correct.
-8.   Maybe icons on tabs of paged items.
-9.   Allow a photograph to be moved to another set via a new panel.
-10.  PostgreSQL notifications: PostgreSQL::notify() and
+8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
+9.   Allow a photograph to be moved to another set via a new panel.

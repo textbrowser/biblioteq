@@ -57,6 +57,9 @@ class biblioteq_image_drop_site: public QGraphicsView
   void dropEvent(QDropEvent *event);
   void keyPressEvent(QKeyEvent *event);
   void mouseDoubleClickEvent(QMouseEvent *event);
+
+ signals:
+  void imageChanged(const QImage &image);
 };
 
 #endif

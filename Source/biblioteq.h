@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2025.02.05"
+#define BIBLIOTEQ_VERSION "2025.02.10"
 #define BIBLIOTEQ_VERSION_FILE_URL			\
   "https://raw.githubusercontent.com/"			\
   "textbrowser/biblioteq/master/Source/biblioteq.h"
@@ -623,6 +623,7 @@ class biblioteq: public QMainWindow
   void slotInsertPhotograph(void);
   void slotInsertVideoGame(void);
   void slotItemChanged(QTableWidgetItem *item);
+  void slotItemImageChanged(const QImage &image);
   void slotItemTitleChanged(const QString &t);
   void slotItemWindowClosed(void);
   void slotJournSearch(void);

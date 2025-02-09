@@ -142,6 +142,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void sruDownloadFinished(void);
 
  signals:
+  void imageChanged(const QImage &image);
   void sruQueryError(const QString &text);
   void windowTitleChanged(const QString &text);
 };

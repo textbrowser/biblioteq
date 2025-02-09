@@ -91,6 +91,10 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotPopulateCopiesEditor(void)));
+  connect(cd.front_image,
+	  SIGNAL(imageChanged(const QImage &)),
+	  this,
+	  SIGNAL(imageChanged(const QImage &)));
   connect(cd.okButton,
 	  SIGNAL(clicked(void)),
 	  this,
