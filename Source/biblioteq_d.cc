@@ -234,7 +234,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  this,
 	  SLOT(slotItemTitleChanged(const QString &)),
 	  Qt::QueuedConnection);
-  ui.tab->addTab(window, title);
+  ui.tab->addTab(window, QIcon(":/missing_image.png"), title);
   ui.tab->setCurrentIndex(ui.tab->indexOf(window));
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
@@ -1119,7 +1119,12 @@ void biblioteq::slotItemImageChanged(const QImage &image)
   if(!widget)
     return;
 
-  ui.tab->setTabIcon(ui.tab->indexOf(widget), QPixmap::fromImage(image));
+  auto pixmap(QPixmap::fromImage(image));
+
+  if(pixmap.isNull())
+    pixmap = QPixmap(":/missing_image.png");
+
+  ui.tab->setTabIcon(ui.tab->indexOf(widget), pixmap);
 }
 
 void biblioteq::slotItemTitleChanged(const QString &t)
