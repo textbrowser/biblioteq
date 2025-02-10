@@ -32,6 +32,7 @@ biblioteq_tab::biblioteq_tab(QWidget *parent):QTabWidget(parent)
 {
   m_tabBar = new biblioteq_tab_tabbar(this);
   m_tabBar->setContextMenuPolicy(Qt::CustomContextMenu);
+  m_tabBar->setIconSize(QSize(32, 32));
   setStyleSheet("QTabWidget::tab-bar {"
 		"alignment: left;"
 		"}");

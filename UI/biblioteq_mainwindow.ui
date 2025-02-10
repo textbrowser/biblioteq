@@ -25,6 +25,10 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="primary_page">
+       <attribute name="icon">
+        <iconset resource="../Icons/icons.qrc">
+         <normaloff>:/book.png</normaloff>:/book.png</iconset>
+       </attribute>
        <attribute name="title">
         <string>Primary Page</string>
        </attribute>

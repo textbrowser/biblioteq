@@ -85,7 +85,7 @@ QSize biblioteq_tab_tabbar::tabSizeHint(int index) const
       auto preferredTabWidth = 0;
 
       preferredTabWidth = qBound
-	(125,
+	(200,
 	 qMax(rect().width() / qMax(1, count()), size.width()),
 	 preferred);
       preferredTabWidth = 5 * qCeil(preferredTabWidth / 5.0);
