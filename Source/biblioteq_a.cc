@@ -3437,17 +3437,7 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
-  biblioteq_book *book = nullptr;
-  biblioteq_cd *cd = nullptr;
-  biblioteq_dvd *dvd = nullptr;
-  biblioteq_grey_literature *gl = nullptr;
-  biblioteq_journal *journal = nullptr;
-  biblioteq_magazine *magazine = nullptr;
-  biblioteq_main_table *table = ui.table;
-  biblioteq_photographcollection *photograph = nullptr;
-  biblioteq_videogame *videogame = nullptr;
 
   if(list.isEmpty())
     {
@@ -3477,6 +3467,19 @@ void biblioteq::slotDuplicate(void)
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto error = false;
+  biblioteq_book *book = nullptr;
+  biblioteq_cd *cd = nullptr;
+  biblioteq_dvd *dvd = nullptr;
+  biblioteq_grey_literature *gl = nullptr;
+  biblioteq_journal *journal = nullptr;
+  biblioteq_magazine *magazine = nullptr;
+  biblioteq_main_table *table = ui.table;
+  biblioteq_photographcollection *photograph = nullptr;
+  biblioteq_videogame *videogame = nullptr;
+  int c = 1;
+
   std::stable_sort(list.begin(), list.end());
 
   foreach(auto const &index, list)
@@ -3489,6 +3492,9 @@ void biblioteq::slotDuplicate(void)
 	(table, i, table->columnNumber("MYOID"));
       auto const type = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("Type"));
+
+      showStatusBarMessage
+	(tr("Duplicating item %1 of %2.").arg(c++).arg(list.size()), 5000);
 
       if(type.toLower() == "book")
 	{
@@ -3862,17 +3868,7 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
-  auto table = ui.table;
-  biblioteq_book *book = nullptr;
-  biblioteq_cd *cd = nullptr;
-  biblioteq_dvd *dvd = nullptr;
-  biblioteq_grey_literature *gl = nullptr;
-  biblioteq_journal *journal = nullptr;
-  biblioteq_magazine *magazine = nullptr;
-  biblioteq_photographcollection *photograph = nullptr;
-  biblioteq_videogame *videogame = nullptr;
 
   if(list.isEmpty())
     {
@@ -3902,6 +3898,19 @@ void biblioteq::slotModify(void)
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto error = false;
+  auto table = ui.table;
+  biblioteq_book *book = nullptr;
+  biblioteq_cd *cd = nullptr;
+  biblioteq_dvd *dvd = nullptr;
+  biblioteq_grey_literature *gl = nullptr;
+  biblioteq_journal *journal = nullptr;
+  biblioteq_magazine *magazine = nullptr;
+  biblioteq_photographcollection *photograph = nullptr;
+  biblioteq_videogame *videogame = nullptr;
+  int c = 1;
+
   std::stable_sort(list.begin(), list.end());
 
   foreach(auto const &index, list)
@@ -3919,6 +3928,8 @@ void biblioteq::slotModify(void)
       journal = nullptr;
       magazine = nullptr;
       photograph = nullptr;
+      showStatusBarMessage
+	(tr("Retrieving item %1 of %2.").arg(c++).arg(list.size()), 5000);
       videogame = nullptr;
 
       if(type.toLower() == "book")
@@ -5525,17 +5536,7 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotViewDetails(void)
 {
-  auto error = false;
   auto list(ui.table->selectionModel()->selectedRows());
-  auto table = ui.table;
-  biblioteq_book *book = nullptr;
-  biblioteq_cd *cd = nullptr;
-  biblioteq_dvd *dvd = nullptr;
-  biblioteq_grey_literature *gl = nullptr;
-  biblioteq_journal *journal = nullptr;
-  biblioteq_magazine *magazine = nullptr;
-  biblioteq_photographcollection *photograph = nullptr;
-  biblioteq_videogame *videogame = nullptr;
 
   if(list.isEmpty())
     {
@@ -5564,6 +5565,19 @@ void biblioteq::slotViewDetails(void)
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto error = false;
+  auto table = ui.table;
+  biblioteq_book *book = nullptr;
+  biblioteq_cd *cd = nullptr;
+  biblioteq_dvd *dvd = nullptr;
+  biblioteq_grey_literature *gl = nullptr;
+  biblioteq_journal *journal = nullptr;
+  biblioteq_magazine *magazine = nullptr;
+  biblioteq_photographcollection *photograph = nullptr;
+  biblioteq_videogame *videogame = nullptr;
+  int c = 1;
+
   std::stable_sort(list.begin(), list.end());
 
   foreach(auto const &index, list)
@@ -5581,6 +5595,8 @@ void biblioteq::slotViewDetails(void)
       journal = nullptr;
       magazine = nullptr;
       photograph = nullptr;
+      showStatusBarMessage
+	(tr("Retrieving item %1 of %2.").arg(c++).arg(list.size()), 5000);
       videogame = nullptr;
 
       if(type.toLower() == "book")

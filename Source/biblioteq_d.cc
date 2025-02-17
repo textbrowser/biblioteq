@@ -881,6 +881,16 @@ void biblioteq::refresh(const QString &filter)
       }
 }
 
+void biblioteq::showStatusBarMessage(const QString &text, const int duration)
+{
+  if(statusBar() == nullptr || text.trimmed().isEmpty())
+    return;
+
+  statusBar()->showMessage(text, qBound(1000, duration, 250000));
+  statusBar()->repaint();
+  statusBar()->update();
+}
+
 void biblioteq::slotAboutToShowExternalApplicationsMenu(void)
 {
   prepareExternalApplicationsMenu();

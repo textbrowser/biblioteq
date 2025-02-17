@@ -566,6 +566,7 @@ class biblioteq: public QMainWindow
   void readGlobalConfiguration(void);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
+  void showStatusBarMessage(const QString &text, const int duration);
 
  private slots:
   void slotAbout(void);
