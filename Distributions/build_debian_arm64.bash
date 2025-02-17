@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Alexis Megas.
 
 if [ ! -x /usr/bin/dpkg-deb ]
