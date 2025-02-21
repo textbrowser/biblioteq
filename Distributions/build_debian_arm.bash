@@ -2,6 +2,12 @@
 
 # Alexis Megas.
 
+if [ ! -x /usr/bin/dpkg ]
+then
+    echo "Please install dpkg."
+    exit 1
+fi
+
 if [ ! -x /usr/bin/dpkg-deb ]
 then
     echo "Please install dpkg-deb."
@@ -46,9 +52,19 @@ mkdir -p biblioteq-debian/opt
 mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./Distributions/biblioteq.desktop \
    biblioteq-debian/usr/share/applications/.
-cp -pr ./Distributions/PIOS64 biblioteq-debian/DEBIAN
+
+architecture="$(dpkg --print-architecture)"
+
+if [ "$architecture" = "armhf" ]
+then
+    cp -pr ./Distributions/PIOS32 biblioteq-debian/DEBIAN
+else
+    cp -pr ./Distributions/PIOS64 biblioteq-debian/DEBIAN
+fi
+
 cp -r ./opt/biblioteq biblioteq-debian/opt/.
-fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-${VERSION}_arm64.deb
+fakeroot dpkg-deb \
+	 --build biblioteq-debian BiblioteQ-${VERSION}_$architecture.deb
 make distclean
 rm -fr ./opt
 rm -fr biblioteq-debian
