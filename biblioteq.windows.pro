@@ -53,7 +53,7 @@ plugins.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins.path = release\\plugins\\.
 pluginspurge.extra = del /Q /S *.debug
 pluginspurge.path = release\\plugins\\.
-qt.files = Distributions\\qt.conf
+qt.files = Distributions\\Windows\\qt.conf
 qt.path = release\\.
 qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt6Concurrent.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Core.dll \
