@@ -3,13 +3,13 @@ include(biblioteq-source.pro)
 
 purge.commands = del /Q *~ && del /Q *\\*~
 
-CONFIG		+= qt release warn_on windows
-DEFINES         += BIBLIOTEQ_LINKED_WITH_YAZ
-LANGUAGE	= C++
-QT		+= gui network printsupport sql widgets
-QT		-= webkit
+CONFIG += qt release warn_on windows
+DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
+LANGUAGE = C++
+QT += gui network printsupport sql widgets
+QT -= webkit
 
-QMAKE_CLEAN	+= BiblioteQ.exe
+QMAKE_CLEAN += BiblioteQ.exe
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
@@ -26,14 +26,14 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash debug Temporary
 QMAKE_EXTRA_TARGETS = purge
 
-ICON		= Icons\\book.png
-INCLUDEPATH	+= Distributions\\Windows\\Include.64 Source
-LIBS		+= -L"." \
-                   -L"Distributions\\Windows\\Libraries.64" -lyaz5
-RC_FILE		= Distributions\\Windows\\biblioteq.win.rc
-PROJECTNAME	= BiblioteQ
-TARGET		= BiblioteQ
-TEMPLATE        = app
+ICON = Icons\\book.png
+INCLUDEPATH += Distributions\\Windows\\Include.64 Source
+LIBS += -L"." \
+        -L"Distributions\\Windows\\Libraries.64" -lyaz5
+RC_FILE	= Distributions\\Windows\\biblioteq.win.rc
+PROJECTNAME = BiblioteQ
+TARGET = BiblioteQ
+TEMPLATE = app
 
 biblioteq.files = biblioteq.conf
 biblioteq.path = release\\.
@@ -53,7 +53,7 @@ plugins.files = $$[QT_INSTALL_PLUGINS]\\*
 plugins.path = release\\plugins\\.
 pluginspurge.extra = del /Q /S *.debug
 pluginspurge.path = release\\plugins\\.
-qt.files = Qt\\qt.conf
+qt.files = Distributions\\qt.conf
 qt.path = release\\.
 qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt6Concurrent.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Core.dll \
