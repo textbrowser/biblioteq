@@ -38,3 +38,7 @@ application-specific location.
 BIBLIOTEQ_POPPLER_VERSION_DEFINED
 
 Poppler's version.
+
+BIBLIOTEQ_QT_PDF_SUPPORTED
+
+Defined if Qt PDF modules are available.

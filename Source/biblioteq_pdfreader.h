@@ -30,11 +30,13 @@
 
 #include "ui_biblioteq_pdfreader.h"
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER5
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) && \
+    defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
 #include <poppler-qt5.h>
 #endif
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER6
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) && \
+    defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
 #include <poppler-qt6.h>
 #endif
 

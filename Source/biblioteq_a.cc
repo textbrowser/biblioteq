@@ -324,8 +324,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
-#ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   ui.action_Open_PDF_File->setEnabled(false);
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
+  ui.action_Open_PDF_File->setEnabled(true);
 #endif
   connect(ui.actionBatchActivitiesBrowser,
 	  SIGNAL(triggered(void)),

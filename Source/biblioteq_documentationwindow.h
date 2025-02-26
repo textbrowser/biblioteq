@@ -32,6 +32,11 @@
 
 #include "ui_biblioteq_documentationwindow.h"
 
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+class QPdfDocument;
+class QPdfView;
+#endif
+
 class biblioteq_documentationwindow: public QMainWindow
 {
   Q_OBJECT
@@ -40,6 +45,7 @@ class biblioteq_documentationwindow: public QMainWindow
   biblioteq_documentationwindow(QWidget *parent);
   biblioteq_documentationwindow(const QUrl &url, QWidget *parent);
   ~biblioteq_documentationwindow();
+  void load(const QByteArray &data);
   void prepareIcons(void);
   void setAllowOpeningOfExternalLinks(const bool state);
   void setHtml(const QString &html);
@@ -49,6 +55,10 @@ class biblioteq_documentationwindow: public QMainWindow
 
  private:
   QPalette m_originalFindPalette;
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+  QPdfDocument *m_pdfDocument;
+  QPdfView *m_pdfView;
+#endif
   Ui_biblioteq_documentationwindow m_ui;
   bool m_openExternalLinks;
   void connectSignals(void);

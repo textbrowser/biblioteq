@@ -4471,7 +4471,8 @@ void biblioteq::slotOpenOnlineDocumentation(void)
 
 void biblioteq::slotOpenPDFFiles(void)
 {
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
   QFileDialog dialog(this);
 
   dialog.setDirectory(QDir::homePath());
@@ -4501,9 +4502,15 @@ void biblioteq::slotOpenPDFFiles(void)
 
       for(int i = 0; i < dialog.selectedFiles().size(); i++)
 	{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
 	  auto reader = new biblioteq_pdfreader(this);
 
 	  reader->load(dialog.selectedFiles().at(i));
+#else
+	  auto reader = new biblioteq_documentationwindow
+	    (QUrl::fromLocalFile(dialog.selectedFiles().at(i)), this);
+#endif
+
 	  biblioteq_misc_functions::center(reader, this);
 #ifdef Q_OS_ANDROID
 	  reader->showMaximized();

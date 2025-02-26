@@ -29,6 +29,9 @@
 #include "biblioteq_book.h"
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_copy_editor_book.h"
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+#include "biblioteq_documentationwindow.h"
+#endif
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_pdfreader.h"
 
@@ -81,15 +84,16 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
   id.publication_date_enabled->setVisible(false);
   id.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
-#ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
-  id.view_pdf->setEnabled(false);
-  id.view_pdf->setToolTip
-    (tr("BiblioteQ was not assembled with Poppler support."));
-#else
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
   connect(id.view_pdf,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowPDF(void)));
+  id.view_pdf->setEnabled(true);
+#else
+  id.view_pdf->setEnabled(false);
+  id.view_pdf->setToolTip(tr("BiblioteQ was not assembled with PDF support."));
 #endif
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S),
@@ -1045,8 +1049,11 @@ void biblioteq_book::modify(const int state)
       id.showUserButton->setEnabled(true);
       id.sruQueryButton->setVisible(true);
       id.target_audience->setEditable(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
       id.view_pdf->setEnabled(true);
+#else
+      id.view_pdf->setEnabled(false);
 #endif
       id.z3950QueryButton->setVisible(true);
       biblioteq_misc_functions::highlightWidget
@@ -3048,7 +3055,8 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
       if(!item1)
 	return;
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
       if(item1->text().toLower().trimmed().endsWith(".pdf"))
 	{
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -3067,9 +3075,15 @@ void biblioteq_book::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
 	      auto reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
+#else
+	      auto reader = new biblioteq_documentationwindow(qmain);
+
+	      reader->load(data);
+#endif
 #ifdef Q_OS_ANDROID
 	      reader->showMaximized();
 #else
@@ -5517,8 +5531,6 @@ void biblioteq_book::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
-  auto reader = new biblioteq_pdfreader(qmain);
-
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QByteArray data;
@@ -5532,11 +5544,22 @@ void biblioteq_book::slotShowPDF(void)
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());
 
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  auto reader = new biblioteq_pdfreader(qmain);
+
   reader->load(data, query.value(1).toString().trimmed());
+#else
+  auto reader = new biblioteq_documentationwindow(qmain);
+
+  reader->load(data);
+#endif
 #ifdef Q_OS_ANDROID
   reader->showMaximized();
 #else
   reader->show();
+#endif
 #endif
   QApplication::restoreOverrideCursor();
 }
@@ -5786,8 +5809,11 @@ void biblioteq_book::updateWindow(const int state)
       id.showUserButton->setEnabled(true);
       id.sruQueryButton->setVisible(true);
       id.target_audience->setEditable(true);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
       id.view_pdf->setEnabled(true);
+#else
+      id.view_pdf->setEnabled(false);
 #endif
       id.z3950QueryButton->setVisible(true);
 
@@ -5819,8 +5845,11 @@ void biblioteq_book::updateWindow(const int state)
 	id.showUserButton->setEnabled(true);
 
       id.sruQueryButton->setVisible(false);
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
       id.view_pdf->setEnabled(true);
+#else
+      id.view_pdf->setEnabled(false);
 #endif
       id.z3950QueryButton->setVisible(false);
 

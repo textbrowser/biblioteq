@@ -87,6 +87,13 @@ DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
 QT      += multimedia
 }
 
+qtHaveModule(pdf) {
+qtHaveModule(pdfwidgets) {
+DEFINES         += BIBLIOTEQ_QT_PDF_SUPPORTED
+QT              += pdf pdfwidgets
+}
+}
+
 MOC_DIR     = Temporary/moc
 OBJECTS_DIR = Temporary/obj
 RCC_DIR     = Temporary/rcc

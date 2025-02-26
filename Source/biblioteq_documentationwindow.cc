@@ -25,7 +25,14 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+#include <QBuffer>
+#endif
 #include <QDesktopServices>
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+#include <QPdfDocument>
+#include <QPdfView>
+#endif
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QSettings>
@@ -49,6 +56,27 @@ biblioteq_documentationwindow::biblioteq_documentationwindow
 
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
+
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+  if(url.fileName().toLower().trimmed().endsWith(".pdf"))
+    {
+      m_pdfDocument = new QPdfDocument(this);
+      m_pdfDocument->load(url.path());
+      m_pdfView = new QPdfView(this);
+      m_pdfView->setDocument(m_pdfDocument);
+      m_pdfView->setPageMode(QPdfView::PageMode::MultiPage);
+      m_ui.action_Find->setEnabled(false);
+      m_ui.action_Print->setEnabled(false);
+      m_ui.frame->setVisible(false);
+      m_ui.stack->addWidget(m_pdfView);
+      m_ui.stack->setCurrentIndex(1);
+    }
+  else
+    {
+      m_pdfDocument = nullptr;
+      m_pdfView = nullptr;
+    }
+#endif
 
   connectSignals();
   prepareIcons();
@@ -108,6 +136,41 @@ void biblioteq_documentationwindow::connectSignals(void)
           this,
           SLOT(slotAnchorClicked(const QUrl &)),
           Qt::UniqueConnection);
+}
+
+void biblioteq_documentationwindow::load(const QByteArray &data)
+{
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+  if(!m_pdfDocument)
+    {
+      m_pdfDocument = new QPdfDocument(this);
+      m_pdfView = new QPdfView(this);
+      m_pdfView->setDocument(m_pdfDocument);
+      m_pdfView->setPageMode(QPdfView::PageMode::MultiPage);
+      m_ui.action_Find->setEnabled(false);
+      m_ui.action_Print->setEnabled(false);
+      m_ui.frame->setVisible(false);
+      m_ui.stack->addWidget(m_pdfView);
+      m_ui.stack->setCurrentIndex(1);
+    }
+
+  auto buffer = findChild<QBuffer *> ("pdf-buffer");
+
+  if(!buffer)
+    {
+      buffer = new QBuffer(this);
+      buffer->setObjectName("pdf-buffer");
+    }
+  else
+    buffer->close();
+
+  buffer->setData(data);
+
+  if(buffer->open(QIODevice::ReadOnly))
+    m_pdfDocument->load(buffer);
+  else
+    buffer->deleteLater();
+#endif
 }
 
 void biblioteq_documentationwindow::prepareIcons(void)
