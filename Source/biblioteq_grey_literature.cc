@@ -27,6 +27,9 @@
 
 #include "biblioteq.h"
 #include "biblioteq_borrowers_editor.h"
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+#include "biblioteq_documentationwindow.h"
+#endif
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_grey_literature.h"
 #include "biblioteq_pdfreader.h"
@@ -1203,7 +1206,8 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
       if(!item1)
 	return;
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
       if(item1->text().toLower().trimmed().endsWith(".pdf"))
 	{
 	  QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1222,9 +1226,15 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 	  if(!data.isEmpty())
 	    {
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
 	      auto reader = new biblioteq_pdfreader(qmain);
 
 	      reader->load(data, item1->text());
+#else
+	      auto reader = new biblioteq_documentationwindow(qmain);
+
+	      reader->load(data);
+#endif
 #ifdef Q_OS_ANDROID
 	      reader->showMaximized();
 #else

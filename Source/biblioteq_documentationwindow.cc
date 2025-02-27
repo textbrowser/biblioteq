@@ -168,8 +168,6 @@ void biblioteq_documentationwindow::load(const QByteArray &data)
 
   if(buffer->open(QIODevice::ReadOnly))
     m_pdfDocument->load(buffer);
-  else
-    buffer->deleteLater();
 #endif
 }
 
