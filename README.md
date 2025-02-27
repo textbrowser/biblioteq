@@ -59,6 +59,7 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 - PowerPC support.
 - Print support, including previews.
 - Qt LTS.
+- Qt PDF.
 - Raspberry Pi!
 - Retain the privacy of your memories.
 - Rich search capabilities, including custom SQL queries.
