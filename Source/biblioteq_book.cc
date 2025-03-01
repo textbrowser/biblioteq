@@ -1080,6 +1080,8 @@ void biblioteq_book::modify(const int state)
   else
     {
       setReadOnlyFields(this, true);
+      id.action_back->setVisible(false);
+      id.action_front->setVisible(false);
       id.attach_files->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
@@ -5828,6 +5830,8 @@ void biblioteq_book::updateWindow(const int state)
     }
   else
     {
+      id.action_back->setVisible(false);
+      id.action_front->setVisible(false);
       id.attach_files->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
