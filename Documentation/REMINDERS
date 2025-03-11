@@ -452,7 +452,7 @@ Completed
 	Source/biblioteq_videogame.cc
 	Source/biblioteq_z3950results.cc
 239. Google Books API: https://developers.google.com/books/docs/v1/using.
-     May require authentication.
+     May require authentication. No with Google.
 240. Report import results.
 241. Remove std::nothrow.
 242. Replace first(). The file biblioteq_c.cc is fine.
