@@ -2646,6 +2646,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>A new official version %1 of BiblioteQ is available!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Duplicating item %1 of %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retrieving item %1 of %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_batch_activities</name>
@@ -3173,10 +3181,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Πρόοδος εργασιών</translation>
     </message>
     <message>
-        <source>BiblioteQ was not assembled with Poppler support.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3558,6 +3562,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ was not assembled with PDF support.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12593,6 +12601,10 @@ URL</source>
     </message>
     <message>
         <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Images</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
