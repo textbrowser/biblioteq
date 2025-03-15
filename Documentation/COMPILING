@@ -8,6 +8,15 @@ A. Configure Qt for Android.
 B. Open biblioteq.android.pro in Qt Creator for ARM32 and ARM64.
 C. Build.
 
+MacOS Apple Silicon
+
+A. Install Homebrew via https://brew.sh.
+B. Install Qt via Homebrew.
+C. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
+D. > qmake -o Makefile biblioteq.macos.pro
+   > make
+   > make dmg
+
 MacOS Intel
 
 A. Install the newest Qt LTS via Qt's online installer.
