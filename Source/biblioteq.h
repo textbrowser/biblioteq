@@ -62,6 +62,7 @@
 #include "ui_biblioteq_userinfo.h"
 
 #include <QMessageBox>
+#include <QMutex>
 #include <QTimer>
 
 class biblioteq_documentationwindow;
@@ -486,6 +487,7 @@ class biblioteq: public QMainWindow
   QMap<QString, char> m_specialExecutables;
   QMessageBox *m_about;
   QMultiMap<QString, QHash<QString, QString> > m_z3950Maps;
+  QMutex m_mutex;
   QPair<QColor, QColor> m_aboutColors;
   QPointer<QLabel> m_connected_bar_label;
   QPointer<QLabel> m_status_bar_label;

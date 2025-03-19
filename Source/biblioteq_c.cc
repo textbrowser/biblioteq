@@ -3386,6 +3386,11 @@ void biblioteq::slotDisconnect(void)
      !db_enumerations->close())
     return;
 
+  if(m_mutex.tryLock())
+    m_mutex.unlock();
+  else
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!emptyContainers())

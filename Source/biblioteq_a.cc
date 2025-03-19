@@ -1706,9 +1706,19 @@ void biblioteq::cleanup(void)
     m_db.close();
 }
 
-void biblioteq::closeEvent(QCloseEvent *e)
+void biblioteq::closeEvent(QCloseEvent *event)
 {
-  Q_UNUSED(e);
+  if(event)
+    {
+      if(m_mutex.tryLock())
+	m_mutex.unlock();
+      else
+	{
+	  event->ignore();
+	  return;
+	}
+    }
+
   slotExit();
 }
 
@@ -2984,6 +2994,7 @@ void biblioteq::slotDelete(void)
   if(!m_db.isOpen())
     return;
 
+  QMutexLocker locker(&m_mutex);
   auto const list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
@@ -3439,6 +3450,7 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
+  QMutexLocker locker(&m_mutex);
   auto list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
@@ -3870,6 +3882,7 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
+  QMutexLocker locker(&m_mutex);
   auto list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
@@ -5538,6 +5551,7 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotViewDetails(void)
 {
+  QMutexLocker locker(&m_mutex);
   auto list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())

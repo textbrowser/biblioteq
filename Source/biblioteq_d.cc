@@ -1476,6 +1476,7 @@ void biblioteq::slotSpecialApplication(void)
 
 void biblioteq::slotTabClosed(int index)
 {
+  QMutexLocker locker(&m_mutex);
   auto deleted = false;
 
   if(index > 0)
