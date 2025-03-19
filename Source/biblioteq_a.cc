@@ -2847,6 +2847,11 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotBranchChanged(void)
 {
+  if(m_mutex.tryLock())
+    m_mutex.unlock();
+  else
+    return;
+
   auto const tmphash(m_branches[br.branch_name->currentText()]);
 
   if(tmphash.value("database_type") == "sqlite")
@@ -3611,6 +3616,11 @@ void biblioteq::slotDuplicate(void)
 
 void biblioteq::slotExit(void)
 {
+  if(m_mutex.tryLock())
+    m_mutex.unlock();
+  else
+    return;
+
   QSettings().setValue("mainwindowState", saveState());
   slotLastWindowClosed();
   quit();
@@ -3684,6 +3694,7 @@ void biblioteq::slotGrantPrivileges(void)
 
 void biblioteq::slotInsertBook(void)
 {
+  QMutexLocker locker(&m_mutex);
   auto ok = false;
   auto const integer = QInputDialog::getInt
     (this, tr("BiblioteQ"), tr("Create Books"), 1, 1, 10, 1, &ok);

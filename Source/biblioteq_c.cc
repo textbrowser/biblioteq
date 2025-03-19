@@ -2839,6 +2839,11 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::slotConnectDB(void)
 {
+  if(m_mutex.tryLock())
+    m_mutex.unlock();
+  else
+    return;
+
   QWidget *parent = this;
   auto const tmphash(m_branches[br.branch_name->currentText()]);
 
