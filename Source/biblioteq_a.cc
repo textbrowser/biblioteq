@@ -91,6 +91,12 @@ int main(int argc, char *argv[])
   QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 #endif
 #endif
+  QCoreApplication::setApplicationName("BiblioteQ");
+  QCoreApplication::setOrganizationName("BiblioteQ");
+  QSettings::setDefaultFormat(QSettings::IniFormat);
+  QSettings::setPath
+    (QSettings::IniFormat, QSettings::UserScope, biblioteq::homePath());
+  biblioteq_otheroptions::prepareEnvironmentVariables();
 
   QApplication qapplication(argc, argv);
   auto font(qapplication.font());
@@ -113,11 +119,6 @@ int main(int argc, char *argv[])
   ** Prepare configuration settings.
   */
 
-  QCoreApplication::setApplicationName("BiblioteQ");
-  QCoreApplication::setOrganizationName("BiblioteQ");
-  QSettings::setDefaultFormat(QSettings::IniFormat);
-  QSettings::setPath
-    (QSettings::IniFormat, QSettings::UserScope, biblioteq::homePath());
   QDir().mkdir(biblioteq::homePath());
 
   /*

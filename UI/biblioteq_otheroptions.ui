@@ -181,6 +181,33 @@
              </layout>
             </item>
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>&amp;Style Override</string>
+                </property>
+                <property name="buddy">
+                 <cstring>style_override</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="style_override">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the environment variable QT_STYLE_OVERRIDE to the specified value. Please restart BiblioteQ if this value is modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="placeholderText">
+                 <string>QT_STYLE_OVERRIDE</string>
+                </property>
+                <property name="clearButtonEnabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -1095,6 +1122,7 @@
   <tabstop>custom_query_reset</tabstop>
   <tabstop>custom_query</tabstop>
   <tabstop>display_icon_set</tabstop>
+  <tabstop>style_override</tabstop>
   <tabstop>isbn10_display_format</tabstop>
   <tabstop>isbn13_display_format</tabstop>
   <tabstop>item_mandatory_field_color</tabstop>

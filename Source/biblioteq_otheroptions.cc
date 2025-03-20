@@ -375,6 +375,15 @@ void biblioteq_otheroptions::prepareAvailability(void)
   m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
 }
 
+void biblioteq_otheroptions::prepareEnvironmentVariables(void)
+{
+  auto const variable
+    (QSettings().value("otheroptions/QT_STYLE_OVERRIDE").
+     toByteArray().trimmed());
+
+  qputenv("QT_STYLE_OVERRIDE", variable);
+}
+
 void biblioteq_otheroptions::prepareIcons(void)
 {
   if(m_ui.display_icon_set->currentIndex() == 1)
@@ -692,6 +701,8 @@ void biblioteq_otheroptions::prepareSettings(void)
     (settings.value("show_maintable_tooltips", false).toBool());
   m_ui.sqlite_reminders->setPlainText
     (biblioteq_misc_functions::sqliteReturnReminders(m_qmain->getDB()));
+  m_ui.style_override->setText
+    (settings.value("otheroptions/QT_STYLE_OVERRIDE").toString().trimmed());
   QApplication::restoreOverrideCursor();
 }
 
@@ -892,6 +903,8 @@ void biblioteq_otheroptions::slotSave(void)
   QSettings settings;
   QString string("");
 
+  settings.setValue
+    ("otheroptions/QT_STYLE_OVERRIDE", m_ui.style_override->text().trimmed());
   settings.setValue
     ("otheroptions/availability_colors", m_ui.availability_colors->isChecked());
 

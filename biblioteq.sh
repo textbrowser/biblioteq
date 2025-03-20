@@ -8,17 +8,6 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 export QT_X11_NO_MITSHM=1
 
-kde=$(env | grep -ci kde 2>/dev/null)
-
-if [ $kde -gt 0 ]
-then
-    echo "KDE!"
-
-    style="-style=Breeze"
-else
-    style="-style=Fusion"
-fi
-
 if [ -r ./BiblioteQ ] && [ -x ./BiblioteQ ]
 then
     echo "Launching a local BiblioteQ."
@@ -28,14 +17,14 @@ then
 	export LD_LIBRARY_PATH=Lib
     fi
 
-    ./BiblioteQ "$style" "$@"
+    ./BiblioteQ "$@"
     exit $?
 fi
 
 if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
-    cd /opt/biblioteq && ./BiblioteQ "$style" "$@"
+    cd /opt/biblioteq && ./BiblioteQ "$@"
     exit $?
 fi
 
@@ -43,7 +32,7 @@ if [ -r /usr/local/biblioteq/BiblioteQ ] &&
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
-    cd /usr/local/biblioteq && ./BiblioteQ "$style" "$@"
+    cd /usr/local/biblioteq && ./BiblioteQ "$@"
     exit $?
 fi
 
