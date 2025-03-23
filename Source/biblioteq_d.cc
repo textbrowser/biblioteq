@@ -235,7 +235,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  SLOT(slotItemTitleChanged(const QString &)),
 	  Qt::QueuedConnection);
   ui.tab->addTab(window, QIcon(":/missing_image.png"), title);
-  ui.tab->setCurrentIndex(ui.tab->indexOf(window));
+  ui.tab->setCurrentIndex(ui.tab->count() - 1);
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
   prepareTabWidgetCloseButtons();
