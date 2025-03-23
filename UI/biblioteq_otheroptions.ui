@@ -122,7 +122,7 @@
               </attribute>
               <column>
                <property name="text">
-                <string>Keyword</string>
+                <string>SQL Keyword</string>
                </property>
               </column>
               <column>
