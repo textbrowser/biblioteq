@@ -1711,9 +1711,9 @@ void biblioteq::closeEvent(QCloseEvent *event)
 {
   if(event)
     {
-      if(m_mutex.tryLock())
-	m_mutex.unlock();
-      else
+      std::unique_lock lock{m_mutex, std::defer_lock};
+
+      if(!lock.try_lock())
 	{
 	  event->ignore();
 	  return;
@@ -2848,10 +2848,12 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotBranchChanged(void)
 {
-  if(m_mutex.tryLock())
-    m_mutex.unlock();
-  else
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
     return;
+  else
+    lock.unlock();
 
   auto const tmphash(m_branches[br.branch_name->currentText()]);
 
@@ -3000,7 +3002,11 @@ void biblioteq::slotDelete(void)
   if(!m_db.isOpen())
     return;
 
-  QMutexLocker locker(&m_mutex);
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   auto const list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
@@ -3456,7 +3462,11 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  QMutexLocker locker(&m_mutex);
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   auto list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
@@ -3617,10 +3627,12 @@ void biblioteq::slotDuplicate(void)
 
 void biblioteq::slotExit(void)
 {
-  if(m_mutex.tryLock())
-    m_mutex.unlock();
-  else
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
     return;
+  else
+    lock.unlock();
 
   QSettings().setValue("mainwindowState", saveState());
   slotLastWindowClosed();
@@ -3695,7 +3707,11 @@ void biblioteq::slotGrantPrivileges(void)
 
 void biblioteq::slotInsertBook(void)
 {
-  QMutexLocker locker(&m_mutex);
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   auto ok = false;
   auto const integer = QInputDialog::getInt
     (this, tr("BiblioteQ"), tr("Create Books"), 1, 1, 10, 1, &ok);
@@ -3894,7 +3910,11 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  QMutexLocker locker(&m_mutex);
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   auto list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())
@@ -5563,7 +5583,11 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotViewDetails(void)
 {
-  QMutexLocker locker(&m_mutex);
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   auto list(ui.table->selectionModel()->selectedRows());
 
   if(list.isEmpty())

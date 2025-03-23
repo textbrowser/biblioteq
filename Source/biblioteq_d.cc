@@ -1476,7 +1476,11 @@ void biblioteq::slotSpecialApplication(void)
 
 void biblioteq::slotTabClosed(int index)
 {
-  QMutexLocker locker(&m_mutex);
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   auto deleted = false;
 
   if(index > 0)

@@ -2839,10 +2839,12 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::slotConnectDB(void)
 {
-  if(m_mutex.tryLock())
-    m_mutex.unlock();
-  else
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
     return;
+  else
+    lock.unlock();
 
   QWidget *parent = this;
   auto const tmphash(m_branches[br.branch_name->currentText()]);
@@ -3391,10 +3393,12 @@ void biblioteq::slotDisconnect(void)
      !db_enumerations->close())
     return;
 
-  if(m_mutex.tryLock())
-    m_mutex.unlock();
-  else
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
     return;
+  else
+    lock.unlock();
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
