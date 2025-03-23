@@ -238,6 +238,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   ui.tab->setCurrentIndex(ui.tab->count() - 1);
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
+  QApplication::processEvents();
   prepareTabWidgetCloseButtons();
 }
 
