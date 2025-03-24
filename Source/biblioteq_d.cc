@@ -1477,6 +1477,9 @@ void biblioteq::slotSpecialApplication(void)
 
 void biblioteq::slotTabClosed(int index)
 {
+  if(index <= 0)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
@@ -1560,7 +1563,7 @@ void biblioteq::slotTabClosed(int index)
 
  done_label:
 
-  if(deleted)
+  if(deleted || ui.tab->widget(index) == nullptr)
     {
       ui.tab->removeTab(index);
 

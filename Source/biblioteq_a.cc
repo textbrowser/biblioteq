@@ -2073,48 +2073,88 @@ void biblioteq::quit(void)
 
 void biblioteq::removeBook(biblioteq_book *book)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(book)
     book->deleteLater();
 }
 
 void biblioteq::removeCD(biblioteq_cd *cd)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(cd)
     cd->deleteLater();
 }
 
 void biblioteq::removeDVD(biblioteq_dvd *dvd)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(dvd)
     dvd->deleteLater();
 }
 
 void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(gl)
     gl->deleteLater();
 }
 
 void biblioteq::removeJournal(biblioteq_journal *journal)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(journal)
     journal->deleteLater();
 }
 
 void biblioteq::removeMagazine(biblioteq_magazine *magazine)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(magazine)
     magazine->deleteLater();
 }
 
 void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(pc)
     pc->deleteLater();
 }
 
 void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
 {
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
   if(videogame)
     videogame->deleteLater();
 }
