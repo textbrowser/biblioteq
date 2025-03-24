@@ -11,10 +11,10 @@ DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/opt/libpq/lib/libpq.dyli
 warning("/opt/homebrew/opt/libpq/lib/libpq.dylib does not exist.")
 }
 
-exists(/usr/local/Cellar/libpq/17.2/lib/libpq.dylib) {
-DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/Cellar/libpq/17.2/lib/libpq.dylib\"'"
+exists(/usr/local/opt/libpq/lib/libpq.dylib) {
+DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"'"
 } else {
-warning("/usr/local/Cellar/libpq/17.2/lib/libpq.dylib does not exist.")
+warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
 }
 
 DEFINES		+= QT_DEPRECATED_WARNINGS
@@ -78,8 +78,8 @@ exists(/opt/homebrew/opt/libpq/lib/libpq.dylib) {
 installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
-exists(/usr/local/Cellar/libpq/17.2/lib/libpq.dylib) {
-installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/Cellar/libpq/17.2/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+exists(/usr/local/opt/libpq/lib/libpq.dylib) {
+installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
 installnametool1.path    = .
