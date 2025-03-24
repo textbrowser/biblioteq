@@ -275,15 +275,14 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
 biblioteq_photographcollection::~biblioteq_photographcollection()
 {
-  for(int i = 0; i < m_uis.size(); i++)
-    delete m_uis[i];
+  while(!m_uis.isEmpty())
+    delete m_uis.takeFirst();
 }
 
 bool biblioteq_photographcollection::verifyItemFields(void)
 {
-  QString str("");
+  auto str(photo.id_item->text().trimmed());
 
-  str = photo.id_item->text().trimmed();
   photo.id_item->setText(str);
 
   if(photo.id_item->text().isEmpty())
@@ -758,10 +757,14 @@ void biblioteq_photographcollection::modify(const int state,
 	  if(fieldname == "about")
 	    pc.about_collection->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "accession_number")
-	    pc.accession_number->setText(var.toString().trimmed());
+	    {
+	      pc.accession_number->setText(var.toString().trimmed());
+	      pc.accession_number->setToolTip(pc.accession_number->text());
+	    }
 	  else if(fieldname == "id")
 	    {
 	      pc.id_collection->setText(var.toString().trimmed());
+	      pc.id_collection->setToolTip(pc.id_collection->text());
 
 	      if(behavior.isEmpty())
 		{
@@ -810,7 +813,10 @@ void biblioteq_photographcollection::modify(const int state,
 	  else if(fieldname == "notes")
 	    pc.notes_collection->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "title")
-	    pc.title_collection->setText(var.toString().trimmed());
+	    {
+	      pc.title_collection->setText(var.toString().trimmed());
+	      pc.title_collection->setToolTip(pc.title_collection->text());
+	    }
 	}
 
       int pages = 1;
