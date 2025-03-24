@@ -29,7 +29,6 @@
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_photographcollection.h"
-#include "ui_biblioteq_photographview.h"
 
 #include <QFileDialog>
 #include <QScrollBar>
@@ -276,6 +275,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
 biblioteq_photographcollection::~biblioteq_photographcollection()
 {
+  for(int i = 0; i < m_uis.size(); i++)
+    delete m_uis[i];
 }
 
 bool biblioteq_photographcollection::verifyItemFields(void)
@@ -577,44 +578,44 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 {
   if(item)
     {
-      Ui_photographView ui;
       auto mainWindow = new QMainWindow(this);
+      auto ui = new Ui_photographView;
 
-      mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
-      ui.setupUi(mainWindow);
-      connect(ui.closeButton,
+      m_uis << ui;
+      ui->setupUi(mainWindow);
+      connect(ui->closeButton,
 	      SIGNAL(clicked(void)),
 	      mainWindow,
 	      SLOT(close(void)));
-      connect(ui.exportItem,
+      connect(ui->exportItem,
 	      SIGNAL(clicked(void)),
 	      this,
 	      SLOT(slotExportItem(void)));
-      connect(ui.next,
+      connect(ui->next,
 	      SIGNAL(clicked(void)),
 	      this,
 	      SLOT(slotViewNextPhotograph(void)));
-      connect(ui.previous,
+      connect(ui->previous,
 	      SIGNAL(clicked(void)),
 	      this,
 	      SLOT(slotViewPreviousPhotograph(void)));
-      connect(ui.rotate_left,
+      connect(ui->rotate_left,
 	      SIGNAL(clicked(void)),
-	      ui.view,
+	      ui->view,
 	      SLOT(slotRotateLeft(void)));
-      connect(ui.rotate_right,
+      connect(ui->rotate_right,
 	      SIGNAL(clicked(void)),
-	      ui.view,
+	      ui->view,
 	      SLOT(slotRotateRight(void)));
-      connect(ui.save,
+      connect(ui->save,
 	      SIGNAL(clicked(void)),
-	      ui.view,
+	      ui->view,
 	      SLOT(slotSave(void)));
-      connect(ui.view_size,
+      connect(ui->view_size,
 	      SIGNAL(currentIndexChanged(int)),
 	      this,
 	      SLOT(slotImageViewSizeChanged(int)));
-      ui.save->setVisible(m_engWindowTitle.contains("Modify"));
+      ui->save->setVisible(m_engWindowTitle.contains("Modify"));
 
       auto scene = new QGraphicsScene(mainWindow);
 
@@ -626,15 +627,15 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
       mainWindow->show();
       mainWindow->hide();
 #endif
-      scene->setProperty("view_size", ui.view->viewport()->size());
-      ui.notes->setPlainText("");
-      ui.notes->setVisible(false);
-      ui.view->setScene(scene);
+      scene->setProperty("view_size", ui->view->viewport()->size());
+      ui->notes->setPlainText("");
+      ui->notes->setVisible(false);
+      ui->view->setScene(scene);
       loadPhotographFromItem
 	(item,
 	 scene,
-	 ui.notes,
-	 ui.view_size->currentText().remove("%").toInt());
+	 ui->notes,
+	 ui->view_size->currentText().remove("%").toInt());
 #ifdef Q_OS_ANDROID
       mainWindow->showMaximized();
 #else

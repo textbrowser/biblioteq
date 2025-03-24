@@ -31,6 +31,7 @@
 #include "biblioteq_item.h"
 #include "ui_biblioteq_photograph.h"
 #include "ui_biblioteq_photographinfo.h"
+#include "ui_biblioteq_photographview.h"
 
 class QTextBrowser;
 class biblioteq_bgraphicsscene;
@@ -69,6 +70,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 
  private:
   QDialog *m_photo_diag;
+  QList<Ui_photographView *> m_uis;
   QString m_engWindowTitle;
   QString m_itemOid;
   Ui_pcDialog pc;
