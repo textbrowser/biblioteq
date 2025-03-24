@@ -66,7 +66,7 @@ QSize biblioteq_tab_tabbar::tabSizeHint(int index) const
 
   if(tabPosition == QTabWidget::East || tabPosition == QTabWidget::West)
     {
-      auto preferredTabHeight = 175;
+      auto preferredTabHeight = 0;
 
       preferredTabHeight = qBound
 	(125,
@@ -77,19 +77,13 @@ QSize biblioteq_tab_tabbar::tabSizeHint(int index) const
     }
   else
     {
-#ifdef Q_OS_MACOS
-      auto preferred = 250;
-#else
-      auto preferred = 250;
-#endif
       auto preferredTabWidth = 0;
 
       preferredTabWidth = qBound
 	(200,
 	 qMax(rect().width() / qMax(1, count()), size.width()),
-	 preferred);
+	 250);
       preferredTabWidth = 5 * qCeil(preferredTabWidth / 5.0);
-      size.setHeight(10 + size.height());
       size.setWidth(preferredTabWidth);
     }
 
