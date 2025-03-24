@@ -91,6 +91,7 @@ void biblioteq_journal::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  QMainWindow::closeEvent(event);
   qmain->removeJournal(this);
 }
 

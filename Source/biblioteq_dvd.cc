@@ -387,6 +387,7 @@ void biblioteq_dvd::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  QMainWindow::closeEvent(event);
   qmain->removeDVD(this);
 }
 

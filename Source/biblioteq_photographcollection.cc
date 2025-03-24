@@ -418,6 +418,7 @@ void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  QMainWindow::closeEvent(event);
   qmain->removePhotographCollection(this);
 }
 

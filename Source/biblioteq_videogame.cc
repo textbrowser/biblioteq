@@ -361,6 +361,7 @@ void biblioteq_videogame::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  QMainWindow::closeEvent(event);
   qmain->removeVideoGame(this);
 }
 

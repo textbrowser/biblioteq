@@ -758,7 +758,7 @@ void biblioteq_book::changeEvent(QEvent *event)
   QMainWindow::changeEvent(event);
 }
 
-void biblioteq_book::closeEvent(QCloseEvent *e)
+void biblioteq_book::closeEvent(QCloseEvent *event)
 {
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -773,8 +773,8 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
 	  {
 	    QApplication::processEvents();
 
-	    if(e)
-	      e->ignore();
+	    if(event)
+	      event->ignore();
 
 	    return;
 	  }
@@ -782,6 +782,7 @@ void biblioteq_book::closeEvent(QCloseEvent *e)
 	QApplication::processEvents();
       }
 
+  QMainWindow::closeEvent(event);
   qmain->removeBook(this);
 }
 
