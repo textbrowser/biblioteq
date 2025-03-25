@@ -388,8 +388,8 @@ class biblioteq: public QMainWindow
   void replaceGreyLiterature(const QString &id, biblioteq_grey_literature *gl);
   void replaceJournal(const QString &id, biblioteq_journal *journal);
   void replaceMagazine(const QString &id, biblioteq_magazine *magazine);
-  void replacePhotographCollection(const QString &id,
-				   biblioteq_photographcollection *photograph);
+  void replacePhotographCollection
+    (const QString &id, biblioteq_photographcollection *photograph);
   void replaceVideoGame(const QString &id, biblioteq_videogame *videogame);
   void setGlobalFonts(const QFont &font);
   void setSummaryImages(const QImage &back, const QImage &front);
