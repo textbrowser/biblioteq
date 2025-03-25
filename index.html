@@ -135,6 +135,24 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>March 25, 2025</p>
+	<ul>
+	  <li>Closing a database during an iterative process may produce an
+	    abnormal termination. For example, it's possible to close
+	    a database while numerous items are being initialized.
+	    Corrected!</li>
+	  <li>Corrected memory management of photograph items.</li>
+	  <li>Default tab height.</li>
+	  <li>Issue QMainWindow::closeEvent() in item closeEvent().</li>
+	  <li>Lock memory regions whenever event processing may be
+	    interrupted. Locking memory regions will prevent abnormal
+	    termination.</li>
+	  <li>New Other Options -> Display -> Style Override. For a pleasant
+	    Qt style, please consider Kvantum. Breeze and Fusion are other
+	    styles.</li>
+	  <li>New tool tips in photograph collections.</li>
+	  <li>Removed the status bar from the book-item panel.</li>
+	</ul>
 	<p>March 1, 2025</p>
 	<ul>
 	  <li>Allow Qt PDF. If Poppler is available, Poppler is applied. If
