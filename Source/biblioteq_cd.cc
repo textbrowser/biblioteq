@@ -392,6 +392,14 @@ void biblioteq_cd::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  if(qmain->isLocked())
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   QMainWindow::closeEvent(event);
   qmain->removeCD(this);
 }

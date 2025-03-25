@@ -782,6 +782,14 @@ void biblioteq_book::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  if(qmain->isLocked())
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   QMainWindow::closeEvent(event);
   qmain->removeBook(this);
 }

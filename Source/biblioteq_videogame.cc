@@ -361,6 +361,14 @@ void biblioteq_videogame::closeEvent(QCloseEvent *event)
 	QApplication::processEvents();
       }
 
+  if(qmain->isLocked())
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   QMainWindow::closeEvent(event);
   qmain->removeVideoGame(this);
 }

@@ -343,6 +343,7 @@ class biblioteq: public QMainWindow
   bool availabilityColors(void) const;
   bool canAccessDatabaseEnumerations(void) const;
   bool isGuest(void) const;
+  bool isLocked(void) const;
   bool isPatron(void) const;
   bool showBookReadStatus(void) const;
   bool showMainTableImages(void) const;
@@ -529,10 +530,10 @@ class biblioteq: public QMainWindow
   bool m_allSearchShown;
   bool m_membersWasRefreshed;
   int m_lastSearchType;
+  mutable std::mutex m_mutex;
   qint64 m_pages;
   qint64 m_queryOffset;
   quint64 m_idCt;
-  std::mutex m_mutex;
   swifty *m_swifty;
   userinfo_diag_class *userinfo_diag;
   QString dbUserName(void) const;

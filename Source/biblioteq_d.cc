@@ -158,6 +158,13 @@ bool biblioteq::isCurrentItemAPhotograph(void) const
      ui.table->columnNumber("Type")) == "Photograph Collection";
 }
 
+bool biblioteq::isLocked(void) const
+{
+  std::unique_lock lock{m_mutex, std::defer_lock};
+
+  return !lock.try_lock();
+}
+
 bool biblioteq::showBookReadStatus(void) const
 {
   return m_otherOptions->showBookReadStatus();
