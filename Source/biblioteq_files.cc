@@ -256,6 +256,7 @@ void biblioteq_files::slotRefresh(void)
 
   QSqlQuery query(m_biblioteq->getDB());
   auto page = m_ui.page->currentIndex();
+  int totalFiles = 0;
 
   m_ui.page->clear();
   query.setForwardOnly(true);
@@ -271,19 +272,20 @@ void biblioteq_files::slotRefresh(void)
   if(query.exec() && query.next())
     {
       auto const pages = qCeil
-	(query.value(0).toDouble() / static_cast<double> (m_ui.pages->value()));
+	(query.value(0).toDouble() /
+	 static_cast<double> (m_ui.pages->value()));
 
       for(int i = 0; i < pages; i++)
 	m_ui.page->addItem(QString::number(i + 1));
 
-      m_ui.files_table->setRowCount(query.value(0).toInt());
+      totalFiles = query.value(0).toInt();
     }
 
   if(m_ui.page->count() == 0)
     m_ui.page->addItem("1");
 
-  page = qBound(0, page, m_ui.page->count() - 1);
   m_ui.page->setCurrentIndex(page);
+  page = qBound(0, page, m_ui.page->count() - 1);
   query.prepare
     (QString("SELECT bf.file_name, "
 	     "bf.description, "
@@ -327,22 +329,17 @@ void biblioteq_files::slotRefresh(void)
 	     "LIMIT %1 OFFSET %2").
      arg(m_ui.pages->value()).
      arg(m_ui.page->currentIndex() * m_ui.pages->value()));
-  statusBar()->showMessage
-    (tr("%1 Total Files").arg(m_ui.files_table->rowCount()));
 
   if(query.exec())
     {
       QLocale locale;
       int row = 0;
-      int totalRows = 0;
 
       m_ui.files_table->setSortingEnabled(false);
 
-      while(!progress.wasCanceled() &&
-	    query.next() &&
-	    totalRows < m_ui.files_table->rowCount())
+      while(progress.wasCanceled() == false && query.next())
 	{
-	  totalRows += 1;
+	  m_ui.files_table->setRowCount(m_ui.files_table->rowCount() + 1);
 
 	  for(int i = 0; i < m_ui.files_table->columnCount(); i++)
 	    {
@@ -365,14 +362,18 @@ void biblioteq_files::slotRefresh(void)
 	}
 
       m_ui.files_table->scrollToTop();
-      m_ui.files_table->setRowCount(totalRows);
       m_ui.files_table->setSortingEnabled(true);
       m_ui.files_table->sortByColumn
 	(static_cast<int> (Columns::FILE), Qt::AscendingOrder);
     }
+  else
+    m_ui.files_table->setRowCount(0);
 
   connect(m_ui.page,
 	  SIGNAL(currentIndexChanged(int)),
 	  this,
 	  SLOT(slotRefresh(void)));
+  statusBar()->showMessage
+    (tr("%1 Shown Files / %2 Total Files").
+     arg(m_ui.files_table->rowCount()).arg(totalFiles));
 }
