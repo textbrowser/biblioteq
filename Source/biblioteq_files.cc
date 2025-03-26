@@ -335,12 +335,11 @@ void biblioteq_files::slotRefresh(void)
       QLocale locale;
       int row = 0;
 
+      m_ui.files_table->setRowCount(m_ui.pages->value());
       m_ui.files_table->setSortingEnabled(false);
 
       while(progress.wasCanceled() == false && query.next())
 	{
-	  m_ui.files_table->setRowCount(m_ui.files_table->rowCount() + 1);
-
 	  for(int i = 0; i < m_ui.files_table->columnCount(); i++)
 	    {
 	      QTableWidgetItem *item = nullptr;
@@ -362,6 +361,7 @@ void biblioteq_files::slotRefresh(void)
 	}
 
       m_ui.files_table->scrollToTop();
+      m_ui.files_table->setRowCount(row);
       m_ui.files_table->setSortingEnabled(true);
       m_ui.files_table->sortByColumn
 	(static_cast<int> (Columns::FILE), Qt::AscendingOrder);
