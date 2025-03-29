@@ -3360,6 +3360,9 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
   dialog.setNameFilter("SQLite Database (*.sqlite)");
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
+#ifdef Q_OS_ANDROID
+  dialog.showMaximized();
+#endif
   dialog.exec();
   dialog.close();
   QApplication::processEvents();
@@ -5169,6 +5172,9 @@ void biblioteq::slotSelectDatabaseFile(void)
   dialog.setNameFilter("SQLite Database (*.sqlite)");
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
+#ifdef Q_OS_ANDROID
+  dialog.showMaximized();
+#endif
   dialog.exec();
   QApplication::processEvents();
 
