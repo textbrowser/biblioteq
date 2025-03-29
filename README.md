@@ -1,22 +1,12 @@
-BiblioteQ is awesome, open library software. Local and network.
-Archiving for a very long time.
-
-As of now, Android, MacOS, Ubuntu LTS, and Windows bundles will be manufactured.
-Everyone else should delegate themselves in the source.
-There are far too many variations of Debian distributions.
-For YOU!
-
-Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.txt.
+BiblioteQ is awesome, open library software. PostgreSQL and SQLite databases.
 
 ## Features
 
-- ARM architecture support.
+- AMD, ARM, Alpha, Apple Silicon, PowerPC, Sparc architecture support.
 - Administrator roles.
-- Alpha architecture support.
 - Android!
 - Animated confirmations, here and there. Future fun.
 - Anti-censorship through digital content.
-- Apple Silicon.
 - Archive important documents.
 - Bar scanners supported indirectly.
 - Cataloging of books, dvds, grey literature, journals, magazines,
@@ -32,7 +22,7 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 - External applications.
 - Files browser.
 - Free and Open Source technology.
-- FreeBSD, Linux, Mac, OS/2, OpenBSD, Windows, etc.
+- FreeBSD, Linux, MacOS, OS/2, OpenBSD, Windows.
 - Front cover image retrieval via Amazon and Open Library.
 - Importing of books from CSV files.
 - Internationalization (translation) support. BiblioteQ currently supports
@@ -45,14 +35,12 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 - MacOS and Windows install targets: make install.
 - Merging of SQLite databases.
 - Multiple icon sets.
-- Natively compiled on ARM, Alpha, PowerPC, Sparc64, X86, X86_64.
 - Network-less!
 - Open Library queries for select items.
 - Optional item reservation histories for patrons.
 - PDF reader via Poppler, where available.
 - Parse local MARC tags. Books, journals, magazines.
 - Patron information.
-- Portable.
 - Portable libraries.
 - PostgreSQL accounts with various privileges.
 - PostgreSQL and SQLite engines.
@@ -65,7 +53,6 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 - Rich search capabilities, including custom SQL queries.
 - Row-level security policies for PostgreSQL.
 - SQL syntax highlighting with custom colors.
-- Sparc64 support.
 - Support for multiple SRU and Z39.50 sites.
 - Support for requesting unavailable items.
 - Tabbed item panels!
@@ -76,7 +63,7 @@ Qup: https://raw.githubusercontent.com/textbrowser/biblioteq/master/Qup.d/qup.tx
 - Uniform functionality across various platforms.
 - Windows portable.
 
-![screenshot](https://github.com/textbrowser/biblioteq/blob/gh-pages/images/biblioteq-android.png)
+![](https://github.com/textbrowser/biblioteq/blob/gh-pages/images/biblioteq-android.png)
 
 ### Debian Installation
 

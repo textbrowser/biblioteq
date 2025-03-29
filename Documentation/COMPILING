@@ -7,6 +7,7 @@ Android
 A. Configure Qt for Android.
 B. Open biblioteq.android.pro in Qt Creator for ARM32 and ARM64.
 C. Build.
+D. Distribute the APK files.
 
 MacOS Apple Silicon
 
