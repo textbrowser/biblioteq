@@ -673,3 +673,4 @@ Remaining
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
 9.   Allow a photograph to be moved to another set via a new panel.
+10.  Android.
