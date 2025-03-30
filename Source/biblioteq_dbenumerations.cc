@@ -182,7 +182,7 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
     {
       auto lineEdit = new QLineEdit(this);
 
-      lineEdit->setToolTip("[1, 1000]");
+      lineEdit->setToolTip(tr("[1, 1000]"));
       lineEdit->setValidator(new QIntValidator(1, 1000, this));
       m_ui.minimumDaysTable->setCellWidget
 	(i, static_cast<int> (MinimumDaysTable::Days), lineEdit);

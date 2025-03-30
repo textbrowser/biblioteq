@@ -115,14 +115,15 @@ void biblioteq_files::prepareIcons(void)
 void biblioteq_files::reset(void)
 {
   disconnect(m_ui.page,
-	     SIGNAL(currentIndexChanged(int)),
+	     SIGNAL(valueChanged(int)),
 	     this,
 	     SLOT(slotRefresh(void)));
   m_ui.files_table->setRowCount(0);
-  m_ui.page->clear();
-  m_ui.page->addItem("1");
+  m_ui.page->setMaximum(1);
+  m_ui.page->setToolTip(tr("[1, 1]"));
+  m_ui.page->setValue(1);
   connect(m_ui.page,
-	  SIGNAL(currentIndexChanged(int)),
+	  SIGNAL(valueChanged(int)),
 	  this,
 	  SLOT(slotRefresh(void)));
   statusBar()->showMessage(tr("0 Total Files"));
@@ -249,16 +250,15 @@ void biblioteq_files::slotRefresh(void)
   progress.repaint();
   QApplication::processEvents();
   disconnect(m_ui.page,
-	     SIGNAL(currentIndexChanged(int)),
+	     SIGNAL(valueChanged(int)),
 	     this,
 	     SLOT(slotRefresh(void)));
   m_ui.files_table->setRowCount(0);
 
   QSqlQuery query(m_biblioteq->getDB());
-  auto page = m_ui.page->currentIndex();
+  auto const page = m_ui.page->value() - 1;
   int totalFiles = 0;
 
-  m_ui.page->clear();
   query.setForwardOnly(true);
   query.prepare
     ("SELECT (SELECT COUNT(*) FROM book_files) "
@@ -271,21 +271,14 @@ void biblioteq_files::slotRefresh(void)
 
   if(query.exec() && query.next())
     {
-      auto const pages = qCeil
-	(query.value(0).toDouble() /
-	 static_cast<double> (m_ui.pages->value()));
-
-      for(int i = 0; i < pages; i++)
-	m_ui.page->addItem(QString::number(i + 1));
-
+      m_ui.page->setMaximum
+	(qCeil(query.value(0).toDouble() /
+	       static_cast<double> (m_ui.pages->value())));
+      m_ui.page->setToolTip(tr("[1, %1]").arg(m_ui.page->maximum()));
       totalFiles = query.value(0).toInt();
     }
 
-  if(m_ui.page->count() == 0)
-    m_ui.page->addItem("1");
-
-  m_ui.page->setCurrentIndex(page);
-  page = qBound(0, page, m_ui.page->count() - 1);
+  m_ui.page->setValue(page + 1);
   query.prepare
     (QString("SELECT bf.file_name, "
 	     "bf.description, "
@@ -328,7 +321,7 @@ void biblioteq_files::slotRefresh(void)
 	     "WHERE m.myoid = mf.item_oid "
 	     "LIMIT %1 OFFSET %2").
      arg(m_ui.pages->value()).
-     arg(m_ui.page->currentIndex() * m_ui.pages->value()));
+     arg((m_ui.page->value() - 1)* m_ui.pages->value()));
 
   if(query.exec())
     {
@@ -370,7 +363,7 @@ void biblioteq_files::slotRefresh(void)
     m_ui.files_table->setRowCount(0);
 
   connect(m_ui.page,
-	  SIGNAL(currentIndexChanged(int)),
+	  SIGNAL(valueChanged(int)),
 	  this,
 	  SLOT(slotRefresh(void)));
   statusBar()->showMessage
