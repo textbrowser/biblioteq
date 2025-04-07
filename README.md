@@ -25,9 +25,20 @@ BiblioteQ is awesome, open library software. PostgreSQL and SQLite databases.
 - FreeBSD, Linux, MacOS, OS/2, OpenBSD, PiOS, Windows.
 - Front cover image retrieval via Amazon and Open Library.
 - Importing of books from CSV files.
-- Internationalization (translation) support. BiblioteQ currently supports
-  Arabic, Czech, Dutch, English, French, German, Greek, Hungarian, Polish,
-  Portuguese, Russian, and Spanish.
+- Internationalization (translation) support.
+  Arabic
+  Czech
+  Dutch
+  English
+  French
+  German
+  Greek
+  Hungarian
+  Polish
+  Portuguese
+  Romanian
+  Russian
+  Spanish
 - Item file attachments.
 - Item reservation.
 - Listings of overdue items, requested items, and reserved items.
