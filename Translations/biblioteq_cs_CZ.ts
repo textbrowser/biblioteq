@@ -4778,6 +4778,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Reservations Minimum Days</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>[1, 1000]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_documentationwindow</name>
@@ -5332,7 +5336,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 Total Files</source>
+        <source>[1, 1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[1, %1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Shown Files / %2 Total Files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9276,7 +9288,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source> Files Per Page</source>
@@ -11853,10 +11865,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keyword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11986,6 +11994,22 @@ webová adresa</translation>
     </message>
     <message>
         <source>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQL Keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Style Override</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the environment variable QT_STYLE_OVERRIDE to the specified value. Please restart BiblioteQ if this value is modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QT_STYLE_OVERRIDE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

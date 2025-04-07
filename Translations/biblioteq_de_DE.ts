@@ -4872,6 +4872,10 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <source>Reservations Minimum Days</source>
         <translation type="unfinished">Minimum an Reservierungstagen</translation>
     </message>
+    <message>
+        <source>[1, 1000]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_dbenumerations_item_delegate</name>
@@ -5405,7 +5409,15 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M√
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 Total Files</source>
+        <source>[1, 1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[1, %1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Shown Files / %2 Total Files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9407,7 +9419,7 @@ URL</source>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source> Files Per Page</source>
@@ -12139,7 +12151,7 @@ URL</source>
     </message>
     <message>
         <source>Keyword</source>
-        <translation type="unfinished">Schl√ºsselwort</translation>
+        <translation type="obsolete">Schl√ºsselwort</translation>
     </message>
     <message>
         <source>Color</source>
@@ -12271,6 +12283,22 @@ URL</source>
     </message>
     <message>
         <source>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQL Keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Style Override</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the environment variable QT_STYLE_OVERRIDE to the specified value. Please restart BiblioteQ if this value is modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QT_STYLE_OVERRIDE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
