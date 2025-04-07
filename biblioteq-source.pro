@@ -243,6 +243,7 @@ TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
                   Translations/biblioteq_nl_BE.ts \
                   Translations/biblioteq_nl_NL.ts \
 		  Translations/biblioteq_pl_PL.ts \
-		  Translations/biblioteq_pt_PT.ts \
+                  Translations/biblioteq_pt_PT.ts \
+                  Translations/biblioteq_ro_RO.ts \
 		  Translations/biblioteq_ru_RU.ts \
                   Translations/biblioteq_zh_CN.ts
