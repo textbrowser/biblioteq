@@ -215,6 +215,7 @@ void biblioteq_batch_activities::borrow(void)
 	    {
 	      results->setBackground(s_notSoOkColor);
 	      results->setText(tr("Critical error! Missing table item(s)."));
+	      results->setToolTip(results->text());
 	    }
 
 	  continue;
@@ -222,6 +223,7 @@ void biblioteq_batch_activities::borrow(void)
 
       results->setBackground(copyIdentifier->background());
       results->setText("");
+      results->setToolTip("");
 
       if(expired)
 	{
@@ -232,6 +234,7 @@ void biblioteq_batch_activities::borrow(void)
 	  else
 	    results->setText(tr("Cannot locate member (%1).").arg(error));
 
+	  results->setToolTip(results->text());
 	  continue;
 	}
 
@@ -239,12 +242,14 @@ void biblioteq_batch_activities::borrow(void)
 	{
 	  results->setBackground(s_notSoOkColor);
 	  results->setText(tr("Empty copy identifier."));
+	  results->setToolTip(results->text());
 	  continue;
 	}
       else if(identifier->text().trimmed().isEmpty())
 	{
 	  results->setBackground(s_notSoOkColor);
 	  results->setText(tr("Empty identifier."));
+	  results->setToolTip(results->text());
 	  continue;
 	}
 
@@ -283,6 +288,7 @@ void biblioteq_batch_activities::borrow(void)
 	    results->setText
 	      (tr("Item is not available (%1) for reservation.").arg(error));
 
+	  results->setToolTip(results->text());
 	  continue;
 	}
 
@@ -298,6 +304,7 @@ void biblioteq_batch_activities::borrow(void)
 	      results->setText
 		(tr("Maximum (%1) number of reserved (%2) items exceeded.").
 		 arg(maximumReserved).arg(totalReserved));
+	      results->setToolTip(results->text());
 	      continue;
 	    }
 	}
@@ -318,6 +325,7 @@ void biblioteq_batch_activities::borrow(void)
 	{
 	  results->setBackground(s_notSoOkColor);
 	  results->setText(tr("Error retrieving copy number."));
+	  results->setToolTip(results->text());
 	  continue;
 	}
 
@@ -349,6 +357,7 @@ void biblioteq_batch_activities::borrow(void)
 	  copyIdentifier->setData(Qt::BackgroundRole, QVariant());
 	  results->setBackground(s_okColor);
 	  results->setText(tr("Reserved!"));
+	  results->setToolTip("");
 
 	  /*
 	  ** Delete the request.
@@ -369,6 +378,7 @@ void biblioteq_batch_activities::borrow(void)
 	  results->setBackground(s_notSoOkColor);
 	  results->setText
 	    (tr("Reservation problem (%1).").arg(query.lastError().text()));
+	  results->setToolTip(results->text());
 	  continue;
 	}
 
@@ -1738,6 +1748,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	  if(ok && str.length() > 0)
 	    {
 	      copyIdentifier->setText(str);
+	      copyIdentifier->setToolTip(copyIdentifier->text());
 	      play("qrc:/discovered.wav");
 	    }
 	  else
@@ -1750,6 +1761,7 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 		copyIdentifier->setText
 		  (tr("A copy is not available (%1).").arg(str));
 
+	      copyIdentifier->setToolTip(copyIdentifier->text());
 	      play("qrc:/error.wav");
 	    }
 
@@ -1761,14 +1773,20 @@ void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
 	 static_cast<int> (BorrowTableColumns::FIELD_COLUMN));
 
       if(fieldItem)
-	fieldItem->setText(field);
+	{
+	  fieldItem->setText(field);
+	  fieldItem->setToolTip(fieldItem->text());
+	}
 
       auto identifier = m_ui.borrow_table->item
 	(m_ui.borrow_table->rowCount() - 1,
 	 static_cast<int> (BorrowTableColumns::IDENTIFIER_COLUMN));
 
       if(identifier)
-	identifier->setText(m_ui.borrow_scan->text().trimmed());
+	{
+	  identifier->setText(m_ui.borrow_scan->text().trimmed());
+	  identifier->setToolTip(identifier->text());
+	}
 
       /*
       ** Discover the desired category. Unpleasant, yet again!
@@ -1821,6 +1839,7 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
   auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
 
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  item->setToolTip(item->text());
   m_ui.discover_table->setRowCount(m_ui.discover_table->rowCount() + 1);
 
   if(m_ui.bottom_scroll_on_add->isChecked())
@@ -1835,6 +1854,7 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
   biblioteq_misc_functions::categories
     (hash, m_qmain->getDB(), m_ui.discover_scan->text());
   item->setText(hash.value("categories").trimmed());
+  item->setToolTip(item->text());
 
   if(!item->text().isEmpty())
     play("qrc:/discovered.wav");
@@ -1848,6 +1868,7 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
   item = new QTableWidgetItem();
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   item->setText(hash.value("title").trimmed());
+  item->setToolTip(item->text());
   m_ui.discover_table->setItem
     (m_ui.discover_table->rowCount() - 1,
      static_cast<int> (DiscoverTableColumns::TITLE_COLUMN),
@@ -1926,6 +1947,7 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 	  auto item = new QTableWidgetItem(query.value(i).toString().trimmed());
 
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	  item->setToolTip(item->text());
 	  m_ui.return_table->setItem
 	    (m_ui.return_table->rowCount() - 1, i, item);
 	}
