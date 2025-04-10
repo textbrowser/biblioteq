@@ -526,14 +526,14 @@ END;									\
 									\
 CREATE TABLE member_history						\
 (									\
-    memberid	  VARCHAR(16) NOT NULL,					\
-    item_oid	  BIGINT NOT NULL,					\
     copyid	  VARCHAR(64) NOT NULL,					\
-    reserved_date VARCHAR(32) NOT NULL,					\
     duedate	  VARCHAR(32) NOT NULL,					\
-    returned_date VARCHAR(32) NOT NULL,					\
+    item_oid	  BIGINT NOT NULL,					\
+    memberid	  VARCHAR(16) NOT NULL,					\
     myoid	  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,		\
     reserved_by	  VARCHAR(128) NOT NULL,				\
+    reserved_date VARCHAR(32) NOT NULL,					\
+    returned_date VARCHAR(32) NOT NULL,					\
     type	  VARCHAR(16) NOT NULL,					\
     FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE \
 );									\
