@@ -391,6 +391,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotSelectAll(void)));
+  connect(ui.actionStatistics,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowStatistics(void)));
   connect(ui.actionTabbed_Item_Windows,
 	  SIGNAL(toggled(bool)),
 	  this,
@@ -1053,6 +1057,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionRequests->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionSelect_All->setEnabled(false);
+  ui.actionStatistics->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Database_Enumerations->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);

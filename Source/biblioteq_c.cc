@@ -3181,6 +3181,7 @@ void biblioteq::slotConnectDB(void)
   ui.actionQuery_History->setEnabled(true);
   ui.actionRefreshTable->setEnabled(true);
   ui.actionSelect_All->setEnabled(true);
+  ui.actionStatistics->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
   ui.configTool->setEnabled(true);
   ui.customQueryTool->setEnabled(true);
@@ -3472,6 +3473,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionRefreshTable->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionSelect_All->setEnabled(false);
+  ui.actionStatistics->setEnabled(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);
   ui.action_Upgrade_SQLite_SchemaAll->setEnabled(false);

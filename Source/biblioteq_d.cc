@@ -1466,6 +1466,10 @@ void biblioteq::slotShowReleaseNotes(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq::slotShowStatistics(void)
+{
+}
+
 void biblioteq::slotSpecialApplication(void)
 {
   auto action = qobject_cast<QAction *> (sender());
