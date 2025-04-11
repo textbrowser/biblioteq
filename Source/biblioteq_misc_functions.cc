@@ -2238,28 +2238,16 @@ void biblioteq_misc_functions::assignImage
 void biblioteq_misc_functions::center
 (QWidget *child, QMainWindow *parent, const bool force)
 {
-  if(!child || !parent)
-    return;
-
   if(QSettings().value("center_child_windows", true).toBool() == false &&
      force == false)
     return;
+  else if(child == nullptr || parent == nullptr)
+    return;
 
-  auto const p(parent->pos());
-  int X = 0;
-  int Y = 0;
+  auto c(child->geometry());
 
-  if(parent->width() >= child->width())
-    X = p.x() + (parent->width() - child->width()) / 2;
-  else
-    X = p.x() - (child->width() - parent->width()) / 2;
-
-  if(parent->height() >= child->height())
-    Y = p.y() + (parent->height() - child->height()) / 2;
-  else
-    Y = p.y() - (child->height() - parent->height()) / 2;
-
-  child->move(X, Y);
+  c.moveCenter(parent->geometry().center());
+  child->setGeometry(c);
 }
 
 void biblioteq_misc_functions::createBookCopy(const QString &idArg,

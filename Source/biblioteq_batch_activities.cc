@@ -1944,7 +1944,8 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
 
       for(int i = 0; i < m_ui.return_table->columnCount(); i++)
 	{
-	  auto item = new QTableWidgetItem(query.value(i).toString().trimmed());
+	  auto item = new QTableWidgetItem
+	    (query.value(i).toString().trimmed());
 
 	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	  item->setToolTip(item->text());
