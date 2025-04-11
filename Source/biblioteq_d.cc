@@ -1495,6 +1495,8 @@ void biblioteq::slotTabClosed(int index)
 
   if(!lock.try_lock())
     return;
+  else
+    lock.unlock();
 
   auto deleted = false;
 
