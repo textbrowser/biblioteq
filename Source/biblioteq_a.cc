@@ -4050,6 +4050,8 @@ void biblioteq::slotModify(void)
 
       if(type.toLower() == "book")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto b = qobject_cast<biblioteq_book *> (w);
@@ -4057,6 +4059,7 @@ void biblioteq::slotModify(void)
 	      if(b && b->getID() == oid)
 		{
 		  book = b;
+		  created = false;
 		  break;
 		}
 	    }
@@ -4066,16 +4069,24 @@ void biblioteq::slotModify(void)
 
 	  if(!book)
 	    book = new biblioteq_book(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(book);
-	  book->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  book,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      book->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      book,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "cd")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto c = qobject_cast<biblioteq_cd *> (w);
@@ -4083,6 +4094,7 @@ void biblioteq::slotModify(void)
 	      if(c && c->getID() == oid)
 		{
 		  cd = c;
+		  created = false;
 		  break;
 		}
 	    }
@@ -4092,22 +4104,31 @@ void biblioteq::slotModify(void)
 
 	  if(!cd)
 	    cd = new biblioteq_cd(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(cd);
-	  cd->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  cd,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      cd->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      cd,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "dvd")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto d = qobject_cast<biblioteq_dvd *> (w);
 
 	      if(d && d->getID() == oid)
 		{
+		  created = false;
 		  dvd = d;
 		  break;
 		}
@@ -4118,22 +4139,31 @@ void biblioteq::slotModify(void)
 
 	  if(!dvd)
 	    dvd = new biblioteq_dvd(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(dvd);
-	  dvd->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  dvd,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      dvd->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      dvd,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "grey literature")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
 	      if(g && g->getID() == oid)
 		{
+		  created = false;
 		  gl = g;
 		  break;
 		}
@@ -4145,22 +4175,31 @@ void biblioteq::slotModify(void)
 
 	  if(!gl)
 	    gl = new biblioteq_grey_literature(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(gl);
-	  gl->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  gl,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      gl->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      gl,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "journal")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto j = qobject_cast<biblioteq_journal *> (w);
 
 	      if(j && j->getID() == oid)
 		{
+		  created = false;
 		  journal = j;
 		  break;
 		}
@@ -4171,16 +4210,24 @@ void biblioteq::slotModify(void)
 
 	  if(!journal)
 	    journal = new biblioteq_journal(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(journal);
-	  journal->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  journal,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      journal->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      journal,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "magazine")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto m = qobject_cast<biblioteq_magazine *> (w);
@@ -4192,6 +4239,7 @@ void biblioteq::slotModify(void)
 	      if(!qobject_cast<biblioteq_journal *> (w))
 		if(m && m->getID() == oid)
 		  {
+		    created = false;
 		    magazine = m;
 		    break;
 		  }
@@ -4202,22 +4250,31 @@ void biblioteq::slotModify(void)
 
 	  if(!magazine)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
+	  else
+	    created = false;
 
 	  addItemWindowToTab(magazine);
-	  magazine->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  magazine,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      magazine->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      magazine,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "photograph collection")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
 	      if(p && p->getID() == oid)
 		{
+		  created = false;
 		  photograph = p;
 		  break;
 		}
@@ -4229,22 +4286,31 @@ void biblioteq::slotModify(void)
 
 	  if(!photograph)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(photograph);
-	  photograph->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  photograph,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      photograph->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      photograph,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "video game")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto v = qobject_cast<biblioteq_videogame *> (w);
 
 	      if(v && v->getID() == oid)
 		{
+		  created = false;
 		  videogame = v;
 		  break;
 		}
@@ -4256,13 +4322,19 @@ void biblioteq::slotModify(void)
 
 	  if(!videogame)
 	    videogame = new biblioteq_videogame(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(videogame);
-	  videogame->modify(EDITABLE);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  videogame,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      videogame->modify(EDITABLE);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      videogame,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else
 	{
@@ -5725,6 +5797,8 @@ void biblioteq::slotViewDetails(void)
 
       if(type.toLower() == "book")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto b = qobject_cast<biblioteq_book *> (w);
@@ -5732,6 +5806,7 @@ void biblioteq::slotViewDetails(void)
 	      if(b && b->getID() == oid)
 		{
 		  book = b;
+		  created = false;
 		  break;
 		}
 	    }
@@ -5741,16 +5816,24 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!book)
 	    book = new biblioteq_book(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(book);
-	  book->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  book,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      book->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      book,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "cd")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto c = qobject_cast<biblioteq_cd *> (w);
@@ -5758,6 +5841,7 @@ void biblioteq::slotViewDetails(void)
 	      if(c && c->getID() == oid)
 		{
 		  cd = c;
+		  created = false;
 		  break;
 		}
 	    }
@@ -5767,22 +5851,31 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!cd)
 	    cd = new biblioteq_cd(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(cd);
-	  cd->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  cd,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      cd->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      cd,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "dvd")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto d = qobject_cast<biblioteq_dvd *> (w);
 
 	      if(d && d->getID() == oid)
 		{
+		  created = false;
 		  dvd = d;
 		  break;
 		}
@@ -5793,22 +5886,31 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!dvd)
 	    dvd = new biblioteq_dvd(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(dvd);
-	  dvd->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  dvd,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      dvd->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      dvd,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "grey literature")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto g = qobject_cast<biblioteq_grey_literature *> (w);
 
 	      if(g && g->getID() == oid)
 		{
+		  created = false;
 		  gl = g;
 		  break;
 		}
@@ -5820,22 +5922,31 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!gl)
 	    gl = new biblioteq_grey_literature(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(gl);
-	  gl->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  gl,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      gl->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      gl,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "journal")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto j = qobject_cast<biblioteq_journal *> (w);
 
 	      if(j && j->getID() == oid)
 		{
+		  created = false;
 		  journal = j;
 		  break;
 		}
@@ -5846,16 +5957,24 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!journal)
 	    journal = new biblioteq_journal(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(journal);
-	  journal->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  journal,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      journal->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      journal,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "magazine")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto m = qobject_cast<biblioteq_magazine *> (w);
@@ -5867,6 +5986,7 @@ void biblioteq::slotViewDetails(void)
 	      if(!qobject_cast<biblioteq_journal *> (w))
 		if(m && m->getID() == oid)
 		  {
+		    created = false;
 		    magazine = m;
 		    break;
 		  }
@@ -5877,22 +5997,31 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!magazine)
 	    magazine = new biblioteq_magazine(this, oid, index, "magazine");
+	  else
+	    created = false;
 
 	  addItemWindowToTab(magazine);
-	  magazine->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  magazine,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      magazine->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      magazine,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "photograph collection")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto p = qobject_cast<biblioteq_photographcollection *> (w);
 
 	      if(p && p->getID() == oid)
 		{
+		  created = false;
 		  photograph = p;
 		  break;
 		}
@@ -5904,22 +6033,31 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!photograph)
 	    photograph = new biblioteq_photographcollection(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(photograph);
-	  photograph->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  photograph,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      photograph->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      photograph,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else if(type.toLower() == "video game")
 	{
+	  auto created = true;
+
 	  foreach(auto w, QApplication::topLevelWidgets())
 	    {
 	      auto v = qobject_cast<biblioteq_videogame *> (w);
 
 	      if(v && v->getID() == oid)
 		{
+		  created = false;
 		  videogame = v;
 		  break;
 		}
@@ -5931,13 +6069,19 @@ void biblioteq::slotViewDetails(void)
 
 	  if(!videogame)
 	    videogame = new biblioteq_videogame(this, oid, index);
+	  else
+	    created = false;
 
 	  addItemWindowToTab(videogame);
-	  videogame->modify(VIEW_ONLY);
-	  connect(this,
-		  SIGNAL(databaseEnumerationsCommitted(void)),
-		  videogame,
-		  SLOT(slotDatabaseEnumerationsCommitted(void)));
+
+	  if(created)
+	    {
+	      videogame->modify(VIEW_ONLY);
+	      connect(this,
+		      SIGNAL(databaseEnumerationsCommitted(void)),
+		      videogame,
+		      SLOT(slotDatabaseEnumerationsCommitted(void)));
+	    }
 	}
       else
 	{
