@@ -1058,6 +1058,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionReservationHistory->setEnabled(false);
   ui.actionSelect_All->setEnabled(false);
   ui.actionStatistics->setEnabled(false);
+  ui.actionStatistics->setVisible(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Database_Enumerations->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);
@@ -2082,90 +2083,106 @@ void biblioteq::quit(void)
 
 void biblioteq::removeBook(biblioteq_book *book)
 {
+  if(!book)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(book)
-    book->deleteLater();
+  book->deleteLater();
 }
 
 void biblioteq::removeCD(biblioteq_cd *cd)
 {
+  if(!cd)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(cd)
-    cd->deleteLater();
+  cd->deleteLater();
 }
 
 void biblioteq::removeDVD(biblioteq_dvd *dvd)
 {
+  if(!dvd)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(dvd)
-    dvd->deleteLater();
+  dvd->deleteLater();
 }
 
 void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
 {
+  if(!gl)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(gl)
-    gl->deleteLater();
+  gl->deleteLater();
 }
 
 void biblioteq::removeJournal(biblioteq_journal *journal)
 {
+  if(!journal)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(journal)
-    journal->deleteLater();
+  journal->deleteLater();
 }
 
 void biblioteq::removeMagazine(biblioteq_magazine *magazine)
 {
+  if(!magazine)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(magazine)
-    magazine->deleteLater();
+  magazine->deleteLater();
 }
 
 void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
 {
+  if(!pc)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(pc)
-    pc->deleteLater();
+  pc->deleteLater();
 }
 
 void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
 {
+  if(!videogame)
+    return;
+
   std::unique_lock lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
 
-  if(videogame)
-    videogame->deleteLater();
+  videogame->deleteLater();
 }
 
 void biblioteq::replaceBook(const QString &id, biblioteq_book *book)

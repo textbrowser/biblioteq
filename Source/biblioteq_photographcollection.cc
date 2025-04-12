@@ -396,6 +396,14 @@ void biblioteq_photographcollection::changeEvent(QEvent *event)
 
 void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
 {
+  if(qmain->isLocked())
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
@@ -417,14 +425,6 @@ void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
 
 	QApplication::processEvents();
       }
-
-  if(qmain->isLocked())
-    {
-      if(event)
-	event->ignore();
-
-      return;
-    }
 
   QMainWindow::closeEvent(event);
   qmain->removePhotographCollection(this);

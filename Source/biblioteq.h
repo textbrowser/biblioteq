@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2025.03.31"
+#define BIBLIOTEQ_VERSION "2025.04.12"
 #define BIBLIOTEQ_VERSION_FILE_URL			\
   "https://raw.githubusercontent.com/"			\
   "textbrowser/biblioteq/master/Source/biblioteq.h"

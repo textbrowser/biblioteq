@@ -370,6 +370,14 @@ void biblioteq_cd::changeEvent(QEvent *event)
 
 void biblioteq_cd::closeEvent(QCloseEvent *event)
 {
+  if(qmain->isLocked())
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
@@ -391,14 +399,6 @@ void biblioteq_cd::closeEvent(QCloseEvent *event)
 
 	QApplication::processEvents();
       }
-
-  if(qmain->isLocked())
-    {
-      if(event)
-	event->ignore();
-
-      return;
-    }
 
   QMainWindow::closeEvent(event);
   qmain->removeCD(this);
