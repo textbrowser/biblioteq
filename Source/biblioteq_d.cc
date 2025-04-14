@@ -240,7 +240,7 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  SIGNAL(windowTitleChanged(const QString &)),
 	  this,
 	  SLOT(slotItemTitleChanged(const QString &)),
-	  Qt::QueuedConnection);
+	  Qt::ConnectionType(Qt::QueuedConnection | Qt::UniqueConnection));
   ui.tab->addTab(window, QIcon(":/missing_image.png"), title);
   ui.tab->setCurrentIndex(ui.tab->count() - 1);
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
