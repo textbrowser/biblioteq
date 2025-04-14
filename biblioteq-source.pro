@@ -132,6 +132,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_photographview.ui \
                   UI/biblioteq_query_history.ui \
                   UI/biblioteq_sruResults.ui \
+                  UI/biblioteq_statistics.ui \
                   UI/biblioteq_tracks.ui \
                   UI/biblioteq_userinfo.ui \
                   UI/biblioteq_videogameinfo.ui \
