@@ -727,7 +727,7 @@ void biblioteq::prepareIcons(void)
 
 void biblioteq::prepareItemPagesMenu(void)
 {
-  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ui.menuItem_Pages->clear();
 
   auto action = ui.menuItem_Pages->addAction(tr("&Close All"));

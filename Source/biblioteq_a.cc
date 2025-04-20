@@ -4487,7 +4487,7 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
 	  SIGNAL(paintRequested(QPrinter *)),
 	  this,
 	  SLOT(slotPrintPreview(QPrinter *)));
-  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   m_printPreview->setHtml(reservationHistoryHtml());
 #ifdef Q_OS_ANDROID
   printDialog->showMaximized();
@@ -4676,7 +4676,7 @@ void biblioteq::slotPrintViewPreview(void)
 	  SIGNAL(paintRequested(QPrinter *)),
 	  this,
 	  SLOT(slotPrintPreview(QPrinter *)));
-  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   m_printPreview->setHtml(viewHtml());
 #ifdef Q_OS_ANDROID
   printDialog->showMaximized();
