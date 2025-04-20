@@ -2246,6 +2246,12 @@ void biblioteq_misc_functions::center
 
   auto c(child->geometry());
 
+  if(c.isNull())
+    {
+      child->show();
+      c = child->geometry();
+    }
+
   c.moveCenter(parent->geometry().center());
   child->setGeometry(c);
 }
