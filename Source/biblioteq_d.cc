@@ -1043,7 +1043,7 @@ void biblioteq::slotDelayedPreparation(void)
 
 void biblioteq::slotDetachTabbed(void)
 {
-  for(int i = m_attachedWindows.size() - 1; i >=0; i--)
+  for(int i = m_attachedWindows.size() - 1; i >= 0; i--)
     {
       auto window = m_attachedWindows.takeAt(i);
 
