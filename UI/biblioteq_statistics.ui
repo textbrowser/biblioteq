@@ -23,6 +23,37 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QComboBox" name="queries">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="delete_query">
+           <property name="text">
+            <string>Delete</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="save_query">
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QSplitter" name="splitter">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -91,7 +122,7 @@
       <item>
        <widget class="QToolButton" name="go">
         <property name="toolTip">
-         <string>Go! (Current Page)</string>
+         <string>Go!</string>
         </property>
         <property name="text">
          <string/>
@@ -114,7 +145,7 @@
       <item>
        <widget class="QToolButton" name="export_results">
         <property name="toolTip">
-         <string>Go! (Current Page)</string>
+         <string>Export</string>
         </property>
         <property name="text">
          <string/>
@@ -206,6 +237,9 @@
   </widget>
  </widget>
  <tabstops>
+  <tabstop>queries</tabstop>
+  <tabstop>delete_query</tabstop>
+  <tabstop>save_query</tabstop>
   <tabstop>query</tabstop>
   <tabstop>results_table</tabstop>
   <tabstop>go</tabstop>
