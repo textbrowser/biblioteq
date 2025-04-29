@@ -28,22 +28,37 @@
 #include <QSettings>
 
 #include "biblioteq.h"
+#include "biblioteq_otheroptions.h"
+#include "biblioteq_sql_syntax_highlighter.h"
 #include "biblioteq_statistics.h"
 
-biblioteq_statistics::biblioteq_statistics(biblioteq *parent):
+biblioteq_statistics::biblioteq_statistics
+(biblioteq *parent, biblioteq_otheroptions *other):
   QMainWindow(parent)
 {
-  m_qmain = parent;
   m_ui.setupUi(this);
+  connect(m_ui.close,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotClose(void)));
+  connect(other,
+	  SIGNAL(saved(void)),
+	  this,
+	  SLOT(slotOtherOptionsChanged(void)));
+  m_otheroptions = other;
+  m_qmain = parent;
+  m_sqlSyntaxHighlighter = new biblioteq_sql_syntax_highlighter
+    (m_ui.query->document());
+  m_sqlSyntaxHighlighter->setKeywordsColors
+    (m_otheroptions->customQueryColors());
+  m_ui.splitter->setStretchFactor(0, 0);
+  m_ui.splitter->setStretchFactor(1, 1);
   prepareIcons();
+  setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
 biblioteq_statistics::~biblioteq_statistics()
 {
-#ifndef Q_OS_ANDROID
-  isVisible() ?
-    QSettings().setValue("statistics_geometry", saveGeometry()) : (void) 0;
-#endif
 }
 
 void biblioteq_statistics::changeEvent(QEvent *event)
@@ -63,15 +78,6 @@ void biblioteq_statistics::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
-}
-
-void biblioteq_statistics::closeEvent(QCloseEvent *event)
-{
-#ifndef Q_OS_ANDROID
-  isVisible() ?
-    QSettings().setValue("statistics_geometry", saveGeometry()) : (void) 0;
-#endif
-  QMainWindow::closeEvent(event);
 }
 
 void biblioteq_statistics::prepareIcons(void)
@@ -120,13 +126,10 @@ void biblioteq_statistics::show(QMainWindow *parent, const bool center)
 #ifdef Q_OS_ANDROID
   showMaximized();
 #else
-  auto static resized = false;
+  if(parent)
+    resize(qRound(0.80 * parent->size().width()),
+	   qRound(0.80 * parent->size().height()));
 
-  if(!resized && parent)
-    resize(qRound(0.95 * parent->size().width()),
-	   qRound(0.95 * parent->size().height()));
-
-  resized = true;
   biblioteq_misc_functions::center(this, parent);
   showNormal();
 #endif
@@ -141,6 +144,13 @@ void biblioteq_statistics::slotClose(void)
 #else
   close();
 #endif
+}
+
+void biblioteq_statistics::slotOtherOptionsChanged(void)
+{
+  m_sqlSyntaxHighlighter->setKeywordsColors
+    (m_otheroptions->customQueryColors());
+  m_ui.query->setPlainText(m_ui.query->toPlainText());
 }
 
 void biblioteq_statistics::slotReset(void)

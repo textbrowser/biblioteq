@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2025.04.12"
+#define BIBLIOTEQ_VERSION "2025.05.05"
 #define BIBLIOTEQ_VERSION_FILE_URL			\
   "https://raw.githubusercontent.com/"			\
   "textbrowser/biblioteq/master/Source/biblioteq.h"
@@ -500,7 +500,6 @@ class biblioteq: public QMainWindow
   QPointer<biblioteq_documentationwindow> m_contributors;
   QPointer<biblioteq_query_history> m_queryHistory;
   QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
-  QPointer<biblioteq_statistics> m_statistics;
   QSqlDatabase m_db;
   QSqlQuery *m_searchQuery;
   QString m_engUserinfoTitle;

@@ -28,29 +28,35 @@
 #ifndef _BIBLIOTEQ_STATISTICS_H_
 #define _BIBLIOTEQ_STATISTICS_H_
 
+#include <QPointer>
+
 #include "ui_biblioteq_statistics.h"
 
 class biblioteq;
+class biblioteq_otheroptions;
+class biblioteq_sql_syntax_highlighter;
 
 class biblioteq_statistics: public QMainWindow
 {
   Q_OBJECT
 
  public:
-  biblioteq_statistics(biblioteq *parent);
+  biblioteq_statistics(biblioteq *parent, biblioteq_otheroptions *other);
   ~biblioteq_statistics();
   void prepareIcons(void);
   void reset(void);
   void show(QMainWindow *parent, const bool center = true);
 
  private:
+  QPointer<biblioteq_otheroptions> m_otheroptions;
   Ui_statistics m_ui;
   biblioteq *m_qmain;
+  biblioteq_sql_syntax_highlighter *m_sqlSyntaxHighlighter;
   void changeEvent(QEvent *event);
-  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotClose(void);
+  void slotOtherOptionsChanged(void);
   void slotReset(void);
   void slotSetGlobalFonts(const QFont &font);
 };

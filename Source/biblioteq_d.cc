@@ -1469,21 +1469,16 @@ void biblioteq::slotShowReleaseNotes(void)
 
 void biblioteq::slotShowStatistics(void)
 {
-  if(!m_statistics)
-    m_statistics = new biblioteq_statistics(this);
+  auto window = new biblioteq_statistics(this, m_otherOptions);
 
-#ifndef Q_OS_ANDROID
-  m_statistics->restoreGeometry
-    (QSettings().value("statistics_geometry").toByteArray());
-#endif
 #ifdef Q_OS_ANDROID
-  m_statistics->showMaximized();
+  window->showMaximized();
 #else
-  biblioteq_misc_functions::center(m_statistics, this, false);
-  m_statistics->showNormal();
+  biblioteq_misc_functions::center(window, this);
+  window->show(this);
 #endif
-  m_statistics->activateWindow();
-  m_statistics->raise();
+  window->activateWindow();
+  window->raise();
 }
 
 void biblioteq::slotSpecialApplication(void)

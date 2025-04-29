@@ -3426,7 +3426,6 @@ void biblioteq::slotDisconnect(void)
   delete m_searchQuery;
   m_searchQuery = nullptr;
   m_sqliteMergeDatabases ? m_sqliteMergeDatabases->reset() : (void) 0;
-  m_statistics ? m_statistics->reset() : (void) 0;
   userinfo_diag->m_memberProperties.clear();
 #ifdef Q_OS_ANDROID
   m_admin_diag->hide();
@@ -3437,7 +3436,6 @@ void biblioteq::slotDisconnect(void)
   m_members_diag->hide();
   m_queryHistory->hide();
   m_sqliteMergeDatabases ? (void) m_sqliteMergeDatabases->hide() : (void) 0;
-  m_statistics ? (void) m_statistics->hide() : (void) 0;
 #else
   m_admin_diag->close();
   m_all_diag->close();
@@ -3447,12 +3445,15 @@ void biblioteq::slotDisconnect(void)
   m_members_diag->close();
   m_queryHistory->close();
   m_sqliteMergeDatabases ? (void) m_sqliteMergeDatabases->close() : (void) 0;
-  m_statistics ? (void) m_statistics->close() : (void) 0;
 #endif
 
   foreach(auto dialog, findChildren<biblioteq_custom_query *> ())
     if(dialog)
       dialog->deleteLater();
+
+  foreach(auto window, findChildren<biblioteq_statistics *> ())
+    if(window)
+      window->deleteLater();
 
   m_unaccent.clear();
 
@@ -4629,6 +4630,10 @@ void biblioteq::slotOtherOptionsSaved(void)
     ui.table->setRowHeight
       (i, qMax(fontMetrics.height() + 10, ui.table->iconSize().height()));
 
+  foreach(auto window, findChildren<biblioteq_statistics *> ())
+    if(window)
+      window->prepareIcons();
+
   {
     QHashIterator<QAction *, QPointer<biblioteq_documentationwindow> > it
       (m_documentation);
@@ -4658,7 +4663,6 @@ void biblioteq::slotOtherOptionsSaved(void)
   m_import->prepareIcons();
   m_queryHistory ? m_queryHistory->prepareIcons() : (void) 0;
   m_sqliteMergeDatabases ? m_sqliteMergeDatabases->prepareIcons() : (void) 0;
-  m_statistics ? m_statistics->prepareIcons() : (void) 0;
   prepareCustomQueryFavoriteShortcut();
   prepareIcons();
   prepareStatusBarIcons();
