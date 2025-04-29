@@ -115,11 +115,6 @@ void biblioteq_statistics::prepareIcons(void)
     }
 }
 
-void biblioteq_statistics::reset(void)
-{
-  slotReset();
-}
-
 void biblioteq_statistics::show(QMainWindow *parent, const bool center)
 {
   Q_UNUSED(center);
@@ -151,10 +146,14 @@ void biblioteq_statistics::slotOtherOptionsChanged(void)
   m_sqlSyntaxHighlighter->setKeywordsColors
     (m_otheroptions->customQueryColors());
   m_ui.query->setPlainText(m_ui.query->toPlainText());
+  prepareIcons();
 }
 
 void biblioteq_statistics::slotReset(void)
 {
+  m_ui.queries->setCurrentIndex(0);
+  m_ui.query->clear();
+  m_ui.results_table->setRowCount(0);
 }
 
 void biblioteq_statistics::slotSetGlobalFonts(const QFont &font)

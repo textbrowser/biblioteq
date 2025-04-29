@@ -43,8 +43,6 @@ class biblioteq_statistics: public QMainWindow
  public:
   biblioteq_statistics(biblioteq *parent, biblioteq_otheroptions *other);
   ~biblioteq_statistics();
-  void prepareIcons(void);
-  void reset(void);
   void show(QMainWindow *parent, const bool center = true);
 
  private:
@@ -53,6 +51,7 @@ class biblioteq_statistics: public QMainWindow
   biblioteq *m_qmain;
   biblioteq_sql_syntax_highlighter *m_sqlSyntaxHighlighter;
   void changeEvent(QEvent *event);
+  void prepareIcons(void);
 
  private slots:
   void slotClose(void);

@@ -4630,10 +4630,6 @@ void biblioteq::slotOtherOptionsSaved(void)
     ui.table->setRowHeight
       (i, qMax(fontMetrics.height() + 10, ui.table->iconSize().height()));
 
-  foreach(auto window, findChildren<biblioteq_statistics *> ())
-    if(window)
-      window->prepareIcons();
-
   {
     QHashIterator<QAction *, QPointer<biblioteq_documentationwindow> > it
       (m_documentation);
