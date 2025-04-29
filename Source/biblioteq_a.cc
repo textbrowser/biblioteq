@@ -1058,7 +1058,6 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionReservationHistory->setEnabled(false);
   ui.actionSelect_All->setEnabled(false);
   ui.actionStatistics->setEnabled(false);
-  ui.actionStatistics->setVisible(false);
   ui.actionViewDetails->setEnabled(false);
   ui.action_Database_Enumerations->setEnabled(false);
   ui.action_Merge_SQLite_Databases->setEnabled(false);

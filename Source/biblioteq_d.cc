@@ -42,6 +42,7 @@
 #include "biblioteq_otheroptions.h"
 #include "biblioteq_query_history.h"
 #include "biblioteq_sqlite_merge_databases.h"
+#include "biblioteq_statistics.h"
 #include "biblioteq_swifty.h"
 
 QColor biblioteq::itemMandatoryFieldColor(void) const
@@ -1468,6 +1469,21 @@ void biblioteq::slotShowReleaseNotes(void)
 
 void biblioteq::slotShowStatistics(void)
 {
+  if(!m_statistics)
+    m_statistics = new biblioteq_statistics(this);
+
+#ifndef Q_OS_ANDROID
+  m_statistics->restoreGeometry
+    (QSettings().value("statistics_geometry").toByteArray());
+#endif
+#ifdef Q_OS_ANDROID
+  m_statistics->showMaximized();
+#else
+  biblioteq_misc_functions::center(m_statistics, this, false);
+  m_statistics->showNormal();
+#endif
+  m_statistics->activateWindow();
+  m_statistics->raise();
 }
 
 void biblioteq::slotSpecialApplication(void)

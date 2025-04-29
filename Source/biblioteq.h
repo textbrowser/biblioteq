@@ -71,6 +71,7 @@ class biblioteq_files;
 class biblioteq_otheroptions;
 class biblioteq_query_history;
 class biblioteq_sqlite_merge_databases;
+class biblioteq_statistics;
 class swifty;
 
 class userinfo_diag_class: public QDialog
@@ -499,6 +500,7 @@ class biblioteq: public QMainWindow
   QPointer<biblioteq_documentationwindow> m_contributors;
   QPointer<biblioteq_query_history> m_queryHistory;
   QPointer<biblioteq_sqlite_merge_databases> m_sqliteMergeDatabases;
+  QPointer<biblioteq_statistics> m_statistics;
   QSqlDatabase m_db;
   QSqlQuery *m_searchQuery;
   QString m_engUserinfoTitle;

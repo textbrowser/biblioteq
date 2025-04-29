@@ -42,12 +42,20 @@
            <property name="text">
             <string>Delete</string>
            </property>
+           <property name="icon">
+            <iconset resource="../Icons/icons.qrc">
+             <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="save_query">
            <property name="text">
             <string>Save</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../Icons/icons.qrc">
+             <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
            </property>
           </widget>
          </item>

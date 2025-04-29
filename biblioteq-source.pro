@@ -172,6 +172,7 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_sql_syntax_highlighter.h \
                   Source/biblioteq_sqlite_merge_databases.h \
                   Source/biblioteq_sruResults.h \
+                  Source/biblioteq_statistics.h \
                   Source/biblioteq_swifty.h \
                   Source/biblioteq_tab.h \
                   Source/biblioteq_tab_tabbar.h \
@@ -226,6 +227,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_sql_syntax_highlighter.cc \
                   Source/biblioteq_sqlite_merge_databases.cc \
                   Source/biblioteq_sruResults.cc \
+                  Source/biblioteq_statistics.cc \
                   Source/biblioteq_tab.cc \
                   Source/biblioteq_tab_tabbar.cc \
                   Source/biblioteq_videogame.cc \
