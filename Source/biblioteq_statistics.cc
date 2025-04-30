@@ -26,6 +26,7 @@
 */
 
 #include <QSettings>
+#include <QUuid>
 
 #include "biblioteq.h"
 #include "biblioteq_otheroptions.h"
@@ -41,6 +42,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.save_query,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSave(void)));
   connect(other,
 	  SIGNAL(saved(void)),
 	  this,
@@ -78,6 +83,27 @@ void biblioteq_statistics::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+void biblioteq_statistics::populateStatistics(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSettings settings;
+
+  settings.beginGroup("statistics");
+
+  foreach(auto const &str, settings.childKeys())
+    {
+      auto const bytes(settings.value(str).toString().trimmed());
+
+      if(bytes.isEmpty())
+	settings.remove(str);
+      else
+	m_ui.queries->addItem(bytes, str);
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_statistics::prepareIcons(void)
@@ -154,6 +180,18 @@ void biblioteq_statistics::slotReset(void)
   m_ui.queries->setCurrentIndex(0);
   m_ui.query->clear();
   m_ui.results_table->setRowCount(0);
+}
+
+void biblioteq_statistics::slotSave(void)
+{
+  auto const str(m_ui.query->toPlainText().trimmed());
+
+  if(str.isEmpty())
+    return;
+
+  QSettings().setValue
+    (QString("statistics/%1").arg(QUuid::createUuid().toString()), str);
+  populateStatistics();
 }
 
 void biblioteq_statistics::slotSetGlobalFonts(const QFont &font)

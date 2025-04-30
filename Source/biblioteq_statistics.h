@@ -51,12 +51,14 @@ class biblioteq_statistics: public QMainWindow
   biblioteq *m_qmain;
   biblioteq_sql_syntax_highlighter *m_sqlSyntaxHighlighter;
   void changeEvent(QEvent *event);
+  void populateStatistics(void);
   void prepareIcons(void);
 
  private slots:
   void slotClose(void);
   void slotOtherOptionsChanged(void);
   void slotReset(void);
+  void slotSave(void);
   void slotSetGlobalFonts(const QFont &font);
 };
 
