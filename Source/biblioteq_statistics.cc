@@ -58,6 +58,7 @@ biblioteq_statistics::biblioteq_statistics
     (m_otheroptions->customQueryColors());
   m_ui.splitter->setStretchFactor(0, 0);
   m_ui.splitter->setStretchFactor(1, 1);
+  populateStatistics();
   prepareIcons();
   setAttribute(Qt::WA_DeleteOnClose, true);
 }
@@ -88,6 +89,7 @@ void biblioteq_statistics::changeEvent(QEvent *event)
 void biblioteq_statistics::populateStatistics(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.queries->clear();
 
   QSettings settings;
 
@@ -99,8 +101,10 @@ void biblioteq_statistics::populateStatistics(void)
 
       if(bytes.isEmpty())
 	settings.remove(str);
-      else
+      else if(m_ui.queries->findText(bytes) == -1)
 	m_ui.queries->addItem(bytes, str);
+      else
+	settings.remove(str);
     }
 
   QApplication::restoreOverrideCursor();
