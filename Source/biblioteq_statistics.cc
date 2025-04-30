@@ -25,8 +25,8 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QInputDialog>
 #include <QSettings>
-#include <QUuid>
 
 #include "biblioteq.h"
 #include "biblioteq_otheroptions.h"
@@ -102,10 +102,13 @@ void biblioteq_statistics::populateStatistics(void)
       if(bytes.isEmpty())
 	settings.remove(str);
       else if(m_ui.queries->findText(bytes) == -1)
-	m_ui.queries->addItem(bytes, str);
+	m_ui.queries->addItem(str, bytes);
       else
 	settings.remove(str);
     }
+
+  if(m_ui.queries->count() == 0)
+    m_ui.queries->addItem(tr("(Empty)"));
 
   QApplication::restoreOverrideCursor();
 }
@@ -125,7 +128,7 @@ void biblioteq_statistics::prepareIcons(void)
       m_ui.delete_query->setIcon
 	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
       m_ui.export_results->setIcon
-	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
+	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/filesave.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
       m_ui.reset->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
@@ -138,7 +141,7 @@ void biblioteq_statistics::prepareIcons(void)
 
       m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
       m_ui.delete_query->setIcon(QIcon(":/16x16/eraser.png"));
-      m_ui.export_results->setIcon(QIcon(":/32x32/save.png"));
+      m_ui.export_results->setIcon(QIcon(":/32x32/filesave.png"));
       m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
       m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
       m_ui.save_query->setIcon(QIcon(":/16x16/ok.png"));
@@ -193,8 +196,21 @@ void biblioteq_statistics::slotSave(void)
   if(str.isEmpty())
     return;
 
-  QSettings().setValue
-    (QString("statistics/%1").arg(QUuid::createUuid().toString()), str);
+  QString name("");
+  auto ok = true;
+
+  name = QInputDialog::getText
+    (this,
+     tr("BiblioteQ: Save Query Name"),
+     tr("Query Name"),
+     QLineEdit::Normal,
+     "",
+     &ok).remove('\n').remove('\r').trimmed();
+
+  if(!ok || name.isEmpty())
+    return;
+
+  QSettings().setValue(QString("statistics/%1").arg(name), str);
   populateStatistics();
 }
 

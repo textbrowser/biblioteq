@@ -33,19 +33,21 @@
          </item>
          <item>
           <widget class="QComboBox" name="queries">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+           <property name="currentIndex">
+            <number>0</number>
            </property>
            <property name="sizeAdjustPolicy">
             <enum>QComboBox::AdjustToContents</enum>
            </property>
+           <item>
+            <property name="text">
+             <string>(Empty)</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="delete_query">
+          <widget class="biblioteq_animated_push_button" name="delete_query">
            <property name="text">
             <string>Delete</string>
            </property>
@@ -56,15 +58,28 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="save_query">
+          <widget class="biblioteq_animated_push_button" name="save_query">
            <property name="text">
             <string>Save</string>
            </property>
            <property name="icon">
             <iconset resource="../Icons/icons.qrc">
-             <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
+             <normaloff>:/16x16/filesave.png</normaloff>:/16x16/filesave.png</iconset>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -79,7 +94,11 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QTextEdit" name="query"/>
+            <widget class="QTextEdit" name="query">
+             <property name="placeholderText">
+              <string>Please provide a query statement.</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -251,6 +270,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>biblioteq_animated_push_button</class>
+   <extends>QPushButton</extends>
+   <header>biblioteq_animated_push_button.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>queries</tabstop>
   <tabstop>delete_query</tabstop>
