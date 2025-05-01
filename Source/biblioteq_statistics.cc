@@ -54,6 +54,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(saved(void)),
 	  this,
 	  SLOT(slotOtherOptionsChanged(void)));
+  connect(this,
+	  SIGNAL(newQuery(void)),
+	  this,
+	  SLOT(slotPopulateStatistics(void)));
   m_otheroptions = other;
   m_qmain = parent;
   m_sqlSyntaxHighlighter = new biblioteq_sql_syntax_highlighter
@@ -220,6 +224,11 @@ void biblioteq_statistics::slotOtherOptionsChanged(void)
   prepareIcons();
 }
 
+void biblioteq_statistics::slotPopulateStatistics(void)
+{
+  populateStatistics();
+}
+
 void biblioteq_statistics::slotReset(void)
 {
   m_ui.queries->setCurrentIndex(0);
@@ -251,8 +260,24 @@ void biblioteq_statistics::slotSave(void)
   if(!ok || name.isEmpty())
     return;
 
-  QSettings().setValue(QString("statistics/%1").arg(name), str);
-  populateStatistics();
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(m_ui.queries->findText(name) == -1)
+    {
+      QSettings settings;
+
+      settings.setValue(QString("statistics/%1").arg(name), str);
+
+      if(settings.status() == QSettings::NoError)
+	{
+	  m_ui.save_query->animate(2500);
+	  emit newQuery();
+	}
+      else
+	m_ui.save_query->animateNegatively(2500);
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_statistics::slotSetGlobalFonts(const QFont &font)
