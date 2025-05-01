@@ -61,6 +61,9 @@ class biblioteq_statistics: public QMainWindow
   void slotReset(void);
   void slotSave(void);
   void slotSetGlobalFonts(const QFont &font);
+
+ signals:
+  void newQuery(void);
 };
 
 #endif

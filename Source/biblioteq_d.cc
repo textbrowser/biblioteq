@@ -93,7 +93,7 @@ QString biblioteq::formattedISBN13(const QString &str) const
 QStringList biblioteq::scripts(void) const
 {
   QMap<QString, char> map;
-  auto list
+  auto const list
     (QSettings().value("otheroptions/scripts", "").
      toString().trimmed().split('\n') +
      m_specialExecutables.keys());
