@@ -42,6 +42,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.delete_query,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDelete(void)));
   connect(m_ui.save_query,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -128,12 +132,12 @@ void biblioteq_statistics::prepareIcons(void)
       m_ui.delete_query->setIcon
 	(QIcon::fromTheme("edit-delete", QIcon(":/16x16/eraser.png")));
       m_ui.export_results->setIcon
-	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/filesave.png")));
+	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
       m_ui.reset->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
       m_ui.save_query->setIcon
-	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/eraser.png")));
+	(QIcon::fromTheme("dialog-ok", QIcon(":/16x16/filesave.png")));
     }
   else
     {
@@ -141,10 +145,10 @@ void biblioteq_statistics::prepareIcons(void)
 
       m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
       m_ui.delete_query->setIcon(QIcon(":/16x16/eraser.png"));
-      m_ui.export_results->setIcon(QIcon(":/32x32/filesave.png"));
+      m_ui.export_results->setIcon(QIcon(":/32x32/save.png"));
       m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
       m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
-      m_ui.save_query->setIcon(QIcon(":/16x16/ok.png"));
+      m_ui.save_query->setIcon(QIcon(":/16x16/filesave.png"));
     }
 }
 
@@ -174,6 +178,40 @@ void biblioteq_statistics::slotClose(void)
 #endif
 }
 
+void biblioteq_statistics::slotDelete(void)
+{
+  if(m_ui.queries->currentText() == tr("(Empty)"))
+    {
+      m_ui.delete_query->animateNegatively(2500);
+      return;
+    }
+
+  if(QMessageBox::
+     question(this,
+	      tr("BiblioteQ: Question"),
+	      tr("Are you sure that you wish to delete the query %1?").
+	      arg(m_ui.queries->currentText()),
+	      QMessageBox::No | QMessageBox::Yes,
+	      QMessageBox::No) == QMessageBox::No)
+    {
+      QApplication::processEvents();
+      return;
+    }
+  else
+    QApplication::processEvents();
+
+  QSettings settings;
+
+  settings.remove(QString("statistics/%1").arg(m_ui.queries->currentText()));
+
+  if(settings.status() == QSettings::NoError)
+    m_ui.delete_query->animate(2500);
+  else
+    m_ui.delete_query->animateNegatively(2500);
+
+  populateStatistics();
+}
+
 void biblioteq_statistics::slotOtherOptionsChanged(void)
 {
   m_sqlSyntaxHighlighter->setKeywordsColors
@@ -194,7 +232,10 @@ void biblioteq_statistics::slotSave(void)
   auto const str(m_ui.query->toPlainText().trimmed());
 
   if(str.isEmpty())
-    return;
+    {
+      m_ui.save_query->animateNegatively(2500);
+      return;
+    }
 
   QString name("");
   auto ok = true;
