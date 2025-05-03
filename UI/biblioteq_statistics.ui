@@ -209,7 +209,7 @@
       <item>
        <widget class="QToolButton" name="reset">
         <property name="toolTip">
-         <string>Reset Current Page</string>
+         <string>Reset</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
@@ -245,7 +245,7 @@
       <item>
        <widget class="QToolButton" name="close">
         <property name="toolTip">
-         <string>Close Browser</string>
+         <string>Close</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">

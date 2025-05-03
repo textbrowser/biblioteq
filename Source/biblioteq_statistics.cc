@@ -46,6 +46,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDelete(void)));
+  connect(m_ui.reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(m_ui.save_query,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -54,10 +58,14 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(saved(void)),
 	  this,
 	  SLOT(slotOtherOptionsChanged(void)));
-  connect(this,
-	  SIGNAL(newQuery(void)),
+  connect(parent,
+	  SIGNAL(newStatisticsQuery(void)),
 	  this,
 	  SLOT(slotPopulateStatistics(void)));
+  connect(this,
+	  SIGNAL(newQuery(void)),
+	  parent,
+	  SIGNAL(newStatisticsQuery(void)));
   m_otheroptions = other;
   m_qmain = parent;
   m_sqlSyntaxHighlighter = new biblioteq_sql_syntax_highlighter
@@ -97,6 +105,10 @@ void biblioteq_statistics::changeEvent(QEvent *event)
 void biblioteq_statistics::populateStatistics(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  auto const text(m_ui.queries->currentText());
+
+  m_ui.queries->blockSignals(true);
   m_ui.queries->clear();
 
   QSettings settings;
@@ -117,6 +129,15 @@ void biblioteq_statistics::populateStatistics(void)
 
   if(m_ui.queries->count() == 0)
     m_ui.queries->addItem(tr("(Empty)"));
+  else
+    biblioteq_misc_functions::sortCombinationBox(m_ui.queries);
+
+  m_ui.queries->blockSignals(false);
+
+  auto const index = m_ui.queries->findText(text);
+
+  if(index >= 0)
+    m_ui.queries->setCurrentIndex(index);
 
   QApplication::restoreOverrideCursor();
 }
@@ -209,11 +230,12 @@ void biblioteq_statistics::slotDelete(void)
   settings.remove(QString("statistics/%1").arg(m_ui.queries->currentText()));
 
   if(settings.status() == QSettings::NoError)
-    m_ui.delete_query->animate(2500);
+    {
+      m_ui.delete_query->animate(2500);
+      emit newQuery();
+    }
   else
     m_ui.delete_query->animateNegatively(2500);
-
-  populateStatistics();
 }
 
 void biblioteq_statistics::slotOtherOptionsChanged(void)
