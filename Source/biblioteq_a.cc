@@ -77,6 +77,7 @@ extern "C"
 QSize biblioteq::s_noImageResize = QSize(126, 187);
 QString biblioteq::s_databaseDateFormat = "MM/dd/yyyy";
 QString biblioteq::s_databaseTimeFormat = "hh:mm:ss";
+QString biblioteq::s_empty = "(Empty)";
 QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = "UNKNOWN";
 QTranslator *biblioteq::s_appTranslator = nullptr;
@@ -165,9 +166,15 @@ int main(int argc, char *argv[])
 				      ".qm"))
     {
       if(qapplication.installTranslator(biblioteq::s_appTranslator))
-	biblioteq::s_unknown = QObject::tr("UNKNOWN");
+	{
+	  biblioteq::s_empty = QObject::tr("(Empty)");
+	  biblioteq::s_unknown = QObject::tr("UNKNOWN");
+	}
       else
-	biblioteq::s_unknown = "UNKNOWN";
+	{
+	  biblioteq::s_empty = "(Empty)";
+	  biblioteq::s_unknown = "UNKNOWN";
+	}
     }
 
   if(biblioteq::s_qtTranslator->load(":/qtbase_" + biblioteq::s_locale + ".qm"))
@@ -1676,7 +1683,8 @@ void biblioteq::changeEvent(QEvent *event)
 	  history.retranslateUi(m_history_diag);
 	  m_findList.clear();
 	  pass.retranslateUi(m_pass_diag);
-	  s_unknown = QObject::tr("UNKNOWN");
+	  s_empty = tr("(Empty)");
+	  s_unknown = tr("UNKNOWN");
 	  ui.retranslateUi(this);
 	  ui.graphicsView->horizontalScrollBar()->setValue(0);
 	  ui.graphicsView->resetTransform();

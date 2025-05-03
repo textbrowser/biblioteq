@@ -293,6 +293,7 @@ class biblioteq: public QMainWindow
   static QSize s_noImageResize;
   static QString s_databaseDateFormat;
   static QString s_databaseTimeFormat;
+  static QString s_empty;
   static QString s_locale;
   static QString s_unknown;
   static QTranslator *s_appTranslator;

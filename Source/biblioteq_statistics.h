@@ -57,6 +57,7 @@ class biblioteq_statistics: public QMainWindow
  private slots:
   void slotClose(void);
   void slotDelete(void);
+  void slotLoadQuery(void);
   void slotOtherOptionsChanged(void);
   void slotPopulateStatistics(void);
   void slotReset(void);

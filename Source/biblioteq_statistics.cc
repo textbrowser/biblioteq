@@ -46,6 +46,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDelete(void)));
+  connect(m_ui.queries,
+	  SIGNAL(activated(int)),
+	  this,
+	  SLOT(slotLoadQuery(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -116,19 +120,15 @@ void biblioteq_statistics::populateStatistics(void)
   settings.beginGroup("statistics");
 
   foreach(auto const &str, settings.childKeys())
-    {
-      auto const bytes(settings.value(str).toString().trimmed());
-
-      if(bytes.isEmpty())
-	settings.remove(str);
-      else if(m_ui.queries->findText(bytes) == -1)
-	m_ui.queries->addItem(str, bytes);
-      else
-	settings.remove(str);
-    }
+    if(biblioteq::s_empty == str || settings.value(str).toString().isEmpty())
+      settings.remove(str);
+    else if(m_ui.queries->findText(str) == -1)
+      m_ui.queries->addItem(str);
+    else
+      settings.remove(str);
 
   if(m_ui.queries->count() == 0)
-    m_ui.queries->addItem(tr("(Empty)"));
+    m_ui.queries->addItem(biblioteq::s_empty);
   else
     biblioteq_misc_functions::sortCombinationBox(m_ui.queries);
 
@@ -138,8 +138,11 @@ void biblioteq_statistics::populateStatistics(void)
 
   if(index >= 0)
     m_ui.queries->setCurrentIndex(index);
+  else
+    m_ui.queries->setCurrentIndex(0);
 
   QApplication::restoreOverrideCursor();
+  slotLoadQuery();
 }
 
 void biblioteq_statistics::prepareIcons(void)
@@ -205,7 +208,7 @@ void biblioteq_statistics::slotClose(void)
 
 void biblioteq_statistics::slotDelete(void)
 {
-  if(m_ui.queries->currentText() == tr("(Empty)"))
+  if(biblioteq::s_empty == m_ui.queries->currentText())
     {
       m_ui.delete_query->animateNegatively(2500);
       return;
@@ -236,6 +239,21 @@ void biblioteq_statistics::slotDelete(void)
     }
   else
     m_ui.delete_query->animateNegatively(2500);
+}
+
+void biblioteq_statistics::slotLoadQuery(void)
+{
+  if(biblioteq::s_empty == m_ui.queries->currentText())
+    {
+      m_ui.query->clear();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.query->setPlainText
+    (QSettings().
+     value("statistics/" + m_ui.queries->currentText()).toString().trimmed());
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_statistics::slotOtherOptionsChanged(void)
@@ -276,15 +294,19 @@ void biblioteq_statistics::slotSave(void)
      tr("BiblioteQ: Save Query Name"),
      tr("Query Name"),
      QLineEdit::Normal,
-     "",
+     m_ui.queries->currentText(),
      &ok).remove('\n').remove('\r').trimmed();
 
-  if(!ok || name.isEmpty())
-    return;
+  if(!ok || biblioteq::s_empty == name || name.isEmpty())
+    {
+      m_ui.save_query->animateNegatively(2500);
+      return;
+    }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  if(m_ui.queries->findText(name) == -1)
+  if(m_ui.queries->findText(name) == -1 ||
+     name == m_ui.queries->currentText())
     {
       QSettings settings;
 

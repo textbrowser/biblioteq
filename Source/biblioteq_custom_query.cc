@@ -153,7 +153,7 @@ void biblioteq_custom_query::slotCustomQueryFavorite(bool state)
 
 void biblioteq_custom_query::slotDeleteFavoriteQuery(void)
 {
-  if(cq.favorites->currentText() == tr("(Empty)"))
+  if(biblioteq::s_empty == cq.favorites->currentText())
     {
       cq.delete_favorite->animateNegatively(2500);
       return;
@@ -196,7 +196,7 @@ void biblioteq_custom_query::slotExecuteCustomQuery(void)
 
 void biblioteq_custom_query::slotLoadFavorite(void)
 {
-  if(cq.favorites->currentText() == tr("(Empty)"))
+  if(biblioteq::s_empty == cq.favorites->currentText())
     {
       cq.query_te->clear();
       return;
@@ -258,14 +258,16 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
   settings.beginGroup("customqueries");
 
   foreach(auto const &key, settings.childKeys())
-    if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
+    if(!key.trimmed().isEmpty() && biblioteq::s_empty != key)
       {
-	auto const k(key.mid(0, static_cast<int> (biblioteq::Limits::
-						  FAVORITES_LENGTH)).
-		     remove('\n').remove('\r'));
+	auto const k
+	  (key.mid(0, static_cast<int> (biblioteq::Limits::FAVORITES_LENGTH)).
+	   remove('\n').remove('\r'));
 
 	list << k;
       }
+    else
+      settings.remove(key);
 
   if(!list.isEmpty())
     {
@@ -286,7 +288,7 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
       cq.favorite->setChecked(false);
       cq.favorite->blockSignals(false);
       cq.favorite->setEnabled(false);
-      cq.favorites->addItem(tr("(Empty)"));
+      cq.favorites->addItem(biblioteq::s_empty);
     }
 
   QApplication::restoreOverrideCursor();
@@ -483,7 +485,7 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
 
 void biblioteq_custom_query::slotRenameFavoriteQuery(void)
 {
-  if(cq.favorites->currentText() == tr("(Empty)"))
+  if(biblioteq::s_empty == cq.favorites->currentText())
     {
       cq.rename_favorite->animateNegatively(2500);
       return;
@@ -497,10 +499,14 @@ void biblioteq_custom_query::slotRenameFavoriteQuery(void)
      tr("BiblioteQ: Rename Custom Query Favorite"),
      tr("Query Name"),
      QLineEdit::Normal,
-     cq.favorites->currentText(), &ok).remove('\n').remove('\r').trimmed();
+     cq.favorites->currentText(),
+     &ok).remove('\n').remove('\r').trimmed();
 
-  if(!ok || name.isEmpty())
-    return;
+  if(!ok || biblioteq::s_empty == name || name.isEmpty())
+    {
+      cq.rename_favorite->animateNegatively(2500);
+      return;
+    }
 
   name = name.mid(0, static_cast<int> (biblioteq::Limits::FAVORITES_LENGTH));
 
@@ -542,11 +548,14 @@ void biblioteq_custom_query::slotSaveCustomQuery(void)
 			       tr("BiblioteQ: Custom Query Favorite"),
 			       tr("Query Name"),
 			       QLineEdit::Normal,
-			       "",
+			       cq.favorites->currentText(),
 			       &ok).remove('\n').remove('\r').trimmed();
 
-  if(!ok || name.isEmpty())
-    return;
+  if(!ok || biblioteq::s_empty == name || name.isEmpty())
+    {
+      cq.save->animateNegatively(2500);
+      return;
+    }
 
   QSettings settings;
 
