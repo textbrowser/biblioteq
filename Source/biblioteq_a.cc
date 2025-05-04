@@ -358,6 +358,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDisconnect(void)));
+  connect(ui.actionDisplay_Tab_Bar,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotActionToggled(void)));
   connect(ui.actionDownload_Version_Information,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -1099,10 +1103,13 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionCenter_Child_Windows->setChecked
     (settings.value("center_child_windows", true).toBool());
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
+  ui.actionDisplay_Tab_Bar->setChecked
+    (settings.value("showTabBar", true).toBool());
   ui.actionTearOffMenus->setChecked
     (settings.value("tearOffMenus", true).toBool());
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
+  ui.tab->tabBar()->setVisible(ui.actionDisplay_Tab_Bar->isChecked());
   ui.table->resetTable(dbUserName(), m_lastCategory, m_roles);
   ui.table->setIconSize
     (m_otherOptions->showMainTableImages() ? QSize(64, 94) : QSize(0, 0));

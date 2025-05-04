@@ -917,12 +917,15 @@ void biblioteq::slotActionToggled(void)
   if(!action)
     return;
 
-  QSettings settings;
-
   if(action == ui.actionCenter_Child_Windows)
-    settings.setValue("center_child_windows", action->isChecked());
+    QSettings().setValue("center_child_windows", action->isChecked());
+  else if(action == ui.actionDisplay_Tab_Bar)
+    {
+      QSettings().setValue("showTabBar", action->isChecked());
+      ui.tab->tabBar()->setVisible(action->isChecked());
+    }
   else if(action == ui.actionDownload_Version_Information)
-    settings.setValue("download_version_information", action->isChecked());
+    QSettings().setValue("download_version_information", action->isChecked());
 }
 void biblioteq::slotAnimateAbout(void)
 {
@@ -1202,9 +1205,7 @@ void biblioteq::slotLaunchEmailSoftware(void)
 
 void biblioteq::slotMembersPagesChanged(int value)
 {
-  QSettings settings;
-
-  settings.setValue("membersPerPage", value);
+  QSettings().setValue("membersPerPage", value);
 }
 
 void biblioteq::slotMergeSQLiteDatabases(void)
@@ -1257,9 +1258,7 @@ void biblioteq::slotPrintIconsView(void)
 
 void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
 {
-  QSettings settings;
-
-  settings.setValue("generalSearchCaseSensitivity", state);
+  QSettings().setValue("generalSearchCaseSensitivity", state);
 }
 
 void biblioteq::slotSelectAll(void)
