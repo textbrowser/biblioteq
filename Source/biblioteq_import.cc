@@ -1445,7 +1445,7 @@ void biblioteq_import::slotPopulateScripts(void)
     m_ui.scripts->menu()->addAction(str, this, SLOT(slotPopulateScript(void)));
 
   if(m_ui.scripts->menu()->actions().isEmpty())
-    m_ui.scripts->menu()->addAction(tr("(Empty)"))->setEnabled(false);
+    m_ui.scripts->menu()->addAction(biblioteq::s_empty)->setEnabled(false);
 
   QApplication::restoreOverrideCursor();
 }

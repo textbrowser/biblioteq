@@ -368,7 +368,7 @@ void biblioteq::populateFavorites(void)
   settings.beginGroup("customqueries");
 
   foreach(auto const &key, settings.childKeys())
-    if(!key.trimmed().isEmpty() && key != tr("(Empty)"))
+    if(!key.trimmed().isEmpty() && key != s_empty)
       {
 	QAction *action = nullptr;
 	QString summary("");
@@ -393,7 +393,7 @@ void biblioteq::populateFavorites(void)
       }
 
   if(ui.menu_Custom_Query->actions().isEmpty())
-    ui.menu_Custom_Query->addAction(tr("(Empty)"));
+    ui.menu_Custom_Query->addAction(s_empty);
 
   QApplication::restoreOverrideCursor();
 }
@@ -428,7 +428,7 @@ void biblioteq::prepareExternalApplicationsMenu(void)
        SLOT(slotSpecialApplication(void)));
 
   if(ui.menuExternal_Applications->isEmpty())
-    ui.menuExternal_Applications->addAction(tr("(Empty)"));
+    ui.menuExternal_Applications->addAction(s_empty);
 
   QApplication::restoreOverrideCursor();
 }
