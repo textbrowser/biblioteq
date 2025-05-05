@@ -257,10 +257,13 @@ void biblioteq_statistics::slotGo(void)
 
   if(!query.exec(m_ui.query->toPlainText().trimmed()))
     {
+      m_ui.error->setText
+	(tr("SQL error (%1).").arg(query.lastError().text().trimmed()));
       QApplication::restoreOverrideCursor();
       return;
     }
 
+  m_ui.error->clear();
   m_ui.results_table->setColumnCount(0);
   m_ui.results_table->setRowCount(0);
 
@@ -325,6 +328,7 @@ void biblioteq_statistics::slotPopulateStatistics(void)
 
 void biblioteq_statistics::slotReset(void)
 {
+  m_ui.error->clear();
   m_ui.queries->setCurrentIndex(0);
   m_ui.query->clear();
   m_ui.results_table->setColumnCount(0);

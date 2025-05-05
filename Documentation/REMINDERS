@@ -660,11 +660,12 @@ Completed
 	biblioteq_copy_editor_book
 	biblioteq_dbenumerations
 330. Maybe icons on tabs of paged items.
+331. Statistics.
 
 Remaining
 
 1.   Query Open Library for journals / magazines cover images.
-2.   Qt 6 statistics.
+2.   Allow a photograph to be moved to another set via a new panel.
 3.   Special Unimarc import.
 4.   Preserve order of columns in the main table. Nearly impossible.
 5.   Create unique myoid values on SQLite merge.
@@ -672,4 +673,3 @@ Remaining
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
-9.   Allow a photograph to be moved to another set via a new panel.

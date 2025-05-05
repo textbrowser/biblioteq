@@ -87,6 +87,16 @@
         </layout>
        </item>
        <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Please be careful of destructive queries.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QSplitter" name="splitter">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -100,6 +110,16 @@
             <widget class="QTextEdit" name="query">
              <property name="placeholderText">
               <string>Please provide a query statement.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="error">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Query Error</string>
              </property>
             </widget>
            </item>
@@ -285,6 +305,7 @@
   <tabstop>delete_query</tabstop>
   <tabstop>save_query</tabstop>
   <tabstop>query</tabstop>
+  <tabstop>error</tabstop>
   <tabstop>results_table</tabstop>
   <tabstop>go</tabstop>
   <tabstop>export_results</tabstop>
