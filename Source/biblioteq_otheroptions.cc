@@ -477,6 +477,7 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
        << "NOT"
        << "NOT NULL"
        << "OFFSET"
+       << "ON"
        << "OR"
        << "ORDER BY"
        << "OUTER JOIN"
