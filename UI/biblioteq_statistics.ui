@@ -179,7 +179,7 @@
       <item>
        <widget class="QToolButton" name="export_results">
         <property name="toolTip">
-         <string>Export</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The results will be placed in an HTML file on the Desktop.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>

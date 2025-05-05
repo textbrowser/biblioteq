@@ -27,6 +27,7 @@
 
 #include <QInputDialog>
 #include <QSettings>
+#include <QSqlRecord>
 
 #include "biblioteq.h"
 #include "biblioteq_otheroptions.h"
@@ -46,6 +47,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDelete(void)));
+  connect(m_ui.go,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGo(void)));
   connect(m_ui.queries,
 	  SIGNAL(activated(int)),
 	  this,
@@ -241,6 +246,55 @@ void biblioteq_statistics::slotDelete(void)
     m_ui.delete_query->animateNegatively(2500);
 }
 
+void biblioteq_statistics::slotGo(void)
+{
+  if(m_ui.query->toPlainText().trimmed().isEmpty())
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSqlQuery query(m_qmain->getDB());
+
+  if(!query.exec(m_ui.query->toPlainText().trimmed()))
+    {
+      QApplication::restoreOverrideCursor();
+      return;
+    }
+
+  m_ui.results_table->setColumnCount(0);
+  m_ui.results_table->setRowCount(0);
+
+  QStringList list;
+
+  while(query.next())
+    {
+      auto const record(query.record());
+
+      if(list.isEmpty())
+	{
+	  for(int i = 0; i < record.count(); i++)
+	    list << record.fieldName(i);
+
+	  m_ui.results_table->setColumnCount(list.size());
+	  m_ui.results_table->setHorizontalHeaderLabels(list);
+	}
+
+      m_ui.results_table->setRowCount(m_ui.results_table->rowCount() + 1);
+
+      for(int i = 0; i < record.count(); i++)
+	{
+	  auto item = new QTableWidgetItem
+	    (record.value(i).toString().trimmed());
+
+	  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	  m_ui.results_table->setItem
+	    (m_ui.results_table->rowCount() - 1, i, item);
+	}
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_statistics::slotLoadQuery(void)
 {
   if(biblioteq::s_empty == m_ui.queries->currentText())
@@ -273,7 +327,9 @@ void biblioteq_statistics::slotReset(void)
 {
   m_ui.queries->setCurrentIndex(0);
   m_ui.query->clear();
+  m_ui.results_table->setColumnCount(0);
   m_ui.results_table->setRowCount(0);
+  populateStatistics();
 }
 
 void biblioteq_statistics::slotSave(void)

@@ -339,7 +339,6 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSqlField field;
-  QSqlRecord rec;
   QStringList list;
   QTreeWidgetItem *item1 = nullptr;
   QTreeWidgetItem *item2 = nullptr;
@@ -442,18 +441,18 @@ void biblioteq_custom_query::slotRefreshCustomQuery(void)
     {
       item1 = new QTreeWidgetItem(cq.tables_t);
       item1->setText(0, list[i]);
-      rec = m_parent->getDB().record(list[i]);
 
       QStringList names;
+      auto const record(m_parent->getDB().record(list[i]));
 
-      for(int j = 0; j < rec.count(); j++)
-	names << rec.fieldName(j);
+      for(int j = 0; j < record.count(); j++)
+	names << record.fieldName(j);
 
       std::sort(names.begin(), names.end());
 
       for(int j = 0; j < names.size(); j++)
 	{
-	  field = rec.field(names.at(j));
+	  field = record.field(names.at(j));
 	  item2 = new QTreeWidgetItem(item1);
 	  item2->setText(1, names.at(j));
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
