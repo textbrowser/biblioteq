@@ -30,6 +30,7 @@
 
 #include <QColorDialog>
 #include <QLineEdit>
+#include <QPointer>
 #include <QSettings>
 #include <QStyledItemDelegate>
 #include <QTimer>
@@ -97,6 +98,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   biblioteq_otheroptions_item_delegate
     (const ParentTypes type, QObject *parent):QStyledItemDelegate(parent)
   {
+    m_parent = qobject_cast<QWidget *> (parent);
     m_type = type;
   }
 
@@ -125,7 +127,8 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 #endif
 			);
 		m_index = index;
-		pushButton->setText(index.data().toString().trimmed());
+		pushButton->setText
+		  (index.data().toString().remove('&').trimmed());
 		return pushButton;
 	      }
 	    case 3: // Special Value Reset
@@ -202,6 +205,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
   }
 
   ParentTypes m_type;
+  QPointer<QWidget> m_parent;
   mutable QModelIndex m_index;
 
  private slots:
@@ -227,14 +231,10 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 
   void slotSelectColor(void)
   {
-    auto pushButton = qobject_cast<QPushButton *> (sender());
+    QColorDialog dialog(m_parent);
 
-    if(!pushButton)
-      return;
-
-    QColorDialog dialog(pushButton);
-
-    dialog.setCurrentColor(QColor(pushButton->text().remove('&')));
+    dialog.setCurrentColor
+      (QColor(m_index.data().toString().remove('&').trimmed()));
 
     if(dialog.exec() == QDialog::Accepted)
       {
@@ -261,10 +261,6 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 	    if(table)
 	      table->setSortingEnabled(sortingEnabled);
 	  }
-
-	pushButton->setText(dialog.selectedColor().name());
-	emit commitData(pushButton);
-	emit closeEditor(pushButton); // Order is crucial.
       }
   }
 
