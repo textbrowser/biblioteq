@@ -85,6 +85,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
   prepareSettings();
   prepareShortcuts();
   prepareSpecialColors();
+  setWindowFlags(Qt::WindowStaysOnTopHint | windowFlags());
 }
 
 biblioteq_otheroptions::~biblioteq_otheroptions()

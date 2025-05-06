@@ -236,31 +236,30 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
     dialog.setCurrentColor
       (QColor(m_index.data().toString().remove('&').trimmed()));
 
-    if(dialog.exec() == QDialog::Accepted)
+    if(dialog.exec() == QDialog::Accepted &&
+       m_index.isValid() &&
+       m_index.model())
       {
-	if(m_index.isValid() && m_index.model())
+	auto model = const_cast<QAbstractItemModel *> (m_index.model());
+	auto sortingEnabled = false;
+	auto table = qobject_cast<QTableWidget *>
+	  (m_index.model()->parent());
+
+	if(table)
 	  {
-	    auto model = const_cast<QAbstractItemModel *> (m_index.model());
-	    auto sortingEnabled = false;
-	    auto table = qobject_cast<QTableWidget *>
-	      (m_index.model()->parent());
-
-	    if(table)
-	      {
-		sortingEnabled = table->isSortingEnabled();
-		table->setSortingEnabled(false);
-	      }
-
-	    if(model)
-	      {
-		model->setData(m_index, dialog.selectedColor().name());
-		model->setData
-		  (m_index, dialog.selectedColor(), Qt::DecorationRole);
-	      }
-
-	    if(table)
-	      table->setSortingEnabled(sortingEnabled);
+	    sortingEnabled = table->isSortingEnabled();
+	    table->setSortingEnabled(false);
 	  }
+
+	if(model)
+	  {
+	    model->setData(m_index, dialog.selectedColor().name());
+	    model->setData
+	      (m_index, dialog.selectedColor(), Qt::DecorationRole);
+	  }
+
+	if(table)
+	  table->setSortingEnabled(sortingEnabled);
       }
   }
 
