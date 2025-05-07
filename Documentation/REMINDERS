@@ -70,8 +70,7 @@ Completed
 35.  Add the line number and the file where the error occurred
      to the error log.
 36.  Escape special characters in search routines.
-37.  Allow the user to copy the error dialog's contents to the copyboard
-     buffer.
+37.  Allow the user to copy the error dialog's contents to the copy buffer.
 38.  Do not allow multiple identical barcodes for a particular item.
 39.  The total runtime of a CD's tracks should equal the runtime specified
      for the CD. Provide the user with a mechanism to calculate the
@@ -673,3 +672,4 @@ Remaining
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
+9.   Files Browser: access PDF files.

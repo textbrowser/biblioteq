@@ -47,6 +47,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDelete(void)));
+  connect(m_ui.export_results,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotExport(void)));
   connect(m_ui.go,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -244,6 +248,12 @@ void biblioteq_statistics::slotDelete(void)
     }
   else
     m_ui.delete_query->animateNegatively(2500);
+}
+
+void biblioteq_statistics::slotExport(void)
+{
+  if(m_ui.results_table->rowCount() == 0)
+    return;
 }
 
 void biblioteq_statistics::slotGo(void)
