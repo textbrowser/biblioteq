@@ -32,6 +32,9 @@
 #include <QtMath>
 
 #include "biblioteq.h"
+#ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
+#include "biblioteq_documentationwindow.h"
+#endif
 #include "biblioteq_files.h"
 #include "biblioteq_filesize_table_item.h"
 
@@ -40,10 +43,7 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
   m_biblioteq = biblioteq;
   m_ui.setupUi(this);
   m_ui.files_table->setColumnHidden(static_cast<int> (Columns::MYOID), true);
-
-  QSettings settings;
-
-  m_ui.pages->setValue(settings.value("filesPerPage", 500).toInt());
+  m_ui.pages->setValue(QSettings().value("filesPerPage", 500).toInt());
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -52,6 +52,10 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExport(void)));
+  connect(m_ui.files_table,
+	  SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	  this,
+	  SLOT(slotFilesDoubleClicked(QTableWidgetItem *)));
   connect(m_ui.pages,
 	  SIGNAL(valueChanged(int)),
 	  this,
@@ -203,8 +207,11 @@ void biblioteq_files::slotExport(void)
 	break;
 
       auto const fileName(index.data().toString());
-      auto const oid = index.sibling(index.row(), 6).data().toLongLong();
-      auto tableName(index.sibling(index.row(), 5).data().toString());
+      auto const oid = index.sibling
+	(index.row(), static_cast<int> (Columns::MYOID)).data().toLongLong();
+      auto tableName
+	(index.sibling(index.row(), static_cast<int> (Columns::ITEM_TYPE)).
+	 data().toString());
 
       query.prepare
 	(QString("SELECT file FROM %1_files WHERE myoid = ?").
@@ -222,6 +229,62 @@ void biblioteq_files::slotExport(void)
 	  file.close();
 	}
     }
+}
+
+void biblioteq_files::slotFilesDoubleClicked(QTableWidgetItem *item)
+{
+  Q_UNUSED(item);
+
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) ||	\
+  defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
+
+  auto const index
+    (m_ui.files_table->selectionModel()->
+     selectedRows(static_cast<int> (Columns::FILE)).value(0));
+
+  if(index.data().toString().toLower().trimmed().endsWith(".pdf"))
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QByteArray data;
+      QSqlQuery query(m_biblioteq->getDB());
+      auto const fileName(index.data().toString());
+      auto const oid = index.sibling
+	(index.row(), static_cast<int> (Columns::MYOID)).data().toLongLong();
+      auto tableName
+	(index.sibling(index.row(), static_cast<int> (Columns::ITEM_TYPE)).
+	 data().toString());
+
+      query.prepare
+	(QString("SELECT file FROM %1_files WHERE myoid = ?").
+	 arg(tableName.replace(' ', '_')));
+      query.addBindValue(oid);
+
+      if(query.exec() && query.next())
+	data = qUncompress(query.value(0).toByteArray());
+
+      if(!data.isEmpty())
+	{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+	  auto reader = new biblioteq_pdfreader(m_biblioteq);
+
+	  reader->load(data, fileName);
+#else
+	  auto reader = new biblioteq_documentationwindow(m_biblioteq);
+
+	  reader->load(data);
+#endif
+#ifdef Q_OS_ANDROID
+	  reader->showMaximized();
+#else
+	  biblioteq_misc_functions::center(reader, this);
+	  reader->show();
+#endif
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
+#endif
 }
 
 void biblioteq_files::slotPagesChanged(int value)

@@ -660,6 +660,7 @@ Completed
 	biblioteq_dbenumerations
 330. Maybe icons on tabs of paged items.
 331. Statistics.
+332. Files Browser: access PDF files.
 
 Remaining
 
@@ -672,4 +673,4 @@ Remaining
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
-9.   Files Browser: access PDF files.
+9.   Modern file digests such as SHA3-512.
