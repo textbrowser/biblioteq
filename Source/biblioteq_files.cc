@@ -37,6 +37,7 @@
 #endif
 #include "biblioteq_files.h"
 #include "biblioteq_filesize_table_item.h"
+#include "biblioteq_pdfreader.h"
 
 biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 {
@@ -236,7 +237,7 @@ void biblioteq_files::slotFilesDoubleClicked(QTableWidgetItem *item)
   Q_UNUSED(item);
 
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) ||	\
-  defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
+    defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
 
   auto const index
     (m_ui.files_table->selectionModel()->
