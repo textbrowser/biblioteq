@@ -11,12 +11,9 @@ fi
 
 # Debian release packages.
 
-for FOLDER in Distributions/DEBIAN \
-	      Distributions/DEBIAN-POWERPC \
-	      Distributions/RASPBIAN \
-	      Distributions/PIOS64
+for FILE in Distributions/*/control
 do
-    sed -i "s/Version: .*/Version: $VERSION/" $FOLDER/control
+    sed -i "s/Version: .*/Version: $VERSION/" $FILE
 done
 
 # Version configuration.
