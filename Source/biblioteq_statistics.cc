@@ -268,14 +268,40 @@ void biblioteq_statistics::slotExport(void)
 
   QString html("<html>");
 
+  html.append("<head>"
+	      "<style>"
+	      "table {"
+	      "border-collapse: collapse;"
+	      "font-family: arial, sans-serif;"
+	      "width: 100%;"
+	      "}"
+	      "td, th {"
+	      "border: 1px solid #dddddd;"
+	      "text-align: left;"
+	      "padding: 8px;"
+	      "}"
+	      "tr:nth-child(even) {"
+	      "background-color: #dddddd;"
+	      "}"
+	      "</style>"
+	      "</head>");
+  html.append("<body>");
+  html.append("<table>");
+  html.append("<tr>");
+
   for(int i = 0; i < m_ui.results_table->columnCount(); i++)
     {
       auto header = m_ui.results_table->horizontalHeaderItem(i);
 
       if(!header)
 	continue;
+
+      html.append(QString("<th>%1</th>").arg(header->text()));
     }
 
+  html.append("</tr>");
+  html.append("</table>");
+  html.append("</body>");
   html.append("</html>");
   file.write(html.toUtf8());
 }
