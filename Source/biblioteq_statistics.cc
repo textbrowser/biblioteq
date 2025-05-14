@@ -266,28 +266,28 @@ void biblioteq_statistics::slotExport(void)
   if(!file.open(QIODevice::Text | QIODevice::WriteOnly))
     return;
 
-  QString html("<html>");
+  QString html("<html>\n");
 
-  html.append("<head>"
-	      "<style>"
-	      "table {"
-	      "border-collapse: collapse;"
-	      "font-family: arial, sans-serif;"
-	      "width: 100%;"
-	      "}"
-	      "td, th {"
-	      "border: 1px solid #dddddd;"
-	      "text-align: left;"
-	      "padding: 8px;"
-	      "}"
-	      "tr:nth-child(even) {"
-	      "background-color: #dddddd;"
-	      "}"
-	      "</style>"
-	      "</head>");
-  html.append("<body>");
-  html.append("<table>");
-  html.append("<tr>");
+  html.append("<head>\n"
+	      "<style>\n"
+	      "table {\n"
+	      "border-collapse: collapse;\n"
+	      "font-family: arial, sans-serif;\n"
+	      "width: 100%;\n"
+	      "}\n"
+	      "td, th {\n"
+	      "border: 1px solid #dddddd;\n"
+	      "text-align: left;\n"
+	      "padding: 8px;\n"
+	      "}\n"
+	      "tr:nth-child(even) {\n"
+	      "background-color: #dddddd;\n"
+	      "}\n"
+	      "</style>\n"
+	      "</head>\n");
+  html.append("<body>\n");
+  html.append("<table>\n");
+  html.append("<tr>\n");
 
   for(int i = 0; i < m_ui.results_table->columnCount(); i++)
     {
@@ -296,14 +296,14 @@ void biblioteq_statistics::slotExport(void)
       if(!header)
 	continue;
 
-      html.append(QString("<th>%1</th>").arg(header->text().trimmed()));
+      html.append(QString("<th>%1</th>\n").arg(header->text().trimmed()));
     }
 
-  html.append("</tr>");
+  html.append("</tr>\n");
 
   for(int i = 0; i < m_ui.results_table->rowCount(); i++)
     {
-      html.append("<tr>");
+      html.append("<tr>\n");
 
       for(int j = 0; j < m_ui.results_table->columnCount(); j++)
 	{
@@ -312,15 +312,15 @@ void biblioteq_statistics::slotExport(void)
 	  if(!item)
 	    continue;
 
-	  html.append(QString("<td>%1</td>").arg(item->text().trimmed()));
+	  html.append(QString("<td>%1</td>\n").arg(item->text().trimmed()));
 	}
 
-      html.append("</tr>");
+      html.append("</tr>\n");
     }
 
-  html.append("</table>");
-  html.append("</body>");
-  html.append("</html>");
+  html.append("</table>\n");
+  html.append("</body>\n");
+  html.append("</html>\n");
   file.write(html.toUtf8());
 }
 
