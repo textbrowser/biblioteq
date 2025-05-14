@@ -25,9 +25,11 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QDir>
 #include <QInputDialog>
 #include <QSettings>
 #include <QSqlRecord>
+#include <QStandardPaths>
 
 #include "biblioteq.h"
 #include "biblioteq_otheroptions.h"
@@ -254,6 +256,28 @@ void biblioteq_statistics::slotExport(void)
 {
   if(m_ui.results_table->rowCount() == 0)
     return;
+
+  QFile file
+    (QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) +
+     QDir::separator() +
+     m_name +
+     ".html");
+
+  if(!file.open(QIODevice::Text | QIODevice::WriteOnly))
+    return;
+
+  QString html("<html>");
+
+  for(int i = 0; i < m_ui.results_table->columnCount(); i++)
+    {
+      auto header = m_ui.results_table->horizontalHeaderItem(i);
+
+      if(!header)
+	continue;
+    }
+
+  html.append("</html>");
+  file.write(html.toUtf8());
 }
 
 void biblioteq_statistics::slotGo(void)
@@ -273,6 +297,7 @@ void biblioteq_statistics::slotGo(void)
       return;
     }
 
+  m_name = m_ui.queries->currentText();
   m_ui.error->clear();
   m_ui.results_table->setColumnCount(0);
   m_ui.results_table->setRowCount(0);
@@ -338,6 +363,7 @@ void biblioteq_statistics::slotPopulateStatistics(void)
 
 void biblioteq_statistics::slotReset(void)
 {
+  m_name.clear();
   m_ui.error->clear();
   m_ui.queries->setCurrentIndex(0);
   m_ui.query->clear();

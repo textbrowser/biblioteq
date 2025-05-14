@@ -47,6 +47,7 @@ class biblioteq_statistics: public QMainWindow
 
  private:
   QPointer<biblioteq_otheroptions> m_otheroptions;
+  QString m_name;
   Ui_statistics m_ui;
   biblioteq *m_qmain;
   biblioteq_sql_syntax_highlighter *m_sqlSyntaxHighlighter;
