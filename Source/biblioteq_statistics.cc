@@ -296,10 +296,28 @@ void biblioteq_statistics::slotExport(void)
       if(!header)
 	continue;
 
-      html.append(QString("<th>%1</th>").arg(header->text()));
+      html.append(QString("<th>%1</th>").arg(header->text().trimmed()));
     }
 
   html.append("</tr>");
+
+  for(int i = 0; i < m_ui.results_table->rowCount(); i++)
+    {
+      html.append("<tr>");
+
+      for(int j = 0; j < m_ui.results_table->columnCount(); j++)
+	{
+	  auto item = m_ui.results_table->item(i, j);
+
+	  if(!item)
+	    continue;
+
+	  html.append(QString("<td>%1</td>").arg(item->text().trimmed()));
+	}
+
+      html.append("</tr>");
+    }
+
   html.append("</table>");
   html.append("</body>");
   html.append("</html>");
@@ -337,7 +355,7 @@ void biblioteq_statistics::slotGo(void)
       if(list.isEmpty())
 	{
 	  for(int i = 0; i < record.count(); i++)
-	    list << record.fieldName(i);
+	    list << record.fieldName(i).trimmed();
 
 	  m_ui.results_table->setColumnCount(list.size());
 	  m_ui.results_table->setHorizontalHeaderLabels(list);
