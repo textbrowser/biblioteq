@@ -246,6 +246,9 @@ void biblioteq_statistics::slotDelete(void)
   if(settings.status() == QSettings::NoError)
     {
       m_ui.delete_query->animate(2500);
+      m_ui.results_table->clear();
+      m_ui.results_table->setColumnCount(0);
+      m_ui.results_table->setRowCount(0);
       emit newQuery();
     }
   else
@@ -343,6 +346,7 @@ void biblioteq_statistics::slotGo(void)
 
   m_name = m_ui.queries->currentText();
   m_ui.error->clear();
+  m_ui.results_table->clear();
   m_ui.results_table->setColumnCount(0);
   m_ui.results_table->setRowCount(0);
 
@@ -411,6 +415,7 @@ void biblioteq_statistics::slotReset(void)
   m_ui.error->clear();
   m_ui.queries->setCurrentIndex(0);
   m_ui.query->clear();
+  m_ui.results_table->clear();
   m_ui.results_table->setColumnCount(0);
   m_ui.results_table->setRowCount(0);
   populateStatistics();
