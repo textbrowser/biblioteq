@@ -20,7 +20,7 @@ then
     exit 1
 fi
 
-if [ ! -r biblioteq.arm.pro ]
+if [ ! -r biblioteq.pro ]
 then
     echo "Please execute $0 from the primary directory."
     exit 1
@@ -36,13 +36,13 @@ mkdir -p ./opt/biblioteq/SQL
 
 if [ ! -z "$(which qmake6)" ]
 then
-    qmake6 -o Makefile biblioteq.arm.pro 2>/dev/null
+    qmake6 -o Makefile biblioteq.pro 2>/dev/null
 else
-    qmake -o Makefile biblioteq.arm.pro 2>/dev/null
+    qmake -o Makefile biblioteq.pro 2>/dev/null
 fi
 
-lupdate biblioteq.arm.pro 2>/dev/null
-lrelease biblioteq.arm.pro 2>/dev/null
+lupdate biblioteq.pro 2>/dev/null
+lrelease biblioteq.pro 2>/dev/null
 make -j $(nproc)
 cp -p ./BiblioteQ ./opt/biblioteq/.
 cp -p ./Icons/book.png ./opt/biblioteq/.
