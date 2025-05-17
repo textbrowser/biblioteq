@@ -195,6 +195,7 @@ void biblioteq_statistics::show(QMainWindow *parent, const bool center)
 {
   Q_UNUSED(center);
 #ifdef Q_OS_ANDROID
+  Q_UNUSED(parent);
   showMaximized();
 #else
   if(parent)

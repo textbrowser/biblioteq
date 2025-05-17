@@ -1007,6 +1007,7 @@ void biblioteq_import::setImportFile(const QString &fileName)
 void biblioteq_import::show(QMainWindow *parent)
 {
 #ifdef Q_OS_ANDROID
+  Q_UNUSED(parent);
   showMaximized();
 #else
   restoreGeometry(QSettings().value("import_geometry").toByteArray());
