@@ -60,6 +60,8 @@ qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt6Concurrent.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Gui.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Multimedia.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Network.dll \
+                    $$[QT_INSTALL_BINS]\\Qt6Pdf.dll \
+                    $$[QT_INSTALL_BINS]\\Qt6PdfWidgets.dll \
                     $$[QT_INSTALL_BINS]\\Qt6PrintSupport.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Sql.dll \
                     $$[QT_INSTALL_BINS]\\Qt6Widgets.dll \
