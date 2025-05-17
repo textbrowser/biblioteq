@@ -22,6 +22,7 @@ LANGUAGE	= C++
 QT		+= gui network printsupport sql widgets
 QT		-= webkit
 
+QMAKE_APPLE_DEVICE_ARCHS = arm64 x86_64
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
