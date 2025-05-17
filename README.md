@@ -79,7 +79,7 @@ BiblioteQ is awesome, open library software. PostgreSQL and SQLite databases.
 ### Debian Installation
 
 ```
-wget https://github.com/textbrowser/biblioteq/releases/download/2024.12.20/BiblioteQ-2024.12.20_amd64.deb
-sudo dpkg -i BiblioteQ-2024.12.20_amd64.deb
+wget https://github.com/textbrowser/biblioteq/releases/download/2025.05.17/BiblioteQ-2025.05.17_amd64.deb
+sudo dpkg -i BiblioteQ-2025.05.17_amd64.deb
 sudo apt install -f
 ```
