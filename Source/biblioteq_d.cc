@@ -161,7 +161,7 @@ bool biblioteq::isCurrentItemAPhotograph(void) const
 
 bool biblioteq::isLocked(void) const
 {
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   return !lock.try_lock();
 }
@@ -1510,7 +1510,7 @@ void biblioteq::slotTabClosed(int index)
   if(index <= 0)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;

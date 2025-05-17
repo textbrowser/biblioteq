@@ -2840,7 +2840,7 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::slotConnectDB(void)
 {
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -3395,7 +3395,7 @@ void biblioteq::slotDisconnect(void)
      !db_enumerations->close())
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;

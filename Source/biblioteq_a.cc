@@ -1735,7 +1735,7 @@ void biblioteq::closeEvent(QCloseEvent *event)
 {
   if(event)
     {
-      std::unique_lock lock{m_mutex, std::defer_lock};
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
       if(!lock.try_lock())
 	{
@@ -2100,7 +2100,7 @@ void biblioteq::removeBook(biblioteq_book *book)
   if(!book)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2113,7 +2113,7 @@ void biblioteq::removeCD(biblioteq_cd *cd)
   if(!cd)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2126,7 +2126,7 @@ void biblioteq::removeDVD(biblioteq_dvd *dvd)
   if(!dvd)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2139,7 +2139,7 @@ void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
   if(!gl)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2152,7 +2152,7 @@ void biblioteq::removeJournal(biblioteq_journal *journal)
   if(!journal)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2165,7 +2165,7 @@ void biblioteq::removeMagazine(biblioteq_magazine *magazine)
   if(!magazine)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2178,7 +2178,7 @@ void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
   if(!pc)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2191,7 +2191,7 @@ void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
   if(!videogame)
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -2928,7 +2928,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotBranchChanged(void)
 {
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -3082,7 +3082,7 @@ void biblioteq::slotDelete(void)
   if(!m_db.isOpen())
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -3545,7 +3545,7 @@ void biblioteq::slotDuplicate(void)
   if(!m_db.isOpen())
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -3710,7 +3710,7 @@ void biblioteq::slotDuplicate(void)
 
 void biblioteq::slotExit(void)
 {
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -3790,7 +3790,7 @@ void biblioteq::slotGrantPrivileges(void)
 
 void biblioteq::slotInsertBook(void)
 {
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -3993,7 +3993,7 @@ void biblioteq::slotModify(void)
   if(!m_db.isOpen())
     return;
 
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
@@ -5741,7 +5741,7 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotViewDetails(void)
 {
-  std::unique_lock lock{m_mutex, std::defer_lock};
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
     return;
