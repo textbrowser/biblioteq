@@ -175,6 +175,10 @@
         <source>VIDEO GAME</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>(Empty)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -2410,6 +2414,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Retrieving item %1 of %2.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Romanian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PostgreSQL library cannot be read. PostgreSQL services will not be functional.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_batch_activities</name>
@@ -4128,10 +4144,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_custom_query</name>
     <message>
-        <source>(Empty)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5317,10 +5329,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Would you like to execute the post-import script? If another script is alive, it will not be interrupted.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>(Empty)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6639,6 +6647,29 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_sruresults</name>
     <message>
         <source>Record #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_statistics</name>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the query %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQL error (%1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Save Query Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query Name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9311,10 +9342,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Batch Activities Browser...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Tear-Off Menus</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9340,10 +9367,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Magic...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Query History...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9380,6 +9403,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Ctrl+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Batch Activities Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Query History...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Statistics...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display Tab Bar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10417,6 +10456,77 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Record Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>statistics</name>
+    <message>
+        <source>BiblioteQ: Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saved Queries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Empty)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Please be careful of destructive queries. Please do not burden BiblioteQ with image data.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a query statement.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The results will be placed in an HTML file on the Desktop. Non-empty Results please.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
