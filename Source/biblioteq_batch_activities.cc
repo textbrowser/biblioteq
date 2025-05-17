@@ -1023,6 +1023,7 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
   Q_UNUSED(center);
 #ifdef Q_OS_ANDROID
+  Q_UNUSED(parent);
   showMaximized();
 #else
   restoreGeometry
