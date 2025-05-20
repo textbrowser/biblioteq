@@ -49,6 +49,10 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.digests,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotComputeDigests(void)));
   connect(m_ui.export_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -65,6 +69,9 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRefresh(void)));
+  m_ui.digests->setEnabled
+    (m_biblioteq->getRoles() == "librarian" ||
+     m_biblioteq->getRoles().contains("administrator"));
   prepareIcons();
   statusBar()->showMessage(tr("0 Total Files"));
 }
@@ -143,6 +150,57 @@ void biblioteq_files::slotClose(void)
 #endif
 }
 
+void biblioteq_files::slotComputeDigests(void)
+{
+  auto const list(m_ui.files_table->selectionModel()->selectedRows());
+
+  if(list.isEmpty())
+    return;
+
+  QProgressDialog progress(this);
+
+  progress.setLabelText(tr("Computing digests..."));
+  progress.setMaximum(list.size());
+  progress.setMinimum(0);
+  progress.setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress.sizeHint().width()));
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.repaint();
+  QApplication::processEvents();
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      progress.setValue(i);
+      progress.repaint();
+      QApplication::processEvents();
+
+      if(progress.wasCanceled())
+	break;
+
+      QSqlQuery query(m_biblioteq->getDB());
+      auto const index(list.at(i));
+      auto const oid = index.sibling
+	(index.row(), static_cast<int> (Columns::MYOID)).data().toLongLong();
+      auto const tableName
+	(index.sibling(index.row(), static_cast<int> (Columns::ITEM_TYPE)).
+	 data().toString());
+
+      query.setForwardOnly(true);
+      query.prepare
+	(QString("SELECT file FROM %1_files WHERE myoid = ?").
+	 arg(QString(tableName).replace(' ', '_')));
+      query.addBindValue(oid);
+
+      if(query.exec() && query.next())
+	{
+	  auto const data(qUncompress(query.value(0).toByteArray()));
+	}
+    }
+}
+
 void biblioteq_files::slotExport(void)
 {
   auto const list(m_ui.files_table->selectionModel()->selectedRows());
@@ -210,13 +268,13 @@ void biblioteq_files::slotExport(void)
       auto const fileName(index.data().toString());
       auto const oid = index.sibling
 	(index.row(), static_cast<int> (Columns::MYOID)).data().toLongLong();
-      auto tableName
+      auto const tableName
 	(index.sibling(index.row(), static_cast<int> (Columns::ITEM_TYPE)).
 	 data().toString());
 
       query.prepare
 	(QString("SELECT file FROM %1_files WHERE myoid = ?").
-	 arg(tableName.replace(' ', '_')));
+	 arg(QString(tableName).replace(' ', '_')));
       query.addBindValue(oid);
 
       if(query.exec() && query.next())
@@ -252,13 +310,13 @@ void biblioteq_files::slotFilesDoubleClicked(QTableWidgetItem *item)
       auto const fileName(index.data().toString());
       auto const oid = index.sibling
 	(index.row(), static_cast<int> (Columns::MYOID)).data().toLongLong();
-      auto tableName
+      auto const tableName
 	(index.sibling(index.row(), static_cast<int> (Columns::ITEM_TYPE)).
 	 data().toString());
 
       query.prepare
 	(QString("SELECT file FROM %1_files WHERE myoid = ?").
-	 arg(tableName.replace(' ', '_')));
+	 arg(QString(tableName).replace(' ', '_')));
       query.addBindValue(oid);
 
       if(query.exec() && query.next())

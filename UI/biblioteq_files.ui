@@ -175,6 +175,26 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="digests">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Compute cryptographic digests of selected file(s).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>&amp;Digests</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/sum.png</normaloff>:/16x16/sum.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="export_files">
         <property name="minimumSize">
          <size>
@@ -254,6 +274,7 @@
   <tabstop>page</tabstop>
   <tabstop>pages</tabstop>
   <tabstop>files_table</tabstop>
+  <tabstop>digests</tabstop>
   <tabstop>export_files</tabstop>
   <tabstop>refresh</tabstop>
   <tabstop>close</tabstop>

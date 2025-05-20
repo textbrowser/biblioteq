@@ -62,6 +62,7 @@ class biblioteq_files: public QMainWindow
 
  private slots:
   void slotClose(void);
+  void slotComputeDigests(void);
   void slotExport(void);
   void slotFilesDoubleClicked(QTableWidgetItem *item);
   void slotPagesChanged(int value);
