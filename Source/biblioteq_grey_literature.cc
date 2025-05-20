@@ -991,7 +991,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
       for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
-	  QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	  QFile file;
 	  auto const fileName(files.at(i));
 
@@ -1001,6 +1000,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 	    {
 	      QByteArray bytes(4096, 0);
 	      QByteArray total;
+	      QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	      qint64 rc = 0;
 
 	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
