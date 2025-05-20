@@ -196,7 +196,41 @@ void biblioteq_files::slotComputeDigests(void)
 
       if(query.exec() && query.next())
 	{
+	  QBuffer buffer;
 	  auto const data(qUncompress(query.value(0).toByteArray()));
+
+	  buffer.setData(data);
+
+	  if(buffer.open(QIODevice::ReadOnly))
+	    {
+	      QByteArray bytes(4096, 0);
+	      QCryptographicHash digest(QCryptographicHash::Sha3_512);
+	      QSqlQuery query(m_biblioteq->getDB());
+	      qint64 rc = 0;
+
+	      while((rc = buffer.read(bytes.data(), bytes.size())) > 0)
+		digest.addData(bytes.mid(0, static_cast<int> (rc)));
+
+	      query.prepare
+		(QString("UPDATE %1_files SET file_digest = ? "
+			 "WHERE myoid = ?").
+		 arg(QString(tableName).replace(' ', '_')));
+	      query.addBindValue(digest.result().toHex().constData());
+	      query.addBindValue(oid);
+
+	      if(query.exec())
+		{
+		  auto item = m_ui.files_table->item
+		    (index.row(), static_cast<int> (Columns::DIGEST));
+
+		  if(item)
+		    {
+		      m_ui.files_table->setSortingEnabled(false);
+		      item->setText(digest.result().toHex());
+		      m_ui.files_table->setSortingEnabled(true);
+		    }
+		}
+	    }
 	}
     }
 }
