@@ -29,6 +29,7 @@
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QSettings>
+#include <QTimer>
 #include <QtMath>
 
 #include "biblioteq.h"
@@ -43,6 +44,9 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 {
   m_biblioteq = biblioteq;
   m_ui.setupUi(this);
+  m_ui.digests->setEnabled(false);
+  m_ui.digests->setToolTip
+    (tr("Requires administrator or librarian permissions."));
   m_ui.files_table->setColumnHidden(static_cast<int> (Columns::MYOID), true);
   m_ui.pages->setValue(QSettings().value("filesPerPage", 500).toInt());
   connect(m_ui.close,
@@ -69,9 +73,6 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRefresh(void)));
-  m_ui.digests->setEnabled
-    (m_biblioteq->getRoles() == "librarian" ||
-     m_biblioteq->getRoles().contains("administrator"));
   prepareIcons();
   statusBar()->showMessage(tr("0 Total Files"));
 }
@@ -126,11 +127,12 @@ void biblioteq_files::prepareIcons(void)
 
 void biblioteq_files::reset(void)
 {
+  QTimer::singleShot(250, this, SLOT(slotEnableWidgets(void)));
+  m_ui.files_table->setRowCount(0);
   disconnect(m_ui.page,
 	     SIGNAL(valueChanged(int)),
 	     this,
 	     SLOT(slotRefresh(void)));
-  m_ui.files_table->setRowCount(0);
   m_ui.page->setMaximum(1);
   m_ui.page->setToolTip(tr("[1, 1]"));
   m_ui.page->setValue(1);
@@ -233,6 +235,26 @@ void biblioteq_files::slotComputeDigests(void)
 	    }
 	}
     }
+}
+
+void biblioteq_files::slotEnableWidgets(void)
+{
+  if(!m_biblioteq->getDB().isOpen())
+    {
+      QTimer::singleShot(250, this, SLOT(slotEnableWidgets(void)));
+      m_ui.digests->setEnabled(false);
+      m_ui.digests->setToolTip
+	(tr("Requires administrator or librarian permissions."));
+      return;
+    }
+
+  m_ui.digests->setEnabled
+    (m_biblioteq->getRoles() == "librarian" ||
+     m_biblioteq->getRoles().contains("administrator"));
+  m_ui.digests->setToolTip
+    (m_ui.digests->isEnabled() ?
+     tr("Compute digests of selected file(s).") :
+     tr("Requires administrator or librarian permissions."));
 }
 
 void biblioteq_files::slotExport(void)
