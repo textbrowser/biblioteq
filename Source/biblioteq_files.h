@@ -59,6 +59,7 @@ class biblioteq_files: public QMainWindow
   QPointer<biblioteq> m_biblioteq;
   Ui_files m_ui;
   void changeEvent(QEvent *event);
+  void showEvent(QShowEvent *event);
 
  private slots:
   void slotClose(void);

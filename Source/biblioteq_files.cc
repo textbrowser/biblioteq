@@ -127,7 +127,10 @@ void biblioteq_files::prepareIcons(void)
 
 void biblioteq_files::reset(void)
 {
-  QTimer::singleShot(250, this, SLOT(slotEnableWidgets(void)));
+  QTimer::singleShot(1500, this, SLOT(slotEnableWidgets(void)));
+  m_ui.digests->setEnabled(false);
+  m_ui.digests->setToolTip
+    (tr("Requires administrator or librarian permissions."));
   m_ui.files_table->setRowCount(0);
   disconnect(m_ui.page,
 	     SIGNAL(valueChanged(int)),
@@ -141,6 +144,12 @@ void biblioteq_files::reset(void)
 	  this,
 	  SLOT(slotRefresh(void)));
   statusBar()->showMessage(tr("0 Total Files"));
+}
+
+void biblioteq_files::showEvent(QShowEvent *event)
+{
+  QMainWindow::showEvent(event);
+  slotEnableWidgets();
 }
 
 void biblioteq_files::slotClose(void)
@@ -241,7 +250,9 @@ void biblioteq_files::slotEnableWidgets(void)
 {
   if(!m_biblioteq->getDB().isOpen())
     {
-      QTimer::singleShot(250, this, SLOT(slotEnableWidgets(void)));
+      isVisible() ?
+	QTimer::singleShot(1500, this, SLOT(slotEnableWidgets(void))) :
+	(void) 0;
       m_ui.digests->setEnabled(false);
       m_ui.digests->setToolTip
 	(tr("Requires administrator or librarian permissions."));
