@@ -35,7 +35,7 @@
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>C-style comments are allowed in the Query Statement paragraph.</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;C-style comments are allowed in the Query Statement paragraph.&lt;/p&gt;&lt;p&gt;/* This is a C-style comment. It may span multiple lines. */&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
