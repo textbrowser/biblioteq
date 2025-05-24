@@ -450,7 +450,8 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
 {
   QStringList list;
 
-  list << "ALL"
+  list << "/* A comment. */"
+       << "ALL"
        << "AND"
        << "ANY"
        << "AS"
@@ -1171,4 +1172,10 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
       emit mainWindowCanvasBackgroundColorChanged(QColor());
       m_ui.main_window_canvas_background_color->setText(color.name());
     }
+}
+
+void biblioteq_otheroptions::slotShowCustomQuery(void)
+{
+  m_ui.tab->setCurrentIndex(0);
+  showNormal();
 }

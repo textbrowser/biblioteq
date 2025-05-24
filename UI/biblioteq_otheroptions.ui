@@ -38,7 +38,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTabWidget" name="tabWidget">
+         <widget class="QTabWidget" name="tab">
           <property name="currentIndex">
            <number>0</number>
           </property>
@@ -1118,7 +1118,7 @@
  </customwidgets>
  <tabstops>
   <tabstop>scrollArea</tabstop>
-  <tabstop>tabWidget</tabstop>
+  <tabstop>tab</tabstop>
   <tabstop>custom_query_reset</tabstop>
   <tabstop>custom_query</tabstop>
   <tabstop>display_icon_set</tabstop>

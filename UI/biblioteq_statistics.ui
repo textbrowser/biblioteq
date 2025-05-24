@@ -89,7 +89,17 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;C-style comments are allowed in the Query paragraph.&lt;/p&gt;&lt;p&gt;/* This is a C-style comment. It may span multiple lines. */&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Please be careful of destructive queries. Please do not burden BiblioteQ with image data.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Please be careful of destructive queries. Please do not burden BiblioteQ with image data.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="comment_label">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;C-style comments are allowed in the Query paragraph.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* This is a C-style comment. It may span multiple lines. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

@@ -48,6 +48,10 @@ biblioteq_custom_query::biblioteq_custom_query
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(close(void)));
+  connect(cq.comment_label,
+	  SIGNAL(linkActivated(const QString &)),
+	  this,
+	  SIGNAL(linkActivated(const QString &)));
   connect(cq.delete_favorite,
 	  SIGNAL(clicked(void)),
 	  this,

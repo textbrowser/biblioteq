@@ -68,6 +68,7 @@ class biblioteq_statistics: public QMainWindow
   void slotSetGlobalFonts(const QFont &font);
 
  signals:
+  void linkActivated(const QString &link);
   void newQuery(void);
 };
 

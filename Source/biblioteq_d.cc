@@ -1479,6 +1479,10 @@ void biblioteq::slotShowStatistics(void)
 {
   auto window = new biblioteq_statistics(this, m_otherOptions);
 
+  connect(window,
+	  SIGNAL(linkActivated(const QString &)),
+	  m_otherOptions,
+	  SLOT(slotShowCustomQuery(void)));
 #ifdef Q_OS_ANDROID
   window->showMaximized();
 #else

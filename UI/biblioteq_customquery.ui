@@ -33,9 +33,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="comment_label">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;C-style comments are allowed in the Query Statement paragraph.&lt;/p&gt;&lt;p&gt;/* This is a C-style comment. It may span multiple lines. */&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;C-style comments are allowed in the Query paragraph.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* This is a C-style comment. It may span multiple lines. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

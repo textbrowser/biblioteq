@@ -5372,6 +5372,10 @@ void biblioteq::slotShowCustomQuery(void)
 {
   auto dialog = new biblioteq_custom_query(m_otherOptions, this);
 
+  connect(dialog,
+	  SIGNAL(linkActivated(const QString &)),
+	  m_otherOptions,
+	  SLOT(slotShowCustomQuery(void)));
   connect(this,
 	  SIGNAL(otherOptionsSaved(void)),
 	  dialog,

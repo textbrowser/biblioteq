@@ -45,6 +45,10 @@ biblioteq_statistics::biblioteq_statistics
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.comment_label,
+	  SIGNAL(linkActivated(const QString &)),
+	  this,
+	  SIGNAL(linkActivated(const QString &)));
   connect(m_ui.delete_query,
 	  SIGNAL(clicked(void)),
 	  this,

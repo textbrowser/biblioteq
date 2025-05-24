@@ -69,6 +69,7 @@ class biblioteq_custom_query: public QMainWindow
 
  signals:
   void favoritesChanged(void);
+  void linkActivated(const QString &link);
   void newFavorite(void);
 };
 
