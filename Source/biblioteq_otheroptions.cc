@@ -450,7 +450,11 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
 {
   QStringList list;
 
-  list << "/* A comment. */"
+  /*
+  ** Please do not translate the contents of list.
+  */
+
+  list << "/* A COMMENT. */"
        << "ALL"
        << "AND"
        << "ANY"

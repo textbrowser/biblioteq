@@ -38,16 +38,53 @@ void biblioteq_sql_syntax_highlighter::highlightBlock(const QString &text)
 {
   foreach(auto const &rule, m_highlightingRules)
     {
-      QRegularExpressionMatchIterator matchIterator
-	(rule.pattern.globalMatch(text));
-
-      while(matchIterator.hasNext())
+      if(rule.pattern.pattern().contains("/* A COMMENT. */"))
 	{
-	  QRegularExpressionMatch match(matchIterator.next());
+	  QRegularExpression end("\\*/");
+	  QRegularExpression start("/\\*");
 
-	  setFormat
-	    (match.capturedStart(), match.capturedLength(), rule.format);
-        }
+	  setCurrentBlockState(0);
+
+	  int startIndex = 0;
+
+	  if(previousBlockState() != 1)
+	    startIndex = text.indexOf(start);
+
+	  while(startIndex >= 0)
+	    {
+	      QRegularExpressionMatch endMatch;
+	      int commentLength = 0;
+	      int endIndex = text.indexOf(end, startIndex, &endMatch);
+
+	      if(endIndex == -1)
+		{
+		  commentLength = text.length() - startIndex;
+		  setCurrentBlockState(1);
+		}
+	      else
+		{
+		  commentLength = endIndex -
+		    startIndex +
+		    endMatch.capturedLength();
+		}
+
+	      setFormat(startIndex, commentLength, rule.format);
+	      startIndex = text.indexOf(start, startIndex + commentLength);
+	    }
+	}
+      else
+	{
+	  QRegularExpressionMatchIterator matchIterator
+	    (rule.pattern.globalMatch(text));
+
+	  while(matchIterator.hasNext())
+	    {
+	      QRegularExpressionMatch match(matchIterator.next());
+
+	      setFormat
+		(match.capturedStart(), match.capturedLength(), rule.format);
+	    }
+	}
     }
 }
 
