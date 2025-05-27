@@ -66,7 +66,7 @@ qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt*Concurrent.dll \
                     $$[QT_INSTALL_BINS]\\Qt*Sql.dll \
                     $$[QT_INSTALL_BINS]\\Qt*Widgets.dll \
                     $$[QT_INSTALL_BINS]\\Qt*Xml.dll \
-                    $$[QT_INSTALL_BINS]\\libgcc_s_seh-1.dll \
+                    $$[QT_INSTALL_BINS]\\libgcc_s_seh-*.dll \
                     $$[QT_INSTALL_BINS]\\libstdc++-*.dll \
                     $$[QT_INSTALL_BINS]\\libwinpthread-*.dll
 qtlibraries.path = release\\.
