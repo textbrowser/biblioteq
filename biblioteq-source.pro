@@ -3,14 +3,14 @@ DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
 }
 
-exists(/usr/local/include/poppler/cpp) {
-DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
-INCLUDEPATH += /usr/local/include/poppler/cpp
-}
-
 exists(/usr/include/yaz) {
 DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
 LIBS    += -lyaz
+}
+
+exists(/usr/local/include/poppler/cpp) {
+DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
+INCLUDEPATH += /usr/local/include/poppler/cpp
 }
 
 exists(/usr/local/include/yaz) {
@@ -20,15 +20,15 @@ LIBS    += -lyaz
 
 greaterThan(QT_MAJOR_VERSION, 5) {
 exists(/usr/include/poppler/qt6) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER6
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER6
 INCLUDEPATH += /usr/include/poppler/qt6
 LIBS        += -lpoppler-qt6
 }
 
 exists(/usr/local/include/poppler/qt6) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER6
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER6
 INCLUDEPATH += /usr/local/include/poppler/qt6
 LIBS        += -lpoppler-qt6
 }
@@ -36,15 +36,15 @@ LIBS        += -lpoppler-qt6
 
 greaterThan(QT_MAJOR_VERSION, 6) {
 exists(/usr/include/poppler/qt7) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER7
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER7
 INCLUDEPATH += /usr/include/poppler/qt7
 LIBS        += -lpoppler-qt7
 }
 
 exists(/usr/local/include/poppler/qt7) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER7
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER7
 INCLUDEPATH += /usr/local/include/poppler/qt7
 LIBS        += -lpoppler-qt7
 }
@@ -52,15 +52,15 @@ LIBS        += -lpoppler-qt7
 
 greaterThan(QT_MAJOR_VERSION, 7) {
 exists(/usr/include/poppler/qt8) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER8
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER8
 INCLUDEPATH += /usr/include/poppler/qt8
 LIBS        += -lpoppler-qt8
 }
 
 exists(/usr/local/include/poppler/qt8) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER8
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER8
 INCLUDEPATH += /usr/local/include/poppler/qt8
 LIBS        += -lpoppler-qt8
 }
@@ -68,15 +68,15 @@ LIBS        += -lpoppler-qt8
 
 lessThan(QT_MAJOR_VERSION, 6) {
 exists(/usr/include/poppler/qt5) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER5
 INCLUDEPATH += /usr/include/poppler/qt5
 LIBS        += -lpoppler-qt5
 }
 
 exists(/usr/local/include/poppler/qt5) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER5
+DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
+               BIBLIOTEQ_LINKED_WITH_POPPLER5
 INCLUDEPATH += /usr/local/include/poppler/qt5
 LIBS        += -lpoppler-qt5
 }
