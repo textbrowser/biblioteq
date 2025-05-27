@@ -533,7 +533,7 @@ void biblioteq_files::slotRefresh(void)
 		item = new QTableWidgetItem(query.value(i).toString());
 
 	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	      item->setToolTip(item->text());
+	      item->setToolTip(QString("<html>%1</html>").arg(item->text()));
 	      m_ui.files_table->setItem(row, i, item);
 	    }
 
