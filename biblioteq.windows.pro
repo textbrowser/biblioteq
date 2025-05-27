@@ -55,20 +55,20 @@ pluginspurge.extra = del /Q /S *.debug
 pluginspurge.path = release\\plugins\\.
 qt.files = Distributions\\Windows\\qt.conf
 qt.path = release\\.
-qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt6Concurrent.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Core.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Gui.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Multimedia.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Network.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Pdf.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6PdfWidgets.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6PrintSupport.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Sql.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Widgets.dll \
-                    $$[QT_INSTALL_BINS]\\Qt6Xml.dll \
+qtlibraries.files = $$[QT_INSTALL_BINS]\\Qt*Concurrent.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Core.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Gui.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Multimedia.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Network.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Pdf.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*PdfWidgets.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*PrintSupport.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Sql.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Widgets.dll \
+                    $$[QT_INSTALL_BINS]\\Qt*Xml.dll \
                     $$[QT_INSTALL_BINS]\\libgcc_s_seh-1.dll \
-                    $$[QT_INSTALL_BINS]\\libstdc++-6.dll \
-                    $$[QT_INSTALL_BINS]\\libwinpthread-1.dll
+                    $$[QT_INSTALL_BINS]\\libstdc++-*.dll \
+                    $$[QT_INSTALL_BINS]\\libwinpthread-*.dll
 qtlibraries.path = release\\.
 sql1.files = SQL\\README*
 sql1.path = release\\SQL\\.
