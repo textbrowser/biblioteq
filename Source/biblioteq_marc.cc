@@ -462,34 +462,53 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 	    else if(tag == "490" || tag == "774")
 	      {
 		/*
+		** $a - Series Title
 		** $g - Volume Number
 		** $v - Volume Number
 		*/
 
-		QString key("");
-		QString str("");
-
-		if(tag == "490")
-		  key = "v";
-		else
-		  key = "g";
-
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(key == reader.attributes().value("code").
-			        toString().toLower().trimmed())
+		      auto const key
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(tag == "490")
 			{
-			  str.append(reader.readElementText());
-			  break;
+			  if(key == "a")
+			    {
+			      if(m_seriesTitle.isEmpty())
+				m_seriesTitle = reader.readElementText().
+				  trimmed();
+			    }
+			  else if(key == "v")
+			    {
+			      if(m_volumeNumber.isEmpty())
+				m_volumeNumber = reader.readElementText().
+				  trimmed();
+			    }
+			  else
+			    reader.skipCurrentElement();
+
+			  if(!m_seriesTitle.isEmpty() &&
+			     !m_volumeNumber.isEmpty())
+			    break;
 			}
 		      else
-			reader.skipCurrentElement();
+			{
+			  if(key == "g")
+			    {
+			      m_volumeNumber = reader.readElementText().
+				trimmed();
+			      break;
+			    }
+			  else
+			    reader.skipCurrentElement();
+			}
 		    }
 		  else
 		    break;
-
-		m_volumeNumber = str.trimmed();
 	      }
 	    else if(tag == "521")
 	      {
