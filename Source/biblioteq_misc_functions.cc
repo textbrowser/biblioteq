@@ -61,8 +61,9 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
 	 which == "front_cover" ||
 	 which == "image_scaled")
 	{
-	  query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
-			arg(which).arg(type));
+	  query.prepare
+	    (QString("SELECT %1 FROM %2 WHERE myoid = ?").
+	     arg(which).arg(type));
 	  query.bindValue(0, oid);
 	}
       else

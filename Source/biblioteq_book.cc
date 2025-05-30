@@ -3652,7 +3652,7 @@ void biblioteq_book::slotGo(void)
       query.bindValue
 	(33,
 	 id.purchase_date->date().toString(biblioteq::s_databaseDateFormat));
-      query.bindValue(34, id.series_title->text());
+      query.bindValue(34, id.series_title->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.bindValue(35, m_oid);
