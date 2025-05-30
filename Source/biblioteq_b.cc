@@ -5544,13 +5544,14 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD date_of_reform VARCHAR(32)");
   list.append("ALTER TABLE book ADD origin TEXT");
   list.append("ALTER TABLE book ADD purchase_date VARCHAR(32)");
- recent_label:
   list.append("ALTER TABLE book_copy_info ADD notes TEXT");
   list.append("ALTER TABLE cd_copy_info ADD notes TEXT");
   list.append("ALTER TABLE dvd_copy_info ADD notes TEXT");
   list.append("ALTER TABLE journal_copy_info ADD notes TEXT");
   list.append("ALTER TABLE magazine_copy_info ADD notes TEXT");
   list.append("ALTER TABLE videogame_copy_info ADD notes TEXT");
+ recent_label:
+  list.append("ALTER TABLE book ADD series_title TEXT");
 
   QString errors("<html>");
   int ct = 1;

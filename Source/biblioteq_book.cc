@@ -326,6 +326,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Series Title")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -2265,6 +2269,7 @@ void biblioteq_book::resetQueryHighlights(void)
   id.publisher->viewport()->setPalette(m_te_orig_pal);
   id.purchase_date->setStyleSheet(m_dt_orig_ss);
   id.reform_date->setStyleSheet(m_dt_orig_ss);
+  id.series_title->setPalette(m_te_orig_pal);
   id.target_audience->setStyleSheet(m_cb_orig_ss);
   id.title->setPalette(m_te_orig_pal);
   id.url->viewport()->setPalette(m_white_pal);
@@ -4844,7 +4849,7 @@ void biblioteq_book::slotReset(void)
     {
       auto const actions = id.resetButton->menu()->actions();
 
-      if(actions.size() < 34)
+      if(actions.size() < 35)
 	{
 	  // Error.
 	}
@@ -4859,8 +4864,8 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.id->setText("%");
 
-	  id.id->setPalette(m_te_orig_pal);
 	  id.id->setFocus();
+	  id.id->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[3])
 	{
@@ -4869,14 +4874,14 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.isbn13->setText("%");
 
-	  id.isbn13->setPalette(m_te_orig_pal);
 	  id.isbn13->setFocus();
+	  id.isbn13->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[4])
 	{
 	  id.edition->setCurrentIndex(0);
-	  id.edition->setStyleSheet(m_cb_orig_ss);
 	  id.edition->setFocus();
+	  id.edition->setStyleSheet(m_cb_orig_ss);
 	}
       else if(action == actions[5])
 	{
@@ -4885,38 +4890,38 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.author->clear();
 
-	  id.author->viewport()->setPalette(m_te_orig_pal);
 	  id.author->setFocus();
+	  id.author->viewport()->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[6])
 	{
 	  id.binding->setCurrentIndex(0);
-	  id.binding->setStyleSheet(m_cb_orig_ss);
 	  id.binding->setFocus();
+	  id.binding->setStyleSheet(m_cb_orig_ss);
 	}
       else if(action == actions[7])
 	{
 	  id.lcnum->clear();
-	  id.lcnum->setPalette(m_white_pal);
 	  id.lcnum->setFocus();
+	  id.lcnum->setPalette(m_white_pal);
 	}
       else if(action == actions[8])
 	{
 	  id.callnum->clear();
-	  id.callnum->setPalette(m_white_pal);
 	  id.callnum->setFocus();
+	  id.callnum->setPalette(m_white_pal);
 	}
       else if(action == actions[9])
 	{
 	  id.deweynum->clear();
-	  id.deweynum->setPalette(m_white_pal);
 	  id.deweynum->setFocus();
+	  id.deweynum->setPalette(m_white_pal);
 	}
       else if(action == actions[10])
 	{
 	  id.title->clear();
-	  id.title->setPalette(m_te_orig_pal);
 	  id.title->setFocus();
+	  id.title->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[11])
 	{
@@ -4940,8 +4945,8 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.publisher->clear();
 
-	  id.publisher->viewport()->setPalette(m_te_orig_pal);
 	  id.publisher->setFocus();
+	  id.publisher->viewport()->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[13])
 	{
@@ -4950,8 +4955,8 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.place->clear();
 
-	  id.place->viewport()->setPalette(m_te_orig_pal);
 	  id.place->setFocus();
+	  id.place->viewport()->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[14])
 	{
@@ -4960,13 +4965,13 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.category->clear();
 
-	  id.category->viewport()->setPalette(m_te_orig_pal);
 	  id.category->setFocus();
+	  id.category->viewport()->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[15])
 	{
-	  id.price->setValue(id.price->minimum());
 	  id.price->setFocus();
+	  id.price->setValue(id.price->minimum());
 	}
       else if(action == actions[16])
 	{
@@ -4980,8 +4985,8 @@ void biblioteq_book::slotReset(void)
 	}
       else if(action == actions[18])
 	{
-	  id.quantity->setValue(id.quantity->minimum());
 	  id.quantity->setFocus();
+	  id.quantity->setValue(id.quantity->minimum());
 	}
       else if(action == actions[19])
 	{
@@ -5009,20 +5014,20 @@ void biblioteq_book::slotReset(void)
 	  else
 	    id.description->clear();
 
-	  id.description->viewport()->setPalette(m_te_orig_pal);
 	  id.description->setFocus();
+	  id.description->viewport()->setPalette(m_te_orig_pal);
 	}
       else if(action == actions[23])
 	{
 	  id.marc_tags->clear();
-	  id.marc_tags->viewport()->setPalette(m_white_pal);
 	  id.marc_tags->setFocus();
+	  id.marc_tags->viewport()->setPalette(m_white_pal);
 	}
       else if(action == actions[24])
 	{
 	  id.keyword->clear();
-	  id.keyword->viewport()->setPalette(m_white_pal);
 	  id.keyword->setFocus();
+	  id.keyword->viewport()->setPalette(m_white_pal);
 	}
       else if(action == actions[25])
 	{
@@ -5032,8 +5037,8 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[26])
 	{
 	  id.alternate_id_1->clear();
-	  id.alternate_id_1->setPalette(m_white_pal);
 	  id.alternate_id_1->setFocus();
+	  id.alternate_id_1->setPalette(m_white_pal);
 	}
       else if(action == actions[27])
 	{
@@ -5049,14 +5054,14 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[29])
 	{
 	  id.target_audience->setCurrentIndex(0);
-	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	  id.target_audience->setFocus();
+	  id.target_audience->setStyleSheet(m_cb_orig_ss);
 	}
       else if(action == actions[30])
 	{
 	  id.volume_number->clear();
-	  id.volume_number->setPalette(m_white_pal);
 	  id.volume_number->setFocus();
+	  id.volume_number->setPalette(m_white_pal);
 	}
       else if(action == actions[31])
 	{
@@ -5087,6 +5092,12 @@ void biblioteq_book::slotReset(void)
 
 	  id.purchase_date->setFocus();
 	  id.purchase_date->setStyleSheet(m_dt_orig_ss);
+	}
+      else if(action == actions[34])
+	{
+	  id.series_title->clear();
+	  id.series_title->setFocus();
+	  id.series_title->setPalette(m_te_orig_pal);
 	}
     }
   else
@@ -5146,9 +5157,9 @@ void biblioteq_book::slotReset(void)
       else
 	id.description->clear();
 
+      id.keyword->clear();
       id.marc_tags->clear();
       id.marc_tags_format->setCurrentIndex(0);
-      id.keyword->clear();
       id.url->clear();
 
       if(!m_engWindowTitle.contains("Search"))
@@ -5156,9 +5167,9 @@ void biblioteq_book::slotReset(void)
       else
 	id.isbn13->setText("%");
 
-      id.lcnum->clear();
       id.callnum->clear();
       id.deweynum->clear();
+      id.lcnum->clear();
       id.location->setCurrentIndex(0);
 
       if(m_engWindowTitle.contains("Search"))
@@ -5178,6 +5189,7 @@ void biblioteq_book::slotReset(void)
       id.multivolume_set_isbn->clear();
       id.origin->clear();
       id.price->setValue(id.price->minimum());
+      id.series_title->clear();
       id.target_audience->setCurrentIndex(0);
       id.volume_number->clear();
       resetQueryHighlights();

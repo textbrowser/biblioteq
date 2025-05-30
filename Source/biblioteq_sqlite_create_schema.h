@@ -65,6 +65,7 @@ CREATE TABLE book							\
     publisher	         TEXT NOT NULL,					\
     purchase_date        VARCHAR(32),					\
     quantity	         INTEGER NOT NULL DEFAULT 1,			\
+    series_title         TEXT,						\
     target_audience      TEXT,						\
     title	         TEXT NOT NULL,					\
     type	         VARCHAR(16) NOT NULL DEFAULT 'Book',		\

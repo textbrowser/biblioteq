@@ -30,3 +30,7 @@ DROP FUNCTION delete_request CASCADE;
 /* Version 2024.12.01 */
 
 GRANT DELETE, SELECT ON item_borrower TO biblioteq_librarian;
+
+/* Version 2025.05.31 */
+
+ALTER TABLE book ADD series_title TEXT;

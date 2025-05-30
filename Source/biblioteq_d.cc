@@ -857,9 +857,9 @@ void biblioteq::prepareUpgradeNotification(void)
   ** Display an error if the current database's schema is not current.
   */
 
-  auto const record(m_db.record("book_copy_info"));
+  auto const record(m_db.record("book"));
 
-  if(!(record.indexOf("notes") >= 0))
+  if(!(record.indexOf("series_title") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
 	QMessageBox::critical
