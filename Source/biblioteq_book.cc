@@ -1135,6 +1135,7 @@ void biblioteq_book::modify(const int state)
   prepareIcons(this);
   str = m_oid;
   query.prepare("SELECT title, "
+		"series_title, "
 		"author, "
 		"publisher, "
 		"pdate, "
@@ -4018,6 +4019,7 @@ void biblioteq_book::slotGo(void)
 	frontCover = "book.front_cover ";
 
       searchstr = "SELECT DISTINCT book.title, "
+	"book.series_title, "
 	"book.author, "
 	"book.publisher, "
 	"book.pdate, "
@@ -4260,6 +4262,7 @@ void biblioteq_book::slotGo(void)
       values.append(biblioteq_myqstring::escape(id.origin->text().trimmed()));
       searchstr.append
 	("GROUP BY book.title, "
+	 "book.series_title, "
 	 "book.author, "
 	 "book.publisher, "
 	 "book.pdate, "

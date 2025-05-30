@@ -354,6 +354,7 @@ void biblioteq_main_table::setColumns(const QString &username,
   else if(type == "Books")
     {
       list.append(tr("Title"));
+      list.append(tr("Series Title"));
       list.append(tr("Authors"));
       list.append(tr("Publisher"));
       list.append(tr("Publication Date"));
@@ -385,6 +386,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
+      m_columnHeaderIndexes.append("Series Title");
       m_columnHeaderIndexes.append("Authors");
       m_columnHeaderIndexes.append("Publisher");
       m_columnHeaderIndexes.append("Publication Date");
