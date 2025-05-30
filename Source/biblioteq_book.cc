@@ -1469,7 +1469,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
   QString publishers("");
   QString seriesTitle("");
   QString subjects("");
-  QString subtitle("");
+  QString subTitle("");
   QString title("");
   QStringList keys;
 
@@ -1565,7 +1565,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
 		  if(key == "\"publish_date\":")
 		    publicationDate = value;
 		  else if(key == "\"subtitle\":")
-		    subtitle = value;
+		    seriesTitle = subTitle = value;
 		  else if(key == "\"title\":")
 		    title = value;
 		}
@@ -1716,8 +1716,8 @@ void biblioteq_book::populateAfterOpenLibrary(void)
       biblioteq_misc_functions::highlightWidget
 	(id.title, m_queryHighlightColor);
 
-      if(!subtitle.isEmpty())
-	title = QString("%1 (%2)").arg(title).arg(subtitle);
+      if(!subTitle.isEmpty())
+	title = QString("%1 (%2)").arg(title).arg(subTitle);
 
       id.title->setText(title);
     }
