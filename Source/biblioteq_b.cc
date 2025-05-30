@@ -3318,8 +3318,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	    searchstr = searchstrArg;
 
 	    if(searchstr.lastIndexOf("LIMIT") != -1)
-	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
-			       searchstr.length());
+	      searchstr.remove
+		(searchstr.lastIndexOf("LIMIT"), searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
 	  }

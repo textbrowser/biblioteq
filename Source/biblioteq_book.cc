@@ -3429,10 +3429,12 @@ void biblioteq_book::slotGo(void)
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
 		      "title = ?, "
-		      "edition = ?, author = ?, "
+		      "edition = ?, "
+		      "author = ?, "
 		      "pdate = ?, "
 		      "publisher = ?, "
-		      "category = ?, price = ?, "
+		      "category = ?, "
+	              "price = ?, "
 		      "description = ?, "
 		      "language = ?, "
 		      "monetary_units = ?, "
@@ -3458,7 +3460,8 @@ void biblioteq_book::slotGo(void)
 		      "volume_number = ?, "
 		      "date_of_reform = ?, "
 		      "origin = ?, "
-		      "purchase_date = ? "
+		      "purchase_date = ?, "
+		      "series_title = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -3473,12 +3476,13 @@ void biblioteq_book::slotGo(void)
 		      "place, marc_tags, keyword, originality, condition, "
 		      "accession_number, url, alternate_id_1, "
 		      "multivolume_set_isbn, target_audience, volume_number, "
-		      "date_of_reform, origin, purchase_date) "
+		      "date_of_reform, origin, purchase_date, series_title) "
 		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
-		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING myoid");
+		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+		      "RETURNING myoid");
       else
 	query.prepare("INSERT INTO book (id, title, "
 		      "edition, author, pdate, publisher, "
@@ -3492,13 +3496,14 @@ void biblioteq_book::slotGo(void)
 		      "accession_number, url, alternate_id_1, "
 		      "multivolume_set_isbn, target_audience, "
 		      "volume_number, date_of_reform, origin, purchase_date, "
+		      "series_title, "
 		      "myoid) "
 		      "VALUES (?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
-		      "?, ?, ?, ?, ?, ?)");
+		      "?, ?, ?, ?, ?, ?, ?)");
 
       if(id.isbnAvailableCheckBox->isChecked() &&
 	 !id.id->text().remove('-').isEmpty())
@@ -3647,9 +3652,10 @@ void biblioteq_book::slotGo(void)
       query.bindValue
 	(33,
 	 id.purchase_date->date().toString(biblioteq::s_databaseDateFormat));
+      query.bindValue(34, id.series_title->text());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(34, m_oid);
+	query.bindValue(35, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  auto const value = biblioteq_misc_functions::getSqliteUniqueId
@@ -3927,6 +3933,9 @@ void biblioteq_book::slotGo(void)
 			qmain->getUI().table->item(m_index->row(), i)->
 			  setText
 			  (id.reform_date->date().toString(Qt::ISODate));
+		      else if(names.at(i) == "Series Title")
+			qmain->getUI().table->item(m_index->row(), i)->
+			  setText(id.series_title->text());
 		      else if(names.at(i) == "Target Audience")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.target_audience->currentText().trimmed());
