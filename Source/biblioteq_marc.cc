@@ -94,6 +94,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 {
   clear();
 
+  QString seriesTitle("");
   QXmlStreamReader reader(m_data);
 
   while(!reader.atEnd())
@@ -101,6 +102,9 @@ void biblioteq_marc::parseBookSRUMarc21(void)
       {
 	if(reader.name().toString().toLower().trimmed() == "datafield")
 	  {
+	    auto const ind1
+	      (reader.attributes().value("ind1").toString().toLower().
+	       trimmed());
 	    auto const tag
 	      (reader.attributes().value("tag").toString().toLower().trimmed());
 
@@ -377,8 +381,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 	    else if(tag == "260")
 	      {
 		/*
-		** $a - Place of publication, distribution,
-		**      etc. (R)
+		** $a - Place of publication, distribution, etc. (R)
 		** $b - Name of publisher, distributor, etc. (R)
 		** $c - Date of publication, distribution, etc. (R)
 		** $e - Place of manufacture (R)
@@ -478,9 +481,14 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			{
 			  if(key == "a")
 			    {
-			      if(m_seriesTitle.isEmpty())
-				m_seriesTitle = reader.readElementText().
-				  trimmed();
+			      auto const str
+				(reader.readElementText().trimmed());
+
+			      if(ind1 == "1" && m_seriesTitle.isEmpty())
+				m_seriesTitle = str;
+
+			      if(seriesTitle.isEmpty())
+				seriesTitle = str;
 			    }
 			  else if(key == "v")
 			    {
@@ -606,6 +614,9 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 	      }
 	  }
       }
+
+  if(m_seriesTitle.isEmpty())
+    m_seriesTitle = seriesTitle;
 }
 
 void biblioteq_marc::parseBookSRUUnimarc(void)
