@@ -3664,7 +3664,7 @@ void biblioteq_book::slotGo(void)
 	  if(errorstr.isEmpty())
 	    {
 	      m_oid = QString::number(value);
-	      query.bindValue(34, value);
+	      query.bindValue(35, value);
 	    }
 	  else
 	    qmain->addError
