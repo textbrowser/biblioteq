@@ -4267,8 +4267,14 @@ void biblioteq_book::slotGo(void)
       searchstr.append
 	("LOWER(COALESCE(origin, '')) LIKE " +
 	 UNACCENT +
-	 "(LOWER('%' || ? || '%')) ");
+	 "(LOWER('%' || ? || '%')) AND ");
       values.append(biblioteq_myqstring::escape(id.origin->text().trimmed()));
+      searchstr.append
+	("LOWER(COALESCE(series_title, '')) LIKE " +
+	 UNACCENT +
+	 "(LOWER('%' || ? || '%')) ");
+      values.append
+	(biblioteq_myqstring::escape(id.series_title->text().trimmed()));
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.series_title, "
