@@ -63,6 +63,7 @@ void biblioteq_marc::clear(void)
   m_place.clear();
   m_publicationDate = QDate();
   m_publisher.clear();
+  m_seriesTitle.clear();
   m_sru003.clear();
   m_targetAudience.clear();
   m_title.clear();

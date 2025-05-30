@@ -995,6 +995,7 @@ void biblioteq_book::insert(void)
   id.publisher->setPlainText("N/A");
   id.quantity->setMinimum(1);
   id.quantity->setValue(1);
+  id.series_title->clear();
   id.showUserButton->setEnabled(false);
   id.sruQueryButton->setVisible(true);
   id.target_audience->setEditable(true);
@@ -1387,6 +1388,8 @@ void biblioteq_book::modify(const int state)
 	      id.quantity->setValue(var.toInt());
 	      m_oldq = id.quantity->value();
 	    }
+	  else if(fieldname == "series_title")
+	    id.series_title->setText(var.toString().trimmed());
 	  else if(fieldname == "target_audience")
 	    {
 	      if(id.target_audience->findText(var.toString().trimmed()) > -1)
@@ -1463,6 +1466,7 @@ void biblioteq_book::populateAfterOpenLibrary(void)
   QString place("");
   QString publicationDate("");
   QString publishers("");
+  QString seriesTitle("");
   QString subjects("");
   QString subtitle("");
   QString title("");
@@ -1692,6 +1696,13 @@ void biblioteq_book::populateAfterOpenLibrary(void)
       id.publisher->setPlainText(publishers);
     }
 
+  if(!seriesTitle.isEmpty())
+    {
+      biblioteq_misc_functions::highlightWidget
+	(id.series_title, m_queryHighlightColor);
+      id.series_title->setText(seriesTitle);
+    }
+
   if(!subjects.isEmpty())
     {
       biblioteq_misc_functions::highlightWidget
@@ -1914,6 +1925,15 @@ void biblioteq_book::populateAfterSRU
 	(QString("background-color: %1").arg(m_queryHighlightColor.name()));
     }
 
+  str = m.seriesTitle();
+
+  if(!str.isEmpty())
+    {
+      id.series_title->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.series_title, m_queryHighlightColor);
+    }
+
   str = m.title();
 
   if(!str.isEmpty())
@@ -2082,6 +2102,15 @@ void biblioteq_book::populateAfterZ3950
       id.publisher->setPlainText(str);
       biblioteq_misc_functions::highlightWidget
 	(id.publisher->viewport(), m_queryHighlightColor);
+    }
+
+  str = m.seriesTitle();
+
+  if(!str.isEmpty())
+    {
+      id.series_title->setText(str);
+      biblioteq_misc_functions::highlightWidget
+	(id.series_title, m_queryHighlightColor);
     }
 
   str = m.targetAudience();
@@ -2327,6 +2356,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.quantity->setValue(0);
   id.reform_date->setDate(QDate::fromString("9999", "yyyy"));
   id.reform_date->setDisplayFormat("yyyy");
+  id.series_title->clear();
   id.showUserButton->setVisible(false);
   id.sruQueryButton->setVisible(false);
   id.target_audience->insertItem(0, "%");
@@ -3383,6 +3413,7 @@ void biblioteq_book::slotGo(void)
       id.alternate_id_1->setText(id.alternate_id_1->text().trimmed());
       id.multivolume_set_isbn->setText
 	(id.multivolume_set_isbn->text().remove('-').trimmed());
+      id.series_title->setText(id.series_title->text().trimmed());
       id.volume_number->setText(id.volume_number->text().trimmed());
 
       if(id.multivolume_set_isbn->text().length() == 10)
@@ -3893,15 +3924,16 @@ void biblioteq_book::slotGo(void)
 			  (id.quantity->text());
 		      else if(names.at(i) == "Reform Date")
 			qmain->getUI().table->item(m_index->row(), i)->
-			  setText(id.reform_date->date().toString(Qt::ISODate));
+			  setText
+			  (id.reform_date->date().toString(Qt::ISODate));
 		      else if(names.at(i) == "Target Audience")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.target_audience->currentText().trimmed());
 		      else if(names.at(i) == "Title")
 			{
 			  imageColumn = i;
-			  qmain->getUI().table->item(m_index->row(), i)->setText
-			    (id.title->text());
+			  qmain->getUI().table->item(m_index->row(), i)->
+			    setText(id.title->text());
 			}
 		      else if(names.at(i) == "Volume Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
@@ -4681,6 +4713,8 @@ void biblioteq_book::slotPrint(void)
 
   m_html += "<b>" + tr("Title:") + "</b> " +
     id.title->text().trimmed() + "<br>";
+  m_html += "<b>" + tr("Series Title:") + "</b> " +
+    id.series_title->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Publication Date:") + "</b> " +
     id.publication_date->date().toString(Qt::ISODate) + "<br>";
   m_html += "<b>" + tr("Publisher:") + "</b> " +

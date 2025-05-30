@@ -122,6 +122,11 @@ class biblioteq_marc
     return m_publisher.trimmed();
   }
 
+  QString seriesTitle(void) const
+  {
+    return m_seriesTitle;
+  }
+
   QString sru003(void) const
   {
     return m_sru003;
@@ -169,6 +174,7 @@ class biblioteq_marc
   QString m_lcnum;
   QString m_place;
   QString m_publisher;
+  QString m_seriesTitle;
   QString m_sru003;
   QString m_targetAudience;
   QString m_title;
