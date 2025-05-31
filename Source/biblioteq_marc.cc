@@ -1056,7 +1056,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	  */
 
 	  QStringList subfields;
-	  auto const ind1(str.mid(0, 1));
+	  auto const ind1(str.trimmed().mid(0, 1));
 
 	  subfields << "$a" << "$g" << "$v";
 
