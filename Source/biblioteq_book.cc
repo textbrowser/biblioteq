@@ -1390,7 +1390,8 @@ void biblioteq_book::modify(const int state)
 	      m_oldq = id.quantity->value();
 	    }
 	  else if(fieldname == "series_title")
-	    id.series_title->setText(var.toString().trimmed());
+	    id.series_title->setMultipleLinks
+	      ("book_search", "series_title", var.toString().trimmed());
 	  else if(fieldname == "target_audience")
 	    {
 	      if(id.target_audience->findText(var.toString().trimmed()) > -1)
@@ -1700,8 +1701,8 @@ void biblioteq_book::populateAfterOpenLibrary(void)
   if(!seriesTitle.isEmpty())
     {
       biblioteq_misc_functions::highlightWidget
-	(id.series_title, m_queryHighlightColor);
-      id.series_title->setText(seriesTitle);
+	(id.series_title->viewport(), m_queryHighlightColor);
+      id.series_title->setPlainText(seriesTitle);
     }
 
   if(!subjects.isEmpty())
@@ -1931,8 +1932,8 @@ void biblioteq_book::populateAfterSRU
   if(!str.isEmpty())
     {
       biblioteq_misc_functions::highlightWidget
-	(id.series_title, m_queryHighlightColor);
-      id.series_title->setText(str);
+	(id.series_title->viewport(), m_queryHighlightColor);
+      id.series_title->setPlainText(str);
     }
 
   str = m.title();
@@ -1977,12 +1978,12 @@ void biblioteq_book::populateAfterZ3950
 	       recordSyntax);
   m.parse(text);
   list = text.split("\n");
+  biblioteq_misc_functions::highlightWidget
+    (id.marc_tags->viewport(), m_queryHighlightColor);
   id.edition->setCurrentIndex(0);
   id.edition->setStyleSheet
     (QString("background-color: %1").arg(m_queryHighlightColor.name()));
   id.marc_tags->setPlainText(text.trimmed());
-  biblioteq_misc_functions::highlightWidget
-    (id.marc_tags->viewport(), m_queryHighlightColor);
 
   for(int i = 0; i < list.size(); i++)
     if(list[i].startsWith("100 ") ||
@@ -1998,9 +1999,9 @@ void biblioteq_book::populateAfterZ3950
 
   if(!str.isEmpty())
     {
-      id.author->setPlainText(str);
       biblioteq_misc_functions::highlightWidget
 	(id.author->viewport(), m_queryHighlightColor);
+      id.author->setPlainText(str);
     }
 
   str = m.binding();
@@ -2110,8 +2111,8 @@ void biblioteq_book::populateAfterZ3950
   if(!str.isEmpty())
     {
       biblioteq_misc_functions::highlightWidget
-	(id.series_title, m_queryHighlightColor);
-      id.series_title->setText(str);
+	(id.series_title->viewport(), m_queryHighlightColor);
+      id.series_title->setPlainText(str);
     }
 
   str = m.targetAudience();
@@ -2299,7 +2300,7 @@ void biblioteq_book::resetQueryHighlights(void)
   id.publisher->viewport()->setPalette(m_te_orig_pal);
   id.purchase_date->setStyleSheet(m_dt_orig_ss);
   id.reform_date->setStyleSheet(m_dt_orig_ss);
-  id.series_title->setPalette(m_white_pal);
+  id.series_title->viewport()->setPalette(m_white_pal);
   id.target_audience->setStyleSheet(m_cb_orig_ss);
   id.title->setPalette(m_te_orig_pal);
   id.url->viewport()->setPalette(m_white_pal);
@@ -2409,6 +2410,8 @@ void biblioteq_book::search(const QString &field, const QString &value)
 	id.place->setPlainText(value);
       else if(field == "publisher")
 	id.publisher->setPlainText(value);
+      else if(field == "series_title")
+	id.series_title->setPlainText(value);
 
       slotGo();
     }
@@ -3435,7 +3438,7 @@ void biblioteq_book::slotGo(void)
       id.alternate_id_1->setText(id.alternate_id_1->text().trimmed());
       id.multivolume_set_isbn->setText
 	(id.multivolume_set_isbn->text().remove('-').trimmed());
-      id.series_title->setText(id.series_title->text().trimmed());
+      id.series_title->setPlainText(id.series_title->toPlainText().trimmed());
       id.volume_number->setText(id.volume_number->text().trimmed());
 
       if(id.multivolume_set_isbn->text().length() == 10)
@@ -3673,7 +3676,7 @@ void biblioteq_book::slotGo(void)
       query.bindValue
 	(33,
 	 id.purchase_date->date().toString(biblioteq::s_databaseDateFormat));
-      query.bindValue(34, id.series_title->text().trimmed());
+      query.bindValue(34, id.series_title->toPlainText().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
 	query.bindValue(35, m_oid);
@@ -3827,6 +3830,8 @@ void biblioteq_book::slotGo(void)
 	    ("book_search", "place", id.place->toPlainText());
 	  id.publisher->setMultipleLinks
 	    ("book_search", "publisher", id.publisher->toPlainText());
+	  id.series_title->setMultipleLinks
+	    ("book_search", "series_title", id.series_title->toPlainText());
 	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
@@ -3862,6 +3867,9 @@ void biblioteq_book::slotGo(void)
 		      else if(names.at(i) == "Alternate Identifier")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.alternate_id_1->text());
+		      else if(names.at(i) == "Authors")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (id.author->toPlainText());
 		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(m_index->row(), i)->setText
@@ -3876,9 +3884,6 @@ void biblioteq_book::slotGo(void)
 			       __FILE__,
 			       __LINE__);
 			}
-		      else if(names.at(i) == "Authors")
-			qmain->getUI().table->item(m_index->row(), i)->setText
-			  (id.author->toPlainText());
 		      else if(names.at(i) == "Book Binding Type")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.binding->currentText().trimmed());
@@ -3956,7 +3961,7 @@ void biblioteq_book::slotGo(void)
 			  (id.reform_date->date().toString(Qt::ISODate));
 		      else if(names.at(i) == "Series Title")
 			qmain->getUI().table->item(m_index->row(), i)->
-			  setText(id.series_title->text());
+			  setText(id.series_title->toPlainText());
 		      else if(names.at(i) == "Target Audience")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (id.target_audience->currentText().trimmed());
@@ -4295,7 +4300,8 @@ void biblioteq_book::slotGo(void)
 	 UNACCENT +
 	 "(LOWER('%' || ? || '%')) ");
       values.append
-	(biblioteq_myqstring::escape(id.series_title->text().trimmed()));
+	(biblioteq_myqstring::
+	 escape(id.series_title->toPlainText().trimmed()));
       searchstr.append
 	("GROUP BY book.title, "
 	 "book.series_title, "
@@ -4753,7 +4759,7 @@ void biblioteq_book::slotPrint(void)
   m_html += "<b>" + tr("Title:") + "</b> " +
     id.title->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Series Title:") + "</b> " +
-    id.series_title->text().trimmed() + "<br>";
+    id.series_title->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Publication Date:") + "</b> " +
     id.publication_date->date().toString(Qt::ISODate) + "<br>";
   m_html += "<b>" + tr("Publisher:") + "</b> " +
