@@ -507,9 +507,12 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			{
 			  if(key == "g")
 			    {
-			      m_volumeNumber = reader.readElementText().
-				trimmed();
-			      break;
+			      if(m_volumeNumber.isEmpty())
+				m_volumeNumber = reader.readElementText().
+				  trimmed();
+
+			      if(!m_volumeNumber.isEmpty())
+				break;
 			    }
 			  else
 			    reader.skipCurrentElement();
@@ -1066,22 +1069,21 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      {
 		str = str.mid(str.indexOf(subfields.at(i)) + 2).trimmed();
 
-		if(str.indexOf("$") > -1)
-		  str = str.mid(0, str.indexOf("$"));
-
 		if(subfields.at(i) == "$a")
 		  {
 		    if(tag == "490")
 		      {
 			if(ind1 == "1" && m_seriesTitle.isEmpty())
-			  m_seriesTitle = str.trimmed();
+			  m_seriesTitle = str.mid(0, str.indexOf("$")).
+			    trimmed();
 
 			if(seriesTitle.isEmpty())
-			  seriesTitle = str.trimmed();
+			  seriesTitle = str.mid(0, str.indexOf("$")).
+			    trimmed();
 		      }
 		  }
-		else
-		  m_volumeNumber = str.trimmed();
+		else if(m_volumeNumber.isEmpty())
+		  m_volumeNumber = str.mid(0, str.indexOf("$")).trimmed();
 	      }
 	}
       else if(str.startsWith("521 "))
@@ -1533,19 +1535,16 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	      {
 		str = str.mid(str.indexOf(subfields.at(i)) + 2).trimmed();
 
-		if(str.indexOf("$") > -1)
-		  str = str.mid(0, str.indexOf("$"));
-
 		if(subfields.at(i) == "$t")
 		  {
 		    if(ind1 == "1" && m_seriesTitle.isEmpty())
-		      m_seriesTitle = str.trimmed();
+		      m_seriesTitle = str.mid(0, str.indexOf("$")).trimmed();
 
 		    if(seriesTitle.isEmpty())
-		      seriesTitle = str.trimmed();
+		      seriesTitle = str.mid(0, str.indexOf("$")).trimmed();
 		  }
-		else
-		  m_volumeNumber = str.trimmed();
+		else if(m_volumeNumber.isEmpty())
+		  m_volumeNumber = str.mid(0, str.indexOf("$")).trimmed();
 	      }
 	}
       else if(str.startsWith("333 "))
