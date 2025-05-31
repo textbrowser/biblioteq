@@ -122,8 +122,11 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a")
 			{
 			  str.append(reader.readElementText());
 			  break;
@@ -195,10 +198,11 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a" ||
-			 reader.attributes().value("code").
-			 toString().toLower().trimmed() == "b")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a" || code == "b")
 			str.append(reader.readElementText());
 		      else
 			reader.skipCurrentElement();
@@ -225,14 +229,14 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a" ||
-			 reader.attributes().value("code").
-			 toString().toLower().trimmed() == "b" ||
-			 reader.attributes().value("code").
-			 toString().toLower().trimmed() == "m" ||
-			 reader.attributes().value("code").
-			 toString().toLower().trimmed() == "q")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a" ||
+			 code == "b" ||
+			 code == "m" ||
+			 code == "q")
 			str.append(reader.readElementText());
 		      else
 			reader.skipCurrentElement();
@@ -271,8 +275,11 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a")
 			{
 			  str.append(reader.readElementText());
 			  break;
@@ -320,10 +327,11 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a" ||
-			 reader.attributes().value("code").
-			 toString().toLower().trimmed() == "b")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a" || code == "b")
 			str.append(reader.readElementText());
 		      else
 			reader.skipCurrentElement();
@@ -352,8 +360,11 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a")
 			{
 			  str.append(reader.readElementText());
 			  break;
@@ -462,24 +473,25 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 
 		m_description = str.trimmed();
 	      }
-	    else if(tag == "490" || tag == "774")
+	    else if(tag == "460" || tag == "490" || tag == "774")
 	      {
 		/*
 		** $a - Series Title
 		** $g - Volume Number
+		** $t - Series Title
 		** $v - Volume Number
 		*/
 
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      auto const key
+		      auto const code
 			(reader.attributes().value("code").toString().
 			 toLower().trimmed());
 
-		      if(tag == "490")
+		      if(tag == "460")
 			{
-			  if(key == "a")
+			  if(code == "t")
 			    {
 			      auto const str
 				(reader.readElementText().trimmed());
@@ -490,7 +502,33 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			      if(seriesTitle.isEmpty())
 				seriesTitle = str;
 			    }
-			  else if(key == "v")
+			  else if(code == "v")
+			    {
+			      if(m_volumeNumber.isEmpty())
+				m_volumeNumber = reader.readElementText().
+				  trimmed();
+			    }
+			  else
+			    reader.skipCurrentElement();
+
+			  if(!m_seriesTitle.isEmpty() &&
+			     !m_volumeNumber.isEmpty())
+			    break;
+			}
+		      else if(tag == "490")
+			{
+			  if(code == "a")
+			    {
+			      auto const str
+				(reader.readElementText().trimmed());
+
+			      if(ind1 == "1" && m_seriesTitle.isEmpty())
+				m_seriesTitle = str;
+
+			      if(seriesTitle.isEmpty())
+				seriesTitle = str;
+			    }
+			  else if(code == "v")
 			    {
 			      if(m_volumeNumber.isEmpty())
 				m_volumeNumber = reader.readElementText().
@@ -505,7 +543,7 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 			}
 		      else
 			{
-			  if(key == "g")
+			  if(code == "g")
 			    {
 			      if(m_volumeNumber.isEmpty())
 				m_volumeNumber = reader.readElementText().
@@ -569,8 +607,11 @@ void biblioteq_marc::parseBookSRUMarc21(void)
 		while(reader.readNextStartElement())
 		  if(reader.name().toString().toLower().trimmed() == "subfield")
 		    {
-		      if(reader.attributes().value("code").
-			 toString().toLower().trimmed() == "a")
+		      auto const code
+			(reader.attributes().value("code").toString().
+			 toLower().trimmed());
+
+		      if(code == "a")
 			{
 			  str.append(reader.readElementText());
 			  break;
