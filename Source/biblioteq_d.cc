@@ -867,7 +867,7 @@ void biblioteq::prepareUpgradeNotification(void)
 	   tr("BiblioteQ: Database Error"),
 	   tr("The current PostgreSQL schema must be updated. "
 	      "Please execute the statement(s) in %1 for version %2.").
-	   arg("postgresql_update_schema.sql").
+	   arg("postgresql-update-schema.sql").
 	   arg(BIBLIOTEQ_VERSION));
       else
 	QMessageBox::critical
