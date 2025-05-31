@@ -172,6 +172,8 @@ QString biblioteq_import::fieldNameFromColumnTitle(const QString &t)
     return "purchase_date";
   else if(text.contains("reform"))
     return "date_of_reform";
+  else if(text.contains("series"))
+    return "series_title";
   else if(text.contains("target"))
     return "target_audience";
   else if(text.contains("volume"))
@@ -1077,6 +1079,7 @@ void biblioteq_import::slotAddRow(void)
 			   << "publisher"
 			   << "purchase_date"
 			   << "quantity"
+			   << "series_title"
 			   << "target_audience"
 			   << "title"
 			   << "url"
@@ -1659,12 +1662,14 @@ void biblioteq_import::slotTemplates(int index)
 	       << "publisher"
 	       << "purchase_date"
 	       << "quantity"
+	       << "series_title"
 	       << "target_audience"
 	       << "title"
 	       << "url"
 	       << "volume_number";
 	else if(index == static_cast<int> (Templates::TEMPLATE_2))
 	  list << "title"
+	       << "series_title"
 	       << "author"
 	       << "publisher"
 	       << "pdate"
