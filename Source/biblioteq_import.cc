@@ -1333,7 +1333,7 @@ void biblioteq_import::slotImport(void)
     importBooks(progress.data(),
 		errors,
 		Templates::TEMPLATE_2,
-		9, // ISBN-10
+		10, // ISBN-10
 		&imported,
 		&notImported);
   else if(index == static_cast<int> (Templates::TEMPLATE_3))
