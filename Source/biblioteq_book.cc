@@ -2714,9 +2714,9 @@ void biblioteq_book::slotDownloadImage(void)
 	 id.isbnAvailableCheckBox->isChecked())
 	ok = true;
 
-      if(id.isbn13->text().remove('-').trimmed().length() == 13 &&
-	 id.isbnAvailableCheckBox->isChecked() &&
-	 downloadType.contains("open"))
+      if(downloadType.contains("open") &&
+	 id.isbn13->text().remove('-').trimmed().length() == 13 &&
+	 id.isbnAvailableCheckBox->isChecked())
 	ok = true;
 
       if(!ok)
@@ -2882,22 +2882,24 @@ void biblioteq_book::slotDownloadImage(void)
 
       if(id.isbnAvailableCheckBox->isChecked())
 	{
-	  if (id.id->text().remove('-').trimmed().length() == 10)
+	  if(id.id->text().remove('-').trimmed().length() == 10)
 	    {
 	      string.replace("$key", "isbn");
 	      string.replace
 		("$value-$size", id.id->text().remove('-').trimmed() + "-L");
 	    }
-	  else if (id.isbn13->text().remove('-').trimmed().length() == 13)
+	  else if(id.isbn13->text().remove('-').trimmed().length() == 13)
 	    {
 	      string.replace("$key", "isbn");
 	      string.replace
-		("$value-$size", id.isbn13->text().remove('-').trimmed() + "-L");
+		("$value-$size",
+		 id.isbn13->text().remove('-').trimmed() + "-L");
 	    }
 	  else
 	    {
-	      // this shouldn't be reached as we already checked that either
-	      // or isbn13 has a valid value before entering this if block
+	      // This shouldn't be reached as we already checked that either
+	      // id or isbn13 has a valid value before entering this if-block.
+
 	      return;
 	    }
 	}
