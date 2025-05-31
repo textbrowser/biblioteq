@@ -633,6 +633,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
   for(int i = 0; i < list.size(); i++)
     {
+      auto const tag(list.at(i).mid(0, 3));
       auto str(list.at(i));
 
       if(str.startsWith("010 "))
@@ -1070,11 +1071,14 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 		if(subfields.at(i) == "$a")
 		  {
-		    if(ind1 == "1" && m_seriesTitle.isEmpty())
-		      m_seriesTitle = str.trimmed();
+		    if(tag == "490")
+		      {
+			if(ind1 == "1" && m_seriesTitle.isEmpty())
+			  m_seriesTitle = str.trimmed();
 
-		    if(seriesTitle.isEmpty())
-		      seriesTitle = str.trimmed();
+			if(seriesTitle.isEmpty())
+			  seriesTitle = str.trimmed();
+		      }
 		  }
 		else
 		  m_volumeNumber = str.trimmed();
@@ -1184,6 +1188,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 {
   clear();
 
+  QString seriesTitle("");
   auto const list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
@@ -1511,23 +1516,37 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	}
       else if(str.startsWith("225 ") || str.startsWith("461 "))
 	{
+	  str = str.mid(4);
+
 	  /*
+	  ** $t - Series Title
 	  ** $v - Volume Number
 	  */
 
-	  str = str.mid(4);
+	  QStringList subfields;
+	  auto const ind1(str.remove('#').trimmed().mid(0, 1));
 
-	  if(str.indexOf("$v") > -1)
-	    {
-	      str = str.mid(str.indexOf("$v") + 2).trimmed();
+	  subfields << "$t" << "$v";
 
-	      if(str.indexOf("$") > -1)
-		str = str.mid(0, str.indexOf("$"));
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.indexOf(subfields.at(i)) > -1)
+	      {
+		str = str.mid(str.indexOf(subfields.at(i)) + 2).trimmed();
 
-	      m_volumeNumber = str.trimmed();
-	    }
-	  else
-	    m_volumeNumber.clear();
+		if(str.indexOf("$") > -1)
+		  str = str.mid(0, str.indexOf("$"));
+
+		if(subfields.at(i) == "$t")
+		  {
+		    if(ind1 == "1" && m_seriesTitle.isEmpty())
+		      m_seriesTitle = str.trimmed();
+
+		    if(seriesTitle.isEmpty())
+		      seriesTitle = str.trimmed();
+		  }
+		else
+		  m_volumeNumber = str.trimmed();
+	      }
 	}
       else if(str.startsWith("333 "))
 	{
@@ -1625,6 +1644,9 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	  m_deweynum = str.trimmed();
 	}
     }
+
+  if(m_seriesTitle.isEmpty())
+    m_seriesTitle = seriesTitle;
 }
 
 void biblioteq_marc::parseMagazineZ3950Marc21(void)
