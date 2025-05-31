@@ -2714,6 +2714,11 @@ void biblioteq_book::slotDownloadImage(void)
 	 id.isbnAvailableCheckBox->isChecked())
 	ok = true;
 
+      if(id.isbn13->text().remove('-').trimmed().length() == 13 &&
+	 id.isbnAvailableCheckBox->isChecked() &&
+	 downloadType.contains("open"))
+	ok = true;
+
       if(!ok)
 	{
 	  QMessageBox::critical
@@ -2875,12 +2880,26 @@ void biblioteq_book::slotDownloadImage(void)
       else
 	string = qmain->getOpenLibraryImagesHash().value("front_url");
 
-      if(id.isbnAvailableCheckBox->isChecked() &&
-	 id.id->text().remove('-').trimmed().length() == 10)
+      if(id.isbnAvailableCheckBox->isChecked())
 	{
-	  string.replace("$key", "isbn");
-	  string.replace
-	    ("$value-$size", id.id->text().remove('-').trimmed() + "-L");
+	  if (id.id->text().remove('-').trimmed().length() == 10)
+	    {
+	      string.replace("$key", "isbn");
+	      string.replace
+		("$value-$size", id.id->text().remove('-').trimmed() + "-L");
+	    }
+	  else if (id.isbn13->text().remove('-').trimmed().length() == 13)
+	    {
+	      string.replace("$key", "isbn");
+	      string.replace
+		("$value-$size", id.isbn13->text().remove('-').trimmed() + "-L");
+	    }
+	  else
+	    {
+	      // this shouldn't be reached as we already checked that either
+	      // or isbn13 has a valid value before entering this if block
+	      return;
+	    }
 	}
       else
 	{
