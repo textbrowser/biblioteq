@@ -628,11 +628,12 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 {
   clear();
 
+  QString seriesTitle("");
   auto const list(m_data.split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto str(list[i]);
+      auto str(list.at(i));
 
       if(str.startsWith("010 "))
 	{
@@ -816,7 +817,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 	  if(!m_author.contains(str))
 	    {
-	      if(list[i].startsWith("100 "))
+	      if(list.at(i).startsWith("100 "))
 		m_author = str;
 	      else if(!m_author.isEmpty())
 		m_author = m_author + "\n" + str;
@@ -928,7 +929,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 
 	  QStringList subfields;
 
-	  if(list[i].startsWith("260 "))
+	  if(list.at(i).startsWith("260 "))
 	    subfields << "$b"
 		      << "$c"
 		      << "$e"
@@ -1046,30 +1047,38 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("490 ") || str.startsWith("774 "))
 	{
+	  str = str.mid(4);
+
 	  /*
+	  ** $a - Series Title
+	  ** $g - Volume Number
 	  ** $v - Volume Number
 	  */
 
-	  QString key("");
+	  QStringList subfields;
+	  auto const ind1(str.mid(0, 1));
 
-	  if(str.startsWith("490 "))
-	    key = "$v";
-	  else
-	    key = "$g";
+	  subfields << "$a" << "$g" << "$v";
 
-	  str = str.mid(4);
+	  for(int i = 0; i < subfields.size(); i++)
+	    if(str.indexOf(subfields.at(i)) > -1)
+	      {
+		str = str.mid(str.indexOf(subfields.at(i)) + 2).trimmed();
 
-	  if(str.indexOf(key) > -1)
-	    {
-	      str = str.mid(str.indexOf(key) + 2).trimmed();
+		if(str.indexOf("$") > -1)
+		  str = str.mid(0, str.indexOf("$"));
 
-	      if(str.indexOf("$") > -1)
-		str = str.mid(0, str.indexOf("$"));
+		if(subfields.at(i) == "$a")
+		  {
+		    if(ind1 == "1" && m_seriesTitle.isEmpty())
+		      m_seriesTitle = str.trimmed();
 
-	      m_volumeNumber = str.trimmed();
-	    }
-	  else
-	    m_volumeNumber.clear();
+		    if(seriesTitle.isEmpty())
+		      seriesTitle = str.trimmed();
+		  }
+		else
+		  m_volumeNumber = str.trimmed();
+	      }
 	}
       else if(str.startsWith("521 "))
 	{
@@ -1166,6 +1175,9 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	    }
 	}
     }
+
+  if(m_seriesTitle.isEmpty())
+    m_seriesTitle = seriesTitle;
 }
 
 void biblioteq_marc::parseBookZ3950Unimarc(void)
@@ -1176,7 +1188,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto str(list[i]);
+      auto str(list.at(i));
 
       if(str.startsWith("003 "))
 	m_z3950Unimarc003 = str.trimmed();
@@ -1630,7 +1642,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      auto str(list[i]);
+      auto str(list.at(i));
 
       if(str.startsWith("200 "))
 	{
