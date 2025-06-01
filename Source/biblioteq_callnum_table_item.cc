@@ -52,7 +52,7 @@ static int callnum_lt(const QString &m, const QString &n)
   //      split the characters off - lexicographic works).
   //   5. Cutter number 2.
   //   6. Year (space is required before it).
-  // (http://geography.about.com/library/congress/blhowto.htm)
+  // (https://geography.about.com/library/congress/blhowto.htm)
 
   QRegExp match1(lc_regexp);
   QRegExp match2(match1); // Copy constructor should be faster.
