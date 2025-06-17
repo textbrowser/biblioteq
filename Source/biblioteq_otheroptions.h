@@ -277,6 +277,7 @@ class biblioteq_otheroptions: public QMainWindow
   QColor availabilityColor(const QString &it) const;
   QColor itemMandatoryFieldColor(void) const;
   QColor itemQueryResultColor(void) const;
+  QColor membersMandatoryFieldColor(void) const;
 
   QMap<QPair<QString, QString>, QColor> specialValueColors(void) const
   {

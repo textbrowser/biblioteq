@@ -57,6 +57,10 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectMainwindowCanvasBackgroundColor(void)));
+  connect(m_ui.members_mandatory_field_color,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectColor(void)));
   connect(m_ui.save,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -134,10 +138,8 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
 
 QColor biblioteq_otheroptions::itemMandatoryFieldColor(void) const
 {
-  QSettings settings;
-
   auto color
-    (QColor(settings.value("otheroptions/item_mandatory_field_color").
+    (QColor(QSettings().value("otheroptions/item_mandatory_field_color").
 	    toString().remove('&').trimmed()));
 
   if(!color.isValid())
@@ -148,13 +150,23 @@ QColor biblioteq_otheroptions::itemMandatoryFieldColor(void) const
 
 QColor biblioteq_otheroptions::itemQueryResultColor(void) const
 {
-  QSettings settings;
-
-  auto color(QColor(settings.value("otheroptions/item_query_result_color").
+  auto color(QColor(QSettings().value("otheroptions/item_query_result_color").
 		    toString().remove('&').trimmed()));
 
   if(!color.isValid())
     color = QColor(162, 205, 90);
+
+  return color;
+}
+
+QColor biblioteq_otheroptions::membersMandatoryFieldColor(void) const
+{
+  auto color
+    (QColor(QSettings().value("otheroptions/members_mandatory_field_color").
+	    toString().remove('&').trimmed()));
+
+  if(!color.isValid())
+    color = QColor(255, 248, 220);
 
   return color;
 }
@@ -222,42 +234,32 @@ bool biblioteq_otheroptions::isMembersColumnVisible(const QString &text) const
 
 bool biblioteq_otheroptions::showBookReadStatus(void) const
 {
-  QSettings settings;
-
-  return settings.value("otheroptions/book_read_status", false).toBool();
+  return QSettings().value("otheroptions/book_read_status", false).toBool();
 }
 
 bool biblioteq_otheroptions::showMainTableImages(void) const
 {
-  QSettings settings;
-
-  return settings.value("show_maintable_images", true).toBool();
+  return QSettings().value("show_maintable_images", true).toBool();
 }
 
 bool biblioteq_otheroptions::showMainTableProgressDialogs(void) const
 {
-  QSettings settings;
-
-  return settings.value("show_maintable_progress_dialogs", true).toBool();
+  return QSettings().value("show_maintable_progress_dialogs", true).toBool();
 }
 
 int biblioteq_otheroptions::booksAccessionNumberIndex(void) const
 {
-  QSettings settings;
-
   return qBound
     (0,
-     settings.value("otheroptions/books_accession_number_index").toInt(),
+     QSettings().value("otheroptions/books_accession_number_index").toInt(),
      m_ui.books_accession_number->count() - 1);
 }
 
 int biblioteq_otheroptions::iconsViewColumnCount(void) const
 {
-  QSettings settings;
-
   return qBound
     (m_ui.icons_view_column_count->minimum(),
-     settings.value("otheroptions/icons_view_column_count").toInt(),
+     QSettings().value("otheroptions/icons_view_column_count").toInt(),
      m_ui.icons_view_column_count->maximum());
 }
 
@@ -432,7 +434,8 @@ void biblioteq_otheroptions::prepareMembersVisibleColumns(QTableWidget *table)
   for(int i = 0; i < table->columnCount(); i++)
     if(table->horizontalHeaderItem(i))
       {
-	auto item = new QListWidgetItem(table->horizontalHeaderItem(i)->text());
+	auto item = new QListWidgetItem
+	  (table->horizontalHeaderItem(i)->text());
 
 	if(map.contains(item->text()))
 	  item->setCheckState
@@ -696,6 +699,16 @@ void biblioteq_otheroptions::prepareSettings(void)
   biblioteq_misc_functions::assignImage
     (m_ui.main_window_canvas_background_color, color);
   m_ui.main_window_canvas_background_color->setText(color.name());
+  color = QColor
+    (settings.value("otheroptions/members_mandatory_field_color").
+     toString().remove('&').trimmed());
+
+  if(!color.isValid())
+    color = QColor(255, 248, 220);
+
+  biblioteq_misc_functions::assignImage
+    (m_ui.members_mandatory_field_color, color);
+  m_ui.members_mandatory_field_color->setText(color.name());
   m_ui.only_utf8_printable_text->setChecked
     (settings.value("otheroptions/only_utf8_printable_text", false).toBool());
   m_ui.scripts->setPlainText
@@ -720,9 +733,8 @@ void biblioteq_otheroptions::prepareShortcuts(void)
   m_ui.shortcuts->setRowCount(m_qmain->shortcuts().size());
   m_ui.shortcuts->setSortingEnabled(false);
 
-  QSettings settings;
-  QString shortcut
-    (settings.value("custom_query_favorite_shortcut").toString().trimmed());
+  auto const shortcut
+    (QSettings().value("custom_query_favorite_shortcut").toString().trimmed());
   auto map(m_qmain->shortcuts());
 
   map[tr("Custom Query Favorite")] = shortcut;
@@ -1037,6 +1049,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/item_query_result_color",
      m_ui.item_query_result_color->text().remove('&'));
+  settings.setValue
+    ("otheroptions/members_mandatory_field_color",
+     m_ui.members_mandatory_field_color->text().remove('&'));
   settings.setValue
     ("otheroptions/only_utf8_printable_text",
      m_ui.only_utf8_printable_text->isChecked());

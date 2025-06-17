@@ -1284,15 +1284,20 @@ biblioteq::biblioteq(void):QMainWindow()
   */
 
   biblioteq_misc_functions::highlightWidget
-    (userinfo_diag->m_userinfo.city, QColor(255, 248, 220));
+    (userinfo_diag->m_userinfo.city,
+     m_otherOptions->membersMandatoryFieldColor());
   biblioteq_misc_functions::highlightWidget
-    (userinfo_diag->m_userinfo.firstName, QColor(255, 248, 220));
+    (userinfo_diag->m_userinfo.firstName,
+     m_otherOptions->membersMandatoryFieldColor());
   biblioteq_misc_functions::highlightWidget
-    (userinfo_diag->m_userinfo.lastName, QColor(255, 248, 220));
+    (userinfo_diag->m_userinfo.lastName,
+     m_otherOptions->membersMandatoryFieldColor());
   biblioteq_misc_functions::highlightWidget
-    (userinfo_diag->m_userinfo.street, QColor(255, 248, 220));
+    (userinfo_diag->m_userinfo.street,
+     m_otherOptions->membersMandatoryFieldColor());
   biblioteq_misc_functions::highlightWidget
-    (userinfo_diag->m_userinfo.zip, QColor(255, 248, 220));
+    (userinfo_diag->m_userinfo.zip,
+     m_otherOptions->membersMandatoryFieldColor());
   ui.splitter->restoreState
     (settings.value("main_splitter_state").toByteArray());
   ui.splitter->setCollapsible(1, false);
@@ -2777,7 +2782,8 @@ void biblioteq::slotAddBorrower(void)
   auto const nowTime = QDateTime::currentDateTime();
 
   biblioteq_misc_functions::highlightWidget
-    (userinfo_diag->m_userinfo.memberid, QColor(255, 248, 220));
+    (userinfo_diag->m_userinfo.memberid,
+     m_otherOptions->membersMandatoryFieldColor());
   userinfo_diag->m_memberProperties.clear();
   userinfo_diag->m_userinfo.city->clear();
   userinfo_diag->m_userinfo.comments->clear();
