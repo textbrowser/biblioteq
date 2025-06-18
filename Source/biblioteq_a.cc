@@ -2794,6 +2794,7 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.firstName->clear();
   userinfo_diag->m_userinfo.generalregistrationnumber->clear();
   userinfo_diag->m_userinfo.lastName->clear();
+  userinfo_diag->m_userinfo.maximum_reserved_books->setValue(0);
   userinfo_diag->m_userinfo.memberclass->clear();
   userinfo_diag->m_userinfo.memberid->setReadOnly(false);
   userinfo_diag->m_userinfo.memberid->setText
