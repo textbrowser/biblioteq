@@ -4550,6 +4550,24 @@ void biblioteq::slotOpenPDFFiles(void)
 void biblioteq::slotOtherOptionsSaved(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.city,
+     m_otherOptions->membersMandatoryFieldColor());
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.firstName,
+     m_otherOptions->membersMandatoryFieldColor());
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.lastName,
+     m_otherOptions->membersMandatoryFieldColor());
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.memberid,
+     m_otherOptions->membersMandatoryFieldColor());
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.street,
+     m_otherOptions->membersMandatoryFieldColor());
+  biblioteq_misc_functions::highlightWidget
+    (userinfo_diag->m_userinfo.zip,
+     m_otherOptions->membersMandatoryFieldColor());
 
   for(int i = 1; i < ui.tab->count(); i++)
     {
