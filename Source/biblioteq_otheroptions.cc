@@ -61,6 +61,10 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSelectColor(void)));
+  connect(m_ui.reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(m_ui.save,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -397,6 +401,8 @@ void biblioteq_otheroptions::prepareIcons(void)
 	(QIcon::fromTheme("window-close", QIcon(":/16x16/cancel.png")));
       m_ui.custom_query_reset->setIcon
 	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
+      m_ui.reset->setIcon
+	(QIcon::fromTheme("edit-reset", QIcon(":/16x16/reset.png")));
       m_ui.save->setIcon
 	(QIcon::fromTheme("document-save", QIcon(":/16x16/ok.png")));
     }
@@ -406,6 +412,7 @@ void biblioteq_otheroptions::prepareIcons(void)
 
       m_ui.close->setIcon(QIcon(":/16x16/cancel.png"));
       m_ui.custom_query_reset->setIcon(QIcon(":/16x16/reset.png"));
+      m_ui.reset->setIcon(QIcon(":/16x16/reset.png"));
       m_ui.save->setIcon(QIcon(":/16x16/ok.png"));
     }
 }
@@ -893,6 +900,85 @@ void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
   m_ui.main_window_canvas_background_color->setText(color.name());
 }
 
+void biblioteq_otheroptions::slotReset(void)
+{
+  for(int i = 0; i < m_ui.availability_color->rowCount(); i++)
+    {
+      auto widget = m_ui.availability_color->cellWidget
+	(i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR));
+
+      if(widget)
+	{
+	  auto pushButton = widget->findChild<QPushButton *> ();
+
+	  if(pushButton)
+	    {
+	      biblioteq_misc_functions::assignImage
+		(pushButton, QColor(Qt::white));
+	      pushButton->setText(QColor(Qt::white).name());
+	    }
+	}
+    }
+
+  for(int i = 0; i < m_ui.date_format->rowCount(); i++)
+    {
+      auto item = m_ui.date_format->item
+	(i, static_cast<int> (ItemsColumns::DATE_FORMAT));
+
+      if(item)
+	item->setText(biblioteq::s_databaseDateFormat);
+    }
+
+  {
+    QColor const color(255, 248, 220);
+
+    biblioteq_misc_functions::assignImage
+      (m_ui.item_mandatory_field_color, color);
+    biblioteq_misc_functions::assignImage
+      (m_ui.members_mandatory_field_color, color);
+    m_ui.item_mandatory_field_color->setText(color.name());
+    m_ui.members_mandatory_field_color->setText(color.name());
+  }
+
+  {
+    QColor const color(162, 205, 90);
+
+    biblioteq_misc_functions::assignImage(m_ui.item_query_result_color, color);
+    m_ui.item_query_result_color->setText(color.name());
+  }
+
+  {
+    QColor const color(Qt::white);
+
+    biblioteq_misc_functions::assignImage
+      (m_ui.main_window_canvas_background_color, color);
+    m_ui.main_window_canvas_background_color->setText(color.name());
+  }
+
+  m_ui.availability_color->resizeColumnToContents
+    (static_cast<int> (ItemsColumns::ITEM_TYPE));
+  m_ui.availability_color->resizeRowsToContents();
+  m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.availability_colors->setChecked(false);
+  m_ui.book_read_status->setChecked(false);
+  m_ui.date_format->resizeColumnToContents
+    (static_cast<int> (ItemsColumns::ITEM_TYPE));
+  m_ui.date_format->resizeRowsToContents();
+  m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.display_icon_set->setCurrentIndex(0);
+  m_ui.icons_view_column_count->setValue(5);
+  m_ui.isbn10_display_format->setCurrentIndex(0);
+  m_ui.isbn13_display_format->setCurrentIndex(0);
+  m_ui.only_utf8_printable_text->setChecked(false);
+  m_ui.show_maintable_images->setChecked(true);
+  m_ui.show_maintable_progress_dialogs->setChecked(true);
+  m_ui.show_maintable_tooltips->setChecked(false);
+  m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.special_value_colors_check_box->setChecked(false);
+  m_ui.style_override->clear();
+  slotResetCustomQueryColors();
+}
+
 void biblioteq_otheroptions::slotResetCustomQueryColors(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -909,7 +995,9 @@ void biblioteq_otheroptions::slotResetCustomQueryColors(void)
 	}
     }
 
+  m_ui.custom_query->resizeColumnsToContents();
   m_ui.custom_query->setSortingEnabled(true);
+  m_ui.custom_query->sortByColumn(0, Qt::AscendingOrder);
   QApplication::restoreOverrideCursor();
 }
 

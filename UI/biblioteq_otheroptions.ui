@@ -1080,6 +1080,26 @@
        <number>5</number>
       </property>
       <item>
+       <widget class="biblioteq_animated_push_button" name="reset">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;Reset</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+S</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -1132,19 +1152,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
      </layout>
     </item>
    </layout>
@@ -1187,6 +1194,7 @@
   <tabstop>scripts</tabstop>
   <tabstop>shortcuts</tabstop>
   <tabstop>books_accession_number</tabstop>
+  <tabstop>reset</tabstop>
   <tabstop>save</tabstop>
   <tabstop>close</tabstop>
  </tabstops>
