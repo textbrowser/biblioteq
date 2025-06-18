@@ -968,10 +968,29 @@ void biblioteq_otheroptions::slotReset(void)
     m_ui.main_window_canvas_background_color->setText(color.name());
   }
 
+  {
+    auto const list
+      (m_ui.shortcuts->findItems(tr("Custom Query Favorite"),
+				 Qt::MatchExactly));
+
+    if(list.value(0))
+      {
+	auto item = m_ui.shortcuts->item(list.value(0)->row(), 1);
+
+	if(item)
+	  {
+	    item->setText("");
+	    item->setToolTip(item->text());
+	  }
+      }
+  }
+
   prepareSpecialColors(true);
+  m_ui.availability_color->clearSelection();
   m_ui.availability_color->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
   m_ui.availability_color->resizeRowsToContents();
+  m_ui.availability_color->scrollToTop();
   m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
   m_ui.availability_colors->setChecked(false);
   m_ui.book_read_status->setChecked(false);
@@ -980,9 +999,11 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.books_accession_number->setCurrentIndex
     (m_ui.books_accession_number->currentIndex() < 0 ?
      0 : m_ui.books_accession_number->currentIndex());
+  m_ui.date_format->clearSelection();
   m_ui.date_format->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
   m_ui.date_format->resizeRowsToContents();
+  m_ui.date_format->scrollToTop();
   m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
   m_ui.display_icon_set->setCurrentIndex(0);
   m_ui.generated_letter->clear();
@@ -994,8 +1015,12 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.show_maintable_images->setChecked(true);
   m_ui.show_maintable_progress_dialogs->setChecked(true);
   m_ui.show_maintable_tooltips->setChecked(false);
+  m_ui.shortcuts->clearSelection();
   m_ui.shortcuts->resizeColumnsToContents();
+  m_ui.shortcuts->scrollToTop();
   m_ui.shortcuts->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.special_value_colors->clearSelection();
+  m_ui.special_value_colors->scrollToTop();
   m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
   m_ui.special_value_colors_check_box->setChecked(false);
   m_ui.sqlite_reminders->clear();
@@ -1006,6 +1031,7 @@ void biblioteq_otheroptions::slotReset(void)
 void biblioteq_otheroptions::slotResetCustomQueryColors(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.custom_query->clearSelection();
   m_ui.custom_query->setSortingEnabled(false);
 
   for(int i = 0; i < m_ui.custom_query->rowCount(); i++)
@@ -1020,6 +1046,7 @@ void biblioteq_otheroptions::slotResetCustomQueryColors(void)
     }
 
   m_ui.custom_query->resizeColumnsToContents();
+  m_ui.custom_query->scrollToTop();
   m_ui.custom_query->setSortingEnabled(true);
   m_ui.custom_query->sortByColumn(0, Qt::AscendingOrder);
   QApplication::restoreOverrideCursor();
