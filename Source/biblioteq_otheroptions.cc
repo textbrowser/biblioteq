@@ -777,7 +777,7 @@ void biblioteq_otheroptions::prepareShortcuts(void)
   QApplication::restoreOverrideCursor();
 }
 
-void biblioteq_otheroptions::prepareSpecialColors(void)
+void biblioteq_otheroptions::prepareSpecialColors(const bool reset)
 {
   QSettings settings;
 
@@ -797,6 +797,9 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
 	    (qUtf8Printable(settings.
 			    value(QString("special_value_colors_%1_%2").
 				  arg(i).arg(j)).toString().trimmed()));
+
+	  if(reset)
+	    item->setText("");
 
 	  if(j == static_cast<int> (SpecialColorsColumns::CellText))
 	    text = item->text();
@@ -825,7 +828,9 @@ void biblioteq_otheroptions::prepareSpecialColors(void)
 
   m_ui.special_value_colors->setSortingEnabled(true);
   m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
-  m_ui.special_value_colors_check_box->setChecked
+  reset ?
+    (void) 0 :
+    m_ui.special_value_colors_check_box->setChecked
     (settings.value("otheroptions/enable_special_values_colors").toBool());
 }
 
@@ -929,6 +934,14 @@ void biblioteq_otheroptions::slotReset(void)
 	item->setText(biblioteq::s_databaseDateFormat);
     }
 
+  for(int i = 0; i < m_ui.members_visible_columns->count(); i++)
+    {
+      auto item = m_ui.members_visible_columns->item(i);
+
+      if(item)
+	item->setCheckState(Qt::Checked);
+    }
+
   {
     QColor const color(255, 248, 220);
 
@@ -955,26 +968,37 @@ void biblioteq_otheroptions::slotReset(void)
     m_ui.main_window_canvas_background_color->setText(color.name());
   }
 
+  prepareSpecialColors(true);
   m_ui.availability_color->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
   m_ui.availability_color->resizeRowsToContents();
   m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
   m_ui.availability_colors->setChecked(false);
   m_ui.book_read_status->setChecked(false);
+  m_ui.books_accession_number->setCurrentIndex
+    (m_ui.books_accession_number->findText(tr("Numeric")));
+  m_ui.books_accession_number->setCurrentIndex
+    (m_ui.books_accession_number->currentIndex() < 0 ?
+     0 : m_ui.books_accession_number->currentIndex());
   m_ui.date_format->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
   m_ui.date_format->resizeRowsToContents();
   m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
   m_ui.display_icon_set->setCurrentIndex(0);
+  m_ui.generated_letter->clear();
   m_ui.icons_view_column_count->setValue(5);
   m_ui.isbn10_display_format->setCurrentIndex(0);
   m_ui.isbn13_display_format->setCurrentIndex(0);
   m_ui.only_utf8_printable_text->setChecked(false);
+  m_ui.scripts->clear();
   m_ui.show_maintable_images->setChecked(true);
   m_ui.show_maintable_progress_dialogs->setChecked(true);
   m_ui.show_maintable_tooltips->setChecked(false);
+  m_ui.shortcuts->resizeColumnsToContents();
+  m_ui.shortcuts->sortByColumn(0, Qt::AscendingOrder);
   m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
   m_ui.special_value_colors_check_box->setChecked(false);
+  m_ui.sqlite_reminders->clear();
   m_ui.style_override->clear();
   slotResetCustomQueryColors();
 }
