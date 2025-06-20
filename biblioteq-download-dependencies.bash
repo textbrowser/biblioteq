@@ -42,6 +42,7 @@ then
     rm -fr pgsql
 else
     echo "Cannot read $postgresql."
+
     rc=1
 fi
 
