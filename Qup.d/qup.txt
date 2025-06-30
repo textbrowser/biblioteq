@@ -108,9 +108,9 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 [General]
 
-file = postgresql_create_schema.sql
-file = postgresql_destroy_schema.sql
-file = postgresql_update_schema.sql
+file = postgresql-create-schema.sql
+file = postgresql-destroy-schema.sql
+file = postgresql-update-schema.sql
 file_destination = SQL
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
