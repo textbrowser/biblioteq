@@ -46,7 +46,7 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
   m_ui.setupUi(this);
   m_ui.digests->setEnabled(false);
   m_ui.digests->setToolTip
-    (tr("Requires administrator or librarian permissions."));
+    (tr("Function requires administrator or librarian permissions."));
   m_ui.files_table->setColumnHidden(static_cast<int> (Columns::MYOID), true);
   m_ui.pages->setValue(QSettings().value("filesPerPage", 500).toInt());
   connect(m_ui.close,
@@ -100,8 +100,7 @@ void biblioteq_files::changeEvent(QEvent *event)
 
 void biblioteq_files::prepareIcons(void)
 {
-  QSettings setting;
-  auto const index = setting.value
+  auto const index = QSettings().value
     ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
@@ -130,7 +129,7 @@ void biblioteq_files::reset(void)
   QTimer::singleShot(1500, this, SLOT(slotEnableWidgets(void)));
   m_ui.digests->setEnabled(false);
   m_ui.digests->setToolTip
-    (tr("Requires administrator or librarian permissions."));
+    (tr("Function requires administrator or librarian permissions."));
   m_ui.files_table->setRowCount(0);
   disconnect(m_ui.page,
 	     SIGNAL(valueChanged(int)),
@@ -256,7 +255,7 @@ void biblioteq_files::slotEnableWidgets(void)
 	(void) 0;
       m_ui.digests->setEnabled(false);
       m_ui.digests->setToolTip
-	(tr("Requires administrator or librarian permissions."));
+	(tr("Function requires administrator or librarian permissions."));
       return;
     }
 
@@ -266,7 +265,7 @@ void biblioteq_files::slotEnableWidgets(void)
   m_ui.digests->setToolTip
     (m_ui.digests->isEnabled() ?
      tr("Compute digests of selected file(s).") :
-     tr("Requires administrator or librarian permissions."));
+     tr("Function requires administrator or librarian permissions."));
 }
 
 void biblioteq_files::slotExport(void)
@@ -364,7 +363,6 @@ void biblioteq_files::slotFilesDoubleClicked(QTableWidgetItem *item)
 
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) ||	\
     defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
-
   auto const index
     (m_ui.files_table->selectionModel()->
      selectedRows(static_cast<int> (Columns::FILE)).value(0));
