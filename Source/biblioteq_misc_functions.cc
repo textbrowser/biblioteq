@@ -28,8 +28,10 @@
 #include "biblioteq.h"
 #include "biblioteq_misc_functions.h"
 
+#include <QCryptographicHash>
 #include <QDate>
 #include <QDir>
+#include <QFile>
 #include <QProgressDialog>
 #include <QSettings>
 #include <QtMath>
@@ -1315,6 +1317,44 @@ QStringList biblioteq_misc_functions::getVideoGameRatings
     errorstr = query.lastError().text();
 
   return ratings;
+}
+
+bool biblioteq_misc_functions::cryptographicDigestOfFile
+(QByteArray &data, QByteArray &digest, const QString &fileName)
+{
+  data.clear();
+  digest.clear();
+
+  if(fileName.trimmed().isEmpty())
+    return false;
+
+  QFile file(fileName);
+
+  if(file.open(QIODevice::ReadOnly))
+    {
+      QByteArray bytes(4096, 0);
+      QCryptographicHash hash(QCryptographicHash::Sha3_512);
+      auto const maximum = static_cast<qint64> (bytes.size());
+      qint64 rc = 0;
+
+      while((rc = file.read(bytes.data(), maximum)) > 0)
+	{
+	  data.append(bytes.mid(0, static_cast<int> (rc)));
+	  hash.addData(bytes.mid(0, static_cast<int> (rc)));
+	}
+
+      if(file.error() == QFileDevice::NoError)
+	{
+	  data = qCompress(data, 9);
+	  digest = hash.result();
+	}
+      else
+	data.clear();
+
+      return file.error() == QFileDevice::NoError;
+    }
+
+  return false;
 }
 
 bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,

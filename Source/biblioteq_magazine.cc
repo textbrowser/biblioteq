@@ -40,7 +40,6 @@
 
 #include <QActionGroup>
 #include <QAuthenticator>
-#include <QCryptographicHash>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QNetworkAccessManager>
@@ -528,10 +527,13 @@ void biblioteq_magazine::closeEvent(QCloseEvent *event)
   qmain->removeMagazine(this);
 }
 
-void biblioteq_magazine::createFile(const QByteArray &digest,
-				    const QByteArray &bytes,
+void biblioteq_magazine::createFile(const QByteArray &bytes,
+				    const QByteArray &digest,
 				    const QString &fileName) const
 {
+  if(fileName.trimmed().isEmpty())
+    return;
+
   QSqlQuery query(qmain->getDB());
 
   if(qmain->getDB().driverName() != "QSQLITE")
@@ -2069,33 +2071,12 @@ void biblioteq_magazine::slotAttachFiles(void)
 
       for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
-	  QFile file;
-	  auto const fileName(files.at(i));
+	  QByteArray data;
+	  QByteArray digest;
 
-	  file.setFileName(fileName);
-
-	  if(file.open(QIODevice::ReadOnly))
-	    {
-	      QByteArray bytes(4096, 0);
-	      QByteArray total;
-	      QCryptographicHash digest(QCryptographicHash::Sha3_512);
-	      qint64 rc = 0;
-
-	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
-		{
-		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
-		  total.append(bytes.mid(0, static_cast<int> (rc)));
-		}
-
-	      if(!total.isEmpty())
-		{
-		  total = qCompress(total, 9);
-		  createFile
-		    (digest.result(), total, QFileInfo(fileName).fileName());
-		}
-	    }
-
-	  file.close();
+	  if(biblioteq_misc_functions::
+	     cryptographicDigestOfFile(data, digest, files.at(i)))
+	    createFile(data, digest, QFileInfo(files.at(i)).fileName());
 
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
@@ -2284,14 +2265,14 @@ void biblioteq_magazine::slotExportFiles(void)
 
 	  if(query.exec() && query.next())
 	    {
-	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
+	      QFile file(dialog.selectedFiles().value(0) +
+			 QDir::separator() +
 			 query.value(1).toString().trimmed());
 
 	      if(file.open(QIODevice::WriteOnly))
 		file.write(qUncompress(query.value(0).toByteArray()));
 
 	      file.flush();
-	      file.close();
 	    }
 
 	  if(i + 1 <= progress.maximum())

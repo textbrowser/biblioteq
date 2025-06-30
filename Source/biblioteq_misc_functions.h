@@ -112,6 +112,9 @@ class biblioteq_misc_functions
 				      QString &);
   static QStringList getVideoGamePlatforms(const QSqlDatabase &, QString &);
   static QStringList getVideoGameRatings(const QSqlDatabase &, QString &);
+  static bool cryptographicDigestOfFile(QByteArray &data,
+					QByteArray &digest,
+					const QString &fileName);
   static bool dnt(const QSqlDatabase &, const QString &, QString &);
   static bool getMemberMatch(const QString &,
 			     const QString &,

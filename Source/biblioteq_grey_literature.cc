@@ -34,7 +34,6 @@
 #include "biblioteq_grey_literature.h"
 #include "biblioteq_pdfreader.h"
 
-#include <QCryptographicHash>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QSettings>
@@ -371,6 +370,9 @@ void biblioteq_grey_literature::createFile(const QByteArray &bytes,
 					   const QByteArray &digest,
 					   const QString &fileName) const
 {
+  if(fileName.trimmed().isEmpty())
+    return;
+
   QSqlQuery query(qmain->getDB());
 
   if(qmain->getDB().driverName() != "QSQLITE")
@@ -991,33 +993,12 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
       for(int i = 0; i < files.size() && !progress.wasCanceled(); i++)
 	{
-	  QFile file;
-	  auto const fileName(files.at(i));
+	  QByteArray data;
+	  QByteArray digest;
 
-	  file.setFileName(fileName);
-
-	  if(file.open(QIODevice::ReadOnly))
-	    {
-	      QByteArray bytes(4096, 0);
-	      QByteArray total;
-	      QCryptographicHash digest(QCryptographicHash::Sha3_512);
-	      qint64 rc = 0;
-
-	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
-		{
-		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
-		  total.append(bytes.mid(0, static_cast<int> (rc)));
-		}
-
-	      if(!total.isEmpty())
-		{
-		  total = qCompress(total, 9);
-		  createFile
-		    (total, digest.result(), QFileInfo(fileName).fileName());
-		}
-	    }
-
-	  file.close();
+	  if(biblioteq_misc_functions::
+	     cryptographicDigestOfFile(data, digest, files.at(i)))
+	    createFile(data, digest, QFileInfo(files.at(i)).fileName());
 
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);

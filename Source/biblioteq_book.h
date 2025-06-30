@@ -103,8 +103,8 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
     (const QString &downloadType);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
-  void createFile(const QByteArray &digest,
-		  const QByteArray &bytes,
+  void createFile(const QByteArray &bytes,
+		  const QByteArray &digest,
 		  const QString &fileName) const;
   void createOpenLibraryDialog(void);
   void createSRUDialog(void);

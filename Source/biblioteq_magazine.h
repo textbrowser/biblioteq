@@ -102,8 +102,8 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   bool m_duplicate;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
-  void createFile(const QByteArray &digest,
-		  const QByteArray &bytes,
+  void createFile(const QByteArray &bytes,
+		  const QByteArray &digest,
 		  const QString &fileName) const;
   void createSRUDialog(void);
   void populateFiles(void);
