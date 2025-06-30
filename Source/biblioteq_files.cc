@@ -217,9 +217,10 @@ void biblioteq_files::slotComputeDigests(void)
 	      QByteArray bytes(4096, 0);
 	      QCryptographicHash digest(QCryptographicHash::Sha3_512);
 	      QSqlQuery query(m_biblioteq->getDB());
+	      auto const maximum = static_cast<qint64> (bytes.size());
 	      qint64 rc = 0;
 
-	      while((rc = buffer.read(bytes.data(), bytes.size())) > 0)
+	      while((rc = buffer.read(bytes.data(), maximum)) > 0)
 		digest.addData(bytes.mid(0, static_cast<int> (rc)));
 
 	      query.prepare
