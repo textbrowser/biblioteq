@@ -131,6 +131,23 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>June 30, 2025</p>
+	<ul>
+	  <li>Initialize Maximum Reserved Books in Create New Member.
+	    Otherwise, an incorrect reminder will be displayed.</li>
+	  <li>New series_title column in the book table. Please revise
+	    your databases! Open Library query: subtitle field, if available.
+	    SRU query: datafield 460 and subfield t, if available.
+	    SRU query: datafield 490 and subfield a, if available.
+	    Z39.50 MARC21 query: datafield 490 and subfield a, if available.
+	    Z39.50 UNIMARC query: datafield 461 and subfield t, if available.
+	    GitHub ticket #404.</li>
+	  <li>Other Options: new Members -> Mandatory Field Color.</li>
+	  <li>Other Options: new Reset.</li>
+	  <li>Retain current text in
+	    biblioteq_misc_functions::sortCombinationBox().</li>
+	  <li>SRU Library of Congress: version 2.0 in biblioteq.conf.</li>
+	</ul>
 	<p>May 26, 2025</p>
 	<ul>
 	  <li>New SHA3-512 computation machine in Files Browser.</li>
