@@ -133,6 +133,7 @@ int main(int argc, char *argv[])
   settings.remove("column_settings_cleared_v6_51");
   settings.remove("entries_per_page");
   settings.remove("filesPerPage");
+  settings.remove("main_window_geometry");
   settings.remove("mainwindowState");
   settings.remove("otheroptions/book_publication_date_format");
   settings.remove("otheroptions/cd_publication_date_format");

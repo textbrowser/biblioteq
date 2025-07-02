@@ -1629,9 +1629,9 @@ void biblioteq::readConfigurationFile(void)
   ui.actionShowGrid->setChecked
     (settings.value("show_table_grid", false).toBool());
 
-  if(settings.contains("main_window_geometry"))
+  if(settings.contains("mainwindow_geometry"))
     {
-      restoreGeometry(settings.value("main_window_geometry").toByteArray());
+      restoreGeometry(settings.value("mainwindow_geometry").toByteArray());
       ui.actionPreserveGeometry->setChecked(true);
     }
   else
@@ -5943,10 +5943,10 @@ void biblioteq::slotSaveConfig(void)
   if(ui.actionPreserveGeometry->isChecked())
     {
       if(!isFullScreen())
-	settings.setValue("main_window_geometry", saveGeometry());
+	settings.setValue("mainwindow_geometry", saveGeometry());
     }
   else
-    settings.remove("main_window_geometry");
+    settings.remove("mainwindow_geometry");
 
   if(m_db.isOpen())
     {
