@@ -41,6 +41,17 @@
 #include <iostream>
 #include <limits>
 
+#ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
+#include <poppler-version.h>
+#endif
+
+#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
+extern "C"
+{
+#include <yaz/yaz-version.h>
+}
+#endif
+
 #ifdef Q_OS_ANDROID
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
 #include <QJniObject>
@@ -50,17 +61,6 @@
 #ifdef Q_OS_MACOS
 #include "CocoaInitializer.h"
 #endif
-
-#ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
-#include <poppler-version.h>
-#endif
-
-extern "C"
-{
-#ifdef BIBLIOTEQ_LINKED_WITH_YAZ
-#include <yaz/yaz-version.h>
-#endif
-}
 
 #include "biblioteq.h"
 #include "biblioteq_bgraphicsscene.h"
@@ -167,9 +167,8 @@ int main(int argc, char *argv[])
        biblioteq::s_locale == "ru_RU"))
     biblioteq::s_locale = QLocale::system().name();
 
-  if(biblioteq::s_appTranslator->load(":/biblioteq_" +
-				      biblioteq::s_locale +
-				      ".qm"))
+  if(biblioteq::
+     s_appTranslator->load(":/biblioteq_" + biblioteq::s_locale + ".qm"))
     {
       if(qapplication.installTranslator(biblioteq::s_appTranslator))
 	{
@@ -183,7 +182,8 @@ int main(int argc, char *argv[])
 	}
     }
 
-  if(biblioteq::s_qtTranslator->load(":/qtbase_" + biblioteq::s_locale + ".qm"))
+  if(biblioteq::
+     s_qtTranslator->load(":/qtbase_" + biblioteq::s_locale + ".qm"))
     qapplication.installTranslator(biblioteq::s_qtTranslator);
 
   biblioteq biblioteq;
