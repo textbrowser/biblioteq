@@ -7023,8 +7023,7 @@ void biblioteq::slotShowHistory(void)
 	      if(record.fieldName(j).contains("date"))
 		{
 		  auto const date
-		    (QDate::fromString(query.value(j).toString().
-				       trimmed(),
+		    (QDate::fromString(query.value(j).toString().trimmed(),
 				       s_databaseDateFormat));
 
 		  str = date.toString(Qt::ISODate);
