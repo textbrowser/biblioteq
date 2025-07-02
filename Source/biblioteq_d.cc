@@ -178,7 +178,7 @@ bool biblioteq::showMainTableImages(void) const
 
 void biblioteq::addItemWindowToTab(QMainWindow *window)
 {
-  if(!QSettings().value("tabbedItemWindows", true).toBool() || !window)
+  if(!QSettings().value("tabbed_item_windows", true).toBool() || !window)
     {
       if(window)
 	{
@@ -921,7 +921,7 @@ void biblioteq::slotActionToggled(void)
     QSettings().setValue("center_child_windows", action->isChecked());
   else if(action == ui.actionDisplay_Tab_Bar)
     {
-      QSettings().setValue("showTabBar", action->isChecked());
+      QSettings().setValue("show_tab_bar", action->isChecked());
       ui.tab->tabBar()->setVisible(action->isChecked());
     }
   else if(action == ui.actionDownload_Version_Information)
@@ -1610,7 +1610,7 @@ void biblioteq::slotTabClosed(int index)
 
 void biblioteq::slotTabbedItemWindows(bool state)
 {
-  QSettings().setValue("tabbedItemWindows", state);
+  QSettings().setValue("tabbed_item_windows", state);
 }
 
 void biblioteq::slotTableFindNext(void)

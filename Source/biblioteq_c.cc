@@ -1656,7 +1656,7 @@ void biblioteq::readConfigurationFile(void)
     (settings.value("automatically_populate_members_list_on_display", true).
      toBool());
   ui.actionTabbed_Item_Windows->setChecked
-    (settings.value("tabbedItemWindows", true).toBool());
+    (settings.value("tabbed_item_windows", true).toBool());
 
   QHash<QString, QString> states;
 
@@ -5998,7 +5998,7 @@ void biblioteq::slotSaveConfig(void)
        ui.table->
        friendlyStates().value(ui.table->friendlyStates().keys().at(i)));
 
-  settings.setValue("tearOffMenus", ui.actionTearOffMenus->isChecked());
+  settings.setValue("tear_off_menus", ui.actionTearOffMenus->isChecked());
 }
 
 void biblioteq::slotSaveUser(void)

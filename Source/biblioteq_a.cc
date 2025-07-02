@@ -132,6 +132,8 @@ int main(int argc, char *argv[])
   settings.remove("automatically_resize_columns");
   settings.remove("column_settings_cleared_v6_51");
   settings.remove("entries_per_page");
+  settings.remove("filesPerPage");
+  settings.remove("mainwindowState");
   settings.remove("otheroptions/book_publication_date_format");
   settings.remove("otheroptions/cd_publication_date_format");
   settings.remove("otheroptions/dvd_publication_date_format");
@@ -139,7 +141,10 @@ int main(int argc, char *argv[])
   settings.remove("otheroptions/magazine_publication_date_format");
   settings.remove("otheroptions/photograph_publication_date_format");
   settings.remove("otheroptions/videogame_publication_date_format");
+  settings.remove("showTabBar");
   settings.remove("sqlite_db");
+  settings.remove("tabbedItemWindows");
+  settings.remove("tearOffMenus");
   biblioteq::s_appTranslator = new QTranslator(nullptr);
   biblioteq::s_locale = settings.value("locale").toString();
   biblioteq::s_qtTranslator = new QTranslator(nullptr);
@@ -1104,9 +1109,9 @@ biblioteq::biblioteq(void):QMainWindow()
     (settings.value("center_child_windows", true).toBool());
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDisplay_Tab_Bar->setChecked
-    (settings.value("showTabBar", true).toBool());
+    (settings.value("show_tab_bar", true).toBool());
   ui.actionTearOffMenus->setChecked
-    (settings.value("tearOffMenus", true).toBool());
+    (settings.value("tear_off_menus", true).toBool());
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
   ui.tab->tabBar()->setVisible(ui.actionDisplay_Tab_Bar->isChecked());
@@ -2429,8 +2434,8 @@ void biblioteq::showMain(void)
 
   bb.pages->setValue(settings.value("membersPerPage", 500).toInt());
 
-  if(settings.contains("mainwindowState"))
-    restoreState(settings.value("mainwindowState").toByteArray());
+  if(settings.contains("mainwindow_state"))
+    restoreState(settings.value("mainwindow_state").toByteArray());
 
   readGlobalConfiguration();
 
@@ -3724,7 +3729,7 @@ void biblioteq::slotExit(void)
   else
     lock.unlock();
 
-  QSettings().setValue("mainwindowState", saveState());
+  QSettings().setValue("mainwindow_state", saveState());
   slotLastWindowClosed();
   quit();
 }

@@ -48,7 +48,7 @@ biblioteq_files::biblioteq_files(biblioteq *biblioteq):QMainWindow(biblioteq)
   m_ui.digests->setToolTip
     (tr("Function requires administrator or librarian permissions."));
   m_ui.files_table->setColumnHidden(static_cast<int> (Columns::MYOID), true);
-  m_ui.pages->setValue(QSettings().value("filesPerPage", 500).toInt());
+  m_ui.pages->setValue(QSettings().value("files_per_page", 500).toInt());
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -416,7 +416,7 @@ void biblioteq_files::slotPagesChanged(int value)
 {
   QSettings settings;
 
-  settings.setValue("filesPerPage", value);
+  settings.setValue("files_per_page", value);
 }
 
 void biblioteq_files::slotRefresh(void)
