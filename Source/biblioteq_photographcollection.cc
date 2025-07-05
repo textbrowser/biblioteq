@@ -1352,9 +1352,9 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
     return;
   else
     {
-      if(!qobject_cast<QAction *> (sender()))
-	if(pc.graphicsView->scene()->selectedItems().isEmpty())
-	  return;
+      if(!qobject_cast<QAction *> (sender()) &&
+	 pc.graphicsView->scene()->selectedItems().isEmpty())
+	return;
     }
 
   QFileDialog dialog(this);
@@ -1403,7 +1403,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 	   this);
       else
 	/*
-	** Export the selected photograp(s).
+	** Export the selected photograph(s).
 	*/
 
 	biblioteq_misc_functions::exportPhotographs

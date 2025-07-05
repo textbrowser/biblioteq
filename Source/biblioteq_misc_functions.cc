@@ -2487,12 +2487,6 @@ void biblioteq_misc_functions::exportPhotographs
   progress.repaint();
   QApplication::processEvents();
 
-  QSqlQuery query(db);
-
-  query.prepare("SELECT image FROM photograph WHERE "
-		"collection_oid = ? AND image IS NOT NULL AND myoid = ?");
-  query.bindValue(0, collectionOid);
-
   for(int i = 0; i < items.size(); i++)
     {
       auto item = items.at(i);
@@ -2503,7 +2497,12 @@ void biblioteq_misc_functions::exportPhotographs
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      query.bindValue(1, item->data(0).toString());
+      QSqlQuery query(db);
+
+      query.prepare("SELECT image FROM photograph WHERE "
+		    "collection_oid = ? AND image IS NOT NULL AND myoid = ?");
+      query.addBindValue(collectionOid);
+      query.addBindValue(item->data(0).toString());
       progress.repaint();
       QApplication::processEvents();
 
@@ -2522,9 +2521,11 @@ void biblioteq_misc_functions::exportPhotographs
 
 	  if(!image.isNull())
 	    image.save
-	      (destinationPath + QDir::separator() +
+	      (destinationPath +
+	       QDir::separator() +
 	       QString("%1_%2.%3").arg(id).arg(i + 1).arg(format).toLower(),
-	       format.toLatin1().constData(), 100);
+	       format.toLatin1().constData(),
+	       100);
 	}
     }
 }
@@ -2556,7 +2557,7 @@ void biblioteq_misc_functions::exportPhotographs
     {
       query.prepare("SELECT image FROM photograph WHERE "
 		    "collection_oid = ? AND image IS NOT NULL");
-      query.bindValue(0, collectionOid);
+      query.addBindValue(collectionOid);
     }
   else
     {
@@ -2567,7 +2568,7 @@ void biblioteq_misc_functions::exportPhotographs
 		 "OFFSET %2").
 	 arg(photographsPerPage).
 	 arg(photographsPerPage * (pageOffset - 1)));
-      query.bindValue(0, collectionOid);
+      query.addBindValue(collectionOid);
     }
 
   if(query.exec())
@@ -2608,9 +2609,11 @@ void biblioteq_misc_functions::exportPhotographs
 	    {
 	      i += 1;
 	      image.save
-		(destinationPath + QDir::separator() +
+		(destinationPath +
+		 QDir::separator() +
 		 QString("%1_%2.%3").arg(id).arg(i).arg(format).toLower(),
-		 format.toLatin1().constData(), 100);
+		 format.toLatin1().constData(),
+		 100);
 	    }
 	}
     }
