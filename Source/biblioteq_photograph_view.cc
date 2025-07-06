@@ -122,20 +122,14 @@ void biblioteq_photograph_view::slotRotateRight(void)
 
 void biblioteq_photograph_view::slotSave(void)
 {
-  QGraphicsPixmapItem *item = nullptr;
-
-  if(scene() && scene()->items().isEmpty() == false)
-    item = qgraphicsitem_cast<QGraphicsPixmapItem *> (scene()->items().at(0));
-
-  if(item)
-    emit save
+  emit save
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-      (item->pixmap().toImage().transformed(QTransform().rotate(m_degrees),
-					    Qt::SmoothTransformation),
+    (m_image.transformed(QTransform().rotate(m_degrees),
+			 Qt::SmoothTransformation),
 #else
-      (item->pixmap().toImage().transformed(QMatrix().rotate(m_degrees),
-					    Qt::SmoothTransformation),
+    (m_image.transformed(QMatrix().rotate(m_degrees),
+			 Qt::SmoothTransformation),
 #endif
-       m_format,
-       m_oid);
+     m_format,
+     m_oid);
 }
