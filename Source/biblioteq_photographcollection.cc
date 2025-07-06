@@ -2551,11 +2551,17 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 		  (list.at(i));
 
 		if(item)
-		  item->setPixmap
-		    (QPixmap::
-		     fromImage(image.scaled(biblioteq::s_noImageResize,
-					    Qt::KeepAspectRatio,
-					    Qt::SmoothTransformation)));
+		  {
+		    item->setPixmap
+		      (QPixmap::
+		       fromImage(image.scaled(biblioteq::s_noImageResize,
+					      Qt::KeepAspectRatio,
+					      Qt::SmoothTransformation)));
+		    pc.thumbnail_item->m_image = item->pixmap().toImage();
+		    pc.thumbnail_item->update();
+		    photo.thumbnail_item->m_image = item->pixmap().toImage();
+		    photo.thumbnail_item->update();
+		  }
 
 		break;
 	      }

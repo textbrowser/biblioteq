@@ -400,3 +400,14 @@ void biblioteq_image_drop_site::setReadOnly(const bool readOnly)
   m_readOnly = readOnly;
   setAcceptDrops(!readOnly);
 }
+
+void biblioteq_image_drop_site::update(void)
+{
+  auto item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+    (scene()->items().value(0));
+
+  if(!item)
+    return;
+
+  item->setPixmap(QPixmap::fromImage(m_image));
+}
