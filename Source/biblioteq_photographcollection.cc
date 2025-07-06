@@ -3075,11 +3075,7 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
   if(!parent)
     return;
 
-  auto comboBox = parent->findChild<QComboBox *> ();
-  auto const percent = comboBox ?
-    comboBox->currentText().remove("%").toInt() : 100;
   auto scene = parent->findChild<QGraphicsScene *> ();
-  auto text = parent->findChild<QTextBrowser *> ();
 
   if(scene)
     {
@@ -3105,11 +3101,15 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 	  if(idx >= list.size())
 	    idx = 0;
 
+	  auto comboBox = parent->findChild<QComboBox *> ();
+	  auto const percent = comboBox ?
+	    comboBox->currentText().remove("%").toInt() : 100;
+
 	  QApplication::restoreOverrideCursor();
 	  loadPhotographFromItem
 	    (qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
 	     scene,
-	     text,
+	     parent->findChild<QTextBrowser *> (),
 	     percent);
 	}
     }
@@ -3154,11 +3154,7 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
   if(!parent)
     return;
 
-  auto comboBox = parent->findChild<QComboBox *> ();
-  auto const percent = comboBox ?
-    comboBox->currentText().remove("%").toInt() : 100;
   auto scene = parent->findChild<QGraphicsScene *> ();
-  auto text = parent->findChild<QTextBrowser *> ();
 
   if(scene)
     {
@@ -3184,11 +3180,15 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 	  if(idx < 0)
 	    idx = list.size() - 1;
 
+	  auto comboBox = parent->findChild<QComboBox *> ();
+	  auto const percent = comboBox ?
+	    comboBox->currentText().remove("%").toInt() : 100;
+
 	  QApplication::restoreOverrideCursor();
 	  loadPhotographFromItem
 	    (qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
 	     scene,
-	     text,
+	     parent->findChild<QTextBrowser *> (),
 	     percent);
 	}
     }
@@ -3197,10 +3197,7 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 void biblioteq_photographcollection::storeData(void)
 {
   QList<QWidget *> list;
-  QString classname("");
-  QString objectname("");
 
-  m_widgetValues.clear();
   list << pc.about_collection
        << pc.accession_number
        << pc.id_collection
@@ -3208,11 +3205,12 @@ void biblioteq_photographcollection::storeData(void)
        << pc.notes_collection
        << pc.thumbnail_collection
        << pc.title_collection;
+  m_widgetValues.clear();
 
   foreach(auto widget, list)
     {
-      classname = widget->metaObject()->className();
-      objectname = widget->objectName();
+      QString const classname = widget->metaObject()->className();
+      auto const objectname = widget->objectName();
 
       if(classname == "QComboBox")
 	m_widgetValues[objectname] =
