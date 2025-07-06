@@ -1225,8 +1225,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 	  QSqlQuery query(qmain->getDB());
 	  auto const itemOid(item->data(0).toString());
 
-	  query.prepare("DELETE FROM photograph WHERE "
-			"collection_oid = ? AND myoid = ?");
+	  query.prepare
+	    ("DELETE FROM photograph WHERE collection_oid = ? AND myoid = ?");
 	  query.bindValue(0, m_oid);
 	  query.bindValue(1, itemOid);
 
@@ -1520,7 +1520,8 @@ void biblioteq_photographcollection::slotGo(void)
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
 	      pc.thumbnail_collection->m_image.save
-		(&buffer, pc.thumbnail_collection->m_imageFormat.toLatin1(),
+		(&buffer,
+		 pc.thumbnail_collection->m_imageFormat.toLatin1(),
 		 100);
 	      query.bindValue(5, bytes.toBase64());
 	    }
@@ -1544,7 +1545,8 @@ void biblioteq_photographcollection::slotGo(void)
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
 	      image.save
-		(&buffer, pc.thumbnail_collection->m_imageFormat.toLatin1(),
+		(&buffer,
+		 pc.thumbnail_collection->m_imageFormat.toLatin1(),
 		 100);
 	      query.bindValue(6, bytes.toBase64());
 	    }
@@ -2511,7 +2513,7 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 		    "image = ?, "
 		    "image_scaled = ? "
 		    "WHERE myoid = ?");
-      query.addBindValue(bytes1);
+      query.addBindValue(bytes1.toBase64());
 
       QBuffer buffer;
       QByteArray bytes2;
@@ -2524,12 +2526,12 @@ void biblioteq_photographcollection::slotSaveRotatedImage
 	 Qt::KeepAspectRatio,
 	 Qt::SmoothTransformation);
 
-      if(i.isNull() || !i.save(&buffer,
-			       format.toUpper().toLatin1().constData(),
-			       100))
+      if(i.isNull() || i.save(&buffer,
+			      format.toUpper().toLatin1().constData(),
+			      100) == false)
 	bytes2 = bytes1;
 
-      query.addBindValue(bytes2);
+      query.addBindValue(bytes2.toBase64());
       query.addBindValue(oid);
 
       if(!query.exec())
@@ -2567,7 +2569,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 {
   auto const items(pc.graphicsView->scene()->selectedItems());
 
-  if(items.size() > 1)
+  if(items.isEmpty() || items.size() > 1)
     {
       m_itemOid.clear();
       pc.accession_number_item->clear();
