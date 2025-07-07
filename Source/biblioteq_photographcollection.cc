@@ -82,7 +82,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setScene(m_scene);
 
-  if(photographsPerPage() != -1) // Unlimited.
+  if(photographsPerPage() != -1) // Unlimited
     pc.graphicsView->setSceneRect
       (0.0,
        0.0,
@@ -494,89 +494,88 @@ void biblioteq_photographcollection::loadPhotographFromItem
   query.addBindValue(m_oid);
   query.addBindValue(item->data(0).toLongLong());
 
-  if(query.exec())
-    if(query.next())
-      {
-	QImage image;
-	auto bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
-	auto const format(biblioteq_misc_functions::imageFormatGuess(bytes));
+  if(query.exec() && query.next())
+    {
+      QImage image;
+      auto bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
+      auto const format(biblioteq_misc_functions::imageFormatGuess(bytes));
 
-	image.loadFromData(bytes);
+      image.loadFromData(bytes);
 
-	if(image.isNull())
-	  {
-	    bytes = query.value(0).toByteArray();
-	    image.loadFromData(bytes);
-	  }
+      if(image.isNull())
+	{
+	  bytes = query.value(0).toByteArray();
+	  image.loadFromData(bytes);
+	}
 
-	if(image.isNull())
-	  image = QImage(":/missing_image.png");
+      if(image.isNull())
+	image = QImage(":/missing_image.png");
 
-	QSize size;
+      QSize size;
 
-	if(percent == 0)
-	  size = scene->views().value(0)->size();
-	else
-	  {
-	    size = image.size();
-	    size.setHeight((percent * size.height()) / 100);
-	    size.setWidth((percent * size.width()) / 100);
-	  }
+      if(percent == 0)
+	size = scene->views().value(0)->size();
+      else
+	{
+	  size = image.size();
+	  size.setHeight((percent * size.height()) / 100);
+	  size.setWidth((percent * size.width()) / 100);
+	}
 
-	if(!image.isNull())
-	  image = image.scaled
-	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      if(!image.isNull())
+	image = image.scaled
+	  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	pc.graphicsView->scene()->clearSelection();
+      pc.graphicsView->scene()->clearSelection();
 
-	QGraphicsPixmapItem *pixmapItem = nullptr;
+      QGraphicsPixmapItem *pixmapItem = nullptr;
 
-	if(!scene->items().isEmpty())
-	  {
-	    pixmapItem = qgraphicsitem_cast<QGraphicsPixmapItem *>
-	      (scene->items().at(0));
+      if(!scene->items().isEmpty())
+	{
+	  pixmapItem = qgraphicsitem_cast<QGraphicsPixmapItem *>
+	    (scene->items().at(0));
 
-	    if(pixmapItem)
-	      pixmapItem->setPixmap(QPixmap::fromImage(image));
-	  }
-	else
-	  pixmapItem = scene->addPixmap(QPixmap::fromImage(image));
+	  if(pixmapItem)
+	    pixmapItem->setPixmap(QPixmap::fromImage(image));
+	}
+      else
+	pixmapItem = scene->addPixmap(QPixmap::fromImage(image));
 
-	if(pixmapItem)
-	  pixmapItem->setData(1, bytes);
+      if(pixmapItem)
+	pixmapItem->setData(1, bytes);
 
-	item->setSelected(true);
+      item->setSelected(true);
 
-	if(!scene->items().isEmpty())
-	  {
-	    scene->items().at(0)->setData(0, item->data(0)); // myoid
-	    scene->items().at(0)->setData(2, item->data(2)); // Navigation.
-	  }
+      if(!scene->items().isEmpty())
+	{
+	  scene->items().at(0)->setData(0, item->data(0)); // myoid
+	  scene->items().at(0)->setData(2, item->data(2)); // Navigation
+	}
 
-	scene->setSceneRect(scene->itemsBoundingRect());
-	text->setPlainText(query.value(1).toString().trimmed());
-	text->setVisible(!text->toPlainText().isEmpty());
+      scene->setSceneRect(scene->itemsBoundingRect());
+      text->setPlainText(query.value(1).toString().trimmed());
+      text->setVisible(!text->toPlainText().isEmpty());
 
-	auto view = qobject_cast<biblioteq_photograph_view *>
-	  (scene->views().value(0));
+      auto view = qobject_cast<biblioteq_photograph_view *>
+	(scene->views().value(0));
 
-	if(view)
-	  {
-	    connect(view,
-		    SIGNAL(save(const QImage &,
-				const QString &,
-				const qint64)),
-		    this,
-		    SLOT(slotSaveRotatedImage(const QImage &,
-					      const QString &,
-					      const qint64)),
-		    Qt::UniqueConnection);
-	    view->horizontalScrollBar()->setValue(0);
-	    view->setBestFit(percent == 0);
-	    view->setImage(image, format, item->data(0).toLongLong());
-	    view->verticalScrollBar()->setValue(0);
-	  }
-      }
+      if(view)
+	{
+	  connect(view,
+		  SIGNAL(save(const QImage &,
+			      const QString &,
+			      const qint64)),
+		  this,
+		  SLOT(slotSaveRotatedImage(const QImage &,
+					    const QString &,
+					    const qint64)),
+		  Qt::UniqueConnection);
+	  view->horizontalScrollBar()->setValue(0);
+	  view->setBestFit(percent == 0);
+	  view->setImage(image, format, item->data(0).toLongLong());
+	  view->verticalScrollBar()->setValue(0);
+	}
+    }
 
   QApplication::restoreOverrideCursor();
 }
@@ -846,7 +845,7 @@ void biblioteq_photographcollection::modify(const int state,
 
 		auto const i = photographsPerPage();
 
-		if(i == -1) // Unlimited.
+		if(i == -1) // Unlimited
 		  {
 		    pages = 1;
 		    setSceneRect(query.value(0).toLongLong());
@@ -988,7 +987,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   query.setForwardOnly(true);
 
-  if(photographsPerPage() == -1) // Unlimited.
+  if(photographsPerPage() == -1) // Unlimited
     {
       query.prepare("SELECT image_scaled, myoid FROM "
 		    "photograph WHERE "
@@ -1033,8 +1032,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	  biblioteq_graphicsitempixmap *pixmapItem = nullptr;
 
 	  image.loadFromData
-	    (QByteArray::fromBase64(query.value(0).
-				    toByteArray()));
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
 
 	  if(image.isNull())
 	    image.loadFromData(query.value(0).toByteArray());
@@ -1166,7 +1164,7 @@ void biblioteq_photographcollection::slotDatabaseEnumerationsCommitted(void)
       widgets.at(i)->setCurrentIndex(widgets.at(i)->findText(str));
 
       if(widgets.at(i)->currentIndex() < 0)
-	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown.
+	widgets.at(i)->setCurrentIndex(widgets.at(i)->count() - 1); // Unknown
     }
 
   QApplication::restoreOverrideCursor();
@@ -1241,9 +1239,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   QSqlQuery query(qmain->getDB());
   int pages = 1;
 
-  query.prepare("SELECT COUNT(*) "
-		"FROM photograph "
-		"WHERE collection_oid = ?");
+  query.prepare("SELECT COUNT(*) FROM photograph WHERE collection_oid = ?");
   query.bindValue(0, m_oid);
 
   if(query.exec())
@@ -1255,7 +1251,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 	auto const i = photographsPerPage();
 
-	if(i == -1) // Unlimited.
+	if(i == -1) // Unlimited
 	  {
 	    pages = 1;
 	    setSceneRect(query.value(0).toLongLong());
@@ -2097,7 +2093,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
 	auto const i = photographsPerPage();
 
-	if(i == -1) // Unlimited.
+	if(i == -1) // Unlimited
 	  {
 	    pages = 1;
 	    setSceneRect(query.value(0).toLongLong());
@@ -2302,7 +2298,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
 	auto const i = photographsPerPage();
 
-	if(i == -1) // Unlimited.
+	if(i == -1) // Unlimited
 	  {
 	    pages = 1;
 	    setSceneRect(query.value(0).toLongLong());
