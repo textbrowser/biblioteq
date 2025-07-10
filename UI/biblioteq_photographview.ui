@@ -105,6 +105,9 @@
            <height>50</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Item Notes</string>
+         </property>
          <property name="tabChangesFocus">
           <bool>true</bool>
          </property>
