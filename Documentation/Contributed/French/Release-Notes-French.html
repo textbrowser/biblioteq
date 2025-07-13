@@ -1,9 +1,33 @@
 <html>
   <body>
-    <p><u>31 mai 2025</u></p>
+    <p><u>13 juillet 2025</u></p>
     <ul>
-      <li>Nouvelle colonne titre_série dans la table des livres. Veuillez réviser vos bases de données ! Requête Open Library : champ sous-titre, si disponible. Requête SRU : zone de données 490 et sous-zone a, si disponible. Requête Z39.50 : zone de données 490 et sous-zone a, si disponible.<b>Ticket GitHub #404.</b></li>
+      <li>Correction de l'activation des hyperliens intégrés. Les widgets restaient modifiables après l'activation de la touche Alt.</li>
+      <li>PostgreSQL 15.13.2; Windows.</li>
+      <li>Remplacement de Qt::ConnectionType() par static_cast<Qt::ConnectionType>.</li>
+      <li>Conseils d'utilisation parsemés ici et là.</li>
+    </ul>  
+    <p><u>5 juillet 2025</u></p>
+    <ul>
+      <li>Correction de biblioteq_photographcollection::slotSceneSelectionChanged(). La méthode peut accéder à un élément de scène non valide.</li>
+      <li>Correction de l'enregistrement des images photographiques. Les images doivent être enregistrées en tant qu'éléments Base64.</li>
+      <li>Conserver autant d'informations que possible sur l'image après la rotation d'une photographie.</li>
+      <li>Mise à jour des aperçus d'une photographie dans le panneau Informations sur l'élément et dans le navigateur de photographies après un événement d'enregistrement.</li>
     </ul>
+    <p><u>2 juillet 2025</u></p>
+    <ul>
+      <li>Détecter qt6ct dans biblioteq.sh et définir QT_QPA_PLATFORMTHEME.</li>
+      <li>Renommer les clés de BiblioteQ.ini : filesPerPage -> files_per_page, main_window_geometry -> mainwindow_geometry, mainwindowState -> mainwindow_state, showTabBar -> show_tab_bar, tabbedItemWindows -> tabbed_item_windows, tearOffMenus -> tear_off_menus.</li>
+    </ul>
+    <p><u>30 juin 2025</u></p>
+    <ul>
+      <li>Initialiser le nombre maximum de livres réservés dans Créer un nouveau membre. Dans le cas contraire, un rappel erroné sera affiché.</li>
+      <li>Nouvelle colonne titre_série dans la table des livres. Veuillez réviser vos bases de données ! Requête Open Library : champ sous-titre, si disponible. Requête SRU : zone de données 490 et sous-zone a, si disponible. Requête Z39.50 : zone de données 490 et sous-zone a, si disponible.<b>Ticket GitHub #404.</b></li>
+      <li>Autres options : nouveaux membres -> Couleur du champ obligatoire.</li>
+      <li>Autres options : nouvelle réinitialisation.</li>
+      <li>Conserver le texte actuel dans biblioteq_misc_functions::sortCombinationBox().</li>
+      <li>SRU Library of Congress : version 2.0 dans biblioteq.conf.</li>
+    </ul>  
     <p><u>26 mai 2025</u></p>
     <ul>
       <li>Nouvelle machine de calcul SHA3-512 dans le navigateur de fichiers.</li>
