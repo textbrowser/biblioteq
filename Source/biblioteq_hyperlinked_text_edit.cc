@@ -36,24 +36,21 @@ biblioteq_hyperlinked_text_edit::biblioteq_hyperlinked_text_edit
 	  this,
 	  SLOT(slotAnchorClicked(const QUrl &)));
   m_qmain = nullptr;
-  m_readOnly = -1;
+  m_readOnly = false;
 }
 
 void biblioteq_hyperlinked_text_edit::keyPressEvent(QKeyEvent *event)
 {
   QTextBrowser::keyPressEvent(event);
 
-  if(m_readOnly == -1)
-    isReadOnly() ? m_readOnly = 1 : m_readOnly = 0;
-
   if(event && (event->key() == Qt::AltModifier || event->key() == Qt::Key_Alt))
-    setReadOnly(true);
+    QTextBrowser::setReadOnly(true);
 }
 
 void biblioteq_hyperlinked_text_edit::keyReleaseEvent(QKeyEvent *event)
 {
   QTextBrowser::keyReleaseEvent(event);
-  setReadOnly(m_readOnly == 1);
+  QTextBrowser::setReadOnly(m_readOnly);
 }
 
 void biblioteq_hyperlinked_text_edit::setMultipleLinks
@@ -90,6 +87,12 @@ void biblioteq_hyperlinked_text_edit::setMultipleLinks
 void biblioteq_hyperlinked_text_edit::setQMain(biblioteq *biblioteq)
 {
   m_qmain = biblioteq;
+}
+
+void biblioteq_hyperlinked_text_edit::setReadOnly(bool state)
+{
+  QTextBrowser::setReadOnly(state);
+  m_readOnly = state;
 }
 
 void biblioteq_hyperlinked_text_edit::slotAnchorClicked(const QUrl &url)

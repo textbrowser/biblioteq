@@ -43,10 +43,11 @@ class biblioteq_hyperlinked_text_edit: public QTextBrowser
 			const QString &searchField,
 			const QString &str);
   void setQMain(biblioteq *biblioteq);
+  void setReadOnly(bool state);
 
  private:
   QPointer<biblioteq> m_qmain;
-  int m_readOnly;
+  bool m_readOnly;
   void keyPressEvent(QKeyEvent *event);
   void keyReleaseEvent(QKeyEvent *event);
 
