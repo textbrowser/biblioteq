@@ -43,7 +43,10 @@ void biblioteq_hyperlinked_text_edit::keyPressEvent(QKeyEvent *event)
 {
   QTextBrowser::keyPressEvent(event);
 
-  if(event && (event->key() == Qt::AltModifier || event->key() == Qt::Key_Alt))
+  if(event == nullptr || isReadOnly())
+    return;
+
+  if(event->key() == Qt::AltModifier || event->key() == Qt::Key_Alt)
     QTextBrowser::setReadOnly(true);
 }
 
