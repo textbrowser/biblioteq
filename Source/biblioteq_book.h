@@ -101,6 +101,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   bool m_duplicate;
   biblioteq_item_working_dialog *createImageDownloadDialog
     (const QString &downloadType);
+  void addKeywordsCompleter(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void createFile(const QByteArray &bytes,
@@ -133,6 +134,8 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotExportFiles(void);
   void slotFilesDoubleClicked(QTableWidgetItem *item);
   void slotGo(void);
+  void slotKeywordsEdited(const QString &text);
+  void slotKeywordsReturnPressed(void);
   void slotOpenLibraryCanceled(void);
   void slotOpenLibraryDownloadFinished(bool error);
   void slotOpenLibraryDownloadFinished(void);

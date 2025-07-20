@@ -37,12 +37,14 @@
 
 #include <QActionGroup>
 #include <QAuthenticator>
+#include <QCompleter>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QNetworkProxy>
 #include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
+#include <QSqlQueryModel>
 #include <QSqlRecord>
 #include <QTimer>
 #include <QXmlStreamReader>
@@ -743,6 +745,31 @@ biblioteq_item_working_dialog *biblioteq_book::createImageDownloadDialog
   return dialog;
 }
 
+void biblioteq_book::addKeywordsCompleter(void)
+{
+  if(!id.keywords->completer())
+    {
+      auto completer = new QCompleter(this);
+      auto model = new QSqlQueryModel(this);
+
+      completer->setCaseSensitivity(Qt::CaseInsensitive);
+      completer->setCompletionColumn(0);
+      completer->setCompletionMode(QCompleter::PopupCompletion);
+      completer->setFilterMode(Qt::MatchContains);
+      completer->setModel(model);
+      connect(id.keywords,
+	      SIGNAL(returnPressed(void)),
+	      this,
+	      SLOT(slotKeywordsReturnPressed(void)));
+      connect(id.keywords,
+	      SIGNAL(textEdited(const QString &)),
+	      this,
+	      SLOT(slotKeywordsEdited(const QString &)));
+      id.keywords->setCompleter(completer);
+      model->setObjectName("keywords_model");
+    }
+}
+
 void biblioteq_book::changeEvent(QEvent *event)
 {
   if(event)
@@ -980,6 +1007,7 @@ void biblioteq_book::insert(void)
   id.id->clear();
   id.isbn13->clear();
   id.keyword->clear();
+  id.keywords->clear();
   id.language->setCurrentIndex(0);
   id.lcnum->clear();
   id.location->setCurrentIndex(0);
@@ -1049,6 +1077,7 @@ void biblioteq_book::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      addKeywordsCompleter();
       setReadOnlyFields(this, false);
       id.attach_files->setEnabled(true);
       id.copiesButton->setEnabled(true);
@@ -2334,6 +2363,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.isbn13->setText("%");
   id.isbnAvailableCheckBox->setCheckable(false);
   id.keyword->clear();
+  id.keywords->setVisible(false);
   id.language->insertItem(0, tr("Any"));
   id.language->setCurrentIndex(0);
   id.lcnum->clear();
@@ -4330,6 +4360,41 @@ void biblioteq_book::slotGo(void)
     }
 }
 
+void biblioteq_book::slotKeywordsEdited(const QString &text)
+{
+  if(text.trimmed().isEmpty())
+    return;
+
+  auto model = findChild<QSqlQueryModel *> ("keywords_model");
+
+  if(!model)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString E("");
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    E = "E";
+
+  query.prepare
+    ("SELECT keyword FROM book WHERE "
+     "LOWER(keyword) LIKE " + E + "'%' || ? || '%' ORDER BY keyword ASC");
+  query.addBindValue(text.toLower().trimmed());
+  query.exec();
+  model->clear();
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 2, 0))
+  model->setQuery(std::move(query));
+#else
+  model->setQuery(query);
+#endif
+  id.keywords->completer()->setCurrentRow(0);
+}
+
+void biblioteq_book::slotKeywordsReturnPressed(void)
+{
+  id.keyword->append(id.keywords->text().trimmed());
+}
+
 void biblioteq_book::slotOpenLibraryCanceled(void)
 {
   auto reply = m_openLibraryManager->findChild<QNetworkReply *> ();
@@ -5088,6 +5153,7 @@ void biblioteq_book::slotReset(void)
 	  id.keyword->clear();
 	  id.keyword->setFocus();
 	  id.keyword->viewport()->setPalette(m_white_pal);
+	  id.keywords->clear();
 	}
       else if(action == actions[25])
 	{
@@ -5218,6 +5284,7 @@ void biblioteq_book::slotReset(void)
 	id.description->clear();
 
       id.keyword->clear();
+      id.keywords->clear();
       id.marc_tags->clear();
       id.marc_tags_format->setCurrentIndex(0);
       id.url->clear();
@@ -5878,6 +5945,7 @@ void biblioteq_book::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      addKeywordsCompleter();
       id.attach_files->setEnabled(true);
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
@@ -5917,6 +5985,7 @@ void biblioteq_book::updateWindow(const int state)
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
       id.export_files->setEnabled(true);
+      id.keywords->setVisible(false);
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
       id.isbnAvailableCheckBox->setCheckable(false);

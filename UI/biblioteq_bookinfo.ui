@@ -34,9 +34,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-302</y>
+         <y>-542</y>
          <width>1167</width>
-         <height>1638</height>
+         <height>1680</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -839,7 +839,7 @@
                     </layout>
                    </item>
                    <item row="7" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_11">
+                    <layout class="QVBoxLayout" name="verticalLayout_10">
                      <item>
                       <widget class="biblioteq_hyperlinked_text_edit" name="keyword">
                        <property name="tabChangesFocus">
