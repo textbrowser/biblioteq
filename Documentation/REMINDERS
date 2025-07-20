@@ -674,3 +674,4 @@ Remaining Items
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
+9.   GH #398. Delimit a keyword into multiple rows by newline characters.
