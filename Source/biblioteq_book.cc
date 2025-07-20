@@ -766,6 +766,10 @@ void biblioteq_book::addKeywordsCompleter(void)
 	      this,
 	      SLOT(slotKeywordsEdited(const QString &)));
       id.keywords->setCompleter(completer);
+      id.keywords->setToolTip
+	(tr("%1 Query will fetch at most %2 items.").
+	 arg(id.keywords->toolTip()).
+	 arg(static_cast<int> (biblioteq::Limits::BOOK_KEYWORD_QUERY_LIMIT)));
       model->setObjectName("keywords_model");
     }
 }
@@ -4377,8 +4381,10 @@ void biblioteq_book::slotKeywordsEdited(const QString &text)
     E = "E";
 
   query.prepare
-    ("SELECT keyword FROM book WHERE "
-     "LOWER(keyword) LIKE " + E + "'%' || ? || '%' ORDER BY keyword ASC");
+    (QString("SELECT DISTINCT keyword FROM book WHERE "
+	     "LOWER(keyword) LIKE " + E + "'%' || ? || '%' "
+	     "ORDER BY keyword ASC LIMIT %1").
+     arg(static_cast<int> (biblioteq::Limits::BOOK_KEYWORD_QUERY_LIMIT)));
   query.addBindValue(text.toLower().trimmed());
   query.exec();
   model->clear();

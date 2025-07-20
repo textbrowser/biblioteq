@@ -286,6 +286,7 @@ class biblioteq: public QMainWindow
  public:
   enum class Limits
     {
+      BOOK_KEYWORD_QUERY_LIMIT = 5000,
       FAVORITES_LENGTH = 1024,
       QUANTITY = 1000 // Copies per item.
     };
