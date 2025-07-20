@@ -863,12 +863,12 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="keywords">
+                      <widget class="QLineEdit" name="keywords">
                        <property name="toolTip">
-                        <string>Display modal completer.</string>
+                        <string>Keywords completer. Accepted value will be appended.</string>
                        </property>
-                       <property name="text">
-                        <string>Keywords</string>
+                       <property name="placeholderText">
+                        <string>Keywords Completer (Append)</string>
                        </property>
                       </widget>
                      </item>
