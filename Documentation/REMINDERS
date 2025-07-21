@@ -662,6 +662,7 @@ Completed Items
 331. Statistics.
 332. Files Browser: access PDF files.
 333. Modern file digests such as SHA3-512.
+334. GH #398. Delimit a keyword into multiple rows by newline characters.
 
 Remaining Items
 
@@ -674,4 +675,3 @@ Remaining Items
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
-9.   GH #398. Delimit a keyword into multiple rows by newline characters.
