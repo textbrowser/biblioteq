@@ -44,8 +44,8 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
-#include <QSqlQueryModel>
 #include <QSqlRecord>
+#include <QStringListModel>
 #include <QTimer>
 #include <QXmlStreamReader>
 #include <QtMath>
@@ -750,7 +750,7 @@ void biblioteq_book::addKeywordsCompleter(void)
   if(!id.keywords->completer())
     {
       auto completer = new QCompleter(this);
-      auto model = new QSqlQueryModel(this);
+      auto model = new QStringListModel(this);
 
       completer->setCaseSensitivity(Qt::CaseInsensitive);
       completer->setCompletionColumn(0);
@@ -4369,30 +4369,35 @@ void biblioteq_book::slotKeywordsEdited(const QString &text)
   if(text.trimmed().isEmpty())
     return;
 
-  auto model = findChild<QSqlQueryModel *> ("keywords_model");
+  auto model = findChild<QStringListModel *> ("keywords_model");
 
   if(!model)
     return;
 
+  QMap<QString, char> map;
   QSqlQuery query(qmain->getDB());
   QString E("");
 
   if(qmain->getDB().driverName() != "QSQLITE")
     E = "E";
 
+  query.setForwardOnly(true);
   query.prepare
     (QString("SELECT DISTINCT keyword FROM book WHERE "
 	     "LOWER(keyword) LIKE " + E + "'%' || ? || '%' "
 	     "ORDER BY keyword ASC LIMIT %1").
      arg(static_cast<int> (biblioteq::Limits::BOOK_KEYWORD_QUERY_LIMIT)));
   query.addBindValue(text.toLower().trimmed());
-  query.exec();
-  model->clear();
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 2, 0))
-  model->setQuery(std::move(query));
-#else
-  model->setQuery(query);
-#endif
+
+  if(query.exec())
+    {
+      while(query.next())
+	foreach(auto const &str, query.value(0).toString().split('\n'))
+	  if(!str.trimmed().isEmpty())
+	    map[str.trimmed()] = 0;
+    }
+
+  model->setStringList(map.keys());
   id.keywords->completer()->setCurrentRow(0);
 }
 
