@@ -4374,6 +4374,8 @@ void biblioteq_book::slotKeywordsEdited(const QString &text)
   if(!model)
     return;
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   QMap<QString, char> map;
   QSqlQuery query(qmain->getDB());
   QString E("");
@@ -4399,6 +4401,7 @@ void biblioteq_book::slotKeywordsEdited(const QString &text)
 
   model->setStringList(map.keys());
   id.keywords->completer()->setCurrentRow(0);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_book::slotKeywordsReturnPressed(void)
