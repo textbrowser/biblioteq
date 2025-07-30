@@ -54,7 +54,7 @@ class biblioteq_copy_editor: public QDialog
 			const QString &uniqueIdArg,
 			const bool speedy);
   virtual ~biblioteq_copy_editor();
-  void populateCopiesEditor(void);
+  virtual void populateCopiesEditor(void);
 
  private:
   class copy_class

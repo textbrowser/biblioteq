@@ -40,6 +40,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
   m_parent = parent;
   m_quantity = 1;
   m_showForLending = false;
+  m_speedy = false;
   m_spinbox = nullptr;
   qmain = biblioteq;
 }
