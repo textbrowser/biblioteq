@@ -467,7 +467,7 @@ void biblioteq_batch_activities::play(const QString &file)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
   m_audioOutput.reset(new QAudioOutput());
-  m_audioOutput->setVolume(100);
+  m_audioOutput->setVolume(1.0);
   player = new QMediaPlayer(this);
   player->setAudioOutput(m_audioOutput.data());
   player->setSource(QUrl::fromUserInput(file));
