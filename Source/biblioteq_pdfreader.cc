@@ -367,6 +367,8 @@ void biblioteq_pdfreader::slotPrint(void)
   if(!m_document)
     return;
 
+  m_ui.menuBar->repaint();
+
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
 
@@ -554,6 +556,8 @@ void biblioteq_pdfreader::slotPrintPreview(void)
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   if(!m_document)
     return;
+
+  m_ui.menuBar->repaint();
 
   QPrinter printer;
   QScopedPointer<QPrintPreviewDialog> dialog

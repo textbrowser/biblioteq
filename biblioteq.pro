@@ -46,6 +46,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wpointer-arith \
                           -Wstack-protector \
                           -Wstrict-overflow=1 \
+                          -Wtrampolines \
                           -Wundef \
                           -fPIE \
                           -fstack-protector-all \

@@ -293,6 +293,8 @@ void biblioteq_documentationwindow::slotFindText(void)
 
 void biblioteq_documentationwindow::slotPrint(void)
 {
+  m_ui.menuBar->repaint();
+
   QPrinter printer;
   QPrintDialog printDialog(&printer, this);
 
