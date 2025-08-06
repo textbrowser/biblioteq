@@ -3731,6 +3731,11 @@ void biblioteq::slotExit(void)
     lock.unlock();
 
   QSettings().setValue("mainwindow_state", saveState());
+  m_admin_diag->deleteLater();
+  m_all_diag->deleteLater();
+  m_error_diag->deleteLater();
+  m_history_diag->deleteLater();
+  m_members_diag->deleteLater();
   slotLastWindowClosed();
   quit();
 }
