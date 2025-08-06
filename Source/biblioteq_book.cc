@@ -4876,6 +4876,11 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
   html += id.deweynum->text().trimmed();
   html += "</html>";
 
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(action && action->menu())
+    action->menu()->repaint();
+
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
   QTextDocument document;
@@ -4916,6 +4921,11 @@ void biblioteq_book::slotPrintCallDewey(void)
     html += list.at(i) + "<br>";
 
   html += "</html>";
+
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(action && action->menu())
+    action->menu()->repaint();
 
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
