@@ -4455,6 +4455,8 @@ void biblioteq::slotPrintReservationHistory(void)
       return;
     }
 
+  history.printButton->repaint();
+
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog
     (new QPrintDialog(&printer, m_history_diag));
@@ -4496,6 +4498,8 @@ void biblioteq::slotPrintReservationHistoryPreview(void)
       QApplication::processEvents();
       return;
     }
+
+  history.printButton->repaint();
 
   QPrinter printer;
   QScopedPointer<QPrintPreviewDialog> printDialog
@@ -4589,6 +4593,8 @@ void biblioteq::slotPrintReserved(void)
       return;
     }
 
+  bb.printButton->repaint();
+
   QMap<QString, QString> memberinfo;
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog
@@ -4660,6 +4666,11 @@ void biblioteq::slotPrintReserved(void)
 
 void biblioteq::slotPrintView(void)
 {
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(action && action->menu())
+    action->menu()->repaint();
+
   QPrinter printer;
   QScopedPointer<QPrintDialog> dialog(new QPrintDialog(&printer, this));
   QTextDocument document;
@@ -4686,6 +4697,11 @@ void biblioteq::slotPrintView(void)
 
 void biblioteq::slotPrintViewPreview(void)
 {
+  auto action = qobject_cast<QAction *> (sender());
+
+  if(action && action->menu())
+    action->menu()->repaint();
+
   QPrinter printer;
   QScopedPointer<QPrintPreviewDialog> printDialog
     (new QPrintPreviewDialog(&printer, this));
