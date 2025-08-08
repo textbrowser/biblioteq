@@ -1,10 +1,11 @@
 Architecture: amd64
-Depends: libpoppler-qt5-1,
-	 libpq5,
+Depends: libpq5,
 	 libqt5core5a,
 	 libqt5gui5,
 	 libqt5multimedia5,
 	 libqt5network5,
+	 libqt5pdf5,
+	 libqt5pdfwidgets5,
 	 libqt5printsupport5,
 	 libqt5sql5,
 	 libqt5sql5-psql,
