@@ -1,10 +1,11 @@
 Architecture: arm64
-Depends: libpoppler-qt6-3,
-	 libpq5,
+Depends: libpq5,
 	 libqt6core6,
 	 libqt6gui6,
 	 libqt6multimedia6,
 	 libqt6network6,
+	 libqt6pdf6,
+	 libqt6pdfwidgets6,
 	 libqt6printsupport6,
 	 libqt6sql6,
 	 libqt6sql6-psql,
