@@ -34,38 +34,6 @@ LIBS        += -lpoppler-qt6
 }
 }
 
-greaterThan(QT_MAJOR_VERSION, 6) {
-exists(/usr/include/poppler/qt7) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
-               BIBLIOTEQ_LINKED_WITH_POPPLER7
-INCLUDEPATH += /usr/include/poppler/qt7
-LIBS        += -lpoppler-qt7
-}
-
-exists(/usr/local/include/poppler/qt7) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
-               BIBLIOTEQ_LINKED_WITH_POPPLER7
-INCLUDEPATH += /usr/local/include/poppler/qt7
-LIBS        += -lpoppler-qt7
-}
-}
-
-greaterThan(QT_MAJOR_VERSION, 7) {
-exists(/usr/include/poppler/qt8) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
-               BIBLIOTEQ_LINKED_WITH_POPPLER8
-INCLUDEPATH += /usr/include/poppler/qt8
-LIBS        += -lpoppler-qt8
-}
-
-exists(/usr/local/include/poppler/qt8) {
-DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
-               BIBLIOTEQ_LINKED_WITH_POPPLER8
-INCLUDEPATH += /usr/local/include/poppler/qt8
-LIBS        += -lpoppler-qt8
-}
-}
-
 lessThan(QT_MAJOR_VERSION, 6) {
 exists(/usr/include/poppler/qt5) {
 DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
@@ -90,7 +58,9 @@ QT      += multimedia
 qtHaveModule(pdf) {
 qtHaveModule(pdfwidgets) {
 DEFINES         += BIBLIOTEQ_QT_PDF_SUPPORTED
+DEFINES         -= BIBLIOTEQ_LINKED_WITH_POPPLER
 QT              += pdf pdfwidgets
+message("Qt PDF modules were discovered!")
 }
 }
 

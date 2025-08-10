@@ -140,11 +140,13 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 
 biblioteq_pdfreader::~biblioteq_pdfreader()
 {
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   delete m_document;
 #endif
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
   m_document ? m_document.reset() : static_cast<void> (0);
+#endif
 #endif
 }
 

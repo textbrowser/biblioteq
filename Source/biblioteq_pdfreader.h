@@ -53,11 +53,13 @@ class biblioteq_pdfreader: public QMainWindow
   void load(const QString &fileName);
 
  private:
+#if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER5)
   Poppler::Document *m_document;
 #endif
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER6)
   std::unique_ptr<Poppler::Document> m_document;
+#endif
 #endif
   QRectF m_searchLocation;
   QString m_fileName;
