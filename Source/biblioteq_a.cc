@@ -388,6 +388,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowOtherOptions(void)));
+  connect(ui.actionOverdue_Items_Notification,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotActionToggled(void)));
   connect(ui.actionPatron_Reservation_History,
 	  SIGNAL(toggled(bool)),
 	  this,
@@ -1111,6 +1115,8 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDisplay_Tab_Bar->setChecked
     (settings.value("show_tab_bar", true).toBool());
+  ui.actionOverdue_Items_Notification->setChecked
+    (settings.value("overdue_items_notification", false).toBool());
   ui.actionTearOffMenus->setChecked
     (settings.value("tear_off_menus", true).toBool());
   ui.graphicsView->scene()->clear();

@@ -926,6 +926,8 @@ void biblioteq::slotActionToggled(void)
     }
   else if(action == ui.actionDownload_Version_Information)
     QSettings().setValue("download_version_information", action->isChecked());
+  else if(action == ui.actionOverdue_Items_Notification)
+    QSettings().setValue("overdue_items_notification", action->isChecked());
 }
 void biblioteq::slotAnimateAbout(void)
 {
