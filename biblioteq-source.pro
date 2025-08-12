@@ -58,9 +58,19 @@ QT      += multimedia
 qtHaveModule(pdf) {
 qtHaveModule(pdfwidgets) {
 DEFINES         += BIBLIOTEQ_QT_PDF_SUPPORTED
-DEFINES         -= BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES         -= BIBLIOTEQ_LINKED_WITH_POPPLER \
+                   BIBLIOTEQ_LINKED_WITH_POPPLER5 \
+                   BIBLIOTEQ_LINKED_WITH_POPPLER6 \
+                   BIBLIOTEQ_POPPLER_VERSION_DEFINED
+INCLUDEPATH     -= /usr/include/poppler/cpp \
+                   /usr/include/poppler/qt5 \
+                   /usr/include/poppler/qt6 \
+                   /usr/local/include/poppler/cpp \
+                   /usr/local/include/poppler/qt5 \
+                   /usr/local/include/poppler/qt6
+LIBS            -= -lpoppler-qt5 -lpoppler-qt6
 QT              += pdf pdfwidgets
-message("Qt PDF modules were discovered!")
+message("Qt PDF modules were discovered! Disabling Poppler.")
 }
 }
 
