@@ -639,6 +639,7 @@
     <addaction name="actionDisplay_Tab_Bar"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionDownload_Version_Information"/>
+    <addaction name="actionOverdue_Items_Notification"/>
     <addaction name="actionPatron_Reservation_History"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
     <addaction name="actionPopulate_Database_Enumerations_Browser_on_Display"/>
@@ -1544,6 +1545,14 @@
    </property>
    <property name="text">
     <string>Display Tab Bar</string>
+   </property>
+  </action>
+  <action name="actionOverdue_Items_Notification">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Overdue Items Notification</string>
    </property>
   </action>
  </widget>
