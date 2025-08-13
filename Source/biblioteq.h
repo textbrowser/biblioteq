@@ -545,6 +545,7 @@ class biblioteq: public QMainWindow
   QString viewHtml(void) const;
   QWidget *widgetForAction(QAction *action) const;
   biblioteq_item *findItemInTab(const QString &oid) const;
+  bool canAccessOverdueItems(void) const;
   bool emptyContainers(void);
   bool isCurrentItemAPhotograph(void) const;
   void addConfigOptions(const QString &typefilter);

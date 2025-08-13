@@ -151,6 +151,18 @@ bool biblioteq::canAccessDatabaseEnumerations(void) const
     return false;
 }
 
+bool biblioteq::canAccessOverdueItems(void) const
+{
+  if(!m_db.isOpen())
+    return false;
+  else if(m_db.driverName() == "QSQLITE")
+    return true;
+  else if(m_roles.contains("administrator") || m_roles.contains("circulation"))
+    return true;
+  else
+    return false;
+}
+
 bool biblioteq::isCurrentItemAPhotograph(void) const
 {
   return biblioteq_misc_functions::getColumnString
@@ -929,7 +941,7 @@ void biblioteq::slotActionToggled(void)
   else if(action == ui.actionOverdue_Items_Notification)
     {
       QSettings().setValue("overdue_items_notification", action->isChecked());
-      action->isChecked() ?
+      action->isChecked() && canAccessOverdueItems() ?
 	m_overdueItemsTimer.start() : m_overdueItemsTimer.stop();
     }
 }
