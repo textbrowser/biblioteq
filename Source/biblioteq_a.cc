@@ -256,6 +256,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_menuCategoryActionGroup = new QActionGroup(this);
   m_menuCategoryActionGroup->setExclusive(true);
   m_otherOptions = new biblioteq_otheroptions(this);
+  m_overdueItemsTimer.setInterval(5000);
   m_pages = 0;
   m_pass_diag = new QDialog(this);
   m_previousTypeFilter = "";
@@ -266,6 +267,10 @@ biblioteq::biblioteq(void):QMainWindow()
   m_searchQuery = nullptr;
   m_status_bar_label = nullptr;
   userinfo_diag = new userinfo_diag_class(m_members_diag);
+  connect(&m_overdueItemsTimer,
+	  SIGNAL(timeout(void)),
+	  this,
+	  SLOT(slotNotifyOfOverdueItems(void)));
   connect(QCoreApplication::instance(),
 	  SIGNAL(lastWindowClosed(void)),
 	  this,
@@ -1310,6 +1315,8 @@ biblioteq::biblioteq(void):QMainWindow()
   biblioteq_misc_functions::highlightWidget
     (userinfo_diag->m_userinfo.zip,
      m_otherOptions->membersMandatoryFieldColor());
+  ui.actionOverdue_Items_Notification->isChecked() ?
+    m_overdueItemsTimer.start() : m_overdueItemsTimer.stop();
   ui.splitter->restoreState
     (settings.value("main_splitter_state").toByteArray());
   ui.splitter->setCollapsible(1, false);

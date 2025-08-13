@@ -513,6 +513,7 @@ class biblioteq: public QMainWindow
   QStringList m_deletedAdmins;
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;
+  QTimer m_overdueItemsTimer;
   QVector<QPointer<QMainWindow> > m_attachedWindows;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
@@ -651,6 +652,7 @@ class biblioteq: public QMainWindow
   void slotModify(void);
   void slotModifyBorrower(void);
   void slotNextPage(void);
+  void slotNotifyOfOverdueItems(void);
   void slotOpenOnlineDocumentation(void);
   void slotOpenPDFFiles(void);
   void slotOtherOptionsSaved(void);
