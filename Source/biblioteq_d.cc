@@ -1276,6 +1276,26 @@ void biblioteq::slotNotifyOfOverdueItems(void)
       dialog->setWindowTitle(tr("BiblioteQ: Overdue Items Notification"));
     }
 
+  QSqlQuery query(m_db);
+  auto const now(QDate::currentDate());
+
+  query.prepare
+    ("SELECT COUNT(duedate) FROM item_borrower WHERE "
+     "SUBSTR(duedate, 7, 4) || '/' || "
+     "SUBSTR(duedate, 1, 2) || '/' || "
+     "SUBSTR(duedate, 4, 2) < ?");
+  query.addBindValue(now.toString("yyyy/MM/dd"));
+
+  if(query.exec() && query.next())
+    {
+      auto const count = query.value(0).toLongLong();
+
+      if(count <= 0)
+	return;
+    }
+  else
+    return;
+
 #ifdef Q_OS_ANDROID
   dialog->showMaximized();
 #else
